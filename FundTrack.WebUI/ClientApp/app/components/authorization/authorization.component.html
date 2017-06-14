@@ -1,1 +1,38 @@
-﻿<h1>Вхід у систему</h1>
+﻿<div class="container">
+    <div class="row main">
+        <div class="panel-heading">
+            <div class="panel-title text-center">
+                <h1 class="title">Вхід у систему</h1>
+                <hr />
+            </div>
+        </div>
+        <div class="main-login main-center">
+            <form class="form-horizontal" method="post" action="#">
+                <div class="form-group">
+                    <label for="username" class="cols-sm-2 control-label">Логін</label>
+                    <div class="cols-sm-10">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
+                            <input #login="ngModel" type="text" class="form-control" name="login" id="login" placeholder="Введіть логін" [(ngModel)]="userLogin" />
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="password" class="cols-sm-2 control-label">Пароль</label>
+                    <div class="cols-sm-10">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                            <input #password="ngModel" minlength="6" type="password" class="form-control" name="password" id="password" placeholder="Введіть пароль" [(ngModel)]="userPassword" />
+                            <div *ngIf="password.invalid && password.dirty" class="alert alert-danger">
+                                Мінімальна довжина 6 символів.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group ">
+                    <button type="button" class="btn btn-primary btn-lg btn-block login-button">Залогуватися</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

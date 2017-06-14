@@ -1,6 +1,7 @@
 ﻿import { Component } from '@angular/core';
 @Component({
-    templateUrl: 'authorization.component.html'
+    template: require('./authorization.component.html'),
+     styles: [require('./authorization.component.css')]
 })
 export class AuthorizationComponent {
 }
