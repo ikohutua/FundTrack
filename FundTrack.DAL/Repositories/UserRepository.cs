@@ -1,40 +1,41 @@
 ﻿using FundTrack.DAL.Abstract;
-using System;
+using FundTrack.DAL.Entities;
 using System.Collections.Generic;
-using System.Text;
-using FundTrack.Infrastructure.Models;
 using System.Linq;
 
 namespace FundTrack.DAL.Repositories
 {
-    public class FakeUserRepository : IUserRepository
+    public class UserRepository : IUserRepository
     {
         private static List<User> _users;
 
-        static FakeUserRepository()
+        static UserRepository()
         {
             _users = new List<User>{
                 new User
                 {
                     Id = 1,
-                    FirstName = "Vasyl",
-                    SecondName = "Sypa",
-                    Email = "vasyl@gmail.com",
                     Login = "Vasilio",
-                    Password = "12345"
+                    Email = "vasyl@gmail.com",
+                    Password = "12345",
+                    FirstName = "Vasya",
+                    LastName = "Sypa",
+                    FB_Link = "aaa",
+                    PhotoUrl = "bbb",
                 },
                 new User
                 {
                     Id = 2,
-                    FirstName = "Ihor",
-                    SecondName = "Vavrynyk",
+                    Login = "Ihorko",
                     Email = "ihor@gmail.com",
-                    Login = "Ihorio",
-                    Password = "7890"
-                }
+                    Password = "67890",
+                    FirstName = "Ihor",
+                    LastName = "Vavrunyk",
+                    FB_Link = "aaa",
+                    PhotoUrl = "bbb",
+                },
             };
         }
-
         public User CreateUser(User user)
         {
             _users.Add(user);

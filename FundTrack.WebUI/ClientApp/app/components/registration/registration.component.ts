@@ -2,7 +2,8 @@
 
 @Component({
     selector: 'registration',
-    template: require('./registration.component.html')
+    template: require('./registration.component.html'),
+    styles: [require('./registration.component.css')]
 })
 
 export class RegistrationComponent {

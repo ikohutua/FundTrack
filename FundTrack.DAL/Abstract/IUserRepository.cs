@@ -1,6 +1,6 @@
 ﻿
 
-using FundTrack.Infrastructure.Models;
+using FundTrack.DAL.Entities;
 
 namespace FundTrack.DAL.Abstract
 {

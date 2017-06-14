@@ -1,7 +1,4 @@
-﻿using FundTrack.Infrastructure.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using FundTrack.DAL.Entities;
 
 namespace FundTrack.BLL.Abstract
 {

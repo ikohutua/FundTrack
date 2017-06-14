@@ -1,6 +1,6 @@
 ﻿using FundTrack.BLL.Abstract;
 using System;
-using FundTrack.Infrastructure.Models;
+using FundTrack.DAL.Entities;
 using FundTrack.DAL.Abstract;
 
 namespace FundTrack.BLL.DomainServices

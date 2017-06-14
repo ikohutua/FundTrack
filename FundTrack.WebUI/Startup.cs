@@ -34,7 +34,7 @@ namespace FundTrack_WebUI
             // Add framework services.
             services.AddMvc();
 
-            services.AddTransient<IUserRepository, FakeUserRepository>();
+            services.AddTransient<IUserRepository, UserRepository>();
             services.AddTransient<IUserDomainService, UserDomainService>();
         }
 

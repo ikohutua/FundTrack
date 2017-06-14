@@ -1,6 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
-using FundTrack.DAL.Entities;
-
+﻿using FundTrack.DAL.Entities;
+using Microsoft.EntityFrameworkCore;
 namespace FundTrack.DAL.Concrete
 {
     /// <summary>
