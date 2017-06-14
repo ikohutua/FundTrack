@@ -14,5 +14,7 @@
     <Folder Include="Abstract\" />
     <Folder Include="Concrete\" />
 	<ProjectReference Include="..\FundTrack.Infrastructure\FundTrack.Infrastructure.csproj" />
+	<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="1.1.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="1.1.1" />
   </ItemGroup>
 </Project>
