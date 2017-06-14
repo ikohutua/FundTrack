@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\FundTrack.DAL\FundTrack.DAL.csproj" />
+    <ProjectReference Include="..\FundTrack.Infrastructure\FundTrack.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

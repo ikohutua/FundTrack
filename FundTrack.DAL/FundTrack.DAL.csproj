@@ -10,10 +10,9 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp1.1</TargetFramework>
   </PropertyGroup>
-
   <ItemGroup>
     <Folder Include="Abstract\" />
     <Folder Include="Concrete\" />
+	<ProjectReference Include="..\FundTrack.Infrastructure\FundTrack.Infrastructure.csproj" />
   </ItemGroup>
-
 </Project>

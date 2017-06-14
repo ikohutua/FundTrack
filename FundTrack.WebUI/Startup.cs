@@ -8,6 +8,10 @@ using Microsoft.AspNetCore.SpaServices.Webpack;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using FundTrack.DAL.Abstract;
+using FundTrack.DAL.Repositories;
+using FundTrack.BLL.Abstract;
+using FundTrack.BLL.DomainServices;
 using Microsoft.AspNetCore.Authorization;
 
 namespace FundTrack_WebUI
@@ -31,6 +35,9 @@ namespace FundTrack_WebUI
         {
             // Add framework services.
             services.AddMvc();
+
+            services.AddTransient<IUserRepository, FakeUserRepository>();
+            services.AddTransient<IUserDomainService, UserDomainService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
