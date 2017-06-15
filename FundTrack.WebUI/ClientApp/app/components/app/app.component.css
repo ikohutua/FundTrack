@@ -4,3 +4,17 @@
         padding-top: 50px;
     }
 }
+
+.navbar-default {
+    background-color: #00aded;
+}
+
+a {
+    color: black !important;
+}
+
+#footer {
+    margin-top: 30px;
+    padding: 15px;
+    background-color: #00aded;
+}
