@@ -59,7 +59,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "0e1b48754bf255957dab"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "0cf176cc414d2979c414"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -631,9 +631,7 @@
 /******/ 		}
 /******/ 	
 /******/ 		hotSetStatus("idle");
-/******/ 		return new Promise(function(resolve) {
-/******/ 			resolve(outdatedModules);
-/******/ 		});
+/******/ 		return Promise.resolve(outdatedModules);
 /******/ 	}
 /******/
 /******/ 	// The module cache
@@ -706,23 +704,17 @@
 /******/ 	__webpack_require__.h = function() { return hotCurrentHash; };
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return hotCreateRequire(81)(__webpack_require__.s = 81);
+/******/ 	return hotCreateRequire(86)(__webpack_require__.s = 86);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = (__webpack_require__(1))(0);
+module.exports = (__webpack_require__(3))(0);
 
 /***/ }),
 /* 1 */
-/***/ (function(module, exports) {
-
-module.exports = vendor_1ab188fbc3b8658edb62;
-
-/***/ }),
-/* 2 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -746,7 +738,7 @@ var /** @type {?} */ NG_VALUE_ACCESSOR = new __WEBPACK_IMPORTED_MODULE_0__angula
 //# sourceMappingURL=control_value_accessor.js.map
 
 /***/ }),
-/* 3 */
+/* 2 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -756,9 +748,9 @@ var /** @type {?} */ NG_VALUE_ACCESSOR = new __WEBPACK_IMPORTED_MODULE_0__angula
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_operator_toPromise__ = __webpack_require__(68);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_operator_toPromise__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__facade_collection__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__facade_collection__ = __webpack_require__(33);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__facade_lang__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__private_import_core__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__private_import_core__ = __webpack_require__(35);
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -965,12 +957,18 @@ function _mergeErrors(arrayOfErrors) {
 //# sourceMappingURL=validators.js.map
 
 /***/ }),
+/* 3 */
+/***/ (function(module, exports) {
+
+module.exports = vendor_1ab188fbc3b8658edb62;
+
+/***/ }),
 /* 4 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ControlContainer; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__abstract_control_directive__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__abstract_control_directive__ = __webpack_require__(22);
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -1037,13 +1035,13 @@ function ControlContainer_tsickle_Closure_declarations() {
 /* unused harmony export isBuiltInAccessor */
 /* harmony export (immutable) */ __webpack_exports__["g"] = selectValueAccessor;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__facade_lang__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__validators__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__validators__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__checkbox_value_accessor__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__default_value_accessor__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__normalize_validator__ = __webpack_require__(44);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__number_value_accessor__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__number_value_accessor__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__radio_control_value_accessor__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__range_value_accessor__ = __webpack_require__(25);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__range_value_accessor__ = __webpack_require__(26);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__select_control_value_accessor__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__select_multiple_control_value_accessor__ = __webpack_require__(19);
 /**
@@ -1255,7 +1253,7 @@ function selectValueAccessor(dir, valueAccessors) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NgControl; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__abstract_control_directive__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__abstract_control_directive__ = __webpack_require__(22);
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -1352,7 +1350,7 @@ function NgControl_tsickle_Closure_declarations() {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EventEmitter; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_Subject__ = __webpack_require__(38);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_Subject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_rxjs_Subject__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__ = __webpack_require__(75);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__ = __webpack_require__(81);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__);
 /* unused harmony reexport Observable */
 /* unused harmony reexport Subject */
@@ -1700,7 +1698,7 @@ function escapeRegExp(s) {
     return s.replace(/([.*+?^=!:${}()|[\]\/\\])/g, '\\$1');
 }
 //# sourceMappingURL=lang.js.map
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(74)))
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(79)))
 
 /***/ }),
 /* 9 */
@@ -1828,7 +1826,7 @@ function AbstractFormGroupDirective_tsickle_Closure_declarations() {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__facade_async__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__model__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__validators__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__validators__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__control_container__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shared__ = __webpack_require__(5);
 /**
@@ -2091,7 +2089,7 @@ function NgForm_tsickle_Closure_declarations() {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return RadioControlRegistry; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RadioControlValueAccessor; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__control_value_accessor__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__control_value_accessor__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ng_control__ = __webpack_require__(6);
 /**
  * @license
@@ -2361,8 +2359,8 @@ function RadioControlValueAccessor_tsickle_Closure_declarations() {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FormGroupDirective; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__facade_async__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__facade_collection__ = __webpack_require__(32);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__validators__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__facade_collection__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__validators__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__control_container__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__reactive_errors__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__shared__ = __webpack_require__(5);
@@ -2673,7 +2671,7 @@ function FormGroupDirective_tsickle_Closure_declarations() {
 /* unused harmony export formArrayNameProvider */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FormArrayName; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__validators__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__validators__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__abstract_form_group_directive__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__control_container__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__reactive_errors__ = __webpack_require__(17);
@@ -2984,7 +2982,7 @@ function _hasInvalidParent(parent) {
 /* unused harmony export CHECKBOX_VALUE_ACCESSOR */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CheckboxControlValueAccessor; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__control_value_accessor__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__control_value_accessor__ = __webpack_require__(1);
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -3085,7 +3083,7 @@ function CheckboxControlValueAccessor_tsickle_Closure_declarations() {
 /* unused harmony export DEFAULT_VALUE_ACCESSOR */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DefaultValueAccessor; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__control_value_accessor__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__control_value_accessor__ = __webpack_require__(1);
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -3191,11 +3189,11 @@ function DefaultValueAccessor_tsickle_Closure_declarations() {
 /* unused harmony export modelGroupProvider */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NgModelGroup; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__validators__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__validators__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__abstract_form_group_directive__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__control_container__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ng_form__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__template_driven_errors__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__template_driven_errors__ = __webpack_require__(31);
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -3300,7 +3298,7 @@ function NgModelGroup_tsickle_Closure_declarations() {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ReactiveErrors; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__error_examples__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__error_examples__ = __webpack_require__(30);
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -3362,7 +3360,7 @@ var ReactiveErrors = (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NgSelectOption; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__facade_lang__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__control_value_accessor__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__control_value_accessor__ = __webpack_require__(1);
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -3669,7 +3667,7 @@ function NgSelectOption_tsickle_Closure_declarations() {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return NgSelectMultipleOption; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__facade_lang__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__control_value_accessor__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__control_value_accessor__ = __webpack_require__(1);
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -4017,11 +4015,11 @@ function NgSelectMultipleOption_tsickle_Closure_declarations() {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return FormControl; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return FormGroup; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return FormArray; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_observable_fromPromise__ = __webpack_require__(76);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_observable_fromPromise__ = __webpack_require__(82);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_observable_fromPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_rxjs_observable_fromPromise__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__directives_shared__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__facade_async__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__private_import_core__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__private_import_core__ = __webpack_require__(35);
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -5721,6 +5719,62 @@ function FormArray_tsickle_Closure_declarations() {
 
 /***/ }),
 /* 21 */
+/***/ (function(module, exports) {
+
+/*
+	MIT License http://www.opensource.org/licenses/mit-license.php
+	Author Tobias Koppers @sokra
+*/
+// css base code, injected by the css-loader
+module.exports = function() {
+	var list = [];
+
+	// return the list of modules as css string
+	list.toString = function toString() {
+		var result = [];
+		for(var i = 0; i < this.length; i++) {
+			var item = this[i];
+			if(item[2]) {
+				result.push("@media " + item[2] + "{" + item[1] + "}");
+			} else {
+				result.push(item[1]);
+			}
+		}
+		return result.join("");
+	};
+
+	// import a list of modules into the list
+	list.i = function(modules, mediaQuery) {
+		if(typeof modules === "string")
+			modules = [[null, modules, ""]];
+		var alreadyImportedModules = {};
+		for(var i = 0; i < this.length; i++) {
+			var id = this[i][0];
+			if(typeof id === "number")
+				alreadyImportedModules[id] = true;
+		}
+		for(i = 0; i < modules.length; i++) {
+			var item = modules[i];
+			// skip already imported module
+			// this implementation is not 100% perfect for weird media query combinations
+			//  when a module is imported multiple times with different media queries.
+			//  I hope this will never occur (Hey this way we have smaller bundles)
+			if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
+				if(mediaQuery && !item[2]) {
+					item[2] = mediaQuery;
+				} else if(mediaQuery) {
+					item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
+				}
+				list.push(item);
+			}
+		}
+	};
+	return list;
+};
+
+
+/***/ }),
+/* 22 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5895,7 +5949,7 @@ var AbstractControlDirective = (function () {
 //# sourceMappingURL=abstract_control_directive.js.map
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6069,7 +6123,7 @@ function NgControlStatusGroup_tsickle_Closure_declarations() {
 //# sourceMappingURL=ng_control_status.js.map
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6078,15 +6132,15 @@ function NgControlStatusGroup_tsickle_Closure_declarations() {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__facade_async__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__model__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__validators__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__validators__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__abstract_form_group_directive__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__control_container__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__control_value_accessor__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__control_value_accessor__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ng_control__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ng_form__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ng_model_group__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__shared__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__template_driven_errors__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__template_driven_errors__ = __webpack_require__(31);
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -6419,14 +6473,14 @@ function NgModel_tsickle_Closure_declarations() {
 //# sourceMappingURL=ng_model.js.map
 
 /***/ }),
-/* 24 */
+/* 25 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* unused harmony export NUMBER_VALUE_ACCESSOR */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NumberValueAccessor; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__control_value_accessor__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__control_value_accessor__ = __webpack_require__(1);
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -6527,14 +6581,14 @@ function NumberValueAccessor_tsickle_Closure_declarations() {
 //# sourceMappingURL=number_value_accessor.js.map
 
 /***/ }),
-/* 25 */
+/* 26 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* unused harmony export RANGE_VALUE_ACCESSOR */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RangeValueAccessor; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__control_value_accessor__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__control_value_accessor__ = __webpack_require__(1);
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -6633,7 +6687,7 @@ function RangeValueAccessor_tsickle_Closure_declarations() {
 //# sourceMappingURL=range_value_accessor.js.map
 
 /***/ }),
-/* 26 */
+/* 27 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6641,8 +6695,8 @@ function RangeValueAccessor_tsickle_Closure_declarations() {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FormControlDirective; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__facade_async__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__validators__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__control_value_accessor__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__validators__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__control_value_accessor__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ng_control__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__reactive_errors__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__shared__ = __webpack_require__(5);
@@ -6839,7 +6893,7 @@ function FormControlDirective_tsickle_Closure_declarations() {
 //# sourceMappingURL=form_control_directive.js.map
 
 /***/ }),
-/* 27 */
+/* 28 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6847,10 +6901,10 @@ function FormControlDirective_tsickle_Closure_declarations() {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FormControlName; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__facade_async__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__validators__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__validators__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__abstract_form_group_directive__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__control_container__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__control_value_accessor__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__control_value_accessor__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ng_control__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__reactive_errors__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__shared__ = __webpack_require__(5);
@@ -7104,13 +7158,13 @@ function FormControlName_tsickle_Closure_declarations() {
 //# sourceMappingURL=form_control_name.js.map
 
 /***/ }),
-/* 28 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = (__webpack_require__(1))(340);
+module.exports = (__webpack_require__(3))(340);
 
 /***/ }),
-/* 29 */
+/* 30 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7132,12 +7186,12 @@ var /** @type {?} */ FormErrorExamples = {
 //# sourceMappingURL=error_examples.js.map
 
 /***/ }),
-/* 30 */
+/* 31 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TemplateDrivenErrors; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__error_examples__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__error_examples__ = __webpack_require__(30);
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -7178,7 +7232,7 @@ var TemplateDrivenErrors = (function () {
 //# sourceMappingURL=template_driven_errors.js.map
 
 /***/ }),
-/* 31 */
+/* 32 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7193,7 +7247,7 @@ var TemplateDrivenErrors = (function () {
 /* unused harmony export PATTERN_VALIDATOR */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return PatternValidator; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__validators__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__validators__ = __webpack_require__(2);
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() { this.constructor = d; }
@@ -7571,7 +7625,7 @@ function PatternValidator_tsickle_Closure_declarations() {
 //# sourceMappingURL=validators.js.map
 
 /***/ }),
-/* 32 */
+/* 33 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7754,7 +7808,7 @@ function iterateListLike(obj, fn) {
 //# sourceMappingURL=collection.js.map
 
 /***/ }),
-/* 33 */
+/* 34 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7895,7 +7949,7 @@ function FormBuilder_tsickle_Closure_declarations() {
 //# sourceMappingURL=form_builder.js.map
 
 /***/ }),
-/* 34 */
+/* 35 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7913,62 +7967,6 @@ function FormBuilder_tsickle_Closure_declarations() {
 var /** @type {?} */ isPromise = __WEBPACK_IMPORTED_MODULE_0__angular_core__["__core_private__"].isPromise;
 var /** @type {?} */ isObservable = __WEBPACK_IMPORTED_MODULE_0__angular_core__["__core_private__"].isObservable;
 //# sourceMappingURL=private_import_core.js.map
-
-/***/ }),
-/* 35 */
-/***/ (function(module, exports) {
-
-/*
-	MIT License http://www.opensource.org/licenses/mit-license.php
-	Author Tobias Koppers @sokra
-*/
-// css base code, injected by the css-loader
-module.exports = function() {
-	var list = [];
-
-	// return the list of modules as css string
-	list.toString = function toString() {
-		var result = [];
-		for(var i = 0; i < this.length; i++) {
-			var item = this[i];
-			if(item[2]) {
-				result.push("@media " + item[2] + "{" + item[1] + "}");
-			} else {
-				result.push(item[1]);
-			}
-		}
-		return result.join("");
-	};
-
-	// import a list of modules into the list
-	list.i = function(modules, mediaQuery) {
-		if(typeof modules === "string")
-			modules = [[null, modules, ""]];
-		var alreadyImportedModules = {};
-		for(var i = 0; i < this.length; i++) {
-			var id = this[i][0];
-			if(typeof id === "number")
-				alreadyImportedModules[id] = true;
-		}
-		for(i = 0; i < modules.length; i++) {
-			var item = modules[i];
-			// skip already imported module
-			// this implementation is not 100% perfect for weird media query combinations
-			//  when a module is imported multiple times with different media queries.
-			//  I hope this will never occur (Hey this way we have smaller bundles)
-			if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
-				if(mediaQuery && !item[2]) {
-					item[2] = mediaQuery;
-				} else if(mediaQuery) {
-					item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
-				}
-				list.push(item);
-			}
-		}
-	};
-	return list;
-};
-
 
 /***/ }),
 /* 36 */
@@ -8170,13 +8168,13 @@ module.exports = Html5Entities;
 /* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = (__webpack_require__(1))(338);
+module.exports = (__webpack_require__(3))(338);
 
 /***/ }),
 /* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = (__webpack_require__(1))(84);
+module.exports = (__webpack_require__(3))(84);
 
 /***/ }),
 /* 39 */
@@ -8185,11 +8183,11 @@ module.exports = (__webpack_require__(1))(84);
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(77);
+__webpack_require__(83);
 var core_1 = __webpack_require__(0);
-var angular2_universal_1 = __webpack_require__(28);
+var angular2_universal_1 = __webpack_require__(29);
 var app_module_1 = __webpack_require__(50);
-__webpack_require__(78);
+__webpack_require__(84);
 var rootElemTagName = 'app'; // Update this if you change your root component selector
 // Enable either Hot Module Reloading or production mode
 if (true) {
@@ -8233,7 +8231,7 @@ var options = {
   name: ''
 };
 if (true) {
-  var querystring = __webpack_require__(67);
+  var querystring = __webpack_require__(78);
   var overrides = querystring.parse(__resourceQuery.slice(1));
   if (overrides.path) options.path = overrides.path;
   if (overrides.timeout) options.timeout = overrides.timeout;
@@ -8357,7 +8355,7 @@ function createReporter() {
 
   var overlay;
   if (typeof document !== 'undefined' && options.overlay) {
-    overlay = __webpack_require__(72);
+    overlay = __webpack_require__(74);
   }
 
   var styles = {
@@ -8410,7 +8408,7 @@ function createReporter() {
   };
 }
 
-var processUpdate = __webpack_require__(73);
+var processUpdate = __webpack_require__(75);
 
 var customHandler;
 var subscribeAllHandler;
@@ -8481,7 +8479,7 @@ if (module) {
 /* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = (__webpack_require__(1))(342);
+module.exports = (__webpack_require__(3))(342);
 
 /***/ }),
 /* 42 */
@@ -8554,20 +8552,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__directives_checkbox_value_accessor__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__directives_default_value_accessor__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__directives_ng_control_status__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__directives_ng_control_status__ = __webpack_require__(23);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__directives_ng_form__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__directives_ng_model__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__directives_ng_model__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__directives_ng_model_group__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__directives_number_value_accessor__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__directives_number_value_accessor__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__directives_radio_control_value_accessor__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__directives_range_value_accessor__ = __webpack_require__(25);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__directives_reactive_directives_form_control_directive__ = __webpack_require__(26);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__directives_reactive_directives_form_control_name__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__directives_range_value_accessor__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__directives_reactive_directives_form_control_directive__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__directives_reactive_directives_form_control_name__ = __webpack_require__(28);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__directives_reactive_directives_form_group_directive__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__directives_reactive_directives_form_group_name__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__directives_select_control_value_accessor__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__directives_select_multiple_control_value_accessor__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__directives_validators__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__directives_validators__ = __webpack_require__(32);
 /* unused harmony reexport CheckboxControlValueAccessor */
 /* unused harmony reexport DefaultValueAccessor */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__directives_ng_control__ = __webpack_require__(6);
@@ -8726,7 +8724,7 @@ function normalizeAsyncValidator(validator) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__directives__ = __webpack_require__(43);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__directives_radio_control_value_accessor__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__form_builder__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__form_builder__ = __webpack_require__(34);
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -8799,7 +8797,7 @@ function ReactiveFormsModule_tsickle_Closure_declarations() {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__directives_abstract_control_directive__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__directives_abstract_control_directive__ = __webpack_require__(22);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_0__directives_abstract_control_directive__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__directives_abstract_form_group_directive__ = __webpack_require__(9);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_1__directives_abstract_form_group_directive__["a"]; });
@@ -8807,26 +8805,26 @@ function ReactiveFormsModule_tsickle_Closure_declarations() {
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return __WEBPACK_IMPORTED_MODULE_2__directives_checkbox_value_accessor__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__directives_control_container__ = __webpack_require__(4);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return __WEBPACK_IMPORTED_MODULE_3__directives_control_container__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__directives_control_value_accessor__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__directives_control_value_accessor__ = __webpack_require__(1);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return __WEBPACK_IMPORTED_MODULE_4__directives_control_value_accessor__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__directives_default_value_accessor__ = __webpack_require__(15);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return __WEBPACK_IMPORTED_MODULE_5__directives_default_value_accessor__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__directives_ng_control__ = __webpack_require__(6);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return __WEBPACK_IMPORTED_MODULE_6__directives_ng_control__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__directives_ng_control_status__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__directives_ng_control_status__ = __webpack_require__(23);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return __WEBPACK_IMPORTED_MODULE_7__directives_ng_control_status__["a"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "i", function() { return __WEBPACK_IMPORTED_MODULE_7__directives_ng_control_status__["b"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__directives_ng_form__ = __webpack_require__(10);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "j", function() { return __WEBPACK_IMPORTED_MODULE_8__directives_ng_form__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__directives_ng_model__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__directives_ng_model__ = __webpack_require__(24);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "k", function() { return __WEBPACK_IMPORTED_MODULE_9__directives_ng_model__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__directives_ng_model_group__ = __webpack_require__(16);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "l", function() { return __WEBPACK_IMPORTED_MODULE_10__directives_ng_model_group__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__directives_radio_control_value_accessor__ = __webpack_require__(11);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "m", function() { return __WEBPACK_IMPORTED_MODULE_11__directives_radio_control_value_accessor__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__directives_reactive_directives_form_control_directive__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__directives_reactive_directives_form_control_directive__ = __webpack_require__(27);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "n", function() { return __WEBPACK_IMPORTED_MODULE_12__directives_reactive_directives_form_control_directive__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__directives_reactive_directives_form_control_name__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__directives_reactive_directives_form_control_name__ = __webpack_require__(28);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "o", function() { return __WEBPACK_IMPORTED_MODULE_13__directives_reactive_directives_form_control_name__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__directives_reactive_directives_form_group_directive__ = __webpack_require__(12);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "p", function() { return __WEBPACK_IMPORTED_MODULE_14__directives_reactive_directives_form_group_directive__["a"]; });
@@ -8838,20 +8836,20 @@ function ReactiveFormsModule_tsickle_Closure_declarations() {
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "t", function() { return __WEBPACK_IMPORTED_MODULE_16__directives_select_control_value_accessor__["b"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__directives_select_multiple_control_value_accessor__ = __webpack_require__(19);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "u", function() { return __WEBPACK_IMPORTED_MODULE_17__directives_select_multiple_control_value_accessor__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__directives_validators__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__directives_validators__ = __webpack_require__(32);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "v", function() { return __WEBPACK_IMPORTED_MODULE_18__directives_validators__["a"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "w", function() { return __WEBPACK_IMPORTED_MODULE_18__directives_validators__["b"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "x", function() { return __WEBPACK_IMPORTED_MODULE_18__directives_validators__["c"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "y", function() { return __WEBPACK_IMPORTED_MODULE_18__directives_validators__["d"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "z", function() { return __WEBPACK_IMPORTED_MODULE_18__directives_validators__["e"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__form_builder__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__form_builder__ = __webpack_require__(34);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "A", function() { return __WEBPACK_IMPORTED_MODULE_19__form_builder__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__model__ = __webpack_require__(20);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "B", function() { return __WEBPACK_IMPORTED_MODULE_20__model__["a"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "C", function() { return __WEBPACK_IMPORTED_MODULE_20__model__["b"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "D", function() { return __WEBPACK_IMPORTED_MODULE_20__model__["c"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "E", function() { return __WEBPACK_IMPORTED_MODULE_20__model__["d"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__validators__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__validators__ = __webpack_require__(2);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "F", function() { return __WEBPACK_IMPORTED_MODULE_21__validators__["a"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "G", function() { return __WEBPACK_IMPORTED_MODULE_21__validators__["b"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "H", function() { return __WEBPACK_IMPORTED_MODULE_21__validators__["c"]; });
@@ -9134,7 +9132,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
 var router_1 = __webpack_require__(37);
-var angular2_universal_1 = __webpack_require__(28);
+var angular2_universal_1 = __webpack_require__(29);
 var authorization_module_1 = __webpack_require__(51);
 var app_component_1 = __webpack_require__(52);
 var home_component_1 = __webpack_require__(54);
@@ -9177,10 +9175,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
 var router_1 = __webpack_require__(37);
-var angular2_universal_1 = __webpack_require__(28);
+var angular2_universal_1 = __webpack_require__(29);
 var forms_1 = __webpack_require__(42);
 var authorization_component_1 = __webpack_require__(53);
-var registration_component_1 = __webpack_require__(55);
+var registration_component_1 = __webpack_require__(56);
 //create module for authorization users
 var AuthorizationModule = (function () {
     function AuthorizationModule() {
@@ -9224,12 +9222,28 @@ var core_1 = __webpack_require__(0);
 var AppComponent = (function () {
     function AppComponent() {
     }
+    AppComponent.prototype.ngOnInit = function () {
+        this.orgs = [
+            {
+                id: 1,
+                name: 'Our Soldier'
+            },
+            {
+                id: 2,
+                name: 'Fenix wings'
+            },
+            {
+                id: 3,
+                name: 'Another organization'
+            }
+        ];
+    };
     return AppComponent;
 }());
 AppComponent = __decorate([
     core_1.Component({
         selector: 'app',
-        template: __webpack_require__(61),
+        template: __webpack_require__(64),
         styles: [__webpack_require__(70)]
     })
 ], AppComponent);
@@ -9257,8 +9271,8 @@ var AuthorizationComponent = (function () {
 }());
 AuthorizationComponent = __decorate([
     core_1.Component({
-        template: __webpack_require__(62),
-        styles: [__webpack_require__(83)]
+        template: __webpack_require__(65),
+        styles: [__webpack_require__(71)]
     })
 ], AuthorizationComponent);
 exports.AuthorizationComponent = AuthorizationComponent;
@@ -9278,15 +9292,47 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
+var mainPageViewModel_1 = __webpack_require__(55);
 var HomeComponent = (function () {
     function HomeComponent() {
     }
+    HomeComponent.prototype.ngOnInit = function () {
+        var DATE = new Date();
+        this.model = new mainPageViewModel_1.MainPageViewModel();
+        this.model.reports = [{
+                id: 1,
+                organizationName: 'Our Soldier',
+                organizationId: 1,
+                date: DATE
+            },
+            {
+                id: 2,
+                organizationName: 'Fenix wings',
+                organizationId: 2,
+                date: DATE
+            },
+            {
+                id: 2,
+                organizationName: 'Another organization',
+                organizationId: 3,
+                date: DATE
+            }];
+        this.model.events = [{
+                id: 1,
+                description: ' Висловлюємо подяку від піхоти 30-ї бригади всім тим, хто долучився до придбання запчастини для їхнього медичного бусу - набір тросів. Піхотні підрозділи перебувають на самому "нулі", і, на жаль, не уникають поранень. Цей бус слугуватиме саме транспортуванню поранених до найближчого шпиталю.Але виявилось, що є ще один дефект, а саме, з головкою блоку циліндрів.Його вартість складає 9000 грн.Ми хотіли б допомогти з остаточним ремонтом цього бусу.Але ще хотіли нагадати, що наразі збираємо кошти на коробку передач на медичний УАЗ для піхоти вже 92- ї бригади. Тобто, загальна сума запчастин складає наразі 25 000 грн., з яких у наявності є 5000. Просимо підтримати наших військових у цій допомозі.',
+                organizationId: 1,
+                organizationName: 'Our Soldier',
+                date: DATE,
+                pathToCoverImage: 'https://scontent-waw1-1.xx.fbcdn.net/v/t1.0-9/18740007_698639290344884_2001069689308999914_n.jpg?oh=a2e3b70863f5344bfa3b49917b526920&oe=59EA3968'
+            }];
+    };
     return HomeComponent;
 }());
 HomeComponent = __decorate([
     core_1.Component({
         selector: 'home',
-        template: __webpack_require__(63)
+        template: __webpack_require__(66),
+        styles: [__webpack_require__(72)]
     })
 ], HomeComponent);
 exports.HomeComponent = HomeComponent;
@@ -9294,6 +9340,21 @@ exports.HomeComponent = HomeComponent;
 
 /***/ }),
 /* 55 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var MainPageViewModel = (function () {
+    function MainPageViewModel() {
+    }
+    return MainPageViewModel;
+}());
+exports.MainPageViewModel = MainPageViewModel;
+
+
+/***/ }),
+/* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9314,32 +9375,60 @@ var RegistrationComponent = (function () {
 RegistrationComponent = __decorate([
     core_1.Component({
         selector: 'registration',
-        template: __webpack_require__(64),
-        styles: [__webpack_require__(71)]
+        template: __webpack_require__(67),
+        styles: [__webpack_require__(73)]
     })
 ], RegistrationComponent);
 exports.RegistrationComponent = RegistrationComponent;
 
 
 /***/ }),
-/* 56 */
+/* 57 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(35)();
+exports = module.exports = __webpack_require__(21)();
 // imports
 
 
 // module
-exports.push([module.i, "@media (max-width: 767px) {\r\n    /* On small screens, the nav menu spans the full width of the screen. Leave a space for it. */\r\n    .body-content {\r\n        padding-top: 50px;\r\n    }\r\n}\r\n", ""]);
+exports.push([module.i, "@media (max-width: 767px) {\r\n    /* On small screens, the nav menu spans the full width of the screen. Leave a space for it. */\r\n    .body-content {\r\n        padding-top: 50px;\r\n    }\r\n}\r\n\r\n.navbar-default {\r\n    background-color: #00aded;\r\n}\r\n\r\na {\r\n    color: black !important;\r\n}\r\n\r\n#footer {\r\n    margin-top: 30px;\r\n    padding: 15px;\r\n    background-color: #00aded;\r\n}\r\n", ""]);
 
 // exports
 
 
 /***/ }),
-/* 57 */
+/* 58 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(35)();
+exports = module.exports = __webpack_require__(21)();
+// imports
+
+
+// module
+exports.push([module.i, "body, html {\n    height: 100%;\n    background-repeat: no-repeat;\n    background-color: #d3d3d3;\n    font-family: 'Oxygen', sans-serif;\n}\n\n.main {\n    margin-top: 70px;\n}\n\nh1.title {\n    font-size: 50px;\n    font-weight: 400;\n}\n\nhr {\n    width: 10%;\n    color: #fff;\n}\n\n.form-group {\n    margin-bottom: 15px;\n}\n\nlabel {\n    margin-bottom: 15px;\n}\n\ninput,\ninput::-webkit-input-placeholder {\n    font-size: 11px;\n    padding-top: 3px;\n}\n\n.main-login {\n    background-color: #fff;\n    /* shadows and rounded borders */\n    -moz-border-radius: 2px;\n    -webkit-border-radius: 2px;\n    border-radius: 2px;\n    -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);\n    -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);\n    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);\n}\n\n.main-center {\n    margin-top: 30px;\n    margin: 0 auto;\n    max-width: 330px;\n    padding: 40px 40px;\n}\n\n.login-button {\n    margin-top: 5px;\n}\n\n.login-register {\n    font-size: 11px;\n    text-align: center;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 59 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(21)();
+// imports
+
+
+// module
+exports.push([module.i, "#right-bar {\r\n    background-color: aliceblue;\r\n}\r\n\r\n#main-img {\r\n    padding-bottom: 25px;\r\n}\r\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 60 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(21)();
 // imports
 
 
@@ -9350,19 +9439,19 @@ exports.push([module.i, "/*\n/* Created by Filipe Pina\n * Specific styles of si
 
 
 /***/ }),
-/* 58 */
+/* 61 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = {
-  XmlEntities: __webpack_require__(60),
-  Html4Entities: __webpack_require__(59),
+  XmlEntities: __webpack_require__(63),
+  Html4Entities: __webpack_require__(62),
   Html5Entities: __webpack_require__(36),
   AllHtmlEntities: __webpack_require__(36)
 };
 
 
 /***/ }),
-/* 59 */
+/* 62 */
 /***/ (function(module, exports) {
 
 var HTML_ALPHA = ['apos', 'nbsp', 'iexcl', 'cent', 'pound', 'curren', 'yen', 'brvbar', 'sect', 'uml', 'copy', 'ordf', 'laquo', 'not', 'shy', 'reg', 'macr', 'deg', 'plusmn', 'sup2', 'sup3', 'acute', 'micro', 'para', 'middot', 'cedil', 'sup1', 'ordm', 'raquo', 'frac14', 'frac12', 'frac34', 'iquest', 'Agrave', 'Aacute', 'Acirc', 'Atilde', 'Auml', 'Aring', 'Aelig', 'Ccedil', 'Egrave', 'Eacute', 'Ecirc', 'Euml', 'Igrave', 'Iacute', 'Icirc', 'Iuml', 'ETH', 'Ntilde', 'Ograve', 'Oacute', 'Ocirc', 'Otilde', 'Ouml', 'times', 'Oslash', 'Ugrave', 'Uacute', 'Ucirc', 'Uuml', 'Yacute', 'THORN', 'szlig', 'agrave', 'aacute', 'acirc', 'atilde', 'auml', 'aring', 'aelig', 'ccedil', 'egrave', 'eacute', 'ecirc', 'euml', 'igrave', 'iacute', 'icirc', 'iuml', 'eth', 'ntilde', 'ograve', 'oacute', 'ocirc', 'otilde', 'ouml', 'divide', 'oslash', 'ugrave', 'uacute', 'ucirc', 'uuml', 'yacute', 'thorn', 'yuml', 'quot', 'amp', 'lt', 'gt', 'OElig', 'oelig', 'Scaron', 'scaron', 'Yuml', 'circ', 'tilde', 'ensp', 'emsp', 'thinsp', 'zwnj', 'zwj', 'lrm', 'rlm', 'ndash', 'mdash', 'lsquo', 'rsquo', 'sbquo', 'ldquo', 'rdquo', 'bdquo', 'dagger', 'Dagger', 'permil', 'lsaquo', 'rsaquo', 'euro', 'fnof', 'Alpha', 'Beta', 'Gamma', 'Delta', 'Epsilon', 'Zeta', 'Eta', 'Theta', 'Iota', 'Kappa', 'Lambda', 'Mu', 'Nu', 'Xi', 'Omicron', 'Pi', 'Rho', 'Sigma', 'Tau', 'Upsilon', 'Phi', 'Chi', 'Psi', 'Omega', 'alpha', 'beta', 'gamma', 'delta', 'epsilon', 'zeta', 'eta', 'theta', 'iota', 'kappa', 'lambda', 'mu', 'nu', 'xi', 'omicron', 'pi', 'rho', 'sigmaf', 'sigma', 'tau', 'upsilon', 'phi', 'chi', 'psi', 'omega', 'thetasym', 'upsih', 'piv', 'bull', 'hellip', 'prime', 'Prime', 'oline', 'frasl', 'weierp', 'image', 'real', 'trade', 'alefsym', 'larr', 'uarr', 'rarr', 'darr', 'harr', 'crarr', 'lArr', 'uArr', 'rArr', 'dArr', 'hArr', 'forall', 'part', 'exist', 'empty', 'nabla', 'isin', 'notin', 'ni', 'prod', 'sum', 'minus', 'lowast', 'radic', 'prop', 'infin', 'ang', 'and', 'or', 'cap', 'cup', 'int', 'there4', 'sim', 'cong', 'asymp', 'ne', 'equiv', 'le', 'ge', 'sub', 'sup', 'nsub', 'sube', 'supe', 'oplus', 'otimes', 'perp', 'sdot', 'lceil', 'rceil', 'lfloor', 'rfloor', 'lang', 'rang', 'loz', 'spades', 'clubs', 'hearts', 'diams'];
@@ -9515,7 +9604,7 @@ module.exports = Html4Entities;
 
 
 /***/ }),
-/* 60 */
+/* 63 */
 /***/ (function(module, exports) {
 
 var ALPHA_INDEX = {
@@ -9676,222 +9765,28 @@ module.exports = XmlEntities;
 
 
 /***/ }),
-/* 61 */
+/* 64 */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-default\">\r\n    <div class=\"container-fluid\">\r\n        <!-- Brand and toggle get grouped for better mobile display -->\r\n        <div class=\"navbar-header\">\r\n            <button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#bs-example-navbar-collapse-1\" aria-expanded=\"false\">\r\n                <span class=\"sr-only\">Toggle navigation</span>\r\n                <span class=\"icon-bar\"></span>\r\n                <span class=\"icon-bar\"></span>\r\n                <span class=\"icon-bar\"></span>\r\n            </button>\r\n            <a class=\"navbar-brand\" href=\"#\">��� ������</a>\r\n        </div>\r\n\r\n        <!-- Collect the nav links, forms, and other content for toggling -->\r\n        <div class=\"collapse navbar-collapse\" id=\"bs-example-navbar-collapse-1\">\r\n            <ul class=\"nav navbar-nav\">\r\n                <li class=\"active\"><a href=\"#\">Link <span class=\"sr-only\">(current)</span></a></li>\r\n                <li><a href=\"#\">Link</a></li>\r\n                <li class=\"dropdown\">\r\n                    <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">Dropdown <span class=\"caret\"></span></a>\r\n                    <ul class=\"dropdown-menu\">\r\n                        <li><a href=\"#\">Action</a></li>\r\n                        <li><a href=\"#\">Another action</a></li>\r\n                        <li><a href=\"#\">Something else here</a></li>\r\n                        <li role=\"separator\" class=\"divider\"></li>\r\n                        <li><a href=\"#\">Separated link</a></li>\r\n                        <li role=\"separator\" class=\"divider\"></li>\r\n                        <li><a href=\"#\">One more separated link</a></li>\r\n                    </ul>\r\n                </li>\r\n            </ul>\r\n            <form class=\"navbar-form navbar-left\">\r\n                <div class=\"form-group\">\r\n                    <input type=\"text\" class=\"form-control\" placeholder=\"Search\">\r\n                </div>\r\n                <button type=\"submit\" class=\"btn btn-default\">Submit</button>\r\n            </form>\r\n            <ul class=\"nav navbar-nav navbar-right\">\r\n                <li><a href=\"#\">Link</a></li>\r\n                <li class=\"dropdown\">\r\n                    <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">Dropdown <span class=\"caret\"></span></a>\r\n                    <ul class=\"dropdown-menu\">\r\n                        <li><a href=\"#\">Action</a></li>\r\n                        <li><a href=\"#\">Another action</a></li>\r\n                        <li><a href=\"#\">Something else here</a></li>\r\n                        <li role=\"separator\" class=\"divider\"></li>\r\n                        <li><a href=\"#\">Separated link</a></li>\r\n                    </ul>\r\n                </li>\r\n            </ul>\r\n        </div><!-- /.navbar-collapse -->\r\n    </div><!-- /.container-fluid -->\r\n</nav>\r\n<router-outlet></router-outlet>\r\n";
+module.exports = "<nav class=\"navbar navbar-default\">\r\n    <div class=\"container-fluid\">\r\n        <div class=\"navbar-header\">\r\n            <button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#bs-example-navbar-collapse-1\" aria-expanded=\"false\">\r\n                <span class=\"sr-only\">Toggle navigation</span>\r\n                <span class=\"icon-bar\"></span>\r\n                <span class=\"icon-bar\"></span>\r\n                <span class=\"icon-bar\"></span>\r\n            </button>\r\n            <a class=\"navbar-brand\" [routerLink]=\"['']\">Our Soldier</a>\r\n        </div>\r\n        <div class=\"collapse navbar-collapse\" id=\"bs-example-navbar-collapse-1\">\r\n            <ul class=\"nav navbar-nav\">\r\n                <li><a [routerLink]=\"['/about']\">About</a></li>\r\n                <li class=\"dropdown\">\r\n                    <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">Dropdown <span class=\"caret\"></span></a>\r\n                    <ul class=\"dropdown-menu\">\r\n                        <li *ngFor=\"let org of orgs\"><a>{{org.name}}</a></li>\r\n                    </ul>\r\n                </li>\r\n            </ul>\r\n            <form class=\"navbar-form navbar-left\">\r\n                <div class=\"form-group\">\r\n                    <input type=\"text\" class=\"form-control\" placeholder=\"Search Event\">\r\n                </div>\r\n                <button type=\"submit\" class=\"btn btn-default\">Search</button>\r\n            </form>\r\n            <ul class=\"nav navbar-nav navbar-right\">\r\n                <li><a [routerLink]=\"['/registration']\">Registration</a></li>\r\n                <li><a [routerLink]=\"['/login']\">Log In</a></li>\r\n            </ul>\r\n        </div>\r\n    </div>\r\n</nav>\r\n<div class=\"container\">\r\n    <router-outlet></router-outlet>\r\n</div>\r\n<div class=\"row\" id=\"footer\">\r\n    <div class=\"col-lg-6\">\r\n        <iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2573.5221968304536!2d23.996909315413394!3d49.83264487939493!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x473add8050527791%3A0xa80b5db0066c5a1c!2z0LLRg9C70LjRhtGPINCv0YDQvtGB0LvQsNCy0LAg0J_QsNGB0YLQtdGA0L3QsNC60LAsIDUsINCb0YzQstGW0LIsINCb0YzQstGW0LLRgdGM0LrQsCDQvtCx0LvQsNGB0YLRjA!5e0!3m2!1sru!2sua!4v1497513739093\" width=\"400\" height=\"300\" frameborder=\"0\" style=\"border:0\" allowfullscreen></iframe>\r\n    </div>\r\n    <div class=\"col-lg-6\">\r\n        <ul class=\"lead\">\r\n            Navifation\r\n            <li><a [routerLink]=\"['']\">Our Soldier</a></li>\r\n            <li><a [routerLink]=\"['/about']\">About</a></li>\r\n            <li><a [routerLink]=\"['/registration']\">Registration</a></li>\r\n            <li><a [routerLink]=\"['/login']\">Log In</a></li>\r\n        </ul>\r\n    </div>\r\n</div>";
 
 /***/ }),
-/* 62 */
+/* 65 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"container\">\r\n    <div class=\"row main\">\r\n        <div class=\"panel-heading\">\r\n            <div class=\"panel-title text-center\">\r\n                <h1 class=\"title\">Вхід у систему</h1>\r\n                <hr />\r\n            </div>\r\n        </div>\r\n        <div class=\"main-login main-center\">\r\n            <form class=\"form-horizontal\" method=\"post\" action=\"#\">\r\n                <div class=\"form-group\">\r\n                    <label for=\"username\" class=\"cols-sm-2 control-label\">Логін</label>\r\n                    <div class=\"cols-sm-10\">\r\n                        <div class=\"input-group\">\r\n                            <span class=\"input-group-addon\"><i class=\"fa fa-users fa\" aria-hidden=\"true\"></i></span>\r\n                            <input #login=\"ngModel\" type=\"text\" class=\"form-control\" name=\"login\" id=\"login\" placeholder=\"Введіть логін\" [(ngModel)]=\"userLogin\" />\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n                <div class=\"form-group\">\r\n                    <label for=\"password\" class=\"cols-sm-2 control-label\">Пароль</label>\r\n                    <div class=\"cols-sm-10\">\r\n                        <div class=\"input-group\">\r\n                            <span class=\"input-group-addon\"><i class=\"fa fa-lock fa-lg\" aria-hidden=\"true\"></i></span>\r\n                            <input #password=\"ngModel\" minlength=\"6\" type=\"password\" class=\"form-control\" name=\"password\" id=\"password\" placeholder=\"Введіть пароль\" [(ngModel)]=\"userPassword\" />\r\n                            <div *ngIf=\"password.invalid && password.dirty\" class=\"alert alert-danger\">\r\n                                Мінімальна довжина 6 символів.\r\n                            </div>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n                <div class=\"form-group \">\r\n                    <button type=\"button\" class=\"btn btn-primary btn-lg btn-block login-button\">Залогуватися</button>\r\n                </div>\r\n            </form>\r\n        </div>\r\n    </div>\r\n</div>\r\n";
 
 /***/ }),
-/* 63 */
-/***/ (function(module, exports) {
-
-module.exports = "<h1>Кирилиця</h1>";
-
-/***/ }),
-/* 64 */
-/***/ (function(module, exports) {
-
-module.exports = "<div class=\"container\">\r\n    <div class=\"row main\">\r\n        <div class=\"panel-heading\">\r\n            <div class=\"panel-title text-center\">\r\n                <h1 class=\"title\">Company Name</h1>\r\n                <hr />\r\n            </div>\r\n        </div>\r\n        <div class=\"main-login main-center\">\r\n            <form class=\"form-horizontal\" method=\"post\" action=\"#\">\r\n\r\n                <div class=\"form-group\">\r\n                    <label for=\"name\" class=\"cols-sm-2 control-label\">Your Name</label>\r\n                    <div class=\"cols-sm-10\">\r\n                        <div class=\"input-group\">\r\n                            <span class=\"input-group-addon\"><i class=\"fa fa-user fa\" aria-hidden=\"true\"></i></span>\r\n                            <input type=\"text\" class=\"form-control\" name=\"name\" id=\"name\" placeholder=\"Enter your Name\" />\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n                <div class=\"form-group\">\r\n                    <label for=\"email\" class=\"cols-sm-2 control-label\">Your Email</label>\r\n                    <div class=\"cols-sm-10\">\r\n                        <div class=\"input-group\">\r\n                            <span class=\"input-group-addon\"><i class=\"fa fa-envelope fa\" aria-hidden=\"true\"></i></span>\r\n                            <input type=\"text\" class=\"form-control\" name=\"email\" id=\"email\" placeholder=\"Enter your Email\" />\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n                <div class=\"form-group\">\r\n                    <label for=\"username\" class=\"cols-sm-2 control-label\">Username</label>\r\n                    <div class=\"cols-sm-10\">\r\n                        <div class=\"input-group\">\r\n                            <span class=\"input-group-addon\"><i class=\"fa fa-users fa\" aria-hidden=\"true\"></i></span>\r\n                            <input type=\"text\" class=\"form-control\" name=\"username\" id=\"username\" placeholder=\"Enter your Username\" />\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n                <div class=\"form-group\">\r\n                    <label for=\"password\" class=\"cols-sm-2 control-label\">Password</label>\r\n                    <div class=\"cols-sm-10\">\r\n                        <div class=\"input-group\">\r\n                            <span class=\"input-group-addon\"><i class=\"fa fa-lock fa-lg\" aria-hidden=\"true\"></i></span>\r\n                            <input type=\"password\" class=\"form-control\" name=\"password\" id=\"password\" placeholder=\"Enter your Password\" />\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n                <div class=\"form-group\">\r\n                    <label for=\"confirm\" class=\"cols-sm-2 control-label\">Confirm Password</label>\r\n                    <div class=\"cols-sm-10\">\r\n                        <div class=\"input-group\">\r\n                            <span class=\"input-group-addon\"><i class=\"fa fa-lock fa-lg\" aria-hidden=\"true\"></i></span>\r\n                            <input type=\"password\" class=\"form-control\" name=\"confirm\" id=\"confirm\" placeholder=\"Confirm your Password\" />\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n                <div class=\"form-group \">\r\n                    <button type=\"button\" class=\"btn btn-primary btn-lg btn-block login-button\">Register</button>\r\n                </div>\r\n                <div class=\"login-register\">\r\n                    <a href=\"index.php\">Login</a>\r\n                </div>\r\n            </form>\r\n        </div>\r\n    </div>\r\n</div>\r\n";
-
-/***/ }),
-/* 65 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-// Copyright Joyent, Inc. and other Node contributors.
-//
-// Permission is hereby granted, free of charge, to any person obtaining a
-// copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to permit
-// persons to whom the Software is furnished to do so, subject to the
-// following conditions:
-//
-// The above copyright notice and this permission notice shall be included
-// in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
-// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
-// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
-// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
-// USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-
-
-// If obj.hasOwnProperty has been overridden, then calling
-// obj.hasOwnProperty(prop) will break.
-// See: https://github.com/joyent/node/issues/1707
-function hasOwnProperty(obj, prop) {
-  return Object.prototype.hasOwnProperty.call(obj, prop);
-}
-
-module.exports = function(qs, sep, eq, options) {
-  sep = sep || '&';
-  eq = eq || '=';
-  var obj = {};
-
-  if (typeof qs !== 'string' || qs.length === 0) {
-    return obj;
-  }
-
-  var regexp = /\+/g;
-  qs = qs.split(sep);
-
-  var maxKeys = 1000;
-  if (options && typeof options.maxKeys === 'number') {
-    maxKeys = options.maxKeys;
-  }
-
-  var len = qs.length;
-  // maxKeys <= 0 means that we should not limit keys count
-  if (maxKeys > 0 && len > maxKeys) {
-    len = maxKeys;
-  }
-
-  for (var i = 0; i < len; ++i) {
-    var x = qs[i].replace(regexp, '%20'),
-        idx = x.indexOf(eq),
-        kstr, vstr, k, v;
-
-    if (idx >= 0) {
-      kstr = x.substr(0, idx);
-      vstr = x.substr(idx + 1);
-    } else {
-      kstr = x;
-      vstr = '';
-    }
-
-    k = decodeURIComponent(kstr);
-    v = decodeURIComponent(vstr);
-
-    if (!hasOwnProperty(obj, k)) {
-      obj[k] = v;
-    } else if (isArray(obj[k])) {
-      obj[k].push(v);
-    } else {
-      obj[k] = [obj[k], v];
-    }
-  }
-
-  return obj;
-};
-
-var isArray = Array.isArray || function (xs) {
-  return Object.prototype.toString.call(xs) === '[object Array]';
-};
-
-
-/***/ }),
 /* 66 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-// Copyright Joyent, Inc. and other Node contributors.
-//
-// Permission is hereby granted, free of charge, to any person obtaining a
-// copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to permit
-// persons to whom the Software is furnished to do so, subject to the
-// following conditions:
-//
-// The above copyright notice and this permission notice shall be included
-// in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
-// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
-// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
-// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
-// USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-
-
-var stringifyPrimitive = function(v) {
-  switch (typeof v) {
-    case 'string':
-      return v;
-
-    case 'boolean':
-      return v ? 'true' : 'false';
-
-    case 'number':
-      return isFinite(v) ? v : '';
-
-    default:
-      return '';
-  }
-};
-
-module.exports = function(obj, sep, eq, name) {
-  sep = sep || '&';
-  eq = eq || '=';
-  if (obj === null) {
-    obj = undefined;
-  }
-
-  if (typeof obj === 'object') {
-    return map(objectKeys(obj), function(k) {
-      var ks = encodeURIComponent(stringifyPrimitive(k)) + eq;
-      if (isArray(obj[k])) {
-        return map(obj[k], function(v) {
-          return ks + encodeURIComponent(stringifyPrimitive(v));
-        }).join(sep);
-      } else {
-        return ks + encodeURIComponent(stringifyPrimitive(obj[k]));
-      }
-    }).join(sep);
-
-  }
-
-  if (!name) return '';
-  return encodeURIComponent(stringifyPrimitive(name)) + eq +
-         encodeURIComponent(stringifyPrimitive(obj));
-};
-
-var isArray = Array.isArray || function (xs) {
-  return Object.prototype.toString.call(xs) === '[object Array]';
-};
-
-function map (xs, f) {
-  if (xs.map) return xs.map(f);
-  var res = [];
-  for (var i = 0; i < xs.length; i++) {
-    res.push(f(xs[i], i));
-  }
-  return res;
-}
-
-var objectKeys = Object.keys || function (obj) {
-  var res = [];
-  for (var key in obj) {
-    if (Object.prototype.hasOwnProperty.call(obj, key)) res.push(key);
-  }
-  return res;
-};
-
+module.exports = "<div class=\"row\">\r\n    <img id=\"main-img\" class=\"img img-responsive center-block\" src=\"https://scontent-waw1-1.xx.fbcdn.net/v/t1.0-9/12347711_438017983073684_4814428397312966146_n.jpg?oh=399ef7ea2570a20589859fb69b5732bd&oe=599FE5D1\" />\r\n</div>\r\n<hr />\r\n<div class=\"row\">\r\n    <div class=\"col-lg-9 col-md-9\" *ngFor=\"let event of model.events\">\r\n        <div>\r\n            <h2>{{event.organizationName}}</h2>\r\n            <p>{{event.description}}</p>\r\n            <img class=\"img img-responsive\" src={{event.pathToCoverImage}} />\r\n        </div>\r\n    </div>\r\n    <div class=\"col-lg-3 col-md-3\" id=\"right-bar\">\r\n        <h2 class=\"text-center\">Останні звіти:</h2>\r\n        <ul *ngIf=\"model.reports\">\r\n            <li *ngFor=\"let report of model.reports\">\r\n                <a>\r\n                    {{report.organizationName}}\r\n                    {{report.date.getFullYear()}}/{{report.date.getMonth()}}/{{report.date.getDate()}}\r\n                </a>\r\n            </li>\r\n        </ul>\r\n    </div>\r\n</div>\r\n";
 
 /***/ }),
 /* 67 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-
-
-exports.decode = exports.parse = __webpack_require__(65);
-exports.encode = exports.stringify = __webpack_require__(66);
-
+module.exports = "<div class=\"container\">\r\n    <div class=\"row main\">\r\n        <div class=\"panel-heading\">\r\n            <div class=\"panel-title text-center\">\r\n                <h1 class=\"title\">Company Name</h1>\r\n                <hr />\r\n            </div>\r\n        </div>\r\n        <div class=\"main-login main-center\">\r\n            <form class=\"form-horizontal\" method=\"post\" action=\"#\">\r\n\r\n                <div class=\"form-group\">\r\n                    <label for=\"name\" class=\"cols-sm-2 control-label\">Your Name</label>\r\n                    <div class=\"cols-sm-10\">\r\n                        <div class=\"input-group\">\r\n                            <span class=\"input-group-addon\"><i class=\"fa fa-user fa\" aria-hidden=\"true\"></i></span>\r\n                            <input type=\"text\" class=\"form-control\" name=\"name\" id=\"name\" placeholder=\"Enter your Name\" />\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n                <div class=\"form-group\">\r\n                    <label for=\"email\" class=\"cols-sm-2 control-label\">Your Email</label>\r\n                    <div class=\"cols-sm-10\">\r\n                        <div class=\"input-group\">\r\n                            <span class=\"input-group-addon\"><i class=\"fa fa-envelope fa\" aria-hidden=\"true\"></i></span>\r\n                            <input type=\"text\" class=\"form-control\" name=\"email\" id=\"email\" placeholder=\"Enter your Email\" />\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n                <div class=\"form-group\">\r\n                    <label for=\"username\" class=\"cols-sm-2 control-label\">Username</label>\r\n                    <div class=\"cols-sm-10\">\r\n                        <div class=\"input-group\">\r\n                            <span class=\"input-group-addon\"><i class=\"fa fa-users fa\" aria-hidden=\"true\"></i></span>\r\n                            <input type=\"text\" class=\"form-control\" name=\"username\" id=\"username\" placeholder=\"Enter your Username\" />\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n                <div class=\"form-group\">\r\n                    <label for=\"password\" class=\"cols-sm-2 control-label\">Password</label>\r\n                    <div class=\"cols-sm-10\">\r\n                        <div class=\"input-group\">\r\n                            <span class=\"input-group-addon\"><i class=\"fa fa-lock fa-lg\" aria-hidden=\"true\"></i></span>\r\n                            <input type=\"password\" class=\"form-control\" name=\"password\" id=\"password\" placeholder=\"Enter your Password\" />\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n                <div class=\"form-group\">\r\n                    <label for=\"confirm\" class=\"cols-sm-2 control-label\">Confirm Password</label>\r\n                    <div class=\"cols-sm-10\">\r\n                        <div class=\"input-group\">\r\n                            <span class=\"input-group-addon\"><i class=\"fa fa-lock fa-lg\" aria-hidden=\"true\"></i></span>\r\n                            <input type=\"password\" class=\"form-control\" name=\"confirm\" id=\"confirm\" placeholder=\"Confirm your Password\" />\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n                <div class=\"form-group \">\r\n                    <button type=\"button\" class=\"btn btn-primary btn-lg btn-block login-button\">Register</button>\r\n                </div>\r\n                <div class=\"login-register\">\r\n                    <a href=\"index.php\">Login</a>\r\n                </div>\r\n            </form>\r\n        </div>\r\n    </div>\r\n</div>\r\n";
 
 /***/ }),
 /* 68 */
@@ -9899,7 +9794,7 @@ exports.encode = exports.stringify = __webpack_require__(66);
 
 "use strict";
 
-var root_1 = __webpack_require__(79);
+var root_1 = __webpack_require__(85);
 /* tslint:enable:max-line-length */
 /**
  * Converts an Observable sequence to a ES2015 compliant promise.
@@ -9989,7 +9884,7 @@ module.exports = function (str) {
 /***/ (function(module, exports, __webpack_require__) {
 
 
-        var result = __webpack_require__(56);
+        var result = __webpack_require__(57);
 
         if (typeof result === "string") {
             module.exports = result;
@@ -10003,7 +9898,7 @@ module.exports = function (str) {
 /***/ (function(module, exports, __webpack_require__) {
 
 
-        var result = __webpack_require__(57);
+        var result = __webpack_require__(58);
 
         if (typeof result === "string") {
             module.exports = result;
@@ -10014,6 +9909,34 @@ module.exports = function (str) {
 
 /***/ }),
 /* 72 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+        var result = __webpack_require__(59);
+
+        if (typeof result === "string") {
+            module.exports = result;
+        } else {
+            module.exports = result.toString();
+        }
+    
+
+/***/ }),
+/* 73 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+        var result = __webpack_require__(60);
+
+        if (typeof result === "string") {
+            module.exports = result;
+        } else {
+            module.exports = result.toString();
+        }
+    
+
+/***/ }),
+/* 74 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*eslint-env browser*/
@@ -10057,7 +9980,7 @@ var colors = {
 };
 ansiHTML.setColors(colors);
 
-var Entities = __webpack_require__(58).AllHtmlEntities;
+var Entities = __webpack_require__(61).AllHtmlEntities;
 var entities = new Entities();
 
 exports.showProblems =
@@ -10098,7 +10021,7 @@ function problemType (type) {
 
 
 /***/ }),
-/* 73 */
+/* 75 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -10236,83 +10159,292 @@ module.exports = function(hash, moduleMap, options) {
 
 
 /***/ }),
-/* 74 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = (__webpack_require__(1))(11);
-
-/***/ }),
-/* 75 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = (__webpack_require__(1))(13);
-
-/***/ }),
 /* 76 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = (__webpack_require__(1))(322);
+"use strict";
+// Copyright Joyent, Inc. and other Node contributors.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a
+// copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to permit
+// persons to whom the Software is furnished to do so, subject to the
+// following conditions:
+//
+// The above copyright notice and this permission notice shall be included
+// in all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
+// USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+
+
+// If obj.hasOwnProperty has been overridden, then calling
+// obj.hasOwnProperty(prop) will break.
+// See: https://github.com/joyent/node/issues/1707
+function hasOwnProperty(obj, prop) {
+  return Object.prototype.hasOwnProperty.call(obj, prop);
+}
+
+module.exports = function(qs, sep, eq, options) {
+  sep = sep || '&';
+  eq = eq || '=';
+  var obj = {};
+
+  if (typeof qs !== 'string' || qs.length === 0) {
+    return obj;
+  }
+
+  var regexp = /\+/g;
+  qs = qs.split(sep);
+
+  var maxKeys = 1000;
+  if (options && typeof options.maxKeys === 'number') {
+    maxKeys = options.maxKeys;
+  }
+
+  var len = qs.length;
+  // maxKeys <= 0 means that we should not limit keys count
+  if (maxKeys > 0 && len > maxKeys) {
+    len = maxKeys;
+  }
+
+  for (var i = 0; i < len; ++i) {
+    var x = qs[i].replace(regexp, '%20'),
+        idx = x.indexOf(eq),
+        kstr, vstr, k, v;
+
+    if (idx >= 0) {
+      kstr = x.substr(0, idx);
+      vstr = x.substr(idx + 1);
+    } else {
+      kstr = x;
+      vstr = '';
+    }
+
+    k = decodeURIComponent(kstr);
+    v = decodeURIComponent(vstr);
+
+    if (!hasOwnProperty(obj, k)) {
+      obj[k] = v;
+    } else if (isArray(obj[k])) {
+      obj[k].push(v);
+    } else {
+      obj[k] = [obj[k], v];
+    }
+  }
+
+  return obj;
+};
+
+var isArray = Array.isArray || function (xs) {
+  return Object.prototype.toString.call(xs) === '[object Array]';
+};
+
 
 /***/ }),
 /* 77 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = (__webpack_require__(1))(339);
+"use strict";
+// Copyright Joyent, Inc. and other Node contributors.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a
+// copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to permit
+// persons to whom the Software is furnished to do so, subject to the
+// following conditions:
+//
+// The above copyright notice and this permission notice shall be included
+// in all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
+// USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+
+
+var stringifyPrimitive = function(v) {
+  switch (typeof v) {
+    case 'string':
+      return v;
+
+    case 'boolean':
+      return v ? 'true' : 'false';
+
+    case 'number':
+      return isFinite(v) ? v : '';
+
+    default:
+      return '';
+  }
+};
+
+module.exports = function(obj, sep, eq, name) {
+  sep = sep || '&';
+  eq = eq || '=';
+  if (obj === null) {
+    obj = undefined;
+  }
+
+  if (typeof obj === 'object') {
+    return map(objectKeys(obj), function(k) {
+      var ks = encodeURIComponent(stringifyPrimitive(k)) + eq;
+      if (isArray(obj[k])) {
+        return map(obj[k], function(v) {
+          return ks + encodeURIComponent(stringifyPrimitive(v));
+        }).join(sep);
+      } else {
+        return ks + encodeURIComponent(stringifyPrimitive(obj[k]));
+      }
+    }).join(sep);
+
+  }
+
+  if (!name) return '';
+  return encodeURIComponent(stringifyPrimitive(name)) + eq +
+         encodeURIComponent(stringifyPrimitive(obj));
+};
+
+var isArray = Array.isArray || function (xs) {
+  return Object.prototype.toString.call(xs) === '[object Array]';
+};
+
+function map (xs, f) {
+  if (xs.map) return xs.map(f);
+  var res = [];
+  for (var i = 0; i < xs.length; i++) {
+    res.push(f(xs[i], i));
+  }
+  return res;
+}
+
+var objectKeys = Object.keys || function (obj) {
+  var res = [];
+  for (var key in obj) {
+    if (Object.prototype.hasOwnProperty.call(obj, key)) res.push(key);
+  }
+  return res;
+};
+
 
 /***/ }),
 /* 78 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = (__webpack_require__(1))(341);
+"use strict";
+
+
+exports.decode = exports.parse = __webpack_require__(76);
+exports.encode = exports.stringify = __webpack_require__(77);
+
 
 /***/ }),
 /* 79 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-module.exports = (__webpack_require__(1))(48);
+var g;
+
+// This works in non-strict mode
+g = (function() {
+	return this;
+})();
+
+try {
+	// This works if eval is allowed (see CSP)
+	g = g || Function("return this")() || (1,eval)("this");
+} catch(e) {
+	// This works if the window reference is available
+	if(typeof window === "object")
+		g = window;
+}
+
+// g can still be undefined, but nothing to do about it...
+// We return undefined, instead of nothing here, so it's
+// easier to handle this case. if(!global) { ...}
+
+module.exports = g;
+
 
 /***/ }),
 /* 80 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-module.exports = (__webpack_require__(1))(582);
+module.exports = function(module) {
+	if(!module.webpackPolyfill) {
+		module.deprecate = function() {};
+		module.paths = [];
+		// module.parent = undefined by default
+		if(!module.children) module.children = [];
+		Object.defineProperty(module, "loaded", {
+			enumerable: true,
+			get: function() {
+				return module.l;
+			}
+		});
+		Object.defineProperty(module, "id", {
+			enumerable: true,
+			get: function() {
+				return module.i;
+			}
+		});
+		module.webpackPolyfill = 1;
+	}
+	return module;
+};
+
 
 /***/ }),
 /* 81 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = (__webpack_require__(3))(13);
+
+/***/ }),
+/* 82 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = (__webpack_require__(3))(322);
+
+/***/ }),
+/* 83 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = (__webpack_require__(3))(339);
+
+/***/ }),
+/* 84 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = (__webpack_require__(3))(341);
+
+/***/ }),
+/* 85 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = (__webpack_require__(3))(48);
+
+/***/ }),
+/* 86 */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(41);
 __webpack_require__(40);
 module.exports = __webpack_require__(39);
 
-
-/***/ }),
-/* 82 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(35)();
-// imports
-
-
-// module
-exports.push([module.i, "body, html {\n    height: 100%;\n    background-repeat: no-repeat;\n    background-color: #d3d3d3;\n    font-family: 'Oxygen', sans-serif;\n}\n\n.main {\n    margin-top: 70px;\n}\n\nh1.title {\n    font-size: 50px;\n    font-weight: 400;\n}\n\nhr {\n    width: 10%;\n    color: #fff;\n}\n\n.form-group {\n    margin-bottom: 15px;\n}\n\nlabel {\n    margin-bottom: 15px;\n}\n\ninput,\ninput::-webkit-input-placeholder {\n    font-size: 11px;\n    padding-top: 3px;\n}\n\n.main-login {\n    background-color: #fff;\n    /* shadows and rounded borders */\n    -moz-border-radius: 2px;\n    -webkit-border-radius: 2px;\n    border-radius: 2px;\n    -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);\n    -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);\n    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);\n}\n\n.main-center {\n    margin-top: 30px;\n    margin: 0 auto;\n    max-width: 330px;\n    padding: 40px 40px;\n}\n\n.login-button {\n    margin-top: 5px;\n}\n\n.login-register {\n    font-size: 11px;\n    text-align: center;\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 83 */
-/***/ (function(module, exports, __webpack_require__) {
-
-
-        var result = __webpack_require__(82);
-
-        if (typeof result === "string") {
-            module.exports = result;
-        } else {
-            module.exports = result.toString();
-        }
-    
 
 /***/ })
 /******/ ]);
