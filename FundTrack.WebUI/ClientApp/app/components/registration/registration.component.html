@@ -1,66 +1,61 @@
-﻿<div class="container">
-    <div class="row main">
-        <div class="panel-heading">
-            <div class="panel-title text-center">
-                <h1 class="title">Company Name</h1>
-                <hr />
+﻿<form class="form-horizontal">
+    <fieldset>
+        <!-- Form Name -->
+        <legend>Реєстрація нового користувача</legend>
+        <!-- Text input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="fn">Імя</label>
+            <div class="col-md-4">
+                <input id="firstName" name="firstName" [(ngModel)]="registrationViewModel.firstName" type="text" placeholder="Імя" class="form-control input-md" required="">
+
             </div>
         </div>
-        <div class="main-login main-center">
-            <form class="form-horizontal" method="post" action="#">
+        <!-- Text input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="ln">Прізвище</label>
+            <div class="col-md-4">
+                <input id="ln" name="ln" type="text" placeholder="Прізвище" class="form-control input-md" required="">
 
-                <div class="form-group">
-                    <label for="name" class="cols-sm-2 control-label">Your Name</label>
-                    <div class="cols-sm-10">
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                            <input type="text" class="form-control" name="name" id="name" placeholder="Enter your Name" />
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="email" class="cols-sm-2 control-label">Your Email</label>
-                    <div class="cols-sm-10">
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-                            <input type="text" class="form-control" name="email" id="email" placeholder="Enter your Email" />
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="username" class="cols-sm-2 control-label">Username</label>
-                    <div class="cols-sm-10">
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
-                            <input type="text" class="form-control" name="username" id="username" placeholder="Enter your Username" />
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="password" class="cols-sm-2 control-label">Password</label>
-                    <div class="cols-sm-10">
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-                            <input type="password" class="form-control" name="password" id="password" placeholder="Enter your Password" />
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="confirm" class="cols-sm-2 control-label">Confirm Password</label>
-                    <div class="cols-sm-10">
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-                            <input type="password" class="form-control" name="confirm" id="confirm" placeholder="Confirm your Password" />
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group ">
-                    <button type="button" class="btn btn-primary btn-lg btn-block login-button">Register</button>
-                </div>
-                <div class="login-register">
-                    <a href="index.php">Login</a>
-                </div>
-            </form>
+            </div>
         </div>
-    </div>
-</div>
+        <!-- Text input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="cmpny">Логін</label>
+            <div class="col-md-4">
+                <input id="cmpny" name="cmpny" type="text" placeholder="Логін" class="form-control input-md" required="">
+
+            </div>
+        </div>
+        <!-- Text input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="email">Email</label>
+            <div class="col-md-4">
+                <input id="email" name="email" type="text" placeholder="email" class="form-control input-md" required="">
+
+            </div>
+        </div>
+        <!-- Text input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="add1">Пароль</label>
+            <div class="col-md-4">
+                <input id="add1" name="add1" type="password" class="form-control input-md" required="">
+
+            </div>
+        </div>
+        <!-- Text input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="add2">Підтвердіть пароль</label>
+            <div class="col-md-4">
+                <input id="add2" name="add2" type="text" placeholder="" class="form-control input-md">
+
+            </div>
+        </div>
+        <!-- Button -->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="submit"></label>
+            <div class="col-md-4">
+                <button id="submit" name="submit" class="btn btn-primary" (click)="showMessage()">Зареєструватись</button>
+            </div>
+        </div>
+    </fieldset>
+</form>

@@ -8,9 +8,6 @@ using FundTrack.DAL.Abstract;
 using FundTrack.DAL.Repositories;
 using FundTrack.BLL.Abstract;
 using FundTrack.BLL.DomainServices;
-using Microsoft.AspNetCore.Authorization;
-using FundTrack.DAL.Concrete;
-using Microsoft.EntityFrameworkCore;
 
 namespace FundTrack_WebUI
 {
