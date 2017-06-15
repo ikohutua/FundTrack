@@ -6,18 +6,21 @@ import { HttpModule } from '@angular/http';
 import { AuthorizationModule } from './authorization.module';
 import { AppComponent } from './components/app/app.component'
 import { HomeComponent } from './components/home/home.component';
+import { AboutComponent } from "./components/about/about.component";
 
 @NgModule({
     bootstrap: [ AppComponent ],
     declarations: [
         AppComponent,
-        HomeComponent
+        HomeComponent,
+        AboutComponent
     ],
     imports: [
         UniversalModule, // Must be first import. This automatically imports BrowserModule, HttpModule, and JsonpModule too.
         AuthorizationModule,
         RouterModule.forRoot([
-            { path: '', component: HomeComponent }           
+            { path: '', component: HomeComponent },
+            { path: 'about', component: AboutComponent }
         ])
     ]
 })
