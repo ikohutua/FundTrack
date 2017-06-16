@@ -6,5 +6,5 @@
 })
 
 export class AboutComponent {
-    pageTitle: string = 'Про нас';
+    pageTitle: string;
 }

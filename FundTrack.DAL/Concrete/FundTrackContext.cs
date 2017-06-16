@@ -114,6 +114,8 @@ namespace FundTrack.DAL.Concrete
 
                 entity.Property(e => e.FirstName).IsRequired().HasMaxLength(100);
 
+                entity.Property(e => e.Login).IsRequired().HasMaxLength(100);
+
                 entity.Property(e => e.LastName).IsRequired().HasMaxLength(100);
 
                 entity.Property(e => e.Password).IsRequired().HasMaxLength(50);
@@ -284,7 +286,7 @@ namespace FundTrack.DAL.Concrete
             {
                 entity.HasKey(e => e.Id).HasName("PK_Balance");
 
-                entity.Property(e => e.BalanceDate).HasColumnName("datetime");
+                entity.Property(e => e.BalanceDate).HasColumnType("datetime");
 
                 entity.Property(e => e.Amount).HasColumnType("decimal(18,2)");
 
@@ -305,7 +307,7 @@ namespace FundTrack.DAL.Concrete
             {
                 entity.HasKey(e => e.Id).HasName("PK_FinOp");
 
-                entity.Property(e => e.Amount).HasColumnName("decimal(18,2)");
+                entity.Property(e => e.Amount).HasColumnType("decimal(18,2)");
 
                 entity.Property(e => e.FinOpDate).HasColumnType("datetime");
 
