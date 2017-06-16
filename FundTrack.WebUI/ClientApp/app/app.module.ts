@@ -5,6 +5,7 @@ import { AppComponent } from './components/app/app.component'
 import { HomeModule } from "./home.module";
 import { SharedModule } from "./shared.module";
 import { AuthorizationModule } from "./authorization.module";
+import { SuperAdminModule } from './superAdmin.module';
 
 @NgModule({
     bootstrap: [AppComponent],
@@ -16,6 +17,7 @@ import { AuthorizationModule } from "./authorization.module";
         HomeModule,
         SharedModule,
         AuthorizationModule,
+        SuperAdminModule,
         RouterModule.forRoot([
         ])
     ]
