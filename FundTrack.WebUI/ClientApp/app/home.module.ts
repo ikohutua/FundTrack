@@ -1,11 +1,8 @@
 ﻿import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { UniversalModule } from 'angular2-universal';
-import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
-import { AuthorizationModule } from './authorization.module';
 import { HomeComponent } from './components/home/home.component';
 import { AboutComponent } from "./components/about/about.component";
+import { CommonModule } from "@angular/common";
 
 @NgModule({
     declarations: [
@@ -13,13 +10,11 @@ import { AboutComponent } from "./components/about/about.component";
         AboutComponent
     ],
     imports: [
-        UniversalModule, // Must be first import. This automatically imports BrowserModule, HttpModule, and JsonpModule too.
-        AuthorizationModule,
+        CommonModule,
         RouterModule.forChild([
             { path: '', component: HomeComponent },
             { path: 'about', component: AboutComponent }
         ])
     ]
 })
-export class HomeModule {
-}
+export class HomeModule { }
