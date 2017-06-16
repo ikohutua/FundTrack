@@ -1,5 +1,6 @@
 ﻿import { Component, OnInit } from '@angular/core';
-import { MainPageViewModel, IMainPageViewModel } from "./mainPageViewModel";
+import { IMainPageViewModel } from "../../viewModels/Abstract/IMainPageViewModel";
+import { MainPageViewModel } from "../../viewModels/Concrete/MainPageViewModel";
 
 @Component({
     selector: 'home',

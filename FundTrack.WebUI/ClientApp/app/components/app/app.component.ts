@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IOrganizationsForLayout } from "./organizationsForLayout";
+import { IOrganizationsForLayout } from "../../viewModels/Abstract/IOrganizationsForLayout";
 
 @Component({
     selector: 'app',
@@ -8,6 +8,7 @@ import { IOrganizationsForLayout } from "./organizationsForLayout";
 })
 export class AppComponent implements OnInit {
     private orgs: IOrganizationsForLayout[];
+
 
     ngOnInit(): void {
         this.orgs = [

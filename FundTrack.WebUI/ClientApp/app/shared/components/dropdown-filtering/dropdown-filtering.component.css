@@ -1,0 +1,11 @@
+﻿.scrollable-menu {
+    height: auto !important;
+    max-height: 200px !important;
+    overflow-x: hidden !important;
+}
+
+.btn-info {
+    border: solid 1px silver !important;
+    background-color: #00aded !important;
+    color: black !important;
+}
