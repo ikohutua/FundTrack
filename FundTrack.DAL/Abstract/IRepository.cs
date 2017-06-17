@@ -21,11 +21,13 @@ namespace FundTrack.DAL.Abstract
         /// <returns> one entry <T> </returns>
         T Get(int id);
 
+
         /// <summary>
-        /// Creates new entry in database
+        /// Creates the specified item.
         /// </summary>
-        /// <param name="item"> Recives new item of <T> </param>
-        void Create(T item);
+        /// <param name="item">The item of entity.</param>
+        /// <returns> one item of entity. </returns>
+        T Create(T item);
 
         /// <summary>
         /// Updates information in entry
