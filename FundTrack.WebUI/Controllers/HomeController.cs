@@ -12,10 +12,5 @@ namespace FundTrack_WebUI.Controllers
         {
             return View();
         }
-
-        public IActionResult Error()
-        {
-            return View();
-        }
     }
 }
