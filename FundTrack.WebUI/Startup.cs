@@ -8,6 +8,9 @@ using FundTrack.DAL.Abstract;
 using FundTrack.DAL.Repositories;
 using FundTrack.BLL.Abstract;
 using FundTrack.BLL.DomainServices;
+using FundTrack.DAL.Concrete;
+using FundTrack.BLL.Concrete;
+using Microsoft.EntityFrameworkCore;
 
 namespace FundTrack_WebUI
 {
@@ -28,11 +31,21 @@ namespace FundTrack_WebUI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //for DBContext
+            //string connection = Configuration.GetConnectionString("FundTrackDBConnection");
+            //services.AddDbContext<FundTrackContext>(options => options.UseSqlServer(connection));
+
             // Add framework services.
             services.AddMvc();
 
+            //dependency injection DAL
             services.AddTransient<IUserRepository, UserRepository>();
             services.AddTransient<IUserDomainService, UserDomainService>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IOrganizationsListRepository, OrganizationsListRepository>();
+
+            //dependency injection BLL
+            services.AddScoped<IOrganizationsForLayoutService, OrganizationsForLayoutService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -44,7 +57,8 @@ namespace FundTrack_WebUI
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions {
+                app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions
+                {
                     HotModuleReplacement = true
                 });
             }

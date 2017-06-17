@@ -1,4 +1,5 @@
-﻿using FundTrack.Infrastructure.ViewModel;
+﻿using FundTrack.BLL.Abstract;
+using FundTrack.Infrastructure.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 
@@ -11,27 +12,25 @@ namespace FundTrack.WebUI.Controllers
     [Route("api/[controller]")]
     public class OrganizationsListController : Controller
     {
+        private IOrganizationsForLayoutService _service;
+        
+        /// <summary>
+        /// Initializes a new instance of the <see cref="OrganizationsListController"/> class.
+        /// </summary>
+        /// <param name="serviceParam">The service parameter.</param>
+        public OrganizationsListController(IOrganizationsForLayoutService serviceParam)
+        {
+            this._service = serviceParam;
+        }
+
         /// <summary>
         /// Sends to Angular service collection of 'OrganizationForSearch'
         /// </summary>
         /// <returns> collection of 'OrganizationForSearch' </returns>
         [HttpGet]
-        public IEnumerable<OrganizationForSearch> AllOrganizations()
+        public IEnumerable<OrganizationsForLayout> AllOrganizations()
         {
-            //HARDCODE
-            return new List<OrganizationForSearch>()
-            {
-                new OrganizationForSearch(){ Id = 1, Name = "Наш солдат" },
-                new OrganizationForSearch(){ Id = 1, Name = "Крила Фенікса" },
-                new OrganizationForSearch(){ Id = 1, Name = "Інша" },
-                new OrganizationForSearch(){ Id = 1, Name = "Інша" },
-                new OrganizationForSearch(){ Id = 1, Name = "Крила" },
-                new OrganizationForSearch(){ Id = 1, Name = "Інша" },
-                new OrganizationForSearch(){ Id = 1, Name = "Інша" },
-                new OrganizationForSearch(){ Id = 1, Name = "Крила" },
-                new OrganizationForSearch(){ Id = 1, Name = "Інша" },
-                new OrganizationForSearch(){ Id = 1, Name = "Інша" },
-            };
+            return this._service.GetAll();
         }
     }
 }

@@ -17,6 +17,7 @@ export class OrganizationDropdownService {
      * gets list of organizations from backend
      */
     getOrganizations(): Observable<IOrganizationsForLayout[]> {
+        console.log('getOrganizations()');
         return this._http.get(this._url)
             .map((response: Response) => <IOrganizationsForLayout[]>response.json())
             .do(data => console.log('All: ' + JSON.stringify(data)))//console out information about json

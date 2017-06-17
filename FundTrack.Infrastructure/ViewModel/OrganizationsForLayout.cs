@@ -3,7 +3,7 @@
     /// <summary>
     /// Class which describe model for search organization in dropdown menu
     /// </summary>
-    public class OrganizationForSearch
+    public sealed class OrganizationsForLayout
     {
         /// <summary>
         /// Gets or sets the identifier.
