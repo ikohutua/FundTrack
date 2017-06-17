@@ -75,10 +75,10 @@ namespace FundTrack_WebUI
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
 
-                //Commented, because it has an impact on error handling. If app continues to work fine for next 2-3 weeks - this will be removed.
-                //routes.MapSpaFallbackRoute(
-                //    name: "spa-fallback",
-                //    defaults: new { controller = "Home", action = "Index" });
+                //Have to uncomment this, because page refreshing throws 404 in SPA
+                routes.MapSpaFallbackRoute(
+                    name: "spa-fallback",
+                    defaults: new { controller = "Home", action = "Index" });
             });
         }
     }
