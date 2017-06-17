@@ -1,7 +1,7 @@
 ﻿import { Injectable } from "@angular/core";
 import { Http, Response } from "@angular/http";
 import { Observable } from "rxjs/Observable";
-import { IOrganizationsForLayout } from "../viewModels/Abstract/IOrganizationsForLayout";
+import { IOrganizationsForLayout } from "../view-models/abstract/organizations-for-layout.interface";
 import "rxjs/add/operator/map";
 import "rxjs/add/operator/do";
 import "rxjs/add/operator/catch";

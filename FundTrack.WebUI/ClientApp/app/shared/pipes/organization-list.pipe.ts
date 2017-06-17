@@ -1,8 +1,8 @@
 ﻿import { Pipe, PipeTransform } from "@angular/core";
-import { IOrganizationsForLayout } from "../../viewModels/Abstract/IOrganizationsForLayout";
+import { IOrganizationsForLayout } from "../../view-models/abstract/organizations-for-layout.interface";
 
 @Pipe({
-    name: 'carModelFilter'
+    name: 'organizationsListPipe'
 })
 
 /** filtering whole list of organizaions by keyword. */

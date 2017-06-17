@@ -1,8 +1,7 @@
 ﻿import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
 import { CommonModule } from "@angular/common";
-
-import { SuperAdminComponent } from './components/superAdmin/superAdmin.component';
+import { SuperAdminComponent } from './components/super-admin/super-admin.component';
+import { SuperAdminRoutingModule } from "./routes/super-admin.routing.module";
 
 @NgModule({
     declarations: [
@@ -10,9 +9,7 @@ import { SuperAdminComponent } from './components/superAdmin/superAdmin.componen
     ],
     imports: [
         CommonModule,
-        RouterModule.forChild([
-            { path: 'superAdmin', component: SuperAdminComponent }
-        ])
+        SuperAdminRoutingModule
     ]
 })
 export class SuperAdminModule { }

@@ -1,6 +1,6 @@
 ﻿import { Component, OnInit } from "@angular/core";
 import { OrganizationDropdownService } from "../../../services/organization-dropdown.service";
-import { IOrganizationsForLayout } from "../../../viewModels/Abstract/IOrganizationsForLayout";
+import { IOrganizationsForLayout } from "../../../view-models/abstract/organizations-for-layout.interface";
 
 @Component({
     selector: 'dropdown-org',

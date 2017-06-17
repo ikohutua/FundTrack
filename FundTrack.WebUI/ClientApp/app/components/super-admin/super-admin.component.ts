@@ -2,7 +2,7 @@
 
 @Component({
     selector: 'super-admin',
-    template: require('./superAdmin.component.html')
+    template: require('./super-admin.component.html')
 })
 
 export class SuperAdminComponent {

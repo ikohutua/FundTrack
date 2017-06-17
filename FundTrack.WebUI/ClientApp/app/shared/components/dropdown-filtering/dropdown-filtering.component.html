@@ -3,7 +3,7 @@
         <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">Всі організації <span class="caret"></span></button>
         <ul class="dropdown-menu scrollable-menu" role="menu">
             <li><input type="text" class="form-control" name="filterBy" [(ngModel)]="filterBy" placeholder="Filter By" /></li>
-            <li *ngFor="let org of organizations | carModelFilter:filterBy"><a [routerLink]="">{{org.name}}</a></li>
+            <li *ngFor="let org of organizations | organizationsListPipe:filterBy"><a>{{org.name}}</a></li>
         </ul>
     </div>
 </div>

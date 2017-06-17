@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
 import { UniversalModule } from 'angular2-universal';
 import { AppComponent } from './components/app/app.component'
 import { HomeModule } from "./home.module";
 import { SharedModule } from "./shared.module";
 import { AuthorizationModule } from "./authorization.module";
-import { SuperAdminModule } from './superAdmin.module';
+import { SuperAdminModule } from './super-admin.module';
+import { AppRoutingModule } from "./routes/app-routing.module";
 
 @NgModule({
     bootstrap: [AppComponent],
@@ -18,8 +18,7 @@ import { SuperAdminModule } from './superAdmin.module';
         SharedModule,
         AuthorizationModule,
         SuperAdminModule,
-        RouterModule.forRoot([
-        ])
+        AppRoutingModule
     ]
 })
 export class AppModule { }
