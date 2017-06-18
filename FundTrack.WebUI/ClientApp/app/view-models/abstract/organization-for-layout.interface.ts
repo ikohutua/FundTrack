@@ -1,5 +1,5 @@
 ﻿/** for routing among organizations. */
-export interface IOrganizationsForLayout {
+export interface IOrganizationForLayout {
     id: number;
     name: string;
 }

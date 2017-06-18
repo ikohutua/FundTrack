@@ -29,23 +29,14 @@ namespace FundTrack.BLL.Concrete
         /// <returns> Collection of OrganizationsForLayout </returns>
         public IEnumerable<OrganizationsForLayout> GetAll()
         {
-            //return this._unitOfWork
-            //    .OrganizationsListRepository
-            //    .GetAll
-            //    .Select(o => new OrganizationsForLayout()
-            //    {
-            //        Id = o.Id,
-            //        Name = o.Name
-            //    });
-
-            //HARDCODE, because we don`t have common database now
-            var model = new List<OrganizationsForLayout>();
-            model.Add(new OrganizationsForLayout() { Id = 1, Name = "Наш Солдат" });
-            model.Add(new OrganizationsForLayout() { Id = 2, Name = "Крила Фенікса" });
-            model.Add(new OrganizationsForLayout() { Id = 3, Name = "Куля В Лоб" });
-            model.Add(new OrganizationsForLayout() { Id = 4, Name = "Танкі і Планшеты" });
-            model.Add(new OrganizationsForLayout() { Id = 5, Name = "Інша" });
-            return model;
+            return this._unitOfWork
+                .OrganizationsListRepository
+                .GetAll
+                .Select(o => new OrganizationsForLayout()
+                {
+                    Id = o.Id,
+                    Name = o.Name
+                });
         }
     }
 }

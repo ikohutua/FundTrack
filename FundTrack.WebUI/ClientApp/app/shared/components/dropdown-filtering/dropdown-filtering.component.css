@@ -9,3 +9,7 @@
     background-color: #00aded !important;
     color: black !important;
 }
+
+.form-control {
+    width: 100% !important;
+}

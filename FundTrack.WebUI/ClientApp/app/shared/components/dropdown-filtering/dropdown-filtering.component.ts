@@ -1,6 +1,6 @@
 ﻿import { Component, OnInit } from "@angular/core";
 import { OrganizationDropdownService } from "../../../services/organization-dropdown.service";
-import { IOrganizationsForLayout } from "../../../view-models/abstract/organizations-for-layout.interface";
+import { IOrganizationForLayout } from "../../../view-models/abstract/organization-for-layout.interface";
 
 @Component({
     selector: 'dropdown-org',
@@ -12,7 +12,7 @@ import { IOrganizationsForLayout } from "../../../view-models/abstract/organizat
 export class DropdownOrganizationsComponent implements OnInit {
 
     private _errorMessage: string;
-    public organizations: IOrganizationsForLayout[];
+    public organizations: IOrganizationForLayout[];
     public filterBy: string = '';
 
     /**
