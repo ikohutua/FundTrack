@@ -81,5 +81,15 @@ namespace FundTrack.DAL.Entities
         /// ExternalContact navigation property
         /// </summary>
         public virtual ICollection<ExternalContact> ExternalContacts { get; set; }
+
+        /// <summary>
+        /// Offer navigation property
+        /// </summary>
+        public virtual ICollection<Offer> Offers { get; set; }
+
+        /// <summary>
+        /// Complaint navigation property
+        /// </summary>
+        public virtual ICollection<Complaint> Complaints { get; set; }
     }
 }

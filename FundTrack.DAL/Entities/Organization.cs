@@ -41,5 +41,20 @@ namespace FundTrack.DAL.Entities
         /// OrgAccounts navigation property
         /// </summary>
         public virtual ICollection<OrgAccount> OrgAccounts { get; set; }
+
+        /// <summary>
+        /// Request navigation property
+        /// </summary>
+        public virtual ICollection<Request> Requests { get; set; }
+
+        /// <summary>
+        /// Complaint navigation property
+        /// </summary>
+        public virtual ICollection<Complaint> Complaints { get; set; }
+
+        /// <summary>
+        /// Event navigation property
+        /// </summary>
+        public virtual ICollection<Event> Events { get; set; }
     }
 }

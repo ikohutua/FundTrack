@@ -102,6 +102,86 @@ namespace FundTrack.DAL.Concrete
         public DbSet<Target> Targets { get; set; }
 
         /// <summary>
+        /// Gets or sets the bank imports.
+        /// </summary>
+        /// <value>
+        /// The bank imports.
+        /// </value>
+        public DbSet<BankImport> BankImports { get; set; }
+
+        /// <summary>
+        /// Gets or sets the bank import details.
+        /// </summary>
+        /// <value>
+        /// The bank import details.
+        /// </value>
+        public DbSet<BankImportDetail> BankImportDetails { get; set; }
+
+        /// <summary>
+        /// Gets or sets the complaints.
+        /// </summary>
+        /// <value>
+        /// The complaints.
+        /// </value>
+        public DbSet<Complaint> Complaints { get; set; }
+
+        /// <summary>
+        /// Gets or sets the events.
+        /// </summary>
+        /// <value>
+        /// The events.
+        /// </value>
+        public DbSet<Event> Events { get; set; }
+
+        /// <summary>
+        /// Gets or sets the goods types.
+        /// </summary>
+        /// <value>
+        /// The goods types.
+        /// </value>
+        public DbSet<GoodsType> GoodsTypes { get; set; }
+
+        /// <summary>
+        /// Gets or sets the goods categorys.
+        /// </summary>
+        /// <value>
+        /// The goods categorys.
+        /// </value>
+        public DbSet<GoodsCategory> GoodsCategorys { get; set; }
+
+        /// <summary>
+        /// Gets or sets the offers.
+        /// </summary>
+        /// <value>
+        /// The offers.
+        /// </value>
+        public DbSet<Offer> Offers { get; set; }
+
+        /// <summary>
+        /// Gets or sets the offered items.
+        /// </summary>
+        /// <value>
+        /// The offered items.
+        /// </value>
+        public DbSet<OfferedItem> OfferedItems { get; set; }
+
+        /// <summary>
+        /// Gets or sets the requests.
+        /// </summary>
+        /// <value>
+        /// The requests.
+        /// </value>
+        public DbSet<Request> Requests { get; set; }
+
+        /// <summary>
+        /// Gets or sets the requested items.
+        /// </summary>
+        /// <value>
+        /// The requested items.
+        /// </value>
+        public DbSet<RequestedItem> RequestedItems { get; set; }
+
+        /// <summary>
         /// Configures model creation
         /// </summary>
         /// <param name="modelBuilder">modelBuilder to configure Model Creation</param>
@@ -353,6 +433,180 @@ namespace FundTrack.DAL.Concrete
                       .WithMany(fo => fo.TagFinOps)
                       .HasForeignKey(tfp => tfp.FinOpId)
                       .HasConstraintName("FK_TagFinOp_FinOp");
+            });
+
+            modelBuilder.Entity<Event>(entity =>
+            {
+                entity.HasKey(e => e.Id).HasName("PK_Event");
+
+                entity.Property(e => e.Description).IsRequired().HasMaxLength(500);
+
+                entity.Property(e => e.CreateDate).IsRequired().HasColumnType("datetime");
+
+                entity.Property(e => e.ImageUrl).HasMaxLength(100);
+
+                entity.HasOne(e => e.Organization)
+                      .WithMany(o => o.Events)
+                      .HasForeignKey(e => e.OrganizationId)
+                      .HasConstraintName("FK_Event_Organization");
+            });
+
+            modelBuilder.Entity<Complaint>(entity =>
+            {
+                entity.HasKey(e => e.Id).HasName("PK_Complaint");
+
+                entity.Property(e => e.Description).IsRequired().HasMaxLength(500);
+
+                entity.Property(e => e.CreateDate).IsRequired().HasColumnType("datetime");
+
+                entity.Property(e => e.IsLooked).IsRequired();
+
+                entity.HasOne(c => c.User)
+                      .WithMany(u => u.Complaints)
+                      .HasForeignKey(c => c.UserId)
+                      .HasConstraintName("FK_Complaint_User");
+
+                entity.HasOne(c => c.Organization)
+                      .WithMany(o => o.Complaints)
+                      .HasForeignKey(c => c.OrganizationId)
+                      .HasConstraintName("FK_Complaint_Organization");
+            });
+
+            modelBuilder.Entity<GoodsType>(entity =>
+            {
+                entity.HasKey(gt => gt.Id).HasName("PK_GoodsType");
+
+                entity.Property(gt => gt.Name).IsRequired().HasMaxLength(50);
+            });
+
+            modelBuilder.Entity<GoodsCategory>(entity =>
+            {
+                entity.HasKey(gc => gc.Id).HasName("PK_GoodsCategory");
+
+                entity.Property(gc => gc.Name).IsRequired().HasMaxLength(50);
+
+                entity.HasOne(gc => gc.GoodsType)
+                       .WithMany(gt => gt.GoodsCategories)
+                       .HasForeignKey(gc => gc.GoodsTypeId)
+                       .HasConstraintName("FK_GoodsCategory_GoodsType");
+            });
+
+            modelBuilder.Entity<Offer>(entity =>
+            {
+                entity.HasKey(o => o.Id).HasName("PK_Offer");
+
+                entity.Property(o => o.Description).IsRequired().HasMaxLength(500);
+
+                entity.Property(o => o.CreateDate).IsRequired().HasColumnType("datetime");
+
+                entity.Property(o => o.IsActual).IsRequired();
+
+                entity.HasOne(o => o.User)
+                       .WithMany(u => u.Offers)
+                       .HasForeignKey(o => o.UserId)
+                       .HasConstraintName("FK_Offer_User");
+            });
+
+            modelBuilder.Entity<Request>(entity =>
+            {
+                entity.HasKey(r => r.Id).HasName("PK_Request");
+
+                entity.Property(r => r.Description).IsRequired().HasMaxLength(500);
+
+                entity.Property(r => r.CreateDate).IsRequired().HasColumnType("datetime");
+
+                entity.Property(r => r.IsActual).IsRequired();
+
+                entity.HasOne(r => r.Organization)
+                       .WithMany(o => o.Requests)
+                       .HasForeignKey(o => o.OrganizationId)
+                       .HasConstraintName("FK_Request_Organization");
+            });
+
+            modelBuilder.Entity<OfferedItem>(entity =>
+            {
+                entity.HasKey(oi => oi.Id).HasName("PK_OfferedItem");
+
+                entity.Property(oi => oi.Name).IsRequired().HasMaxLength(50);
+
+                entity.Property(oi => oi.Description).IsRequired().HasMaxLength(500);
+
+                entity.Property(oi => oi.ImageUrl).HasMaxLength(100);
+
+                entity.Property(oi => oi.IsActual).IsRequired();
+
+                entity.HasOne(oi => oi.Offer)
+                       .WithMany(o => o.OfferedItems)
+                       .HasForeignKey(oi => oi.OfferId)
+                       .HasConstraintName("FK_OfferedItems_Offer");
+
+                entity.HasOne(oi => oi.GoodsCategory)
+                       .WithMany(gc => gc.OfferedItems)
+                       .HasForeignKey(oi => oi.GoodsCategoryId)
+                       .HasConstraintName("FK_OfferedItems_GoodsCategory");
+            });
+            //
+            modelBuilder.Entity<RequestedItem>(entity =>
+            {
+                entity.HasKey(ri => ri.Id).HasName("PK_RequestedItem");
+
+                entity.Property(ri => ri.Name).IsRequired().HasMaxLength(50);
+
+                entity.Property(ri => ri.Description).IsRequired().HasMaxLength(500);
+
+                entity.Property(ri => ri.ImageUrl).HasMaxLength(100);
+
+                entity.Property(ri => ri.IsActual).IsRequired();
+
+                entity.HasOne(ri => ri.Request)
+                       .WithMany(o => o.RequestedItems)
+                       .HasForeignKey(ri => ri.RequestId)
+                       .HasConstraintName("FK_RequestedItem_Request");
+
+                entity.HasOne(ri => ri.GoodsCategory)
+                       .WithMany(gc => gc.RequestedItems)
+                       .HasForeignKey(ri => ri.GoodsCategoryId)
+                       .HasConstraintName("FK_RequestedItem_GoodsCategory");
+            });
+
+            modelBuilder.Entity<BankImport>(entity =>
+            {
+                entity.HasKey(bi => bi.Id).HasName("PK_BankImport");
+
+                entity.Property(bi => bi.IdMerchant).IsRequired();
+
+                entity.Property(bi => bi.Signature).IsRequired();
+
+                entity.Property(bi => bi.Credit).HasColumnType("decimal(18,2)");
+
+                entity.Property(bi => bi.Debet).HasColumnType("decimal(18,2)");
+
+            });
+
+            modelBuilder.Entity<BankImportDetail>(entity =>
+            {
+                entity.HasKey(bid => bid.Id).HasName("PK_BankImportDetail");
+
+                entity.Property(bid => bid.Card).IsRequired();
+
+                entity.Property(bid => bid.Trandate).IsRequired().HasColumnType("datetime");
+
+                entity.Property(bid => bid.Trantime).IsRequired().HasColumnType("datetime");
+
+                entity.Property(bid => bid.Amount).IsRequired();
+
+                entity.Property(bid => bid.CardAmount).IsRequired();
+
+                entity.Property(bid => bid.Rest).IsRequired();
+
+                entity.Property(bid => bid.Terminal).IsRequired();
+
+                entity.Property(bid => bid.Description).IsRequired();
+
+                entity.HasOne(bid => bid.BankImport)
+                       .WithMany(bi => bi.BankImportDetails)
+                       .HasForeignKey(bid => bid.BankImportId)
+                       .HasConstraintName("FK_BankImportDetails_BankImport");
             });
         }
     }
