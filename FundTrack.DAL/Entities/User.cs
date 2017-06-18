@@ -53,9 +53,9 @@ namespace FundTrack.DAL.Entities
         public string PhotoUrl { get; set; }
 
         /// <summary>
-        /// Indicates if the user is active
+        /// Indicates if that the user is banned
         /// </summary>
-        public bool IsActive { get; set; }
+        public bool IsBanned { get; set; }
 
         /// <summary>
         /// Phone navigation property

@@ -202,6 +202,8 @@ namespace FundTrack.DAL.Concrete
                 entity.Property(e => e.Password).IsRequired().HasMaxLength(50);
 
                 entity.Property(e => e.SaltKey).IsRequired().HasMaxLength(10);
+
+                entity.Property(e => e.IsBanned).IsRequired();
             });
 
             modelBuilder.Entity<Phone>(entity =>
@@ -256,6 +258,8 @@ namespace FundTrack.DAL.Concrete
                 entity.HasKey(e => e.Id).HasName("PK_Organization");
 
                 entity.Property(e => e.Name).IsRequired().HasMaxLength(100);
+
+                entity.Property(e => e.IsBanned).IsRequired();
             });
 
             modelBuilder.Entity<OrgAddress>(entity =>

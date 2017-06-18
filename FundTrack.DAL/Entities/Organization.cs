@@ -23,6 +23,11 @@ namespace FundTrack.DAL.Entities
         public string Description { get; set; }
 
         /// <summary>
+        /// Indicates if that the Organization is banned
+        /// </summary>
+        public bool IsBanned { get; set; }
+
+        /// <summary>
         /// Membership navigation property
         /// </summary>
         public virtual ICollection<Membership> Memberships { get; set; }

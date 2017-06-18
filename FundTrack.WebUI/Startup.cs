@@ -31,9 +31,11 @@ namespace FundTrack_WebUI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //for DBContext
-            string connection = Configuration.GetConnectionString("FundTrackDBConnection");
-            services.AddDbContext<FundTrackContext>(options => options.UseSqlServer(connection));
+            // Db Connection
+            // For local connection, go to appsettings.json and write your local connection string
+            // Available connection types : 'local','azure-main','azure-test'
+            string connectionType = "local";
+            services.AddDbContext<FundTrackContext>(options => options.UseSqlServer(Configuration.GetConnectionString(connectionType)));
 
             // Add framework services.
             services.AddMvc();
