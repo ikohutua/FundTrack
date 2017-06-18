@@ -25,8 +25,7 @@ namespace FundTrack.DAL.Abstract
         /// <summary>
         /// Creates the specified item.
         /// </summary>
-        /// <param name="item">The item of entity.</param>
-        /// <returns> one item of entity. </returns>
+        /// <param name="item"> Recives new item of <T> </param>
         T Create(T item);
 
         /// <summary>

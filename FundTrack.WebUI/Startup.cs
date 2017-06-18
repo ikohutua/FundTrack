@@ -32,8 +32,8 @@ namespace FundTrack_WebUI
         public void ConfigureServices(IServiceCollection services)
         {
             //for DBContext
-            //string connection = Configuration.GetConnectionString("FundTrackDBConnection");
-            //services.AddDbContext<FundTrackContext>(options => options.UseSqlServer(connection));
+            string connection = Configuration.GetConnectionString("FundTrackDBConnection");
+            services.AddDbContext<FundTrackContext>(options => options.UseSqlServer(connection));
 
             // Add framework services.
             services.AddMvc();
