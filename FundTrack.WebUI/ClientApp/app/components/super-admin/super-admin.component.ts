@@ -2,7 +2,8 @@
 
 @Component({
     selector: 'super-admin',
-    template: require('./super-admin.component.html')
+    template: require('./super-admin.component.html'),
+    styleUrls: ['./super-admin.component.css']
 })
 
 export class SuperAdminComponent {

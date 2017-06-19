@@ -1,4 +1,45 @@
-﻿<h1>This is super admin page</h1>
-<div>
-    Content for this page will be added soon....
+﻿<div class="row">    
+    <div class="side-menu col-sm-1">
+        <nav class="navbar navbar-default" role="navigation">           
+            <div class="side-menu-container">
+                <ul class="nav navbar-nav">
+                    <li [routerLinkActive]="['link-active']">
+                        <a [routerLink]="['/superadmin']">
+                            <span class="glyphicon glyphicon-user"></span>
+                             Super Admin
+                        </a>
+                    </li>
+                    <li [routerLinkActive]="['link-active']">
+                        <a [routerLink]="['complaints']">
+                            <span class="glyphicon glyphicon-envelope"></span> 
+                            Скарги
+                        </a>
+                    </li>
+                    <li [routerLinkActive]="['link-active']">
+                        <a>
+                            <span class="glyphicon glyphicon-plus"></span> 
+                            Додати Організацію
+                        </a>
+                    </li>
+                    <li [routerLinkActive]="['link-active']">
+                        <a [routerLink]="['organizations']">
+                            <span class="glyphicon glyphicon-th-list"></span> 
+                            Організації
+                        </a>
+                    </li>                 
+                    <li [routerLinkActive]="['link-active']">
+                        <a [routerLink]="['users']"><span class="glyphicon glyphicon-th-list"></span> 
+                            Користувачі
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <div class="container-fluid">
+        <div class="side-body">
+            You are logged in as Super Admin... Good for you....
+            <router-outlet></router-outlet>
+        </div>
+    </div>
 </div>
