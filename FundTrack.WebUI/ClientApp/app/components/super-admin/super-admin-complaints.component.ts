@@ -1,7 +1,7 @@
 ﻿import { Component } from '@angular/core';
 
 @Component({
-    selector: 'super-admin',
+    selector: 'super-admin-complaints',
     template: require('./super-admin-complaints.component.html')
 })
 

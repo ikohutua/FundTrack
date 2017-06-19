@@ -59,7 +59,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "a16683a1d143a9961523"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "3a5e544a290a50aaae40"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -8222,7 +8222,7 @@ var SuperAdminComplaintsComponent = (function () {
 }());
 SuperAdminComplaintsComponent = __decorate([
     core_1.Component({
-        selector: 'super-admin',
+        selector: 'super-admin-complaints',
         template: __webpack_require__(92)
     })
 ], SuperAdminComplaintsComponent);
@@ -8250,7 +8250,7 @@ var SuperAdminOrganizationsComponent = (function () {
 }());
 SuperAdminOrganizationsComponent = __decorate([
     core_1.Component({
-        selector: 'super-admin',
+        selector: 'super-admin-organizations',
         template: __webpack_require__(93)
     })
 ], SuperAdminOrganizationsComponent);
@@ -8278,7 +8278,7 @@ var SuperAdminUsersComponent = (function () {
 }());
 SuperAdminUsersComponent = __decorate([
     core_1.Component({
-        selector: 'super-admin',
+        selector: 'super-admin-users',
         template: __webpack_require__(94)
     })
 ], SuperAdminUsersComponent);
