@@ -36,6 +36,9 @@
     <None Remove="ClientApp\Images\**" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Controllers\UserInfoController.cs" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\FundTrack.BLL\FundTrack.BLL.csproj" />
     <ProjectReference Include="..\FundTrack.DAL\FundTrack.DAL.csproj" />
     <ProjectReference Include="..\FundTrack.Infrastructure\FundTrack.Infrastructure.csproj" />
