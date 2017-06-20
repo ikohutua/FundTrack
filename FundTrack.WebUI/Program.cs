@@ -10,6 +10,7 @@ namespace FundTrack_WebUI
     public class Program
     {
         public static void Main(string[] args)
+
         {
             var host = new WebHostBuilder()
                 .UseKestrel()

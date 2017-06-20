@@ -1,5 +1,6 @@
 ﻿using FundTrack.BLL.Abstract;
 using FundTrack.Infrastructure.ViewModel;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 
@@ -13,7 +14,7 @@ namespace FundTrack.WebUI.Controllers
     public class OrganizationsListController : Controller
     {
         private IOrganizationsForLayoutService _service;
-        
+
         /// <summary>
         /// Initializes a new instance of the <see cref="OrganizationsListController"/> class.
         /// </summary>
@@ -27,6 +28,7 @@ namespace FundTrack.WebUI.Controllers
         /// Sends to Angular service collection of 'OrganizationForSearch'
         /// </summary>
         /// <returns> collection of 'OrganizationForSearch' </returns>
+        /// 
         [HttpGet]
         public IEnumerable<OrganizationsForLayout> AllOrganizations()
         {

@@ -1,4 +1,6 @@
-﻿namespace FundTrack.DAL.Abstract
+﻿using FundTrack.DAL.Entities;
+
+namespace FundTrack.DAL.Abstract
 {
     /// <summary>
     /// Interface for one unit of work whis repositories
@@ -12,7 +14,13 @@
         /// The organizations list repository.
         /// </value>
         IOrganizationsListRepository OrganizationsListRepository { get; }
-
+        /// <summary>
+        /// Gets the users repository.
+        /// </summary>
+        /// <value>
+        /// The users repository.
+        /// </value>
+        IRepository<User> UsersRepository {get;}
         /// <summary>
         /// Saves all changes made in this context to the database.
         /// </summary>

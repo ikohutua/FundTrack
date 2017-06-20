@@ -1,38 +1,51 @@
-﻿<div class="container">
-    <div class="row main">
-        <div class="panel-heading">
-            <div class="panel-title text-center">
-                <h1 class="title">Вхід у систему</h1>
-                <hr />
+﻿<html>
+<head>
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="password.js"></script>
+</head>
+<body>
+    <form class="form-horizontal">
+        <fieldset>
+            <!-- Form Name -->
+            <legend>Вхід у систему</legend>
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="fn">Логін</label>
+                <div class="col-md-4">
+                    <input type="text" class="form-control" name="login" id="login" placeholder="Логін" [(ngModel)]="authorizeModel.login" />
+                </div>
             </div>
-        </div>
-        <div class="main-login main-center">
-            <form class="form-horizontal" method="post" action="#">
-                <div class="form-group">
-                    <label for="username" class="cols-sm-2 control-label">Логін</label>
-                    <div class="cols-sm-10">
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
-                            <input #login="ngModel" type="text" class="form-control" name="login" id="login" placeholder="Введіть логін" [(ngModel)]="userLogin" />
-                        </div>
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="ln">Пароль</label>
+                <div class="col-md-4">
+                    <div class="input-group">
+                        <input type="{{ showPassword ? 'text' : 'password' }}" class="form-control" name="password" id="password" placeholder="Пароль" [(ngModel)]="authorizeModel.password" />
+                        <span class="input-group-addon" id="basic-addon2" (click)="changePasswordType()">Show</span>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label for="password" class="cols-sm-2 control-label">Пароль</label>
-                    <div class="cols-sm-10">
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-                            <input #password="ngModel" minlength="6" type="password" class="form-control" name="password" id="password" placeholder="Введіть пароль" [(ngModel)]="userPassword" />
-                            <div *ngIf="password.invalid && password.dirty" class="alert alert-danger">
-                                Мінімальна довжина 6 символів.
-                            </div>
-                        </div>
-                    </div>
+            </div>
+            <!--Error-->
+            <div class="form-group" align="left">
+                <label class="col-md-4 control-label" for="submit" align="left"></label>
+                <div class="col-md-4" align="left">
+                    <p class="error" *ngIf="errorMessage">{{errorMessage}}</p>
                 </div>
-                <div class="form-group ">
-                    <button type="button" class="btn btn-primary btn-lg btn-block login-button">Залогуватися</button>
+            </div>
+            <!-- Button -->
+            <div class="form-group" align="left">
+                <label class="col-md-4 control-label" for="submit" align="left"></label>
+                <div class="col-md-4" align="left">
+                    <button id="submit" name="submit" class="btn btn-primary" (click)="login()">Увійти</button>
                 </div>
-            </form>
-        </div>
-    </div>
-</div>
+                <!--Register-->
+                <div class="col-md-4" align="left">
+                    <a [routerLink]="['/registration']">Зареєструватися</a>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</body>
+</html>

@@ -1,4 +1,6 @@
 ﻿export class AuthorizeViewModel {
-    login: string;
-    password: string
+    constructor(
+        public login: string,
+        public password: string)
+    { }
 }

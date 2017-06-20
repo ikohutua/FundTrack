@@ -11,6 +11,10 @@ using FundTrack.BLL.DomainServices;
 using FundTrack.DAL.Concrete;
 using FundTrack.BLL.Concrete;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using FundTrack.WebUI.token;
+using System.Text;
+using FundTrack.DAL.Entities;
 
 namespace FundTrack_WebUI
 {
@@ -41,35 +45,54 @@ namespace FundTrack_WebUI
             services.AddMvc();
 
             //dependency injection DAL
-            services.AddTransient<IUserRepository, UserRepository>();
-            services.AddTransient<IUserDomainService, UserDomainService>();
+            services.AddTransient<IRepository<User>, UserRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IOrganizationsListRepository, OrganizationsListRepository>();
 
             //dependency injection BLL
             services.AddScoped<IOrganizationsForLayoutService, OrganizationsForLayoutService>();
+            services.AddTransient<IUserDomainService, UserDomainService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
+            app.UseStaticFiles();
+
+            app.UseJwtBearerAuthentication(new JwtBearerOptions
+            {
+                AutomaticAuthenticate = true,
+                AutomaticChallenge = true,
+                AuthenticationScheme="Bearer",
+                TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = true,
+                    ValidIssuer = AuthOptions.ISSUER,
+                    ValidateAudience = true,
+                    ValidAudience = AuthOptions.AUDIENCE,
+                    ValidateLifetime = true,
+                    IssuerSigningKey = AuthOptions.GetSymmetricSecurityKey(),
+                    ValidateIssuerSigningKey = true,
+                }
+            });
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
             app.UseExceptionHandler("/Error");
             app.UseStatusCodePagesWithReExecute("/Error/Index", "?statusCode={0}");
 
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions {
+                app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions
+                {
                     HotModuleReplacement = true
                 });
             }
             else
             {
+                app.UseExceptionHandler("/error");
             }
-
-            app.UseStaticFiles();
 
             app.UseMvc(routes =>
             {

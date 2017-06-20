@@ -17,9 +17,10 @@
                 <dropdown-org></dropdown-org>
             </form>
             <ul class="nav navbar-nav navbar-right">
-                <li><a [routerLink]="['/userprofile']">Переглянути Профіль</a></li>
-                <li><a [routerLink]="['/registration']">Реєстрація</a></li>
-                <li><a [routerLink]="['/login']">Вхід</a></li>
+                <li><a *ngIf="login"> Привіт, {{login}}</a></li>
+                <li><a [routerLink]="['/login']" *ngIf="!login">Вхід</a></li>
+                <li><a [routerLink]="['/registration']" *ngIf="!login"> Реєстрація {{login}}</a></li>
+                <li><a [routerLink]="['/']" *ngIf="login" (click)="exit()">Вихід</a></li>
             </ul>
         </div>
     </div>
@@ -33,11 +34,11 @@
     </div>
     <div class="col-lg-6">
         <ul class="lead">
-            Navifation
-            <li><a [routerLink]="['']">Our Soldier</a></li>
-            <li><a [routerLink]="['/about']">About</a></li>
-            <li><a [routerLink]="['/registration']">Registration</a></li>
-            <li><a [routerLink]="['/login']">Log In</a></li>
+            Navigation
+            <li><a [routerLink]="['']">Наш солдат</a></li>
+            <li><a [routerLink]="['/about']">Про нас</a></li>
+            <li><a [routerLink]="['/registration']">Реєстрація</a></li>
+            <li><a [routerLink]="['/login']">Вхід</a></li>
         </ul>
     </div>
 </div>
