@@ -1,6 +1,7 @@
 ﻿import { Component, OnInit } from "@angular/core";
-import { OrganizationDropdownService } from "../../../services/organization-dropdown.service";
 import { IOrganizationForLayout } from "../../../view-models/abstract/organization-for-layout.interface";
+import { OrganizationDropdownService } from "../../../services/concrete/organization-dropdown.service";
+import { Service } from "../../../services/abstract/service.abstract-class";
 
 @Component({
     selector: 'dropdown-org',
@@ -25,7 +26,7 @@ export class DropdownOrganizationsComponent implements OnInit {
      * gets list of organizations from service
      */
     getOrganizationsList(): void {
-        this._service.getOrganizations()
+        this._service.getCollection()
             .subscribe(organizations => this.organizations = organizations,
             error => this._errorMessage = <any>error);
     }
