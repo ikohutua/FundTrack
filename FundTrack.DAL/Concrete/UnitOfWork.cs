@@ -10,7 +10,7 @@ namespace FundTrack.DAL.Concrete
     public sealed class UnitOfWork : IUnitOfWork, IDisposable
     {
         private readonly IOrganizationsListRepository _organizationsListRepository;
-        private readonly IRepository<User> _usersListRepository;
+        private readonly IUserResporitory _usersListRepository;
         private FundTrackContext _context;
 
         /// <summary>
@@ -19,7 +19,7 @@ namespace FundTrack.DAL.Concrete
         /// <param name="contextParam">The context parameter.</param>
         /// <param name="organizationsListRepositoryParam">The organizations list repository parameter.</param>
         public UnitOfWork(FundTrackContext contextParam, IOrganizationsListRepository organizationsListRepositoryParam,
-            IRepository<User> userListRepositoryParam)
+            IUserResporitory userListRepositoryParam)
         {
             this._context = contextParam;
             this._organizationsListRepository = organizationsListRepositoryParam;
@@ -32,7 +32,7 @@ namespace FundTrack.DAL.Concrete
         /// <value>
         /// The users.
         /// </value>
-        public IRepository<User> UsersRepository
+        public IUserResporitory UsersRepository
         {
             get
             {

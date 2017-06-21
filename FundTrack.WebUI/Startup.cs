@@ -44,7 +44,7 @@ namespace FundTrack_WebUI
             services.AddMvc();
 
             //dependency injection DAL
-            services.AddTransient<IRepository<User>, UserRepository>();
+            services.AddTransient<IUserResporitory, UserRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IOrganizationsListRepository, OrganizationsListRepository>();
 

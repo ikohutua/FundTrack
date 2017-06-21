@@ -20,7 +20,7 @@ namespace FundTrack.DAL.Abstract
         /// <value>
         /// The users repository.
         /// </value>
-        IRepository<User> UsersRepository {get;}
+        IUserResporitory UsersRepository {get;}
         /// <summary>
         /// Saves all changes made in this context to the database.
         /// </summary>

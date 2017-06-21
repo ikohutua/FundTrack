@@ -12,7 +12,7 @@ namespace FundTrack.DAL.Repositories
     /// Class for CRUD operation with entity - user
     /// </summary>
     /// <seealso cref="FundTrack.DAL.Abstract.IRepository{FundTrack.DAL.Entities.User}" />
-    public sealed class UserRepository : IRepository<User>
+    public sealed class UserRepository : IUserResporitory
     {
         private readonly FundTrackContext context;
 
@@ -75,6 +75,20 @@ namespace FundTrack.DAL.Repositories
         public void Delete(int id)
         {
             context.Users.Remove(Get(id));
+        }
+
+        /// <summary>
+        /// Chek if user existed
+        /// </summary>
+        /// <param name="email">Login, email</param>
+        /// <param name="login"></param>
+        /// <returns>Existed user</returns>
+        public bool isUserExisted(string email, string login)
+        {
+            bool isExsitedUser = this.context.Users.Any(u => u.Email.ToLower() == email.ToLower() ||
+                                   u.Login.ToLower() == login.ToLower());
+
+            return isExsitedUser;           
         }
     }
 }

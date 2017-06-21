@@ -77,10 +77,10 @@ namespace FundTrack.BLL.DomainServices
         /// <returns>Added user model</returns>
         public RegistrationViewModel CreateUser(RegistrationViewModel registrationViewModel)
         {
-            var allUsers = GetAllUsers();
+            bool isUserExists = this._unitOfWork.UsersRepository.isUserExisted(registrationViewModel.Email,
+                                                                               registrationViewModel.Login);
 
-            if (allUsers.Any(u => u.Email == registrationViewModel.Email ||
-                             u.Login == registrationViewModel.Login))
+            if (!isUserExists)
             {
                 throw new Exception("User with that email alreafy existed");
             }
