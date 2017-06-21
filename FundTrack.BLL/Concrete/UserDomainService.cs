@@ -3,18 +3,15 @@ using System;
 using FundTrack.DAL.Entities;
 using FundTrack.DAL.Abstract;
 using FundTrack.Infrastructure.ViewModel;
-using System.Security.Claims;
-using System.Collections.Generic;
-using FundTrack.DAL.Concrete;
 using System.Linq;
 
 namespace FundTrack.BLL.DomainServices
 {
     /// <summary>
-    /// service for authorization and registration
+    /// Service for authorization and registration
     /// </summary>
     /// <seealso cref="FundTrack.BLL.Abstract.IUserDomainService" />
-    public class UserDomainService : IUserDomainService
+    public sealed class UserDomainService : IUserDomainService
     {
         private readonly IUnitOfWork unitOfWork;
         /// <summary>
@@ -25,43 +22,50 @@ namespace FundTrack.BLL.DomainServices
         {
             this.unitOfWork = unitOfWorkParam;
         }
+
         /// <summary>
         /// Get user for DAL which come from parameter
         /// </summary>
         /// <param name="user"></param>
-        /// <returns></returns>
+        /// <returns>User from db</returns>
         public User GetUser(AuthorizeViewModel user)
         {
-            User inputUser = new User();
-            inputUser.Login = user.Login;
-            inputUser.Password = user.Password;
-            return unitOfWork.UsersRepository.Read().FirstOrDefault(u => u.Login.ToLower() == user.Login.ToLower()
-             && u.Password.ToLower() == user.Password.ToLower());
+            var inputUser = new User
+            {
+                Login = user.Login,
+                Password = user.Password
+            };
+            return unitOfWork.UsersRepository
+                             .Read()
+                             .FirstOrDefault(u => u.Login.ToLower() == user.Login.ToLower()
+                              && u.Password.ToLower() == user.Password.ToLower());
         }
+
         /// <summary>
-        /// Сreate claims identity for search user
+        /// Call method GetUser from db and map to type UserInfoViewModel
         /// </summary>
         /// <param name="user"></param>
-        /// <returns></returns>
+        /// <returns>Model which contain information about user</returns>
         /// <exception cref="System.Exception">Login or password are not correct</exception>
-        public ClaimsIdentity RegisterUserClaim(AuthorizeViewModel user)
+        public UserInfoViewModel GetUserInfoViewModel(AuthorizeViewModel user)
         {
             var searchUser = this.GetUser(user);
             if (searchUser != null)
             {
-
-                List<Claim> claims = new List<Claim>
+                var userInfoView = new UserInfoViewModel
                 {
-                    new Claim(ClaimsIdentity.DefaultNameClaimType,searchUser.Login)
+                    userId = searchUser.Id,
+                    userLogin = searchUser.Login,
+                    userFirstName = searchUser.FirstName,
+                    userLastName = searchUser.LastName,
+                    userEmail = searchUser.Email,
+                    userPhotoUrl = searchUser.PhotoUrl
                 };
-                ClaimsIdentity claimsIdentity =
-                new ClaimsIdentity(claims, "Token", ClaimsIdentity.DefaultNameClaimType,
-                    ClaimsIdentity.DefaultRoleClaimType);
-                return claimsIdentity;
+                return userInfoView;
             }
             else
             {
-                throw new Exception("Incorrect");
+                throw new Exception("Incorrect login or password");
             }
         }
     }

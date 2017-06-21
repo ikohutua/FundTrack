@@ -8,7 +8,7 @@ import { CommonModule } from "@angular/common";
 import { ReactiveFormsModule } from '@angular/forms';
 import { EqualTextValidator } from "angular2-text-equality-validator";
 
-//create module for authorization users
+//module for authorization users
 @NgModule({
     declarations: [
         RegistrationComponent,

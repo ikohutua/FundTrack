@@ -1,12 +1,9 @@
-﻿using FundTrack.DAL.Entities;
-using FundTrack.Infrastructure.ViewModel;
-using System.Collections.Generic;
-using System.Security.Claims;
+﻿using FundTrack.Infrastructure.ViewModel;
 
 namespace FundTrack.BLL.Abstract
 {
     /// <summary>
-    /// interface for authorization user
+    /// Interface for authorization user
     /// </summary>
     public interface IUserDomainService
     {
@@ -15,7 +12,6 @@ namespace FundTrack.BLL.Abstract
         /// </summary>
         /// <param name="user"></param>
         /// <returns>Return claims which be used in authorize user</returns>
-        /// 
-        ClaimsIdentity RegisterUserClaim(AuthorizeViewModel user);
+        UserInfoViewModel GetUserInfoViewModel(AuthorizeViewModel user);
     }
 }

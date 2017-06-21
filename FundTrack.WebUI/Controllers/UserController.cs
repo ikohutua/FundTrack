@@ -1,26 +1,14 @@
 using FundTrack.BLL.Abstract;
-using FundTrack.DAL.Entities;
 using FundTrack.Infrastructure.ViewModel;
-using FundTrack.WebUI.token;
+using FundTrack.WebUI.secutiry;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
 using System;
-using System.IdentityModel.Tokens.Jwt;
-using System.Net;
-using System.Net.Http;
-using System.Security.Claims;
-using System.Text;
-using System.Threading.Tasks;
-
-/// <summary>
-/// 
-/// </summary>
 namespace FundTrack.WebUI.Controllers
 {
     /// <summary>
-    ///this is a controller to get access to user in db and authorize their
+    ///This is a controller to get access to user in db and authorize their
     /// </summary>
     /// <seealso cref="Microsoft.AspNetCore.Mvc.Controller" />
     [Produces("application/json")]
@@ -37,48 +25,52 @@ namespace FundTrack.WebUI.Controllers
         {
             this._userDomainService = userDomainService;
         }
+
         /// <summary>
-        /// authorize user in system , create access_token for him
+        /// Authorize user in system , return the type which contain UserInfoViewModel
         /// </summary>
-        /// 
         [HttpPost("LogIn")]
         public string Post([FromBody]AuthorizeViewModel user)
         {
+            var authorizeToken = new TokenAccess();
             try
             {
-                var identity = _userDomainService.RegisterUserClaim(user);
-                var now = DateTime.UtcNow;
-                var jwt = new JwtSecurityToken(
-                        issuer: AuthOptions.ISSUER,
-                        audience: AuthOptions.AUDIENCE,
-                        notBefore: now,
-                        claims: identity.Claims,
-                        expires: now.Add(TimeSpan.FromMinutes(AuthOptions.LIFETIME)),
-                        signingCredentials: new SigningCredentials(AuthOptions.GetSymmetricSecurityKey(), SecurityAlgorithms.HmacSha256));
-                var encodedJwt = new JwtSecurityTokenHandler().WriteToken(jwt);
+                var userInfoModel = _userDomainService.GetUserInfoViewModel(user);
+                var encodedJwt = authorizeToken.CreateTokenAccess(userInfoModel);
                 var AuthorizationType = new
                 {
                     access_token = encodedJwt,
-                    username = identity.Name
+                    login = userInfoModel.userLogin,
+                    id = userInfoModel.userId,
+                    firstName = userInfoModel.userFirstName,
+                    lastName = userInfoModel.userLastName,
+                    email = userInfoModel.userEmail,
+                    address = userInfoModel.userAddress,
+                    photoUrl = userInfoModel.userPhotoUrl
                 };
-                Response.StatusCode = 200;
                 return JsonConvert.SerializeObject(AuthorizationType, new JsonSerializerSettings { Formatting = Formatting.Indented });
             }
             catch (Exception ex)
             {
-                throw ex;
+                var AuthorizationType = new
+                {
+                    access_token="",
+                    errorMessage = ex.Message
+                };
+                return JsonConvert.SerializeObject(AuthorizationType, new JsonSerializerSettings { Formatting = Formatting.Indented });
             }
         }
+
         /// <summary>
-        /// check is user authorized
+        /// Check is user authorized
         /// </summary>
         /// <param name="login">The login.</param>
-        /// <returns></returns>
+        /// <returns>Login authorize user</returns>
         [HttpPost("[action]")]
         [Authorize]
         public JsonResult Name([FromBody] string login)
         {
             return Json(HttpContext.User.Identity.Name);
-        }      
+        }
     }
 }

@@ -9,12 +9,13 @@ using System.Linq;
 namespace FundTrack.DAL.Repositories
 {
     /// <summary>
-    /// class for CRUD operation with entity - user
+    /// Class for CRUD operation with entity - user
     /// </summary>
     /// <seealso cref="FundTrack.DAL.Abstract.IRepository{FundTrack.DAL.Entities.User}" />
-    public class UserRepository : IRepository<User>
+    public sealed class UserRepository : IRepository<User>
     {
         private readonly FundTrackContext context;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="UserRepository"/> class.
         /// </summary>
@@ -23,6 +24,7 @@ namespace FundTrack.DAL.Repositories
         {
             this.context = context;
         }
+
         /// <summary>
         /// Gets all users in database
         /// </summary>
@@ -33,11 +35,12 @@ namespace FundTrack.DAL.Repositories
         {
             return context.Users;
         }
+
         /// <summary>
-        /// get user by his id
+        /// Get user by his id
         /// </summary>
         /// <param name="id"></param>
-        /// <returns></returns>
+        /// <returns>User</returns>
         /// <!-- Badly formed XML comment ignored for member "M:FundTrack.DAL.Abstract.IRepository`1.Get(System.Int32)" -->
         public User Get(int id)
         {
@@ -45,10 +48,10 @@ namespace FundTrack.DAL.Repositories
         }
 
         /// <summary>
-        /// create new user in database
+        /// Create new user in database
         /// </summary>
         /// <param name="item"></param>
-        /// <returns></returns>
+        /// <returns>New user</returns>
         /// <!-- Badly formed XML comment ignored for member "M:FundTrack.DAL.Abstract.IRepository`1.Create(`0)" -->
         public User Create(User user)
         {
@@ -57,7 +60,7 @@ namespace FundTrack.DAL.Repositories
         }
 
         /// <summary>
-        /// update existing user in database
+        /// Update existing user in database
         /// </summary>
         /// <param name="item"></param>
         /// <!-- Badly formed XML comment ignored for member "M:FundTrack.DAL.Abstract.IRepository`1.Update(`0)" -->

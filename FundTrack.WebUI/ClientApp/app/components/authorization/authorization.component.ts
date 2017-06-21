@@ -1,6 +1,6 @@
 ﻿import { Component, Input } from '@angular/core';
 import { Injectable, Inject } from '@angular/core';
-import { AuthorizeViewModel } from '../shared/authorization-view.model';
+import { AuthorizeViewModel } from '../../view-models/concrete/authorization-view.model';
 import { AuthorizationService } from '../../services/authorization.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Http, Response } from '@angular/http';
@@ -8,9 +8,9 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/catch';
-import { AuthorizationType } from '../shared/authorization.type';
+import { AuthorizationType } from '../../view-models/concrete/authorization.type';
 import { Headers, RequestOptions } from '@angular/http';
-import { AppComponent } from '../app/app.component';
+import * as keys from '../../shared/key.storage'
 
 @Component({
     template: require('./authorization.component.html'),
@@ -19,37 +19,46 @@ import { AppComponent } from '../app/app.component';
 })
 export class AuthorizationComponent {
     private _authorizationUrl = '/api/User/';
-    private tokenKey: string = "accessToken";
     private errorMessage: string;
     private showPassword: boolean = false;
     @Input() private authorizeModel: AuthorizeViewModel = new AuthorizeViewModel("", "");
-    /**
-    * return type which contains login authorized user, his token and error which can appear in backend
-    */
-    public autType: AuthorizationType = new AuthorizationType("", "");
+    public autType: AuthorizationType;
     constructor(private _authorizationService: AuthorizationService,
-        private _router: Router, private _app: AppComponent) { }
+        private _router: Router)
+    { }
+
     /**
-     * set request to service to return authorized user and create session
+     * Set request to service to return authorized user and create session
      */
     login() {
         this.errorMessage = "";
         sessionStorage.clear();
         console.log(this.authorizeModel.login);
         this._authorizationService.logIn(this.authorizeModel)
-            .subscribe(a => this.autType = a,
-            errorMessage => this.errorMessage = <any>errorMessage,
-            () => {
-                sessionStorage.setItem(this.tokenKey, this.autType.access_token);
-                this._app.setLogin(this.autType.username);
-            });
+            .subscribe(a => {
+                this.autType = a;
+                this.errorMessage = a.errorMessage;
+                localStorage.setItem(keys.keyLogin, this.autType.login);
+                localStorage.setItem(keys.keyToken, this.autType.access_token);
+                localStorage.setItem(keys.keyId, this.autType.id.toString());
+                console.log("IDFDDD"+this.autType.id);
+                localStorage.setItem(keys.keyFirstName, this.autType.firstName);
+                localStorage.setItem(keys.keyLastName, this.autType.lastName);
+                localStorage.setItem(keys.keyEmail, this.autType.email);
+                localStorage.setItem(keys.keyAddress, this.autType.address);
+                localStorage.setItem(keys.keyPhoto, this.autType.photoUrl);
+                if (!this.errorMessage) {
+                    this._router.navigate(['/']);
+                }
+            })
     }
+
     /**
-     * check if user is authorized and his law to can access to some method
-     * @param login
+     * Check if user is authorized and his law to can access to some method
+     * @param Login
      */
     check(login: string) {
-        let token = sessionStorage.getItem(this.tokenKey);
+        let token = localStorage.getItem(keys.keyToken);
         let loginUser = "";
         this._authorizationService.check(login, token)
             .subscribe((l) => {
@@ -57,8 +66,9 @@ export class AuthorizationComponent {
                 console.log("Result: " + loginUser)
             });
     }
+
     /**
-     * show or not show password
+     * Show or not show password
      */
     changePasswordType() {
         this.showPassword = !this.showPassword;

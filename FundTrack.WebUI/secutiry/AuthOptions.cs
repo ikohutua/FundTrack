@@ -1,22 +1,14 @@
-﻿using Microsoft.IdentityModel.Tokens;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace FundTrack.WebUI.token
 {
+    /// <summary>
+    /// Options for creating token
+    /// </summary>
     public class AuthOptions
-    {
-        /// <summary>
-        /// token publisher
-        /// </summary>
-        public const string ISSUER = "http://localhost:51116";
-        /// <summary>
-        /// token consumer
-        /// </summary>
-        public const string AUDIENCE = "http://localhost:51116";     
+    {     
         /// <summary>
         /// The key for encryption
         /// </summary>
@@ -25,6 +17,11 @@ namespace FundTrack.WebUI.token
         /// The lifetime token
         /// </summary>
         public const int LIFETIME = 10;
+
+        /// <summary>
+        /// Gets the symmetric security key.
+        /// </summary>
+        /// <returns>Symetric Key</returns>
         public static SymmetricSecurityKey GetSymmetricSecurityKey()
         {
             return new SymmetricSecurityKey(Encoding.ASCII.GetBytes(KEY));

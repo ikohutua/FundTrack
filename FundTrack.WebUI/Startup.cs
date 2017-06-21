@@ -66,11 +66,9 @@ namespace FundTrack_WebUI
                 AuthenticationScheme="Bearer",
                 TokenValidationParameters = new TokenValidationParameters
                 {
-                    ValidateIssuer = true,
-                    ValidIssuer = AuthOptions.ISSUER,
+                    ValidateIssuer = false,
                     ValidateAudience = true,
-                    ValidAudience = AuthOptions.AUDIENCE,
-                    ValidateLifetime = true,
+                    ValidateLifetime = false,
                     IssuerSigningKey = AuthOptions.GetSymmetricSecurityKey(),
                     ValidateIssuerSigningKey = true,
                 }

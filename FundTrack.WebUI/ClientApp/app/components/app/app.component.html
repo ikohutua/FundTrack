@@ -16,12 +16,9 @@
             <form class="navbar-form navbar-left">
                 <dropdown-org></dropdown-org>
             </form>
-            <ul class="nav navbar-nav navbar-right">
-                <li><a *ngIf="login"> Привіт, {{login}}</a></li>
-                <li><a [routerLink]="['/login']" *ngIf="!login">Вхід</a></li>
-                <li><a [routerLink]="['/registration']" *ngIf="!login"> Реєстрація {{login}}</a></li>
-                <li><a [routerLink]="['/']" *ngIf="login" (click)="exit()">Вихід</a></li>
-            </ul>
+            <form class="nav navbar-nav navbar-right">
+               <user-states></user-states>
+            </form>
         </div>
     </div>
 </nav>
