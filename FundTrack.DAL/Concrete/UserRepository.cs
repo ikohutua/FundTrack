@@ -50,9 +50,8 @@ namespace FundTrack.DAL.Repositories
         /// <summary>
         /// Create new user in database
         /// </summary>
-        /// <param name="item"></param>
-        /// <returns>New user</returns>
-        /// <!-- Badly formed XML comment ignored for member "M:FundTrack.DAL.Abstract.IRepository`1.Create(`0)" -->
+        /// <param name="user">user entity</param>
+        /// <returns>Created user</returns>
         public User Create(User user)
         {
             context.Users.Add(user);

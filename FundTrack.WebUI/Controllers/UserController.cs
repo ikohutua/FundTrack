@@ -30,34 +30,24 @@ namespace FundTrack.WebUI.Controllers
         /// Authorize user in system , return the type which contain UserInfoViewModel
         /// </summary>
         [HttpPost("LogIn")]
-        public string Post([FromBody]AuthorizeViewModel user)
+        public string LogIn([FromBody]AuthorizeViewModel user)
         {
             var authorizeToken = new TokenAccess();
             try
             {
-                var userInfoModel = _userDomainService.GetUserInfoViewModel(user);
-                var encodedJwt = authorizeToken.CreateTokenAccess(userInfoModel);
-                var AuthorizationType = new
-                {
-                    access_token = encodedJwt,
-                    login = userInfoModel.userLogin,
-                    id = userInfoModel.userId,
-                    firstName = userInfoModel.userFirstName,
-                    lastName = userInfoModel.userLastName,
-                    email = userInfoModel.userEmail,
-                    address = userInfoModel.userAddress,
-                    photoUrl = userInfoModel.userPhotoUrl
-                };
-                return JsonConvert.SerializeObject(AuthorizationType, new JsonSerializerSettings { Formatting = Formatting.Indented });
+
+                var authorizationType = this._getAuthorizationType(user);
+
+                return JsonConvert.SerializeObject(authorizationType, new JsonSerializerSettings { Formatting = Formatting.Indented });
             }
             catch (Exception ex)
             {
-                var AuthorizationType = new
+                var authorizationType = new AuthorizationType
                 {
-                    access_token="",
+                    access_token = "",
                     errorMessage = ex.Message
                 };
-                return JsonConvert.SerializeObject(AuthorizationType, new JsonSerializerSettings { Formatting = Formatting.Indented });
+                return JsonConvert.SerializeObject(authorizationType, new JsonSerializerSettings { Formatting = Formatting.Indented });
             }
         }
 
@@ -71,6 +61,60 @@ namespace FundTrack.WebUI.Controllers
         public JsonResult Name([FromBody] string login)
         {
             return Json(HttpContext.User.Identity.Name);
+        }
+
+        /// <summary>
+        /// Register user 
+        /// </summary>
+        /// <param name="registrationViewModel">RegistrationViewModel</param>
+        /// <returns>Action result</returns>
+        [HttpPost("[action]")]
+        public string Register([FromBody]RegistrationViewModel registrationViewModel)
+        {           
+            try
+            {
+ 
+                var user = _userDomainService.CreateUser(registrationViewModel);
+                AuthorizeViewModel authorizeModel = new AuthorizeViewModel()
+            
+                {
+                    Login = registrationViewModel.Login,
+                    Password = registrationViewModel.Password
+                };
+                var authorizationType = this._getAuthorizationType(authorizeModel);
+                
+                return JsonConvert.SerializeObject(authorizationType, new JsonSerializerSettings { Formatting = Formatting.Indented });
+            }
+            catch (Exception ex)
+            {
+                var authorizationType = new AuthorizationType
+                {
+                    access_token = "",
+                    errorMessage = ex.Message
+                };
+                return JsonConvert.SerializeObject(authorizationType, new JsonSerializerSettings { Formatting = Formatting.Indented });
+            }
+        }
+
+        private AuthorizationType _getAuthorizationType(AuthorizeViewModel authorizeModel)
+        {
+            var authorizeToken = new TokenAccess();
+
+            var userInfoModel = _userDomainService.GetUserInfoViewModel(authorizeModel);
+            var encodedJwt = authorizeToken.CreateTokenAccess(userInfoModel);
+            var authorizationType = new AuthorizationType
+            {
+                access_token = encodedJwt,
+                login = userInfoModel.userLogin,
+                id = userInfoModel.userId,
+                firstName = userInfoModel.userFirstName,
+                lastName = userInfoModel.userLastName,
+                email = userInfoModel.userEmail,
+                address = userInfoModel.userAddress,
+                photoUrl = userInfoModel.userPhotoUrl
+            };
+
+            return authorizationType;
         }
     }
 }

@@ -4,6 +4,7 @@ using FundTrack.DAL.Entities;
 using FundTrack.DAL.Abstract;
 using FundTrack.Infrastructure.ViewModel;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace FundTrack.BLL.DomainServices
 {
@@ -13,14 +14,14 @@ namespace FundTrack.BLL.DomainServices
     /// <seealso cref="FundTrack.BLL.Abstract.IUserDomainService" />
     public sealed class UserDomainService : IUserDomainService
     {
-        private readonly IUnitOfWork unitOfWork;
+        private readonly IUnitOfWork _unitOfWork;
         /// <summary>
         /// Initializes a new instance of the <see cref="UserDomainService"/> class.
         /// </summary>
         /// <param name="context">The context.</param>
         public UserDomainService(IUnitOfWork unitOfWorkParam)
         {
-            this.unitOfWork = unitOfWorkParam;
+            this._unitOfWork = unitOfWorkParam;
         }
 
         /// <summary>
@@ -35,7 +36,7 @@ namespace FundTrack.BLL.DomainServices
                 Login = user.Login,
                 Password = user.Password
             };
-            return unitOfWork.UsersRepository
+            return this._unitOfWork.UsersRepository
                              .Read()
                              .FirstOrDefault(u => u.Login.ToLower() == user.Login.ToLower()
                               && u.Password.ToLower() == user.Password.ToLower());
@@ -66,6 +67,50 @@ namespace FundTrack.BLL.DomainServices
             else
             {
                 throw new Exception("Incorrect login or password");
+            }
+        }
+
+        /// <summary>
+        /// Creates user in database
+        /// </summary>
+        /// <param name="registrationViewModel">RegistrationViewModel</param>
+        /// <returns>Added user model</returns>
+        public RegistrationViewModel CreateUser(RegistrationViewModel registrationViewModel)
+        {
+            var allUsers = GetAllUsers();
+
+            if (allUsers.Any(u => u.Email == registrationViewModel.Email ||
+                             u.Login == registrationViewModel.Login))
+            {
+                throw new Exception("User with that email alreafy existed");
+            }
+
+            try
+            {
+                User addedUser = this._unitOfWork.UsersRepository.Create(registrationViewModel);
+                this._unitOfWork.SaveChanges();
+
+                return addedUser;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Could not add link", ex);
+            }
+        }
+
+        /// <summary>
+        /// Gets all users from database
+        /// </summary>
+        /// <returns>List of users</returns>
+        public List<User> GetAllUsers()
+        {
+            try
+            {
+                return this._unitOfWork.UsersRepository.Read().ToList();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Could not recieve users", ex);
             }
         }
     }

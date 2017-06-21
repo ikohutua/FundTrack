@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using FundTrack.Infrastructure.ViewModel;
+using System.Collections.Generic;
 
 namespace FundTrack.DAL.Entities
 {
@@ -91,5 +92,37 @@ namespace FundTrack.DAL.Entities
         /// Complaint navigation property
         /// </summary>
         public virtual ICollection<Complaint> Complaints { get; set; }
+
+        /// <summary>
+        /// Convert User model to RegistartionViewModel
+        /// </summary>
+        /// <param name="user">User model</param>
+        public static implicit operator RegistrationViewModel(User user)
+        {
+            return new RegistrationViewModel
+            {
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                Login = user.Login,
+                Password = user.Password,
+                Email = user.Email
+            };
+        }
+
+        /// <summary>
+        /// Convert RegistrationViewModel to User model
+        /// </summary>
+        /// <param name="registrationViewModel">Registration view model</param>
+        public static implicit operator User(RegistrationViewModel registrationViewModel)
+        {
+            return new User
+            {
+                FirstName = registrationViewModel.FirstName,
+                LastName = registrationViewModel.LastName,
+                Login = registrationViewModel.Login,
+                Password = registrationViewModel.Password,
+                Email = registrationViewModel.Email
+            };
+        }
     }
 }

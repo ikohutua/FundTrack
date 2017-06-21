@@ -14,7 +14,7 @@
         <div class="form-group">
             <label class="col-md-4 control-label" for="ln">Прізвище</label>
             <div class="col-md-4">
-                <input id="ln" name="ln" type="text" placeholder="Прізвище" class="form-control input-md" required="">
+                <input id="ln" name="ln" type="text" [(ngModel)]="registrationViewModel.lastName" placeholder="Прізвище" class="form-control input-md" required="">
 
             </div>
         </div>
@@ -22,7 +22,7 @@
         <div class="form-group">
             <label class="col-md-4 control-label" for="cmpny">Логін</label>
             <div class="col-md-4">
-                <input id="cmpny" name="cmpny" type="text" placeholder="Логін" class="form-control input-md" required="">
+                <input id="cmpny" name="cmpny" [(ngModel)]="registrationViewModel.login"type="text" placeholder="Логін" class="form-control input-md" required="">
 
             </div>
         </div>
@@ -30,7 +30,7 @@
         <div class="form-group">
             <label class="col-md-4 control-label" for="email">Email</label>
             <div class="col-md-4">
-                <input id="email" name="email" type="text" placeholder="email" class="form-control input-md" required="">
+                <input id="email" name="email" type="text"[(ngModel)]="registrationViewModel.email" placeholder="email" class="form-control input-md" required="">
 
             </div>
         </div>
@@ -38,7 +38,7 @@
         <div class="form-group">
             <label class="col-md-4 control-label" for="add1">Пароль</label>
             <div class="col-md-4">
-                <input id="add1" name="add1" type="password" class="form-control input-md" required="">
+                <input id="add1" name="add1" type="password" [(ngModel)]="registrationViewModel.password" class="form-control input-md" required="">
 
             </div>
         </div>
@@ -54,7 +54,7 @@
         <div class="form-group">
             <label class="col-md-4 control-label" for="submit"></label>
             <div class="col-md-4">
-                <button id="submit" name="submit" class="btn btn-primary" (click)="showMessage()">Зареєструватись</button>
+                <button id="submit" name="submit" class="btn btn-primary" (click)="register()">Зареєструватись</button>
             </div>
         </div>
     </fieldset>

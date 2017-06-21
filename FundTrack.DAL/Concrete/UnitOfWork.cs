@@ -1,6 +1,5 @@
 ﻿using FundTrack.DAL.Abstract;
 using FundTrack.DAL.Entities;
-using FundTrack.DAL.Repositories;
 using System;
 
 namespace FundTrack.DAL.Concrete

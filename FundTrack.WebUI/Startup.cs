@@ -5,16 +5,15 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using FundTrack.DAL.Abstract;
-using FundTrack.DAL.Repositories;
 using FundTrack.BLL.Abstract;
-using FundTrack.BLL.DomainServices;
 using FundTrack.DAL.Concrete;
 using FundTrack.BLL.Concrete;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using FundTrack.WebUI.token;
-using System.Text;
 using FundTrack.DAL.Entities;
+using FundTrack.BLL.DomainServices;
+using FundTrack.DAL.Repositories;
 
 namespace FundTrack_WebUI
 {
