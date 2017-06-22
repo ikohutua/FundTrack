@@ -12,4 +12,5 @@ import { AboutComponent } from "../components/about/about.component";
     ],
     exports: [RouterModule]
 })
+
 export class HomeRoutingModule{ }

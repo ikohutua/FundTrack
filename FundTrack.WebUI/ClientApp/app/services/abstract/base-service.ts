@@ -1,6 +1,7 @@
 ﻿import { Http, Response, Headers, RequestOptionsArgs } from "@angular/http";
 import { Observable } from "rxjs/Observable";
 import "rxjs/add/operator/map";
+import 'rxjs/add/operator/do';
 import "rxjs/add/operator/catch";
 
 /**
@@ -21,6 +22,7 @@ export abstract class BaseService<T> {
     public getCollection(): Observable<T[]> {
         return this._http.get(this._url)
             .map((response: Response) => <T[]>response.json())
+            .do(data => console.log('ALL ' + JSON.stringify(data)))
             .catch(this.handleError);
     }
 

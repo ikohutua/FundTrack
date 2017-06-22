@@ -11,6 +11,9 @@ namespace FundTrack.DAL.Concrete
     {
         private readonly IOrganizationsForFilteringRepository _organizationsListRepository;
         private readonly IUserResporitory _usersListRepository;
+        private readonly IRepository<Event> _eventRepository;
+        private readonly IRepository<Organization> _organizationRepository;
+
         private FundTrackContext _context;
 
         /// <summary>
@@ -19,12 +22,16 @@ namespace FundTrack.DAL.Concrete
         /// <param name="contextParam">The context parameter.</param>
         /// <param name="organizationsListRepositoryParam">The organizations list repository parameter.</param>
         public UnitOfWork(FundTrackContext contextParam, 
-            IOrganizationsForFilteringRepository organizationsListRepositoryParam,
-             IUserResporitory userListRepositoryParam)
+              IOrganizationsForFilteringRepository organizationsListRepositoryParam,
+              IUserResporitory userListRepositoryParam,
+              IRepository<Event> eventRepository,
+              IRepository<Organization> organizationRepository)
         {
             this._context = contextParam;
             this._organizationsListRepository = organizationsListRepositoryParam;
             this._usersListRepository = userListRepositoryParam;
+            _eventRepository = eventRepository;
+            _organizationRepository = organizationRepository;
         }
 
         /// <summary>
@@ -38,6 +45,34 @@ namespace FundTrack.DAL.Concrete
             get
             {
                 return _usersListRepository;
+            }
+        }
+
+        /// <summary>
+        /// Gets the events repository.
+        /// </summary>
+        /// <value>
+        /// The events repository.
+        /// </value>
+        public IRepository<Event> EventRepository
+        {
+            get
+            {
+                return _eventRepository;
+            }
+        }
+
+        /// <summary>
+        /// Gets the organizations repository.
+        /// </summary>
+        /// <value>
+        /// The organizations repository.
+        /// </value>
+        public IRepository<Organization> OrganizationRepository
+        {
+            get
+            {
+                return _organizationRepository;
             }
         }
 

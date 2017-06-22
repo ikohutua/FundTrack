@@ -439,11 +439,11 @@ namespace FundTrack.DAL.Concrete
             {
                 entity.HasKey(e => e.Id).HasName("PK_Event");
 
-                entity.Property(e => e.Description).IsRequired().HasMaxLength(500);
+                entity.Property(e => e.Description).IsRequired();
 
                 entity.Property(e => e.CreateDate).IsRequired().HasColumnType("datetime");
 
-                entity.Property(e => e.ImageUrl).HasMaxLength(100);
+                entity.Property(e => e.ImageUrl);
 
                 entity.HasOne(e => e.Organization)
                       .WithMany(o => o.Events)
@@ -455,7 +455,7 @@ namespace FundTrack.DAL.Concrete
             {
                 entity.HasKey(e => e.Id).HasName("PK_Complaint");
 
-                entity.Property(e => e.Description).IsRequired().HasMaxLength(500);
+                entity.Property(e => e.Description).IsRequired();
 
                 entity.Property(e => e.CreateDate).IsRequired().HasColumnType("datetime");
 
@@ -483,7 +483,7 @@ namespace FundTrack.DAL.Concrete
             {
                 entity.HasKey(gc => gc.Id).HasName("PK_GoodsCategory");
 
-                entity.Property(gc => gc.Name).IsRequired().HasMaxLength(50);
+                entity.Property(gc => gc.Name).IsRequired().HasMaxLength(100);
 
                 entity.HasOne(gc => gc.GoodsType)
                        .WithMany(gt => gt.GoodsCategories)
@@ -495,7 +495,7 @@ namespace FundTrack.DAL.Concrete
             {
                 entity.HasKey(o => o.Id).HasName("PK_Offer");
 
-                entity.Property(o => o.Description).IsRequired().HasMaxLength(500);
+                entity.Property(o => o.Description).IsRequired();
 
                 entity.Property(o => o.CreateDate).IsRequired().HasColumnType("datetime");
 
@@ -511,7 +511,7 @@ namespace FundTrack.DAL.Concrete
             {
                 entity.HasKey(r => r.Id).HasName("PK_Request");
 
-                entity.Property(r => r.Description).IsRequired().HasMaxLength(500);
+                entity.Property(r => r.Description).IsRequired();
 
                 entity.Property(r => r.CreateDate).IsRequired().HasColumnType("datetime");
 
@@ -527,11 +527,11 @@ namespace FundTrack.DAL.Concrete
             {
                 entity.HasKey(oi => oi.Id).HasName("PK_OfferedItem");
 
-                entity.Property(oi => oi.Name).IsRequired().HasMaxLength(50);
+                entity.Property(oi => oi.Name).IsRequired();
 
-                entity.Property(oi => oi.Description).IsRequired().HasMaxLength(500);
+                entity.Property(oi => oi.Description).IsRequired();
 
-                entity.Property(oi => oi.ImageUrl).HasMaxLength(100);
+                entity.Property(oi => oi.ImageUrl);
 
                 entity.Property(oi => oi.IsActual).IsRequired();
 
@@ -550,11 +550,11 @@ namespace FundTrack.DAL.Concrete
             {
                 entity.HasKey(ri => ri.Id).HasName("PK_RequestedItem");
 
-                entity.Property(ri => ri.Name).IsRequired().HasMaxLength(50);
+                entity.Property(ri => ri.Name).IsRequired();
 
-                entity.Property(ri => ri.Description).IsRequired().HasMaxLength(500);
+                entity.Property(ri => ri.Description).IsRequired();
 
-                entity.Property(ri => ri.ImageUrl).HasMaxLength(100);
+                entity.Property(ri => ri.ImageUrl);
 
                 entity.Property(ri => ri.IsActual).IsRequired();
 

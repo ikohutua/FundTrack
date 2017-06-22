@@ -14,6 +14,7 @@ using FundTrack.WebUI.token;
 using FundTrack.DAL.Entities;
 using FundTrack.BLL.DomainServices;
 using FundTrack.DAL.Repositories;
+using FundTrack.Infrastructure.ViewModel;
 
 namespace FundTrack_WebUI
 {
@@ -47,10 +48,13 @@ namespace FundTrack_WebUI
             services.AddTransient<IUserResporitory, UserRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IOrganizationsForFilteringRepository, OrganizationsForFilteringRepository>();
+            services.AddScoped<IRepository<Event>, EventRepository>();
+            services.AddScoped<IRepository<Organization>, OrganizationRepository>();
 
             //dependency injection BLL
             services.AddScoped<IOrganizationsForFilteringService, OrganizationsForFilteringService>();
             services.AddTransient<IUserDomainService, UserDomainService>();
+            services.AddScoped<IViewService<EventViewModel>, EventViewService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

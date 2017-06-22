@@ -7,7 +7,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" [routerLink]="['']">Наш солдат</a>
+            <a class="navbar-brand" [routerLink]="['']">Волонтерські організації України</a>
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
@@ -25,17 +25,16 @@
 <div class="container">
     <router-outlet></router-outlet>
 </div>
-<div class="row" id="footer">
-    <div class="col-lg-6">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2573.5221968304536!2d23.996909315413394!3d49.83264487939493!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x473add8050527791%3A0xa80b5db0066c5a1c!2z0LLRg9C70LjRhtGPINCv0YDQvtGB0LvQsNCy0LAg0J_QsNGB0YLQtdGA0L3QsNC60LAsIDUsINCb0YzQstGW0LIsINCb0YzQstGW0LLRgdGM0LrQsCDQvtCx0LvQsNGB0YLRjA!5e0!3m2!1sru!2sua!4v1497513739093" width="400" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
-    </div>
-    <div class="col-lg-6">
-        <ul class="lead">
-            Navigation
-            <li><a [routerLink]="['']">Наш солдат</a></li>
-            <li><a [routerLink]="['/about']">Про нас</a></li>
-            <li><a [routerLink]="['/registration']">Реєстрація</a></li>
-            <li><a [routerLink]="['/login']">Вхід</a></li>
-        </ul>
+<div class="container-fluid">
+    <div class="row" id="footer">
+        <div class="col-lg-6">
+            <ul class="lead">
+                Navigation
+                <li><a [routerLink]="['']">Наш солдат</a></li>
+                <li><a [routerLink]="['/about']">Про нас</a></li>
+                <li><a [routerLink]="['/registration']">Реєстрація</a></li>
+                <li><a [routerLink]="['/login']">Вхід</a></li>
+            </ul>
+        </div>
     </div>
 </div>

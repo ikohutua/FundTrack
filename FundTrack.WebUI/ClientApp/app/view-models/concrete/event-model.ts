@@ -1,5 +1,6 @@
-﻿/** for display new events */
-export interface IEventModel {
+﻿import { IEventModel } from "../abstract/event-model.interface";
+
+export class EventModel implements IEventModel {
     id: number;
     organizationId: number;
     organizationName: string;
