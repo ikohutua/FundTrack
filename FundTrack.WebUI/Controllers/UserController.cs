@@ -36,7 +36,7 @@ namespace FundTrack.WebUI.Controllers
             try
             {
 
-                var authorizationType = this._getAuthorizationType(user);
+                var authorizationType = this._getAuthorizationType(user.Login, user.Password);
 
                 return JsonConvert.SerializeObject(authorizationType, new JsonSerializerSettings { Formatting = Formatting.Indented });
             }
@@ -70,18 +70,13 @@ namespace FundTrack.WebUI.Controllers
         /// <returns>Action result</returns>
         [HttpPost("[action]")]
         public string Register([FromBody]RegistrationViewModel registrationViewModel)
-        {           
+        {               
             try
             {
- 
                 var user = _userDomainService.CreateUser(registrationViewModel);
-                AuthorizeViewModel authorizeModel = new AuthorizeViewModel()
-            
-                {
-                    Login = registrationViewModel.Login,
-                    Password = registrationViewModel.Password
-                };
-                var authorizationType = this._getAuthorizationType(authorizeModel);
+                
+                var authorizationType = this._getAuthorizationType(registrationViewModel.Login,
+                                                                   registrationViewModel.Password);
                 
                 return JsonConvert.SerializeObject(authorizationType, new JsonSerializerSettings { Formatting = Formatting.Indented });
             }
@@ -96,11 +91,17 @@ namespace FundTrack.WebUI.Controllers
             }
         }
 
-        private AuthorizationType _getAuthorizationType(AuthorizeViewModel authorizeModel)
+        /// <summary>
+        /// Method for generate token
+        /// </summary>
+        /// <param name="userLogin">User login </param>
+        /// <param name="rawPassword">User raw password</param>
+        /// <returns>Authorization type model</returns>
+        private AuthorizationType _getAuthorizationType(string userLogin, string rawPassword)
         {
             var authorizeToken = new TokenAccess();
 
-            var userInfoModel = _userDomainService.GetUserInfoViewModel(authorizeModel);
+            var userInfoModel = _userDomainService.GetUserInfoViewModel(userLogin, rawPassword);
             var encodedJwt = authorizeToken.CreateTokenAccess(userInfoModel);
             var authorizationType = new AuthorizationType
             {

@@ -199,7 +199,7 @@ namespace FundTrack.DAL.Concrete
 
                 entity.Property(e => e.LastName).IsRequired().HasMaxLength(100);
 
-                entity.Property(e => e.Password).IsRequired().HasMaxLength(50);
+                entity.Property(e => e.Password).IsRequired();
             });
 
             modelBuilder.Entity<Phone>(entity =>

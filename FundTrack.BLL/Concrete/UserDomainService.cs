@@ -5,6 +5,7 @@ using FundTrack.DAL.Abstract;
 using FundTrack.Infrastructure.ViewModel;
 using System.Linq;
 using System.Collections.Generic;
+using FundTrack.Infrastructure;
 
 namespace FundTrack.BLL.DomainServices
 {
@@ -29,28 +30,25 @@ namespace FundTrack.BLL.DomainServices
         /// </summary>
         /// <param name="user"></param>
         /// <returns>User from db</returns>
-        public User GetUser(AuthorizeViewModel user)
+        public User GetUser(string userLogin, string rawPassword)
         {
-            var inputUser = new User
-            {
-                Login = user.Login,
-                Password = user.Password
-            };
+            var hashedPassword = PasswordHashManager.GetPasswordHash(rawPassword);
+
             return this._unitOfWork.UsersRepository
                              .Read()
-                             .FirstOrDefault(u => u.Login.ToLower() == user.Login.ToLower()
-                              && u.Password.ToLower() == user.Password.ToLower());
+                             .FirstOrDefault(u => u.Login.ToLower() == userLogin.ToLower()
+                              && u.Password == hashedPassword);
         }
 
         /// <summary>
-        /// Call method GetUser from db and map to type UserInfoViewModel
+        /// Gets user info view model
         /// </summary>
-        /// <param name="user"></param>
-        /// <returns>Model which contain information about user</returns>
-        /// <exception cref="System.Exception">Login or password are not correct</exception>
-        public UserInfoViewModel GetUserInfoViewModel(AuthorizeViewModel user)
+        /// <param name="userLogin">User login</param>
+        /// <param name="rawPassword">User raw password</param>
+        /// <returns>User info view model</returns>
+        public UserInfoViewModel GetUserInfoViewModel(string userLogin, string rawPassword)
         {
-            var searchUser = this.GetUser(user);
+            var searchUser = this.GetUser(userLogin, rawPassword);
             if (searchUser != null)
             {
                 var userInfoView = new UserInfoViewModel
@@ -87,7 +85,9 @@ namespace FundTrack.BLL.DomainServices
 
             try
             {
-                User addedUser = this._unitOfWork.UsersRepository.Create(registrationViewModel);
+                User userToAdd = registrationViewModel;
+                userToAdd.Password = PasswordHashManager.GetPasswordHash(registrationViewModel.Password);
+                User addedUser = this._unitOfWork.UsersRepository.Create(userToAdd);
                 this._unitOfWork.SaveChanges();
 
                 return addedUser;

@@ -33,17 +33,18 @@ export class RegistrationComponent {
         this._userService.create(this.registrationViewModel).subscribe(a => {
             this.autType = a;
             this.errorMessage = a.errorMessage;
-            localStorage.setItem(keys.keyLogin, this.autType.login);
-            localStorage.setItem(keys.keyToken, this.autType.access_token);
-            localStorage.setItem(keys.keyId, this.autType.id.toString());
-            localStorage.setItem(keys.keyFirstName, this.autType.firstName);
-            localStorage.setItem(keys.keyLastName, this.autType.lastName);
-            localStorage.setItem(keys.keyEmail, this.autType.email);
-            localStorage.setItem(keys.keyAddress, this.autType.address);
-            localStorage.setItem(keys.keyPhoto, this.autType.photoUrl);
+
             if (!this.errorMessage) {
+                localStorage.setItem(keys.keyLogin, this.autType.login);
+                localStorage.setItem(keys.keyToken, this.autType.access_token);
+                localStorage.setItem(keys.keyId, this.autType.id.toString());
+                localStorage.setItem(keys.keyFirstName, this.autType.firstName);
+                localStorage.setItem(keys.keyLastName, this.autType.lastName);
+                localStorage.setItem(keys.keyEmail, this.autType.email);
+                localStorage.setItem(keys.keyAddress, this.autType.address);
+                localStorage.setItem(keys.keyPhoto, this.autType.photoUrl);
                 this._router.navigate(['/']);
-            }
+            }          
         });
         
     }

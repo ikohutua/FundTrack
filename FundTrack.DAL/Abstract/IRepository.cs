@@ -32,7 +32,7 @@ namespace FundTrack.DAL.Abstract
         /// Updates information in entry
         /// </summary>
         /// <param name="item"> Recives new or changed item of <T> </param>
-        void Update(T item);
+        T Update(T item);
 
         /// <summary>
         /// Deletes entry from data base

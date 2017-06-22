@@ -63,9 +63,10 @@ namespace FundTrack.DAL.Repositories
         /// </summary>
         /// <param name="item"></param>
         /// <!-- Badly formed XML comment ignored for member "M:FundTrack.DAL.Abstract.IRepository`1.Update(`0)" -->
-        public void Update(User item)
+        public User Update(User item)
         {
             context.Users.Update(item);
+            return item;
         }
 
         /// <summary>
