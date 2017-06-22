@@ -7,18 +7,18 @@ using System.Collections.Generic;
 namespace FundTrack.BLL.Concrete
 {
     /// <summary>
-    /// Class for work with OrganizationsForLayout
+    /// Class for work with OrganizationForFilteringViewModel
     /// </summary>
     /// <seealso cref="FundTrack.BLL.Abstract.IOrganizationsForLayout" />
-    public sealed class OrganizationsForLayoutService : IOrganizationsForLayoutService
+    public sealed class OrganizationsForFilteringService : IOrganizationsForFilteringService
     {
         private readonly IUnitOfWork _unitOfWork;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="OrganizationsForLayout"/> class.
+        /// Initializes a new instance of the <see cref="OrganizationForFilteringViewModel"/> class.
         /// </summary>
         /// <param name="unitOfWorkParam">The unit of work parameter.</param>
-        public OrganizationsForLayoutService(IUnitOfWork unitOfWorkParam)
+        public OrganizationsForFilteringService(IUnitOfWork unitOfWorkParam)
         {
             this._unitOfWork = unitOfWorkParam;
         }
@@ -26,13 +26,13 @@ namespace FundTrack.BLL.Concrete
         /// <summary>
         /// Gets all organizations for search
         /// </summary>
-        /// <returns> Collection of OrganizationsForLayout </returns>
-        public IEnumerable<OrganizationsForLayout> GetAll()
+        /// <returns> Collection of OrganizationForFilteringViewModel </returns>
+        public IEnumerable<OrganizationForFilteringViewModel> GetAll()
         {
             return this._unitOfWork
-                .OrganizationsListRepository
+                .OrganizationsForFilteringRepository
                 .GetAll
-                .Select(o => new OrganizationsForLayout()
+                .Select(o => new OrganizationForFilteringViewModel()
                 {
                     Id = o.Id,
                     Name = o.Name

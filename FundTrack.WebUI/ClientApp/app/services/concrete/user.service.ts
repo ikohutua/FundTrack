@@ -1,5 +1,4 @@
 ﻿import { RegistrationViewModel } from '../../view-models/concrete/registration-view.model';
-import { Service } from "../abstract/service.abstract-class";
 import { AuthorizationType } from '../../view-models/concrete/authorization.type';
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';

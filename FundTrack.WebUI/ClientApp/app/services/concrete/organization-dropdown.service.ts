@@ -1,15 +1,15 @@
 ﻿import { Injectable } from "@angular/core";
-import { IOrganizationForLayout } from "../../view-models/abstract/organization-for-layout.interface";
-import { Service } from "../abstract/service.abstract-class";
+import { IOrganizationForFiltering } from "../../view-models/abstract/organization-for-filtering.interface";
+import { BaseService } from "../abstract/base-service";
 import { Http } from "@angular/http";
 
 @Injectable()
-export class OrganizationDropdownService extends Service<IOrganizationForLayout> {
+export class OrganizationDropdownService extends BaseService<IOrganizationForFiltering> {
     /**
      * @constructor
      * @param http
      */
-    constructor(http: Http) {
+    constructor(private http: Http) {
         super(http, 'api/OrganizationsList');
     }
 }

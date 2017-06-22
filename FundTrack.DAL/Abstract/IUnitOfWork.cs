@@ -13,7 +13,7 @@ namespace FundTrack.DAL.Abstract
         /// <value>
         /// The organizations list repository.
         /// </value>
-        IOrganizationsListRepository OrganizationsListRepository { get; }
+        IOrganizationsForFilteringRepository OrganizationsForFilteringRepository { get; }
         /// <summary>
         /// Gets the users repository.
         /// </summary>

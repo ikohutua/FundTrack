@@ -1,5 +1,5 @@
 ﻿/** for routing among organizations. */
-export interface IOrganizationForLayout {
+export interface IOrganizationForFiltering {
     id: number;
     name: string;
 }

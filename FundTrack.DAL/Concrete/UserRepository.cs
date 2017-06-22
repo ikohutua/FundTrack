@@ -90,5 +90,6 @@ namespace FundTrack.DAL.Repositories
 
             return isExsitedUser;           
         }
+
     }
 }

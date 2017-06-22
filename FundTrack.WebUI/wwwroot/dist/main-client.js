@@ -59,7 +59,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "918581d24a0af145b355"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "a882db01c3bdb3a6598c"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -631,9 +631,7 @@
 /******/ 		}
 /******/ 	
 /******/ 		hotSetStatus("idle");
-/******/ 		return new Promise(function(resolve) {
-/******/ 			resolve(outdatedModules);
-/******/ 		});
+/******/ 		return Promise.resolve(outdatedModules);
 /******/ 	}
 /******/
 /******/ 	// The module cache
@@ -706,23 +704,29 @@
 /******/ 	__webpack_require__.h = function() { return hotCurrentHash; };
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return hotCreateRequire(135)(__webpack_require__.s = 135);
+/******/ 	return hotCreateRequire(167)(__webpack_require__.s = 167);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = (__webpack_require__(1))(0);
+module.exports = (__webpack_require__(2))(0);
 
 /***/ }),
 /* 1 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-module.exports = vendor_4d1732051940b6b172f8;
+module.exports = (__webpack_require__(2))(13);
 
 /***/ }),
 /* 2 */
+/***/ (function(module, exports) {
+
+module.exports = vendor_a98eba057a4e725be53d;
+
+/***/ }),
+/* 3 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -746,7 +750,7 @@ var /** @type {?} */ NG_VALUE_ACCESSOR = new __WEBPACK_IMPORTED_MODULE_0__angula
 //# sourceMappingURL=control_value_accessor.js.map
 
 /***/ }),
-/* 3 */
+/* 4 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -754,11 +758,11 @@ var /** @type {?} */ NG_VALUE_ACCESSOR = new __WEBPACK_IMPORTED_MODULE_0__angula
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NG_ASYNC_VALIDATORS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return Validators; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_operator_toPromise__ = __webpack_require__(114);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_operator_toPromise__ = __webpack_require__(142);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_operator_toPromise__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__facade_collection__ = __webpack_require__(40);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__facade_lang__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__private_import_core__ = __webpack_require__(42);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__facade_collection__ = __webpack_require__(61);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__facade_lang__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__private_import_core__ = __webpack_require__(63);
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -965,12 +969,143 @@ function _mergeErrors(arrayOfErrors) {
 //# sourceMappingURL=validators.js.map
 
 /***/ }),
-/* 4 */
+/* 5 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return GoogleMapsAPIWrapper; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__maps_api_loader_maps_api_loader__ = __webpack_require__(24);
+
+
+
+/**
+ * Wrapper class that handles the communication with the Google Maps Javascript
+ * API v3
+ */
+var GoogleMapsAPIWrapper = (function () {
+    function GoogleMapsAPIWrapper(_loader, _zone) {
+        var _this = this;
+        this._loader = _loader;
+        this._zone = _zone;
+        this._map =
+            new Promise(function (resolve) { _this._mapResolver = resolve; });
+    }
+    GoogleMapsAPIWrapper.prototype.createMap = function (el, mapOptions) {
+        var _this = this;
+        return this._loader.load().then(function () {
+            var map = new google.maps.Map(el, mapOptions);
+            _this._mapResolver(map);
+            return;
+        });
+    };
+    GoogleMapsAPIWrapper.prototype.setMapOptions = function (options) {
+        this._map.then(function (m) { m.setOptions(options); });
+    };
+    /**
+     * Creates a google map marker with the map context
+     */
+    GoogleMapsAPIWrapper.prototype.createMarker = function (options) {
+        if (options === void 0) { options = {}; }
+        return this._map.then(function (map) {
+            options.map = map;
+            return new google.maps.Marker(options);
+        });
+    };
+    GoogleMapsAPIWrapper.prototype.createInfoWindow = function (options) {
+        return this._map.then(function () { return new google.maps.InfoWindow(options); });
+    };
+    /**
+     * Creates a google.map.Circle for the current map.
+     */
+    GoogleMapsAPIWrapper.prototype.createCircle = function (options) {
+        return this._map.then(function (map) {
+            options.map = map;
+            return new google.maps.Circle(options);
+        });
+    };
+    GoogleMapsAPIWrapper.prototype.createPolyline = function (options) {
+        return this.getNativeMap().then(function (map) {
+            var line = new google.maps.Polyline(options);
+            line.setMap(map);
+            return line;
+        });
+    };
+    GoogleMapsAPIWrapper.prototype.createPolygon = function (options) {
+        return this.getNativeMap().then(function (map) {
+            var polygon = new google.maps.Polygon(options);
+            polygon.setMap(map);
+            return polygon;
+        });
+    };
+    /**
+     * Determines if given coordinates are insite a Polygon path.
+     */
+    GoogleMapsAPIWrapper.prototype.containsLocation = function (latLng, polygon) {
+        return google.maps.geometry.poly.containsLocation(latLng, polygon);
+    };
+    GoogleMapsAPIWrapper.prototype.subscribeToMapEvent = function (eventName) {
+        var _this = this;
+        return __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__["Observable"].create(function (observer) {
+            _this._map.then(function (m) {
+                m.addListener(eventName, function (arg) { _this._zone.run(function () { return observer.next(arg); }); });
+            });
+        });
+    };
+    GoogleMapsAPIWrapper.prototype.setCenter = function (latLng) {
+        return this._map.then(function (map) { return map.setCenter(latLng); });
+    };
+    GoogleMapsAPIWrapper.prototype.getZoom = function () { return this._map.then(function (map) { return map.getZoom(); }); };
+    GoogleMapsAPIWrapper.prototype.getBounds = function () {
+        return this._map.then(function (map) { return map.getBounds(); });
+    };
+    GoogleMapsAPIWrapper.prototype.setZoom = function (zoom) {
+        return this._map.then(function (map) { return map.setZoom(zoom); });
+    };
+    GoogleMapsAPIWrapper.prototype.getCenter = function () {
+        return this._map.then(function (map) { return map.getCenter(); });
+    };
+    GoogleMapsAPIWrapper.prototype.panTo = function (latLng) {
+        return this._map.then(function (map) { return map.panTo(latLng); });
+    };
+    GoogleMapsAPIWrapper.prototype.fitBounds = function (latLng) {
+        return this._map.then(function (map) { return map.fitBounds(latLng); });
+    };
+    GoogleMapsAPIWrapper.prototype.panToBounds = function (latLng) {
+        return this._map.then(function (map) { return map.panToBounds(latLng); });
+    };
+    /**
+     * Returns the native Google Maps Map instance. Be careful when using this instance directly.
+     */
+    GoogleMapsAPIWrapper.prototype.getNativeMap = function () { return this._map; };
+    /**
+     * Triggers the given event name on the map instance.
+     */
+    GoogleMapsAPIWrapper.prototype.triggerMapEvent = function (eventName) {
+        return this._map.then(function (m) { return google.maps.event.trigger(m, eventName); });
+    };
+    return GoogleMapsAPIWrapper;
+}());
+
+GoogleMapsAPIWrapper.decorators = [
+    { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"] },
+];
+/** @nocollapse */
+GoogleMapsAPIWrapper.ctorParameters = function () { return [
+    { type: __WEBPACK_IMPORTED_MODULE_2__maps_api_loader_maps_api_loader__["a" /* MapsAPILoader */], },
+    { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["NgZone"], },
+]; };
+//# sourceMappingURL=google-maps-api-wrapper.js.map
+
+/***/ }),
+/* 6 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ControlContainer; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__abstract_control_directive__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__abstract_control_directive__ = __webpack_require__(42);
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -1023,7 +1158,63 @@ function ControlContainer_tsickle_Closure_declarations() {
 //# sourceMappingURL=control_container.js.map
 
 /***/ }),
-/* 5 */
+/* 7 */
+/***/ (function(module, exports) {
+
+/*
+	MIT License http://www.opensource.org/licenses/mit-license.php
+	Author Tobias Koppers @sokra
+*/
+// css base code, injected by the css-loader
+module.exports = function() {
+	var list = [];
+
+	// return the list of modules as css string
+	list.toString = function toString() {
+		var result = [];
+		for(var i = 0; i < this.length; i++) {
+			var item = this[i];
+			if(item[2]) {
+				result.push("@media " + item[2] + "{" + item[1] + "}");
+			} else {
+				result.push(item[1]);
+			}
+		}
+		return result.join("");
+	};
+
+	// import a list of modules into the list
+	list.i = function(modules, mediaQuery) {
+		if(typeof modules === "string")
+			modules = [[null, modules, ""]];
+		var alreadyImportedModules = {};
+		for(var i = 0; i < this.length; i++) {
+			var id = this[i][0];
+			if(typeof id === "number")
+				alreadyImportedModules[id] = true;
+		}
+		for(i = 0; i < modules.length; i++) {
+			var item = modules[i];
+			// skip already imported module
+			// this implementation is not 100% perfect for weird media query combinations
+			//  when a module is imported multiple times with different media queries.
+			//  I hope this will never occur (Hey this way we have smaller bundles)
+			if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
+				if(mediaQuery && !item[2]) {
+					item[2] = mediaQuery;
+				} else if(mediaQuery) {
+					item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
+				}
+				list.push(item);
+			}
+		}
+	};
+	return list;
+};
+
+
+/***/ }),
+/* 8 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1036,16 +1227,16 @@ function ControlContainer_tsickle_Closure_declarations() {
 /* harmony export (immutable) */ __webpack_exports__["h"] = isPropertyUpdated;
 /* unused harmony export isBuiltInAccessor */
 /* harmony export (immutable) */ __webpack_exports__["g"] = selectValueAccessor;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__facade_lang__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__validators__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__checkbox_value_accessor__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__default_value_accessor__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__normalize_validator__ = __webpack_require__(60);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__number_value_accessor__ = __webpack_require__(33);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__radio_control_value_accessor__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__range_value_accessor__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__select_control_value_accessor__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__select_multiple_control_value_accessor__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__facade_lang__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__validators__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__checkbox_value_accessor__ = __webpack_require__(25);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__default_value_accessor__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__normalize_validator__ = __webpack_require__(87);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__number_value_accessor__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__radio_control_value_accessor__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__range_value_accessor__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__select_control_value_accessor__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__select_multiple_control_value_accessor__ = __webpack_require__(30);
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -1250,68 +1441,71 @@ function selectValueAccessor(dir, valueAccessors) {
 //# sourceMappingURL=shared.js.map
 
 /***/ }),
-/* 6 */
-/***/ (function(module, exports) {
+/* 9 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-/*
-	MIT License http://www.opensource.org/licenses/mit-license.php
-	Author Tobias Koppers @sokra
-*/
-// css base code, injected by the css-loader
-module.exports = function() {
-	var list = [];
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__src_forms__ = __webpack_require__(89);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "AbstractControlDirective", function() { return __WEBPACK_IMPORTED_MODULE_0__src_forms__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "AbstractFormGroupDirective", function() { return __WEBPACK_IMPORTED_MODULE_0__src_forms__["b"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "CheckboxControlValueAccessor", function() { return __WEBPACK_IMPORTED_MODULE_0__src_forms__["c"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "ControlContainer", function() { return __WEBPACK_IMPORTED_MODULE_0__src_forms__["d"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "NG_VALUE_ACCESSOR", function() { return __WEBPACK_IMPORTED_MODULE_0__src_forms__["e"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "DefaultValueAccessor", function() { return __WEBPACK_IMPORTED_MODULE_0__src_forms__["f"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "NgControl", function() { return __WEBPACK_IMPORTED_MODULE_0__src_forms__["g"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "NgControlStatus", function() { return __WEBPACK_IMPORTED_MODULE_0__src_forms__["h"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "NgControlStatusGroup", function() { return __WEBPACK_IMPORTED_MODULE_0__src_forms__["i"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "NgForm", function() { return __WEBPACK_IMPORTED_MODULE_0__src_forms__["j"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "NgModel", function() { return __WEBPACK_IMPORTED_MODULE_0__src_forms__["k"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "NgModelGroup", function() { return __WEBPACK_IMPORTED_MODULE_0__src_forms__["l"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "RadioControlValueAccessor", function() { return __WEBPACK_IMPORTED_MODULE_0__src_forms__["m"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "FormControlDirective", function() { return __WEBPACK_IMPORTED_MODULE_0__src_forms__["n"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "FormControlName", function() { return __WEBPACK_IMPORTED_MODULE_0__src_forms__["o"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "FormGroupDirective", function() { return __WEBPACK_IMPORTED_MODULE_0__src_forms__["p"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "FormArrayName", function() { return __WEBPACK_IMPORTED_MODULE_0__src_forms__["q"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "FormGroupName", function() { return __WEBPACK_IMPORTED_MODULE_0__src_forms__["r"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "NgSelectOption", function() { return __WEBPACK_IMPORTED_MODULE_0__src_forms__["s"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "SelectControlValueAccessor", function() { return __WEBPACK_IMPORTED_MODULE_0__src_forms__["t"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "SelectMultipleControlValueAccessor", function() { return __WEBPACK_IMPORTED_MODULE_0__src_forms__["u"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "CheckboxRequiredValidator", function() { return __WEBPACK_IMPORTED_MODULE_0__src_forms__["v"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "MaxLengthValidator", function() { return __WEBPACK_IMPORTED_MODULE_0__src_forms__["w"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "MinLengthValidator", function() { return __WEBPACK_IMPORTED_MODULE_0__src_forms__["x"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "PatternValidator", function() { return __WEBPACK_IMPORTED_MODULE_0__src_forms__["y"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "RequiredValidator", function() { return __WEBPACK_IMPORTED_MODULE_0__src_forms__["z"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "FormBuilder", function() { return __WEBPACK_IMPORTED_MODULE_0__src_forms__["A"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "AbstractControl", function() { return __WEBPACK_IMPORTED_MODULE_0__src_forms__["B"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "FormArray", function() { return __WEBPACK_IMPORTED_MODULE_0__src_forms__["C"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "FormControl", function() { return __WEBPACK_IMPORTED_MODULE_0__src_forms__["D"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "FormGroup", function() { return __WEBPACK_IMPORTED_MODULE_0__src_forms__["E"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "NG_ASYNC_VALIDATORS", function() { return __WEBPACK_IMPORTED_MODULE_0__src_forms__["F"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "NG_VALIDATORS", function() { return __WEBPACK_IMPORTED_MODULE_0__src_forms__["G"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Validators", function() { return __WEBPACK_IMPORTED_MODULE_0__src_forms__["H"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "VERSION", function() { return __WEBPACK_IMPORTED_MODULE_0__src_forms__["I"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "FormsModule", function() { return __WEBPACK_IMPORTED_MODULE_0__src_forms__["J"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "ReactiveFormsModule", function() { return __WEBPACK_IMPORTED_MODULE_0__src_forms__["K"]; });
+/**
+ * @license
+ * Copyright Google Inc. All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+/**
+ * @module
+ * @description
+ * Entry point for all public APIs of the forms package.
+ */
 
-	// return the list of modules as css string
-	list.toString = function toString() {
-		var result = [];
-		for(var i = 0; i < this.length; i++) {
-			var item = this[i];
-			if(item[2]) {
-				result.push("@media " + item[2] + "{" + item[1] + "}");
-			} else {
-				result.push(item[1]);
-			}
-		}
-		return result.join("");
-	};
-
-	// import a list of modules into the list
-	list.i = function(modules, mediaQuery) {
-		if(typeof modules === "string")
-			modules = [[null, modules, ""]];
-		var alreadyImportedModules = {};
-		for(var i = 0; i < this.length; i++) {
-			var id = this[i][0];
-			if(typeof id === "number")
-				alreadyImportedModules[id] = true;
-		}
-		for(i = 0; i < modules.length; i++) {
-			var item = modules[i];
-			// skip already imported module
-			// this implementation is not 100% perfect for weird media query combinations
-			//  when a module is imported multiple times with different media queries.
-			//  I hope this will never occur (Hey this way we have smaller bundles)
-			if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
-				if(mediaQuery && !item[2]) {
-					item[2] = mediaQuery;
-				} else if(mediaQuery) {
-					item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
-				}
-				list.push(item);
-			}
-		}
-	};
-	return list;
-};
-
+//# sourceMappingURL=index.js.map
 
 /***/ }),
-/* 7 */
+/* 10 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NgControl; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__abstract_control_directive__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__abstract_control_directive__ = __webpack_require__(42);
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -1401,20 +1595,26 @@ function NgControl_tsickle_Closure_declarations() {
 //# sourceMappingURL=ng_control.js.map
 
 /***/ }),
-/* 8 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = (__webpack_require__(1))(13);
+module.exports = (__webpack_require__(2))(198);
 
 /***/ }),
-/* 9 */
+/* 12 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = (__webpack_require__(2))(344);
+
+/***/ }),
+/* 13 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EventEmitter; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_Subject__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_Subject__ = __webpack_require__(77);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_Subject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_rxjs_Subject__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__);
 /* unused harmony reexport Observable */
 /* unused harmony reexport Subject */
@@ -1543,7 +1743,7 @@ function EventEmitter_tsickle_Closure_declarations() {
 //# sourceMappingURL=async.js.map
 
 /***/ }),
-/* 10 */
+/* 14 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1762,81 +1962,16 @@ function escapeRegExp(s) {
     return s.replace(/([.*+?^=!:${}()|[\]\/\\])/g, '\\$1');
 }
 //# sourceMappingURL=lang.js.map
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(126)))
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(158)))
 
 /***/ }),
-/* 11 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = (__webpack_require__(1))(344);
-
-/***/ }),
-/* 12 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__src_forms__ = __webpack_require__(62);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "AbstractControlDirective", function() { return __WEBPACK_IMPORTED_MODULE_0__src_forms__["a"]; });
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "AbstractFormGroupDirective", function() { return __WEBPACK_IMPORTED_MODULE_0__src_forms__["b"]; });
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "CheckboxControlValueAccessor", function() { return __WEBPACK_IMPORTED_MODULE_0__src_forms__["c"]; });
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "ControlContainer", function() { return __WEBPACK_IMPORTED_MODULE_0__src_forms__["d"]; });
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "NG_VALUE_ACCESSOR", function() { return __WEBPACK_IMPORTED_MODULE_0__src_forms__["e"]; });
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "DefaultValueAccessor", function() { return __WEBPACK_IMPORTED_MODULE_0__src_forms__["f"]; });
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "NgControl", function() { return __WEBPACK_IMPORTED_MODULE_0__src_forms__["g"]; });
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "NgControlStatus", function() { return __WEBPACK_IMPORTED_MODULE_0__src_forms__["h"]; });
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "NgControlStatusGroup", function() { return __WEBPACK_IMPORTED_MODULE_0__src_forms__["i"]; });
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "NgForm", function() { return __WEBPACK_IMPORTED_MODULE_0__src_forms__["j"]; });
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "NgModel", function() { return __WEBPACK_IMPORTED_MODULE_0__src_forms__["k"]; });
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "NgModelGroup", function() { return __WEBPACK_IMPORTED_MODULE_0__src_forms__["l"]; });
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "RadioControlValueAccessor", function() { return __WEBPACK_IMPORTED_MODULE_0__src_forms__["m"]; });
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "FormControlDirective", function() { return __WEBPACK_IMPORTED_MODULE_0__src_forms__["n"]; });
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "FormControlName", function() { return __WEBPACK_IMPORTED_MODULE_0__src_forms__["o"]; });
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "FormGroupDirective", function() { return __WEBPACK_IMPORTED_MODULE_0__src_forms__["p"]; });
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "FormArrayName", function() { return __WEBPACK_IMPORTED_MODULE_0__src_forms__["q"]; });
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "FormGroupName", function() { return __WEBPACK_IMPORTED_MODULE_0__src_forms__["r"]; });
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "NgSelectOption", function() { return __WEBPACK_IMPORTED_MODULE_0__src_forms__["s"]; });
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "SelectControlValueAccessor", function() { return __WEBPACK_IMPORTED_MODULE_0__src_forms__["t"]; });
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "SelectMultipleControlValueAccessor", function() { return __WEBPACK_IMPORTED_MODULE_0__src_forms__["u"]; });
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "CheckboxRequiredValidator", function() { return __WEBPACK_IMPORTED_MODULE_0__src_forms__["v"]; });
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "MaxLengthValidator", function() { return __WEBPACK_IMPORTED_MODULE_0__src_forms__["w"]; });
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "MinLengthValidator", function() { return __WEBPACK_IMPORTED_MODULE_0__src_forms__["x"]; });
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "PatternValidator", function() { return __WEBPACK_IMPORTED_MODULE_0__src_forms__["y"]; });
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "RequiredValidator", function() { return __WEBPACK_IMPORTED_MODULE_0__src_forms__["z"]; });
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "FormBuilder", function() { return __WEBPACK_IMPORTED_MODULE_0__src_forms__["A"]; });
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "AbstractControl", function() { return __WEBPACK_IMPORTED_MODULE_0__src_forms__["B"]; });
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "FormArray", function() { return __WEBPACK_IMPORTED_MODULE_0__src_forms__["C"]; });
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "FormControl", function() { return __WEBPACK_IMPORTED_MODULE_0__src_forms__["D"]; });
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "FormGroup", function() { return __WEBPACK_IMPORTED_MODULE_0__src_forms__["E"]; });
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "NG_ASYNC_VALIDATORS", function() { return __WEBPACK_IMPORTED_MODULE_0__src_forms__["F"]; });
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "NG_VALIDATORS", function() { return __WEBPACK_IMPORTED_MODULE_0__src_forms__["G"]; });
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Validators", function() { return __WEBPACK_IMPORTED_MODULE_0__src_forms__["H"]; });
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "VERSION", function() { return __WEBPACK_IMPORTED_MODULE_0__src_forms__["I"]; });
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "FormsModule", function() { return __WEBPACK_IMPORTED_MODULE_0__src_forms__["J"]; });
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "ReactiveFormsModule", function() { return __WEBPACK_IMPORTED_MODULE_0__src_forms__["K"]; });
-/**
- * @license
- * Copyright Google Inc. All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
-/**
- * @module
- * @description
- * Entry point for all public APIs of the forms package.
- */
-
-//# sourceMappingURL=index.js.map
-
-/***/ }),
-/* 13 */
+/* 15 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AbstractFormGroupDirective; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__control_container__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shared__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__control_container__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shared__ = __webpack_require__(8);
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -1946,18 +2081,18 @@ function AbstractFormGroupDirective_tsickle_Closure_declarations() {
 //# sourceMappingURL=abstract_form_group_directive.js.map
 
 /***/ }),
-/* 14 */
+/* 16 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* unused harmony export formDirectiveProvider */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NgForm; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__facade_async__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__model__ = __webpack_require__(24);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__validators__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__control_container__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shared__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__facade_async__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__model__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__validators__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__control_container__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shared__ = __webpack_require__(8);
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -2210,7 +2345,7 @@ function NgForm_tsickle_Closure_declarations() {
 //# sourceMappingURL=ng_form.js.map
 
 /***/ }),
-/* 15 */
+/* 17 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2218,8 +2353,8 @@ function NgForm_tsickle_Closure_declarations() {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return RadioControlRegistry; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RadioControlValueAccessor; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__control_value_accessor__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ng_control__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__control_value_accessor__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ng_control__ = __webpack_require__(10);
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -2480,19 +2615,19 @@ function RadioControlValueAccessor_tsickle_Closure_declarations() {
 //# sourceMappingURL=radio_control_value_accessor.js.map
 
 /***/ }),
-/* 16 */
+/* 18 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* unused harmony export formDirectiveProvider */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FormGroupDirective; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__facade_async__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__facade_collection__ = __webpack_require__(40);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__validators__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__control_container__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__reactive_errors__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__shared__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__facade_async__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__facade_collection__ = __webpack_require__(61);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__validators__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__control_container__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__reactive_errors__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__shared__ = __webpack_require__(8);
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -2791,7 +2926,7 @@ function FormGroupDirective_tsickle_Closure_declarations() {
 //# sourceMappingURL=form_group_directive.js.map
 
 /***/ }),
-/* 17 */
+/* 19 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2800,12 +2935,12 @@ function FormGroupDirective_tsickle_Closure_declarations() {
 /* unused harmony export formArrayNameProvider */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FormArrayName; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__validators__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__abstract_form_group_directive__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__control_container__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__reactive_errors__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shared__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__form_group_directive__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__validators__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__abstract_form_group_directive__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__control_container__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__reactive_errors__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shared__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__form_group_directive__ = __webpack_require__(18);
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -3104,14 +3239,158 @@ function _hasInvalidParent(parent) {
 //# sourceMappingURL=form_group_name.js.map
 
 /***/ }),
-/* 18 */
+/* 20 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var Observable_1 = __webpack_require__(1);
+var catch_1 = __webpack_require__(163);
+Observable_1.Observable.prototype.catch = catch_1._catch;
+Observable_1.Observable.prototype._catch = catch_1._catch;
+//# sourceMappingURL=catch.js.map
+
+/***/ }),
+/* 21 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var Observable_1 = __webpack_require__(1);
+var map_1 = __webpack_require__(160);
+Observable_1.Observable.prototype.map = map_1.map;
+//# sourceMappingURL=map.js.map
+
+/***/ }),
+/* 22 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = (__webpack_require__(2))(51);
+
+/***/ }),
+/* 23 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MarkerManager; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__google_maps_api_wrapper__ = __webpack_require__(5);
+
+
+
+var MarkerManager = (function () {
+    function MarkerManager(_mapsWrapper, _zone) {
+        this._mapsWrapper = _mapsWrapper;
+        this._zone = _zone;
+        this._markers = new Map();
+    }
+    MarkerManager.prototype.deleteMarker = function (marker) {
+        var _this = this;
+        var m = this._markers.get(marker);
+        if (m == null) {
+            // marker already deleted
+            return Promise.resolve();
+        }
+        return m.then(function (m) {
+            return _this._zone.run(function () {
+                m.setMap(null);
+                _this._markers.delete(marker);
+            });
+        });
+    };
+    MarkerManager.prototype.updateMarkerPosition = function (marker) {
+        return this._markers.get(marker).then(function (m) { return m.setPosition({ lat: marker.latitude, lng: marker.longitude }); });
+    };
+    MarkerManager.prototype.updateTitle = function (marker) {
+        return this._markers.get(marker).then(function (m) { return m.setTitle(marker.title); });
+    };
+    MarkerManager.prototype.updateLabel = function (marker) {
+        return this._markers.get(marker).then(function (m) { m.setLabel(marker.label); });
+    };
+    MarkerManager.prototype.updateDraggable = function (marker) {
+        return this._markers.get(marker).then(function (m) { return m.setDraggable(marker.draggable); });
+    };
+    MarkerManager.prototype.updateIcon = function (marker) {
+        return this._markers.get(marker).then(function (m) { return m.setIcon(marker.iconUrl); });
+    };
+    MarkerManager.prototype.updateOpacity = function (marker) {
+        return this._markers.get(marker).then(function (m) { return m.setOpacity(marker.opacity); });
+    };
+    MarkerManager.prototype.updateVisible = function (marker) {
+        return this._markers.get(marker).then(function (m) { return m.setVisible(marker.visible); });
+    };
+    MarkerManager.prototype.updateZIndex = function (marker) {
+        return this._markers.get(marker).then(function (m) { return m.setZIndex(marker.zIndex); });
+    };
+    MarkerManager.prototype.addMarker = function (marker) {
+        var markerPromise = this._mapsWrapper.createMarker({
+            position: { lat: marker.latitude, lng: marker.longitude },
+            label: marker.label,
+            draggable: marker.draggable,
+            icon: marker.iconUrl,
+            opacity: marker.opacity,
+            visible: marker.visible,
+            zIndex: marker.zIndex,
+            title: marker.title
+        });
+        this._markers.set(marker, markerPromise);
+    };
+    MarkerManager.prototype.getNativeMarker = function (marker) {
+        return this._markers.get(marker);
+    };
+    MarkerManager.prototype.createEventObservable = function (eventName, marker) {
+        var _this = this;
+        return __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__["Observable"].create(function (observer) {
+            _this._markers.get(marker).then(function (m) {
+                m.addListener(eventName, function (e) { return _this._zone.run(function () { return observer.next(e); }); });
+            });
+        });
+    };
+    return MarkerManager;
+}());
+
+MarkerManager.decorators = [
+    { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"] },
+];
+/** @nocollapse */
+MarkerManager.ctorParameters = function () { return [
+    { type: __WEBPACK_IMPORTED_MODULE_2__google_maps_api_wrapper__["a" /* GoogleMapsAPIWrapper */], },
+    { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["NgZone"], },
+]; };
+//# sourceMappingURL=marker-manager.js.map
+
+/***/ }),
+/* 24 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MapsAPILoader; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+
+var MapsAPILoader = (function () {
+    function MapsAPILoader() {
+    }
+    return MapsAPILoader;
+}());
+
+MapsAPILoader.decorators = [
+    { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"] },
+];
+/** @nocollapse */
+MapsAPILoader.ctorParameters = function () { return []; };
+//# sourceMappingURL=maps-api-loader.js.map
+
+/***/ }),
+/* 25 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* unused harmony export CHECKBOX_VALUE_ACCESSOR */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CheckboxControlValueAccessor; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__control_value_accessor__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__control_value_accessor__ = __webpack_require__(3);
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -3205,14 +3484,14 @@ function CheckboxControlValueAccessor_tsickle_Closure_declarations() {
 //# sourceMappingURL=checkbox_value_accessor.js.map
 
 /***/ }),
-/* 19 */
+/* 26 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* unused harmony export DEFAULT_VALUE_ACCESSOR */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DefaultValueAccessor; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__control_value_accessor__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__control_value_accessor__ = __webpack_require__(3);
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -3311,18 +3590,18 @@ function DefaultValueAccessor_tsickle_Closure_declarations() {
 //# sourceMappingURL=default_value_accessor.js.map
 
 /***/ }),
-/* 20 */
+/* 27 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* unused harmony export modelGroupProvider */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NgModelGroup; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__validators__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__abstract_form_group_directive__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__control_container__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ng_form__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__template_driven_errors__ = __webpack_require__(38);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__validators__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__abstract_form_group_directive__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__control_container__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ng_form__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__template_driven_errors__ = __webpack_require__(59);
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -3422,12 +3701,12 @@ function NgModelGroup_tsickle_Closure_declarations() {
 //# sourceMappingURL=ng_model_group.js.map
 
 /***/ }),
-/* 21 */
+/* 28 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ReactiveErrors; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__error_examples__ = __webpack_require__(37);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__error_examples__ = __webpack_require__(58);
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -3480,7 +3759,7 @@ var ReactiveErrors = (function () {
 //# sourceMappingURL=reactive_errors.js.map
 
 /***/ }),
-/* 22 */
+/* 29 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3488,8 +3767,8 @@ var ReactiveErrors = (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return SelectControlValueAccessor; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NgSelectOption; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__facade_lang__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__control_value_accessor__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__facade_lang__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__control_value_accessor__ = __webpack_require__(3);
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -3787,7 +4066,7 @@ function NgSelectOption_tsickle_Closure_declarations() {
 //# sourceMappingURL=select_control_value_accessor.js.map
 
 /***/ }),
-/* 23 */
+/* 30 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3795,8 +4074,8 @@ function NgSelectOption_tsickle_Closure_declarations() {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SelectMultipleControlValueAccessor; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return NgSelectMultipleOption; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__facade_lang__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__control_value_accessor__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__facade_lang__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__control_value_accessor__ = __webpack_require__(3);
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -4132,7 +4411,7 @@ function NgSelectMultipleOption_tsickle_Closure_declarations() {
 //# sourceMappingURL=select_multiple_control_value_accessor.js.map
 
 /***/ }),
-/* 24 */
+/* 31 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4144,11 +4423,11 @@ function NgSelectMultipleOption_tsickle_Closure_declarations() {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return FormControl; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return FormGroup; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return FormArray; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_observable_fromPromise__ = __webpack_require__(129);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_observable_fromPromise__ = __webpack_require__(162);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_observable_fromPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_rxjs_observable_fromPromise__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__directives_shared__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__facade_async__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__private_import_core__ = __webpack_require__(42);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__directives_shared__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__facade_async__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__private_import_core__ = __webpack_require__(63);
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -5847,54 +6126,849 @@ function FormArray_tsickle_Closure_declarations() {
 //# sourceMappingURL=model.js.map
 
 /***/ }),
-/* 25 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var Observable_1 = __webpack_require__(8);
-var catch_1 = __webpack_require__(130);
-Observable_1.Observable.prototype.catch = catch_1._catch;
-Observable_1.Observable.prototype._catch = catch_1._catch;
-//# sourceMappingURL=catch.js.map
-
-/***/ }),
-/* 26 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var Observable_1 = __webpack_require__(8);
-var do_1 = __webpack_require__(113);
+var Observable_1 = __webpack_require__(1);
+var do_1 = __webpack_require__(141);
 Observable_1.Observable.prototype.do = do_1._do;
 Observable_1.Observable.prototype._do = do_1._do;
 //# sourceMappingURL=do.js.map
 
 /***/ }),
-/* 27 */
-/***/ (function(module, exports, __webpack_require__) {
+/* 33 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AgmInfoWindow; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_managers_info_window_manager__ = __webpack_require__(37);
 
-var Observable_1 = __webpack_require__(8);
-var map_1 = __webpack_require__(127);
-Observable_1.Observable.prototype.map = map_1.map;
-//# sourceMappingURL=map.js.map
+
+var infoWindowId = 0;
+/**
+ * AgmInfoWindow renders a info window inside a {@link AgmMarker} or standalone.
+ *
+ * ### Example
+ * ```typescript
+ * import { Component } from '@angular/core';
+ *
+ * @Component({
+ *  selector: 'my-map-cmp',
+ *  styles: [`
+ *    .agm-map-container {
+ *      height: 300px;
+ *    }
+ * `],
+ *  template: `
+ *    <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom">
+ *      <agm-marker [latitude]="lat" [longitude]="lng" [label]="'M'">
+ *        <agm-info-window [disableAutoPan]="true">
+ *          Hi, this is the content of the <strong>info window</strong>
+ *        </agm-info-window>
+ *      </agm-marker>
+ *    </agm-map>
+ *  `
+ * })
+ * ```
+ */
+var AgmInfoWindow = (function () {
+    function AgmInfoWindow(_infoWindowManager, _el) {
+        this._infoWindowManager = _infoWindowManager;
+        this._el = _el;
+        /**
+         * Sets the open state for the InfoWindow. You can also call the open() and close() methods.
+         */
+        this.isOpen = false;
+        /**
+         * Emits an event when the info window is closed.
+         */
+        this.infoWindowClose = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
+        this._infoWindowAddedToManager = false;
+        this._id = (infoWindowId++).toString();
+    }
+    AgmInfoWindow.prototype.ngOnInit = function () {
+        this.content = this._el.nativeElement.querySelector('.agm-info-window-content');
+        this._infoWindowManager.addInfoWindow(this);
+        this._infoWindowAddedToManager = true;
+        this._updateOpenState();
+        this._registerEventListeners();
+    };
+    /** @internal */
+    AgmInfoWindow.prototype.ngOnChanges = function (changes) {
+        if (!this._infoWindowAddedToManager) {
+            return;
+        }
+        if ((changes['latitude'] || changes['longitude']) && typeof this.latitude === 'number' &&
+            typeof this.longitude === 'number') {
+            this._infoWindowManager.setPosition(this);
+        }
+        if (changes['zIndex']) {
+            this._infoWindowManager.setZIndex(this);
+        }
+        if (changes['isOpen']) {
+            this._updateOpenState();
+        }
+        this._setInfoWindowOptions(changes);
+    };
+    AgmInfoWindow.prototype._registerEventListeners = function () {
+        var _this = this;
+        this._infoWindowManager.createEventObservable('closeclick', this).subscribe(function () {
+            _this.isOpen = false;
+            _this.infoWindowClose.emit();
+        });
+    };
+    AgmInfoWindow.prototype._updateOpenState = function () {
+        this.isOpen ? this.open() : this.close();
+    };
+    AgmInfoWindow.prototype._setInfoWindowOptions = function (changes) {
+        var options = {};
+        var optionKeys = Object.keys(changes).filter(function (k) { return AgmInfoWindow._infoWindowOptionsInputs.indexOf(k) !== -1; });
+        optionKeys.forEach(function (k) { options[k] = changes[k].currentValue; });
+        this._infoWindowManager.setOptions(this, options);
+    };
+    /**
+     * Opens the info window.
+     */
+    AgmInfoWindow.prototype.open = function () { return this._infoWindowManager.open(this); };
+    /**
+     * Closes the info window.
+     */
+    AgmInfoWindow.prototype.close = function () {
+        var _this = this;
+        return this._infoWindowManager.close(this).then(function () { _this.infoWindowClose.emit(); });
+    };
+    /** @internal */
+    AgmInfoWindow.prototype.id = function () { return this._id; };
+    /** @internal */
+    AgmInfoWindow.prototype.toString = function () { return 'AgmInfoWindow-' + this._id.toString(); };
+    /** @internal */
+    AgmInfoWindow.prototype.ngOnDestroy = function () { this._infoWindowManager.deleteInfoWindow(this); };
+    return AgmInfoWindow;
+}());
+
+AgmInfoWindow._infoWindowOptionsInputs = ['disableAutoPan', 'maxWidth'];
+AgmInfoWindow.decorators = [
+    { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"], args: [{
+                selector: 'agm-info-window',
+                inputs: ['latitude', 'longitude', 'disableAutoPan', 'isOpen', 'zIndex', 'maxWidth'],
+                outputs: ['infoWindowClose'],
+                template: "<div class='agm-info-window-content'>\n      <ng-content></ng-content>\n    </div>\n  "
+            },] },
+];
+/** @nocollapse */
+AgmInfoWindow.ctorParameters = function () { return [
+    { type: __WEBPACK_IMPORTED_MODULE_1__services_managers_info_window_manager__["a" /* InfoWindowManager */], },
+    { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"], },
+]; };
+//# sourceMappingURL=info-window.js.map
 
 /***/ }),
-/* 28 */
-/***/ (function(module, exports, __webpack_require__) {
+/* 34 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = (__webpack_require__(1))(198);
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AgmPolylinePoint; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+
+/**
+ * AgmPolylinePoint represents one element of a polyline within a  {@link
+ * SembGoogleMapPolyline}
+ */
+var AgmPolylinePoint = (function () {
+    function AgmPolylinePoint() {
+        /**
+         * This event emitter gets emitted when the position of the point changed.
+         */
+        this.positionChanged = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
+    }
+    AgmPolylinePoint.prototype.ngOnChanges = function (changes) {
+        if (changes['latitude'] || changes['longitude']) {
+            var position = {
+                lat: changes['latitude'].currentValue,
+                lng: changes['longitude'].currentValue
+            };
+            this.positionChanged.emit(position);
+        }
+    };
+    return AgmPolylinePoint;
+}());
+
+AgmPolylinePoint.decorators = [
+    { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Directive"], args: [{ selector: 'agm-polyline-point' },] },
+];
+/** @nocollapse */
+AgmPolylinePoint.ctorParameters = function () { return []; };
+AgmPolylinePoint.propDecorators = {
+    'latitude': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"] },],
+    'longitude': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Input"] },],
+    'positionChanged': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Output"] },],
+};
+//# sourceMappingURL=polyline-point.js.map
 
 /***/ }),
-/* 29 */
-/***/ (function(module, exports, __webpack_require__) {
+/* 35 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = (__webpack_require__(1))(51);
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CircleManager; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__google_maps_api_wrapper__ = __webpack_require__(5);
+
+
+
+var CircleManager = (function () {
+    function CircleManager(_apiWrapper, _zone) {
+        this._apiWrapper = _apiWrapper;
+        this._zone = _zone;
+        this._circles = new Map();
+    }
+    CircleManager.prototype.addCircle = function (circle) {
+        this._circles.set(circle, this._apiWrapper.createCircle({
+            center: { lat: circle.latitude, lng: circle.longitude },
+            clickable: circle.clickable,
+            draggable: circle.draggable,
+            editable: circle.editable,
+            fillColor: circle.fillColor,
+            fillOpacity: circle.fillOpacity,
+            radius: circle.radius,
+            strokeColor: circle.strokeColor,
+            strokeOpacity: circle.strokeOpacity,
+            strokePosition: circle.strokePosition,
+            strokeWeight: circle.strokeWeight,
+            visible: circle.visible,
+            zIndex: circle.zIndex
+        }));
+    };
+    ;
+    /**
+     * Removes the given circle from the map.
+     */
+    CircleManager.prototype.removeCircle = function (circle) {
+        var _this = this;
+        return this._circles.get(circle).then(function (c) {
+            c.setMap(null);
+            _this._circles.delete(circle);
+        });
+    };
+    CircleManager.prototype.setOptions = function (circle, options) {
+        return this._circles.get(circle).then(function (c) { return c.setOptions(options); });
+    };
+    ;
+    CircleManager.prototype.getBounds = function (circle) {
+        return this._circles.get(circle).then(function (c) { return c.getBounds(); });
+    };
+    ;
+    CircleManager.prototype.getCenter = function (circle) {
+        return this._circles.get(circle).then(function (c) { return c.getCenter(); });
+    };
+    ;
+    CircleManager.prototype.getRadius = function (circle) {
+        return this._circles.get(circle).then(function (c) { return c.getRadius(); });
+    };
+    CircleManager.prototype.setCenter = function (circle) {
+        return this._circles.get(circle).then(function (c) { return c.setCenter({ lat: circle.latitude, lng: circle.longitude }); });
+    };
+    ;
+    CircleManager.prototype.setEditable = function (circle) {
+        return this._circles.get(circle).then(function (c) { return c.setEditable(circle.editable); });
+    };
+    ;
+    CircleManager.prototype.setDraggable = function (circle) {
+        return this._circles.get(circle).then(function (c) { return c.setDraggable(circle.draggable); });
+    };
+    ;
+    CircleManager.prototype.setVisible = function (circle) {
+        return this._circles.get(circle).then(function (c) { return c.setVisible(circle.visible); });
+    };
+    ;
+    CircleManager.prototype.setRadius = function (circle) {
+        return this._circles.get(circle).then(function (c) { return c.setRadius(circle.radius); });
+    };
+    ;
+    CircleManager.prototype.createEventObservable = function (eventName, circle) {
+        var _this = this;
+        return __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__["Observable"].create(function (observer) {
+            var listener = null;
+            _this._circles.get(circle).then(function (c) {
+                listener = c.addListener(eventName, function (e) { return _this._zone.run(function () { return observer.next(e); }); });
+            });
+            return function () {
+                if (listener !== null) {
+                    listener.remove();
+                }
+            };
+        });
+    };
+    return CircleManager;
+}());
+
+CircleManager.decorators = [
+    { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"] },
+];
+/** @nocollapse */
+CircleManager.ctorParameters = function () { return [
+    { type: __WEBPACK_IMPORTED_MODULE_2__google_maps_api_wrapper__["a" /* GoogleMapsAPIWrapper */], },
+    { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["NgZone"], },
+]; };
+//# sourceMappingURL=circle-manager.js.map
 
 /***/ }),
-/* 30 */
+/* 36 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DataLayerManager; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__google_maps_api_wrapper__ = __webpack_require__(5);
+
+
+
+/**
+ * Manages all Data Layers for a Google Map instance.
+ */
+var DataLayerManager = (function () {
+    function DataLayerManager(_wrapper, _zone) {
+        this._wrapper = _wrapper;
+        this._zone = _zone;
+        this._layers = new Map();
+    }
+    /**
+     * Adds a new Data Layer to the map.
+     */
+    DataLayerManager.prototype.addDataLayer = function (layer) {
+        var newLayer = this._wrapper.getNativeMap().then(function (m) {
+            var dataLayer = new google.maps.Data({
+                map: m,
+                style: layer.style
+            });
+            if (layer.geoJson) {
+                dataLayer.features = dataLayer.addGeoJson(layer.geoJson);
+            }
+            return dataLayer;
+        });
+        this._layers.set(layer, newLayer);
+    };
+    DataLayerManager.prototype.deleteDataLayer = function (layer) {
+        var _this = this;
+        this._layers.get(layer).then(function (l) {
+            l.setMap(null);
+            _this._layers.delete(layer);
+        });
+    };
+    DataLayerManager.prototype.updateGeoJson = function (layer, geoJson) {
+        this._layers.get(layer).then(function (l) {
+            l.forEach(function (feature) {
+                l.remove(feature);
+                var index = l.features.indexOf(feature, 0);
+                if (index > -1) {
+                    l.features.splice(index, 1);
+                }
+            });
+            l.features = l.addGeoJson(geoJson);
+        });
+    };
+    DataLayerManager.prototype.setDataOptions = function (layer, options) {
+        this._layers.get(layer).then(function (l) {
+            l.setControlPosition(options.controlPosition);
+            l.setControls(options.controls);
+            l.setDrawingMode(options.drawingMode);
+            l.setStyle(options.style);
+        });
+    };
+    /**
+     * Creates a Google Maps event listener for the given DataLayer as an Observable
+     */
+    DataLayerManager.prototype.createEventObservable = function (eventName, layer) {
+        var _this = this;
+        return __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__["Observable"].create(function (observer) {
+            _this._layers.get(layer).then(function (d) {
+                d.addListener(eventName, function (e) { return _this._zone.run(function () { return observer.next(e); }); });
+            });
+        });
+    };
+    return DataLayerManager;
+}());
+
+DataLayerManager.decorators = [
+    { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"] },
+];
+/** @nocollapse */
+DataLayerManager.ctorParameters = function () { return [
+    { type: __WEBPACK_IMPORTED_MODULE_2__google_maps_api_wrapper__["a" /* GoogleMapsAPIWrapper */], },
+    { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["NgZone"], },
+]; };
+//# sourceMappingURL=data-layer-manager.js.map
+
+/***/ }),
+/* 37 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return InfoWindowManager; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_Observable__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_rxjs_Observable__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__google_maps_api_wrapper__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__marker_manager__ = __webpack_require__(23);
+
+
+
+
+var InfoWindowManager = (function () {
+    function InfoWindowManager(_mapsWrapper, _zone, _markerManager) {
+        this._mapsWrapper = _mapsWrapper;
+        this._zone = _zone;
+        this._markerManager = _markerManager;
+        this._infoWindows = new Map();
+    }
+    InfoWindowManager.prototype.deleteInfoWindow = function (infoWindow) {
+        var _this = this;
+        var iWindow = this._infoWindows.get(infoWindow);
+        if (iWindow == null) {
+            // info window already deleted
+            return Promise.resolve();
+        }
+        return iWindow.then(function (i) {
+            return _this._zone.run(function () {
+                i.close();
+                _this._infoWindows.delete(infoWindow);
+            });
+        });
+    };
+    InfoWindowManager.prototype.setPosition = function (infoWindow) {
+        return this._infoWindows.get(infoWindow).then(function (i) { return i.setPosition({
+            lat: infoWindow.latitude,
+            lng: infoWindow.longitude
+        }); });
+    };
+    InfoWindowManager.prototype.setZIndex = function (infoWindow) {
+        return this._infoWindows.get(infoWindow)
+            .then(function (i) { return i.setZIndex(infoWindow.zIndex); });
+    };
+    InfoWindowManager.prototype.open = function (infoWindow) {
+        var _this = this;
+        return this._infoWindows.get(infoWindow).then(function (w) {
+            if (infoWindow.hostMarker != null) {
+                return _this._markerManager.getNativeMarker(infoWindow.hostMarker).then(function (marker) {
+                    return _this._mapsWrapper.getNativeMap().then(function (map) { return w.open(map, marker); });
+                });
+            }
+            return _this._mapsWrapper.getNativeMap().then(function (map) { return w.open(map); });
+        });
+    };
+    InfoWindowManager.prototype.close = function (infoWindow) {
+        return this._infoWindows.get(infoWindow).then(function (w) { return w.close(); });
+    };
+    InfoWindowManager.prototype.setOptions = function (infoWindow, options) {
+        return this._infoWindows.get(infoWindow).then(function (i) { return i.setOptions(options); });
+    };
+    InfoWindowManager.prototype.addInfoWindow = function (infoWindow) {
+        var options = {
+            content: infoWindow.content,
+            maxWidth: infoWindow.maxWidth,
+            zIndex: infoWindow.zIndex,
+        };
+        if (typeof infoWindow.latitude === 'number' && typeof infoWindow.longitude === 'number') {
+            options.position = { lat: infoWindow.latitude, lng: infoWindow.longitude };
+        }
+        var infoWindowPromise = this._mapsWrapper.createInfoWindow(options);
+        this._infoWindows.set(infoWindow, infoWindowPromise);
+    };
+    /**
+     * Creates a Google Maps event listener for the given InfoWindow as an Observable
+     */
+    InfoWindowManager.prototype.createEventObservable = function (eventName, infoWindow) {
+        var _this = this;
+        return __WEBPACK_IMPORTED_MODULE_0_rxjs_Observable__["Observable"].create(function (observer) {
+            _this._infoWindows.get(infoWindow).then(function (i) {
+                i.addListener(eventName, function (e) { return _this._zone.run(function () { return observer.next(e); }); });
+            });
+        });
+    };
+    return InfoWindowManager;
+}());
+
+InfoWindowManager.decorators = [
+    { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["Injectable"] },
+];
+/** @nocollapse */
+InfoWindowManager.ctorParameters = function () { return [
+    { type: __WEBPACK_IMPORTED_MODULE_2__google_maps_api_wrapper__["a" /* GoogleMapsAPIWrapper */], },
+    { type: __WEBPACK_IMPORTED_MODULE_1__angular_core__["NgZone"], },
+    { type: __WEBPACK_IMPORTED_MODULE_3__marker_manager__["a" /* MarkerManager */], },
+]; };
+//# sourceMappingURL=info-window-manager.js.map
+
+/***/ }),
+/* 38 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return KmlLayerManager; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__google_maps_api_wrapper__ = __webpack_require__(5);
+
+
+
+/**
+ * Manages all KML Layers for a Google Map instance.
+ */
+var KmlLayerManager = (function () {
+    function KmlLayerManager(_wrapper, _zone) {
+        this._wrapper = _wrapper;
+        this._zone = _zone;
+        this._layers = new Map();
+    }
+    /**
+     * Adds a new KML Layer to the map.
+     */
+    KmlLayerManager.prototype.addKmlLayer = function (layer) {
+        var newLayer = this._wrapper.getNativeMap().then(function (m) {
+            return new google.maps.KmlLayer({
+                clickable: layer.clickable,
+                map: m,
+                preserveViewport: layer.preserveViewport,
+                screenOverlays: layer.screenOverlays,
+                suppressInfoWindows: layer.suppressInfoWindows,
+                url: layer.url,
+                zIndex: layer.zIndex
+            });
+        });
+        this._layers.set(layer, newLayer);
+    };
+    KmlLayerManager.prototype.setOptions = function (layer, options) {
+        this._layers.get(layer).then(function (l) { return l.setOptions(options); });
+    };
+    KmlLayerManager.prototype.deleteKmlLayer = function (layer) {
+        var _this = this;
+        this._layers.get(layer).then(function (l) {
+            l.setMap(null);
+            _this._layers.delete(layer);
+        });
+    };
+    /**
+     * Creates a Google Maps event listener for the given KmlLayer as an Observable
+     */
+    KmlLayerManager.prototype.createEventObservable = function (eventName, layer) {
+        var _this = this;
+        return __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__["Observable"].create(function (observer) {
+            _this._layers.get(layer).then(function (m) {
+                m.addListener(eventName, function (e) { return _this._zone.run(function () { return observer.next(e); }); });
+            });
+        });
+    };
+    return KmlLayerManager;
+}());
+
+KmlLayerManager.decorators = [
+    { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"] },
+];
+/** @nocollapse */
+KmlLayerManager.ctorParameters = function () { return [
+    { type: __WEBPACK_IMPORTED_MODULE_2__google_maps_api_wrapper__["a" /* GoogleMapsAPIWrapper */], },
+    { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["NgZone"], },
+]; };
+//# sourceMappingURL=kml-layer-manager.js.map
+
+/***/ }),
+/* 39 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PolygonManager; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__google_maps_api_wrapper__ = __webpack_require__(5);
+
+
+
+var PolygonManager = (function () {
+    function PolygonManager(_mapsWrapper, _zone) {
+        this._mapsWrapper = _mapsWrapper;
+        this._zone = _zone;
+        this._polygons = new Map();
+    }
+    PolygonManager.prototype.addPolygon = function (path) {
+        var polygonPromise = this._mapsWrapper.createPolygon({
+            clickable: path.clickable,
+            draggable: path.draggable,
+            editable: path.editable,
+            fillColor: path.fillColor,
+            fillOpacity: path.fillOpacity,
+            geodesic: path.geodesic,
+            paths: path.paths,
+            strokeColor: path.strokeColor,
+            strokeOpacity: path.strokeOpacity,
+            strokeWeight: path.strokeWeight,
+            visible: path.visible,
+            zIndex: path.zIndex,
+        });
+        this._polygons.set(path, polygonPromise);
+    };
+    PolygonManager.prototype.updatePolygon = function (polygon) {
+        var _this = this;
+        var m = this._polygons.get(polygon);
+        if (m == null) {
+            return Promise.resolve();
+        }
+        return m.then(function (l) { return _this._zone.run(function () { l.setPaths(polygon.paths); }); });
+    };
+    PolygonManager.prototype.setPolygonOptions = function (path, options) {
+        return this._polygons.get(path).then(function (l) { l.setOptions(options); });
+    };
+    PolygonManager.prototype.deletePolygon = function (paths) {
+        var _this = this;
+        var m = this._polygons.get(paths);
+        if (m == null) {
+            return Promise.resolve();
+        }
+        return m.then(function (l) {
+            return _this._zone.run(function () {
+                l.setMap(null);
+                _this._polygons.delete(paths);
+            });
+        });
+    };
+    PolygonManager.prototype.createEventObservable = function (eventName, path) {
+        var _this = this;
+        return __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__["Observable"].create(function (observer) {
+            _this._polygons.get(path).then(function (l) {
+                l.addListener(eventName, function (e) { return _this._zone.run(function () { return observer.next(e); }); });
+            });
+        });
+    };
+    return PolygonManager;
+}());
+
+PolygonManager.decorators = [
+    { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"] },
+];
+/** @nocollapse */
+PolygonManager.ctorParameters = function () { return [
+    { type: __WEBPACK_IMPORTED_MODULE_2__google_maps_api_wrapper__["a" /* GoogleMapsAPIWrapper */], },
+    { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["NgZone"], },
+]; };
+//# sourceMappingURL=polygon-manager.js.map
+
+/***/ }),
+/* 40 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PolylineManager; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__google_maps_api_wrapper__ = __webpack_require__(5);
+
+
+
+var PolylineManager = (function () {
+    function PolylineManager(_mapsWrapper, _zone) {
+        this._mapsWrapper = _mapsWrapper;
+        this._zone = _zone;
+        this._polylines = new Map();
+    }
+    PolylineManager._convertPoints = function (line) {
+        var path = line._getPoints().map(function (point) {
+            return { lat: point.latitude, lng: point.longitude };
+        });
+        return path;
+    };
+    PolylineManager.prototype.addPolyline = function (line) {
+        var path = PolylineManager._convertPoints(line);
+        var polylinePromise = this._mapsWrapper.createPolyline({
+            clickable: line.clickable,
+            draggable: line.draggable,
+            editable: line.editable,
+            geodesic: line.geodesic,
+            strokeColor: line.strokeColor,
+            strokeOpacity: line.strokeOpacity,
+            strokeWeight: line.strokeWeight,
+            visible: line.visible,
+            zIndex: line.zIndex,
+            path: path
+        });
+        this._polylines.set(line, polylinePromise);
+    };
+    PolylineManager.prototype.updatePolylinePoints = function (line) {
+        var _this = this;
+        var path = PolylineManager._convertPoints(line);
+        var m = this._polylines.get(line);
+        if (m == null) {
+            return Promise.resolve();
+        }
+        return m.then(function (l) { return _this._zone.run(function () { l.setPath(path); }); });
+    };
+    PolylineManager.prototype.setPolylineOptions = function (line, options) {
+        return this._polylines.get(line).then(function (l) { l.setOptions(options); });
+    };
+    PolylineManager.prototype.deletePolyline = function (line) {
+        var _this = this;
+        var m = this._polylines.get(line);
+        if (m == null) {
+            return Promise.resolve();
+        }
+        return m.then(function (l) {
+            return _this._zone.run(function () {
+                l.setMap(null);
+                _this._polylines.delete(line);
+            });
+        });
+    };
+    PolylineManager.prototype.createEventObservable = function (eventName, line) {
+        var _this = this;
+        return __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__["Observable"].create(function (observer) {
+            _this._polylines.get(line).then(function (l) {
+                l.addListener(eventName, function (e) { return _this._zone.run(function () { return observer.next(e); }); });
+            });
+        });
+    };
+    return PolylineManager;
+}());
+
+PolylineManager.decorators = [
+    { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"] },
+];
+/** @nocollapse */
+PolylineManager.ctorParameters = function () { return [
+    { type: __WEBPACK_IMPORTED_MODULE_2__google_maps_api_wrapper__["a" /* GoogleMapsAPIWrapper */], },
+    { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["NgZone"], },
+]; };
+//# sourceMappingURL=polyline-manager.js.map
+
+/***/ }),
+/* 41 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return GoogleMapsScriptProtocol; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return LAZY_MAPS_API_CONFIG; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LazyMapsAPILoader; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_browser_globals__ = __webpack_require__(57);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__maps_api_loader__ = __webpack_require__(24);
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+
+
+
+var GoogleMapsScriptProtocol;
+(function (GoogleMapsScriptProtocol) {
+    GoogleMapsScriptProtocol[GoogleMapsScriptProtocol["HTTP"] = 1] = "HTTP";
+    GoogleMapsScriptProtocol[GoogleMapsScriptProtocol["HTTPS"] = 2] = "HTTPS";
+    GoogleMapsScriptProtocol[GoogleMapsScriptProtocol["AUTO"] = 3] = "AUTO";
+})(GoogleMapsScriptProtocol || (GoogleMapsScriptProtocol = {}));
+/**
+ * Token for the config of the LazyMapsAPILoader. Please provide an object of type {@link
+ * LazyMapsAPILoaderConfig}.
+ */
+var LAZY_MAPS_API_CONFIG = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["OpaqueToken"]('angular-google-maps LAZY_MAPS_API_CONFIG');
+var LazyMapsAPILoader = (function (_super) {
+    __extends(LazyMapsAPILoader, _super);
+    function LazyMapsAPILoader(config, w, d) {
+        var _this = _super.call(this) || this;
+        _this._config = config || {};
+        _this._windowRef = w;
+        _this._documentRef = d;
+        return _this;
+    }
+    LazyMapsAPILoader.prototype.load = function () {
+        var _this = this;
+        if (this._scriptLoadingPromise) {
+            return this._scriptLoadingPromise;
+        }
+        var script = this._documentRef.getNativeDocument().createElement('script');
+        script.type = 'text/javascript';
+        script.async = true;
+        script.defer = true;
+        var callbackName = "angular2GoogleMapsLazyMapsAPILoader";
+        script.src = this._getScriptSrc(callbackName);
+        this._scriptLoadingPromise = new Promise(function (resolve, reject) {
+            _this._windowRef.getNativeWindow()[callbackName] = function () { resolve(); };
+            script.onerror = function (error) { reject(error); };
+        });
+        this._documentRef.getNativeDocument().body.appendChild(script);
+        return this._scriptLoadingPromise;
+    };
+    LazyMapsAPILoader.prototype._getScriptSrc = function (callbackName) {
+        var protocolType = (this._config && this._config.protocol) || GoogleMapsScriptProtocol.HTTPS;
+        var protocol;
+        switch (protocolType) {
+            case GoogleMapsScriptProtocol.AUTO:
+                protocol = '';
+                break;
+            case GoogleMapsScriptProtocol.HTTP:
+                protocol = 'http:';
+                break;
+            case GoogleMapsScriptProtocol.HTTPS:
+                protocol = 'https:';
+                break;
+        }
+        var hostAndPath = this._config.hostAndPath || 'maps.googleapis.com/maps/api/js';
+        var queryParams = {
+            v: this._config.apiVersion || '3',
+            callback: callbackName,
+            key: this._config.apiKey,
+            client: this._config.clientId,
+            channel: this._config.channel,
+            libraries: this._config.libraries,
+            region: this._config.region,
+            language: this._config.language
+        };
+        var params = Object.keys(queryParams)
+            .filter(function (k) { return queryParams[k] != null; })
+            .filter(function (k) {
+            // remove empty arrays
+            return !Array.isArray(queryParams[k]) ||
+                (Array.isArray(queryParams[k]) && queryParams[k].length > 0);
+        })
+            .map(function (k) {
+            // join arrays as comma seperated strings
+            var i = queryParams[k];
+            if (Array.isArray(i)) {
+                return { key: k, value: i.join(',') };
+            }
+            return { key: k, value: queryParams[k] };
+        })
+            .map(function (entry) { return entry.key + "=" + entry.value; })
+            .join('&');
+        return protocol + "//" + hostAndPath + "?" + params;
+    };
+    return LazyMapsAPILoader;
+}(__WEBPACK_IMPORTED_MODULE_2__maps_api_loader__["a" /* MapsAPILoader */]));
+
+LazyMapsAPILoader.decorators = [
+    { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"] },
+];
+/** @nocollapse */
+LazyMapsAPILoader.ctorParameters = function () { return [
+    { type: undefined, decorators: [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Inject"], args: [LAZY_MAPS_API_CONFIG,] },] },
+    { type: __WEBPACK_IMPORTED_MODULE_1__utils_browser_globals__["b" /* WindowRef */], },
+    { type: __WEBPACK_IMPORTED_MODULE_1__utils_browser_globals__["c" /* DocumentRef */], },
+]; };
+//# sourceMappingURL=lazy-maps-api-loader.js.map
+
+/***/ }),
+/* 42 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6069,7 +7143,7 @@ var AbstractControlDirective = (function () {
 //# sourceMappingURL=abstract_control_directive.js.map
 
 /***/ }),
-/* 31 */
+/* 43 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6078,8 +7152,8 @@ var AbstractControlDirective = (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NgControlStatus; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return NgControlStatusGroup; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__control_container__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ng_control__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__control_container__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ng_control__ = __webpack_require__(10);
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -6243,24 +7317,24 @@ function NgControlStatusGroup_tsickle_Closure_declarations() {
 //# sourceMappingURL=ng_control_status.js.map
 
 /***/ }),
-/* 32 */
+/* 44 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* unused harmony export formControlBinding */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NgModel; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__facade_async__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__model__ = __webpack_require__(24);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__validators__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__abstract_form_group_directive__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__control_container__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__control_value_accessor__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ng_control__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ng_form__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ng_model_group__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__shared__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__template_driven_errors__ = __webpack_require__(38);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__facade_async__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__model__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__validators__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__abstract_form_group_directive__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__control_container__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__control_value_accessor__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ng_control__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ng_form__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ng_model_group__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__shared__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__template_driven_errors__ = __webpack_require__(59);
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -6593,14 +7667,14 @@ function NgModel_tsickle_Closure_declarations() {
 //# sourceMappingURL=ng_model.js.map
 
 /***/ }),
-/* 33 */
+/* 45 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* unused harmony export NUMBER_VALUE_ACCESSOR */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NumberValueAccessor; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__control_value_accessor__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__control_value_accessor__ = __webpack_require__(3);
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -6701,14 +7775,14 @@ function NumberValueAccessor_tsickle_Closure_declarations() {
 //# sourceMappingURL=number_value_accessor.js.map
 
 /***/ }),
-/* 34 */
+/* 46 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* unused harmony export RANGE_VALUE_ACCESSOR */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RangeValueAccessor; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__control_value_accessor__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__control_value_accessor__ = __webpack_require__(3);
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -6807,19 +7881,19 @@ function RangeValueAccessor_tsickle_Closure_declarations() {
 //# sourceMappingURL=range_value_accessor.js.map
 
 /***/ }),
-/* 35 */
+/* 47 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* unused harmony export formControlBinding */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FormControlDirective; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__facade_async__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__validators__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__control_value_accessor__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ng_control__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__reactive_errors__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__shared__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__facade_async__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__validators__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__control_value_accessor__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ng_control__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__reactive_errors__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__shared__ = __webpack_require__(8);
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -7013,23 +8087,23 @@ function FormControlDirective_tsickle_Closure_declarations() {
 //# sourceMappingURL=form_control_directive.js.map
 
 /***/ }),
-/* 36 */
+/* 48 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* unused harmony export controlNameBinding */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FormControlName; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__facade_async__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__validators__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__abstract_form_group_directive__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__control_container__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__control_value_accessor__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ng_control__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__reactive_errors__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__shared__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__form_group_directive__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__form_group_name__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__facade_async__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__validators__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__abstract_form_group_directive__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__control_container__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__control_value_accessor__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ng_control__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__reactive_errors__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__shared__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__form_group_directive__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__form_group_name__ = __webpack_require__(19);
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -7278,7 +8352,1682 @@ function FormControlName_tsickle_Closure_declarations() {
 //# sourceMappingURL=form_control_name.js.map
 
 /***/ }),
-/* 37 */
+/* 49 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.keyToken = "token";
+exports.keyLogin = "login";
+exports.keyId = "id";
+exports.keyFirstName = "firstName";
+exports.keyLastName = "lastName";
+exports.keyEmail = "email";
+exports.keyAddress = "address";
+exports.keyPhoto = "photo";
+
+
+/***/ }),
+/* 50 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AgmCircle; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_managers_circle_manager__ = __webpack_require__(35);
+
+
+var AgmCircle = (function () {
+    function AgmCircle(_manager) {
+        this._manager = _manager;
+        /**
+         * Indicates whether this Circle handles mouse events. Defaults to true.
+         */
+        this.clickable = true;
+        /**
+         * If set to true, the user can drag this circle over the map. Defaults to false.
+         */
+        this.draggable = false;
+        /**
+         * If set to true, the user can edit this circle by dragging the control points shown at
+         * the center and around the circumference of the circle. Defaults to false.
+         */
+        this.editable = false;
+        /**
+         * The radius in meters on the Earth's surface.
+         */
+        this.radius = 0;
+        /**
+         * The stroke position. Defaults to CENTER.
+         * This property is not supported on Internet Explorer 8 and earlier.
+         */
+        this.strokePosition = 'CENTER';
+        /**
+         * The stroke width in pixels.
+         */
+        this.strokeWeight = 0;
+        /**
+         * Whether this circle is visible on the map. Defaults to true.
+         */
+        this.visible = true;
+        /**
+         * This event is fired when the circle's center is changed.
+         */
+        this.centerChange = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
+        /**
+         * This event emitter gets emitted when the user clicks on the circle.
+         */
+        this.circleClick = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
+        /**
+         * This event emitter gets emitted when the user clicks on the circle.
+         */
+        this.circleDblClick = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
+        /**
+         * This event is repeatedly fired while the user drags the circle.
+         */
+        this.drag = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
+        /**
+         * This event is fired when the user stops dragging the circle.
+         */
+        this.dragEnd = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
+        /**
+         * This event is fired when the user starts dragging the circle.
+         */
+        this.dragStart = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
+        /**
+         * This event is fired when the DOM mousedown event is fired on the circle.
+         */
+        this.mouseDown = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
+        /**
+         * This event is fired when the DOM mousemove event is fired on the circle.
+         */
+        this.mouseMove = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
+        /**
+         * This event is fired on circle mouseout.
+         */
+        this.mouseOut = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
+        /**
+         * This event is fired on circle mouseover.
+         */
+        this.mouseOver = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
+        /**
+         * This event is fired when the DOM mouseup event is fired on the circle.
+         */
+        this.mouseUp = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
+        /**
+         * This event is fired when the circle's radius is changed.
+         */
+        this.radiusChange = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
+        /**
+         * This event is fired when the circle is right-clicked on.
+         */
+        this.rightClick = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
+        this._circleAddedToManager = false;
+        this._eventSubscriptions = [];
+    }
+    /** @internal */
+    AgmCircle.prototype.ngOnInit = function () {
+        this._manager.addCircle(this);
+        this._circleAddedToManager = true;
+        this._registerEventListeners();
+    };
+    /** @internal */
+    AgmCircle.prototype.ngOnChanges = function (changes) {
+        if (!this._circleAddedToManager) {
+            return;
+        }
+        if (changes['latitude'] || changes['longitude']) {
+            this._manager.setCenter(this);
+        }
+        if (changes['editable']) {
+            this._manager.setEditable(this);
+        }
+        if (changes['draggable']) {
+            this._manager.setDraggable(this);
+        }
+        if (changes['visible']) {
+            this._manager.setVisible(this);
+        }
+        if (changes['radius']) {
+            this._manager.setRadius(this);
+        }
+        this._updateCircleOptionsChanges(changes);
+    };
+    AgmCircle.prototype._updateCircleOptionsChanges = function (changes) {
+        var options = {};
+        var optionKeys = Object.keys(changes).filter(function (k) { return AgmCircle._mapOptions.indexOf(k) !== -1; });
+        optionKeys.forEach(function (k) { options[k] = changes[k].currentValue; });
+        if (optionKeys.length > 0) {
+            this._manager.setOptions(this, options);
+        }
+    };
+    AgmCircle.prototype._registerEventListeners = function () {
+        var _this = this;
+        var events = new Map();
+        events.set('center_changed', this.centerChange);
+        events.set('click', this.circleClick);
+        events.set('dblclick', this.circleDblClick);
+        events.set('drag', this.drag);
+        events.set('dragend', this.dragEnd);
+        events.set('dragStart', this.dragStart);
+        events.set('mousedown', this.mouseDown);
+        events.set('mousemove', this.mouseMove);
+        events.set('mouseout', this.mouseOut);
+        events.set('mouseover', this.mouseOver);
+        events.set('mouseup', this.mouseUp);
+        events.set('radius_changed', this.radiusChange);
+        events.set('rightclick', this.rightClick);
+        events.forEach(function (eventEmitter, eventName) {
+            _this._eventSubscriptions.push(_this._manager.createEventObservable(eventName, _this).subscribe(function (value) {
+                switch (eventName) {
+                    case 'radius_changed':
+                        _this._manager.getRadius(_this).then(function (radius) { return eventEmitter.emit(radius); });
+                        break;
+                    case 'center_changed':
+                        _this._manager.getCenter(_this).then(function (center) {
+                            return eventEmitter.emit({ lat: center.lat(), lng: center.lng() });
+                        });
+                        break;
+                    default:
+                        eventEmitter.emit({ coords: { lat: value.latLng.lat(), lng: value.latLng.lng() } });
+                }
+            }));
+        });
+    };
+    /** @internal */
+    AgmCircle.prototype.ngOnDestroy = function () {
+        this._eventSubscriptions.forEach(function (s) { s.unsubscribe(); });
+        this._eventSubscriptions = null;
+        this._manager.removeCircle(this);
+    };
+    /**
+     * Gets the LatLngBounds of this Circle.
+     */
+    AgmCircle.prototype.getBounds = function () { return this._manager.getBounds(this); };
+    AgmCircle.prototype.getCenter = function () { return this._manager.getCenter(this); };
+    return AgmCircle;
+}());
+
+AgmCircle._mapOptions = [
+    'fillColor', 'fillOpacity', 'strokeColor', 'strokeOpacity', 'strokePosition', 'strokeWeight',
+    'visible', 'zIndex'
+];
+AgmCircle.decorators = [
+    { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Directive"], args: [{
+                selector: 'agm-circle',
+                inputs: [
+                    'latitude', 'longitude', 'clickable', 'draggable: circleDraggable', 'editable', 'fillColor',
+                    'fillOpacity', 'radius', 'strokeColor', 'strokeOpacity', 'strokePosition', 'strokeWeight',
+                    'visible', 'zIndex'
+                ],
+                outputs: [
+                    'centerChange', 'circleClick', 'circleDblClick', 'drag', 'dragEnd', 'dragStart', 'mouseDown',
+                    'mouseMove', 'mouseOut', 'mouseOver', 'mouseUp', 'radiusChange', 'rightClick'
+                ]
+            },] },
+];
+/** @nocollapse */
+AgmCircle.ctorParameters = function () { return [
+    { type: __WEBPACK_IMPORTED_MODULE_1__services_managers_circle_manager__["a" /* CircleManager */], },
+]; };
+//# sourceMappingURL=circle.js.map
+
+/***/ }),
+/* 51 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AgmDataLayer; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_managers_data_layer_manager__ = __webpack_require__(36);
+
+
+var layerId = 0;
+/**
+ * AgmDataLayer enables the user to add data layers to the map.
+ *
+ * ### Example
+ * ```typescript
+ * import { Component } from 'angular2/core';
+ * import { AgmMap, AgmDataLayer } from
+ * 'angular-google-maps/core';
+ *
+ * @Component({
+ *  selector: 'my-map-cmp',
+ *  directives: [AgmMap, AgmDataLayer],
+ *  styles: [`
+ *    .agm-container {
+ *      height: 300px;
+ *    }
+ * `],
+ *  template: `
+ * <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom">
+ * 	  <agm-data-layer [geoJson]="geoJsonObject" (layerClick)="clicked($event)" [style]="styleFunc">
+ * 	  </agm-data-layer>
+ * </agm-map>
+ *  `
+ * })
+ * export class MyMapCmp {
+ *   lat: number = -25.274449;
+ *   lng: number = 133.775060;
+ *   zoom: number = 5;
+ *
+ * clicked(clickEvent) {
+ *    console.log(clickEvent);
+ *  }
+ *
+ *  styleFunc(feature) {
+ *    return ({
+ *      clickable: false,
+ *      fillColor: feature.getProperty('color'),
+ *      strokeWeight: 1
+ *    });
+ *  }
+ *
+ *  geoJsonObject: Object = {
+ *    "type": "FeatureCollection",
+ *    "features": [
+ *      {
+ *        "type": "Feature",
+ *        "properties": {
+ *          "letter": "G",
+ *          "color": "blue",
+ *          "rank": "7",
+ *          "ascii": "71"
+ *        },
+ *        "geometry": {
+ *          "type": "Polygon",
+ *          "coordinates": [
+ *            [
+ *              [123.61, -22.14], [122.38, -21.73], [121.06, -21.69], [119.66, -22.22], [119.00, -23.40],
+ *              [118.65, -24.76], [118.43, -26.07], [118.78, -27.56], [119.22, -28.57], [120.23, -29.49],
+ *              [121.77, -29.87], [123.57, -29.64], [124.45, -29.03], [124.71, -27.95], [124.80, -26.70],
+ *              [124.80, -25.60], [123.61, -25.64], [122.56, -25.64], [121.72, -25.72], [121.81, -26.62],
+ *              [121.86, -26.98], [122.60, -26.90], [123.57, -27.05], [123.57, -27.68], [123.35, -28.18],
+ *              [122.51, -28.38], [121.77, -28.26], [121.02, -27.91], [120.49, -27.21], [120.14, -26.50],
+ *              [120.10, -25.64], [120.27, -24.52], [120.67, -23.68], [121.72, -23.32], [122.43, -23.48],
+ *              [123.04, -24.04], [124.54, -24.28], [124.58, -23.20], [123.61, -22.14]
+ *            ]
+ *          ]
+ *        }
+ *      },
+ *      {
+ *        "type": "Feature",
+ *        "properties": {
+ *          "letter": "o",
+ *          "color": "red",
+ *          "rank": "15",
+ *          "ascii": "111"
+ *        },
+ *        "geometry": {
+ *          "type": "Polygon",
+ *          "coordinates": [
+ *            [
+ *              [128.84, -25.76], [128.18, -25.60], [127.96, -25.52], [127.88, -25.52], [127.70, -25.60],
+ *              [127.26, -25.79], [126.60, -26.11], [126.16, -26.78], [126.12, -27.68], [126.21, -28.42],
+ *              [126.69, -29.49], [127.74, -29.80], [128.80, -29.72], [129.41, -29.03], [129.72, -27.95],
+ *              [129.68, -27.21], [129.33, -26.23], [128.84, -25.76]
+ *            ],
+ *            [
+ *              [128.45, -27.44], [128.32, -26.94], [127.70, -26.82], [127.35, -27.05], [127.17, -27.80],
+ *              [127.57, -28.22], [128.10, -28.42], [128.49, -27.80], [128.45, -27.44]
+ *            ]
+ *          ]
+ *        }
+ *      },
+ *      {
+ *        "type": "Feature",
+ *        "properties": {
+ *          "letter": "o",
+ *          "color": "yellow",
+ *          "rank": "15",
+ *          "ascii": "111"
+ *        },
+ *        "geometry": {
+ *          "type": "Polygon",
+ *          "coordinates": [
+ *            [
+ *              [131.87, -25.76], [131.35, -26.07], [130.95, -26.78], [130.82, -27.64], [130.86, -28.53],
+ *              [131.26, -29.22], [131.92, -29.76], [132.45, -29.87], [133.06, -29.76], [133.72, -29.34],
+ *              [134.07, -28.80], [134.20, -27.91], [134.07, -27.21], [133.81, -26.31], [133.37, -25.83],
+ *              [132.71, -25.64], [131.87, -25.76]
+ *            ],
+ *            [
+ *              [133.15, -27.17], [132.71, -26.86], [132.09, -26.90], [131.74, -27.56], [131.79, -28.26],
+ *              [132.36, -28.45], [132.93, -28.34], [133.15, -27.76], [133.15, -27.17]
+ *            ]
+ *          ]
+ *        }
+ *      },
+ *      {
+ *        "type": "Feature",
+ *        "properties": {
+ *          "letter": "g",
+ *          "color": "blue",
+ *          "rank": "7",
+ *          "ascii": "103"
+ *        },
+ *        "geometry": {
+ *          "type": "Polygon",
+ *          "coordinates": [
+ *            [
+ *              [138.12, -25.04], [136.84, -25.16], [135.96, -25.36], [135.26, -25.99], [135, -26.90],
+ *              [135.04, -27.91], [135.26, -28.88], [136.05, -29.45], [137.02, -29.49], [137.81, -29.49],
+ *              [137.94, -29.99], [137.90, -31.20], [137.85, -32.24], [136.88, -32.69], [136.45, -32.36],
+ *              [136.27, -31.80], [134.95, -31.84], [135.17, -32.99], [135.52, -33.43], [136.14, -33.76],
+ *              [137.06, -33.83], [138.12, -33.65], [138.86, -33.21], [139.30, -32.28], [139.30, -31.24],
+ *              [139.30, -30.14], [139.21, -28.96], [139.17, -28.22], [139.08, -27.41], [139.08, -26.47],
+ *              [138.99, -25.40], [138.73, -25.00], [138.12, -25.04]
+ *            ],
+ *            [
+ *              [137.50, -26.54], [136.97, -26.47], [136.49, -26.58], [136.31, -27.13], [136.31, -27.72],
+ *              [136.58, -27.99], [137.50, -28.03], [137.68, -27.68], [137.59, -26.78], [137.50, -26.54]
+ *            ]
+ *          ]
+ *        }
+ *      },
+ *      {
+ *        "type": "Feature",
+ *        "properties": {
+ *          "letter": "l",
+ *          "color": "green",
+ *          "rank": "12",
+ *          "ascii": "108"
+ *        },
+ *        "geometry": {
+ *          "type": "Polygon",
+ *          "coordinates": [
+ *            [
+ *              [140.14, -21.04], [140.31, -29.42], [141.67, -29.49], [141.59, -20.92], [140.14, -21.04]
+ *            ]
+ *          ]
+ *        }
+ *      },
+ *      {
+ *        "type": "Feature",
+ *        "properties": {
+ *          "letter": "e",
+ *          "color": "red",
+ *          "rank": "5",
+ *          "ascii": "101"
+ *        },
+ *        "geometry": {
+ *          "type": "Polygon",
+ *          "coordinates": [
+ *            [
+ *              [144.14, -27.41], [145.67, -27.52], [146.86, -27.09], [146.82, -25.64], [146.25, -25.04],
+ *              [145.45, -24.68], [144.66, -24.60], [144.09, -24.76], [143.43, -25.08], [142.99, -25.40],
+ *              [142.64, -26.03], [142.64, -27.05], [142.64, -28.26], [143.30, -29.11], [144.18, -29.57],
+ *              [145.41, -29.64], [146.46, -29.19], [146.64, -28.72], [146.82, -28.14], [144.84, -28.42],
+ *              [144.31, -28.26], [144.14, -27.41]
+ *            ],
+ *            [
+ *              [144.18, -26.39], [144.53, -26.58], [145.19, -26.62], [145.72, -26.35], [145.81, -25.91],
+ *              [145.41, -25.68], [144.97, -25.68], [144.49, -25.64], [144, -25.99], [144.18, -26.39]
+ *            ]
+ *          ]
+ *        }
+ *      }
+ *    ]
+ *  };
+ * }
+ * ```
+ */
+var AgmDataLayer = (function () {
+    function AgmDataLayer(_manager) {
+        this._manager = _manager;
+        this._addedToManager = false;
+        this._id = (layerId++).toString();
+        this._subscriptions = [];
+        /**
+         * This event is fired when a feature in the layer is clicked.
+         */
+        this.layerClick = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
+        /**
+         * The geoJson to be displayed
+         */
+        this.geoJson = null;
+    }
+    AgmDataLayer.prototype.ngOnInit = function () {
+        if (this._addedToManager) {
+            return;
+        }
+        this._manager.addDataLayer(this);
+        this._addedToManager = true;
+        this._addEventListeners();
+    };
+    AgmDataLayer.prototype._addEventListeners = function () {
+        var _this = this;
+        var listeners = [
+            { name: 'click', handler: function (ev) { return _this.layerClick.emit(ev); } },
+        ];
+        listeners.forEach(function (obj) {
+            var os = _this._manager.createEventObservable(obj.name, _this).subscribe(obj.handler);
+            _this._subscriptions.push(os);
+        });
+    };
+    /** @internal */
+    AgmDataLayer.prototype.id = function () { return this._id; };
+    /** @internal */
+    AgmDataLayer.prototype.toString = function () { return "AgmDataLayer-" + this._id.toString(); };
+    /** @internal */
+    AgmDataLayer.prototype.ngOnDestroy = function () {
+        this._manager.deleteDataLayer(this);
+        // unsubscribe all registered observable subscriptions
+        this._subscriptions.forEach(function (s) { return s.unsubscribe(); });
+    };
+    /** @internal */
+    AgmDataLayer.prototype.ngOnChanges = function (changes) {
+        if (!this._addedToManager) {
+            return;
+        }
+        var geoJsonChange = changes['geoJson'];
+        if (geoJsonChange) {
+            this._manager.updateGeoJson(this, geoJsonChange.currentValue);
+        }
+        var dataOptions = {};
+        var optionKeys = Object.keys(changes).filter(function (k) { return AgmDataLayer._dataOptionsAttributes.indexOf(k) !== -1; });
+        optionKeys.forEach(function (k) { return dataOptions[k] = changes[k].currentValue; });
+        this._manager.setDataOptions(this, dataOptions);
+    };
+    return AgmDataLayer;
+}());
+
+AgmDataLayer._dataOptionsAttributes = ['style'];
+AgmDataLayer.decorators = [
+    { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Directive"], args: [{
+                selector: 'agm-data-layer',
+                inputs: ['geoJson', 'style'],
+                outputs: ['layerClick']
+            },] },
+];
+/** @nocollapse */
+AgmDataLayer.ctorParameters = function () { return [
+    { type: __WEBPACK_IMPORTED_MODULE_1__services_managers_data_layer_manager__["a" /* DataLayerManager */], },
+]; };
+//# sourceMappingURL=data-layer.js.map
+
+/***/ }),
+/* 52 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AgmKmlLayer; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_managers_kml_layer_manager__ = __webpack_require__(38);
+
+
+var layerId = 0;
+var AgmKmlLayer = (function () {
+    function AgmKmlLayer(_manager) {
+        this._manager = _manager;
+        this._addedToManager = false;
+        this._id = (layerId++).toString();
+        this._subscriptions = [];
+        /**
+         * If true, the layer receives mouse events. Default value is true.
+         */
+        this.clickable = true;
+        /**
+         * By default, the input map is centered and zoomed to the bounding box of the contents of the
+         * layer.
+         * If this option is set to true, the viewport is left unchanged, unless the map's center and zoom
+         * were never set.
+         */
+        this.preserveViewport = false;
+        /**
+         * Whether to render the screen overlays. Default true.
+         */
+        this.screenOverlays = true;
+        /**
+         * Suppress the rendering of info windows when layer features are clicked.
+         */
+        this.suppressInfoWindows = false;
+        /**
+         * The URL of the KML document to display.
+         */
+        this.url = null;
+        /**
+         * The z-index of the layer.
+         */
+        this.zIndex = null;
+        /**
+         * This event is fired when a feature in the layer is clicked.
+         */
+        this.layerClick = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
+        /**
+         * This event is fired when the KML layers default viewport has changed.
+         */
+        this.defaultViewportChange = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
+        /**
+         * This event is fired when the KML layer has finished loading.
+         * At this point it is safe to read the status property to determine if the layer loaded
+         * successfully.
+         */
+        this.statusChange = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
+    }
+    AgmKmlLayer.prototype.ngOnInit = function () {
+        if (this._addedToManager) {
+            return;
+        }
+        this._manager.addKmlLayer(this);
+        this._addedToManager = true;
+        this._addEventListeners();
+    };
+    AgmKmlLayer.prototype.ngOnChanges = function (changes) {
+        if (!this._addedToManager) {
+            return;
+        }
+        this._updatePolygonOptions(changes);
+    };
+    AgmKmlLayer.prototype._updatePolygonOptions = function (changes) {
+        var options = Object.keys(changes)
+            .filter(function (k) { return AgmKmlLayer._kmlLayerOptions.indexOf(k) !== -1; })
+            .reduce(function (obj, k) {
+            obj[k] = changes[k].currentValue;
+            return obj;
+        }, {});
+        if (Object.keys(options).length > 0) {
+            this._manager.setOptions(this, options);
+        }
+    };
+    AgmKmlLayer.prototype._addEventListeners = function () {
+        var _this = this;
+        var listeners = [
+            { name: 'click', handler: function (ev) { return _this.layerClick.emit(ev); } },
+            { name: 'defaultviewport_changed', handler: function () { return _this.defaultViewportChange.emit(); } },
+            { name: 'status_changed', handler: function () { return _this.statusChange.emit(); } },
+        ];
+        listeners.forEach(function (obj) {
+            var os = _this._manager.createEventObservable(obj.name, _this).subscribe(obj.handler);
+            _this._subscriptions.push(os);
+        });
+    };
+    /** @internal */
+    AgmKmlLayer.prototype.id = function () { return this._id; };
+    /** @internal */
+    AgmKmlLayer.prototype.toString = function () { return "AgmKmlLayer-" + this._id.toString(); };
+    /** @internal */
+    AgmKmlLayer.prototype.ngOnDestroy = function () {
+        this._manager.deleteKmlLayer(this);
+        // unsubscribe all registered observable subscriptions
+        this._subscriptions.forEach(function (s) { return s.unsubscribe(); });
+    };
+    return AgmKmlLayer;
+}());
+
+AgmKmlLayer._kmlLayerOptions = ['clickable', 'preserveViewport', 'screenOverlays', 'suppressInfoWindows', 'url', 'zIndex'];
+AgmKmlLayer.decorators = [
+    { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Directive"], args: [{
+                selector: 'agm-kml-layer',
+                inputs: ['clickable', 'preserveViewport', 'screenOverlays', 'suppressInfoWindows', 'url', 'zIndex'],
+                outputs: ['layerClick', 'defaultViewportChange', 'statusChange']
+            },] },
+];
+/** @nocollapse */
+AgmKmlLayer.ctorParameters = function () { return [
+    { type: __WEBPACK_IMPORTED_MODULE_1__services_managers_kml_layer_manager__["a" /* KmlLayerManager */], },
+]; };
+//# sourceMappingURL=kml-layer.js.map
+
+/***/ }),
+/* 53 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AgmMap; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_google_maps_api_wrapper__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_managers_circle_manager__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_managers_info_window_manager__ = __webpack_require__(37);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_managers_marker_manager__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_managers_polygon_manager__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_managers_polyline_manager__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_managers_kml_layer_manager__ = __webpack_require__(38);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__services_managers_data_layer_manager__ = __webpack_require__(36);
+
+
+
+
+
+
+
+
+
+/**
+ * AgmMap renders a Google Map.
+ * **Important note**: To be able see a map in the browser, you have to define a height for the
+ * element `agm-map`.
+ *
+ * ### Example
+ * ```typescript
+ * import { Component } from '@angular/core';
+ *
+ * @Component({
+ *  selector: 'my-map-cmp',
+ *  styles: [`
+ *    agm-map {
+ *      height: 300px;
+ *    }
+ * `],
+ *  template: `
+ *    <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom">
+ *    </agm-map>
+ *  `
+ * })
+ * ```
+ */
+var AgmMap = (function () {
+    function AgmMap(_elem, _mapsWrapper) {
+        this._elem = _elem;
+        this._mapsWrapper = _mapsWrapper;
+        /**
+         * The longitude that defines the center of the map.
+         */
+        this.longitude = 0;
+        /**
+         * The latitude that defines the center of the map.
+         */
+        this.latitude = 0;
+        /**
+         * The zoom level of the map. The default zoom level is 8.
+         */
+        this.zoom = 8;
+        /**
+         * Enables/disables if map is draggable.
+         */
+        this.draggable = true;
+        /**
+         * Enables/disables zoom and center on double click. Enabled by default.
+         */
+        this.disableDoubleClickZoom = false;
+        /**
+         * Enables/disables all default UI of the Google map. Please note: When the map is created, this
+         * value cannot get updated.
+         */
+        this.disableDefaultUI = false;
+        /**
+         * If false, disables scrollwheel zooming on the map. The scrollwheel is enabled by default.
+         */
+        this.scrollwheel = true;
+        /**
+         * If false, prevents the map from being controlled by the keyboard. Keyboard shortcuts are
+         * enabled by default.
+         */
+        this.keyboardShortcuts = true;
+        /**
+         * The enabled/disabled state of the Zoom control.
+         */
+        this.zoomControl = true;
+        /**
+         * Styles to apply to each of the default map types. Note that for Satellite/Hybrid and Terrain
+         * modes, these styles will only apply to labels and geometry.
+         */
+        this.styles = [];
+        /**
+         * When true and the latitude and/or longitude values changes, the Google Maps panTo method is
+         * used to
+         * center the map. See: https://developers.google.com/maps/documentation/javascript/reference#Map
+         */
+        this.usePanning = false;
+        /**
+         * The initial enabled/disabled state of the Street View Pegman control.
+         * This control is part of the default UI, and should be set to false when displaying a map type
+         * on which the Street View road overlay should not appear (e.g. a non-Earth map type).
+         */
+        this.streetViewControl = true;
+        /**
+         * Sets the viewport to contain the given bounds.
+         */
+        this.fitBounds = null;
+        /**
+         * The initial enabled/disabled state of the Scale control. This is disabled by default.
+         */
+        this.scaleControl = false;
+        /**
+         * The initial enabled/disabled state of the Map type control.
+         */
+        this.mapTypeControl = false;
+        /**
+         * The initial enabled/disabled state of the Pan control.
+         */
+        this.panControl = false;
+        /**
+         * The initial enabled/disabled state of the Rotate control.
+         */
+        this.rotateControl = false;
+        /**
+         * The initial enabled/disabled state of the Fullscreen control.
+         */
+        this.fullscreenControl = false;
+        /**
+         * The map mapTypeId. Defaults to 'roadmap'.
+         */
+        this.mapTypeId = 'roadmap';
+        /**
+         * When false, map icons are not clickable. A map icon represents a point of interest,
+         * also known as a POI. By default map icons are clickable.
+         */
+        this.clickableIcons = true;
+        /**
+         * This setting controls how gestures on the map are handled.
+         * Allowed values:
+         * - 'cooperative' (Two-finger touch gestures pan and zoom the map. One-finger touch gestures are not handled by the map.)
+         * - 'greedy'      (All touch gestures pan or zoom the map.)
+         * - 'none'        (The map cannot be panned or zoomed by user gestures.)
+         * - 'auto'        [default] (Gesture handling is either cooperative or greedy, depending on whether the page is scrollable or not.
+         */
+        this.gestureHandling = 'auto';
+        this._observableSubscriptions = [];
+        /**
+         * This event emitter gets emitted when the user clicks on the map (but not when they click on a
+         * marker or infoWindow).
+         */
+        this.mapClick = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
+        /**
+         * This event emitter gets emitted when the user right-clicks on the map (but not when they click
+         * on a marker or infoWindow).
+         */
+        this.mapRightClick = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
+        /**
+         * This event emitter gets emitted when the user double-clicks on the map (but not when they click
+         * on a marker or infoWindow).
+         */
+        this.mapDblClick = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
+        /**
+         * This event emitter is fired when the map center changes.
+         */
+        this.centerChange = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
+        /**
+         * This event is fired when the viewport bounds have changed.
+         */
+        this.boundsChange = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
+        /**
+         * This event is fired when the map becomes idle after panning or zooming.
+         */
+        this.idle = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
+        /**
+         * This event is fired when the zoom level has changed.
+         */
+        this.zoomChange = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
+        /**
+         * This event is fired when the google map is fully initialized.
+         * You get the google.maps.Map instance as a result of this EventEmitter.
+         */
+        this.mapReady = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
+    }
+    /** @internal */
+    AgmMap.prototype.ngOnInit = function () {
+        // todo: this should be solved with a new component and a viewChild decorator
+        var container = this._elem.nativeElement.querySelector('.agm-map-container-inner');
+        this._initMapInstance(container);
+    };
+    AgmMap.prototype._initMapInstance = function (el) {
+        var _this = this;
+        this._mapsWrapper.createMap(el, {
+            center: { lat: this.latitude || 0, lng: this.longitude || 0 },
+            zoom: this.zoom,
+            minZoom: this.minZoom,
+            maxZoom: this.maxZoom,
+            disableDefaultUI: this.disableDefaultUI,
+            disableDoubleClickZoom: this.disableDoubleClickZoom,
+            scrollwheel: this.scrollwheel,
+            backgroundColor: this.backgroundColor,
+            draggable: this.draggable,
+            draggableCursor: this.draggableCursor,
+            draggingCursor: this.draggingCursor,
+            keyboardShortcuts: this.keyboardShortcuts,
+            styles: this.styles,
+            zoomControl: this.zoomControl,
+            zoomControlOptions: this.zoomControlOptions,
+            streetViewControl: this.streetViewControl,
+            streetViewControlOptions: this.streetViewControlOptions,
+            scaleControl: this.scaleControl,
+            scaleControlOptions: this.scaleControlOptions,
+            mapTypeControl: this.mapTypeControl,
+            mapTypeControlOptions: this.mapTypeControlOptions,
+            panControl: this.panControl,
+            panControlOptions: this.panControlOptions,
+            rotateControl: this.rotateControl,
+            rotateControlOptions: this.rotateControlOptions,
+            fullscreenControl: this.fullscreenControl,
+            fullscreenControlOptions: this.fullscreenControlOptions,
+            mapTypeId: this.mapTypeId,
+            clickableIcons: this.clickableIcons,
+            gestureHandling: this.gestureHandling
+        })
+            .then(function () { return _this._mapsWrapper.getNativeMap(); })
+            .then(function (map) { return _this.mapReady.emit(map); });
+        // register event listeners
+        this._handleMapCenterChange();
+        this._handleMapZoomChange();
+        this._handleMapMouseEvents();
+        this._handleBoundsChange();
+        this._handleIdleEvent();
+    };
+    /** @internal */
+    AgmMap.prototype.ngOnDestroy = function () {
+        // unsubscribe all registered observable subscriptions
+        this._observableSubscriptions.forEach(function (s) { return s.unsubscribe(); });
+    };
+    /* @internal */
+    AgmMap.prototype.ngOnChanges = function (changes) {
+        this._updateMapOptionsChanges(changes);
+        this._updatePosition(changes);
+    };
+    AgmMap.prototype._updateMapOptionsChanges = function (changes) {
+        var options = {};
+        var optionKeys = Object.keys(changes).filter(function (k) { return AgmMap._mapOptionsAttributes.indexOf(k) !== -1; });
+        optionKeys.forEach(function (k) { options[k] = changes[k].currentValue; });
+        this._mapsWrapper.setMapOptions(options);
+    };
+    /**
+     * Triggers a resize event on the google map instance.
+     * Returns a promise that gets resolved after the event was triggered.
+     */
+    AgmMap.prototype.triggerResize = function () {
+        var _this = this;
+        // Note: When we would trigger the resize event and show the map in the same turn (which is a
+        // common case for triggering a resize event), then the resize event would not
+        // work (to show the map), so we trigger the event in a timeout.
+        return new Promise(function (resolve) {
+            setTimeout(function () { return _this._mapsWrapper.triggerMapEvent('resize').then(function () { return resolve(); }); });
+        });
+    };
+    AgmMap.prototype._updatePosition = function (changes) {
+        if (changes['latitude'] == null && changes['longitude'] == null &&
+            changes['fitBounds'] == null) {
+            // no position update needed
+            return;
+        }
+        // we prefer fitBounds in changes
+        if (changes['fitBounds'] && this.fitBounds != null) {
+            this._fitBounds();
+            return;
+        }
+        if (typeof this.latitude !== 'number' || typeof this.longitude !== 'number') {
+            return;
+        }
+        var newCenter = {
+            lat: this.latitude,
+            lng: this.longitude,
+        };
+        if (this.usePanning) {
+            this._mapsWrapper.panTo(newCenter);
+        }
+        else {
+            this._mapsWrapper.setCenter(newCenter);
+        }
+    };
+    AgmMap.prototype._fitBounds = function () {
+        if (this.usePanning) {
+            this._mapsWrapper.panToBounds(this.fitBounds);
+            return;
+        }
+        this._mapsWrapper.fitBounds(this.fitBounds);
+    };
+    AgmMap.prototype._handleMapCenterChange = function () {
+        var _this = this;
+        var s = this._mapsWrapper.subscribeToMapEvent('center_changed').subscribe(function () {
+            _this._mapsWrapper.getCenter().then(function (center) {
+                _this.latitude = center.lat();
+                _this.longitude = center.lng();
+                _this.centerChange.emit({ lat: _this.latitude, lng: _this.longitude });
+            });
+        });
+        this._observableSubscriptions.push(s);
+    };
+    AgmMap.prototype._handleBoundsChange = function () {
+        var _this = this;
+        var s = this._mapsWrapper.subscribeToMapEvent('bounds_changed').subscribe(function () {
+            _this._mapsWrapper.getBounds().then(function (bounds) { _this.boundsChange.emit(bounds); });
+        });
+        this._observableSubscriptions.push(s);
+    };
+    AgmMap.prototype._handleMapZoomChange = function () {
+        var _this = this;
+        var s = this._mapsWrapper.subscribeToMapEvent('zoom_changed').subscribe(function () {
+            _this._mapsWrapper.getZoom().then(function (z) {
+                _this.zoom = z;
+                _this.zoomChange.emit(z);
+            });
+        });
+        this._observableSubscriptions.push(s);
+    };
+    AgmMap.prototype._handleIdleEvent = function () {
+        var _this = this;
+        var s = this._mapsWrapper.subscribeToMapEvent('idle').subscribe(function () { _this.idle.emit(void 0); });
+        this._observableSubscriptions.push(s);
+    };
+    AgmMap.prototype._handleMapMouseEvents = function () {
+        var _this = this;
+        var events = [
+            { name: 'click', emitter: this.mapClick },
+            { name: 'rightclick', emitter: this.mapRightClick },
+            { name: 'dblclick', emitter: this.mapDblClick },
+        ];
+        events.forEach(function (e) {
+            var s = _this._mapsWrapper.subscribeToMapEvent(e.name).subscribe(function (event) {
+                var value = { coords: { lat: event.latLng.lat(), lng: event.latLng.lng() } };
+                e.emitter.emit(value);
+            });
+            _this._observableSubscriptions.push(s);
+        });
+    };
+    return AgmMap;
+}());
+
+/**
+ * Map option attributes that can change over time
+ */
+AgmMap._mapOptionsAttributes = [
+    'disableDoubleClickZoom', 'scrollwheel', 'draggable', 'draggableCursor', 'draggingCursor',
+    'keyboardShortcuts', 'zoomControl', 'zoomControlOptions', 'styles', 'streetViewControl',
+    'streetViewControlOptions', 'zoom', 'mapTypeControl', 'mapTypeControlOptions', 'minZoom',
+    'maxZoom', 'panControl', 'panControlOptions', 'rotateControl', 'rotateControlOptions',
+    'fullscreenControl', 'fullscreenControlOptions', 'scaleControl', 'scaleControlOptions',
+    'mapTypeId', 'clickableIcons', 'gestureHandling'
+];
+AgmMap.decorators = [
+    { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"], args: [{
+                selector: 'agm-map',
+                providers: [
+                    __WEBPACK_IMPORTED_MODULE_1__services_google_maps_api_wrapper__["a" /* GoogleMapsAPIWrapper */], __WEBPACK_IMPORTED_MODULE_4__services_managers_marker_manager__["a" /* MarkerManager */], __WEBPACK_IMPORTED_MODULE_3__services_managers_info_window_manager__["a" /* InfoWindowManager */], __WEBPACK_IMPORTED_MODULE_2__services_managers_circle_manager__["a" /* CircleManager */], __WEBPACK_IMPORTED_MODULE_6__services_managers_polyline_manager__["a" /* PolylineManager */],
+                    __WEBPACK_IMPORTED_MODULE_5__services_managers_polygon_manager__["a" /* PolygonManager */], __WEBPACK_IMPORTED_MODULE_7__services_managers_kml_layer_manager__["a" /* KmlLayerManager */], __WEBPACK_IMPORTED_MODULE_8__services_managers_data_layer_manager__["a" /* DataLayerManager */]
+                ],
+                inputs: [
+                    'longitude', 'latitude', 'zoom', 'minZoom', 'maxZoom', 'draggable: mapDraggable',
+                    'disableDoubleClickZoom', 'disableDefaultUI', 'scrollwheel', 'backgroundColor', 'draggableCursor',
+                    'draggingCursor', 'keyboardShortcuts', 'zoomControl', 'zoomControlOptions', 'styles', 'usePanning',
+                    'streetViewControl', 'streetViewControlOptions', 'fitBounds', 'mapTypeControl', 'mapTypeControlOptions',
+                    'panControlOptions', 'rotateControl', 'rotateControlOptions', 'fullscreenControl', 'fullscreenControlOptions',
+                    'scaleControl', 'scaleControlOptions', 'mapTypeId', 'clickableIcons', 'gestureHandling'
+                ],
+                outputs: [
+                    'mapClick', 'mapRightClick', 'mapDblClick', 'centerChange', 'idle', 'boundsChange', 'zoomChange', 'mapReady'
+                ],
+                host: {
+                    // todo: deprecated - we will remove it with the next version
+                    '[class.sebm-google-map-container]': 'true'
+                },
+                styles: ["\n    .agm-map-container-inner {\n      width: inherit;\n      height: inherit;\n    }\n    .agm-map-content {\n      display:none;\n    }\n  "],
+                template: "\n    <div class='agm-map-container-inner sebm-google-map-container-inner'></div>\n    <div class='agm-map-content'>\n      <ng-content></ng-content>\n    </div>\n  "
+            },] },
+];
+/** @nocollapse */
+AgmMap.ctorParameters = function () { return [
+    { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["ElementRef"], },
+    { type: __WEBPACK_IMPORTED_MODULE_1__services_google_maps_api_wrapper__["a" /* GoogleMapsAPIWrapper */], },
+]; };
+//# sourceMappingURL=map.js.map
+
+/***/ }),
+/* 54 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AgmMarker; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_managers_marker_manager__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__info_window__ = __webpack_require__(33);
+
+
+
+var markerId = 0;
+/**
+ * AgmMarker renders a map marker inside a {@link AgmMap}.
+ *
+ * ### Example
+ * ```typescript
+ * import { Component } from '@angular/core';
+ *
+ * @Component({
+ *  selector: 'my-map-cmp',
+ *  styles: [`
+ *    .agm-map-container {
+ *      height: 300px;
+ *    }
+ * `],
+ *  template: `
+ *    <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom">
+ *      <agm-marker [latitude]="lat" [longitude]="lng" [label]="'M'">
+ *      </agm-marker>
+ *    </agm-map>
+ *  `
+ * })
+ * ```
+ */
+var AgmMarker = (function () {
+    function AgmMarker(_markerManager) {
+        this._markerManager = _markerManager;
+        /**
+         * If true, the marker can be dragged. Default value is false.
+         */
+        this.draggable = false;
+        /**
+         * If true, the marker is visible
+         */
+        this.visible = true;
+        /**
+         * Whether to automatically open the child info window when the marker is clicked.
+         */
+        this.openInfoWindow = true;
+        /**
+         * The marker's opacity between 0.0 and 1.0.
+         */
+        this.opacity = 1;
+        /**
+         * All markers are displayed on the map in order of their zIndex, with higher values displaying in
+         * front of markers with lower values. By default, markers are displayed according to their
+         * vertical position on screen, with lower markers appearing in front of markers further up the
+         * screen.
+         */
+        this.zIndex = 1;
+        /**
+         * This event emitter gets emitted when the user clicks on the marker.
+         */
+        this.markerClick = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
+        /**
+         * This event is fired when the user stops dragging the marker.
+         */
+        this.dragEnd = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
+        /**
+         * This event is fired when the user mouses over the marker.
+         */
+        this.mouseOver = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
+        /**
+         * This event is fired when the user mouses outside the marker.
+         */
+        this.mouseOut = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
+        /**
+         * @internal
+         */
+        this.infoWindow = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["QueryList"]();
+        this._markerAddedToManger = false;
+        this._observableSubscriptions = [];
+        this._id = (markerId++).toString();
+    }
+    /* @internal */
+    AgmMarker.prototype.ngAfterContentInit = function () {
+        var _this = this;
+        this.handleInfoWindowUpdate();
+        this.infoWindow.changes.subscribe(function () { return _this.handleInfoWindowUpdate(); });
+    };
+    AgmMarker.prototype.handleInfoWindowUpdate = function () {
+        var _this = this;
+        if (this.infoWindow.length > 1) {
+            throw new Error('Expected no more than one info window.');
+        }
+        this.infoWindow.forEach(function (marker) {
+            marker.hostMarker = _this;
+        });
+    };
+    /** @internal */
+    AgmMarker.prototype.ngOnChanges = function (changes) {
+        if (typeof this.latitude !== 'number' || typeof this.longitude !== 'number') {
+            return;
+        }
+        if (!this._markerAddedToManger) {
+            this._markerManager.addMarker(this);
+            this._markerAddedToManger = true;
+            this._addEventListeners();
+            return;
+        }
+        if (changes['latitude'] || changes['longitude']) {
+            this._markerManager.updateMarkerPosition(this);
+        }
+        if (changes['title']) {
+            this._markerManager.updateTitle(this);
+        }
+        if (changes['label']) {
+            this._markerManager.updateLabel(this);
+        }
+        if (changes['draggable']) {
+            this._markerManager.updateDraggable(this);
+        }
+        if (changes['iconUrl']) {
+            this._markerManager.updateIcon(this);
+        }
+        if (changes['opacity']) {
+            this._markerManager.updateOpacity(this);
+        }
+        if (changes['visible']) {
+            this._markerManager.updateVisible(this);
+        }
+        if (changes['zIndex']) {
+            this._markerManager.updateZIndex(this);
+        }
+    };
+    AgmMarker.prototype._addEventListeners = function () {
+        var _this = this;
+        var cs = this._markerManager.createEventObservable('click', this).subscribe(function () {
+            if (_this.openInfoWindow) {
+                _this.infoWindow.forEach(function (infoWindow) { return infoWindow.open(); });
+            }
+            _this.markerClick.emit(null);
+        });
+        this._observableSubscriptions.push(cs);
+        var ds = this._markerManager.createEventObservable('dragend', this)
+            .subscribe(function (e) {
+            _this.dragEnd.emit({ coords: { lat: e.latLng.lat(), lng: e.latLng.lng() } });
+        });
+        this._observableSubscriptions.push(ds);
+        var mover = this._markerManager.createEventObservable('mouseover', this)
+            .subscribe(function (e) {
+            _this.mouseOver.emit({ coords: { lat: e.latLng.lat(), lng: e.latLng.lng() } });
+        });
+        this._observableSubscriptions.push(mover);
+        var mout = this._markerManager.createEventObservable('mouseout', this)
+            .subscribe(function (e) {
+            _this.mouseOut.emit({ coords: { lat: e.latLng.lat(), lng: e.latLng.lng() } });
+        });
+        this._observableSubscriptions.push(mout);
+    };
+    /** @internal */
+    AgmMarker.prototype.id = function () { return this._id; };
+    /** @internal */
+    AgmMarker.prototype.toString = function () { return 'AgmMarker-' + this._id.toString(); };
+    /** @internal */
+    AgmMarker.prototype.ngOnDestroy = function () {
+        this._markerManager.deleteMarker(this);
+        // unsubscribe all registered observable subscriptions
+        this._observableSubscriptions.forEach(function (s) { return s.unsubscribe(); });
+    };
+    return AgmMarker;
+}());
+
+AgmMarker.decorators = [
+    { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Directive"], args: [{
+                selector: 'agm-marker',
+                inputs: [
+                    'latitude', 'longitude', 'title', 'label', 'draggable: markerDraggable', 'iconUrl',
+                    'openInfoWindow', 'opacity', 'visible', 'zIndex'
+                ],
+                outputs: ['markerClick', 'dragEnd', 'mouseOver', 'mouseOut']
+            },] },
+];
+/** @nocollapse */
+AgmMarker.ctorParameters = function () { return [
+    { type: __WEBPACK_IMPORTED_MODULE_1__services_managers_marker_manager__["a" /* MarkerManager */], },
+]; };
+AgmMarker.propDecorators = {
+    'infoWindow': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["ContentChildren"], args: [__WEBPACK_IMPORTED_MODULE_2__info_window__["a" /* AgmInfoWindow */],] },],
+};
+//# sourceMappingURL=marker.js.map
+
+/***/ }),
+/* 55 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AgmPolygon; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_managers_polygon_manager__ = __webpack_require__(39);
+
+
+/**
+ * AgmPolygon renders a polygon on a {@link AgmMap}
+ *
+ * ### Example
+ * ```typescript
+ * import { Component } from '@angular/core';
+ *
+ * @Component({
+ *  selector: 'my-map-cmp',
+ *  styles: [`
+ *    agm-map {
+ *      height: 300px;
+ *    }
+ * `],
+ *  template: `
+ *    <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom">
+ *      <agm-polygon [paths]="paths">
+ *      </agm-polygon>
+ *    </agm-map>
+ *  `
+ * })
+ * export class MyMapCmp {
+ *   lat: number = 0;
+ *   lng: number = 0;
+ *   zoom: number = 10;
+ *   paths: Array<LatLngLiteral> = [
+ *     { lat: 0,  lng: 10 },
+ *     { lat: 0,  lng: 20 },
+ *     { lat: 10, lng: 20 },
+ *     { lat: 10, lng: 10 },
+ *     { lat: 0,  lng: 10 }
+ *   ]
+ *   // Nesting paths will create a hole where they overlap;
+ *   nestedPaths: Array<Array<LatLngLiteral>> = [[
+ *     { lat: 0,  lng: 10 },
+ *     { lat: 0,  lng: 20 },
+ *     { lat: 10, lng: 20 },
+ *     { lat: 10, lng: 10 },
+ *     { lat: 0,  lng: 10 }
+ *   ], [
+ *     { lat: 0, lng: 15 },
+ *     { lat: 0, lng: 20 },
+ *     { lat: 5, lng: 20 },
+ *     { lat: 5, lng: 15 },
+ *     { lat: 0, lng: 15 }
+ *   ]]
+ * }
+ * ```
+ */
+var AgmPolygon = (function () {
+    function AgmPolygon(_polygonManager) {
+        this._polygonManager = _polygonManager;
+        /**
+         * Indicates whether this Polygon handles mouse events. Defaults to true.
+         */
+        this.clickable = true;
+        /**
+         * If set to true, the user can drag this shape over the map. The geodesic
+         * property defines the mode of dragging. Defaults to false.
+         */
+        this.draggable = false;
+        /**
+         * If set to true, the user can edit this shape by dragging the control
+         * points shown at the vertices and on each segment. Defaults to false.
+         */
+        this.editable = false;
+        /**
+         * When true, edges of the polygon are interpreted as geodesic and will
+         * follow the curvature of the Earth. When false, edges of the polygon are
+         * rendered as straight lines in screen space. Note that the shape of a
+         * geodesic polygon may appear to change when dragged, as the dimensions
+         * are maintained relative to the surface of the earth. Defaults to false.
+         */
+        this.geodesic = false;
+        /**
+         * The ordered sequence of coordinates that designates a closed loop.
+         * Unlike polylines, a polygon may consist of one or more paths.
+         *  As a result, the paths property may specify one or more arrays of
+         * LatLng coordinates. Paths are closed automatically; do not repeat the
+         * first vertex of the path as the last vertex. Simple polygons may be
+         * defined using a single array of LatLngs. More complex polygons may
+         * specify an array of arrays. Any simple arrays are converted into Arrays.
+         * Inserting or removing LatLngs from the Array will automatically update
+         * the polygon on the map.
+         */
+        this.paths = [];
+        /**
+         * This event is fired when the DOM click event is fired on the Polygon.
+         */
+        this.polyClick = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
+        /**
+         * This event is fired when the DOM dblclick event is fired on the Polygon.
+         */
+        this.polyDblClick = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
+        /**
+         * This event is repeatedly fired while the user drags the polygon.
+         */
+        this.polyDrag = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
+        /**
+         * This event is fired when the user stops dragging the polygon.
+         */
+        this.polyDragEnd = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
+        /**
+         * This event is fired when the user starts dragging the polygon.
+         */
+        this.polyDragStart = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
+        /**
+         * This event is fired when the DOM mousedown event is fired on the Polygon.
+         */
+        this.polyMouseDown = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
+        /**
+         * This event is fired when the DOM mousemove event is fired on the Polygon.
+         */
+        this.polyMouseMove = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
+        /**
+         * This event is fired on Polygon mouseout.
+         */
+        this.polyMouseOut = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
+        /**
+         * This event is fired on Polygon mouseover.
+         */
+        this.polyMouseOver = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
+        /**
+         * This event is fired whe the DOM mouseup event is fired on the Polygon
+         */
+        this.polyMouseUp = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
+        /**
+         * This even is fired when the Polygon is right-clicked on.
+         */
+        this.polyRightClick = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
+        this._polygonAddedToManager = false;
+        this._subscriptions = [];
+    }
+    /** @internal */
+    AgmPolygon.prototype.ngAfterContentInit = function () {
+        if (!this._polygonAddedToManager) {
+            this._init();
+        }
+    };
+    AgmPolygon.prototype.ngOnChanges = function (changes) {
+        if (!this._polygonAddedToManager) {
+            this._init();
+            return;
+        }
+        this._polygonManager.setPolygonOptions(this, this._updatePolygonOptions(changes));
+    };
+    AgmPolygon.prototype._init = function () {
+        this._polygonManager.addPolygon(this);
+        this._polygonAddedToManager = true;
+        this._addEventListeners();
+    };
+    AgmPolygon.prototype._addEventListeners = function () {
+        var _this = this;
+        var handlers = [
+            { name: 'click', handler: function (ev) { return _this.polyClick.emit(ev); } },
+            { name: 'dbclick', handler: function (ev) { return _this.polyDblClick.emit(ev); } },
+            { name: 'drag', handler: function (ev) { return _this.polyDrag.emit(ev); } },
+            { name: 'dragend', handler: function (ev) { return _this.polyDragEnd.emit(ev); } },
+            { name: 'dragstart', handler: function (ev) { return _this.polyDragStart.emit(ev); } },
+            { name: 'mousedown', handler: function (ev) { return _this.polyMouseDown.emit(ev); } },
+            { name: 'mousemove', handler: function (ev) { return _this.polyMouseMove.emit(ev); } },
+            { name: 'mouseout', handler: function (ev) { return _this.polyMouseOut.emit(ev); } },
+            { name: 'mouseover', handler: function (ev) { return _this.polyMouseOver.emit(ev); } },
+            { name: 'mouseup', handler: function (ev) { return _this.polyMouseUp.emit(ev); } },
+            { name: 'rightclick', handler: function (ev) { return _this.polyRightClick.emit(ev); } },
+        ];
+        handlers.forEach(function (obj) {
+            var os = _this._polygonManager.createEventObservable(obj.name, _this).subscribe(obj.handler);
+            _this._subscriptions.push(os);
+        });
+    };
+    AgmPolygon.prototype._updatePolygonOptions = function (changes) {
+        return Object.keys(changes)
+            .filter(function (k) { return AgmPolygon._polygonOptionsAttributes.indexOf(k) !== -1; })
+            .reduce(function (obj, k) {
+            obj[k] = changes[k].currentValue;
+            return obj;
+        }, {});
+    };
+    /** @internal */
+    AgmPolygon.prototype.id = function () { return this._id; };
+    /** @internal */
+    AgmPolygon.prototype.ngOnDestroy = function () {
+        this._polygonManager.deletePolygon(this);
+        // unsubscribe all registered observable subscriptions
+        this._subscriptions.forEach(function (s) { return s.unsubscribe(); });
+    };
+    return AgmPolygon;
+}());
+
+AgmPolygon._polygonOptionsAttributes = [
+    'clickable', 'draggable', 'editable', 'fillColor', 'fillOpacity', 'geodesic', 'icon', 'map',
+    'paths', 'strokeColor', 'strokeOpacity', 'strokeWeight', 'visible', 'zIndex', 'draggable',
+    'editable', 'visible'
+];
+AgmPolygon.decorators = [
+    { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Directive"], args: [{
+                selector: 'agm-polygon',
+                inputs: [
+                    'clickable',
+                    'draggable: polyDraggable',
+                    'editable',
+                    'fillColor',
+                    'fillOpacity',
+                    'geodesic',
+                    'paths',
+                    'strokeColor',
+                    'strokeOpacity',
+                    'strokeWeight',
+                    'visible',
+                    'zIndex',
+                ],
+                outputs: [
+                    'polyClick', 'polyDblClick', 'polyDrag', 'polyDragEnd', 'polyMouseDown', 'polyMouseMove',
+                    'polyMouseOut', 'polyMouseOver', 'polyMouseUp', 'polyRightClick'
+                ]
+            },] },
+];
+/** @nocollapse */
+AgmPolygon.ctorParameters = function () { return [
+    { type: __WEBPACK_IMPORTED_MODULE_1__services_managers_polygon_manager__["a" /* PolygonManager */], },
+]; };
+//# sourceMappingURL=polygon.js.map
+
+/***/ }),
+/* 56 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AgmPolyline; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_managers_polyline_manager__ = __webpack_require__(40);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__polyline_point__ = __webpack_require__(34);
+
+
+
+var polylineId = 0;
+/**
+ * AgmPolyline renders a polyline on a {@link AgmMap}
+ *
+ * ### Example
+ * ```typescript
+ * import { Component } from '@angular/core';
+ *
+ * @Component({
+ *  selector: 'my-map-cmp',
+ *  styles: [`
+ *    .agm-map-container {
+ *      height: 300px;
+ *    }
+ * `],
+ *  template: `
+ *    <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom">
+ *      <agm-polyline>
+ *          <agm-polyline-point [latitude]="latA" [longitude]="lngA">
+ *          </agm-polyline-point>
+ *          <agm-polyline-point [latitude]="latB" [longitude]="lngB">
+ *          </agm-polyline-point>
+ *      </agm-polyline>
+ *    </agm-map>
+ *  `
+ * })
+ * ```
+ */
+var AgmPolyline = (function () {
+    function AgmPolyline(_polylineManager) {
+        this._polylineManager = _polylineManager;
+        /**
+         * Indicates whether this Polyline handles mouse events. Defaults to true.
+         */
+        this.clickable = true;
+        /**
+         * If set to true, the user can drag this shape over the map. The geodesic property defines the
+         * mode of dragging. Defaults to false.
+         */
+        this.draggable = false;
+        /**
+         * If set to true, the user can edit this shape by dragging the control points shown at the
+         * vertices and on each segment. Defaults to false.
+         */
+        this.editable = false;
+        /**
+         * When true, edges of the polygon are interpreted as geodesic and will follow the curvature of
+         * the Earth. When false, edges of the polygon are rendered as straight lines in screen space.
+         * Note that the shape of a geodesic polygon may appear to change when dragged, as the dimensions
+         * are maintained relative to the surface of the earth. Defaults to false.
+         */
+        this.geodesic = false;
+        /**
+         * Whether this polyline is visible on the map. Defaults to true.
+         */
+        this.visible = true;
+        /**
+         * This event is fired when the DOM click event is fired on the Polyline.
+         */
+        this.lineClick = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
+        /**
+         * This event is fired when the DOM dblclick event is fired on the Polyline.
+         */
+        this.lineDblClick = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
+        /**
+         * This event is repeatedly fired while the user drags the polyline.
+         */
+        this.lineDrag = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
+        /**
+         * This event is fired when the user stops dragging the polyline.
+         */
+        this.lineDragEnd = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
+        /**
+         * This event is fired when the user starts dragging the polyline.
+         */
+        this.lineDragStart = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
+        /**
+         * This event is fired when the DOM mousedown event is fired on the Polyline.
+         */
+        this.lineMouseDown = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
+        /**
+         * This event is fired when the DOM mousemove event is fired on the Polyline.
+         */
+        this.lineMouseMove = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
+        /**
+         * This event is fired on Polyline mouseout.
+         */
+        this.lineMouseOut = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
+        /**
+         * This event is fired on Polyline mouseover.
+         */
+        this.lineMouseOver = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
+        /**
+         * This event is fired whe the DOM mouseup event is fired on the Polyline
+         */
+        this.lineMouseUp = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
+        /**
+         * This even is fired when the Polyline is right-clicked on.
+         */
+        this.lineRightClick = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["EventEmitter"]();
+        this._polylineAddedToManager = false;
+        this._subscriptions = [];
+        this._id = (polylineId++).toString();
+    }
+    /** @internal */
+    AgmPolyline.prototype.ngAfterContentInit = function () {
+        var _this = this;
+        if (this.points.length) {
+            this.points.forEach(function (point) {
+                var s = point.positionChanged.subscribe(function () { _this._polylineManager.updatePolylinePoints(_this); });
+                _this._subscriptions.push(s);
+            });
+        }
+        if (!this._polylineAddedToManager) {
+            this._init();
+        }
+        var s = this.points.changes.subscribe(function () { return _this._polylineManager.updatePolylinePoints(_this); });
+        this._subscriptions.push(s);
+        this._polylineManager.updatePolylinePoints(this);
+    };
+    AgmPolyline.prototype.ngOnChanges = function (changes) {
+        if (!this._polylineAddedToManager) {
+            this._init();
+            return;
+        }
+        var options = {};
+        var optionKeys = Object.keys(changes).filter(function (k) { return AgmPolyline._polylineOptionsAttributes.indexOf(k) !== -1; });
+        optionKeys.forEach(function (k) { return options[k] = changes[k].currentValue; });
+        this._polylineManager.setPolylineOptions(this, options);
+    };
+    AgmPolyline.prototype._init = function () {
+        this._polylineManager.addPolyline(this);
+        this._polylineAddedToManager = true;
+        this._addEventListeners();
+    };
+    AgmPolyline.prototype._addEventListeners = function () {
+        var _this = this;
+        var handlers = [
+            { name: 'click', handler: function (ev) { return _this.lineClick.emit(ev); } },
+            { name: 'dbclick', handler: function (ev) { return _this.lineDblClick.emit(ev); } },
+            { name: 'drag', handler: function (ev) { return _this.lineDrag.emit(ev); } },
+            { name: 'dragend', handler: function (ev) { return _this.lineDragEnd.emit(ev); } },
+            { name: 'dragstart', handler: function (ev) { return _this.lineDragStart.emit(ev); } },
+            { name: 'mousedown', handler: function (ev) { return _this.lineMouseDown.emit(ev); } },
+            { name: 'mousemove', handler: function (ev) { return _this.lineMouseMove.emit(ev); } },
+            { name: 'mouseout', handler: function (ev) { return _this.lineMouseOut.emit(ev); } },
+            { name: 'mouseover', handler: function (ev) { return _this.lineMouseOver.emit(ev); } },
+            { name: 'mouseup', handler: function (ev) { return _this.lineMouseUp.emit(ev); } },
+            { name: 'rightclick', handler: function (ev) { return _this.lineRightClick.emit(ev); } },
+        ];
+        handlers.forEach(function (obj) {
+            var os = _this._polylineManager.createEventObservable(obj.name, _this).subscribe(obj.handler);
+            _this._subscriptions.push(os);
+        });
+    };
+    /** @internal */
+    AgmPolyline.prototype._getPoints = function () {
+        if (this.points) {
+            return this.points.toArray();
+        }
+        return [];
+    };
+    /** @internal */
+    AgmPolyline.prototype.id = function () { return this._id; };
+    /** @internal */
+    AgmPolyline.prototype.ngOnDestroy = function () {
+        this._polylineManager.deletePolyline(this);
+        // unsubscribe all registered observable subscriptions
+        this._subscriptions.forEach(function (s) { return s.unsubscribe(); });
+    };
+    return AgmPolyline;
+}());
+
+AgmPolyline._polylineOptionsAttributes = [
+    'draggable', 'editable', 'visible', 'geodesic', 'strokeColor', 'strokeOpacity', 'strokeWeight',
+    'zIndex'
+];
+AgmPolyline.decorators = [
+    { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["Directive"], args: [{
+                selector: 'agm-polyline',
+                inputs: [
+                    'clickable', 'draggable: polylineDraggable', 'editable', 'geodesic', 'strokeColor',
+                    'strokeWeight', 'strokeOpacity', 'visible', 'zIndex'
+                ],
+                outputs: [
+                    'lineClick', 'lineDblClick', 'lineDrag', 'lineDragEnd', 'lineMouseDown', 'lineMouseMove',
+                    'lineMouseOut', 'lineMouseOver', 'lineMouseUp', 'lineRightClick'
+                ]
+            },] },
+];
+/** @nocollapse */
+AgmPolyline.ctorParameters = function () { return [
+    { type: __WEBPACK_IMPORTED_MODULE_1__services_managers_polyline_manager__["a" /* PolylineManager */], },
+]; };
+AgmPolyline.propDecorators = {
+    'points': [{ type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["ContentChildren"], args: [__WEBPACK_IMPORTED_MODULE_2__polyline_point__["a" /* AgmPolylinePoint */],] },],
+};
+//# sourceMappingURL=polyline.js.map
+
+/***/ }),
+/* 57 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return WindowRef; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return DocumentRef; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BROWSER_GLOBALS_PROVIDERS; });
+var WindowRef = (function () {
+    function WindowRef() {
+    }
+    WindowRef.prototype.getNativeWindow = function () { return window; };
+    return WindowRef;
+}());
+
+var DocumentRef = (function () {
+    function DocumentRef() {
+    }
+    DocumentRef.prototype.getNativeDocument = function () { return document; };
+    return DocumentRef;
+}());
+
+var BROWSER_GLOBALS_PROVIDERS = [WindowRef, DocumentRef];
+//# sourceMappingURL=browser-globals.js.map
+
+/***/ }),
+/* 58 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7300,12 +10049,12 @@ var /** @type {?} */ FormErrorExamples = {
 //# sourceMappingURL=error_examples.js.map
 
 /***/ }),
-/* 38 */
+/* 59 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TemplateDrivenErrors; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__error_examples__ = __webpack_require__(37);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__error_examples__ = __webpack_require__(58);
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -7346,7 +10095,7 @@ var TemplateDrivenErrors = (function () {
 //# sourceMappingURL=template_driven_errors.js.map
 
 /***/ }),
-/* 39 */
+/* 60 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7361,7 +10110,7 @@ var TemplateDrivenErrors = (function () {
 /* unused harmony export PATTERN_VALIDATOR */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return PatternValidator; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__validators__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__validators__ = __webpack_require__(4);
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() { this.constructor = d; }
@@ -7739,7 +10488,7 @@ function PatternValidator_tsickle_Closure_declarations() {
 //# sourceMappingURL=validators.js.map
 
 /***/ }),
-/* 40 */
+/* 61 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7748,7 +10497,7 @@ function PatternValidator_tsickle_Closure_declarations() {
 /* unused harmony export isListLikeIterable */
 /* unused harmony export areIterablesEqual */
 /* unused harmony export iterateListLike */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__lang__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__lang__ = __webpack_require__(14);
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -7922,14 +10671,14 @@ function iterateListLike(obj, fn) {
 //# sourceMappingURL=collection.js.map
 
 /***/ }),
-/* 41 */
+/* 62 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FormBuilder; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__facade_lang__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__model__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__facade_lang__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__model__ = __webpack_require__(31);
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -8063,7 +10812,7 @@ function FormBuilder_tsickle_Closure_declarations() {
 //# sourceMappingURL=form_builder.js.map
 
 /***/ }),
-/* 42 */
+/* 63 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8083,7 +10832,7 @@ var /** @type {?} */ isObservable = __WEBPACK_IMPORTED_MODULE_0__angular_core__[
 //# sourceMappingURL=private_import_core.js.map
 
 /***/ }),
-/* 43 */
+/* 64 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8103,15 +10852,44 @@ var AboutComponent = (function () {
 }());
 AboutComponent = __decorate([
     core_1.Component({
-        template: __webpack_require__(98),
-        styles: [__webpack_require__(116)]
+        template: __webpack_require__(128),
+        styles: [__webpack_require__(144)]
     })
 ], AboutComponent);
 exports.AboutComponent = AboutComponent;
 
 
 /***/ }),
-/* 44 */
+/* 65 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = __webpack_require__(0);
+var AppComponent = (function () {
+    function AppComponent() {
+    }
+    return AppComponent;
+}());
+AppComponent = __decorate([
+    core_1.Component({
+        selector: 'app',
+        template: __webpack_require__(129),
+        styles: [__webpack_require__(145)]
+    })
+], AppComponent);
+exports.AppComponent = AppComponent;
+
+
+/***/ }),
+/* 66 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8127,13 +10905,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var authorization_view_model_1 = __webpack_require__(84);
-var authorization_service_1 = __webpack_require__(76);
-var router_1 = __webpack_require__(11);
-__webpack_require__(27);
-__webpack_require__(26);
-__webpack_require__(25);
-var keys = __webpack_require__(52);
+var authorization_view_model_1 = __webpack_require__(112);
+var authorization_service_1 = __webpack_require__(102);
+var router_1 = __webpack_require__(12);
+__webpack_require__(21);
+__webpack_require__(32);
+__webpack_require__(20);
+var keys = __webpack_require__(49);
 var AuthorizationComponent = (function () {
     function AuthorizationComponent(_authorizationService, _router) {
         this._authorizationService = _authorizationService;
@@ -8195,8 +10973,8 @@ __decorate([
 ], AuthorizationComponent.prototype, "authorizeModel", void 0);
 AuthorizationComponent = __decorate([
     core_1.Component({
-        template: __webpack_require__(100),
-        styles: [__webpack_require__(118)],
+        template: __webpack_require__(130),
+        styles: [__webpack_require__(146)],
         providers: [authorization_service_1.AuthorizationService]
     }),
     __metadata("design:paramtypes", [authorization_service_1.AuthorizationService,
@@ -8206,7 +10984,7 @@ exports.AuthorizationComponent = AuthorizationComponent;
 
 
 /***/ }),
-/* 45 */
+/* 67 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8219,7 +10997,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var main_page_view_model_1 = __webpack_require__(85);
+var main_page_view_model_1 = __webpack_require__(113);
 var HomeComponent = (function () {
     function HomeComponent() {
     }
@@ -8258,15 +11036,15 @@ var HomeComponent = (function () {
 HomeComponent = __decorate([
     core_1.Component({
         selector: 'home',
-        template: __webpack_require__(101),
-        styles: [__webpack_require__(119)]
+        template: __webpack_require__(131),
+        styles: [__webpack_require__(147)]
     })
 ], HomeComponent);
 exports.HomeComponent = HomeComponent;
 
 
 /***/ }),
-/* 46 */
+/* 68 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8277,30 +11055,74 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var registration_view_model_1 = __webpack_require__(70);
+var router_1 = __webpack_require__(12);
+var registration_view_model_1 = __webpack_require__(114);
+var user_service_1 = __webpack_require__(104);
+var forms_1 = __webpack_require__(9);
+var app_component_1 = __webpack_require__(65);
+var keys = __webpack_require__(49);
 var RegistrationComponent = (function () {
-    function RegistrationComponent() {
+    function RegistrationComponent(_router, _userService, _formBuilder, _app) {
+        this._router = _router;
+        this._userService = _userService;
+        this._formBuilder = _formBuilder;
+        this._app = _app;
         this.registrationViewModel = new registration_view_model_1.RegistrationViewModel();
     }
-    RegistrationComponent.prototype.showMessage = function () {
-        alert(this.registrationViewModel.firstName);
+    RegistrationComponent.prototype.register = function () {
+        var _this = this;
+        this.errorMessage = "";
+        sessionStorage.clear();
+        this._userService.create(this.registrationViewModel).subscribe(function (a) {
+            _this.autType = a;
+            _this.errorMessage = a.errorMessage;
+            localStorage.setItem(keys.keyLogin, _this.autType.login);
+            localStorage.setItem(keys.keyToken, _this.autType.access_token);
+            localStorage.setItem(keys.keyId, _this.autType.id.toString());
+            localStorage.setItem(keys.keyFirstName, _this.autType.firstName);
+            localStorage.setItem(keys.keyLastName, _this.autType.lastName);
+            localStorage.setItem(keys.keyEmail, _this.autType.email);
+            localStorage.setItem(keys.keyAddress, _this.autType.address);
+            localStorage.setItem(keys.keyPhoto, _this.autType.photoUrl);
+            if (!_this.errorMessage) {
+                _this._router.navigate(['/']);
+            }
+        });
+    };
+    RegistrationComponent.prototype.buildForm = function () {
+        this.form = this._formBuilder.group({
+            firstName: ['', [forms_1.Validators.required, forms_1.Validators.maxLength(20)]],
+            lastName: ['', [forms_1.Validators.required, forms_1.Validators.maxLength(20)]],
+            login: ['', [forms_1.Validators.required, forms_1.Validators.pattern("^[a-zA-Z](.[a-zA-Z0-9_-]*)$")]],
+            email: ['', [forms_1.Validators.required, forms_1.Validators.pattern("^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$")]],
+            password: ['', [forms_1.Validators.required, forms_1.Validators.minLength(6)]],
+            confirmPassword: ['', [forms_1.Validators.required, forms_1.Validators.minLength(6)]]
+        });
     };
     return RegistrationComponent;
 }());
 RegistrationComponent = __decorate([
     core_1.Component({
         selector: 'registration',
-        template: __webpack_require__(102),
-        styles: [__webpack_require__(120)],
-    })
+        template: __webpack_require__(132),
+        styles: [__webpack_require__(148)],
+        providers: [user_service_1.UserService]
+    }),
+    __metadata("design:paramtypes", [router_1.Router,
+        user_service_1.UserService,
+        forms_1.FormBuilder,
+        app_component_1.AppComponent])
 ], RegistrationComponent);
 exports.RegistrationComponent = RegistrationComponent;
 
 
 /***/ }),
-/* 47 */
+/* 69 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8321,14 +11143,14 @@ var SuperAdminComplaintsComponent = (function () {
 SuperAdminComplaintsComponent = __decorate([
     core_1.Component({
         selector: 'super-admin-complaints',
-        template: __webpack_require__(103)
+        template: __webpack_require__(133)
     })
 ], SuperAdminComplaintsComponent);
 exports.SuperAdminComplaintsComponent = SuperAdminComplaintsComponent;
 
 
 /***/ }),
-/* 48 */
+/* 70 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8349,14 +11171,14 @@ var SuperAdminOrganizationsComponent = (function () {
 SuperAdminOrganizationsComponent = __decorate([
     core_1.Component({
         selector: 'super-admin-organizations',
-        template: __webpack_require__(104)
+        template: __webpack_require__(134)
     })
 ], SuperAdminOrganizationsComponent);
 exports.SuperAdminOrganizationsComponent = SuperAdminOrganizationsComponent;
 
 
 /***/ }),
-/* 49 */
+/* 71 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8377,14 +11199,14 @@ var SuperAdminUsersComponent = (function () {
 SuperAdminUsersComponent = __decorate([
     core_1.Component({
         selector: 'super-admin-users',
-        template: __webpack_require__(105)
+        template: __webpack_require__(135)
     })
 ], SuperAdminUsersComponent);
 exports.SuperAdminUsersComponent = SuperAdminUsersComponent;
 
 
 /***/ }),
-/* 50 */
+/* 72 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8405,15 +11227,15 @@ var SuperAdminComponent = (function () {
 SuperAdminComponent = __decorate([
     core_1.Component({
         selector: 'super-admin',
-        template: __webpack_require__(106),
-        styles: [__webpack_require__(121)]
+        template: __webpack_require__(136),
+        styles: [__webpack_require__(149)]
     })
 ], SuperAdminComponent);
 exports.SuperAdminComponent = SuperAdminComponent;
 
 
 /***/ }),
-/* 51 */
+/* 73 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8428,10 +11250,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var user_info_service_1 = __webpack_require__(78);
+var user_info_service_1 = __webpack_require__(105);
 var core_1 = __webpack_require__(0);
-var user_info_model_1 = __webpack_require__(86);
-var forms_1 = __webpack_require__(12);
+var user_info_model_1 = __webpack_require__(115);
+var forms_1 = __webpack_require__(9);
 var UserProfileComponent = (function () {
     //Injecting dependecies
     function UserProfileComponent(userService, fb) {
@@ -8555,8 +11377,8 @@ var UserProfileComponent = (function () {
 UserProfileComponent = __decorate([
     core_1.Component({
         selector: 'user-info',
-        template: __webpack_require__(107),
-        styles: [__webpack_require__(122)],
+        template: __webpack_require__(137),
+        styles: [__webpack_require__(150)],
         providers: [user_info_service_1.UserInfoService, forms_1.FormBuilder]
     })
     //User Profile component handles editing of user profile page
@@ -8568,24 +11390,50 @@ exports.UserProfileComponent = UserProfileComponent;
 
 
 /***/ }),
-/* 52 */
+/* 74 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.keyToken = "token";
-exports.keyLogin = "login";
-exports.keyId = "id";
-exports.keyFirstName = "firstName";
-exports.keyLastName = "lastName";
-exports.keyEmail = "email";
-exports.keyAddress = "address";
-exports.keyPhoto = "photo";
+var core_1 = __webpack_require__(0);
+var common_1 = __webpack_require__(22);
+var map_component_1 = __webpack_require__(108);
+var forms_1 = __webpack_require__(9);
+var core_2 = __webpack_require__(83);
+var MapModule = (function () {
+    function MapModule() {
+    }
+    return MapModule;
+}());
+MapModule = __decorate([
+    core_1.NgModule({
+        imports: [
+            common_1.CommonModule,
+            forms_1.FormsModule,
+            forms_1.ReactiveFormsModule,
+            core_2.AgmCoreModule.forRoot({ apiKey: 'AIzaSyD7ERhdsJHPHRAkxeRuBm4e0pekX1H2lZ8' })
+        ],
+        declarations: [
+            map_component_1.MapComponent
+        ],
+        exports: [
+            map_component_1.MapComponent,
+            forms_1.FormsModule
+        ]
+    })
+], MapModule);
+exports.MapModule = MapModule;
 
 
 /***/ }),
-/* 53 */
+/* 75 */
 /***/ (function(module, exports) {
 
 var ENTITIES = [['Aacute', [193]], ['aacute', [225]], ['Abreve', [258]], ['abreve', [259]], ['ac', [8766]], ['acd', [8767]], ['acE', [8766, 819]], ['Acirc', [194]], ['acirc', [226]], ['acute', [180]], ['Acy', [1040]], ['acy', [1072]], ['AElig', [198]], ['aelig', [230]], ['af', [8289]], ['Afr', [120068]], ['afr', [120094]], ['Agrave', [192]], ['agrave', [224]], ['alefsym', [8501]], ['aleph', [8501]], ['Alpha', [913]], ['alpha', [945]], ['Amacr', [256]], ['amacr', [257]], ['amalg', [10815]], ['amp', [38]], ['AMP', [38]], ['andand', [10837]], ['And', [10835]], ['and', [8743]], ['andd', [10844]], ['andslope', [10840]], ['andv', [10842]], ['ang', [8736]], ['ange', [10660]], ['angle', [8736]], ['angmsdaa', [10664]], ['angmsdab', [10665]], ['angmsdac', [10666]], ['angmsdad', [10667]], ['angmsdae', [10668]], ['angmsdaf', [10669]], ['angmsdag', [10670]], ['angmsdah', [10671]], ['angmsd', [8737]], ['angrt', [8735]], ['angrtvb', [8894]], ['angrtvbd', [10653]], ['angsph', [8738]], ['angst', [197]], ['angzarr', [9084]], ['Aogon', [260]], ['aogon', [261]], ['Aopf', [120120]], ['aopf', [120146]], ['apacir', [10863]], ['ap', [8776]], ['apE', [10864]], ['ape', [8778]], ['apid', [8779]], ['apos', [39]], ['ApplyFunction', [8289]], ['approx', [8776]], ['approxeq', [8778]], ['Aring', [197]], ['aring', [229]], ['Ascr', [119964]], ['ascr', [119990]], ['Assign', [8788]], ['ast', [42]], ['asymp', [8776]], ['asympeq', [8781]], ['Atilde', [195]], ['atilde', [227]], ['Auml', [196]], ['auml', [228]], ['awconint', [8755]], ['awint', [10769]], ['backcong', [8780]], ['backepsilon', [1014]], ['backprime', [8245]], ['backsim', [8765]], ['backsimeq', [8909]], ['Backslash', [8726]], ['Barv', [10983]], ['barvee', [8893]], ['barwed', [8965]], ['Barwed', [8966]], ['barwedge', [8965]], ['bbrk', [9141]], ['bbrktbrk', [9142]], ['bcong', [8780]], ['Bcy', [1041]], ['bcy', [1073]], ['bdquo', [8222]], ['becaus', [8757]], ['because', [8757]], ['Because', [8757]], ['bemptyv', [10672]], ['bepsi', [1014]], ['bernou', [8492]], ['Bernoullis', [8492]], ['Beta', [914]], ['beta', [946]], ['beth', [8502]], ['between', [8812]], ['Bfr', [120069]], ['bfr', [120095]], ['bigcap', [8898]], ['bigcirc', [9711]], ['bigcup', [8899]], ['bigodot', [10752]], ['bigoplus', [10753]], ['bigotimes', [10754]], ['bigsqcup', [10758]], ['bigstar', [9733]], ['bigtriangledown', [9661]], ['bigtriangleup', [9651]], ['biguplus', [10756]], ['bigvee', [8897]], ['bigwedge', [8896]], ['bkarow', [10509]], ['blacklozenge', [10731]], ['blacksquare', [9642]], ['blacktriangle', [9652]], ['blacktriangledown', [9662]], ['blacktriangleleft', [9666]], ['blacktriangleright', [9656]], ['blank', [9251]], ['blk12', [9618]], ['blk14', [9617]], ['blk34', [9619]], ['block', [9608]], ['bne', [61, 8421]], ['bnequiv', [8801, 8421]], ['bNot', [10989]], ['bnot', [8976]], ['Bopf', [120121]], ['bopf', [120147]], ['bot', [8869]], ['bottom', [8869]], ['bowtie', [8904]], ['boxbox', [10697]], ['boxdl', [9488]], ['boxdL', [9557]], ['boxDl', [9558]], ['boxDL', [9559]], ['boxdr', [9484]], ['boxdR', [9554]], ['boxDr', [9555]], ['boxDR', [9556]], ['boxh', [9472]], ['boxH', [9552]], ['boxhd', [9516]], ['boxHd', [9572]], ['boxhD', [9573]], ['boxHD', [9574]], ['boxhu', [9524]], ['boxHu', [9575]], ['boxhU', [9576]], ['boxHU', [9577]], ['boxminus', [8863]], ['boxplus', [8862]], ['boxtimes', [8864]], ['boxul', [9496]], ['boxuL', [9563]], ['boxUl', [9564]], ['boxUL', [9565]], ['boxur', [9492]], ['boxuR', [9560]], ['boxUr', [9561]], ['boxUR', [9562]], ['boxv', [9474]], ['boxV', [9553]], ['boxvh', [9532]], ['boxvH', [9578]], ['boxVh', [9579]], ['boxVH', [9580]], ['boxvl', [9508]], ['boxvL', [9569]], ['boxVl', [9570]], ['boxVL', [9571]], ['boxvr', [9500]], ['boxvR', [9566]], ['boxVr', [9567]], ['boxVR', [9568]], ['bprime', [8245]], ['breve', [728]], ['Breve', [728]], ['brvbar', [166]], ['bscr', [119991]], ['Bscr', [8492]], ['bsemi', [8271]], ['bsim', [8765]], ['bsime', [8909]], ['bsolb', [10693]], ['bsol', [92]], ['bsolhsub', [10184]], ['bull', [8226]], ['bullet', [8226]], ['bump', [8782]], ['bumpE', [10926]], ['bumpe', [8783]], ['Bumpeq', [8782]], ['bumpeq', [8783]], ['Cacute', [262]], ['cacute', [263]], ['capand', [10820]], ['capbrcup', [10825]], ['capcap', [10827]], ['cap', [8745]], ['Cap', [8914]], ['capcup', [10823]], ['capdot', [10816]], ['CapitalDifferentialD', [8517]], ['caps', [8745, 65024]], ['caret', [8257]], ['caron', [711]], ['Cayleys', [8493]], ['ccaps', [10829]], ['Ccaron', [268]], ['ccaron', [269]], ['Ccedil', [199]], ['ccedil', [231]], ['Ccirc', [264]], ['ccirc', [265]], ['Cconint', [8752]], ['ccups', [10828]], ['ccupssm', [10832]], ['Cdot', [266]], ['cdot', [267]], ['cedil', [184]], ['Cedilla', [184]], ['cemptyv', [10674]], ['cent', [162]], ['centerdot', [183]], ['CenterDot', [183]], ['cfr', [120096]], ['Cfr', [8493]], ['CHcy', [1063]], ['chcy', [1095]], ['check', [10003]], ['checkmark', [10003]], ['Chi', [935]], ['chi', [967]], ['circ', [710]], ['circeq', [8791]], ['circlearrowleft', [8634]], ['circlearrowright', [8635]], ['circledast', [8859]], ['circledcirc', [8858]], ['circleddash', [8861]], ['CircleDot', [8857]], ['circledR', [174]], ['circledS', [9416]], ['CircleMinus', [8854]], ['CirclePlus', [8853]], ['CircleTimes', [8855]], ['cir', [9675]], ['cirE', [10691]], ['cire', [8791]], ['cirfnint', [10768]], ['cirmid', [10991]], ['cirscir', [10690]], ['ClockwiseContourIntegral', [8754]], ['clubs', [9827]], ['clubsuit', [9827]], ['colon', [58]], ['Colon', [8759]], ['Colone', [10868]], ['colone', [8788]], ['coloneq', [8788]], ['comma', [44]], ['commat', [64]], ['comp', [8705]], ['compfn', [8728]], ['complement', [8705]], ['complexes', [8450]], ['cong', [8773]], ['congdot', [10861]], ['Congruent', [8801]], ['conint', [8750]], ['Conint', [8751]], ['ContourIntegral', [8750]], ['copf', [120148]], ['Copf', [8450]], ['coprod', [8720]], ['Coproduct', [8720]], ['copy', [169]], ['COPY', [169]], ['copysr', [8471]], ['CounterClockwiseContourIntegral', [8755]], ['crarr', [8629]], ['cross', [10007]], ['Cross', [10799]], ['Cscr', [119966]], ['cscr', [119992]], ['csub', [10959]], ['csube', [10961]], ['csup', [10960]], ['csupe', [10962]], ['ctdot', [8943]], ['cudarrl', [10552]], ['cudarrr', [10549]], ['cuepr', [8926]], ['cuesc', [8927]], ['cularr', [8630]], ['cularrp', [10557]], ['cupbrcap', [10824]], ['cupcap', [10822]], ['CupCap', [8781]], ['cup', [8746]], ['Cup', [8915]], ['cupcup', [10826]], ['cupdot', [8845]], ['cupor', [10821]], ['cups', [8746, 65024]], ['curarr', [8631]], ['curarrm', [10556]], ['curlyeqprec', [8926]], ['curlyeqsucc', [8927]], ['curlyvee', [8910]], ['curlywedge', [8911]], ['curren', [164]], ['curvearrowleft', [8630]], ['curvearrowright', [8631]], ['cuvee', [8910]], ['cuwed', [8911]], ['cwconint', [8754]], ['cwint', [8753]], ['cylcty', [9005]], ['dagger', [8224]], ['Dagger', [8225]], ['daleth', [8504]], ['darr', [8595]], ['Darr', [8609]], ['dArr', [8659]], ['dash', [8208]], ['Dashv', [10980]], ['dashv', [8867]], ['dbkarow', [10511]], ['dblac', [733]], ['Dcaron', [270]], ['dcaron', [271]], ['Dcy', [1044]], ['dcy', [1076]], ['ddagger', [8225]], ['ddarr', [8650]], ['DD', [8517]], ['dd', [8518]], ['DDotrahd', [10513]], ['ddotseq', [10871]], ['deg', [176]], ['Del', [8711]], ['Delta', [916]], ['delta', [948]], ['demptyv', [10673]], ['dfisht', [10623]], ['Dfr', [120071]], ['dfr', [120097]], ['dHar', [10597]], ['dharl', [8643]], ['dharr', [8642]], ['DiacriticalAcute', [180]], ['DiacriticalDot', [729]], ['DiacriticalDoubleAcute', [733]], ['DiacriticalGrave', [96]], ['DiacriticalTilde', [732]], ['diam', [8900]], ['diamond', [8900]], ['Diamond', [8900]], ['diamondsuit', [9830]], ['diams', [9830]], ['die', [168]], ['DifferentialD', [8518]], ['digamma', [989]], ['disin', [8946]], ['div', [247]], ['divide', [247]], ['divideontimes', [8903]], ['divonx', [8903]], ['DJcy', [1026]], ['djcy', [1106]], ['dlcorn', [8990]], ['dlcrop', [8973]], ['dollar', [36]], ['Dopf', [120123]], ['dopf', [120149]], ['Dot', [168]], ['dot', [729]], ['DotDot', [8412]], ['doteq', [8784]], ['doteqdot', [8785]], ['DotEqual', [8784]], ['dotminus', [8760]], ['dotplus', [8724]], ['dotsquare', [8865]], ['doublebarwedge', [8966]], ['DoubleContourIntegral', [8751]], ['DoubleDot', [168]], ['DoubleDownArrow', [8659]], ['DoubleLeftArrow', [8656]], ['DoubleLeftRightArrow', [8660]], ['DoubleLeftTee', [10980]], ['DoubleLongLeftArrow', [10232]], ['DoubleLongLeftRightArrow', [10234]], ['DoubleLongRightArrow', [10233]], ['DoubleRightArrow', [8658]], ['DoubleRightTee', [8872]], ['DoubleUpArrow', [8657]], ['DoubleUpDownArrow', [8661]], ['DoubleVerticalBar', [8741]], ['DownArrowBar', [10515]], ['downarrow', [8595]], ['DownArrow', [8595]], ['Downarrow', [8659]], ['DownArrowUpArrow', [8693]], ['DownBreve', [785]], ['downdownarrows', [8650]], ['downharpoonleft', [8643]], ['downharpoonright', [8642]], ['DownLeftRightVector', [10576]], ['DownLeftTeeVector', [10590]], ['DownLeftVectorBar', [10582]], ['DownLeftVector', [8637]], ['DownRightTeeVector', [10591]], ['DownRightVectorBar', [10583]], ['DownRightVector', [8641]], ['DownTeeArrow', [8615]], ['DownTee', [8868]], ['drbkarow', [10512]], ['drcorn', [8991]], ['drcrop', [8972]], ['Dscr', [119967]], ['dscr', [119993]], ['DScy', [1029]], ['dscy', [1109]], ['dsol', [10742]], ['Dstrok', [272]], ['dstrok', [273]], ['dtdot', [8945]], ['dtri', [9663]], ['dtrif', [9662]], ['duarr', [8693]], ['duhar', [10607]], ['dwangle', [10662]], ['DZcy', [1039]], ['dzcy', [1119]], ['dzigrarr', [10239]], ['Eacute', [201]], ['eacute', [233]], ['easter', [10862]], ['Ecaron', [282]], ['ecaron', [283]], ['Ecirc', [202]], ['ecirc', [234]], ['ecir', [8790]], ['ecolon', [8789]], ['Ecy', [1069]], ['ecy', [1101]], ['eDDot', [10871]], ['Edot', [278]], ['edot', [279]], ['eDot', [8785]], ['ee', [8519]], ['efDot', [8786]], ['Efr', [120072]], ['efr', [120098]], ['eg', [10906]], ['Egrave', [200]], ['egrave', [232]], ['egs', [10902]], ['egsdot', [10904]], ['el', [10905]], ['Element', [8712]], ['elinters', [9191]], ['ell', [8467]], ['els', [10901]], ['elsdot', [10903]], ['Emacr', [274]], ['emacr', [275]], ['empty', [8709]], ['emptyset', [8709]], ['EmptySmallSquare', [9723]], ['emptyv', [8709]], ['EmptyVerySmallSquare', [9643]], ['emsp13', [8196]], ['emsp14', [8197]], ['emsp', [8195]], ['ENG', [330]], ['eng', [331]], ['ensp', [8194]], ['Eogon', [280]], ['eogon', [281]], ['Eopf', [120124]], ['eopf', [120150]], ['epar', [8917]], ['eparsl', [10723]], ['eplus', [10865]], ['epsi', [949]], ['Epsilon', [917]], ['epsilon', [949]], ['epsiv', [1013]], ['eqcirc', [8790]], ['eqcolon', [8789]], ['eqsim', [8770]], ['eqslantgtr', [10902]], ['eqslantless', [10901]], ['Equal', [10869]], ['equals', [61]], ['EqualTilde', [8770]], ['equest', [8799]], ['Equilibrium', [8652]], ['equiv', [8801]], ['equivDD', [10872]], ['eqvparsl', [10725]], ['erarr', [10609]], ['erDot', [8787]], ['escr', [8495]], ['Escr', [8496]], ['esdot', [8784]], ['Esim', [10867]], ['esim', [8770]], ['Eta', [919]], ['eta', [951]], ['ETH', [208]], ['eth', [240]], ['Euml', [203]], ['euml', [235]], ['euro', [8364]], ['excl', [33]], ['exist', [8707]], ['Exists', [8707]], ['expectation', [8496]], ['exponentiale', [8519]], ['ExponentialE', [8519]], ['fallingdotseq', [8786]], ['Fcy', [1060]], ['fcy', [1092]], ['female', [9792]], ['ffilig', [64259]], ['fflig', [64256]], ['ffllig', [64260]], ['Ffr', [120073]], ['ffr', [120099]], ['filig', [64257]], ['FilledSmallSquare', [9724]], ['FilledVerySmallSquare', [9642]], ['fjlig', [102, 106]], ['flat', [9837]], ['fllig', [64258]], ['fltns', [9649]], ['fnof', [402]], ['Fopf', [120125]], ['fopf', [120151]], ['forall', [8704]], ['ForAll', [8704]], ['fork', [8916]], ['forkv', [10969]], ['Fouriertrf', [8497]], ['fpartint', [10765]], ['frac12', [189]], ['frac13', [8531]], ['frac14', [188]], ['frac15', [8533]], ['frac16', [8537]], ['frac18', [8539]], ['frac23', [8532]], ['frac25', [8534]], ['frac34', [190]], ['frac35', [8535]], ['frac38', [8540]], ['frac45', [8536]], ['frac56', [8538]], ['frac58', [8541]], ['frac78', [8542]], ['frasl', [8260]], ['frown', [8994]], ['fscr', [119995]], ['Fscr', [8497]], ['gacute', [501]], ['Gamma', [915]], ['gamma', [947]], ['Gammad', [988]], ['gammad', [989]], ['gap', [10886]], ['Gbreve', [286]], ['gbreve', [287]], ['Gcedil', [290]], ['Gcirc', [284]], ['gcirc', [285]], ['Gcy', [1043]], ['gcy', [1075]], ['Gdot', [288]], ['gdot', [289]], ['ge', [8805]], ['gE', [8807]], ['gEl', [10892]], ['gel', [8923]], ['geq', [8805]], ['geqq', [8807]], ['geqslant', [10878]], ['gescc', [10921]], ['ges', [10878]], ['gesdot', [10880]], ['gesdoto', [10882]], ['gesdotol', [10884]], ['gesl', [8923, 65024]], ['gesles', [10900]], ['Gfr', [120074]], ['gfr', [120100]], ['gg', [8811]], ['Gg', [8921]], ['ggg', [8921]], ['gimel', [8503]], ['GJcy', [1027]], ['gjcy', [1107]], ['gla', [10917]], ['gl', [8823]], ['glE', [10898]], ['glj', [10916]], ['gnap', [10890]], ['gnapprox', [10890]], ['gne', [10888]], ['gnE', [8809]], ['gneq', [10888]], ['gneqq', [8809]], ['gnsim', [8935]], ['Gopf', [120126]], ['gopf', [120152]], ['grave', [96]], ['GreaterEqual', [8805]], ['GreaterEqualLess', [8923]], ['GreaterFullEqual', [8807]], ['GreaterGreater', [10914]], ['GreaterLess', [8823]], ['GreaterSlantEqual', [10878]], ['GreaterTilde', [8819]], ['Gscr', [119970]], ['gscr', [8458]], ['gsim', [8819]], ['gsime', [10894]], ['gsiml', [10896]], ['gtcc', [10919]], ['gtcir', [10874]], ['gt', [62]], ['GT', [62]], ['Gt', [8811]], ['gtdot', [8919]], ['gtlPar', [10645]], ['gtquest', [10876]], ['gtrapprox', [10886]], ['gtrarr', [10616]], ['gtrdot', [8919]], ['gtreqless', [8923]], ['gtreqqless', [10892]], ['gtrless', [8823]], ['gtrsim', [8819]], ['gvertneqq', [8809, 65024]], ['gvnE', [8809, 65024]], ['Hacek', [711]], ['hairsp', [8202]], ['half', [189]], ['hamilt', [8459]], ['HARDcy', [1066]], ['hardcy', [1098]], ['harrcir', [10568]], ['harr', [8596]], ['hArr', [8660]], ['harrw', [8621]], ['Hat', [94]], ['hbar', [8463]], ['Hcirc', [292]], ['hcirc', [293]], ['hearts', [9829]], ['heartsuit', [9829]], ['hellip', [8230]], ['hercon', [8889]], ['hfr', [120101]], ['Hfr', [8460]], ['HilbertSpace', [8459]], ['hksearow', [10533]], ['hkswarow', [10534]], ['hoarr', [8703]], ['homtht', [8763]], ['hookleftarrow', [8617]], ['hookrightarrow', [8618]], ['hopf', [120153]], ['Hopf', [8461]], ['horbar', [8213]], ['HorizontalLine', [9472]], ['hscr', [119997]], ['Hscr', [8459]], ['hslash', [8463]], ['Hstrok', [294]], ['hstrok', [295]], ['HumpDownHump', [8782]], ['HumpEqual', [8783]], ['hybull', [8259]], ['hyphen', [8208]], ['Iacute', [205]], ['iacute', [237]], ['ic', [8291]], ['Icirc', [206]], ['icirc', [238]], ['Icy', [1048]], ['icy', [1080]], ['Idot', [304]], ['IEcy', [1045]], ['iecy', [1077]], ['iexcl', [161]], ['iff', [8660]], ['ifr', [120102]], ['Ifr', [8465]], ['Igrave', [204]], ['igrave', [236]], ['ii', [8520]], ['iiiint', [10764]], ['iiint', [8749]], ['iinfin', [10716]], ['iiota', [8489]], ['IJlig', [306]], ['ijlig', [307]], ['Imacr', [298]], ['imacr', [299]], ['image', [8465]], ['ImaginaryI', [8520]], ['imagline', [8464]], ['imagpart', [8465]], ['imath', [305]], ['Im', [8465]], ['imof', [8887]], ['imped', [437]], ['Implies', [8658]], ['incare', [8453]], ['in', [8712]], ['infin', [8734]], ['infintie', [10717]], ['inodot', [305]], ['intcal', [8890]], ['int', [8747]], ['Int', [8748]], ['integers', [8484]], ['Integral', [8747]], ['intercal', [8890]], ['Intersection', [8898]], ['intlarhk', [10775]], ['intprod', [10812]], ['InvisibleComma', [8291]], ['InvisibleTimes', [8290]], ['IOcy', [1025]], ['iocy', [1105]], ['Iogon', [302]], ['iogon', [303]], ['Iopf', [120128]], ['iopf', [120154]], ['Iota', [921]], ['iota', [953]], ['iprod', [10812]], ['iquest', [191]], ['iscr', [119998]], ['Iscr', [8464]], ['isin', [8712]], ['isindot', [8949]], ['isinE', [8953]], ['isins', [8948]], ['isinsv', [8947]], ['isinv', [8712]], ['it', [8290]], ['Itilde', [296]], ['itilde', [297]], ['Iukcy', [1030]], ['iukcy', [1110]], ['Iuml', [207]], ['iuml', [239]], ['Jcirc', [308]], ['jcirc', [309]], ['Jcy', [1049]], ['jcy', [1081]], ['Jfr', [120077]], ['jfr', [120103]], ['jmath', [567]], ['Jopf', [120129]], ['jopf', [120155]], ['Jscr', [119973]], ['jscr', [119999]], ['Jsercy', [1032]], ['jsercy', [1112]], ['Jukcy', [1028]], ['jukcy', [1108]], ['Kappa', [922]], ['kappa', [954]], ['kappav', [1008]], ['Kcedil', [310]], ['kcedil', [311]], ['Kcy', [1050]], ['kcy', [1082]], ['Kfr', [120078]], ['kfr', [120104]], ['kgreen', [312]], ['KHcy', [1061]], ['khcy', [1093]], ['KJcy', [1036]], ['kjcy', [1116]], ['Kopf', [120130]], ['kopf', [120156]], ['Kscr', [119974]], ['kscr', [120000]], ['lAarr', [8666]], ['Lacute', [313]], ['lacute', [314]], ['laemptyv', [10676]], ['lagran', [8466]], ['Lambda', [923]], ['lambda', [955]], ['lang', [10216]], ['Lang', [10218]], ['langd', [10641]], ['langle', [10216]], ['lap', [10885]], ['Laplacetrf', [8466]], ['laquo', [171]], ['larrb', [8676]], ['larrbfs', [10527]], ['larr', [8592]], ['Larr', [8606]], ['lArr', [8656]], ['larrfs', [10525]], ['larrhk', [8617]], ['larrlp', [8619]], ['larrpl', [10553]], ['larrsim', [10611]], ['larrtl', [8610]], ['latail', [10521]], ['lAtail', [10523]], ['lat', [10923]], ['late', [10925]], ['lates', [10925, 65024]], ['lbarr', [10508]], ['lBarr', [10510]], ['lbbrk', [10098]], ['lbrace', [123]], ['lbrack', [91]], ['lbrke', [10635]], ['lbrksld', [10639]], ['lbrkslu', [10637]], ['Lcaron', [317]], ['lcaron', [318]], ['Lcedil', [315]], ['lcedil', [316]], ['lceil', [8968]], ['lcub', [123]], ['Lcy', [1051]], ['lcy', [1083]], ['ldca', [10550]], ['ldquo', [8220]], ['ldquor', [8222]], ['ldrdhar', [10599]], ['ldrushar', [10571]], ['ldsh', [8626]], ['le', [8804]], ['lE', [8806]], ['LeftAngleBracket', [10216]], ['LeftArrowBar', [8676]], ['leftarrow', [8592]], ['LeftArrow', [8592]], ['Leftarrow', [8656]], ['LeftArrowRightArrow', [8646]], ['leftarrowtail', [8610]], ['LeftCeiling', [8968]], ['LeftDoubleBracket', [10214]], ['LeftDownTeeVector', [10593]], ['LeftDownVectorBar', [10585]], ['LeftDownVector', [8643]], ['LeftFloor', [8970]], ['leftharpoondown', [8637]], ['leftharpoonup', [8636]], ['leftleftarrows', [8647]], ['leftrightarrow', [8596]], ['LeftRightArrow', [8596]], ['Leftrightarrow', [8660]], ['leftrightarrows', [8646]], ['leftrightharpoons', [8651]], ['leftrightsquigarrow', [8621]], ['LeftRightVector', [10574]], ['LeftTeeArrow', [8612]], ['LeftTee', [8867]], ['LeftTeeVector', [10586]], ['leftthreetimes', [8907]], ['LeftTriangleBar', [10703]], ['LeftTriangle', [8882]], ['LeftTriangleEqual', [8884]], ['LeftUpDownVector', [10577]], ['LeftUpTeeVector', [10592]], ['LeftUpVectorBar', [10584]], ['LeftUpVector', [8639]], ['LeftVectorBar', [10578]], ['LeftVector', [8636]], ['lEg', [10891]], ['leg', [8922]], ['leq', [8804]], ['leqq', [8806]], ['leqslant', [10877]], ['lescc', [10920]], ['les', [10877]], ['lesdot', [10879]], ['lesdoto', [10881]], ['lesdotor', [10883]], ['lesg', [8922, 65024]], ['lesges', [10899]], ['lessapprox', [10885]], ['lessdot', [8918]], ['lesseqgtr', [8922]], ['lesseqqgtr', [10891]], ['LessEqualGreater', [8922]], ['LessFullEqual', [8806]], ['LessGreater', [8822]], ['lessgtr', [8822]], ['LessLess', [10913]], ['lesssim', [8818]], ['LessSlantEqual', [10877]], ['LessTilde', [8818]], ['lfisht', [10620]], ['lfloor', [8970]], ['Lfr', [120079]], ['lfr', [120105]], ['lg', [8822]], ['lgE', [10897]], ['lHar', [10594]], ['lhard', [8637]], ['lharu', [8636]], ['lharul', [10602]], ['lhblk', [9604]], ['LJcy', [1033]], ['ljcy', [1113]], ['llarr', [8647]], ['ll', [8810]], ['Ll', [8920]], ['llcorner', [8990]], ['Lleftarrow', [8666]], ['llhard', [10603]], ['lltri', [9722]], ['Lmidot', [319]], ['lmidot', [320]], ['lmoustache', [9136]], ['lmoust', [9136]], ['lnap', [10889]], ['lnapprox', [10889]], ['lne', [10887]], ['lnE', [8808]], ['lneq', [10887]], ['lneqq', [8808]], ['lnsim', [8934]], ['loang', [10220]], ['loarr', [8701]], ['lobrk', [10214]], ['longleftarrow', [10229]], ['LongLeftArrow', [10229]], ['Longleftarrow', [10232]], ['longleftrightarrow', [10231]], ['LongLeftRightArrow', [10231]], ['Longleftrightarrow', [10234]], ['longmapsto', [10236]], ['longrightarrow', [10230]], ['LongRightArrow', [10230]], ['Longrightarrow', [10233]], ['looparrowleft', [8619]], ['looparrowright', [8620]], ['lopar', [10629]], ['Lopf', [120131]], ['lopf', [120157]], ['loplus', [10797]], ['lotimes', [10804]], ['lowast', [8727]], ['lowbar', [95]], ['LowerLeftArrow', [8601]], ['LowerRightArrow', [8600]], ['loz', [9674]], ['lozenge', [9674]], ['lozf', [10731]], ['lpar', [40]], ['lparlt', [10643]], ['lrarr', [8646]], ['lrcorner', [8991]], ['lrhar', [8651]], ['lrhard', [10605]], ['lrm', [8206]], ['lrtri', [8895]], ['lsaquo', [8249]], ['lscr', [120001]], ['Lscr', [8466]], ['lsh', [8624]], ['Lsh', [8624]], ['lsim', [8818]], ['lsime', [10893]], ['lsimg', [10895]], ['lsqb', [91]], ['lsquo', [8216]], ['lsquor', [8218]], ['Lstrok', [321]], ['lstrok', [322]], ['ltcc', [10918]], ['ltcir', [10873]], ['lt', [60]], ['LT', [60]], ['Lt', [8810]], ['ltdot', [8918]], ['lthree', [8907]], ['ltimes', [8905]], ['ltlarr', [10614]], ['ltquest', [10875]], ['ltri', [9667]], ['ltrie', [8884]], ['ltrif', [9666]], ['ltrPar', [10646]], ['lurdshar', [10570]], ['luruhar', [10598]], ['lvertneqq', [8808, 65024]], ['lvnE', [8808, 65024]], ['macr', [175]], ['male', [9794]], ['malt', [10016]], ['maltese', [10016]], ['Map', [10501]], ['map', [8614]], ['mapsto', [8614]], ['mapstodown', [8615]], ['mapstoleft', [8612]], ['mapstoup', [8613]], ['marker', [9646]], ['mcomma', [10793]], ['Mcy', [1052]], ['mcy', [1084]], ['mdash', [8212]], ['mDDot', [8762]], ['measuredangle', [8737]], ['MediumSpace', [8287]], ['Mellintrf', [8499]], ['Mfr', [120080]], ['mfr', [120106]], ['mho', [8487]], ['micro', [181]], ['midast', [42]], ['midcir', [10992]], ['mid', [8739]], ['middot', [183]], ['minusb', [8863]], ['minus', [8722]], ['minusd', [8760]], ['minusdu', [10794]], ['MinusPlus', [8723]], ['mlcp', [10971]], ['mldr', [8230]], ['mnplus', [8723]], ['models', [8871]], ['Mopf', [120132]], ['mopf', [120158]], ['mp', [8723]], ['mscr', [120002]], ['Mscr', [8499]], ['mstpos', [8766]], ['Mu', [924]], ['mu', [956]], ['multimap', [8888]], ['mumap', [8888]], ['nabla', [8711]], ['Nacute', [323]], ['nacute', [324]], ['nang', [8736, 8402]], ['nap', [8777]], ['napE', [10864, 824]], ['napid', [8779, 824]], ['napos', [329]], ['napprox', [8777]], ['natural', [9838]], ['naturals', [8469]], ['natur', [9838]], ['nbsp', [160]], ['nbump', [8782, 824]], ['nbumpe', [8783, 824]], ['ncap', [10819]], ['Ncaron', [327]], ['ncaron', [328]], ['Ncedil', [325]], ['ncedil', [326]], ['ncong', [8775]], ['ncongdot', [10861, 824]], ['ncup', [10818]], ['Ncy', [1053]], ['ncy', [1085]], ['ndash', [8211]], ['nearhk', [10532]], ['nearr', [8599]], ['neArr', [8663]], ['nearrow', [8599]], ['ne', [8800]], ['nedot', [8784, 824]], ['NegativeMediumSpace', [8203]], ['NegativeThickSpace', [8203]], ['NegativeThinSpace', [8203]], ['NegativeVeryThinSpace', [8203]], ['nequiv', [8802]], ['nesear', [10536]], ['nesim', [8770, 824]], ['NestedGreaterGreater', [8811]], ['NestedLessLess', [8810]], ['nexist', [8708]], ['nexists', [8708]], ['Nfr', [120081]], ['nfr', [120107]], ['ngE', [8807, 824]], ['nge', [8817]], ['ngeq', [8817]], ['ngeqq', [8807, 824]], ['ngeqslant', [10878, 824]], ['nges', [10878, 824]], ['nGg', [8921, 824]], ['ngsim', [8821]], ['nGt', [8811, 8402]], ['ngt', [8815]], ['ngtr', [8815]], ['nGtv', [8811, 824]], ['nharr', [8622]], ['nhArr', [8654]], ['nhpar', [10994]], ['ni', [8715]], ['nis', [8956]], ['nisd', [8954]], ['niv', [8715]], ['NJcy', [1034]], ['njcy', [1114]], ['nlarr', [8602]], ['nlArr', [8653]], ['nldr', [8229]], ['nlE', [8806, 824]], ['nle', [8816]], ['nleftarrow', [8602]], ['nLeftarrow', [8653]], ['nleftrightarrow', [8622]], ['nLeftrightarrow', [8654]], ['nleq', [8816]], ['nleqq', [8806, 824]], ['nleqslant', [10877, 824]], ['nles', [10877, 824]], ['nless', [8814]], ['nLl', [8920, 824]], ['nlsim', [8820]], ['nLt', [8810, 8402]], ['nlt', [8814]], ['nltri', [8938]], ['nltrie', [8940]], ['nLtv', [8810, 824]], ['nmid', [8740]], ['NoBreak', [8288]], ['NonBreakingSpace', [160]], ['nopf', [120159]], ['Nopf', [8469]], ['Not', [10988]], ['not', [172]], ['NotCongruent', [8802]], ['NotCupCap', [8813]], ['NotDoubleVerticalBar', [8742]], ['NotElement', [8713]], ['NotEqual', [8800]], ['NotEqualTilde', [8770, 824]], ['NotExists', [8708]], ['NotGreater', [8815]], ['NotGreaterEqual', [8817]], ['NotGreaterFullEqual', [8807, 824]], ['NotGreaterGreater', [8811, 824]], ['NotGreaterLess', [8825]], ['NotGreaterSlantEqual', [10878, 824]], ['NotGreaterTilde', [8821]], ['NotHumpDownHump', [8782, 824]], ['NotHumpEqual', [8783, 824]], ['notin', [8713]], ['notindot', [8949, 824]], ['notinE', [8953, 824]], ['notinva', [8713]], ['notinvb', [8951]], ['notinvc', [8950]], ['NotLeftTriangleBar', [10703, 824]], ['NotLeftTriangle', [8938]], ['NotLeftTriangleEqual', [8940]], ['NotLess', [8814]], ['NotLessEqual', [8816]], ['NotLessGreater', [8824]], ['NotLessLess', [8810, 824]], ['NotLessSlantEqual', [10877, 824]], ['NotLessTilde', [8820]], ['NotNestedGreaterGreater', [10914, 824]], ['NotNestedLessLess', [10913, 824]], ['notni', [8716]], ['notniva', [8716]], ['notnivb', [8958]], ['notnivc', [8957]], ['NotPrecedes', [8832]], ['NotPrecedesEqual', [10927, 824]], ['NotPrecedesSlantEqual', [8928]], ['NotReverseElement', [8716]], ['NotRightTriangleBar', [10704, 824]], ['NotRightTriangle', [8939]], ['NotRightTriangleEqual', [8941]], ['NotSquareSubset', [8847, 824]], ['NotSquareSubsetEqual', [8930]], ['NotSquareSuperset', [8848, 824]], ['NotSquareSupersetEqual', [8931]], ['NotSubset', [8834, 8402]], ['NotSubsetEqual', [8840]], ['NotSucceeds', [8833]], ['NotSucceedsEqual', [10928, 824]], ['NotSucceedsSlantEqual', [8929]], ['NotSucceedsTilde', [8831, 824]], ['NotSuperset', [8835, 8402]], ['NotSupersetEqual', [8841]], ['NotTilde', [8769]], ['NotTildeEqual', [8772]], ['NotTildeFullEqual', [8775]], ['NotTildeTilde', [8777]], ['NotVerticalBar', [8740]], ['nparallel', [8742]], ['npar', [8742]], ['nparsl', [11005, 8421]], ['npart', [8706, 824]], ['npolint', [10772]], ['npr', [8832]], ['nprcue', [8928]], ['nprec', [8832]], ['npreceq', [10927, 824]], ['npre', [10927, 824]], ['nrarrc', [10547, 824]], ['nrarr', [8603]], ['nrArr', [8655]], ['nrarrw', [8605, 824]], ['nrightarrow', [8603]], ['nRightarrow', [8655]], ['nrtri', [8939]], ['nrtrie', [8941]], ['nsc', [8833]], ['nsccue', [8929]], ['nsce', [10928, 824]], ['Nscr', [119977]], ['nscr', [120003]], ['nshortmid', [8740]], ['nshortparallel', [8742]], ['nsim', [8769]], ['nsime', [8772]], ['nsimeq', [8772]], ['nsmid', [8740]], ['nspar', [8742]], ['nsqsube', [8930]], ['nsqsupe', [8931]], ['nsub', [8836]], ['nsubE', [10949, 824]], ['nsube', [8840]], ['nsubset', [8834, 8402]], ['nsubseteq', [8840]], ['nsubseteqq', [10949, 824]], ['nsucc', [8833]], ['nsucceq', [10928, 824]], ['nsup', [8837]], ['nsupE', [10950, 824]], ['nsupe', [8841]], ['nsupset', [8835, 8402]], ['nsupseteq', [8841]], ['nsupseteqq', [10950, 824]], ['ntgl', [8825]], ['Ntilde', [209]], ['ntilde', [241]], ['ntlg', [8824]], ['ntriangleleft', [8938]], ['ntrianglelefteq', [8940]], ['ntriangleright', [8939]], ['ntrianglerighteq', [8941]], ['Nu', [925]], ['nu', [957]], ['num', [35]], ['numero', [8470]], ['numsp', [8199]], ['nvap', [8781, 8402]], ['nvdash', [8876]], ['nvDash', [8877]], ['nVdash', [8878]], ['nVDash', [8879]], ['nvge', [8805, 8402]], ['nvgt', [62, 8402]], ['nvHarr', [10500]], ['nvinfin', [10718]], ['nvlArr', [10498]], ['nvle', [8804, 8402]], ['nvlt', [60, 8402]], ['nvltrie', [8884, 8402]], ['nvrArr', [10499]], ['nvrtrie', [8885, 8402]], ['nvsim', [8764, 8402]], ['nwarhk', [10531]], ['nwarr', [8598]], ['nwArr', [8662]], ['nwarrow', [8598]], ['nwnear', [10535]], ['Oacute', [211]], ['oacute', [243]], ['oast', [8859]], ['Ocirc', [212]], ['ocirc', [244]], ['ocir', [8858]], ['Ocy', [1054]], ['ocy', [1086]], ['odash', [8861]], ['Odblac', [336]], ['odblac', [337]], ['odiv', [10808]], ['odot', [8857]], ['odsold', [10684]], ['OElig', [338]], ['oelig', [339]], ['ofcir', [10687]], ['Ofr', [120082]], ['ofr', [120108]], ['ogon', [731]], ['Ograve', [210]], ['ograve', [242]], ['ogt', [10689]], ['ohbar', [10677]], ['ohm', [937]], ['oint', [8750]], ['olarr', [8634]], ['olcir', [10686]], ['olcross', [10683]], ['oline', [8254]], ['olt', [10688]], ['Omacr', [332]], ['omacr', [333]], ['Omega', [937]], ['omega', [969]], ['Omicron', [927]], ['omicron', [959]], ['omid', [10678]], ['ominus', [8854]], ['Oopf', [120134]], ['oopf', [120160]], ['opar', [10679]], ['OpenCurlyDoubleQuote', [8220]], ['OpenCurlyQuote', [8216]], ['operp', [10681]], ['oplus', [8853]], ['orarr', [8635]], ['Or', [10836]], ['or', [8744]], ['ord', [10845]], ['order', [8500]], ['orderof', [8500]], ['ordf', [170]], ['ordm', [186]], ['origof', [8886]], ['oror', [10838]], ['orslope', [10839]], ['orv', [10843]], ['oS', [9416]], ['Oscr', [119978]], ['oscr', [8500]], ['Oslash', [216]], ['oslash', [248]], ['osol', [8856]], ['Otilde', [213]], ['otilde', [245]], ['otimesas', [10806]], ['Otimes', [10807]], ['otimes', [8855]], ['Ouml', [214]], ['ouml', [246]], ['ovbar', [9021]], ['OverBar', [8254]], ['OverBrace', [9182]], ['OverBracket', [9140]], ['OverParenthesis', [9180]], ['para', [182]], ['parallel', [8741]], ['par', [8741]], ['parsim', [10995]], ['parsl', [11005]], ['part', [8706]], ['PartialD', [8706]], ['Pcy', [1055]], ['pcy', [1087]], ['percnt', [37]], ['period', [46]], ['permil', [8240]], ['perp', [8869]], ['pertenk', [8241]], ['Pfr', [120083]], ['pfr', [120109]], ['Phi', [934]], ['phi', [966]], ['phiv', [981]], ['phmmat', [8499]], ['phone', [9742]], ['Pi', [928]], ['pi', [960]], ['pitchfork', [8916]], ['piv', [982]], ['planck', [8463]], ['planckh', [8462]], ['plankv', [8463]], ['plusacir', [10787]], ['plusb', [8862]], ['pluscir', [10786]], ['plus', [43]], ['plusdo', [8724]], ['plusdu', [10789]], ['pluse', [10866]], ['PlusMinus', [177]], ['plusmn', [177]], ['plussim', [10790]], ['plustwo', [10791]], ['pm', [177]], ['Poincareplane', [8460]], ['pointint', [10773]], ['popf', [120161]], ['Popf', [8473]], ['pound', [163]], ['prap', [10935]], ['Pr', [10939]], ['pr', [8826]], ['prcue', [8828]], ['precapprox', [10935]], ['prec', [8826]], ['preccurlyeq', [8828]], ['Precedes', [8826]], ['PrecedesEqual', [10927]], ['PrecedesSlantEqual', [8828]], ['PrecedesTilde', [8830]], ['preceq', [10927]], ['precnapprox', [10937]], ['precneqq', [10933]], ['precnsim', [8936]], ['pre', [10927]], ['prE', [10931]], ['precsim', [8830]], ['prime', [8242]], ['Prime', [8243]], ['primes', [8473]], ['prnap', [10937]], ['prnE', [10933]], ['prnsim', [8936]], ['prod', [8719]], ['Product', [8719]], ['profalar', [9006]], ['profline', [8978]], ['profsurf', [8979]], ['prop', [8733]], ['Proportional', [8733]], ['Proportion', [8759]], ['propto', [8733]], ['prsim', [8830]], ['prurel', [8880]], ['Pscr', [119979]], ['pscr', [120005]], ['Psi', [936]], ['psi', [968]], ['puncsp', [8200]], ['Qfr', [120084]], ['qfr', [120110]], ['qint', [10764]], ['qopf', [120162]], ['Qopf', [8474]], ['qprime', [8279]], ['Qscr', [119980]], ['qscr', [120006]], ['quaternions', [8461]], ['quatint', [10774]], ['quest', [63]], ['questeq', [8799]], ['quot', [34]], ['QUOT', [34]], ['rAarr', [8667]], ['race', [8765, 817]], ['Racute', [340]], ['racute', [341]], ['radic', [8730]], ['raemptyv', [10675]], ['rang', [10217]], ['Rang', [10219]], ['rangd', [10642]], ['range', [10661]], ['rangle', [10217]], ['raquo', [187]], ['rarrap', [10613]], ['rarrb', [8677]], ['rarrbfs', [10528]], ['rarrc', [10547]], ['rarr', [8594]], ['Rarr', [8608]], ['rArr', [8658]], ['rarrfs', [10526]], ['rarrhk', [8618]], ['rarrlp', [8620]], ['rarrpl', [10565]], ['rarrsim', [10612]], ['Rarrtl', [10518]], ['rarrtl', [8611]], ['rarrw', [8605]], ['ratail', [10522]], ['rAtail', [10524]], ['ratio', [8758]], ['rationals', [8474]], ['rbarr', [10509]], ['rBarr', [10511]], ['RBarr', [10512]], ['rbbrk', [10099]], ['rbrace', [125]], ['rbrack', [93]], ['rbrke', [10636]], ['rbrksld', [10638]], ['rbrkslu', [10640]], ['Rcaron', [344]], ['rcaron', [345]], ['Rcedil', [342]], ['rcedil', [343]], ['rceil', [8969]], ['rcub', [125]], ['Rcy', [1056]], ['rcy', [1088]], ['rdca', [10551]], ['rdldhar', [10601]], ['rdquo', [8221]], ['rdquor', [8221]], ['CloseCurlyDoubleQuote', [8221]], ['rdsh', [8627]], ['real', [8476]], ['realine', [8475]], ['realpart', [8476]], ['reals', [8477]], ['Re', [8476]], ['rect', [9645]], ['reg', [174]], ['REG', [174]], ['ReverseElement', [8715]], ['ReverseEquilibrium', [8651]], ['ReverseUpEquilibrium', [10607]], ['rfisht', [10621]], ['rfloor', [8971]], ['rfr', [120111]], ['Rfr', [8476]], ['rHar', [10596]], ['rhard', [8641]], ['rharu', [8640]], ['rharul', [10604]], ['Rho', [929]], ['rho', [961]], ['rhov', [1009]], ['RightAngleBracket', [10217]], ['RightArrowBar', [8677]], ['rightarrow', [8594]], ['RightArrow', [8594]], ['Rightarrow', [8658]], ['RightArrowLeftArrow', [8644]], ['rightarrowtail', [8611]], ['RightCeiling', [8969]], ['RightDoubleBracket', [10215]], ['RightDownTeeVector', [10589]], ['RightDownVectorBar', [10581]], ['RightDownVector', [8642]], ['RightFloor', [8971]], ['rightharpoondown', [8641]], ['rightharpoonup', [8640]], ['rightleftarrows', [8644]], ['rightleftharpoons', [8652]], ['rightrightarrows', [8649]], ['rightsquigarrow', [8605]], ['RightTeeArrow', [8614]], ['RightTee', [8866]], ['RightTeeVector', [10587]], ['rightthreetimes', [8908]], ['RightTriangleBar', [10704]], ['RightTriangle', [8883]], ['RightTriangleEqual', [8885]], ['RightUpDownVector', [10575]], ['RightUpTeeVector', [10588]], ['RightUpVectorBar', [10580]], ['RightUpVector', [8638]], ['RightVectorBar', [10579]], ['RightVector', [8640]], ['ring', [730]], ['risingdotseq', [8787]], ['rlarr', [8644]], ['rlhar', [8652]], ['rlm', [8207]], ['rmoustache', [9137]], ['rmoust', [9137]], ['rnmid', [10990]], ['roang', [10221]], ['roarr', [8702]], ['robrk', [10215]], ['ropar', [10630]], ['ropf', [120163]], ['Ropf', [8477]], ['roplus', [10798]], ['rotimes', [10805]], ['RoundImplies', [10608]], ['rpar', [41]], ['rpargt', [10644]], ['rppolint', [10770]], ['rrarr', [8649]], ['Rrightarrow', [8667]], ['rsaquo', [8250]], ['rscr', [120007]], ['Rscr', [8475]], ['rsh', [8625]], ['Rsh', [8625]], ['rsqb', [93]], ['rsquo', [8217]], ['rsquor', [8217]], ['CloseCurlyQuote', [8217]], ['rthree', [8908]], ['rtimes', [8906]], ['rtri', [9657]], ['rtrie', [8885]], ['rtrif', [9656]], ['rtriltri', [10702]], ['RuleDelayed', [10740]], ['ruluhar', [10600]], ['rx', [8478]], ['Sacute', [346]], ['sacute', [347]], ['sbquo', [8218]], ['scap', [10936]], ['Scaron', [352]], ['scaron', [353]], ['Sc', [10940]], ['sc', [8827]], ['sccue', [8829]], ['sce', [10928]], ['scE', [10932]], ['Scedil', [350]], ['scedil', [351]], ['Scirc', [348]], ['scirc', [349]], ['scnap', [10938]], ['scnE', [10934]], ['scnsim', [8937]], ['scpolint', [10771]], ['scsim', [8831]], ['Scy', [1057]], ['scy', [1089]], ['sdotb', [8865]], ['sdot', [8901]], ['sdote', [10854]], ['searhk', [10533]], ['searr', [8600]], ['seArr', [8664]], ['searrow', [8600]], ['sect', [167]], ['semi', [59]], ['seswar', [10537]], ['setminus', [8726]], ['setmn', [8726]], ['sext', [10038]], ['Sfr', [120086]], ['sfr', [120112]], ['sfrown', [8994]], ['sharp', [9839]], ['SHCHcy', [1065]], ['shchcy', [1097]], ['SHcy', [1064]], ['shcy', [1096]], ['ShortDownArrow', [8595]], ['ShortLeftArrow', [8592]], ['shortmid', [8739]], ['shortparallel', [8741]], ['ShortRightArrow', [8594]], ['ShortUpArrow', [8593]], ['shy', [173]], ['Sigma', [931]], ['sigma', [963]], ['sigmaf', [962]], ['sigmav', [962]], ['sim', [8764]], ['simdot', [10858]], ['sime', [8771]], ['simeq', [8771]], ['simg', [10910]], ['simgE', [10912]], ['siml', [10909]], ['simlE', [10911]], ['simne', [8774]], ['simplus', [10788]], ['simrarr', [10610]], ['slarr', [8592]], ['SmallCircle', [8728]], ['smallsetminus', [8726]], ['smashp', [10803]], ['smeparsl', [10724]], ['smid', [8739]], ['smile', [8995]], ['smt', [10922]], ['smte', [10924]], ['smtes', [10924, 65024]], ['SOFTcy', [1068]], ['softcy', [1100]], ['solbar', [9023]], ['solb', [10692]], ['sol', [47]], ['Sopf', [120138]], ['sopf', [120164]], ['spades', [9824]], ['spadesuit', [9824]], ['spar', [8741]], ['sqcap', [8851]], ['sqcaps', [8851, 65024]], ['sqcup', [8852]], ['sqcups', [8852, 65024]], ['Sqrt', [8730]], ['sqsub', [8847]], ['sqsube', [8849]], ['sqsubset', [8847]], ['sqsubseteq', [8849]], ['sqsup', [8848]], ['sqsupe', [8850]], ['sqsupset', [8848]], ['sqsupseteq', [8850]], ['square', [9633]], ['Square', [9633]], ['SquareIntersection', [8851]], ['SquareSubset', [8847]], ['SquareSubsetEqual', [8849]], ['SquareSuperset', [8848]], ['SquareSupersetEqual', [8850]], ['SquareUnion', [8852]], ['squarf', [9642]], ['squ', [9633]], ['squf', [9642]], ['srarr', [8594]], ['Sscr', [119982]], ['sscr', [120008]], ['ssetmn', [8726]], ['ssmile', [8995]], ['sstarf', [8902]], ['Star', [8902]], ['star', [9734]], ['starf', [9733]], ['straightepsilon', [1013]], ['straightphi', [981]], ['strns', [175]], ['sub', [8834]], ['Sub', [8912]], ['subdot', [10941]], ['subE', [10949]], ['sube', [8838]], ['subedot', [10947]], ['submult', [10945]], ['subnE', [10955]], ['subne', [8842]], ['subplus', [10943]], ['subrarr', [10617]], ['subset', [8834]], ['Subset', [8912]], ['subseteq', [8838]], ['subseteqq', [10949]], ['SubsetEqual', [8838]], ['subsetneq', [8842]], ['subsetneqq', [10955]], ['subsim', [10951]], ['subsub', [10965]], ['subsup', [10963]], ['succapprox', [10936]], ['succ', [8827]], ['succcurlyeq', [8829]], ['Succeeds', [8827]], ['SucceedsEqual', [10928]], ['SucceedsSlantEqual', [8829]], ['SucceedsTilde', [8831]], ['succeq', [10928]], ['succnapprox', [10938]], ['succneqq', [10934]], ['succnsim', [8937]], ['succsim', [8831]], ['SuchThat', [8715]], ['sum', [8721]], ['Sum', [8721]], ['sung', [9834]], ['sup1', [185]], ['sup2', [178]], ['sup3', [179]], ['sup', [8835]], ['Sup', [8913]], ['supdot', [10942]], ['supdsub', [10968]], ['supE', [10950]], ['supe', [8839]], ['supedot', [10948]], ['Superset', [8835]], ['SupersetEqual', [8839]], ['suphsol', [10185]], ['suphsub', [10967]], ['suplarr', [10619]], ['supmult', [10946]], ['supnE', [10956]], ['supne', [8843]], ['supplus', [10944]], ['supset', [8835]], ['Supset', [8913]], ['supseteq', [8839]], ['supseteqq', [10950]], ['supsetneq', [8843]], ['supsetneqq', [10956]], ['supsim', [10952]], ['supsub', [10964]], ['supsup', [10966]], ['swarhk', [10534]], ['swarr', [8601]], ['swArr', [8665]], ['swarrow', [8601]], ['swnwar', [10538]], ['szlig', [223]], ['Tab', [9]], ['target', [8982]], ['Tau', [932]], ['tau', [964]], ['tbrk', [9140]], ['Tcaron', [356]], ['tcaron', [357]], ['Tcedil', [354]], ['tcedil', [355]], ['Tcy', [1058]], ['tcy', [1090]], ['tdot', [8411]], ['telrec', [8981]], ['Tfr', [120087]], ['tfr', [120113]], ['there4', [8756]], ['therefore', [8756]], ['Therefore', [8756]], ['Theta', [920]], ['theta', [952]], ['thetasym', [977]], ['thetav', [977]], ['thickapprox', [8776]], ['thicksim', [8764]], ['ThickSpace', [8287, 8202]], ['ThinSpace', [8201]], ['thinsp', [8201]], ['thkap', [8776]], ['thksim', [8764]], ['THORN', [222]], ['thorn', [254]], ['tilde', [732]], ['Tilde', [8764]], ['TildeEqual', [8771]], ['TildeFullEqual', [8773]], ['TildeTilde', [8776]], ['timesbar', [10801]], ['timesb', [8864]], ['times', [215]], ['timesd', [10800]], ['tint', [8749]], ['toea', [10536]], ['topbot', [9014]], ['topcir', [10993]], ['top', [8868]], ['Topf', [120139]], ['topf', [120165]], ['topfork', [10970]], ['tosa', [10537]], ['tprime', [8244]], ['trade', [8482]], ['TRADE', [8482]], ['triangle', [9653]], ['triangledown', [9663]], ['triangleleft', [9667]], ['trianglelefteq', [8884]], ['triangleq', [8796]], ['triangleright', [9657]], ['trianglerighteq', [8885]], ['tridot', [9708]], ['trie', [8796]], ['triminus', [10810]], ['TripleDot', [8411]], ['triplus', [10809]], ['trisb', [10701]], ['tritime', [10811]], ['trpezium', [9186]], ['Tscr', [119983]], ['tscr', [120009]], ['TScy', [1062]], ['tscy', [1094]], ['TSHcy', [1035]], ['tshcy', [1115]], ['Tstrok', [358]], ['tstrok', [359]], ['twixt', [8812]], ['twoheadleftarrow', [8606]], ['twoheadrightarrow', [8608]], ['Uacute', [218]], ['uacute', [250]], ['uarr', [8593]], ['Uarr', [8607]], ['uArr', [8657]], ['Uarrocir', [10569]], ['Ubrcy', [1038]], ['ubrcy', [1118]], ['Ubreve', [364]], ['ubreve', [365]], ['Ucirc', [219]], ['ucirc', [251]], ['Ucy', [1059]], ['ucy', [1091]], ['udarr', [8645]], ['Udblac', [368]], ['udblac', [369]], ['udhar', [10606]], ['ufisht', [10622]], ['Ufr', [120088]], ['ufr', [120114]], ['Ugrave', [217]], ['ugrave', [249]], ['uHar', [10595]], ['uharl', [8639]], ['uharr', [8638]], ['uhblk', [9600]], ['ulcorn', [8988]], ['ulcorner', [8988]], ['ulcrop', [8975]], ['ultri', [9720]], ['Umacr', [362]], ['umacr', [363]], ['uml', [168]], ['UnderBar', [95]], ['UnderBrace', [9183]], ['UnderBracket', [9141]], ['UnderParenthesis', [9181]], ['Union', [8899]], ['UnionPlus', [8846]], ['Uogon', [370]], ['uogon', [371]], ['Uopf', [120140]], ['uopf', [120166]], ['UpArrowBar', [10514]], ['uparrow', [8593]], ['UpArrow', [8593]], ['Uparrow', [8657]], ['UpArrowDownArrow', [8645]], ['updownarrow', [8597]], ['UpDownArrow', [8597]], ['Updownarrow', [8661]], ['UpEquilibrium', [10606]], ['upharpoonleft', [8639]], ['upharpoonright', [8638]], ['uplus', [8846]], ['UpperLeftArrow', [8598]], ['UpperRightArrow', [8599]], ['upsi', [965]], ['Upsi', [978]], ['upsih', [978]], ['Upsilon', [933]], ['upsilon', [965]], ['UpTeeArrow', [8613]], ['UpTee', [8869]], ['upuparrows', [8648]], ['urcorn', [8989]], ['urcorner', [8989]], ['urcrop', [8974]], ['Uring', [366]], ['uring', [367]], ['urtri', [9721]], ['Uscr', [119984]], ['uscr', [120010]], ['utdot', [8944]], ['Utilde', [360]], ['utilde', [361]], ['utri', [9653]], ['utrif', [9652]], ['uuarr', [8648]], ['Uuml', [220]], ['uuml', [252]], ['uwangle', [10663]], ['vangrt', [10652]], ['varepsilon', [1013]], ['varkappa', [1008]], ['varnothing', [8709]], ['varphi', [981]], ['varpi', [982]], ['varpropto', [8733]], ['varr', [8597]], ['vArr', [8661]], ['varrho', [1009]], ['varsigma', [962]], ['varsubsetneq', [8842, 65024]], ['varsubsetneqq', [10955, 65024]], ['varsupsetneq', [8843, 65024]], ['varsupsetneqq', [10956, 65024]], ['vartheta', [977]], ['vartriangleleft', [8882]], ['vartriangleright', [8883]], ['vBar', [10984]], ['Vbar', [10987]], ['vBarv', [10985]], ['Vcy', [1042]], ['vcy', [1074]], ['vdash', [8866]], ['vDash', [8872]], ['Vdash', [8873]], ['VDash', [8875]], ['Vdashl', [10982]], ['veebar', [8891]], ['vee', [8744]], ['Vee', [8897]], ['veeeq', [8794]], ['vellip', [8942]], ['verbar', [124]], ['Verbar', [8214]], ['vert', [124]], ['Vert', [8214]], ['VerticalBar', [8739]], ['VerticalLine', [124]], ['VerticalSeparator', [10072]], ['VerticalTilde', [8768]], ['VeryThinSpace', [8202]], ['Vfr', [120089]], ['vfr', [120115]], ['vltri', [8882]], ['vnsub', [8834, 8402]], ['vnsup', [8835, 8402]], ['Vopf', [120141]], ['vopf', [120167]], ['vprop', [8733]], ['vrtri', [8883]], ['Vscr', [119985]], ['vscr', [120011]], ['vsubnE', [10955, 65024]], ['vsubne', [8842, 65024]], ['vsupnE', [10956, 65024]], ['vsupne', [8843, 65024]], ['Vvdash', [8874]], ['vzigzag', [10650]], ['Wcirc', [372]], ['wcirc', [373]], ['wedbar', [10847]], ['wedge', [8743]], ['Wedge', [8896]], ['wedgeq', [8793]], ['weierp', [8472]], ['Wfr', [120090]], ['wfr', [120116]], ['Wopf', [120142]], ['wopf', [120168]], ['wp', [8472]], ['wr', [8768]], ['wreath', [8768]], ['Wscr', [119986]], ['wscr', [120012]], ['xcap', [8898]], ['xcirc', [9711]], ['xcup', [8899]], ['xdtri', [9661]], ['Xfr', [120091]], ['xfr', [120117]], ['xharr', [10231]], ['xhArr', [10234]], ['Xi', [926]], ['xi', [958]], ['xlarr', [10229]], ['xlArr', [10232]], ['xmap', [10236]], ['xnis', [8955]], ['xodot', [10752]], ['Xopf', [120143]], ['xopf', [120169]], ['xoplus', [10753]], ['xotime', [10754]], ['xrarr', [10230]], ['xrArr', [10233]], ['Xscr', [119987]], ['xscr', [120013]], ['xsqcup', [10758]], ['xuplus', [10756]], ['xutri', [9651]], ['xvee', [8897]], ['xwedge', [8896]], ['Yacute', [221]], ['yacute', [253]], ['YAcy', [1071]], ['yacy', [1103]], ['Ycirc', [374]], ['ycirc', [375]], ['Ycy', [1067]], ['ycy', [1099]], ['yen', [165]], ['Yfr', [120092]], ['yfr', [120118]], ['YIcy', [1031]], ['yicy', [1111]], ['Yopf', [120144]], ['yopf', [120170]], ['Yscr', [119988]], ['yscr', [120014]], ['YUcy', [1070]], ['yucy', [1102]], ['yuml', [255]], ['Yuml', [376]], ['Zacute', [377]], ['zacute', [378]], ['Zcaron', [381]], ['zcaron', [382]], ['Zcy', [1047]], ['zcy', [1079]], ['Zdot', [379]], ['zdot', [380]], ['zeetrf', [8488]], ['ZeroWidthSpace', [8203]], ['Zeta', [918]], ['zeta', [950]], ['zfr', [120119]], ['Zfr', [8488]], ['ZHcy', [1046]], ['zhcy', [1078]], ['zigrarr', [8669]], ['zopf', [120171]], ['Zopf', [8484]], ['Zscr', [119989]], ['zscr', [120015]], ['zwj', [8205]], ['zwnj', [8204]]];
@@ -8781,29 +11629,29 @@ module.exports = Html5Entities;
 
 
 /***/ }),
-/* 54 */
+/* 76 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = (__webpack_require__(1))(346);
+module.exports = (__webpack_require__(2))(346);
 
 /***/ }),
-/* 55 */
+/* 77 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = (__webpack_require__(1))(85);
+module.exports = (__webpack_require__(2))(85);
 
 /***/ }),
-/* 56 */
+/* 78 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(131);
+__webpack_require__(164);
 var core_1 = __webpack_require__(0);
-var angular2_universal_1 = __webpack_require__(54);
-var app_module_1 = __webpack_require__(67);
-__webpack_require__(132);
+var angular2_universal_1 = __webpack_require__(76);
+var app_module_1 = __webpack_require__(94);
+__webpack_require__(165);
 var rootElemTagName = 'app'; // Update this if you change your root component selector
 // Enable either Hot Module Reloading or production mode
 if (true) {
@@ -8831,7 +11679,7 @@ else {
 
 
 /***/ }),
-/* 57 */
+/* 79 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(__resourceQuery, module) {/*eslint-env browser*/
@@ -8847,7 +11695,7 @@ var options = {
   name: ''
 };
 if (true) {
-  var querystring = __webpack_require__(112);
+  var querystring = __webpack_require__(157);
   var overrides = querystring.parse(__resourceQuery.slice(1));
   if (overrides.path) options.path = overrides.path;
   if (overrides.timeout) options.timeout = overrides.timeout;
@@ -8967,11 +11815,11 @@ if (typeof window !== 'undefined') {
 }
 
 function createReporter() {
-  var strip = __webpack_require__(115);
+  var strip = __webpack_require__(143);
 
   var overlay;
   if (typeof document !== 'undefined' && options.overlay) {
-    overlay = __webpack_require__(124);
+    overlay = __webpack_require__(153);
   }
 
   var styles = {
@@ -9024,7 +11872,7 @@ function createReporter() {
   };
 }
 
-var processUpdate = __webpack_require__(125);
+var processUpdate = __webpack_require__(154);
 
 var customHandler;
 var subscribeAllHandler;
@@ -9089,16 +11937,233 @@ if (module) {
   };
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, "?path=%2F__webpack_hmr", __webpack_require__(134)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, "?path=%2F__webpack_hmr", __webpack_require__(159)(module)))
 
 /***/ }),
-/* 58 */
+/* 80 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = (__webpack_require__(1))(348);
+module.exports = (__webpack_require__(2))(348);
 
 /***/ }),
-/* 59 */
+/* 81 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* unused harmony export coreDirectives */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AgmCoreModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__directives_map__ = __webpack_require__(53);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__directives_circle__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__directives_info_window__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__directives_marker__ = __webpack_require__(54);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__directives_polygon__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__directives_polyline__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__directives_polyline_point__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__directives_kml_layer__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__directives_data_layer__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__services_maps_api_loader_lazy_maps_api_loader__ = __webpack_require__(41);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__services_maps_api_loader_maps_api_loader__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__utils_browser_globals__ = __webpack_require__(57);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/**
+ * @internal
+ */
+function coreDirectives() {
+    return [
+        __WEBPACK_IMPORTED_MODULE_1__directives_map__["a" /* AgmMap */], __WEBPACK_IMPORTED_MODULE_4__directives_marker__["a" /* AgmMarker */], __WEBPACK_IMPORTED_MODULE_3__directives_info_window__["a" /* AgmInfoWindow */], __WEBPACK_IMPORTED_MODULE_2__directives_circle__["a" /* AgmCircle */],
+        __WEBPACK_IMPORTED_MODULE_5__directives_polygon__["a" /* AgmPolygon */], __WEBPACK_IMPORTED_MODULE_6__directives_polyline__["a" /* AgmPolyline */], __WEBPACK_IMPORTED_MODULE_7__directives_polyline_point__["a" /* AgmPolylinePoint */], __WEBPACK_IMPORTED_MODULE_8__directives_kml_layer__["a" /* AgmKmlLayer */],
+        __WEBPACK_IMPORTED_MODULE_9__directives_data_layer__["a" /* AgmDataLayer */]
+    ];
+}
+;
+/**
+ * The angular-google-maps core module. Contains all Directives/Services/Pipes
+ * of the core module. Please use `AgmCoreModule.forRoot()` in your app module.
+ */
+var AgmCoreModule = (function () {
+    function AgmCoreModule() {
+    }
+    /**
+     * Please use this method when you register the module at the root level.
+     */
+    AgmCoreModule.forRoot = function (lazyMapsAPILoaderConfig) {
+        return {
+            ngModule: AgmCoreModule,
+            providers: __WEBPACK_IMPORTED_MODULE_12__utils_browser_globals__["a" /* BROWSER_GLOBALS_PROVIDERS */].concat([
+                { provide: __WEBPACK_IMPORTED_MODULE_11__services_maps_api_loader_maps_api_loader__["a" /* MapsAPILoader */], useClass: __WEBPACK_IMPORTED_MODULE_10__services_maps_api_loader_lazy_maps_api_loader__["a" /* LazyMapsAPILoader */] },
+                { provide: __WEBPACK_IMPORTED_MODULE_10__services_maps_api_loader_lazy_maps_api_loader__["b" /* LAZY_MAPS_API_CONFIG */], useValue: lazyMapsAPILoaderConfig }
+            ]),
+        };
+    };
+    return AgmCoreModule;
+}());
+
+AgmCoreModule.decorators = [
+    { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"], args: [{ declarations: coreDirectives(), exports: coreDirectives() },] },
+];
+/** @nocollapse */
+AgmCoreModule.ctorParameters = function () { return []; };
+//# sourceMappingURL=core.module.js.map
+
+/***/ }),
+/* 82 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__directives_map__ = __webpack_require__(53);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_0__directives_map__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__directives_circle__ = __webpack_require__(50);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_1__directives_circle__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__directives_info_window__ = __webpack_require__(33);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return __WEBPACK_IMPORTED_MODULE_2__directives_info_window__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__directives_kml_layer__ = __webpack_require__(52);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return __WEBPACK_IMPORTED_MODULE_3__directives_kml_layer__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__directives_data_layer__ = __webpack_require__(51);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return __WEBPACK_IMPORTED_MODULE_4__directives_data_layer__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__directives_marker__ = __webpack_require__(54);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return __WEBPACK_IMPORTED_MODULE_5__directives_marker__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__directives_polygon__ = __webpack_require__(55);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return __WEBPACK_IMPORTED_MODULE_6__directives_polygon__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__directives_polyline__ = __webpack_require__(56);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return __WEBPACK_IMPORTED_MODULE_7__directives_polyline__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__directives_polyline_point__ = __webpack_require__(34);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "i", function() { return __WEBPACK_IMPORTED_MODULE_8__directives_polyline_point__["a"]; });
+
+
+
+
+
+
+
+
+
+//# sourceMappingURL=directives.js.map
+
+/***/ }),
+/* 83 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__directives__ = __webpack_require__(82);
+/* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "AgmMap", function() { return __WEBPACK_IMPORTED_MODULE_0__directives__["a"]; });
+/* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "AgmCircle", function() { return __WEBPACK_IMPORTED_MODULE_0__directives__["b"]; });
+/* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "AgmInfoWindow", function() { return __WEBPACK_IMPORTED_MODULE_0__directives__["c"]; });
+/* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "AgmKmlLayer", function() { return __WEBPACK_IMPORTED_MODULE_0__directives__["d"]; });
+/* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "AgmDataLayer", function() { return __WEBPACK_IMPORTED_MODULE_0__directives__["e"]; });
+/* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "AgmMarker", function() { return __WEBPACK_IMPORTED_MODULE_0__directives__["f"]; });
+/* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "AgmPolygon", function() { return __WEBPACK_IMPORTED_MODULE_0__directives__["g"]; });
+/* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "AgmPolyline", function() { return __WEBPACK_IMPORTED_MODULE_0__directives__["h"]; });
+/* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "AgmPolylinePoint", function() { return __WEBPACK_IMPORTED_MODULE_0__directives__["i"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services__ = __webpack_require__(84);
+/* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "GoogleMapsAPIWrapper", function() { return __WEBPACK_IMPORTED_MODULE_1__services__["a"]; });
+/* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "CircleManager", function() { return __WEBPACK_IMPORTED_MODULE_1__services__["b"]; });
+/* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "InfoWindowManager", function() { return __WEBPACK_IMPORTED_MODULE_1__services__["c"]; });
+/* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "MarkerManager", function() { return __WEBPACK_IMPORTED_MODULE_1__services__["d"]; });
+/* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "PolygonManager", function() { return __WEBPACK_IMPORTED_MODULE_1__services__["e"]; });
+/* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "PolylineManager", function() { return __WEBPACK_IMPORTED_MODULE_1__services__["f"]; });
+/* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "KmlLayerManager", function() { return __WEBPACK_IMPORTED_MODULE_1__services__["g"]; });
+/* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "DataLayerManager", function() { return __WEBPACK_IMPORTED_MODULE_1__services__["h"]; });
+/* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "GoogleMapsScriptProtocol", function() { return __WEBPACK_IMPORTED_MODULE_1__services__["i"]; });
+/* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "LAZY_MAPS_API_CONFIG", function() { return __WEBPACK_IMPORTED_MODULE_1__services__["j"]; });
+/* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "LazyMapsAPILoader", function() { return __WEBPACK_IMPORTED_MODULE_1__services__["k"]; });
+/* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "MapsAPILoader", function() { return __WEBPACK_IMPORTED_MODULE_1__services__["l"]; });
+/* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "NoOpMapsAPILoader", function() { return __WEBPACK_IMPORTED_MODULE_1__services__["m"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__core_module__ = __webpack_require__(81);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "AgmCoreModule", function() { return __WEBPACK_IMPORTED_MODULE_2__core_module__["a"]; });
+// main modules
+
+
+// core module
+// we explicitly export the module here to prevent this Ionic 2 bug:
+// http://stevemichelotti.com/integrate-angular-2-google-maps-into-ionic-2/
+
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+/* 84 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_google_maps_api_wrapper__ = __webpack_require__(5);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_0__services_google_maps_api_wrapper__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_managers_circle_manager__ = __webpack_require__(35);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_1__services_managers_circle_manager__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_managers_info_window_manager__ = __webpack_require__(37);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return __WEBPACK_IMPORTED_MODULE_2__services_managers_info_window_manager__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_managers_marker_manager__ = __webpack_require__(23);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return __WEBPACK_IMPORTED_MODULE_3__services_managers_marker_manager__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_managers_polygon_manager__ = __webpack_require__(39);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return __WEBPACK_IMPORTED_MODULE_4__services_managers_polygon_manager__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_managers_polyline_manager__ = __webpack_require__(40);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return __WEBPACK_IMPORTED_MODULE_5__services_managers_polyline_manager__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_managers_kml_layer_manager__ = __webpack_require__(38);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return __WEBPACK_IMPORTED_MODULE_6__services_managers_kml_layer_manager__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_managers_data_layer_manager__ = __webpack_require__(36);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return __WEBPACK_IMPORTED_MODULE_7__services_managers_data_layer_manager__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__services_maps_api_loader_lazy_maps_api_loader__ = __webpack_require__(41);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "i", function() { return __WEBPACK_IMPORTED_MODULE_8__services_maps_api_loader_lazy_maps_api_loader__["c"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "j", function() { return __WEBPACK_IMPORTED_MODULE_8__services_maps_api_loader_lazy_maps_api_loader__["b"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "k", function() { return __WEBPACK_IMPORTED_MODULE_8__services_maps_api_loader_lazy_maps_api_loader__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__services_maps_api_loader_maps_api_loader__ = __webpack_require__(24);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "l", function() { return __WEBPACK_IMPORTED_MODULE_9__services_maps_api_loader_maps_api_loader__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__services_maps_api_loader_noop_maps_api_loader__ = __webpack_require__(85);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "m", function() { return __WEBPACK_IMPORTED_MODULE_10__services_maps_api_loader_noop_maps_api_loader__["a"]; });
+
+
+
+
+
+
+
+
+
+
+
+//# sourceMappingURL=services.js.map
+
+/***/ }),
+/* 85 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NoOpMapsAPILoader; });
+/**
+ * When using the NoOpMapsAPILoader, the Google Maps API must be added to the page via a `<script>`
+ * Tag.
+ * It's important that the Google Maps API script gets loaded first on the page.
+ */
+var NoOpMapsAPILoader = (function () {
+    function NoOpMapsAPILoader() {
+    }
+    NoOpMapsAPILoader.prototype.load = function () {
+        if (!window.google || !window.google.maps) {
+            throw new Error('Google Maps API not loaded on page. Make sure window.google.maps is available!');
+        }
+        return Promise.resolve();
+    };
+    ;
+    return NoOpMapsAPILoader;
+}());
+
+//# sourceMappingURL=noop-maps-api-loader.js.map
+
+/***/ }),
+/* 86 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -9107,25 +12172,25 @@ module.exports = (__webpack_require__(1))(348);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return REACTIVE_DRIVEN_DIRECTIVES; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return InternalFormsSharedModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__directives_checkbox_value_accessor__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__directives_default_value_accessor__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__directives_ng_control_status__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__directives_ng_form__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__directives_ng_model__ = __webpack_require__(32);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__directives_ng_model_group__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__directives_number_value_accessor__ = __webpack_require__(33);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__directives_radio_control_value_accessor__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__directives_range_value_accessor__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__directives_reactive_directives_form_control_directive__ = __webpack_require__(35);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__directives_reactive_directives_form_control_name__ = __webpack_require__(36);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__directives_reactive_directives_form_group_directive__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__directives_reactive_directives_form_group_name__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__directives_select_control_value_accessor__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__directives_select_multiple_control_value_accessor__ = __webpack_require__(23);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__directives_validators__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__directives_checkbox_value_accessor__ = __webpack_require__(25);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__directives_default_value_accessor__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__directives_ng_control_status__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__directives_ng_form__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__directives_ng_model__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__directives_ng_model_group__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__directives_number_value_accessor__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__directives_radio_control_value_accessor__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__directives_range_value_accessor__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__directives_reactive_directives_form_control_directive__ = __webpack_require__(47);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__directives_reactive_directives_form_control_name__ = __webpack_require__(48);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__directives_reactive_directives_form_group_directive__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__directives_reactive_directives_form_group_name__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__directives_select_control_value_accessor__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__directives_select_multiple_control_value_accessor__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__directives_validators__ = __webpack_require__(60);
 /* unused harmony reexport CheckboxControlValueAccessor */
 /* unused harmony reexport DefaultValueAccessor */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__directives_ng_control__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__directives_ng_control__ = __webpack_require__(10);
 /* unused harmony reexport NgControl */
 /* unused harmony reexport NgControlStatus */
 /* unused harmony reexport NgControlStatusGroup */
@@ -9232,7 +12297,7 @@ function InternalFormsSharedModule_tsickle_Closure_declarations() {
 //# sourceMappingURL=directives.js.map
 
 /***/ }),
-/* 60 */
+/* 87 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -9272,16 +12337,16 @@ function normalizeAsyncValidator(validator) {
 //# sourceMappingURL=normalize_validator.js.map
 
 /***/ }),
-/* 61 */
+/* 88 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FormsModule; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return ReactiveFormsModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__directives__ = __webpack_require__(59);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__directives_radio_control_value_accessor__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__form_builder__ = __webpack_require__(41);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__directives__ = __webpack_require__(86);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__directives_radio_control_value_accessor__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__form_builder__ = __webpack_require__(62);
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -9350,69 +12415,69 @@ function ReactiveFormsModule_tsickle_Closure_declarations() {
 //# sourceMappingURL=form_providers.js.map
 
 /***/ }),
-/* 62 */
+/* 89 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__directives_abstract_control_directive__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__directives_abstract_control_directive__ = __webpack_require__(42);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_0__directives_abstract_control_directive__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__directives_abstract_form_group_directive__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__directives_abstract_form_group_directive__ = __webpack_require__(15);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_1__directives_abstract_form_group_directive__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__directives_checkbox_value_accessor__ = __webpack_require__(18);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__directives_checkbox_value_accessor__ = __webpack_require__(25);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return __WEBPACK_IMPORTED_MODULE_2__directives_checkbox_value_accessor__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__directives_control_container__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__directives_control_container__ = __webpack_require__(6);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return __WEBPACK_IMPORTED_MODULE_3__directives_control_container__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__directives_control_value_accessor__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__directives_control_value_accessor__ = __webpack_require__(3);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return __WEBPACK_IMPORTED_MODULE_4__directives_control_value_accessor__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__directives_default_value_accessor__ = __webpack_require__(19);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__directives_default_value_accessor__ = __webpack_require__(26);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return __WEBPACK_IMPORTED_MODULE_5__directives_default_value_accessor__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__directives_ng_control__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__directives_ng_control__ = __webpack_require__(10);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return __WEBPACK_IMPORTED_MODULE_6__directives_ng_control__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__directives_ng_control_status__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__directives_ng_control_status__ = __webpack_require__(43);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return __WEBPACK_IMPORTED_MODULE_7__directives_ng_control_status__["a"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "i", function() { return __WEBPACK_IMPORTED_MODULE_7__directives_ng_control_status__["b"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__directives_ng_form__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__directives_ng_form__ = __webpack_require__(16);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "j", function() { return __WEBPACK_IMPORTED_MODULE_8__directives_ng_form__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__directives_ng_model__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__directives_ng_model__ = __webpack_require__(44);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "k", function() { return __WEBPACK_IMPORTED_MODULE_9__directives_ng_model__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__directives_ng_model_group__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__directives_ng_model_group__ = __webpack_require__(27);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "l", function() { return __WEBPACK_IMPORTED_MODULE_10__directives_ng_model_group__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__directives_radio_control_value_accessor__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__directives_radio_control_value_accessor__ = __webpack_require__(17);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "m", function() { return __WEBPACK_IMPORTED_MODULE_11__directives_radio_control_value_accessor__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__directives_reactive_directives_form_control_directive__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__directives_reactive_directives_form_control_directive__ = __webpack_require__(47);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "n", function() { return __WEBPACK_IMPORTED_MODULE_12__directives_reactive_directives_form_control_directive__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__directives_reactive_directives_form_control_name__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__directives_reactive_directives_form_control_name__ = __webpack_require__(48);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "o", function() { return __WEBPACK_IMPORTED_MODULE_13__directives_reactive_directives_form_control_name__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__directives_reactive_directives_form_group_directive__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__directives_reactive_directives_form_group_directive__ = __webpack_require__(18);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "p", function() { return __WEBPACK_IMPORTED_MODULE_14__directives_reactive_directives_form_group_directive__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__directives_reactive_directives_form_group_name__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__directives_reactive_directives_form_group_name__ = __webpack_require__(19);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "q", function() { return __WEBPACK_IMPORTED_MODULE_15__directives_reactive_directives_form_group_name__["a"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "r", function() { return __WEBPACK_IMPORTED_MODULE_15__directives_reactive_directives_form_group_name__["b"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__directives_select_control_value_accessor__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__directives_select_control_value_accessor__ = __webpack_require__(29);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "s", function() { return __WEBPACK_IMPORTED_MODULE_16__directives_select_control_value_accessor__["a"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "t", function() { return __WEBPACK_IMPORTED_MODULE_16__directives_select_control_value_accessor__["b"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__directives_select_multiple_control_value_accessor__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__directives_select_multiple_control_value_accessor__ = __webpack_require__(30);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "u", function() { return __WEBPACK_IMPORTED_MODULE_17__directives_select_multiple_control_value_accessor__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__directives_validators__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__directives_validators__ = __webpack_require__(60);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "v", function() { return __WEBPACK_IMPORTED_MODULE_18__directives_validators__["a"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "w", function() { return __WEBPACK_IMPORTED_MODULE_18__directives_validators__["b"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "x", function() { return __WEBPACK_IMPORTED_MODULE_18__directives_validators__["c"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "y", function() { return __WEBPACK_IMPORTED_MODULE_18__directives_validators__["d"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "z", function() { return __WEBPACK_IMPORTED_MODULE_18__directives_validators__["e"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__form_builder__ = __webpack_require__(41);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__form_builder__ = __webpack_require__(62);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "A", function() { return __WEBPACK_IMPORTED_MODULE_19__form_builder__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__model__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__model__ = __webpack_require__(31);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "B", function() { return __WEBPACK_IMPORTED_MODULE_20__model__["a"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "C", function() { return __WEBPACK_IMPORTED_MODULE_20__model__["b"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "D", function() { return __WEBPACK_IMPORTED_MODULE_20__model__["c"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "E", function() { return __WEBPACK_IMPORTED_MODULE_20__model__["d"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__validators__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__validators__ = __webpack_require__(4);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "F", function() { return __WEBPACK_IMPORTED_MODULE_21__validators__["a"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "G", function() { return __WEBPACK_IMPORTED_MODULE_21__validators__["b"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "H", function() { return __WEBPACK_IMPORTED_MODULE_21__validators__["c"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__version__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__version__ = __webpack_require__(90);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "I", function() { return __WEBPACK_IMPORTED_MODULE_22__version__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__form_providers__ = __webpack_require__(61);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__form_providers__ = __webpack_require__(88);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "J", function() { return __WEBPACK_IMPORTED_MODULE_23__form_providers__["a"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "K", function() { return __WEBPACK_IMPORTED_MODULE_23__form_providers__["b"]; });
 /**
@@ -9460,7 +12525,7 @@ function ReactiveFormsModule_tsickle_Closure_declarations() {
 //# sourceMappingURL=forms.js.map
 
 /***/ }),
-/* 63 */
+/* 90 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -9481,7 +12546,7 @@ var /** @type {?} */ VERSION = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["
 //# sourceMappingURL=version.js.map
 
 /***/ }),
-/* 64 */
+/* 91 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9496,7 +12561,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = __webpack_require__(0);
-var forms_1 = __webpack_require__(12);
+var forms_1 = __webpack_require__(9);
 var core_2 = __webpack_require__(0);
 var EqualTextValidator = (function () {
     function EqualTextValidator() {
@@ -9555,7 +12620,7 @@ exports.EqualTextValidator = EqualTextValidator;
 //# sourceMappingURL=angular2-text-equality-validator.js.map
 
 /***/ }),
-/* 65 */
+/* 92 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9738,7 +12803,7 @@ ansiHTML.reset()
 
 
 /***/ }),
-/* 66 */
+/* 93 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9749,7 +12814,7 @@ module.exports = function () {
 
 
 /***/ }),
-/* 67 */
+/* 94 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9762,13 +12827,14 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var angular2_universal_1 = __webpack_require__(54);
-var app_component_1 = __webpack_require__(69);
-var home_module_1 = __webpack_require__(71);
-var shared_module_1 = __webpack_require__(79);
-var authorization_module_1 = __webpack_require__(68);
-var super_admin_module_1 = __webpack_require__(83);
-var app_routing_module_1 = __webpack_require__(72);
+var angular2_universal_1 = __webpack_require__(76);
+var app_component_1 = __webpack_require__(65);
+var home_module_1 = __webpack_require__(96);
+var shared_module_1 = __webpack_require__(106);
+var authorization_module_1 = __webpack_require__(95);
+var super_admin_module_1 = __webpack_require__(111);
+var app_routing_module_1 = __webpack_require__(97);
+var map_module_1 = __webpack_require__(74);
 var AppModule = (function () {
     function AppModule() {
     }
@@ -9786,7 +12852,8 @@ AppModule = __decorate([
             shared_module_1.SharedModule,
             authorization_module_1.AuthorizationModule,
             super_admin_module_1.SuperAdminModule,
-            app_routing_module_1.AppRoutingModule
+            app_routing_module_1.AppRoutingModule,
+            map_module_1.MapModule
         ]
     })
 ], AppModule);
@@ -9794,7 +12861,7 @@ exports.AppModule = AppModule;
 
 
 /***/ }),
-/* 68 */
+/* 95 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9807,14 +12874,14 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var forms_1 = __webpack_require__(12);
-var authorization_component_1 = __webpack_require__(44);
-var registration_component_1 = __webpack_require__(46);
-var user_profile_component_1 = __webpack_require__(51);
-var authorization_routing_module_1 = __webpack_require__(73);
-var common_1 = __webpack_require__(29);
-var forms_2 = __webpack_require__(12);
-var angular2_text_equality_validator_1 = __webpack_require__(64);
+var forms_1 = __webpack_require__(9);
+var authorization_component_1 = __webpack_require__(66);
+var registration_component_1 = __webpack_require__(68);
+var user_profile_component_1 = __webpack_require__(73);
+var authorization_routing_module_1 = __webpack_require__(98);
+var common_1 = __webpack_require__(22);
+var forms_2 = __webpack_require__(9);
+var angular2_text_equality_validator_1 = __webpack_require__(91);
 //module for authorization users
 var AuthorizationModule = (function () {
     function AuthorizationModule() {
@@ -9841,7 +12908,7 @@ exports.AuthorizationModule = AuthorizationModule;
 
 
 /***/ }),
-/* 69 */
+/* 96 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9854,54 +12921,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var AppComponent = (function () {
-    function AppComponent() {
-    }
-    return AppComponent;
-}());
-AppComponent = __decorate([
-    core_1.Component({
-        selector: 'app',
-        template: __webpack_require__(99),
-        styles: [__webpack_require__(117)]
-    })
-], AppComponent);
-exports.AppComponent = AppComponent;
-
-
-/***/ }),
-/* 70 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var RegistrationViewModel = (function () {
-    function RegistrationViewModel() {
-    }
-    return RegistrationViewModel;
-}());
-exports.RegistrationViewModel = RegistrationViewModel;
-
-
-/***/ }),
-/* 71 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = __webpack_require__(0);
-var home_component_1 = __webpack_require__(45);
-var about_component_1 = __webpack_require__(43);
-var common_1 = __webpack_require__(29);
-var home_routing_module_1 = __webpack_require__(74);
+var home_component_1 = __webpack_require__(67);
+var about_component_1 = __webpack_require__(64);
+var common_1 = __webpack_require__(22);
+var home_routing_module_1 = __webpack_require__(99);
+var map_module_1 = __webpack_require__(74);
 var HomeModule = (function () {
     function HomeModule() {
     }
@@ -9915,7 +12939,8 @@ HomeModule = __decorate([
         ],
         imports: [
             common_1.CommonModule,
-            home_routing_module_1.HomeRoutingModule
+            home_routing_module_1.HomeRoutingModule,
+            map_module_1.MapModule
         ]
     })
 ], HomeModule);
@@ -9923,7 +12948,7 @@ exports.HomeModule = HomeModule;
 
 
 /***/ }),
-/* 72 */
+/* 97 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9935,7 +12960,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var router_1 = __webpack_require__(11);
+var router_1 = __webpack_require__(12);
 var core_1 = __webpack_require__(0);
 var AppRoutingModule = (function () {
     function AppRoutingModule() {
@@ -9945,7 +12970,7 @@ var AppRoutingModule = (function () {
 AppRoutingModule = __decorate([
     core_1.NgModule({
         imports: [
-            router_1.RouterModule.forRoot([])
+            router_1.RouterModule.forRoot([]),
         ],
         exports: [router_1.RouterModule]
     })
@@ -9954,7 +12979,7 @@ exports.AppRoutingModule = AppRoutingModule;
 
 
 /***/ }),
-/* 73 */
+/* 98 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9967,10 +12992,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var router_1 = __webpack_require__(11);
-var registration_component_1 = __webpack_require__(46);
-var authorization_component_1 = __webpack_require__(44);
-var user_profile_component_1 = __webpack_require__(51);
+var router_1 = __webpack_require__(12);
+var registration_component_1 = __webpack_require__(68);
+var authorization_component_1 = __webpack_require__(66);
+var user_profile_component_1 = __webpack_require__(73);
 var AuthorizationRoutingModule = (function () {
     function AuthorizationRoutingModule() {
     }
@@ -9992,7 +13017,7 @@ exports.AuthorizationRoutingModule = AuthorizationRoutingModule;
 
 
 /***/ }),
-/* 74 */
+/* 99 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10005,9 +13030,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var router_1 = __webpack_require__(11);
-var home_component_1 = __webpack_require__(45);
-var about_component_1 = __webpack_require__(43);
+var router_1 = __webpack_require__(12);
+var home_component_1 = __webpack_require__(67);
+var about_component_1 = __webpack_require__(64);
 var HomeRoutingModule = (function () {
     function HomeRoutingModule() {
     }
@@ -10028,7 +13053,7 @@ exports.HomeRoutingModule = HomeRoutingModule;
 
 
 /***/ }),
-/* 75 */
+/* 100 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10041,11 +13066,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var router_1 = __webpack_require__(11);
-var super_admin_component_1 = __webpack_require__(50);
-var super_admin_complaints_component_1 = __webpack_require__(47);
-var super_admin_organizations_component_1 = __webpack_require__(48);
-var super_admin_users_component_1 = __webpack_require__(49);
+var router_1 = __webpack_require__(12);
+var super_admin_component_1 = __webpack_require__(72);
+var super_admin_complaints_component_1 = __webpack_require__(69);
+var super_admin_organizations_component_1 = __webpack_require__(70);
+var super_admin_users_component_1 = __webpack_require__(71);
 var SuperAdminRoutingModule = (function () {
     function SuperAdminRoutingModule() {
     }
@@ -10082,7 +13107,90 @@ exports.SuperAdminRoutingModule = SuperAdminRoutingModule;
 
 
 /***/ }),
-/* 76 */
+/* 101 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var http_1 = __webpack_require__(11);
+var Observable_1 = __webpack_require__(1);
+__webpack_require__(21);
+__webpack_require__(20);
+/**
+ * Abstract generic class for services
+ */
+var BaseService = (function () {
+    /**
+     * @constructor
+     * @param _url: string
+     * @param _http
+     */
+    function BaseService(_http, _url) {
+        this._http = _http;
+        this._url = _url;
+    }
+    /**
+     * Gets the collection of view models
+     * @returns Observable<T[]>
+     */
+    BaseService.prototype.getCollection = function () {
+        return this._http.get(this._url)
+            .map(function (response) { return response.json(); })
+            .catch(this.handleError);
+    };
+    /**
+     * Create new item
+     * @param newItem: T
+     * @returns Observable<T>
+     */
+    BaseService.prototype.create = function (newItem) {
+        return this._http.post(this._url, this.getRequestArgs(newItem))
+            .map(function (response) { return response.json(); })
+            .catch(this.handleError);
+    };
+    /**
+     * Update item
+     * @param updatedItem: T
+     * @returns Observable<Response>
+     */
+    BaseService.prototype.update = function (updatedItem) {
+        return this._http.put(this._url, this.getRequestArgs(updatedItem))
+            .map(function (response) { return response.json(); })
+            .catch(this.handleError);
+    };
+    /**
+     * Delete one item by id
+     * @param id
+     * @returns Observable<Response>
+     */
+    BaseService.prototype.delete = function (id) {
+        return this._http.delete(this._url + '/' + id)
+            .catch(this.handleError);
+    };
+    /**
+    * Exception handler
+    * @param error: Response
+    */
+    BaseService.prototype.handleError = function (error) {
+        return Observable_1.Observable.throw(error.json().error || 'Server error');
+    };
+    /**
+     * Creates RequestOptionsArgs
+     * @param body:T
+     * @returns interface RequestOptionsArgs
+     */
+    BaseService.prototype.getRequestArgs = function (body) {
+        var headers = new http_1.Headers({ 'ContentType': 'application/json' });
+        return { headers: headers, body: body };
+    };
+    return BaseService;
+}());
+exports.BaseService = BaseService;
+
+
+/***/ }),
+/* 102 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10097,13 +13205,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var http_1 = __webpack_require__(28);
-var Observable_1 = __webpack_require__(8);
-var http_2 = __webpack_require__(28);
+var http_1 = __webpack_require__(11);
+var Observable_1 = __webpack_require__(1);
+var http_2 = __webpack_require__(11);
 var core_1 = __webpack_require__(0);
-__webpack_require__(27);
-__webpack_require__(26);
-__webpack_require__(25);
+__webpack_require__(21);
+__webpack_require__(32);
+__webpack_require__(20);
 var AuthorizationService = (function () {
     function AuthorizationService(_http) {
         this._http = _http;
@@ -10152,11 +13260,21 @@ exports.AuthorizationService = AuthorizationService;
 
 
 /***/ }),
-/* 77 */
+/* 103 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -10168,35 +13286,21 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var http_1 = __webpack_require__(28);
-var Observable_1 = __webpack_require__(8);
-__webpack_require__(27);
-__webpack_require__(26);
-__webpack_require__(25);
-var OrganizationDropdownService = (function () {
-    function OrganizationDropdownService(_http) {
-        this._http = _http;
-        this._url = 'api/OrganizationsList';
+var base_service_1 = __webpack_require__(101);
+var http_1 = __webpack_require__(11);
+var OrganizationDropdownService = (function (_super) {
+    __extends(OrganizationDropdownService, _super);
+    /**
+     * @constructor
+     * @param http
+     */
+    function OrganizationDropdownService(http) {
+        var _this = _super.call(this, http, 'api/OrganizationsList') || this;
+        _this.http = http;
+        return _this;
     }
-    /**
-     * gets list of organizations from backend
-     */
-    OrganizationDropdownService.prototype.getOrganizations = function () {
-        console.log('getOrganizations()');
-        return this._http.get(this._url)
-            .map(function (response) { return response.json(); })
-            .do(function (data) { return console.log('All: ' + JSON.stringify(data)); }) //console out information about json
-            .catch(this.handleError); //call error handler
-    };
-    /**
-     * exception handler
-     * @param error: Response
-     */
-    OrganizationDropdownService.prototype.handleError = function (error) {
-        return Observable_1.Observable.throw(error.json().error || 'Server error');
-    };
     return OrganizationDropdownService;
-}());
+}(base_service_1.BaseService));
 OrganizationDropdownService = __decorate([
     core_1.Injectable(),
     __metadata("design:paramtypes", [http_1.Http])
@@ -10205,7 +13309,49 @@ exports.OrganizationDropdownService = OrganizationDropdownService;
 
 
 /***/ }),
-/* 78 */
+/* 104 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var http_1 = __webpack_require__(11);
+var http_2 = __webpack_require__(11);
+var core_1 = __webpack_require__(0);
+__webpack_require__(21);
+__webpack_require__(32);
+__webpack_require__(20);
+var UserService = (function () {
+    function UserService(_http) {
+        this._http = _http;
+    }
+    UserService.prototype.create = function (newItem) {
+        var body = newItem;
+        var headers = new http_2.Headers({ 'Content-Type': 'application/json' });
+        var options = new http_2.RequestOptions({ headers: headers });
+        return this._http.post("api/user/register", body, options)
+            .map(function (response) { return response.json(); });
+    };
+    return UserService;
+}());
+UserService = __decorate([
+    core_1.Injectable(),
+    __metadata("design:paramtypes", [http_1.Http])
+], UserService);
+exports.UserService = UserService;
+
+
+/***/ }),
+/* 105 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10221,11 +13367,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var http_1 = __webpack_require__(28);
-var Observable_1 = __webpack_require__(8);
-__webpack_require__(25);
-__webpack_require__(26);
-__webpack_require__(27);
+var http_1 = __webpack_require__(11);
+var Observable_1 = __webpack_require__(1);
+__webpack_require__(20);
+__webpack_require__(32);
+__webpack_require__(21);
 var UserInfoService = (function () {
     function UserInfoService(_http) {
         this._http = _http;
@@ -10254,7 +13400,7 @@ exports.UserInfoService = UserInfoService;
 
 
 /***/ }),
-/* 79 */
+/* 106 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10267,12 +13413,12 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var router_1 = __webpack_require__(11);
-var dropdown_filtering_component_1 = __webpack_require__(80);
-var organization_list_pipe_1 = __webpack_require__(82);
-var user_states_component_1 = __webpack_require__(81);
-var common_1 = __webpack_require__(29);
-var forms_1 = __webpack_require__(12);
+var router_1 = __webpack_require__(12);
+var dropdown_filtering_component_1 = __webpack_require__(107);
+var organization_list_pipe_1 = __webpack_require__(110);
+var user_states_component_1 = __webpack_require__(109);
+var common_1 = __webpack_require__(22);
+var forms_1 = __webpack_require__(9);
 var SharedModule = (function () {
     function SharedModule() {
     }
@@ -10304,7 +13450,7 @@ exports.SharedModule = SharedModule;
 
 
 /***/ }),
-/* 80 */
+/* 107 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10320,7 +13466,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var organization_dropdown_service_1 = __webpack_require__(77);
+var organization_dropdown_service_1 = __webpack_require__(103);
 var DropdownOrganizationsComponent = (function () {
     /**
      * @constructor
@@ -10335,7 +13481,7 @@ var DropdownOrganizationsComponent = (function () {
      */
     DropdownOrganizationsComponent.prototype.getOrganizationsList = function () {
         var _this = this;
-        this._service.getOrganizations()
+        this._service.getCollection()
             .subscribe(function (organizations) { return _this.organizations = organizations; }, function (error) { return _this._errorMessage = error; });
     };
     /**
@@ -10349,8 +13495,8 @@ var DropdownOrganizationsComponent = (function () {
 DropdownOrganizationsComponent = __decorate([
     core_1.Component({
         selector: 'dropdown-org',
-        template: __webpack_require__(108),
-        styles: [__webpack_require__(123)],
+        template: __webpack_require__(138),
+        styles: [__webpack_require__(151)],
         providers: [organization_dropdown_service_1.OrganizationDropdownService]
     }),
     __metadata("design:paramtypes", [organization_dropdown_service_1.OrganizationDropdownService])
@@ -10359,7 +13505,7 @@ exports.DropdownOrganizationsComponent = DropdownOrganizationsComponent;
 
 
 /***/ }),
-/* 81 */
+/* 108 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10372,7 +13518,44 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var keys = __webpack_require__(52);
+//https://github.com/SebastianM/angular-google-maps/blob/master/src/core/directives/map.ts
+var MapComponent = (function () {
+    function MapComponent() {
+        this.title = 'My first AGM project';
+        this.lat = 51.678418;
+        this.lng = 7.809007;
+        this.ready = false;
+    }
+    MapComponent.prototype.ngAfterContentChecked = function () {
+        this.ready = true;
+    };
+    return MapComponent;
+}());
+MapComponent = __decorate([
+    core_1.Component({
+        selector: 'map-comp',
+        template: __webpack_require__(139),
+        styles: [__webpack_require__(152)],
+    })
+], MapComponent);
+exports.MapComponent = MapComponent;
+
+
+/***/ }),
+/* 109 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = __webpack_require__(0);
+var keys = __webpack_require__(49);
 var UserStatesComponent = (function () {
     function UserStatesComponent() {
     }
@@ -10401,14 +13584,14 @@ var UserStatesComponent = (function () {
 UserStatesComponent = __decorate([
     core_1.Component({
         selector: 'user-states',
-        template: __webpack_require__(109)
+        template: __webpack_require__(140)
     })
 ], UserStatesComponent);
 exports.UserStatesComponent = UserStatesComponent;
 
 
 /***/ }),
-/* 82 */
+/* 110 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10449,7 +13632,7 @@ exports.DropdownOrganizationFilterPipe = DropdownOrganizationFilterPipe;
 
 
 /***/ }),
-/* 83 */
+/* 111 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10462,12 +13645,12 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var common_1 = __webpack_require__(29);
-var super_admin_component_1 = __webpack_require__(50);
-var super_admin_routing_module_1 = __webpack_require__(75);
-var super_admin_complaints_component_1 = __webpack_require__(47);
-var super_admin_organizations_component_1 = __webpack_require__(48);
-var super_admin_users_component_1 = __webpack_require__(49);
+var common_1 = __webpack_require__(22);
+var super_admin_component_1 = __webpack_require__(72);
+var super_admin_routing_module_1 = __webpack_require__(100);
+var super_admin_complaints_component_1 = __webpack_require__(69);
+var super_admin_organizations_component_1 = __webpack_require__(70);
+var super_admin_users_component_1 = __webpack_require__(71);
 var SuperAdminModule = (function () {
     function SuperAdminModule() {
     }
@@ -10491,7 +13674,7 @@ exports.SuperAdminModule = SuperAdminModule;
 
 
 /***/ }),
-/* 84 */
+/* 112 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10511,7 +13694,7 @@ exports.AuthorizeViewModel = AuthorizeViewModel;
 
 
 /***/ }),
-/* 85 */
+/* 113 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10526,7 +13709,22 @@ exports.MainPageViewModel = MainPageViewModel;
 
 
 /***/ }),
-/* 86 */
+/* 114 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var RegistrationViewModel = (function () {
+    function RegistrationViewModel() {
+    }
+    return RegistrationViewModel;
+}());
+exports.RegistrationViewModel = RegistrationViewModel;
+
+
+/***/ }),
+/* 115 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10541,10 +13739,10 @@ exports.UserInfo = UserInfo;
 
 
 /***/ }),
-/* 87 */
+/* 116 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(6)();
+exports = module.exports = __webpack_require__(7)();
 // imports
 
 
@@ -10555,10 +13753,10 @@ exports.push([module.i, ".fborder {\r\n    padding-left: 200px;\r\n    padding-t
 
 
 /***/ }),
-/* 88 */
+/* 117 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(6)();
+exports = module.exports = __webpack_require__(7)();
 // imports
 
 
@@ -10569,10 +13767,10 @@ exports.push([module.i, "@media (max-width: 767px) {\r\n    /* On small screens,
 
 
 /***/ }),
-/* 89 */
+/* 118 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(6)();
+exports = module.exports = __webpack_require__(7)();
 // imports
 
 
@@ -10583,10 +13781,10 @@ exports.push([module.i, "p {\r\n    color:red !important;\r\n}\r\n", ""]);
 
 
 /***/ }),
-/* 90 */
+/* 119 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(6)();
+exports = module.exports = __webpack_require__(7)();
 // imports
 
 
@@ -10597,10 +13795,10 @@ exports.push([module.i, "#right-bar {\r\n    background-color: aliceblue;\r\n}\r
 
 
 /***/ }),
-/* 91 */
+/* 120 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(6)();
+exports = module.exports = __webpack_require__(7)();
 // imports
 
 
@@ -10611,10 +13809,10 @@ exports.push([module.i, "", ""]);
 
 
 /***/ }),
-/* 92 */
+/* 121 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(6)();
+exports = module.exports = __webpack_require__(7)();
 // imports
 
 
@@ -10625,10 +13823,10 @@ exports.push([module.i, ":focus {\n    outline: none;\n}\n.row {\n    margin-rig
 
 
 /***/ }),
-/* 93 */
+/* 122 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(6)();
+exports = module.exports = __webpack_require__(7)();
 // imports
 
 
@@ -10639,10 +13837,10 @@ exports.push([module.i, ".userprofile {\r\n    height: auto;\r\n}\r\n\r\n.ng-val
 
 
 /***/ }),
-/* 94 */
+/* 123 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(6)();
+exports = module.exports = __webpack_require__(7)();
 // imports
 
 
@@ -10653,19 +13851,33 @@ exports.push([module.i, ".scrollable-menu {\r\n    height: auto !important;\r\n 
 
 
 /***/ }),
-/* 95 */
+/* 124 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(7)();
+// imports
+
+
+// module
+exports.push([module.i, "agm-map {\r\n    height: 300px;\r\n}\r\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 125 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = {
-  XmlEntities: __webpack_require__(97),
-  Html4Entities: __webpack_require__(96),
-  Html5Entities: __webpack_require__(53),
-  AllHtmlEntities: __webpack_require__(53)
+  XmlEntities: __webpack_require__(127),
+  Html4Entities: __webpack_require__(126),
+  Html5Entities: __webpack_require__(75),
+  AllHtmlEntities: __webpack_require__(75)
 };
 
 
 /***/ }),
-/* 96 */
+/* 126 */
 /***/ (function(module, exports) {
 
 var HTML_ALPHA = ['apos', 'nbsp', 'iexcl', 'cent', 'pound', 'curren', 'yen', 'brvbar', 'sect', 'uml', 'copy', 'ordf', 'laquo', 'not', 'shy', 'reg', 'macr', 'deg', 'plusmn', 'sup2', 'sup3', 'acute', 'micro', 'para', 'middot', 'cedil', 'sup1', 'ordm', 'raquo', 'frac14', 'frac12', 'frac34', 'iquest', 'Agrave', 'Aacute', 'Acirc', 'Atilde', 'Auml', 'Aring', 'Aelig', 'Ccedil', 'Egrave', 'Eacute', 'Ecirc', 'Euml', 'Igrave', 'Iacute', 'Icirc', 'Iuml', 'ETH', 'Ntilde', 'Ograve', 'Oacute', 'Ocirc', 'Otilde', 'Ouml', 'times', 'Oslash', 'Ugrave', 'Uacute', 'Ucirc', 'Uuml', 'Yacute', 'THORN', 'szlig', 'agrave', 'aacute', 'acirc', 'atilde', 'auml', 'aring', 'aelig', 'ccedil', 'egrave', 'eacute', 'ecirc', 'euml', 'igrave', 'iacute', 'icirc', 'iuml', 'eth', 'ntilde', 'ograve', 'oacute', 'ocirc', 'otilde', 'ouml', 'divide', 'oslash', 'ugrave', 'uacute', 'ucirc', 'uuml', 'yacute', 'thorn', 'yuml', 'quot', 'amp', 'lt', 'gt', 'OElig', 'oelig', 'Scaron', 'scaron', 'Yuml', 'circ', 'tilde', 'ensp', 'emsp', 'thinsp', 'zwnj', 'zwj', 'lrm', 'rlm', 'ndash', 'mdash', 'lsquo', 'rsquo', 'sbquo', 'ldquo', 'rdquo', 'bdquo', 'dagger', 'Dagger', 'permil', 'lsaquo', 'rsaquo', 'euro', 'fnof', 'Alpha', 'Beta', 'Gamma', 'Delta', 'Epsilon', 'Zeta', 'Eta', 'Theta', 'Iota', 'Kappa', 'Lambda', 'Mu', 'Nu', 'Xi', 'Omicron', 'Pi', 'Rho', 'Sigma', 'Tau', 'Upsilon', 'Phi', 'Chi', 'Psi', 'Omega', 'alpha', 'beta', 'gamma', 'delta', 'epsilon', 'zeta', 'eta', 'theta', 'iota', 'kappa', 'lambda', 'mu', 'nu', 'xi', 'omicron', 'pi', 'rho', 'sigmaf', 'sigma', 'tau', 'upsilon', 'phi', 'chi', 'psi', 'omega', 'thetasym', 'upsih', 'piv', 'bull', 'hellip', 'prime', 'Prime', 'oline', 'frasl', 'weierp', 'image', 'real', 'trade', 'alefsym', 'larr', 'uarr', 'rarr', 'darr', 'harr', 'crarr', 'lArr', 'uArr', 'rArr', 'dArr', 'hArr', 'forall', 'part', 'exist', 'empty', 'nabla', 'isin', 'notin', 'ni', 'prod', 'sum', 'minus', 'lowast', 'radic', 'prop', 'infin', 'ang', 'and', 'or', 'cap', 'cup', 'int', 'there4', 'sim', 'cong', 'asymp', 'ne', 'equiv', 'le', 'ge', 'sub', 'sup', 'nsub', 'sube', 'supe', 'oplus', 'otimes', 'perp', 'sdot', 'lceil', 'rceil', 'lfloor', 'rfloor', 'lang', 'rang', 'loz', 'spades', 'clubs', 'hearts', 'diams'];
@@ -10818,7 +14030,7 @@ module.exports = Html4Entities;
 
 
 /***/ }),
-/* 97 */
+/* 127 */
 /***/ (function(module, exports) {
 
 var ALPHA_INDEX = {
@@ -10979,273 +14191,85 @@ module.exports = XmlEntities;
 
 
 /***/ }),
-/* 98 */
+/* 128 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"row center-block\">\r\n    <div class=\"row fborder\">\r\n        <div class=\"text-center\">\r\n            <p class=\"lead\">\r\n                Даний сайт розроблено в підтримку волонтерського руху України.\r\n            </p>\r\n            <p class=\"lead\">\r\n                Основна мета ресурсу - створити майданчик, на якому небайдужі громадяни могли б ознайомитися з діяльністю\r\n                волонтерських оргаізацій, отримати детальну інформацію про те, яким чином ними були витрачені отримані кошти,\r\n                дізнатися про їх нагальні потреби та зробити пожертву.\r\n            </p>\r\n            <p class=\"lead\">\r\n                В свою чергу волонтерські організації, учасники даного ресурсу, мають змогу презентувати себе\r\n                та ділитися з громадянами новинами про свою діяльність.\r\n            </p>\r\n        </div>\r\n    </div>\r\n    <div class=\"row\">\r\n        <div class=\"text-center\">\r\n            <a [routerLink]=\"['']\"><img src=\"/images/volonter.jpg\" width=\"300\" /></a>\r\n        </div>\r\n    </div>\r\n    <div class=\"row\">\r\n        <div class=\"text-center\">Розроблено:</div>\r\n        <h4 class=\"text-center\">Lv-242.Net Group</h4>\r\n        <div class=\"text-center\">\r\n            Витрикуш Тарас, Дмитрук Сергій, Желязняк Віторія, Малиновський Борис,<br />\r\n            Медвідь Оксана, Сипа Василь, Теплюх Богдан, Фай Василь<br />\r\n        </div>\r\n        <div class=\"text-center\">\r\n            <a [routerLink]=\"['']\">www.fundtrack.com.ua</a>\r\n        </div>\r\n    </div>\r\n</div>\r\n";
 
 /***/ }),
-/* 99 */
+/* 129 */
 /***/ (function(module, exports) {
 
 module.exports = "<nav class=\"navbar navbar-default\">\r\n    <div class=\"container-fluid\">\r\n        <div class=\"navbar-header\">\r\n            <button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#bs-example-navbar-collapse-1\" aria-expanded=\"false\">\r\n                <span class=\"sr-only\">Toggle navigation</span>\r\n                <span class=\"icon-bar\"></span>\r\n                <span class=\"icon-bar\"></span>\r\n                <span class=\"icon-bar\"></span>\r\n            </button>\r\n            <a class=\"navbar-brand\" [routerLink]=\"['']\">Наш солдат</a>\r\n        </div>\r\n        <div class=\"collapse navbar-collapse\" id=\"bs-example-navbar-collapse-1\">\r\n            <ul class=\"nav navbar-nav\">\r\n                <li><a [routerLink]=\"['/about']\">Про нас</a></li>\r\n            </ul>\r\n            <form class=\"navbar-form navbar-left\">\r\n                <dropdown-org></dropdown-org>\r\n            </form>\r\n            <form class=\"nav navbar-nav navbar-right\">\r\n               <user-states></user-states>\r\n            </form>\r\n        </div>\r\n    </div>\r\n</nav>\r\n<div class=\"container\">\r\n    <router-outlet></router-outlet>\r\n</div>\r\n<div class=\"row\" id=\"footer\">\r\n    <div class=\"col-lg-6\">\r\n        <iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2573.5221968304536!2d23.996909315413394!3d49.83264487939493!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x473add8050527791%3A0xa80b5db0066c5a1c!2z0LLRg9C70LjRhtGPINCv0YDQvtGB0LvQsNCy0LAg0J_QsNGB0YLQtdGA0L3QsNC60LAsIDUsINCb0YzQstGW0LIsINCb0YzQstGW0LLRgdGM0LrQsCDQvtCx0LvQsNGB0YLRjA!5e0!3m2!1sru!2sua!4v1497513739093\" width=\"400\" height=\"300\" frameborder=\"0\" style=\"border:0\" allowfullscreen></iframe>\r\n    </div>\r\n    <div class=\"col-lg-6\">\r\n        <ul class=\"lead\">\r\n            Navigation\r\n            <li><a [routerLink]=\"['']\">Наш солдат</a></li>\r\n            <li><a [routerLink]=\"['/about']\">Про нас</a></li>\r\n            <li><a [routerLink]=\"['/registration']\">Реєстрація</a></li>\r\n            <li><a [routerLink]=\"['/login']\">Вхід</a></li>\r\n        </ul>\r\n    </div>\r\n</div>";
 
 /***/ }),
-/* 100 */
+/* 130 */
 /***/ (function(module, exports) {
 
 module.exports = "<html>\r\n<head>\r\n    <script src=\"assets/jquery.min.js\"></script>\r\n    <script src=\"assets/bootstrap-v3/js/bootstrap.js\"></script>\r\n    <script src=\"bootstrap-show-password.js\"></script>\r\n</head>\r\n<body>\r\n    <form class=\"form-horizontal\">\r\n        <fieldset>\r\n            <!-- Form Name -->\r\n            <legend>Вхід у систему</legend>\r\n            <!-- Text input-->\r\n            <div class=\"form-group\">\r\n                <label class=\"col-md-4 control-label\" for=\"fn\">Логін</label>\r\n                <div class=\"col-md-4\">\r\n                    <input type=\"text\" class=\"form-control\" name=\"login\" id=\"login\" placeholder=\"Логін\" [(ngModel)]=\"authorizeModel.login\" />\r\n                </div>\r\n            </div>\r\n            <!-- Text input-->\r\n            <div class=\"form-group\">\r\n                <label class=\"col-md-4 control-label\" for=\"ln\">Пароль</label>\r\n                <div class=\"col-md-4\">\r\n                    <div class=\"input-group\">\r\n                        <input type=\"{{ showPassword ? 'text' : 'password' }}\" class=\"form-control\" name=\"password\" id=\"password\" placeholder=\"Пароль\" [(ngModel)]=\"authorizeModel.password\"/> \r\n                        <span class=\"input-group-addon\" id=\"basic-addon2\" *ngIf=\"!showPassword\" (click)=\"changePasswordType()\">\r\n                           <span class=\"glyphicon glyphicon-eye-open\"></span>\r\n                        </span>\r\n                        <span class=\"input-group-addon\" id=\"basic-addon2\" *ngIf=\"showPassword\" (click)=\"changePasswordType()\">\r\n                            <span class=\"glyphicon glyphicon-eye-close\"></span>\r\n                        </span>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n            <!--Error-->\r\n            <div class=\"form-group\" align=\"left\">\r\n                <label class=\"col-md-4 control-label\" for=\"submit\" align=\"left\"></label>\r\n                <div class=\"col-md-4\" align=\"left\">\r\n                    <p class=\"error\" *ngIf=\"errorMessage\">{{errorMessage}}</p>\r\n                </div>\r\n            </div>\r\n            <!-- Button -->\r\n            <div class=\"form-group\" align=\"left\">\r\n                <label class=\"col-md-4 control-label\" for=\"submit\" align=\"left\"></label>\r\n                <div class=\"col-md-4\" align=\"left\">\r\n                    <button id=\"submit\" name=\"submit\" class=\"btn btn-primary\" (click)=\"login()\">Увійти</button>\r\n                </div>\r\n                <!--Register-->\r\n                <div class=\"col-md-4\" align=\"left\">\r\n                    <a [routerLink]=\"['/registration']\">Зареєструватися</a>\r\n                </div>\r\n            </div>\r\n        </fieldset>\r\n    </form>\r\n</body>\r\n</html>";
 
 /***/ }),
-/* 101 */
+/* 131 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\r\n    <img id=\"main-img\" class=\"img img-responsive center-block\" src=\"https://scontent-waw1-1.xx.fbcdn.net/v/t1.0-9/12347711_438017983073684_4814428397312966146_n.jpg?oh=399ef7ea2570a20589859fb69b5732bd&oe=599FE5D1\" />\r\n</div>\r\n<hr />\r\n<div class=\"row\">\r\n    <div class=\"col-lg-9 col-md-9\" *ngFor=\"let event of model.events\">\r\n        <div>\r\n            <h2>{{event.organizationName}}</h2>\r\n            <p>{{event.description}}</p>\r\n            <img class=\"img img-responsive\" src={{event.pathToCoverImage}} />\r\n        </div>\r\n    </div>\r\n    <div class=\"col-lg-3 col-md-3\" id=\"right-bar\">\r\n        <h2 class=\"text-center\">Останні звіти:</h2>\r\n        <ul *ngIf=\"model.reports\">\r\n            <li *ngFor=\"let report of model.reports\">\r\n                <a>\r\n                    {{report.organizationName}}\r\n                    {{report.date.getFullYear()}}/{{report.date.getMonth()}}/{{report.date.getDate()}}\r\n                </a>\r\n            </li>\r\n        </ul>\r\n    </div>\r\n</div>\r\n";
+module.exports = "<div class=\"row\">\r\n    <img id=\"main-img\" class=\"img img-responsive center-block\" src=\"https://scontent-waw1-1.xx.fbcdn.net/v/t1.0-9/12347711_438017983073684_4814428397312966146_n.jpg?oh=399ef7ea2570a20589859fb69b5732bd&oe=599FE5D1\" />\r\n</div>\r\n<hr />\r\n<map-comp></map-comp>\r\n<div class=\"row\">\r\n    <div class=\"col-lg-9 col-md-9\" *ngFor=\"let event of model.events\">\r\n        <div>\r\n            <h2>{{event.organizationName}}</h2>\r\n            <p>{{event.description}}</p>\r\n            <img class=\"img img-responsive\" src={{event.pathToCoverImage}} />\r\n        </div>\r\n    </div>\r\n    <div class=\"col-lg-3 col-md-3\" id=\"right-bar\">\r\n        <h2 class=\"text-center\">Останні звіти:</h2>\r\n        <ul *ngIf=\"model.reports\">\r\n            <li *ngFor=\"let report of model.reports\">\r\n                <a>\r\n                    {{report.organizationName}}\r\n                    {{report.date.getFullYear()}}/{{report.date.getMonth()}}/{{report.date.getDate()}}\r\n                </a>\r\n            </li>\r\n        </ul>\r\n    </div>\r\n</div>\r\n";
 
 /***/ }),
-/* 102 */
+/* 132 */
 /***/ (function(module, exports) {
 
-module.exports = "<form class=\"form-horizontal\">\r\n    <fieldset>\r\n        <!-- Form Name -->\r\n        <legend>Реєстрація нового користувача</legend>\r\n        <!-- Text input-->\r\n        <div class=\"form-group\">\r\n            <label class=\"col-md-4 control-label\" for=\"fn\">Імя</label>\r\n            <div class=\"col-md-4\">\r\n                <input id=\"firstName\" name=\"firstName\" [(ngModel)]=\"registrationViewModel.firstName\" type=\"text\" placeholder=\"Імя\" class=\"form-control input-md\" required=\"\">\r\n\r\n            </div>\r\n        </div>\r\n        <!-- Text input-->\r\n        <div class=\"form-group\">\r\n            <label class=\"col-md-4 control-label\" for=\"ln\">Прізвище</label>\r\n            <div class=\"col-md-4\">\r\n                <input id=\"ln\" name=\"ln\" type=\"text\" placeholder=\"Прізвище\" class=\"form-control input-md\" required=\"\">\r\n\r\n            </div>\r\n        </div>\r\n        <!-- Text input-->\r\n        <div class=\"form-group\">\r\n            <label class=\"col-md-4 control-label\" for=\"cmpny\">Логін</label>\r\n            <div class=\"col-md-4\">\r\n                <input id=\"cmpny\" name=\"cmpny\" type=\"text\" placeholder=\"Логін\" class=\"form-control input-md\" required=\"\">\r\n\r\n            </div>\r\n        </div>\r\n        <!-- Text input-->\r\n        <div class=\"form-group\">\r\n            <label class=\"col-md-4 control-label\" for=\"email\">Email</label>\r\n            <div class=\"col-md-4\">\r\n                <input id=\"email\" name=\"email\" type=\"text\" placeholder=\"email\" class=\"form-control input-md\" required=\"\">\r\n\r\n            </div>\r\n        </div>\r\n        <!-- Text input-->\r\n        <div class=\"form-group\">\r\n            <label class=\"col-md-4 control-label\" for=\"add1\">Пароль</label>\r\n            <div class=\"col-md-4\">\r\n                <input id=\"add1\" name=\"add1\" type=\"password\" class=\"form-control input-md\" required=\"\">\r\n\r\n            </div>\r\n        </div>\r\n        <!-- Text input-->\r\n        <div class=\"form-group\">\r\n            <label class=\"col-md-4 control-label\" for=\"add2\">Підтвердіть пароль</label>\r\n            <div class=\"col-md-4\">\r\n                <input id=\"add2\" name=\"add2\" type=\"text\" placeholder=\"\" class=\"form-control input-md\">\r\n\r\n            </div>\r\n        </div>\r\n        <!-- Button -->\r\n        <div class=\"form-group\">\r\n            <label class=\"col-md-4 control-label\" for=\"submit\"></label>\r\n            <div class=\"col-md-4\">\r\n                <button id=\"submit\" name=\"submit\" class=\"btn btn-primary\" (click)=\"showMessage()\">Зареєструватись</button>\r\n            </div>\r\n        </div>\r\n    </fieldset>\r\n</form>";
+module.exports = "<form class=\"form-horizontal\">\r\n    <fieldset>\r\n        <!-- Form Name -->\r\n        <legend>Реєстрація нового користувача</legend>\r\n        <!-- Text input-->\r\n        <div class=\"form-group\">\r\n            <label class=\"col-md-4 control-label\" for=\"fn\">Імя</label>\r\n            <div class=\"col-md-4\">\r\n                <input id=\"firstName\" name=\"firstName\" [(ngModel)]=\"registrationViewModel.firstName\" type=\"text\" placeholder=\"Імя\" class=\"form-control input-md\" required=\"\">\r\n\r\n            </div>\r\n        </div>\r\n        <!-- Text input-->\r\n        <div class=\"form-group\">\r\n            <label class=\"col-md-4 control-label\" for=\"ln\">Прізвище</label>\r\n            <div class=\"col-md-4\">\r\n                <input id=\"ln\" name=\"ln\" type=\"text\" [(ngModel)]=\"registrationViewModel.lastName\" placeholder=\"Прізвище\" class=\"form-control input-md\" required=\"\">\r\n\r\n            </div>\r\n        </div>\r\n        <!-- Text input-->\r\n        <div class=\"form-group\">\r\n            <label class=\"col-md-4 control-label\" for=\"cmpny\">Логін</label>\r\n            <div class=\"col-md-4\">\r\n                <input id=\"cmpny\" name=\"cmpny\" [(ngModel)]=\"registrationViewModel.login\"type=\"text\" placeholder=\"Логін\" class=\"form-control input-md\" required=\"\">\r\n\r\n            </div>\r\n        </div>\r\n        <!-- Text input-->\r\n        <div class=\"form-group\">\r\n            <label class=\"col-md-4 control-label\" for=\"email\">Email</label>\r\n            <div class=\"col-md-4\">\r\n                <input id=\"email\" name=\"email\" type=\"text\"[(ngModel)]=\"registrationViewModel.email\" placeholder=\"email\" class=\"form-control input-md\" required=\"\">\r\n\r\n            </div>\r\n        </div>\r\n        <!-- Text input-->\r\n        <div class=\"form-group\">\r\n            <label class=\"col-md-4 control-label\" for=\"add1\">Пароль</label>\r\n            <div class=\"col-md-4\">\r\n                <input id=\"add1\" name=\"add1\" type=\"password\" [(ngModel)]=\"registrationViewModel.password\" class=\"form-control input-md\" required=\"\">\r\n\r\n            </div>\r\n        </div>\r\n        <!-- Text input-->\r\n        <div class=\"form-group\">\r\n            <label class=\"col-md-4 control-label\" for=\"add2\">Підтвердіть пароль</label>\r\n            <div class=\"col-md-4\">\r\n                <input id=\"add2\" name=\"add2\" type=\"text\" placeholder=\"\" class=\"form-control input-md\">\r\n\r\n            </div>\r\n        </div>\r\n        <!-- Button -->\r\n        <div class=\"form-group\">\r\n            <label class=\"col-md-4 control-label\" for=\"submit\"></label>\r\n            <div class=\"col-md-4\">\r\n                <button id=\"submit\" name=\"submit\" class=\"btn btn-primary\" (click)=\"register()\">Зареєструватись</button>\r\n            </div>\r\n        </div>\r\n    </fieldset>\r\n</form>";
 
 /***/ }),
-/* 103 */
+/* 133 */
 /***/ (function(module, exports) {
 
 module.exports = "<h1>Here will be complaints</h1>";
 
 /***/ }),
-/* 104 */
+/* 134 */
 /***/ (function(module, exports) {
 
 module.exports = "<h1>Here will be Organizations</h1>";
 
 /***/ }),
-/* 105 */
+/* 135 */
 /***/ (function(module, exports) {
 
 module.exports = "<h1>Here will be users</h1>";
 
 /***/ }),
-/* 106 */
+/* 136 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"row\">    \r\n    <div class=\"side-menu col-sm-1\">\r\n        <nav class=\"navbar navbar-default\" role=\"navigation\">           \r\n            <div class=\"side-menu-container\">\r\n                <ul class=\"nav navbar-nav\">\r\n                    <li [routerLinkActive]=\"['link-active']\">\r\n                        <a [routerLink]=\"['/superadmin']\">\r\n                            <span class=\"glyphicon glyphicon-user\"></span>\r\n                             Super Admin\r\n                        </a>\r\n                    </li>\r\n                    <li [routerLinkActive]=\"['link-active']\">\r\n                        <a [routerLink]=\"['complaints']\">\r\n                            <span class=\"glyphicon glyphicon-envelope\"></span> \r\n                            Скарги\r\n                        </a>\r\n                    </li>\r\n                    <li [routerLinkActive]=\"['link-active']\">\r\n                        <a>\r\n                            <span class=\"glyphicon glyphicon-plus\"></span> \r\n                            Додати Організацію\r\n                        </a>\r\n                    </li>\r\n                    <li [routerLinkActive]=\"['link-active']\">\r\n                        <a [routerLink]=\"['organizations']\">\r\n                            <span class=\"glyphicon glyphicon-th-list\"></span> \r\n                            Організації\r\n                        </a>\r\n                    </li>                 \r\n                    <li [routerLinkActive]=\"['link-active']\">\r\n                        <a [routerLink]=\"['users']\"><span class=\"glyphicon glyphicon-th-list\"></span> \r\n                            Користувачі\r\n                        </a>\r\n                    </li>\r\n                </ul>\r\n            </div>\r\n        </nav>\r\n    </div>\r\n    <div class=\"container-fluid\">\r\n        <div class=\"side-body\">\r\n            You are logged in as Super Admin... Good for you....\r\n            <router-outlet></router-outlet>\r\n        </div>\r\n    </div>\r\n</div>";
 
 /***/ }),
-/* 107 */
+/* 137 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"container\" style=\"padding-top: 10px;\">\r\n    <h1 class=\"page-header\">Редагування профілю</h1>\r\n    <div class=\"row\">\r\n\r\n        <div class=\"col-md-4 col-sm-6 col-xs-12\">\r\n            <div class=\"text-center\">\r\n                <img src=\"{{user.userPhotoUrl}}\" class=\"avatar img-circle img-thumbnail\" alt=\"avatar\" height=\"250\" width=\"150\">\r\n                <h6>Завантажити інше фото</h6>\r\n                <input type=\"file\" class=\"text-center center-block well well-sm\">\r\n\r\n            </div>\r\n        </div>\r\n\r\n        <div class=\"col-md-8 col-sm-6 col-xs-12 personal-info\">\r\n            <div class=\"alert alert-info alert-dismissable\">\r\n                <a class=\"panel-close close\" data-dismiss=\"alert\">×</a>\r\n                <i class=\"fa fa-coffee\"></i>\r\n                Тут можна показувати сповіщення для юзера\r\n            </div>\r\n            <h3>Особисті дані</h3>\r\n            <form [formGroup]=\"userForm\" class=\"form-horizontal\" (ngSubmit)=\"onSubmit()\">\r\n                <div class=\"form-group\">\r\n                    <label class=\"col-lg-3 control-label\" for=\"userFirstName\">Ім'я:</label>\r\n                    <div class=\"col-lg-8\">\r\n                        <input class=\"form-control\" [(ngModel)]=\"user.userFirstName\" name=\"userFirstName\" type=\"text\" formControlName=\"userFirstName\">\r\n                        <div *ngIf=\"formErrors.userFirstName\" class=\"alert alert-danger\">\r\n                            {{formErrors.userFirstName}}\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n                <div class=\"form-group\">\r\n                    <label class=\"col-lg-3 control-label\" for=\"userLastName\">Прізвище:</label>\r\n                    <div class=\"col-lg-8\">\r\n                        <input class=\"form-control\" [(ngModel)]=\"user.userLastName\" name=\"userLastName\" type=\"text\" formControlName=\"userLastName\">\r\n                        <div *ngIf=\"formErrors.userLastName\" class=\"alert alert-danger\">\r\n                            {{formErrors.userLastName}}\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n                <div class=\"form-group\">\r\n                    <label class=\"col-lg-3 control-label\" for=\"userAddress\">Адреса:</label>\r\n                    <div class=\"col-lg-8\">\r\n                        <input class=\"form-control\" [(ngModel)]=\"user.userAddress\" name=\"userAddress\" type=\"text\" formControlName=\"userAddress\">\r\n                        <div *ngIf=\"formErrors.userAddress\" class=\"alert alert-danger\">\r\n                            {{formErrors.userAddress}}\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n                <div class=\"form-group\">\r\n                    <label class=\"col-lg-3 control-label\" for=\"userEmail\">Email:</label>\r\n                    <div class=\"col-lg-8\">\r\n                        <input class=\"form-control\" [(ngModel)]=\"user.userEmail\" name=\"userEmail\" type=\"text\" formControlName=\"userEmail\">\r\n                        <div *ngIf=\"formErrors.userEmail\" class=\"alert alert-danger\">\r\n                            {{formErrors.userEmail}}\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n                <hr />\r\n                <div class=\"form-group\">\r\n                    <label class=\"col-md-3 control-label\" for=\"userLogin\">Логін:</label>\r\n                    <div class=\"col-md-8\">\r\n                        <input class=\"form-control\" disabled [(ngModel)]=\"user.userLogin\" name=\"userLogin\" type=\"text\" formControlName=\"userLogin\">\r\n                        <div *ngIf=\"formErrors.userLogin\" class=\"alert alert-danger\">\r\n                            {{formErrors.userLogin}}\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n                <div *ngIf=\"passwordEdit\">\r\n                    <div class=\"form-group\">\r\n                        <label class=\"col-md-3 control-label\" for=\"password\">Пароль:</label>\r\n                        <div class=\"col-md-8\">\r\n                            <input class=\"form-control\" validateEqualTo=\"userConfirmPassword\" [(ngModel)]=\"user.userPassword\" name=\"userPassword\" type=\"password\" formControlName=\"userPassword\">\r\n                        </div>\r\n                    </div>\r\n                    <div class=\"form-group\">\r\n                        <label class=\"col-md-3 control-label\">Підтвердження пароля:</label>\r\n                        <div class=\"col-md-8\">\r\n                            <input class=\"form-control\" [(ngModel)]=\"user.userConfirmPassword\" name=\"userConfirmPassword\" type=\"password\" formControlName=\"userConfirmPassword\">\r\n                            <small *ngIf=\"userForm.get('userPassword').hasError('validateEqual')\" class=\"text-danger\">\r\n                                Паролі не співпадають\r\n                            </small>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n                <div class=\"form-group\">\r\n                    <label class=\"col-md-3 control-label\"></label>\r\n                    <div class=\"col-md-8\">\r\n                        <button type=\"submit\" class=\"btn btn-primary\" [disabled]=\"!userForm.valid\">Зберегти</button>\r\n                        <!--<input style=\"margin-left: 200px;\" *ngIf=\"!passwordEdit\" class=\"btn btn-primary\" value=\"Змінити пароль\" type=\"button\" (click)=\"EditPassword()\">-->\r\n                        <span></span>\r\n                    </div>\r\n                </div>\r\n            </form>\r\n        </div>\r\n    </div>\r\n</div>";
 
 /***/ }),
-/* 108 */
+/* 138 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"row\">\r\n    <div class=\"btn-group\">\r\n        <button type=\"button\" class=\"btn btn-info dropdown-toggle\" data-toggle=\"dropdown\">Всі організації <span class=\"caret\"></span></button>\r\n        <ul class=\"dropdown-menu scrollable-menu\" role=\"menu\">\r\n            <li><input type=\"text\" class=\"form-control\" name=\"filterBy\" [(ngModel)]=\"filterBy\" placeholder=\"Filter By\" /></li>\r\n            <li *ngFor=\"let org of organizations | organizationsListPipe:filterBy\"><a>{{org.name}}</a></li>\r\n        </ul>\r\n    </div>\r\n</div>";
 
 /***/ }),
-/* 109 */
+/* 139 */
+/***/ (function(module, exports) {
+
+module.exports = "<!-- this creates a google map on the page with the given lat/lng from -->\r\n<!-- the component as the initial center of the map: -->\r\n\r\n<!--<div *ngIf=\"ready\">\r\n    <agm-map [latitude]=\"lat\" [longitude]=\"lng\">\r\n        <agm-marker [latitude]=\"lat\" [longitude]=\"lng\"></agm-marker>\r\n    </agm-map>\r\n</div>-->";
+
+/***/ }),
+/* 140 */
 /***/ (function(module, exports) {
 
 module.exports = "<li><a *ngIf=\"isAuthorize()\"> Привіт, {{login}}</a></li>\r\n<li><a [routerLink]=\"['/login']\" *ngIf=\"!isAuthorize()\">Вхід</a></li>\r\n<li><a [routerLink]=\"['/registration']\" *ngIf=\"!isAuthorize()\"> Реєстрація {{login}}</a></li>\r\n<li><a [routerLink]=\"['/']\" *ngIf=\"isAuthorize()\" (click)=\"exit()\">Вихід</a></li>\r\n";
 
 /***/ }),
-/* 110 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-// Copyright Joyent, Inc. and other Node contributors.
-//
-// Permission is hereby granted, free of charge, to any person obtaining a
-// copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to permit
-// persons to whom the Software is furnished to do so, subject to the
-// following conditions:
-//
-// The above copyright notice and this permission notice shall be included
-// in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
-// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
-// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
-// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
-// USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-
-
-// If obj.hasOwnProperty has been overridden, then calling
-// obj.hasOwnProperty(prop) will break.
-// See: https://github.com/joyent/node/issues/1707
-function hasOwnProperty(obj, prop) {
-  return Object.prototype.hasOwnProperty.call(obj, prop);
-}
-
-module.exports = function(qs, sep, eq, options) {
-  sep = sep || '&';
-  eq = eq || '=';
-  var obj = {};
-
-  if (typeof qs !== 'string' || qs.length === 0) {
-    return obj;
-  }
-
-  var regexp = /\+/g;
-  qs = qs.split(sep);
-
-  var maxKeys = 1000;
-  if (options && typeof options.maxKeys === 'number') {
-    maxKeys = options.maxKeys;
-  }
-
-  var len = qs.length;
-  // maxKeys <= 0 means that we should not limit keys count
-  if (maxKeys > 0 && len > maxKeys) {
-    len = maxKeys;
-  }
-
-  for (var i = 0; i < len; ++i) {
-    var x = qs[i].replace(regexp, '%20'),
-        idx = x.indexOf(eq),
-        kstr, vstr, k, v;
-
-    if (idx >= 0) {
-      kstr = x.substr(0, idx);
-      vstr = x.substr(idx + 1);
-    } else {
-      kstr = x;
-      vstr = '';
-    }
-
-    k = decodeURIComponent(kstr);
-    v = decodeURIComponent(vstr);
-
-    if (!hasOwnProperty(obj, k)) {
-      obj[k] = v;
-    } else if (isArray(obj[k])) {
-      obj[k].push(v);
-    } else {
-      obj[k] = [obj[k], v];
-    }
-  }
-
-  return obj;
-};
-
-var isArray = Array.isArray || function (xs) {
-  return Object.prototype.toString.call(xs) === '[object Array]';
-};
-
-
-/***/ }),
-/* 111 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-// Copyright Joyent, Inc. and other Node contributors.
-//
-// Permission is hereby granted, free of charge, to any person obtaining a
-// copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to permit
-// persons to whom the Software is furnished to do so, subject to the
-// following conditions:
-//
-// The above copyright notice and this permission notice shall be included
-// in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
-// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
-// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
-// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
-// USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-
-
-var stringifyPrimitive = function(v) {
-  switch (typeof v) {
-    case 'string':
-      return v;
-
-    case 'boolean':
-      return v ? 'true' : 'false';
-
-    case 'number':
-      return isFinite(v) ? v : '';
-
-    default:
-      return '';
-  }
-};
-
-module.exports = function(obj, sep, eq, name) {
-  sep = sep || '&';
-  eq = eq || '=';
-  if (obj === null) {
-    obj = undefined;
-  }
-
-  if (typeof obj === 'object') {
-    return map(objectKeys(obj), function(k) {
-      var ks = encodeURIComponent(stringifyPrimitive(k)) + eq;
-      if (isArray(obj[k])) {
-        return map(obj[k], function(v) {
-          return ks + encodeURIComponent(stringifyPrimitive(v));
-        }).join(sep);
-      } else {
-        return ks + encodeURIComponent(stringifyPrimitive(obj[k]));
-      }
-    }).join(sep);
-
-  }
-
-  if (!name) return '';
-  return encodeURIComponent(stringifyPrimitive(name)) + eq +
-         encodeURIComponent(stringifyPrimitive(obj));
-};
-
-var isArray = Array.isArray || function (xs) {
-  return Object.prototype.toString.call(xs) === '[object Array]';
-};
-
-function map (xs, f) {
-  if (xs.map) return xs.map(f);
-  var res = [];
-  for (var i = 0; i < xs.length; i++) {
-    res.push(f(xs[i], i));
-  }
-  return res;
-}
-
-var objectKeys = Object.keys || function (obj) {
-  var res = [];
-  for (var key in obj) {
-    if (Object.prototype.hasOwnProperty.call(obj, key)) res.push(key);
-  }
-  return res;
-};
-
-
-/***/ }),
-/* 112 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.decode = exports.parse = __webpack_require__(110);
-exports.encode = exports.stringify = __webpack_require__(111);
-
-
-/***/ }),
-/* 113 */
+/* 141 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11255,7 +14279,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var Subscriber_1 = __webpack_require__(128);
+var Subscriber_1 = __webpack_require__(161);
 /* tslint:enable:max-line-length */
 /**
  * Perform a side effect for every emission on the source Observable, but return
@@ -11364,12 +14388,12 @@ var DoSubscriber = (function (_super) {
 //# sourceMappingURL=do.js.map
 
 /***/ }),
-/* 114 */
+/* 142 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var root_1 = __webpack_require__(133);
+var root_1 = __webpack_require__(166);
 /* tslint:enable:max-line-length */
 /**
  * Converts an Observable sequence to a ES2015 compliant promise.
@@ -11442,12 +14466,12 @@ exports.toPromise = toPromise;
 //# sourceMappingURL=toPromise.js.map
 
 /***/ }),
-/* 115 */
+/* 143 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var ansiRegex = __webpack_require__(66)();
+var ansiRegex = __webpack_require__(93)();
 
 module.exports = function (str) {
 	return typeof str === 'string' ? str.replace(ansiRegex, '') : str;
@@ -11455,11 +14479,11 @@ module.exports = function (str) {
 
 
 /***/ }),
-/* 116 */
+/* 144 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-        var result = __webpack_require__(87);
+        var result = __webpack_require__(116);
 
         if (typeof result === "string") {
             module.exports = result;
@@ -11469,11 +14493,11 @@ module.exports = function (str) {
     
 
 /***/ }),
-/* 117 */
+/* 145 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-        var result = __webpack_require__(88);
+        var result = __webpack_require__(117);
 
         if (typeof result === "string") {
             module.exports = result;
@@ -11483,11 +14507,11 @@ module.exports = function (str) {
     
 
 /***/ }),
-/* 118 */
+/* 146 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-        var result = __webpack_require__(89);
+        var result = __webpack_require__(118);
 
         if (typeof result === "string") {
             module.exports = result;
@@ -11497,11 +14521,11 @@ module.exports = function (str) {
     
 
 /***/ }),
-/* 119 */
+/* 147 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-        var result = __webpack_require__(90);
+        var result = __webpack_require__(119);
 
         if (typeof result === "string") {
             module.exports = result;
@@ -11511,11 +14535,11 @@ module.exports = function (str) {
     
 
 /***/ }),
-/* 120 */
+/* 148 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-        var result = __webpack_require__(91);
+        var result = __webpack_require__(120);
 
         if (typeof result === "string") {
             module.exports = result;
@@ -11525,11 +14549,11 @@ module.exports = function (str) {
     
 
 /***/ }),
-/* 121 */
+/* 149 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-        var result = __webpack_require__(92);
+        var result = __webpack_require__(121);
 
         if (typeof result === "string") {
             module.exports = result;
@@ -11539,11 +14563,11 @@ module.exports = function (str) {
     
 
 /***/ }),
-/* 122 */
+/* 150 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-        var result = __webpack_require__(93);
+        var result = __webpack_require__(122);
 
         if (typeof result === "string") {
             module.exports = result;
@@ -11553,11 +14577,11 @@ module.exports = function (str) {
     
 
 /***/ }),
-/* 123 */
+/* 151 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-        var result = __webpack_require__(94);
+        var result = __webpack_require__(123);
 
         if (typeof result === "string") {
             module.exports = result;
@@ -11567,7 +14591,21 @@ module.exports = function (str) {
     
 
 /***/ }),
-/* 124 */
+/* 152 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+        var result = __webpack_require__(124);
+
+        if (typeof result === "string") {
+            module.exports = result;
+        } else {
+            module.exports = result.toString();
+        }
+    
+
+/***/ }),
+/* 153 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*eslint-env browser*/
@@ -11596,7 +14634,7 @@ for (var key in styles) {
   clientOverlay.style[key] = styles[key];
 }
 
-var ansiHTML = __webpack_require__(65);
+var ansiHTML = __webpack_require__(92);
 var colors = {
   reset: ['transparent', 'transparent'],
   black: '181818',
@@ -11611,7 +14649,7 @@ var colors = {
 };
 ansiHTML.setColors(colors);
 
-var Entities = __webpack_require__(95).AllHtmlEntities;
+var Entities = __webpack_require__(125).AllHtmlEntities;
 var entities = new Entities();
 
 exports.showProblems =
@@ -11652,7 +14690,7 @@ function problemType (type) {
 
 
 /***/ }),
-/* 125 */
+/* 154 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -11790,66 +14828,303 @@ module.exports = function(hash, moduleMap, options) {
 
 
 /***/ }),
-/* 126 */
+/* 155 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = (__webpack_require__(1))(11);
+"use strict";
+// Copyright Joyent, Inc. and other Node contributors.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a
+// copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to permit
+// persons to whom the Software is furnished to do so, subject to the
+// following conditions:
+//
+// The above copyright notice and this permission notice shall be included
+// in all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
+// USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+
+
+// If obj.hasOwnProperty has been overridden, then calling
+// obj.hasOwnProperty(prop) will break.
+// See: https://github.com/joyent/node/issues/1707
+function hasOwnProperty(obj, prop) {
+  return Object.prototype.hasOwnProperty.call(obj, prop);
+}
+
+module.exports = function(qs, sep, eq, options) {
+  sep = sep || '&';
+  eq = eq || '=';
+  var obj = {};
+
+  if (typeof qs !== 'string' || qs.length === 0) {
+    return obj;
+  }
+
+  var regexp = /\+/g;
+  qs = qs.split(sep);
+
+  var maxKeys = 1000;
+  if (options && typeof options.maxKeys === 'number') {
+    maxKeys = options.maxKeys;
+  }
+
+  var len = qs.length;
+  // maxKeys <= 0 means that we should not limit keys count
+  if (maxKeys > 0 && len > maxKeys) {
+    len = maxKeys;
+  }
+
+  for (var i = 0; i < len; ++i) {
+    var x = qs[i].replace(regexp, '%20'),
+        idx = x.indexOf(eq),
+        kstr, vstr, k, v;
+
+    if (idx >= 0) {
+      kstr = x.substr(0, idx);
+      vstr = x.substr(idx + 1);
+    } else {
+      kstr = x;
+      vstr = '';
+    }
+
+    k = decodeURIComponent(kstr);
+    v = decodeURIComponent(vstr);
+
+    if (!hasOwnProperty(obj, k)) {
+      obj[k] = v;
+    } else if (isArray(obj[k])) {
+      obj[k].push(v);
+    } else {
+      obj[k] = [obj[k], v];
+    }
+  }
+
+  return obj;
+};
+
+var isArray = Array.isArray || function (xs) {
+  return Object.prototype.toString.call(xs) === '[object Array]';
+};
+
 
 /***/ }),
-/* 127 */
+/* 156 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = (__webpack_require__(1))(124);
+"use strict";
+// Copyright Joyent, Inc. and other Node contributors.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a
+// copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to permit
+// persons to whom the Software is furnished to do so, subject to the
+// following conditions:
+//
+// The above copyright notice and this permission notice shall be included
+// in all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
+// USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+
+
+var stringifyPrimitive = function(v) {
+  switch (typeof v) {
+    case 'string':
+      return v;
+
+    case 'boolean':
+      return v ? 'true' : 'false';
+
+    case 'number':
+      return isFinite(v) ? v : '';
+
+    default:
+      return '';
+  }
+};
+
+module.exports = function(obj, sep, eq, name) {
+  sep = sep || '&';
+  eq = eq || '=';
+  if (obj === null) {
+    obj = undefined;
+  }
+
+  if (typeof obj === 'object') {
+    return map(objectKeys(obj), function(k) {
+      var ks = encodeURIComponent(stringifyPrimitive(k)) + eq;
+      if (isArray(obj[k])) {
+        return map(obj[k], function(v) {
+          return ks + encodeURIComponent(stringifyPrimitive(v));
+        }).join(sep);
+      } else {
+        return ks + encodeURIComponent(stringifyPrimitive(obj[k]));
+      }
+    }).join(sep);
+
+  }
+
+  if (!name) return '';
+  return encodeURIComponent(stringifyPrimitive(name)) + eq +
+         encodeURIComponent(stringifyPrimitive(obj));
+};
+
+var isArray = Array.isArray || function (xs) {
+  return Object.prototype.toString.call(xs) === '[object Array]';
+};
+
+function map (xs, f) {
+  if (xs.map) return xs.map(f);
+  var res = [];
+  for (var i = 0; i < xs.length; i++) {
+    res.push(f(xs[i], i));
+  }
+  return res;
+}
+
+var objectKeys = Object.keys || function (obj) {
+  var res = [];
+  for (var key in obj) {
+    if (Object.prototype.hasOwnProperty.call(obj, key)) res.push(key);
+  }
+  return res;
+};
+
 
 /***/ }),
-/* 128 */
+/* 157 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = (__webpack_require__(1))(21);
+"use strict";
+
+
+exports.decode = exports.parse = __webpack_require__(155);
+exports.encode = exports.stringify = __webpack_require__(156);
+
 
 /***/ }),
-/* 129 */
-/***/ (function(module, exports, __webpack_require__) {
+/* 158 */
+/***/ (function(module, exports) {
 
-module.exports = (__webpack_require__(1))(328);
+var g;
 
-/***/ }),
-/* 130 */
-/***/ (function(module, exports, __webpack_require__) {
+// This works in non-strict mode
+g = (function() {
+	return this;
+})();
 
-module.exports = (__webpack_require__(1))(329);
+try {
+	// This works if eval is allowed (see CSP)
+	g = g || Function("return this")() || (1,eval)("this");
+} catch(e) {
+	// This works if the window reference is available
+	if(typeof window === "object")
+		g = window;
+}
 
-/***/ }),
-/* 131 */
-/***/ (function(module, exports, __webpack_require__) {
+// g can still be undefined, but nothing to do about it...
+// We return undefined, instead of nothing here, so it's
+// easier to handle this case. if(!global) { ...}
 
-module.exports = (__webpack_require__(1))(345);
+module.exports = g;
 
-/***/ }),
-/* 132 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = (__webpack_require__(1))(347);
-
-/***/ }),
-/* 133 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = (__webpack_require__(1))(49);
 
 /***/ }),
-/* 134 */
-/***/ (function(module, exports, __webpack_require__) {
+/* 159 */
+/***/ (function(module, exports) {
 
-module.exports = (__webpack_require__(1))(588);
+module.exports = function(module) {
+	if(!module.webpackPolyfill) {
+		module.deprecate = function() {};
+		module.paths = [];
+		// module.parent = undefined by default
+		if(!module.children) module.children = [];
+		Object.defineProperty(module, "loaded", {
+			enumerable: true,
+			get: function() {
+				return module.l;
+			}
+		});
+		Object.defineProperty(module, "id", {
+			enumerable: true,
+			get: function() {
+				return module.i;
+			}
+		});
+		module.webpackPolyfill = 1;
+	}
+	return module;
+};
+
 
 /***/ }),
-/* 135 */
+/* 160 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(58);
-__webpack_require__(57);
-module.exports = __webpack_require__(56);
+module.exports = (__webpack_require__(2))(124);
+
+/***/ }),
+/* 161 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = (__webpack_require__(2))(21);
+
+/***/ }),
+/* 162 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = (__webpack_require__(2))(328);
+
+/***/ }),
+/* 163 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = (__webpack_require__(2))(329);
+
+/***/ }),
+/* 164 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = (__webpack_require__(2))(345);
+
+/***/ }),
+/* 165 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = (__webpack_require__(2))(347);
+
+/***/ }),
+/* 166 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = (__webpack_require__(2))(49);
+
+/***/ }),
+/* 167 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(80);
+__webpack_require__(79);
+module.exports = __webpack_require__(78);
 
 
 /***/ })

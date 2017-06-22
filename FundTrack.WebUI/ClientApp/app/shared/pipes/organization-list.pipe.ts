@@ -1,5 +1,5 @@
 ﻿import { Pipe, PipeTransform } from "@angular/core";
-import { IOrganizationForLayout } from "../../view-models/abstract/organization-for-layout.interface";
+import { IOrganizationForFiltering } from "../../view-models/abstract/organization-for-filtering.interface";
 
 @Pipe({
     name: 'organizationsListPipe'
@@ -13,9 +13,9 @@ export class DropdownOrganizationFilterPipe implements PipeTransform {
      * @param filterBy : string
      * @returns filtered IOrganizationsForLayout[] by string
      */
-    transform(value: IOrganizationForLayout[], filterBy: string): IOrganizationForLayout[] {
+    transform(value: IOrganizationForFiltering[], filterBy: string): IOrganizationForFiltering[] {
         filterBy = filterBy ? filterBy.toLocaleLowerCase() : null;
-        return filterBy ? value.filter((carModel: IOrganizationForLayout) =>
+        return filterBy ? value.filter((carModel: IOrganizationForFiltering) =>
             carModel.name.toLocaleLowerCase().indexOf(filterBy) !== -1) : value;
     }
 }

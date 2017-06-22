@@ -13,13 +13,13 @@ namespace FundTrack.WebUI.Controllers
     [Route("api/[controller]")]
     public class OrganizationsListController : Controller
     {
-        private IOrganizationsForLayoutService _service;
+        private IOrganizationsForFilteringService _service;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="OrganizationsListController"/> class.
         /// </summary>
         /// <param name="serviceParam">The service parameter.</param>
-        public OrganizationsListController(IOrganizationsForLayoutService serviceParam)
+        public OrganizationsListController(IOrganizationsForFilteringService serviceParam)
         {
             this._service = serviceParam;
         }
@@ -30,7 +30,7 @@ namespace FundTrack.WebUI.Controllers
         /// <returns> collection of 'OrganizationForSearch' </returns>
         /// 
         [HttpGet]
-        public IEnumerable<OrganizationsForLayout> AllOrganizations()
+        public IEnumerable<OrganizationForFilteringViewModel> AllOrganizations()
         {
             return this._service.GetAll();
         }

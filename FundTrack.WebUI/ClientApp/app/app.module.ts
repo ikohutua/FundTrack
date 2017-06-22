@@ -6,6 +6,7 @@ import { SharedModule } from "./shared.module";
 import { AuthorizationModule } from "./authorization.module";
 import { SuperAdminModule } from './super-admin.module';
 import { AppRoutingModule } from "./routes/app-routing.module";
+import { MapModule } from "./map.module";
 
 @NgModule({
     bootstrap: [AppComponent],
@@ -18,7 +19,8 @@ import { AppRoutingModule } from "./routes/app-routing.module";
         SharedModule,
         AuthorizationModule,
         SuperAdminModule,
-        AppRoutingModule
+        AppRoutingModule, 
+        MapModule
     ]
 })
 export class AppModule { }

@@ -6,7 +6,7 @@ namespace FundTrack.DAL.Abstract
     /// <summary>
     /// Interface for work whith list of organizations.
     /// </summary>
-    public interface IOrganizationsListRepository
+    public interface IOrganizationsForFilteringRepository
     {
         /// <summary>
         /// Gets the collection of organizations from database
