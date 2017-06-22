@@ -80,7 +80,7 @@ namespace FundTrack.BLL.DomainServices
             bool isUserExists = this._unitOfWork.UsersRepository.isUserExisted(registrationViewModel.Email,
                                                                                registrationViewModel.Login);
 
-            if (!isUserExists)
+            if (isUserExists)
             {
                 throw new Exception("User with that email alreafy existed");
             }
