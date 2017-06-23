@@ -147,7 +147,7 @@ namespace FundTrack.DAL.Concrete
         /// <value>
         /// The goods categorys.
         /// </value>
-        public DbSet<GoodsCategory> GoodsCategorys { get; set; }
+        public DbSet<Goods> Goodss { get; set; }
 
         /// <summary>
         /// Gets or sets the offers.
@@ -180,6 +180,21 @@ namespace FundTrack.DAL.Concrete
         /// The requested items.
         /// </value>
         public DbSet<RequestedItem> RequestedItems { get; set; }
+
+        /// <summary>
+        /// Banned users
+        /// </summary>
+        public DbSet<BannedUser> BannedUsers { get; set; }
+
+        /// <summary>
+        /// Banned organizations
+        /// </summary>
+        public DbSet<BannedOrganization> BannedOrganizations { get; set; }
+
+        /// <summary>
+        /// Subscribe organization
+        /// </summary>
+        public DbSet<SubscribeOrganization> SubscribeOrganizations { get; set; }
 
         /// <summary>
         /// Configures model creation
@@ -254,8 +269,6 @@ namespace FundTrack.DAL.Concrete
                 entity.HasKey(e => e.Id).HasName("PK_Organization");
 
                 entity.Property(e => e.Name).IsRequired().HasMaxLength(100);
-
-                entity.Property(e => e.IsBanned).IsRequired();
             });
 
             modelBuilder.Entity<OrgAddress>(entity =>
@@ -295,8 +308,8 @@ namespace FundTrack.DAL.Concrete
                 entity.HasKey(e => e.Id).HasName("PK_Membership");
 
                 entity.HasOne(m => m.User)
-                      .WithMany(u => u.Memberships)
-                      .HasForeignKey(m => m.UserId)
+                      .WithOne(u => u.Membership)
+                      .HasForeignKey<Membership>(m => m.UserId)
                       .HasConstraintName("FK_Membership_User");
 
                 entity.HasOne(m => m.Organization)
@@ -479,16 +492,16 @@ namespace FundTrack.DAL.Concrete
                 entity.Property(gt => gt.Name).IsRequired().HasMaxLength(50);
             });
 
-            modelBuilder.Entity<GoodsCategory>(entity =>
+            modelBuilder.Entity<Goods>(entity =>
             {
-                entity.HasKey(gc => gc.Id).HasName("PK_GoodsCategory");
+                entity.HasKey(gc => gc.Id).HasName("PK_Goods");
 
                 entity.Property(gc => gc.Name).IsRequired().HasMaxLength(100);
 
                 entity.HasOne(gc => gc.GoodsType)
                        .WithMany(gt => gt.GoodsCategories)
                        .HasForeignKey(gc => gc.GoodsTypeId)
-                       .HasConstraintName("FK_GoodsCategory_GoodsType");
+                       .HasConstraintName("FK_Goods_GoodsType");
             });
 
             modelBuilder.Entity<Offer>(entity =>
@@ -540,10 +553,10 @@ namespace FundTrack.DAL.Concrete
                        .HasForeignKey(oi => oi.OfferId)
                        .HasConstraintName("FK_OfferedItems_Offer");
 
-                entity.HasOne(oi => oi.GoodsCategory)
+                entity.HasOne(oi => oi.Goods)
                        .WithMany(gc => gc.OfferedItems)
-                       .HasForeignKey(oi => oi.GoodsCategoryId)
-                       .HasConstraintName("FK_OfferedItems_GoodsCategory");
+                       .HasForeignKey(oi => oi.GoodsId)
+                       .HasConstraintName("FK_OfferedItems_Goods");
             });
             //
             modelBuilder.Entity<RequestedItem>(entity =>
@@ -563,10 +576,10 @@ namespace FundTrack.DAL.Concrete
                        .HasForeignKey(ri => ri.RequestId)
                        .HasConstraintName("FK_RequestedItem_Request");
 
-                entity.HasOne(ri => ri.GoodsCategory)
+                entity.HasOne(ri => ri.Goods)
                        .WithMany(gc => gc.RequestedItems)
-                       .HasForeignKey(ri => ri.GoodsCategoryId)
-                       .HasConstraintName("FK_RequestedItem_GoodsCategory");
+                       .HasForeignKey(ri => ri.GoodsId)
+                       .HasConstraintName("FK_RequestedItem_Goods");
             });
 
             modelBuilder.Entity<BankImport>(entity =>
@@ -607,6 +620,36 @@ namespace FundTrack.DAL.Concrete
                        .WithMany(bi => bi.BankImportDetails)
                        .HasForeignKey(bid => bid.BankImportId)
                        .HasConstraintName("FK_BankImportDetails_BankImport");
+            });
+
+            modelBuilder.Entity<BannedUser>(entity =>
+            {
+                entity.HasKey(e => e.Id).HasName("PK_BannedUser");
+                entity.HasOne(e => e.User).
+                WithOne(e => e.BannedUser).
+                HasForeignKey<BannedUser>(e => e.UserId).
+                HasConstraintName("FK_BannedUser_User");
+            });
+
+            modelBuilder.Entity<BannedOrganization>(entity =>
+            {
+                entity.HasKey(e => e.Id).HasName("PK_BannedOrganization");
+                entity.HasOne(e => e.Organization).
+                WithOne(e => e.BannedOrganization).
+                HasForeignKey<BannedOrganization>(e => e.OrganizationId).
+                HasConstraintName("FK_BannedOrganization_Organization");
+            });
+
+            modelBuilder.Entity<SubscribeOrganization>(entity => {
+                entity.HasKey(e => e.Id).HasName("PK_SubscribeOrganization");
+                entity.HasOne(e => e.User).
+                WithMany(e => e.SubscribeOrganization).
+                HasForeignKey(e => e.UserId).
+                HasConstraintName("FK_SubscribeOrganization_User");
+                entity.HasOne(e => e.Organization).
+                WithMany(e => e.SubscribeOrganization).
+                HasForeignKey(e => e.OrganizationId).
+                HasConstraintName("FK_SubscribeOrganization_Organization");
             });
         }
     }

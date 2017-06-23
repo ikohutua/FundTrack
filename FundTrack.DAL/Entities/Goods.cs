@@ -2,7 +2,7 @@
 
 namespace FundTrack.DAL.Entities
 {
-    public class GoodsCategory
+    public class Goods
     {
         /// <summary>
         /// Gets or sets the identifier.

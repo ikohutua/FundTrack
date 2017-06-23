@@ -26,6 +26,6 @@ namespace FundTrack.DAL.Entities
         /// <value>
         /// The goods categories.
         /// </value>
-        public virtual ICollection<GoodsCategory> GoodsCategories { get; set; }
+        public virtual ICollection<Goods> GoodsCategories { get; set; }
     }
 }

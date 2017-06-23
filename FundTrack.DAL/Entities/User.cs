@@ -29,11 +29,6 @@ namespace FundTrack.DAL.Entities
         public string Password { get; set; }
 
         /// <summary>
-        /// User SaltKey to hash password
-        /// </summary>
-        public string SaltKey { get; set; }
-
-        /// <summary>
         /// User First Name
         /// </summary>       
         public string FirstName { get; set; }
@@ -54,9 +49,9 @@ namespace FundTrack.DAL.Entities
         public string PhotoUrl { get; set; }
 
         /// <summary>
-        /// Indicates if that the user is banned
+        /// Navigation property Banned user
         /// </summary>
-        public bool IsBanned { get; set; }
+        public virtual BannedUser BannedUser { get; set; }
 
         /// <summary>
         /// Phone navigation property
@@ -66,7 +61,12 @@ namespace FundTrack.DAL.Entities
         /// <summary>
         /// Membership navigation property
         /// </summary>
-        public virtual ICollection<Membership> Memberships { get; set; }
+        public virtual Membership Membership { get; set; }
+
+        /// <summary>
+        /// Subscribe organization navigation property
+        /// </summary>
+        public virtual ICollection<SubscribeOrganization> SubscribeOrganization { get; set; }
 
         /// <summary>
         /// UserAddress navigation property

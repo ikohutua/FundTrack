@@ -23,9 +23,9 @@ namespace FundTrack.DAL.Entities
         public string Description { get; set; }
 
         /// <summary>
-        /// Indicates if that the Organization is banned
+        /// Navigation property Banned organization
         /// </summary>
-        public bool IsBanned { get; set; }
+        public virtual BannedOrganization BannedOrganization { get; set; }
 
         /// <summary>
         /// Membership navigation property
@@ -41,6 +41,11 @@ namespace FundTrack.DAL.Entities
         /// BankAccount navigation property
         /// </summary>
         public virtual ICollection<BankAccount> BankAccounts { get; set; }
+
+        /// <summary>
+        /// Subscribe organization navigation property
+        /// </summary>
+        public virtual ICollection<SubscribeOrganization> SubscribeOrganization { get; set; }
 
         /// <summary>
         /// OrgAccounts navigation property

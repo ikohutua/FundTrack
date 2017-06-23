@@ -8,9 +8,10 @@ using FundTrack.DAL.Concrete;
 namespace FundTrack.DAL.Migrations
 {
     [DbContext(typeof(FundTrackContext))]
-    partial class FundTrackContextModelSnapshot : ModelSnapshot
+    [Migration("20170623082955_FinlandiaChanges")]
+    partial class FinlandiaChanges
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.2")
@@ -196,7 +197,8 @@ namespace FundTrack.DAL.Migrations
                         .HasColumnType("datetime");
 
                     b.Property<string>("Description")
-                        .IsRequired();
+                        .IsRequired()
+                        .HasMaxLength(500);
 
                     b.Property<bool>("IsLooked");
 
@@ -242,9 +244,11 @@ namespace FundTrack.DAL.Migrations
                         .HasColumnType("datetime");
 
                     b.Property<string>("Description")
-                        .IsRequired();
+                        .IsRequired()
+                        .HasMaxLength(500);
 
-                    b.Property<string>("ImageUrl");
+                    b.Property<string>("ImageUrl")
+                        .HasMaxLength(100);
 
                     b.Property<int>("OrganizationId");
 
@@ -336,7 +340,7 @@ namespace FundTrack.DAL.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(100);
+                        .HasMaxLength(50);
 
                     b.HasKey("Id")
                         .HasName("PK_Goods");
@@ -394,7 +398,8 @@ namespace FundTrack.DAL.Migrations
                         .HasColumnType("datetime");
 
                     b.Property<string>("Description")
-                        .IsRequired();
+                        .IsRequired()
+                        .HasMaxLength(500);
 
                     b.Property<bool>("IsActual");
 
@@ -416,16 +421,19 @@ namespace FundTrack.DAL.Migrations
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Description")
-                        .IsRequired();
+                        .IsRequired()
+                        .HasMaxLength(500);
 
                     b.Property<int>("GoodsId");
 
-                    b.Property<string>("ImageUrl");
+                    b.Property<string>("ImageUrl")
+                        .HasMaxLength(100);
 
                     b.Property<bool>("IsActual");
 
                     b.Property<string>("Name")
-                        .IsRequired();
+                        .IsRequired()
+                        .HasMaxLength(50);
 
                     b.Property<int>("OfferId");
 
@@ -543,7 +551,8 @@ namespace FundTrack.DAL.Migrations
                         .HasColumnType("datetime");
 
                     b.Property<string>("Description")
-                        .IsRequired();
+                        .IsRequired()
+                        .HasMaxLength(500);
 
                     b.Property<bool>("IsActual");
 
@@ -565,16 +574,19 @@ namespace FundTrack.DAL.Migrations
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Description")
-                        .IsRequired();
+                        .IsRequired()
+                        .HasMaxLength(500);
 
                     b.Property<int>("GoodsId");
 
-                    b.Property<string>("ImageUrl");
+                    b.Property<string>("ImageUrl")
+                        .HasMaxLength(100);
 
                     b.Property<bool>("IsActual");
 
                     b.Property<string>("Name")
-                        .IsRequired();
+                        .IsRequired()
+                        .HasMaxLength(50);
 
                     b.Property<int>("RequestId");
 

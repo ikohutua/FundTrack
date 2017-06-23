@@ -16,7 +16,7 @@
         /// <value>
         /// The goods category identifier.
         /// </value>
-        public int GoodsCategoryId { get; set; }
+        public int GoodsId { get; set; }
 
         /// <summary>
         /// Gets or sets the offer identifier.
@@ -64,7 +64,7 @@
         /// <value>
         /// The goods category.
         /// </value>
-        public virtual GoodsCategory GoodsCategory { get; set; }
+        public virtual Goods Goods { get; set; }
 
         /// <summary>
         /// Gets or sets the offer.

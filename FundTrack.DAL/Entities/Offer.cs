@@ -22,6 +22,11 @@ namespace FundTrack.DAL.Entities
         public int UserId { get; set; }
 
         /// <summary>
+        /// Gets or sets the offer name
+        /// </summary>
+        public string Name { get; set; }
+
+        /// <summary>
         /// Gets or sets the description.
         /// </summary>
         /// <value>

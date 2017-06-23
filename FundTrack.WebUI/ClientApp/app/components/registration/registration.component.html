@@ -1,61 +1,70 @@
-﻿<form class="form-horizontal">
-    <fieldset>
-        <!-- Form Name -->
-        <legend>Реєстрація нового користувача</legend>
-        <!-- Text input-->
-        <div class="form-group">
-            <label class="col-md-4 control-label" for="fn">Імя</label>
-            <div class="col-md-4">
-                <input id="firstName" name="firstName" [(ngModel)]="registrationViewModel.firstName" type="text" placeholder="Імя" class="form-control input-md" required="">
+﻿<form class="form-horizontal" novalidate>
 
-            </div>
+    <div class="form-group has-feedback">
+        <label class="col-md-5 control-label" for="firstName">Імя</label>
+        <div class="col-md-5 input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-user" aria-hidden="true"></i></span>
+            <input  name="firstName" placeholder="Ваше імя"
+                   [(ngModel)]="registrationViewModel.firstName"
+                   type="text" class="form-control input-md">
         </div>
-        <!-- Text input-->
-        <div class="form-group">
-            <label class="col-md-4 control-label" for="ln">Прізвище</label>
-            <div class="col-md-4">
-                <input id="ln" name="ln" type="text" [(ngModel)]="registrationViewModel.lastName" placeholder="Прізвище" class="form-control input-md" required="">
+    </div>
 
-            </div>
+    <div class="form-group has-feedback">
+        <label class="col-md-5 control-label" for="lastName">Прізвище</label>
+        <div class="col-md-5 input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-user" aria-hidden="true"></i></span>
+            <input  name="lastName" placeholder="Ваше прізвище"
+                   [(ngModel)]="registrationViewModel.lastName" type="text" class="form-control input-md">                   
         </div>
-        <!-- Text input-->
-        <div class="form-group">
-            <label class="col-md-4 control-label" for="cmpny">Логін</label>
-            <div class="col-md-4">
-                <input id="cmpny" name="cmpny" [(ngModel)]="registrationViewModel.login"type="text" placeholder="Логін" class="form-control input-md" required="">
+    </div>
+    <div class="form-group has-feedback">
+        <label class="col-md-5 control-label" for="login">Логін</label>
+        <div class="col-md-5 input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-user" aria-hidden="true"></i></span>
+            <input name="login" placeholder="Ваш логін" type="text"
+                   [(ngModel)]="registrationViewModel.login" class="form-control input-md">
+            
+        </div>
+    </div>
 
-            </div>
+    <div class="form-group has-feedback">
+        <label class="col-md-5 control-label" for="email">Email</label>
+        <div class="col-md-5 input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i></span>
+            <input  name="email" type="text" placeholder="Ваш e-mail"
+                   [(ngModel)]="registrationViewModel.email"  class="form-control input-md">
         </div>
-        <!-- Text input-->
-        <div class="form-group">
-            <label class="col-md-4 control-label" for="email">Email</label>
-            <div class="col-md-4">
-                <input id="email" name="email" type="text"[(ngModel)]="registrationViewModel.email" placeholder="email" class="form-control input-md" required="">
+    </div>
 
-            </div>
+    <div class="form-group has-feedback">
+        <label class="col-md-5 control-label" for="password">Пароль</label>
+        <div class="col-md-5 input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-lock" aria-hidden="true"></i></span>
+            <input name="password" [type]="type" placeholder="Ваш пароль"
+                   [(ngModel)]="registrationViewModel.password"
+                   class="form-control input-md">     
+            <span class="input-group-addon"><i [ngClass]="glyphyconEye" (click)="showPassword()" aria-hidden="true"></i></span>
         </div>
-        <!-- Text input-->
-        <div class="form-group">
-            <label class="col-md-4 control-label" for="add1">Пароль</label>
-            <div class="col-md-4">
-                <input id="add1" name="add1" type="password" [(ngModel)]="registrationViewModel.password" class="form-control input-md" required="">
+    </div>
 
-            </div>
+    <div class="form-group">
+        <label class="col-lg-5 control-label" for="confirmPassword">Підтвердіть пароль</label>
+        <div class="col-lg-5 input-group">
+            <span class="input-group-addon glyphicon glyphicon-lock"><i aria-hidden="true"></i></span>
+            <input  name="confirmPassword" type="password"
+                   [(ngModel)]="registrationViewModel.passwordConfirm" placeholder="Підтвердіть пароль"
+                   class="form-control input-md">
         </div>
-        <!-- Text input-->
-        <div class="form-group">
-            <label class="col-md-4 control-label" for="add2">Підтвердіть пароль</label>
-            <div class="col-md-4">
-                <input id="add2" name="add2" type="text" placeholder="" class="form-control input-md">
+    </div>
 
+    <div class="form-group">
+        <label class="col-lg-5 control-label" for="submit"></label>
+        <div class="col-lg-5">
+            <button id="submit" name="submit" class="btn btn-primary" (click)="register()">Зареєструватись</button>
+            <div *ngIf="errorMessage">
+                <span>{{errorMessage}}</span>
             </div>
         </div>
-        <!-- Button -->
-        <div class="form-group">
-            <label class="col-md-4 control-label" for="submit"></label>
-            <div class="col-md-4">
-                <button id="submit" name="submit" class="btn btn-primary" (click)="register()">Зареєструватись</button>
-            </div>
-        </div>
-    </fieldset>
+    </div>
 </form>
