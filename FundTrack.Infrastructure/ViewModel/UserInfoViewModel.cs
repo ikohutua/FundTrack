@@ -16,6 +16,7 @@ namespace FundTrack.Infrastructure.ViewModel
         public string userEmail { get; set; }
         public string userAddress { get; set; }
         public string userPhotoUrl { get; set; }
+        public string userRole { get; set; }
 
     }
 }

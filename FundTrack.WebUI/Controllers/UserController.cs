@@ -1,4 +1,4 @@
-using FundTrack.BLL.Abstract;
+﻿using FundTrack.BLL.Abstract;
 using FundTrack.Infrastructure.ViewModel;
 using FundTrack.WebUI.secutiry;
 using Microsoft.AspNetCore.Authorization;
@@ -32,12 +32,9 @@ namespace FundTrack.WebUI.Controllers
         [HttpPost("LogIn")]
         public string LogIn([FromBody]AuthorizeViewModel user)
         {
-            var authorizeToken = new TokenAccess();
             try
             {
-
                 var authorizationType = this._getAuthorizationType(user.Login, user.Password);
-
                 return JsonConvert.SerializeObject(authorizationType, new JsonSerializerSettings { Formatting = Formatting.Indented });
             }
             catch (Exception ex)
@@ -62,7 +59,6 @@ namespace FundTrack.WebUI.Controllers
         {
             return Json(HttpContext.User.Identity.Name);
         }
-
         /// <summary>
         /// Register user 
         /// </summary>
@@ -70,14 +66,14 @@ namespace FundTrack.WebUI.Controllers
         /// <returns>Action result</returns>
         [HttpPost("[action]")]
         public string Register([FromBody]RegistrationViewModel registrationViewModel)
-        {               
+        {
             try
             {
                 var user = _userDomainService.CreateUser(registrationViewModel);
-                
+
                 var authorizationType = this._getAuthorizationType(registrationViewModel.Login,
                                                                    registrationViewModel.Password);
-                
+
                 return JsonConvert.SerializeObject(authorizationType, new JsonSerializerSettings { Formatting = Formatting.Indented });
             }
             catch (Exception ex)
@@ -105,14 +101,18 @@ namespace FundTrack.WebUI.Controllers
             var encodedJwt = authorizeToken.CreateTokenAccess(userInfoModel);
             var authorizationType = new AuthorizationType
             {
+                userModel = new AuthorizeUserModel
+                {
+                    login = userInfoModel.userLogin,
+                    id = userInfoModel.userId,
+                    firstName = userInfoModel.userFirstName,
+                    lastName = userInfoModel.userLastName,
+                    email = userInfoModel.userEmail,
+                    address = userInfoModel.userAddress,
+                    photoUrl = userInfoModel.userPhotoUrl,
+                    role = userInfoModel.userRole
+                },
                 access_token = encodedJwt,
-                login = userInfoModel.userLogin,
-                id = userInfoModel.userId,
-                firstName = userInfoModel.userFirstName,
-                lastName = userInfoModel.userLastName,
-                email = userInfoModel.userEmail,
-                address = userInfoModel.userAddress,
-                photoUrl = userInfoModel.userPhotoUrl
             };
 
             return authorizationType;

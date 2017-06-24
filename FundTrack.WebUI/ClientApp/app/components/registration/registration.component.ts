@@ -1,4 +1,4 @@
-﻿import { Component} from '@angular/core';
+﻿import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { RegistrationViewModel } from '../../view-models/concrete/registration-view.model';
 import { UserService } from "../../services/concrete/user.service";
@@ -20,8 +20,8 @@ export class RegistrationComponent {
     private glyphyconEye: string = "glyphicon glyphicon-eye-open";
 
     constructor(private _router: Router,
-                private _userService: UserService)
-                { }
+        private _userService: UserService)
+    { }
 
     register() {
         this.errorMessage = "";
@@ -29,29 +29,25 @@ export class RegistrationComponent {
         this._userService.create(this.registrationViewModel).subscribe(a => {
             this.autType = a;
             this.errorMessage = a.errorMessage;
-
+            localStorage.setItem(keys.keyToken, this.autType.access_token);
             if (!this.errorMessage) {
-                localStorage.setItem(keys.keyLogin, this.autType.login);
-                localStorage.setItem(keys.keyToken, this.autType.access_token);
-                localStorage.setItem(keys.keyId, this.autType.id.toString());
-                localStorage.setItem(keys.keyFirstName, this.autType.firstName);
-                localStorage.setItem(keys.keyLastName, this.autType.lastName);
-                localStorage.setItem(keys.keyEmail, this.autType.email);
-                localStorage.setItem(keys.keyAddress, this.autType.address);
-                localStorage.setItem(keys.keyPhoto, this.autType.photoUrl);
+                localStorage.setItem(keys.keyModel, JSON.stringify(this.autType.userModel));
                 this._router.navigate(['/']);
-            }          
-        });        
+            }
+            else {
+                localStorage.setItem(keys.keyError, this.autType.errorMessage);
+            }
+        });
     }
 
     showPassword() {
-       if (this.type == "password") {
-           this.type = "text";
-           return this.glyphyconEye = "glyphicon glyphicon-eye-close";
+        if (this.type == "password") {
+            this.type = "text";
+            return this.glyphyconEye = "glyphicon glyphicon-eye-close";
         }
         else {
-           this.type = "password";
-           return this.glyphyconEye = "glyphicon glyphicon-eye-open";
-       }
+            this.type = "password";
+            return this.glyphyconEye = "glyphicon glyphicon-eye-open";
+        }
     }
 }

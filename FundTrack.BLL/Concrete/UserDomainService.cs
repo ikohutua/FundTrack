@@ -49,6 +49,7 @@ namespace FundTrack.BLL.DomainServices
         public UserInfoViewModel GetUserInfoViewModel(string userLogin, string rawPassword)
         {
             var searchUser = this.GetUser(userLogin, rawPassword);
+            //var searchUserRole = this._unitOfWork.MembershipRepository.GetRole(searchUser.Id);
             if (searchUser != null)
             {
                 var userInfoView = new UserInfoViewModel
@@ -58,7 +59,8 @@ namespace FundTrack.BLL.DomainServices
                     userFirstName = searchUser.FirstName,
                     userLastName = searchUser.LastName,
                     userEmail = searchUser.Email,
-                    userPhotoUrl = searchUser.PhotoUrl
+                    userPhotoUrl = searchUser.PhotoUrl,
+                    userRole=searchUserRole
                 };
                 return userInfoView;
             }

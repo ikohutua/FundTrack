@@ -13,6 +13,7 @@ namespace FundTrack.DAL.Concrete
         private readonly IUserResporitory _usersListRepository;
         private readonly IRepository<Event> _eventRepository;
         private readonly IRepository<Organization> _organizationRepository;
+        private readonly IMembershipRepository _membershipRepository;
 
         private FundTrackContext _context;
 
@@ -21,15 +22,17 @@ namespace FundTrack.DAL.Concrete
         /// </summary>
         /// <param name="contextParam">The context parameter.</param>
         /// <param name="organizationsListRepositoryParam">The organizations list repository parameter.</param>
-        public UnitOfWork(FundTrackContext contextParam, 
+        public UnitOfWork(FundTrackContext contextParam,
               IOrganizationsForFilteringRepository organizationsListRepositoryParam,
               IUserResporitory userListRepositoryParam,
               IRepository<Event> eventRepository,
-              IRepository<Organization> organizationRepository)
+              IRepository<Organization> organizationRepository,
+              IMembershipRepository membershipRepositoryParam)
         {
             this._context = contextParam;
             this._organizationsListRepository = organizationsListRepositoryParam;
             this._usersListRepository = userListRepositoryParam;
+            this._membershipRepository = membershipRepositoryParam;
             _eventRepository = eventRepository;
             _organizationRepository = organizationRepository;
         }
@@ -87,6 +90,20 @@ namespace FundTrack.DAL.Concrete
             get
             {
                 return _organizationsListRepository;
+            }
+        }
+
+        /// <summary>
+        /// Gets the membership repository.
+        /// </summary>
+        /// <value>
+        /// The membership repository.
+        /// </value>
+        public IMembershipRepository MembershipRepository
+        {
+            get
+            {
+                return _membershipRepository;
             }
         }
 

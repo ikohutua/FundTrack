@@ -1,4 +1,5 @@
-﻿<li><a *ngIf="isAuthorize()"> Привіт, {{login}}</a></li>
-<li><a [routerLink]="['/login']" *ngIf="!isAuthorize()">Вхід</a></li>
-<li><a [routerLink]="['/registration']" *ngIf="!isAuthorize()"> Реєстрація {{login}}</a></li>
-<li><a [routerLink]="['/']" *ngIf="isAuthorize()" (click)="exit()">Вихід</a></li>
+﻿
+<li><a *ngIf="login"> Привіт, {{login}}</a></li>
+<li><a [routerLink]="['/login']" *ngIf="!login">Вхід</a></li>
+<li><a [routerLink]="['/registration']" *ngIf="!login"> Реєстрація {{login}}</a></li>
+<li><a [routerLink]="['/']" *ngIf="login" (click)="exit()">Вихід</a></li>

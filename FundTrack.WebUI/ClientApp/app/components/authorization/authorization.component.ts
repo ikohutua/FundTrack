@@ -1,7 +1,7 @@
 ﻿import { Component, Input } from '@angular/core';
 import { Injectable, Inject } from '@angular/core';
 import { AuthorizeViewModel } from '../../view-models/concrete/authorization-view.model';
-import { AuthorizationService } from '../../services/authorization.service';
+import { AuthorizationService } from '../../services/concrete/authorization.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
@@ -18,9 +18,9 @@ import * as keys from '../../shared/key.storage'
     providers: [AuthorizationService]
 })
 export class AuthorizationComponent {
-    private _authorizationUrl = '/api/User/';
     private errorMessage: string;
-    private showPassword: boolean = false;
+    private type: string = "password";
+    private glyphyconEye: string = "glyphicon glyphicon-eye-open";
     @Input() private authorizeModel: AuthorizeViewModel = new AuthorizeViewModel("", "");
     public autType: AuthorizationType;
     constructor(private _authorizationService: AuthorizationService,
@@ -38,39 +38,28 @@ export class AuthorizationComponent {
             .subscribe(a => {
                 this.autType = a;
                 this.errorMessage = a.errorMessage;
-                localStorage.setItem(keys.keyLogin, this.autType.login);
                 localStorage.setItem(keys.keyToken, this.autType.access_token);
-                localStorage.setItem(keys.keyId, this.autType.id.toString());
-                console.log("IDFDDD"+this.autType.id);
-                localStorage.setItem(keys.keyFirstName, this.autType.firstName);
-                localStorage.setItem(keys.keyLastName, this.autType.lastName);
-                localStorage.setItem(keys.keyEmail, this.autType.email);
-                localStorage.setItem(keys.keyAddress, this.autType.address);
-                localStorage.setItem(keys.keyPhoto, this.autType.photoUrl);
                 if (!this.errorMessage) {
+                    localStorage.setItem(keys.keyModel, JSON.stringify(this.autType.userModel));
                     this._router.navigate(['/']);
+                }
+                else {
+                    localStorage.setItem(keys.keyError, this.autType.errorMessage);
                 }
             })
     }
 
     /**
-     * Check if user is authorized and his law to can access to some method
-     * @param Login
+     * Show or not show password and change the icon
      */
-    check(login: string) {
-        let token = localStorage.getItem(keys.keyToken);
-        let loginUser = "";
-        this._authorizationService.check(login, token)
-            .subscribe((l) => {
-                loginUser = l;
-                console.log("Result: " + loginUser)
-            });
-    }
-
-    /**
-     * Show or not show password
-     */
-    changePasswordType() {
-        this.showPassword = !this.showPassword;
+    showPassword() {
+        if (this.type == "password") {
+            this.type = "text";
+            return this.glyphyconEye = "glyphicon glyphicon-eye-close";
+        }
+        else {
+            this.type = "password";
+            return this.glyphyconEye = "glyphicon glyphicon-eye-open";
+        }
     }
 }

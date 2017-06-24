@@ -20,7 +20,7 @@ namespace FundTrack.DAL.Abstract
         /// <value>
         /// The users repository.
         /// </value>
-        IUserResporitory UsersRepository {get;}
+        IUserResporitory UsersRepository { get; }
 
         /// <summary>
         /// Gets the organization repository.
@@ -37,6 +37,14 @@ namespace FundTrack.DAL.Abstract
         /// The event repository.
         /// </value>
         IRepository<Event> EventRepository { get; }
+
+        /// <summary>
+        /// Gets the membership repository.
+        /// </summary>
+        /// <value>
+        /// The membership repository.
+        /// </value>
+        IMembershipRepository MembershipRepository { get; }
 
         /// <summary>
         /// Saves all changes made in this context to the database.

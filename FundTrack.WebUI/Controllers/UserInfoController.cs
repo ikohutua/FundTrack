@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using FundTrack.Infrastructure.ViewModel;
+using Microsoft.AspNetCore.Authorization;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -14,7 +15,7 @@ namespace FundTrack.WebUI.Controllers
     public class UserInfoController : Controller
     {
         // GET: api/values
-        [HttpGet]
+        [HttpGet]      
         //Returns dummy userInfo view model
         public JsonResult Get()
         {

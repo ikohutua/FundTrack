@@ -2,8 +2,8 @@
 import { Observable } from 'rxjs/Observable';
 import { Headers, RequestOptions } from '@angular/http';
 import { Injectable, Inject } from '@angular/core';
-import { AuthorizeViewModel } from '../view-models/concrete/authorization-view.model';
-import { AuthorizationType } from '../view-models/concrete/authorization.type';
+import { AuthorizeViewModel } from '../../view-models/concrete/authorization-view.model';
+import { AuthorizationType } from '../../view-models/concrete/authorization.type';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/catch'
@@ -26,18 +26,10 @@ export class AuthorizationService {
     }
 
     /**
-     * Send request to controller to check if user is authorized and check his law
-     * @param login
-     * @param token
+     * clear local storage and close the session current user
      */
-    check(login: string, token: string): Observable<string> {
-        let urlMethod = "Name";
-        let headers = new Headers({ 'Content-Type': 'application/json' });
-        headers.append("Authorization", "Bearer " + token);
-        let options = new RequestOptions({ headers: headers });
-        return this._http.post(this._authorizationUrl + urlMethod, JSON.stringify(login), options)
-            .map((response: Response) => response.json() as string)
-            .catch(this.handleError);
+    logOff() {
+        localStorage.clear();
     }
 
     /**

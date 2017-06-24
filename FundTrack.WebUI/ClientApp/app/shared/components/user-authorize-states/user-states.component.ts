@@ -1,36 +1,42 @@
 ﻿declare var localStorage: any;
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, AfterContentChecked } from "@angular/core";
 import * as keys from '../../key.storage';
+import { isBrowser } from 'angular2-universal';
+import { AuthorizationService } from '../../../services/concrete/authorization.service';
+import { AuthorizationType } from '../../../view-models/concrete/authorization.type';
+import { AuthorizeUserModel } from '../../../view-models/concrete/authorization.type';
 
 @Component({
     selector: 'user-states',
-    template: require('./user-states.component.html')
+    template: require('./user-states.component.html'),
+    providers: [AuthorizationService]
 })
 
-export class UserStatesComponent{
+export class UserStatesComponent implements AfterContentChecked {
 
-    login: string;
+    public user: AuthorizeUserModel;
+    public login: string = "";
+
+    public constructor(private _authorizationService: AuthorizationService) { }
 
     /**
      * close the session current user
      */
-    exit()
-    {
+    exit() {
         this.login = "";
-        localStorage.clear();
+        this._authorizationService.logOff();
     }
 
     /**
      * check if user is authorized and show login on main page 
      */
-    isAuthorize():boolean
-    {
-        if (typeof window == 'undefined') {
-            return false;
-        }
-        if (localStorage.getItem(keys.keyToken))
-        {
-            this.login = localStorage.getItem(keys.keyLogin);
+    ngAfterContentChecked() {
+        let data: any;
+        if (isBrowser) {
+            if (localStorage.getItem(keys.keyToken)) {
+                this.user = JSON.parse(localStorage.getItem(keys.keyModel)) as AuthorizeUserModel;
+                this.login = this.user.login;
+            }
             return true;
         }
         return false;
