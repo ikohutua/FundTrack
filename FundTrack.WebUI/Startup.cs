@@ -41,8 +41,8 @@ namespace FundTrack_WebUI
             // Available connection types : 'local','azure-main','azure-test'
             string connectionType = "azure-test";
             services.AddDbContext<FundTrackContext>(options => options.UseSqlServer(Configuration.GetConnectionString(connectionType)));
-            services.Configure<CloudStorageOptions>(
-                Configuration.GetSection("GoogleCloudStorage"));
+            //services.Configure<CloudStorageOptions>(
+            //    Configuration.GetSection("GoogleCloudStorage"));
             // Add framework services.
             services.AddMvc();
 
