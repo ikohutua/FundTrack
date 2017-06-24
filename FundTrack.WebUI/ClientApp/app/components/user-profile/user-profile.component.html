@@ -4,10 +4,10 @@
 
         <div class="col-md-4 col-sm-6 col-xs-12">
             <div class="text-center">
-                <img src="{{user.userPhotoUrl}}" class="avatar img-circle img-thumbnail" alt="avatar" height="250" width="150">
+                <img src="{{user.photoUrl}}" class="avatar img-responsive img-thumbnail" style="border:none" alt="avatar" height="250" width="150">
                 <h6>Завантажити інше фото</h6>
                 <input type="file" class="text-center center-block well well-sm">
-
+                <button type="button" class="btn btn-primary" (click)="onPasswordChange()">Змінити пароль</button>
             </div>
         </div>
 
@@ -20,52 +20,54 @@
             <h3>Особисті дані</h3>
             <form [formGroup]="userForm" class="form-horizontal" (ngSubmit)="onSubmit()">
                 <div class="form-group">
-                    <label class="col-lg-3 control-label" for="userFirstName">Ім'я:</label>
-                    <div class="col-lg-8">
-                        <input class="form-control" [(ngModel)]="user.userFirstName" name="userFirstName" type="text" formControlName="userFirstName">
-                        <div *ngIf="formErrors.userFirstName" class="alert alert-danger">
-                            {{formErrors.userFirstName}}
+                    <label class="col-md-3 control-label" for="login">Логін:</label>
+                    <div class="col-md-8">
+                        <input class="form-control" disabled [(ngModel)]="user.login" name="login" type="text" formControlName="login">
+                        <div *ngIf="formErrors.login" class="alert alert-danger">
+                            {{formErrors.login}}
                         </div>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-lg-3 control-label" for="userLastName">Прізвище:</label>
+                    <label class="col-lg-3 control-label" for="firstName">Ім'я:</label>
                     <div class="col-lg-8">
-                        <input class="form-control" [(ngModel)]="user.userLastName" name="userLastName" type="text" formControlName="userLastName">
-                        <div *ngIf="formErrors.userLastName" class="alert alert-danger">
-                            {{formErrors.userLastName}}
+                        <input class="form-control" [(ngModel)]="user.firstName" name="firstName" type="text" formControlName="firstName">
+                        <div *ngIf="formErrors.firstName" class="alert alert-danger">
+                            {{formErrors.firstName}}
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="col-lg-3 control-label" for="lastName">Прізвище:</label>
+                    <div class="col-lg-8">
+                        <input class="form-control" [(ngModel)]="user.lastName" name="lastName" type="text" formControlName="lastName">
+                        <div *ngIf="formErrors.lastName" class="alert alert-danger">
+                            {{formErrors.lastName}}
                         </div>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-lg-3 control-label" for="userAddress">Адреса:</label>
+                    <label class="col-lg-3 control-label" for="address">Адреса:</label>
                     <div class="col-lg-8">
-                        <input class="form-control" [(ngModel)]="user.userAddress" name="userAddress" type="text" formControlName="userAddress">
-                        <div *ngIf="formErrors.userAddress" class="alert alert-danger">
-                            {{formErrors.userAddress}}
+                        <input class="form-control" [(ngModel)]="user.address" name="address" type="text" formControlName="address">
+                        <div *ngIf="formErrors.address" class="alert alert-danger">
+                            {{formErrors.address}}
                         </div>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-lg-3 control-label" for="userEmail">Email:</label>
+                    <label class="col-lg-3 control-label" for="email">Email:</label>
                     <div class="col-lg-8">
-                        <input class="form-control" [(ngModel)]="user.userEmail" name="userEmail" type="text" formControlName="userEmail">
-                        <div *ngIf="formErrors.userEmail" class="alert alert-danger">
-                            {{formErrors.userEmail}}
+                        <input class="form-control" [(ngModel)]="user.email" name="email" type="text" formControlName="email">
+                        <div *ngIf="formErrors.email" class="alert alert-danger">
+                            {{formErrors.email}}
                         </div>
                     </div>
                 </div>
                 <hr />
-                <div class="form-group">
-                    <label class="col-md-3 control-label" for="userLogin">Логін:</label>
-                    <div class="col-md-8">
-                        <input class="form-control" disabled [(ngModel)]="user.userLogin" name="userLogin" type="text" formControlName="userLogin">
-                        <div *ngIf="formErrors.userLogin" class="alert alert-danger">
-                            {{formErrors.userLogin}}
-                        </div>
-                    </div>
-                </div>
-                <div *ngIf="passwordEdit">
+
+                <!--<div *ngIf="passwordEdit">
                     <div class="form-group">
                         <label class="col-md-3 control-label" for="password">Пароль:</label>
                         <div class="col-md-8">
@@ -81,12 +83,11 @@
                             </small>
                         </div>
                     </div>
-                </div>
+                </div>-->
                 <div class="form-group">
                     <label class="col-md-3 control-label"></label>
                     <div class="col-md-8">
                         <button type="submit" class="btn btn-primary" [disabled]="!userForm.valid">Зберегти</button>
-                        <!--<input style="margin-left: 200px;" *ngIf="!passwordEdit" class="btn btn-primary" value="Змінити пароль" type="button" (click)="EditPassword()">-->
                         <span></span>
                     </div>
                 </div>
@@ -94,3 +95,43 @@
         </div>
     </div>
 </div>
+<app-modal>
+    
+        <div class="app-modal-header">
+            <h3>Змінити пароль</h3>
+        </div>
+        <div class="app-modal-body">
+            <form [formGroup]="passwordForm" class="form-horizontal" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                    <label class="col-md-3 control-label" for="userOldPassword">Старий пароль:</label>
+                    <div class="col-md-8">
+                        <input class="form-control" id="userOldPassword" name="userOldPassword" type="password" required [(ngModel)]="user.userOldPassword" #userOldPassword formControlName="userOldPassword">
+                            <small *ngIf="!user.userOldPassword" class="text-danger">
+                                Поле є обов'язковим
+                            </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-3 control-label" for="userPassword">Новий пароль:</label>
+                    <div class="col-md-8">
+                        <input class="form-control" validateEqualTo="userConfirmPassword" [(ngModel)]="user.userPassword" #userPassword name="userPassword" type="password" formControlName="userPassword">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label">Підтвердження пароля:</label>
+                    <div class="col-md-8">
+                        <input class="form-control" [(ngModel)]="user.userConfirmPassword" #userConfirmPassword name="userConfirmPassword" type="password" formControlName="userConfirmPassword">
+                        <small *ngIf="passwordForm.get('userPassword').hasError('validateEqual')" class="text-danger">
+                            Паролі не співпадають
+                        </small>
+                    </div>
+                </div>
+            </form>
+</div>
+        <div class="app-modal-footer">
+            <button type="button" class="btn btn-default" (click)="modal.hide()">Закрити</button>
+            <button type="button" class="btn btn-primary">Зберегти</button>
+        </div>
+        
+</app-modal>

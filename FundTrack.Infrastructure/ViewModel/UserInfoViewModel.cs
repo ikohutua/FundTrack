@@ -9,14 +9,15 @@ namespace FundTrack.Infrastructure.ViewModel
     //dummy model for verification that userInfo component works
     public class UserInfoViewModel
     {
-        public int userId { get; set; }
-        public string userLogin { get; set; }
-        public string userFirstName { get; set; }
-        public string userLastName { get; set; }
-        public string userEmail { get; set; }
-        public string userAddress { get; set; }
-        public string userPhotoUrl { get; set; }
-        public string userRole { get; set; }
+        public int id { get; set; }
+        public string login { get; set; }
+        public string firstName { get; set; }
+        public string lastName { get; set; }
+        public string email { get; set; }
+        public string address { get; set; }
+        public string photoUrl { get; set; }
+        public string role { get; set; }
 
     }
+    
 }

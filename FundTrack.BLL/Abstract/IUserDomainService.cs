@@ -16,7 +16,9 @@ namespace FundTrack.BLL.Abstract
         /// <param name="user"></param>
         /// <returns>Model which contain information about user</returns>
         /// <exception cref="System.Exception">Login or password are not correct</exception>
-        UserInfoViewModel GetUserInfoViewModel(string userLogin, string rawPassword);
+        UserInfoViewModel GetUserInfoViewModel(string login, string rawPassword);
+        UserInfoViewModel GetUserInfoViewModel(string login);
+        UserInfoViewModel UpdateUser(UserInfoViewModel userModel);
 
         /// <summary>
         /// Gets all users from database

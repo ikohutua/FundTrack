@@ -1,6 +1,6 @@
 ﻿import { RouterModule } from '@angular/router';
 import { NgModule } from "@angular/core";
-import { GoogleMapsModule } from "google-maps-angular2/dist";
+//import { GoogleMapsModule } from "google-maps-angular2/dist";
 
 @NgModule({
     imports: [

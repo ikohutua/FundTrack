@@ -1,5 +1,4 @@
-﻿declare var localStorage: any;
-import { Component, OnInit, AfterContentChecked } from "@angular/core";
+﻿import { Component, OnInit, AfterContentChecked } from "@angular/core";
 import * as keys from '../../key.storage';
 import { isBrowser } from 'angular2-universal';
 import { AuthorizationService } from '../../../services/concrete/authorization.service';

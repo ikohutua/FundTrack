@@ -30,46 +30,42 @@ namespace FundTrack.BLL.DomainServices
         /// </summary>
         /// <param name="user"></param>
         /// <returns>User from db</returns>
-        public User GetUser(string userLogin, string rawPassword)
+        public User GetUser(string login, string rawPassword)
         {
             var hashedPassword = PasswordHashManager.GetPasswordHash(rawPassword);
 
             return this._unitOfWork.UsersRepository
                              .Read()
-                             .FirstOrDefault(u => u.Login.ToLower() == userLogin.ToLower()
+                             .FirstOrDefault(u => u.Login.ToLower() == login.ToLower()
                               && u.Password == hashedPassword);
         }
-
+        public User GetUser(string login)
+        {
+            return this._unitOfWork.UsersRepository
+                            .Read()
+                            .FirstOrDefault(a => a.Login.ToUpper() == login.ToUpper());
+        }
         /// <summary>
         /// Gets user info view model
         /// </summary>
         /// <param name="userLogin">User login</param>
         /// <param name="rawPassword">User raw password</param>
         /// <returns>User info view model</returns>
-        public UserInfoViewModel GetUserInfoViewModel(string userLogin, string rawPassword)
+        public UserInfoViewModel GetUserInfoViewModel(string login, string rawPassword)
         {
-            var searchUser = this.GetUser(userLogin, rawPassword);
-            //var searchUserRole = this._unitOfWork.MembershipRepository.GetRole(searchUser.Id);
-            if (searchUser != null)
-            {
-                var userInfoView = new UserInfoViewModel
-                {
-                    userId = searchUser.Id,
-                    userLogin = searchUser.Login,
-                    userFirstName = searchUser.FirstName,
-                    userLastName = searchUser.LastName,
-                    userEmail = searchUser.Email,
-                    userPhotoUrl = searchUser.PhotoUrl,
-                    userRole=searchUserRole
-                };
-                return userInfoView;
-            }
-            else
-            {
-                throw new Exception("Incorrect login or password");
-            }
+            var searchUser = this.GetUser(login, rawPassword);
+            return this.InitializeUserInfoViewModel(searchUser);
         }
-
+        /// <summary>
+        /// Gets user info view model
+        /// </summary>
+        /// <param name="userLogin">User login</param>
+        /// <returns>User info view model</returns>
+        public UserInfoViewModel GetUserInfoViewModel(string login)
+        {
+            var searchUser = this.GetUser(login);
+            return this.InitializeUserInfoViewModel(searchUser);
+        }
         /// <summary>
         /// Creates user in database
         /// </summary>
@@ -112,8 +108,40 @@ namespace FundTrack.BLL.DomainServices
             }
             catch (Exception ex)
             {
-                throw new Exception("Could not recieve users", ex);
+                throw new Exception("Could not receieve users", ex);
             }
+        }
+        public UserInfoViewModel InitializeUserInfoViewModel(User user)
+        {
+            if (user != null)
+            {
+                var userInfoView = new UserInfoViewModel
+                {
+                    id = user.Id,
+                    login = user.Login,
+                    firstName = user.FirstName,
+                    lastName = user.LastName,
+                    email = user.Email,
+                    photoUrl = user.PhotoUrl
+                };
+                return userInfoView;
+            }
+            else
+            {
+                throw new Exception("Incorrect login or password");
+            }
+        }
+
+        public UserInfoViewModel UpdateUser(UserInfoViewModel userModel)
+        {
+            var user = new User();
+            user = this._unitOfWork.UsersRepository.Get(userModel.id);
+            user.Email = userModel.email;
+            user.FirstName = userModel.firstName;
+            user.LastName = userModel.lastName;
+            user.PhotoUrl = userModel.photoUrl;
+            this._unitOfWork.UsersRepository.Update(user);
+            return this.InitializeUserInfoViewModel(this._unitOfWork.UsersRepository.Get(userModel.id));
         }
     }
 }

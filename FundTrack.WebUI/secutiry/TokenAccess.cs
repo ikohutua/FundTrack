@@ -39,7 +39,7 @@ namespace FundTrack.WebUI.secutiry
         {
             var claims = new List<Claim>
                 {
-                    new Claim(ClaimsIdentity.DefaultNameClaimType, user.userLogin)
+                    new Claim(ClaimsIdentity.DefaultNameClaimType, user.login)
                 };
             ClaimsIdentity claimsIdentity = new ClaimsIdentity(claims,
                                                                "Token",

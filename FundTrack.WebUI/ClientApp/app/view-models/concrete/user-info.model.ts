@@ -1,9 +1,9 @@
 ﻿export class UserInfo {
-    userId: number;
-    userLogin: string;
-    userFirstName: string;
-    userLastName: string;
-    userEmail: string;
-    userAddress: string;
-    userPhotoUrl: string;
+    public login: string;
+    public id: number;
+    public firstName: string;
+    public lastName: string;
+    public email: string;
+    public address: string;
+    public photoUrl: string;
 }

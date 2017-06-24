@@ -2,9 +2,9 @@
     height: auto;
 }
 
-.ng-valid[required], .ng-valid.required {
+/*.ng-valid[required], .ng-valid.required {
     border-bottom: 5px solid mediumseagreen;
-}
+}*/
 
 /*.ng-invalid:not(form) {
     border-bottom: 0.5px solid red;

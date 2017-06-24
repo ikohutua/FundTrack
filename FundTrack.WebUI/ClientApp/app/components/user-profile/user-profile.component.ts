@@ -1,112 +1,140 @@
 ﻿import { UserInfoService } from '../../services/user-info.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterContentChecked } from '@angular/core';
 import { UserInfo } from '../../view-models/concrete/user-info.model';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AbstractControl } from '@angular/forms';
 import { EqualTextValidator } from "angular2-text-equality-validator";
 import { FormsModule } from '@angular/forms';
-import { ReactiveFormsModule } from '@angular/forms'
+import { ReactiveFormsModule } from '@angular/forms';
+import { ModalComponent } from '../../shared/components/modal/modal-component';
+import * as key from '../../shared/key.storage';
+import { isBrowser } from "angular2-universal";
+import { AuthorizeUserModel } from "../../view-models/concrete/authorization.type";
+import { ChangePasswordContainer } from "../../view-models/concrete/change-password";
+import { UserService } from '../../services/concrete/user.service';
+import { Router } from "@angular/router";
 
 @Component({
     selector: 'user-info',
     templateUrl: './user-profile.component.html',
     styleUrls: ['./user-profile.component.css'],
-    providers: [UserInfoService, FormBuilder]
+    providers: [UserInfoService, FormBuilder, UserService]
 })
-    //User Profile component handles editing of user profile page
-export class UserProfileComponent implements OnInit {
-    public user = new UserInfo();
+//User Profile component handles editing of user profile page
+export class UserProfileComponent implements OnInit{
+    @ViewChild(ModalComponent)
+    public modal: ModalComponent;
+    user: AuthorizeUserModel = new AuthorizeUserModel();
     private errorMessage: string;
     private passwordEdit: boolean = true;
-    private userPassword: string = "";
-    private userConfirmPassword: string = "";
+    private passwordContainer: ChangePasswordContainer = new ChangePasswordContainer();
+
     //Reactive form
-    userForm: FormGroup;
+     userForm: FormGroup;
+     passwordForm: FormGroup;
     //Object to keep errors in UI
     formErrors = {
-        "userFirstName": "",
-        "userLastName": "",
-        "userEmail": "",
-        "userLogin": "",
-        "userAddress": "",
-        "userConfirmPassword": ""
+        "firstName": "",
+        "lastName": "",
+        "email": "",
+        "login": "",
+        "address": "",
+        "newPasswordConfirmation": ""
     };
 
     //Object with errors messages
-    validationMessages = {
-        "userFirstName": {
+     validationMessages = {
+        "firstName": {
             "required": "Поле є обов'язковим",
             "minlength": "Значення не може бути коротшим 2х символів",
             "maxlength": "Значення не може бути довшим 20 символів"
         },
-        "userLastName": {
+        "lastName": {
             "required": "Поле є обов'язковим",
             "minlength": "Значення не може бути коротшим 2х символів",
             "maxlength": "Значення не може бути довшим 20 символів"
         },
-        "userEmail": {
+        "email": {
             "required": "Поле є обов'язковим",
             "pattern": "Формат email адреси не вірний"
         },
-        "userLogin": {
+        "login": {
             "required": "Поле є обов'язковим",
             "minlength": "Значення не може бути коротшим 3х символів",
             "maxlength": "Значення не може бути довшим 20 символів"
         },
-        "userAddress": {
+        "address": {
             "required": "Поле є обов'язковим"
         },
-        "userConfirmPassword": {
+        "newPasswordConfirmation": {
             "required": "Поле є обов'язковим"
         }
     }
     //Injecting dependecies
-    constructor(private userService: UserInfoService,
-        private fb: FormBuilder) {
+    constructor(
+        private userService: UserService,
+        private fb: FormBuilder,
+        private router: Router
+    ) {
+
     }
+    //Gets user profile info from localstorage
+    //Builds reactive forms for the page
     ngOnInit(): void {
-        this.userService.getCurrentUser()
-            .subscribe(user => this.user = user);
+        let data: any;
+        if (isBrowser) {
+            if (localStorage.getItem(key.keyToken)) {
+                this.user = JSON.parse(localStorage.getItem(key.keyModel)) as AuthorizeUserModel;
+            }
+        };
         this.buildForm();
+        this.buildPasswordForm();
+        this.user.photoUrl = 'http://orig13.deviantart.net/f725/f/2013/241/4/c/profile_picture_by_doge_intensifies-d6k8a2r.jpg';
     }
-    //enables/disables visibility of password fields
-    private EditPassword() {
-        this.passwordEdit = true;
+    //Builds a form using FormBuilder and subscribes to its changes
+    buildPasswordForm() {
+        this.passwordForm = this.fb.group({
+            "userOldPassword": [this.passwordContainer.oldPassword, [
+                Validators.required
+            ]],
+            "userPassword": [this.passwordContainer.newPassword, [
+                Validators.required,
+            ]],
+            "userConfirmPassword": [this.passwordContainer.newPasswordConfirmation, [
+                Validators.required,
+            ]]
+        })
+        this.passwordForm.valueChanges
+            .subscribe(data => this.onValueChange(data));
+        this.onValueChange();
     }
     //Builds a form using FormBuilder and subscribes to its changes
     buildForm() {
         this.userForm = this.fb.group({
-            "userFirstName": [this.user.userFirstName, [
+            "firstName": [this.user.firstName, [
                 Validators.required,
                 Validators.minLength(2),
                 Validators.maxLength(20)
             ]
             ],
-            "userLastName": [this.user.userLastName, [
+            "lastName": [this.user.lastName, [
                 Validators.required,
                 Validators.minLength(2),
                 Validators.maxLength(20)
             ]
             ],
-            "userEmail": [this.user.userEmail, [
+            "email": [this.user.email, [
                 Validators.required,
                 Validators.pattern("[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}")
             ]],
-            "userLogin": [this.user.userLogin, [
+            "login": [this.user.login, [
                 Validators.required,
                 Validators.minLength(3),
                 Validators.maxLength(20)
             ]
             ],
-            "userAddress": [this.user.userAddress, [
+            "address": [this.user.address, [
                 Validators.required
-            ]],
-            "userConfirmPassword": [this.userConfirmPassword, [
-                Validators.required,
-            ]],
-
-            "userPassword": [this.userPassword, [
-                Validators.required,
             ]]
         });
 
@@ -116,9 +144,8 @@ export class UserProfileComponent implements OnInit {
     }
     //Handler for changing values in the form
     onValueChange(data?: any) {
-        if (!this.userForm) return;
+        if (!this.userForm || !this.passwordForm) return;
         let form = this.userForm;
-
         for (let field in this.formErrors) {
             this.formErrors[field] = "";
             //Getting control element
@@ -133,8 +160,20 @@ export class UserProfileComponent implements OnInit {
         }
     }
     onSubmit() {
-        console.log("submitted");
-        console.log(this.userForm.value);
-
+        debugger;
+        this.userService.editUserProfile(this.user)
+            .subscribe(data => 
+            {
+                localStorage.setItem(key.keyModel, JSON.stringify(this.user));
+                this.router.navigate(['/']);
+            })
+            ;
+    }
+    //Executes when user clicks Change Password button
+    private onPasswordChange() {
+        this.passwordContainer.oldPassword = '';
+        this.passwordContainer.newPassword = '';
+        this.passwordContainer.newPasswordConfirmation = '';
+        this.modal.show();
     }
 }

@@ -7,6 +7,7 @@ import { AuthorizationRoutingModule } from "./routes/authorization-routing.modul
 import { CommonModule } from "@angular/common";
 import { ReactiveFormsModule } from '@angular/forms';
 import { EqualTextValidator } from "angular2-text-equality-validator";
+import { ModalComponent } from '../app/shared/components/modal/modal-component';
 
 //module for authorization users
 @NgModule({
@@ -14,13 +15,16 @@ import { EqualTextValidator } from "angular2-text-equality-validator";
         RegistrationComponent,
         AuthorizationComponent,
         UserProfileComponent,
-        EqualTextValidator
+        EqualTextValidator,
+        ModalComponent
+        
     ],
     imports: [
         CommonModule,
         FormsModule,
         AuthorizationRoutingModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        
     ]
 })
 export class AuthorizationModule { }

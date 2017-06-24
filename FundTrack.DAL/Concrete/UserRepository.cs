@@ -66,6 +66,7 @@ namespace FundTrack.DAL.Repositories
         public User Update(User item)
         {
             context.Users.Update(item);
+            context.SaveChanges();
             return item;
         }
 

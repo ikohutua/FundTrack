@@ -5,7 +5,6 @@ import { DropdownOrganizationFilterPipe } from "./shared/pipes/organization-list
 import { UserStatesComponent } from "./shared/components/user-authorize-states/user-states.component";
 import { CommonModule } from "@angular/common";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-
 @NgModule({
     declarations: [
         DropdownOrganizationsComponent,
@@ -16,7 +15,8 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
         CommonModule,
         FormsModule,
         RouterModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+       
     ],
     exports: [
         CommonModule,

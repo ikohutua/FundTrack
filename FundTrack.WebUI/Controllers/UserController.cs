@@ -1,4 +1,4 @@
-﻿using FundTrack.BLL.Abstract;
+using FundTrack.BLL.Abstract;
 using FundTrack.Infrastructure.ViewModel;
 using FundTrack.WebUI.secutiry;
 using Microsoft.AspNetCore.Authorization;
@@ -47,17 +47,16 @@ namespace FundTrack.WebUI.Controllers
                 return JsonConvert.SerializeObject(authorizationType, new JsonSerializerSettings { Formatting = Formatting.Indented });
             }
         }
-
         /// <summary>
-        /// Check is user authorized
+        /// Edit user based on the view model received
         /// </summary>
-        /// <param name="login">The login.</param>
-        /// <returns>Login authorize user</returns>
-        [HttpPost("[action]")]
-        [Authorize]
-        public JsonResult Name([FromBody] string login)
+        /// <param name="model">View model received from frontend</param>
+        /// <returns>stringified View model</returns>
+        [HttpPut("editprofile")]
+        public JsonResult EditProfile([FromBody] UserInfoViewModel model)
         {
-            return Json(HttpContext.User.Identity.Name);
+            var updatedUser= this._userDomainService.UpdateUser(model);
+            return Json(updatedUser);
         }
         /// <summary>
         /// Register user 
@@ -103,14 +102,14 @@ namespace FundTrack.WebUI.Controllers
             {
                 userModel = new AuthorizeUserModel
                 {
-                    login = userInfoModel.userLogin,
-                    id = userInfoModel.userId,
-                    firstName = userInfoModel.userFirstName,
-                    lastName = userInfoModel.userLastName,
-                    email = userInfoModel.userEmail,
-                    address = userInfoModel.userAddress,
-                    photoUrl = userInfoModel.userPhotoUrl,
-                    role = userInfoModel.userRole
+                    login = userInfoModel.login,
+                    id = userInfoModel.id,
+                    firstName = userInfoModel.firstName,
+                    lastName = userInfoModel.lastName,
+                    email = userInfoModel.email,
+                    address = userInfoModel.address,
+                    photoUrl = userInfoModel.photoUrl
+                    //role = userInfoModel.userRole
                 },
                 access_token = encodedJwt,
             };
