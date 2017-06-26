@@ -1,5 +1,6 @@
-﻿
-<li><a *ngIf="login"> Привіт, {{login}}</a></li>
-<li><a [routerLink]="['/login']" *ngIf="!login">Вхід</a></li>
-<li><a [routerLink]="['/registration']" *ngIf="!login"> Реєстрація {{login}}</a></li>
-<li><a [routerLink]="['/']" *ngIf="login" (click)="exit()">Вихід</a></li>
+﻿<ul class="nav navbar-nav">
+    <li><a *ngIf="login"> Привіт, {{login}}</a></li>
+    <li><a [routerLink]="['/login']" *ngIf="!login">Вхід</a></li>
+    <li><a [routerLink]="['/registration']" *ngIf="!login"> Реєстрація {{login}}</a></li>
+    <li><a [routerLink]="['/']" *ngIf="login" (click)="exit()">Вихід</a></li>
+</ul>

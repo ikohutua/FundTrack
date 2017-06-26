@@ -7,7 +7,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" [routerLink]="['']">Волонтерські організації України</a>
+            <a class="navbar-brand" [routerLink]="['']">Волонтерські організації <span>України</span></a>
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
@@ -22,19 +22,31 @@
         </div>
     </div>
 </nav>
+
 <div class="container">
     <router-outlet></router-outlet>
 </div>
-<div class="container-fluid">
-    <div class="row" id="footer">
-        <div class="col-lg-6">
-            <ul class="lead">
-                Navigation
-                <li><a [routerLink]="['']">Наш солдат</a></li>
-                <li><a [routerLink]="['/about']">Про нас</a></li>
-                <li><a [routerLink]="['/registration']">Реєстрація</a></li>
-                <li><a [routerLink]="['/login']">Вхід</a></li>
-            </ul>
-        </div>
+
+<footer class="footer-distributed">
+    <div class="footer-right">
+        <a href="#"><i class="fa fa-twitter" ></i></a>
+        <a href="#"><i class="fa fa-twitter"></i></a>
+        <a href="#"><i class="fa fa-linkedin"></i></a>
+        <a href="#"><i class="fa fa-github"></i></a>
     </div>
-</div>
+
+    <div class="footer-left">
+        <p class="footer-links">
+            <a [routerLink]="['']">Наш солдат</a>
+            ·
+            <a href="#">Блог</a>
+            ·
+            <a [routerLink]="['/about']">Про нас</a>
+            ·
+            <a href="#">Faq</a>
+            ·
+            <a href="#">Контакти</a>
+        </p>
+        <p>FundTrack &copy; 2017</p>
+    </div>
+</footer>

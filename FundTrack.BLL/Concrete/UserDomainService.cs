@@ -6,6 +6,7 @@ using FundTrack.Infrastructure.ViewModel;
 using System.Linq;
 using System.Collections.Generic;
 using FundTrack.Infrastructure;
+using FundTrack.BLL.Concrete;
 
 namespace FundTrack.BLL.DomainServices
 {
@@ -16,6 +17,7 @@ namespace FundTrack.BLL.DomainServices
     public sealed class UserDomainService : IUserDomainService
     {
         private readonly IUnitOfWork _unitOfWork;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="UserDomainService"/> class.
         /// </summary>
@@ -45,6 +47,7 @@ namespace FundTrack.BLL.DomainServices
                             .Read()
                             .FirstOrDefault(a => a.Login.ToUpper() == login.ToUpper());
         }
+
         /// <summary>
         /// Gets user info view model
         /// </summary>
@@ -56,6 +59,7 @@ namespace FundTrack.BLL.DomainServices
             var searchUser = this.GetUser(login, rawPassword);
             return this.InitializeUserInfoViewModel(searchUser);
         }
+
         /// <summary>
         /// Gets user info view model
         /// </summary>
@@ -66,6 +70,7 @@ namespace FundTrack.BLL.DomainServices
             var searchUser = this.GetUser(login);
             return this.InitializeUserInfoViewModel(searchUser);
         }
+
         /// <summary>
         /// Creates user in database
         /// </summary>
@@ -75,24 +80,27 @@ namespace FundTrack.BLL.DomainServices
         {
             bool isUserExists = this._unitOfWork.UsersRepository.isUserExisted(registrationViewModel.Email,
                                                                                registrationViewModel.Login);
-
             if (isUserExists)
             {
-                throw new Exception("User with that email alreafy existed");
+                throw new BusinessLogicException(ErrorMessages.UserExistsMessage);
             }
 
             try
             {
                 User userToAdd = registrationViewModel;
                 userToAdd.Password = PasswordHashManager.GetPasswordHash(registrationViewModel.Password);
+                //Membership memberShip = new Membership();
+                
                 User addedUser = this._unitOfWork.UsersRepository.Create(userToAdd);
+                //memberShip.UserId = addedUser.Id;
+                //memberShip.RoleId = 1;
                 this._unitOfWork.SaveChanges();
 
                 return addedUser;
             }
             catch (Exception ex)
             {
-                throw new Exception("Could not add link", ex);
+                throw new BusinessLogicException(ErrorMessages.AddUserMessage, ex);
             }
         }
 
@@ -108,9 +116,10 @@ namespace FundTrack.BLL.DomainServices
             }
             catch (Exception ex)
             {
-                throw new Exception("Could not receieve users", ex);
+                throw new BusinessLogicException(ErrorMessages.GetAllUsersMessage, ex);
             }
         }
+
         public UserInfoViewModel InitializeUserInfoViewModel(User user)
         {
             if (user != null)

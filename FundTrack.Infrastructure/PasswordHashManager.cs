@@ -16,7 +16,7 @@ namespace FundTrack.Infrastructure
         public static string GetPasswordHash(string password)
         {
             // use some key for hashing
-            const string hashKey = "someSecretKey";
+            const string hashKey = "HashKey";
             // create hash class. 
             HMACSHA512 sha1 = new HMACSHA512();
             // set key 

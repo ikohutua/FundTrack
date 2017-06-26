@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace FundTrack.Infrastructure.ViewModel
+﻿namespace FundTrack.Infrastructure.ViewModel
 {
     //dummy model for verification that userInfo component works
     public class UserInfoViewModel

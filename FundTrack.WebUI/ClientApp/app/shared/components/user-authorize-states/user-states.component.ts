@@ -8,6 +8,7 @@ import { AuthorizeUserModel } from '../../../view-models/concrete/authorization.
 @Component({
     selector: 'user-states',
     template: require('./user-states.component.html'),
+    styleUrls: ['./user-states.component.css'],
     providers: [AuthorizationService]
 })
 

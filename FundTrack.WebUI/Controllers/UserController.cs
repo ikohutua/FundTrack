@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System;
+using System.Linq;
+
 namespace FundTrack.WebUI.Controllers
 {
     /// <summary>
@@ -58,6 +60,7 @@ namespace FundTrack.WebUI.Controllers
             var updatedUser= this._userDomainService.UpdateUser(model);
             return Json(updatedUser);
         }
+
         /// <summary>
         /// Register user 
         /// </summary>
@@ -68,22 +71,39 @@ namespace FundTrack.WebUI.Controllers
         {
             try
             {
-                var user = _userDomainService.CreateUser(registrationViewModel);
+                if(ModelState.IsValid)
+                {
+                    var user = _userDomainService.CreateUser(registrationViewModel);
 
-                var authorizationType = this._getAuthorizationType(registrationViewModel.Login,
-                                                                   registrationViewModel.Password);
+                    var authorizationType = this._getAuthorizationType(registrationViewModel.Login,
+                                                                       registrationViewModel.Password);
 
-                return JsonConvert.SerializeObject(authorizationType, new JsonSerializerSettings { Formatting = Formatting.Indented });
+                    return JsonConvert.SerializeObject(authorizationType,
+                                                       new JsonSerializerSettings { Formatting = Formatting.Indented });
+                }
+                else
+                {
+                    var errors = ModelState.Values.SelectMany(a => a.Errors).Select(e => e.ErrorMessage);
+                    string generalError = string.Join(" ", errors);
+
+                    return this._getAuthorizationTypeError(generalError);
+                }               
             }
             catch (Exception ex)
             {
-                var authorizationType = new AuthorizationType
-                {
-                    access_token = "",
-                    errorMessage = ex.Message
-                };
-                return JsonConvert.SerializeObject(authorizationType, new JsonSerializerSettings { Formatting = Formatting.Indented });
+                return this._getAuthorizationTypeError(ex.Message);
             }
+        }
+
+        private string _getAuthorizationTypeError(string errorMessage)
+        {
+            var authorizationType = new AuthorizationType
+            {
+                access_token = "",
+                errorMessage = errorMessage
+            };
+
+            return JsonConvert.SerializeObject(authorizationType, new JsonSerializerSettings { Formatting = Formatting.Indented });
         }
 
         /// <summary>
