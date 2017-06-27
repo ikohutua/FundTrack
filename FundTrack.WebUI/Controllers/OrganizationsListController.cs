@@ -28,7 +28,6 @@ namespace FundTrack.WebUI.Controllers
         /// Sends to Angular service collection of 'OrganizationForSearch'
         /// </summary>
         /// <returns> collection of 'OrganizationForSearch' </returns>
-        /// 
         [HttpGet]
         public IEnumerable<OrganizationForFilteringViewModel> AllOrganizations()
         {

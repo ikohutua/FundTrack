@@ -2,6 +2,7 @@
 using FundTrack.DAL.Abstract;
 using FundTrack.DAL.Entities;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace FundTrack.DAL.Concrete
 {
@@ -26,7 +27,7 @@ namespace FundTrack.DAL.Concrete
         /// Creates the item.
         /// </summary>
         /// <param name="item">The item.</param>
-        /// <returns></returns>
+        /// <returns>New membership</returns>
         public Membership Create(Membership item)
         {
             this.context.Membershipes.Add(item);
@@ -65,7 +66,7 @@ namespace FundTrack.DAL.Concrete
         /// Updates the item.
         /// </summary>
         /// <param name="item">The item.</param>
-        /// <returns></returns>
+        /// <returns>Exist user</returns>
         public Membership Update(Membership item)
         {
             this.context.Membershipes.Update(item);
@@ -76,11 +77,27 @@ namespace FundTrack.DAL.Concrete
         /// Gets the user role.
         /// </summary>
         /// <param name="userId">The user identifier.</param>
-        /// <returns></returns>
+        /// <returns>User role in db</returns>
+
         public string GetRole(int userId)
         {
-            return this.context.Membershipes.FirstOrDefault(m => m.UserId == userId).Role.Name;
+            return this.context.Membershipes
+                               .Include(u => u.Role)
+                               .FirstOrDefault(m => m.UserId == userId)
+                               .Role
+                               .Name;
+        }
 
+        /// <summary>
+        /// Determines whether  user has role in membership table.
+        /// </summary>
+        /// <param name="userId">The user identifier.</param>
+        /// <returns>
+        /// <c>true</c> if  user has role in membership table; otherwise, <c>false</c>.
+        /// </returns>
+        public bool IsUserHasRole(int userId)
+        {
+            return this.context.Membershipes.Any(m => m.UserId == userId);
         }
     }
 }

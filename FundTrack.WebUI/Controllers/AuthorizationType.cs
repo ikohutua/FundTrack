@@ -9,7 +9,7 @@
         public string email { get; set; }
         public string address { get; set; }
         public string photoUrl { get; set; }
-        //public string role { get; set; }
+        public string role { get; set; }
     }
 
     internal class AuthorizationType

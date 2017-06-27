@@ -33,17 +33,18 @@ namespace FundTrack.BLL.DomainServices
         }
 
         /// <summary>
-        /// Get user for DAL which come from parameter
+        /// Gets the user.
         /// </summary>
-        /// <param name="user"></param>
-        /// <returns>User from db</returns>
+        /// <param name="login">The login.</param>
+        /// <param name="rawPassword">The raw password.</param>
+        /// <returns></returns>
         public User GetUser(string login, string rawPassword)
         {
             var hashedPassword = PasswordHashManager.GetPasswordHash(rawPassword);
 
             return this._unitOfWork.UsersRepository
                              .Read()
-                             .FirstOrDefault(u => u.Login.ToLower() == login.ToLower()
+                             .FirstOrDefault(u => u.Login.ToUpper() == login.ToUpper()
                               && u.Password == hashedPassword);
         }
         public User GetUser(string login)
@@ -61,8 +62,7 @@ namespace FundTrack.BLL.DomainServices
         /// <returns>User info view model</returns>
         public UserInfoViewModel GetUserInfoViewModel(string login, string rawPassword)
         {
-            var searchUser = this.GetUser(login, rawPassword);
-            return this.InitializeUserInfoViewModel(searchUser);
+            return this.InitializeUserInfoViewModel(this.GetUser(login, rawPassword));
         }
 
         /// <summary>
@@ -72,8 +72,7 @@ namespace FundTrack.BLL.DomainServices
         /// <returns>User info view model</returns>
         public UserInfoViewModel GetUserInfoViewModel(string login)
         {
-            var searchUser = this.GetUser(login);
-            return this.InitializeUserInfoViewModel(searchUser);
+            return this.InitializeUserInfoViewModel(this.GetUser(login));
         }
 
         /// <summary>
@@ -125,6 +124,12 @@ namespace FundTrack.BLL.DomainServices
             }
         }
 
+        /// <summary>
+        /// Initializes the user information view model.
+        /// </summary>
+        /// <param name="user">The user.</param>
+        /// <returns></returns>
+        /// <exception cref="System.Exception">Неправильний логін чи пароль.</exception>
         public UserInfoViewModel InitializeUserInfoViewModel(User user)
         {
             if (user != null)
@@ -138,14 +143,24 @@ namespace FundTrack.BLL.DomainServices
                     email = user.Email,
                     photoUrl = user.PhotoUrl
                 };
+
+                if (this._unitOfWork.MembershipRepository.IsUserHasRole(user.Id))
+                {
+                    userInfoView.role = this._unitOfWork.MembershipRepository.GetRole(user.Id);
+                }
                 return userInfoView;
             }
             else
             {
-                throw new Exception("Incorrect login or password");
+                throw new BusinessLogicException(ErrorMessages.IncorrectCredentials);
             }
         }
 
+        /// <summary>
+        /// Updates the user.
+        /// </summary>
+        /// <param name="userModel">The user model.</param>
+        /// <returns></returns>
         public UserInfoViewModel UpdateUser(UserInfoViewModel userModel)
         {
             var user = new User();

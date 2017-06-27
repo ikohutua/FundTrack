@@ -4,13 +4,15 @@ import { SuperAdminComponent } from "../components/super-admin/super-admin.compo
 import { SuperAdminComplaintsComponent } from '../components/super-admin/super-admin-complaints.component';
 import { SuperAdminOrganizationsComponent } from '../components/super-admin/super-admin-organizations.component';
 import { SuperAdminUsersComponent } from '../components/super-admin/super-admin-users.component';
-
+import { AdminRouteGuard } from '../services/concrete/security/admin-route-guard';
 @NgModule({
+    providers: [AdminRouteGuard],
     imports: [
         RouterModule.forChild([
             {
                 path: 'superadmin',
                 component: SuperAdminComponent,
+                canActivate: [AdminRouteGuard],
                 children: [              
                 {
                     path: 'complaints',

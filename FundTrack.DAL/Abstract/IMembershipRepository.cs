@@ -12,7 +12,16 @@ namespace FundTrack.DAL.Abstract
         /// Gets the user role.
         /// </summary>
         /// <param name="userId">The user identifier.</param>
-        /// <returns></returns>
+        /// <returns>user role in db</returns>
         string GetRole(int userId);
+
+        /// <summary>
+        /// Determines whether is  user has role in membership table
+        /// </summary>
+        /// <param name="userId">The user identifier.</param>
+        /// <returns>
+        /// <c>true</c> if is user has role; otherwise, <c>false</c>.
+        /// </returns>
+        bool IsUserHasRole(int userId);
     }
 }

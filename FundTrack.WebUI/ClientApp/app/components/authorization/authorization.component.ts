@@ -1,7 +1,7 @@
 ﻿import { Component, Input } from '@angular/core';
 import { Injectable, Inject } from '@angular/core';
 import { AuthorizeViewModel } from '../../view-models/concrete/authorization-view.model';
-import { AuthorizationService } from '../../services/concrete/authorization.service';
+import { UserService } from '../../services/concrete/user.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
@@ -15,7 +15,7 @@ import * as keys from '../../shared/key.storage'
 @Component({
     template: require('./authorization.component.html'),
     styles: [require('./authorization.component.css')],
-    providers: [AuthorizationService]
+    providers: [UserService]
 })
 export class AuthorizationComponent {
     private errorMessage: string;
@@ -23,7 +23,7 @@ export class AuthorizationComponent {
     private glyphyconEye: string = "glyphicon glyphicon-eye-open";
     @Input() private authorizeModel: AuthorizeViewModel = new AuthorizeViewModel("", "");
     public autType: AuthorizationType;
-    constructor(private _authorizationService: AuthorizationService,
+    constructor(private _authorizationService: UserService,
         private _router: Router)
     { }
 
@@ -32,8 +32,7 @@ export class AuthorizationComponent {
      */
     login() {
         this.errorMessage = "";
-        sessionStorage.clear();
-        console.log(this.authorizeModel.login);
+        localStorage.clear();
         this._authorizationService.logIn(this.authorizeModel)
             .subscribe(a => {
                 this.autType = a;
@@ -42,10 +41,13 @@ export class AuthorizationComponent {
                 if (!this.errorMessage) {
                     localStorage.setItem(keys.keyModel, JSON.stringify(this.autType.userModel));
                     this._router.navigate(['/']);
+                    //console.log("role" + this.autType.userModel.role);
+                    //console.log("token " + this.autType.access_token);
                 }
                 else {
                     localStorage.setItem(keys.keyError, this.autType.errorMessage);
                 }
+                
             })
     }
 

@@ -8,7 +8,7 @@ namespace FundTrack.WebUI.token
     /// Options for creating token
     /// </summary>
     public class AuthOptions
-    {     
+    {
         /// <summary>
         /// The key for encryption
         /// </summary>

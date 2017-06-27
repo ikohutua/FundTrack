@@ -54,6 +54,7 @@ namespace FundTrack.WebUI.Controllers
         /// </summary>
         /// <param name="model">View model received from frontend</param>
         /// <returns>stringified View model</returns>
+        [Authorize]
         [HttpPut("editprofile")]
         public JsonResult EditProfile([FromBody] UserInfoViewModel model)
         {
@@ -62,7 +63,7 @@ namespace FundTrack.WebUI.Controllers
         }
 
         /// <summary>
-        /// Register user 
+        /// Register user.
         /// </summary>
         /// <param name="registrationViewModel">RegistrationViewModel</param>
         /// <returns>Action result</returns>
@@ -115,7 +116,6 @@ namespace FundTrack.WebUI.Controllers
         private AuthorizationType _getAuthorizationType(string userLogin, string rawPassword)
         {
             var authorizeToken = new TokenAccess();
-
             var userInfoModel = _userDomainService.GetUserInfoViewModel(userLogin, rawPassword);
             var encodedJwt = authorizeToken.CreateTokenAccess(userInfoModel);
             var authorizationType = new AuthorizationType
@@ -128,8 +128,8 @@ namespace FundTrack.WebUI.Controllers
                     lastName = userInfoModel.lastName,
                     email = userInfoModel.email,
                     address = userInfoModel.address,
-                    photoUrl = userInfoModel.photoUrl
-                    //role = userInfoModel.userRole
+                    photoUrl = userInfoModel.photoUrl,
+                    role = userInfoModel.role
                 },
                 access_token = encodedJwt,
             };

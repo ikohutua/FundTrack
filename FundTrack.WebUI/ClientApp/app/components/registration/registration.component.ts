@@ -34,7 +34,7 @@ export class RegistrationComponent {
      */
     register() {
         this.errorMessage = "";
-        sessionStorage.clear();
+        localStorage.clear();
         this._userService.create(this.registrationViewModel).subscribe(a => {
             this.autType = a;
             this.errorMessage = a.errorMessage;

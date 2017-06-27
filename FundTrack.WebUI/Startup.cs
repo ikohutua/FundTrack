@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.Webpack;
 using Microsoft.Extensions.Configuration;
@@ -71,16 +71,24 @@ namespace FundTrack_WebUI
             {
                 AutomaticAuthenticate = true,
                 AutomaticChallenge = true,
-                AuthenticationScheme="Bearer",
+                AuthenticationScheme ="Bearer",
                 TokenValidationParameters = new TokenValidationParameters
                 {
                     ValidateIssuer = false,
-                    ValidateAudience = true,
-                    ValidateLifetime = false,
+                    ValidateAudience = false,
+                    ValidateLifetime = true,
                     IssuerSigningKey = AuthOptions.GetSymmetricSecurityKey(),
                     ValidateIssuerSigningKey = true,
                 }
             });
+
+            //app.UseCookieAuthentication(new CookieAuthenticationOptions
+            //{
+            //    LoginPath = new PathString("/User/LogIn"),
+            //    AuthenticationScheme = "Bearer",
+            //    AutomaticChallenge = true
+            //});
+
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
             app.UseExceptionHandler("/Error");

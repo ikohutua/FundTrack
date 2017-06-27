@@ -38,9 +38,13 @@ namespace FundTrack.WebUI.secutiry
         private ClaimsIdentity CreateClaim(UserInfoViewModel user)
         {
             var claims = new List<Claim>
-                {
+            {
                     new Claim(ClaimsIdentity.DefaultNameClaimType, user.login)
-                };
+            };
+            if (user.role != null)
+            {
+                claims.Add(new Claim(ClaimsIdentity.DefaultRoleClaimType, user.role));
+            }
             ClaimsIdentity claimsIdentity = new ClaimsIdentity(claims,
                                                                "Token",
                                                                ClaimsIdentity.DefaultNameClaimType,

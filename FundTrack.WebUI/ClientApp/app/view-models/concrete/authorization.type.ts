@@ -2,7 +2,6 @@
  * model which used when return authorize user
  */
 export class AuthorizeUserModel {
-
     public login: string;
     public id: number;
     public firstName: string;
