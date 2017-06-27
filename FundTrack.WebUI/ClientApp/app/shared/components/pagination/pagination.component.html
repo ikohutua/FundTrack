@@ -1,0 +1,27 @@
+﻿<ul class="pagination">
+    <li [class.disabled]="currentPage == 1">
+        <button (click)="selectPage(1)" class="btn btn-default btn-md">&laquo;</button>
+    </li>
+    <li [class.disabled]="currentPage == 1">
+        <button (click)="selectPage(currentPage - 1)" class="btn btn-default btn-md">&lsaquo;</button>
+    </li>
+    <li *ngIf="(currentPage - range) > 1">    
+        <button class="btn btn-default btn-md disabled" >...</button>
+    </li>
+    <li *ngFor="let page of pages | async">
+        <button (click)="selectPage(page)" 
+                class="btn btn-md btn-default active"
+                [class.active]="page == currentPage">
+            {{page}}
+        </button>
+    </li>
+    <li *ngIf="(currentPage + range) < totalPages">      
+        <button class="btn btn-default btn-md disabled">...</button>
+    </li>
+    <li [class.disabled]="currentPage == 1">
+        <button (click)="selectPage(currentPage + 1)" class="btn btn-default btn-md">&rsaquo;</button>
+    </li>
+    <li [class.disabled]="currentPage == 1">
+        <button (click)="selectPage(totalPages)" class="btn btn-default btn-md">&raquo;</button>
+    </li>   
+</ul>

@@ -1,5 +1,6 @@
 ﻿using FundTrack.DAL.Entities;
 using FundTrack.Infrastructure.ViewModel;
+using FundTrack.Infrastructure.ViewModel.SuperAdminViewModels;
 using System.Collections.Generic;
 
 namespace FundTrack.BLL.Abstract
@@ -32,6 +33,5 @@ namespace FundTrack.BLL.Abstract
         /// <param name="registrationViewModel">RegistrationViewModel</param>
         /// <returns>Registration view model</returns>
         RegistrationViewModel CreateUser(RegistrationViewModel registrationViewModel);
-        
     }
 }

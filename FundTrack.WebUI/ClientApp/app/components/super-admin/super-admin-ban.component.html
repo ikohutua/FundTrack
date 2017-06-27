@@ -1,0 +1,26 @@
+﻿<div class="modal fade" id="banModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header panel-heading">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Причина Бану : </h4>
+            </div>
+            <div class="modal-body">
+                <textarea #description="ngModel" required [(ngModel)]="BanDescription">                   
+                </textarea>           
+                <div class="alert alert-danger" *ngIf="description.invalid && description.touched">
+                    Повинна бути причина бану!
+                </div>  
+            </div>
+            <div class="modal-footer">      
+                <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
+                <button (click)="changeStatus()"
+                        class="btn btn-primary" 
+                        data-dismiss="modal"
+                        [disabled]="description.invalid && description.touched">
+                    {{banStatus}}
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

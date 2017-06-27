@@ -3,10 +3,14 @@ using System;
 using FundTrack.DAL.Entities;
 using FundTrack.DAL.Abstract;
 using FundTrack.Infrastructure.ViewModel;
-using System.Linq;
+using System.Security.Claims;
 using System.Collections.Generic;
+using System.Linq;
+using FundTrack.Infrastructure.ViewModel.SuperAdminViewModels;
+using FundTrack.BLL.Concrete;
 using FundTrack.Infrastructure;
 using FundTrack.BLL.Concrete;
+
 
 namespace FundTrack.BLL.DomainServices
 {
@@ -16,6 +20,7 @@ namespace FundTrack.BLL.DomainServices
     /// <seealso cref="FundTrack.BLL.Abstract.IUserDomainService" />
     public sealed class UserDomainService : IUserDomainService
     {
+        // unit of work instance
         private readonly IUnitOfWork _unitOfWork;
 
         /// <summary>
@@ -24,7 +29,7 @@ namespace FundTrack.BLL.DomainServices
         /// <param name="context">The context.</param>
         public UserDomainService(IUnitOfWork unitOfWorkParam)
         {
-            this._unitOfWork = unitOfWorkParam;
+            _unitOfWork = unitOfWorkParam;
         }
 
         /// <summary>

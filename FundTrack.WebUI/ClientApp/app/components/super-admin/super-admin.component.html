@@ -1,12 +1,12 @@
 ﻿<div class="row">    
-    <div class="side-menu col-sm-1">
+    <div class="side-menu">
         <nav class="navbar navbar-default" role="navigation">           
             <div class="side-menu-container">
                 <ul class="nav navbar-nav">
                     <li [routerLinkActive]="['link-active']">
                         <a [routerLink]="['/superadmin']">
                             <span class="glyphicon glyphicon-user"></span>
-                             Super Admin
+                                Super Admin
                         </a>
                     </li>
                     <li [routerLinkActive]="['link-active']">
@@ -34,12 +34,10 @@
                     </li>
                 </ul>
             </div>
-        </nav>
+        </nav> 
     </div>
-    <div class="container-fluid">
-        <div class="side-body">
-            You are logged in as Super Admin... Good for you....
-            <router-outlet></router-outlet>
-        </div>
+    <div class="side-body">
+        You are logged in as Super Admin... Good for you....
+        <router-outlet></router-outlet>
     </div>
 </div>

@@ -21,15 +21,7 @@ namespace FundTrack.DAL.Abstract
         /// The users repository.
         /// </value>
         IUserResporitory UsersRepository { get; }
-
-        /// <summary>
-        /// Gets the organization repository.
-        /// </summary>
-        /// <value>
-        /// The organization repository.
-        /// </value>
-        IRepository<Organization> OrganizationRepository { get; }
-
+        
         /// <summary>
         /// Gets the event repository.
         /// </summary>
@@ -37,6 +29,11 @@ namespace FundTrack.DAL.Abstract
         /// The event repository.
         /// </value>
         IRepository<Event> EventRepository { get; }
+
+        /// <summary>
+        /// Gets the organization repository
+        /// </summary>
+        IOrganizationRepository OrganizationRepository { get; }
 
         /// <summary>
         /// Gets the membership repository.

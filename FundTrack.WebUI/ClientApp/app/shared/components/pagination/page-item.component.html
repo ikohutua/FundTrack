@@ -1,0 +1,28 @@
+﻿<p *ngIf="!arrayToDisplay"><em>Loading...</em></p>
+
+<table class='table' *ngIf="arrayToDisplay">
+    <thead>
+        <tr>
+            <th *ngFor="let header of headers">
+                {{header}}
+            </th>           
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of arrayToDisplay">
+            <td *ngFor="let value of getObjectData(item)">
+                <div *ngIf="value.key == 'isBanned' ">
+                    <div *ngIf="value.value == false">
+                        <button>Unban</button>
+                    </div>
+                    <div *ngIf="value.value == true">
+                        <button>Ban</button>
+                    </div>
+                </div>
+                <div *ngIf="value.key != 'isBanned'">
+                    {{value.value}}
+                </div>                
+            </td>            
+        </tr>
+    </tbody>
+</table>

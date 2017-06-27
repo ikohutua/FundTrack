@@ -2,6 +2,7 @@
 using FundTrack.DAL.Concrete;
 using FundTrack.DAL.Entities;
 using FundTrack.Infrastructure.ViewModel;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -93,5 +94,34 @@ namespace FundTrack.DAL.Repositories
             return isExsitedUser;           
         }
 
+        /// <summary>
+        /// Gets Users with their ban status
+        /// </summary>
+        /// <returns>Users with ban status</returns>
+        public IEnumerable<User> GetUsersWithBanStatus()
+        {
+            return context.Users.Include(u => u.BannedUser);
+        }
+
+        /// <summary>
+        /// Unbans user with concrete id
+        /// </summary>
+        /// <param name="user">User to Ban</param>
+        public void UnbanUser(int id)
+        {
+            var bannedUser = context.BannedUsers.FirstOrDefault(u => u.Id == id);
+
+            context.Remove(bannedUser);
+        }
+
+        /// <summary>
+        /// Bans user
+        /// </summary>
+        /// <param name="user">User to ban</param>
+        /// <returns>Banned User</returns>
+        public void BanUser(BannedUser user)
+        {
+            context.BannedUsers.Add(user);           
+        }
     }
 }

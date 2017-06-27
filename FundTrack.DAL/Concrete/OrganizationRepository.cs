@@ -2,10 +2,12 @@
 using FundTrack.DAL.Entities;
 using System.Collections.Generic;
 using System.Linq;
+using System;
+using Microsoft.EntityFrameworkCore;
 
 namespace FundTrack.DAL.Concrete
 {
-    public class OrganizationRepository : IRepository<Organization>
+    public class OrganizationRepository : IOrganizationRepository
     {
         private readonly FundTrackContext _context;
 
@@ -48,7 +50,7 @@ namespace FundTrack.DAL.Concrete
         {
             return _context.Organizations.FirstOrDefault(e => e.Id == id);
         }
-
+        
         /// <summary>
         /// Gets all organizations in database
         /// </summary>
@@ -68,6 +70,36 @@ namespace FundTrack.DAL.Concrete
         {
             _context.Update(item);
             return item;
+        }
+
+        /// <summary>
+        /// Gets Organizations with their ban status
+        /// </summary>
+        /// <returns>Organizations with ban status</returns>
+        public IEnumerable<Organization> GetOrganizationsWithBanStatus()
+        {
+            return _context.Organizations.Include(o => o.BannedOrganization);
+        }
+
+        /// <summary>
+        /// Unbans organization with concrete id
+        /// </summary>
+        /// <param name="id">Id of User</param>
+        public void UnBanOrganization(int id)
+        {
+            var bannedOrg = _context.BannedOrganizations.FirstOrDefault(o => o.Id == id);
+
+            _context.Remove(bannedOrg);
+        }
+
+        /// <summary>
+        /// Bans organization
+        /// </summary>
+        /// <param name="organization">Organization to Ban</param>
+        /// <returns>Banned organization</returns>
+        public void BanOrganization(BannedOrganization organization)
+        {
+            _context.BannedOrganizations.Add(organization);
         }
     }
 }

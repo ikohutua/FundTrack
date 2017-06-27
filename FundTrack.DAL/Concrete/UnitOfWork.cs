@@ -12,7 +12,7 @@ namespace FundTrack.DAL.Concrete
         private readonly IOrganizationsForFilteringRepository _organizationsListRepository;
         private readonly IUserResporitory _usersListRepository;
         private readonly IRepository<Event> _eventRepository;
-        private readonly IRepository<Organization> _organizationRepository;
+        private readonly IOrganizationRepository _organizationRepository;
         private readonly IMembershipRepository _membershipRepository;
 
         private FundTrackContext _context;
@@ -26,7 +26,7 @@ namespace FundTrack.DAL.Concrete
               IOrganizationsForFilteringRepository organizationsListRepositoryParam,
               IUserResporitory userListRepositoryParam,
               IRepository<Event> eventRepository,
-              IRepository<Organization> organizationRepository,
+              IOrganizationRepository organizationRepository,
               IMembershipRepository membershipRepositoryParam)
         {
             this._context = contextParam;
@@ -66,19 +66,16 @@ namespace FundTrack.DAL.Concrete
         }
 
         /// <summary>
-        /// Gets the organizations repository.
+        /// Gets organizations repository
         /// </summary>
-        /// <value>
-        /// The organizations repository.
-        /// </value>
-        public IRepository<Organization> OrganizationRepository
+        public IOrganizationRepository OrganizationRepository
         {
             get
             {
                 return _organizationRepository;
             }
         }
-
+        
         /// <summary>
         /// Gets the organizations list repository.
         /// </summary>

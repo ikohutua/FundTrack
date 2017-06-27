@@ -17,6 +17,7 @@ using FundTrack.BLL.DomainServices;
 using FundTrack.DAL.Repositories;
 using FundTrack.Infrastructure.ViewModel;
 
+
 namespace FundTrack_WebUI
 {
     public class Startup
@@ -39,7 +40,7 @@ namespace FundTrack_WebUI
             // Db Connection
             // For local connection, go to appsettings.json and write your local connection string
             // Available connection types : 'local','azure-main','azure-test'
-            string connectionType = "azure-test";
+            string connectionType = "local";
             services.AddDbContext<FundTrackContext>(options => options.UseSqlServer(Configuration.GetConnectionString(connectionType)));
             //services.Configure<CloudStorageOptions>(
             //    Configuration.GetSection("GoogleCloudStorage"));
@@ -52,12 +53,13 @@ namespace FundTrack_WebUI
             services.AddScoped<IMembershipRepository, MembershipRepository>();
             services.AddScoped<IOrganizationsForFilteringRepository, OrganizationsForFilteringRepository>();
             services.AddScoped<IRepository<Event>, EventRepository>();
-            services.AddScoped<IRepository<Organization>, OrganizationRepository>();
+            services.AddScoped<IOrganizationRepository, OrganizationRepository>();          
 
             //dependency injection BLL
             services.AddScoped<IOrganizationsForFilteringService, OrganizationsForFilteringService>();
             services.AddTransient<IUserDomainService, UserDomainService>();
             services.AddScoped<IViewService<EventViewModel>, EventViewService>();
+            services.AddScoped<ISuperAdminService, SuperAdminService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

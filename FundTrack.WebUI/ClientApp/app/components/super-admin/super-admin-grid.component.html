@@ -1,0 +1,55 @@
+﻿<p *ngIf="!arrayToDisplay"><em>Loading...</em></p>
+
+<table class='table' *ngIf="arrayToDisplay">
+    <thead>
+        <tr>
+            <th *ngFor="let header of headers">
+                {{header}}
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of arrayToDisplay">
+            <td class="text-left">{{item.title}}</td>
+            <td>
+                <button class="btn btn-default" data-toggle="modal" href="#banModal"
+                        (click)="onActionClick(item)">
+                    <div *ngIf="item.isBanned==true">Розблокувати</div>
+                    <div *ngIf="item.isBanned==false">Заблокувати</div>
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<app-modal>  
+    <div class="app-modal-header">
+        <button type="button" class="close" aria-hidden="true" (click)="closeModal()">&times;</button>
+        <h4 class="modal-title">Причина Бану : </h4>
+    </div>
+    <div class="app-modal-body">
+        <textarea class="form-control" #description="ngModel"
+                  (blur)="customeFieldTouched=true" 
+                  required
+                  [disabled]="selectedItemStatus=='розблокувати'"
+                  [(ngModel)]="selectedItemBanDescription">                   
+        </textarea>
+        <div class="alert alert-danger" *ngIf="description.invalid && customeFieldTouched">
+            Повинна бути причина бану!
+        </div>
+    </div>
+    <div class="app-modal-footer">
+        <button type="button" class="btn btn-default" (click)="closeModal()">Закрити</button>
+        <button (click)="statusChange(selectedItemBanDescription)"
+                class="btn btn-primary"
+                data-dismiss="modal"
+                [disabled]="description.invalid && description.touched">
+            {{selectedItemStatus}}
+        </button>
+    </div>     
+</app-modal>
+<!--
+<super-admin-ban [banStatus]="selectedItemStatus"
+                 [BanDescription]="selectedItemBanDescription"
+                 (onStatusChange)="StatusChange($event)">
+</super-admin-ban>
+-->
