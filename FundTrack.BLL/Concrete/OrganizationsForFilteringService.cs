@@ -3,6 +3,8 @@ using FundTrack.DAL.Abstract;
 using FundTrack.Infrastructure.ViewModel;
 using System.Linq;
 using System.Collections.Generic;
+using System;
+using FundTrack.Infrastructure;
 
 namespace FundTrack.BLL.Concrete
 {
@@ -29,14 +31,21 @@ namespace FundTrack.BLL.Concrete
         /// <returns> Collection of OrganizationForFilteringViewModel </returns>
         public IEnumerable<OrganizationForFilteringViewModel> GetAll()
         {
-            return this._unitOfWork
-                .OrganizationsForFilteringRepository
-                .GetAll
-                .Select(o => new OrganizationForFilteringViewModel()
-                {
-                    Id = o.Id,
-                    Name = o.Name
-                });
+            try
+            {
+                return this._unitOfWork
+                    .OrganizationsForFilteringRepository
+                    .GetAll
+                    .Select(o => new OrganizationForFilteringViewModel()
+                    {
+                        Id = o.Id,
+                        Name = o.Name
+                    });
+            }
+            catch (Exception ex)
+            {
+                throw new BusinessLogicException(ErrorMessages.NoEntriesInDatabase, ex);
+            }
         }
     }
 }

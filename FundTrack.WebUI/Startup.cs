@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.Webpack;
 using Microsoft.Extensions.Configuration;
@@ -12,7 +12,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using FundTrack.WebUI.token;
 using FundTrack.DAL.Entities;
-using Microsoft.AspNetCore.Http;
 using FundTrack.BLL.DomainServices;
 using FundTrack.DAL.Repositories;
 using FundTrack.Infrastructure.ViewModel;
@@ -42,8 +41,7 @@ namespace FundTrack_WebUI
             // Available connection types : 'local','azure-main','azure-test'
             string connectionType = "local";
             services.AddDbContext<FundTrackContext>(options => options.UseSqlServer(Configuration.GetConnectionString(connectionType)));
-            //services.Configure<CloudStorageOptions>(
-            //    Configuration.GetSection("GoogleCloudStorage"));
+
             // Add framework services.
             services.AddMvc();
 

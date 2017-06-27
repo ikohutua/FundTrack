@@ -22,7 +22,18 @@ export abstract class BaseService<T> {
     public getCollection(): Observable<T[]> {
         return this._http.get(this._url)
             .map((response: Response) => <T[]>response.json())
-            .do(data => console.log('ALL ' + JSON.stringify(data)))
+            //.do(data => console.log('ALL ' + JSON.stringify(data)))
+            .catch(this.handleError);
+    }
+
+    /**
+    * Gets one item of model
+    * @returns Observable<T>
+    */
+    public getOne(additionString?: string): Observable<T> {
+        return this._http.get(this._url + additionString)
+            .map((response: Response) => <T>response.json())
+            //.do(data => console.log('ALL ' + JSON.stringify(data)))
             .catch(this.handleError);
     }
 
@@ -71,7 +82,7 @@ export abstract class BaseService<T> {
      * @param body:T
      * @returns interface RequestOptionsArgs
      */
-    private getRequestArgs(body:T): RequestOptionsArgs {
+    private getRequestArgs(body: T): RequestOptionsArgs {
         let headers = new Headers({ 'ContentType': 'application/json' });
         return { headers: headers, body: body };
     }

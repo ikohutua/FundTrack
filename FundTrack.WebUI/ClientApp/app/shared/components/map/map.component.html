@@ -1,8 +1,24 @@
-﻿<!-- this creates a google map on the page with the given lat/lng from -->
-<!-- the component as the initial center of the map: -->
-
-<!--<div *ngIf="ready">
-    <agm-map [latitude]="lat" [longitude]="lng">
-        <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
-    </agm-map>
-</div>-->
+﻿<div class="row center-block col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div *ngIf="_showMap">
+        <agm-map [latitude]="lat"
+                 [longitude]="lng"
+                 [zoom]="zoom"
+                 [disableDefaultUI]=false
+                 [zoomControl]=false
+                 (mapClick)="mapClicked($event)">
+            <agm-marker *ngIf="marker"
+                        (markerClick)="clickedMarker(marker)"
+                        [latitude]="marker.lat"
+                        [longitude]="marker.lng"
+                        [markerDraggable]="marker.draggable"
+                        (dragEnd)="markerDragEnd($event)">
+                <agm-info-window>
+                    <strong>Я тут</strong>
+                </agm-info-window>
+            </agm-marker>
+        </agm-map>
+    </div>
+    <button class="btn btn-primary" (click)="ShowMap()">Показати карту</button>
+    <button class="btn btn-primary" (click)="testMarker()">testMarker</button>
+    <button class="btn btn-primary" (click)="testAddress()">testAddress</button>
+</div>
