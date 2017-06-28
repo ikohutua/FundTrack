@@ -1,5 +1,6 @@
 ﻿import { RegistrationViewModel } from '../../view-models/concrete/registration-view.model';
 import { AuthorizationType, AuthorizeUserModel } from '../../view-models/concrete/authorization.type';
+import { ChangePasswordViewModel } from '../../view-models/concrete/change-password-view-model';
 import { AuthorizeViewModel } from '../../view-models/concrete/authorization-view.model';
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
@@ -8,7 +9,8 @@ import { Injectable, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
-import 'rxjs/add/operator/catch'
+import 'rxjs/add/operator/catch';
+import * as key from '../../shared/key.storage';
 
 @Injectable()
 export class UserService {
@@ -31,7 +33,7 @@ export class UserService {
     /**
      * clear local storage and close the session current user
      */
-    public logOff() {
+    public logOff():void {
         localStorage.clear();
     }
 
@@ -74,8 +76,20 @@ export class UserService {
      * Catch error
      * @param error
      */
-    handleError(error: Response) {
+    public handleError(error: Response):any {
         return Observable.throw(error.json().error);
+    }
+    /**
+     * Sends request to controller to change user's password
+     * @param changePasswordViewModel: Model, containing user login and passwords
+     */
+    public changePassword(changePasswordViewModel: ChangePasswordViewModel): Observable<ChangePasswordViewModel> {
+        let body = changePasswordViewModel;
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        headers.append("Authorization", "Bearer " + localStorage.getItem(key.keyToken));
+        let options = new RequestOptions({ headers: headers });
+        return this._http.post("api/user/changepassword", body, options)
+            .map((response: Response) => response.json() as ChangePasswordViewModel);
     }
 }
 

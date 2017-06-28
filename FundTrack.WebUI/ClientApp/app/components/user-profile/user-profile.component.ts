@@ -10,9 +10,10 @@ import { ModalComponent } from '../../shared/components/modal/modal-component';
 import * as key from '../../shared/key.storage';
 import { isBrowser } from "angular2-universal";
 import { AuthorizeUserModel } from "../../view-models/concrete/authorization.type";
-import { ChangePasswordContainer } from "../../view-models/concrete/change-password";
+import { ChangePasswordViewModel } from "../../view-models/concrete/change-password-view-model";
 import { UserService } from '../../services/concrete/user.service';
 import { Router } from "@angular/router";
+import { matchingPasswords } from '../registration/match-password.validator';
 
 @Component({
     selector: 'user-info',
@@ -20,29 +21,41 @@ import { Router } from "@angular/router";
     styleUrls: ['./user-profile.component.css'],
     providers: [UserInfoService, FormBuilder, UserService]
 })
-//User Profile component handles editing of user profile page
+
 export class UserProfileComponent implements OnInit{
     @ViewChild(ModalComponent)
+    /**
+    Modal component that contains password changes controls
+    **/
     public modal: ModalComponent;
     user: AuthorizeUserModel = new AuthorizeUserModel();
     private errorMessage: string;
     private passwordEdit: boolean = true;
-    private passwordContainer: ChangePasswordContainer = new ChangePasswordContainer();
+    passwordContainer: ChangePasswordViewModel = new ChangePasswordViewModel();
 
-    //Reactive form
+    /**
+    Reactive forms that are bound to input elements in UI
+    **/
      userForm: FormGroup;
      passwordForm: FormGroup;
-    //Object to keep errors in UI
+    /**
+    Object that keeps errors coming from user interface
+    **/
     formErrors = {
         "firstName": "",
         "lastName": "",
         "email": "",
         "login": "",
         "address": "",
-        "newPasswordConfirmation": ""
+        "newPassword":"",
+        "newPasswordConfirmation": "",
+        "oldPassword": "",
+        "mismatchingPasswords":""
     };
 
-    //Object with errors messages
+    /**
+    Object that contains error messages
+    **/
      validationMessages = {
         "firstName": {
             "required": "Поле є обов'язковим",
@@ -66,20 +79,35 @@ export class UserProfileComponent implements OnInit{
         "address": {
             "required": "Поле є обов'язковим"
         },
-        "newPasswordConfirmation": {
+        "oldPassword": {
             "required": "Поле є обов'язковим"
+        },
+        "newPassword": {
+            "required": "Поле є обов'язковим",
+            "minLength":"Мінімальна довжина паролю становить 7 символів"
+        },
+        "newPasswordConfirmation": {
+            "required": "Поле є обов'язковим",
+            "minLength": "Мінімальна довжина паролю становить 7 символів",
+            "mismatchingPasswords": "Паролі не співпадають"
         }
     }
-    //Injecting dependecies
+    /**
+     * Injecting dependencies
+     * @param userService - service that handles http requests
+     * @param fb - used to build forms, that will bind to elements on the page
+     * @param router - used for navigation from current page
+     */
     constructor(
         private userService: UserService,
         private fb: FormBuilder,
         private router: Router
     ) {
-
     }
-    //Gets user profile info from localstorage
-    //Builds reactive forms for the page
+    /**
+     * Gets user profile info from local storage
+       Builds forms to bind to input elements
+     */
     ngOnInit(): void {
         let data: any;
         if (isBrowser) {
@@ -87,29 +115,38 @@ export class UserProfileComponent implements OnInit{
                 this.user = JSON.parse(localStorage.getItem(key.keyModel)) as AuthorizeUserModel;
             }
         };
+        this.passwordContainer.login = this.user.login;
         this.buildForm();
         this.buildPasswordForm();
         this.user.photoUrl = 'http://orig13.deviantart.net/f725/f/2013/241/4/c/profile_picture_by_doge_intensifies-d6k8a2r.jpg';
     }
-    //Builds a form using FormBuilder and subscribes to its changes
-    buildPasswordForm() {
+    /**
+     * Builds a form using FormBuilder and subscribes to its changes
+     */
+    private buildPasswordForm():void {
         this.passwordForm = this.fb.group({
-            "userOldPassword": [this.passwordContainer.oldPassword, [
+            "oldPassword": [this.passwordContainer.oldPassword, [
                 Validators.required
             ]],
-            "userPassword": [this.passwordContainer.newPassword, [
+            "newPassword": [this.passwordContainer.newPassword, [
                 Validators.required,
+                Validators.minLength(7)
             ]],
-            "userConfirmPassword": [this.passwordContainer.newPasswordConfirmation, [
+            "newPasswordConfirmation": [this.passwordContainer.newPasswordConfirmation, [
                 Validators.required,
+                Validators.minLength(7)
             ]]
-        })
+        },
+            { validator: matchingPasswords('newPassword', 'newPasswordConfirmation') });
+            
         this.passwordForm.valueChanges
-            .subscribe(data => this.onValueChange(data));
-        this.onValueChange();
+            .subscribe(data => this.onValueChangePasswordForm(data));
+        this.onValueChangePasswordForm();
     }
-    //Builds a form using FormBuilder and subscribes to its changes
-    buildForm() {
+    /**
+     * Builds a form using FormBuilder and subscribes to its changes
+     */
+    private buildForm():void {
         this.userForm = this.fb.group({
             "firstName": [this.user.firstName, [
                 Validators.required,
@@ -142,13 +179,16 @@ export class UserProfileComponent implements OnInit{
             .subscribe(data => this.onValueChange(data));
         this.onValueChange();
     }
-    //Handler for changing values in the form
-    onValueChange(data?: any) {
-        if (!this.userForm || !this.passwordForm) return;
+    /**
+     * Handles errors in the form and selects appropriate message
+     * @param data
+     */
+    private onValueChange(data?: any):void {
+        if (!this.userForm) return;
         let form = this.userForm;
+
         for (let field in this.formErrors) {
             this.formErrors[field] = "";
-            //Getting control element
             let control = form.get(field);
 
             if (control && control.dirty && !control.valid) {
@@ -159,8 +199,26 @@ export class UserProfileComponent implements OnInit{
             }
         }
     }
-    onSubmit() {
-        debugger;
+    private onValueChangePasswordForm(data?: any):void {
+        if (!this.passwordForm) return;
+        let form = this.passwordForm;
+
+        for (let field in this.formErrors) {
+            this.formErrors[field] = "";
+            let control = form.get(field);
+
+            if (control && control.dirty && !control.valid) {
+                let message = this.validationMessages[field];
+                for (let key in control.errors) {
+                    this.formErrors[field] += message[key] + " ";
+                }
+            }
+        }
+    }
+    /**
+     * Edits user profile through uuser service and navigates to main page
+     */
+   public onSubmit():void {
         this.userService.editUserProfile(this.user)
             .subscribe(data => 
             {
@@ -169,11 +227,41 @@ export class UserProfileComponent implements OnInit{
             })
             ;
     }
-    //Executes when user clicks Change Password button
-    private onPasswordChange() {
+    /**
+     * Clears all password fields and opens change password modal window
+     */
+   private onPasswordChange(): void {
         this.passwordContainer.oldPassword = '';
         this.passwordContainer.newPassword = '';
         this.passwordContainer.newPasswordConfirmation = '';
+        localStorage.removeItem(key.keyError);
+        this.errorMessage = '';
         this.modal.show();
+    }
+    /**
+     * Changes password using old and new password fields through user service component and navigates to main page if success
+     */
+    private changePassword():void {
+        debugger;
+        this.userService.changePassword(this.passwordContainer)
+            .subscribe(data =>
+            {
+                this.passwordContainer = data;
+                this.errorMessage = data.errorMessage;
+                if (!this.errorMessage) {
+                    localStorage.clear();
+                    location.reload();
+                    this.router.navigate(['/']);
+                }
+                else {
+                }
+
+            })
+    }
+    /**
+     * Clears error status on changing value in password field
+     */
+    private refreshErrorStatus():void {
+        this.errorMessage = '';
     }
 }

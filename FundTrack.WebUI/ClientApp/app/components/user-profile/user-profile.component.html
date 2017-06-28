@@ -1,137 +1,127 @@
-﻿<div class="container" style="padding-top: 10px;">
-    <h1 class="page-header">Редагування профілю</h1>
+﻿<div class="container">
+    <h3 class="page-header">Редагування профілю</h3>
     <div class="row">
-
         <div class="col-md-4 col-sm-6 col-xs-12">
             <div class="text-center">
                 <img src="{{user.photoUrl}}" class="avatar img-responsive img-thumbnail" style="border:none" alt="avatar" height="250" width="150">
                 <h6>Завантажити інше фото</h6>
-                <input type="file" class="text-center center-block well well-sm">
+                <input type="file" (change)="fileEvent($event)" name="avatar" class="text-center center-block well well-sm">
                 <button type="button" class="btn btn-primary" (click)="onPasswordChange()">Змінити пароль</button>
             </div>
         </div>
-
         <div class="col-md-8 col-sm-6 col-xs-12 personal-info">
             <div class="alert alert-info alert-dismissable">
                 <a class="panel-close close" data-dismiss="alert">×</a>
-                <i class="fa fa-coffee"></i>
-                Тут можна показувати сповіщення для юзера
+                <i class="fa fa-coffee"></i> Тут можна показувати сповіщення для юзера
             </div>
             <h3>Особисті дані</h3>
-            <form [formGroup]="userForm" class="form-horizontal" (ngSubmit)="onSubmit()">
+            <form [formGroup]="userForm" class="form-horizontal" style="width:400px;padding-left:20px;" (ngSubmit)="onSubmit()">
                 <div class="form-group">
-                    <label class="col-md-3 control-label" for="login">Логін:</label>
-                    <div class="col-md-8">
-                        <input class="form-control" disabled [(ngModel)]="user.login" name="login" type="text" formControlName="login">
-                        <div *ngIf="formErrors.login" class="alert alert-danger">
-                            {{formErrors.login}}
-                        </div>
+                    <label class="control-label" for="login">Логін</label>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user" aria-hidden="true"></i></span>
+                        <input type="text" disabled class="form-control" name="user.login" formControlName="login" [(ngModel)]="user.login" />
                     </div>
                 </div>
-                <div class="form-group">
-                    <label class="col-lg-3 control-label" for="firstName">Ім'я:</label>
-                    <div class="col-lg-8">
-                        <input class="form-control" [(ngModel)]="user.firstName" name="firstName" type="text" formControlName="firstName">
-                        <div *ngIf="formErrors.firstName" class="alert alert-danger">
-                            {{formErrors.firstName}}
-                        </div>
+                <div class="form-group" [class.has-error]="formErrors.firstName" [class.has-success]="!formErrors.firstName && userForm.get('firstName').valid">
+                    <label class="control-label" for="firstName">Ім'я</label>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user" aria-hidden="true"></i></span>
+                        <input type="text" class="form-control" formControlName="firstName" [(ngModel)]="user.firstName" />
+                    </div>
+                    <div>
+                        <span *ngIf="formErrors.firstName" class="has-error help-block fixedError">
+                            {{ formErrors.firstName }}
+                        </span>
                     </div>
                 </div>
-                
-                <div class="form-group">
-                    <label class="col-lg-3 control-label" for="lastName">Прізвище:</label>
-                    <div class="col-lg-8">
-                        <input class="form-control" [(ngModel)]="user.lastName" name="lastName" type="text" formControlName="lastName">
-                        <div *ngIf="formErrors.lastName" class="alert alert-danger">
-                            {{formErrors.lastName}}
-                        </div>
+                <div class="form-group" [class.has-error]="formErrors.lastName" [class.has-success]="!formErrors.lastName && userForm.get('lastName').valid">
+                    <label class="control-label" for="user.lastName">Прізвище</label>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user" aria-hidden="true"></i></span>
+                        <input type="text" class="form-control input-md" formControlName="lastName" [(ngModel)]="user.lastName" />
                     </div>
+                    <span *ngIf="formErrors.lastName" class="has-error help-block fixedError">
+                        {{ formErrors.lastName }}
+                    </span>
+                </div>
+                <div class="form-group" [class.has-error]="formErrors.address" [class.has-success]="!formErrors.email && userForm.get('address').valid">
+                    <label class="control-label" for="address">Адреса</label>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i></span>
+                        <input class="form-control input-md" type="text" formControlName="address" [(ngModel)]="user.address" />
+                    </div>
+                    <span *ngIf="formErrors.address" class="has-error help-block fixedError">
+                        {{ formErrors.address }}
+                    </span>
+                </div>
+                <div class="form-group" [class.has-error]="formErrors.email" [class.has-success]="!formErrors.email && userForm.get('email').valid">
+                    <label class="control-label" for="email">Email</label>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i aria-hidden="true">@</i></span>
+                        <input class="form-control input-md" type="text" formControlName="email" [(ngModel)]="user.email" />
+                    </div>
+                    <span *ngIf="formErrors.email" class="has-error help-block fixedError">
+                        {{ formErrors.email }}
+                    </span>
                 </div>
                 <div class="form-group">
-                    <label class="col-lg-3 control-label" for="address">Адреса:</label>
-                    <div class="col-lg-8">
-                        <input class="form-control" [(ngModel)]="user.address" name="address" type="text" formControlName="address">
-                        <div *ngIf="formErrors.address" class="alert alert-danger">
-                            {{formErrors.address}}
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-lg-3 control-label" for="email">Email:</label>
-                    <div class="col-lg-8">
-                        <input class="form-control" [(ngModel)]="user.email" name="email" type="text" formControlName="email">
-                        <div *ngIf="formErrors.email" class="alert alert-danger">
-                            {{formErrors.email}}
-                        </div>
-                    </div>
-                </div>
-                <hr />
-
-                <!--<div *ngIf="passwordEdit">
-                    <div class="form-group">
-                        <label class="col-md-3 control-label" for="password">Пароль:</label>
-                        <div class="col-md-8">
-                            <input class="form-control" validateEqualTo="userConfirmPassword" [(ngModel)]="user.userPassword" name="userPassword" type="password" formControlName="userPassword">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-3 control-label">Підтвердження пароля:</label>
-                        <div class="col-md-8">
-                            <input class="form-control" [(ngModel)]="user.userConfirmPassword" name="userConfirmPassword" type="password" formControlName="userConfirmPassword">
-                            <small *ngIf="userForm.get('userPassword').hasError('validateEqual')" class="text-danger">
-                                Паролі не співпадають
-                            </small>
-                        </div>
-                    </div>
-                </div>-->
-                <div class="form-group">
-                    <label class="col-md-3 control-label"></label>
-                    <div class="col-md-8">
-                        <button type="submit" class="btn btn-primary" [disabled]="!userForm.valid">Зберегти</button>
-                        <span></span>
-                    </div>
+                    <label class="control-label"></label>
+                    <button type="submit" class="btn btn-primary" [disabled]="!userForm.valid">Зберегти</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
 <app-modal>
-    
-        <div class="app-modal-header">
-            <h3>Змінити пароль</h3>
+    <div class="app-modal-header">
+        <h3>Змінити пароль</h3>
+    </div>
+    <div class="app-modal-body">
+        <form [formGroup]="passwordForm" class="form-horizontal" novalidate>
+            <div class="form-group" [class.has-error]="formErrors.oldPassword"
+                 [class.has-success]="!formErrors.oldPassword && passwordForm.get('oldPassword').valid">
+                <label class="col-md-3 control-label" for="oldPassword">Старий пароль</label>
+                <div class="col-md-8 input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-lock" aria-hidden="true"></i></span>
+                    <input class="form-control input-md" type="password"
+                           formControlName="oldPassword" [(ngModel)]="passwordContainer.oldPassword" />
+                </div>
+                <span *ngIf="formErrors.oldPassword" class="has-error help-block fixedError" style="margin-left:200px">
+                    {{ formErrors.oldPassword }}
+                </span>
+            </div>
+            <div class="form-group" [class.has-error]="formErrors.newPassword"
+                 [class.has-success]="!formErrors.newPassword && passwordForm.get('newPassword').valid">
+                <label class="col-md-3 control-label" for="newPassword">Новий пароль</label>
+                <div class="col-md-8 input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-lock" aria-hidden="true"></i></span>
+                    <input class="form-control input-md" type="password"
+                           formControlName="newPassword" [(ngModel)]="passwordContainer.newPassword" />
+                </div>
+                <span *ngIf="formErrors.newPassword" class="has-error help-block fixedError" style="margin-left:200px">
+                    {{ formErrors.newPassword }}
+                </span>
+            </div>
+            <div class="form-group" [class.has-error]="formErrors.newPasswordConfirmation"
+                 [class.has-success]="!formErrors.newPasswordConfirmation && passwordForm.get('newPasswordConfirmation').valid">
+                <label class="col-md-3 control-label" for="newPasswordConfirmation">Підтвердження пароля</label>
+                <div class="col-md-8 input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-lock" aria-hidden="true"></i></span>
+                    <input class="form-control input-md" type="password"
+                           formControlName="newPasswordConfirmation" [(ngModel)]="passwordContainer.newPasswordConfirmation" />
+                </div>
+                <span *ngIf="formErrors.newPasswordConfirmation" class="has-error help-block fixedError" style="margin-left:200px" >
+                    {{ formErrors.newPasswordConfirmation }}
+                </span>
+            </div>
+        </form>
+    </div>
+    <div class="app-modal-footer">
+        <button type="button" class="btn btn-default" (click)="modal.hide()">Закрити</button>
+        <button type="button" class="btn btn-primary" [disabled]="passwordForm.invalid" (click)="changePassword()">Зберегти</button>
+        <div class="col-md-4 col-md-offset-4 form-group">
+            <p class="error" *ngIf="errorMessage"><span class="text-danger">{{errorMessage}}</span></p>
         </div>
-        <div class="app-modal-body">
-            <form [formGroup]="passwordForm" class="form-horizontal" (ngSubmit)="onSubmit()">
-                <div class="form-group">
-                    <label class="col-md-3 control-label" for="userOldPassword">Старий пароль:</label>
-                    <div class="col-md-8">
-                        <input class="form-control" id="userOldPassword" name="userOldPassword" type="password" required [(ngModel)]="user.userOldPassword" #userOldPassword formControlName="userOldPassword">
-                            <small *ngIf="!user.userOldPassword" class="text-danger">
-                                Поле є обов'язковим
-                            </small>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="col-md-3 control-label" for="userPassword">Новий пароль:</label>
-                    <div class="col-md-8">
-                        <input class="form-control" validateEqualTo="userConfirmPassword" [(ngModel)]="user.userPassword" #userPassword name="userPassword" type="password" formControlName="userPassword">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-md-3 control-label">Підтвердження пароля:</label>
-                    <div class="col-md-8">
-                        <input class="form-control" [(ngModel)]="user.userConfirmPassword" #userConfirmPassword name="userConfirmPassword" type="password" formControlName="userConfirmPassword">
-                        <small *ngIf="passwordForm.get('userPassword').hasError('validateEqual')" class="text-danger">
-                            Паролі не співпадають
-                        </small>
-                    </div>
-                </div>
-            </form>
-</div>
-        <div class="app-modal-footer">
-            <button type="button" class="btn btn-default" (click)="modal.hide()">Закрити</button>
-            <button type="button" class="btn btn-primary">Зберегти</button>
-        </div>
-        
+    </div>
 </app-modal>

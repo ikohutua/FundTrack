@@ -15,13 +15,14 @@ export class UserStatesComponent implements AfterContentChecked {
 
     public user: AuthorizeUserModel;
     public login: string = "";
+    public name: string = "";
 
     public constructor(private _authorizationService: UserService) { }
 
     /**
      * close the session current user
      */
-    exit() {
+    public exit():void {
         this.login = "";
         this._authorizationService.logOff();
     }
@@ -29,11 +30,12 @@ export class UserStatesComponent implements AfterContentChecked {
     /**
      * check if user is authorized and show login on main page 
      */
-    ngAfterContentChecked() {
+    ngAfterContentChecked(): boolean {
         if (isBrowser) {
             if (localStorage.getItem(keys.keyToken)) {
                 this.user = JSON.parse(localStorage.getItem(keys.keyModel)) as AuthorizeUserModel;
                 this.login = this.user.login;
+                this.name = this.user.firstName;
             }
             return true;
         }

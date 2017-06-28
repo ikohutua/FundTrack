@@ -8,6 +8,7 @@ import { ErrorAuthorizeComponent } from './shared/components/error-authorize/err
 import { CommonModule } from "@angular/common";
 import { ReactiveFormsModule } from '@angular/forms';
 import { EqualTextValidator } from "angular2-text-equality-validator";
+import * as key from '../app/shared/key.storage';
 import { SharedModule } from './shared.module';
 
 //module for authorization users

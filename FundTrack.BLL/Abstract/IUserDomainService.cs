@@ -20,6 +20,7 @@ namespace FundTrack.BLL.Abstract
         UserInfoViewModel GetUserInfoViewModel(string login, string rawPassword);
         UserInfoViewModel GetUserInfoViewModel(string login);
         UserInfoViewModel UpdateUser(UserInfoViewModel userModel);
+        UserInfoViewModel ChangePassword(ChangePasswordViewModel changePasswordViewModel);
 
         /// <summary>
         /// Gets all users from database

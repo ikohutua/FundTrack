@@ -29,8 +29,10 @@ namespace FundTrack.WebUI.Controllers
         }
 
         /// <summary>
-        /// Authorize user in system , return the type which contain UserInfoViewModel
+        ///  Authorize user in system , return the type which contain UserInfoViewModel
         /// </summary>
+        /// <param name="user">user credentials</param>
+        /// <returns>authorization type with token and user model</returns>
         [HttpPost("LogIn")]
         public string LogIn([FromBody]AuthorizeViewModel user)
         {
@@ -61,9 +63,31 @@ namespace FundTrack.WebUI.Controllers
             var updatedUser= this._userDomainService.UpdateUser(model);
             return Json(updatedUser);
         }
-
         /// <summary>
-        /// Register user.
+        /// Changes password of specified User entity by his/her login
+        /// </summary>
+        /// <param name="changePasswordViewModel"></param>
+        /// <returns>returns change password view model, that is empty if change password succeded</returns>
+        [Authorize]
+        [HttpPost("changepassword")]
+        public JsonResult ChangePassword([FromBody]ChangePasswordViewModel changePasswordViewModel )
+        {
+            try
+            {
+               var updatedUserModel=this._userDomainService.ChangePassword(changePasswordViewModel);
+                return Json(new ChangePasswordViewModel());
+            }
+            catch (Exception ex)
+            {
+                var changePasswordReturnModel = new ChangePasswordViewModel();
+                {
+                    changePasswordViewModel.errorMessage = ex.Message;
+                };
+                return Json(changePasswordViewModel);
+            }
+        }
+        /// <summary>
+        /// Register user 
         /// </summary>
         /// <param name="registrationViewModel">RegistrationViewModel</param>
         /// <returns>Action result</returns>

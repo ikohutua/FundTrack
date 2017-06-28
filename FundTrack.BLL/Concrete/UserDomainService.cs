@@ -155,12 +155,39 @@ namespace FundTrack.BLL.DomainServices
                 throw new BusinessLogicException(ErrorMessages.IncorrectCredentials);
             }
         }
-
         /// <summary>
-        /// Updates the user.
+        /// Changes password of specified User, by its login
         /// </summary>
-        /// <param name="userModel">The user model.</param>
-        /// <returns></returns>
+        /// <param name="changePasswordViewModel">View model containing login, old password, new password and error message</param>
+        /// <returns>Empty userInfoViewModel with errors in case if any arised</returns>
+        public UserInfoViewModel ChangePassword(ChangePasswordViewModel changePasswordViewModel)
+        {
+            if (changePasswordViewModel!=null)
+            {
+                if (changePasswordViewModel.login!=null&&changePasswordViewModel.newPassword!=null&changePasswordViewModel.oldPassword!=null)
+                {
+                    User user = this.GetUser(changePasswordViewModel.login);
+                    if (user.Password==PasswordHashManager.GetPasswordHash(changePasswordViewModel.oldPassword))
+                    {
+                        user.Password = PasswordHashManager.GetPasswordHash(changePasswordViewModel.newPassword);
+                        _unitOfWork.UsersRepository.Update(user);
+                        return this.InitializeUserInfoViewModel(user);
+                    }
+                    else
+                    {
+                        throw new Exception("Старий пароль невірний");
+                    }
+                }
+                else
+                {
+                    throw new Exception("Заповнені не всі поля");
+                }
+            }
+            else
+            {
+                throw new Exception("Не намагайтеся нас обманути!");
+            }
+        }
         public UserInfoViewModel UpdateUser(UserInfoViewModel userModel)
         {
             var user = new User();

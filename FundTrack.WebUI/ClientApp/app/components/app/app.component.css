@@ -4,7 +4,11 @@
         padding-top: 50px;
     }
 }
-
+.userstates {
+    display: flex;
+    align-items: center;
+    padding-top:8px;
+}
 .navbar-default {
     background-color: #292c2f;
     height: 90px;
