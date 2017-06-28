@@ -38,7 +38,7 @@ namespace FundTrack.BLL.Concrete
             newEvent.OrganizationId = newItem.OrganizationId;
             newEvent.Description = newItem.Description;
             newEvent.Description = newItem.Description;
-            newEvent.ImageUrl = newItem.ImageUrl;
+          //  newEvent.ImageUrl = newItem.ImageUrl;
 
             _unitOfWork.EventRepository.Create(newEvent);
             _unitOfWork.SaveChanges();
@@ -67,7 +67,7 @@ namespace FundTrack.BLL.Concrete
                  OrganizationName = c.Organization.Name,
                  Description = c.Description,
                  CreateDate = c.CreateDate,
-                 ImageUrl = c.ImageUrl
+             //    ImageUrl = c.ImageUrl
              }).OrderBy(e => e.CreateDate).Take(5);
 
             return events;
@@ -94,7 +94,7 @@ namespace FundTrack.BLL.Concrete
             newEvent.OrganizationId = updateItem.OrganizationId;
             newEvent.Description = updateItem.Description;
             newEvent.Description = updateItem.Description;
-            newEvent.ImageUrl = updateItem.ImageUrl;
+           // newEvent.ImageUrl = updateItem.ImageUrl;
 
             _unitOfWork.EventRepository.Update(newEvent);
             _unitOfWork.SaveChanges();

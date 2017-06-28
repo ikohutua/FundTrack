@@ -54,6 +54,11 @@ namespace FundTrack.DAL.Entities
         public virtual BannedUser BannedUser { get; set; }
 
         /// <summary>
+        /// PasswordReset Navigation property
+        /// </summary>
+        public virtual PasswordReset PasswordReset { get; set; }
+
+        /// <summary>
         /// Phone navigation property
         /// </summary>
         public virtual ICollection<Phone> Phones { get; set; }

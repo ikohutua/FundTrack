@@ -205,6 +205,11 @@ namespace FundTrack.DAL.Concrete
         public DbSet<SubscribeOrganization> SubscribeOrganizations { get; set; }
 
         /// <summary>
+        /// PasswordResets of user
+        /// </summary>
+        public DbSet<PasswordReset> PasswordResets { get; set; }
+
+        /// <summary>
         /// Configures model creation
         /// </summary>
         /// <param name="modelBuilder">modelBuilder to configure Model Creation</param>
@@ -642,6 +647,20 @@ namespace FundTrack.DAL.Concrete
                        .WithMany(bi => bi.BankImportDetails)
                        .HasForeignKey(bid => bid.BankImportId)
                        .HasConstraintName("FK_BankImportDetails_BankImport");
+            });
+
+            modelBuilder.Entity<PasswordReset>(entity =>
+            {
+                entity.HasKey(e => e.Id).HasName("PK_PasswordReset");
+
+                entity.Property(e => e.GUID).IsRequired();
+
+                entity.Property(e => e.ExpireDate).HasColumnType("datetime");
+
+                entity.HasOne(e => e.User)
+                      .WithOne(e => e.PasswordReset)
+                      .HasForeignKey<PasswordReset>(e => e.UserID)
+                      .HasConstraintName("FK_PasswordReset_User");
             });
 
             modelBuilder.Entity<BannedUser>(entity =>

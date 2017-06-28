@@ -59,7 +59,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "e0acea4c33e76d283734"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "c708a9ee5913a4f7b2b9"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -15968,7 +15968,7 @@ var Subscriber_1 = __webpack_require__(83);
  * Observer will never happen. `do` therefore simply spies on existing
  * execution, it does not trigger an execution to happen like `subscribe` does.
  *
- * @example <caption>Map every click to the clientX position of that click, while also logging the click event</caption>
+ * @example <caption>Map every every click to the clientX position of that click, while also logging the click event</caption>
  * var clicks = Rx.Observable.fromEvent(document, 'click');
  * var positions = clicks
  *   .do(ev => console.log(ev))
@@ -16151,7 +16151,7 @@ var root_1 = __webpack_require__(198);
  * source.then((value) => console.log('Value: %s', value));
  * // => Value: 42
  *
- * @param {PromiseConstructor} [PromiseCtor] The constructor of the promise. If not provided,
+ * @param PromiseCtor promise The constructor of the promise. If not provided,
  * it will look for a constructor first in Rx.config.Promise then fall back to
  * the native Promise constructor if available.
  * @return {Promise<T>} An ES2015 compatible promise with the last value from
