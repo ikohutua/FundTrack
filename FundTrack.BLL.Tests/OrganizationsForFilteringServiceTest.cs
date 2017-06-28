@@ -65,7 +65,7 @@ namespace FundTrack.BLL.Tests
         {
             //Arrange
             var reposirory = new Mock<IOrganizationsForFilteringRepository>();
-            reposirory.Setup(x => x.GetAll).Returns(Enumerable.Empty<Organization>);
+            reposirory.Setup(x => x.GetAll);
 
             var unitOfWork = new Mock<IUnitOfWork>();
             unitOfWork.Setup(x => x.OrganizationsForFilteringRepository)

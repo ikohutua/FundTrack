@@ -1,24 +1,47 @@
 ﻿<div class="row center-block col-lg-12 col-md-12 col-sm-12 col-xs-12">
-    <div *ngIf="_showMap">
+    <div>
+        <div class="form-group">
+            <input placeholder="Вулиця, Номер будинку, Місто"
+                   autocorrect="off"
+                   autocapitalize="off"
+                   spellcheck="off"
+                   type="text"
+                   class="form-control"
+                   #search
+                   [formControl]="searchControl" />
+            <br />
+                <button class="btn btn-primary btn-sm" (click)="saveMarkerAndAddress()">Зберегти адресу</button>
+                <button class="btn btn-primary btn-sm" (click)="saveAllAddressesByMarkers()">Список адрес</button>
+                <button class="btn btn-primary btn-sm" (click)="setMarkersByAddresses()">Встановити маркери</button>
+                <button class="btn btn-primary btn-sm" (click)="clearMapFromMarkers()">Очистити</button>
+            <ul *ngIf="_formattedAdresses.length > 0">
+                Збережені адреси
+                <li *ngFor="let address of _formattedAdresses">{{address}}</li>
+            </ul>
+        </div>
         <agm-map [latitude]="lat"
                  [longitude]="lng"
                  [zoom]="zoom"
                  [disableDefaultUI]=false
                  [zoomControl]=false
                  (mapClick)="mapClicked($event)">
-            <agm-marker *ngIf="marker"
+            <agm-marker *ngIf="lat"
+                        [latitude]="lat"
+                        [longitude]="lng">
+            </agm-marker>
+            <agm-marker *ngFor="let marker of _markers;let i = index"
                         (markerClick)="clickedMarker(marker)"
                         [latitude]="marker.lat"
                         [longitude]="marker.lng"
                         [markerDraggable]="marker.draggable"
-                        (dragEnd)="markerDragEnd($event)">
+                        (dragEnd)="markerDragEnd(marker, $event)">
                 <agm-info-window>
-                    <strong>Я тут</strong>
+                    <strong>{{marker.name}}</strong>
+                    <br />
+                    <a class="text-danger" (click)="removeMarker(marker)">Видалити</a>
                 </agm-info-window>
             </agm-marker>
         </agm-map>
     </div>
-    <button class="btn btn-primary" (click)="ShowMap()">Показати карту</button>
-    <button class="btn btn-primary" (click)="testMarker()">testMarker</button>
-    <button class="btn btn-primary" (click)="testAddress()">testAddress</button>
 </div>
+

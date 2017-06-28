@@ -13,6 +13,7 @@ import { AgmCoreModule } from "@agm/core";
             libraries: ['places'],
             language: 'uk'
         }),
+        BrowserModule,
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
@@ -22,7 +23,8 @@ import { AgmCoreModule } from "@agm/core";
     ],
     exports: [
         MapComponent,
-        FormsModule
+        FormsModule,
+        ReactiveFormsModule
     ]
 })
 export class MapModule { }
