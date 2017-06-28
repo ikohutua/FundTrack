@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace FundTrack.DAL.Entities
 {
@@ -37,19 +38,16 @@ namespace FundTrack.DAL.Entities
         public DateTime CreateDate { get; set; }
 
         /// <summary>
-        /// Gets or sets the image URL.
-        /// </summary>
-        /// <value>
-        /// The image URL.
-        /// </value>
-        public string ImageUrl { get; set; }
-
-        /// <summary>
         /// Gets or sets the organization.
         /// </summary>
         /// <value>
         /// The organization.
         /// </value>
         public virtual Organization Organization { get; set; }
+
+        /// <summary>
+        /// EventImages navigation property
+        /// </summary>
+        public virtual ICollection<EventImage> EventImages { get; set; }
     }
 }

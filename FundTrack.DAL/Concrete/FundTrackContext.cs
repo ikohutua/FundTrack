@@ -134,6 +134,14 @@ namespace FundTrack.DAL.Concrete
         public DbSet<Event> Events { get; set; }
 
         /// <summary>
+        /// Gets or sets the event images.
+        /// </summary>
+        /// <value>
+        /// The events.
+        /// </value>
+        public DbSet<EventImage> EventImages { get; set; }
+
+        /// <summary>
         /// Gets or sets the goods types.
         /// </summary>
         /// <value>
@@ -240,6 +248,8 @@ namespace FundTrack.DAL.Concrete
                 entity.Property(e => e.Country).IsRequired().HasMaxLength(100);
 
                 entity.Property(e => e.Street).IsRequired().HasMaxLength(100);
+
+                entity.Property(e => e.Building).IsRequired().HasMaxLength(100);
             });
 
             modelBuilder.Entity<UserAddress>(entity =>
@@ -456,12 +466,24 @@ namespace FundTrack.DAL.Concrete
 
                 entity.Property(e => e.CreateDate).IsRequired().HasColumnType("datetime");
 
-                entity.Property(e => e.ImageUrl);
-
                 entity.HasOne(e => e.Organization)
                       .WithMany(o => o.Events)
                       .HasForeignKey(e => e.OrganizationId)
                       .HasConstraintName("FK_Event_Organization");
+            });
+
+            modelBuilder.Entity<EventImage>(entity =>
+            {
+                entity.HasKey(e => e.Id).HasName("PK_EventImage");
+
+                entity.Property(e => e.EventId).IsRequired();
+
+                entity.Property(e => e.ImageUrl).IsRequired();
+
+                entity.HasOne(e => e.Event)
+                      .WithMany(o => o.EventImages)
+                      .HasForeignKey(e => e.EventId)
+                      .HasConstraintName("FK_EvantImage_Event");
             });
 
             modelBuilder.Entity<Complaint>(entity =>

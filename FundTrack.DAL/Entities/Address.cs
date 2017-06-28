@@ -28,6 +28,11 @@ namespace FundTrack.DAL.Entities
         public string Street { get; set; }
 
         /// <summary>
+        /// Building in Address
+        /// </summary>        
+        public string Building { get; set; }
+
+        /// <summary>
         /// UserAddresses navigation property
         /// </summary>
         public virtual ICollection<UserAddress> UserAddresses { get; set; }
