@@ -59,7 +59,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "1b6c0bea28d212c5d180"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "6a821b066af2c2daa776"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -14445,22 +14445,20 @@ var core_2 = __webpack_require__(61);
 //https://angular-maps.com/api-docs/agm-core/components/AgmInfoWindow.html documentation
 //https://developers.google.com/maps/documentation/geocoding/intro
 var MapComponent = (function () {
+    /**
+     * @constructor
+     * @param _mapsAPILoader
+     * @param _ngZone
+     */
     function MapComponent(_mapsAPILoader, _ngZone) {
         this._mapsAPILoader = _mapsAPILoader;
         this._ngZone = _ngZone;
-        //latitude can be initialize through attributes in html
-        this.lat = 49.832562;
-        //longitude can be initialize through attributes in html
-        this.lng = 23.999131;
-        //The scale of map
-        this.zoom = 10;
-        //attribute for permission to use map for many markers
-        this.allowManyMarkers = true;
-        this._formattedAdresses = [];
+        this._addresses = [];
         this._markers = [];
     }
     MapComponent.prototype.ngOnInit = function () {
         var _this = this;
+        this._maximumConcurentRequestsToGoogleMap = 5;
         //create search FormControl
         this.searchControl = new forms_1.FormControl();
         //load Places Autocomplete
@@ -14478,77 +14476,87 @@ var MapComponent = (function () {
                         return;
                     }
                     //set latitude, longitude and zoom
-                    _this.lat = place.geometry.location.lat();
-                    _this.lng = place.geometry.location.lng();
-                    _this.zoom = 12;
+                    _this.setMainPointer(place.geometry.location.lat(), place.geometry.location.lng(), 12);
                     _this._temporaryAddressForAutocomplete = place.formatted_address;
                 });
             });
         });
     };
     /**
-     * Saves address in _formattingAdresses from autocomplete form, saves new marker if allowed many markers
+     * Here is confirm window. Asks for use current location
+     */
+    MapComponent.prototype.ngAfterViewInit = function () {
+        if (confirm("Дозволити використовувати Ваше поточне місцезнаходження")) {
+            this.setMainPointerOnCurrentLocation();
+        }
+        else {
+            //set main pointer on the Lviv City Hall
+            this.setMainPointer(49.841936, 24.031591, 9);
+        }
+    };
+    /**
+     * Sets current location on map
+     */
+    MapComponent.prototype.setMainPointerOnCurrentLocation = function () {
+        var _this = this;
+        if ("geolocation" in navigator) {
+            navigator.geolocation.getCurrentPosition(function (position) {
+                _this.setMainPointer(position.coords.latitude, position.coords.longitude, 9);
+            });
+        }
+    };
+    /**
+     * Sets main pointed on coordinates
+     * @param latitude
+     * @param longitude
+     */
+    MapComponent.prototype.setMainPointer = function (latitude, longitude, zoom) {
+        this.mainPointerLatitude = latitude;
+        this.mainPointerLongitude = longitude;
+        if (zoom != null) {
+            this.zoom = zoom;
+        }
+    };
+    /**
+     * Saves address in _addresses from autocomplete form, saves new marker if allowed many markers
      * Updates address if no allowed many markers
      */
-    MapComponent.prototype.saveMarkerAndAddress = function () {
+    MapComponent.prototype.saveMarkerAndAddressFromDataInAutocompleteForm = function () {
         var _this = this;
         if (this._temporaryAddressForAutocomplete) {
             if (this.allowManyMarkers) {
-                var contain = this._formattedAdresses.find(function (a) { return a == _this._temporaryAddressForAutocomplete; });
-                if (!contain) {
-                    this._formattedAdresses.push(this._temporaryAddressForAutocomplete);
-                    this._markers.push({
-                        name: this._temporaryAddressForAutocomplete,
-                        lat: this.lat,
-                        lng: this.lng,
-                        draggable: true
-                    });
-                    alert('Адреса збережена');
+                var addressContainsInArray = this._addresses.find(function (a) { return a == _this._temporaryAddressForAutocomplete; });
+                if (!addressContainsInArray) {
+                    this._addresses.push(this._temporaryAddressForAutocomplete);
+                    this._markers.push(this.createNewMarker(this.mainPointerLatitude, this.mainPointerLongitude, this._temporaryAddressForAutocomplete));
                 }
             }
             else {
-                this._formattedAdresses[0] = this._temporaryAddressForAutocomplete;
-                this._markers[0].draggable = true;
-                this._markers[0].lat = this.lat;
-                this._markers[0].lng = this.lng;
-                this._markers[0].name = this._temporaryAddressForAutocomplete;
+                this._addresses[0] = this._temporaryAddressForAutocomplete;
+                this._markers[0] = this.createNewMarker(this.mainPointerLatitude, this.mainPointerLongitude, this._temporaryAddressForAutocomplete);
             }
         }
     };
     /**
-     * Display all adresses on the map.
-     * @param addresses: string[]
+     * Gets how markers can be on map
+     * @param lengthOfArray
+     * @returns amount of markers whitch can be on the map
      */
-    MapComponent.prototype.showMarkers = function (addresses) {
-        this._formattedAdresses = addresses;
-        this.setMarkersByAddresses();
-    };
-    /**
-     * Save all addresses by markers which setted on the map
-     */
-    MapComponent.prototype.saveAllAddressesByMarkers = function () {
-        this.getFormattedAddresses();
-    };
-    /**
-     * Gets Array of formatted addresses
-     * @returns string[]
-     */
-    MapComponent.prototype.getAllAddresses = function () {
-        return this._formattedAdresses;
+    MapComponent.prototype.getMaximumMarkersOnMap = function (lengthOfArray) {
+        if (this.allowManyMarkers) {
+            return (lengthOfArray > this._maximumConcurentRequestsToGoogleMap) ? this._maximumConcurentRequestsToGoogleMap : lengthOfArray;
+        }
+        else {
+            return 1;
+        }
     };
     /**
      * Gets the formatted addresses by coordinates from the _markers
-     * @returns string
      */
-    MapComponent.prototype.getFormattedAddresses = function () {
+    MapComponent.prototype.saveFormattedAddresses = function () {
         var _this = this;
-        this._formattedAdresses = [];
-        if (this.allowManyMarkers) {
-            var enumerator = (this._markers.length > 5) ? 5 : this._markers.length;
-        }
-        else {
-            var enumerator = 1;
-        }
+        this._addresses = [];
+        var maximumMarkersOnMap = this.getMaximumMarkersOnMap(this._markers.length);
         var _loop_1 = function (i) {
             this_1._mapsAPILoader.load().then(function () {
                 var location = {
@@ -14558,105 +14566,91 @@ var MapComponent = (function () {
                 var geocoder = new google.maps.Geocoder();
                 geocoder.geocode({ 'location': location }, function (results, status) {
                     if (_this.allowManyMarkers) {
-                        var contain = _this._formattedAdresses.find(function (a) { return a == results[0].formatted_address; });
-                        if (!contain) {
-                            _this._formattedAdresses.push(results[0].formatted_address);
+                        var addressContainsInArray = _this._addresses.find(function (a) { return a == results[0].formatted_address; });
+                        if (!addressContainsInArray) {
+                            _this._addresses.push(results[0].formatted_address);
                         }
                     }
                     else {
-                        _this._formattedAdresses[0] = results[0].formatted_address;
+                        _this._addresses[0] = results[0].formatted_address;
                     }
                 });
             });
         };
         var this_1 = this;
-        for (var i = 0; i < enumerator; i++) {
+        for (var i = 0; i < maximumMarkersOnMap; i++) {
             _loop_1(i);
         }
     };
     /**
      * Sets all markers on map if allowed many markers
-     * Sets first marker in _formattingAdresses
-     * @param addresses: string[]
+     * Sets first marker in _addresses
      */
-    MapComponent.prototype.setMarkersByAddresses = function () {
+    MapComponent.prototype.setMarkersFromAddresses = function () {
         var _this = this;
-        var enumerator;
-        if (this.allowManyMarkers) {
-            enumerator = (this._formattedAdresses.length > 5) ? 5 : this._formattedAdresses.length;
-        }
-        else {
-            enumerator = 1;
-        }
+        var maximumMarkersOnMap = this.getMaximumMarkersOnMap(this._addresses.length);
         var _loop_2 = function (i) {
             this_2._mapsAPILoader.load().then(function () {
                 var geocoder = new google.maps.Geocoder();
-                geocoder.geocode({ 'address': _this._formattedAdresses[i] }, function (results, status) {
-                    var newMarker = {
-                        name: results[0].formatted_address,
-                        lat: results[0].geometry.location.lat(),
-                        lng: results[0].geometry.location.lng(),
-                        draggable: false
-                    };
+                geocoder.geocode({ 'address': _this._addresses[i] }, function (results, status) {
+                    console.log(results);
+                    var newMarker = _this.createNewMarker(results[0].geometry.location.lat(), results[0].geometry.location.lng(), results[0].formatted_address);
                     _this._markers.push(newMarker);
                 });
             });
         };
         var this_2 = this;
-        for (var i = 0; i < enumerator; i++) {
+        for (var i = 0; i < maximumMarkersOnMap; i++) {
             _loop_2(i);
         }
     };
     /**
-     * Show coordinates in console
-     * @param marker
-     */
-    MapComponent.prototype.clickedMarker = function (marker) {
-        console.log(marker);
-    };
-    /**
-     * Moves marker to place where was click if no allowed many markers
+     * Moves marker to place where was click if not allowed many markers
      * Add new marker in _markers if allowed many markers
      * @param $event
      */
     MapComponent.prototype.mapClicked = function ($event) {
-        if (this.allowManyMarkers) {
-            var newMarker = {
-                name: "Я тут",
-                lat: $event.coords.lat,
-                lng: $event.coords.lng,
-                draggable: true
-            };
-            this._markers.push(newMarker);
-        }
-        else {
-            this.lat = $event.coords.lat;
-            this.lng = $event.coords.lng;
-            this._markers[0].draggable = true;
-        }
-    };
-    /**
-     * Changing coordinates when marker was moved
-     * @param $event
-     */
-    MapComponent.prototype.markerDragEnd = function (marker, $event) {
-        var updatedMarker = {
-            name: "Я тут",
-            draggable: true,
-            lat: parseFloat(marker.lat),
-            lng: parseFloat(marker.lng)
-        };
-        var newLat = $event.coords.lat;
-        var newLng = $event.coords.lng;
-        for (var i = 0; i < this._markers.length; i++) {
-            if (updatedMarker.lat == this._markers[i].lat && updatedMarker.lng == this._markers[i].lng) {
-                this._markers[i].lat = newLat;
-                this._markers[i].lng = newLng;
+        if (this._markers.length < this._maximumConcurentRequestsToGoogleMap) {
+            if (this.allowManyMarkers) {
+                this._markers.push(this.createNewMarker($event.coords.lat, $event.coords.lng));
+            }
+            else {
+                this.setMainPointer($event.coords.lat, $event.coords.lng);
+                this._markers.push(this.createNewMarker(this.mainPointerLatitude, this.mainPointerLongitude));
             }
         }
     };
     /**
-     * Removed marker from map
+     * Creates new instance of marker
+     * @param latitude
+     * @param longitude
+     * @returns new marker
+     */
+    MapComponent.prototype.createNewMarker = function (latitude, longitude, name) {
+        return {
+            name: name != null ? name : "Нова мітка",
+            draggable: true,
+            lat: latitude,
+            lng: longitude
+        };
+    };
+    /**
+     * Changing coordinates when the marker was moved
+     * @param $event
+     */
+    MapComponent.prototype.markerDragEnd = function (marker, $event) {
+        var updatedMarker = this.createNewMarker(parseFloat(marker.lat), parseFloat(marker.lng));
+        var newLatitude = $event.coords.lat;
+        var newLongitude = $event.coords.lng;
+        for (var i = 0; i < this._markers.length; i++) {
+            if (updatedMarker.lat == this._markers[i].lat && updatedMarker.lng == this._markers[i].lng) {
+                this._markers[i].lat = newLatitude;
+                this._markers[i].lng = newLongitude;
+            }
+        }
+    };
+    /**
+     * Removed marker from the map
      * @param marker
      */
     MapComponent.prototype.removeMarker = function (marker) {
@@ -14668,16 +14662,37 @@ var MapComponent = (function () {
     MapComponent.prototype.clearMapFromMarkers = function () {
         this._markers = [];
     };
+    /**
+     * Display all adresses on the map.
+     * @param addresses: string[]
+     */
+    MapComponent.prototype.setMarkers = function (addresses) {
+        this._addresses = addresses;
+        this.setMarkersFromAddresses();
+    };
+    /**
+     * Save all addresses by markers which setted on the map
+     */
+    MapComponent.prototype.saveAllAddressesFromMarkers = function () {
+        this.saveFormattedAddresses();
+    };
+    /**
+     * Gets Array of formatted addresses
+     * @returns array with addresses
+     */
+    MapComponent.prototype.getAllAddresses = function () {
+        return this._addresses;
+    };
     return MapComponent;
 }());
 __decorate([
     core_1.Input(),
     __metadata("design:type", Number)
-], MapComponent.prototype, "lat", void 0);
+], MapComponent.prototype, "mainPointerLatitude", void 0);
 __decorate([
     core_1.Input(),
     __metadata("design:type", Number)
-], MapComponent.prototype, "lng", void 0);
+], MapComponent.prototype, "mainPointerLongitude", void 0);
 __decorate([
     core_1.Input(),
     __metadata("design:type", Number)
@@ -14700,6 +14715,7 @@ MapComponent = __decorate([
         template: __webpack_require__(160),
         styles: [__webpack_require__(184)]
     }),
+    core_1.Injectable(),
     __metadata("design:paramtypes", [core_2.MapsAPILoader, core_1.NgZone])
 ], MapComponent);
 exports.MapComponent = MapComponent;
@@ -15697,7 +15713,7 @@ module.exports = "<div class=\"row\">\r\n    <div class=\"panel panel-primary\" 
 /* 149 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\r\n    <!--<img id=\"main-img\" class=\"img img-responsive center-block\" src=\"https://scontent-waw1-1.xx.fbcdn.net/v/t1.0-9/12347711_438017983073684_4814428397312966146_n.jpg?oh=399ef7ea2570a20589859fb69b5732bd&oe=599FE5D1\" />\r\n</div>\r\n<hr />\r\n<map-comp></map-comp>\r\n<div class=\"row\">\r\n    <div class=\"col-lg-9 col-md-9\" *ngFor=\"let event of model.events\">\r\n        <div>\r\n            <h2>{{event.organizationName}}</h2>\r\n            <p>{{event.description}}</p>\r\n            <img class=\"img img-responsive\" src={{event.pathToCoverImage}} />\r\n        </div>\r\n    </div>\r\n    <div class=\"col-lg-3 col-md-3\" id=\"right-bar\">\r\n        <h2 class=\"text-center\">Останні звіти:</h2>\r\n        <ul *ngIf=\"model.reports\">\r\n            <li *ngFor=\"let report of model.reports\">\r\n                <a>\r\n                    {{report.organizationName}}\r\n                    {{report.date.getFullYear()}}/{{report.date.getMonth()}}/{{report.date.getDate()}}\r\n                </a>\r\n            </li>\r\n        </ul>\r\n    </div>-->\r\n    <div class=\"col-lg-6 col-md-6\">\r\n        <map-component></map-component>\r\n    </div>\r\n    <event></event>\r\n</div>\r\n";
+module.exports = "<div class=\"row\">\r\n    <!--<img id=\"main-img\" class=\"img img-responsive center-block\" src=\"https://scontent-waw1-1.xx.fbcdn.net/v/t1.0-9/12347711_438017983073684_4814428397312966146_n.jpg?oh=399ef7ea2570a20589859fb69b5732bd&oe=599FE5D1\" />\r\n</div>\r\n<hr />\r\n<map-comp></map-comp>\r\n<div class=\"row\">\r\n    <div class=\"col-lg-9 col-md-9\" *ngFor=\"let event of model.events\">\r\n        <div>\r\n            <h2>{{event.organizationName}}</h2>\r\n            <p>{{event.description}}</p>\r\n            <img class=\"img img-responsive\" src={{event.pathToCoverImage}} />\r\n        </div>\r\n    </div>\r\n    <div class=\"col-lg-3 col-md-3\" id=\"right-bar\">\r\n        <h2 class=\"text-center\">Останні звіти:</h2>\r\n        <ul *ngIf=\"model.reports\">\r\n            <li *ngFor=\"let report of model.reports\">\r\n                <a>\r\n                    {{report.organizationName}}\r\n                    {{report.date.getFullYear()}}/{{report.date.getMonth()}}/{{report.date.getDate()}}\r\n                </a>\r\n            </li>\r\n        </ul>\r\n    </div>-->\r\n    <div class=\"col-lg-6 col-md-6\">\r\n        <map-component [allowManyMarkers]=\"true\"></map-component>\r\n    </div>\r\n    <event></event>\r\n</div>\r\n";
 
 /***/ }),
 /* 150 */
@@ -15763,7 +15779,7 @@ module.exports = "<h3>Ви не маєте достатньо прав для в
 /* 160 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row center-block col-lg-12 col-md-12 col-sm-12 col-xs-12\">\r\n    <div>\r\n        <div class=\"form-group\">\r\n            <input placeholder=\"Вулиця, Номер будинку, Місто\"\r\n                   autocorrect=\"off\"\r\n                   autocapitalize=\"off\"\r\n                   spellcheck=\"off\"\r\n                   type=\"text\"\r\n                   class=\"form-control\"\r\n                   #search\r\n                   [formControl]=\"searchControl\" />\r\n            <br />\r\n                <button class=\"btn btn-primary btn-sm\" (click)=\"saveMarkerAndAddress()\">Зберегти адресу</button>\r\n                <button class=\"btn btn-primary btn-sm\" (click)=\"saveAllAddressesByMarkers()\">Список адрес</button>\r\n                <button class=\"btn btn-primary btn-sm\" (click)=\"setMarkersByAddresses()\">Встановити маркери</button>\r\n                <button class=\"btn btn-primary btn-sm\" (click)=\"clearMapFromMarkers()\">Очистити</button>\r\n            <ul *ngIf=\"_formattedAdresses.length > 0\">\r\n                Збережені адреси\r\n                <li *ngFor=\"let address of _formattedAdresses\">{{address}}</li>\r\n            </ul>\r\n        </div>\r\n        <agm-map [latitude]=\"lat\"\r\n                 [longitude]=\"lng\"\r\n                 [zoom]=\"zoom\"\r\n                 [disableDefaultUI]=false\r\n                 [zoomControl]=false\r\n                 (mapClick)=\"mapClicked($event)\">\r\n            <agm-marker *ngIf=\"lat\"\r\n                        [latitude]=\"lat\"\r\n                        [longitude]=\"lng\">\r\n            </agm-marker>\r\n            <agm-marker *ngFor=\"let marker of _markers;let i = index\"\r\n                        (markerClick)=\"clickedMarker(marker)\"\r\n                        [latitude]=\"marker.lat\"\r\n                        [longitude]=\"marker.lng\"\r\n                        [markerDraggable]=\"marker.draggable\"\r\n                        (dragEnd)=\"markerDragEnd(marker, $event)\">\r\n                <agm-info-window>\r\n                    <strong>{{marker.name}}</strong>\r\n                    <br />\r\n                    <a class=\"text-danger\" (click)=\"removeMarker(marker)\">Видалити</a>\r\n                </agm-info-window>\r\n            </agm-marker>\r\n        </agm-map>\r\n    </div>\r\n</div>\r\n\r\n";
+module.exports = "<div class=\"row center-block col-lg-12 col-md-12 col-sm-12 col-xs-12\">\r\n    <div>\r\n        <div class=\"form-group\">\r\n            <input placeholder=\"Вулиця, Номер будинку, Місто\"\r\n                   autocorrect=\"off\"\r\n                   autocapitalize=\"off\"\r\n                   spellcheck=\"off\"\r\n                   type=\"text\"\r\n                   class=\"form-control\"\r\n                   #search\r\n                   [formControl]=\"searchControl\" />\r\n            <br />\r\n                <button class=\"btn btn-primary btn-sm\" (click)=\"saveMarkerAndAddressFromDataInAutocompleteForm()\">Зберегти адресу</button>\r\n                <button class=\"btn btn-primary btn-sm\" (click)=\"saveAllAddressesFromMarkers()\">Список адрес</button>\r\n                <button class=\"btn btn-primary btn-sm\" (click)=\"setMarkersFromAddresses()\">Встановити маркери</button>\r\n                <button class=\"btn btn-primary btn-sm\" (click)=\"clearMapFromMarkers()\">Очистити</button>\r\n            <ul *ngIf=\"_addresses.length > 0\">\r\n                Збережені адреси\r\n                <li *ngFor=\"let address of _addresses\">{{address}}</li>\r\n            </ul>\r\n        </div>\r\n        <agm-map [latitude]=\"mainPointerLatitude\"\r\n                 [longitude]=\"mainPointerLongitude\"\r\n                 [zoom]=\"zoom\"\r\n                 [disableDefaultUI]=false\r\n                 [zoomControl]=false\r\n                 (mapClick)=\"mapClicked($event)\">\r\n            <agm-marker *ngIf=\"mainPointerLatitude\"\r\n                        [latitude]=\"mainPointerLatitude\"\r\n                        [longitude]=\"mainPointerLongitude\">\r\n            </agm-marker>\r\n            <agm-marker *ngFor=\"let marker of _markers;let i = index\"\r\n                        (markerClick)=\"clickedMarker(marker)\"\r\n                        [latitude]=\"marker.lat\"\r\n                        [longitude]=\"marker.lng\"\r\n                        [markerDraggable]=\"marker.draggable\"\r\n                        (dragEnd)=\"markerDragEnd(marker, $event)\">\r\n                <agm-info-window>\r\n                    <strong>{{marker.name}}</strong>\r\n                    <br />\r\n                    <a class=\"text-danger\" (click)=\"removeMarker(marker)\">Видалити</a>\r\n                </agm-info-window>\r\n            </agm-marker>\r\n        </agm-map>\r\n    </div>\r\n</div>\r\n\r\n";
 
 /***/ }),
 /* 161 */

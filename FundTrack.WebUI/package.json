@@ -57,6 +57,7 @@
     "bootstrap-social": "5.1.1"
   },
   "devDependencies": {
+    "@angular/cli": "^1.2.0",
     "@types/chai": "^3.4.34",
     "@types/googlemaps": "^3.26.14",
     "@types/jasmine": "^2.5.37",

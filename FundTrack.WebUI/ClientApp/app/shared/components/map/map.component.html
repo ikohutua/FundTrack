@@ -10,24 +10,24 @@
                    #search
                    [formControl]="searchControl" />
             <br />
-                <button class="btn btn-primary btn-sm" (click)="saveMarkerAndAddress()">Зберегти адресу</button>
-                <button class="btn btn-primary btn-sm" (click)="saveAllAddressesByMarkers()">Список адрес</button>
-                <button class="btn btn-primary btn-sm" (click)="setMarkersByAddresses()">Встановити маркери</button>
+                <button class="btn btn-primary btn-sm" (click)="saveMarkerAndAddressFromDataInAutocompleteForm()">Зберегти адресу</button>
+                <button class="btn btn-primary btn-sm" (click)="saveAllAddressesFromMarkers()">Список адрес</button>
+                <button class="btn btn-primary btn-sm" (click)="setMarkersFromAddresses()">Встановити маркери</button>
                 <button class="btn btn-primary btn-sm" (click)="clearMapFromMarkers()">Очистити</button>
-            <ul *ngIf="_formattedAdresses.length > 0">
+            <ul *ngIf="_addresses.length > 0">
                 Збережені адреси
-                <li *ngFor="let address of _formattedAdresses">{{address}}</li>
+                <li *ngFor="let address of _addresses">{{address}}</li>
             </ul>
         </div>
-        <agm-map [latitude]="lat"
-                 [longitude]="lng"
+        <agm-map [latitude]="mainPointerLatitude"
+                 [longitude]="mainPointerLongitude"
                  [zoom]="zoom"
                  [disableDefaultUI]=false
                  [zoomControl]=false
                  (mapClick)="mapClicked($event)">
-            <agm-marker *ngIf="lat"
-                        [latitude]="lat"
-                        [longitude]="lng">
+            <agm-marker *ngIf="mainPointerLatitude"
+                        [latitude]="mainPointerLatitude"
+                        [longitude]="mainPointerLongitude">
             </agm-marker>
             <agm-marker *ngFor="let marker of _markers;let i = index"
                         (markerClick)="clickedMarker(marker)"

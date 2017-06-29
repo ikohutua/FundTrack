@@ -1,4 +1,6 @@
-﻿namespace FundTrack.Infrastructure.ViewModel
+﻿using System;
+
+namespace FundTrack.Infrastructure.ViewModel
 {
     /// <summary>
     /// Class which describe model for search organization in dropdown menu
@@ -22,3 +24,4 @@
         public string Name { get; set; }
     }
 }
+
