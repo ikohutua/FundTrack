@@ -1,5 +1,5 @@
 ﻿import { UserInfoService } from '../../services/user-info.service';
-import { Component, OnInit, ViewChild, AfterContentChecked } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterContentChecked, ViewContainerRef } from '@angular/core';
 import { UserInfo } from '../../view-models/concrete/user-info.model';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AbstractControl } from '@angular/forms';
@@ -14,6 +14,9 @@ import { ChangePasswordViewModel } from "../../view-models/concrete/change-passw
 import { UserService } from '../../services/concrete/user.service';
 import { Router } from "@angular/router";
 import { matchingPasswords } from '../registration/match-password.validator';
+require('aws-sdk/dist/aws-sdk');
+//import { Overlay } from 'angular2-modal';
+//import { Modal } from 'angular2-modal/plugins/bootstrap';
 
 @Component({
     selector: 'user-info',
@@ -22,7 +25,7 @@ import { matchingPasswords } from '../registration/match-password.validator';
     providers: [UserInfoService, FormBuilder, UserService]
 })
 
-export class UserProfileComponent implements OnInit{
+export class UserProfileComponent implements OnInit {
     @ViewChild(ModalComponent)
     /**
     Modal component that contains password changes controls
@@ -31,13 +34,14 @@ export class UserProfileComponent implements OnInit{
     user: AuthorizeUserModel = new AuthorizeUserModel();
     private errorMessage: string;
     private passwordEdit: boolean = true;
-    passwordContainer: ChangePasswordViewModel = new ChangePasswordViewModel();
+    //imageUploaded: boolean = false;
+    private passwordContainer: ChangePasswordViewModel = new ChangePasswordViewModel();
 
     /**
     Reactive forms that are bound to input elements in UI
     **/
-     userForm: FormGroup;
-     passwordForm: FormGroup;
+    userForm: FormGroup;
+    passwordForm: FormGroup;
     /**
     Object that keeps errors coming from user interface
     **/
@@ -47,16 +51,16 @@ export class UserProfileComponent implements OnInit{
         "email": "",
         "login": "",
         "address": "",
-        "newPassword":"",
+        "newPassword": "",
         "newPasswordConfirmation": "",
         "oldPassword": "",
-        "mismatchingPasswords":""
+        "mismatchingPasswords": ""
     };
 
     /**
     Object that contains error messages
     **/
-     validationMessages = {
+    validationMessages = {
         "firstName": {
             "required": "Поле є обов'язковим",
             "minlength": "Значення не може бути коротшим 2х символів",
@@ -84,7 +88,7 @@ export class UserProfileComponent implements OnInit{
         },
         "newPassword": {
             "required": "Поле є обов'язковим",
-            "minLength":"Мінімальна довжина паролю становить 7 символів"
+            "minLength": "Мінімальна довжина паролю становить 7 символів"
         },
         "newPasswordConfirmation": {
             "required": "Поле є обов'язковим",
@@ -103,6 +107,7 @@ export class UserProfileComponent implements OnInit{
         private fb: FormBuilder,
         private router: Router
     ) {
+        //modalWindow.overlay.defaultViewContainer = vcRef;
     }
     /**
      * Gets user profile info from local storage
@@ -118,12 +123,11 @@ export class UserProfileComponent implements OnInit{
         this.passwordContainer.login = this.user.login;
         this.buildForm();
         this.buildPasswordForm();
-        this.user.photoUrl = 'http://orig13.deviantart.net/f725/f/2013/241/4/c/profile_picture_by_doge_intensifies-d6k8a2r.jpg';
     }
     /**
      * Builds a form using FormBuilder and subscribes to its changes
      */
-    private buildPasswordForm():void {
+    private buildPasswordForm(): void {
         this.passwordForm = this.fb.group({
             "oldPassword": [this.passwordContainer.oldPassword, [
                 Validators.required
@@ -138,7 +142,7 @@ export class UserProfileComponent implements OnInit{
             ]]
         },
             { validator: matchingPasswords('newPassword', 'newPasswordConfirmation') });
-            
+
         this.passwordForm.valueChanges
             .subscribe(data => this.onValueChangePasswordForm(data));
         this.onValueChangePasswordForm();
@@ -146,7 +150,7 @@ export class UserProfileComponent implements OnInit{
     /**
      * Builds a form using FormBuilder and subscribes to its changes
      */
-    private buildForm():void {
+    private buildForm(): void {
         this.userForm = this.fb.group({
             "firstName": [this.user.firstName, [
                 Validators.required,
@@ -183,7 +187,7 @@ export class UserProfileComponent implements OnInit{
      * Handles errors in the form and selects appropriate message
      * @param data
      */
-    private onValueChange(data?: any):void {
+    private onValueChange(data?: any): void {
         if (!this.userForm) return;
         let form = this.userForm;
 
@@ -199,7 +203,11 @@ export class UserProfileComponent implements OnInit{
             }
         }
     }
-    private onValueChangePasswordForm(data?: any):void {
+    /**
+     * Handles errors in the form and selects appropriate message
+     * @param data
+     */
+    private onValueChangePasswordForm(data?: any): void {
         if (!this.passwordForm) return;
         let form = this.passwordForm;
 
@@ -218,10 +226,9 @@ export class UserProfileComponent implements OnInit{
     /**
      * Edits user profile through uuser service and navigates to main page
      */
-   public onSubmit():void {
+    public onSubmit(): void {
         this.userService.editUserProfile(this.user)
-            .subscribe(data => 
-            {
+            .subscribe(data => {
                 localStorage.setItem(key.keyModel, JSON.stringify(this.user));
                 this.router.navigate(['/']);
             })
@@ -230,7 +237,7 @@ export class UserProfileComponent implements OnInit{
     /**
      * Clears all password fields and opens change password modal window
      */
-   private onPasswordChange(): void {
+    private onPasswordChange(): void {
         this.passwordContainer.oldPassword = '';
         this.passwordContainer.newPassword = '';
         this.passwordContainer.newPasswordConfirmation = '';
@@ -241,11 +248,10 @@ export class UserProfileComponent implements OnInit{
     /**
      * Changes password using old and new password fields through user service component and navigates to main page if success
      */
-    private changePassword():void {
+    private changePassword(): void {
         debugger;
         this.userService.changePassword(this.passwordContainer)
-            .subscribe(data =>
-            {
+            .subscribe(data => {
                 this.passwordContainer = data;
                 this.errorMessage = data.errorMessage;
                 if (!this.errorMessage) {
@@ -261,7 +267,44 @@ export class UserProfileComponent implements OnInit{
     /**
      * Clears error status on changing value in password field
      */
-    private refreshErrorStatus():void {
+    private refreshErrorStatus(): void {
         this.errorMessage = '';
     }
-}
+    /**
+     * Gets extension of specified file
+     * @param fileName: name of the file extension of which is needed to be retrieved
+     */
+    private getFileExtension(fileName: string):string {
+        return fileName.substring(fileName.lastIndexOf('.') + 1, fileName.length) || fileName;
+    }
+    /**
+     * Saves passed file in Amazon Web Storage
+     * @param fileInput: file to be saved in AWS
+     */
+    private saveFileInAws(fileInput: any): void {
+        var oldPhotoUrl = this.user.photoUrl;
+        this.user.photoUrl = '';
+        let AWSService = window.AWS;
+        console.log(AWSService);
+        let file = fileInput.target.files[0];
+        if (file.size != null && file.size < 4000000) {
+            AWSService.config.accessKeyId = 'AKIAJH4TLLOIZ5QOBKMQ';
+            AWSService.config.secretAccessKey = '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';
+            let uploadedFileName = this.user.login + '.' + this.getFileExtension(file.name);
+            let bucket = new AWSService.S3({ params: { Bucket: 'fundtrack' } });
+            let params = { Key: uploadedFileName, Body: file };
+            var that = this;
+            bucket.upload(params, function (error, res) {
+                console.log('error', error);
+                console.log('response', res);
+                that.user.photoUrl = '';
+                that.user.photoUrl = res.Location;
+            })
+        }
+        else {
+            this.user.photoUrl = oldPhotoUrl;
+            alert('Розмір зоображення не може перевищувати 4 МБ');
+        }
+    }
+    }
+

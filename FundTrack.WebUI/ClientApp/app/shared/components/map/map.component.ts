@@ -54,6 +54,8 @@ export class MapComponent implements OnInit {
 
     ngOnInit(): void {
         this._maximumConcurentRequestsToGoogleMap = 5;
+        this.setMainPointerOnCurrentLocation();
+
         //create search FormControl
         this.searchControl = new FormControl();
 
@@ -79,20 +81,6 @@ export class MapComponent implements OnInit {
             });
         });
     }
-
-    /**
-     * Here is confirm window. Asks for use current location
-     */
-    ngAfterViewInit() {
-        if (confirm("Дозволити використовувати Ваше поточне місцезнаходження")) {
-            this.setMainPointerOnCurrentLocation();
-        }
-        else {
-            //set main pointer on the Lviv City Hall
-            this.setMainPointer(49.841936, 24.031591, 9);
-        }
-    }
-
     /**
      * Sets current location on map
      */

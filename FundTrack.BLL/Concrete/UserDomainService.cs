@@ -171,6 +171,7 @@ namespace FundTrack.BLL.DomainServices
                     {
                         user.Password = PasswordHashManager.GetPasswordHash(changePasswordViewModel.newPassword);
                         _unitOfWork.UsersRepository.Update(user);
+                        _unitOfWork.SaveChanges();
                         return this.InitializeUserInfoViewModel(user);
                     }
                     else

@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ClientApp\app\shared\components\localStorage\" />
+    <Folder Include="ClientApp\app\shared\components\temporary\" />
     <Folder Include="ClientApp\app\shared\components\validators\passwordValidator\" />
   </ItemGroup>
   <Target Name="RunWebpack" AfterTargets="ComputeFilesToPublish">
