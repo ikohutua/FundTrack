@@ -248,3 +248,14 @@ VALUES
 'https://scontent-waw1-1.xx.fbcdn.net/v/t31.0-8/18836795_698639290344884_2001069689308999914_o.jpg?oh=9654b422b51f7d1c10a83e034b0cc273&oe=59E31CA0',
 1)
 GO
+
+INSERT INTO dbo.EventImages
+VALUES 
+(3,
+'https://scontent-waw1-1.xx.fbcdn.net/v/t1.0-9/19397065_1915532365381360_3277652959035811026_n.jpg?oh=3106a56771a678dcdd1f16ab7ce1948b&oe=59CEE830',
+0),
+(3,
+'https://scontent-waw1-1.xx.fbcdn.net/v/t1.0-9/19248059_841269326025055_2823380829229008327_n.jpg?oh=6f1cfc969fb9893f9e6befe35b7ad6d1&oe=59CE1DEE',
+0)
+
+select * from EventImages

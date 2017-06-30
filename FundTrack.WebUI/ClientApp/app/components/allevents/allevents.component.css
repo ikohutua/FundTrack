@@ -1,0 +1,15 @@
+﻿.panel-padding {
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.div-strings {
+    height:220px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.div-panel-margen {
+    margin-right:20px;
+    margin-bottom:20px;
+}

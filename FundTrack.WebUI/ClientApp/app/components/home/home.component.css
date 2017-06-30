@@ -2,6 +2,18 @@
     background-color: aliceblue;
 }
 
-#main-img {
-    padding-bottom: 25px;
+.nav-mn {
+    margin-bottom: 20px;
+}
+
+@media (max-width: 1199px){
+    .nav-mn {
+        position: relative;
+    }
+}
+
+@media (max-width: 2048px) and (min-width: 1200px) {
+    .nav-mn {
+        position: fixed;
+    }
 }

@@ -11,14 +11,20 @@ namespace FundTrack.BLL.Abstract
         /// <summary>
         /// Gets this instance.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Collections of instances</returns>
         IEnumerable<T> Get();
+
+        /// <summary>
+        /// Gets this instance.
+        /// </summary>
+        /// <returns>Collections of specific instances</returns>
+        IEnumerable<T> Get(int id);
 
         /// <summary>
         /// Reads the by identifier.
         /// </summary>
         /// <param name="id">The identifier.</param>
-        /// <returns></returns>
+        /// <returns>the specified item</returns>
         T ReadById(int id);
 
         /// <summary>

@@ -1,7 +1,6 @@
 ﻿using FundTrack.BLL.Abstract;
 using FundTrack.DAL.Abstract;
 using FundTrack.Infrastructure.ViewModel;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
@@ -13,7 +12,7 @@ namespace FundTrack.BLL.Concrete
     /// Class for work with Events
     /// </summary>
     /// <seealso cref="FundTrack.BLL.Abstract.IViewService{FundTrack.Infrastructure.ViewModel.EventViewModel}" />
-    public class EventViewService : IViewService<EventViewModel>
+    public sealed class EventViewService : IViewService<EventViewModel>
     {
         private readonly IUnitOfWork _unitOfWork;
 
@@ -37,8 +36,7 @@ namespace FundTrack.BLL.Concrete
             newEvent.Id = newItem.Id;
             newEvent.OrganizationId = newItem.OrganizationId;
             newEvent.Description = newItem.Description;
-            newEvent.Description = newItem.Description;
-          //  newEvent.ImageUrl = newItem.ImageUrl;
+            newEvent.CreateDate = newItem.CreateDate;
 
             _unitOfWork.EventRepository.Create(newEvent);
             _unitOfWork.SaveChanges();
@@ -54,12 +52,14 @@ namespace FundTrack.BLL.Concrete
         }
 
         /// <summary>
-        /// Gets this events.
+        /// Gets  events of all organizations.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Collection of EventViewModel</returns>
         public IEnumerable<EventViewModel> Get()
         {
-            var events = ((DbSet<Event>)_unitOfWork.EventRepository.Read()).Include(e => e.Organization)
+            var events = ((DbSet<Event>)_unitOfWork.EventRepository.Read())
+             .Include(e => e.Organization)
+             .Include(i=>i.EventImages)
              .Select(c => new EventViewModel()
              {
                  Id = c.Id,
@@ -67,7 +67,29 @@ namespace FundTrack.BLL.Concrete
                  OrganizationName = c.Organization.Name,
                  Description = c.Description,
                  CreateDate = c.CreateDate,
-             //    ImageUrl = c.ImageUrl
+                 ImageUrl = c.EventImages.Single(r => r.IsMain == true).ImageUrl
+             }).OrderBy(e => e.CreateDate).Take(5);
+
+            return events;
+        }
+
+        /// <summary>
+        /// Gets events about specific organization.
+        /// </summary>
+        /// <returns>Collection of EventViewModels for specific organization</returns>
+        public IEnumerable<EventViewModel> Get(int id)
+        {
+            var events = ((DbSet<Event>)_unitOfWork.EventRepository.Read())
+             .Include(e => e.Organization).Where(o => o.OrganizationId == id)
+             .Include(i => i.EventImages)
+             .Select(c => new EventViewModel()
+             {
+                 Id = c.Id,
+                 OrganizationId = c.OrganizationId,
+                 OrganizationName = c.Organization.Name,
+                 Description = c.Description,
+                 CreateDate = c.CreateDate,
+                 ImageUrl = c.EventImages.Single(r => r.IsMain == true).ImageUrl
              }).OrderBy(e => e.CreateDate).Take(5);
 
             return events;
@@ -77,7 +99,7 @@ namespace FundTrack.BLL.Concrete
         /// Reads the event by identifier.
         /// </summary>
         /// <param name="id">The event.</param>
-        /// <returns></returns>
+        /// <returns>Returns specific event by id</returns>
         public EventViewModel ReadById(int id)
         {
             return Get().FirstOrDefault(c => c.Id == id);
@@ -93,8 +115,7 @@ namespace FundTrack.BLL.Concrete
             newEvent.Id = updateItem.Id;
             newEvent.OrganizationId = updateItem.OrganizationId;
             newEvent.Description = updateItem.Description;
-            newEvent.Description = updateItem.Description;
-           // newEvent.ImageUrl = updateItem.ImageUrl;
+            newEvent.CreateDate = updateItem.CreateDate;
 
             _unitOfWork.EventRepository.Update(newEvent);
             _unitOfWork.SaveChanges();

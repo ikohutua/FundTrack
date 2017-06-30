@@ -5,8 +5,12 @@ using FundTrack.Infrastructure.ViewModel;
 
 namespace FundTrack.WebUI.Controllers
 {
+    /// <summary>
+    /// Controller witch works with list of events
+    /// </summary>
+    /// <seealso cref="Microsoft.AspNetCore.Mvc.Controller" />
     [Route("api/[controller]")]
-    public class EventController
+    public sealed class EventController
     {
         private readonly IViewService<EventViewModel> _service;
 
@@ -26,6 +30,17 @@ namespace FundTrack.WebUI.Controllers
         public IEnumerable<EventViewModel> AllEvents()
         {
             return _service.Get();
+        }
+
+        /// <summary>
+        /// Alls the events of organization.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns>Returns to WEB info about all events of specific organization</returns>
+        [HttpGet("AllEventsOfOrganization/{id}")]
+        public IEnumerable<EventViewModel> AllEventsOfOrganization(int id)
+        {
+            return _service.Get(id);
         }
     }
 }

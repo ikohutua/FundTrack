@@ -12,7 +12,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="GoogleStorageVariant2\CloudStorageOptions.cs" />
+    <Compile Remove="GoogleStorageVariant2\**" />
+    <EmbeddedResource Remove="GoogleStorageVariant2\**" />
+    <None Remove="GoogleStorageVariant2\**" />
   </ItemGroup>
 
   <ItemGroup>

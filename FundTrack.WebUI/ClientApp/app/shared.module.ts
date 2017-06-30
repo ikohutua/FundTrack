@@ -2,6 +2,7 @@
 import { RouterModule } from "@angular/router";
 import { DropdownOrganizationsComponent } from "./shared/components/dropdown-filtering/dropdown-filtering.component";
 import { DropdownOrganizationFilterPipe } from "./shared/pipes/organization-list.pipe";
+import { EventFilterPipe } from "./shared/pipes/events.pipe";
 import { UserStatesComponent } from "./shared/components/user-authorize-states/user-states.component";
 import { CommonModule } from "@angular/common";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
@@ -18,6 +19,7 @@ import { SelectComponent } from './shared/components/select/select.component';
         PaginationComponent,
         PageItemComponent,
         ModalComponent,
+        EventFilterPipe,
         SelectComponent
     ],
     imports: [
@@ -35,6 +37,7 @@ import { SelectComponent } from './shared/components/select/select.component';
         PaginationComponent,
         PageItemComponent,
         ModalComponent,
+        EventFilterPipe,
         SelectComponent
     ]
 })

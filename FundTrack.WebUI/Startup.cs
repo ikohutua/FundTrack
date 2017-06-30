@@ -57,6 +57,7 @@ namespace FundTrack_WebUI
             services.AddScoped<IOrganizationsForFilteringService, OrganizationsForFilteringService>();
             services.AddTransient<IUserDomainService, UserDomainService>();
             services.AddScoped<IViewService<EventViewModel>, EventViewService>();
+            services.AddScoped<IViewService<EventDetailViewModel>, EventDetailViewService>();          
             services.AddScoped<ISuperAdminService, SuperAdminService>();
         }
 

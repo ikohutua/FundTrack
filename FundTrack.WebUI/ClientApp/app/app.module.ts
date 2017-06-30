@@ -23,6 +23,6 @@ import { MapModule } from "./map.module";
         SuperAdminModule,
         AppRoutingModule, 
         MapModule
-    ]
+            ]
 })
 export class AppModule { }

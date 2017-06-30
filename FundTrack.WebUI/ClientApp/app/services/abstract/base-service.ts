@@ -13,17 +13,34 @@ export abstract class BaseService<T> {
      * @param _url: string
      * @param _http
      */
-    public constructor(private _http: Http, private _url: string) { }
+    public constructor(private _http: Http, private _url?: string) { }
 
     /**
      * Gets the collection of view models
+     * @param
      * @returns Observable<T[]>
      */
-    public getCollection(): Observable<T[]> {
-        return this._http.get(this._url)
-            .map((response: Response) => <T[]>response.json())
-            //.do(data => console.log('ALL ' + JSON.stringify(data)))
-            .catch(this.handleError);
+    public getCollection(id?: number, additionString?: string): Observable<T[]> {
+        if (id && additionString) {
+            return this._http.get(additionString + '/' + id.toString())
+                .map((response: Response) => <T[]>response.json())
+                .catch(this.handleError);
+        }
+        else if(id){
+            return this._http.get(this._url + '/' + id.toString())
+                .map((response: Response) => <T[]>response.json())
+                .catch(this.handleError);
+        }
+        else if (additionString) {
+            return this._http.get(this._url + additionString)
+                .map((response: Response) => <T[]>response.json())
+                .catch(this.handleError);
+        }
+        else {
+            return this._http.get(this._url)
+                .map((response: Response) => <T[]>response.json())
+                .catch(this.handleError);
+        }
     }
 
     /**
@@ -34,6 +51,13 @@ export abstract class BaseService<T> {
         return this._http.get(this._url + additionString)
             .map((response: Response) => <T>response.json())
             //.do(data => console.log('ALL ' + JSON.stringify(data)))
+            .catch(this.handleError);
+    }
+
+    public getById(id: number, additionString: string): Observable<T> {
+        return this._http.get(additionString + '/' + id.toString())
+            .map((response: Response) => <T>response.json())
+            .do(data => console.log('ALL ' + JSON.stringify(data)))
             .catch(this.handleError);
     }
 

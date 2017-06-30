@@ -1,0 +1,24 @@
+﻿<div class="col-lg-6" *ngFor="let event of _model">
+    <div class="panel panel-primary" style="height:320px">
+        <div class="panel-heading">
+            <div class="panel-title pull-left">
+                <a href="#">{{event.organizationName}}</a>
+            </div>
+            <div class="panel-title pull-right">
+                {{event.createDate | date }}
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="panel-body panel-padding">
+            <div class=" pull-left div-panel-margen">
+                <img src={{event.imageUrl}} height="200" />
+            </div>
+            <div class="div-strings">
+                {{event.description}}
+            </div>
+            <div class="pull-right">
+                <a [routerLink]="['/home/eventdetail',event.id]">Читати далі</a>
+            </div>
+        </div>
+    </div>
+</div>
