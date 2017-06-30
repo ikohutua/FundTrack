@@ -48,6 +48,7 @@
     <ProjectReference Include="..\FundTrack.Infrastructure\FundTrack.Infrastructure.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="ClientApp\app\components\modaltest\" />
     <Folder Include="ClientApp\app\shared\components\localStorage\" />
     <Folder Include="ClientApp\app\shared\components\temporary\" />
     <Folder Include="ClientApp\app\shared\components\validators\passwordValidator\" />

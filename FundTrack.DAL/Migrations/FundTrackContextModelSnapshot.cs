@@ -740,7 +740,9 @@ namespace FundTrack.DAL.Migrations
                     b.Property<string>("Password")
                         .IsRequired();
 
-                    b.Property<string>("PhotoUrl");
+                    b.Property<string>("PhotoUrl")
+                        .ValueGeneratedOnAdd()
+                        .HasDefaultValue("https://s3.eu-central-1.amazonaws.com/fundtrack/default-user-image.png");
 
                     b.HasKey("Id")
                         .HasName("PK_User");

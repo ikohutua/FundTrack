@@ -198,6 +198,7 @@ namespace FundTrack.BLL.DomainServices
             user.LastName = userModel.lastName;
             user.PhotoUrl = userModel.photoUrl;
             this._unitOfWork.UsersRepository.Update(user);
+            this._unitOfWork.SaveChanges();
             return this.InitializeUserInfoViewModel(this._unitOfWork.UsersRepository.Get(userModel.id));
         }
     }

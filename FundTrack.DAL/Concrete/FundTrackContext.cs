@@ -228,6 +228,8 @@ namespace FundTrack.DAL.Concrete
                 entity.Property(e => e.LastName).IsRequired().HasMaxLength(100);
 
                 entity.Property(e => e.Password).IsRequired();
+
+                entity.Property(e => e.PhotoUrl).HasDefaultValue("https://s3.eu-central-1.amazonaws.com/fundtrack/default-user-image.png");
             });
 
             modelBuilder.Entity<Phone>(entity =>
