@@ -15,5 +15,7 @@
         public const string UserExistsMessage = "Користувач вже існує";
         public const string NoEntriesInDatabase = "Немає жодного запису в базі даних";
         public const string IncorrectCredentials = "Неправильний логін або пароль";
+        public const string NoUserWithEmail = "Користувача з даним email не існує";
+        public const string InvalidGuid = "Недійсний лінк відновлення пароля";
     }
 }

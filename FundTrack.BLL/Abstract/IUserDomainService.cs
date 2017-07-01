@@ -1,6 +1,6 @@
 ﻿using FundTrack.DAL.Entities;
 using FundTrack.Infrastructure.ViewModel;
-using FundTrack.Infrastructure.ViewModel.SuperAdminViewModels;
+using FundTrack.Infrastructure.ViewModel.ResetPassword;
 using System.Collections.Generic;
 
 namespace FundTrack.BLL.Abstract
@@ -34,5 +34,25 @@ namespace FundTrack.BLL.Abstract
         /// <param name="registrationViewModel">RegistrationViewModel</param>
         /// <returns>Registration view model</returns>
         RegistrationViewModel CreateUser(RegistrationViewModel registrationViewModel);
+
+        /// <summary>
+        /// Send Email with recovery password link
+        /// </summary>
+        /// <param name="currentHost">current host</param>
+        /// <param name="email">email to send address</param>
+        void SendPasswordRecoveryEmail(string currentHost, string email);
+
+        /// <summary>
+        /// Resets user password
+        /// </summary>
+        /// <param name="passwordReset">view model of PasswordResetViewModel</param>
+        void ResetPassword(PasswordResetViewModel passwordReset);
+
+        /// <summary>
+        /// Checks if input guid is a valid user guid
+        /// </summary>
+        /// <param name="guid">Input User guid</param>
+        /// <returns>Guid status</returns>
+        bool IsValidUserGuid(string guid);
     }
 }

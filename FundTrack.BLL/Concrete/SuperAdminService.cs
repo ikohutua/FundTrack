@@ -7,16 +7,25 @@ using System.Linq;
 
 namespace FundTrack.BLL.Concrete
 {
+    /// <summary>
+    /// Service for Super Admin Actions
+    /// </summary>
     public sealed class SuperAdminService : BaseService, ISuperAdminService
     {
+        // sets page size
+        private const int PageSize = 4;
+
         // unit of work instance
         private readonly IUnitOfWork _unitOfWork;
 
-        // sets page size
-        private readonly int pageSize = 2;
-
-        //sets page range
-        private readonly int pageRange = 2;
+        private PaginationInitViewModel GetPaginationInitData<T>(IEnumerable<T> items)
+        {
+            return new PaginationInitViewModel
+            {
+                TotalItemsCount = items.Count(),
+                ItemsPerPage = PageSize
+            };
+        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="SuperAdminService"/> class.
@@ -79,15 +88,6 @@ namespace FundTrack.BLL.Concrete
         public PaginationInitViewModel GetOrganizationPaginationData()
         {
             return GetPaginationInitData(_unitOfWork.OrganizationRepository.Read());
-        }
-
-        private PaginationInitViewModel GetPaginationInitData<T>(IEnumerable<T> items)
-        {
-            return new PaginationInitViewModel
-            {
-                TotalItemsCount = items.Count(),
-                ItemsPerPage = pageSize
-            };
         }
 
         /// <summary>

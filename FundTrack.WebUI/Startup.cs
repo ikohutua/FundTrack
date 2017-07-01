@@ -39,7 +39,7 @@ namespace FundTrack_WebUI
             // Db Connection
             // For local connection, go to appsettings.json and write your local connection string
             // Available connection types : 'local','azure-main','azure-test'
-            string connectionType = "ss";
+            string connectionType = "local";
             services.AddDbContext<FundTrackContext>(options => options.UseSqlServer(Configuration.GetConnectionString(connectionType)));
 
             // Add framework services.
@@ -59,6 +59,7 @@ namespace FundTrack_WebUI
             services.AddScoped<IViewService<EventViewModel>, EventViewService>();
             services.AddScoped<IViewService<EventDetailViewModel>, EventDetailViewService>();          
             services.AddScoped<ISuperAdminService, SuperAdminService>();
+            services.AddScoped<IEmailSender, EmailSender>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -10,6 +10,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { EqualTextValidator } from "angular2-text-equality-validator";
 import * as key from '../app/shared/key.storage';
 import { SharedModule } from './shared.module';
+import { BeginPasswordResetComponent } from './components/password-reset/begin-password-reset.component';
+import { NewPasswordComponent } from './components/password-reset/new-password.component';
 
 //module for authorization users
 @NgModule({
@@ -18,7 +20,9 @@ import { SharedModule } from './shared.module';
         AuthorizationComponent,
         ErrorAuthorizeComponent,
         UserProfileComponent,
-        EqualTextValidator
+        EqualTextValidator,
+        BeginPasswordResetComponent,
+        NewPasswordComponent
     ],
     imports: [
         CommonModule,

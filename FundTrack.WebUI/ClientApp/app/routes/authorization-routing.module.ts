@@ -5,6 +5,8 @@ import { AuthorizationComponent } from "../components/authorization/authorizatio
 import { UserProfileComponent } from '../components/user-profile/user-profile.component';
 import { LoginRouteGuard } from '../services/concrete/security/login-route-guard';
 import { ErrorAuthorizeComponent } from '../shared/components/error-authorize/error-authorize.component';
+import { BeginPasswordResetComponent } from '../components/password-reset/begin-password-reset.component';
+import { NewPasswordComponent } from '../components/password-reset/new-password.component';
 
 @NgModule({
     providers: [LoginRouteGuard],
@@ -17,7 +19,9 @@ import { ErrorAuthorizeComponent } from '../shared/components/error-authorize/er
                 component: UserProfileComponent,
                 canActivate: [LoginRouteGuard]
             },
-            { path: 'errorauthorize', component: ErrorAuthorizeComponent }
+            { path: 'errorauthorize', component: ErrorAuthorizeComponent },
+            { path: 'begin_password_reset', component: BeginPasswordResetComponent },
+            { path: 'new_password/:id', component: NewPasswordComponent }
         ])
     ],
     exports: [RouterModule]

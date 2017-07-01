@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using FundTrack.BLL.Concrete;
 using FundTrack.Infrastructure;
-
+using FundTrack.Infrastructure.ViewModel.ResetPassword;
 
 namespace FundTrack.BLL.DomainServices
 {
@@ -20,13 +20,17 @@ namespace FundTrack.BLL.DomainServices
         // unit of work instance
         private readonly IUnitOfWork _unitOfWork;
 
+        // email sender instance
+        private readonly IEmailSender _emailSender;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="UserDomainService"/> class.
         /// </summary>
         /// <param name="context">The context.</param>
-        public UserDomainService(IUnitOfWork unitOfWorkParam)
+        public UserDomainService(IUnitOfWork unitOfWorkParam, IEmailSender emailSenderParam)
         {
             _unitOfWork = unitOfWorkParam;
+            _emailSender = emailSenderParam;
         }
 
         /// <summary>
@@ -195,6 +199,75 @@ namespace FundTrack.BLL.DomainServices
             this._unitOfWork.UsersRepository.Update(user);
             this._unitOfWork.SaveChanges();
             return this.InitializeUserInfoViewModel(this._unitOfWork.UsersRepository.Get(userModel.id));
+        }
+
+        /// <summary>
+        /// Sends Email with recovery password link
+        /// </summary>
+        /// <param name="currentHost">current host</param>
+        /// <param name="email">email to send address</param>
+        public void SendPasswordRecoveryEmail(string currentHost, string email)
+        {
+            var user = _unitOfWork.UsersRepository.Read().FirstOrDefault(u => u.Email == email);
+
+            if (user != null)
+            {
+                var guid = Guid.NewGuid().ToString("D");
+
+                if (_unitOfWork.UsersRepository.HasUserResetLink(user))
+                {
+                    _unitOfWork.UsersRepository.RemoveUserRecoveryLink(user.Id);
+                    _unitOfWork.SaveChanges();
+                }
+
+                _unitOfWork.UsersRepository.AddUserRecoveryLink(new PasswordReset
+                {
+                    GUID = guid,
+                    User = user,
+                    UserID = user.Id,
+                    ExpireDate = DateTime.Now
+                });
+
+                _emailSender.SendMail(currentHost, email, guid);
+
+                _unitOfWork.SaveChanges();
+            }
+            else
+            {
+                throw new BusinessLogicException(ErrorMessages.NoUserWithEmail);
+            }
+        }
+
+        /// <summary>
+        /// Checks if input guid is a valid user guid
+        /// </summary>
+        /// <param name="guid">Input User guid</param>
+        /// <returns>Guid status</returns>
+        public bool IsValidUserGuid(string guid)
+        {
+            return _unitOfWork.UsersRepository.GetUserByGuid(guid) != null ? true : false;
+        }
+
+        /// <summary>
+        /// Resets user password
+        /// </summary>
+        /// <param name="passwordReset">View model of PasswordResetViewModel</param>
+        public void ResetPassword(PasswordResetViewModel passwordReset)
+        {
+            var user = _unitOfWork.UsersRepository.GetUserByGuid(passwordReset.Guid);
+
+            if (user != null)
+            {
+                user.Password = PasswordHashManager.GetPasswordHash(passwordReset.NewPassword);
+                _unitOfWork.UsersRepository.Update(user);
+                _unitOfWork.UsersRepository.RemoveUserRecoveryLink(user.Id);
+
+                _unitOfWork.SaveChanges();
+            }
+            else
+            {
+                throw new BusinessLogicException(ErrorMessages.InvalidGuid);
+            }
         }
     }
 }

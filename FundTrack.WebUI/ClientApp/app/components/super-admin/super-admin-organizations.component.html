@@ -1,6 +1,6 @@
 ﻿<div *ngIf="organizations">
     <super-admin-grid [arrayToDisplay]="organizations" 
-                      [headers]="headers"
+                      [headers]="['Назва Організації', 'Дія']"
                       (banStatusChange)="changeOrganizationBanStatus($event)">
 
     </super-admin-grid>
@@ -11,7 +11,7 @@
             Per Page :
         </div>
         <div *ngIf="numbers" class="text-left col-sm-2">
-            <select-item [items]="numbers"
+            <select-item [items]="[4, 5, 6, 7, 8, 9, 10]"
                          (onSelect)="itemsPerPageChange($event)">
             </select-item>
         </div>

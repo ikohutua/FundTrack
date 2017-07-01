@@ -14,14 +14,11 @@ import { SuperAdminChangeStatusViewModel } from '../../view-models/abstract/supe
 * Component for Organizations on super admin page
 */
 export class SuperAdminOrganizationsComponent implements OnInit {
-    private totalItems;
-    private itemPerPage : number = 2;
-    private offset: number = 0;
-    private currentPage: number = 1;
-    private headers: string[] = ['Назва Організації', 'Дія'];
-    private numbers: number[] = [2, 3, 4, 5, 6, 7, 8, 9, 10];
-
-    private organizations: SuperAdminItemsViewModel[];
+    public totalItems;
+    public itemPerPage: number;
+    public offset: number = 0;
+    public currentPage: number = 1;
+    public organizations: SuperAdminItemsViewModel[];
 
     /**
      * Creates new instance of SuperAdminOrganizationsComponent
@@ -33,7 +30,7 @@ export class SuperAdminOrganizationsComponent implements OnInit {
     /**
      * Trigers when Component is created
      */
-    ngOnInit() {
+    public ngOnInit() : void {
         this._superAdminService.getOrganizationInitData().subscribe((data: SuperAdminInitViewModel) => {
             this.totalItems = data.totalItemsCount;
             this.itemPerPage = data.itemsPerPage;
@@ -49,7 +46,7 @@ export class SuperAdminOrganizationsComponent implements OnInit {
      * Trigers when user changes page
      * @param page
      */
-    onPageChange(page) {
+    public onPageChange(page) : void {
         this._superAdminService.getOrganizationsOnPage(page, this.itemPerPage)
             .subscribe((organizations: SuperAdminItemsViewModel[]) => {
                 this.organizations = organizations;
@@ -61,7 +58,7 @@ export class SuperAdminOrganizationsComponent implements OnInit {
      * Trigers when user changes organization ban status
      * @param banStatus
      */
-    changeOrganizationBanStatus(banStatus: SuperAdminChangeStatusViewModel) {
+    public changeOrganizationBanStatus(banStatus: SuperAdminChangeStatusViewModel) : void {
         this._superAdminService.changeOrganizationBanStatus(banStatus).subscribe(() => {
             let itemToUpdate = this.organizations.find(o => o.id == banStatus.id);
 
@@ -74,7 +71,7 @@ export class SuperAdminOrganizationsComponent implements OnInit {
      * Trigers when user changes items per page to display
      * @param amount
      */
-    itemsPerPageChange(amount: number) {
+    public itemsPerPageChange(amount: number) : void {
         this._superAdminService.getOrganizationsOnPage(1, amount)
             .subscribe((organizations: SuperAdminItemsViewModel[]) => {
                 this.offset = 0;

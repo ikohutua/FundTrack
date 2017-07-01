@@ -1,7 +1,10 @@
 using FundTrack.BLL.Abstract;
+using FundTrack.Infrastructure;
 using FundTrack.Infrastructure.ViewModel;
+using FundTrack.Infrastructure.ViewModel.ResetPassword;
 using FundTrack.WebUI.secutiry;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System;
@@ -16,7 +19,7 @@ namespace FundTrack.WebUI.Controllers
     /// <seealso cref="Microsoft.AspNetCore.Mvc.Controller" />
     [Produces("application/json")]
     [Route("api/User")]
-    public class UserController : Controller
+    public sealed class UserController : Controller
     {
         private readonly IUserDomainService _userDomainService;
 
@@ -129,6 +132,66 @@ namespace FundTrack.WebUI.Controllers
             }
         }
 
+        /// <summary>
+        /// Sends Recovery Email for User Password
+        /// </summary>
+        /// <param name="email">Address to send Email</param>
+        /// <returns>Error string if the Email faild to send</returns>
+        [HttpPost("[action]")]
+        public JsonResult SendRecoveryEmail([FromBody]UserEmailViewModel email)
+        {
+            try
+            {
+                _userDomainService.SendPasswordRecoveryEmail(GetUri(), email.Email);
+
+                return Json(string.Empty);
+            }
+            catch (Exception ex)
+            {
+                return Json(ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// Checks if the guid is valid
+        /// </summary>
+        /// <param name="guid">Guid number</param>
+        /// <returns>Error string if the guid is invalid</returns>
+        [HttpPost("[action]")]
+        public JsonResult CheckGuidStatus([FromBody]GuidViewModel guid)
+        {        
+            if (_userDomainService.IsValidUserGuid(guid.Guid))
+            {
+                return Json(string.Empty);
+            }               
+           
+            return Json(ErrorMessages.InvalidGuid);
+        }
+
+        /// <summary>
+        /// Resets password to user
+        /// </summary>
+        /// <param name="resetViewModel">View Model to reset password</param>
+        /// <returns>Error string if the password faild to reset</returns>
+        [HttpPost("[action]")]
+        public JsonResult ResetUserPassword([FromBody]PasswordResetViewModel resetViewModel)
+        {
+            try
+            {
+                _userDomainService.ResetPassword(resetViewModel);
+
+                return Json(string.Empty);
+            }
+            catch (Exception ex)
+            {
+                return Json(ex.Message);
+            }                       
+        }
+
+        // gets current request uri
+        private string GetUri() => $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}";
+
+        // gets Authorization Type Errors
         private string _getAuthorizationTypeError(string errorMessage = "", List<ValidationViewModel> validationSummary = null)
         {
             var authorizationType = new AuthorizationType

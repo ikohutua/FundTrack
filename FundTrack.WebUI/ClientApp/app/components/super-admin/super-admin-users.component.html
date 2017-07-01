@@ -1,13 +1,13 @@
 ﻿<div *ngIf="users">
     <super-admin-grid [arrayToDisplay]="users"
-                      [headers]="headers"
+                      [headers]="['Логін Користувача', 'Дія']"
                       (banStatusChange)="changeUserBanStatus($event)">
     </super-admin-grid>
 </div>
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-2">
-            Per Page :
+            На Сторінці :
         </div>
         <div *ngIf="numbers" class="text-left col-sm-2">
             <select-item [items]="numbers"

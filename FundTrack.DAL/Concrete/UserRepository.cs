@@ -92,12 +92,34 @@ namespace FundTrack.DAL.Repositories
         }
 
         /// <summary>
+        /// Checks if user has reset password link
+        /// </summary>
+        /// <param name="user">user to check</param>
+        /// <returns>User reset link status</returns>
+        public bool HasUserResetLink(User user)
+        {
+            return context.Users.Include(u => u.PasswordReset)
+                                .Any(u => u.PasswordReset != null && u.PasswordReset.UserID == user.Id);
+        }
+
+        /// <summary>
         /// Gets Users with their ban status
         /// </summary>
         /// <returns>Users with ban status</returns>
         public IEnumerable<User> GetUsersWithBanStatus()
         {
             return context.Users.Include(u => u.BannedUser);
+        }
+
+        /// <summary>
+        /// Gets user by guid
+        /// </summary>
+        /// <param name="guid">guid to get user</param>
+        /// <returns>User with specifice guid</returns>
+        public User GetUserByGuid(string guid)
+        {
+            return context.Users.Include(u => u.PasswordReset)
+                                .FirstOrDefault(u => u.PasswordReset != null && u.PasswordReset.GUID == guid);
         }
 
         /// <summary>
@@ -119,6 +141,24 @@ namespace FundTrack.DAL.Repositories
         public void BanUser(BannedUser user)
         {
             context.BannedUsers.Add(user);           
+        }
+
+        /// <summary>
+        /// Addes new Password reset request
+        /// </summary>
+        /// <param name="passwordReset">Password reset request</param>
+        public void AddUserRecoveryLink(PasswordReset passwordReset)
+        {
+            context.PasswordResets.Add(passwordReset);
+        }
+
+        /// <summary>
+        /// Removes Recovery link
+        /// </summary>
+        /// <param name="id">Id of user</param>
+        public void RemoveUserRecoveryLink(int id)
+        {
+            context.PasswordResets.Remove(context.PasswordResets.FirstOrDefault(u => u.UserID == id));
         }
     }
 }

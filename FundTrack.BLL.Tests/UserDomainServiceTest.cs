@@ -1,4 +1,5 @@
-﻿using FundTrack.BLL.Concrete;
+﻿using FundTrack.BLL.Abstract;
+using FundTrack.BLL.Concrete;
 using FundTrack.BLL.DomainServices;
 using FundTrack.DAL.Abstract;
 using FundTrack.DAL.Entities;
@@ -23,7 +24,9 @@ namespace FundTrack.BLL.Tests
             var unitOfWorkMock = new Mock<IUnitOfWork>();
             unitOfWorkMock.Setup(u => u.UsersRepository).Returns(userRepositoryMock.Object);
 
-            var userDomainService = new UserDomainService(unitOfWorkMock.Object);
+            var emailSenderMock = new Mock<IEmailSender>();
+
+            var userDomainService = new UserDomainService(unitOfWorkMock.Object, emailSenderMock.Object);
 
             //Act
             var result = userDomainService.GetAllUsers();
@@ -49,7 +52,9 @@ namespace FundTrack.BLL.Tests
             var unitOfWorkMock = new Mock<IUnitOfWork>();
             unitOfWorkMock.Setup(u => u.UsersRepository).Returns(userRepositoryMock.Object);
 
-            var userDomainService = new UserDomainService(unitOfWorkMock.Object);
+            var emailSenderMock = new Mock<IEmailSender>();
+
+            var userDomainService = new UserDomainService(unitOfWorkMock.Object, emailSenderMock.Object);
 
             //Act
             RegistrationViewModel result = userDomainService.CreateUser(this._getUserModel());
@@ -73,7 +78,9 @@ namespace FundTrack.BLL.Tests
             var unitOfWorkMock = new Mock<IUnitOfWork>();
             unitOfWorkMock.Setup(u => u.UsersRepository).Returns(userRepositoryMock.Object);
 
-            var userDomainService = new UserDomainService(unitOfWorkMock.Object);
+            var emailSenderMock = new Mock<IEmailSender>();
+
+            var userDomainService = new UserDomainService(unitOfWorkMock.Object, emailSenderMock.Object);
             //Act
             Exception ex = Assert.Throws<BusinessLogicException>(() => userDomainService.CreateUser(this._getUserModel()));
             

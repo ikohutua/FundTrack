@@ -14,14 +14,11 @@ import { SuperAdminChangeStatusViewModel } from '../../view-models/abstract/supe
 * Component for Users on super admin page
 */
 export class SuperAdminUsersComponent implements OnInit {
-    private totalItems;
-    private itemPerPage : number = 2;
-    private offset: number = 0;
-    private currentPage: number = 1;
-    private headers: string[] = ['Логін Користувача', 'Дія'];
-    private numbers: number[] = [2, 3, 4, 5, 6, 7, 8, 9, 10];
-
-    private users: SuperAdminItemsViewModel[];
+    public totalItems;
+    public itemPerPage : number = 4;
+    public offset: number = 0;
+    public currentPage: number = 1;
+    public users: SuperAdminItemsViewModel[];
 
     /**
      * Creates new instance of SuperAdminUsersComponent
@@ -33,7 +30,7 @@ export class SuperAdminUsersComponent implements OnInit {
     /**
      * Trigers when Component is created
      */
-    ngOnInit() {
+    public ngOnInit() : void {
         this._superAdminService.getUsersInitData().subscribe((data: SuperAdminInitViewModel) => {
             this.totalItems = data.totalItemsCount;
             this.itemPerPage = data.itemsPerPage;
@@ -49,7 +46,7 @@ export class SuperAdminUsersComponent implements OnInit {
      * Trigers when user changes page
      * @param page
      */
-    onPageChange(page) {
+    public onPageChange(page) : void {
         this._superAdminService.getUsersOnPage(page, this.itemPerPage)
             .subscribe((users: SuperAdminItemsViewModel[]) => {
                 this.users = users;
@@ -61,7 +58,7 @@ export class SuperAdminUsersComponent implements OnInit {
      * Trigers when user changes 
      * @param banStatus
      */
-    changeUserBanStatus(banStatus: SuperAdminChangeStatusViewModel) {       
+    public changeUserBanStatus(banStatus: SuperAdminChangeStatusViewModel) : void {       
         this._superAdminService.changeUserBanStatus(banStatus).subscribe(() => {         
             let itemToUpdate = this.users.find(u => u.id == banStatus.id);
 
@@ -74,7 +71,7 @@ export class SuperAdminUsersComponent implements OnInit {
      * Trigers when user changes items to display on page
      * @param amount
      */
-    itemsPerPageChange(amount: number) {   
+    public itemsPerPageChange(amount: number) : void {   
         this._superAdminService.getUsersOnPage(1, amount)
             .subscribe((users: SuperAdminItemsViewModel[]) => {               
                 this.offset = 0;

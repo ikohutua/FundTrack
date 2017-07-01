@@ -12,10 +12,12 @@
         <tr *ngFor="let item of arrayToDisplay">
             <td class="text-left">{{item.title}}</td>
             <td>
-                <button class="btn btn-default" data-toggle="modal" href="#banModal"
+                <button class="btn custom-btn" 
+                        [class.btn-danger]="!item.isBanned"
+                        [class.btn-success]="item.isBanned"
                         (click)="onActionClick(item)">
-                    <div *ngIf="item.isBanned==true">Розблокувати</div>
-                    <div *ngIf="item.isBanned==false">Заблокувати</div>
+                    <div *ngIf="!item.isBanned">Забанити</div>
+                    <div *ngIf="item.isBanned">Відбанити</div>
                 </button>
             </td>
         </tr>
@@ -30,7 +32,7 @@
         <textarea class="form-control" #description="ngModel"
                   (blur)="customeFieldTouched=true" 
                   required
-                  [disabled]="selectedItemStatus=='розблокувати'"
+                  [disabled]="selectedItemStatus=='Відбанити'"
                   [(ngModel)]="selectedItemBanDescription">                   
         </textarea>
         <div class="alert alert-danger" *ngIf="description.invalid && customeFieldTouched">
@@ -42,14 +44,8 @@
         <button (click)="statusChange(selectedItemBanDescription)"
                 class="btn btn-primary"
                 data-dismiss="modal"
-                [disabled]="description.invalid && description.touched">
+                [disabled]="description.invalid">
             {{selectedItemStatus}}
         </button>
     </div>     
 </app-modal>
-<!--
-<super-admin-ban [banStatus]="selectedItemStatus"
-                 [BanDescription]="selectedItemBanDescription"
-                 (onStatusChange)="StatusChange($event)">
-</super-admin-ban>
--->
