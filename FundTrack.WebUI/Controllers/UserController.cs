@@ -33,28 +33,44 @@ namespace FundTrack.WebUI.Controllers
         }
 
         /// <summary>
+        /// Authorize facebook user in system 
+        /// </summary>
+        /// <param name="loginFacebookViewModel">The login facebook view model.</param>
+        /// <returns></returns>
+        [HttpPost("LogInFacebook")]
+        public string LogInFacebook([FromBody] LoginFacebookViewModel loginFacebookViewModel)
+        {
+            try
+            {
+                var userInfo=this._userDomainService.LoginFacebook(loginFacebookViewModel);
+                return JsonConvert.SerializeObject(this._getAuthorizationType(userInfo.login,string.Empty,"FB"),
+                                                       new JsonSerializerSettings { Formatting = Formatting.Indented });
+            }
+            catch (Exception ex)
+            {
+                return this._getAuthorizationTypeError(ex.Message);
+            }
+        }
+
+        /// <summary>
         ///  Authorize user in system , return the type which contain UserInfoViewModel
         /// </summary>
         /// <param name="user">user credentials</param>
         /// <returns>authorization type with token and user model</returns>
         [HttpPost("LogIn")]
-        public string LogIn([FromBody]AuthorizeViewModel user)
+        public string LogIn([FromBody]LoginViewModel user)
         {
             try
             {
-                var authorizationType = this._getAuthorizationType(user.Login, user.Password);
-                return JsonConvert.SerializeObject(authorizationType, new JsonSerializerSettings { Formatting = Formatting.Indented });
+                return JsonConvert.SerializeObject(this._getAuthorizationType(user.Login, user.Password,string.Empty),
+                                                   new JsonSerializerSettings { Formatting = Formatting.Indented });
             }
             catch (Exception ex)
             {
-                var authorizationType = new AuthorizationType
-                {
-                    access_token = "",
-                    errorMessage = ex.Message
-                };
-                return JsonConvert.SerializeObject(authorizationType, new JsonSerializerSettings { Formatting = Formatting.Indented });
+                return this._getAuthorizationTypeError(ex.Message);
             }
         }
+
         /// <summary>
         /// Edit user based on the view model received
         /// </summary>
@@ -67,6 +83,7 @@ namespace FundTrack.WebUI.Controllers
             var updatedUser = this._userDomainService.UpdateUser(model);
             return Json(updatedUser);
         }
+
         /// <summary>
         /// Changes password of specified User entity by his/her login
         /// </summary>
@@ -74,11 +91,11 @@ namespace FundTrack.WebUI.Controllers
         /// <returns>returns change password view model, that is empty if change password succeded</returns>
         [Authorize]
         [HttpPost("changepassword")]
-        public JsonResult ChangePassword([FromBody]ChangePasswordViewModel changePasswordViewModel )
+        public JsonResult ChangePassword([FromBody]ChangePasswordViewModel changePasswordViewModel)
         {
             try
             {
-               var updatedUserModel = this._userDomainService.ChangePassword(changePasswordViewModel);
+                var updatedUserModel = this._userDomainService.ChangePassword(changePasswordViewModel);
                 return Json(new ChangePasswordViewModel());
             }
             catch (Exception ex)
@@ -90,6 +107,7 @@ namespace FundTrack.WebUI.Controllers
                 return Json(changePasswordViewModel);
             }
         }
+
         /// <summary>
         /// Register user 
         /// </summary>
@@ -100,12 +118,13 @@ namespace FundTrack.WebUI.Controllers
         {
             try
             {
-                if(ModelState.IsValid)
+                if (ModelState.IsValid)
                 {
                     var user = _userDomainService.CreateUser(registrationViewModel);
 
                     var authorizationType = this._getAuthorizationType(registrationViewModel.Login,
-                                                                       registrationViewModel.Password);
+                                                                       registrationViewModel.Password,
+                                                                       string.Empty);
 
                     return JsonConvert.SerializeObject(authorizationType,
                                                        new JsonSerializerSettings { Formatting = Formatting.Indented });
@@ -196,7 +215,7 @@ namespace FundTrack.WebUI.Controllers
         {
             var authorizationType = new AuthorizationType
             {
-                access_token = "",
+                access_token = String.Empty,
                 errorMessage = errorMessage,
                 validationSummary = validationSummary
             };
@@ -204,33 +223,24 @@ namespace FundTrack.WebUI.Controllers
             return JsonConvert.SerializeObject(authorizationType, new JsonSerializerSettings { Formatting = Formatting.Indented });
         }
 
-        /// <summary>
-        /// Method for generate token
-        /// </summary>
-        /// <param name="userLogin">User login </param>
-        /// <param name="rawPassword">User raw password</param>
-        /// <returns>Authorization type model</returns>
-        private AuthorizationType _getAuthorizationType(string userLogin, string rawPassword)
+        private AuthorizationType _getAuthorizationType(string userLogin, string rawPassword,string typeAuthorization)
         {
+            UserInfoViewModel userInfoModel;
+            if (typeAuthorization == "FB")
+            {
+                userInfoModel = _userDomainService.GetUserInfoViewModel(userLogin);
+            }
+            else
+            {
+                userInfoModel = _userDomainService.GetUserInfoViewModel(userLogin,rawPassword);
+            }
             var authorizeToken = new TokenAccess();
-            var userInfoModel = _userDomainService.GetUserInfoViewModel(userLogin, rawPassword);
             var encodedJwt = authorizeToken.CreateTokenAccess(userInfoModel);
             var authorizationType = new AuthorizationType
             {
-                userModel = new AuthorizeUserModel
-                {
-                    login = userInfoModel.login,
-                    id = userInfoModel.id,
-                    firstName = userInfoModel.firstName,
-                    lastName = userInfoModel.lastName,
-                    email = userInfoModel.email,
-                    address = userInfoModel.address,
-                    photoUrl = userInfoModel.photoUrl,
-                    role = userInfoModel.role
-                },
+                userModel = userInfoModel,
                 access_token = encodedJwt,
             };
-
             return authorizationType;
         }
     }

@@ -14,8 +14,10 @@
         public const string GetAllUsersMessage = "Неможливо отримати список користувачів";
         public const string UserExistsMessage = "Користувач вже існує";
         public const string NoEntriesInDatabase = "Немає жодного запису в базі даних";
-        public const string IncorrectCredentials = "Неправильний логін або пароль";
         public const string NoUserWithEmail = "Користувача з даним email не існує";
         public const string InvalidGuid = "Недійсний лінк відновлення пароля";
+        public const string IncorrectCredentials = "Неправильний логін або пароль.";
+        public const string UserIsBaned = "На даний момент ви є заблоковані і не можете увійти в систему. Причина бану:";
+        public const string MissedEnterData = "Введіть пароль і логін.";
     }
 }

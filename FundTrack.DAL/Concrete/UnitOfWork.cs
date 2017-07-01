@@ -14,6 +14,7 @@ namespace FundTrack.DAL.Concrete
         private readonly IRepository<Event> _eventRepository;
         private readonly IOrganizationRepository _organizationRepository;
         private readonly IMembershipRepository _membershipRepository;
+        private readonly IRoleRepository _roleRepository;
 
         private FundTrackContext _context;
 
@@ -27,12 +28,14 @@ namespace FundTrack.DAL.Concrete
               IUserResporitory userListRepositoryParam,
               IRepository<Event> eventRepository,
               IOrganizationRepository organizationRepository,
-              IMembershipRepository membershipRepositoryParam)
+              IMembershipRepository membershipRepositoryParam,
+              IRoleRepository roleRepositoryParam)
         {
             this._context = contextParam;
             this._organizationsListRepository = organizationsListRepositoryParam;
             this._usersListRepository = userListRepositoryParam;
             this._membershipRepository = membershipRepositoryParam;
+            this._roleRepository = roleRepositoryParam;
             _eventRepository = eventRepository;
             _organizationRepository = organizationRepository;
         }
@@ -75,7 +78,7 @@ namespace FundTrack.DAL.Concrete
                 return _organizationRepository;
             }
         }
-        
+
         /// <summary>
         /// Gets the organizations list repository.
         /// </summary>
@@ -101,6 +104,14 @@ namespace FundTrack.DAL.Concrete
             get
             {
                 return _membershipRepository;
+            }
+        }
+
+        public IRoleRepository RoleRepository
+        {
+            get
+            {
+                return _roleRepository;
             }
         }
 

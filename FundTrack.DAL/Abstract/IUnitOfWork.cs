@@ -44,6 +44,14 @@ namespace FundTrack.DAL.Abstract
         IMembershipRepository MembershipRepository { get; }
 
         /// <summary>
+        /// Gets the roles repository.
+        /// </summary>
+        /// <value>
+        /// The roles repository.
+        /// </value>
+        IRoleRepository RoleRepository { get; }
+
+        /// <summary>
         /// Saves all changes made in this context to the database.
         /// </summary>
         void SaveChanges();

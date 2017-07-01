@@ -1,13 +1,12 @@
-﻿import { RegistrationViewModel } from '../../view-models/concrete/registration-view.model';
-import { AuthorizationType, AuthorizeUserModel } from '../../view-models/concrete/authorization.type';
+﻿import { LoginFacebookViewModel } from '../../view-models/concrete/login-facebook-view.model';
+import { RegistrationViewModel } from '../../view-models/concrete/registration-view.model';
+import { AuthorizedUserInfoViewModel, AuthorizeUserModel } from '../../view-models/concrete/authorized-user-info-view.model';
 import { ChangePasswordViewModel } from '../../view-models/concrete/change-password-view-model';
-import { AuthorizeViewModel } from '../../view-models/concrete/authorization-view.model';
-//import { CoolHttp } from 'angular2-cool-http';
-//import { CoolLoadingIndicator } from 'angular2-cool-loading-indicator';
+import { LoginViewModel } from '../../view-models/concrete/login-view.model';
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { Headers, RequestOptions } from '@angular/http';
-import { Injectable, Inject } from '@angular/core';
+import { Injectable, Inject, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserEmailViewModel } from '../../view-models/user-email-view-model';
 import { GuidViewModel } from '../../view-models/concrete/guid-view-model';
@@ -16,16 +15,19 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/catch';
 import * as key from '../../shared/key.storage';
+import { AuthService } from "angular2-social-login";
 
 @Injectable()
 export class UserService {
     // urls to server
     private _authorizationUrl = 'api/User/';
-    private _sendRecoveryEmailUrl : string = 'api/User/SendRecoveryEmail';
-    private _checkGuidStatusUrl : string = 'api/User/CheckGuidStatus';
-    private _resetUserPasswordUrl : string = 'api/User/ResetUserPassword';
-
-    public constructor(private _http: Http, private _router: Router) { }
+    private _sendRecoveryEmailUrl: string = 'api/User/SendRecoveryEmail';
+    private _checkGuidStatusUrl: string = 'api/User/CheckGuidStatus';
+    private _resetUserPasswordUrl: string = 'api/User/ResetUserPassword';
+    public constructor(private _http: Http,
+        private _router: Router,
+        private _auth: AuthService,
+        private _ngZone: NgZone) { }
 
     // send Request to server
     private sendRequestToServer(url: string, model: any) {
@@ -34,47 +36,46 @@ export class UserService {
         });
     }
 
-    // gets request options
-    private getRequestOptions() {
-        let headers = new Headers({ 'Content-Type': 'application/json' });
-        let options = new RequestOptions({ headers: headers });
-
-        return options;
+    /**
+     * Send request to controller to authorize facebook user and return hias access token
+     * @param user
+     */
+    public logInWithFacebook(user: LoginFacebookViewModel): Observable<AuthorizedUserInfoViewModel> {
+        let body = user;
+        let urlLogFacebook = "LogInFacebook";
+        return this._http.post(this._authorizationUrl + urlLogFacebook, JSON.stringify(user), this.getRequestOptions())
+            .map((response: Response) => response.json() as AuthorizedUserInfoViewModel, )
+            .catch(this.handleError);
     }
 
     /**
      * Send request to controller to authorize user and return his token
      * @param user
      */
-    public logIn(user: AuthorizeViewModel): Observable<AuthorizationType> {
+    public logIn(user: LoginViewModel): Observable<AuthorizedUserInfoViewModel> {
         let urlLog = "LogIn";
-        let headers = new Headers({ 'Content-Type': 'application/json' });
-        let options = new RequestOptions({ headers: headers });
-        return this._http.post(this._authorizationUrl + urlLog, JSON.stringify(user), options)
-            .map((response: Response) => response.json() as AuthorizationType, )
+        return this._http.post(this._authorizationUrl + urlLog, JSON.stringify(user), this.getRequestOptions())
+            .map((response: Response) => response.json() as AuthorizedUserInfoViewModel, )
             .catch(this.handleError);
     }
 
     /**
      * clear local storage and close the session current user
      */
-    public logOff():void {
+    public logOff(): void {
         localStorage.clear();
+        this._router.navigate(['/login']);
     }
 
     /**
-     * send requast to controller to create new user
+     * send request to controller to create new user
      * @param registrationViewModel
      */
-    public create(newItem: RegistrationViewModel): Observable<AuthorizationType> {
+    public create(newItem: RegistrationViewModel): Observable<AuthorizedUserInfoViewModel> {
         let body = newItem;
-        let headers = new Headers({ 'Content-Type': 'application/json' });
-        let options = new RequestOptions({ headers: headers });
-        return this._http.post("api/user/register", body, options)
-            .map((response: Response) => response.json() as AuthorizationType);
+        return this._http.post("api/user/register", body, this.getRequestOptions())
+            .map((response: Response) => response.json() as AuthorizedUserInfoViewModel);
     }
-
-    
 
     /**
      * send request to controller to update existing user 
@@ -82,10 +83,7 @@ export class UserService {
      */
     public editUserProfile(userModel: AuthorizeUserModel): Observable<AuthorizeUserModel> {
         let body = JSON.stringify(userModel);
-        let headers = new Headers({ 'Content-Type': 'application/json' });
-        headers.append("Authorization", "Bearer " + localStorage.getItem("token"));
-        let options = new RequestOptions({ headers: headers });
-        return this._http.put("api/user/editprofile", body, options)
+        return this._http.put("api/user/editprofile", body, this.getRequestOptions())
             .map((response: Response) => {
                 if (response.status == 200) {
                     return (response.json() as AuthorizeUserModel);
@@ -97,14 +95,6 @@ export class UserService {
                     return Observable.throw(new Error(error.status));
                 }
             });
-    }
-
-     /**
-     * Catch error
-     * @param error
-     */
-    public handleError(error: Response):any {
-        return Observable.throw(error.json().error);
     }
 
     /**
@@ -137,11 +127,26 @@ export class UserService {
     * */
     public changePassword(changePasswordViewModel: ChangePasswordViewModel): Observable < ChangePasswordViewModel > {
         let body = changePasswordViewModel;
+        return this._http.post("api/user/changepassword", body, this.getRequestOptions())
+            .map((response: Response) => response.json() as ChangePasswordViewModel);
+    }
+
+    /**
+    * Create RequestOptions
+    */
+    private getRequestOptions() {
         let headers = new Headers({ 'Content-Type': 'application/json' });
         headers.append("Authorization", "Bearer " + localStorage.getItem(key.keyToken));
         let options = new RequestOptions({ headers: headers });
-        return this._http.post("api/user/changepassword", body, options)
-            .map((response: Response) => response.json() as ChangePasswordViewModel);
+        return options;
+    }
+
+    /**
+    * Catch error
+    * @param error
+    */
+    private handleError(error: Response): any {
+        return Observable.throw(error.json().error);
     }
 }
 

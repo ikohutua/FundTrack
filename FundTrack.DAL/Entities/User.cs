@@ -129,5 +129,44 @@ namespace FundTrack.DAL.Entities
                 Email = registrationViewModel.Email
             };
         }
+
+
+        /// <summary>
+        /// Convert LoginFacebookViewModel to User model
+        /// </summary>
+        /// <param name="registrationViewModel">Registration view model</param>
+        public static implicit operator User(LoginFacebookViewModel loginFacebookViewModel)
+        {
+            return new User
+            {
+                FirstName = loginFacebookViewModel.FirstName,
+                LastName = loginFacebookViewModel.LastName,
+                Login = loginFacebookViewModel.Login,
+                Password = loginFacebookViewModel.Password,
+                Email = loginFacebookViewModel.Email,
+                PhotoUrl=loginFacebookViewModel.PhotoUrl,
+                FB_Link= "facebook.com/" + loginFacebookViewModel.FbLink
+            };
+        }
+
+        /// <summary>
+        /// Convert User model to RegistartionViewModel
+        /// </summary>
+        /// <param name="user">User model</param>
+        public static implicit operator LoginFacebookViewModel(User user)
+        {
+            return new LoginFacebookViewModel
+            {
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                Login = user.Login,
+                Password = user.Password,
+                Email = user.Email,
+                PhotoUrl = user.PhotoUrl,
+                FbLink = user.FB_Link.Substring(13)         
+            };
+        }
+
+
     }
 }

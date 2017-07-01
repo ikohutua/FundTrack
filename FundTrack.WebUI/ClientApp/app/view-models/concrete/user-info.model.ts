@@ -6,4 +6,5 @@
     public email: string;
     public address: string;
     public photoUrl: string;
+    public role: string;
 }

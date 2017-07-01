@@ -2,7 +2,7 @@
 import * as keys from '../../key.storage';
 import { isBrowser } from 'angular2-universal';
 import { UserService } from '../../../services/concrete/user.service';
-import { AuthorizeUserModel } from '../../../view-models/concrete/authorization.type';
+import { AuthorizeUserModel } from '../../../view-models/concrete/authorized-user-info-view.model';
 
 @Component({
     selector: 'user-states',
@@ -14,7 +14,6 @@ import { AuthorizeUserModel } from '../../../view-models/concrete/authorization.
 export class UserStatesComponent implements AfterContentChecked {
 
     public user: AuthorizeUserModel;
-    public login: string = "";
     public name: string = "";
 
     public constructor(private _authorizationService: UserService) { }
@@ -23,7 +22,7 @@ export class UserStatesComponent implements AfterContentChecked {
      * close the session current user
      */
     public exit():void {
-        this.login = "";
+        this.name = null;
         this._authorizationService.logOff();
     }
 
@@ -34,7 +33,6 @@ export class UserStatesComponent implements AfterContentChecked {
         if (isBrowser) {
             if (localStorage.getItem(keys.keyToken)) {
                 this.user = JSON.parse(localStorage.getItem(keys.keyModel)) as AuthorizeUserModel;
-                this.login = this.user.login;
                 this.name = this.user.firstName;
             }
             return true;

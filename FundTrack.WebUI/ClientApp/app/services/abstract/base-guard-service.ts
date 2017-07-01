@@ -2,19 +2,18 @@
 import { Injectable } from '@angular/core';
 import { isBrowser } from 'angular2-universal';
 import * as keys from '../../shared/key.storage';
-import { AuthorizeUserModel } from '../../view-models/concrete/authorization.type';
+import { AuthorizeUserModel } from '../../view-models/concrete/authorized-user-info-view.model';
 
 /**
  * Abstract class for Guard service
  */
-
 export abstract class BaseGuardService {
 
     public userModel: AuthorizeUserModel;
     public constructor(private _router: Router, private _roleName: string) { }
 
     /**
-      * check if user is authorized and his role is superadmin
+      * check if user is authorized and his role is "_roleName"
       */
     public canActivate() {
         if (isBrowser) {

@@ -9,7 +9,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ModalComponent } from '../../shared/components/modal/modal-component';
 import * as key from '../../shared/key.storage';
 import { isBrowser } from "angular2-universal";
-import { AuthorizeUserModel } from "../../view-models/concrete/authorization.type";
+import { AuthorizeUserModel } from "../../view-models/concrete/authorized-user-info-view.model";
 import { ChangePasswordViewModel } from "../../view-models/concrete/change-password-view-model";
 import { UserService } from '../../services/concrete/user.service';
 import { Router } from "@angular/router";

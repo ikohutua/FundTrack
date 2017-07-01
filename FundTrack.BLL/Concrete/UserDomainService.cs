@@ -34,28 +34,6 @@ namespace FundTrack.BLL.DomainServices
         }
 
         /// <summary>
-        /// Gets the user.
-        /// </summary>
-        /// <param name="login">The login.</param>
-        /// <param name="rawPassword">The raw password.</param>
-        /// <returns></returns>
-        public User GetUser(string login, string rawPassword)
-        {
-            var hashedPassword = PasswordHashManager.GetPasswordHash(rawPassword);
-
-            return this._unitOfWork.UsersRepository
-                             .Read()
-                             .FirstOrDefault(u => u.Login.ToUpper() == login.ToUpper()
-                              && u.Password == hashedPassword);
-        }
-        public User GetUser(string login)
-        {
-            return this._unitOfWork.UsersRepository
-                            .Read()
-                            .FirstOrDefault(a => a.Login.ToUpper() == login.ToUpper());
-        }
-
-        /// <summary>
         /// Gets user info view model
         /// </summary>
         /// <param name="userLogin">User login</param>
@@ -63,7 +41,15 @@ namespace FundTrack.BLL.DomainServices
         /// <returns>User info view model</returns>
         public UserInfoViewModel GetUserInfoViewModel(string login, string rawPassword)
         {
-            return this.InitializeUserInfoViewModel(this.GetUser(login, rawPassword));
+            if (login.Length != 0 && rawPassword.Length != 0)
+            {
+                var hashedPassword = PasswordHashManager.GetPasswordHash(rawPassword);
+                return this.InitializeUserInfoViewModel(this._unitOfWork.UsersRepository.GetUser(login, hashedPassword));
+            }
+            else
+            {
+                throw new BusinessLogicException(ErrorMessages.MissedEnterData);
+            }
         }
 
         /// <summary>
@@ -73,7 +59,36 @@ namespace FundTrack.BLL.DomainServices
         /// <returns>User info view model</returns>
         public UserInfoViewModel GetUserInfoViewModel(string login)
         {
-            return this.InitializeUserInfoViewModel(this.GetUser(login));
+            return this.InitializeUserInfoViewModel(this._unitOfWork.UsersRepository.GetUser(login));
+        }
+
+        /// <summary>
+        /// Authorize facebook user in system.
+        /// </summary>
+        /// <param name="loginFacebookViewModel">The login facebook view model.</param>
+        /// <returns></returns>
+        public UserInfoViewModel LoginFacebook(LoginFacebookViewModel loginFacebookViewModel)
+        {
+            User user = this._unitOfWork.UsersRepository.GetFacebookUser(loginFacebookViewModel.Email);
+            if (user == null)
+            {
+                user = loginFacebookViewModel;
+                user.Password = PasswordHashManager.GetPasswordHash(loginFacebookViewModel.Password);
+                User addedUser = this._unitOfWork.UsersRepository.Create(user);
+                this._unitOfWork.SaveChanges();
+                return this.InitializeUserInfoViewModel(addedUser);
+            }
+            else
+            {
+                if (user.FB_Link == null)
+                {
+                    user.FB_Link = "facebook.com/" + loginFacebookViewModel.FbLink;
+                    this._unitOfWork.UsersRepository.Update(user);
+                    this._unitOfWork.SaveChanges();
+                    return this.InitializeUserInfoViewModel(user);
+                }
+            }
+            return this.InitializeUserInfoViewModel(user);
         }
 
         /// <summary>
@@ -89,22 +104,29 @@ namespace FundTrack.BLL.DomainServices
             {
                 throw new BusinessLogicException(ErrorMessages.UserExistsMessage);
             }
-
             try
             {
                 User userToAdd = registrationViewModel;
                 userToAdd.Password = PasswordHashManager.GetPasswordHash(registrationViewModel.Password);
-                
                 User addedUser = this._unitOfWork.UsersRepository.Create(userToAdd);
-                
                 this._unitOfWork.SaveChanges();
-
                 return addedUser;
             }
             catch (Exception ex)
             {
                 throw new BusinessLogicException(ErrorMessages.AddUserMessage, ex);
             }
+        }
+
+        private void CreateUserRole(string login)
+        {
+            Membership membership = new Membership
+            {
+                RoleId = this._unitOfWork.RoleRepository.GetIdRole("partner"),
+                UserId = this._unitOfWork.UsersRepository.GetUser(login).Id
+            };
+            this._unitOfWork.MembershipRepository.Create(membership);
+            this._unitOfWork.SaveChanges();
         }
 
         /// <summary>
@@ -133,27 +155,39 @@ namespace FundTrack.BLL.DomainServices
         {
             if (user != null)
             {
-                var userInfoView = new UserInfoViewModel
+                var bannedUser = this._unitOfWork.UsersRepository.GetUsersWithBanStatus()
+                                                    .FirstOrDefault(u => u.Id == user.Id)
+                                                    .BannedUser;
+                if (bannedUser != null)
                 {
-                    id = user.Id,
-                    login = user.Login,
-                    firstName = user.FirstName,
-                    lastName = user.LastName,
-                    email = user.Email,
-                    photoUrl = user.PhotoUrl
-                };
-
-                if (this._unitOfWork.MembershipRepository.IsUserHasRole(user.Id))
-                {
-                    userInfoView.role = this._unitOfWork.MembershipRepository.GetRole(user.Id);
+                    throw new BusinessLogicException(ErrorMessages.UserIsBaned +
+                                                        bannedUser.Description);
                 }
-                return userInfoView;
+                else
+                {
+                    var userInfoView = new UserInfoViewModel
+                    {
+                        id = user.Id,
+                        login = user.Login,
+                        firstName = user.FirstName,
+                        lastName = user.LastName,
+                        email = user.Email,
+                        photoUrl = user.PhotoUrl
+                    };
+
+                    if (this._unitOfWork.MembershipRepository.IsUserHasRole(user.Id))
+                    {
+                        userInfoView.role = this._unitOfWork.MembershipRepository.GetRole(user.Id);
+                    }
+                    return userInfoView;
+                }
             }
             else
             {
                 throw new BusinessLogicException(ErrorMessages.IncorrectCredentials);
             }
         }
+
         /// <summary>
         /// Changes password of specified User, by its login
         /// </summary>
@@ -161,12 +195,12 @@ namespace FundTrack.BLL.DomainServices
         /// <returns>Empty userInfoViewModel with errors in case if any arised</returns>
         public UserInfoViewModel ChangePassword(ChangePasswordViewModel changePasswordViewModel)
         {
-            if (changePasswordViewModel!=null)
+            if (changePasswordViewModel != null)
             {
-                if (changePasswordViewModel.login!=null&&changePasswordViewModel.newPassword!=null&changePasswordViewModel.oldPassword!=null)
+                if (changePasswordViewModel.login != null && changePasswordViewModel.newPassword != null & changePasswordViewModel.oldPassword != null)
                 {
-                    User user = this.GetUser(changePasswordViewModel.login);
-                    if (user.Password==PasswordHashManager.GetPasswordHash(changePasswordViewModel.oldPassword))
+                    User user = this._unitOfWork.UsersRepository.GetUser(changePasswordViewModel.login);
+                    if (user.Password == PasswordHashManager.GetPasswordHash(changePasswordViewModel.oldPassword))
                     {
                         user.Password = PasswordHashManager.GetPasswordHash(changePasswordViewModel.newPassword);
                         _unitOfWork.UsersRepository.Update(user);

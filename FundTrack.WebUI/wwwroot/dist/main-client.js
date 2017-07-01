@@ -59,7 +59,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "4a40156fc3d3f0e7ce8a"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "5525cda58d54211ccfb8"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -706,7 +706,7 @@
 /******/ 	__webpack_require__.h = function() { return hotCurrentHash; };
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return hotCreateRequire(229)(__webpack_require__.s = 229);
+/******/ 	return hotCreateRequire(233)(__webpack_require__.s = 233);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -819,7 +819,7 @@ var /** @type {?} */ NG_VALUE_ACCESSOR = new __WEBPACK_IMPORTED_MODULE_0__angula
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__src_forms__ = __webpack_require__(103);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__src_forms__ = __webpack_require__(105);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "AbstractControlDirective", function() { return __WEBPACK_IMPORTED_MODULE_0__src_forms__["a"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "AbstractFormGroupDirective", function() { return __WEBPACK_IMPORTED_MODULE_0__src_forms__["b"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "CheckboxControlValueAccessor", function() { return __WEBPACK_IMPORTED_MODULE_0__src_forms__["c"]; });
@@ -881,11 +881,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NG_ASYNC_VALIDATORS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return Validators; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_operator_toPromise__ = __webpack_require__(200);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_operator_toPromise__ = __webpack_require__(204);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_operator_toPromise__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__facade_collection__ = __webpack_require__(68);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__facade_collection__ = __webpack_require__(69);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__facade_lang__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__private_import_core__ = __webpack_require__(70);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__private_import_core__ = __webpack_require__(71);
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -1100,7 +1100,7 @@ function _mergeErrors(arrayOfErrors) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__maps_api_loader_maps_api_loader__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__maps_api_loader_maps_api_loader__ = __webpack_require__(27);
 
 
 
@@ -1296,14 +1296,14 @@ function ControlContainer_tsickle_Closure_declarations() {
 /* harmony export (immutable) */ __webpack_exports__["g"] = selectValueAccessor;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__facade_lang__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__validators__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__checkbox_value_accessor__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__default_value_accessor__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__normalize_validator__ = __webpack_require__(101);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__checkbox_value_accessor__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__default_value_accessor__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__normalize_validator__ = __webpack_require__(103);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__number_value_accessor__ = __webpack_require__(49);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__radio_control_value_accessor__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__radio_control_value_accessor__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__range_value_accessor__ = __webpack_require__(50);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__select_control_value_accessor__ = __webpack_require__(33);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__select_multiple_control_value_accessor__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__select_control_value_accessor__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__select_multiple_control_value_accessor__ = __webpack_require__(33);
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -1614,7 +1614,7 @@ function NgControl_tsickle_Closure_declarations() {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EventEmitter; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_Subject__ = __webpack_require__(92);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_Subject__ = __webpack_require__(94);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_Subject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_rxjs_Subject__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__);
@@ -1964,7 +1964,7 @@ function escapeRegExp(s) {
     return s.replace(/([.*+?^=!:${}()|[\]\/\\])/g, '\\$1');
 }
 //# sourceMappingURL=lang.js.map
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(90)))
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(92)))
 
 /***/ }),
 /* 15 */
@@ -1982,21 +1982,22 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-//import { CoolHttp } from 'angular2-cool-http';
-//import { CoolLoadingIndicator } from 'angular2-cool-loading-indicator';
 var http_1 = __webpack_require__(11);
 var Observable_1 = __webpack_require__(1);
 var http_2 = __webpack_require__(11);
 var core_1 = __webpack_require__(0);
 var router_1 = __webpack_require__(3);
-__webpack_require__(18);
 __webpack_require__(25);
-__webpack_require__(17);
+__webpack_require__(36);
+__webpack_require__(24);
 var key = __webpack_require__(16);
+var angular2_social_login_1 = __webpack_require__(53);
 var UserService = (function () {
-    function UserService(_http, _router) {
+    function UserService(_http, _router, _auth, _ngZone) {
         this._http = _http;
         this._router = _router;
+        this._auth = _auth;
+        this._ngZone = _ngZone;
         // urls to server
         this._authorizationUrl = 'api/User/';
         this._sendRecoveryEmailUrl = 'api/User/SendRecoveryEmail';
@@ -2009,11 +2010,16 @@ var UserService = (function () {
             return response.json();
         });
     };
-    // gets request options
-    UserService.prototype.getRequestOptions = function () {
-        var headers = new http_2.Headers({ 'Content-Type': 'application/json' });
-        var options = new http_2.RequestOptions({ headers: headers });
-        return options;
+    /**
+     * Send request to controller to authorize facebook user and return hias access token
+     * @param user
+     */
+    UserService.prototype.logInWithFacebook = function (user) {
+        var body = user;
+        var urlLogFacebook = "LogInFacebook";
+        return this._http.post(this._authorizationUrl + urlLogFacebook, JSON.stringify(user), this.getRequestOptions())
+            .map(function (response) { return response.json(); })
+            .catch(this.handleError);
     };
     /**
      * Send request to controller to authorize user and return his token
@@ -2021,9 +2027,7 @@ var UserService = (function () {
      */
     UserService.prototype.logIn = function (user) {
         var urlLog = "LogIn";
-        var headers = new http_2.Headers({ 'Content-Type': 'application/json' });
-        var options = new http_2.RequestOptions({ headers: headers });
-        return this._http.post(this._authorizationUrl + urlLog, JSON.stringify(user), options)
+        return this._http.post(this._authorizationUrl + urlLog, JSON.stringify(user), this.getRequestOptions())
             .map(function (response) { return response.json(); })
             .catch(this.handleError);
     };
@@ -2032,16 +2036,15 @@ var UserService = (function () {
      */
     UserService.prototype.logOff = function () {
         localStorage.clear();
+        this._router.navigate(['/login']);
     };
     /**
-     * send requast to controller to create new user
+     * send request to controller to create new user
      * @param registrationViewModel
      */
     UserService.prototype.create = function (newItem) {
         var body = newItem;
-        var headers = new http_2.Headers({ 'Content-Type': 'application/json' });
-        var options = new http_2.RequestOptions({ headers: headers });
-        return this._http.post("api/user/register", body, options)
+        return this._http.post("api/user/register", body, this.getRequestOptions())
             .map(function (response) { return response.json(); });
     };
     /**
@@ -2051,10 +2054,7 @@ var UserService = (function () {
     UserService.prototype.editUserProfile = function (userModel) {
         var _this = this;
         var body = JSON.stringify(userModel);
-        var headers = new http_2.Headers({ 'Content-Type': 'application/json' });
-        headers.append("Authorization", "Bearer " + localStorage.getItem("token"));
-        var options = new http_2.RequestOptions({ headers: headers });
-        return this._http.put("api/user/editprofile", body, options)
+        return this._http.put("api/user/editprofile", body, this.getRequestOptions())
             .map(function (response) {
             if (response.status == 200) {
                 return response.json();
@@ -2066,13 +2066,6 @@ var UserService = (function () {
                 return Observable_1.Observable.throw(new Error(error.status));
             }
         });
-    };
-    /**
-    * Catch error
-    * @param error
-    */
-    UserService.prototype.handleError = function (error) {
-        return Observable_1.Observable.throw(error.json().error);
     };
     /**
      * calls server to send email
@@ -2101,17 +2094,33 @@ var UserService = (function () {
     * */
     UserService.prototype.changePassword = function (changePasswordViewModel) {
         var body = changePasswordViewModel;
+        return this._http.post("api/user/changepassword", body, this.getRequestOptions())
+            .map(function (response) { return response.json(); });
+    };
+    /**
+    * Create RequestOptions
+    */
+    UserService.prototype.getRequestOptions = function () {
         var headers = new http_2.Headers({ 'Content-Type': 'application/json' });
         headers.append("Authorization", "Bearer " + localStorage.getItem(key.keyToken));
         var options = new http_2.RequestOptions({ headers: headers });
-        return this._http.post("api/user/changepassword", body, options)
-            .map(function (response) { return response.json(); });
+        return options;
+    };
+    /**
+    * Catch error
+    * @param error
+    */
+    UserService.prototype.handleError = function (error) {
+        return Observable_1.Observable.throw(error.json().error);
     };
     return UserService;
 }());
 UserService = __decorate([
     core_1.Injectable(),
-    __metadata("design:paramtypes", [http_1.Http, router_1.Router])
+    __metadata("design:paramtypes", [http_1.Http,
+        router_1.Router,
+        angular2_social_login_1.AuthService,
+        core_1.NgZone])
 ], UserService);
 exports.UserService = UserService;
 
@@ -2132,33 +2141,16 @@ exports.keyError = "error";
 /* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
-
-var Observable_1 = __webpack_require__(1);
-var catch_1 = __webpack_require__(223);
-Observable_1.Observable.prototype.catch = catch_1._catch;
-Observable_1.Observable.prototype._catch = catch_1._catch;
-//# sourceMappingURL=catch.js.map
+module.exports = (__webpack_require__(2))(346);
 
 /***/ }),
 /* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
-
-var Observable_1 = __webpack_require__(1);
-var map_1 = __webpack_require__(218);
-Observable_1.Observable.prototype.map = map_1.map;
-//# sourceMappingURL=map.js.map
-
-/***/ }),
-/* 19 */
-/***/ (function(module, exports, __webpack_require__) {
-
 module.exports = (__webpack_require__(2))(51);
 
 /***/ }),
-/* 20 */
+/* 19 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2274,7 +2266,7 @@ function AbstractFormGroupDirective_tsickle_Closure_declarations() {
 //# sourceMappingURL=abstract_form_group_directive.js.map
 
 /***/ }),
-/* 21 */
+/* 20 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2282,7 +2274,7 @@ function AbstractFormGroupDirective_tsickle_Closure_declarations() {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NgForm; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__facade_async__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__model__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__model__ = __webpack_require__(34);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__validators__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__control_container__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shared__ = __webpack_require__(10);
@@ -2538,7 +2530,7 @@ function NgForm_tsickle_Closure_declarations() {
 //# sourceMappingURL=ng_form.js.map
 
 /***/ }),
-/* 22 */
+/* 21 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2808,7 +2800,7 @@ function RadioControlValueAccessor_tsickle_Closure_declarations() {
 //# sourceMappingURL=radio_control_value_accessor.js.map
 
 /***/ }),
-/* 23 */
+/* 22 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2816,10 +2808,10 @@ function RadioControlValueAccessor_tsickle_Closure_declarations() {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FormGroupDirective; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__facade_async__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__facade_collection__ = __webpack_require__(68);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__facade_collection__ = __webpack_require__(69);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__validators__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__control_container__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__reactive_errors__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__reactive_errors__ = __webpack_require__(31);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__shared__ = __webpack_require__(10);
 /**
  * @license
@@ -3119,7 +3111,7 @@ function FormGroupDirective_tsickle_Closure_declarations() {
 //# sourceMappingURL=form_group_directive.js.map
 
 /***/ }),
-/* 24 */
+/* 23 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3129,11 +3121,11 @@ function FormGroupDirective_tsickle_Closure_declarations() {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FormArrayName; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__validators__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__abstract_form_group_directive__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__abstract_form_group_directive__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__control_container__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__reactive_errors__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__reactive_errors__ = __webpack_require__(31);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shared__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__form_group_directive__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__form_group_directive__ = __webpack_require__(22);
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -3432,25 +3424,30 @@ function _hasInvalidParent(parent) {
 //# sourceMappingURL=form_group_name.js.map
 
 /***/ }),
+/* 24 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var Observable_1 = __webpack_require__(1);
+var catch_1 = __webpack_require__(227);
+Observable_1.Observable.prototype.catch = catch_1._catch;
+Observable_1.Observable.prototype._catch = catch_1._catch;
+//# sourceMappingURL=catch.js.map
+
+/***/ }),
 /* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var Observable_1 = __webpack_require__(1);
-var do_1 = __webpack_require__(197);
-Observable_1.Observable.prototype.do = do_1._do;
-Observable_1.Observable.prototype._do = do_1._do;
-//# sourceMappingURL=do.js.map
+var map_1 = __webpack_require__(222);
+Observable_1.Observable.prototype.map = map_1.map;
+//# sourceMappingURL=map.js.map
 
 /***/ }),
 /* 26 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = (__webpack_require__(2))(346);
-
-/***/ }),
-/* 27 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3544,7 +3541,7 @@ MarkerManager.ctorParameters = function () { return [
 //# sourceMappingURL=marker-manager.js.map
 
 /***/ }),
-/* 28 */
+/* 27 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3565,7 +3562,7 @@ MapsAPILoader.ctorParameters = function () { return []; };
 //# sourceMappingURL=maps-api-loader.js.map
 
 /***/ }),
-/* 29 */
+/* 28 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3666,7 +3663,7 @@ function CheckboxControlValueAccessor_tsickle_Closure_declarations() {
 //# sourceMappingURL=checkbox_value_accessor.js.map
 
 /***/ }),
-/* 30 */
+/* 29 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3772,7 +3769,7 @@ function DefaultValueAccessor_tsickle_Closure_declarations() {
 //# sourceMappingURL=default_value_accessor.js.map
 
 /***/ }),
-/* 31 */
+/* 30 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3780,10 +3777,10 @@ function DefaultValueAccessor_tsickle_Closure_declarations() {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NgModelGroup; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__validators__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__abstract_form_group_directive__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__abstract_form_group_directive__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__control_container__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ng_form__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__template_driven_errors__ = __webpack_require__(66);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ng_form__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__template_driven_errors__ = __webpack_require__(67);
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -3883,12 +3880,12 @@ function NgModelGroup_tsickle_Closure_declarations() {
 //# sourceMappingURL=ng_model_group.js.map
 
 /***/ }),
-/* 32 */
+/* 31 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ReactiveErrors; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__error_examples__ = __webpack_require__(65);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__error_examples__ = __webpack_require__(66);
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -3941,7 +3938,7 @@ var ReactiveErrors = (function () {
 //# sourceMappingURL=reactive_errors.js.map
 
 /***/ }),
-/* 33 */
+/* 32 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4248,7 +4245,7 @@ function NgSelectOption_tsickle_Closure_declarations() {
 //# sourceMappingURL=select_control_value_accessor.js.map
 
 /***/ }),
-/* 34 */
+/* 33 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4593,7 +4590,7 @@ function NgSelectMultipleOption_tsickle_Closure_declarations() {
 //# sourceMappingURL=select_multiple_control_value_accessor.js.map
 
 /***/ }),
-/* 35 */
+/* 34 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4605,11 +4602,11 @@ function NgSelectMultipleOption_tsickle_Closure_declarations() {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return FormControl; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return FormGroup; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return FormArray; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_observable_fromPromise__ = __webpack_require__(222);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_observable_fromPromise__ = __webpack_require__(226);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_observable_fromPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_rxjs_observable_fromPromise__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__directives_shared__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__facade_async__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__private_import_core__ = __webpack_require__(70);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__private_import_core__ = __webpack_require__(71);
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -6308,7 +6305,7 @@ function FormArray_tsickle_Closure_declarations() {
 //# sourceMappingURL=model.js.map
 
 /***/ }),
-/* 36 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6322,16 +6319,16 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
 var router_1 = __webpack_require__(3);
-var dropdown_filtering_component_1 = __webpack_require__(130);
-var organization_list_pipe_1 = __webpack_require__(136);
-var events_pipe_1 = __webpack_require__(135);
-var user_states_component_1 = __webpack_require__(134);
-var common_1 = __webpack_require__(19);
+var dropdown_filtering_component_1 = __webpack_require__(133);
+var organization_list_pipe_1 = __webpack_require__(139);
+var events_pipe_1 = __webpack_require__(138);
+var user_states_component_1 = __webpack_require__(137);
+var common_1 = __webpack_require__(18);
 var forms_1 = __webpack_require__(6);
-var pagination_component_1 = __webpack_require__(132);
-var page_item_component_1 = __webpack_require__(131);
-var modal_component_1 = __webpack_require__(55);
-var select_component_1 = __webpack_require__(133);
+var pagination_component_1 = __webpack_require__(135);
+var page_item_component_1 = __webpack_require__(134);
+var modal_component_1 = __webpack_require__(56);
+var select_component_1 = __webpack_require__(136);
 var SharedModule = (function () {
     function SharedModule() {
     }
@@ -6371,6 +6368,18 @@ SharedModule = __decorate([
 ], SharedModule);
 exports.SharedModule = SharedModule;
 
+
+/***/ }),
+/* 36 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var Observable_1 = __webpack_require__(1);
+var do_1 = __webpack_require__(201);
+Observable_1.Observable.prototype.do = do_1._do;
+Observable_1.Observable.prototype._do = do_1._do;
+//# sourceMappingURL=do.js.map
 
 /***/ }),
 /* 37 */
@@ -6751,7 +6760,7 @@ DataLayerManager.ctorParameters = function () { return [
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_rxjs_Observable__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__google_maps_api_wrapper__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__marker_manager__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__marker_manager__ = __webpack_require__(26);
 
 
 
@@ -7091,8 +7100,8 @@ PolylineManager.ctorParameters = function () { return [
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return LAZY_MAPS_API_CONFIG; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LazyMapsAPILoader; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_browser_globals__ = __webpack_require__(64);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__maps_api_loader__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_browser_globals__ = __webpack_require__(65);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__maps_api_loader__ = __webpack_require__(27);
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -7560,16 +7569,16 @@ function NgControlStatusGroup_tsickle_Closure_declarations() {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NgModel; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__facade_async__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__model__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__model__ = __webpack_require__(34);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__validators__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__abstract_form_group_directive__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__abstract_form_group_directive__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__control_container__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__control_value_accessor__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ng_control__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ng_form__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ng_model_group__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ng_form__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ng_model_group__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__shared__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__template_driven_errors__ = __webpack_require__(66);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__template_driven_errors__ = __webpack_require__(67);
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -8127,7 +8136,7 @@ function RangeValueAccessor_tsickle_Closure_declarations() {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__validators__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__control_value_accessor__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ng_control__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__reactive_errors__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__reactive_errors__ = __webpack_require__(31);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__shared__ = __webpack_require__(10);
 /**
  * @license
@@ -8331,14 +8340,14 @@ function FormControlDirective_tsickle_Closure_declarations() {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__facade_async__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__validators__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__abstract_form_group_directive__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__abstract_form_group_directive__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__control_container__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__control_value_accessor__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ng_control__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__reactive_errors__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__reactive_errors__ = __webpack_require__(31);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__shared__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__form_group_directive__ = __webpack_require__(23);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__form_group_name__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__form_group_directive__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__form_group_name__ = __webpack_require__(23);
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -8588,6 +8597,20 @@ function FormControlName_tsickle_Closure_declarations() {
 
 /***/ }),
 /* 53 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular2_social_login_module__ = __webpack_require__(111);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Angular2SocialLoginModule", function() { return __WEBPACK_IMPORTED_MODULE_0__angular2_social_login_module__["a"]; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__auth_service__ = __webpack_require__(72);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "AuthService", function() { return __WEBPACK_IMPORTED_MODULE_1__auth_service__["a"]; });
+
+
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+/* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8608,7 +8631,7 @@ exports.matchingPasswords = matchingPasswords;
 
 
 /***/ }),
-/* 54 */
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8616,9 +8639,9 @@ exports.matchingPasswords = matchingPasswords;
 Object.defineProperty(exports, "__esModule", { value: true });
 var http_1 = __webpack_require__(11);
 var Observable_1 = __webpack_require__(1);
-__webpack_require__(18);
 __webpack_require__(25);
-__webpack_require__(17);
+__webpack_require__(36);
+__webpack_require__(24);
 /**
  * Abstract generic class for services
  */
@@ -8730,7 +8753,7 @@ exports.BaseService = BaseService;
 
 
 /***/ }),
-/* 55 */
+/* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8771,14 +8794,14 @@ var ModalComponent = (function () {
 ModalComponent = __decorate([
     core_1.Component({
         selector: 'app-modal',
-        template: __webpack_require__(183)
+        template: __webpack_require__(187)
     })
 ], ModalComponent);
 exports.ModalComponent = ModalComponent;
 
 
 /***/ }),
-/* 56 */
+/* 57 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8983,7 +9006,7 @@ AgmCircle.ctorParameters = function () { return [
 //# sourceMappingURL=circle.js.map
 
 /***/ }),
-/* 57 */
+/* 58 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -9258,7 +9281,7 @@ AgmDataLayer.ctorParameters = function () { return [
 //# sourceMappingURL=data-layer.js.map
 
 /***/ }),
-/* 58 */
+/* 59 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -9381,7 +9404,7 @@ AgmKmlLayer.ctorParameters = function () { return [
 //# sourceMappingURL=kml-layer.js.map
 
 /***/ }),
-/* 59 */
+/* 60 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -9390,7 +9413,7 @@ AgmKmlLayer.ctorParameters = function () { return [
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_google_maps_api_wrapper__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_managers_circle_manager__ = __webpack_require__(39);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_managers_info_window_manager__ = __webpack_require__(41);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_managers_marker_manager__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_managers_marker_manager__ = __webpack_require__(26);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_managers_polygon_manager__ = __webpack_require__(43);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_managers_polyline_manager__ = __webpack_require__(44);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_managers_kml_layer_manager__ = __webpack_require__(42);
@@ -9772,13 +9795,13 @@ AgmMap.ctorParameters = function () { return [
 //# sourceMappingURL=map.js.map
 
 /***/ }),
-/* 60 */
+/* 61 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AgmMarker; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_managers_marker_manager__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_managers_marker_manager__ = __webpack_require__(26);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__info_window__ = __webpack_require__(37);
 
 
@@ -9966,7 +9989,7 @@ AgmMarker.propDecorators = {
 //# sourceMappingURL=marker.js.map
 
 /***/ }),
-/* 61 */
+/* 62 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -10200,7 +10223,7 @@ AgmPolygon.ctorParameters = function () { return [
 //# sourceMappingURL=polygon.js.map
 
 /***/ }),
-/* 62 */
+/* 63 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -10411,12 +10434,12 @@ AgmPolyline.propDecorators = {
 //# sourceMappingURL=polyline.js.map
 
 /***/ }),
-/* 63 */
+/* 64 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__directives__ = __webpack_require__(97);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__directives__ = __webpack_require__(99);
 /* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "AgmMap", function() { return __WEBPACK_IMPORTED_MODULE_0__directives__["a"]; });
 /* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "AgmCircle", function() { return __WEBPACK_IMPORTED_MODULE_0__directives__["b"]; });
 /* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "AgmInfoWindow", function() { return __WEBPACK_IMPORTED_MODULE_0__directives__["c"]; });
@@ -10426,7 +10449,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "AgmPolygon", function() { return __WEBPACK_IMPORTED_MODULE_0__directives__["g"]; });
 /* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "AgmPolyline", function() { return __WEBPACK_IMPORTED_MODULE_0__directives__["h"]; });
 /* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "AgmPolylinePoint", function() { return __WEBPACK_IMPORTED_MODULE_0__directives__["i"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services__ = __webpack_require__(98);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services__ = __webpack_require__(100);
 /* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "GoogleMapsAPIWrapper", function() { return __WEBPACK_IMPORTED_MODULE_1__services__["a"]; });
 /* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "CircleManager", function() { return __WEBPACK_IMPORTED_MODULE_1__services__["b"]; });
 /* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "InfoWindowManager", function() { return __WEBPACK_IMPORTED_MODULE_1__services__["c"]; });
@@ -10440,7 +10463,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "LazyMapsAPILoader", function() { return __WEBPACK_IMPORTED_MODULE_1__services__["k"]; });
 /* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "MapsAPILoader", function() { return __WEBPACK_IMPORTED_MODULE_1__services__["l"]; });
 /* harmony namespace reexport (by provided) */ __webpack_require__.d(__webpack_exports__, "NoOpMapsAPILoader", function() { return __WEBPACK_IMPORTED_MODULE_1__services__["m"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__core_module__ = __webpack_require__(96);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__core_module__ = __webpack_require__(98);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "AgmCoreModule", function() { return __WEBPACK_IMPORTED_MODULE_2__core_module__["a"]; });
 // main modules
 
@@ -10452,7 +10475,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //# sourceMappingURL=index.js.map
 
 /***/ }),
-/* 64 */
+/* 65 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -10477,7 +10500,7 @@ var BROWSER_GLOBALS_PROVIDERS = [WindowRef, DocumentRef];
 //# sourceMappingURL=browser-globals.js.map
 
 /***/ }),
-/* 65 */
+/* 66 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -10499,12 +10522,12 @@ var /** @type {?} */ FormErrorExamples = {
 //# sourceMappingURL=error_examples.js.map
 
 /***/ }),
-/* 66 */
+/* 67 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TemplateDrivenErrors; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__error_examples__ = __webpack_require__(65);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__error_examples__ = __webpack_require__(66);
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -10545,7 +10568,7 @@ var TemplateDrivenErrors = (function () {
 //# sourceMappingURL=template_driven_errors.js.map
 
 /***/ }),
-/* 67 */
+/* 68 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -10938,7 +10961,7 @@ function PatternValidator_tsickle_Closure_declarations() {
 //# sourceMappingURL=validators.js.map
 
 /***/ }),
-/* 68 */
+/* 69 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -11121,14 +11144,14 @@ function iterateListLike(obj, fn) {
 //# sourceMappingURL=collection.js.map
 
 /***/ }),
-/* 69 */
+/* 70 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FormBuilder; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__facade_lang__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__model__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__model__ = __webpack_require__(34);
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -11262,7 +11285,7 @@ function FormBuilder_tsickle_Closure_declarations() {
 //# sourceMappingURL=form_builder.js.map
 
 /***/ }),
-/* 70 */
+/* 71 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -11282,7 +11305,167 @@ var /** @type {?} */ isObservable = __WEBPACK_IMPORTED_MODULE_0__angular_core__[
 //# sourceMappingURL=private_import_core.js.map
 
 /***/ }),
-/* 71 */
+/* 72 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AuthService; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+var AuthService = (function () {
+    function AuthService() {
+    }
+    AuthService.prototype.login = function (provider) {
+        var _this = this;
+        return __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__["Observable"].create(function (observer) {
+            switch (provider) {
+                case "google":
+                    if (typeof (_this.gauth) == "undefined") {
+                        _this.gauth = gapi.auth2.getAuthInstance();
+                    }
+                    if (!_this.gauth.isSignedIn.get()) {
+                        _this.gauth.signIn().then(function () {
+                            localStorage.setItem('_login_provider', 'google');
+                            observer.next(_this._fetchGoogleUserDetails());
+                            observer.complete();
+                        });
+                    }
+                    else {
+                        localStorage.setItem('_login_provider', 'google');
+                        observer.next(_this._fetchGoogleUserDetails());
+                        observer.complete();
+                    }
+                    break;
+                case "facebook":
+                    FB.getLoginStatus(function (response) {
+                        if (response.status === "connected") {
+                            FB.api('/me?fields=name,email,picture', function (res) {
+                                if (!res || res.error) {
+                                    observer.error(res.error);
+                                }
+                                else {
+                                    var userDetails = {
+                                        name: res.name,
+                                        email: res.email,
+                                        uid: res.id,
+                                        provider: "facebook",
+                                        image: res.picture.data.url,
+                                        token: response.authResponse.accessToken
+                                    };
+                                    localStorage.setItem('_login_provider', 'facebook');
+                                    observer.next(userDetails);
+                                    observer.complete();
+                                }
+                            });
+                        }
+                        else {
+                            FB.login(function (response) {
+                                if (response.status === "connected") {
+                                    FB.api('/me?fields=name,email,picture', function (res) {
+                                        if (!res || res.error) {
+                                            observer.error(res.error);
+                                        }
+                                        else {
+                                            var userDetails = {
+                                                name: res.name,
+                                                email: res.email,
+                                                uid: res.id,
+                                                provider: "facebook",
+                                                image: res.picture.data.url,
+                                                token: response.authResponse.accessToken
+                                            };
+                                            localStorage.setItem('_login_provider', 'facebook');
+                                            observer.next(userDetails);
+                                            observer.complete();
+                                        }
+                                    });
+                                }
+                            }, { scope: 'email' });
+                        }
+                    });
+                    break;
+                case "linkedin":
+                    IN.User.authorize(function () {
+                        IN.API.Raw("/people/~:(id,first-name,last-name,email-address,picture-url)").result(function (res) {
+                            var userDetails = { name: res.firstName + " " + res.lastName, email: res.emailAddress, uid: res.id, provider: "linkedIN", image: res.pictureUrl };
+                            localStorage.setItem('_login_provider', 'linkedin');
+                            observer.next(userDetails);
+                            observer.complete();
+                        });
+                    });
+                    break;
+            }
+        });
+    };
+    AuthService.prototype.logout = function () {
+        var provider = localStorage.getItem("_login_provider");
+        return __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__["Observable"].create(function (observer) {
+            switch (provider) {
+                case "google":
+                    var gElement = document.getElementById("gSignout");
+                    if (typeof (gElement) != 'undefined' && gElement != null) {
+                        gElement.remove();
+                    }
+                    var d = document, gSignout = void 0;
+                    var ref = d.getElementsByTagName('script')[0];
+                    gSignout = d.createElement('script');
+                    gSignout.src = "https://accounts.google.com/Logout";
+                    gSignout.type = "text/javascript";
+                    gSignout.id = "gSignout";
+                    localStorage.removeItem('_login_provider');
+                    observer.next(true);
+                    observer.complete();
+                    ref.parentNode.insertBefore(gSignout, ref);
+                    break;
+                case "facebook":
+                    FB.logout(function (res) {
+                        localStorage.removeItem('_login_provider');
+                        observer.next(true);
+                        observer.complete();
+                    });
+                    break;
+                case "linkedin":
+                    IN.User.logout(function () {
+                        localStorage.removeItem('_login_provider');
+                        observer.next(true);
+                        observer.complete();
+                    }, {});
+                    break;
+            }
+        });
+    };
+    AuthService.prototype._fetchGoogleUserDetails = function () {
+        var currentUser = this.gauth.currentUser.get();
+        var profile = currentUser.getBasicProfile();
+        var idToken = currentUser.getAuthResponse().id_token;
+        return {
+            token: idToken,
+            uid: profile.getId(),
+            name: profile.getName(),
+            email: profile.getEmail(),
+            image: profile.getImageUrl(),
+            provider: "google"
+        };
+    };
+    return AuthService;
+}());
+AuthService = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])()
+], AuthService);
+
+//# sourceMappingURL=auth.service.js.map
+
+/***/ }),
+/* 73 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11302,15 +11485,15 @@ var AboutComponent = (function () {
 }());
 AboutComponent = __decorate([
     core_1.Component({
-        template: __webpack_require__(164),
-        styles: [__webpack_require__(202)]
+        template: __webpack_require__(168),
+        styles: [__webpack_require__(206)]
     })
 ], AboutComponent);
 exports.AboutComponent = AboutComponent;
 
 
 /***/ }),
-/* 72 */
+/* 74 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11326,7 +11509,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var organization_events_service_1 = __webpack_require__(125);
+var organization_events_service_1 = __webpack_require__(128);
 var router_1 = __webpack_require__(3);
 var AllEventsComponent = (function () {
     function AllEventsComponent(_service, _router) {
@@ -11358,8 +11541,8 @@ var AllEventsComponent = (function () {
 }());
 AllEventsComponent = __decorate([
     core_1.Component({
-        template: __webpack_require__(165),
-        styles: [__webpack_require__(203)],
+        template: __webpack_require__(169),
+        styles: [__webpack_require__(207)],
         providers: [organization_events_service_1.OrganizationEventService]
     }),
     __metadata("design:paramtypes", [organization_events_service_1.OrganizationEventService, router_1.ActivatedRoute])
@@ -11368,7 +11551,7 @@ exports.AllEventsComponent = AllEventsComponent;
 
 
 /***/ }),
-/* 73 */
+/* 75 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11384,42 +11567,81 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var authorization_view_model_1 = __webpack_require__(139);
+var login_view_model_1 = __webpack_require__(146);
 var user_service_1 = __webpack_require__(15);
 var router_1 = __webpack_require__(3);
-__webpack_require__(18);
-__webpack_require__(25);
-__webpack_require__(17);
+var angular2_social_login_1 = __webpack_require__(53);
 var keys = __webpack_require__(16);
+var login_facebook_view_model_1 = __webpack_require__(145);
 var AuthorizationComponent = (function () {
-    function AuthorizationComponent(_authorizationService, _router) {
+    function AuthorizationComponent(_authorizationService, _router, _auth, _ngZone) {
         this._authorizationService = _authorizationService;
         this._router = _router;
+        this._auth = _auth;
+        this._ngZone = _ngZone;
         this.type = "password";
         this.glyphyconEye = "glyphicon glyphicon-eye-open";
-        this.authorizeModel = new authorization_view_model_1.AuthorizeViewModel("", "");
+        /**
+        * Model which contain password and login which enter user in login form
+        */
+        this.loginModel = new login_view_model_1.LoginViewModel("", "");
+        /**
+        * Information which get facebook about user
+        */
+        this.userRecievedFromFacebook = {
+            email: "",
+            image: "",
+            name: "",
+            provider: "",
+            token: "",
+            uid: ""
+        };
     }
     /**
-     * Set request to service to return authorized user and create session
+     * Send request to service to authorize user from facebook
+     * @param provider
+     */
+    AuthorizationComponent.prototype.loginWithFacebook = function (provider) {
+        var _this = this;
+        this.errorMessage = "";
+        this.loginModel.login = "";
+        this.loginModel.password = "";
+        var userNamesFacebook;
+        var userForAuthorization = new login_facebook_view_model_1.LoginFacebookViewModel();
+        localStorage.clear();
+        this._auth.login(provider)
+            .subscribe(function (data) {
+            _this.userRecievedFromFacebook = data;
+            userNamesFacebook = _this.userRecievedFromFacebook.name.split(" ", 2);
+            userForAuthorization.email = _this.userRecievedFromFacebook.email;
+            userForAuthorization.firstName = userNamesFacebook[0];
+            userForAuthorization.lastName = userNamesFacebook[1];
+            userForAuthorization.login = _this.userRecievedFromFacebook.email;
+            userForAuthorization.password = _this.userRecievedFromFacebook.provider;
+            userForAuthorization.photoUrl = _this.userRecievedFromFacebook.image;
+            userForAuthorization.fbLink = _this.userRecievedFromFacebook.uid;
+            _this._ngZone.run(function () {
+                _this._authorizationService.logInWithFacebook(userForAuthorization)
+                    .subscribe(function (data) {
+                    _this.subscribeForAuthorization(data);
+                });
+            });
+            _this._ngZone.run(function () {
+                _this._auth.logout()
+                    .subscribe(function (data) {
+                });
+            });
+        });
+    };
+    /**
+     * Send request to service to authorize user
      */
     AuthorizationComponent.prototype.login = function () {
         var _this = this;
         this.errorMessage = "";
-        localStorage.clear();
-        this._authorizationService.logIn(this.authorizeModel)
-            .subscribe(function (a) {
-            _this.autType = a;
-            _this.errorMessage = a.errorMessage;
-            localStorage.setItem(keys.keyToken, _this.autType.access_token);
-            if (!_this.errorMessage) {
-                localStorage.setItem(keys.keyModel, JSON.stringify(_this.autType.userModel));
-                _this._router.navigate(['/']);
-                //console.log("role" + this.autType.userModel.role);
-                //console.log("token " + this.autType.access_token);
-            }
-            else {
-                localStorage.setItem(keys.keyError, _this.autType.errorMessage);
-            }
+        this._authorizationService.logIn(this.loginModel)
+            .subscribe(function (data) {
+            _this.subscribeForAuthorization(data);
         });
     };
     /**
@@ -11435,26 +11657,46 @@ var AuthorizationComponent = (function () {
             return this.glyphyconEye = "glyphicon glyphicon-eye-open";
         }
     };
+    /**
+     * Create session for authorized user, check is authorization had some error
+     * @param user
+     */
+    AuthorizationComponent.prototype.subscribeForAuthorization = function (user) {
+        this.userAuthorizedInfo = user;
+        this.errorMessage = user.errorMessage;
+        localStorage.clear();
+        localStorage.setItem(keys.keyToken, this.userAuthorizedInfo.access_token);
+        if (!this.errorMessage) {
+            localStorage.setItem(keys.keyModel, JSON.stringify(this.userAuthorizedInfo.userModel));
+            this._router.navigate(['/']);
+        }
+        else {
+            this._authorizationService.logOff();
+            localStorage.setItem(keys.keyError, this.userAuthorizedInfo.errorMessage);
+        }
+    };
     return AuthorizationComponent;
 }());
 __decorate([
     core_1.Input(),
-    __metadata("design:type", authorization_view_model_1.AuthorizeViewModel)
-], AuthorizationComponent.prototype, "authorizeModel", void 0);
+    __metadata("design:type", login_view_model_1.LoginViewModel)
+], AuthorizationComponent.prototype, "loginModel", void 0);
 AuthorizationComponent = __decorate([
     core_1.Component({
-        template: __webpack_require__(167),
-        styles: [__webpack_require__(205)],
+        template: __webpack_require__(171),
+        styles: [__webpack_require__(209)],
         providers: [user_service_1.UserService]
     }),
     __metadata("design:paramtypes", [user_service_1.UserService,
-        router_1.Router])
+        router_1.Router,
+        angular2_social_login_1.AuthService,
+        core_1.NgZone])
 ], AuthorizationComponent);
 exports.AuthorizationComponent = AuthorizationComponent;
 
 
 /***/ }),
-/* 74 */
+/* 76 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11470,7 +11712,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var eventdetail_service_1 = __webpack_require__(123);
+var eventdetail_service_1 = __webpack_require__(126);
 var router_1 = __webpack_require__(3);
 var EventDetailComponent = (function () {
     function EventDetailComponent(_service, _router) {
@@ -11496,8 +11738,8 @@ var EventDetailComponent = (function () {
 }());
 EventDetailComponent = __decorate([
     core_1.Component({
-        template: __webpack_require__(168),
-        styles: [__webpack_require__(206)],
+        template: __webpack_require__(172),
+        styles: [__webpack_require__(210)],
         providers: [eventdetail_service_1.EventDetailService]
     }),
     __metadata("design:paramtypes", [eventdetail_service_1.EventDetailService, router_1.ActivatedRoute])
@@ -11506,7 +11748,7 @@ exports.EventDetailComponent = EventDetailComponent;
 
 
 /***/ }),
-/* 75 */
+/* 77 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11527,15 +11769,15 @@ var HomeComponent = (function () {
 HomeComponent = __decorate([
     core_1.Component({
         selector: 'home',
-        template: __webpack_require__(169),
-        styles: [__webpack_require__(207)]
+        template: __webpack_require__(173),
+        styles: [__webpack_require__(211)]
     })
 ], HomeComponent);
 exports.HomeComponent = HomeComponent;
 
 
 /***/ }),
-/* 76 */
+/* 78 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11554,7 +11796,7 @@ var core_1 = __webpack_require__(0);
 var user_service_1 = __webpack_require__(15);
 var router_1 = __webpack_require__(3);
 var forms_1 = __webpack_require__(6);
-var user_email_view_model_1 = __webpack_require__(145);
+var user_email_view_model_1 = __webpack_require__(149);
 var BeginPasswordResetComponent = (function () {
     /**
      * Creates new instance of BeginPasswordResetComponent
@@ -11635,7 +11877,7 @@ var BeginPasswordResetComponent = (function () {
 BeginPasswordResetComponent = __decorate([
     core_1.Component({
         selector: 'begin-pass-reset',
-        template: __webpack_require__(170),
+        template: __webpack_require__(174),
         providers: [user_service_1.UserService]
     }),
     __metadata("design:paramtypes", [user_service_1.UserService, router_1.Router, forms_1.FormBuilder])
@@ -11644,7 +11886,7 @@ exports.BeginPasswordResetComponent = BeginPasswordResetComponent;
 
 
 /***/ }),
-/* 77 */
+/* 79 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11660,14 +11902,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var reset_password_view_model_1 = __webpack_require__(144);
+var reset_password_view_model_1 = __webpack_require__(148);
 var router_1 = __webpack_require__(3);
 var router_2 = __webpack_require__(3);
 var user_service_1 = __webpack_require__(15);
-var guid_view_model_1 = __webpack_require__(142);
+var guid_view_model_1 = __webpack_require__(144);
 var forms_1 = __webpack_require__(6);
-var match_password_validator_1 = __webpack_require__(53);
-__webpack_require__(193);
+var match_password_validator_1 = __webpack_require__(54);
+__webpack_require__(197);
 var NewPasswordComponent = (function () {
     /**
      * Creates new instance of NewPasswordComponent
@@ -11794,7 +12036,7 @@ var NewPasswordComponent = (function () {
 NewPasswordComponent = __decorate([
     core_1.Component({
         selector: 'new-pass-reset',
-        template: __webpack_require__(171),
+        template: __webpack_require__(175),
         providers: [user_service_1.UserService]
     }),
     __metadata("design:paramtypes", [router_1.ActivatedRoute,
@@ -11806,7 +12048,7 @@ exports.NewPasswordComponent = NewPasswordComponent;
 
 
 /***/ }),
-/* 78 */
+/* 80 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11823,11 +12065,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
 var router_1 = __webpack_require__(3);
-var registration_view_model_1 = __webpack_require__(143);
+var registration_view_model_1 = __webpack_require__(147);
 var user_service_1 = __webpack_require__(15);
 var keys = __webpack_require__(16);
 var forms_1 = __webpack_require__(6);
-var match_password_validator_1 = __webpack_require__(53);
+var match_password_validator_1 = __webpack_require__(54);
 var RegistrationComponent = (function () {
     function RegistrationComponent(_router, _userService, _formBuilder) {
         this._router = _router;
@@ -11995,8 +12237,8 @@ var RegistrationComponent = (function () {
 RegistrationComponent = __decorate([
     core_1.Component({
         selector: 'registration',
-        template: __webpack_require__(172),
-        styles: [__webpack_require__(208)],
+        template: __webpack_require__(176),
+        styles: [__webpack_require__(212)],
         providers: [user_service_1.UserService]
     }),
     __metadata("design:paramtypes", [router_1.Router,
@@ -12007,7 +12249,7 @@ exports.RegistrationComponent = RegistrationComponent;
 
 
 /***/ }),
-/* 79 */
+/* 81 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12028,14 +12270,14 @@ var SuperAdminComplaintsComponent = (function () {
 SuperAdminComplaintsComponent = __decorate([
     core_1.Component({
         selector: 'super-admin-complaints',
-        template: __webpack_require__(174)
+        template: __webpack_require__(178)
     })
 ], SuperAdminComplaintsComponent);
 exports.SuperAdminComplaintsComponent = SuperAdminComplaintsComponent;
 
 
 /***/ }),
-/* 80 */
+/* 82 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12051,7 +12293,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var super_admin_service_1 = __webpack_require__(86);
+var super_admin_service_1 = __webpack_require__(88);
 var SuperAdminOrganizationsComponent = (function () {
     /**
      * Creates new instance of SuperAdminOrganizationsComponent
@@ -12118,7 +12360,7 @@ var SuperAdminOrganizationsComponent = (function () {
 SuperAdminOrganizationsComponent = __decorate([
     core_1.Component({
         selector: 'super-admin-organizations',
-        template: __webpack_require__(176),
+        template: __webpack_require__(180),
         providers: [super_admin_service_1.SuperAdminService]
     })
     /**
@@ -12131,7 +12373,7 @@ exports.SuperAdminOrganizationsComponent = SuperAdminOrganizationsComponent;
 
 
 /***/ }),
-/* 81 */
+/* 83 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12147,7 +12389,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var super_admin_service_1 = __webpack_require__(86);
+var super_admin_service_1 = __webpack_require__(88);
 var SuperAdminUsersComponent = (function () {
     /**
      * Creates new instance of SuperAdminUsersComponent
@@ -12215,7 +12457,7 @@ var SuperAdminUsersComponent = (function () {
 SuperAdminUsersComponent = __decorate([
     core_1.Component({
         selector: 'super-admin-users',
-        template: __webpack_require__(177),
+        template: __webpack_require__(181),
         providers: [super_admin_service_1.SuperAdminService]
     })
     /**
@@ -12228,7 +12470,7 @@ exports.SuperAdminUsersComponent = SuperAdminUsersComponent;
 
 
 /***/ }),
-/* 82 */
+/* 84 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12249,15 +12491,15 @@ var SuperAdminComponent = (function () {
 SuperAdminComponent = __decorate([
     core_1.Component({
         selector: 'super-admin',
-        template: __webpack_require__(178),
-        styles: [__webpack_require__(210)]
+        template: __webpack_require__(182),
+        styles: [__webpack_require__(214)]
     })
 ], SuperAdminComponent);
 exports.SuperAdminComponent = SuperAdminComponent;
 
 
 /***/ }),
-/* 83 */
+/* 85 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12272,18 +12514,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var user_info_service_1 = __webpack_require__(128);
+var user_info_service_1 = __webpack_require__(131);
 var core_1 = __webpack_require__(0);
 var forms_1 = __webpack_require__(6);
-var modal_component_1 = __webpack_require__(55);
+var modal_component_1 = __webpack_require__(56);
 var key = __webpack_require__(16);
-var angular2_universal_1 = __webpack_require__(26);
-var authorization_type_1 = __webpack_require__(140);
-var change_password_view_model_1 = __webpack_require__(141);
+var angular2_universal_1 = __webpack_require__(17);
+var authorized_user_info_view_model_1 = __webpack_require__(142);
+var change_password_view_model_1 = __webpack_require__(143);
 var user_service_1 = __webpack_require__(15);
 var router_1 = __webpack_require__(3);
-var match_password_validator_1 = __webpack_require__(53);
-var amazon_upload_component_1 = __webpack_require__(129);
+var match_password_validator_1 = __webpack_require__(54);
+var amazon_upload_component_1 = __webpack_require__(132);
 var UserProfileComponent = (function () {
     /**
      * Injecting dependencies
@@ -12297,7 +12539,7 @@ var UserProfileComponent = (function () {
         this.router = router;
         //Amazon storage uploader component
         this.uploader = new amazon_upload_component_1.AmazonUploadComponent();
-        this.user = new authorization_type_1.AuthorizeUserModel();
+        this.user = new authorized_user_info_view_model_1.AuthorizeUserModel();
         this.passwordEdit = true;
         this.passwordContainer = new change_password_view_model_1.ChangePasswordViewModel();
         /**
@@ -12553,8 +12795,8 @@ __decorate([
 UserProfileComponent = __decorate([
     core_1.Component({
         selector: 'user-info',
-        template: __webpack_require__(179),
-        styles: [__webpack_require__(211)],
+        template: __webpack_require__(183),
+        styles: [__webpack_require__(215)],
         providers: [user_info_service_1.UserInfoService, forms_1.FormBuilder, user_service_1.UserService]
     }),
     __metadata("design:paramtypes", [user_service_1.UserService,
@@ -12565,7 +12807,7 @@ exports.UserProfileComponent = UserProfileComponent;
 
 
 /***/ }),
-/* 84 */
+/* 86 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12578,12 +12820,12 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var common_1 = __webpack_require__(19);
-var map_component_1 = __webpack_require__(88);
+var common_1 = __webpack_require__(18);
+var map_component_1 = __webpack_require__(90);
 var forms_1 = __webpack_require__(6);
-var platform_browser_1 = __webpack_require__(221);
-var core_2 = __webpack_require__(63);
-var map_routing_module_1 = __webpack_require__(121);
+var platform_browser_1 = __webpack_require__(225);
+var core_2 = __webpack_require__(64);
+var map_routing_module_1 = __webpack_require__(124);
 var MapModule = (function () {
     function MapModule() {
     }
@@ -12617,13 +12859,13 @@ exports.MapModule = MapModule;
 
 
 /***/ }),
-/* 85 */
+/* 87 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var angular2_universal_1 = __webpack_require__(26);
+var angular2_universal_1 = __webpack_require__(17);
 var keys = __webpack_require__(16);
 /**
  * Abstract class for Guard service
@@ -12634,7 +12876,7 @@ var BaseGuardService = (function () {
         this._roleName = _roleName;
     }
     /**
-      * check if user is authorized and his role is superadmin
+      * check if user is authorized and his role is "_roleName"
       */
     BaseGuardService.prototype.canActivate = function () {
         if (angular2_universal_1.isBrowser) {
@@ -12656,7 +12898,7 @@ exports.BaseGuardService = BaseGuardService;
 
 
 /***/ }),
-/* 86 */
+/* 88 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12673,9 +12915,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
 var http_1 = __webpack_require__(11);
-__webpack_require__(17);
+__webpack_require__(24);
+__webpack_require__(36);
 __webpack_require__(25);
-__webpack_require__(18);
 /**
  * Service for super admin actions
  */
@@ -12762,7 +13004,7 @@ exports.SuperAdminService = SuperAdminService;
 
 
 /***/ }),
-/* 87 */
+/* 89 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12782,15 +13024,15 @@ var ErrorAuthorizeComponent = (function () {
 }());
 ErrorAuthorizeComponent = __decorate([
     core_1.Component({
-        template: __webpack_require__(181),
-        styles: [__webpack_require__(213)]
+        template: __webpack_require__(185),
+        styles: [__webpack_require__(217)]
     })
 ], ErrorAuthorizeComponent);
 exports.ErrorAuthorizeComponent = ErrorAuthorizeComponent;
 
 
 /***/ }),
-/* 88 */
+/* 90 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12807,7 +13049,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
 var forms_1 = __webpack_require__(6);
-var core_2 = __webpack_require__(63);
+var core_2 = __webpack_require__(64);
 //https://angular-maps.com/api-docs/agm-core/components/AgmInfoWindow.html documentation
 //https://developers.google.com/maps/documentation/geocoding/intro
 var MapComponent = (function () {
@@ -13067,8 +13309,8 @@ __decorate([
 MapComponent = __decorate([
     core_1.Component({
         selector: 'map-component',
-        template: __webpack_require__(182),
-        styles: [__webpack_require__(214)]
+        template: __webpack_require__(186),
+        styles: [__webpack_require__(218)]
     }),
     core_1.Injectable(),
     __metadata("design:paramtypes", [core_2.MapsAPILoader, core_1.NgZone])
@@ -13077,7 +13319,7 @@ exports.MapComponent = MapComponent;
 
 
 /***/ }),
-/* 89 */
+/* 91 */
 /***/ (function(module, exports) {
 
 var ENTITIES = [['Aacute', [193]], ['aacute', [225]], ['Abreve', [258]], ['abreve', [259]], ['ac', [8766]], ['acd', [8767]], ['acE', [8766, 819]], ['Acirc', [194]], ['acirc', [226]], ['acute', [180]], ['Acy', [1040]], ['acy', [1072]], ['AElig', [198]], ['aelig', [230]], ['af', [8289]], ['Afr', [120068]], ['afr', [120094]], ['Agrave', [192]], ['agrave', [224]], ['alefsym', [8501]], ['aleph', [8501]], ['Alpha', [913]], ['alpha', [945]], ['Amacr', [256]], ['amacr', [257]], ['amalg', [10815]], ['amp', [38]], ['AMP', [38]], ['andand', [10837]], ['And', [10835]], ['and', [8743]], ['andd', [10844]], ['andslope', [10840]], ['andv', [10842]], ['ang', [8736]], ['ange', [10660]], ['angle', [8736]], ['angmsdaa', [10664]], ['angmsdab', [10665]], ['angmsdac', [10666]], ['angmsdad', [10667]], ['angmsdae', [10668]], ['angmsdaf', [10669]], ['angmsdag', [10670]], ['angmsdah', [10671]], ['angmsd', [8737]], ['angrt', [8735]], ['angrtvb', [8894]], ['angrtvbd', [10653]], ['angsph', [8738]], ['angst', [197]], ['angzarr', [9084]], ['Aogon', [260]], ['aogon', [261]], ['Aopf', [120120]], ['aopf', [120146]], ['apacir', [10863]], ['ap', [8776]], ['apE', [10864]], ['ape', [8778]], ['apid', [8779]], ['apos', [39]], ['ApplyFunction', [8289]], ['approx', [8776]], ['approxeq', [8778]], ['Aring', [197]], ['aring', [229]], ['Ascr', [119964]], ['ascr', [119990]], ['Assign', [8788]], ['ast', [42]], ['asymp', [8776]], ['asympeq', [8781]], ['Atilde', [195]], ['atilde', [227]], ['Auml', [196]], ['auml', [228]], ['awconint', [8755]], ['awint', [10769]], ['backcong', [8780]], ['backepsilon', [1014]], ['backprime', [8245]], ['backsim', [8765]], ['backsimeq', [8909]], ['Backslash', [8726]], ['Barv', [10983]], ['barvee', [8893]], ['barwed', [8965]], ['Barwed', [8966]], ['barwedge', [8965]], ['bbrk', [9141]], ['bbrktbrk', [9142]], ['bcong', [8780]], ['Bcy', [1041]], ['bcy', [1073]], ['bdquo', [8222]], ['becaus', [8757]], ['because', [8757]], ['Because', [8757]], ['bemptyv', [10672]], ['bepsi', [1014]], ['bernou', [8492]], ['Bernoullis', [8492]], ['Beta', [914]], ['beta', [946]], ['beth', [8502]], ['between', [8812]], ['Bfr', [120069]], ['bfr', [120095]], ['bigcap', [8898]], ['bigcirc', [9711]], ['bigcup', [8899]], ['bigodot', [10752]], ['bigoplus', [10753]], ['bigotimes', [10754]], ['bigsqcup', [10758]], ['bigstar', [9733]], ['bigtriangledown', [9661]], ['bigtriangleup', [9651]], ['biguplus', [10756]], ['bigvee', [8897]], ['bigwedge', [8896]], ['bkarow', [10509]], ['blacklozenge', [10731]], ['blacksquare', [9642]], ['blacktriangle', [9652]], ['blacktriangledown', [9662]], ['blacktriangleleft', [9666]], ['blacktriangleright', [9656]], ['blank', [9251]], ['blk12', [9618]], ['blk14', [9617]], ['blk34', [9619]], ['block', [9608]], ['bne', [61, 8421]], ['bnequiv', [8801, 8421]], ['bNot', [10989]], ['bnot', [8976]], ['Bopf', [120121]], ['bopf', [120147]], ['bot', [8869]], ['bottom', [8869]], ['bowtie', [8904]], ['boxbox', [10697]], ['boxdl', [9488]], ['boxdL', [9557]], ['boxDl', [9558]], ['boxDL', [9559]], ['boxdr', [9484]], ['boxdR', [9554]], ['boxDr', [9555]], ['boxDR', [9556]], ['boxh', [9472]], ['boxH', [9552]], ['boxhd', [9516]], ['boxHd', [9572]], ['boxhD', [9573]], ['boxHD', [9574]], ['boxhu', [9524]], ['boxHu', [9575]], ['boxhU', [9576]], ['boxHU', [9577]], ['boxminus', [8863]], ['boxplus', [8862]], ['boxtimes', [8864]], ['boxul', [9496]], ['boxuL', [9563]], ['boxUl', [9564]], ['boxUL', [9565]], ['boxur', [9492]], ['boxuR', [9560]], ['boxUr', [9561]], ['boxUR', [9562]], ['boxv', [9474]], ['boxV', [9553]], ['boxvh', [9532]], ['boxvH', [9578]], ['boxVh', [9579]], ['boxVH', [9580]], ['boxvl', [9508]], ['boxvL', [9569]], ['boxVl', [9570]], ['boxVL', [9571]], ['boxvr', [9500]], ['boxvR', [9566]], ['boxVr', [9567]], ['boxVR', [9568]], ['bprime', [8245]], ['breve', [728]], ['Breve', [728]], ['brvbar', [166]], ['bscr', [119991]], ['Bscr', [8492]], ['bsemi', [8271]], ['bsim', [8765]], ['bsime', [8909]], ['bsolb', [10693]], ['bsol', [92]], ['bsolhsub', [10184]], ['bull', [8226]], ['bullet', [8226]], ['bump', [8782]], ['bumpE', [10926]], ['bumpe', [8783]], ['Bumpeq', [8782]], ['bumpeq', [8783]], ['Cacute', [262]], ['cacute', [263]], ['capand', [10820]], ['capbrcup', [10825]], ['capcap', [10827]], ['cap', [8745]], ['Cap', [8914]], ['capcup', [10823]], ['capdot', [10816]], ['CapitalDifferentialD', [8517]], ['caps', [8745, 65024]], ['caret', [8257]], ['caron', [711]], ['Cayleys', [8493]], ['ccaps', [10829]], ['Ccaron', [268]], ['ccaron', [269]], ['Ccedil', [199]], ['ccedil', [231]], ['Ccirc', [264]], ['ccirc', [265]], ['Cconint', [8752]], ['ccups', [10828]], ['ccupssm', [10832]], ['Cdot', [266]], ['cdot', [267]], ['cedil', [184]], ['Cedilla', [184]], ['cemptyv', [10674]], ['cent', [162]], ['centerdot', [183]], ['CenterDot', [183]], ['cfr', [120096]], ['Cfr', [8493]], ['CHcy', [1063]], ['chcy', [1095]], ['check', [10003]], ['checkmark', [10003]], ['Chi', [935]], ['chi', [967]], ['circ', [710]], ['circeq', [8791]], ['circlearrowleft', [8634]], ['circlearrowright', [8635]], ['circledast', [8859]], ['circledcirc', [8858]], ['circleddash', [8861]], ['CircleDot', [8857]], ['circledR', [174]], ['circledS', [9416]], ['CircleMinus', [8854]], ['CirclePlus', [8853]], ['CircleTimes', [8855]], ['cir', [9675]], ['cirE', [10691]], ['cire', [8791]], ['cirfnint', [10768]], ['cirmid', [10991]], ['cirscir', [10690]], ['ClockwiseContourIntegral', [8754]], ['clubs', [9827]], ['clubsuit', [9827]], ['colon', [58]], ['Colon', [8759]], ['Colone', [10868]], ['colone', [8788]], ['coloneq', [8788]], ['comma', [44]], ['commat', [64]], ['comp', [8705]], ['compfn', [8728]], ['complement', [8705]], ['complexes', [8450]], ['cong', [8773]], ['congdot', [10861]], ['Congruent', [8801]], ['conint', [8750]], ['Conint', [8751]], ['ContourIntegral', [8750]], ['copf', [120148]], ['Copf', [8450]], ['coprod', [8720]], ['Coproduct', [8720]], ['copy', [169]], ['COPY', [169]], ['copysr', [8471]], ['CounterClockwiseContourIntegral', [8755]], ['crarr', [8629]], ['cross', [10007]], ['Cross', [10799]], ['Cscr', [119966]], ['cscr', [119992]], ['csub', [10959]], ['csube', [10961]], ['csup', [10960]], ['csupe', [10962]], ['ctdot', [8943]], ['cudarrl', [10552]], ['cudarrr', [10549]], ['cuepr', [8926]], ['cuesc', [8927]], ['cularr', [8630]], ['cularrp', [10557]], ['cupbrcap', [10824]], ['cupcap', [10822]], ['CupCap', [8781]], ['cup', [8746]], ['Cup', [8915]], ['cupcup', [10826]], ['cupdot', [8845]], ['cupor', [10821]], ['cups', [8746, 65024]], ['curarr', [8631]], ['curarrm', [10556]], ['curlyeqprec', [8926]], ['curlyeqsucc', [8927]], ['curlyvee', [8910]], ['curlywedge', [8911]], ['curren', [164]], ['curvearrowleft', [8630]], ['curvearrowright', [8631]], ['cuvee', [8910]], ['cuwed', [8911]], ['cwconint', [8754]], ['cwint', [8753]], ['cylcty', [9005]], ['dagger', [8224]], ['Dagger', [8225]], ['daleth', [8504]], ['darr', [8595]], ['Darr', [8609]], ['dArr', [8659]], ['dash', [8208]], ['Dashv', [10980]], ['dashv', [8867]], ['dbkarow', [10511]], ['dblac', [733]], ['Dcaron', [270]], ['dcaron', [271]], ['Dcy', [1044]], ['dcy', [1076]], ['ddagger', [8225]], ['ddarr', [8650]], ['DD', [8517]], ['dd', [8518]], ['DDotrahd', [10513]], ['ddotseq', [10871]], ['deg', [176]], ['Del', [8711]], ['Delta', [916]], ['delta', [948]], ['demptyv', [10673]], ['dfisht', [10623]], ['Dfr', [120071]], ['dfr', [120097]], ['dHar', [10597]], ['dharl', [8643]], ['dharr', [8642]], ['DiacriticalAcute', [180]], ['DiacriticalDot', [729]], ['DiacriticalDoubleAcute', [733]], ['DiacriticalGrave', [96]], ['DiacriticalTilde', [732]], ['diam', [8900]], ['diamond', [8900]], ['Diamond', [8900]], ['diamondsuit', [9830]], ['diams', [9830]], ['die', [168]], ['DifferentialD', [8518]], ['digamma', [989]], ['disin', [8946]], ['div', [247]], ['divide', [247]], ['divideontimes', [8903]], ['divonx', [8903]], ['DJcy', [1026]], ['djcy', [1106]], ['dlcorn', [8990]], ['dlcrop', [8973]], ['dollar', [36]], ['Dopf', [120123]], ['dopf', [120149]], ['Dot', [168]], ['dot', [729]], ['DotDot', [8412]], ['doteq', [8784]], ['doteqdot', [8785]], ['DotEqual', [8784]], ['dotminus', [8760]], ['dotplus', [8724]], ['dotsquare', [8865]], ['doublebarwedge', [8966]], ['DoubleContourIntegral', [8751]], ['DoubleDot', [168]], ['DoubleDownArrow', [8659]], ['DoubleLeftArrow', [8656]], ['DoubleLeftRightArrow', [8660]], ['DoubleLeftTee', [10980]], ['DoubleLongLeftArrow', [10232]], ['DoubleLongLeftRightArrow', [10234]], ['DoubleLongRightArrow', [10233]], ['DoubleRightArrow', [8658]], ['DoubleRightTee', [8872]], ['DoubleUpArrow', [8657]], ['DoubleUpDownArrow', [8661]], ['DoubleVerticalBar', [8741]], ['DownArrowBar', [10515]], ['downarrow', [8595]], ['DownArrow', [8595]], ['Downarrow', [8659]], ['DownArrowUpArrow', [8693]], ['DownBreve', [785]], ['downdownarrows', [8650]], ['downharpoonleft', [8643]], ['downharpoonright', [8642]], ['DownLeftRightVector', [10576]], ['DownLeftTeeVector', [10590]], ['DownLeftVectorBar', [10582]], ['DownLeftVector', [8637]], ['DownRightTeeVector', [10591]], ['DownRightVectorBar', [10583]], ['DownRightVector', [8641]], ['DownTeeArrow', [8615]], ['DownTee', [8868]], ['drbkarow', [10512]], ['drcorn', [8991]], ['drcrop', [8972]], ['Dscr', [119967]], ['dscr', [119993]], ['DScy', [1029]], ['dscy', [1109]], ['dsol', [10742]], ['Dstrok', [272]], ['dstrok', [273]], ['dtdot', [8945]], ['dtri', [9663]], ['dtrif', [9662]], ['duarr', [8693]], ['duhar', [10607]], ['dwangle', [10662]], ['DZcy', [1039]], ['dzcy', [1119]], ['dzigrarr', [10239]], ['Eacute', [201]], ['eacute', [233]], ['easter', [10862]], ['Ecaron', [282]], ['ecaron', [283]], ['Ecirc', [202]], ['ecirc', [234]], ['ecir', [8790]], ['ecolon', [8789]], ['Ecy', [1069]], ['ecy', [1101]], ['eDDot', [10871]], ['Edot', [278]], ['edot', [279]], ['eDot', [8785]], ['ee', [8519]], ['efDot', [8786]], ['Efr', [120072]], ['efr', [120098]], ['eg', [10906]], ['Egrave', [200]], ['egrave', [232]], ['egs', [10902]], ['egsdot', [10904]], ['el', [10905]], ['Element', [8712]], ['elinters', [9191]], ['ell', [8467]], ['els', [10901]], ['elsdot', [10903]], ['Emacr', [274]], ['emacr', [275]], ['empty', [8709]], ['emptyset', [8709]], ['EmptySmallSquare', [9723]], ['emptyv', [8709]], ['EmptyVerySmallSquare', [9643]], ['emsp13', [8196]], ['emsp14', [8197]], ['emsp', [8195]], ['ENG', [330]], ['eng', [331]], ['ensp', [8194]], ['Eogon', [280]], ['eogon', [281]], ['Eopf', [120124]], ['eopf', [120150]], ['epar', [8917]], ['eparsl', [10723]], ['eplus', [10865]], ['epsi', [949]], ['Epsilon', [917]], ['epsilon', [949]], ['epsiv', [1013]], ['eqcirc', [8790]], ['eqcolon', [8789]], ['eqsim', [8770]], ['eqslantgtr', [10902]], ['eqslantless', [10901]], ['Equal', [10869]], ['equals', [61]], ['EqualTilde', [8770]], ['equest', [8799]], ['Equilibrium', [8652]], ['equiv', [8801]], ['equivDD', [10872]], ['eqvparsl', [10725]], ['erarr', [10609]], ['erDot', [8787]], ['escr', [8495]], ['Escr', [8496]], ['esdot', [8784]], ['Esim', [10867]], ['esim', [8770]], ['Eta', [919]], ['eta', [951]], ['ETH', [208]], ['eth', [240]], ['Euml', [203]], ['euml', [235]], ['euro', [8364]], ['excl', [33]], ['exist', [8707]], ['Exists', [8707]], ['expectation', [8496]], ['exponentiale', [8519]], ['ExponentialE', [8519]], ['fallingdotseq', [8786]], ['Fcy', [1060]], ['fcy', [1092]], ['female', [9792]], ['ffilig', [64259]], ['fflig', [64256]], ['ffllig', [64260]], ['Ffr', [120073]], ['ffr', [120099]], ['filig', [64257]], ['FilledSmallSquare', [9724]], ['FilledVerySmallSquare', [9642]], ['fjlig', [102, 106]], ['flat', [9837]], ['fllig', [64258]], ['fltns', [9649]], ['fnof', [402]], ['Fopf', [120125]], ['fopf', [120151]], ['forall', [8704]], ['ForAll', [8704]], ['fork', [8916]], ['forkv', [10969]], ['Fouriertrf', [8497]], ['fpartint', [10765]], ['frac12', [189]], ['frac13', [8531]], ['frac14', [188]], ['frac15', [8533]], ['frac16', [8537]], ['frac18', [8539]], ['frac23', [8532]], ['frac25', [8534]], ['frac34', [190]], ['frac35', [8535]], ['frac38', [8540]], ['frac45', [8536]], ['frac56', [8538]], ['frac58', [8541]], ['frac78', [8542]], ['frasl', [8260]], ['frown', [8994]], ['fscr', [119995]], ['Fscr', [8497]], ['gacute', [501]], ['Gamma', [915]], ['gamma', [947]], ['Gammad', [988]], ['gammad', [989]], ['gap', [10886]], ['Gbreve', [286]], ['gbreve', [287]], ['Gcedil', [290]], ['Gcirc', [284]], ['gcirc', [285]], ['Gcy', [1043]], ['gcy', [1075]], ['Gdot', [288]], ['gdot', [289]], ['ge', [8805]], ['gE', [8807]], ['gEl', [10892]], ['gel', [8923]], ['geq', [8805]], ['geqq', [8807]], ['geqslant', [10878]], ['gescc', [10921]], ['ges', [10878]], ['gesdot', [10880]], ['gesdoto', [10882]], ['gesdotol', [10884]], ['gesl', [8923, 65024]], ['gesles', [10900]], ['Gfr', [120074]], ['gfr', [120100]], ['gg', [8811]], ['Gg', [8921]], ['ggg', [8921]], ['gimel', [8503]], ['GJcy', [1027]], ['gjcy', [1107]], ['gla', [10917]], ['gl', [8823]], ['glE', [10898]], ['glj', [10916]], ['gnap', [10890]], ['gnapprox', [10890]], ['gne', [10888]], ['gnE', [8809]], ['gneq', [10888]], ['gneqq', [8809]], ['gnsim', [8935]], ['Gopf', [120126]], ['gopf', [120152]], ['grave', [96]], ['GreaterEqual', [8805]], ['GreaterEqualLess', [8923]], ['GreaterFullEqual', [8807]], ['GreaterGreater', [10914]], ['GreaterLess', [8823]], ['GreaterSlantEqual', [10878]], ['GreaterTilde', [8819]], ['Gscr', [119970]], ['gscr', [8458]], ['gsim', [8819]], ['gsime', [10894]], ['gsiml', [10896]], ['gtcc', [10919]], ['gtcir', [10874]], ['gt', [62]], ['GT', [62]], ['Gt', [8811]], ['gtdot', [8919]], ['gtlPar', [10645]], ['gtquest', [10876]], ['gtrapprox', [10886]], ['gtrarr', [10616]], ['gtrdot', [8919]], ['gtreqless', [8923]], ['gtreqqless', [10892]], ['gtrless', [8823]], ['gtrsim', [8819]], ['gvertneqq', [8809, 65024]], ['gvnE', [8809, 65024]], ['Hacek', [711]], ['hairsp', [8202]], ['half', [189]], ['hamilt', [8459]], ['HARDcy', [1066]], ['hardcy', [1098]], ['harrcir', [10568]], ['harr', [8596]], ['hArr', [8660]], ['harrw', [8621]], ['Hat', [94]], ['hbar', [8463]], ['Hcirc', [292]], ['hcirc', [293]], ['hearts', [9829]], ['heartsuit', [9829]], ['hellip', [8230]], ['hercon', [8889]], ['hfr', [120101]], ['Hfr', [8460]], ['HilbertSpace', [8459]], ['hksearow', [10533]], ['hkswarow', [10534]], ['hoarr', [8703]], ['homtht', [8763]], ['hookleftarrow', [8617]], ['hookrightarrow', [8618]], ['hopf', [120153]], ['Hopf', [8461]], ['horbar', [8213]], ['HorizontalLine', [9472]], ['hscr', [119997]], ['Hscr', [8459]], ['hslash', [8463]], ['Hstrok', [294]], ['hstrok', [295]], ['HumpDownHump', [8782]], ['HumpEqual', [8783]], ['hybull', [8259]], ['hyphen', [8208]], ['Iacute', [205]], ['iacute', [237]], ['ic', [8291]], ['Icirc', [206]], ['icirc', [238]], ['Icy', [1048]], ['icy', [1080]], ['Idot', [304]], ['IEcy', [1045]], ['iecy', [1077]], ['iexcl', [161]], ['iff', [8660]], ['ifr', [120102]], ['Ifr', [8465]], ['Igrave', [204]], ['igrave', [236]], ['ii', [8520]], ['iiiint', [10764]], ['iiint', [8749]], ['iinfin', [10716]], ['iiota', [8489]], ['IJlig', [306]], ['ijlig', [307]], ['Imacr', [298]], ['imacr', [299]], ['image', [8465]], ['ImaginaryI', [8520]], ['imagline', [8464]], ['imagpart', [8465]], ['imath', [305]], ['Im', [8465]], ['imof', [8887]], ['imped', [437]], ['Implies', [8658]], ['incare', [8453]], ['in', [8712]], ['infin', [8734]], ['infintie', [10717]], ['inodot', [305]], ['intcal', [8890]], ['int', [8747]], ['Int', [8748]], ['integers', [8484]], ['Integral', [8747]], ['intercal', [8890]], ['Intersection', [8898]], ['intlarhk', [10775]], ['intprod', [10812]], ['InvisibleComma', [8291]], ['InvisibleTimes', [8290]], ['IOcy', [1025]], ['iocy', [1105]], ['Iogon', [302]], ['iogon', [303]], ['Iopf', [120128]], ['iopf', [120154]], ['Iota', [921]], ['iota', [953]], ['iprod', [10812]], ['iquest', [191]], ['iscr', [119998]], ['Iscr', [8464]], ['isin', [8712]], ['isindot', [8949]], ['isinE', [8953]], ['isins', [8948]], ['isinsv', [8947]], ['isinv', [8712]], ['it', [8290]], ['Itilde', [296]], ['itilde', [297]], ['Iukcy', [1030]], ['iukcy', [1110]], ['Iuml', [207]], ['iuml', [239]], ['Jcirc', [308]], ['jcirc', [309]], ['Jcy', [1049]], ['jcy', [1081]], ['Jfr', [120077]], ['jfr', [120103]], ['jmath', [567]], ['Jopf', [120129]], ['jopf', [120155]], ['Jscr', [119973]], ['jscr', [119999]], ['Jsercy', [1032]], ['jsercy', [1112]], ['Jukcy', [1028]], ['jukcy', [1108]], ['Kappa', [922]], ['kappa', [954]], ['kappav', [1008]], ['Kcedil', [310]], ['kcedil', [311]], ['Kcy', [1050]], ['kcy', [1082]], ['Kfr', [120078]], ['kfr', [120104]], ['kgreen', [312]], ['KHcy', [1061]], ['khcy', [1093]], ['KJcy', [1036]], ['kjcy', [1116]], ['Kopf', [120130]], ['kopf', [120156]], ['Kscr', [119974]], ['kscr', [120000]], ['lAarr', [8666]], ['Lacute', [313]], ['lacute', [314]], ['laemptyv', [10676]], ['lagran', [8466]], ['Lambda', [923]], ['lambda', [955]], ['lang', [10216]], ['Lang', [10218]], ['langd', [10641]], ['langle', [10216]], ['lap', [10885]], ['Laplacetrf', [8466]], ['laquo', [171]], ['larrb', [8676]], ['larrbfs', [10527]], ['larr', [8592]], ['Larr', [8606]], ['lArr', [8656]], ['larrfs', [10525]], ['larrhk', [8617]], ['larrlp', [8619]], ['larrpl', [10553]], ['larrsim', [10611]], ['larrtl', [8610]], ['latail', [10521]], ['lAtail', [10523]], ['lat', [10923]], ['late', [10925]], ['lates', [10925, 65024]], ['lbarr', [10508]], ['lBarr', [10510]], ['lbbrk', [10098]], ['lbrace', [123]], ['lbrack', [91]], ['lbrke', [10635]], ['lbrksld', [10639]], ['lbrkslu', [10637]], ['Lcaron', [317]], ['lcaron', [318]], ['Lcedil', [315]], ['lcedil', [316]], ['lceil', [8968]], ['lcub', [123]], ['Lcy', [1051]], ['lcy', [1083]], ['ldca', [10550]], ['ldquo', [8220]], ['ldquor', [8222]], ['ldrdhar', [10599]], ['ldrushar', [10571]], ['ldsh', [8626]], ['le', [8804]], ['lE', [8806]], ['LeftAngleBracket', [10216]], ['LeftArrowBar', [8676]], ['leftarrow', [8592]], ['LeftArrow', [8592]], ['Leftarrow', [8656]], ['LeftArrowRightArrow', [8646]], ['leftarrowtail', [8610]], ['LeftCeiling', [8968]], ['LeftDoubleBracket', [10214]], ['LeftDownTeeVector', [10593]], ['LeftDownVectorBar', [10585]], ['LeftDownVector', [8643]], ['LeftFloor', [8970]], ['leftharpoondown', [8637]], ['leftharpoonup', [8636]], ['leftleftarrows', [8647]], ['leftrightarrow', [8596]], ['LeftRightArrow', [8596]], ['Leftrightarrow', [8660]], ['leftrightarrows', [8646]], ['leftrightharpoons', [8651]], ['leftrightsquigarrow', [8621]], ['LeftRightVector', [10574]], ['LeftTeeArrow', [8612]], ['LeftTee', [8867]], ['LeftTeeVector', [10586]], ['leftthreetimes', [8907]], ['LeftTriangleBar', [10703]], ['LeftTriangle', [8882]], ['LeftTriangleEqual', [8884]], ['LeftUpDownVector', [10577]], ['LeftUpTeeVector', [10592]], ['LeftUpVectorBar', [10584]], ['LeftUpVector', [8639]], ['LeftVectorBar', [10578]], ['LeftVector', [8636]], ['lEg', [10891]], ['leg', [8922]], ['leq', [8804]], ['leqq', [8806]], ['leqslant', [10877]], ['lescc', [10920]], ['les', [10877]], ['lesdot', [10879]], ['lesdoto', [10881]], ['lesdotor', [10883]], ['lesg', [8922, 65024]], ['lesges', [10899]], ['lessapprox', [10885]], ['lessdot', [8918]], ['lesseqgtr', [8922]], ['lesseqqgtr', [10891]], ['LessEqualGreater', [8922]], ['LessFullEqual', [8806]], ['LessGreater', [8822]], ['lessgtr', [8822]], ['LessLess', [10913]], ['lesssim', [8818]], ['LessSlantEqual', [10877]], ['LessTilde', [8818]], ['lfisht', [10620]], ['lfloor', [8970]], ['Lfr', [120079]], ['lfr', [120105]], ['lg', [8822]], ['lgE', [10897]], ['lHar', [10594]], ['lhard', [8637]], ['lharu', [8636]], ['lharul', [10602]], ['lhblk', [9604]], ['LJcy', [1033]], ['ljcy', [1113]], ['llarr', [8647]], ['ll', [8810]], ['Ll', [8920]], ['llcorner', [8990]], ['Lleftarrow', [8666]], ['llhard', [10603]], ['lltri', [9722]], ['Lmidot', [319]], ['lmidot', [320]], ['lmoustache', [9136]], ['lmoust', [9136]], ['lnap', [10889]], ['lnapprox', [10889]], ['lne', [10887]], ['lnE', [8808]], ['lneq', [10887]], ['lneqq', [8808]], ['lnsim', [8934]], ['loang', [10220]], ['loarr', [8701]], ['lobrk', [10214]], ['longleftarrow', [10229]], ['LongLeftArrow', [10229]], ['Longleftarrow', [10232]], ['longleftrightarrow', [10231]], ['LongLeftRightArrow', [10231]], ['Longleftrightarrow', [10234]], ['longmapsto', [10236]], ['longrightarrow', [10230]], ['LongRightArrow', [10230]], ['Longrightarrow', [10233]], ['looparrowleft', [8619]], ['looparrowright', [8620]], ['lopar', [10629]], ['Lopf', [120131]], ['lopf', [120157]], ['loplus', [10797]], ['lotimes', [10804]], ['lowast', [8727]], ['lowbar', [95]], ['LowerLeftArrow', [8601]], ['LowerRightArrow', [8600]], ['loz', [9674]], ['lozenge', [9674]], ['lozf', [10731]], ['lpar', [40]], ['lparlt', [10643]], ['lrarr', [8646]], ['lrcorner', [8991]], ['lrhar', [8651]], ['lrhard', [10605]], ['lrm', [8206]], ['lrtri', [8895]], ['lsaquo', [8249]], ['lscr', [120001]], ['Lscr', [8466]], ['lsh', [8624]], ['Lsh', [8624]], ['lsim', [8818]], ['lsime', [10893]], ['lsimg', [10895]], ['lsqb', [91]], ['lsquo', [8216]], ['lsquor', [8218]], ['Lstrok', [321]], ['lstrok', [322]], ['ltcc', [10918]], ['ltcir', [10873]], ['lt', [60]], ['LT', [60]], ['Lt', [8810]], ['ltdot', [8918]], ['lthree', [8907]], ['ltimes', [8905]], ['ltlarr', [10614]], ['ltquest', [10875]], ['ltri', [9667]], ['ltrie', [8884]], ['ltrif', [9666]], ['ltrPar', [10646]], ['lurdshar', [10570]], ['luruhar', [10598]], ['lvertneqq', [8808, 65024]], ['lvnE', [8808, 65024]], ['macr', [175]], ['male', [9794]], ['malt', [10016]], ['maltese', [10016]], ['Map', [10501]], ['map', [8614]], ['mapsto', [8614]], ['mapstodown', [8615]], ['mapstoleft', [8612]], ['mapstoup', [8613]], ['marker', [9646]], ['mcomma', [10793]], ['Mcy', [1052]], ['mcy', [1084]], ['mdash', [8212]], ['mDDot', [8762]], ['measuredangle', [8737]], ['MediumSpace', [8287]], ['Mellintrf', [8499]], ['Mfr', [120080]], ['mfr', [120106]], ['mho', [8487]], ['micro', [181]], ['midast', [42]], ['midcir', [10992]], ['mid', [8739]], ['middot', [183]], ['minusb', [8863]], ['minus', [8722]], ['minusd', [8760]], ['minusdu', [10794]], ['MinusPlus', [8723]], ['mlcp', [10971]], ['mldr', [8230]], ['mnplus', [8723]], ['models', [8871]], ['Mopf', [120132]], ['mopf', [120158]], ['mp', [8723]], ['mscr', [120002]], ['Mscr', [8499]], ['mstpos', [8766]], ['Mu', [924]], ['mu', [956]], ['multimap', [8888]], ['mumap', [8888]], ['nabla', [8711]], ['Nacute', [323]], ['nacute', [324]], ['nang', [8736, 8402]], ['nap', [8777]], ['napE', [10864, 824]], ['napid', [8779, 824]], ['napos', [329]], ['napprox', [8777]], ['natural', [9838]], ['naturals', [8469]], ['natur', [9838]], ['nbsp', [160]], ['nbump', [8782, 824]], ['nbumpe', [8783, 824]], ['ncap', [10819]], ['Ncaron', [327]], ['ncaron', [328]], ['Ncedil', [325]], ['ncedil', [326]], ['ncong', [8775]], ['ncongdot', [10861, 824]], ['ncup', [10818]], ['Ncy', [1053]], ['ncy', [1085]], ['ndash', [8211]], ['nearhk', [10532]], ['nearr', [8599]], ['neArr', [8663]], ['nearrow', [8599]], ['ne', [8800]], ['nedot', [8784, 824]], ['NegativeMediumSpace', [8203]], ['NegativeThickSpace', [8203]], ['NegativeThinSpace', [8203]], ['NegativeVeryThinSpace', [8203]], ['nequiv', [8802]], ['nesear', [10536]], ['nesim', [8770, 824]], ['NestedGreaterGreater', [8811]], ['NestedLessLess', [8810]], ['nexist', [8708]], ['nexists', [8708]], ['Nfr', [120081]], ['nfr', [120107]], ['ngE', [8807, 824]], ['nge', [8817]], ['ngeq', [8817]], ['ngeqq', [8807, 824]], ['ngeqslant', [10878, 824]], ['nges', [10878, 824]], ['nGg', [8921, 824]], ['ngsim', [8821]], ['nGt', [8811, 8402]], ['ngt', [8815]], ['ngtr', [8815]], ['nGtv', [8811, 824]], ['nharr', [8622]], ['nhArr', [8654]], ['nhpar', [10994]], ['ni', [8715]], ['nis', [8956]], ['nisd', [8954]], ['niv', [8715]], ['NJcy', [1034]], ['njcy', [1114]], ['nlarr', [8602]], ['nlArr', [8653]], ['nldr', [8229]], ['nlE', [8806, 824]], ['nle', [8816]], ['nleftarrow', [8602]], ['nLeftarrow', [8653]], ['nleftrightarrow', [8622]], ['nLeftrightarrow', [8654]], ['nleq', [8816]], ['nleqq', [8806, 824]], ['nleqslant', [10877, 824]], ['nles', [10877, 824]], ['nless', [8814]], ['nLl', [8920, 824]], ['nlsim', [8820]], ['nLt', [8810, 8402]], ['nlt', [8814]], ['nltri', [8938]], ['nltrie', [8940]], ['nLtv', [8810, 824]], ['nmid', [8740]], ['NoBreak', [8288]], ['NonBreakingSpace', [160]], ['nopf', [120159]], ['Nopf', [8469]], ['Not', [10988]], ['not', [172]], ['NotCongruent', [8802]], ['NotCupCap', [8813]], ['NotDoubleVerticalBar', [8742]], ['NotElement', [8713]], ['NotEqual', [8800]], ['NotEqualTilde', [8770, 824]], ['NotExists', [8708]], ['NotGreater', [8815]], ['NotGreaterEqual', [8817]], ['NotGreaterFullEqual', [8807, 824]], ['NotGreaterGreater', [8811, 824]], ['NotGreaterLess', [8825]], ['NotGreaterSlantEqual', [10878, 824]], ['NotGreaterTilde', [8821]], ['NotHumpDownHump', [8782, 824]], ['NotHumpEqual', [8783, 824]], ['notin', [8713]], ['notindot', [8949, 824]], ['notinE', [8953, 824]], ['notinva', [8713]], ['notinvb', [8951]], ['notinvc', [8950]], ['NotLeftTriangleBar', [10703, 824]], ['NotLeftTriangle', [8938]], ['NotLeftTriangleEqual', [8940]], ['NotLess', [8814]], ['NotLessEqual', [8816]], ['NotLessGreater', [8824]], ['NotLessLess', [8810, 824]], ['NotLessSlantEqual', [10877, 824]], ['NotLessTilde', [8820]], ['NotNestedGreaterGreater', [10914, 824]], ['NotNestedLessLess', [10913, 824]], ['notni', [8716]], ['notniva', [8716]], ['notnivb', [8958]], ['notnivc', [8957]], ['NotPrecedes', [8832]], ['NotPrecedesEqual', [10927, 824]], ['NotPrecedesSlantEqual', [8928]], ['NotReverseElement', [8716]], ['NotRightTriangleBar', [10704, 824]], ['NotRightTriangle', [8939]], ['NotRightTriangleEqual', [8941]], ['NotSquareSubset', [8847, 824]], ['NotSquareSubsetEqual', [8930]], ['NotSquareSuperset', [8848, 824]], ['NotSquareSupersetEqual', [8931]], ['NotSubset', [8834, 8402]], ['NotSubsetEqual', [8840]], ['NotSucceeds', [8833]], ['NotSucceedsEqual', [10928, 824]], ['NotSucceedsSlantEqual', [8929]], ['NotSucceedsTilde', [8831, 824]], ['NotSuperset', [8835, 8402]], ['NotSupersetEqual', [8841]], ['NotTilde', [8769]], ['NotTildeEqual', [8772]], ['NotTildeFullEqual', [8775]], ['NotTildeTilde', [8777]], ['NotVerticalBar', [8740]], ['nparallel', [8742]], ['npar', [8742]], ['nparsl', [11005, 8421]], ['npart', [8706, 824]], ['npolint', [10772]], ['npr', [8832]], ['nprcue', [8928]], ['nprec', [8832]], ['npreceq', [10927, 824]], ['npre', [10927, 824]], ['nrarrc', [10547, 824]], ['nrarr', [8603]], ['nrArr', [8655]], ['nrarrw', [8605, 824]], ['nrightarrow', [8603]], ['nRightarrow', [8655]], ['nrtri', [8939]], ['nrtrie', [8941]], ['nsc', [8833]], ['nsccue', [8929]], ['nsce', [10928, 824]], ['Nscr', [119977]], ['nscr', [120003]], ['nshortmid', [8740]], ['nshortparallel', [8742]], ['nsim', [8769]], ['nsime', [8772]], ['nsimeq', [8772]], ['nsmid', [8740]], ['nspar', [8742]], ['nsqsube', [8930]], ['nsqsupe', [8931]], ['nsub', [8836]], ['nsubE', [10949, 824]], ['nsube', [8840]], ['nsubset', [8834, 8402]], ['nsubseteq', [8840]], ['nsubseteqq', [10949, 824]], ['nsucc', [8833]], ['nsucceq', [10928, 824]], ['nsup', [8837]], ['nsupE', [10950, 824]], ['nsupe', [8841]], ['nsupset', [8835, 8402]], ['nsupseteq', [8841]], ['nsupseteqq', [10950, 824]], ['ntgl', [8825]], ['Ntilde', [209]], ['ntilde', [241]], ['ntlg', [8824]], ['ntriangleleft', [8938]], ['ntrianglelefteq', [8940]], ['ntriangleright', [8939]], ['ntrianglerighteq', [8941]], ['Nu', [925]], ['nu', [957]], ['num', [35]], ['numero', [8470]], ['numsp', [8199]], ['nvap', [8781, 8402]], ['nvdash', [8876]], ['nvDash', [8877]], ['nVdash', [8878]], ['nVDash', [8879]], ['nvge', [8805, 8402]], ['nvgt', [62, 8402]], ['nvHarr', [10500]], ['nvinfin', [10718]], ['nvlArr', [10498]], ['nvle', [8804, 8402]], ['nvlt', [60, 8402]], ['nvltrie', [8884, 8402]], ['nvrArr', [10499]], ['nvrtrie', [8885, 8402]], ['nvsim', [8764, 8402]], ['nwarhk', [10531]], ['nwarr', [8598]], ['nwArr', [8662]], ['nwarrow', [8598]], ['nwnear', [10535]], ['Oacute', [211]], ['oacute', [243]], ['oast', [8859]], ['Ocirc', [212]], ['ocirc', [244]], ['ocir', [8858]], ['Ocy', [1054]], ['ocy', [1086]], ['odash', [8861]], ['Odblac', [336]], ['odblac', [337]], ['odiv', [10808]], ['odot', [8857]], ['odsold', [10684]], ['OElig', [338]], ['oelig', [339]], ['ofcir', [10687]], ['Ofr', [120082]], ['ofr', [120108]], ['ogon', [731]], ['Ograve', [210]], ['ograve', [242]], ['ogt', [10689]], ['ohbar', [10677]], ['ohm', [937]], ['oint', [8750]], ['olarr', [8634]], ['olcir', [10686]], ['olcross', [10683]], ['oline', [8254]], ['olt', [10688]], ['Omacr', [332]], ['omacr', [333]], ['Omega', [937]], ['omega', [969]], ['Omicron', [927]], ['omicron', [959]], ['omid', [10678]], ['ominus', [8854]], ['Oopf', [120134]], ['oopf', [120160]], ['opar', [10679]], ['OpenCurlyDoubleQuote', [8220]], ['OpenCurlyQuote', [8216]], ['operp', [10681]], ['oplus', [8853]], ['orarr', [8635]], ['Or', [10836]], ['or', [8744]], ['ord', [10845]], ['order', [8500]], ['orderof', [8500]], ['ordf', [170]], ['ordm', [186]], ['origof', [8886]], ['oror', [10838]], ['orslope', [10839]], ['orv', [10843]], ['oS', [9416]], ['Oscr', [119978]], ['oscr', [8500]], ['Oslash', [216]], ['oslash', [248]], ['osol', [8856]], ['Otilde', [213]], ['otilde', [245]], ['otimesas', [10806]], ['Otimes', [10807]], ['otimes', [8855]], ['Ouml', [214]], ['ouml', [246]], ['ovbar', [9021]], ['OverBar', [8254]], ['OverBrace', [9182]], ['OverBracket', [9140]], ['OverParenthesis', [9180]], ['para', [182]], ['parallel', [8741]], ['par', [8741]], ['parsim', [10995]], ['parsl', [11005]], ['part', [8706]], ['PartialD', [8706]], ['Pcy', [1055]], ['pcy', [1087]], ['percnt', [37]], ['period', [46]], ['permil', [8240]], ['perp', [8869]], ['pertenk', [8241]], ['Pfr', [120083]], ['pfr', [120109]], ['Phi', [934]], ['phi', [966]], ['phiv', [981]], ['phmmat', [8499]], ['phone', [9742]], ['Pi', [928]], ['pi', [960]], ['pitchfork', [8916]], ['piv', [982]], ['planck', [8463]], ['planckh', [8462]], ['plankv', [8463]], ['plusacir', [10787]], ['plusb', [8862]], ['pluscir', [10786]], ['plus', [43]], ['plusdo', [8724]], ['plusdu', [10789]], ['pluse', [10866]], ['PlusMinus', [177]], ['plusmn', [177]], ['plussim', [10790]], ['plustwo', [10791]], ['pm', [177]], ['Poincareplane', [8460]], ['pointint', [10773]], ['popf', [120161]], ['Popf', [8473]], ['pound', [163]], ['prap', [10935]], ['Pr', [10939]], ['pr', [8826]], ['prcue', [8828]], ['precapprox', [10935]], ['prec', [8826]], ['preccurlyeq', [8828]], ['Precedes', [8826]], ['PrecedesEqual', [10927]], ['PrecedesSlantEqual', [8828]], ['PrecedesTilde', [8830]], ['preceq', [10927]], ['precnapprox', [10937]], ['precneqq', [10933]], ['precnsim', [8936]], ['pre', [10927]], ['prE', [10931]], ['precsim', [8830]], ['prime', [8242]], ['Prime', [8243]], ['primes', [8473]], ['prnap', [10937]], ['prnE', [10933]], ['prnsim', [8936]], ['prod', [8719]], ['Product', [8719]], ['profalar', [9006]], ['profline', [8978]], ['profsurf', [8979]], ['prop', [8733]], ['Proportional', [8733]], ['Proportion', [8759]], ['propto', [8733]], ['prsim', [8830]], ['prurel', [8880]], ['Pscr', [119979]], ['pscr', [120005]], ['Psi', [936]], ['psi', [968]], ['puncsp', [8200]], ['Qfr', [120084]], ['qfr', [120110]], ['qint', [10764]], ['qopf', [120162]], ['Qopf', [8474]], ['qprime', [8279]], ['Qscr', [119980]], ['qscr', [120006]], ['quaternions', [8461]], ['quatint', [10774]], ['quest', [63]], ['questeq', [8799]], ['quot', [34]], ['QUOT', [34]], ['rAarr', [8667]], ['race', [8765, 817]], ['Racute', [340]], ['racute', [341]], ['radic', [8730]], ['raemptyv', [10675]], ['rang', [10217]], ['Rang', [10219]], ['rangd', [10642]], ['range', [10661]], ['rangle', [10217]], ['raquo', [187]], ['rarrap', [10613]], ['rarrb', [8677]], ['rarrbfs', [10528]], ['rarrc', [10547]], ['rarr', [8594]], ['Rarr', [8608]], ['rArr', [8658]], ['rarrfs', [10526]], ['rarrhk', [8618]], ['rarrlp', [8620]], ['rarrpl', [10565]], ['rarrsim', [10612]], ['Rarrtl', [10518]], ['rarrtl', [8611]], ['rarrw', [8605]], ['ratail', [10522]], ['rAtail', [10524]], ['ratio', [8758]], ['rationals', [8474]], ['rbarr', [10509]], ['rBarr', [10511]], ['RBarr', [10512]], ['rbbrk', [10099]], ['rbrace', [125]], ['rbrack', [93]], ['rbrke', [10636]], ['rbrksld', [10638]], ['rbrkslu', [10640]], ['Rcaron', [344]], ['rcaron', [345]], ['Rcedil', [342]], ['rcedil', [343]], ['rceil', [8969]], ['rcub', [125]], ['Rcy', [1056]], ['rcy', [1088]], ['rdca', [10551]], ['rdldhar', [10601]], ['rdquo', [8221]], ['rdquor', [8221]], ['CloseCurlyDoubleQuote', [8221]], ['rdsh', [8627]], ['real', [8476]], ['realine', [8475]], ['realpart', [8476]], ['reals', [8477]], ['Re', [8476]], ['rect', [9645]], ['reg', [174]], ['REG', [174]], ['ReverseElement', [8715]], ['ReverseEquilibrium', [8651]], ['ReverseUpEquilibrium', [10607]], ['rfisht', [10621]], ['rfloor', [8971]], ['rfr', [120111]], ['Rfr', [8476]], ['rHar', [10596]], ['rhard', [8641]], ['rharu', [8640]], ['rharul', [10604]], ['Rho', [929]], ['rho', [961]], ['rhov', [1009]], ['RightAngleBracket', [10217]], ['RightArrowBar', [8677]], ['rightarrow', [8594]], ['RightArrow', [8594]], ['Rightarrow', [8658]], ['RightArrowLeftArrow', [8644]], ['rightarrowtail', [8611]], ['RightCeiling', [8969]], ['RightDoubleBracket', [10215]], ['RightDownTeeVector', [10589]], ['RightDownVectorBar', [10581]], ['RightDownVector', [8642]], ['RightFloor', [8971]], ['rightharpoondown', [8641]], ['rightharpoonup', [8640]], ['rightleftarrows', [8644]], ['rightleftharpoons', [8652]], ['rightrightarrows', [8649]], ['rightsquigarrow', [8605]], ['RightTeeArrow', [8614]], ['RightTee', [8866]], ['RightTeeVector', [10587]], ['rightthreetimes', [8908]], ['RightTriangleBar', [10704]], ['RightTriangle', [8883]], ['RightTriangleEqual', [8885]], ['RightUpDownVector', [10575]], ['RightUpTeeVector', [10588]], ['RightUpVectorBar', [10580]], ['RightUpVector', [8638]], ['RightVectorBar', [10579]], ['RightVector', [8640]], ['ring', [730]], ['risingdotseq', [8787]], ['rlarr', [8644]], ['rlhar', [8652]], ['rlm', [8207]], ['rmoustache', [9137]], ['rmoust', [9137]], ['rnmid', [10990]], ['roang', [10221]], ['roarr', [8702]], ['robrk', [10215]], ['ropar', [10630]], ['ropf', [120163]], ['Ropf', [8477]], ['roplus', [10798]], ['rotimes', [10805]], ['RoundImplies', [10608]], ['rpar', [41]], ['rpargt', [10644]], ['rppolint', [10770]], ['rrarr', [8649]], ['Rrightarrow', [8667]], ['rsaquo', [8250]], ['rscr', [120007]], ['Rscr', [8475]], ['rsh', [8625]], ['Rsh', [8625]], ['rsqb', [93]], ['rsquo', [8217]], ['rsquor', [8217]], ['CloseCurlyQuote', [8217]], ['rthree', [8908]], ['rtimes', [8906]], ['rtri', [9657]], ['rtrie', [8885]], ['rtrif', [9656]], ['rtriltri', [10702]], ['RuleDelayed', [10740]], ['ruluhar', [10600]], ['rx', [8478]], ['Sacute', [346]], ['sacute', [347]], ['sbquo', [8218]], ['scap', [10936]], ['Scaron', [352]], ['scaron', [353]], ['Sc', [10940]], ['sc', [8827]], ['sccue', [8829]], ['sce', [10928]], ['scE', [10932]], ['Scedil', [350]], ['scedil', [351]], ['Scirc', [348]], ['scirc', [349]], ['scnap', [10938]], ['scnE', [10934]], ['scnsim', [8937]], ['scpolint', [10771]], ['scsim', [8831]], ['Scy', [1057]], ['scy', [1089]], ['sdotb', [8865]], ['sdot', [8901]], ['sdote', [10854]], ['searhk', [10533]], ['searr', [8600]], ['seArr', [8664]], ['searrow', [8600]], ['sect', [167]], ['semi', [59]], ['seswar', [10537]], ['setminus', [8726]], ['setmn', [8726]], ['sext', [10038]], ['Sfr', [120086]], ['sfr', [120112]], ['sfrown', [8994]], ['sharp', [9839]], ['SHCHcy', [1065]], ['shchcy', [1097]], ['SHcy', [1064]], ['shcy', [1096]], ['ShortDownArrow', [8595]], ['ShortLeftArrow', [8592]], ['shortmid', [8739]], ['shortparallel', [8741]], ['ShortRightArrow', [8594]], ['ShortUpArrow', [8593]], ['shy', [173]], ['Sigma', [931]], ['sigma', [963]], ['sigmaf', [962]], ['sigmav', [962]], ['sim', [8764]], ['simdot', [10858]], ['sime', [8771]], ['simeq', [8771]], ['simg', [10910]], ['simgE', [10912]], ['siml', [10909]], ['simlE', [10911]], ['simne', [8774]], ['simplus', [10788]], ['simrarr', [10610]], ['slarr', [8592]], ['SmallCircle', [8728]], ['smallsetminus', [8726]], ['smashp', [10803]], ['smeparsl', [10724]], ['smid', [8739]], ['smile', [8995]], ['smt', [10922]], ['smte', [10924]], ['smtes', [10924, 65024]], ['SOFTcy', [1068]], ['softcy', [1100]], ['solbar', [9023]], ['solb', [10692]], ['sol', [47]], ['Sopf', [120138]], ['sopf', [120164]], ['spades', [9824]], ['spadesuit', [9824]], ['spar', [8741]], ['sqcap', [8851]], ['sqcaps', [8851, 65024]], ['sqcup', [8852]], ['sqcups', [8852, 65024]], ['Sqrt', [8730]], ['sqsub', [8847]], ['sqsube', [8849]], ['sqsubset', [8847]], ['sqsubseteq', [8849]], ['sqsup', [8848]], ['sqsupe', [8850]], ['sqsupset', [8848]], ['sqsupseteq', [8850]], ['square', [9633]], ['Square', [9633]], ['SquareIntersection', [8851]], ['SquareSubset', [8847]], ['SquareSubsetEqual', [8849]], ['SquareSuperset', [8848]], ['SquareSupersetEqual', [8850]], ['SquareUnion', [8852]], ['squarf', [9642]], ['squ', [9633]], ['squf', [9642]], ['srarr', [8594]], ['Sscr', [119982]], ['sscr', [120008]], ['ssetmn', [8726]], ['ssmile', [8995]], ['sstarf', [8902]], ['Star', [8902]], ['star', [9734]], ['starf', [9733]], ['straightepsilon', [1013]], ['straightphi', [981]], ['strns', [175]], ['sub', [8834]], ['Sub', [8912]], ['subdot', [10941]], ['subE', [10949]], ['sube', [8838]], ['subedot', [10947]], ['submult', [10945]], ['subnE', [10955]], ['subne', [8842]], ['subplus', [10943]], ['subrarr', [10617]], ['subset', [8834]], ['Subset', [8912]], ['subseteq', [8838]], ['subseteqq', [10949]], ['SubsetEqual', [8838]], ['subsetneq', [8842]], ['subsetneqq', [10955]], ['subsim', [10951]], ['subsub', [10965]], ['subsup', [10963]], ['succapprox', [10936]], ['succ', [8827]], ['succcurlyeq', [8829]], ['Succeeds', [8827]], ['SucceedsEqual', [10928]], ['SucceedsSlantEqual', [8829]], ['SucceedsTilde', [8831]], ['succeq', [10928]], ['succnapprox', [10938]], ['succneqq', [10934]], ['succnsim', [8937]], ['succsim', [8831]], ['SuchThat', [8715]], ['sum', [8721]], ['Sum', [8721]], ['sung', [9834]], ['sup1', [185]], ['sup2', [178]], ['sup3', [179]], ['sup', [8835]], ['Sup', [8913]], ['supdot', [10942]], ['supdsub', [10968]], ['supE', [10950]], ['supe', [8839]], ['supedot', [10948]], ['Superset', [8835]], ['SupersetEqual', [8839]], ['suphsol', [10185]], ['suphsub', [10967]], ['suplarr', [10619]], ['supmult', [10946]], ['supnE', [10956]], ['supne', [8843]], ['supplus', [10944]], ['supset', [8835]], ['Supset', [8913]], ['supseteq', [8839]], ['supseteqq', [10950]], ['supsetneq', [8843]], ['supsetneqq', [10956]], ['supsim', [10952]], ['supsub', [10964]], ['supsup', [10966]], ['swarhk', [10534]], ['swarr', [8601]], ['swArr', [8665]], ['swarrow', [8601]], ['swnwar', [10538]], ['szlig', [223]], ['Tab', [9]], ['target', [8982]], ['Tau', [932]], ['tau', [964]], ['tbrk', [9140]], ['Tcaron', [356]], ['tcaron', [357]], ['Tcedil', [354]], ['tcedil', [355]], ['Tcy', [1058]], ['tcy', [1090]], ['tdot', [8411]], ['telrec', [8981]], ['Tfr', [120087]], ['tfr', [120113]], ['there4', [8756]], ['therefore', [8756]], ['Therefore', [8756]], ['Theta', [920]], ['theta', [952]], ['thetasym', [977]], ['thetav', [977]], ['thickapprox', [8776]], ['thicksim', [8764]], ['ThickSpace', [8287, 8202]], ['ThinSpace', [8201]], ['thinsp', [8201]], ['thkap', [8776]], ['thksim', [8764]], ['THORN', [222]], ['thorn', [254]], ['tilde', [732]], ['Tilde', [8764]], ['TildeEqual', [8771]], ['TildeFullEqual', [8773]], ['TildeTilde', [8776]], ['timesbar', [10801]], ['timesb', [8864]], ['times', [215]], ['timesd', [10800]], ['tint', [8749]], ['toea', [10536]], ['topbot', [9014]], ['topcir', [10993]], ['top', [8868]], ['Topf', [120139]], ['topf', [120165]], ['topfork', [10970]], ['tosa', [10537]], ['tprime', [8244]], ['trade', [8482]], ['TRADE', [8482]], ['triangle', [9653]], ['triangledown', [9663]], ['triangleleft', [9667]], ['trianglelefteq', [8884]], ['triangleq', [8796]], ['triangleright', [9657]], ['trianglerighteq', [8885]], ['tridot', [9708]], ['trie', [8796]], ['triminus', [10810]], ['TripleDot', [8411]], ['triplus', [10809]], ['trisb', [10701]], ['tritime', [10811]], ['trpezium', [9186]], ['Tscr', [119983]], ['tscr', [120009]], ['TScy', [1062]], ['tscy', [1094]], ['TSHcy', [1035]], ['tshcy', [1115]], ['Tstrok', [358]], ['tstrok', [359]], ['twixt', [8812]], ['twoheadleftarrow', [8606]], ['twoheadrightarrow', [8608]], ['Uacute', [218]], ['uacute', [250]], ['uarr', [8593]], ['Uarr', [8607]], ['uArr', [8657]], ['Uarrocir', [10569]], ['Ubrcy', [1038]], ['ubrcy', [1118]], ['Ubreve', [364]], ['ubreve', [365]], ['Ucirc', [219]], ['ucirc', [251]], ['Ucy', [1059]], ['ucy', [1091]], ['udarr', [8645]], ['Udblac', [368]], ['udblac', [369]], ['udhar', [10606]], ['ufisht', [10622]], ['Ufr', [120088]], ['ufr', [120114]], ['Ugrave', [217]], ['ugrave', [249]], ['uHar', [10595]], ['uharl', [8639]], ['uharr', [8638]], ['uhblk', [9600]], ['ulcorn', [8988]], ['ulcorner', [8988]], ['ulcrop', [8975]], ['ultri', [9720]], ['Umacr', [362]], ['umacr', [363]], ['uml', [168]], ['UnderBar', [95]], ['UnderBrace', [9183]], ['UnderBracket', [9141]], ['UnderParenthesis', [9181]], ['Union', [8899]], ['UnionPlus', [8846]], ['Uogon', [370]], ['uogon', [371]], ['Uopf', [120140]], ['uopf', [120166]], ['UpArrowBar', [10514]], ['uparrow', [8593]], ['UpArrow', [8593]], ['Uparrow', [8657]], ['UpArrowDownArrow', [8645]], ['updownarrow', [8597]], ['UpDownArrow', [8597]], ['Updownarrow', [8661]], ['UpEquilibrium', [10606]], ['upharpoonleft', [8639]], ['upharpoonright', [8638]], ['uplus', [8846]], ['UpperLeftArrow', [8598]], ['UpperRightArrow', [8599]], ['upsi', [965]], ['Upsi', [978]], ['upsih', [978]], ['Upsilon', [933]], ['upsilon', [965]], ['UpTeeArrow', [8613]], ['UpTee', [8869]], ['upuparrows', [8648]], ['urcorn', [8989]], ['urcorner', [8989]], ['urcrop', [8974]], ['Uring', [366]], ['uring', [367]], ['urtri', [9721]], ['Uscr', [119984]], ['uscr', [120010]], ['utdot', [8944]], ['Utilde', [360]], ['utilde', [361]], ['utri', [9653]], ['utrif', [9652]], ['uuarr', [8648]], ['Uuml', [220]], ['uuml', [252]], ['uwangle', [10663]], ['vangrt', [10652]], ['varepsilon', [1013]], ['varkappa', [1008]], ['varnothing', [8709]], ['varphi', [981]], ['varpi', [982]], ['varpropto', [8733]], ['varr', [8597]], ['vArr', [8661]], ['varrho', [1009]], ['varsigma', [962]], ['varsubsetneq', [8842, 65024]], ['varsubsetneqq', [10955, 65024]], ['varsupsetneq', [8843, 65024]], ['varsupsetneqq', [10956, 65024]], ['vartheta', [977]], ['vartriangleleft', [8882]], ['vartriangleright', [8883]], ['vBar', [10984]], ['Vbar', [10987]], ['vBarv', [10985]], ['Vcy', [1042]], ['vcy', [1074]], ['vdash', [8866]], ['vDash', [8872]], ['Vdash', [8873]], ['VDash', [8875]], ['Vdashl', [10982]], ['veebar', [8891]], ['vee', [8744]], ['Vee', [8897]], ['veeeq', [8794]], ['vellip', [8942]], ['verbar', [124]], ['Verbar', [8214]], ['vert', [124]], ['Vert', [8214]], ['VerticalBar', [8739]], ['VerticalLine', [124]], ['VerticalSeparator', [10072]], ['VerticalTilde', [8768]], ['VeryThinSpace', [8202]], ['Vfr', [120089]], ['vfr', [120115]], ['vltri', [8882]], ['vnsub', [8834, 8402]], ['vnsup', [8835, 8402]], ['Vopf', [120141]], ['vopf', [120167]], ['vprop', [8733]], ['vrtri', [8883]], ['Vscr', [119985]], ['vscr', [120011]], ['vsubnE', [10955, 65024]], ['vsubne', [8842, 65024]], ['vsupnE', [10956, 65024]], ['vsupne', [8843, 65024]], ['Vvdash', [8874]], ['vzigzag', [10650]], ['Wcirc', [372]], ['wcirc', [373]], ['wedbar', [10847]], ['wedge', [8743]], ['Wedge', [8896]], ['wedgeq', [8793]], ['weierp', [8472]], ['Wfr', [120090]], ['wfr', [120116]], ['Wopf', [120142]], ['wopf', [120168]], ['wp', [8472]], ['wr', [8768]], ['wreath', [8768]], ['Wscr', [119986]], ['wscr', [120012]], ['xcap', [8898]], ['xcirc', [9711]], ['xcup', [8899]], ['xdtri', [9661]], ['Xfr', [120091]], ['xfr', [120117]], ['xharr', [10231]], ['xhArr', [10234]], ['Xi', [926]], ['xi', [958]], ['xlarr', [10229]], ['xlArr', [10232]], ['xmap', [10236]], ['xnis', [8955]], ['xodot', [10752]], ['Xopf', [120143]], ['xopf', [120169]], ['xoplus', [10753]], ['xotime', [10754]], ['xrarr', [10230]], ['xrArr', [10233]], ['Xscr', [119987]], ['xscr', [120013]], ['xsqcup', [10758]], ['xuplus', [10756]], ['xutri', [9651]], ['xvee', [8897]], ['xwedge', [8896]], ['Yacute', [221]], ['yacute', [253]], ['YAcy', [1071]], ['yacy', [1103]], ['Ycirc', [374]], ['ycirc', [375]], ['Ycy', [1067]], ['ycy', [1099]], ['yen', [165]], ['Yfr', [120092]], ['yfr', [120118]], ['YIcy', [1031]], ['yicy', [1111]], ['Yopf', [120144]], ['yopf', [120170]], ['Yscr', [119988]], ['yscr', [120014]], ['YUcy', [1070]], ['yucy', [1102]], ['yuml', [255]], ['Yuml', [376]], ['Zacute', [377]], ['zacute', [378]], ['Zcaron', [381]], ['zcaron', [382]], ['Zcy', [1047]], ['zcy', [1079]], ['Zdot', [379]], ['zdot', [380]], ['zeetrf', [8488]], ['ZeroWidthSpace', [8203]], ['Zeta', [918]], ['zeta', [950]], ['zfr', [120119]], ['Zfr', [8488]], ['ZHcy', [1046]], ['zhcy', [1078]], ['zigrarr', [8669]], ['zopf', [120171]], ['Zopf', [8484]], ['Zscr', [119989]], ['zscr', [120015]], ['zwj', [8205]], ['zwnj', [8204]]];
@@ -13273,35 +13515,35 @@ module.exports = Html5Entities;
 
 
 /***/ }),
-/* 90 */
+/* 92 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = (__webpack_require__(2))(11);
 
 /***/ }),
-/* 91 */
+/* 93 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = (__webpack_require__(2))(21);
 
 /***/ }),
-/* 92 */
+/* 94 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = (__webpack_require__(2))(85);
 
 /***/ }),
-/* 93 */
+/* 95 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(224);
+__webpack_require__(228);
 var core_1 = __webpack_require__(0);
-var angular2_universal_1 = __webpack_require__(26);
-var app_module_1 = __webpack_require__(112);
-__webpack_require__(225);
+var angular2_universal_1 = __webpack_require__(17);
+var app_module_1 = __webpack_require__(115);
+__webpack_require__(229);
 var rootElemTagName = 'app'; // Update this if you change your root component selector
 // Enable either Hot Module Reloading or production mode
 if (true) {
@@ -13329,7 +13571,7 @@ else {
 
 
 /***/ }),
-/* 94 */
+/* 96 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(__resourceQuery, module) {/*eslint-env browser*/
@@ -13345,7 +13587,7 @@ var options = {
   name: ''
 };
 if (true) {
-  var querystring = __webpack_require__(190);
+  var querystring = __webpack_require__(194);
   var overrides = querystring.parse(__resourceQuery.slice(1));
   if (overrides.path) options.path = overrides.path;
   if (overrides.timeout) options.timeout = overrides.timeout;
@@ -13465,11 +13707,11 @@ if (typeof window !== 'undefined') {
 }
 
 function createReporter() {
-  var strip = __webpack_require__(201);
+  var strip = __webpack_require__(205);
 
   var overlay;
   if (typeof document !== 'undefined' && options.overlay) {
-    overlay = __webpack_require__(216);
+    overlay = __webpack_require__(220);
   }
 
   var styles = {
@@ -13522,7 +13764,7 @@ function createReporter() {
   };
 }
 
-var processUpdate = __webpack_require__(217);
+var processUpdate = __webpack_require__(221);
 
 var customHandler;
 var subscribeAllHandler;
@@ -13587,34 +13829,34 @@ if (module) {
   };
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, "?path=%2F__webpack_hmr", __webpack_require__(228)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, "?path=%2F__webpack_hmr", __webpack_require__(232)(module)))
 
 /***/ }),
-/* 95 */
+/* 97 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = (__webpack_require__(2))(348);
 
 /***/ }),
-/* 96 */
+/* 98 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* unused harmony export coreDirectives */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AgmCoreModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__directives_map__ = __webpack_require__(59);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__directives_circle__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__directives_map__ = __webpack_require__(60);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__directives_circle__ = __webpack_require__(57);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__directives_info_window__ = __webpack_require__(37);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__directives_marker__ = __webpack_require__(60);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__directives_polygon__ = __webpack_require__(61);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__directives_polyline__ = __webpack_require__(62);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__directives_marker__ = __webpack_require__(61);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__directives_polygon__ = __webpack_require__(62);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__directives_polyline__ = __webpack_require__(63);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__directives_polyline_point__ = __webpack_require__(38);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__directives_kml_layer__ = __webpack_require__(58);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__directives_data_layer__ = __webpack_require__(57);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__directives_kml_layer__ = __webpack_require__(59);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__directives_data_layer__ = __webpack_require__(58);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__services_maps_api_loader_lazy_maps_api_loader__ = __webpack_require__(45);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__services_maps_api_loader_maps_api_loader__ = __webpack_require__(28);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__utils_browser_globals__ = __webpack_require__(64);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__services_maps_api_loader_maps_api_loader__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__utils_browser_globals__ = __webpack_require__(65);
 
 
 
@@ -13670,25 +13912,25 @@ AgmCoreModule.ctorParameters = function () { return []; };
 //# sourceMappingURL=core.module.js.map
 
 /***/ }),
-/* 97 */
+/* 99 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__directives_map__ = __webpack_require__(59);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__directives_map__ = __webpack_require__(60);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_0__directives_map__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__directives_circle__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__directives_circle__ = __webpack_require__(57);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_1__directives_circle__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__directives_info_window__ = __webpack_require__(37);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return __WEBPACK_IMPORTED_MODULE_2__directives_info_window__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__directives_kml_layer__ = __webpack_require__(58);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__directives_kml_layer__ = __webpack_require__(59);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return __WEBPACK_IMPORTED_MODULE_3__directives_kml_layer__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__directives_data_layer__ = __webpack_require__(57);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__directives_data_layer__ = __webpack_require__(58);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return __WEBPACK_IMPORTED_MODULE_4__directives_data_layer__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__directives_marker__ = __webpack_require__(60);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__directives_marker__ = __webpack_require__(61);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return __WEBPACK_IMPORTED_MODULE_5__directives_marker__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__directives_polygon__ = __webpack_require__(61);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__directives_polygon__ = __webpack_require__(62);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return __WEBPACK_IMPORTED_MODULE_6__directives_polygon__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__directives_polyline__ = __webpack_require__(62);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__directives_polyline__ = __webpack_require__(63);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return __WEBPACK_IMPORTED_MODULE_7__directives_polyline__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__directives_polyline_point__ = __webpack_require__(38);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "i", function() { return __WEBPACK_IMPORTED_MODULE_8__directives_polyline_point__["a"]; });
@@ -13704,7 +13946,7 @@ AgmCoreModule.ctorParameters = function () { return []; };
 //# sourceMappingURL=directives.js.map
 
 /***/ }),
-/* 98 */
+/* 100 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -13714,7 +13956,7 @@ AgmCoreModule.ctorParameters = function () { return []; };
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_1__services_managers_circle_manager__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_managers_info_window_manager__ = __webpack_require__(41);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return __WEBPACK_IMPORTED_MODULE_2__services_managers_info_window_manager__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_managers_marker_manager__ = __webpack_require__(27);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_managers_marker_manager__ = __webpack_require__(26);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return __WEBPACK_IMPORTED_MODULE_3__services_managers_marker_manager__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_managers_polygon_manager__ = __webpack_require__(43);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return __WEBPACK_IMPORTED_MODULE_4__services_managers_polygon_manager__["a"]; });
@@ -13728,9 +13970,9 @@ AgmCoreModule.ctorParameters = function () { return []; };
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "i", function() { return __WEBPACK_IMPORTED_MODULE_8__services_maps_api_loader_lazy_maps_api_loader__["c"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "j", function() { return __WEBPACK_IMPORTED_MODULE_8__services_maps_api_loader_lazy_maps_api_loader__["b"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "k", function() { return __WEBPACK_IMPORTED_MODULE_8__services_maps_api_loader_lazy_maps_api_loader__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__services_maps_api_loader_maps_api_loader__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__services_maps_api_loader_maps_api_loader__ = __webpack_require__(27);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "l", function() { return __WEBPACK_IMPORTED_MODULE_9__services_maps_api_loader_maps_api_loader__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__services_maps_api_loader_noop_maps_api_loader__ = __webpack_require__(99);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__services_maps_api_loader_noop_maps_api_loader__ = __webpack_require__(101);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "m", function() { return __WEBPACK_IMPORTED_MODULE_10__services_maps_api_loader_noop_maps_api_loader__["a"]; });
 
 
@@ -13746,7 +13988,7 @@ AgmCoreModule.ctorParameters = function () { return []; };
 //# sourceMappingURL=services.js.map
 
 /***/ }),
-/* 99 */
+/* 101 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -13772,7 +14014,7 @@ var NoOpMapsAPILoader = (function () {
 //# sourceMappingURL=noop-maps-api-loader.js.map
 
 /***/ }),
-/* 100 */
+/* 102 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -13781,22 +14023,22 @@ var NoOpMapsAPILoader = (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return REACTIVE_DRIVEN_DIRECTIVES; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return InternalFormsSharedModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__directives_checkbox_value_accessor__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__directives_default_value_accessor__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__directives_checkbox_value_accessor__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__directives_default_value_accessor__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__directives_ng_control_status__ = __webpack_require__(47);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__directives_ng_form__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__directives_ng_form__ = __webpack_require__(20);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__directives_ng_model__ = __webpack_require__(48);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__directives_ng_model_group__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__directives_ng_model_group__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__directives_number_value_accessor__ = __webpack_require__(49);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__directives_radio_control_value_accessor__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__directives_radio_control_value_accessor__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__directives_range_value_accessor__ = __webpack_require__(50);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__directives_reactive_directives_form_control_directive__ = __webpack_require__(51);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__directives_reactive_directives_form_control_name__ = __webpack_require__(52);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__directives_reactive_directives_form_group_directive__ = __webpack_require__(23);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__directives_reactive_directives_form_group_name__ = __webpack_require__(24);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__directives_select_control_value_accessor__ = __webpack_require__(33);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__directives_select_multiple_control_value_accessor__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__directives_validators__ = __webpack_require__(67);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__directives_reactive_directives_form_group_directive__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__directives_reactive_directives_form_group_name__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__directives_select_control_value_accessor__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__directives_select_multiple_control_value_accessor__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__directives_validators__ = __webpack_require__(68);
 /* unused harmony reexport CheckboxControlValueAccessor */
 /* unused harmony reexport DefaultValueAccessor */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__directives_ng_control__ = __webpack_require__(12);
@@ -13906,7 +14148,7 @@ function InternalFormsSharedModule_tsickle_Closure_declarations() {
 //# sourceMappingURL=directives.js.map
 
 /***/ }),
-/* 101 */
+/* 103 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -13946,16 +14188,16 @@ function normalizeAsyncValidator(validator) {
 //# sourceMappingURL=normalize_validator.js.map
 
 /***/ }),
-/* 102 */
+/* 104 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FormsModule; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return ReactiveFormsModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__directives__ = __webpack_require__(100);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__directives_radio_control_value_accessor__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__form_builder__ = __webpack_require__(69);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__directives__ = __webpack_require__(102);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__directives_radio_control_value_accessor__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__form_builder__ = __webpack_require__(70);
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -14024,58 +14266,58 @@ function ReactiveFormsModule_tsickle_Closure_declarations() {
 //# sourceMappingURL=form_providers.js.map
 
 /***/ }),
-/* 103 */
+/* 105 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__directives_abstract_control_directive__ = __webpack_require__(46);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_0__directives_abstract_control_directive__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__directives_abstract_form_group_directive__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__directives_abstract_form_group_directive__ = __webpack_require__(19);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_1__directives_abstract_form_group_directive__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__directives_checkbox_value_accessor__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__directives_checkbox_value_accessor__ = __webpack_require__(28);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return __WEBPACK_IMPORTED_MODULE_2__directives_checkbox_value_accessor__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__directives_control_container__ = __webpack_require__(9);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return __WEBPACK_IMPORTED_MODULE_3__directives_control_container__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__directives_control_value_accessor__ = __webpack_require__(5);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return __WEBPACK_IMPORTED_MODULE_4__directives_control_value_accessor__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__directives_default_value_accessor__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__directives_default_value_accessor__ = __webpack_require__(29);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return __WEBPACK_IMPORTED_MODULE_5__directives_default_value_accessor__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__directives_ng_control__ = __webpack_require__(12);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return __WEBPACK_IMPORTED_MODULE_6__directives_ng_control__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__directives_ng_control_status__ = __webpack_require__(47);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return __WEBPACK_IMPORTED_MODULE_7__directives_ng_control_status__["a"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "i", function() { return __WEBPACK_IMPORTED_MODULE_7__directives_ng_control_status__["b"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__directives_ng_form__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__directives_ng_form__ = __webpack_require__(20);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "j", function() { return __WEBPACK_IMPORTED_MODULE_8__directives_ng_form__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__directives_ng_model__ = __webpack_require__(48);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "k", function() { return __WEBPACK_IMPORTED_MODULE_9__directives_ng_model__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__directives_ng_model_group__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__directives_ng_model_group__ = __webpack_require__(30);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "l", function() { return __WEBPACK_IMPORTED_MODULE_10__directives_ng_model_group__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__directives_radio_control_value_accessor__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__directives_radio_control_value_accessor__ = __webpack_require__(21);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "m", function() { return __WEBPACK_IMPORTED_MODULE_11__directives_radio_control_value_accessor__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__directives_reactive_directives_form_control_directive__ = __webpack_require__(51);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "n", function() { return __WEBPACK_IMPORTED_MODULE_12__directives_reactive_directives_form_control_directive__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__directives_reactive_directives_form_control_name__ = __webpack_require__(52);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "o", function() { return __WEBPACK_IMPORTED_MODULE_13__directives_reactive_directives_form_control_name__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__directives_reactive_directives_form_group_directive__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__directives_reactive_directives_form_group_directive__ = __webpack_require__(22);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "p", function() { return __WEBPACK_IMPORTED_MODULE_14__directives_reactive_directives_form_group_directive__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__directives_reactive_directives_form_group_name__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__directives_reactive_directives_form_group_name__ = __webpack_require__(23);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "q", function() { return __WEBPACK_IMPORTED_MODULE_15__directives_reactive_directives_form_group_name__["a"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "r", function() { return __WEBPACK_IMPORTED_MODULE_15__directives_reactive_directives_form_group_name__["b"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__directives_select_control_value_accessor__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__directives_select_control_value_accessor__ = __webpack_require__(32);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "s", function() { return __WEBPACK_IMPORTED_MODULE_16__directives_select_control_value_accessor__["a"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "t", function() { return __WEBPACK_IMPORTED_MODULE_16__directives_select_control_value_accessor__["b"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__directives_select_multiple_control_value_accessor__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__directives_select_multiple_control_value_accessor__ = __webpack_require__(33);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "u", function() { return __WEBPACK_IMPORTED_MODULE_17__directives_select_multiple_control_value_accessor__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__directives_validators__ = __webpack_require__(67);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__directives_validators__ = __webpack_require__(68);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "v", function() { return __WEBPACK_IMPORTED_MODULE_18__directives_validators__["a"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "w", function() { return __WEBPACK_IMPORTED_MODULE_18__directives_validators__["b"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "x", function() { return __WEBPACK_IMPORTED_MODULE_18__directives_validators__["c"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "y", function() { return __WEBPACK_IMPORTED_MODULE_18__directives_validators__["d"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "z", function() { return __WEBPACK_IMPORTED_MODULE_18__directives_validators__["e"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__form_builder__ = __webpack_require__(69);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__form_builder__ = __webpack_require__(70);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "A", function() { return __WEBPACK_IMPORTED_MODULE_19__form_builder__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__model__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__model__ = __webpack_require__(34);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "B", function() { return __WEBPACK_IMPORTED_MODULE_20__model__["a"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "C", function() { return __WEBPACK_IMPORTED_MODULE_20__model__["b"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "D", function() { return __WEBPACK_IMPORTED_MODULE_20__model__["c"]; });
@@ -14084,9 +14326,9 @@ function ReactiveFormsModule_tsickle_Closure_declarations() {
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "F", function() { return __WEBPACK_IMPORTED_MODULE_21__validators__["a"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "G", function() { return __WEBPACK_IMPORTED_MODULE_21__validators__["b"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "H", function() { return __WEBPACK_IMPORTED_MODULE_21__validators__["c"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__version__ = __webpack_require__(104);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__version__ = __webpack_require__(106);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "I", function() { return __WEBPACK_IMPORTED_MODULE_22__version__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__form_providers__ = __webpack_require__(102);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__form_providers__ = __webpack_require__(104);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "J", function() { return __WEBPACK_IMPORTED_MODULE_23__form_providers__["a"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "K", function() { return __WEBPACK_IMPORTED_MODULE_23__form_providers__["b"]; });
 /**
@@ -14134,7 +14376,7 @@ function ReactiveFormsModule_tsickle_Closure_declarations() {
 //# sourceMappingURL=forms.js.map
 
 /***/ }),
-/* 104 */
+/* 106 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -14155,18 +14397,18 @@ var /** @type {?} */ VERSION = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["
 //# sourceMappingURL=version.js.map
 
 /***/ }),
-/* 105 */
+/* 107 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var index_1 = __webpack_require__(108);
+var index_1 = __webpack_require__(110);
 exports.Angular2FontawesomeModule = index_1.Angular2FontawesomeModule;
 
 
 /***/ }),
-/* 106 */
+/* 108 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14313,7 +14555,7 @@ exports.FaComponent = FaComponent;
 
 
 /***/ }),
-/* 107 */
+/* 109 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14442,16 +14684,16 @@ exports.FaDirective = FaDirective;
 
 
 /***/ }),
-/* 108 */
+/* 110 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var common_1 = __webpack_require__(19);
-var fa_directive_1 = __webpack_require__(107);
-var fa_component_1 = __webpack_require__(106);
+var common_1 = __webpack_require__(18);
+var fa_directive_1 = __webpack_require__(109);
+var fa_component_1 = __webpack_require__(108);
 //import { FaStackComponent } from './components/fa-stack.component';
 var Angular2FontawesomeModule = (function () {
     function Angular2FontawesomeModule() {
@@ -14471,7 +14713,83 @@ exports.Angular2FontawesomeModule = Angular2FontawesomeModule;
 
 
 /***/ }),
-/* 109 */
+/* 111 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Angular2SocialLoginModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__auth_service__ = __webpack_require__(72);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+
+var Angular2SocialLoginModule = (function () {
+    function Angular2SocialLoginModule() {
+    }
+    Angular2SocialLoginModule.loadProvidersScripts = function (config) {
+        var loadProvidersScripts = {
+            google: function (info) {
+                var d = document, gJs, ref = d.getElementsByTagName('script')[0];
+                gJs = d.createElement('script');
+                gJs.async = true;
+                gJs.src = "//apis.google.com/js/platform.js";
+                gJs.onload = function () {
+                    gapi.load('auth2', function () {
+                        gapi.auth2.init({
+                            client_id: info["clientId"],
+                            scope: 'email'
+                        });
+                    });
+                };
+                ref.parentNode.insertBefore(gJs, ref);
+            },
+            linkedin: function (info) {
+                var lIN, d = document, ref = d.getElementsByTagName('script')[0];
+                lIN = d.createElement('script');
+                lIN.async = false;
+                lIN.src = "//platform.linkedin.com/in.js";
+                lIN.text = ("api_key: " + info["clientId"]).replace("\"", "");
+                ref.parentNode.insertBefore(lIN, ref);
+            },
+            facebook: function (info) {
+                var d = document, fbJs, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+                fbJs = d.createElement('script');
+                fbJs.id = id;
+                fbJs.async = true;
+                fbJs.src = "//connect.facebook.net/en_US/sdk.js";
+                fbJs.onload = function () {
+                    FB.init({
+                        appId: info["clientId"],
+                        status: true,
+                        cookie: true,
+                        xfbml: true,
+                        version: info["apiVersion"]
+                    });
+                };
+                ref.parentNode.insertBefore(fbJs, ref);
+            }
+        };
+        Object.keys(config).forEach(function (provider) {
+            loadProvidersScripts[provider](config[provider]);
+        });
+    };
+    return Angular2SocialLoginModule;
+}());
+Angular2SocialLoginModule = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
+        providers: [__WEBPACK_IMPORTED_MODULE_1__auth_service__["a" /* AuthService */]]
+    })
+], Angular2SocialLoginModule);
+
+//# sourceMappingURL=angular2-social-login.module.js.map
+
+/***/ }),
+/* 112 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14545,7 +14863,7 @@ exports.EqualTextValidator = EqualTextValidator;
 //# sourceMappingURL=angular2-text-equality-validator.js.map
 
 /***/ }),
-/* 110 */
+/* 113 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14728,7 +15046,7 @@ ansiHTML.reset()
 
 
 /***/ }),
-/* 111 */
+/* 114 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14739,7 +15057,7 @@ module.exports = function () {
 
 
 /***/ }),
-/* 112 */
+/* 115 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14752,15 +15070,15 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var angular2_universal_1 = __webpack_require__(26);
-var app_component_1 = __webpack_require__(114);
-var home_module_1 = __webpack_require__(117);
-var shared_module_1 = __webpack_require__(36);
-var authorization_module_1 = __webpack_require__(113);
-var super_admin_module_1 = __webpack_require__(137);
-var app_routing_module_1 = __webpack_require__(118);
-var map_module_1 = __webpack_require__(84);
-var angular2_fontawesome_1 = __webpack_require__(105);
+var angular2_universal_1 = __webpack_require__(17);
+var app_component_1 = __webpack_require__(117);
+var home_module_1 = __webpack_require__(120);
+var shared_module_1 = __webpack_require__(35);
+var authorization_module_1 = __webpack_require__(116);
+var super_admin_module_1 = __webpack_require__(140);
+var app_routing_module_1 = __webpack_require__(121);
+var map_module_1 = __webpack_require__(86);
+var angular2_fontawesome_1 = __webpack_require__(107);
 var AppModule = (function () {
     function AppModule() {
     }
@@ -14788,7 +15106,7 @@ exports.AppModule = AppModule;
 
 
 /***/ }),
-/* 113 */
+/* 116 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14802,17 +15120,25 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
 var forms_1 = __webpack_require__(6);
-var authorization_component_1 = __webpack_require__(73);
-var registration_component_1 = __webpack_require__(78);
-var user_profile_component_1 = __webpack_require__(83);
-var authorization_routing_module_1 = __webpack_require__(119);
-var error_authorize_component_1 = __webpack_require__(87);
-var common_1 = __webpack_require__(19);
+var authorization_component_1 = __webpack_require__(75);
+var registration_component_1 = __webpack_require__(80);
+var user_profile_component_1 = __webpack_require__(85);
+var authorization_routing_module_1 = __webpack_require__(122);
+var error_authorize_component_1 = __webpack_require__(89);
+var common_1 = __webpack_require__(18);
 var forms_2 = __webpack_require__(6);
-var angular2_text_equality_validator_1 = __webpack_require__(109);
-var shared_module_1 = __webpack_require__(36);
-var begin_password_reset_component_1 = __webpack_require__(76);
-var new_password_component_1 = __webpack_require__(77);
+var angular2_text_equality_validator_1 = __webpack_require__(112);
+var shared_module_1 = __webpack_require__(35);
+var angular2_universal_1 = __webpack_require__(17);
+var angular2_social_login_1 = __webpack_require__(53);
+var begin_password_reset_component_1 = __webpack_require__(78);
+var new_password_component_1 = __webpack_require__(79);
+var provider = {
+    "facebook": {
+        "clientId": '108153859816185',
+        "apiVersion": "v2.9"
+    }
+};
 //module for authorization users
 var AuthorizationModule = (function () {
     function AuthorizationModule() {
@@ -14835,15 +15161,19 @@ AuthorizationModule = __decorate([
             forms_1.FormsModule,
             authorization_routing_module_1.AuthorizationRoutingModule,
             forms_2.ReactiveFormsModule,
+            angular2_social_login_1.Angular2SocialLoginModule,
             shared_module_1.SharedModule
         ]
     })
 ], AuthorizationModule);
 exports.AuthorizationModule = AuthorizationModule;
+if (angular2_universal_1.isBrowser) {
+    angular2_social_login_1.Angular2SocialLoginModule.loadProvidersScripts(provider);
+}
 
 
 /***/ }),
-/* 114 */
+/* 117 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14864,15 +15194,15 @@ var AppComponent = (function () {
 AppComponent = __decorate([
     core_1.Component({
         selector: 'app',
-        template: __webpack_require__(166),
-        styles: [__webpack_require__(204)]
+        template: __webpack_require__(170),
+        styles: [__webpack_require__(208)]
     })
 ], AppComponent);
 exports.AppComponent = AppComponent;
 
 
 /***/ }),
-/* 115 */
+/* 118 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14914,14 +15244,14 @@ __decorate([
 SuperAdminBanComponent = __decorate([
     core_1.Component({
         selector: 'super-admin-ban',
-        template: __webpack_require__(173)
+        template: __webpack_require__(177)
     })
 ], SuperAdminBanComponent);
 exports.SuperAdminBanComponent = SuperAdminBanComponent;
 
 
 /***/ }),
-/* 116 */
+/* 119 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -14937,8 +15267,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var modal_component_1 = __webpack_require__(55);
-var super_admin_change_status_view_model_1 = __webpack_require__(138);
+var modal_component_1 = __webpack_require__(56);
+var super_admin_change_status_view_model_1 = __webpack_require__(141);
 var core_2 = __webpack_require__(0);
 var SuperAdminGrid = (function () {
     function SuperAdminGrid() {
@@ -14999,8 +15329,8 @@ __decorate([
 SuperAdminGrid = __decorate([
     core_1.Component({
         selector: 'super-admin-grid',
-        template: __webpack_require__(175),
-        styles: [__webpack_require__(209)]
+        template: __webpack_require__(179),
+        styles: [__webpack_require__(213)]
     })
     /**
     * Componet to dispay Grid for users or organizations
@@ -15010,7 +15340,7 @@ exports.SuperAdminGrid = SuperAdminGrid;
 
 
 /***/ }),
-/* 117 */
+/* 120 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15023,14 +15353,14 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var home_component_1 = __webpack_require__(75);
-var about_component_1 = __webpack_require__(71);
-var allevents_component_1 = __webpack_require__(72);
-var eventdetail_component_1 = __webpack_require__(74);
-var common_1 = __webpack_require__(19);
-var home_routing_module_1 = __webpack_require__(120);
-var map_module_1 = __webpack_require__(84);
-var shared_module_1 = __webpack_require__(36);
+var home_component_1 = __webpack_require__(77);
+var about_component_1 = __webpack_require__(73);
+var allevents_component_1 = __webpack_require__(74);
+var eventdetail_component_1 = __webpack_require__(76);
+var common_1 = __webpack_require__(18);
+var home_routing_module_1 = __webpack_require__(123);
+var map_module_1 = __webpack_require__(86);
+var shared_module_1 = __webpack_require__(35);
 var HomeModule = (function () {
     function HomeModule() {
     }
@@ -15056,7 +15386,7 @@ exports.HomeModule = HomeModule;
 
 
 /***/ }),
-/* 118 */
+/* 121 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15087,7 +15417,7 @@ exports.AppRoutingModule = AppRoutingModule;
 
 
 /***/ }),
-/* 119 */
+/* 122 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15101,13 +15431,13 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
 var router_1 = __webpack_require__(3);
-var registration_component_1 = __webpack_require__(78);
-var authorization_component_1 = __webpack_require__(73);
-var user_profile_component_1 = __webpack_require__(83);
-var login_route_guard_1 = __webpack_require__(127);
-var error_authorize_component_1 = __webpack_require__(87);
-var begin_password_reset_component_1 = __webpack_require__(76);
-var new_password_component_1 = __webpack_require__(77);
+var registration_component_1 = __webpack_require__(80);
+var authorization_component_1 = __webpack_require__(75);
+var user_profile_component_1 = __webpack_require__(85);
+var partner_route_guard_1 = __webpack_require__(129);
+var error_authorize_component_1 = __webpack_require__(89);
+var begin_password_reset_component_1 = __webpack_require__(78);
+var new_password_component_1 = __webpack_require__(79);
 var AuthorizationRoutingModule = (function () {
     function AuthorizationRoutingModule() {
     }
@@ -15115,7 +15445,7 @@ var AuthorizationRoutingModule = (function () {
 }());
 AuthorizationRoutingModule = __decorate([
     core_1.NgModule({
-        providers: [login_route_guard_1.LoginRouteGuard],
+        providers: [partner_route_guard_1.PartnerRouteGuard],
         imports: [
             router_1.RouterModule.forChild([
                 { path: 'login', component: authorization_component_1.AuthorizationComponent },
@@ -15123,7 +15453,7 @@ AuthorizationRoutingModule = __decorate([
                 {
                     path: 'userprofile',
                     component: user_profile_component_1.UserProfileComponent,
-                    canActivate: [login_route_guard_1.LoginRouteGuard]
+                    canActivate: [partner_route_guard_1.PartnerRouteGuard]
                 },
                 { path: 'errorauthorize', component: error_authorize_component_1.ErrorAuthorizeComponent },
                 { path: 'begin_password_reset', component: begin_password_reset_component_1.BeginPasswordResetComponent },
@@ -15137,7 +15467,7 @@ exports.AuthorizationRoutingModule = AuthorizationRoutingModule;
 
 
 /***/ }),
-/* 120 */
+/* 123 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15151,10 +15481,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
 var router_1 = __webpack_require__(3);
-var home_component_1 = __webpack_require__(75);
-var about_component_1 = __webpack_require__(71);
-var allevents_component_1 = __webpack_require__(72);
-var eventdetail_component_1 = __webpack_require__(74);
+var home_component_1 = __webpack_require__(77);
+var about_component_1 = __webpack_require__(73);
+var allevents_component_1 = __webpack_require__(74);
+var eventdetail_component_1 = __webpack_require__(76);
 var HomeRoutingModule = (function () {
     function HomeRoutingModule() {
     }
@@ -15188,7 +15518,7 @@ exports.HomeRoutingModule = HomeRoutingModule;
 
 
 /***/ }),
-/* 121 */
+/* 124 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15202,7 +15532,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
 var router_1 = __webpack_require__(3);
-var map_component_1 = __webpack_require__(88);
+var map_component_1 = __webpack_require__(90);
 var MapRoutingModule = (function () {
     function MapRoutingModule() {
     }
@@ -15219,7 +15549,7 @@ exports.MapRoutingModule = MapRoutingModule;
 
 
 /***/ }),
-/* 122 */
+/* 125 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15233,11 +15563,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
 var router_1 = __webpack_require__(3);
-var super_admin_component_1 = __webpack_require__(82);
-var super_admin_complaints_component_1 = __webpack_require__(79);
-var super_admin_organizations_component_1 = __webpack_require__(80);
-var super_admin_users_component_1 = __webpack_require__(81);
-var admin_route_guard_1 = __webpack_require__(126);
+var super_admin_component_1 = __webpack_require__(84);
+var super_admin_complaints_component_1 = __webpack_require__(81);
+var super_admin_organizations_component_1 = __webpack_require__(82);
+var super_admin_users_component_1 = __webpack_require__(83);
+var superadmin_route_guard_1 = __webpack_require__(130);
 var SuperAdminRoutingModule = (function () {
     function SuperAdminRoutingModule() {
     }
@@ -15245,13 +15575,13 @@ var SuperAdminRoutingModule = (function () {
 }());
 SuperAdminRoutingModule = __decorate([
     core_1.NgModule({
-        providers: [admin_route_guard_1.AdminRouteGuard],
+        providers: [superadmin_route_guard_1.SuperAdminRouteGuard],
         imports: [
             router_1.RouterModule.forChild([
                 {
                     path: 'superadmin',
                     component: super_admin_component_1.SuperAdminComponent,
-                    canActivate: [admin_route_guard_1.AdminRouteGuard],
+                    canActivate: [superadmin_route_guard_1.SuperAdminRouteGuard],
                     children: [
                         {
                             path: 'complaints',
@@ -15273,149 +15603,6 @@ SuperAdminRoutingModule = __decorate([
     })
 ], SuperAdminRoutingModule);
 exports.SuperAdminRoutingModule = SuperAdminRoutingModule;
-
-
-/***/ }),
-/* 123 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = __webpack_require__(0);
-var http_1 = __webpack_require__(11);
-var base_service_1 = __webpack_require__(54);
-var EventDetailService = (function (_super) {
-    __extends(EventDetailService, _super);
-    /**
- * @constructor
- * @param http
- */
-    function EventDetailService(http) {
-        return _super.call(this, http) || this;
-    }
-    return EventDetailService;
-}(base_service_1.BaseService));
-EventDetailService = __decorate([
-    core_1.Injectable(),
-    __metadata("design:paramtypes", [http_1.Http])
-], EventDetailService);
-exports.EventDetailService = EventDetailService;
-
-
-/***/ }),
-/* 124 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = __webpack_require__(0);
-var base_service_1 = __webpack_require__(54);
-var http_1 = __webpack_require__(11);
-var OrganizationDropdownService = (function (_super) {
-    __extends(OrganizationDropdownService, _super);
-    /**
-     * @constructor
-     * @param http
-     */
-    function OrganizationDropdownService(http) {
-        var _this = _super.call(this, http, 'api/OrganizationsList') || this;
-        _this.http = http;
-        return _this;
-    }
-    return OrganizationDropdownService;
-}(base_service_1.BaseService));
-OrganizationDropdownService = __decorate([
-    core_1.Injectable(),
-    __metadata("design:paramtypes", [http_1.Http])
-], OrganizationDropdownService);
-exports.OrganizationDropdownService = OrganizationDropdownService;
-
-
-/***/ }),
-/* 125 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = __webpack_require__(0);
-var http_1 = __webpack_require__(11);
-var base_service_1 = __webpack_require__(54);
-var OrganizationEventService = (function (_super) {
-    __extends(OrganizationEventService, _super);
-    /**
- * @constructor
- * @param http
- */
-    function OrganizationEventService(http) {
-        return _super.call(this, http, 'api/Event/AllEvents') || this;
-    }
-    return OrganizationEventService;
-}(base_service_1.BaseService));
-OrganizationEventService = __decorate([
-    core_1.Injectable(),
-    __metadata("design:paramtypes", [http_1.Http])
-], OrganizationEventService);
-exports.OrganizationEventService = OrganizationEventService;
 
 
 /***/ }),
@@ -15444,21 +15631,25 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var router_1 = __webpack_require__(3);
 var core_1 = __webpack_require__(0);
-var base_guard_service_1 = __webpack_require__(85);
-var AdminRouteGuard = (function (_super) {
-    __extends(AdminRouteGuard, _super);
-    function AdminRouteGuard(_router) {
-        return _super.call(this, _router, 'Admin') || this;
+var http_1 = __webpack_require__(11);
+var base_service_1 = __webpack_require__(55);
+var EventDetailService = (function (_super) {
+    __extends(EventDetailService, _super);
+    /**
+ * @constructor
+ * @param http
+ */
+    function EventDetailService(http) {
+        return _super.call(this, http) || this;
     }
-    return AdminRouteGuard;
-}(base_guard_service_1.BaseGuardService));
-AdminRouteGuard = __decorate([
+    return EventDetailService;
+}(base_service_1.BaseService));
+EventDetailService = __decorate([
     core_1.Injectable(),
-    __metadata("design:paramtypes", [router_1.Router])
-], AdminRouteGuard);
-exports.AdminRouteGuard = AdminRouteGuard;
+    __metadata("design:paramtypes", [http_1.Http])
+], EventDetailService);
+exports.EventDetailService = EventDetailService;
 
 
 /***/ }),
@@ -15487,25 +15678,164 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var router_1 = __webpack_require__(3);
 var core_1 = __webpack_require__(0);
-var base_guard_service_1 = __webpack_require__(85);
-var LoginRouteGuard = (function (_super) {
-    __extends(LoginRouteGuard, _super);
-    function LoginRouteGuard(_router) {
-        return _super.call(this, _router, null) || this;
+var base_service_1 = __webpack_require__(55);
+var http_1 = __webpack_require__(11);
+var OrganizationDropdownService = (function (_super) {
+    __extends(OrganizationDropdownService, _super);
+    /**
+     * @constructor
+     * @param http
+     */
+    function OrganizationDropdownService(http) {
+        var _this = _super.call(this, http, 'api/OrganizationsList') || this;
+        _this.http = http;
+        return _this;
     }
-    return LoginRouteGuard;
-}(base_guard_service_1.BaseGuardService));
-LoginRouteGuard = __decorate([
+    return OrganizationDropdownService;
+}(base_service_1.BaseService));
+OrganizationDropdownService = __decorate([
     core_1.Injectable(),
-    __metadata("design:paramtypes", [router_1.Router])
-], LoginRouteGuard);
-exports.LoginRouteGuard = LoginRouteGuard;
+    __metadata("design:paramtypes", [http_1.Http])
+], OrganizationDropdownService);
+exports.OrganizationDropdownService = OrganizationDropdownService;
 
 
 /***/ }),
 /* 128 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = __webpack_require__(0);
+var http_1 = __webpack_require__(11);
+var base_service_1 = __webpack_require__(55);
+var OrganizationEventService = (function (_super) {
+    __extends(OrganizationEventService, _super);
+    /**
+ * @constructor
+ * @param http
+ */
+    function OrganizationEventService(http) {
+        return _super.call(this, http, 'api/Event/AllEvents') || this;
+    }
+    return OrganizationEventService;
+}(base_service_1.BaseService));
+OrganizationEventService = __decorate([
+    core_1.Injectable(),
+    __metadata("design:paramtypes", [http_1.Http])
+], OrganizationEventService);
+exports.OrganizationEventService = OrganizationEventService;
+
+
+/***/ }),
+/* 129 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var router_1 = __webpack_require__(3);
+var core_1 = __webpack_require__(0);
+var base_guard_service_1 = __webpack_require__(87);
+var PartnerRouteGuard = (function (_super) {
+    __extends(PartnerRouteGuard, _super);
+    function PartnerRouteGuard(_router) {
+        return _super.call(this, _router, null) || this;
+    }
+    return PartnerRouteGuard;
+}(base_guard_service_1.BaseGuardService));
+PartnerRouteGuard = __decorate([
+    core_1.Injectable(),
+    __metadata("design:paramtypes", [router_1.Router])
+], PartnerRouteGuard);
+exports.PartnerRouteGuard = PartnerRouteGuard;
+
+
+/***/ }),
+/* 130 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var router_1 = __webpack_require__(3);
+var core_1 = __webpack_require__(0);
+var base_guard_service_1 = __webpack_require__(87);
+var SuperAdminRouteGuard = (function (_super) {
+    __extends(SuperAdminRouteGuard, _super);
+    function SuperAdminRouteGuard(_router) {
+        return _super.call(this, _router, 'superadmin') || this;
+    }
+    return SuperAdminRouteGuard;
+}(base_guard_service_1.BaseGuardService));
+SuperAdminRouteGuard = __decorate([
+    core_1.Injectable(),
+    __metadata("design:paramtypes", [router_1.Router])
+], SuperAdminRouteGuard);
+exports.SuperAdminRouteGuard = SuperAdminRouteGuard;
+
+
+/***/ }),
+/* 131 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15523,9 +15853,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
 var http_1 = __webpack_require__(11);
 var Observable_1 = __webpack_require__(1);
-__webpack_require__(17);
+__webpack_require__(24);
+__webpack_require__(36);
 __webpack_require__(25);
-__webpack_require__(18);
 var UserInfoService = (function () {
     function UserInfoService(_http) {
         this._http = _http;
@@ -15554,7 +15884,7 @@ exports.UserInfoService = UserInfoService;
 
 
 /***/ }),
-/* 129 */
+/* 132 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15567,7 +15897,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-__webpack_require__(146);
+__webpack_require__(150);
 var AmazonUploadComponent = (function () {
     function AmazonUploadComponent() {
         this._amazonKeyId = 'AKIAJH4TLLOIZ5QOBKMQ';
@@ -15600,7 +15930,7 @@ exports.AmazonUploadComponent = AmazonUploadComponent;
 
 
 /***/ }),
-/* 130 */
+/* 133 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15616,7 +15946,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var organization_dropdown_service_1 = __webpack_require__(124);
+var organization_dropdown_service_1 = __webpack_require__(127);
 var DropdownOrganizationsComponent = (function () {
     /**
      * @constructor
@@ -15654,8 +15984,8 @@ var DropdownOrganizationsComponent = (function () {
 DropdownOrganizationsComponent = __decorate([
     core_1.Component({
         selector: 'dropdown-org',
-        template: __webpack_require__(180),
-        styles: [__webpack_require__(212)],
+        template: __webpack_require__(184),
+        styles: [__webpack_require__(216)],
         providers: [organization_dropdown_service_1.OrganizationDropdownService]
     }),
     __metadata("design:paramtypes", [organization_dropdown_service_1.OrganizationDropdownService])
@@ -15664,7 +15994,7 @@ exports.DropdownOrganizationsComponent = DropdownOrganizationsComponent;
 
 
 /***/ }),
-/* 131 */
+/* 134 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15704,7 +16034,7 @@ __decorate([
 PageItemComponent = __decorate([
     core_1.Component({
         selector: 'pagination-item',
-        template: __webpack_require__(184)
+        template: __webpack_require__(188)
     })
     /**
       * Generic class for grid items
@@ -15714,7 +16044,7 @@ exports.PageItemComponent = PageItemComponent;
 
 
 /***/ }),
-/* 132 */
+/* 135 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15731,11 +16061,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
 var Observable_1 = __webpack_require__(1);
-__webpack_require__(18);
-__webpack_require__(17);
-__webpack_require__(191);
-__webpack_require__(192);
-__webpack_require__(194);
+__webpack_require__(25);
+__webpack_require__(24);
+__webpack_require__(195);
+__webpack_require__(196);
+__webpack_require__(198);
 var PaginationComponent = (function () {
     /**
      * Creates new instance of PaginationComponent
@@ -15835,7 +16165,7 @@ __decorate([
 PaginationComponent = __decorate([
     core_1.Component({
         selector: 'pagination-pages',
-        template: __webpack_require__(185)
+        template: __webpack_require__(189)
     })
     /**
     * Generic class for pagination buttons
@@ -15847,7 +16177,7 @@ exports.PaginationComponent = PaginationComponent;
 
 
 /***/ }),
-/* 133 */
+/* 136 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15890,7 +16220,7 @@ __decorate([
 SelectComponent = __decorate([
     core_1.Component({
         selector: 'select-item',
-        template: __webpack_require__(186)
+        template: __webpack_require__(190)
     })
     /**
      * Generic component for select box
@@ -15900,7 +16230,7 @@ exports.SelectComponent = SelectComponent;
 
 
 /***/ }),
-/* 134 */
+/* 137 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15917,19 +16247,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
 var keys = __webpack_require__(16);
-var angular2_universal_1 = __webpack_require__(26);
+var angular2_universal_1 = __webpack_require__(17);
 var user_service_1 = __webpack_require__(15);
 var UserStatesComponent = (function () {
     function UserStatesComponent(_authorizationService) {
         this._authorizationService = _authorizationService;
-        this.login = "";
         this.name = "";
     }
     /**
      * close the session current user
      */
     UserStatesComponent.prototype.exit = function () {
-        this.login = "";
+        this.name = null;
         this._authorizationService.logOff();
     };
     /**
@@ -15939,7 +16268,6 @@ var UserStatesComponent = (function () {
         if (angular2_universal_1.isBrowser) {
             if (localStorage.getItem(keys.keyToken)) {
                 this.user = JSON.parse(localStorage.getItem(keys.keyModel));
-                this.login = this.user.login;
                 this.name = this.user.firstName;
             }
             return true;
@@ -15951,8 +16279,8 @@ var UserStatesComponent = (function () {
 UserStatesComponent = __decorate([
     core_1.Component({
         selector: 'user-states',
-        template: __webpack_require__(187),
-        styles: [__webpack_require__(215)],
+        template: __webpack_require__(191),
+        styles: [__webpack_require__(219)],
         providers: [user_service_1.UserService]
     }),
     __metadata("design:paramtypes", [user_service_1.UserService])
@@ -15961,7 +16289,7 @@ exports.UserStatesComponent = UserStatesComponent;
 
 
 /***/ }),
-/* 135 */
+/* 138 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -15995,7 +16323,7 @@ exports.EventFilterPipe = EventFilterPipe;
 
 
 /***/ }),
-/* 136 */
+/* 139 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16036,7 +16364,7 @@ exports.DropdownOrganizationFilterPipe = DropdownOrganizationFilterPipe;
 
 
 /***/ }),
-/* 137 */
+/* 140 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16049,15 +16377,15 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var common_1 = __webpack_require__(19);
-var super_admin_component_1 = __webpack_require__(82);
-var super_admin_routing_module_1 = __webpack_require__(122);
-var super_admin_complaints_component_1 = __webpack_require__(79);
-var super_admin_organizations_component_1 = __webpack_require__(80);
-var super_admin_users_component_1 = __webpack_require__(81);
-var super_admin_grid_component_1 = __webpack_require__(116);
-var shared_module_1 = __webpack_require__(36);
-var super_admin_ban_component_1 = __webpack_require__(115);
+var common_1 = __webpack_require__(18);
+var super_admin_component_1 = __webpack_require__(84);
+var super_admin_routing_module_1 = __webpack_require__(125);
+var super_admin_complaints_component_1 = __webpack_require__(81);
+var super_admin_organizations_component_1 = __webpack_require__(82);
+var super_admin_users_component_1 = __webpack_require__(83);
+var super_admin_grid_component_1 = __webpack_require__(119);
+var shared_module_1 = __webpack_require__(35);
+var super_admin_ban_component_1 = __webpack_require__(118);
 var SuperAdminModule = (function () {
     function SuperAdminModule() {
     }
@@ -16084,7 +16412,7 @@ exports.SuperAdminModule = SuperAdminModule;
 
 
 /***/ }),
-/* 138 */
+/* 141 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16102,27 +16430,7 @@ exports.SuperAdminChangeStatusViewModel = SuperAdminChangeStatusViewModel;
 
 
 /***/ }),
-/* 139 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-/**
- * Model which return from login form
- */
-var AuthorizeViewModel = (function () {
-    function AuthorizeViewModel(login, password) {
-        this.login = login;
-        this.password = password;
-    }
-    return AuthorizeViewModel;
-}());
-exports.AuthorizeViewModel = AuthorizeViewModel;
-
-
-/***/ }),
-/* 140 */
+/* 142 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16134,20 +16442,16 @@ var AuthorizeUserModel = (function () {
     return AuthorizeUserModel;
 }());
 exports.AuthorizeUserModel = AuthorizeUserModel;
-var AuthorizationType = (function () {
-    function AuthorizationType(userModel, access_token, errorMessage, validationSummary) {
-        this.userModel = userModel;
-        this.access_token = access_token;
-        this.errorMessage = errorMessage;
-        this.validationSummary = validationSummary;
+var AuthorizedUserInfoViewModel = (function () {
+    function AuthorizedUserInfoViewModel() {
     }
-    return AuthorizationType;
+    return AuthorizedUserInfoViewModel;
 }());
-exports.AuthorizationType = AuthorizationType;
+exports.AuthorizedUserInfoViewModel = AuthorizedUserInfoViewModel;
 
 
 /***/ }),
-/* 141 */
+/* 143 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16165,7 +16469,7 @@ exports.ChangePasswordViewModel = ChangePasswordViewModel;
 
 
 /***/ }),
-/* 142 */
+/* 144 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16183,7 +16487,42 @@ exports.GuidViewModel = GuidViewModel;
 
 
 /***/ }),
-/* 143 */
+/* 145 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var LoginFacebookViewModel = (function () {
+    function LoginFacebookViewModel() {
+    }
+    return LoginFacebookViewModel;
+}());
+exports.LoginFacebookViewModel = LoginFacebookViewModel;
+
+
+/***/ }),
+/* 146 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * Model which contain enter login and password.
+ */
+var LoginViewModel = (function () {
+    function LoginViewModel(login, password) {
+        this.login = login;
+        this.password = password;
+    }
+    return LoginViewModel;
+}());
+exports.LoginViewModel = LoginViewModel;
+
+
+/***/ }),
+/* 147 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16198,7 +16537,7 @@ exports.RegistrationViewModel = RegistrationViewModel;
 
 
 /***/ }),
-/* 144 */
+/* 148 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16216,7 +16555,7 @@ exports.ResetPasswordViewModel = ResetPasswordViewModel;
 
 
 /***/ }),
-/* 145 */
+/* 149 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16234,7 +16573,7 @@ exports.UserEmailViewModel = UserEmailViewModel;
 
 
 /***/ }),
-/* 146 */
+/* 150 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {var require;var require;var __WEBPACK_AMD_DEFINE_RESULT__;// AWS SDK for JavaScript v2.79.0
@@ -139089,10 +139428,10 @@ require('../clients/browser_default');
 },{"../clients/browser_default":163,"./browser_loader":224,"./core":227}]},{},[480]);
 
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(90)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(92)))
 
 /***/ }),
-/* 147 */
+/* 151 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(4)();
@@ -139106,7 +139445,7 @@ exports.push([module.i, ".fborder {\r\n    padding-left: 200px;\r\n    padding-t
 
 
 /***/ }),
-/* 148 */
+/* 152 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(4)();
@@ -139120,7 +139459,7 @@ exports.push([module.i, ".panel-padding {\r\n    padding-left: 50px;\r\n    padd
 
 
 /***/ }),
-/* 149 */
+/* 153 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(4)();
@@ -139134,71 +139473,15 @@ exports.push([module.i, "body {\r\n      margin: 0px 0px 0px 0px !important;\r\n
 
 
 /***/ }),
-/* 150 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(4)();
-// imports
-
-
-// module
-exports.push([module.i, "p {\r\n    color:red !important;\r\n}\r\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 151 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(4)();
-// imports
-
-
-// module
-exports.push([module.i, ".panel-padding {\r\n    padding-left: 50px;\r\n    padding-right: 50px;\r\n}\r\n\r\n.div-panel-margen {\r\n    margin-right: 20px;\r\n    margin-bottom: 20px;\r\n}\r\n\r\n/* Main carousel style */\r\n.carousel {\r\n    width: 600px;\r\n}\r\n\r\n/* Indicators list style */\r\n.article-slide .carousel-indicators {\r\n    bottom: 0;\r\n    left: 0;\r\n    margin-left: 5px;\r\n    width: 100%;\r\n}\r\n    /* Indicators list style */\r\n    .article-slide .carousel-indicators li {\r\n        border: medium none;\r\n        border-radius: 0;\r\n        float: left;\r\n        height: 54px;\r\n        margin-bottom: 5px;\r\n        margin-left: 0;\r\n        margin-right: 5px !important;\r\n        margin-top: 0;\r\n        width: auto;\r\n    }\r\n    /* Indicators images style */\r\n    .article-slide .carousel-indicators img {\r\n        border: 2px solid #FFFFFF;\r\n        float: left;\r\n        height: 54px;\r\n        left: 0;\r\n        /*width: 100px;*/\r\n    }\r\n    /* Indicators active image style */\r\n    .article-slide .carousel-indicators .active img {\r\n        border: 2px solid #428BCA;\r\n        opacity: 0.7;\r\n    }", ""]);
-
-// exports
-
-
-/***/ }),
-/* 152 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(4)();
-// imports
-
-
-// module
-exports.push([module.i, "#right-bar {\r\n    background-color: aliceblue;\r\n}\r\n\r\n.nav-mn {\r\n    margin-bottom: 20px;\r\n}\r\n\r\n@media (max-width: 1199px){\r\n    .nav-mn {\r\n        position: relative;\r\n    }\r\n}\r\n\r\n@media (max-width: 2048px) and (min-width: 1200px) {\r\n    .nav-mn {\r\n        position: fixed;\r\n    }\r\n}\r\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 153 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(4)();
-// imports
-
-
-// module
-exports.push([module.i, ".fixedError {\r\n    margin-bottom: 0px;\r\n}\r\n.form-group {\r\n    margin-bottom: 7px !important;\r\n}\r\n\r\n#registrationForm {\r\n    width: 400px;\r\n}\r\n\r\n.formHeader {\r\n    border-bottom: 1px solid #ccc;\r\n    padding-bottom: 10px;\r\n}", ""]);
-
-// exports
-
-
-/***/ }),
 /* 154 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(4)();
 // imports
-
+exports.push([module.i, "@import url(http://fonts.googleapis.com/css?family=Roboto);", ""]);
 
 // module
-exports.push([module.i, ".custom-btn {\r\n    width: 90px !important;\r\n}\r\n", ""]);
+exports.push([module.i, ".loginmodal-container h3 {\n    text-align: center;\n    font-size: 1.8em;\n    font-family: roboto;\n}\n\n.loginmodal {\n    text-align: center;\n    font-size: 14px;\n    font-family: 'Arial', sans-serif;\n    font-weight: 700;\n    height: 36px;\n    padding: 0 8px;\n}\n\n.loginmodal-submit {\n    border: 0px;\n    color: #fff;\n    text-shadow: 0 1px rgba(0,0,0,0.1);\n    background-color: #4d90fe;\n    padding: 17px 0px;\n    font-family: roboto;\n    font-size: 14px;\n}\n\n    .loginmodal-submit:hover {\n        border: 0px;\n        text-shadow: 0 1px rgba(0,0,0,0.3);\n        background-color: #357ae8;\n    }\n\n.loginmodal-container a {\n    text-decoration: none;\n    color: cadetblue;\n    font-weight: 400;\n    text-align: center;\n    display: inline-block;\n    opacity: 0.6;\n    transition: opacity ease 0.5s;\n}\n\n.login-help {\n    font-size: 12.5px;\n}\n\n.loginmodal-container p {\n    color: red !important;\n}\n\n.sidebar {\n    position: relative;\n}\n", ""]);
 
 // exports
 
@@ -139212,7 +139495,7 @@ exports = module.exports = __webpack_require__(4)();
 
 
 // module
-exports.push([module.i, " :focus {\n    outline: none;\n}\n.row {\n    margin-right: 0 !important;\n    margin-left: 0 !important;\n}\n.side-menu {\n    width: 300px;\n    height: 100%;\n    background-color: #f8f8f8;\n    border-right: 1px solid #e7e7e7;\n    float: left;\n}\n.side-body {\n    margin-left: 350px;\n    position: relative;\n}\n.side-menu .navbar {\n    border: none;\n}\n.side-menu .navbar-header {\n    width: 100%;\n    border-bottom: 1px solid #e7e7e7;\n}\n.side-menu .navbar-nav .active a {\n    background-color: transparent;\n    margin-right: -1px;\n    border-right: 5px solid #e7e7e7;\n}\n.side-menu .navbar-nav li {\n    display: block;\n    width: 100%;\n    border-bottom: 1px solid #e7e7e7;\n}\n.side-menu .navbar-nav li a {\n    padding: 15px;\n}\n.side-menu .navbar-nav li a .glyphicon {\n    padding-right: 10px;\n}\r\n", ""]);
+exports.push([module.i, ".panel-padding {\r\n    padding-left: 50px;\r\n    padding-right: 50px;\r\n}\r\n\r\n.div-panel-margen {\r\n    margin-right: 20px;\r\n    margin-bottom: 20px;\r\n}\r\n\r\n/* Main carousel style */\r\n.carousel {\r\n    width: 600px;\r\n}\r\n\r\n/* Indicators list style */\r\n.article-slide .carousel-indicators {\r\n    bottom: 0;\r\n    left: 0;\r\n    margin-left: 5px;\r\n    width: 100%;\r\n}\r\n    /* Indicators list style */\r\n    .article-slide .carousel-indicators li {\r\n        border: medium none;\r\n        border-radius: 0;\r\n        float: left;\r\n        height: 54px;\r\n        margin-bottom: 5px;\r\n        margin-left: 0;\r\n        margin-right: 5px !important;\r\n        margin-top: 0;\r\n        width: auto;\r\n    }\r\n    /* Indicators images style */\r\n    .article-slide .carousel-indicators img {\r\n        border: 2px solid #FFFFFF;\r\n        float: left;\r\n        height: 54px;\r\n        left: 0;\r\n        /*width: 100px;*/\r\n    }\r\n    /* Indicators active image style */\r\n    .article-slide .carousel-indicators .active img {\r\n        border: 2px solid #428BCA;\r\n        opacity: 0.7;\r\n    }", ""]);
 
 // exports
 
@@ -139226,7 +139509,7 @@ exports = module.exports = __webpack_require__(4)();
 
 
 // module
-exports.push([module.i, ".userprofile {\r\n    height: auto;\r\n}\r\n\r\n/*.ng-valid[required], .ng-valid.required {\r\n    border-bottom: 5px solid mediumseagreen;\r\n}*/\r\n\r\n/*.ng-invalid:not(form) {\r\n    border-bottom: 0.5px solid red;\r\n}*/\r\n", ""]);
+exports.push([module.i, "#right-bar {\r\n    background-color: aliceblue;\r\n}\r\n\r\n.nav-mn {\r\n    margin-bottom: 20px;\r\n}\r\n\r\n@media (max-width: 1199px){\r\n    .nav-mn {\r\n        position: relative;\r\n    }\r\n}\r\n\r\n@media (max-width: 2048px) and (min-width: 1200px) {\r\n    .nav-mn {\r\n        position: fixed;\r\n    }\r\n}\r\n", ""]);
 
 // exports
 
@@ -139240,7 +139523,7 @@ exports = module.exports = __webpack_require__(4)();
 
 
 // module
-exports.push([module.i, ".scrollable-menu {\r\n    height: auto !important;\r\n    max-height: 200px !important;\r\n    overflow-x: hidden !important;\r\n}\r\n\r\n.btn-info {\r\n    border: solid 1px silver !important;\r\n    background-color: #292c2f !important;\r\n    color: #8f9296;\r\n}\r\n\r\n.form-control {\r\n    width: 100% !important;\r\n}\r\n", ""]);
+exports.push([module.i, ".fixedError {\r\n    margin-bottom: 0px;\r\n}\r\n.form-group {\r\n    margin-bottom: 7px !important;\r\n}\r\n\r\n#registrationForm {\r\n    width: 400px;\r\n}\r\n\r\n.formHeader {\r\n    border-bottom: 1px solid #ccc;\r\n    padding-bottom: 10px;\r\n}", ""]);
 
 // exports
 
@@ -139254,7 +139537,7 @@ exports = module.exports = __webpack_require__(4)();
 
 
 // module
-exports.push([module.i, "h3 {\r\n    color:red\r\n}\r\n", ""]);
+exports.push([module.i, ".custom-btn {\r\n    width: 90px !important;\r\n}\r\n", ""]);
 
 // exports
 
@@ -139268,7 +139551,7 @@ exports = module.exports = __webpack_require__(4)();
 
 
 // module
-exports.push([module.i, "agm-map {\r\n    height: 300px;\r\n    width: 100%;\r\n}\r\n", ""]);
+exports.push([module.i, " :focus {\n    outline: none;\n}\n.row {\n    margin-right: 0 !important;\n    margin-left: 0 !important;\n}\n.side-menu {\n    width: 300px;\n    height: 100%;\n    background-color: #f8f8f8;\n    border-right: 1px solid #e7e7e7;\n    float: left;\n}\n.side-body {\n    margin-left: 350px;\n    position: relative;\n}\n.side-menu .navbar {\n    border: none;\n}\n.side-menu .navbar-header {\n    width: 100%;\n    border-bottom: 1px solid #e7e7e7;\n}\n.side-menu .navbar-nav .active a {\n    background-color: transparent;\n    margin-right: -1px;\n    border-right: 5px solid #e7e7e7;\n}\n.side-menu .navbar-nav li {\n    display: block;\n    width: 100%;\n    border-bottom: 1px solid #e7e7e7;\n}\n.side-menu .navbar-nav li a {\n    padding: 15px;\n}\n.side-menu .navbar-nav li a .glyphicon {\n    padding-right: 10px;\n}\r\n", ""]);
 
 // exports
 
@@ -139282,7 +139565,7 @@ exports = module.exports = __webpack_require__(4)();
 
 
 // module
-exports.push([module.i, "a {\r\n    color:white!important;\r\n}\r\n    a:hover {\r\n        color: navy !important;\r\n    }\r\n.dropdowncolor {\r\n    background-color: #333;\r\n}", ""]);
+exports.push([module.i, ".userprofile {\r\n    height: auto;\r\n}\r\n\r\n/*.ng-valid[required], .ng-valid.required {\r\n    border-bottom: 5px solid mediumseagreen;\r\n}*/\r\n\r\n/*.ng-invalid:not(form) {\r\n    border-bottom: 0.5px solid red;\r\n}*/\r\n", ""]);
 
 // exports
 
@@ -139291,16 +139574,72 @@ exports.push([module.i, "a {\r\n    color:white!important;\r\n}\r\n    a:hover {
 /* 161 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = {
-  XmlEntities: __webpack_require__(163),
-  Html4Entities: __webpack_require__(162),
-  Html5Entities: __webpack_require__(89),
-  AllHtmlEntities: __webpack_require__(89)
-};
+exports = module.exports = __webpack_require__(4)();
+// imports
+
+
+// module
+exports.push([module.i, ".scrollable-menu {\r\n    height: auto !important;\r\n    max-height: 200px !important;\r\n    overflow-x: hidden !important;\r\n}\r\n\r\n.btn-info {\r\n    border: solid 1px silver !important;\r\n    background-color: #292c2f !important;\r\n    color: #8f9296;\r\n}\r\n\r\n.form-control {\r\n    width: 100% !important;\r\n}\r\n", ""]);
+
+// exports
 
 
 /***/ }),
 /* 162 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(4)();
+// imports
+
+
+// module
+exports.push([module.i, "h3 {\r\n    color:red\r\n}\r\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 163 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(4)();
+// imports
+
+
+// module
+exports.push([module.i, "agm-map {\r\n    height: 300px;\r\n    width: 100%;\r\n}\r\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 164 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(4)();
+// imports
+
+
+// module
+exports.push([module.i, "a {\r\n    color:white!important;\r\n}\r\n    a:hover {\r\n        color: navy !important;\r\n    }\r\n.dropdowncolor {\r\n    background-color: #333;\r\n}", ""]);
+
+// exports
+
+
+/***/ }),
+/* 165 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = {
+  XmlEntities: __webpack_require__(167),
+  Html4Entities: __webpack_require__(166),
+  Html5Entities: __webpack_require__(91),
+  AllHtmlEntities: __webpack_require__(91)
+};
+
+
+/***/ }),
+/* 166 */
 /***/ (function(module, exports) {
 
 var HTML_ALPHA = ['apos', 'nbsp', 'iexcl', 'cent', 'pound', 'curren', 'yen', 'brvbar', 'sect', 'uml', 'copy', 'ordf', 'laquo', 'not', 'shy', 'reg', 'macr', 'deg', 'plusmn', 'sup2', 'sup3', 'acute', 'micro', 'para', 'middot', 'cedil', 'sup1', 'ordm', 'raquo', 'frac14', 'frac12', 'frac34', 'iquest', 'Agrave', 'Aacute', 'Acirc', 'Atilde', 'Auml', 'Aring', 'Aelig', 'Ccedil', 'Egrave', 'Eacute', 'Ecirc', 'Euml', 'Igrave', 'Iacute', 'Icirc', 'Iuml', 'ETH', 'Ntilde', 'Ograve', 'Oacute', 'Ocirc', 'Otilde', 'Ouml', 'times', 'Oslash', 'Ugrave', 'Uacute', 'Ucirc', 'Uuml', 'Yacute', 'THORN', 'szlig', 'agrave', 'aacute', 'acirc', 'atilde', 'auml', 'aring', 'aelig', 'ccedil', 'egrave', 'eacute', 'ecirc', 'euml', 'igrave', 'iacute', 'icirc', 'iuml', 'eth', 'ntilde', 'ograve', 'oacute', 'ocirc', 'otilde', 'ouml', 'divide', 'oslash', 'ugrave', 'uacute', 'ucirc', 'uuml', 'yacute', 'thorn', 'yuml', 'quot', 'amp', 'lt', 'gt', 'OElig', 'oelig', 'Scaron', 'scaron', 'Yuml', 'circ', 'tilde', 'ensp', 'emsp', 'thinsp', 'zwnj', 'zwj', 'lrm', 'rlm', 'ndash', 'mdash', 'lsquo', 'rsquo', 'sbquo', 'ldquo', 'rdquo', 'bdquo', 'dagger', 'Dagger', 'permil', 'lsaquo', 'rsaquo', 'euro', 'fnof', 'Alpha', 'Beta', 'Gamma', 'Delta', 'Epsilon', 'Zeta', 'Eta', 'Theta', 'Iota', 'Kappa', 'Lambda', 'Mu', 'Nu', 'Xi', 'Omicron', 'Pi', 'Rho', 'Sigma', 'Tau', 'Upsilon', 'Phi', 'Chi', 'Psi', 'Omega', 'alpha', 'beta', 'gamma', 'delta', 'epsilon', 'zeta', 'eta', 'theta', 'iota', 'kappa', 'lambda', 'mu', 'nu', 'xi', 'omicron', 'pi', 'rho', 'sigmaf', 'sigma', 'tau', 'upsilon', 'phi', 'chi', 'psi', 'omega', 'thetasym', 'upsih', 'piv', 'bull', 'hellip', 'prime', 'Prime', 'oline', 'frasl', 'weierp', 'image', 'real', 'trade', 'alefsym', 'larr', 'uarr', 'rarr', 'darr', 'harr', 'crarr', 'lArr', 'uArr', 'rArr', 'dArr', 'hArr', 'forall', 'part', 'exist', 'empty', 'nabla', 'isin', 'notin', 'ni', 'prod', 'sum', 'minus', 'lowast', 'radic', 'prop', 'infin', 'ang', 'and', 'or', 'cap', 'cup', 'int', 'there4', 'sim', 'cong', 'asymp', 'ne', 'equiv', 'le', 'ge', 'sub', 'sup', 'nsub', 'sube', 'supe', 'oplus', 'otimes', 'perp', 'sdot', 'lceil', 'rceil', 'lfloor', 'rfloor', 'lang', 'rang', 'loz', 'spades', 'clubs', 'hearts', 'diams'];
@@ -139453,7 +139792,7 @@ module.exports = Html4Entities;
 
 
 /***/ }),
-/* 163 */
+/* 167 */
 /***/ (function(module, exports) {
 
 var ALPHA_INDEX = {
@@ -139614,151 +139953,151 @@ module.exports = XmlEntities;
 
 
 /***/ }),
-/* 164 */
+/* 168 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"col-lg-6 col-lg-offset-3\">\r\n    <div class=\"row\">\r\n        <div class=\"text-center\">\r\n            <p class=\"lead\">\r\n                Даний сайт розроблено в підтримку волонтерського руху України.\r\n            </p>\r\n            <p class=\"lead\">\r\n                Основна мета ресурсу - створити майданчик, на якому небайдужі громадяни могли б ознайомитися з діяльністю\r\n                волонтерських оргаізацій, отримати детальну інформацію про те, яким чином ними були витрачені отримані кошти,\r\n                дізнатися про їх нагальні потреби та зробити пожертву.\r\n            </p>\r\n            <p class=\"lead\">\r\n                В свою чергу волонтерські організації, учасники даного ресурсу, мають змогу презентувати себе\r\n                та ділитися з громадянами новинами про свою діяльність.\r\n            </p>\r\n        </div>\r\n    </div>\r\n    <div class=\"row\">\r\n        <div class=\"text-center\">\r\n            <a [routerLink]=\"['']\"><img src=\"/images/volonter.jpg\" width=\"300\" /></a>\r\n        </div>\r\n    </div>\r\n    <div class=\"row\">\r\n        <div class=\"text-center\">Розроблено:</div>\r\n        <h4 class=\"text-center\">Lv-242.Net Group</h4>\r\n        <div class=\"text-center\">\r\n            Витрикуш Тарас, Дмитрук Сергій, Желязняк Віторія, Малиновський Борис,<br />\r\n            Медвідь Оксана, Сипа Василь, Теплюх Богдан, Фай Василь<br />\r\n        </div>\r\n        <div class=\"text-center\">\r\n            <a [routerLink]=\"['']\">www.fundtrack.com.ua</a>\r\n        </div>\r\n    </div>\r\n</div>\r\n";
 
 /***/ }),
-/* 165 */
+/* 169 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"col-lg-6\" *ngFor=\"let event of _model\">\r\n    <div class=\"panel panel-primary\" style=\"height:320px\">\r\n        <div class=\"panel-heading\">\r\n            <div class=\"panel-title pull-left\">\r\n                <a href=\"#\">{{event.organizationName}}</a>\r\n            </div>\r\n            <div class=\"panel-title pull-right\">\r\n                {{event.createDate | date }}\r\n            </div>\r\n            <div class=\"clearfix\"></div>\r\n        </div>\r\n        <div class=\"panel-body panel-padding\">\r\n            <div class=\" pull-left div-panel-margen\">\r\n                <img src={{event.imageUrl}} height=\"200\" />\r\n            </div>\r\n            <div class=\"div-strings\">\r\n                {{event.description}}\r\n            </div>\r\n            <div class=\"pull-right\">\r\n                <a [routerLink]=\"['/home/eventdetail',event.id]\">Читати далі</a>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n";
 
 /***/ }),
-/* 166 */
+/* 170 */
 /***/ (function(module, exports) {
 
 module.exports = "<link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css\">\r\n<div class=\"fixedHeader\">\r\n    <nav class=\"navbar navbar-default\">\r\n        <div class=\"container-fluid\">\r\n            <div class=\"navbar-header\">\r\n                <button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#bs-example-navbar-collapse-1\" aria-expanded=\"false\">\r\n                    <span class=\"sr-only\">Toggle navigation</span>\r\n                    <span class=\"icon-bar\"></span>\r\n                    <span class=\"icon-bar\"></span>\r\n                    <span class=\"icon-bar\"></span>\r\n                </button>\r\n                <a class=\"navbar-brand\" [routerLink]=\"['']\">Волонтерські організації <span>України</span></a>\r\n            </div>\r\n\r\n            <div class=\"collapse navbar-collapse\" id=\"bs-example-navbar-collapse-1\">\r\n                <ul class=\"nav navbar-nav\">\r\n                    <li><a [routerLink]=\"['/about']\">Про нас</a></li>\r\n                </ul>\r\n                <form class=\"navbar-form navbar-left\">\r\n                    <dropdown-org></dropdown-org>\r\n                </form>\r\n                <form class=\"nav navbar-nav navbar-right\">\r\n                    <user-states></user-states>\r\n                </form>\r\n            </div>\r\n        </div>\r\n    </nav>\r\n</div>\r\n<div class=\"content\">\r\n    <div class=\"container-fluid\">\r\n        <router-outlet></router-outlet>\r\n    </div>\r\n</div>\r\n<footer class=\"footer footer-distributed\">\r\n    <div style=\"padding: 20px\">\r\n    <div class=\"footer-right\">\r\n        <a href=\"#\"><i class=\"fa fa-facebook\" ></i></a>\r\n        <a href=\"#\"><i class=\"fa fa-twitter\"></i></a>\r\n        <a href=\"#\"><i class=\"fa fa-linkedin\"></i></a>\r\n        <a href=\"#\"><i class=\"fa fa-youtube\"></i></a>\r\n    </div>\r\n\r\n    <div class=\"footer-left\">\r\n        <p class=\"footer-links\">\r\n            <a [routerLink]=\"['']\">Наш солдат</a>\r\n            ·\r\n            <a href=\"#\">Блог</a>\r\n            ·\r\n            <a [routerLink]=\"['/about']\">Про нас</a>\r\n            ·\r\n            <a href=\"#\">Faq</a>\r\n            ·\r\n            <a href=\"#\">Контакти</a>\r\n        </p>\r\n        <p>FundTrack &copy; 2017</p>\r\n    </div>\r\n        </div>\r\n</footer>";
 
 /***/ }),
-/* 167 */
-/***/ (function(module, exports) {
-
-module.exports = "<div>\r\n    <h3 class=\"col-md-4 col-md-offset-4\">Вхід в систему</h3>\r\n</div>\r\n<div class=\"col-md-4 col-md-offset-4 form-group has-feedback\">\r\n    <div class=\"input-group\">\r\n        <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-user\" aria-hidden=\"true\"></i></span>\r\n        <input name=\"login\" placeholder=\"Ваш логін\" type=\"text\"\r\n               [(ngModel)]=\"authorizeModel.login\" class=\"form-control input-md\">\r\n    </div>\r\n</div>\r\n<!-- Text input-->\r\n<div class=\"col-md-4 col-md-offset-4 form-group has-feedback\">\r\n    <div class=\"input-group\">\r\n        <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-lock\" aria-hidden=\"true\"></i></span>\r\n        <input name=\"password\" [type]=\"type\" placeholder=\"Ваш пароль\"\r\n               [(ngModel)]=\"authorizeModel.password\"\r\n               class=\"form-control input-md\">\r\n        <span class=\"input-group-addon\"><i [ngClass]=\"glyphyconEye\" (click)=\"showPassword()\" aria-hidden=\"true\"></i></span>\r\n    </div>\r\n</div>\r\n<!--Error-->\r\n<div class=\"col-md-4 col-md-offset-4 form-group\">\r\n    <div>\r\n        <p class=\"error\" *ngIf=\"errorMessage\">{{errorMessage}}</p>\r\n    </div>\r\n</div>\r\n<!-- Button -->\r\n<div class=\"col-md-4 col-md-offset-4 form-group\">\r\n    <button id=\"submit\" name=\"submit\" class=\"btn btn-success\" (click)=\"login()\">Увійти</button>\r\n    <button id=\"submit\" name=\"submit\" class=\"btn btn-primary\">Увійти через Facebook</button>\r\n</div>\r\n <!--Register-->\r\n<div class=\"login-help col-md-4 col-md-offset-4\">\r\n    <a [routerLink]=\"['/registration']\">Реєстрація</a> - <a [routerLink]=\"['/begin_password_reset']\">Забули пароль</a>\r\n</div>";
-
-/***/ }),
-/* 168 */
-/***/ (function(module, exports) {
-
-module.exports = "<div class=\"col-lg-12\" *ngIf=\"_eventDetail\">\r\n    <div class=\"panel panel-primary\">\r\n        <div class=\"panel-heading\">\r\n            <div class=\"panel-title pull-left\">\r\n                {{_eventDetail.organizationName}}\r\n            </div>\r\n            <div class=\"panel-title pull-right\">\r\n                {{_eventDetail.createDate | date }}\r\n            </div>\r\n            <div class=\"clearfix\"></div>\r\n        </div>\r\n        <div class=\"panel-body panel-padding\">\r\n\r\n            <div class=\"carousel slide article-slide\" id=\"article-photo-carousel\">\r\n                <!-- Wrapper for slides -->\r\n                <div class=\"carousel-inner cont-slider\">\r\n                    <div class=\"item active\">\r\n                        <a [routerLink]=\"['']\"><img alt=\"\" title=\"\" src={{_eventDetail.imageUrl[0]}} style=\"height:600px\"></a>\r\n                    </div>\r\n                    <div class=\"item\" *ngFor=\"let image of _eventDetail.imageUrl | slice:1\">\r\n                        <a [routerLink]=\"['']\"><img alt=\"\" title=\"\" src={{image}} style=\"height:600px\"></a>\r\n                    </div>\r\n                </div>\r\n                <!-- Indicators -->\r\n                <ol class=\"carousel-indicators\">\r\n                    <li class=\"active\" data-slide-to=\"0\" data-target=\"#article-photo-carousel\">\r\n                        <img alt=\"\" src={{_eventDetail.imageUrl[0]}}>\r\n                    </li>\r\n                    <li class=\"\" data-target=\"#article-photo-carousel\" *ngFor=\"let image of _eventDetail.imageUrl | slice:1; let i = index \" [attr.data-slide-to]=\"i+1\">\r\n                        <img alt=\"\" src={{image}}>\r\n                    </li>\r\n                </ol>\r\n            </div>\r\n\r\n            <div>\r\n                {{_eventDetail.description}}\r\n            </div>\r\n            <div class=\"pull-right\">\r\n                <a [routerLink]=\"['']\">Назад</a>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n\r\n\r\n\r\n<!--<div class=\"col-lg-12\" *ngIf=\"_eventDetail\">\r\n    <div class=\"panel panel-primary\">\r\n        <div class=\"panel-heading\">\r\n            <div class=\"panel-title pull-left\">\r\n                {{_eventDetail.organizationName}}\r\n            </div>\r\n            <div class=\"panel-title pull-right\">\r\n                {{_eventDetail.createDate | date }}\r\n            </div>\r\n            <div class=\"clearfix\"></div>\r\n        </div>\r\n        <div class=\"panel-body panel-padding\">\r\n            <div class=\"div-panel-margen\">\r\n                <img src={{_eventDetail.imageUrl[0]}} height=\"600\" />\r\n            </div>\r\n            <div class=\" pull-left div-panel-margen\" *ngFor=\"let image of _eventDetail.imageUrl\">\r\n                <img src={{image}} height=\"200\" />\r\n            </div>\r\n            <div style=\"clear: left\"></div>\r\n            <div>\r\n                {{_eventDetail.description}}\r\n            </div>\r\n            <div class=\"pull-right\">\r\n                <a [routerLink]=\"['']\">Назад</a>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>-->\r\n";
-
-/***/ }),
-/* 169 */
-/***/ (function(module, exports) {
-
-module.exports = "<div class=\"row\">\r\n    <div class=\"col-lg-2 nav-mn\">\r\n        <ul class=\"nav nav-pills nav-stacked lead\">\r\n            <li class=\"active\"><a data-toggle=\"pill\" href=\"#\"><span class=\"glyphicon glyphicon-calendar\"></span> Події</a></li>\r\n            <li><a data-toggle=\"pill\" href=\"#\"><span class=\"glyphicon glyphicon-duplicate\"></span> Звіти</a></li>\r\n            <li><a data-toggle=\"pill\" href=\"#\"><span class=\"glyphicon glyphicon-gift\"></span> Потреби</a></li>\r\n            <li><a data-toggle=\"pill\" href=\"#\"><span class=\"glyphicon glyphicon-usd\"></span> Пожертвувати</a></li>\r\n            <li><a data-toggle=\"pill\" href=\"#\"><span class=\"glyphicon glyphicon-briefcase\"></span> Запропонувати</a></li>\r\n            <li><a data-toggle=\"pill\" href=\"#\"><span class=\"glyphicon glyphicon-camera\"></span> Фотографії</a></li>\r\n        </ul>\r\n    </div>\r\n    <div class=\"col-lg-10 pull-right\">\r\n        <router-outlet></router-outlet>\r\n    </div>\r\n</div>";
-
-/***/ }),
-/* 170 */
-/***/ (function(module, exports) {
-
-module.exports = "<div class=\"col-md-4 col-md-offset-4\">\r\n    <div *ngIf=\"!emailSend\">\r\n        <div>\r\n            <h4 class=\"text-center\">Впишіть свій e-mail під яким ви зареєстровані в системі</h4>\r\n        </div>\r\n        <form [formGroup]=\"emailForm\" class=\"form-horizontal\" style=\"width: 400px\" novalidate>\r\n            <div class=\"form-group\" [class.has-error]=\"formErrors.email\"\r\n                                    [class.has-success]=\"!formErrors.email && emailForm.get('email').valid\">\r\n                <label class=\"control-label\" for=\"email\">Email</label>\r\n                <div class=\"input-group\">\r\n                    <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-envelope\" aria-hidden=\"true\"></i></span>\r\n                        <input placeholder=\"Ваш e-mail\"\r\n                               formControlName=\"email\" \r\n                               class=\"form-control input-md\" \r\n                               type=\"text\"                     \r\n                               [(ngModel)]=\"recoveryEmail.email\" />            \r\n                </div>  \r\n                <span *ngIf=\"formErrors.email\" class=\"has-error help-block fixedError\">\r\n                    {{ formErrors.email }}\r\n                </span>\r\n                <span *ngIf=\"errorMessage.length > 0\">\r\n                    {{errorMessage}}\r\n                </span>\r\n            </div>\r\n            <div class=\"form-group\">\r\n                <label class=\"control-label\" for=\"submit\"></label>\r\n                <button id=\"submit\"\r\n                        [disabled]=\"emailForm.invalid\"\r\n                        class=\"btn btn-primary pull-right\" \r\n                        (click)=\"sendEmail()\">Відправити Email</button>\r\n            </div>\r\n        </form>\r\n    </div>\r\n    <div *ngIf=\"emailSend\">\r\n         На пошту {{recoveryEmail.email}} був відправлений лист для відновлення паролю.\r\n         Якшо він не прийшов протягов 5 хвилин натисніть тут\r\n        <button (click)=\"sendEmail()\" class=\"btn btn-xs\">Відправити ще раз</button>\r\n    </div>\r\n</div>";
-
-/***/ }),
 /* 171 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"col-md-4 col-md-offset-4\">\r\n    <div *ngIf=\"!passwordChanged\">\r\n        <h3>Створення нового паролю</h3>\r\n        <hr />\r\n        <form [formGroup]=\"passwordForm\" class=\"form-horizontal\" style=\"width: 400px\" novalidate>\r\n\r\n            <div class=\"form-group\" [class.has-error]=\"formErrors.password\"\r\n                 [class.has-success]=\"!formErrors.password && passwordForm.get('password').valid\">\r\n                <label class=\"control-label\" for=\"password\">Новий Пароль</label>\r\n                <div class=\"input-group\">\r\n                    <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-lock\" aria-hidden=\"true\"></i></span>\r\n                    <input placeholder=\"Ваш пароль\" \r\n                           class=\"form-control input-md\" \r\n                           [type]=\"type\"\r\n                           formControlName=\"password\"\r\n                           [(ngModel)]=\"resetPasswordModel.newPassword\" />\r\n                    <span class=\"input-group-addon\"><i [ngClass]=\"glyphyconEye\" (click)=\"showPassword()\" aria-hidden=\"true\"></i></span>\r\n                </div>\r\n                <span *ngIf=\"formErrors.password\" class=\"has-error help-block fixedError\">\r\n                    {{ formErrors.password }}\r\n                </span>\r\n            </div>\r\n\r\n            <div class=\"form-group\" [class.has-error]=\"formErrors.confirmPassword || passwordForm.hasError('mismatchedPasswords')\"\r\n                 [class.has-success]=\"!formErrors.confirmPassword && passwordForm.get('confirmPassword').valid\">\r\n                <label class=\"control-label\" for=\"confirmPassword\">Підтвердіть пароль</label>\r\n                <div class=\"input-group\">\r\n                    <span class=\"input-group-addon glyphicon glyphicon-lock\"><i aria-hidden=\"true\"></i></span>\r\n                    <input type=\"password\"\r\n                           placeholder=\"Підтвердіть пароль\"\r\n                           class=\"form-control input-md\"\r\n                           formControlName=\"confirmPassword\"\r\n                           [(ngModel)]=\"resetPasswordModel.newPasswordConfirm\" />\r\n                </div>\r\n                <div *ngIf=\"formErrors.confirmPassword || passwordForm.hasError('mismatchedPasswords')\" class=\"has-error help-block fixedError\">\r\n                    {{ formErrors.confirmPassword }}\r\n                </div>\r\n                <div *ngIf=\"passwordForm.hasError('mismatchedPasswords')\" class=\"has-error help-block fixedError\">Паролі не співпадають</div>\r\n            </div>\r\n\r\n            <div class=\"form-group\">\r\n                <label class=\"control-label\" for=\"submit\"></label>\r\n                <button id=\"submit\"\r\n                        class=\"btn btn-primary pull-right\"\r\n                        [disabled]=\"passwordForm.invalid\" \r\n                        (click)=\"changePassword()\">\r\n                Змінити Пароль\r\n                </button>\r\n                <div *ngIf=\"errorMessage\">\r\n                    <span class=\"has-error help-block fixedError\">{{errorMessage}}</span>\r\n                </div>\r\n            </div>\r\n        </form>\r\n    </div>\r\n    <div *ngIf=\"passwordChanged\">\r\n       <h3>Ваш пароль було змінено. Будь ласка <a [routerLink]=\"['/login']\">Залогуйтеся</a></h3>\r\n    </div>\r\n</div>\r\n";
+module.exports = "<div class=\"loginmodal-container\">\r\n    <div>\r\n        <h3 class=\"col-md-4 col-md-offset-4\">Вхід в систему</h3>\r\n    </div>\r\n    <div class=\"col-md-4 col-md-offset-4 form-group has-feedback\">\r\n        <div class=\"input-group\">\r\n            <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-user\" aria-hidden=\"true\"></i></span>\r\n            <input name=\"login\" placeholder=\"Ваш логін\" type=\"text\"\r\n                   [(ngModel)]=\"loginModel.login\" class=\"form-control input-md\">\r\n        </div>\r\n    </div>\r\n    <!-- Text input-->\r\n    <div class=\"col-md-4 col-md-offset-4 form-group has-feedback\">\r\n        <div class=\"input-group\">\r\n            <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-lock\" aria-hidden=\"true\"></i></span>\r\n            <input name=\"password\" [type]=\"type\" placeholder=\"Ваш пароль\"\r\n                   [(ngModel)]=\"loginModel.password\"\r\n                   class=\"form-control input-md\">\r\n            <span class=\"input-group-addon\"><i [ngClass]=\"glyphyconEye\" (click)=\"showPassword()\" aria-hidden=\"true\"></i></span>\r\n        </div>\r\n    </div>\r\n    <!--Error-->\r\n    <div class=\"col-md-4 col-md-offset-4 form-group\">\r\n        <p class=\"error\" *ngIf=\"errorMessage\">{{errorMessage}}</p>\r\n    </div>\r\n    <!-- Button -->\r\n    <div class=\"col-md-4 col-md-offset-4 form-group\">\r\n        <div class=\"pull-right\">\r\n            <button id=\"submit\" name=\"submit\" class=\"btn btn-success\" (click)=\"login()\">Увійти</button>\r\n            <button id=\"submit\" name=\"submit\" class=\"btn btn-primary\" (click)=\"loginWithFacebook('facebook')\">Увійти через Facebook</button>\r\n        </div>\r\n    </div>\r\n    <!--Register-->\r\n    <div class=\"login-help col-md-4 col-md-offset-4\">\r\n        <div class=\"pull-right\">\r\n            <div class=\"sidebar\">\r\n                <a [routerLink]=\"['/registration']\">Реєстрація - </a>\r\n                <a [routerLink]=\"['/begin_password_reset']\">Забули пароль</a>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n";
 
 /***/ }),
 /* 172 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"col-lg-4 col-lg-offset-4\">\r\n    \r\n    <form [formGroup]=\"registrationForm\" class=\"form-horizontal\" id=\"registrationForm\" novalidate>\r\n        <h3 class=\"formHeader text-center\">Реєстрація нового користувача</h3>\r\n        <div class=\"form-group\" [class.has-error]=\"formErrors.firstName\"\r\n             [class.has-success]=\"!formErrors.firstName && registrationForm.get('firstName').valid\">\r\n            <label class=\"control-label\" for=\"firstName\">Імя</label>\r\n            <div class=\"input-group\">\r\n                <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-user\" aria-hidden=\"true\"></i></span>\r\n                <input placeholder=\"Ваше імя\" type=\"text\" class=\"form-control\"\r\n                       formControlName=\"firstName\" [(ngModel)]=\"registrationViewModel.firstName\" />\r\n            </div>\r\n            <div>\r\n                <span *ngIf=\"formErrors.firstName\" class=\"has-error help-block fixedError\">\r\n                    {{ formErrors.firstName }}\r\n                </span>\r\n            </div>\r\n        </div>\r\n\r\n        <div class=\"form-group\" [class.has-error]=\"formErrors.lastName\"\r\n             [class.has-success]=\"!formErrors.lastName && registrationForm.get('lastName').valid\">\r\n            <label class=\"control-label\" for=\"lastName\">Прізвище</label>\r\n            <div class=\"input-group\">\r\n                <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-user\" aria-hidden=\"true\"></i></span>\r\n                <input placeholder=\"Ваше прізвище\" type=\"text\" class=\"form-control input-md\"\r\n                       formControlName=\"lastName\" [(ngModel)]=\"registrationViewModel.lastName\" />\r\n            </div>\r\n            <span *ngIf=\"formErrors.lastName\" class=\"has-error help-block fixedError\">\r\n                {{ formErrors.lastName }}\r\n            </span>\r\n        </div>\r\n\r\n        <div class=\"form-group\" [class.has-error]=\"formErrors.login\"\r\n             [class.has-success]=\"!formErrors.login && registrationForm.get('login').valid\">\r\n            <label class=\"control-label\" for=\"login\">Логін</label>\r\n            <div class=\"input-group\">\r\n                <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-user\" aria-hidden=\"true\"></i></span>\r\n                <input placeholder=\"Ваш логін\" type=\"text\" class=\"form-control input-md\"\r\n                       formControlName=\"login\" [(ngModel)]=\"registrationViewModel.login\" />\r\n            </div>\r\n            <span *ngIf=\"formErrors.login\" class=\"has-error help-block fixedError\">\r\n                {{ formErrors.login }}\r\n            </span>\r\n        </div>\r\n\r\n        <div class=\"form-group\" [class.has-error]=\"formErrors.email || errorMessage\"\r\n             [class.has-success]=\"!formErrors.email && registrationForm.get('email').valid\">\r\n            <label class=\"control-label\" for=\"email\">Email</label>\r\n            <div class=\"input-group\">\r\n                <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-envelope\" aria-hidden=\"true\"></i></span>\r\n                <input placeholder=\"Ваш e-mail\" class=\"form-control input-md\" type=\"text\"\r\n                       formControlName=\"email\" [(ngModel)]=\"registrationViewModel.email\" />\r\n            </div>\r\n            <span *ngIf=\"formErrors.email\" class=\"has-error help-block fixedError\">\r\n                {{ formErrors.email }}\r\n            </span>\r\n            <span *ngIf=\"errorMessage\">\r\n                <span class=\"has-error help-block fixedError\">{{errorMessage}}</span>\r\n            </span>\r\n        </div>\r\n\r\n        <div class=\"form-group\" [class.has-error]=\"formErrors.password\"\r\n             [class.has-success]=\"!formErrors.password && registrationForm.get('password').valid\">\r\n            <label class=\"control-label\" for=\"password\">Пароль</label>\r\n            <div class=\"input-group\">\r\n                <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-lock\" aria-hidden=\"true\"></i></span>\r\n                <input placeholder=\"Ваш пароль\" class=\"form-control input-md\" [type]=\"type\"\r\n                       formControlName=\"password\" [(ngModel)]=\"registrationViewModel.password\" />\r\n                <span class=\"input-group-addon\"><i [ngClass]=\"glyphyconEye\" (click)=\"showPassword()\" aria-hidden=\"true\"></i></span>\r\n            </div>\r\n            <span *ngIf=\"formErrors.password\" class=\"has-error help-block fixedError\">\r\n                {{ formErrors.password }}\r\n            </span>\r\n        </div>\r\n\r\n        <div class=\"form-group\" [class.has-error]=\"formErrors.confirmPassword || registrationForm.hasError('mismatchedPasswords')\"\r\n             [class.has-success]=\"!formErrors.confirmPassword && registrationForm.get('confirmPassword').valid\">\r\n            <label class=\"control-label\" for=\"confirmPassword\">Підтвердіть пароль</label>\r\n            <div class=\"input-group\">\r\n                <span class=\"input-group-addon glyphicon glyphicon-lock\"><i aria-hidden=\"true\"></i></span>\r\n                <input type=\"password\" placeholder=\"Підтвердіть пароль\" class=\"form-control input-md\"\r\n                       formControlName=\"confirmPassword\" [(ngModel)]=\"registrationViewModel.passwordConfirm\" />\r\n            </div>\r\n            <div *ngIf=\"formErrors.confirmPassword || registrationForm.hasError('mismatchedPasswords')\" class=\"has-error help-block fixedError\">\r\n                {{ formErrors.confirmPassword }}\r\n            </div>\r\n            <div *ngIf=\"registrationForm.hasError('mismatchedPasswords')\" class=\"has-error help-block fixedError\">Паролі не співпадають</div>\r\n        </div>\r\n\r\n        <div class=\"form-group\">\r\n            <label class=\"control-label\" for=\"submit\"></label>\r\n            <button id=\"submit\" class=\"btn btn-success pull-right\" [disabled]=\"registrationForm.invalid\" (click)=\"register()\">Зареєструватись</button>\r\n        </div>\r\n    </form>\r\n    </div>\r\n";
+module.exports = "<div class=\"col-lg-12\" *ngIf=\"_eventDetail\">\r\n    <div class=\"panel panel-primary\">\r\n        <div class=\"panel-heading\">\r\n            <div class=\"panel-title pull-left\">\r\n                {{_eventDetail.organizationName}}\r\n            </div>\r\n            <div class=\"panel-title pull-right\">\r\n                {{_eventDetail.createDate | date }}\r\n            </div>\r\n            <div class=\"clearfix\"></div>\r\n        </div>\r\n        <div class=\"panel-body panel-padding\">\r\n\r\n            <div class=\"carousel slide article-slide\" id=\"article-photo-carousel\">\r\n                <!-- Wrapper for slides -->\r\n                <div class=\"carousel-inner cont-slider\">\r\n                    <div class=\"item active\">\r\n                        <a [routerLink]=\"['']\"><img alt=\"\" title=\"\" src={{_eventDetail.imageUrl[0]}} style=\"height:600px\"></a>\r\n                    </div>\r\n                    <div class=\"item\" *ngFor=\"let image of _eventDetail.imageUrl | slice:1\">\r\n                        <a [routerLink]=\"['']\"><img alt=\"\" title=\"\" src={{image}} style=\"height:600px\"></a>\r\n                    </div>\r\n                </div>\r\n                <!-- Indicators -->\r\n                <ol class=\"carousel-indicators\">\r\n                    <li class=\"active\" data-slide-to=\"0\" data-target=\"#article-photo-carousel\">\r\n                        <img alt=\"\" src={{_eventDetail.imageUrl[0]}}>\r\n                    </li>\r\n                    <li class=\"\" data-target=\"#article-photo-carousel\" *ngFor=\"let image of _eventDetail.imageUrl | slice:1; let i = index \" [attr.data-slide-to]=\"i+1\">\r\n                        <img alt=\"\" src={{image}}>\r\n                    </li>\r\n                </ol>\r\n            </div>\r\n\r\n            <div>\r\n                {{_eventDetail.description}}\r\n            </div>\r\n            <div class=\"pull-right\">\r\n                <a [routerLink]=\"['']\">Назад</a>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n\r\n\r\n\r\n<!--<div class=\"col-lg-12\" *ngIf=\"_eventDetail\">\r\n    <div class=\"panel panel-primary\">\r\n        <div class=\"panel-heading\">\r\n            <div class=\"panel-title pull-left\">\r\n                {{_eventDetail.organizationName}}\r\n            </div>\r\n            <div class=\"panel-title pull-right\">\r\n                {{_eventDetail.createDate | date }}\r\n            </div>\r\n            <div class=\"clearfix\"></div>\r\n        </div>\r\n        <div class=\"panel-body panel-padding\">\r\n            <div class=\"div-panel-margen\">\r\n                <img src={{_eventDetail.imageUrl[0]}} height=\"600\" />\r\n            </div>\r\n            <div class=\" pull-left div-panel-margen\" *ngFor=\"let image of _eventDetail.imageUrl\">\r\n                <img src={{image}} height=\"200\" />\r\n            </div>\r\n            <div style=\"clear: left\"></div>\r\n            <div>\r\n                {{_eventDetail.description}}\r\n            </div>\r\n            <div class=\"pull-right\">\r\n                <a [routerLink]=\"['']\">Назад</a>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>-->\r\n";
 
 /***/ }),
 /* 173 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"modal fade\" id=\"banModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\" aria-hidden=\"true\">\r\n    <div class=\"modal-dialog\">\r\n        <div class=\"modal-content\">\r\n            <div class=\"modal-header panel-heading\">\r\n                <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button>\r\n                <h4 class=\"modal-title\">Причина Бану : </h4>\r\n            </div>\r\n            <div class=\"modal-body\">\r\n                <textarea #description=\"ngModel\" required [(ngModel)]=\"BanDescription\">                   \r\n                </textarea>           \r\n                <div class=\"alert alert-danger\" *ngIf=\"description.invalid && description.touched\">\r\n                    Повинна бути причина бану!\r\n                </div>  \r\n            </div>\r\n            <div class=\"modal-footer\">      \r\n                <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Закрити</button>\r\n                <button (click)=\"changeStatus()\"\r\n                        class=\"btn btn-primary\" \r\n                        data-dismiss=\"modal\"\r\n                        [disabled]=\"description.invalid && description.touched\">\r\n                    {{banStatus}}\r\n                </button>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>";
+module.exports = "<div class=\"row\">\r\n    <div class=\"col-lg-2 nav-mn\">\r\n        <ul class=\"nav nav-pills nav-stacked lead\">\r\n            <li class=\"active\"><a data-toggle=\"pill\" href=\"#\"><span class=\"glyphicon glyphicon-calendar\"></span> Події</a></li>\r\n            <li><a data-toggle=\"pill\" href=\"#\"><span class=\"glyphicon glyphicon-duplicate\"></span> Звіти</a></li>\r\n            <li><a data-toggle=\"pill\" href=\"#\"><span class=\"glyphicon glyphicon-gift\"></span> Потреби</a></li>\r\n            <li><a data-toggle=\"pill\" href=\"#\"><span class=\"glyphicon glyphicon-usd\"></span> Пожертвувати</a></li>\r\n            <li><a data-toggle=\"pill\" href=\"#\"><span class=\"glyphicon glyphicon-briefcase\"></span> Запропонувати</a></li>\r\n            <li><a data-toggle=\"pill\" href=\"#\"><span class=\"glyphicon glyphicon-camera\"></span> Фотографії</a></li>\r\n        </ul>\r\n    </div>\r\n    <div class=\"col-lg-10 pull-right\">\r\n        <router-outlet></router-outlet>\r\n    </div>\r\n</div>";
 
 /***/ }),
 /* 174 */
 /***/ (function(module, exports) {
 
-module.exports = "<h1>Here will be complaints</h1>";
+module.exports = "<div class=\"col-md-4 col-md-offset-4\">\r\n    <div *ngIf=\"!emailSend\">\r\n        <div>\r\n            <h4 class=\"text-center\">Впишіть свій e-mail під яким ви зареєстровані в системі</h4>\r\n        </div>\r\n        <form [formGroup]=\"emailForm\" class=\"form-horizontal\" style=\"width: 400px\" novalidate>\r\n            <div class=\"form-group\" [class.has-error]=\"formErrors.email\"\r\n                                    [class.has-success]=\"!formErrors.email && emailForm.get('email').valid\">\r\n                <label class=\"control-label\" for=\"email\">Email</label>\r\n                <div class=\"input-group\">\r\n                    <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-envelope\" aria-hidden=\"true\"></i></span>\r\n                        <input placeholder=\"Ваш e-mail\"\r\n                               formControlName=\"email\" \r\n                               class=\"form-control input-md\" \r\n                               type=\"text\"                     \r\n                               [(ngModel)]=\"recoveryEmail.email\" />            \r\n                </div>  \r\n                <span *ngIf=\"formErrors.email\" class=\"has-error help-block fixedError\">\r\n                    {{ formErrors.email }}\r\n                </span>\r\n                <span *ngIf=\"errorMessage.length > 0\">\r\n                    {{errorMessage}}\r\n                </span>\r\n            </div>\r\n            <div class=\"form-group\">\r\n                <label class=\"control-label\" for=\"submit\"></label>\r\n                <button id=\"submit\"\r\n                        [disabled]=\"emailForm.invalid\"\r\n                        class=\"btn btn-primary pull-right\" \r\n                        (click)=\"sendEmail()\">Відправити Email</button>\r\n            </div>\r\n        </form>\r\n    </div>\r\n    <div *ngIf=\"emailSend\">\r\n         На пошту {{recoveryEmail.email}} був відправлений лист для відновлення паролю.\r\n         Якшо він не прийшов протягов 5 хвилин натисніть тут\r\n        <button (click)=\"sendEmail()\" class=\"btn btn-xs\">Відправити ще раз</button>\r\n    </div>\r\n</div>";
 
 /***/ }),
 /* 175 */
 /***/ (function(module, exports) {
 
-module.exports = "<p *ngIf=\"!arrayToDisplay\"><em>Loading...</em></p>\r\n\r\n<table class='table' *ngIf=\"arrayToDisplay\">\r\n    <thead>\r\n        <tr>\r\n            <th *ngFor=\"let header of headers\">\r\n                {{header}}\r\n            </th>\r\n        </tr>\r\n    </thead>\r\n    <tbody>\r\n        <tr *ngFor=\"let item of arrayToDisplay\">\r\n            <td class=\"text-left\">{{item.title}}</td>\r\n            <td>\r\n                <button class=\"btn custom-btn\" \r\n                        [class.btn-danger]=\"!item.isBanned\"\r\n                        [class.btn-success]=\"item.isBanned\"\r\n                        (click)=\"onActionClick(item)\">\r\n                    <div *ngIf=\"!item.isBanned\">Забанити</div>\r\n                    <div *ngIf=\"item.isBanned\">Відбанити</div>\r\n                </button>\r\n            </td>\r\n        </tr>\r\n    </tbody>\r\n</table>\r\n<app-modal>  \r\n    <div class=\"app-modal-header\">\r\n        <button type=\"button\" class=\"close\" aria-hidden=\"true\" (click)=\"closeModal()\">&times;</button>\r\n        <h4 class=\"modal-title\">Причина Бану : </h4>\r\n    </div>\r\n    <div class=\"app-modal-body\">\r\n        <textarea class=\"form-control\" #description=\"ngModel\"\r\n                  (blur)=\"customeFieldTouched=true\" \r\n                  required\r\n                  [disabled]=\"selectedItemStatus=='Відбанити'\"\r\n                  [(ngModel)]=\"selectedItemBanDescription\">                   \r\n        </textarea>\r\n        <div class=\"alert alert-danger\" *ngIf=\"description.invalid && customeFieldTouched\">\r\n            Повинна бути причина бану!\r\n        </div>\r\n    </div>\r\n    <div class=\"app-modal-footer\">\r\n        <button type=\"button\" class=\"btn btn-default\" (click)=\"closeModal()\">Закрити</button>\r\n        <button (click)=\"statusChange(selectedItemBanDescription)\"\r\n                class=\"btn btn-primary\"\r\n                data-dismiss=\"modal\"\r\n                [disabled]=\"description.invalid\">\r\n            {{selectedItemStatus}}\r\n        </button>\r\n    </div>     \r\n</app-modal>\r\n";
+module.exports = "<div class=\"col-md-4 col-md-offset-4\">\r\n    <div *ngIf=\"!passwordChanged\">\r\n        <h3>Створення нового паролю</h3>\r\n        <hr />\r\n        <form [formGroup]=\"passwordForm\" class=\"form-horizontal\" style=\"width: 400px\" novalidate>\r\n\r\n            <div class=\"form-group\" [class.has-error]=\"formErrors.password\"\r\n                 [class.has-success]=\"!formErrors.password && passwordForm.get('password').valid\">\r\n                <label class=\"control-label\" for=\"password\">Новий Пароль</label>\r\n                <div class=\"input-group\">\r\n                    <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-lock\" aria-hidden=\"true\"></i></span>\r\n                    <input placeholder=\"Ваш пароль\" \r\n                           class=\"form-control input-md\" \r\n                           [type]=\"type\"\r\n                           formControlName=\"password\"\r\n                           [(ngModel)]=\"resetPasswordModel.newPassword\" />\r\n                    <span class=\"input-group-addon\"><i [ngClass]=\"glyphyconEye\" (click)=\"showPassword()\" aria-hidden=\"true\"></i></span>\r\n                </div>\r\n                <span *ngIf=\"formErrors.password\" class=\"has-error help-block fixedError\">\r\n                    {{ formErrors.password }}\r\n                </span>\r\n            </div>\r\n\r\n            <div class=\"form-group\" [class.has-error]=\"formErrors.confirmPassword || passwordForm.hasError('mismatchedPasswords')\"\r\n                 [class.has-success]=\"!formErrors.confirmPassword && passwordForm.get('confirmPassword').valid\">\r\n                <label class=\"control-label\" for=\"confirmPassword\">Підтвердіть пароль</label>\r\n                <div class=\"input-group\">\r\n                    <span class=\"input-group-addon glyphicon glyphicon-lock\"><i aria-hidden=\"true\"></i></span>\r\n                    <input type=\"password\"\r\n                           placeholder=\"Підтвердіть пароль\"\r\n                           class=\"form-control input-md\"\r\n                           formControlName=\"confirmPassword\"\r\n                           [(ngModel)]=\"resetPasswordModel.newPasswordConfirm\" />\r\n                </div>\r\n                <div *ngIf=\"formErrors.confirmPassword || passwordForm.hasError('mismatchedPasswords')\" class=\"has-error help-block fixedError\">\r\n                    {{ formErrors.confirmPassword }}\r\n                </div>\r\n                <div *ngIf=\"passwordForm.hasError('mismatchedPasswords')\" class=\"has-error help-block fixedError\">Паролі не співпадають</div>\r\n            </div>\r\n\r\n            <div class=\"form-group\">\r\n                <label class=\"control-label\" for=\"submit\"></label>\r\n                <button id=\"submit\"\r\n                        class=\"btn btn-primary pull-right\"\r\n                        [disabled]=\"passwordForm.invalid\" \r\n                        (click)=\"changePassword()\">\r\n                Змінити Пароль\r\n                </button>\r\n                <div *ngIf=\"errorMessage\">\r\n                    <span class=\"has-error help-block fixedError\">{{errorMessage}}</span>\r\n                </div>\r\n            </div>\r\n        </form>\r\n    </div>\r\n    <div *ngIf=\"passwordChanged\">\r\n       <h3>Ваш пароль було змінено. Будь ласка <a [routerLink]=\"['/login']\">Залогуйтеся</a></h3>\r\n    </div>\r\n</div>\r\n";
 
 /***/ }),
 /* 176 */
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngIf=\"organizations\">\r\n    <super-admin-grid [arrayToDisplay]=\"organizations\" \r\n                      [headers]=\"['Назва Організації', 'Дія']\"\r\n                      (banStatusChange)=\"changeOrganizationBanStatus($event)\">\r\n\r\n    </super-admin-grid>\r\n</div>\r\n<div class=\"container-fluid\">\r\n    <div class=\"row\">\r\n        <div class=\"col-sm-2\">\r\n            Per Page :\r\n        </div>\r\n        <div *ngIf=\"numbers\" class=\"text-left col-sm-2\">\r\n            <select-item [items]=\"[4, 5, 6, 7, 8, 9, 10]\"\r\n                         (onSelect)=\"itemsPerPageChange($event)\">\r\n            </select-item>\r\n        </div>\r\n        <div class=\"text-center\" *ngIf=\"totalItems && itemPerPage\">\r\n            <pagination-pages [offset]=\"offset\"\r\n                              [limit]=\"itemPerPage\"\r\n                              [size]=\"totalItems\"\r\n                              [currentPage]=\"currentPage\"\r\n                              (pageChange)=\"onPageChange($event)\">\r\n            </pagination-pages>\r\n        </div>  \r\n    </div>\r\n</div>";
+module.exports = "<div class=\"col-lg-4 col-lg-offset-4\">\r\n    \r\n    <form [formGroup]=\"registrationForm\" class=\"form-horizontal\" id=\"registrationForm\" novalidate>\r\n        <h3 class=\"formHeader text-center\">Реєстрація нового користувача</h3>\r\n        <div class=\"form-group\" [class.has-error]=\"formErrors.firstName\"\r\n             [class.has-success]=\"!formErrors.firstName && registrationForm.get('firstName').valid\">\r\n            <label class=\"control-label\" for=\"firstName\">Імя</label>\r\n            <div class=\"input-group\">\r\n                <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-user\" aria-hidden=\"true\"></i></span>\r\n                <input placeholder=\"Ваше імя\" type=\"text\" class=\"form-control\"\r\n                       formControlName=\"firstName\" [(ngModel)]=\"registrationViewModel.firstName\" />\r\n            </div>\r\n            <div>\r\n                <span *ngIf=\"formErrors.firstName\" class=\"has-error help-block fixedError\">\r\n                    {{ formErrors.firstName }}\r\n                </span>\r\n            </div>\r\n        </div>\r\n\r\n        <div class=\"form-group\" [class.has-error]=\"formErrors.lastName\"\r\n             [class.has-success]=\"!formErrors.lastName && registrationForm.get('lastName').valid\">\r\n            <label class=\"control-label\" for=\"lastName\">Прізвище</label>\r\n            <div class=\"input-group\">\r\n                <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-user\" aria-hidden=\"true\"></i></span>\r\n                <input placeholder=\"Ваше прізвище\" type=\"text\" class=\"form-control input-md\"\r\n                       formControlName=\"lastName\" [(ngModel)]=\"registrationViewModel.lastName\" />\r\n            </div>\r\n            <span *ngIf=\"formErrors.lastName\" class=\"has-error help-block fixedError\">\r\n                {{ formErrors.lastName }}\r\n            </span>\r\n        </div>\r\n\r\n        <div class=\"form-group\" [class.has-error]=\"formErrors.login\"\r\n             [class.has-success]=\"!formErrors.login && registrationForm.get('login').valid\">\r\n            <label class=\"control-label\" for=\"login\">Логін</label>\r\n            <div class=\"input-group\">\r\n                <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-user\" aria-hidden=\"true\"></i></span>\r\n                <input placeholder=\"Ваш логін\" type=\"text\" class=\"form-control input-md\"\r\n                       formControlName=\"login\" [(ngModel)]=\"registrationViewModel.login\" />\r\n            </div>\r\n            <span *ngIf=\"formErrors.login\" class=\"has-error help-block fixedError\">\r\n                {{ formErrors.login }}\r\n            </span>\r\n        </div>\r\n\r\n        <div class=\"form-group\" [class.has-error]=\"formErrors.email || errorMessage\"\r\n             [class.has-success]=\"!formErrors.email && registrationForm.get('email').valid\">\r\n            <label class=\"control-label\" for=\"email\">Email</label>\r\n            <div class=\"input-group\">\r\n                <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-envelope\" aria-hidden=\"true\"></i></span>\r\n                <input placeholder=\"Ваш e-mail\" class=\"form-control input-md\" type=\"text\"\r\n                       formControlName=\"email\" [(ngModel)]=\"registrationViewModel.email\" />\r\n            </div>\r\n            <span *ngIf=\"formErrors.email\" class=\"has-error help-block fixedError\">\r\n                {{ formErrors.email }}\r\n            </span>\r\n            <span *ngIf=\"errorMessage\">\r\n                <span class=\"has-error help-block fixedError\">{{errorMessage}}</span>\r\n            </span>\r\n        </div>\r\n\r\n        <div class=\"form-group\" [class.has-error]=\"formErrors.password\"\r\n             [class.has-success]=\"!formErrors.password && registrationForm.get('password').valid\">\r\n            <label class=\"control-label\" for=\"password\">Пароль</label>\r\n            <div class=\"input-group\">\r\n                <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-lock\" aria-hidden=\"true\"></i></span>\r\n                <input placeholder=\"Ваш пароль\" class=\"form-control input-md\" [type]=\"type\"\r\n                       formControlName=\"password\" [(ngModel)]=\"registrationViewModel.password\" />\r\n                <span class=\"input-group-addon\"><i [ngClass]=\"glyphyconEye\" (click)=\"showPassword()\" aria-hidden=\"true\"></i></span>\r\n            </div>\r\n            <span *ngIf=\"formErrors.password\" class=\"has-error help-block fixedError\">\r\n                {{ formErrors.password }}\r\n            </span>\r\n        </div>\r\n\r\n        <div class=\"form-group\" [class.has-error]=\"formErrors.confirmPassword || registrationForm.hasError('mismatchedPasswords')\"\r\n             [class.has-success]=\"!formErrors.confirmPassword && registrationForm.get('confirmPassword').valid\">\r\n            <label class=\"control-label\" for=\"confirmPassword\">Підтвердіть пароль</label>\r\n            <div class=\"input-group\">\r\n                <span class=\"input-group-addon glyphicon glyphicon-lock\"><i aria-hidden=\"true\"></i></span>\r\n                <input type=\"password\" placeholder=\"Підтвердіть пароль\" class=\"form-control input-md\"\r\n                       formControlName=\"confirmPassword\" [(ngModel)]=\"registrationViewModel.passwordConfirm\" />\r\n            </div>\r\n            <div *ngIf=\"formErrors.confirmPassword || registrationForm.hasError('mismatchedPasswords')\" class=\"has-error help-block fixedError\">\r\n                {{ formErrors.confirmPassword }}\r\n            </div>\r\n            <div *ngIf=\"registrationForm.hasError('mismatchedPasswords')\" class=\"has-error help-block fixedError\">Паролі не співпадають</div>\r\n        </div>\r\n\r\n        <div class=\"form-group\">\r\n            <label class=\"control-label\" for=\"submit\"></label>\r\n            <button id=\"submit\" class=\"btn btn-success pull-right\" [disabled]=\"registrationForm.invalid\" (click)=\"register()\">Зареєструватись</button>\r\n        </div>\r\n    </form>\r\n    </div>\r\n";
 
 /***/ }),
 /* 177 */
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngIf=\"users\">\r\n    <super-admin-grid [arrayToDisplay]=\"users\"\r\n                      [headers]=\"['Логін Користувача', 'Дія']\"\r\n                      (banStatusChange)=\"changeUserBanStatus($event)\">\r\n    </super-admin-grid>\r\n</div>\r\n<div class=\"container-fluid\">\r\n    <div class=\"row\">\r\n        <div class=\"col-sm-2\">\r\n            На Сторінці :\r\n        </div>\r\n        <div *ngIf=\"numbers\" class=\"text-left col-sm-2\">\r\n            <select-item [items]=\"numbers\"\r\n                         (onSelect)=\"itemsPerPageChange($event)\">\r\n            </select-item>\r\n        </div>\r\n        <div *ngIf=\"totalItems && itemPerPage\" class=\"text-center\">\r\n            <pagination-pages [offset]=\"offset\"\r\n                              [limit]=\"itemPerPage\"\r\n                              [size]=\"totalItems\"\r\n                              [currentPage]=\"currentPage\"\r\n                              (pageChange)=\"onPageChange($event)\">\r\n            </pagination-pages>\r\n        </div>\r\n    </div>\r\n</div>";
+module.exports = "<div class=\"modal fade\" id=\"banModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\" aria-hidden=\"true\">\r\n    <div class=\"modal-dialog\">\r\n        <div class=\"modal-content\">\r\n            <div class=\"modal-header panel-heading\">\r\n                <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button>\r\n                <h4 class=\"modal-title\">Причина Бану : </h4>\r\n            </div>\r\n            <div class=\"modal-body\">\r\n                <textarea #description=\"ngModel\" required [(ngModel)]=\"BanDescription\">                   \r\n                </textarea>           \r\n                <div class=\"alert alert-danger\" *ngIf=\"description.invalid && description.touched\">\r\n                    Повинна бути причина бану!\r\n                </div>  \r\n            </div>\r\n            <div class=\"modal-footer\">      \r\n                <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Закрити</button>\r\n                <button (click)=\"changeStatus()\"\r\n                        class=\"btn btn-primary\" \r\n                        data-dismiss=\"modal\"\r\n                        [disabled]=\"description.invalid && description.touched\">\r\n                    {{banStatus}}\r\n                </button>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>";
 
 /***/ }),
 /* 178 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">    \r\n    <div class=\"side-menu\">\r\n        <nav class=\"navbar navbar-default\" role=\"navigation\">           \r\n            <div class=\"side-menu-container\">\r\n                <ul class=\"nav navbar-nav\">\r\n                    <li [routerLinkActive]=\"['link-active']\">\r\n                        <a [routerLink]=\"['/superadmin']\">\r\n                            <span class=\"glyphicon glyphicon-user\"></span>\r\n                                Super Admin\r\n                        </a>\r\n                    </li>\r\n                    <li [routerLinkActive]=\"['link-active']\">\r\n                        <a [routerLink]=\"['complaints']\">\r\n                            <span class=\"glyphicon glyphicon-envelope\"></span> \r\n                            Скарги\r\n                        </a>\r\n                    </li>\r\n                    <li [routerLinkActive]=\"['link-active']\">\r\n                        <a>\r\n                            <span class=\"glyphicon glyphicon-plus\"></span> \r\n                            Додати Організацію\r\n                        </a>\r\n                    </li>\r\n                    <li [routerLinkActive]=\"['link-active']\">\r\n                        <a [routerLink]=\"['organizations']\">\r\n                            <span class=\"glyphicon glyphicon-th-list\"></span> \r\n                            Організації\r\n                        </a>\r\n                    </li>                 \r\n                    <li [routerLinkActive]=\"['link-active']\">\r\n                        <a [routerLink]=\"['users']\"><span class=\"glyphicon glyphicon-th-list\"></span> \r\n                            Користувачі\r\n                        </a>\r\n                    </li>\r\n                </ul>\r\n            </div>\r\n        </nav> \r\n    </div>\r\n    <div class=\"side-body\">\r\n        <router-outlet></router-outlet>\r\n    </div>\r\n</div>\r\n";
+module.exports = "<h1>Here will be complaints</h1>";
 
 /***/ }),
 /* 179 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\r\n    <h3 class=\"page-header\">Редагування профілю</h3>\r\n    <div class=\"row\">\r\n        <div class=\"col-md-4 col-sm-6 col-xs-12\">\r\n            <div class=\"text-center\">\r\n                <img src=\"{{user.photoUrl}}\" class=\"avatar img-responsive img-thumbnail\" style=\"border:none\" alt=\"avatar\" height=\"350\" width=\"250\">\r\n                <input type=\"file\" (change)=\"saveFileInAws($event)\" #imageInput accept=\".png,.jpg\" class=\"text-center center-block well well-sm hidden\">\r\n                <button type=\"button\" class=\"btn btn-success\" (click)=\"imageInput.click()\">Завантажити інше фото</button>\r\n                <hr />\r\n                <button type=\"button\" class=\"btn btn-primary\" (click)=\"onPasswordChange()\">Змінити пароль</button>\r\n            </div>\r\n        </div>\r\n        <div class=\"col-md-8 col-sm-6 col-xs-12 personal-info\">\r\n            <div class=\"alert alert-info alert-dismissable\">\r\n                <a class=\"panel-close close\" data-dismiss=\"alert\">×</a>\r\n                <i class=\"fa fa-coffee\"></i> Тут можна показувати сповіщення для юзера\r\n            </div>\r\n            <h3>Особисті дані</h3>\r\n            <form [formGroup]=\"userForm\" class=\"form-horizontal\" style=\"width:400px;padding-left:20px;\" (ngSubmit)=\"onSubmit()\">\r\n                <div class=\"form-group\">\r\n                    <label class=\"control-label\" for=\"login\">Логін</label>\r\n                    <div class=\"input-group\">\r\n                        <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-user\" aria-hidden=\"true\"></i></span>\r\n                        <input type=\"text\" disabled class=\"form-control\" name=\"user.login\" formControlName=\"login\" [(ngModel)]=\"user.login\" />\r\n                    </div>\r\n                </div>\r\n                <div class=\"form-group\" [class.has-error]=\"formErrors.firstName\" [class.has-success]=\"!formErrors.firstName && userForm.get('firstName').valid\">\r\n                    <label class=\"control-label\" for=\"firstName\">Ім'я</label>\r\n                    <div class=\"input-group\">\r\n                        <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-user\" aria-hidden=\"true\"></i></span>\r\n                        <input type=\"text\" class=\"form-control\" formControlName=\"firstName\" [(ngModel)]=\"user.firstName\" />\r\n                    </div>\r\n                    <div>\r\n                        <span *ngIf=\"formErrors.firstName\" class=\"has-error help-block fixedError\">\r\n                            {{ formErrors.firstName }}\r\n                        </span>\r\n                    </div>\r\n                </div>\r\n                <div class=\"form-group\" [class.has-error]=\"formErrors.lastName\" [class.has-success]=\"!formErrors.lastName && userForm.get('lastName').valid\">\r\n                    <label class=\"control-label\" for=\"user.lastName\">Прізвище</label>\r\n                    <div class=\"input-group\">\r\n                        <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-user\" aria-hidden=\"true\"></i></span>\r\n                        <input type=\"text\" class=\"form-control input-md\" formControlName=\"lastName\" [(ngModel)]=\"user.lastName\" />\r\n                    </div>\r\n                    <span *ngIf=\"formErrors.lastName\" class=\"has-error help-block fixedError\">\r\n                        {{ formErrors.lastName }}\r\n                    </span>\r\n                </div>\r\n                <div class=\"form-group\" [class.has-error]=\"formErrors.address\" [class.has-success]=\"!formErrors.email && userForm.get('address').valid\">\r\n                    <label class=\"control-label\" for=\"address\">Адреса</label>\r\n                    <div class=\"input-group\">\r\n                        <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-envelope\" aria-hidden=\"true\"></i></span>\r\n                        <input class=\"form-control input-md\" type=\"text\" formControlName=\"address\" [(ngModel)]=\"user.address\" />\r\n                    </div>\r\n                    <span *ngIf=\"formErrors.address\" class=\"has-error help-block fixedError\">\r\n                        {{ formErrors.address }}\r\n                    </span>\r\n                </div>\r\n                <div class=\"form-group\" [class.has-error]=\"formErrors.email\" [class.has-success]=\"!formErrors.email && userForm.get('email').valid\">\r\n                    <label class=\"control-label\" for=\"email\">Email</label>\r\n                    <div class=\"input-group\">\r\n                        <span class=\"input-group-addon\"><i aria-hidden=\"true\">@</i></span>\r\n                        <input class=\"form-control input-md\" type=\"text\" formControlName=\"email\" [(ngModel)]=\"user.email\" />\r\n                    </div>\r\n                    <span *ngIf=\"formErrors.email\" class=\"has-error help-block fixedError\">\r\n                        {{ formErrors.email }}\r\n                    </span>\r\n                </div>\r\n                <div class=\"form-group\">\r\n                    <label class=\"control-label\"></label>\r\n                    <button type=\"submit\" class=\"btn btn-primary\" [disabled]=\"!userForm.valid\">Зберегти</button>\r\n                </div>\r\n            </form>\r\n        </div>\r\n    </div>\r\n</div>\r\n<app-modal>\r\n    <div class=\"app-modal-header\">\r\n        <h3>Змінити пароль</h3>\r\n    </div>\r\n    <div class=\"app-modal-body\">\r\n        <form [formGroup]=\"passwordForm\" class=\"form-horizontal\" novalidate>\r\n            <div class=\"form-group\" [class.has-error]=\"formErrors.oldPassword\"\r\n                 [class.has-success]=\"!formErrors.oldPassword && passwordForm.get('oldPassword').valid\">\r\n                <label class=\"col-md-3 control-label\" for=\"oldPassword\">Старий пароль</label>\r\n                <div class=\"col-md-8 input-group\">\r\n                    <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-lock\" aria-hidden=\"true\"></i></span>\r\n                    <input class=\"form-control input-md\" type=\"password\"\r\n                           formControlName=\"oldPassword\" [(ngModel)]=\"passwordContainer.oldPassword\" />\r\n                </div>\r\n                <span *ngIf=\"formErrors.oldPassword\" class=\"has-error help-block fixedError\" style=\"margin-left:200px\">\r\n                    {{ formErrors.oldPassword }}\r\n                </span>\r\n            </div>\r\n            <div class=\"form-group\" [class.has-error]=\"formErrors.newPassword\"\r\n                 [class.has-success]=\"!formErrors.newPassword && passwordForm.get('newPassword').valid\">\r\n                <label class=\"col-md-3 control-label\" for=\"newPassword\">Новий пароль</label>\r\n                <div class=\"col-md-8 input-group\">\r\n                    <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-lock\" aria-hidden=\"true\"></i></span>\r\n                    <input class=\"form-control input-md\" type=\"password\"\r\n                           formControlName=\"newPassword\" [(ngModel)]=\"passwordContainer.newPassword\" />\r\n                </div>\r\n                <span *ngIf=\"formErrors.newPassword\" class=\"has-error help-block fixedError\" style=\"margin-left:200px\">\r\n                    {{ formErrors.newPassword }}\r\n                </span>\r\n            </div>\r\n            <div class=\"form-group\" [class.has-error]=\"formErrors.newPasswordConfirmation\"\r\n                 [class.has-success]=\"!formErrors.newPasswordConfirmation && passwordForm.get('newPasswordConfirmation').valid\">\r\n                <label class=\"col-md-3 control-label\" for=\"newPasswordConfirmation\">Підтвердження пароля</label>\r\n                <div class=\"col-md-8 input-group\">\r\n                    <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-lock\" aria-hidden=\"true\"></i></span>\r\n                    <input class=\"form-control input-md\" type=\"password\"\r\n                           formControlName=\"newPasswordConfirmation\" [(ngModel)]=\"passwordContainer.newPasswordConfirmation\" />\r\n                </div>\r\n                <span *ngIf=\"formErrors.newPasswordConfirmation\" class=\"has-error help-block fixedError\" style=\"margin-left:200px\" >\r\n                    {{ formErrors.newPasswordConfirmation }}\r\n                </span>\r\n            </div>\r\n        </form>\r\n    </div>\r\n    <div class=\"app-modal-footer\">\r\n        <button type=\"button\" class=\"btn btn-default\" (click)=\"modal.hide()\">Закрити</button>\r\n        <button type=\"button\" class=\"btn btn-primary\" [disabled]=\"passwordForm.invalid\" (click)=\"changePassword()\">Зберегти</button>\r\n        <div class=\"col-md-4 col-md-offset-4 form-group\">\r\n            <p class=\"error\" *ngIf=\"errorMessage\"><span class=\"text-danger\">{{errorMessage}}</span></p>\r\n        </div>\r\n    </div>\r\n</app-modal>";
+module.exports = "<p *ngIf=\"!arrayToDisplay\"><em>Loading...</em></p>\r\n\r\n<table class='table' *ngIf=\"arrayToDisplay\">\r\n    <thead>\r\n        <tr>\r\n            <th *ngFor=\"let header of headers\">\r\n                {{header}}\r\n            </th>\r\n        </tr>\r\n    </thead>\r\n    <tbody>\r\n        <tr *ngFor=\"let item of arrayToDisplay\">\r\n            <td class=\"text-left\">{{item.title}}</td>\r\n            <td>\r\n                <button class=\"btn custom-btn\" \r\n                        [class.btn-danger]=\"!item.isBanned\"\r\n                        [class.btn-success]=\"item.isBanned\"\r\n                        (click)=\"onActionClick(item)\">\r\n                    <div *ngIf=\"!item.isBanned\">Забанити</div>\r\n                    <div *ngIf=\"item.isBanned\">Відбанити</div>\r\n                </button>\r\n            </td>\r\n        </tr>\r\n    </tbody>\r\n</table>\r\n<app-modal>  \r\n    <div class=\"app-modal-header\">\r\n        <button type=\"button\" class=\"close\" aria-hidden=\"true\" (click)=\"closeModal()\">&times;</button>\r\n        <h4 class=\"modal-title\">Причина Бану : </h4>\r\n    </div>\r\n    <div class=\"app-modal-body\">\r\n        <textarea class=\"form-control\" #description=\"ngModel\"\r\n                  (blur)=\"customeFieldTouched=true\" \r\n                  required\r\n                  [disabled]=\"selectedItemStatus=='Відбанити'\"\r\n                  [(ngModel)]=\"selectedItemBanDescription\">                   \r\n        </textarea>\r\n        <div class=\"alert alert-danger\" *ngIf=\"description.invalid && customeFieldTouched\">\r\n            Повинна бути причина бану!\r\n        </div>\r\n    </div>\r\n    <div class=\"app-modal-footer\">\r\n        <button type=\"button\" class=\"btn btn-default\" (click)=\"closeModal()\">Закрити</button>\r\n        <button (click)=\"statusChange(selectedItemBanDescription)\"\r\n                class=\"btn btn-primary\"\r\n                data-dismiss=\"modal\"\r\n                [disabled]=\"description.invalid\">\r\n            {{selectedItemStatus}}\r\n        </button>\r\n    </div>     \r\n</app-modal>\r\n";
 
 /***/ }),
 /* 180 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\r\n    <div class=\"btn-group\">\r\n        <button type=\"button\" class=\"btn btn-info dropdown-toggle\" data-toggle=\"dropdown\">\r\n            {{_selectedOrganizationName ? _selectedOrganizationName : 'Список оргнізацій'}}\r\n            <span class=\"caret\"></span>\r\n        </button>\r\n        <ul class=\"dropdown-menu scrollable-menu\" role=\"menu\">\r\n            <li><input type=\"text\" class=\"form-control\" name=\"filterBy\" [(ngModel)]=\"filterBy\" placeholder=\"Filter By\" /></li>\r\n            <li>\r\n                <a [routerLink]=\"['']\" (click)=\"onSelectAll()\">Всі організації</a>\r\n            </li>\r\n            <li *ngFor=\"let org of _organizations | organizationsListPipe:filterBy\" (click)=\"onSelect(org)\">\r\n                <a [routerLink]=\"['/home/allevents',org.id]\">{{org.name}}</a>\r\n            </li>\r\n        </ul>\r\n    </div>\r\n</div>\r\n\r\n";
+module.exports = "<div *ngIf=\"organizations\">\r\n    <super-admin-grid [arrayToDisplay]=\"organizations\" \r\n                      [headers]=\"['Назва Організації', 'Дія']\"\r\n                      (banStatusChange)=\"changeOrganizationBanStatus($event)\">\r\n\r\n    </super-admin-grid>\r\n</div>\r\n<div class=\"container-fluid\">\r\n    <div class=\"row\">\r\n        <div class=\"col-sm-2\">\r\n            Per Page :\r\n        </div>\r\n        <div *ngIf=\"numbers\" class=\"text-left col-sm-2\">\r\n            <select-item [items]=\"[4, 5, 6, 7, 8, 9, 10]\"\r\n                         (onSelect)=\"itemsPerPageChange($event)\">\r\n            </select-item>\r\n        </div>\r\n        <div class=\"text-center\" *ngIf=\"totalItems && itemPerPage\">\r\n            <pagination-pages [offset]=\"offset\"\r\n                              [limit]=\"itemPerPage\"\r\n                              [size]=\"totalItems\"\r\n                              [currentPage]=\"currentPage\"\r\n                              (pageChange)=\"onPageChange($event)\">\r\n            </pagination-pages>\r\n        </div>  \r\n    </div>\r\n</div>";
 
 /***/ }),
 /* 181 */
 /***/ (function(module, exports) {
 
-module.exports = "<h3>Ви не маєте достатньо прав для виконання даної дії.</h3>\r\n<div class=\"col-md-4 col-md-offset-10 form-group\">\r\n    <a [routerLink]=\"['/']\">Домашня сторінка</a>\r\n</div>";
+module.exports = "<div *ngIf=\"users\">\r\n    <super-admin-grid [arrayToDisplay]=\"users\"\r\n                      [headers]=\"['Логін Користувача', 'Дія']\"\r\n                      (banStatusChange)=\"changeUserBanStatus($event)\">\r\n    </super-admin-grid>\r\n</div>\r\n<div class=\"container-fluid\">\r\n    <div class=\"row\">\r\n        <div class=\"col-sm-2\">\r\n            На Сторінці :\r\n        </div>\r\n        <div *ngIf=\"numbers\" class=\"text-left col-sm-2\">\r\n            <select-item [items]=\"numbers\"\r\n                         (onSelect)=\"itemsPerPageChange($event)\">\r\n            </select-item>\r\n        </div>\r\n        <div *ngIf=\"totalItems && itemPerPage\" class=\"text-center\">\r\n            <pagination-pages [offset]=\"offset\"\r\n                              [limit]=\"itemPerPage\"\r\n                              [size]=\"totalItems\"\r\n                              [currentPage]=\"currentPage\"\r\n                              (pageChange)=\"onPageChange($event)\">\r\n            </pagination-pages>\r\n        </div>\r\n    </div>\r\n</div>";
 
 /***/ }),
 /* 182 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row center-block col-lg-12 col-md-12 col-sm-12 col-xs-12\">\r\n    <div>\r\n        <div class=\"form-group\">\r\n            <input placeholder=\"Вулиця, Номер будинку, Місто\"\r\n                   autocorrect=\"off\"\r\n                   autocapitalize=\"off\"\r\n                   spellcheck=\"off\"\r\n                   type=\"text\"\r\n                   class=\"form-control\"\r\n                   #search\r\n                   [formControl]=\"searchControl\" />\r\n            <br />\r\n                <button class=\"btn btn-primary btn-sm\" (click)=\"saveMarkerAndAddressFromDataInAutocompleteForm()\">Зберегти адресу</button>\r\n                <button class=\"btn btn-primary btn-sm\" (click)=\"saveAllAddressesFromMarkers()\">Список адрес</button>\r\n                <button class=\"btn btn-primary btn-sm\" (click)=\"setMarkersFromAddresses()\">Встановити маркери</button>\r\n                <button class=\"btn btn-primary btn-sm\" (click)=\"clearMapFromMarkers()\">Очистити</button>\r\n            <ul *ngIf=\"_addresses.length > 0\">\r\n                Збережені адреси\r\n                <li *ngFor=\"let address of _addresses\">{{address}}</li>\r\n            </ul>\r\n        </div>\r\n        <agm-map [latitude]=\"mainPointerLatitude\"\r\n                 [longitude]=\"mainPointerLongitude\"\r\n                 [zoom]=\"zoom\"\r\n                 [disableDefaultUI]=false\r\n                 [zoomControl]=false\r\n                 (mapClick)=\"mapClicked($event)\">\r\n            <agm-marker *ngIf=\"mainPointerLatitude\"\r\n                        [latitude]=\"mainPointerLatitude\"\r\n                        [longitude]=\"mainPointerLongitude\">\r\n            </agm-marker>\r\n            <agm-marker *ngFor=\"let marker of _markers;let i = index\"\r\n                        (markerClick)=\"clickedMarker(marker)\"\r\n                        [latitude]=\"marker.lat\"\r\n                        [longitude]=\"marker.lng\"\r\n                        [markerDraggable]=\"marker.draggable\"\r\n                        (dragEnd)=\"markerDragEnd(marker, $event)\">\r\n                <agm-info-window>\r\n                    <strong>{{marker.name}}</strong>\r\n                    <br />\r\n                    <a class=\"text-danger\" (click)=\"removeMarker(marker)\">Видалити</a>\r\n                </agm-info-window>\r\n            </agm-marker>\r\n        </agm-map>\r\n    </div>\r\n</div>\r\n\r\n";
+module.exports = "<div class=\"row\">    \r\n    <div class=\"side-menu\">\r\n        <nav class=\"navbar navbar-default\" role=\"navigation\">           \r\n            <div class=\"side-menu-container\">\r\n                <ul class=\"nav navbar-nav\">\r\n                    <li [routerLinkActive]=\"['link-active']\">\r\n                        <a [routerLink]=\"['/superadmin']\">\r\n                            <span class=\"glyphicon glyphicon-user\"></span>\r\n                                Super Admin\r\n                        </a>\r\n                    </li>\r\n                    <li [routerLinkActive]=\"['link-active']\">\r\n                        <a [routerLink]=\"['complaints']\">\r\n                            <span class=\"glyphicon glyphicon-envelope\"></span> \r\n                            Скарги\r\n                        </a>\r\n                    </li>\r\n                    <li [routerLinkActive]=\"['link-active']\">\r\n                        <a>\r\n                            <span class=\"glyphicon glyphicon-plus\"></span> \r\n                            Додати Організацію\r\n                        </a>\r\n                    </li>\r\n                    <li [routerLinkActive]=\"['link-active']\">\r\n                        <a [routerLink]=\"['organizations']\">\r\n                            <span class=\"glyphicon glyphicon-th-list\"></span> \r\n                            Організації\r\n                        </a>\r\n                    </li>                 \r\n                    <li [routerLinkActive]=\"['link-active']\">\r\n                        <a [routerLink]=\"['users']\"><span class=\"glyphicon glyphicon-th-list\"></span> \r\n                            Користувачі\r\n                        </a>\r\n                    </li>\r\n                </ul>\r\n            </div>\r\n        </nav> \r\n    </div>\r\n    <div class=\"side-body\">\r\n        <router-outlet></router-outlet>\r\n    </div>\r\n</div>\r\n";
 
 /***/ }),
 /* 183 */
 /***/ (function(module, exports) {
 
-module.exports = "<div (click)=\"onContainerClicked($event)\" class=\"modal fade\" tabindex=\"1\" [ngClass]=\"{'in': visibleAnimate}\"\r\n     [ngStyle]=\"{'display': visible ? 'block' : 'none', 'opacity': visibleAnimate ? 1 : 0}\">\r\n    <div class=\"modal-dialog\">\r\n        <div class=\"modal-content\">\r\n            <div class=\"modal-header\">\r\n                <ng-content select=\".app-modal-header\"></ng-content>\r\n            </div>\r\n            <div class=\"modal-body\">\r\n                <ng-content select=\".app-modal-body\"></ng-content>\r\n            </div>\r\n            <div class=\"modal-footer\">\r\n                <ng-content select=\".app-modal-footer\"></ng-content>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>";
+module.exports = "<div class=\"container\">\r\n    <h3 class=\"page-header\">Редагування профілю</h3>\r\n    <div class=\"row\">\r\n        <div class=\"col-md-4 col-sm-6 col-xs-12\">\r\n            <div class=\"text-center\">\r\n                <img src=\"{{user.photoUrl}}\" class=\"avatar img-responsive img-thumbnail\" style=\"border:none\" alt=\"avatar\" height=\"350\" width=\"250\">\r\n                <input type=\"file\" (change)=\"saveFileInAws($event)\" #imageInput accept=\".png,.jpg\" class=\"text-center center-block well well-sm hidden\">\r\n                <button type=\"button\" class=\"btn btn-success\" (click)=\"imageInput.click()\">Завантажити інше фото</button>\r\n                <hr />\r\n                <button type=\"button\" class=\"btn btn-primary\" (click)=\"onPasswordChange()\">Змінити пароль</button>\r\n            </div>\r\n        </div>\r\n        <div class=\"col-md-8 col-sm-6 col-xs-12 personal-info\">\r\n            <div class=\"alert alert-info alert-dismissable\">\r\n                <a class=\"panel-close close\" data-dismiss=\"alert\">×</a>\r\n                <i class=\"fa fa-coffee\"></i> Тут можна показувати сповіщення для юзера\r\n            </div>\r\n            <h3>Особисті дані</h3>\r\n            <form [formGroup]=\"userForm\" class=\"form-horizontal\" style=\"width:400px;padding-left:20px;\" (ngSubmit)=\"onSubmit()\">\r\n                <div class=\"form-group\">\r\n                    <label class=\"control-label\" for=\"login\">Логін</label>\r\n                    <div class=\"input-group\">\r\n                        <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-user\" aria-hidden=\"true\"></i></span>\r\n                        <input type=\"text\" disabled class=\"form-control\" name=\"user.login\" formControlName=\"login\" [(ngModel)]=\"user.login\" />\r\n                    </div>\r\n                </div>\r\n                <div class=\"form-group\" [class.has-error]=\"formErrors.firstName\" [class.has-success]=\"!formErrors.firstName && userForm.get('firstName').valid\">\r\n                    <label class=\"control-label\" for=\"firstName\">Ім'я</label>\r\n                    <div class=\"input-group\">\r\n                        <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-user\" aria-hidden=\"true\"></i></span>\r\n                        <input type=\"text\" class=\"form-control\" formControlName=\"firstName\" [(ngModel)]=\"user.firstName\" />\r\n                    </div>\r\n                    <div>\r\n                        <span *ngIf=\"formErrors.firstName\" class=\"has-error help-block fixedError\">\r\n                            {{ formErrors.firstName }}\r\n                        </span>\r\n                    </div>\r\n                </div>\r\n                <div class=\"form-group\" [class.has-error]=\"formErrors.lastName\" [class.has-success]=\"!formErrors.lastName && userForm.get('lastName').valid\">\r\n                    <label class=\"control-label\" for=\"user.lastName\">Прізвище</label>\r\n                    <div class=\"input-group\">\r\n                        <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-user\" aria-hidden=\"true\"></i></span>\r\n                        <input type=\"text\" class=\"form-control input-md\" formControlName=\"lastName\" [(ngModel)]=\"user.lastName\" />\r\n                    </div>\r\n                    <span *ngIf=\"formErrors.lastName\" class=\"has-error help-block fixedError\">\r\n                        {{ formErrors.lastName }}\r\n                    </span>\r\n                </div>\r\n                <div class=\"form-group\" [class.has-error]=\"formErrors.address\" [class.has-success]=\"!formErrors.email && userForm.get('address').valid\">\r\n                    <label class=\"control-label\" for=\"address\">Адреса</label>\r\n                    <div class=\"input-group\">\r\n                        <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-envelope\" aria-hidden=\"true\"></i></span>\r\n                        <input class=\"form-control input-md\" type=\"text\" formControlName=\"address\" [(ngModel)]=\"user.address\" />\r\n                    </div>\r\n                    <span *ngIf=\"formErrors.address\" class=\"has-error help-block fixedError\">\r\n                        {{ formErrors.address }}\r\n                    </span>\r\n                </div>\r\n                <div class=\"form-group\" [class.has-error]=\"formErrors.email\" [class.has-success]=\"!formErrors.email && userForm.get('email').valid\">\r\n                    <label class=\"control-label\" for=\"email\">Email</label>\r\n                    <div class=\"input-group\">\r\n                        <span class=\"input-group-addon\"><i aria-hidden=\"true\">@</i></span>\r\n                        <input class=\"form-control input-md\" type=\"text\" formControlName=\"email\" [(ngModel)]=\"user.email\" />\r\n                    </div>\r\n                    <span *ngIf=\"formErrors.email\" class=\"has-error help-block fixedError\">\r\n                        {{ formErrors.email }}\r\n                    </span>\r\n                </div>\r\n                <div class=\"form-group\">\r\n                    <label class=\"control-label\"></label>\r\n                    <button type=\"submit\" class=\"btn btn-primary\" [disabled]=\"!userForm.valid\">Зберегти</button>\r\n                </div>\r\n            </form>\r\n        </div>\r\n    </div>\r\n</div>\r\n<app-modal>\r\n    <div class=\"app-modal-header\">\r\n        <h3>Змінити пароль</h3>\r\n    </div>\r\n    <div class=\"app-modal-body\">\r\n        <form [formGroup]=\"passwordForm\" class=\"form-horizontal\" novalidate>\r\n            <div class=\"form-group\" [class.has-error]=\"formErrors.oldPassword\"\r\n                 [class.has-success]=\"!formErrors.oldPassword && passwordForm.get('oldPassword').valid\">\r\n                <label class=\"col-md-3 control-label\" for=\"oldPassword\">Старий пароль</label>\r\n                <div class=\"col-md-8 input-group\">\r\n                    <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-lock\" aria-hidden=\"true\"></i></span>\r\n                    <input class=\"form-control input-md\" type=\"password\"\r\n                           formControlName=\"oldPassword\" [(ngModel)]=\"passwordContainer.oldPassword\" />\r\n                </div>\r\n                <span *ngIf=\"formErrors.oldPassword\" class=\"has-error help-block fixedError\" style=\"margin-left:200px\">\r\n                    {{ formErrors.oldPassword }}\r\n                </span>\r\n            </div>\r\n            <div class=\"form-group\" [class.has-error]=\"formErrors.newPassword\"\r\n                 [class.has-success]=\"!formErrors.newPassword && passwordForm.get('newPassword').valid\">\r\n                <label class=\"col-md-3 control-label\" for=\"newPassword\">Новий пароль</label>\r\n                <div class=\"col-md-8 input-group\">\r\n                    <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-lock\" aria-hidden=\"true\"></i></span>\r\n                    <input class=\"form-control input-md\" type=\"password\"\r\n                           formControlName=\"newPassword\" [(ngModel)]=\"passwordContainer.newPassword\" />\r\n                </div>\r\n                <span *ngIf=\"formErrors.newPassword\" class=\"has-error help-block fixedError\" style=\"margin-left:200px\">\r\n                    {{ formErrors.newPassword }}\r\n                </span>\r\n            </div>\r\n            <div class=\"form-group\" [class.has-error]=\"formErrors.newPasswordConfirmation\"\r\n                 [class.has-success]=\"!formErrors.newPasswordConfirmation && passwordForm.get('newPasswordConfirmation').valid\">\r\n                <label class=\"col-md-3 control-label\" for=\"newPasswordConfirmation\">Підтвердження пароля</label>\r\n                <div class=\"col-md-8 input-group\">\r\n                    <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-lock\" aria-hidden=\"true\"></i></span>\r\n                    <input class=\"form-control input-md\" type=\"password\"\r\n                           formControlName=\"newPasswordConfirmation\" [(ngModel)]=\"passwordContainer.newPasswordConfirmation\" />\r\n                </div>\r\n                <span *ngIf=\"formErrors.newPasswordConfirmation\" class=\"has-error help-block fixedError\" style=\"margin-left:200px\" >\r\n                    {{ formErrors.newPasswordConfirmation }}\r\n                </span>\r\n            </div>\r\n        </form>\r\n    </div>\r\n    <div class=\"app-modal-footer\">\r\n        <button type=\"button\" class=\"btn btn-default\" (click)=\"modal.hide()\">Закрити</button>\r\n        <button type=\"button\" class=\"btn btn-primary\" [disabled]=\"passwordForm.invalid\" (click)=\"changePassword()\">Зберегти</button>\r\n        <div class=\"col-md-4 col-md-offset-4 form-group\">\r\n            <p class=\"error\" *ngIf=\"errorMessage\"><span class=\"text-danger\">{{errorMessage}}</span></p>\r\n        </div>\r\n    </div>\r\n</app-modal>";
 
 /***/ }),
 /* 184 */
 /***/ (function(module, exports) {
 
-module.exports = "<p *ngIf=\"!arrayToDisplay\"><em>Loading...</em></p>\r\n\r\n<table class='table' *ngIf=\"arrayToDisplay\">\r\n    <thead>\r\n        <tr>\r\n            <th *ngFor=\"let header of headers\">\r\n                {{header}}\r\n            </th>           \r\n        </tr>\r\n    </thead>\r\n    <tbody>\r\n        <tr *ngFor=\"let item of arrayToDisplay\">\r\n            <td *ngFor=\"let value of getObjectData(item)\">\r\n                <div *ngIf=\"value.key == 'isBanned' \">\r\n                    <div *ngIf=\"value.value == false\">\r\n                        <button>Unban</button>\r\n                    </div>\r\n                    <div *ngIf=\"value.value == true\">\r\n                        <button>Ban</button>\r\n                    </div>\r\n                </div>\r\n                <div *ngIf=\"value.key != 'isBanned'\">\r\n                    {{value.value}}\r\n                </div>                \r\n            </td>            \r\n        </tr>\r\n    </tbody>\r\n</table>";
+module.exports = "<div class=\"row\">\r\n    <div class=\"btn-group\">\r\n        <button type=\"button\" class=\"btn btn-info dropdown-toggle\" data-toggle=\"dropdown\">\r\n            {{_selectedOrganizationName ? _selectedOrganizationName : 'Список оргнізацій'}}\r\n            <span class=\"caret\"></span>\r\n        </button>\r\n        <ul class=\"dropdown-menu scrollable-menu\" role=\"menu\">\r\n            <li><input type=\"text\" class=\"form-control\" name=\"filterBy\" [(ngModel)]=\"filterBy\" placeholder=\"Filter By\" /></li>\r\n            <li>\r\n                <a [routerLink]=\"['']\" (click)=\"onSelectAll()\">Всі організації</a>\r\n            </li>\r\n            <li *ngFor=\"let org of _organizations | organizationsListPipe:filterBy\" (click)=\"onSelect(org)\">\r\n                <a [routerLink]=\"['/home/allevents',org.id]\">{{org.name}}</a>\r\n            </li>\r\n        </ul>\r\n    </div>\r\n</div>\r\n\r\n";
 
 /***/ }),
 /* 185 */
 /***/ (function(module, exports) {
 
-module.exports = "<ul class=\"pagination\">\r\n    <li [class.disabled]=\"currentPage == 1\">\r\n        <button (click)=\"selectPage(1)\" class=\"btn btn-default btn-md\">&laquo;</button>\r\n    </li>\r\n    <li [class.disabled]=\"currentPage == 1\">\r\n        <button (click)=\"selectPage(currentPage - 1)\" class=\"btn btn-default btn-md\">&lsaquo;</button>\r\n    </li>\r\n    <li *ngIf=\"(currentPage - range) > 1\">    \r\n        <button class=\"btn btn-default btn-md disabled\" >...</button>\r\n    </li>\r\n    <li *ngFor=\"let page of pages | async\">\r\n        <button (click)=\"selectPage(page)\" \r\n                class=\"btn btn-md btn-default active\"\r\n                [class.active]=\"page == currentPage\">\r\n            {{page}}\r\n        </button>\r\n    </li>\r\n    <li *ngIf=\"(currentPage + range) < totalPages\">      \r\n        <button class=\"btn btn-default btn-md disabled\">...</button>\r\n    </li>\r\n    <li [class.disabled]=\"currentPage == 1\">\r\n        <button (click)=\"selectPage(currentPage + 1)\" class=\"btn btn-default btn-md\">&rsaquo;</button>\r\n    </li>\r\n    <li [class.disabled]=\"currentPage == 1\">\r\n        <button (click)=\"selectPage(totalPages)\" class=\"btn btn-default btn-md\">&raquo;</button>\r\n    </li>   \r\n</ul>";
+module.exports = "<h3>Ви не маєте достатньо прав для виконання даної дії.</h3>\r\n<div class=\"col-md-4 col-md-offset-10 form-group\">\r\n    <a [routerLink]=\"['/']\">Домашня сторінка</a>\r\n</div>";
 
 /***/ }),
 /* 186 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"form-group\">\r\n    <select class=\"form-control\" (change)=\"onChange($event.target.value)\">\r\n        <option *ngFor=\"let i of items\">{{i}}</option>\r\n    </select>\r\n</div>";
+module.exports = "<div class=\"row center-block col-lg-12 col-md-12 col-sm-12 col-xs-12\">\r\n    <div>\r\n        <div class=\"form-group\">\r\n            <input placeholder=\"Вулиця, Номер будинку, Місто\"\r\n                   autocorrect=\"off\"\r\n                   autocapitalize=\"off\"\r\n                   spellcheck=\"off\"\r\n                   type=\"text\"\r\n                   class=\"form-control\"\r\n                   #search\r\n                   [formControl]=\"searchControl\" />\r\n            <br />\r\n                <button class=\"btn btn-primary btn-sm\" (click)=\"saveMarkerAndAddressFromDataInAutocompleteForm()\">Зберегти адресу</button>\r\n                <button class=\"btn btn-primary btn-sm\" (click)=\"saveAllAddressesFromMarkers()\">Список адрес</button>\r\n                <button class=\"btn btn-primary btn-sm\" (click)=\"setMarkersFromAddresses()\">Встановити маркери</button>\r\n                <button class=\"btn btn-primary btn-sm\" (click)=\"clearMapFromMarkers()\">Очистити</button>\r\n            <ul *ngIf=\"_addresses.length > 0\">\r\n                Збережені адреси\r\n                <li *ngFor=\"let address of _addresses\">{{address}}</li>\r\n            </ul>\r\n        </div>\r\n        <agm-map [latitude]=\"mainPointerLatitude\"\r\n                 [longitude]=\"mainPointerLongitude\"\r\n                 [zoom]=\"zoom\"\r\n                 [disableDefaultUI]=false\r\n                 [zoomControl]=false\r\n                 (mapClick)=\"mapClicked($event)\">\r\n            <agm-marker *ngIf=\"mainPointerLatitude\"\r\n                        [latitude]=\"mainPointerLatitude\"\r\n                        [longitude]=\"mainPointerLongitude\">\r\n            </agm-marker>\r\n            <agm-marker *ngFor=\"let marker of _markers;let i = index\"\r\n                        (markerClick)=\"clickedMarker(marker)\"\r\n                        [latitude]=\"marker.lat\"\r\n                        [longitude]=\"marker.lng\"\r\n                        [markerDraggable]=\"marker.draggable\"\r\n                        (dragEnd)=\"markerDragEnd(marker, $event)\">\r\n                <agm-info-window>\r\n                    <strong>{{marker.name}}</strong>\r\n                    <br />\r\n                    <a class=\"text-danger\" (click)=\"removeMarker(marker)\">Видалити</a>\r\n                </agm-info-window>\r\n            </agm-marker>\r\n        </agm-map>\r\n    </div>\r\n</div>\r\n\r\n";
 
 /***/ }),
 /* 187 */
 /***/ (function(module, exports) {
 
-module.exports = "<!-- Single button -->\r\n<div *ngIf=\"login\" class=\"btn-group\" >\r\n    <button type=\"button\" class=\"btn btn-default dropdown-toggle\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n        Привіт {{name}} <span class=\"caret\"></span>\r\n    </button>\r\n    <ul class=\"dropdown-menu dropdowncolor\">\r\n        <li><a [routerLink]=\"['/userprofile']\">Мій профіль</a></li>\r\n        <li><a [routerLink]=\"['/']\" (click)=\"exit()\">Вийти</a></li>\r\n    </ul>\r\n</div>\r\n<div *ngIf=\"!login\">\r\n    <ul class=\"nav nav-pills\">\r\n        <li role=\"presentation\"><a [routerLink]=\"['/login']\"><font size='4'>Увійти</font></a></li>\r\n        <li role=\"presentation\"><a [routerLink]=\"['/registration']\"><font size='4'>Зареєструватися</font></a></li>\r\n    </ul>\r\n</div>\r\n";
+module.exports = "<div (click)=\"onContainerClicked($event)\" class=\"modal fade\" tabindex=\"1\" [ngClass]=\"{'in': visibleAnimate}\"\r\n     [ngStyle]=\"{'display': visible ? 'block' : 'none', 'opacity': visibleAnimate ? 1 : 0}\">\r\n    <div class=\"modal-dialog\">\r\n        <div class=\"modal-content\">\r\n            <div class=\"modal-header\">\r\n                <ng-content select=\".app-modal-header\"></ng-content>\r\n            </div>\r\n            <div class=\"modal-body\">\r\n                <ng-content select=\".app-modal-body\"></ng-content>\r\n            </div>\r\n            <div class=\"modal-footer\">\r\n                <ng-content select=\".app-modal-footer\"></ng-content>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>";
 
 /***/ }),
 /* 188 */
+/***/ (function(module, exports) {
+
+module.exports = "<p *ngIf=\"!arrayToDisplay\"><em>Loading...</em></p>\r\n\r\n<table class='table' *ngIf=\"arrayToDisplay\">\r\n    <thead>\r\n        <tr>\r\n            <th *ngFor=\"let header of headers\">\r\n                {{header}}\r\n            </th>           \r\n        </tr>\r\n    </thead>\r\n    <tbody>\r\n        <tr *ngFor=\"let item of arrayToDisplay\">\r\n            <td *ngFor=\"let value of getObjectData(item)\">\r\n                <div *ngIf=\"value.key == 'isBanned' \">\r\n                    <div *ngIf=\"value.value == false\">\r\n                        <button>Unban</button>\r\n                    </div>\r\n                    <div *ngIf=\"value.value == true\">\r\n                        <button>Ban</button>\r\n                    </div>\r\n                </div>\r\n                <div *ngIf=\"value.key != 'isBanned'\">\r\n                    {{value.value}}\r\n                </div>                \r\n            </td>            \r\n        </tr>\r\n    </tbody>\r\n</table>";
+
+/***/ }),
+/* 189 */
+/***/ (function(module, exports) {
+
+module.exports = "<ul class=\"pagination\">\r\n    <li [class.disabled]=\"currentPage == 1\">\r\n        <button (click)=\"selectPage(1)\" class=\"btn btn-default btn-md\">&laquo;</button>\r\n    </li>\r\n    <li [class.disabled]=\"currentPage == 1\">\r\n        <button (click)=\"selectPage(currentPage - 1)\" class=\"btn btn-default btn-md\">&lsaquo;</button>\r\n    </li>\r\n    <li *ngIf=\"(currentPage - range) > 1\">    \r\n        <button class=\"btn btn-default btn-md disabled\" >...</button>\r\n    </li>\r\n    <li *ngFor=\"let page of pages | async\">\r\n        <button (click)=\"selectPage(page)\" \r\n                class=\"btn btn-md btn-default active\"\r\n                [class.active]=\"page == currentPage\">\r\n            {{page}}\r\n        </button>\r\n    </li>\r\n    <li *ngIf=\"(currentPage + range) < totalPages\">      \r\n        <button class=\"btn btn-default btn-md disabled\">...</button>\r\n    </li>\r\n    <li [class.disabled]=\"currentPage == 1\">\r\n        <button (click)=\"selectPage(currentPage + 1)\" class=\"btn btn-default btn-md\">&rsaquo;</button>\r\n    </li>\r\n    <li [class.disabled]=\"currentPage == 1\">\r\n        <button (click)=\"selectPage(totalPages)\" class=\"btn btn-default btn-md\">&raquo;</button>\r\n    </li>   \r\n</ul>";
+
+/***/ }),
+/* 190 */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"form-group\">\r\n    <select class=\"form-control\" (change)=\"onChange($event.target.value)\">\r\n        <option *ngFor=\"let i of items\">{{i}}</option>\r\n    </select>\r\n</div>";
+
+/***/ }),
+/* 191 */
+/***/ (function(module, exports) {
+
+module.exports = "<!-- Single button -->\r\n<div *ngIf=\"name\" class=\"btn-group\" >\r\n    <button type=\"button\" class=\"btn btn-default dropdown-toggle\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n        Привіт,{{name}} <span class=\"caret\"></span>\r\n    </button>\r\n    <ul class=\"dropdown-menu dropdowncolor\">\r\n        <li><a [routerLink]=\"['/userprofile']\">Мій профіль</a></li>\r\n        <li><a [routerLink]=\"['/']\" (click)=\"exit()\">Вийти</a></li>\r\n    </ul>\r\n</div>\r\n<div *ngIf=\"!name\">\r\n    <ul class=\"nav nav-pills\">\r\n        <li role=\"presentation\"><a [routerLink]=\"['/login']\"><font size='4'>Увійти</font></a></li>\r\n        <li role=\"presentation\"><a [routerLink]=\"['/registration']\"><font size='4'>Зареєструватися</font></a></li>\r\n    </ul>\r\n</div>\r\n";
+
+/***/ }),
+/* 192 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -139849,7 +140188,7 @@ var isArray = Array.isArray || function (xs) {
 
 
 /***/ }),
-/* 189 */
+/* 193 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -139941,62 +140280,62 @@ var objectKeys = Object.keys || function (obj) {
 
 
 /***/ }),
-/* 190 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.decode = exports.parse = __webpack_require__(188);
-exports.encode = exports.stringify = __webpack_require__(189);
-
-
-/***/ }),
-/* 191 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var Observable_1 = __webpack_require__(1);
-var range_1 = __webpack_require__(196);
-Observable_1.Observable.range = range_1.range;
-//# sourceMappingURL=range.js.map
-
-/***/ }),
-/* 192 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var Observable_1 = __webpack_require__(1);
-var filter_1 = __webpack_require__(227);
-Observable_1.Observable.prototype.filter = filter_1.filter;
-//# sourceMappingURL=filter.js.map
-
-/***/ }),
-/* 193 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var Observable_1 = __webpack_require__(1);
-var switchMap_1 = __webpack_require__(198);
-Observable_1.Observable.prototype.switchMap = switchMap_1.switchMap;
-//# sourceMappingURL=switchMap.js.map
-
-/***/ }),
 /* 194 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
+
+exports.decode = exports.parse = __webpack_require__(192);
+exports.encode = exports.stringify = __webpack_require__(193);
+
+
+/***/ }),
+/* 195 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
 var Observable_1 = __webpack_require__(1);
-var toArray_1 = __webpack_require__(199);
+var range_1 = __webpack_require__(200);
+Observable_1.Observable.range = range_1.range;
+//# sourceMappingURL=range.js.map
+
+/***/ }),
+/* 196 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var Observable_1 = __webpack_require__(1);
+var filter_1 = __webpack_require__(231);
+Observable_1.Observable.prototype.filter = filter_1.filter;
+//# sourceMappingURL=filter.js.map
+
+/***/ }),
+/* 197 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var Observable_1 = __webpack_require__(1);
+var switchMap_1 = __webpack_require__(202);
+Observable_1.Observable.prototype.switchMap = switchMap_1.switchMap;
+//# sourceMappingURL=switchMap.js.map
+
+/***/ }),
+/* 198 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var Observable_1 = __webpack_require__(1);
+var toArray_1 = __webpack_require__(203);
 Observable_1.Observable.prototype.toArray = toArray_1.toArray;
 //# sourceMappingURL=toArray.js.map
 
 /***/ }),
-/* 195 */
+/* 199 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -140098,17 +140437,17 @@ exports.RangeObservable = RangeObservable;
 //# sourceMappingURL=RangeObservable.js.map
 
 /***/ }),
-/* 196 */
+/* 200 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var RangeObservable_1 = __webpack_require__(195);
+var RangeObservable_1 = __webpack_require__(199);
 exports.range = RangeObservable_1.RangeObservable.create;
 //# sourceMappingURL=range.js.map
 
 /***/ }),
-/* 197 */
+/* 201 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -140118,7 +140457,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var Subscriber_1 = __webpack_require__(91);
+var Subscriber_1 = __webpack_require__(93);
 /* tslint:enable:max-line-length */
 /**
  * Perform a side effect for every emission on the source Observable, but return
@@ -140143,7 +140482,7 @@ var Subscriber_1 = __webpack_require__(91);
  * Observer will never happen. `do` therefore simply spies on existing
  * execution, it does not trigger an execution to happen like `subscribe` does.
  *
- * @example <caption>Map every every click to the clientX position of that click, while also logging the click event</caption>
+ * @example <caption>Map every click to the clientX position of that click, while also logging the click event</caption>
  * var clicks = Rx.Observable.fromEvent(document, 'click');
  * var positions = clicks
  *   .do(ev => console.log(ev))
@@ -140227,7 +140566,7 @@ var DoSubscriber = (function (_super) {
 //# sourceMappingURL=do.js.map
 
 /***/ }),
-/* 198 */
+/* 202 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -140237,8 +140576,8 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var OuterSubscriber_1 = __webpack_require__(219);
-var subscribeToResult_1 = __webpack_require__(220);
+var OuterSubscriber_1 = __webpack_require__(223);
+var subscribeToResult_1 = __webpack_require__(224);
 /* tslint:enable:max-line-length */
 /**
  * Projects each source value to an Observable which is merged in the output
@@ -140373,7 +140712,7 @@ var SwitchMapSubscriber = (function (_super) {
 //# sourceMappingURL=switchMap.js.map
 
 /***/ }),
-/* 199 */
+/* 203 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -140383,7 +140722,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var Subscriber_1 = __webpack_require__(91);
+var Subscriber_1 = __webpack_require__(93);
 /**
  * @return {Observable<any[]>|WebSocketSubject<T>|Observable<T>}
  * @method toArray
@@ -140424,12 +140763,12 @@ var ToArraySubscriber = (function (_super) {
 //# sourceMappingURL=toArray.js.map
 
 /***/ }),
-/* 200 */
+/* 204 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var root_1 = __webpack_require__(226);
+var root_1 = __webpack_require__(230);
 /* tslint:enable:max-line-length */
 /**
  * Converts an Observable sequence to a ES2015 compliant promise.
@@ -140472,7 +140811,7 @@ var root_1 = __webpack_require__(226);
  * source.then((value) => console.log('Value: %s', value));
  * // => Value: 42
  *
- * @param PromiseCtor promise The constructor of the promise. If not provided,
+ * @param {PromiseConstructor} [PromiseCtor] The constructor of the promise. If not provided,
  * it will look for a constructor first in Rx.config.Promise then fall back to
  * the native Promise constructor if available.
  * @return {Promise<T>} An ES2015 compatible promise with the last value from
@@ -140502,73 +140841,17 @@ exports.toPromise = toPromise;
 //# sourceMappingURL=toPromise.js.map
 
 /***/ }),
-/* 201 */
+/* 205 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var ansiRegex = __webpack_require__(111)();
+var ansiRegex = __webpack_require__(114)();
 
 module.exports = function (str) {
 	return typeof str === 'string' ? str.replace(ansiRegex, '') : str;
 };
 
-
-/***/ }),
-/* 202 */
-/***/ (function(module, exports, __webpack_require__) {
-
-
-        var result = __webpack_require__(147);
-
-        if (typeof result === "string") {
-            module.exports = result;
-        } else {
-            module.exports = result.toString();
-        }
-    
-
-/***/ }),
-/* 203 */
-/***/ (function(module, exports, __webpack_require__) {
-
-
-        var result = __webpack_require__(148);
-
-        if (typeof result === "string") {
-            module.exports = result;
-        } else {
-            module.exports = result.toString();
-        }
-    
-
-/***/ }),
-/* 204 */
-/***/ (function(module, exports, __webpack_require__) {
-
-
-        var result = __webpack_require__(149);
-
-        if (typeof result === "string") {
-            module.exports = result;
-        } else {
-            module.exports = result.toString();
-        }
-    
-
-/***/ }),
-/* 205 */
-/***/ (function(module, exports, __webpack_require__) {
-
-
-        var result = __webpack_require__(150);
-
-        if (typeof result === "string") {
-            module.exports = result;
-        } else {
-            module.exports = result.toString();
-        }
-    
 
 /***/ }),
 /* 206 */
@@ -140714,6 +140997,62 @@ module.exports = function (str) {
 /* 216 */
 /***/ (function(module, exports, __webpack_require__) {
 
+
+        var result = __webpack_require__(161);
+
+        if (typeof result === "string") {
+            module.exports = result;
+        } else {
+            module.exports = result.toString();
+        }
+    
+
+/***/ }),
+/* 217 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+        var result = __webpack_require__(162);
+
+        if (typeof result === "string") {
+            module.exports = result;
+        } else {
+            module.exports = result.toString();
+        }
+    
+
+/***/ }),
+/* 218 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+        var result = __webpack_require__(163);
+
+        if (typeof result === "string") {
+            module.exports = result;
+        } else {
+            module.exports = result.toString();
+        }
+    
+
+/***/ }),
+/* 219 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+        var result = __webpack_require__(164);
+
+        if (typeof result === "string") {
+            module.exports = result;
+        } else {
+            module.exports = result.toString();
+        }
+    
+
+/***/ }),
+/* 220 */
+/***/ (function(module, exports, __webpack_require__) {
+
 /*eslint-env browser*/
 
 var clientOverlay = document.createElement('div');
@@ -140740,7 +141079,7 @@ for (var key in styles) {
   clientOverlay.style[key] = styles[key];
 }
 
-var ansiHTML = __webpack_require__(110);
+var ansiHTML = __webpack_require__(113);
 var colors = {
   reset: ['transparent', 'transparent'],
   black: '181818',
@@ -140755,7 +141094,7 @@ var colors = {
 };
 ansiHTML.setColors(colors);
 
-var Entities = __webpack_require__(161).AllHtmlEntities;
+var Entities = __webpack_require__(165).AllHtmlEntities;
 var entities = new Entities();
 
 exports.showProblems =
@@ -140796,7 +141135,7 @@ function problemType (type) {
 
 
 /***/ }),
-/* 217 */
+/* 221 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -140934,78 +141273,78 @@ module.exports = function(hash, moduleMap, options) {
 
 
 /***/ }),
-/* 218 */
+/* 222 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = (__webpack_require__(2))(124);
 
 /***/ }),
-/* 219 */
+/* 223 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = (__webpack_require__(2))(189);
 
 /***/ }),
-/* 220 */
+/* 224 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = (__webpack_require__(2))(196);
 
 /***/ }),
-/* 221 */
+/* 225 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = (__webpack_require__(2))(30);
 
 /***/ }),
-/* 222 */
+/* 226 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = (__webpack_require__(2))(328);
 
 /***/ }),
-/* 223 */
+/* 227 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = (__webpack_require__(2))(329);
 
 /***/ }),
-/* 224 */
+/* 228 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = (__webpack_require__(2))(345);
 
 /***/ }),
-/* 225 */
+/* 229 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = (__webpack_require__(2))(347);
 
 /***/ }),
-/* 226 */
+/* 230 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = (__webpack_require__(2))(49);
 
 /***/ }),
-/* 227 */
+/* 231 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = (__webpack_require__(2))(570);
 
 /***/ }),
-/* 228 */
+/* 232 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = (__webpack_require__(2))(588);
 
 /***/ }),
-/* 229 */
+/* 233 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(95);
-__webpack_require__(94);
-module.exports = __webpack_require__(93);
+__webpack_require__(97);
+__webpack_require__(96);
+module.exports = __webpack_require__(95);
 
 
 /***/ })

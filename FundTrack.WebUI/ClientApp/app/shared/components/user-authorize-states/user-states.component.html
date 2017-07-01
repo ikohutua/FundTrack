@@ -1,14 +1,14 @@
 ﻿<!-- Single button -->
-<div *ngIf="login" class="btn-group" >
+<div *ngIf="name" class="btn-group" >
     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Привіт {{name}} <span class="caret"></span>
+        Привіт,{{name}} <span class="caret"></span>
     </button>
     <ul class="dropdown-menu dropdowncolor">
         <li><a [routerLink]="['/userprofile']">Мій профіль</a></li>
         <li><a [routerLink]="['/']" (click)="exit()">Вийти</a></li>
     </ul>
 </div>
-<div *ngIf="!login">
+<div *ngIf="!name">
     <ul class="nav nav-pills">
         <li role="presentation"><a [routerLink]="['/login']"><font size='4'>Увійти</font></a></li>
         <li role="presentation"><a [routerLink]="['/registration']"><font size='4'>Зареєструватися</font></a></li>

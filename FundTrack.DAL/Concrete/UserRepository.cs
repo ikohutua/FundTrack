@@ -88,7 +88,42 @@ namespace FundTrack.DAL.Repositories
             bool isExsitedUser = this.context.Users.Any(u => u.Email.ToLower() == email.ToLower() ||
                                    u.Login.ToLower() == login.ToLower());
 
-            return isExsitedUser;           
+            return isExsitedUser;
+        }
+
+        /// <summary>
+        /// Gets the user with this login and password.
+        /// </summary>
+        /// <param name="login">The login.</param>
+        /// <param name="rawPassword">The raw password.</param>
+        /// <returns></returns>
+        public User GetUser(string login, string hashedPassword)
+        {
+            return this.context.Users
+                               .FirstOrDefault(u => u.Login.ToUpper() == login.ToUpper()
+                               && u.Password == hashedPassword);
+        }
+
+        /// <summary>
+        /// Gets the user with this login.
+        /// </summary>
+        /// <param name="login">The login.</param>
+        /// <returns></returns>
+        public User GetUser(string login)
+        {
+            return this.context.Users
+                               .FirstOrDefault(a => a.Login.ToUpper() == login.ToUpper());
+        }
+
+        /// <summary>
+        /// Gets the facebook user.
+        /// </summary>
+        /// <param name="email">The email.</param>
+        /// <returns></returns>
+        public User GetFacebookUser(string email)
+        {
+            return this.context.Users
+                               .FirstOrDefault(a => a.Email == email);
         }
 
         /// <summary>
@@ -140,7 +175,7 @@ namespace FundTrack.DAL.Repositories
         /// <returns>Banned User</returns>
         public void BanUser(BannedUser user)
         {
-            context.BannedUsers.Add(user);           
+            context.BannedUsers.Add(user);
         }
 
         /// <summary>

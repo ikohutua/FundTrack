@@ -51,7 +51,8 @@ namespace FundTrack_WebUI
             services.AddScoped<IMembershipRepository, MembershipRepository>();
             services.AddScoped<IOrganizationsForFilteringRepository, OrganizationsForFilteringRepository>();
             services.AddScoped<IRepository<Event>, EventRepository>();
-            services.AddScoped<IOrganizationRepository, OrganizationRepository>();          
+            services.AddScoped<IOrganizationRepository, OrganizationRepository>();
+            services.AddScoped<IRoleRepository, RoleRepository>();
 
             //dependency injection BLL
             services.AddScoped<IOrganizationsForFilteringService, OrganizationsForFilteringService>();
@@ -76,7 +77,7 @@ namespace FundTrack_WebUI
                 {
                     ValidateIssuer = false,
                     ValidateAudience = false,
-                    ValidateLifetime = true,
+                    ValidateLifetime = false,
                     IssuerSigningKey = AuthOptions.GetSymmetricSecurityKey(),
                     ValidateIssuerSigningKey = true,
                 }

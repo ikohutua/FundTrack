@@ -18,8 +18,11 @@ namespace FundTrack.BLL.Abstract
         /// <returns>Model which contain information about user</returns>
         /// <exception cref="System.Exception">Login or password are not correct</exception>
         UserInfoViewModel GetUserInfoViewModel(string login, string rawPassword);
+
         UserInfoViewModel GetUserInfoViewModel(string login);
+
         UserInfoViewModel UpdateUser(UserInfoViewModel userModel);
+
         UserInfoViewModel ChangePassword(ChangePasswordViewModel changePasswordViewModel);
 
         /// <summary>
@@ -54,5 +57,12 @@ namespace FundTrack.BLL.Abstract
         /// <param name="guid">Input User guid</param>
         /// <returns>Guid status</returns>
         bool IsValidUserGuid(string guid);
+
+        /// <summary>
+        /// Login with facebook.
+        /// </summary>
+        /// <param name="loginFacebookViewModel">The login facebook view model.</param>
+        /// <returns></returns>
+        UserInfoViewModel LoginFacebook(LoginFacebookViewModel loginFacebookViewModel);
     }
 }

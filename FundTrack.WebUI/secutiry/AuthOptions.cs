@@ -12,11 +12,7 @@ namespace FundTrack.WebUI.token
         /// <summary>
         /// The key for encryption
         /// </summary>
-        const string KEY = "mysupersecret_secretkey!123";
-        /// <summary>
-        /// The lifetime token
-        /// </summary>
-        public const int LIFETIME = 10;
+        const string KEY = "fund_track!Volunteer..Lv-242.Net";
 
         /// <summary>
         /// Gets the symmetric security key.

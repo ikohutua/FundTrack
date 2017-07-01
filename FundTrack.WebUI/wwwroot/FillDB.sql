@@ -6,6 +6,8 @@ DELETE from Events
 DBCC CHECKIDENT ('Events', RESEED, 0);
 DELETE from EventImages
 DBCC CHECKIDENT ('EventImages', RESEED, 0);
+DELETE from Roles
+DBCC CHECKIDENT ('Roles', RESEED, 0);
 
 INSERT INTO Organizations
 VALUES 
@@ -30,6 +32,14 @@ N'Фонд помощи стране Крылья Феникса'),
 N'Волонтери без кордонів'),
 (N'Допомога Збройним Силам України під час війни на Сході України.',
 N'Наш солдат')
+GO
+
+INSERT INTO dbo.Roles
+VALUES
+('partner'),
+('admin'),
+('superadmin'),
+('moderator')
 GO
 
 INSERT INTO dbo.Events

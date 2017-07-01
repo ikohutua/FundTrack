@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { RegistrationViewModel } from '../../view-models/concrete/registration-view.model';
 import { UserService } from "../../services/concrete/user.service";
 import * as keys from '../../shared/key.storage';
-import { AuthorizationType } from '../../view-models/concrete/authorization.type';
+import { AuthorizedUserInfoViewModel } from '../../view-models/concrete/authorized-user-info-view.model';
 import { FormControl, FormGroup, AbstractControl, Validators, FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { matchingPasswords } from './match-password.validator';
 import { ValidationViewModel } from "../../view-models/concrete/validation-view.model";
@@ -16,7 +16,7 @@ import { ValidationViewModel } from "../../view-models/concrete/validation-view.
 })
     
 export class RegistrationComponent {
-    public autType: AuthorizationType;
+    public autType: AuthorizedUserInfoViewModel;
     private registrationViewModel: RegistrationViewModel = new RegistrationViewModel();
     private errorMessage: string;
     private type: string = "password";

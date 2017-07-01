@@ -1,16 +1,13 @@
-﻿import { Component, Input } from '@angular/core';
-import { Injectable, Inject } from '@angular/core';
-import { AuthorizeViewModel } from '../../view-models/concrete/authorization-view.model';
+﻿import { Component, Input, NgZone } from '@angular/core';
+import { LoginViewModel } from '../../view-models/concrete/login-view.model';
 import { UserService } from '../../services/concrete/user.service';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Http, Response } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/do';
-import 'rxjs/add/operator/catch';
-import { AuthorizationType } from '../../view-models/concrete/authorization.type';
-import { Headers, RequestOptions } from '@angular/http';
-import * as keys from '../../shared/key.storage'
+import { Router } from '@angular/router';
+import { Response } from '@angular/http';
+import { isBrowser } from 'angular2-universal';
+import { AuthorizedUserInfoViewModel } from '../../view-models/concrete/authorized-user-info-view.model';
+import { AuthService } from "angular2-social-login";
+import * as keys from '../../shared/key.storage';
+import { LoginFacebookViewModel } from '../../view-models/concrete/login-facebook-view.model';
 
 @Component({
     template: require('./authorization.component.html'),
@@ -18,43 +15,90 @@ import * as keys from '../../shared/key.storage'
     providers: [UserService]
 })
 export class AuthorizationComponent {
-    private errorMessage: string;
     private type: string = "password";
     private glyphyconEye: string = "glyphicon glyphicon-eye-open";
-    @Input() private authorizeModel: AuthorizeViewModel = new AuthorizeViewModel("", "");
-    public autType: AuthorizationType;
-    constructor(private _authorizationService: UserService,
-        private _router: Router)
-    { }
+    private userAuthorizedInfo: AuthorizedUserInfoViewModel;
 
     /**
-     * Set request to service to return authorized user and create session
+    * Error which contain information about exception which was created on BLL
+    */
+    public errorMessage: string;
+
+    /**
+    * Model which contain password and login which enter user in login form
+    */
+    @Input() private loginModel: LoginViewModel = new LoginViewModel("", "");
+
+    public constructor(private _authorizationService: UserService,
+        private _router: Router,
+        private _auth: AuthService,
+        private _ngZone: NgZone) {
+    }
+
+    /**
+    * Information which get facebook about user
+    */
+    private userRecievedFromFacebook = {
+        email: "",
+        image: "",
+        name: "",
+        provider: "",
+        token: "",
+        uid: ""
+    }
+
+    /**
+     * Send request to service to authorize user from facebook
+     * @param provider
      */
-    login() {
+    public loginWithFacebook(provider) {
         this.errorMessage = "";
+        this.loginModel.login = "";
+        this.loginModel.password = "";
+        let userNamesFacebook;
+        let userForAuthorization: LoginFacebookViewModel = new LoginFacebookViewModel();
         localStorage.clear();
-        this._authorizationService.logIn(this.authorizeModel)
-            .subscribe(a => {
-                this.autType = a;
-                this.errorMessage = a.errorMessage;
-                localStorage.setItem(keys.keyToken, this.autType.access_token);
-                if (!this.errorMessage) {
-                    localStorage.setItem(keys.keyModel, JSON.stringify(this.autType.userModel));
-                    this._router.navigate(['/']);
-                    //console.log("role" + this.autType.userModel.role);
-                    //console.log("token " + this.autType.access_token);
-                }
-                else {
-                    localStorage.setItem(keys.keyError, this.autType.errorMessage);
-                }
-                
+        this._auth.login(provider)
+            .subscribe(data => {
+                this.userRecievedFromFacebook = data as any;
+                userNamesFacebook = this.userRecievedFromFacebook.name.split(" ", 2);
+                userForAuthorization.email = this.userRecievedFromFacebook.email;
+                userForAuthorization.firstName = userNamesFacebook[0];
+                userForAuthorization.lastName = userNamesFacebook[1];
+                userForAuthorization.login = this.userRecievedFromFacebook.email;
+                userForAuthorization.password = this.userRecievedFromFacebook.provider;
+                userForAuthorization.photoUrl = this.userRecievedFromFacebook.image;
+                userForAuthorization.fbLink = this.userRecievedFromFacebook.uid;
+                this._ngZone.run(() => {
+                    this._authorizationService.logInWithFacebook(userForAuthorization)
+                        .subscribe(data => {
+                            this.subscribeForAuthorization(data);
+                        })
+                });
+                this._ngZone.run(() => {
+                    this._auth.logout()
+                        .subscribe(data => {
+                        });
+                });
+
+            });
+    }
+
+    /**
+     * Send request to service to authorize user
+     */
+    public login() {
+        this.errorMessage = "";
+        this._authorizationService.logIn(this.loginModel)
+            .subscribe(data => {
+                this.subscribeForAuthorization(data);
             })
     }
 
     /**
      * Show or not show password and change the icon
      */
-    showPassword() {
+    public showPassword() {
         if (this.type == "password") {
             this.type = "text";
             return this.glyphyconEye = "glyphicon glyphicon-eye-close";
@@ -62,6 +106,25 @@ export class AuthorizationComponent {
         else {
             this.type = "password";
             return this.glyphyconEye = "glyphicon glyphicon-eye-open";
+        }
+    }
+
+    /**
+     * Create session for authorized user, check is authorization had some error
+     * @param user
+     */
+    private subscribeForAuthorization(user: AuthorizedUserInfoViewModel) {
+        this.userAuthorizedInfo = user;
+        this.errorMessage = user.errorMessage;
+        localStorage.clear();
+        localStorage.setItem(keys.keyToken, this.userAuthorizedInfo.access_token);
+        if (!this.errorMessage) {
+            localStorage.setItem(keys.keyModel, JSON.stringify(this.userAuthorizedInfo.userModel));
+            this._router.navigate(['/']);
+        }
+        else {
+            this._authorizationService.logOff();
+            localStorage.setItem(keys.keyError, this.userAuthorizedInfo.errorMessage);
         }
     }
 }

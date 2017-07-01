@@ -51,5 +51,27 @@ namespace FundTrack.DAL.Abstract
         /// <param name="guid">guid to get user</param>
         /// <returns>User with specifice guid</returns>
         User GetUserByGuid(string guid);
+
+        /// <summary>
+        /// Get the user with this login and password.
+        /// </summary>
+        /// <param name="login">The login.</param>
+        /// <param name="rawPassword">The raw password.</param>
+        /// <returns></returns>
+        User GetUser(string login, string rawPassword);
+
+        /// <summary>
+        /// Gets the user with this login.
+        /// </summary>
+        /// <param name="login">The login.</param>
+        /// <returns></returns>
+        User GetUser(string login);
+
+        /// <summary>
+        /// Gets the facebook user.
+        /// </summary>
+        /// <param name="email">The email.</param>
+        /// <returns></returns>
+        User GetFacebookUser(string email);
     }
 }
