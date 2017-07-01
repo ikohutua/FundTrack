@@ -2,6 +2,8 @@
 import { AuthorizationType, AuthorizeUserModel } from '../../view-models/concrete/authorization.type';
 import { ChangePasswordViewModel } from '../../view-models/concrete/change-password-view-model';
 import { AuthorizeViewModel } from '../../view-models/concrete/authorization-view.model';
+import { CoolHttp } from 'angular2-cool-http';
+import { CoolLoadingIndicator } from 'angular2-cool-loading-indicator';
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { Headers, RequestOptions } from '@angular/http';
@@ -39,7 +41,7 @@ export class UserService {
 
     /**
      * send requast to controller to create new user
-     * @param newItem
+     * @param registrationViewModel
      */
     public create(newItem: RegistrationViewModel): Observable<AuthorizationType> {
         let body = newItem;
@@ -48,6 +50,8 @@ export class UserService {
         return this._http.post("api/user/register", body, options)
             .map((response: Response) => response.json() as AuthorizationType);
     }
+
+    
 
     /**
      * send request to controller to update existing user 

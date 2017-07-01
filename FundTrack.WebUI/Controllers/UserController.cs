@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace FundTrack.WebUI.Controllers
@@ -108,10 +109,18 @@ namespace FundTrack.WebUI.Controllers
                 }
                 else
                 {
-                    var errors = ModelState.Values.SelectMany(a => a.Errors).Select(e => e.ErrorMessage);
-                    string generalError = string.Join(" ", errors);
+                    List<ValidationViewModel> validationSummary = new List<ValidationViewModel>();
 
-                    return this._getAuthorizationTypeError(generalError);
+                    foreach(var field in ModelState.Keys)
+                    {
+                        var erorMessages = ModelState[field].Errors.Select(a => a.ErrorMessage);
+                        validationSummary.Add(new ValidationViewModel {
+                            ErrorsMessages = erorMessages.ToList(),
+                            FieldName = field
+                        });
+                    }
+
+                    return this._getAuthorizationTypeError(validationSummary: validationSummary);
                 }               
             }
             catch (Exception ex)
@@ -120,12 +129,13 @@ namespace FundTrack.WebUI.Controllers
             }
         }
 
-        private string _getAuthorizationTypeError(string errorMessage)
+        private string _getAuthorizationTypeError(string errorMessage = "", List<ValidationViewModel> validationSummary = null)
         {
             var authorizationType = new AuthorizationType
             {
                 access_token = "",
-                errorMessage = errorMessage
+                errorMessage = errorMessage,
+                validationSummary = validationSummary
             };
 
             return JsonConvert.SerializeObject(authorizationType, new JsonSerializerSettings { Formatting = Formatting.Indented });

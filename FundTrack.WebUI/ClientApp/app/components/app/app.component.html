@@ -1,37 +1,43 @@
-﻿<nav class="navbar navbar-default">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" [routerLink]="['']">Волонтерські організації <span>України</span></a>
-        </div>
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-                <li><a [routerLink]="['/about']">Про нас</a></li>
-            </ul>
-            <form class="navbar-form navbar-left">
-                <dropdown-org></dropdown-org>
-            </form>
-            <ul class="nav navbar-nav navbar-right">
-               <user-states class="userstates"></user-states>
-            </ul>
-        </div>
-    </div>
-</nav>
-<div class="container-fluid">
-    <router-outlet></router-outlet>
-</div>
+﻿<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<div class="fixedHeader">
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" [routerLink]="['']">Волонтерські організації <span>України</span></a>
+            </div>
 
-<footer class="footer-distributed">
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li><a [routerLink]="['/about']">Про нас</a></li>
+                </ul>
+                <form class="navbar-form navbar-left">
+                    <dropdown-org></dropdown-org>
+                </form>
+                <form class="nav navbar-nav navbar-right">
+                    <user-states></user-states>
+                </form>
+            </div>
+        </div>
+    </nav>
+</div>
+<div class="content">
+    <div class="container-fluid">
+        <router-outlet></router-outlet>
+    </div>
+</div>
+<footer class="footer footer-distributed">
+    <div style="padding: 20px">
     <div class="footer-right">
-        <a href="#"><i class="fa fa-twitter" ></i></a>
+        <a href="#"><i class="fa fa-facebook" ></i></a>
         <a href="#"><i class="fa fa-twitter"></i></a>
         <a href="#"><i class="fa fa-linkedin"></i></a>
-        <a href="#"><i class="fa fa-github"></i></a>
+        <a href="#"><i class="fa fa-youtube"></i></a>
     </div>
 
     <div class="footer-left">
@@ -48,4 +54,5 @@
         </p>
         <p>FundTrack &copy; 2017</p>
     </div>
+        </div>
 </footer>

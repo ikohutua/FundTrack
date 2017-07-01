@@ -1,8 +1,7 @@
-﻿<div class="col-md-4 col-md-offset-4">
-    <h3>Реєстрація нового користувача</h3>
-    <hr />
-    <form [formGroup]="registrationForm" class="form-horizontal" style="width: 400px" novalidate>
-
+﻿<div class="col-lg-4 col-lg-offset-4">
+    
+    <form [formGroup]="registrationForm" class="form-horizontal" id="registrationForm" novalidate>
+        <h3 class="formHeader text-center">Реєстрація нового користувача</h3>
         <div class="form-group" [class.has-error]="formErrors.firstName"
              [class.has-success]="!formErrors.firstName && registrationForm.get('firstName').valid">
             <label class="control-label" for="firstName">Імя</label>
@@ -44,7 +43,7 @@
             </span>
         </div>
 
-        <div class="form-group" [class.has-error]="formErrors.email"
+        <div class="form-group" [class.has-error]="formErrors.email || errorMessage"
              [class.has-success]="!formErrors.email && registrationForm.get('email').valid">
             <label class="control-label" for="email">Email</label>
             <div class="input-group">
@@ -54,6 +53,9 @@
             </div>
             <span *ngIf="formErrors.email" class="has-error help-block fixedError">
                 {{ formErrors.email }}
+            </span>
+            <span *ngIf="errorMessage">
+                <span class="has-error help-block fixedError">{{errorMessage}}</span>
             </span>
         </div>
 
@@ -87,10 +89,7 @@
 
         <div class="form-group">
             <label class="control-label" for="submit"></label>
-            <button id="submit" class="btn btn-primary" [disabled]="registrationForm.invalid" (click)="register()">Зареєструватись</button>
-            <div *ngIf="errorMessage">
-                <span class="has-error help-block fixedError">{{errorMessage}}</span>
-            </div>
+            <button id="submit" class="btn btn-success pull-right" [disabled]="registrationForm.invalid" (click)="register()">Зареєструватись</button>
         </div>
     </form>
     </div>

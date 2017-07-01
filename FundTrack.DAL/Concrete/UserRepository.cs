@@ -1,9 +1,7 @@
 ﻿using FundTrack.DAL.Abstract;
 using FundTrack.DAL.Concrete;
 using FundTrack.DAL.Entities;
-using FundTrack.Infrastructure.ViewModel;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -54,9 +52,9 @@ namespace FundTrack.DAL.Repositories
         /// <param name="user">user entity</param>
         /// <returns>Created user</returns>
         public User Create(User user)
-        {
-            context.Users.Add(user);
-            return user;
+        {  
+            var insertedUser = context.Users.Add(user);
+            return insertedUser.Entity;
         }
 
         /// <summary>

@@ -36,6 +36,7 @@ namespace FundTrack.BLL.Concrete
             newEvent.Id = newItem.Id;
             newEvent.OrganizationId = newItem.OrganizationId;
             newEvent.Description = newItem.Description;
+            newEvent.Description = newItem.Description;
             newEvent.CreateDate = newItem.CreateDate;
 
             _unitOfWork.EventRepository.Create(newEvent);
@@ -116,6 +117,8 @@ namespace FundTrack.BLL.Concrete
             newEvent.OrganizationId = updateItem.OrganizationId;
             newEvent.Description = updateItem.Description;
             newEvent.CreateDate = updateItem.CreateDate;
+            newEvent.Description = updateItem.Description;
+            //newEvent.ImageUrl = updateItem.ImageUrl;
 
             _unitOfWork.EventRepository.Update(newEvent);
             _unitOfWork.SaveChanges();

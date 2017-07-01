@@ -32,15 +32,16 @@ namespace FundTrack.Infrastructure.ViewModel
         /// Gets or sets user login
         /// </summary>
         [Required(ErrorMessage = ErrorMessages.RequiredFieldMessage)]
-        [RegularExpression("^[a-zA-Z](.[a-zA-Z0-9_-]*)$", ErrorMessage = ErrorMessages.PatternLoginMessage)]
+        [RegularExpression(RegexValidationMessages.LoginRegexValidationMessage,
+                           ErrorMessage = ErrorMessages.PatternLoginMessage)]
         public string Login { get; set; }
 
         /// <summary>
         /// Gets or sets user email
         /// </summary>
         [Required(ErrorMessage = ErrorMessages.RequiredFieldMessage)]
-        [RegularExpression("^([a-z0-9_-]+\\.)*[a-z0-9_-]+@[a-z0-9_-]+(\\.[a-z0-9_-]+)*\\.[a-z]{2,6}$",
-                            ErrorMessage = ErrorMessages.PatternEmailMessage)]
+        [RegularExpression(RegexValidationMessages.EmailRegexValidationMessage,
+                          ErrorMessage = ErrorMessages.PatternEmailMessage)]
         public string Email { get; set; }
     }
 }

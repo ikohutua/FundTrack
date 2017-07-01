@@ -7,8 +7,7 @@ import { AuthorizationModule } from "./authorization.module";
 import { SuperAdminModule } from './super-admin.module';
 import { AppRoutingModule } from "./routes/app-routing.module";
 import { MapModule } from "./map.module";
-
-
+import { Angular2FontawesomeModule } from 'angular2-fontawesome/angular2-fontawesome';
 
 @NgModule({
     bootstrap: [AppComponent],
@@ -22,7 +21,8 @@ import { MapModule } from "./map.module";
         AuthorizationModule,
         SuperAdminModule,
         AppRoutingModule, 
-        MapModule
-            ]
+        MapModule,
+        Angular2FontawesomeModule
+    ]
 })
 export class AppModule { }

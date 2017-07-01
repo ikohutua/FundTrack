@@ -4,3 +4,12 @@
 .form-group {
     margin-bottom: 7px !important;
 }
+
+#registrationForm {
+    width: 400px;
+}
+
+.formHeader {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+}

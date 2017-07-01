@@ -9,7 +9,9 @@ namespace FundTrack.DAL.Concrete
     public class FundTrackContext : DbContext
     {
         public FundTrackContext(DbContextOptions<FundTrackContext> options)
-            : base(options) { }
+            : base(options)
+        {    
+        }
 
         /// <summary>
         /// Gets or Sets Users

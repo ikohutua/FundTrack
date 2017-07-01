@@ -1,4 +1,7 @@
-﻿namespace FundTrack.WebUI.Controllers
+﻿using System.Collections.Generic;
+using FundTrack.Infrastructure.ViewModel;
+
+namespace FundTrack.WebUI.Controllers
 {
     internal class AuthorizeUserModel
     {
@@ -17,5 +20,6 @@
         public AuthorizeUserModel userModel { get; set; }
         public string access_token { get; set; }
         public string errorMessage { get; internal set; }
+        public List<ValidationViewModel> validationSummary { get; internal set; }
     }
 }

@@ -3,13 +3,10 @@ using System;
 using FundTrack.DAL.Entities;
 using FundTrack.DAL.Abstract;
 using FundTrack.Infrastructure.ViewModel;
-using System.Security.Claims;
 using System.Collections.Generic;
 using System.Linq;
-using FundTrack.Infrastructure.ViewModel.SuperAdminViewModels;
 using FundTrack.BLL.Concrete;
 using FundTrack.Infrastructure;
-using FundTrack.BLL.Concrete;
 
 
 namespace FundTrack.BLL.DomainServices
@@ -93,11 +90,9 @@ namespace FundTrack.BLL.DomainServices
             {
                 User userToAdd = registrationViewModel;
                 userToAdd.Password = PasswordHashManager.GetPasswordHash(registrationViewModel.Password);
-                //Membership memberShip = new Membership();
                 
                 User addedUser = this._unitOfWork.UsersRepository.Create(userToAdd);
-                //memberShip.UserId = addedUser.Id;
-                //memberShip.RoleId = 1;
+                
                 this._unitOfWork.SaveChanges();
 
                 return addedUser;
