@@ -18,7 +18,7 @@ import { SharedModule } from './shared.module';
         AuthorizationComponent,
         ErrorAuthorizeComponent,
         UserProfileComponent,
-        EqualTextValidator        
+        EqualTextValidator,
     ],
     imports: [
         CommonModule,

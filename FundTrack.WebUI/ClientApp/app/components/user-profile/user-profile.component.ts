@@ -14,9 +14,8 @@ import { ChangePasswordViewModel } from "../../view-models/concrete/change-passw
 import { UserService } from '../../services/concrete/user.service';
 import { Router } from "@angular/router";
 import { matchingPasswords } from '../registration/match-password.validator';
-require('aws-sdk/dist/aws-sdk');
-//import { Overlay } from 'angular2-modal';
-//import { Modal } from 'angular2-modal/plugins/bootstrap';
+import { AmazonUploadComponent } from '../../shared/components/amazonUploader/amazon-upload.component';
+
 
 @Component({
     selector: 'user-info',
@@ -27,25 +26,27 @@ require('aws-sdk/dist/aws-sdk');
 
 export class UserProfileComponent implements OnInit {
     @ViewChild(ModalComponent)
-    /**
-    Modal component that contains password changes controls
-    **/
+
+    //Modal component that contains password changes controls
     public modal: ModalComponent;
-    user: AuthorizeUserModel = new AuthorizeUserModel();
+    //Amazon storage uploader component
+    public uploader: AmazonUploadComponent = new AmazonUploadComponent();
+
+    private user: AuthorizeUserModel = new AuthorizeUserModel();
     private errorMessage: string;
     private passwordEdit: boolean = true;
-    //imageUploaded: boolean = false;
     private passwordContainer: ChangePasswordViewModel = new ChangePasswordViewModel();
 
     /**
     Reactive forms that are bound to input elements in UI
     **/
-    userForm: FormGroup;
-    passwordForm: FormGroup;
+    public userForm: FormGroup;
+    public passwordForm: FormGroup;
+
     /**
     Object that keeps errors coming from user interface
     **/
-    formErrors = {
+    public formErrors = {
         "firstName": "",
         "lastName": "",
         "email": "",
@@ -60,7 +61,7 @@ export class UserProfileComponent implements OnInit {
     /**
     Object that contains error messages
     **/
-    validationMessages = {
+    public validationMessages = {
         "firstName": {
             "required": "Поле є обов'язковим",
             "minlength": "Значення не може бути коротшим 2х символів",
@@ -282,29 +283,22 @@ export class UserProfileComponent implements OnInit {
      * @param fileInput: file to be saved in AWS
      */
     private saveFileInAws(fileInput: any): void {
+        var that = this;
         var oldPhotoUrl = this.user.photoUrl;
         this.user.photoUrl = '';
-        let AWSService = window.AWS;
-        console.log(AWSService);
+        var maxFileSize = 4000000;
         let file = fileInput.target.files[0];
-        if (file.size != null && file.size < 4000000) {
-            AWSService.config.accessKeyId = 'AKIAJH4TLLOIZ5QOBKMQ';
-            AWSService.config.secretAccessKey = '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';
-            let uploadedFileName = this.user.login + '.' + this.getFileExtension(file.name);
-            let bucket = new AWSService.S3({ params: { Bucket: 'fundtrack' } });
-            let params = { Key: uploadedFileName, Body: file };
-            var that = this;
-            bucket.upload(params, function (error, res) {
-                console.log('error', error);
-                console.log('response', res);
-                that.user.photoUrl = '';
-                that.user.photoUrl = res.Location;
+        let uploadedFileName = this.user.login + '.' + this.getFileExtension(file.name);
+        if (file.size != null && file.size < maxFileSize) {
+            this.uploader.UploadImageToAmazon(file, uploadedFileName).then(function (data) {
+                that.user.photoUrl = data.Location;
             })
         }
         else {
             this.user.photoUrl = oldPhotoUrl;
-            alert('Розмір зоображення не може перевищувати 4 МБ');
+            alert('Розмр файлу не може перевищувати ' + Math.ceil(maxFileSize / 1000000) + 'МБ');
         }
     }
     }
 
+ 
