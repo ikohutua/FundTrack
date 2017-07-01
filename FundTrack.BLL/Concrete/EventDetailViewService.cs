@@ -77,19 +77,18 @@ namespace FundTrack.BLL.Concrete
         public EventDetailViewModel ReadById(int id)
         {
             EventDetailViewModel eventDetailViewModel = new EventDetailViewModel();
-
             var eventDetail = ((DbSet<Event>)_unitOfWork.EventRepository.Read())
-                                .Include(e => e.Organization)
-                                .Include(im => im.EventImages)
-                                .Select(c => new
-                                {
-                                    Id = c.Id,
-                                    OrganizationId = c.OrganizationId,
-                                    OrganizationName = c.Organization.Name,
-                                    Description = c.Description,
-                                    CreateDate = c.CreateDate,
-                                    ImageUrl = c.EventImages.Select(i => i.ImageUrl).ToList<string>()
-                                }).FirstOrDefault(i => i.Id == id);
+                .Include(e => e.Organization)
+                .Include(im => im.EventImages)
+                .Select(c => new
+                {
+                    Id = c.Id,
+                    OrganizationId = c.OrganizationId,
+                    OrganizationName = c.Organization.Name,
+                    Description = c.Description,
+                    CreateDate = c.CreateDate,
+                    ImageUrl = c.EventImages.Select(i => i.ImageUrl).ToList<string>()
+                }).FirstOrDefault(i => i.Id == id);
 
             eventDetailViewModel.Id = eventDetail.Id;
             eventDetailViewModel.OrganizationId = eventDetail.OrganizationId;

@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\FundTrack.BLL\FundTrack.BLL.csproj" />
+    <ProjectReference Include="..\FundTrack.DAL.Tests\FundTrack.DAL.Tests.csproj" />
   </ItemGroup>
 
   <ItemGroup>

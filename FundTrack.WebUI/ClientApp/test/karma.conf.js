@@ -9,6 +9,11 @@ module.exports = function (config) {
             '../../wwwroot/dist/vendor.js',
             './boot-tests.ts'
         ],
+plugins: [
+  'karma-jasmine',
+  'karma-webpack',
+  'karma-chrome-launcher'
+],
         preprocessors: {
             './boot-tests.ts': ['webpack']
         },
@@ -20,7 +25,8 @@ module.exports = function (config) {
         browsers: ['Chrome'],
         mime: { 'application/javascript': ['ts','tsx'] },
         singleRun: false,
-        webpack: require('../../webpack.config.js')().filter(config => config.target !== 'node'), // Test against client bundle, because tests run in a browser
+        webpack: require('../../webpack.config.js')().filter(config => config.target !== 'node'),
+        // Test against client bundle, because tests run in a browser
         webpackMiddleware: { stats: 'errors-only' }
     });
 };

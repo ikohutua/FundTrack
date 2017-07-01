@@ -61,7 +61,7 @@ namespace FundTrack.WebUI.Controllers
         [HttpPut("editprofile")]
         public JsonResult EditProfile([FromBody] UserInfoViewModel model)
         {
-            var updatedUser= this._userDomainService.UpdateUser(model);
+            var updatedUser = this._userDomainService.UpdateUser(model);
             return Json(updatedUser);
         }
         /// <summary>
@@ -75,7 +75,7 @@ namespace FundTrack.WebUI.Controllers
         {
             try
             {
-               var updatedUserModel=this._userDomainService.ChangePassword(changePasswordViewModel);
+               var updatedUserModel = this._userDomainService.ChangePassword(changePasswordViewModel);
                 return Json(new ChangePasswordViewModel());
             }
             catch (Exception ex)

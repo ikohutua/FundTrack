@@ -5,17 +5,17 @@ VisualStudioVersion = 15.0.26430.6
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FundTrack.WebUI", "FundTrack.WebUI\FundTrack.WebUI.csproj", "{465AB00F-51CD-4C6E-979D-B7EFA4387DC7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FundTrack.DAL", "FundTrack.DAL\FundTrack.DAL.csproj", "{EEFA1717-A337-4F2A-BE52-4AC6F97A3A80}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FundTrack.DAL", "FundTrack.DAL\FundTrack.DAL.csproj", "{EEFA1717-A337-4F2A-BE52-4AC6F97A3A80}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FundTrack.BLL", "FundTrack.BLL\FundTrack.BLL.csproj", "{EAAE4D01-3586-4784-9F39-3E2B70E0C677}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FundTrack.BLL", "FundTrack.BLL\FundTrack.BLL.csproj", "{EAAE4D01-3586-4784-9F39-3E2B70E0C677}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FundTrack.Infrastructure", "FundTrack.Infrastructure\FundTrack.Infrastructure.csproj", "{6540FAB8-83C7-40EC-93D3-09EE3A40794E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FundTrack.Infrastructure", "FundTrack.Infrastructure\FundTrack.Infrastructure.csproj", "{6540FAB8-83C7-40EC-93D3-09EE3A40794E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FundTrack.BLL.Tests", "FundTrack.BLL.Tests\FundTrack.BLL.Tests.csproj", "{4975B076-A4EE-4281-9446-648F6CDE72DF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FundTrack.BLL.Tests", "FundTrack.BLL.Tests\FundTrack.BLL.Tests.csproj", "{4975B076-A4EE-4281-9446-648F6CDE72DF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FundTrack.DAL.Tests", "FundTrack.DAL.Tests\FundTrack.DAL.Tests.csproj", "{13230030-2DF7-478F-BC47-8392352C2B9E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FundTrack.WebUI.Tests", "FundTrack.WebUI.Tests\FundTrack.WebUI.Tests.csproj", "{6EEE8694-DA10-4324-8A40-B9A79DB35B69}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FundTrack.WebUI.Tests", "FundTrack.WebUI.Tests\FundTrack.WebUI.Tests.csproj", "{6EEE8694-DA10-4324-8A40-B9A79DB35B69}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FundTrack.DAL.Tests", "FundTrack.DAL.Tests\FundTrack.DAL.Tests.csproj", "{7120293D-AFFF-4363-AD57-B3D8EDCC857C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -43,14 +43,14 @@ Global
 		{4975B076-A4EE-4281-9446-648F6CDE72DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4975B076-A4EE-4281-9446-648F6CDE72DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4975B076-A4EE-4281-9446-648F6CDE72DF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{13230030-2DF7-478F-BC47-8392352C2B9E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{13230030-2DF7-478F-BC47-8392352C2B9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{13230030-2DF7-478F-BC47-8392352C2B9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{13230030-2DF7-478F-BC47-8392352C2B9E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6EEE8694-DA10-4324-8A40-B9A79DB35B69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6EEE8694-DA10-4324-8A40-B9A79DB35B69}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6EEE8694-DA10-4324-8A40-B9A79DB35B69}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6EEE8694-DA10-4324-8A40-B9A79DB35B69}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7120293D-AFFF-4363-AD57-B3D8EDCC857C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7120293D-AFFF-4363-AD57-B3D8EDCC857C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7120293D-AFFF-4363-AD57-B3D8EDCC857C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7120293D-AFFF-4363-AD57-B3D8EDCC857C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -75,11 +75,11 @@ Global
 		SccProjectUniqueName5 = FundTrack.BLL.Tests\\FundTrack.BLL.Tests.csproj
 		SccProjectName5 = FundTrack.BLL.Tests
 		SccLocalPath5 = FundTrack.BLL.Tests
-		SccProjectUniqueName6 = FundTrack.DAL.Tests\\FundTrack.DAL.Tests.csproj
-		SccProjectName6 = FundTrack.DAL.Tests
-		SccLocalPath6 = FundTrack.DAL.Tests
-		SccProjectUniqueName7 = FundTrack.WebUI.Tests\\FundTrack.WebUI.Tests.csproj
-		SccProjectName7 = FundTrack.WebUI.Tests
-		SccLocalPath7 = FundTrack.WebUI.Tests
+		SccProjectUniqueName6 = FundTrack.WebUI.Tests\\FundTrack.WebUI.Tests.csproj
+		SccProjectName6 = FundTrack.WebUI.Tests
+		SccLocalPath6 = FundTrack.WebUI.Tests
+		SccProjectUniqueName7 = FundTrack.DAL.Tests\\FundTrack.DAL.Tests.csproj
+		SccProjectName7 = FundTrack.DAL.Tests
+		SccLocalPath7 = FundTrack.DAL.Tests
 	EndGlobalSection
 EndGlobal

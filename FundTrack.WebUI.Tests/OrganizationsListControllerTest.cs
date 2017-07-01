@@ -11,11 +11,11 @@ namespace FundTrack.WebUI.Tests
     /// <summary>
     /// Test class for OrganizationsListController
     /// </summary>
-    public class OrganizationsListControllerTest
+    public sealed class OrganizationsListControllerTest
     {
         /// <summary>
         /// Tests AllOrganizations method in the OrganizationsListController
-        /// SCENARIO - Setup service. Service returns collection of OrganizationForFilteringViewModel
+        /// SCRIPT - Setup service. Service returns collection of OrganizationForFilteringViewModel
         /// RESULT - The result is collection of OrganizationsForFilteringViewModel
         /// </summary>
         [Fact]
@@ -33,8 +33,10 @@ namespace FundTrack.WebUI.Tests
 
             //Act
             var result = controller.AllOrganizations().ToList();
-            
+            var acceptedResult = controller.Accepted();
+           
             //Assert
+            Assert.True(202 == acceptedResult.StatusCode);
             Assert.Equal(1, result[0].Id);
             Assert.Equal("Name2", result[1].Name);
             service.Verify(s => s.GetAll());

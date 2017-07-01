@@ -11,10 +11,18 @@ import { OrganizationDropdownService } from "../../../services/concrete/organiza
 
 export class DropdownOrganizationsComponent implements OnInit {
 
+    public filterBy: string;
+
     private _errorMessage: string;
-    public organizations: IOrganizationForFiltering[];
-    public filterBy: string = '';
-    public selectedOrganizationName: string = null;
+    private _organizations: IOrganizationForFiltering[];
+    private _selectedOrganizationName: string;
+
+    /**
+     * calls getOrganizationsList()
+     */
+    ngOnInit(): void {
+        this.getOrganizationsList();
+    }
 
     /**
      * @constructor
@@ -27,26 +35,19 @@ export class DropdownOrganizationsComponent implements OnInit {
      */
     getOrganizationsList(): void {
         this._service.getCollection()
-            .subscribe(organizations => this.organizations = organizations,
+            .subscribe(organizations => this._organizations = organizations,
             error => this._errorMessage = <any>error);
     }
 
     /**
-     * calls getOrganizationsList()
-     */
-    ngOnInit(): void {
-        this.getOrganizationsList();
-    }
-
-    /**
      * gets a name of selected organization in dropdown list of organizations
+     * @param IOrganizationForFiltering
      */
-    private onSelect(org: IOrganizationForFiltering): void {
-        this.selectedOrganizationName = org.name;
+    private onSelect(organization: IOrganizationForFiltering): void {
+        this._selectedOrganizationName = organization.name;
     }
 
-    private onSelectAll(): void{
-        this.selectedOrganizationName = null;
+    private onSelectAll(): void {
+        this._selectedOrganizationName = null;
     }
-
 }
