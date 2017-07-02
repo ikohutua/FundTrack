@@ -139,6 +139,35 @@ export class MapComponent implements OnInit {
     }
 
     /**
+     * 
+     * @param googleResponse
+     * @returns formatted address: string
+     */
+    private formatAddress(googleResponse: google.maps.GeocoderResult): string {
+        debugger;
+        var formattedAddress: string = '';
+        for (let i = 0; i < googleResponse.address_components.length; i++) {
+            switch (googleResponse.address_components[i].types.toString()) {
+                case 'administrative_area_level_1,political':
+                    formattedAddress += googleResponse.address_components[i].long_name += ', ';
+                    break;
+                case 'locality,political':
+                    formattedAddress += googleResponse.address_components[i].long_name += ', ';
+                    break;
+                case 'route':
+                    formattedAddress += googleResponse.address_components[i].long_name += ', ';
+                    break;
+                case 'street_number':
+                    formattedAddress += googleResponse.address_components[i].long_name += ', ';
+                    break;
+            }
+        }
+        //delete last coma
+        formattedAddress = formattedAddress.slice(0, -2);
+        return formattedAddress;
+    }
+
+    /**
      * Gets the formatted addresses by coordinates from the _markers
      */
     private saveFormattedAddresses(): void {
@@ -155,11 +184,11 @@ export class MapComponent implements OnInit {
                     if (this.allowManyMarkers) {
                         var addressContainsInArray = this._addresses.find(a => a == results[0].formatted_address);
                         if (!addressContainsInArray) {
-                            this._addresses.push(results[0].formatted_address);
+                            this._addresses.push(this.formatAddress(results[0]));
                         }
                     }
                     else {
-                        this._addresses[0] = results[0].formatted_address;
+                        this._addresses[0] = this.formatAddress(results[0]);
                     }
                 });
             });
@@ -223,7 +252,6 @@ export class MapComponent implements OnInit {
         var updatedMarker = this.createNewMarker(parseFloat(marker.lat), parseFloat(marker.lng));
         var newLatitude = $event.coords.lat;
         var newLongitude = $event.coords.lng;
-
         for (var i = 0; i < this._markers.length; i++) {
             if (updatedMarker.lat == this._markers[i].lat && updatedMarker.lng == this._markers[i].lng) {
                 this._markers[i].lat = newLatitude;
