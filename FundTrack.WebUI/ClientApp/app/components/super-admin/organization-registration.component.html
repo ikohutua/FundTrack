@@ -1,0 +1,128 @@
+﻿<h2> Форма реєстрації організації</h2>
+<div>
+    <form #form="ngForm">
+        <h4> Загальні відомості </h4>
+        <div class="form-group" [class.has-error]="name.invalid&&name.touched">
+            <label class="control-label"> Назва організації</label>
+            <div class="inner-addon left-addon">
+                <i class="glyphicon glyphicon-pencil"></i>
+                <input type="text" class="form-control" [(ngModel)]="organization.name" placeholder="Введіть назву" required minlength="5" maxlength="50" name="name" #name="ngModel"/>
+            </div>
+             <div *ngIf="name.errors && (name.dirty || name.touched)"
+                 class="alert alert-danger">
+                <div [hidden]="!name.errors.required">
+                    Назва організації обов'язкова
+                </div>
+                <div [hidden]="!name.errors.minlength">
+                    Назва має містити принаймі 5 символів.
+                </div>
+                <div [hidden]="!name.errors.maxlength">
+                    Назва не може перевищувати 50 символів.
+                </div>
+            </div>
+            <div class="alert-danger">
+                {{nameError}}
+            </div>
+            </div>
+        <div class="form-group" [class.has-error]="description.invalid&&description.touched">
+            <label class="control-label"> Опис організації </label>
+            <div class="inner-addon left-addon">
+                <i class="glyphicon glyphicon-pencil" *ngIf ="!description.dirty"></i> 
+                <textarea class="form-control" [(ngModel)]="organization.description" required minlength="20" placeholder="     Введіть опис" maxlength="200" name="description" #description="ngModel" rows="5"> </textarea>
+            </div>
+            <div *ngIf="description.errors && (description.dirty || description.touched)"
+                 class="alert alert-danger">
+                <div [hidden]="!description.errors.required">
+                    Опис організації обов'язковий
+                </div>
+                <div [hidden]="!description.errors.minlength">
+                    Опис має містити принаймі 20 символів.
+                </div>
+                <div [hidden]="!description.errors.maxlength">
+                    Опис не може перевищувати 100 символів.
+                </div>
+            </div>
+        </div>
+        <h4> Представник </h4>
+        <div class="form-group" [class.has-error]="login.invalid&&login.touched">
+            <label class="control-label"> Логін адміністратора</label>
+            <div class="inner-addon left-addon">
+                <i class="glyphicon glyphicon-user"></i>
+                <input type="text" class="form-control" required [(ngModel)]="organization.administratorLogin" pattern="[a-zA-Z0-9_]*" placeholder="Введіть логін адміністратора" name="login" #login="ngModel" />
+            </div>
+            <div *ngIf="login.errors && (login.dirty || login.touched)"
+                 class="alert alert-danger">
+                <div [hidden]="!login.errors.required">
+                    Логін адміністратора обов'язковий
+                </div>
+                <div [hidden]="!login.errors.pattern">
+                    Введено недозволений символ
+                </div>
+            </div>
+            <div class="alert-danger">
+                {{userError}}
+            </div>
+        </div>
+        <h4> Місцезнаходження</h4>
+        <!--
+        <button (click)="openModal()"> Вибрати локацію</button>
+       
+         <app-modal>
+            <div class="app-modal-header">
+                <h3>Додати місцезнаходження</h3>
+            </div>
+            <div class="app-modal-body">
+                <map-component> </map-component>
+            </div>
+            <div class="app-modal-footer">
+                <button type="button" class="btn btn-default" (click)="modal.hide()">Закрити</button>
+            </div>
+        </app-modal> 
+        -->
+        <div class="form-group" [class.has-error]="city.invalid&&city.touched">
+            <label class="control-label"> Місто </label>
+            <div class="inner-addon left-addon">
+                <i class="glyphicon glyphicon-home"></i>
+                <input type="text" class="form-control" [(ngModel)]="organization.city" placeholder="Введіть місто" pattern="[А-Яа-яїЇіІ]*" name="city" #city="ngModel" />
+            </div>
+            <div *ngIf="city.errors && (city.dirty || city.touched)"
+                 class="alert alert-danger">
+                <div [hidden]="!city.errors.required">
+                    Місто обов'язкове
+                </div>
+                <div [hidden]="!city.errors.pattern">
+                    Поле може містити лише кирилицю.
+                </div>
+            </div>
+            </div>
+        <div class="form-group" [class.has-error]="street.invalid&&street.touched" >
+            <label class="control-label"> Вулиця </label>
+            <div class="inner-addon left-addon">
+                <i class="glyphicon glyphicon-home"></i>
+                <input type="text" class="form-control" [(ngModel)]="organization.street" required placeholder="Введіть вулицю" name="street" #street="ngModel" />
+            </div>
+            <div *ngIf="street.errors && (street.dirty || street.touched)"
+                 class="alert alert-danger">
+                <div [hidden]="!street.errors.required">
+                    Вулиця обов'язкова
+                </div>
+            </div>
+        </div>
+          
+        <div class="form-group" [class.has-error]="house.invalid&&house.touched">
+            <label class="control-label"> Будинок </label>
+            <div class="inner-addon left-addon">
+                <i class="glyphicon glyphicon-home"></i>
+                <input type="text" class="form-control" [(ngModel)]="organization.house" placeholder="Введіть будинок" name="house" #house="ngModel"/>
+            </div>
+            <div *ngIf="house.errors && (house.dirty || house.touched)"
+                 class="alert alert-danger">
+                <div [hidden]="!house.errors.required">
+                    Будинок обов'язковий
+                </div>
+            </div>
+        </div>
+           
+        <button (click)="registerOrganization()" class="btn btn-primary" type="submit" [disabled]="form.invalid"> Зареєструвати </button>
+    </form>
+</div>
