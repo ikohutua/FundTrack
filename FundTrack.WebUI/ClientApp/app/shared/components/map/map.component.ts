@@ -195,7 +195,7 @@ export class MapComponent implements OnInit {
                 this._markers.push(this.createNewMarker($event.coords.lat, $event.coords.lng));
             } else {
                 this.setMainPointer($event.coords.lat, $event.coords.lng);
-                this._markers.push(this.createNewMarker(this.mainPointerLatitude, this.mainPointerLongitude));
+                this._markers[0] = this.createNewMarker(this.mainPointerLatitude, this.mainPointerLongitude);
             }
         }
     }
