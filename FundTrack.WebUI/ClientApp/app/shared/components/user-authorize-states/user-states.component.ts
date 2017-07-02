@@ -14,9 +14,10 @@ import { AuthorizeUserModel } from '../../../view-models/concrete/authorized-use
 export class UserStatesComponent implements AfterContentChecked {
 
     public user: AuthorizeUserModel;
-    public name: string = "";
-
-    public constructor(private _authorizationService: UserService) { }
+    public name: string = '';
+    private isAdmin: boolean = false;
+    public constructor(private _authorizationService: UserService
+    ) { }
 
     /**
      * close the session current user
@@ -34,6 +35,9 @@ export class UserStatesComponent implements AfterContentChecked {
             if (localStorage.getItem(keys.keyToken)) {
                 this.user = JSON.parse(localStorage.getItem(keys.keyModel)) as AuthorizeUserModel;
                 this.name = this.user.firstName;
+                if (this.user.role == 'superadmin') {
+                    this.isAdmin = true;
+                }
             }
             return true;
         }

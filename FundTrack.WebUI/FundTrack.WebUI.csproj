@@ -33,11 +33,20 @@
   <ItemGroup>
     <!-- Files not to show in IDE -->
     <None Remove="yarn.lock" />
+    <Compile Remove="ClientApp\app\shared\components\localStorage\**" />
+    <Compile Remove="ClientApp\app\shared\components\temporary\**" />
+    <Compile Remove="ClientApp\app\shared\components\validators\**" />
     <Compile Remove="ClientApp\Images\**" />
 
     <!-- Files not to publish (note that the 'dist' subfolders are re-added below) -->
     <Content Remove="ClientApp\**" />
+    <EmbeddedResource Remove="ClientApp\app\shared\components\localStorage\**" />
+    <EmbeddedResource Remove="ClientApp\app\shared\components\temporary\**" />
+    <EmbeddedResource Remove="ClientApp\app\shared\components\validators\**" />
     <EmbeddedResource Remove="ClientApp\Images\**" />
+    <None Remove="ClientApp\app\shared\components\localStorage\**" />
+    <None Remove="ClientApp\app\shared\components\temporary\**" />
+    <None Remove="ClientApp\app\shared\components\validators\**" />
     <None Remove="ClientApp\Images\**" />
   </ItemGroup>
   <ItemGroup>
@@ -47,11 +56,6 @@
     <ProjectReference Include="..\FundTrack.BLL\FundTrack.BLL.csproj" />
     <ProjectReference Include="..\FundTrack.DAL\FundTrack.DAL.csproj" />
     <ProjectReference Include="..\FundTrack.Infrastructure\FundTrack.Infrastructure.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ClientApp\app\shared\components\localStorage\" />
-    <Folder Include="ClientApp\app\shared\components\temporary\" />
-    <Folder Include="ClientApp\app\shared\components\validators\passwordValidator\" />
   </ItemGroup>
   <Target Name="RunWebpack" AfterTargets="ComputeFilesToPublish">
     <!-- As part of publishing, ensure the JS resources are freshly built in production mode -->

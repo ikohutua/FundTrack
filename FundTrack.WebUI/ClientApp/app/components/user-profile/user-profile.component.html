@@ -116,6 +116,8 @@
                     {{ formErrors.newPasswordConfirmation }}
                 </span>
             </div>
+            <span *ngIf="passwordForm.hasError('mismatchedPasswords')" class="has-error help-block fixedError" style="margin-left:200px"
+                 >Паролі не співпадають</span>
         </form>
     </div>
     <div class="app-modal-footer">

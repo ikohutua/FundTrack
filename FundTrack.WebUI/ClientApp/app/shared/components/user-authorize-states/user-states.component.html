@@ -1,10 +1,12 @@
 ﻿<!-- Single button -->
 <div *ngIf="name" class="btn-group" >
     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Привіт,{{name}} <span class="caret"></span>
+        Привіт,{{name}}<span class="caret"></span>
+        <span *ngIf="isAdmin"><b>{{user.role}}</b></span>
     </button>
     <ul class="dropdown-menu dropdowncolor">
         <li><a [routerLink]="['/userprofile']">Мій профіль</a></li>
+        <li *ngIf="isAdmin"><a [routerLink]="['/superadmin']">Панель адміністратора</a></li>
         <li><a [routerLink]="['/']" (click)="exit()">Вийти</a></li>
     </ul>
 </div>
