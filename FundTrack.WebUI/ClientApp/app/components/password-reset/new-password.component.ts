@@ -91,17 +91,17 @@ export class NewPasswordComponent implements OnInit {
         "confirmPassword": "",
         "mismatchingPasswords": ""
     };
-
-    //Object with error messages
-    public validationMessages = {       
-        "password": {
-            "required": "Обовязкове поле для заповнення",
-            "minLength": "Мінімальна кількість символів повинна бути більша 7"
+    
+    //Object with error messages  
+    private validationMessages = {       
+        password: {
+            required: "Обовязкове поле для заповнення",
+            minlength: "Мінімальна кількість символів повинна бути більша 7"
         },
-        "confirmPassword": {
-            "required": "Обовязкове поле для заповнення",
-            "minLength": "Мінімальна кількість символів повинна бути більша 7",
-            "mismatchingPasswords": "Паролі не співпадають"
+        confirmPassword: {
+            required: "Обовязкове поле для заповнення",
+            minlength: "Мінімальна кількість символів повинна бути більша 7",
+            mismatchingpasswords: "Паролі не співпадають"
         }
     };
 
@@ -112,11 +112,11 @@ export class NewPasswordComponent implements OnInit {
         this.passwordForm = this._formBuilder.group({
             "password": [this.resetPasswordModel.newPassword, [
                 Validators.required,
-                Validators.minLength(6)
+                Validators.minLength(7)
             ]],
             "confirmPassword": [this.resetPasswordModel.newPasswordConfirm, [
                 Validators.required,
-                Validators.minLength(6)
+                Validators.minLength(7)
             ]]
         },
             { validator: matchingPasswords('password', 'confirmPassword') });
@@ -131,19 +131,18 @@ export class NewPasswordComponent implements OnInit {
      * Subscriber on value changes
      * @param data
      */
-    public onValueChange(data?: any) : void {
+    public onValueChange(data?: any) {
         if (!this.passwordForm) return;
         let form = this.passwordForm;
 
         for (let field in this.formErrors) {
             this.formErrors[field] = "";
-            //Form get
             let control = form.get(field);
 
             if (control && control.dirty && !control.valid) {
                 let message = this.validationMessages[field];
                 for (let key in control.errors) {
-                    this.formErrors[field] += message[key] + "";
+                    this.formErrors[field] += message[key.toLowerCase()] + "";
                 }
             }
         }

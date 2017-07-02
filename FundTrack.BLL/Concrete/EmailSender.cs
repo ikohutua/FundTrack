@@ -36,7 +36,7 @@ namespace FundTrack.BLL.Concrete
             emailMessage.Body = new TextPart("html")
             {
                 Text = Properties.Resources.ResourceManager.GetString("body").Replace("linkBody",
-                                                            $"{currentHost} + /new_password/ + {guid}")
+                                                            $"{currentHost}/new_password/{guid}")
             };
 
             using (var client = new SmtpClient())

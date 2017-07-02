@@ -15,7 +15,7 @@ import { SuperAdminChangeStatusViewModel } from '../../view-models/abstract/supe
 */
 export class SuperAdminOrganizationsComponent implements OnInit {
     public totalItems;
-    public itemPerPage: number;
+    public itemPerPage: number = 4;
     public offset: number = 0;
     public currentPage: number = 1;
     public organizations: SuperAdminItemsViewModel[];

@@ -31,7 +31,7 @@ namespace FundTrack.BLL.Tests
         {
             //Arrange
             var reposirory = new EventRepository(this._context);
-            var unitOfWork = new UnitOfWork(this._context, null, null, reposirory, null, null);
+            var unitOfWork = new UnitOfWork(this._context, null, null, reposirory, null, null,null);
             var service = new EventDetailViewService(unitOfWork);
 
             //Act

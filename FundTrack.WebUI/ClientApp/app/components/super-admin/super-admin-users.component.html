@@ -6,11 +6,11 @@
 </div>
 <div class="container-fluid">
     <div class="row">
-        <div class="col-sm-2">
+        <div class="col-sm-2" style="padding-top:20px">
             На Сторінці :
         </div>
-        <div *ngIf="numbers" class="text-left col-sm-2">
-            <select-item [items]="numbers"
+        <div class="text-left col-sm-2" style="padding-top:20px">
+            <select-item [items]="[4, 5, 6, 7, 8, 9, 10]"
                          (onSelect)="itemsPerPageChange($event)">
             </select-item>
         </div>

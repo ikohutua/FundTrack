@@ -28,13 +28,9 @@ export class BeginPasswordResetComponent {
     /**
      * Calls server to send Email 
      */
-    public sendEmail() : void {      
-        this._userService.sendRecoveryEmail(this.recoveryEmail).subscribe((responce: string) => {
-            if (responce.length == 0) {
-                this.emailSend = true;
-            } else {
-                this.errorMessage = responce;
-            }
+    public sendEmail(): void {   
+        this.emailSend = true; 
+        this._userService.sendRecoveryEmail(this.recoveryEmail).subscribe((responce: string) => {          
         });
     }
 
