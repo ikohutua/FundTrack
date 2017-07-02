@@ -59,7 +59,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "5525cda58d54211ccfb8"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "a8f4474d0e34436c8e4e"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -12871,19 +12871,21 @@ var keys = __webpack_require__(16);
  * Abstract class for Guard service
  */
 var BaseGuardService = (function () {
-    function BaseGuardService(_router, _roleName) {
+    function BaseGuardService(_router, _rolesName) {
         this._router = _router;
-        this._roleName = _roleName;
+        this._rolesName = _rolesName;
     }
     /**
-      * check if user is authorized and his role is "_roleName"
+     * check if user is authorized and his role is contsin in _rolesName
       */
     BaseGuardService.prototype.canActivate = function () {
         if (angular2_universal_1.isBrowser) {
             if (localStorage.getItem(keys.keyToken)) {
                 this.userModel = JSON.parse(localStorage.getItem(keys.keyModel));
-                if (this.userModel.role == this._roleName) {
-                    return true;
+                for (var i = 0; i < this._rolesName.length; i++) {
+                    if (this._rolesName[i] == this.userModel.role) {
+                        return true;
+                    }
                 }
                 this._router.navigate(['/errorauthorize']);
                 return false;
@@ -13213,7 +13215,7 @@ var MapComponent = (function () {
             }
             else {
                 this.setMainPointer($event.coords.lat, $event.coords.lng);
-                this._markers.push(this.createNewMarker(this.mainPointerLatitude, this.mainPointerLongitude));
+                this._markers[0] = this.createNewMarker(this.mainPointerLatitude, this.mainPointerLongitude);
             }
         }
     };
@@ -15780,7 +15782,10 @@ var base_guard_service_1 = __webpack_require__(87);
 var PartnerRouteGuard = (function (_super) {
     __extends(PartnerRouteGuard, _super);
     function PartnerRouteGuard(_router) {
-        return _super.call(this, _router, null) || this;
+        var _this = this;
+        var roles = ["admin", "superadmin", "moderator", null];
+        _this = _super.call(this, _router, roles) || this;
+        return _this;
     }
     return PartnerRouteGuard;
 }(base_guard_service_1.BaseGuardService));
@@ -15823,7 +15828,10 @@ var base_guard_service_1 = __webpack_require__(87);
 var SuperAdminRouteGuard = (function (_super) {
     __extends(SuperAdminRouteGuard, _super);
     function SuperAdminRouteGuard(_router) {
-        return _super.call(this, _router, 'superadmin') || this;
+        var _this = this;
+        var roles = ["superadmin"];
+        _this = _super.call(this, _router, roles) || this;
+        return _this;
     }
     return SuperAdminRouteGuard;
 }(base_guard_service_1.BaseGuardService));

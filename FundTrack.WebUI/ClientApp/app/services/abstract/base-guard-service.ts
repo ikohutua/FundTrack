@@ -10,17 +10,19 @@ import { AuthorizeUserModel } from '../../view-models/concrete/authorized-user-i
 export abstract class BaseGuardService {
 
     public userModel: AuthorizeUserModel;
-    public constructor(private _router: Router, private _roleName: string) { }
+    public constructor(private _router: Router, private _rolesName: string[]) { }
 
     /**
-      * check if user is authorized and his role is "_roleName"
+     * check if user is authorized and his role is contsin in _rolesName
       */
     public canActivate() {
         if (isBrowser) {
             if (localStorage.getItem(keys.keyToken)) {
                 this.userModel = JSON.parse(localStorage.getItem(keys.keyModel)) as AuthorizeUserModel;
-                if (this.userModel.role == this._roleName) {
-                    return true;
+                for (let i = 0; i < this._rolesName.length; i++) {
+                    if (this._rolesName[i] == this.userModel.role) {
+                        return true;
+                    }
                 }
                 this._router.navigate(['/errorauthorize']);
                 return false;

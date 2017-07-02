@@ -5,6 +5,7 @@ import { BaseGuardService } from '../../abstract/base-guard-service';
 @Injectable()
 export class SuperAdminRouteGuard extends BaseGuardService {
     constructor(_router: Router) {
-        super(_router, 'superadmin');
+        let roles: string[] = ["superadmin"];
+        super(_router, roles);
     }
 }
