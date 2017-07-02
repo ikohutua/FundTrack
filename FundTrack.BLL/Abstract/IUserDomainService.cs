@@ -18,12 +18,16 @@ namespace FundTrack.BLL.Abstract
         /// <returns>Model which contain information about user</returns>
         /// <exception cref="System.Exception">Login or password are not correct</exception>
         UserInfoViewModel GetUserInfoViewModel(string login, string rawPassword);
-
         UserInfoViewModel GetUserInfoViewModel(string login);
-
         UserInfoViewModel UpdateUser(UserInfoViewModel userModel);
-
         UserInfoViewModel ChangePassword(ChangePasswordViewModel changePasswordViewModel);
+
+        /// <summary>
+        /// Gets id of organization that user participates in
+        /// </summary>
+        /// <param name="userModel"></param>
+        /// <returns>Id of organization or 0 if there is none for that user</returns>
+        int GetOrganizationId(string login);
 
         /// <summary>
         /// Gets all users from database
@@ -37,7 +41,6 @@ namespace FundTrack.BLL.Abstract
         /// <param name="registrationViewModel">RegistrationViewModel</param>
         /// <returns>Registration view model</returns>
         RegistrationViewModel CreateUser(RegistrationViewModel registrationViewModel);
-
         /// <summary>
         /// Send Email with recovery password link
         /// </summary>

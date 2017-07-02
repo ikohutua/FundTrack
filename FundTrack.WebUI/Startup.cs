@@ -52,14 +52,20 @@ namespace FundTrack_WebUI
             services.AddScoped<IOrganizationsForFilteringRepository, OrganizationsForFilteringRepository>();
             services.AddScoped<IRepository<Event>, EventRepository>();
             services.AddScoped<IOrganizationRepository, OrganizationRepository>();
-            services.AddScoped<IRoleRepository, RoleRepository>();
+            services.AddScoped<IRepository<Address>, AddressRepository>();
+            services.AddScoped<IRepository<OrgAddress>, OrgAddressRepository>();
+            services.AddScoped<IRepository<BankAccount>, BankAccountRepository>();
+            services.AddScoped<IRepository<OrgAccount>, OrgAccountRepository>();
+            services.AddScoped<IRepository<Role>, RoleRepository>();
 
             //dependency injection BLL
             services.AddScoped<IOrganizationsForFilteringService, OrganizationsForFilteringService>();
             services.AddTransient<IUserDomainService, UserDomainService>();
             services.AddScoped<IViewService<EventViewModel>, EventViewService>();
-            services.AddScoped<IViewService<EventDetailViewModel>, EventDetailViewService>();          
+            services.AddScoped<IViewService<EventDetailViewModel>, EventDetailViewService>();
+            services.AddScoped<IOrganizationRegistrationService, OrganizationRegistrationService>();
             services.AddScoped<ISuperAdminService, SuperAdminService>();
+            services.AddScoped<IEditOrganizationService, EditOrganizationService>();
             services.AddScoped<IEmailSender, EmailSender>();
         }
 
