@@ -65,7 +65,7 @@ namespace FundTrack_WebUI
             services.AddScoped<IViewService<EventDetailViewModel>, EventDetailViewService>();
             services.AddScoped<IOrganizationRegistrationService, OrganizationRegistrationService>();
             services.AddScoped<ISuperAdminService, SuperAdminService>();
-            services.AddScoped<IEditOrganizationService, EditOrganizationService>();
+            //services.AddScoped<IEditOrganizationService, EditOrganizationService>();
             services.AddScoped<IEmailSender, EmailSender>();
         }
 
