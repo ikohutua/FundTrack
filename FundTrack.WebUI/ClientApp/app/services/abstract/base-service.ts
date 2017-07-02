@@ -54,11 +54,6 @@ export abstract class BaseService<T> {
             .catch(this.handleError);
     }
 
-    /**
-     * Get one item by id
-     * @param id
-     * @param additionString
-     */
     public getById(id: number, additionString: string): Observable<T> {
         return this._http.get(additionString + '/' + id.toString())
             .map((response: Response) => <T>response.json())

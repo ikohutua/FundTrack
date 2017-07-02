@@ -5,7 +5,6 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { UniversalModule } from 'angular2-universal';
 import { BrowserModule } from "@angular/platform-browser";
 import { AgmCoreModule } from "@agm/core";
-import { MapRoutingModule } from "./routes/map-routing.module";
 
 @NgModule({
     imports: [
@@ -18,7 +17,6 @@ import { MapRoutingModule } from "./routes/map-routing.module";
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
-        MapRoutingModule
     ],
     declarations: [
         MapComponent

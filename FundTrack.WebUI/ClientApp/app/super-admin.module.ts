@@ -8,6 +8,9 @@ import { SuperAdminUsersComponent } from './components/super-admin/super-admin-u
 import { SuperAdminGrid } from './components/super-admin/super-admin-grid.component';
 import { SharedModule } from './shared.module';
 import { SuperAdminBanComponent } from './components/super-admin/super-admin-ban.component';
+import { OrganizationRegistrationComponent } from './components/super-admin/organization-registration.component';
+import { MapModule } from './map.module';
+import { OrganizationRegistrationService } from './services/concrete/organization-registration.service';
 
 @NgModule({
     declarations: [
@@ -16,12 +19,15 @@ import { SuperAdminBanComponent } from './components/super-admin/super-admin-ban
         SuperAdminOrganizationsComponent,
         SuperAdminUsersComponent,
         SuperAdminGrid,
-        SuperAdminBanComponent
+        SuperAdminBanComponent,
+        OrganizationRegistrationComponent
     ],
     imports: [
         CommonModule,
         SuperAdminRoutingModule,
-        SharedModule
-    ]
+        SharedModule, 
+        MapModule
+    ],
+    providers: [OrganizationRegistrationService]
 })
 export class SuperAdminModule { }

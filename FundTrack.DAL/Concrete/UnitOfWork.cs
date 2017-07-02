@@ -14,7 +14,12 @@ namespace FundTrack.DAL.Concrete
         private readonly IRepository<Event> _eventRepository;
         private readonly IOrganizationRepository _organizationRepository;
         private readonly IMembershipRepository _membershipRepository;
-        private readonly IRoleRepository _roleRepository;
+        private readonly IRepository<Address> _addressRepository;
+        private readonly IRepository<OrgAddress> _orgAddressRepository;
+        private readonly IRepository<BankAccount> _bankAccountRepository;
+        private readonly IRepository<OrgAccount> _orgAccountRepository;
+        private readonly IRepository<Role> _roleRepository;
+
 
         private FundTrackContext _context;
 
@@ -29,15 +34,23 @@ namespace FundTrack.DAL.Concrete
               IRepository<Event> eventRepository,
               IOrganizationRepository organizationRepository,
               IMembershipRepository membershipRepositoryParam,
-              IRoleRepository roleRepositoryParam)
+              IRepository<Address> addressRepository,
+              IRepository<OrgAddress> orgAddressRepository,
+              IRepository<BankAccount> bankAccountRepository,
+              IRepository<OrgAccount> orgAccountRepository, 
+              IRepository<Role> roleRepository)
         {
             this._context = contextParam;
             this._organizationsListRepository = organizationsListRepositoryParam;
             this._usersListRepository = userListRepositoryParam;
             this._membershipRepository = membershipRepositoryParam;
-            this._roleRepository = roleRepositoryParam;
             _eventRepository = eventRepository;
             _organizationRepository = organizationRepository;
+            _addressRepository = addressRepository;
+            _orgAddressRepository = orgAddressRepository;
+            _bankAccountRepository = bankAccountRepository;
+            _orgAccountRepository = orgAccountRepository;
+            _roleRepository = roleRepository;
         }
 
         /// <summary>
@@ -78,7 +91,7 @@ namespace FundTrack.DAL.Concrete
                 return _organizationRepository;
             }
         }
-
+        
         /// <summary>
         /// Gets the organizations list repository.
         /// </summary>
@@ -90,6 +103,62 @@ namespace FundTrack.DAL.Concrete
             get
             {
                 return _organizationsListRepository;
+            }
+        }
+
+        /// <summary>
+        /// Gets addresses repository.
+        /// </summary>
+        /// <value>
+        /// Address repository.
+        /// </value>
+        public IRepository<Address> AddressRepository
+        {
+            get
+            {
+                return _addressRepository;
+            }
+        }
+
+        /// <summary>
+        /// Gets organization addresses repository.
+        /// </summary>
+        /// <value>
+        /// Organization address repository.
+        /// </value>
+        public IRepository<OrgAddress> OrganizationAddressRepository
+        {
+            get
+            {
+                return _orgAddressRepository;
+            }
+        }
+
+        /// <summary>
+        /// Gets bank account repository.
+        /// </summary>
+        /// <value>
+        /// Bank account repository.
+        /// </value>
+        public IRepository<BankAccount> BankAccountRepository
+        {
+            get
+            {
+                return _bankAccountRepository;
+            }
+        }
+
+        /// <summary>
+        /// Gets organization account repository.
+        /// </summary>
+        /// <value>
+        /// Organization account repository.
+        /// </value>
+        public IRepository<OrgAccount> OrganizationAccountRepository
+        {
+            get
+            {
+                return _orgAccountRepository;
             }
         }
 
@@ -107,14 +176,20 @@ namespace FundTrack.DAL.Concrete
             }
         }
 
-        public IRoleRepository RoleRepository
+        /// <summary>
+        /// Gets role repository.
+        /// </summary>
+        /// <value>
+        /// Role repository.
+        /// </value>
+        public IRepository<Role> RoleRepository
         {
             get
             {
                 return _roleRepository;
             }
         }
-
+       
         /// <summary>
         /// Saves all changes made in this context to the database.
         /// </summary>

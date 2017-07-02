@@ -1,7 +1,9 @@
 ﻿using FundTrack.DAL.Abstract;
 using FundTrack.DAL.Concrete;
 using FundTrack.DAL.Entities;
+using FundTrack.Infrastructure.ViewModel;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -52,7 +54,7 @@ namespace FundTrack.DAL.Repositories
         /// <param name="user">user entity</param>
         /// <returns>Created user</returns>
         public User Create(User user)
-        {  
+        {
             var insertedUser = context.Users.Add(user);
             return insertedUser.Entity;
         }
@@ -88,7 +90,7 @@ namespace FundTrack.DAL.Repositories
             bool isExsitedUser = this.context.Users.Any(u => u.Email.ToLower() == email.ToLower() ||
                                    u.Login.ToLower() == login.ToLower());
 
-            return isExsitedUser;
+            return isExsitedUser;           
         }
 
         /// <summary>
@@ -136,7 +138,6 @@ namespace FundTrack.DAL.Repositories
             return context.Users.Include(u => u.PasswordReset)
                                 .Any(u => u.PasswordReset != null && u.PasswordReset.UserID == user.Id);
         }
-
         /// <summary>
         /// Gets Users with their ban status
         /// </summary>
@@ -145,7 +146,6 @@ namespace FundTrack.DAL.Repositories
         {
             return context.Users.Include(u => u.BannedUser);
         }
-
         /// <summary>
         /// Gets user by guid
         /// </summary>
@@ -156,7 +156,6 @@ namespace FundTrack.DAL.Repositories
             return context.Users.Include(u => u.PasswordReset)
                                 .FirstOrDefault(u => u.PasswordReset != null && u.PasswordReset.GUID == guid);
         }
-
         /// <summary>
         /// Unbans user with concrete id
         /// </summary>
@@ -175,9 +174,8 @@ namespace FundTrack.DAL.Repositories
         /// <returns>Banned User</returns>
         public void BanUser(BannedUser user)
         {
-            context.BannedUsers.Add(user);
+            context.BannedUsers.Add(user);           
         }
-
         /// <summary>
         /// Addes new Password reset request
         /// </summary>

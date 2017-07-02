@@ -129,8 +129,6 @@ namespace FundTrack.DAL.Entities
                 Email = registrationViewModel.Email
             };
         }
-
-
         /// <summary>
         /// Convert LoginFacebookViewModel to User model
         /// </summary>
@@ -144,8 +142,8 @@ namespace FundTrack.DAL.Entities
                 Login = loginFacebookViewModel.Login,
                 Password = loginFacebookViewModel.Password,
                 Email = loginFacebookViewModel.Email,
-                PhotoUrl=loginFacebookViewModel.PhotoUrl,
-                FB_Link= "facebook.com/" + loginFacebookViewModel.FbLink
+                PhotoUrl = loginFacebookViewModel.PhotoUrl,
+                FB_Link = "facebook.com/" + loginFacebookViewModel.FbLink
             };
         }
 
@@ -163,10 +161,8 @@ namespace FundTrack.DAL.Entities
                 Password = user.Password,
                 Email = user.Email,
                 PhotoUrl = user.PhotoUrl,
-                FbLink = user.FB_Link.Substring(13)         
+                FbLink = user.FB_Link.Substring(13)
             };
         }
-
-
     }
 }

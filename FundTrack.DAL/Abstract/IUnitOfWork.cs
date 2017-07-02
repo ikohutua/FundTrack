@@ -44,12 +44,29 @@ namespace FundTrack.DAL.Abstract
         IMembershipRepository MembershipRepository { get; }
 
         /// <summary>
-        /// Gets the roles repository.
+        /// Gets address repository
         /// </summary>
-        /// <value>
-        /// The roles repository.
-        /// </value>
-        IRoleRepository RoleRepository { get; }
+        IRepository<Address> AddressRepository { get; }
+
+        /// <summary>
+        /// Gets OrganizationAccount repository
+        /// </summary>
+        IRepository<OrgAccount> OrganizationAccountRepository { get; }
+
+        /// <summary>
+        /// Gets bank account repository
+        /// </summary>
+        IRepository<BankAccount> BankAccountRepository { get; }
+
+        /// <summary>
+        /// Gets organization address repository
+        /// </summary>
+        IRepository<OrgAddress> OrganizationAddressRepository { get; }
+        
+        /// <summary>
+        /// Gets role repository
+        /// </summary>
+        IRepository<Role> RoleRepository { get; }
 
         /// <summary>
         /// Saves all changes made in this context to the database.

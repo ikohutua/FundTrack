@@ -5,7 +5,7 @@ using System.Text;
 namespace FundTrack.Infrastructure.ViewModel
 {
     /// <summary>
-    /// Class which describe model of Organization
+    /// Class which describes model of Organization
     /// </summary>
     public class OrganizationViewModel
     {
@@ -22,7 +22,7 @@ namespace FundTrack.Infrastructure.ViewModel
         public string Description { get; set; }
 
         /// <summary>
-        /// Indicates if that the Organization is banned
+        /// Indicates if that Organization is banned
         /// </summary>
         public bool IsBanned { get; set; }
     }

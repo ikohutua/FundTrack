@@ -4,6 +4,7 @@ import { SuperAdminComponent } from "../components/super-admin/super-admin.compo
 import { SuperAdminComplaintsComponent } from '../components/super-admin/super-admin-complaints.component';
 import { SuperAdminOrganizationsComponent } from '../components/super-admin/super-admin-organizations.component';
 import { SuperAdminUsersComponent } from '../components/super-admin/super-admin-users.component';
+import { OrganizationRegistrationComponent } from '../components/super-admin/organization-registration.component';
 import { SuperAdminRouteGuard } from '../services/concrete/security/superadmin-route-guard';
 @NgModule({
     providers: [SuperAdminRouteGuard],
@@ -25,6 +26,10 @@ import { SuperAdminRouteGuard } from '../services/concrete/security/superadmin-r
                 {
                     path: 'users',
                     component:SuperAdminUsersComponent
+                },
+                {
+                    path: 'register-organization',
+                    component: OrganizationRegistrationComponent
                 }]
             }          
         ])

@@ -16,7 +16,7 @@
                         </a>
                     </li>
                     <li [routerLinkActive]="['link-active']">
-                        <a>
+                        <a [routerLink] ="['register-organization']">
                             <span class="glyphicon glyphicon-plus"></span> 
                             Додати Організацію
                         </a>
@@ -37,6 +37,7 @@
         </nav> 
     </div>
     <div class="side-body">
+        You are logged in as Super Admin... Good for you....
         <router-outlet></router-outlet>
     </div>
 </div>
