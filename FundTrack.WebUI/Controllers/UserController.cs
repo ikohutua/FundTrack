@@ -42,8 +42,9 @@ namespace FundTrack.WebUI.Controllers
         {
             try
             {
-                var userInfo=this._userDomainService.LoginFacebook(loginFacebookViewModel);
-                return JsonConvert.SerializeObject(this._getAuthorizationType(userInfo.login,string.Empty,"FB"),
+                var userInfo = this._userDomainService.LoginFacebook(loginFacebookViewModel);
+                var userInfoModel = _userDomainService.GetUserInfoViewModel(userInfo.login);
+                return JsonConvert.SerializeObject(this._getAuthorizationType(userInfoModel),
                                                        new JsonSerializerSettings { Formatting = Formatting.Indented });
             }
             catch (Exception ex)
@@ -62,7 +63,8 @@ namespace FundTrack.WebUI.Controllers
         {
             try
             {
-                return JsonConvert.SerializeObject(this._getAuthorizationType(user.Login, user.Password,string.Empty),
+                var userInfoModel = _userDomainService.GetUserInfoViewModel(user.Login, user.Password);
+                return JsonConvert.SerializeObject(this._getAuthorizationType(userInfoModel),
                                                    new JsonSerializerSettings { Formatting = Formatting.Indented });
             }
             catch (Exception ex)
@@ -121,29 +123,26 @@ namespace FundTrack.WebUI.Controllers
                 if (ModelState.IsValid)
                 {
                     var user = _userDomainService.CreateUser(registrationViewModel);
-
-                    var authorizationType = this._getAuthorizationType(registrationViewModel.Login,
-                                                                       registrationViewModel.Password,
-                                                                       string.Empty);
-
-                    return JsonConvert.SerializeObject(authorizationType,
+                    var userInfoModel = _userDomainService.GetUserInfoViewModel(registrationViewModel.Login, registrationViewModel.Password);
+                    return JsonConvert.SerializeObject(this._getAuthorizationType(userInfoModel),
                                                        new JsonSerializerSettings { Formatting = Formatting.Indented });
                 }
                 else
                 {
                     List<ValidationViewModel> validationSummary = new List<ValidationViewModel>();
 
-                    foreach(var field in ModelState.Keys)
+                    foreach (var field in ModelState.Keys)
                     {
                         var erorMessages = ModelState[field].Errors.Select(a => a.ErrorMessage);
-                        validationSummary.Add(new ValidationViewModel {
+                        validationSummary.Add(new ValidationViewModel
+                        {
                             ErrorsMessages = erorMessages.ToList(),
                             FieldName = field
                         });
                     }
 
                     return this._getAuthorizationTypeError(validationSummary: validationSummary);
-                }               
+                }
             }
             catch (Exception ex)
             {
@@ -178,12 +177,12 @@ namespace FundTrack.WebUI.Controllers
         /// <returns>Error string if the guid is invalid</returns>
         [HttpPost("[action]")]
         public JsonResult CheckGuidStatus([FromBody]GuidViewModel guid)
-        {        
+        {
             if (_userDomainService.IsValidUserGuid(guid.Guid))
             {
                 return Json(string.Empty);
-            }               
-           
+            }
+
             return Json(ErrorMessages.InvalidGuid);
         }
 
@@ -204,7 +203,7 @@ namespace FundTrack.WebUI.Controllers
             catch (Exception ex)
             {
                 return Json(ex.Message);
-            }                       
+            }
         }
 
         // gets current request uri
@@ -223,17 +222,8 @@ namespace FundTrack.WebUI.Controllers
             return JsonConvert.SerializeObject(authorizationType, new JsonSerializerSettings { Formatting = Formatting.Indented });
         }
 
-        private AuthorizationType _getAuthorizationType(string userLogin, string rawPassword,string typeAuthorization)
+        private AuthorizationType _getAuthorizationType(UserInfoViewModel userInfoModel)
         {
-            UserInfoViewModel userInfoModel;
-            if (typeAuthorization == "FB")
-            {
-                userInfoModel = _userDomainService.GetUserInfoViewModel(userLogin);
-            }
-            else
-            {
-                userInfoModel = _userDomainService.GetUserInfoViewModel(userLogin,rawPassword);
-            }
             var authorizeToken = new TokenAccess();
             var encodedJwt = authorizeToken.CreateTokenAccess(userInfoModel);
             var authorizationType = new AuthorizationType

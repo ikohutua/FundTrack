@@ -4,6 +4,9 @@ using System.Text;
 
 namespace FundTrack.Infrastructure.ViewModel
 {
+    /// <summary>
+    /// Object model which return from facebook
+    /// </summary>
     public class LoginFacebookViewModel
     {
         public string FirstName { get; set; }
