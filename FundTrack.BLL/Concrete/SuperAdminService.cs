@@ -78,7 +78,7 @@ namespace FundTrack.BLL.Concrete
         /// <returns>Pagination Initial data</returns>
         public PaginationInitViewModel GetUsersPaginationData()
         {
-            return GetPaginationInitData(_unitOfWork.UsersRepository.Read());
+            return GetPaginationInitData(_unitOfWork.UsersRepository.GetUsersWithBanStatus());
         }
 
         /// <summary>

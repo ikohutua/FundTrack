@@ -110,6 +110,7 @@ namespace FundTrack.BLL.DomainServices
                 userToAdd.Password = PasswordHashManager.GetPasswordHash(registrationViewModel.Password);
                 User addedUser = this._unitOfWork.UsersRepository.Create(userToAdd);
                 this._unitOfWork.SaveChanges();
+                this.CreateUserRole(addedUser.Login);
                 return addedUser;
             }
             catch (Exception ex)
@@ -118,15 +119,25 @@ namespace FundTrack.BLL.DomainServices
             }
         }
 
+        /// <summary>
+        /// Creates the user role.
+        /// </summary>
+        /// <param name="login">The login.</param>
         private void CreateUserRole(string login)
         {
-            Membership membership = new Membership
+            if (login != null)
             {
-                RoleId = this._unitOfWork.RoleRepository.Read().Where(r => r.Name == "partner").FirstOrDefault().Id,
-                UserId = this._unitOfWork.UsersRepository.GetUser(login).Id
-            };
-            this._unitOfWork.MembershipRepository.Create(membership);
-            this._unitOfWork.SaveChanges();
+                int userId = this._unitOfWork.UsersRepository.GetUser(login).Id;
+                int roleId = this._unitOfWork.RoleRepository.Read().Where(r => r.Name == "partner").FirstOrDefault().Id;
+                var membership = new Membership
+                {
+                    RoleId = roleId,
+                    UserId = userId,
+                    OrgId = 1
+                };
+                this._unitOfWork.MembershipRepository.Create(membership);
+                this._unitOfWork.SaveChanges();
+            }
         }
 
         /// <summary>
@@ -177,6 +188,11 @@ namespace FundTrack.BLL.DomainServices
 
                     if (this._unitOfWork.MembershipRepository.IsUserHasRole(user.Id))
                     {
+                        userInfoView.role = this._unitOfWork.MembershipRepository.GetRole(user.Id);
+                    }
+                    else
+                    {
+                        this.CreateUserRole(userInfoView.login);
                         userInfoView.role = this._unitOfWork.MembershipRepository.GetRole(user.Id);
                     }
                     return userInfoView;
@@ -242,7 +258,7 @@ namespace FundTrack.BLL.DomainServices
         /// <returns>User email status</returns>
         public bool IsValidUserEmail(string email)
         {
-            return _unitOfWork.UsersRepository.Read().FirstOrDefault(u => u.Email == email) == null ? false : true;           
+            return _unitOfWork.UsersRepository.Read().FirstOrDefault(u => u.Email == email) == null ? false : true;
         }
 
         /// <summary>
