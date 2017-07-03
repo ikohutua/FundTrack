@@ -8,17 +8,17 @@ namespace FundTrack.DAL.Entities
     public class Role
     {
         /// <summary>
-        /// Id of Role
+        /// Gets or Sets Id of Role
         /// </summary>
         public int Id { get; set; }
 
         /// <summary>
-        /// Role Name
+        /// Gets or Sets Role Name
         /// </summary>
         public string Name { get; set; }
 
         /// <summary>
-        /// Membership navigation property
+        /// Gets or Sets Membership navigation property
         /// </summary>
         public virtual ICollection<Membership> Memberships { get; set; }
     }

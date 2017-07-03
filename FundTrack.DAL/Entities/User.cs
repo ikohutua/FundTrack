@@ -9,92 +9,92 @@ namespace FundTrack.DAL.Entities
     public class User
     {
         /// <summary>
-        /// Id of User
+        /// Gets or Sets Id of User
         /// </summary>
         public int Id { get; set; }
 
         /// <summary>
-        /// User Login
+        /// Gets or Sets User Login
         /// </summary>
         public string Login { get; set; }
 
         /// <summary>
-        /// User Email
+        /// Gets or Sets User Email
         /// </summary>       
         public string Email { get; set; }
 
         /// <summary>
-        /// User Password
+        /// Gets or Sets User Password
         /// </summary>
         public string Password { get; set; }
 
         /// <summary>
-        /// User First Name
+        /// Gets or Sets User First Name
         /// </summary>       
         public string FirstName { get; set; }
 
         /// <summary>
-        /// User Last Name
+        /// Gets or Sets User Last Name
         /// </summary>       
         public string LastName { get; set; }
 
         /// <summary>
-        /// Id of Facebook Link
+        /// Gets or Sets Id of Facebook Link
         /// </summary>
         public string FB_Link { get; set; }
 
         /// <summary>
-        /// Url of User Photo
+        /// Gets or Sets Url of User Photo
         /// </summary>
         public string PhotoUrl { get; set; }
 
         /// <summary>
-        /// Navigation property Banned user
+        /// Gets or Sets Navigation property Banned user
         /// </summary>
         public virtual BannedUser BannedUser { get; set; }
 
         /// <summary>
-        /// PasswordReset Navigation property
+        /// Gets or Sets PasswordReset Navigation property
         /// </summary>
         public virtual PasswordReset PasswordReset { get; set; }
 
         /// <summary>
-        /// Phone navigation property
+        /// Gets or Sets Phone navigation property
         /// </summary>
         public virtual ICollection<Phone> Phones { get; set; }
 
         /// <summary>
-        /// Membership navigation property
+        /// Gets or Sets Membership navigation property
         /// </summary>
         public virtual Membership Membership { get; set; }
 
         /// <summary>
-        /// Subscribe organization navigation property
+        /// Gets or Sets Subscribe organization navigation property
         /// </summary>
         public virtual ICollection<SubscribeOrganization> SubscribeOrganization { get; set; }
 
         /// <summary>
-        /// UserAddress navigation property
+        /// Gets or Sets UserAddress navigation property
         /// </summary>
         public virtual ICollection<UserAddress> UserAddresses { get; set; }
 
         /// <summary>
-        /// FinOp navigation property
+        /// Gets or Sets FinOp navigation property
         /// </summary>
         public virtual ICollection<FinOp> FinOps { get; set; }
 
         /// <summary>
-        /// ExternalContact navigation property
+        /// Gets or Sets ExternalContact navigation property
         /// </summary>
         public virtual ICollection<ExternalContact> ExternalContacts { get; set; }
 
         /// <summary>
-        /// Offer navigation property
+        /// Gets or Sets Offer navigation property
         /// </summary>
         public virtual ICollection<Offer> Offers { get; set; }
 
         /// <summary>
-        /// Complaint navigation property
+        /// Gets or Sets Complaint navigation property
         /// </summary>
         public virtual ICollection<Complaint> Complaints { get; set; }
 

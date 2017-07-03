@@ -8,42 +8,42 @@ namespace FundTrack.DAL.Entities
     public class BankAccount
     {
         /// <summary>
-        /// Id of BankAccount
+        /// Gets or Sets Id of BankAccount
         /// </summary>
         public int Id { get; set; }
 
         /// <summary>
-        /// Id of Organization
+        /// Gets or Sets Id of Organization
         /// </summary>
         public int OrgId { get; set; }
 
         /// <summary>
-        /// AccNumber of BankAccount
+        /// Gets or Sets AccNumber of BankAccount
         /// </summary>
         public string AccNumber { get; set; }
 
         /// <summary>
-        /// MFO of BankAccount
+        /// Gets or Sets MFO of BankAccount
         /// </summary>
         public string MFO { get; set; }
 
         /// <summary>
-        /// EDRPOU of BankAccount
+        /// Gets or Sets EDRPOU of BankAccount
         /// </summary>
         public string EDRPOU { get; set; }
 
         /// <summary>
-        /// Name of the Bank
+        /// Gets or Sets Name of the Bank
         /// </summary>
         public string BankName { get; set; }
 
         /// <summary>
-        /// Organization navigation property
+        /// Gets or Sets Organization navigation property
         /// </summary>
         public virtual Organization Organization { get; set; }
 
         /// <summary>
-        /// OrgAccount navigation property
+        /// Gets or Sets OrgAccount navigation property
         /// </summary>
         public virtual ICollection<OrgAccount> OrgAccounts { get; set; }
     }

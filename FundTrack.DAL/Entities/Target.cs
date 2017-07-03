@@ -8,17 +8,17 @@ namespace FundTrack.DAL.Entities
     public class Target
     {
         /// <summary>
-        /// Id of Target
+        /// Gets or Sets Id of Target
         /// </summary>
         public int Id { get; set; }
 
         /// <summary>
-        /// Name of Target
+        /// Gets or Sets Name of Target
         /// </summary>
         public string TargetName { get; set; }
 
         /// <summary>
-        /// FinOp navigation property
+        /// Gets or Sets FinOp navigation property
         /// </summary>
         public virtual FinOp FinOp { get; set; }
     }

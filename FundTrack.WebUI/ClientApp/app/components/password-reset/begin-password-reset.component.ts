@@ -11,9 +11,27 @@ import { UserEmailViewModel } from '../../view-models/user-email-view-model';
 })
 
 export class BeginPasswordResetComponent {
+    // emailregex
+    private _emailRegex: string = "^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$";
+
+    /**
+    *recovery email view model
+    */
     public recoveryEmail: UserEmailViewModel = new UserEmailViewModel();
+
+    /**
+    * Error Message instance
+    */
     public errorMessage: string = '';
+
+    /**
+    * Indicates if the email has been send
+    */
     public emailSend: boolean = false;
+
+    /**
+    * FormGroup instance
+    */
     public emailForm: FormGroup;
 
     /**
@@ -28,10 +46,16 @@ export class BeginPasswordResetComponent {
     /**
      * Calls server to send Email 
      */
-    public sendEmail(): void {   
-        this.emailSend = true; 
-        this._userService.sendRecoveryEmail(this.recoveryEmail).subscribe((responce: string) => {          
+    public sendEmail(): void {
+        this._userService.checkEmailStatus((this.recoveryEmail)).subscribe((responce: string) => {
+            if (responce.length == 0) {
+                this.emailSend = true;
+                this._userService.sendRecoveryEmail(this.recoveryEmail).subscribe((responce: string) => { });
+            } else {
+                this.errorMessage = responce;
+            }
         });
+        
     }
 
     // forms errors
@@ -54,7 +78,7 @@ export class BeginPasswordResetComponent {
         this.emailForm = this._emailBuilder.group({
             "email": [this.recoveryEmail.email, [
                 Validators.required,
-                Validators.pattern("^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$")
+                Validators.pattern(this._emailRegex)
             ]]
         });
 

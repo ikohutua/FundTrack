@@ -6,27 +6,27 @@
     public class OrgAddress
     {
         /// <summary>
-        /// Id of OrgAddress
+        /// Gets or Sets Id of OrgAddress
         /// </summary>
         public int Id { get; set; }
 
         /// <summary>
-        /// Id of Organization
+        /// Gets or Sets Id of Organization
         /// </summary>
         public int OrgId { get; set; }
 
         /// <summary>
-        /// Id of Address
+        /// Gets or Sets Id of Address
         /// </summary>
         public int AddressId { get; set; }
 
         /// <summary>
-        /// Organization navigation property
+        /// Gets or Sets Organization navigation property
         /// </summary>
         public virtual Organization Organization { get; set; }
 
         /// <summary>
-        /// Address navigation property
+        /// Gets or Sets Address navigation property
         /// </summary>
         public virtual Address Address { get; set; }
     }

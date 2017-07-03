@@ -24,6 +24,8 @@ export class UserService {
     private _sendRecoveryEmailUrl: string = 'api/User/SendRecoveryEmail';
     private _checkGuidStatusUrl: string = 'api/User/CheckGuidStatus';
     private _resetUserPasswordUrl: string = 'api/User/ResetUserPassword';
+    private _checkEmailStatusUrl: string = 'api/User/CheckEmailStatus';
+
     public constructor(private _http: Http,
         private _router: Router,
         private _auth: AuthService,
@@ -118,7 +120,11 @@ export class UserService {
      * @param passwordModel
      */
     public resetPassword(passwordModel: ResetPasswordViewModel) {
-        return this.sendRequestToServer('api/User/ResetUserPassword', passwordModel);       
+        return this.sendRequestToServer(this._resetUserPasswordUrl, passwordModel);       
+    }
+
+    public checkEmailStatus(email: UserEmailViewModel) {
+        return this.sendRequestToServer(this._checkEmailStatusUrl, email);
     }
 
     /*

@@ -155,7 +155,7 @@ namespace FundTrack.BLL.DomainServices
         {
             if (user != null)
             {
-                var bannedUser = this._unitOfWork.UsersRepository.GetUsersWithBanStatus()
+                var bannedUser = this._unitOfWork.UsersRepository.GetAllUsersWithBanStatus()
                                                     .FirstOrDefault(u => u.Id == user.Id)
                                                     .BannedUser;
                 if (bannedUser != null)
@@ -236,6 +236,16 @@ namespace FundTrack.BLL.DomainServices
         }
 
         /// <summary>
+        /// Checks if the user with email exists
+        /// </summary>
+        /// <param name="email">Email to check</param>
+        /// <returns>User email status</returns>
+        public bool IsValidUserEmail(string email)
+        {
+            return _unitOfWork.UsersRepository.Read().FirstOrDefault(u => u.Email == email) == null ? false : true;           
+        }
+
+        /// <summary>
         /// Sends Email with recovery password link
         /// </summary>
         /// <param name="currentHost">current host</param>
@@ -304,6 +314,11 @@ namespace FundTrack.BLL.DomainServices
             }
         }
 
+        /// <summary>
+        /// Gets organization by Id
+        /// </summary>
+        /// <param name="login">Organization login</param>
+        /// <returns>Id of organization</returns>
         public int GetOrganizationId(string login)
         {
             var user = new User();

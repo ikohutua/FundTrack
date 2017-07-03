@@ -14,7 +14,7 @@ namespace FundTrack.BLL.Concrete
     {
         // sets page size
         private const int PageSize = 4;
-
+       
         // unit of work instance
         private readonly IUnitOfWork _unitOfWork;
 
@@ -44,7 +44,7 @@ namespace FundTrack.BLL.Concrete
         public IEnumerable<PagingItemsViewModel> GetUsersPerPage(int currentPage,int pageSize)
         {           
             return GetPageItems(_unitOfWork.UsersRepository.GetUsersWithBanStatus(),
-                                pageSize, currentPage)
+                                pageSize, currentPage)                               
                                 .Select(i => new PagingItemsViewModel
                                 {
                                     Id = i.Id,

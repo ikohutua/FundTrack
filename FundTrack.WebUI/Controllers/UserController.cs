@@ -151,6 +151,22 @@ namespace FundTrack.WebUI.Controllers
         }
 
         /// <summary>
+        /// Checks User Email status
+        /// </summary>
+        /// <param name="email">Email to check</param>
+        /// <returns>User Email status</returns>
+        [HttpPost("[action]")]
+        public JsonResult CheckEmailStatus([FromBody]UserEmailViewModel email)
+        {
+            if (_userDomainService.IsValidUserEmail(email.Email))
+            {
+               return Json(string.Empty);
+            }
+
+            return Json(ErrorMessages.NoUserWithEmail);
+        }
+
+        /// <summary>
         /// Sends Recovery Email for User Password
         /// </summary>
         /// <param name="email">Address to send Email</param>

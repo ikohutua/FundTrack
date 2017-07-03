@@ -67,5 +67,12 @@ namespace FundTrack.BLL.Abstract
         /// <param name="loginFacebookViewModel">The login facebook view model.</param>
         /// <returns></returns>
         UserInfoViewModel LoginFacebook(LoginFacebookViewModel loginFacebookViewModel);
+
+        /// <summary>
+        /// Checks if the user with email exists
+        /// </summary>
+        /// <param name="email">Email to check</param>
+        /// <returns>User email status</returns>
+        bool IsValidUserEmail(string email);
     }
 }

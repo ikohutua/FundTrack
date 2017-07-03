@@ -8,37 +8,37 @@ namespace FundTrack.DAL.Entities
     public class Address
     {      
         /// <summary>
-        /// Id of Address
+        /// Gets or Sets Id of Address
         /// </summary>
         public int Id { get; set; }
-       
+
         /// <summary>
-        /// City in Address
+        /// Gets or Sets City in Address
         /// </summary>
         public string City { get; set; }
-       
+
         /// <summary>
-        /// Country in Address
+        /// Gets or Sets Country in Address
         /// </summary>
         public string Country { get; set; }
-       
+
         /// <summary>
-        /// Street in Address
+        /// Gets or Sets Street in Address
         /// </summary>        
         public string Street { get; set; }
 
         /// <summary>
-        /// Building in Address
+        /// Gets or Sets Building in Address
         /// </summary>        
         public string Building { get; set; }
 
         /// <summary>
-        /// UserAddresses navigation property
+        /// Gets or Sets UserAddresses navigation property
         /// </summary>
         public virtual ICollection<UserAddress> UserAddresses { get; set; }
 
         /// <summary>
-        /// OrgAddresses navigation property
+        /// Gets or Sets OrgAddresses navigation property
         /// </summary>
         public virtual ICollection<OrgAddress> OrgAddresses { get; set; }
     }

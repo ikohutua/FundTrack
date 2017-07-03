@@ -8,17 +8,17 @@ namespace FundTrack.DAL.Entities
     public class ExternalService
     {
         /// <summary>
-        /// Id of ExternalService
+        /// Gets or Sets Id of ExternalService
         /// </summary>
         public int Id { get; set; }
 
         /// <summary>
-        /// Name of ExternalService
+        /// Gets or Sets Name of ExternalService
         /// </summary>
         public string Name { get; set; }
 
         /// <summary>
-        /// ExtContact navigation property
+        /// Gets or Sets ExtContact navigation property
         /// </summary>
         public virtual ICollection<ExternalContact> ExtContacts { get; set; }
     }

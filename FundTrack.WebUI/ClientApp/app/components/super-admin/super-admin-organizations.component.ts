@@ -7,6 +7,7 @@ import { SuperAdminChangeStatusViewModel } from '../../view-models/abstract/supe
 @Component({
     selector: 'super-admin-organizations',
     template: require('./super-admin-organizations.component.html'),
+    styleUrls: ['./super-admin-organizations.component.css'],
     providers: [SuperAdminService]
 })
 
@@ -14,10 +15,29 @@ import { SuperAdminChangeStatusViewModel } from '../../view-models/abstract/supe
 * Component for Organizations on super admin page
 */
 export class SuperAdminOrganizationsComponent implements OnInit {
+    /**
+    * Total items on page
+    */
     public totalItems;
+
+    /**
+    * Items on one page
+    */
     public itemPerPage: number = 4;
+
+    /**
+    * Current Items offset
+    */
     public offset: number = 0;
+
+    /**
+    * Current Page
+    */
     public currentPage: number = 1;
+
+    /**
+    * Organizations View Model
+    */
     public organizations: SuperAdminItemsViewModel[];
 
     /**

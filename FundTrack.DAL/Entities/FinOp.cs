@@ -9,67 +9,67 @@ namespace FundTrack.DAL.Entities
     public class FinOp
     {
         /// <summary>
-        /// Id of FinOp
+        /// Gets or Sets Id of FinOp
         /// </summary>
         public int Id { get; set; }
 
         /// <summary>
-        /// Id of Target
+        /// Gets or Sets Id of Target
         /// </summary>
         public int TargetId { get; set; }
 
         /// <summary>
-        /// Id of Account that made the FinOp
+        /// Gets or Sets Id of Account that made the FinOp
         /// </summary>
         public int? AccFromId { get; set; }
 
         /// <summary>
-        /// Id of Account that reseived the FinOp
+        /// Gets or Sets Id of Account that reseived the FinOp
         /// </summary>
         public int? AccToId { get; set; }
 
         /// <summary>
-        /// Id of User
+        /// Gets or Sets Id of User
         /// </summary>
         public int? UserId { get; set; }
 
         /// <summary>
-        /// Amount of money in FinOp 
+        /// Gets or Sets Amount of money in FinOp 
         /// </summary>
         public decimal Amount { get; set; }
 
         /// <summary>
-        /// Description of FinOp
+        /// Gets or Sets Description of FinOp
         /// </summary>
         public string Description { get; set; }
 
         /// <summary>
-        /// Date of FinOp
+        /// Gets or Sets Date of FinOp
         /// </summary>
         public DateTime FinOpDate { get; set; }
 
         /// <summary>
-        /// Target navigation property
+        /// Gets or Sets Target navigation property
         /// </summary>
         public virtual Target Target { get; set; }
 
         /// <summary>
-        /// OrgAccountFrom navigation property
+        /// Gets or Sets OrgAccountFrom navigation property
         /// </summary>
         public virtual OrgAccount OrgAccountFrom { get; set; }
 
         /// <summary>
-        /// OrgAccountTo navigation property
+        /// Gets or Sets OrgAccountTo navigation property
         /// </summary>
         public virtual OrgAccount OrgAccountTo { get; set; }
 
         /// <summary>
-        /// User navigation property
+        /// Gets or Sets User navigation property
         /// </summary>
         public virtual User User { get; set; }
 
         /// <summary>
-        /// TagFinOp navigation property
+        /// Gets or Sets TagFinOp navigation property
         /// </summary>
         public virtual ICollection<TagFinOp> TagFinOps { get; set; }
     }

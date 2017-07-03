@@ -6,27 +6,27 @@
     public class Phone
     {
         /// <summary>
-        /// Id of Phone
+        /// Gets or Sets Id of Phone
         /// </summary>
         public int Id { get; set; }
 
         /// <summary>
-        /// Id of User
+        /// Gets or Sets Id of User
         /// </summary>
         public int UserId { get; set; }
 
         /// <summary>
-        /// Phone Number
+        /// Gets or Sets Phone Number
         /// </summary>
         public string Number { get; set; }
 
         /// <summary>
-        /// Phone Type
+        /// Gets or Sets Phone Type
         /// </summary>     
         public string PhoneType { get; set; }
-       
+
         /// <summary>
-        /// User navigation property
+        /// Gets or Sets User navigation property
         /// </summary>
         public virtual User User { get; set; }
     }

@@ -15,12 +15,30 @@ import 'rxjs/add/operator/switchMap';
 })
 
 export class NewPasswordComponent implements OnInit { 
+
+    /**
+    * ResetPassword View Model
+    */
     public resetPasswordModel: ResetPasswordViewModel = new ResetPasswordViewModel();
+
+    /**
+    * Error Message instance
+    */
     public errorMessage: string = '';
+
+    /**
+    * Guid of User
+    */
     public guid: string = '';
+
+    // fields to eye control
     public type: string = "password";
     public glyphyconEye: string = "glyphicon glyphicon-eye-open";
     public passwordChanged: boolean = false;
+
+    /*
+    * FormGroup instance
+    **/
     public passwordForm: FormGroup;
 
     /**
@@ -65,9 +83,7 @@ export class NewPasswordComponent implements OnInit {
         this._userService.resetPassword(this.resetPasswordModel).subscribe((responce: string) => {
             if (responce.length == 0) {
                 this.passwordChanged = true;
-            } else {
-                this.errorMessage = responce;
-            }          
+            }    
         });
     }
 

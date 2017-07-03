@@ -6,32 +6,32 @@
     public class ExternalContact
     {
         /// <summary>
-        /// Id of ExternalContact
+        /// Gets or Sets Id of ExternalContact
         /// </summary>
         public int Id { get; set; }
 
         /// <summary>
-        /// Id of ExternalService
+        /// Gets or Sets Id of ExternalService
         /// </summary>
         public int ServiceId { get; set; }
 
         /// <summary>
-        /// Id of User
+        /// Gets or Sets Id of User
         /// </summary>
         public int UserId { get; set; }
 
         /// <summary>
-        /// Service Login
+        /// Gets or Sets Service Login
         /// </summary>    
         public string ServiceLogin { get; set; }
 
         /// <summary>
-        /// ExternalService navigation property
+        /// Gets or Sets ExternalService navigation property
         /// </summary>
         public virtual ExternalService ExternalService { get; set; }
 
         /// <summary>
-        /// User navigation property
+        /// Gets or Sets User navigation property
         /// </summary>
         public virtual User User { get; set; }
     }

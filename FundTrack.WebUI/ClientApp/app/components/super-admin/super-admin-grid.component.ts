@@ -17,15 +17,32 @@ export class SuperAdminGrid {
     @Input() arrayToDisplay: SuperAdminItemsViewModel[];
     @Input() headers: string[];
     @Output() banStatusChange = new EventEmitter();
+    
     @ViewChild(ModalComponent)
     public modalWindow: ModalComponent
 
+    // title on button
     private _banTitle: string = 'Забанити';
     private _unBanTitle: string = 'Відбанити'
 
+    /**
+    * Id of selected Item
+    */
     public selectedItemId: number;
+
+    /**
+    * Castome Field Touched Indicator
+    */
     public customeFieldTouched = false;
+
+    /*
+    * Ban Description of selected Item
+    **/
     public selectedItemBanDescription: string = '';
+
+    /*
+    * Ban Status of selected Item
+    **/
     public selectedItemStatus: string = '';
 
     /**

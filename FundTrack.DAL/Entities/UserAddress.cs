@@ -6,27 +6,27 @@
     public class UserAddress
     {
         /// <summary>
-        /// Id of UserAddress
+        /// Gets or Sets Id of UserAddress
         /// </summary>
         public int Id { get; set; }
 
         /// <summary>
-        /// Id of User
+        /// Gets or Sets Id of User
         /// </summary>
         public int UserId { get; set; }
 
         /// <summary>
-        /// Id of Address
+        /// Gets or Sets Id of Address
         /// </summary>
         public int AddressId { get; set; }
 
         /// <summary>
-        /// User navigation property
+        /// Gets or Sets User navigation property
         /// </summary>
         public virtual User User { get; set; }
 
         /// <summary>
-        /// Address navigation property
+        /// Gets or Sets Address navigation property
         /// </summary>
         public virtual Address Address { get; set; }
     }

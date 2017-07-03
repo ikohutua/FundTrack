@@ -6,27 +6,27 @@
     public class TagFinOp
     {
         /// <summary>
-        /// Id of TagFinOp
+        /// Gets or Sets Id of TagFinOp
         /// </summary>
         public int Id { get; set; }
 
         /// <summary>
-        /// Id of Tag
+        /// Gets or Sets Id of Tag
         /// </summary>
         public int TagId { get; set; }
 
         /// <summary>
-        /// Id of FinOp
+        /// Gets or Sets Id of FinOp
         /// </summary>
         public int FinOpId { get; set; }
 
         /// <summary>
-        /// Tag navigation property
+        /// Gets or Sets Tag navigation property
         /// </summary>
         public virtual Tag Tag { get; set; }
 
         /// <summary>
-        /// FinOp navigation property
+        /// Gets or Sets FinOp navigation property
         /// </summary>
         public virtual FinOp FinOp { get; set; }
     }

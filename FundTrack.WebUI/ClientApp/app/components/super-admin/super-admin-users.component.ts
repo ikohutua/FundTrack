@@ -7,6 +7,7 @@ import { SuperAdminChangeStatusViewModel } from '../../view-models/abstract/supe
 @Component({
     selector: 'super-admin-users',
     template: require('./super-admin-users.component.html'),
+    styleUrls: ['./super-admin-users.component.css'],
     providers: [SuperAdminService]
 })
 
@@ -14,10 +15,30 @@ import { SuperAdminChangeStatusViewModel } from '../../view-models/abstract/supe
 * Component for Users on super admin page
 */
 export class SuperAdminUsersComponent implements OnInit {
+
+    /**
+    * Total items on page
+    */
     public totalItems;
-    public itemPerPage : number = 4;
+
+    /**
+    * Items on one page
+    */
+    public itemPerPage: number = 4;
+
+    /**
+    * Current Items offset
+    */
     public offset: number = 0;
+
+    /**
+    * Current Page
+    */
     public currentPage: number = 1;
+
+    /**
+    * Users View Model
+    */
     public users: SuperAdminItemsViewModel[];
 
     /**

@@ -8,27 +8,27 @@ namespace FundTrack.DAL.Entities
     public class Balance
     {
         /// <summary>
-        /// Id of Balance
+        /// Gets or Sets Id of Balance
         /// </summary>
         public int Id { get; set; }
 
         /// <summary>
-        /// Id of OrgAccount
+        /// Gets or Sets Id of OrgAccount
         /// </summary>
         public int OrgAccountId { get; set; }
 
         /// <summary>
-        /// Date of Balance
+        /// Gets or Sets Date of Balance
         /// </summary>
         public DateTime BalanceDate { get; set; }
 
         /// <summary>
-        /// Amount of money on the balance
+        /// Gets or Sets Amount of money on the balance
         /// </summary>
         public decimal Amount { get; set; }
 
         /// <summary>
-        /// OrgAccount navigation property
+        /// Gets or Sets OrgAccount navigation property
         /// </summary>
         public virtual OrgAccount OrgAccount { get; set; }
     }

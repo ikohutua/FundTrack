@@ -14,9 +14,9 @@ namespace FundTrack.DAL.Repositories
     /// </summary>
     /// <seealso cref="FundTrack.DAL.Abstract.IRepository{FundTrack.DAL.Entities.User}" />
     public sealed class UserRepository : IUserResporitory
-    {
+    {        
         private readonly FundTrackContext context;
-
+      
         /// <summary>
         /// Initializes a new instance of the <see cref="UserRepository"/> class.
         /// </summary>
@@ -138,14 +138,29 @@ namespace FundTrack.DAL.Repositories
             return context.Users.Include(u => u.PasswordReset)
                                 .Any(u => u.PasswordReset != null && u.PasswordReset.UserID == user.Id);
         }
+
+        /// <summary>
+        /// Gets All Users With Ban Status
+        /// </summary>
+        /// <returns>All Users with ban status</returns>
+        public IEnumerable<User> GetAllUsersWithBanStatus()
+        {
+            return context.Users.Include(u => u.BannedUser);
+        }
+
         /// <summary>
         /// Gets Users with their ban status
         /// </summary>
         /// <returns>Users with ban status</returns>
         public IEnumerable<User> GetUsersWithBanStatus()
         {
-            return context.Users.Include(u => u.BannedUser);
+            return context.Users.Include(u => u.BannedUser)
+                                .Include(u => u.Membership)
+                                .Include(u => u.Membership.Role)
+                                .Where(u => u.Membership.Role.Name != UserRoles.SuperAdmin);
+
         }
+        
         /// <summary>
         /// Gets user by guid
         /// </summary>
@@ -156,6 +171,7 @@ namespace FundTrack.DAL.Repositories
             return context.Users.Include(u => u.PasswordReset)
                                 .FirstOrDefault(u => u.PasswordReset != null && u.PasswordReset.GUID == guid);
         }
+
         /// <summary>
         /// Unbans user with concrete id
         /// </summary>
@@ -176,6 +192,7 @@ namespace FundTrack.DAL.Repositories
         {
             context.BannedUsers.Add(user);           
         }
+
         /// <summary>
         /// Addes new Password reset request
         /// </summary>

@@ -8,20 +8,23 @@ namespace FundTrack.DAL.Entities
     public class Currency
     {
         /// <summary>
-        /// Id of Currency
+        /// Gets or Sets Id of Currency
         /// </summary>
         public int Id { get; set; }
 
         /// <summary>
-        /// Currency Short Name
+        /// Gets or Sets Currency Short Name
         /// </summary>
         public string ShortName { get; set; }
 
         /// <summary>
-        /// Currency Full Name
+        /// Gets or Sets Currency Full Name
         /// </summary>
         public string FullName { get; set; }
 
+        /// <summary>
+        /// Gets or Sets OrgAccounts navigation property
+        /// </summary>
         public virtual ICollection<OrgAccount> OrgAccounts { get; set; }
     }
 }

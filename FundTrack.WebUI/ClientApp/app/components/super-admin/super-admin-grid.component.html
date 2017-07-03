@@ -35,7 +35,7 @@
                   [disabled]="selectedItemStatus=='Відбанити'"
                   [(ngModel)]="selectedItemBanDescription">                   
         </textarea>
-        <div class="alert alert-danger" *ngIf="description.invalid && customeFieldTouched">
+        <div class="text-danger" *ngIf="description.invalid && customeFieldTouched">
             Повинна бути причина бану!
         </div>
     </div>

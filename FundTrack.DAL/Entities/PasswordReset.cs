@@ -8,27 +8,27 @@ namespace FundTrack.DAL.Entities
     public class PasswordReset
     {
         /// <summary>
-        /// Id of PasswordReset
+        /// Gets or Sets Id of PasswordReset
         /// </summary>
         public int Id { get; set; }
 
         /// <summary>
-        /// Id of User
+        /// Gets or Sets Id of User
         /// </summary>
         public int UserID { get; set; }
 
         /// <summary>
-        /// Globally unique identifier
+        /// Gets or Sets Globally unique identifier
         /// </summary>
         public string GUID { get; set; }
 
         /// <summary>
-        /// Exxpire date of reset link
+        /// Gets or Sets Exxpire date of reset link
         /// </summary>
         public DateTime ExpireDate { get; set; }
 
         /// <summary>
-        /// User Navigation Property
+        /// Gets or Sets User Navigation Property
         /// </summary>
         public virtual User User { get; set; }
     }

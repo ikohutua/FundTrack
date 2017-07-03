@@ -8,62 +8,62 @@ namespace FundTrack.DAL.Entities
     public class Organization
     {
         /// <summary>
-        /// Id of Organization
+        /// Gets or Sets Id of Organization
         /// </summary>
         public int Id { get; set; }
 
         /// <summary>
-        /// Name of Organization
+        /// Gets or Sets Name of Organization
         /// </summary>    
         public string Name { get; set; }
 
         /// <summary>
-        /// Description of Organization
+        /// Gets or Sets Description of Organization
         /// </summary>
         public string Description { get; set; }
 
         /// <summary>
-        /// Navigation property Banned organization
+        /// Gets or Sets Navigation property Banned organization
         /// </summary>
         public virtual BannedOrganization BannedOrganization { get; set; }
 
         /// <summary>
-        /// Membership navigation property
+        /// Gets or Sets Membership navigation property
         /// </summary>
         public virtual ICollection<Membership> Memberships { get; set; }
 
         /// <summary>
-        /// OrgAddresse navigation property
+        /// Gets or Sets OrgAddresse navigation property
         /// </summary>
         public virtual ICollection<OrgAddress> OrgAddresses { get; set; }
 
         /// <summary>
-        /// BankAccount navigation property
+        /// Gets or Sets BankAccount navigation property
         /// </summary>
         public virtual ICollection<BankAccount> BankAccounts { get; set; }
 
         /// <summary>
-        /// Subscribe organization navigation property
+        /// Gets or Sets Subscribe organization navigation property
         /// </summary>
         public virtual ICollection<SubscribeOrganization> SubscribeOrganization { get; set; }
 
         /// <summary>
-        /// OrgAccounts navigation property
+        /// Gets or Sets OrgAccounts navigation property
         /// </summary>
         public virtual ICollection<OrgAccount> OrgAccounts { get; set; }
 
         /// <summary>
-        /// Request navigation property
+        /// Gets or Sets Request navigation property
         /// </summary>
         public virtual ICollection<Request> Requests { get; set; }
 
         /// <summary>
-        /// Complaint navigation property
+        /// Gets or Sets Complaint navigation property
         /// </summary>
         public virtual ICollection<Complaint> Complaints { get; set; }
 
         /// <summary>
-        /// Event navigation property
+        /// Gets or Sets Event navigation property
         /// </summary>
         public virtual ICollection<Event> Events { get; set; }
     }
