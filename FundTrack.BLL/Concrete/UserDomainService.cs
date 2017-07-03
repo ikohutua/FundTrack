@@ -125,19 +125,14 @@ namespace FundTrack.BLL.DomainServices
         /// <param name="login">The login.</param>
         private void CreateUserRole(string login)
         {
-            if (login != null)
+            var membership = new Membership
             {
-                int userId = this._unitOfWork.UsersRepository.GetUser(login).Id;
-                int roleId = this._unitOfWork.RoleRepository.Read().Where(r => r.Name == "partner").FirstOrDefault().Id;
-                var membership = new Membership
-                {
-                    RoleId = roleId,
-                    UserId = userId,
-                    OrgId = 1
-                };
-                this._unitOfWork.MembershipRepository.Create(membership);
-                this._unitOfWork.SaveChanges();
-            }
+                RoleId = this._unitOfWork.RoleRepository.Read().Where(r => r.Name == "partner").FirstOrDefault().Id,
+                UserId = this._unitOfWork.UsersRepository.GetUser(login).Id,
+                OrgId = 1
+            };
+            this._unitOfWork.MembershipRepository.Create(membership);
+            this._unitOfWork.SaveChanges();
         }
 
         /// <summary>
