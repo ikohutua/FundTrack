@@ -139,7 +139,7 @@ export class MapComponent implements OnInit {
     }
 
     /**
-     * 
+     * Creates formatted address
      * @param googleResponse
      * @returns formatted address: string
      */
@@ -266,6 +266,13 @@ export class MapComponent implements OnInit {
      */
     private removeMarker(marker: any): void {
         this._markers.splice(this._markers.findIndex(m => m.lat == parseFloat(marker.lat)), 1);
+    }
+
+    /**
+     * Changes allowManyMarkers
+     */
+    private changeAmountMarkersMode(): void {
+        this.allowManyMarkers = !this.allowManyMarkers;
     }
 
     /**

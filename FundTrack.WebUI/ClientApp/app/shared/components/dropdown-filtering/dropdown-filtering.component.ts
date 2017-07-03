@@ -10,7 +10,7 @@ import { OrganizationDropdownService } from "../../../services/concrete/organiza
 })
 
 export class DropdownOrganizationsComponent implements OnInit {
-
+    //for organization-list.pipe
     public filterBy: string;
 
     private _errorMessage: string;
@@ -40,7 +40,7 @@ export class DropdownOrganizationsComponent implements OnInit {
     }
 
     /**
-     * gets a name of selected organization in dropdown list of organizations
+     * gets a name of selected organization in dropdown list 
      * @param IOrganizationForFiltering
      */
     private onSelect(organization: IOrganizationForFiltering): void {
