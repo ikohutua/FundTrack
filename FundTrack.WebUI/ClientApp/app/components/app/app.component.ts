@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Angular2FontawesomeModule } from 'angular2-fontawesome/angular2-fontawesome';
+import { DropdownOrganizationsComponent } from '../../shared/components/dropdown-filtering/dropdown-filtering.component';
 
 @Component({
     selector: 'app',
@@ -8,4 +9,9 @@ import { Angular2FontawesomeModule } from 'angular2-fontawesome/angular2-fontawe
 })
 
 export class AppComponent {
+    @ViewChild(DropdownOrganizationsComponent) childComponent: DropdownOrganizationsComponent;
+
+    callChild() {
+        this.childComponent.onSelect();
+    }
 }

@@ -3,13 +3,20 @@
     padding-right: 50px;
 }
 
+.panel-size {
+    height: 320px;
+}
+
 .div-strings {
-    height:220px;
+    height: 220px;
     overflow: hidden;
-    text-overflow: ellipsis;
 }
 
 .div-panel-margen {
-    margin-right:20px;
-    margin-bottom:20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+
+img {
+    max-height: 200px;
 }

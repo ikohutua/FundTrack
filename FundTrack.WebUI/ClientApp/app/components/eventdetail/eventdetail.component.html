@@ -5,7 +5,7 @@
                 {{_eventDetail.organizationName}}
             </div>
             <div class="panel-title pull-right">
-                {{_eventDetail.createDate | date }}
+                {{_eventDetail.createDate | date:'shortDate' }}
             </div>
             <div class="clearfix"></div>
         </div>
@@ -15,10 +15,10 @@
                 <!-- Wrapper for slides -->
                 <div class="carousel-inner cont-slider">
                     <div class="item active">
-                        <a [routerLink]="['']"><img alt="" title="" src={{_eventDetail.imageUrl[0]}} style="height:600px"></a>
+                        <a [routerLink]="['']"><img alt="" title="" src={{_eventDetail.imageUrl[0]}} class="img-big"></a>
                     </div>
                     <div class="item" *ngFor="let image of _eventDetail.imageUrl | slice:1">
-                        <a [routerLink]="['']"><img alt="" title="" src={{image}} style="height:600px"></a>
+                        <a [routerLink]="['']"><img alt="" title="" src={{image}} class="img-big"></a>
                     </div>
                 </div>
                 <!-- Indicators -->
@@ -41,34 +41,3 @@
         </div>
     </div>
 </div>
-
-
-
-<!--<div class="col-lg-12" *ngIf="_eventDetail">
-    <div class="panel panel-primary">
-        <div class="panel-heading">
-            <div class="panel-title pull-left">
-                {{_eventDetail.organizationName}}
-            </div>
-            <div class="panel-title pull-right">
-                {{_eventDetail.createDate | date }}
-            </div>
-            <div class="clearfix"></div>
-        </div>
-        <div class="panel-body panel-padding">
-            <div class="div-panel-margen">
-                <img src={{_eventDetail.imageUrl[0]}} height="600" />
-            </div>
-            <div class=" pull-left div-panel-margen" *ngFor="let image of _eventDetail.imageUrl">
-                <img src={{image}} height="200" />
-            </div>
-            <div style="clear: left"></div>
-            <div>
-                {{_eventDetail.description}}
-            </div>
-            <div class="pull-right">
-                <a [routerLink]="['']">Назад</a>
-            </div>
-        </div>
-    </div>
-</div>-->

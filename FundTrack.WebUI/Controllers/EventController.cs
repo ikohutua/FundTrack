@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using FundTrack.BLL.Abstract;
-using FundTrack.Infrastructure.ViewModel;
+using FundTrack.Infrastructure.ViewModel.EventViewModel;
 
 namespace FundTrack.WebUI.Controllers
 {
@@ -12,13 +12,13 @@ namespace FundTrack.WebUI.Controllers
     [Route("api/[controller]")]
     public sealed class EventController
     {
-        private readonly IViewService<EventViewModel> _service;
+        private readonly IEventService _service;
 
         /// <summary>
         /// Initializes a new instance of the "EventController" class
         /// </summary>
         /// <param name="service">The instance of service.</param>
-        public EventController(IViewService<EventViewModel> service)
+        public EventController(IEventService service)
         {
             _service = service;
         }
@@ -29,7 +29,16 @@ namespace FundTrack.WebUI.Controllers
         [HttpGet("[action]")]
         public IEnumerable<EventViewModel> AllEvents()
         {
-            return _service.Get();
+            return _service.GetAllEvents();
+        }
+
+        /// <summary>
+        /// Returns to WEB info about some count of events (events for one page)
+        /// </summary>
+        [HttpGet("AllEventsByScroll/{countOfEventsToLoad}/{koefToLoadEvent}")]
+        public IEnumerable<EventViewModel> AllEventsbyScroll(int countOfEventsToLoad, int koefToLoadEvent)
+        {
+            return _service.GetEventsByScroll(countOfEventsToLoad, koefToLoadEvent);
         }
 
         /// <summary>
@@ -40,7 +49,17 @@ namespace FundTrack.WebUI.Controllers
         [HttpGet("AllEventsOfOrganization/{id}")]
         public IEnumerable<EventViewModel> AllEventsOfOrganization(int id)
         {
-            return _service.Get(id);
+            return _service.GetAllEventsForOrganization(id);
+        }
+
+        /// <summary>
+        /// Gets Events Data for pagination
+        /// </summary>
+        /// <returns>Events pagination data</returns>
+        [HttpGet("[action]")]
+        public EventPaginationInitViewModel GetEventsPaginationData()
+        {
+            return _service.GetEventPaginationData();
         }
     }
 }

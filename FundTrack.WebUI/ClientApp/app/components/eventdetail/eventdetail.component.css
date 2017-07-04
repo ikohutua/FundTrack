@@ -8,9 +8,13 @@
     margin-bottom: 20px;
 }
 
+.img-big {
+    height: 600px !important;
+}
+
 /* Main carousel style */
 .carousel {
-    width: 600px;
+    width: auto;
 }
 
 /* Indicators list style */

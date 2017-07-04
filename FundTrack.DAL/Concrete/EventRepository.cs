@@ -9,7 +9,7 @@ namespace FundTrack.DAL.Concrete
     /// class for CRUD operation with entity - event
     /// </summary>
     /// <seealso cref="FundTrack.DAL.Abstract.IRepository{FundTrack.DAL.Entities.User}" />
-    public class EventRepository : IRepository<Event>
+    public sealed class EventRepository : IRepository<Event>
     {
         private readonly FundTrackContext _context;
 

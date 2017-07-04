@@ -1,7 +1,7 @@
 ﻿using FundTrack.BLL.Abstract;
 using FundTrack.DAL.Abstract;
 using FundTrack.DAL.Entities;
-using FundTrack.Infrastructure.ViewModel;
+using FundTrack.Infrastructure.ViewModel.EventViewModel;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

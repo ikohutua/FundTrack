@@ -15,7 +15,7 @@ namespace FundTrack.BLL.Concrete
         /// <param name="pageSize">Size of the page</param>
         /// <param name="currentPage">The current page number</param>
         /// <returns>Items for specifice page</returns>
-        public IEnumerable<T> GetPageItems<T>(IEnumerable<T> allItems, int pageSize, int currentPage = 1)
+        public IEnumerable<T> GetPageItems<T>(IEnumerable<T> allItems, int pageSize, int currentPage)
         {
             return allItems.Skip((currentPage - 1) * pageSize).Take(pageSize);
         }

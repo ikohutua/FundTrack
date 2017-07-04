@@ -1,7 +1,7 @@
 ﻿using FundTrack.BLL.Concrete;
 using FundTrack.DAL.Concrete;
 using FundTrack.DAL.Tests;
-using FundTrack.Infrastructure.ViewModel;
+using FundTrack.Infrastructure.ViewModel.EventViewModel;
 using Xunit;
 
 namespace FundTrack.BLL.Tests

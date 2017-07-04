@@ -14,8 +14,7 @@ using FundTrack.WebUI.token;
 using FundTrack.DAL.Entities;
 using FundTrack.BLL.DomainServices;
 using FundTrack.DAL.Repositories;
-using FundTrack.Infrastructure.ViewModel;
-
+using FundTrack.Infrastructure.ViewModel.EventViewModel;
 
 namespace FundTrack_WebUI
 {
@@ -61,7 +60,7 @@ namespace FundTrack_WebUI
             //dependency injection BLL
             services.AddScoped<IOrganizationsForFilteringService, OrganizationsForFilteringService>();
             services.AddTransient<IUserDomainService, UserDomainService>();
-            services.AddScoped<IViewService<EventViewModel>, EventViewService>();
+            services.AddScoped<IEventService, EventViewService>();
             services.AddScoped<IViewService<EventDetailViewModel>, EventDetailViewService>();
             services.AddScoped<IOrganizationRegistrationService, OrganizationRegistrationService>();
             services.AddScoped<ISuperAdminService, SuperAdminService>();

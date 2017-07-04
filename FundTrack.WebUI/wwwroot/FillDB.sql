@@ -1,4 +1,4 @@
-﻿USE FundTrackLocal
+﻿USE FundTrackSS
 
 DELETE from Organizations
 DBCC CHECKIDENT ('Organizations', RESEED, 0);
@@ -9,7 +9,7 @@ DBCC CHECKIDENT ('EventImages', RESEED, 0);
 DELETE from Roles
 DBCC CHECKIDENT ('Roles', RESEED, 0);
 
-INSERT INTO Organizations
+INSERT INTO dbo.Organizations
 VALUES 
 (N'Громадська ініціатива АРМІЯ SOS координує зусилля народу з допомоги військовим України. Ми організовуємо закупівлі необхідної амуніції, засобів захисту, зв’язку та розвідки,
 харчів та форми, доставляємо їх безпосередньо на позиції та передаємо в руки бійцям на фронті',
@@ -268,4 +268,6 @@ VALUES
 'https://scontent-waw1-1.xx.fbcdn.net/v/t1.0-9/19248059_841269326025055_2823380829229008327_n.jpg?oh=6f1cfc969fb9893f9e6befe35b7ad6d1&oe=59CE1DEE',
 0)
 
-select * from EventImages
+select * from dbo.Organizations
+select * from dbo.Events
+select * from dbo.EventImages

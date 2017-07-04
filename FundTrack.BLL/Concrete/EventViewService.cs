@@ -1,20 +1,21 @@
 ﻿using FundTrack.BLL.Abstract;
 using FundTrack.DAL.Abstract;
-using FundTrack.Infrastructure.ViewModel;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using FundTrack.DAL.Entities;
+using FundTrack.Infrastructure.ViewModel.EventViewModel;
 
 namespace FundTrack.BLL.Concrete
 {
     /// <summary>
     /// Class for work with Events
     /// </summary>
-    /// <seealso cref="FundTrack.BLL.Abstract.IViewService{FundTrack.Infrastructure.ViewModel.EventViewModel}" />
-    public sealed class EventViewService : IViewService<EventViewModel>
+    /// <seealso cref="FundTrack.BLL.Abstract.IEventService{FundTrack.Infrastructure.ViewModel.EventViewModel}" />
+    public sealed class EventViewService : BaseService, IEventService
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly int _pageSize = 6;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="EventViewService"/> class.
@@ -26,41 +27,14 @@ namespace FundTrack.BLL.Concrete
         }
 
         /// <summary>
-        /// Adds the specified new event.
-        /// </summary>
-        /// <param name="newItem">The new event.</param>
-        /// <exception cref="NotImplementedException"></exception>
-        public void Add(EventViewModel newItem)
-        {
-            var newEvent = new Event();
-            newEvent.Id = newItem.Id;
-            newEvent.OrganizationId = newItem.OrganizationId;
-            newEvent.Description = newItem.Description;
-            newEvent.Description = newItem.Description;
-            newEvent.CreateDate = newItem.CreateDate;
-
-            _unitOfWork.EventRepository.Create(newEvent);
-            _unitOfWork.SaveChanges();
-        }
-
-        /// <summary>
-        /// Deletes the specified event.
-        /// </summary>
-        /// <param name="id">The event.</param>
-        public void Delete(int id)
-        {
-            _unitOfWork.EventRepository.Delete(id);
-        }
-
-        /// <summary>
-        /// Gets  events of all organizations.
+        /// Gets  events of all organizations per scrollng.
         /// </summary>
         /// <returns>Collection of EventViewModel</returns>
-        public IEnumerable<EventViewModel> Get()
+        public IEnumerable<EventViewModel> GetEventsByScroll(int countOfEventsToLoad, int koefToLoadEvent)
         {
             var events = ((DbSet<Event>)_unitOfWork.EventRepository.Read())
              .Include(e => e.Organization)
-             .Include(i=>i.EventImages)
+             .Include(i => i.EventImages)
              .Select(c => new EventViewModel()
              {
                  Id = c.Id,
@@ -69,16 +43,38 @@ namespace FundTrack.BLL.Concrete
                  Description = c.Description,
                  CreateDate = c.CreateDate,
                  ImageUrl = c.EventImages.Single(r => r.IsMain == true).ImageUrl
-             }).OrderBy(e => e.CreateDate).Take(5);
+             }).OrderBy(e => e.CreateDate);
+
+            return GetPageItems(events, countOfEventsToLoad, koefToLoadEvent);
+        }
+
+        /// <summary>
+        /// Gets  events of all organizations.
+        /// </summary>
+        /// <returns>Collection of EventViewModel</returns>
+        public IEnumerable<EventViewModel> GetAllEvents()
+        {
+            var events = ((DbSet<Event>)_unitOfWork.EventRepository.Read())
+             .Include(e => e.Organization)
+             .Include(i => i.EventImages)
+             .Select(c => new EventViewModel()
+             {
+                 Id = c.Id,
+                 OrganizationId = c.OrganizationId,
+                 OrganizationName = c.Organization.Name,
+                 Description = c.Description,
+                 CreateDate = c.CreateDate,
+                 ImageUrl = c.EventImages.Single(r => r.IsMain == true).ImageUrl
+             }).OrderBy(e => e.CreateDate);
 
             return events;
         }
 
         /// <summary>
-        /// Gets events about specific organization.
+        /// Gets some number of events by specific organization.
         /// </summary>
         /// <returns>Collection of EventViewModels for specific organization</returns>
-        public IEnumerable<EventViewModel> Get(int id)
+        public IEnumerable<EventViewModel> GetAllEventsForOrganization(int id)
         {
             var events = ((DbSet<Event>)_unitOfWork.EventRepository.Read())
              .Include(e => e.Organization).Where(o => o.OrganizationId == id)
@@ -91,37 +87,22 @@ namespace FundTrack.BLL.Concrete
                  Description = c.Description,
                  CreateDate = c.CreateDate,
                  ImageUrl = c.EventImages.Single(r => r.IsMain == true).ImageUrl
-             }).OrderBy(e => e.CreateDate).Take(5);
+             }).OrderBy(e => e.CreateDate);
 
             return events;
         }
 
         /// <summary>
-        /// Reads the event by identifier.
+        /// Gets Initial data for event pagination
         /// </summary>
-        /// <param name="id">The event.</param>
-        /// <returns>Returns specific event by id</returns>
-        public EventViewModel ReadById(int id)
+        /// <returns>Event Initial data</returns>
+        public EventPaginationInitViewModel GetEventPaginationData()
         {
-            return Get().FirstOrDefault(c => c.Id == id);
-        }
-
-        /// <summary>
-        /// Updates the specified event
-        /// </summary>
-        /// <param name="updateItem">The update event.</param>
-        public void Update(EventViewModel updateItem)
-        {
-            var newEvent = new Event();
-            newEvent.Id = updateItem.Id;
-            newEvent.OrganizationId = updateItem.OrganizationId;
-            newEvent.Description = updateItem.Description;
-            newEvent.CreateDate = updateItem.CreateDate;
-            newEvent.Description = updateItem.Description;
-            //newEvent.ImageUrl = updateItem.ImageUrl;
-
-            _unitOfWork.EventRepository.Update(newEvent);
-            _unitOfWork.SaveChanges();
+            return new EventPaginationInitViewModel
+            {
+                TotalEventsCount = _unitOfWork.EventRepository.Read().Count(),
+                EventsPerPage = _pageSize
+            };
         }
     }
 }

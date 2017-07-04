@@ -1,5 +1,6 @@
 ﻿import { Http, Response, Headers, RequestOptionsArgs } from "@angular/http";
 import { Observable } from "rxjs/Observable";
+import { EventInitViewModel } from '../../view-models/abstract/event-initpaginationdata-view-model';
 import "rxjs/add/operator/map";
 import 'rxjs/add/operator/do';
 import "rxjs/add/operator/catch";
@@ -93,6 +94,12 @@ export abstract class BaseService<T> {
             .catch(this.handleError);
     }
 
+        // gets items to display on page from server
+    public getItemsOnScroll(additionString: string, itemsPerPage: number, currentPage: number): Observable<T[]>{
+        return this._http.get(additionString + '/' + itemsPerPage + '/' + currentPage )
+            .map((response: Response) => <T[]>response.json())
+    }  
+
     /**
     * Exception handler
     * @param error: Response
@@ -110,5 +117,12 @@ export abstract class BaseService<T> {
         let headers = new Headers({ 'ContentType': 'application/json' });
         return { headers: headers, body: body };
     }
+
+    // gets initial pagination data from server
+    public getInitData(url) {
+        return this._http.get(url)
+            .map((response: Response) => response.json() as EventInitViewModel)
+    }
+
 }
 

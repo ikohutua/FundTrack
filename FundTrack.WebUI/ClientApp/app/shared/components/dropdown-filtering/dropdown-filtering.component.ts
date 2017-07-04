@@ -43,11 +43,19 @@ export class DropdownOrganizationsComponent implements OnInit {
      * gets a name of selected organization in dropdown list 
      * @param IOrganizationForFiltering
      */
-    private onSelect(organization: IOrganizationForFiltering): void {
-        this._selectedOrganizationName = organization.name;
+    public onSelect(org?: IOrganizationForFiltering): void {
+        if (org) {
+            this._selectedOrganizationName = org.name;
+
+        }
+        else {
+            this._selectedOrganizationName = null;
+
+        }
     }
 
-    private onSelectAll(): void {
-        this._selectedOrganizationName = null;
-    }
+    //private onSelectAll(): void{
+    //    this.selectedOrganizationName = null;
+    //}
+
 }
