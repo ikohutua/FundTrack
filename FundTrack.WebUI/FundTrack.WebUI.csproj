@@ -54,7 +54,6 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FundTrack.BLL\FundTrack.BLL.csproj" />
-    <ProjectReference Include="..\FundTrack.DAL\FundTrack.DAL.csproj" />
     <ProjectReference Include="..\FundTrack.Infrastructure\FundTrack.Infrastructure.csproj" />
   </ItemGroup>
   <Target Name="RunWebpack" AfterTargets="ComputeFilesToPublish">

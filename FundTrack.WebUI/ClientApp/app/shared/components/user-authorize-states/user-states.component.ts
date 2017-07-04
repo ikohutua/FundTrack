@@ -24,6 +24,7 @@ export class UserStatesComponent implements AfterContentChecked {
      */
     public exit():void {
         this.name = null;
+        this.isAdmin = false;
         this._authorizationService.logOff();
     }
 

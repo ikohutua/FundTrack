@@ -89,11 +89,11 @@ export class UserProfileComponent implements OnInit {
         },
         "newPassword": {
             "required": "Поле є обов'язковим",
-            "minLength": "Мінімальна довжина паролю становить 7 символів"
+            "minlength": "Мінімальна довжина паролю становить 7 символів"
         },
         "newPasswordConfirmation": {
             "required": "Поле є обов'язковим",
-            "minLength": "Мінімальна довжина паролю становить 7 символів",
+            "minlength": "Мінімальна довжина паролю становить 7 символів",
             "mismatchingPasswords": "Паролі не співпадають"
         }
     }
