@@ -6,9 +6,9 @@ import { IEventDetailModel } from "../../view-models/abstract/eventdetail-model.
 @Injectable()
 export class EventDetailService extends BaseService<IEventDetailModel>{
     /**
- * @constructor
- * @param http
- */
+     * @constructor
+     * @param http
+     */
     constructor(http: Http) {
         super(http);
     }

@@ -1,7 +1,7 @@
 ﻿import { } from "jasmine";
 
 describe("First test", () => {
-    it("Wonderfull test", () => {
+    it("Wonderful test", () => {
         expect(1).toBe(1);
     });
 });

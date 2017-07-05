@@ -8,6 +8,7 @@ import { SuperAdminModule } from './super-admin.module';
 import { AppRoutingModule } from "./routes/app-routing.module";
 import { MapModule } from "./map.module";
 import { Angular2FontawesomeModule } from 'angular2-fontawesome/angular2-fontawesome';
+import { OrganizationManagementModule } from "./organization-management.module";
 
 @NgModule({
     bootstrap: [AppComponent],
@@ -22,7 +23,8 @@ import { Angular2FontawesomeModule } from 'angular2-fontawesome/angular2-fontawe
         SuperAdminModule,
         AppRoutingModule, 
         MapModule,
-        Angular2FontawesomeModule
+        Angular2FontawesomeModule,
+        OrganizationManagementModule
     ]
 })
 export class AppModule { }

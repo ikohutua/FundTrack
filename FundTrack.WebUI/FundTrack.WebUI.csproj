@@ -50,6 +50,9 @@
     <None Remove="ClientApp\Images\**" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="wwwroot\images\camouflage_texture.jpg" />
+  </ItemGroup>
+  <ItemGroup>
     <None Include="Controllers\UserInfoController.cs" />
   </ItemGroup>
   <ItemGroup>

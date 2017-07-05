@@ -1,109 +1,107 @@
 body {
-      margin: 0px 0px 0px 0px !important;
+    margin: 0px 0px 0px 0px !important;
 }
 
 @media (max-width: 767px) {
     /* On small screens, the nav menu spans the full width of the screen. Leave a space for it. */
 
-.body-content {
-      padding-top: 50px;
-}
+    .body-content {
+        padding-top: 50px;
+    }
 }
 
 app.container-fluid {
-      padding-left: 0;
-      padding-right: 0;
+    padding-left: 0;
+    padding-right: 0;
 }
 
-.fixedHeader{
-       width: 100%;
-       top: 0;
-       z-index: 3000;
+.fixedHeader {
+    width: 100%;
+    top: 0;
+    z-index: 3000;
 }
 
-.content{
-       margin-top: 90px;
-       min-height: 600px;
+.content {
+    margin-top: 90px;
+    min-height: 600px;
 }
 
 .userstates {
-       align-items: center;
-       padding-top:8px;
+    align-items: center;
+    padding-top: 8px;
 }
 
 .navbar-default {
-       background-color: #292c2f;
-       height: 90px;
-       padding: 20px 40px;
+    background-color: #1a1a1a;
+    height: 90px;
+    padding: 20px 40px;
 }
 
 .navbar-brand {
-       font: normal 24px Arial, Helvetica, sans-serif;
-       line-height: 20px;
-       margin: 0;
-       text-decoration-color: white !important;
-       color: lightskyblue;
+    font: normal 24px Arial, Helvetica, sans-serif;
+    line-height: 20px;
+    margin: 0;
+    text-decoration-color: white !important;
+    color: lightskyblue;
 }
 
-.navbar-brand span {
-       color: #FFFF99;
-}
+    .navbar-brand span {
+        color: #FFFF99;
+    }
 
 .navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
-       color: cornflowerblue;
+    color: cornflowerblue;
 }
 
 .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
-       color: #8f9296;
+    color: #8f9296;
 }
 
 .footer-distributed {
-        background-color: #292c2f;
-        box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
-        box-sizing: border-box;
-        width: 100%;
-        text-align: left;
-        font: normal 16px sans-serif;    
+    background-color: #1a1a1a;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
+    box-sizing: border-box;
+    width: 100%;
+    text-align: left;
+    font: normal 16px sans-serif;
 }
 
-.footer-distributed .footer-left p {
+    .footer-distributed .footer-left p {
         color: #8f9296;
         font-size: 14px;
         margin: 0;
-}
+    }
 
-.footer-distributed p.footer-links {
+    .footer-distributed p.footer-links {
         font-size: 18px;
         font-weight: bold;
         color: #ffffff;
         margin: 0 0 10px;
         padding: 0;
-}
+    }
 
-.footer-distributed p.footer-links a {
-        display: inline-block;
-        line-height: 1.8;
-        text-decoration: none;
-        color: inherit;
-}
+        .footer-distributed p.footer-links a {
+            display: inline-block;
+            line-height: 1.8;
+            text-decoration: none;
+            color: inherit;
+        }
 
-.footer-distributed .footer-right {
+    .footer-distributed .footer-right {
         float: right;
         margin-top: 6px;
         max-width: 180px;
-}
+    }
 
-.footer-distributed .footer-right a {
-        display: inline-block;
-        width: 35px;
-        height: 35px;
-        background-color: #33383b;
-        border-radius: 2px;
-        font-size: 20px;
-        color: #ffffff;
-        text-align: center;
-        line-height: 35px;
-        margin-left: 3px;
-}
-
-
+        .footer-distributed .footer-right a {
+            display: inline-block;
+            width: 35px;
+            height: 35px;
+            background-color: #33383b;
+            border-radius: 2px;
+            font-size: 20px;
+            color: #ffffff;
+            text-align: center;
+            line-height: 35px;
+            margin-left: 3px;
+        }
