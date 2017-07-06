@@ -249,5 +249,16 @@ namespace FundTrack.WebUI.Controllers
             };
             return authorizationType;
         }
+
+        /// <summary>
+        /// Gets id of organization
+        /// </summary>
+        /// <param name="login"> Login of user</param>
+        /// <returns>Id</returns>
+        [HttpGet("GetIdOfOrganization/{login}")]
+        public JsonResult GetIdOfOrganization(string login)
+        {
+            return Json(_userDomainService.GetOrganizationId(login));
+        }
     }
 }

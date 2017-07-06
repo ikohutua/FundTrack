@@ -16,6 +16,8 @@ export class UserStatesComponent implements AfterContentChecked {
     public user: AuthorizeUserModel;
     public name: string = '';
     private isAdmin: boolean = false;
+    private isAdminOfOrganization: boolean = false;
+    private idOfOrganization: number;
     public constructor(private _authorizationService: UserService
     ) { }
 
@@ -25,6 +27,7 @@ export class UserStatesComponent implements AfterContentChecked {
     public exit():void {
         this.name = null;
         this.isAdmin = false;
+        this.isAdminOfOrganization = false;
         this._authorizationService.logOff();
     }
 
@@ -39,9 +42,21 @@ export class UserStatesComponent implements AfterContentChecked {
                 if (this.user.role == 'superadmin') {
                     this.isAdmin = true;
                 }
+                else if (this.user.role == 'admin') {
+                    this.isAdminOfOrganization = true;
+                    this.getIdOfOrganization();
+                }
             }
             return true;
         }
         return false;
+    }
+
+    
+    private getIdOfOrganization(): void
+    {
+        this._authorizationService.getOrganizationId(this.user.login).subscribe(id => {
+            this.idOfOrganization = id; 
+        });
     }
 }

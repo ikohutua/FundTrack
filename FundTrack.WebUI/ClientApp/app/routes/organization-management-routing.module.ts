@@ -6,7 +6,7 @@ import { OrganizationManagementEventComponent } from "../components/organization
 @NgModule({
     imports: [RouterModule.forChild([
         {
-            path: 'organization-management', component: OrganizationManagementComponent,
+            path: 'organization-management/:id', component: OrganizationManagementComponent,
             children: [{ path: 'all-events', component: OrganizationManagementEventComponent}]
         }
     ])],

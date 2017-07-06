@@ -154,5 +154,14 @@ export class UserService {
     private handleError(error: Response): any {
         return Observable.throw(error.json().error);
     }
+
+    /**
+     * Gets id of organization 
+     * @param login
+     */
+    public getOrganizationId(login: string): Observable<number> {
+        return this._http.get('api/User/GetIdOfOrganization/' + login)
+            .map((response: Response) => response.json() as number);
+    }
 }
 
