@@ -334,18 +334,21 @@ namespace FundTrack.BLL.DomainServices
         {
             var user = new User();
             user = _unitOfWork.UsersRepository.Read().Where(u => u.Login == login).FirstOrDefault();
-            var membership = _unitOfWork.MembershipRepository.Read().Where(m => m.UserId == user.Id).FirstOrDefault();
-            if (membership != null)
+            if (user!= null)
             {
-                int roleId = membership.RoleId;
-                var userRole = _unitOfWork.RoleRepository.Read().Where(r => r.Id == roleId).FirstOrDefault().Name;
-                if (userRole == "admin" || userRole == "superadmin")
+                var membership = _unitOfWork.MembershipRepository.Read().Where(m => m.UserId == user.Id).FirstOrDefault();
+                if (membership != null)
                 {
-                    int organizationId = membership.OrgId;
-                    return organizationId;
+                    int roleId = membership.RoleId;
+                    var userRole = _unitOfWork.RoleRepository.Read().Where(r => r.Id == roleId).FirstOrDefault().Name;
+                    if (userRole == "admin" || userRole == "superadmin")
+                    {
+                        int organizationId = membership.OrgId;
+                        return organizationId;
+                    }
+                    else return 0;
                 }
-                else return 0;
-            }
+            }           
             return 0;
         }
     }

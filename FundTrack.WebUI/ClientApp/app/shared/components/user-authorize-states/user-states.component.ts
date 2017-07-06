@@ -1,4 +1,4 @@
-﻿import { Component, OnInit, AfterContentChecked } from "@angular/core";
+﻿import { Component, OnInit, AfterContentChecked, DoCheck } from "@angular/core";
 import * as keys from '../../key.storage';
 import { isBrowser } from 'angular2-universal';
 import { UserService } from '../../../services/concrete/user.service';
@@ -11,12 +11,13 @@ import { AuthorizeUserModel } from '../../../view-models/concrete/authorized-use
     providers: [UserService]
 })
 
-export class UserStatesComponent implements AfterContentChecked {
+export class UserStatesComponent implements AfterContentChecked, DoCheck {
 
     public user: AuthorizeUserModel;
     public name: string = '';
     private isAdmin: boolean = false;
     private isAdminOfOrganization: boolean = false;
+    private isAdminOfOrganizationForCheck: boolean = false;
     private idOfOrganization: number;
     public constructor(private _authorizationService: UserService
     ) { }
@@ -43,8 +44,7 @@ export class UserStatesComponent implements AfterContentChecked {
                     this.isAdmin = true;
                 }
                 else if (this.user.role == 'admin') {
-                    this.isAdminOfOrganization = true;
-                    this.getIdOfOrganization();
+                    this.isAdminOfOrganizationForCheck = true;
                 }
             }
             return true;
@@ -52,6 +52,13 @@ export class UserStatesComponent implements AfterContentChecked {
         return false;
     }
 
+    ngDoCheck() {
+        if (this.isAdminOfOrganization !== this.isAdminOfOrganizationForCheck)
+        {
+            this.isAdminOfOrganization = true;
+            this.getIdOfOrganization();
+        }
+    }
     
     private getIdOfOrganization(): void
     {

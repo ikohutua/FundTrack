@@ -24,6 +24,7 @@ namespace FundTrack.BLL.Concrete
             var organization = _unitOfWork.OrganizationRepository.Get(id);
             var result = new OrganizationViewModel
             {
+                Id = organization.Id,
                 Name = organization.Name,
                 Description = organization.Description,
                 IsBanned = false
