@@ -90,11 +90,11 @@ html {
 
         .sidebar-nav li:first-child a {
             color: #fff;
-            background-color: #1a1a1a;
+            background-color: #273a1a;
         }
 
         .sidebar-nav li:nth-child(2):before {
-            background-color: #1a1a1a;
+            background-color: #273a1a;
         }
 
         .sidebar-nav li:nth-child(3):before {

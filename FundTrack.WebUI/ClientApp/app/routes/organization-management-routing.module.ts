@@ -7,7 +7,9 @@ import { OrganizationManagementEventComponent } from "../components/organization
     imports: [RouterModule.forChild([
         {
             path: 'organization-management/:id', component: OrganizationManagementComponent,
-            children: [{ path: 'all-events', component: OrganizationManagementEventComponent}]
+            children: [
+                { path: 'all-events', component: OrganizationManagementEventComponent }
+            ]
         }
     ])],
     exports: [RouterModule]

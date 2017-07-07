@@ -20,6 +20,7 @@ namespace FundTrack.DAL.Concrete
         private readonly IRepository<OrgAccount> _orgAccountRepository;
         private readonly IRepository<Role> _roleRepository;
         private readonly IRequestedItemRepository _requestedItemRepository;
+        private readonly IRepository<EventImage> _eventImageRepository;
 
 
         private FundTrackContext _context;
@@ -38,9 +39,10 @@ namespace FundTrack.DAL.Concrete
               IRepository<Address> addressRepository,
               IRepository<OrgAddress> orgAddressRepository,
               IRepository<BankAccount> bankAccountRepository,
-              IRepository<OrgAccount> orgAccountRepository, 
+              IRequestedItemRepository requestedItemRepository,
+              IRepository<OrgAccount> orgAccountRepository,
               IRepository<Role> roleRepository,
-              IRequestedItemRepository requestedItemRepository)
+              IRepository<EventImage> eventImageRepositoryParam)
         {
             this._context = contextParam;
             this._organizationsListRepository = organizationsListRepositoryParam;
@@ -53,7 +55,21 @@ namespace FundTrack.DAL.Concrete
             _bankAccountRepository = bankAccountRepository;
             _orgAccountRepository = orgAccountRepository;
             _roleRepository = roleRepository;
-            this._requestedItemRepository = requestedItemRepository;
+            _eventImageRepository = eventImageRepositoryParam;
+        }
+
+        /// <summary>
+        /// Gets the event image repository.
+        /// </summary>
+        /// <value>
+        /// The event image repository.
+        /// </value>
+        public IRepository<EventImage> EventImageRepository
+        {
+            get
+            {
+                return _eventImageRepository;
+            }
         }
 
         /// <summary>
@@ -94,7 +110,7 @@ namespace FundTrack.DAL.Concrete
                 return _organizationRepository;
             }
         }
-        
+
         /// <summary>
         /// Gets the organizations list repository.
         /// </summary>

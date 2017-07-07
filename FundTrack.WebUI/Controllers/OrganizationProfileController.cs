@@ -7,7 +7,7 @@ namespace FundTrack.WebUI.Controllers
     /// <summary>
     /// Controller that manages operations with organization profile
     /// </summary>
-    [Route("api/OrganizationProfile")]
+    [Route("api/[controller]")]
     public class OrganizationProfileController:Controller
     {
         private readonly IOrganizationProfileService _orgProfileService; 

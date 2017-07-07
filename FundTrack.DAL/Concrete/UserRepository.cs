@@ -42,7 +42,6 @@ namespace FundTrack.DAL.Repositories
         /// </summary>
         /// <param name="id"></param>
         /// <returns>User</returns>
-        /// <!-- Badly formed XML comment ignored for member "M:FundTrack.DAL.Abstract.IRepository`1.Get(System.Int32)" -->
         public User Get(int id)
         {
             return context.Users.Find(id);

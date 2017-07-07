@@ -1,28 +1,25 @@
 ﻿<h2 class="text-center">Всі події</h2>
-<table class="table-fill">
-    <thead>
-        <tr>
-            <th class="text-left">Дата події</th>
-            <th class="text-left">Короткий опис</th>
-            <th class="text-left">Дії</th>
-        </tr>
-    </thead>
-    <tbody class="table-hover">
-        <tr>
-            <td class="text-left">21.04.17</td>
-            <td class="text-left">Їздили туда - сюда ...</td>
-            <td class="text-left">
-                <button class="btn btn-default">Редагувати</button>
-                <button class="btn btn-default">Видалити</button>
-            </td>
-        </tr>
-        <tr>
-            <td class="text-left">23.04.17</td>
-            <td class="text-left">а потім ще раз їздили туда - сюда ...</td>
-            <td class="text-left">
-                <button class="btn btn-default">Редагувати</button>
-                <button class="btn btn-default">Видалити</button>
-            </td>
-        </tr>
-    </tbody>
-</table>
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <table *ngIf="_allEvents" class="table-fill">
+        <thead>
+            <tr>
+                <th class="text-left">Дата події</th>
+                <th class="text-left">Короткий опис</th>
+                <th class="text-left">Редагувати</th>
+                <th class="text-left">Видалити</th>
+            </tr>
+        </thead>
+        <tbody class="table-hover">
+            <tr *ngFor="let event of _allEvents">
+                <td class="text-left">{{event.createDate|date:'shortTime'}}</td>
+                <td class="text-left">{{event.description|truncate : 50}}</td>
+                <td class="text-center">
+                    <button class="btn btn-default">Редагувати</button>
+                </td>
+                <td class="text-center">
+                    <button class="btn btn-default">Видалити</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

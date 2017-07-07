@@ -256,9 +256,9 @@ namespace FundTrack.WebUI.Controllers
         /// <param name="login"> Login of user</param>
         /// <returns>Id</returns>
         [HttpGet("GetIdOfOrganization/{login}")]
-        public JsonResult GetIdOfOrganization(string login)
+        public int GetIdOfOrganization(string login)
         {
-            return Json(_userDomainService.GetOrganizationId(login));
+            return _userDomainService.GetOrganizationId(login);
         }
     }
 }

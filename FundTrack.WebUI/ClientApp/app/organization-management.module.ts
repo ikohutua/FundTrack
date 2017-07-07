@@ -3,13 +3,17 @@ import { OrganizationManagementComponent } from "./components/organization-manag
 import { CommonModule } from "@angular/common";
 import { OrganizationManagementRoutingModule } from "./routes/organization-management-routing.module";
 import { OrganizationManagementEventComponent } from "./components/organization-management-event/organization-management-event.component";
+import { FormsModule } from "@angular/forms";
+import { TruncatePipe } from "./shared/pipes/truncate.pipe";
 
 @NgModule({
     declarations: [
         OrganizationManagementComponent,
-        OrganizationManagementEventComponent
+        OrganizationManagementEventComponent,
+        TruncatePipe
     ],
     imports: [
+        FormsModule,
         CommonModule,
         OrganizationManagementRoutingModule
     ]

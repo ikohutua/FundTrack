@@ -8,6 +8,13 @@ namespace FundTrack.DAL.Abstract
     public interface IUnitOfWork
     {
         /// <summary>
+        /// Gets the event image repository.
+        /// </summary>
+        /// <value>
+        /// The event image repository.
+        /// </value>
+        IRepository<EventImage> EventImageRepository { get; }
+        /// <summary>
         /// Gets the organizations list repository.
         /// </summary>
         /// <value>

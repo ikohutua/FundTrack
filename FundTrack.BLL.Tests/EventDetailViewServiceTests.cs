@@ -11,14 +11,19 @@ namespace FundTrack.BLL.Tests
     /// </summary>
     public sealed class EventDetailViewServiceTests
     {
-        private FundTrack.DAL.Concrete.FundTrackContext _context;
+        private FundTrackContext _context;
+        private FakeFundTrackDbContextBaseBuilder _fakeBuilder;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="EventDetailViewServiceTests"/> class.
         /// </summary>
         public EventDetailViewServiceTests()
         {
-            this._context = FakeDbContextBuilder.GetFakeContext();
+            this._fakeBuilder = new FakeFundTrackDbContextBaseBuilder();
+            this._fakeBuilder.SetEventImages();
+            this._fakeBuilder.SetEvents();
+            this._fakeBuilder.SetOrganizations();
+            this._context = this._fakeBuilder.GetFakeContext();
         }
 
         /// <summary>
@@ -31,7 +36,7 @@ namespace FundTrack.BLL.Tests
         {
             //Arrange
             var reposirory = new EventRepository(this._context);
-            var unitOfWork = new UnitOfWork(this._context, null, null, reposirory, null, null,null, null, null, null, null);
+            var unitOfWork = new UnitOfWork(this._context, null, null, reposirory, null, null,null, null, null, null, null, null, null);
             var service = new EventDetailViewService(unitOfWork);
 
             //Act

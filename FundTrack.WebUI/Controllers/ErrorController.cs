@@ -16,22 +16,22 @@ namespace FundTrack.WebUI.Controllers
         /// </summary>
         /// <param name="statusCode">http request status code</param>
         /// <returns>Corresponding View</returns>
-        public IActionResult Index(int? statusCode=null)
+        public IActionResult Index(int? statusCode = null)
         {
             if (statusCode.HasValue)
             {
-                if (statusCode==404)
+                if (statusCode == 404)
                 {
                     return View("ErrorNotFound");
-                    
+
                 }
-                else if (statusCode==401)
+                else if (statusCode == 401)
                 {
                     return View("ErrorNotAuthorized");
                 }
                 ///other codes go here
             }
-                return View("ErrorInternalServer");
+            return View("ErrorInternalServer");
         }
     }
 }

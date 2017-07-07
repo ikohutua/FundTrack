@@ -77,7 +77,7 @@ namespace FundTrack.BLL.Concrete
         /// ----------------------------------------------------------------------------------------------------------------------------------------
         public IEnumerable<EventViewModel> GetAllEventsById(int id)
         {
-            var events = ((DbSet<Event>)_unitOfWork.EventRepository.Read())
+            IEnumerable<EventViewModel> events = ((DbSet<Event>)_unitOfWork.EventRepository.Read())
              .Include(e => e.Organization).Where(o => o.OrganizationId == id)
              .Include(i => i.EventImages)
              .Select(c => new EventViewModel()

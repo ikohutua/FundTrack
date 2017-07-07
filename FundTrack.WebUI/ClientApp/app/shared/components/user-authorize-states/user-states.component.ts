@@ -19,8 +19,7 @@ export class UserStatesComponent implements AfterContentChecked, DoCheck {
     private isAdminOfOrganization: boolean = false;
     private isAdminOfOrganizationForCheck: boolean = false;
     private idOfOrganization: number;
-    public constructor(private _authorizationService: UserService
-    ) { }
+    public constructor(private _authorizationService: UserService) { }
 
     /**
      * close the session current user

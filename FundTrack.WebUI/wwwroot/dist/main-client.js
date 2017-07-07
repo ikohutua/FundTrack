@@ -59,7 +59,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "aff592e08a6928aea55e"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "b5efdec10eff690a12ad"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -631,9 +631,7 @@
 /******/ 		}
 /******/ 	
 /******/ 		hotSetStatus("idle");
-/******/ 		return new Promise(function(resolve) {
-/******/ 			resolve(outdatedModules);
-/******/ 		});
+/******/ 		return Promise.resolve(outdatedModules);
 /******/ 	}
 /******/
 /******/ 	// The module cache
@@ -706,20 +704,20 @@
 /******/ 	__webpack_require__.h = function() { return hotCurrentHash; };
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return hotCreateRequire(263)(__webpack_require__.s = 263);
+/******/ 	return hotCreateRequire(264)(__webpack_require__.s = 264);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = (__webpack_require__(3))(0);
+module.exports = (__webpack_require__(4))(0);
 
 /***/ }),
 /* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = (__webpack_require__(3))(13);
+module.exports = (__webpack_require__(4))(13);
 
 /***/ }),
 /* 2 */
@@ -779,48 +777,18 @@ module.exports = function() {
 
 /***/ }),
 /* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = (__webpack_require__(4))(344);
+
+/***/ }),
+/* 4 */
 /***/ (function(module, exports) {
 
 module.exports = vendor_ddef5883111bbcff14b3;
 
 /***/ }),
-/* 4 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = (__webpack_require__(3))(344);
-
-/***/ }),
 /* 5 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NG_VALUE_ACCESSOR; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/**
- * @license
- * Copyright Google Inc. All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
-
-/**
- * Used to provide a {@link ControlValueAccessor} for form controls.
- *
- * See {@link DefaultValueAccessor} for how to implement one.
- * @stable
- */
-var /** @type {?} */ NG_VALUE_ACCESSOR = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["OpaqueToken"]('NgValueAccessor');
-//# sourceMappingURL=control_value_accessor.js.map
-
-/***/ }),
-/* 6 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = (__webpack_require__(3))(198);
-
-/***/ }),
-/* 7 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -879,6 +847,36 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //# sourceMappingURL=index.js.map
 
 /***/ }),
+/* 6 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NG_VALUE_ACCESSOR; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/**
+ * @license
+ * Copyright Google Inc. All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+
+/**
+ * Used to provide a {@link ControlValueAccessor} for form controls.
+ *
+ * See {@link DefaultValueAccessor} for how to implement one.
+ * @stable
+ */
+var /** @type {?} */ NG_VALUE_ACCESSOR = new __WEBPACK_IMPORTED_MODULE_0__angular_core__["OpaqueToken"]('NgValueAccessor');
+//# sourceMappingURL=control_value_accessor.js.map
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = (__webpack_require__(4))(198);
+
+/***/ }),
 /* 8 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -887,7 +885,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NG_ASYNC_VALIDATORS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return Validators; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_operator_toPromise__ = __webpack_require__(227);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_operator_toPromise__ = __webpack_require__(225);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_operator_toPromise__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__facade_collection__ = __webpack_require__(72);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__facade_lang__ = __webpack_require__(18);
@@ -1106,7 +1104,7 @@ function _mergeErrors(arrayOfErrors) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__maps_api_loader_maps_api_loader__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__maps_api_loader_maps_api_loader__ = __webpack_require__(28);
 
 
 
@@ -1288,6 +1286,29 @@ function ControlContainer_tsickle_Closure_declarations() {
 
 /***/ }),
 /* 11 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var Observable_1 = __webpack_require__(1);
+var catch_1 = __webpack_require__(259);
+Observable_1.Observable.prototype.catch = catch_1._catch;
+Observable_1.Observable.prototype._catch = catch_1._catch;
+//# sourceMappingURL=catch.js.map
+
+/***/ }),
+/* 12 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var Observable_1 = __webpack_require__(1);
+var map_1 = __webpack_require__(254);
+Observable_1.Observable.prototype.map = map_1.map;
+//# sourceMappingURL=map.js.map
+
+/***/ }),
+/* 13 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1302,14 +1323,14 @@ function ControlContainer_tsickle_Closure_declarations() {
 /* harmony export (immutable) */ __webpack_exports__["g"] = selectValueAccessor;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__facade_lang__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__validators__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__checkbox_value_accessor__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__default_value_accessor__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__checkbox_value_accessor__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__default_value_accessor__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__normalize_validator__ = __webpack_require__(109);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__number_value_accessor__ = __webpack_require__(51);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__radio_control_value_accessor__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__range_value_accessor__ = __webpack_require__(52);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__select_control_value_accessor__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__select_multiple_control_value_accessor__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__select_control_value_accessor__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__select_multiple_control_value_accessor__ = __webpack_require__(34);
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -1514,30 +1535,19 @@ function selectValueAccessor(dir, valueAccessors) {
 //# sourceMappingURL=shared.js.map
 
 /***/ }),
-/* 12 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var Observable_1 = __webpack_require__(1);
-var catch_1 = __webpack_require__(257);
-Observable_1.Observable.prototype.catch = catch_1._catch;
-Observable_1.Observable.prototype._catch = catch_1._catch;
-//# sourceMappingURL=catch.js.map
-
-/***/ }),
-/* 13 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var Observable_1 = __webpack_require__(1);
-var map_1 = __webpack_require__(252);
-Observable_1.Observable.prototype.map = map_1.map;
-//# sourceMappingURL=map.js.map
-
-/***/ }),
 /* 14 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var Observable_1 = __webpack_require__(1);
+var do_1 = __webpack_require__(222);
+Observable_1.Observable.prototype.do = do_1._do;
+Observable_1.Observable.prototype._do = do_1._do;
+//# sourceMappingURL=do.js.map
+
+/***/ }),
+/* 15 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1632,22 +1642,10 @@ function NgControl_tsickle_Closure_declarations() {
 //# sourceMappingURL=ng_control.js.map
 
 /***/ }),
-/* 15 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var Observable_1 = __webpack_require__(1);
-var do_1 = __webpack_require__(224);
-Observable_1.Observable.prototype.do = do_1._do;
-Observable_1.Observable.prototype._do = do_1._do;
-//# sourceMappingURL=do.js.map
-
-/***/ }),
 /* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = (__webpack_require__(3))(51);
+module.exports = (__webpack_require__(4))(51);
 
 /***/ }),
 /* 17 */
@@ -1655,7 +1653,7 @@ module.exports = (__webpack_require__(3))(51);
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EventEmitter; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_Subject__ = __webpack_require__(99);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_Subject__ = __webpack_require__(100);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_Subject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_rxjs_Subject__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__);
@@ -2005,7 +2003,7 @@ function escapeRegExp(s) {
     return s.replace(/([.*+?^=!:${}()|[\]\/\\])/g, '\\$1');
 }
 //# sourceMappingURL=lang.js.map
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(100)))
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(98)))
 
 /***/ }),
 /* 19 */
@@ -2023,14 +2021,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var http_1 = __webpack_require__(6);
+var http_1 = __webpack_require__(7);
 var Observable_1 = __webpack_require__(1);
-var http_2 = __webpack_require__(6);
+var http_2 = __webpack_require__(7);
 var core_1 = __webpack_require__(0);
-var router_1 = __webpack_require__(4);
-__webpack_require__(13);
-__webpack_require__(15);
+var router_1 = __webpack_require__(3);
 __webpack_require__(12);
+__webpack_require__(14);
+__webpack_require__(11);
 var key = __webpack_require__(20);
 var angular2_social_login_1 = __webpack_require__(55);
 var UserService = (function () {
@@ -2194,7 +2192,7 @@ exports.keyError = "error";
 /* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = (__webpack_require__(3))(346);
+module.exports = (__webpack_require__(4))(346);
 
 /***/ }),
 /* 22 */
@@ -2203,7 +2201,7 @@ module.exports = (__webpack_require__(3))(346);
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AbstractFormGroupDirective; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__control_container__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shared__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__shared__ = __webpack_require__(13);
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -2321,10 +2319,10 @@ function AbstractFormGroupDirective_tsickle_Closure_declarations() {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NgForm; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__facade_async__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__model__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__model__ = __webpack_require__(35);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__validators__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__control_container__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shared__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shared__ = __webpack_require__(13);
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -2585,8 +2583,8 @@ function NgForm_tsickle_Closure_declarations() {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return RadioControlRegistry; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RadioControlValueAccessor; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__control_value_accessor__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ng_control__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__control_value_accessor__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ng_control__ = __webpack_require__(15);
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -2858,8 +2856,8 @@ function RadioControlValueAccessor_tsickle_Closure_declarations() {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__facade_collection__ = __webpack_require__(72);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__validators__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__control_container__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__reactive_errors__ = __webpack_require__(33);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__shared__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__reactive_errors__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__shared__ = __webpack_require__(13);
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -3170,8 +3168,8 @@ function FormGroupDirective_tsickle_Closure_declarations() {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__validators__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__abstract_form_group_directive__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__control_container__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__reactive_errors__ = __webpack_require__(33);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shared__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__reactive_errors__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shared__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__form_group_directive__ = __webpack_require__(25);
 /**
  * @license
@@ -3472,105 +3470,6 @@ function _hasInvalidParent(parent) {
 
 /***/ }),
 /* 27 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var http_1 = __webpack_require__(6);
-var Observable_1 = __webpack_require__(1);
-__webpack_require__(13);
-__webpack_require__(15);
-__webpack_require__(12);
-/**
- * Abstract generic class for services
- */
-var BaseService = (function () {
-    /**
-     * @constructor
-     * @param _url: string
-     * @param _http
-     */
-    function BaseService(_http, _url) {
-        this._http = _http;
-        this._url = _url;
-    }
-    /**
-     * Gets the collection of view models
-     * @param
-     * @returns Observable<T[]>
-     */
-    BaseService.prototype.getCollection = function () {
-        return this._http.get(this._url)
-            .map(function (response) { return response.json(); })
-            .catch(this.handleError);
-    };
-    BaseService.prototype.getById = function (id, additionString) {
-        return this._http.get(additionString + '/' + id.toString())
-            .map(function (response) { return response.json(); })
-            .catch(this.handleError);
-    };
-    /**
-    * Gets one item of model
-    * @returns Observable<T>
-    */
-    BaseService.prototype.getOne = function (additionString) {
-        return this._http.get(this._url + additionString)
-            .map(function (response) { return response.json(); })
-            .catch(this.handleError);
-    };
-    /**
-     * Create new item
-     * @param newItem: T
-     * @returns Observable<T>
-     */
-    BaseService.prototype.create = function (newItem) {
-        return this._http.post(this._url, this.getRequestArgs(newItem))
-            .map(function (response) { return response.json(); })
-            .catch(this.handleError);
-    };
-    /**
-     * Update item
-     * @param updatedItem: T
-     * @returns Observable<Response>
-     */
-    BaseService.prototype.update = function (updatedItem) {
-        return this._http.put(this._url, this.getRequestArgs(updatedItem))
-            .map(function (response) { return response.json(); })
-            .catch(this.handleError);
-    };
-    /**
-     * Delete one item by id
-     * @param id
-     * @returns Observable<Response>
-     */
-    BaseService.prototype.delete = function (id) {
-        return this._http.delete(this._url + '/' + id)
-            .catch(this.handleError);
-    };
-    /**
-    * Exception handler
-    * @param error: Response
-    */
-    BaseService.prototype.handleError = function (error) {
-        return Observable_1.Observable.throw(error.json().error || 'Server error');
-    };
-    /**
-     * Creates RequestOptionsArgs
-     * @param body:T
-     * @returns interface RequestOptionsArgs
-     */
-    BaseService.prototype.getRequestArgs = function (body) {
-        var headers = new http_1.Headers({ 'ContentType': 'application/json' });
-        return { headers: headers, body: body };
-    };
-    return BaseService;
-}());
-exports.BaseService = BaseService;
-
-
-/***/ }),
-/* 28 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3664,7 +3563,7 @@ MarkerManager.ctorParameters = function () { return [
 //# sourceMappingURL=marker-manager.js.map
 
 /***/ }),
-/* 29 */
+/* 28 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3685,14 +3584,14 @@ MapsAPILoader.ctorParameters = function () { return []; };
 //# sourceMappingURL=maps-api-loader.js.map
 
 /***/ }),
-/* 30 */
+/* 29 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* unused harmony export CHECKBOX_VALUE_ACCESSOR */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CheckboxControlValueAccessor; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__control_value_accessor__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__control_value_accessor__ = __webpack_require__(6);
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -3786,14 +3685,14 @@ function CheckboxControlValueAccessor_tsickle_Closure_declarations() {
 //# sourceMappingURL=checkbox_value_accessor.js.map
 
 /***/ }),
-/* 31 */
+/* 30 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* unused harmony export DEFAULT_VALUE_ACCESSOR */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DefaultValueAccessor; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__control_value_accessor__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__control_value_accessor__ = __webpack_require__(6);
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -3892,7 +3791,7 @@ function DefaultValueAccessor_tsickle_Closure_declarations() {
 //# sourceMappingURL=default_value_accessor.js.map
 
 /***/ }),
-/* 32 */
+/* 31 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4003,7 +3902,7 @@ function NgModelGroup_tsickle_Closure_declarations() {
 //# sourceMappingURL=ng_model_group.js.map
 
 /***/ }),
-/* 33 */
+/* 32 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4061,7 +3960,7 @@ var ReactiveErrors = (function () {
 //# sourceMappingURL=reactive_errors.js.map
 
 /***/ }),
-/* 34 */
+/* 33 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4070,7 +3969,7 @@ var ReactiveErrors = (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NgSelectOption; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__facade_lang__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__control_value_accessor__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__control_value_accessor__ = __webpack_require__(6);
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -4368,7 +4267,7 @@ function NgSelectOption_tsickle_Closure_declarations() {
 //# sourceMappingURL=select_control_value_accessor.js.map
 
 /***/ }),
-/* 35 */
+/* 34 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4377,7 +4276,7 @@ function NgSelectOption_tsickle_Closure_declarations() {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return NgSelectMultipleOption; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__facade_lang__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__control_value_accessor__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__control_value_accessor__ = __webpack_require__(6);
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -4713,7 +4612,7 @@ function NgSelectMultipleOption_tsickle_Closure_declarations() {
 //# sourceMappingURL=select_multiple_control_value_accessor.js.map
 
 /***/ }),
-/* 36 */
+/* 35 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4725,9 +4624,9 @@ function NgSelectMultipleOption_tsickle_Closure_declarations() {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return FormControl; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return FormGroup; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return FormArray; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_observable_fromPromise__ = __webpack_require__(256);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_observable_fromPromise__ = __webpack_require__(258);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_observable_fromPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_rxjs_observable_fromPromise__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__directives_shared__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__directives_shared__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__facade_async__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__private_import_core__ = __webpack_require__(74);
 /**
@@ -6428,6 +6327,105 @@ function FormArray_tsickle_Closure_declarations() {
 //# sourceMappingURL=model.js.map
 
 /***/ }),
+/* 36 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var http_1 = __webpack_require__(7);
+var Observable_1 = __webpack_require__(1);
+__webpack_require__(12);
+__webpack_require__(14);
+__webpack_require__(11);
+/**
+ * Abstract generic class for services
+ */
+var BaseService = (function () {
+    /**
+     * @constructor
+     * @param _url: string
+     * @param _http
+     */
+    function BaseService(_http, _url) {
+        this._http = _http;
+        this._url = _url;
+    }
+    /**
+     * Gets the collection of view models
+     * @param
+     * @returns Observable<T[]>
+     */
+    BaseService.prototype.getCollection = function () {
+        return this._http.get(this._url)
+            .map(function (response) { return response.json(); })
+            .catch(this.handleError);
+    };
+    BaseService.prototype.getById = function (id, additionString) {
+        return this._http.get(additionString + '/' + id.toString())
+            .map(function (response) { return response.json(); })
+            .catch(this.handleError);
+    };
+    /**
+    * Gets one item of model
+    * @returns Observable<T>
+    */
+    BaseService.prototype.getOne = function (additionString) {
+        return this._http.get(this._url + additionString)
+            .map(function (response) { return response.json(); })
+            .catch(this.handleError);
+    };
+    /**
+     * Create new item
+     * @param newItem: T
+     * @returns Observable<T>
+     */
+    BaseService.prototype.create = function (newItem) {
+        return this._http.post(this._url, this.getRequestArgs(newItem))
+            .map(function (response) { return response.json(); })
+            .catch(this.handleError);
+    };
+    /**
+     * Update item
+     * @param updatedItem: T
+     * @returns Observable<Response>
+     */
+    BaseService.prototype.update = function (updatedItem) {
+        return this._http.put(this._url, this.getRequestArgs(updatedItem))
+            .map(function (response) { return response.json(); })
+            .catch(this.handleError);
+    };
+    /**
+     * Delete one item by id
+     * @param id
+     * @returns Observable<Response>
+     */
+    BaseService.prototype.delete = function (id) {
+        return this._http.delete(this._url + '/' + id)
+            .catch(this.handleError);
+    };
+    /**
+    * Exception handler
+    * @param error: Response
+    */
+    BaseService.prototype.handleError = function (error) {
+        return Observable_1.Observable.throw(error.json().error || 'Server error');
+    };
+    /**
+     * Creates RequestOptionsArgs
+     * @param body:T
+     * @returns interface RequestOptionsArgs
+     */
+    BaseService.prototype.getRequestArgs = function (body) {
+        var headers = new http_1.Headers({ 'ContentType': 'application/json' });
+        return { headers: headers, body: body };
+    };
+    return BaseService;
+}());
+exports.BaseService = BaseService;
+
+
+/***/ }),
 /* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -6441,13 +6439,13 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var router_1 = __webpack_require__(4);
+var router_1 = __webpack_require__(3);
 var dropdown_filtering_component_1 = __webpack_require__(58);
 var organization_list_pipe_1 = __webpack_require__(149);
 var events_pipe_1 = __webpack_require__(148);
 var user_states_component_1 = __webpack_require__(147);
 var common_1 = __webpack_require__(16);
-var forms_1 = __webpack_require__(7);
+var forms_1 = __webpack_require__(5);
 var pagination_component_1 = __webpack_require__(144);
 var page_item_component_1 = __webpack_require__(143);
 var modal_component_1 = __webpack_require__(38);
@@ -6537,7 +6535,7 @@ var ModalComponent = (function () {
 ModalComponent = __decorate([
     core_1.Component({
         selector: 'app-modal',
-        template: __webpack_require__(209)
+        template: __webpack_require__(210)
     })
 ], ModalComponent);
 exports.ModalComponent = ModalComponent;
@@ -6922,7 +6920,7 @@ DataLayerManager.ctorParameters = function () { return [
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_rxjs_Observable__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__google_maps_api_wrapper__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__marker_manager__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__marker_manager__ = __webpack_require__(27);
 
 
 
@@ -7263,7 +7261,7 @@ PolylineManager.ctorParameters = function () { return [
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LazyMapsAPILoader; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_browser_globals__ = __webpack_require__(68);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__maps_api_loader__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__maps_api_loader__ = __webpack_require__(28);
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -7559,7 +7557,7 @@ var AbstractControlDirective = (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return NgControlStatusGroup; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__control_container__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ng_control__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ng_control__ = __webpack_require__(15);
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -7731,15 +7729,15 @@ function NgControlStatusGroup_tsickle_Closure_declarations() {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NgModel; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__facade_async__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__model__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__model__ = __webpack_require__(35);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__validators__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__abstract_form_group_directive__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__control_container__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__control_value_accessor__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ng_control__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__control_value_accessor__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ng_control__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ng_form__ = __webpack_require__(23);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ng_model_group__ = __webpack_require__(32);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__shared__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ng_model_group__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__shared__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__template_driven_errors__ = __webpack_require__(70);
 /**
  * @license
@@ -8080,7 +8078,7 @@ function NgModel_tsickle_Closure_declarations() {
 /* unused harmony export NUMBER_VALUE_ACCESSOR */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NumberValueAccessor; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__control_value_accessor__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__control_value_accessor__ = __webpack_require__(6);
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -8188,7 +8186,7 @@ function NumberValueAccessor_tsickle_Closure_declarations() {
 /* unused harmony export RANGE_VALUE_ACCESSOR */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RangeValueAccessor; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__control_value_accessor__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__control_value_accessor__ = __webpack_require__(6);
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -8296,10 +8294,10 @@ function RangeValueAccessor_tsickle_Closure_declarations() {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__facade_async__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__validators__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__control_value_accessor__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ng_control__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__reactive_errors__ = __webpack_require__(33);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__shared__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__control_value_accessor__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ng_control__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__reactive_errors__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__shared__ = __webpack_require__(13);
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -8504,10 +8502,10 @@ function FormControlDirective_tsickle_Closure_declarations() {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__validators__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__abstract_form_group_directive__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__control_container__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__control_value_accessor__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ng_control__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__reactive_errors__ = __webpack_require__(33);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__shared__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__control_value_accessor__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ng_control__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__reactive_errors__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__shared__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__form_group_directive__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__form_group_name__ = __webpack_require__(26);
 /**
@@ -8808,8 +8806,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
 var common_1 = __webpack_require__(16);
 var map_component_1 = __webpack_require__(59);
-var forms_1 = __webpack_require__(7);
-var platform_browser_1 = __webpack_require__(255);
+var forms_1 = __webpack_require__(5);
+var platform_browser_1 = __webpack_require__(257);
 var core_2 = __webpack_require__(67);
 var map_routing_module_1 = __webpack_require__(131);
 var MapModule = (function () {
@@ -8896,8 +8894,8 @@ var DropdownOrganizationsComponent = (function () {
 DropdownOrganizationsComponent = __decorate([
     core_1.Component({
         selector: 'dropdown-org',
-        template: __webpack_require__(206),
-        styles: [__webpack_require__(245)],
+        template: __webpack_require__(207),
+        styles: [__webpack_require__(243)],
         providers: [organization_dropdown_service_1.OrganizationDropdownService]
     }),
     __metadata("design:paramtypes", [organization_dropdown_service_1.OrganizationDropdownService])
@@ -8922,7 +8920,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var forms_1 = __webpack_require__(7);
+var forms_1 = __webpack_require__(5);
 var core_2 = __webpack_require__(67);
 //https://angular-maps.com/api-docs/agm-core/components/AgmInfoWindow.html documentation
 //https://developers.google.com/maps/documentation/geocoding/intro
@@ -9217,8 +9215,8 @@ __decorate([
 MapComponent = __decorate([
     core_1.Component({
         selector: 'map-component',
-        template: __webpack_require__(208),
-        styles: [__webpack_require__(247)]
+        template: __webpack_require__(209),
+        styles: [__webpack_require__(245)]
     }),
     core_1.Injectable(),
     __metadata("design:paramtypes", [core_2.MapsAPILoader, core_1.NgZone])
@@ -9839,7 +9837,7 @@ AgmKmlLayer.ctorParameters = function () { return [
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_google_maps_api_wrapper__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_managers_circle_manager__ = __webpack_require__(41);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_managers_info_window_manager__ = __webpack_require__(43);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_managers_marker_manager__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_managers_marker_manager__ = __webpack_require__(27);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__services_managers_polygon_manager__ = __webpack_require__(45);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__services_managers_polyline_manager__ = __webpack_require__(46);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__services_managers_kml_layer_manager__ = __webpack_require__(44);
@@ -10227,7 +10225,7 @@ AgmMap.ctorParameters = function () { return [
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AgmMarker; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_managers_marker_manager__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_managers_marker_manager__ = __webpack_require__(27);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__info_window__ = __webpack_require__(39);
 
 
@@ -11577,7 +11575,7 @@ function iterateListLike(obj, fn) {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FormBuilder; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__facade_lang__ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__model__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__model__ = __webpack_require__(35);
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -11815,7 +11813,7 @@ var AuthService = (function () {
                                         }
                                     });
                                 }
-                            }, { scope: 'email', auth_type: "rerequest" });
+                            }, { scope: 'email' });
                         }
                     });
                     break;
@@ -11845,7 +11843,7 @@ var AuthService = (function () {
                     var ref = d.getElementsByTagName('script')[0];
                     gSignout = d.createElement('script');
                     gSignout.src = "https://accounts.google.com/Logout";
-                    gSignout.type = "text/html";
+                    gSignout.type = "text/javascript";
                     gSignout.id = "gSignout";
                     localStorage.removeItem('_login_provider');
                     observer.next(true);
@@ -11873,10 +11871,8 @@ var AuthService = (function () {
         var currentUser = this.gauth.currentUser.get();
         var profile = currentUser.getBasicProfile();
         var idToken = currentUser.getAuthResponse().id_token;
-        var accessToken = currentUser.getAuthResponse().access_token;
         return {
-            token: accessToken,
-            idToken: idToken,
+            token: idToken,
             uid: profile.getId(),
             name: profile.getName(),
             email: profile.getEmail(),
@@ -11884,11 +11880,11 @@ var AuthService = (function () {
             provider: "google"
         };
     };
-    AuthService = __decorate([
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])()
-    ], AuthService);
     return AuthService;
 }());
+AuthService = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])()
+], AuthService);
 
 //# sourceMappingURL=auth.service.js.map
 
@@ -11913,8 +11909,8 @@ var AboutComponent = (function () {
 }());
 AboutComponent = __decorate([
     core_1.Component({
-        template: __webpack_require__(186),
-        styles: [__webpack_require__(229)]
+        template: __webpack_require__(187),
+        styles: [__webpack_require__(227)]
     })
 ], AboutComponent);
 exports.AboutComponent = AboutComponent;
@@ -11938,7 +11934,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
 var organization_events_service_1 = __webpack_require__(136);
-var router_1 = __webpack_require__(4);
+var router_1 = __webpack_require__(3);
 var AllEventsComponent = (function () {
     function AllEventsComponent(_service, _router) {
         this._service = _service;
@@ -11995,8 +11991,8 @@ __decorate([
 ], AllEventsComponent.prototype, "onScroll", null);
 AllEventsComponent = __decorate([
     core_1.Component({
-        template: __webpack_require__(187),
-        styles: [__webpack_require__(230)],
+        template: __webpack_require__(188),
+        styles: [__webpack_require__(228)],
         providers: [organization_events_service_1.OrganizationEventService]
     }),
     __metadata("design:paramtypes", [organization_events_service_1.OrganizationEventService, router_1.ActivatedRoute])
@@ -12025,8 +12021,8 @@ var AllRequestsComponent = (function () {
 }());
 AllRequestsComponent = __decorate([
     core_1.Component({
-        template: __webpack_require__(188),
-        styles: [__webpack_require__(231)]
+        template: __webpack_require__(189),
+        styles: [__webpack_require__(229)]
     })
 ], AllRequestsComponent);
 exports.AllRequestsComponent = AllRequestsComponent;
@@ -12049,12 +12045,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var login_view_model_1 = __webpack_require__(156);
+var login_view_model_1 = __webpack_require__(157);
 var user_service_1 = __webpack_require__(19);
-var router_1 = __webpack_require__(4);
+var router_1 = __webpack_require__(3);
 var angular2_social_login_1 = __webpack_require__(55);
 var keys = __webpack_require__(20);
-var login_facebook_view_model_1 = __webpack_require__(155);
+var login_facebook_view_model_1 = __webpack_require__(156);
 var AuthorizationComponent = (function () {
     function AuthorizationComponent(_authorizationService, _router, _auth, _ngZone) {
         this._authorizationService = _authorizationService;
@@ -12166,8 +12162,8 @@ __decorate([
 ], AuthorizationComponent.prototype, "loginModel", void 0);
 AuthorizationComponent = __decorate([
     core_1.Component({
-        template: __webpack_require__(190),
-        styles: [__webpack_require__(233)],
+        template: __webpack_require__(191),
+        styles: [__webpack_require__(231)],
         providers: [user_service_1.UserService]
     }),
     __metadata("design:paramtypes", [user_service_1.UserService,
@@ -12196,7 +12192,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
 var eventdetail_service_1 = __webpack_require__(134);
-var router_1 = __webpack_require__(4);
+var router_1 = __webpack_require__(3);
 var EventDetailComponent = (function () {
     function EventDetailComponent(_service, _router) {
         this._service = _service;
@@ -12222,8 +12218,8 @@ var EventDetailComponent = (function () {
 }());
 EventDetailComponent = __decorate([
     core_1.Component({
-        template: __webpack_require__(191),
-        styles: [__webpack_require__(234)],
+        template: __webpack_require__(192),
+        styles: [__webpack_require__(232)],
         providers: [eventdetail_service_1.EventDetailService]
     }),
     __metadata("design:paramtypes", [eventdetail_service_1.EventDetailService, router_1.ActivatedRoute])
@@ -12264,8 +12260,8 @@ __decorate([
 HomeComponent = __decorate([
     core_1.Component({
         selector: 'home',
-        template: __webpack_require__(192),
-        styles: [__webpack_require__(235)]
+        template: __webpack_require__(193),
+        styles: [__webpack_require__(233)]
     })
 ], HomeComponent);
 exports.HomeComponent = HomeComponent;
@@ -12288,24 +12284,40 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var organization_management_event_service_1 = __webpack_require__(138);
+var router_1 = __webpack_require__(3);
+var organization_management_events_service_1 = __webpack_require__(138);
 var OrganizationManagementEventComponent = (function () {
-    function OrganizationManagementEventComponent(_service) {
+    function OrganizationManagementEventComponent(_route, _router, _service) {
+        this._route = _route;
+        this._router = _router;
         this._service = _service;
     }
     OrganizationManagementEventComponent.prototype.ngOnInit = function () {
-        //this._service.getCollection()
+        var _this = this;
+        this._subscription = this._route.params.subscribe(function (params) {
+            _this._idForCurrentOrganization = +params['id'];
+            console.log(_this._idForCurrentOrganization);
+            _this.getAllEvents(1);
+        });
+    };
+    OrganizationManagementEventComponent.prototype.getAllEvents = function (id) {
+        var _this = this;
+        this._service.GetAllEventsByOrganizationId(id)
+            .subscribe(function (events) { return _this._allEvents = events; }, function (error) { return _this._errorMessage = error; });
+    };
+    OrganizationManagementEventComponent.prototype.ngDestroy = function () {
+        this._subscription.unsubscribe();
     };
     return OrganizationManagementEventComponent;
 }());
 OrganizationManagementEventComponent = __decorate([
     core_1.Component({
         selector: 'org-management-event',
-        template: __webpack_require__(193),
-        styles: [__webpack_require__(236)],
-        providers: [organization_management_event_service_1.OrganizationManagementEventService]
+        template: __webpack_require__(194),
+        styles: [__webpack_require__(234)],
+        providers: [organization_management_events_service_1.OrganizationManagementEventsService],
     }),
-    __metadata("design:paramtypes", [organization_management_event_service_1.OrganizationManagementEventService])
+    __metadata("design:paramtypes", [router_1.ActivatedRoute, router_1.Router, organization_management_events_service_1.OrganizationManagementEventsService])
 ], OrganizationManagementEventComponent);
 exports.OrganizationManagementEventComponent = OrganizationManagementEventComponent;
 
@@ -12327,7 +12339,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var router_1 = __webpack_require__(4);
+var router_1 = __webpack_require__(3);
 var organization_get_general_info_service_1 = __webpack_require__(137);
 var OrganizationManagementComponent = (function () {
     function OrganizationManagementComponent(_router, _getGeneralInfoService) {
@@ -12347,9 +12359,9 @@ var OrganizationManagementComponent = (function () {
     };
     OrganizationManagementComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.subscription = this._router.params.subscribe(function (params) {
-            _this.organizationId = +params['id'];
-            _this.getInformationOfOrganization(_this.organizationId);
+        this._subscription = this._router.params.subscribe(function (params) {
+            _this._organizationId = +params['id'];
+            _this.getInformationOfOrganization(_this._organizationId);
         });
     };
     /**
@@ -12359,17 +12371,18 @@ var OrganizationManagementComponent = (function () {
     OrganizationManagementComponent.prototype.getInformationOfOrganization = function (id) {
         var _this = this;
         this._getGeneralInfoService.getById(id, 'api/OrganizationProfile/GetInformationById')
-            .subscribe(function (model) {
-            _this.organization = model;
-        });
+            .subscribe(function (model) { return _this._organization = model; });
+    };
+    OrganizationManagementComponent.prototype.ngDestroy = function () {
+        this._subscription.unsubscribe();
     };
     return OrganizationManagementComponent;
 }());
 OrganizationManagementComponent = __decorate([
     core_1.Component({
         selector: 'org-management',
-        template: __webpack_require__(194),
-        styles: [__webpack_require__(237)],
+        template: __webpack_require__(195),
+        styles: [__webpack_require__(235)],
         providers: [organization_get_general_info_service_1.OrganizationGetGeneralInfoService]
     }),
     __metadata("design:paramtypes", [router_1.ActivatedRoute, organization_get_general_info_service_1.OrganizationGetGeneralInfoService])
@@ -12395,9 +12408,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
 var user_service_1 = __webpack_require__(19);
-var router_1 = __webpack_require__(4);
-var forms_1 = __webpack_require__(7);
-var user_email_view_model_1 = __webpack_require__(160);
+var router_1 = __webpack_require__(3);
+var forms_1 = __webpack_require__(5);
+var user_email_view_model_1 = __webpack_require__(161);
 var BeginPasswordResetComponent = (function () {
     /**
      * Creates new instance of BeginPasswordResetComponent
@@ -12490,7 +12503,7 @@ var BeginPasswordResetComponent = (function () {
 BeginPasswordResetComponent = __decorate([
     core_1.Component({
         selector: 'begin-pass-reset',
-        template: __webpack_require__(195),
+        template: __webpack_require__(196),
         providers: [user_service_1.UserService]
     }),
     __metadata("design:paramtypes", [user_service_1.UserService, router_1.Router, forms_1.FormBuilder])
@@ -12515,14 +12528,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var reset_password_view_model_1 = __webpack_require__(159);
-var router_1 = __webpack_require__(4);
-var router_2 = __webpack_require__(4);
+var reset_password_view_model_1 = __webpack_require__(160);
+var router_1 = __webpack_require__(3);
+var router_2 = __webpack_require__(3);
 var user_service_1 = __webpack_require__(19);
-var guid_view_model_1 = __webpack_require__(154);
-var forms_1 = __webpack_require__(7);
+var guid_view_model_1 = __webpack_require__(155);
+var forms_1 = __webpack_require__(5);
 var match_password_validator_1 = __webpack_require__(56);
-__webpack_require__(220);
+__webpack_require__(218);
 var NewPasswordComponent = (function () {
     /**
      * Creates new instance of NewPasswordComponent
@@ -12655,7 +12668,7 @@ var NewPasswordComponent = (function () {
 NewPasswordComponent = __decorate([
     core_1.Component({
         selector: 'new-pass-reset',
-        template: __webpack_require__(196),
+        template: __webpack_require__(197),
         providers: [user_service_1.UserService]
     }),
     __metadata("design:paramtypes", [router_1.ActivatedRoute,
@@ -12683,13 +12696,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var router_1 = __webpack_require__(4);
-var registration_view_model_1 = __webpack_require__(158);
+var router_1 = __webpack_require__(3);
+var registration_view_model_1 = __webpack_require__(159);
 var user_service_1 = __webpack_require__(19);
 var keys = __webpack_require__(20);
-var forms_1 = __webpack_require__(7);
+var forms_1 = __webpack_require__(5);
 var match_password_validator_1 = __webpack_require__(56);
-__webpack_require__(12);
+__webpack_require__(11);
 var RegistrationComponent = (function () {
     function RegistrationComponent(_router, _userService, _formBuilder) {
         this._router = _router;
@@ -12862,8 +12875,8 @@ var RegistrationComponent = (function () {
 RegistrationComponent = __decorate([
     core_1.Component({
         selector: 'registration',
-        template: __webpack_require__(197),
-        styles: [__webpack_require__(238)],
+        template: __webpack_require__(198),
+        styles: [__webpack_require__(236)],
         providers: [user_service_1.UserService]
     }),
     __metadata("design:paramtypes", [router_1.Router,
@@ -12891,7 +12904,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
 var organization_registration_service_1 = __webpack_require__(94);
-var organization_registration_view_model_1 = __webpack_require__(157);
+var organization_registration_view_model_1 = __webpack_require__(158);
 var map_component_1 = __webpack_require__(59);
 var modal_component_1 = __webpack_require__(38);
 var OrganizationRegistrationComponent = (function () {
@@ -12936,8 +12949,8 @@ __decorate([
 OrganizationRegistrationComponent = __decorate([
     core_1.Component({
         selector: 'register-organization',
-        template: __webpack_require__(198),
-        styles: [__webpack_require__(239)],
+        template: __webpack_require__(199),
+        styles: [__webpack_require__(237)],
         providers: [map_component_1.MapComponent]
     })
     /**
@@ -12971,7 +12984,7 @@ var SuperAdminComplaintsComponent = (function () {
 SuperAdminComplaintsComponent = __decorate([
     core_1.Component({
         selector: 'super-admin-complaints',
-        template: __webpack_require__(200)
+        template: __webpack_require__(201)
     })
 ], SuperAdminComplaintsComponent);
 exports.SuperAdminComplaintsComponent = SuperAdminComplaintsComponent;
@@ -13071,8 +13084,8 @@ var SuperAdminOrganizationsComponent = (function () {
 SuperAdminOrganizationsComponent = __decorate([
     core_1.Component({
         selector: 'super-admin-organizations',
-        template: __webpack_require__(202),
-        styles: [__webpack_require__(241)],
+        template: __webpack_require__(203),
+        styles: [__webpack_require__(239)],
         providers: [super_admin_service_1.SuperAdminService]
     })
     /**
@@ -13181,8 +13194,8 @@ var SuperAdminUsersComponent = (function () {
 SuperAdminUsersComponent = __decorate([
     core_1.Component({
         selector: 'super-admin-users',
-        template: __webpack_require__(203),
-        styles: [__webpack_require__(242)],
+        template: __webpack_require__(204),
+        styles: [__webpack_require__(240)],
         providers: [super_admin_service_1.SuperAdminService]
     })
     /**
@@ -13216,8 +13229,8 @@ var SuperAdminComponent = (function () {
 SuperAdminComponent = __decorate([
     core_1.Component({
         selector: 'super-admin',
-        template: __webpack_require__(204),
-        styles: [__webpack_require__(243)]
+        template: __webpack_require__(205),
+        styles: [__webpack_require__(241)]
     })
 ], SuperAdminComponent);
 exports.SuperAdminComponent = SuperAdminComponent;
@@ -13241,14 +13254,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var user_info_service_1 = __webpack_require__(141);
 var core_1 = __webpack_require__(0);
-var forms_1 = __webpack_require__(7);
+var forms_1 = __webpack_require__(5);
 var modal_component_1 = __webpack_require__(38);
 var key = __webpack_require__(20);
 var angular2_universal_1 = __webpack_require__(21);
-var authorized_user_info_view_model_1 = __webpack_require__(152);
-var change_password_view_model_1 = __webpack_require__(153);
+var authorized_user_info_view_model_1 = __webpack_require__(153);
+var change_password_view_model_1 = __webpack_require__(154);
 var user_service_1 = __webpack_require__(19);
-var router_1 = __webpack_require__(4);
+var router_1 = __webpack_require__(3);
 var match_password_validator_1 = __webpack_require__(56);
 var amazon_upload_component_1 = __webpack_require__(142);
 var UserProfileComponent = (function () {
@@ -13520,8 +13533,8 @@ __decorate([
 UserProfileComponent = __decorate([
     core_1.Component({
         selector: 'user-info',
-        template: __webpack_require__(205),
-        styles: [__webpack_require__(244)],
+        template: __webpack_require__(206),
+        styles: [__webpack_require__(242)],
         providers: [user_info_service_1.UserInfoService, forms_1.FormBuilder, user_service_1.UserService]
     }),
     __metadata("design:paramtypes", [user_service_1.UserService,
@@ -13589,10 +13602,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var http_1 = __webpack_require__(6);
-__webpack_require__(13);
+var http_1 = __webpack_require__(7);
 __webpack_require__(12);
-__webpack_require__(15);
+__webpack_require__(11);
+__webpack_require__(14);
 /**
  * Service to register new organization
  */
@@ -13636,10 +13649,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var http_1 = __webpack_require__(6);
+var http_1 = __webpack_require__(7);
+__webpack_require__(11);
+__webpack_require__(14);
 __webpack_require__(12);
-__webpack_require__(15);
-__webpack_require__(13);
 /**
  * Service for super admin actions
  */
@@ -13746,8 +13759,8 @@ var ErrorAuthorizeComponent = (function () {
 }());
 ErrorAuthorizeComponent = __decorate([
     core_1.Component({
-        template: __webpack_require__(207),
-        styles: [__webpack_require__(246)]
+        template: __webpack_require__(208),
+        styles: [__webpack_require__(244)]
     })
 ], ErrorAuthorizeComponent);
 exports.ErrorAuthorizeComponent = ErrorAuthorizeComponent;
@@ -13951,21 +13964,42 @@ module.exports = Html5Entities;
 
 /***/ }),
 /* 98 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-module.exports = (__webpack_require__(3))(21);
+var g;
+
+// This works in non-strict mode
+g = (function() {
+	return this;
+})();
+
+try {
+	// This works if eval is allowed (see CSP)
+	g = g || Function("return this")() || (1,eval)("this");
+} catch(e) {
+	// This works if the window reference is available
+	if(typeof window === "object")
+		g = window;
+}
+
+// g can still be undefined, but nothing to do about it...
+// We return undefined, instead of nothing here, so it's
+// easier to handle this case. if(!global) { ...}
+
+module.exports = g;
+
 
 /***/ }),
 /* 99 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = (__webpack_require__(3))(85);
+module.exports = (__webpack_require__(4))(21);
 
 /***/ }),
 /* 100 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = (__webpack_require__(3))(9);
+module.exports = (__webpack_require__(4))(85);
 
 /***/ }),
 /* 101 */
@@ -13974,11 +14008,11 @@ module.exports = (__webpack_require__(3))(9);
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(258);
+__webpack_require__(260);
 var core_1 = __webpack_require__(0);
 var angular2_universal_1 = __webpack_require__(21);
 var app_module_1 = __webpack_require__(121);
-__webpack_require__(259);
+__webpack_require__(261);
 var rootElemTagName = 'app'; // Update this if you change your root component selector
 // Enable either Hot Module Reloading or production mode
 if (true) {
@@ -14022,7 +14056,7 @@ var options = {
   name: ''
 };
 if (true) {
-  var querystring = __webpack_require__(217);
+  var querystring = __webpack_require__(252);
   var overrides = querystring.parse(__resourceQuery.slice(1));
   if (overrides.path) options.path = overrides.path;
   if (overrides.timeout) options.timeout = overrides.timeout;
@@ -14142,11 +14176,11 @@ if (typeof window !== 'undefined') {
 }
 
 function createReporter() {
-  var strip = __webpack_require__(228);
+  var strip = __webpack_require__(226);
 
   var overlay;
   if (typeof document !== 'undefined' && options.overlay) {
-    overlay = __webpack_require__(250);
+    overlay = __webpack_require__(248);
   }
 
   var styles = {
@@ -14199,7 +14233,7 @@ function createReporter() {
   };
 }
 
-var processUpdate = __webpack_require__(251);
+var processUpdate = __webpack_require__(249);
 
 var customHandler;
 var subscribeAllHandler;
@@ -14264,13 +14298,13 @@ if (module) {
   };
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, "?path=%2F__webpack_hmr", __webpack_require__(262)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, "?path=%2F__webpack_hmr", __webpack_require__(253)(module)))
 
 /***/ }),
 /* 103 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = (__webpack_require__(3))(348);
+module.exports = (__webpack_require__(4))(348);
 
 /***/ }),
 /* 104 */
@@ -14290,7 +14324,7 @@ module.exports = (__webpack_require__(3))(348);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__directives_kml_layer__ = __webpack_require__(62);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__directives_data_layer__ = __webpack_require__(61);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__services_maps_api_loader_lazy_maps_api_loader__ = __webpack_require__(47);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__services_maps_api_loader_maps_api_loader__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__services_maps_api_loader_maps_api_loader__ = __webpack_require__(28);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__utils_browser_globals__ = __webpack_require__(68);
 
 
@@ -14391,7 +14425,7 @@ AgmCoreModule.ctorParameters = function () { return []; };
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_1__services_managers_circle_manager__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_managers_info_window_manager__ = __webpack_require__(43);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return __WEBPACK_IMPORTED_MODULE_2__services_managers_info_window_manager__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_managers_marker_manager__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__services_managers_marker_manager__ = __webpack_require__(27);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return __WEBPACK_IMPORTED_MODULE_3__services_managers_marker_manager__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_managers_polygon_manager__ = __webpack_require__(45);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return __WEBPACK_IMPORTED_MODULE_4__services_managers_polygon_manager__["a"]; });
@@ -14405,7 +14439,7 @@ AgmCoreModule.ctorParameters = function () { return []; };
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "i", function() { return __WEBPACK_IMPORTED_MODULE_8__services_maps_api_loader_lazy_maps_api_loader__["c"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "j", function() { return __WEBPACK_IMPORTED_MODULE_8__services_maps_api_loader_lazy_maps_api_loader__["b"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "k", function() { return __WEBPACK_IMPORTED_MODULE_8__services_maps_api_loader_lazy_maps_api_loader__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__services_maps_api_loader_maps_api_loader__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__services_maps_api_loader_maps_api_loader__ = __webpack_require__(28);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "l", function() { return __WEBPACK_IMPORTED_MODULE_9__services_maps_api_loader_maps_api_loader__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__services_maps_api_loader_noop_maps_api_loader__ = __webpack_require__(107);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "m", function() { return __WEBPACK_IMPORTED_MODULE_10__services_maps_api_loader_noop_maps_api_loader__["a"]; });
@@ -14458,12 +14492,12 @@ var NoOpMapsAPILoader = (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return REACTIVE_DRIVEN_DIRECTIVES; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return InternalFormsSharedModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__directives_checkbox_value_accessor__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__directives_default_value_accessor__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__directives_checkbox_value_accessor__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__directives_default_value_accessor__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__directives_ng_control_status__ = __webpack_require__(49);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__directives_ng_form__ = __webpack_require__(23);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__directives_ng_model__ = __webpack_require__(50);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__directives_ng_model_group__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__directives_ng_model_group__ = __webpack_require__(31);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__directives_number_value_accessor__ = __webpack_require__(51);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__directives_radio_control_value_accessor__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__directives_range_value_accessor__ = __webpack_require__(52);
@@ -14471,12 +14505,12 @@ var NoOpMapsAPILoader = (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__directives_reactive_directives_form_control_name__ = __webpack_require__(54);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__directives_reactive_directives_form_group_directive__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__directives_reactive_directives_form_group_name__ = __webpack_require__(26);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__directives_select_control_value_accessor__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__directives_select_multiple_control_value_accessor__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__directives_select_control_value_accessor__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__directives_select_multiple_control_value_accessor__ = __webpack_require__(34);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__directives_validators__ = __webpack_require__(71);
 /* unused harmony reexport CheckboxControlValueAccessor */
 /* unused harmony reexport DefaultValueAccessor */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__directives_ng_control__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__directives_ng_control__ = __webpack_require__(15);
 /* unused harmony reexport NgControl */
 /* unused harmony reexport NgControlStatus */
 /* unused harmony reexport NgControlStatusGroup */
@@ -14709,15 +14743,15 @@ function ReactiveFormsModule_tsickle_Closure_declarations() {
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_0__directives_abstract_control_directive__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__directives_abstract_form_group_directive__ = __webpack_require__(22);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_1__directives_abstract_form_group_directive__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__directives_checkbox_value_accessor__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__directives_checkbox_value_accessor__ = __webpack_require__(29);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return __WEBPACK_IMPORTED_MODULE_2__directives_checkbox_value_accessor__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__directives_control_container__ = __webpack_require__(10);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return __WEBPACK_IMPORTED_MODULE_3__directives_control_container__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__directives_control_value_accessor__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__directives_control_value_accessor__ = __webpack_require__(6);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return __WEBPACK_IMPORTED_MODULE_4__directives_control_value_accessor__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__directives_default_value_accessor__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__directives_default_value_accessor__ = __webpack_require__(30);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return __WEBPACK_IMPORTED_MODULE_5__directives_default_value_accessor__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__directives_ng_control__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__directives_ng_control__ = __webpack_require__(15);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return __WEBPACK_IMPORTED_MODULE_6__directives_ng_control__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__directives_ng_control_status__ = __webpack_require__(49);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return __WEBPACK_IMPORTED_MODULE_7__directives_ng_control_status__["a"]; });
@@ -14726,7 +14760,7 @@ function ReactiveFormsModule_tsickle_Closure_declarations() {
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "j", function() { return __WEBPACK_IMPORTED_MODULE_8__directives_ng_form__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__directives_ng_model__ = __webpack_require__(50);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "k", function() { return __WEBPACK_IMPORTED_MODULE_9__directives_ng_model__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__directives_ng_model_group__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__directives_ng_model_group__ = __webpack_require__(31);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "l", function() { return __WEBPACK_IMPORTED_MODULE_10__directives_ng_model_group__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__directives_radio_control_value_accessor__ = __webpack_require__(24);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "m", function() { return __WEBPACK_IMPORTED_MODULE_11__directives_radio_control_value_accessor__["a"]; });
@@ -14739,10 +14773,10 @@ function ReactiveFormsModule_tsickle_Closure_declarations() {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__directives_reactive_directives_form_group_name__ = __webpack_require__(26);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "q", function() { return __WEBPACK_IMPORTED_MODULE_15__directives_reactive_directives_form_group_name__["a"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "r", function() { return __WEBPACK_IMPORTED_MODULE_15__directives_reactive_directives_form_group_name__["b"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__directives_select_control_value_accessor__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__directives_select_control_value_accessor__ = __webpack_require__(33);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "s", function() { return __WEBPACK_IMPORTED_MODULE_16__directives_select_control_value_accessor__["a"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "t", function() { return __WEBPACK_IMPORTED_MODULE_16__directives_select_control_value_accessor__["b"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__directives_select_multiple_control_value_accessor__ = __webpack_require__(35);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__directives_select_multiple_control_value_accessor__ = __webpack_require__(34);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "u", function() { return __WEBPACK_IMPORTED_MODULE_17__directives_select_multiple_control_value_accessor__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__directives_validators__ = __webpack_require__(71);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "v", function() { return __WEBPACK_IMPORTED_MODULE_18__directives_validators__["a"]; });
@@ -14752,7 +14786,7 @@ function ReactiveFormsModule_tsickle_Closure_declarations() {
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "z", function() { return __WEBPACK_IMPORTED_MODULE_18__directives_validators__["e"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__form_builder__ = __webpack_require__(73);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "A", function() { return __WEBPACK_IMPORTED_MODULE_19__form_builder__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__model__ = __webpack_require__(36);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__model__ = __webpack_require__(35);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "B", function() { return __WEBPACK_IMPORTED_MODULE_20__model__["a"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "C", function() { return __WEBPACK_IMPORTED_MODULE_20__model__["b"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "D", function() { return __WEBPACK_IMPORTED_MODULE_20__model__["c"]; });
@@ -15213,13 +15247,13 @@ var Angular2SocialLoginModule = (function () {
             loadProvidersScripts[provider](config[provider]);
         });
     };
-    Angular2SocialLoginModule = __decorate([
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
-            providers: [__WEBPACK_IMPORTED_MODULE_1__auth_service__["a" /* AuthService */]]
-        })
-    ], Angular2SocialLoginModule);
     return Angular2SocialLoginModule;
 }());
+Angular2SocialLoginModule = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
+        providers: [__WEBPACK_IMPORTED_MODULE_1__auth_service__["a" /* AuthService */]]
+    })
+], Angular2SocialLoginModule);
 
 //# sourceMappingURL=angular2-social-login.module.js.map
 
@@ -15239,7 +15273,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = __webpack_require__(0);
-var forms_1 = __webpack_require__(7);
+var forms_1 = __webpack_require__(5);
 var core_2 = __webpack_require__(0);
 var EqualTextValidator = (function () {
     function EqualTextValidator() {
@@ -15510,7 +15544,7 @@ var app_component_1 = __webpack_require__(123);
 var home_module_1 = __webpack_require__(126);
 var shared_module_1 = __webpack_require__(37);
 var authorization_module_1 = __webpack_require__(122);
-var super_admin_module_1 = __webpack_require__(150);
+var super_admin_module_1 = __webpack_require__(151);
 var app_routing_module_1 = __webpack_require__(128);
 var map_module_1 = __webpack_require__(57);
 var angular2_fontawesome_1 = __webpack_require__(113);
@@ -15556,14 +15590,14 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var forms_1 = __webpack_require__(7);
+var forms_1 = __webpack_require__(5);
 var authorization_component_1 = __webpack_require__(79);
 var registration_component_1 = __webpack_require__(86);
 var user_profile_component_1 = __webpack_require__(92);
 var authorization_routing_module_1 = __webpack_require__(129);
 var error_authorize_component_1 = __webpack_require__(96);
 var common_1 = __webpack_require__(16);
-var forms_2 = __webpack_require__(7);
+var forms_2 = __webpack_require__(5);
 var angular2_text_equality_validator_1 = __webpack_require__(118);
 var shared_module_1 = __webpack_require__(37);
 var angular2_universal_1 = __webpack_require__(21);
@@ -15643,8 +15677,8 @@ __decorate([
 AppComponent = __decorate([
     core_1.Component({
         selector: 'app',
-        template: __webpack_require__(189),
-        styles: [__webpack_require__(232)]
+        template: __webpack_require__(190),
+        styles: [__webpack_require__(230)]
     })
 ], AppComponent);
 exports.AppComponent = AppComponent;
@@ -15693,7 +15727,7 @@ __decorate([
 SuperAdminBanComponent = __decorate([
     core_1.Component({
         selector: 'super-admin-ban',
-        template: __webpack_require__(199)
+        template: __webpack_require__(200)
     })
 ], SuperAdminBanComponent);
 exports.SuperAdminBanComponent = SuperAdminBanComponent;
@@ -15717,7 +15751,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
 var modal_component_1 = __webpack_require__(38);
-var super_admin_change_status_view_model_1 = __webpack_require__(151);
+var super_admin_change_status_view_model_1 = __webpack_require__(152);
 var core_2 = __webpack_require__(0);
 var SuperAdminGrid = (function () {
     function SuperAdminGrid() {
@@ -15790,8 +15824,8 @@ __decorate([
 SuperAdminGrid = __decorate([
     core_1.Component({
         selector: 'super-admin-grid',
-        template: __webpack_require__(201),
-        styles: [__webpack_require__(240)]
+        template: __webpack_require__(202),
+        styles: [__webpack_require__(238)]
     })
     /**
     * Componet to dispay Grid for users or organizations
@@ -15866,6 +15900,8 @@ var organization_management_component_1 = __webpack_require__(83);
 var common_1 = __webpack_require__(16);
 var organization_management_routing_module_1 = __webpack_require__(132);
 var organization_management_event_component_1 = __webpack_require__(82);
+var forms_1 = __webpack_require__(5);
+var truncate_pipe_1 = __webpack_require__(150);
 var OrganizationManagementModule = (function () {
     function OrganizationManagementModule() {
     }
@@ -15875,9 +15911,11 @@ OrganizationManagementModule = __decorate([
     core_1.NgModule({
         declarations: [
             organization_management_component_1.OrganizationManagementComponent,
-            organization_management_event_component_1.OrganizationManagementEventComponent
+            organization_management_event_component_1.OrganizationManagementEventComponent,
+            truncate_pipe_1.TruncatePipe
         ],
         imports: [
+            forms_1.FormsModule,
             common_1.CommonModule,
             organization_management_routing_module_1.OrganizationManagementRoutingModule
         ]
@@ -15899,7 +15937,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var router_1 = __webpack_require__(4);
+var router_1 = __webpack_require__(3);
 var core_1 = __webpack_require__(0);
 var AppRoutingModule = (function () {
     function AppRoutingModule() {
@@ -15931,7 +15969,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var router_1 = __webpack_require__(4);
+var router_1 = __webpack_require__(3);
 var registration_component_1 = __webpack_require__(86);
 var authorization_component_1 = __webpack_require__(79);
 var user_profile_component_1 = __webpack_require__(92);
@@ -15981,7 +16019,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var router_1 = __webpack_require__(4);
+var router_1 = __webpack_require__(3);
 var home_component_1 = __webpack_require__(81);
 var about_component_1 = __webpack_require__(76);
 var all_events_component_1 = __webpack_require__(77);
@@ -16037,7 +16075,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var router_1 = __webpack_require__(4);
+var router_1 = __webpack_require__(3);
 var map_component_1 = __webpack_require__(59);
 var MapRoutingModule = (function () {
     function MapRoutingModule() {
@@ -16068,7 +16106,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var router_1 = __webpack_require__(4);
+var router_1 = __webpack_require__(3);
 var organization_management_component_1 = __webpack_require__(83);
 var organization_management_event_component_1 = __webpack_require__(82);
 var OrganizationManagementRoutingModule = (function () {
@@ -16081,7 +16119,9 @@ OrganizationManagementRoutingModule = __decorate([
         imports: [router_1.RouterModule.forChild([
                 {
                     path: 'organization-management/:id', component: organization_management_component_1.OrganizationManagementComponent,
-                    children: [{ path: 'all-events', component: organization_management_event_component_1.OrganizationManagementEventComponent }]
+                    children: [
+                        { path: 'all-events', component: organization_management_event_component_1.OrganizationManagementEventComponent }
+                    ]
                 }
             ])],
         exports: [router_1.RouterModule]
@@ -16104,7 +16144,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var router_1 = __webpack_require__(4);
+var router_1 = __webpack_require__(3);
 var super_admin_component_1 = __webpack_require__(91);
 var super_admin_complaints_component_1 = __webpack_require__(88);
 var super_admin_organizations_component_1 = __webpack_require__(89);
@@ -16179,12 +16219,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var http_1 = __webpack_require__(6);
-var base_service_1 = __webpack_require__(27);
+var http_1 = __webpack_require__(7);
+var base_service_1 = __webpack_require__(36);
 var Observable_1 = __webpack_require__(1);
-__webpack_require__(13);
-__webpack_require__(15);
 __webpack_require__(12);
+__webpack_require__(14);
+__webpack_require__(11);
 var EventDetailService = (function (_super) {
     __extends(EventDetailService, _super);
     /**
@@ -16246,8 +16286,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var base_service_1 = __webpack_require__(27);
-var http_1 = __webpack_require__(6);
+var base_service_1 = __webpack_require__(36);
+var http_1 = __webpack_require__(7);
 var OrganizationDropdownService = (function (_super) {
     __extends(OrganizationDropdownService, _super);
     /**
@@ -16295,10 +16335,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var http_1 = __webpack_require__(6);
-var base_service_1 = __webpack_require__(27);
-__webpack_require__(13);
-__webpack_require__(15);
+var http_1 = __webpack_require__(7);
+var base_service_1 = __webpack_require__(36);
+__webpack_require__(12);
+__webpack_require__(14);
 var Observable_1 = __webpack_require__(1);
 var OrganizationEventService = (function (_super) {
     __extends(OrganizationEventService, _super);
@@ -16388,8 +16428,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var http_1 = __webpack_require__(6);
-var base_service_1 = __webpack_require__(27);
+var http_1 = __webpack_require__(7);
+var base_service_1 = __webpack_require__(36);
 var OrganizationGetGeneralInfoService = (function (_super) {
     __extends(OrganizationGetGeneralInfoService, _super);
     /**
@@ -16414,16 +16454,6 @@ exports.OrganizationGetGeneralInfoService = OrganizationGetGeneralInfoService;
 
 "use strict";
 
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -16434,21 +16464,51 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var base_service_1 = __webpack_require__(27);
-var http_1 = __webpack_require__(6);
 var core_1 = __webpack_require__(0);
-var OrganizationManagementEventService = (function (_super) {
-    __extends(OrganizationManagementEventService, _super);
-    function OrganizationManagementEventService(http) {
-        return _super.call(this, http, 'api/Event') || this;
+var http_1 = __webpack_require__(7);
+var Observable_1 = __webpack_require__(1);
+__webpack_require__(12);
+__webpack_require__(14);
+__webpack_require__(11);
+var OrganizationManagementEventsService = (function () {
+    function OrganizationManagementEventsService(_http) {
+        this._http = _http;
+        this._url = 'api/EventManagement/GetAllEventsByOrganizationId';
     }
-    return OrganizationManagementEventService;
-}(base_service_1.BaseService));
-OrganizationManagementEventService = __decorate([
+    /**
+     * Gets all events by organization id
+     * @param id
+     * @returns collection of all events
+     */
+    OrganizationManagementEventsService.prototype.GetAllEventsByOrganizationId = function (id) {
+        return this._http.get(this._url + '/' + id)
+            .map(function (response) { return response.json(); })
+            .do(function (data) { return console.log('ALL ' + JSON.stringify(data)); })
+            .catch(this.handleError);
+    };
+    /**
+     * Creates RequestOptionsArgs
+     * @param body:T
+     * @returns interface RequestOptionsArgs
+     */
+    OrganizationManagementEventsService.prototype.getRequestArgs = function (body) {
+        var headers = new http_1.Headers({ 'ContentType': 'application/json' });
+        return { headers: headers, body: body };
+    };
+    /**
+    * Exception handler
+    * @param error: Response
+    */
+    OrganizationManagementEventsService.prototype.handleError = function (error) {
+        return Observable_1.Observable.throw(error.json().error || 'Server error');
+    };
+    return OrganizationManagementEventsService;
+}());
+OrganizationManagementEventsService = __decorate([
     core_1.Injectable(),
     __metadata("design:paramtypes", [http_1.Http])
-], OrganizationManagementEventService);
-exports.OrganizationManagementEventService = OrganizationManagementEventService;
+], OrganizationManagementEventsService);
+exports.OrganizationManagementEventsService = OrganizationManagementEventsService;
 
 
 /***/ }),
@@ -16477,7 +16537,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var router_1 = __webpack_require__(4);
+var router_1 = __webpack_require__(3);
 var core_1 = __webpack_require__(0);
 var base_guard_service_1 = __webpack_require__(93);
 var PartnerRouteGuard = (function (_super) {
@@ -16523,7 +16583,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var router_1 = __webpack_require__(4);
+var router_1 = __webpack_require__(3);
 var core_1 = __webpack_require__(0);
 var base_guard_service_1 = __webpack_require__(93);
 var SuperAdminRouteGuard = (function (_super) {
@@ -16560,11 +16620,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var http_1 = __webpack_require__(6);
+var http_1 = __webpack_require__(7);
 var Observable_1 = __webpack_require__(1);
+__webpack_require__(11);
+__webpack_require__(14);
 __webpack_require__(12);
-__webpack_require__(15);
-__webpack_require__(13);
 var UserInfoService = (function () {
     function UserInfoService(_http) {
         this._http = _http;
@@ -16606,7 +16666,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-__webpack_require__(161);
+__webpack_require__(162);
 var AmazonUploadComponent = (function () {
     function AmazonUploadComponent() {
         this._amazonKeyId = 'AKIAJH4TLLOIZ5QOBKMQ';
@@ -16679,7 +16739,7 @@ __decorate([
 PageItemComponent = __decorate([
     core_1.Component({
         selector: 'pagination-item',
-        template: __webpack_require__(210)
+        template: __webpack_require__(211)
     })
     /**
       * Generic class for grid items
@@ -16706,11 +16766,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
 var Observable_1 = __webpack_require__(1);
-__webpack_require__(13);
 __webpack_require__(12);
-__webpack_require__(218);
+__webpack_require__(11);
+__webpack_require__(216);
+__webpack_require__(217);
 __webpack_require__(219);
-__webpack_require__(221);
 var PaginationComponent = (function () {
     /**
      * Creates new instance of PaginationComponent
@@ -16810,7 +16870,7 @@ __decorate([
 PaginationComponent = __decorate([
     core_1.Component({
         selector: 'pagination-pages',
-        template: __webpack_require__(211)
+        template: __webpack_require__(212)
     })
     /**
     * Generic class for pagination buttons
@@ -16865,7 +16925,7 @@ __decorate([
 SelectComponent = __decorate([
     core_1.Component({
         selector: 'select-item',
-        template: __webpack_require__(212)
+        template: __webpack_require__(213)
     })
     /**
      * Generic component for select box
@@ -16904,8 +16964,8 @@ __decorate([
 SpinnerComponent = __decorate([
     core_1.Component({
         selector: 'spinner',
-        template: __webpack_require__(213),
-        styles: [__webpack_require__(248)]
+        template: __webpack_require__(214),
+        styles: [__webpack_require__(246)]
     })
 ], SpinnerComponent);
 exports.SpinnerComponent = SpinnerComponent;
@@ -16984,8 +17044,8 @@ var UserStatesComponent = (function () {
 UserStatesComponent = __decorate([
     core_1.Component({
         selector: 'user-states',
-        template: __webpack_require__(214),
-        styles: [__webpack_require__(249)],
+        template: __webpack_require__(215),
+        styles: [__webpack_require__(247)],
         providers: [user_service_1.UserService]
     }),
     __metadata("design:paramtypes", [user_service_1.UserService])
@@ -17082,6 +17142,45 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
+var TruncatePipe = (function () {
+    //Cutting string 
+    function TruncatePipe() {
+    }
+    /**
+     * Cutting string
+     * @param value
+     * @param length
+     * @param trail
+     * @returns Cutted string
+     */
+    TruncatePipe.prototype.transform = function (value, length) {
+        return value.length > length ? value.substring(0, length) + ' ...' : value;
+    };
+    return TruncatePipe;
+}());
+TruncatePipe = __decorate([
+    core_1.Pipe({
+        name: 'truncate'
+    })
+    //Cutting string 
+], TruncatePipe);
+exports.TruncatePipe = TruncatePipe;
+
+
+/***/ }),
+/* 151 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var core_1 = __webpack_require__(0);
 var common_1 = __webpack_require__(16);
 var super_admin_component_1 = __webpack_require__(91);
 var super_admin_routing_module_1 = __webpack_require__(133);
@@ -17123,7 +17222,7 @@ exports.SuperAdminModule = SuperAdminModule;
 
 
 /***/ }),
-/* 151 */
+/* 152 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17141,7 +17240,7 @@ exports.SuperAdminChangeStatusViewModel = SuperAdminChangeStatusViewModel;
 
 
 /***/ }),
-/* 152 */
+/* 153 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17162,7 +17261,7 @@ exports.AuthorizedUserInfoViewModel = AuthorizedUserInfoViewModel;
 
 
 /***/ }),
-/* 153 */
+/* 154 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17180,7 +17279,7 @@ exports.ChangePasswordViewModel = ChangePasswordViewModel;
 
 
 /***/ }),
-/* 154 */
+/* 155 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17198,7 +17297,7 @@ exports.GuidViewModel = GuidViewModel;
 
 
 /***/ }),
-/* 155 */
+/* 156 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17213,7 +17312,7 @@ exports.LoginFacebookViewModel = LoginFacebookViewModel;
 
 
 /***/ }),
-/* 156 */
+/* 157 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17233,7 +17332,7 @@ exports.LoginViewModel = LoginViewModel;
 
 
 /***/ }),
-/* 157 */
+/* 158 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17248,7 +17347,7 @@ exports.OrganizationRegistrationViewModel = OrganizationRegistrationViewModel;
 
 
 /***/ }),
-/* 158 */
+/* 159 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17263,7 +17362,7 @@ exports.RegistrationViewModel = RegistrationViewModel;
 
 
 /***/ }),
-/* 159 */
+/* 160 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17281,7 +17380,7 @@ exports.ResetPasswordViewModel = ResetPasswordViewModel;
 
 
 /***/ }),
-/* 160 */
+/* 161 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17299,13 +17398,13 @@ exports.UserEmailViewModel = UserEmailViewModel;
 
 
 /***/ }),
-/* 161 */
+/* 162 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {var require;var require;var __WEBPACK_AMD_DEFINE_RESULT__;// AWS SDK for JavaScript v2.79.0
 // Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 // License at https://sdk.amazonaws.com/js/BUNDLE_LICENSE.txt
-(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return require(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return require(o,!0);if(i)return require(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 module.exports={
   "version": "2.0",
   "metadata": {
@@ -140154,10 +140253,10 @@ require('../clients/browser_default');
 },{"../clients/browser_default":163,"./browser_loader":224,"./core":227}]},{},[480]);
 
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(100)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(98)))
 
 /***/ }),
-/* 162 */
+/* 163 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(2)();
@@ -140171,7 +140270,7 @@ exports.push([module.i, ".fborder {\r\n    padding-left: 200px;\r\n    padding-t
 
 
 /***/ }),
-/* 163 */
+/* 164 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(2)();
@@ -140185,7 +140284,7 @@ exports.push([module.i, ".panel-padding {\r\n    padding-left: 50px;\r\n    padd
 
 
 /***/ }),
-/* 164 */
+/* 165 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(2)();
@@ -140199,7 +140298,7 @@ exports.push([module.i, "", ""]);
 
 
 /***/ }),
-/* 165 */
+/* 166 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(2)();
@@ -140213,7 +140312,7 @@ exports.push([module.i, "body {\r\n    margin: 0px 0px 0px 0px !important;\r\n}\
 
 
 /***/ }),
-/* 166 */
+/* 167 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(2)();
@@ -140227,7 +140326,7 @@ exports.push([module.i, ".loginmodal-container h3 {\n    text-align: center;\n  
 
 
 /***/ }),
-/* 167 */
+/* 168 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(2)();
@@ -140241,7 +140340,7 @@ exports.push([module.i, ".panel-padding {\r\n    padding-left: 50px;\r\n    padd
 
 
 /***/ }),
-/* 168 */
+/* 169 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(2)();
@@ -140255,7 +140354,7 @@ exports.push([module.i, "#right-bar {\r\n    background-color: aliceblue;\r\n}\r
 
 
 /***/ }),
-/* 169 */
+/* 170 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(2)();
@@ -140269,20 +140368,6 @@ exports.push([module.i, "h2 {\r\n    color: white;\r\n    font-weight: 900;\r\n}
 
 
 /***/ }),
-/* 170 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(2)();
-// imports
-
-
-// module
-exports.push([module.i, "body {\n    position: relative;\n    overflow-x: hidden;\n}\n\nbody,\nhtml {\n    height: 100%;\n}\n\n.nav .open > a,\n.nav .open > a:hover,\n.nav .open > a:focus {\n    background-color: transparent;\n}\n\n/*-------------------------------*/\n/*           Wrappers            */\n/*-------------------------------*/\n\n#wrapper {\n    padding-left: 0;\n    -webkit-transition: all 0.5s ease;\n    -moz-transition: all 0.5s ease;\n    -o-transition: all 0.5s ease;\n    transition: all 0.5s ease;\n}\n\n    #wrapper.toggled {\n        padding-left: 15%;\n    }\n\n#sidebar-wrapper {\n    z-index: 1000;\n    left: 220px;\n    width: 0;\n    height: 100%;\n    margin-left: -220px;\n    overflow-y: auto;\n    overflow-x: hidden;\n    background: #1a1a1a;\n    -webkit-transition: all 0.5s ease;\n    -moz-transition: all 0.5s ease;\n    -o-transition: all 0.5s ease;\n    transition: all 0.5s ease;\n}\n\n    #sidebar-wrapper::-webkit-scrollbar {\n        display: none;\n    }\n\n#wrapper.toggled #sidebar-wrapper {\n    width: 15%;\n}\n\n/*-------------------------------*/\n/*     Sidebar nav styles        */\n/*-------------------------------*/\n\n.sidebar-nav {\n    position: absolute;\n    top: 0;\n    width: 100%;\n    margin: 0;\n    padding: 0;\n    list-style: none;\n}\n\n    .sidebar-nav li {\n        position: relative;\n        line-height: 20px;\n        display: inline-block;\n        width: 100%;\n    }\n\n        .sidebar-nav li:before {\n            content: '';\n            position: absolute;\n            top: 0;\n            left: 0;\n            z-index: -1;\n            height: 100%;\n            width: 3px;\n            background-color: #1c1c1c;\n            -webkit-transition: width .2s ease-in;\n            -moz-transition: width .2s ease-in;\n            -ms-transition: width .2s ease-in;\n            transition: width .2s ease-in;\n        }\n\n        .sidebar-nav li:first-child a {\n            color: #fff;\n            background-color: #1a1a1a;\n        }\n\n        .sidebar-nav li:nth-child(2):before {\n            background-color: #1a1a1a;\n        }\n\n        .sidebar-nav li:nth-child(3):before {\n            background-color: #243918;\n        }\n\n        .sidebar-nav li:nth-child(4):before {\n            background-color: #2e4720;\n        }\n\n        .sidebar-nav li:nth-child(5):before {\n            background-color: #46562f;\n        }\n\n        .sidebar-nav li:nth-child(6):before {\n            background-color: #596a3d;\n        }\n\n        .sidebar-nav li:nth-child(7):before {\n            background-color: #637f4e;\n        }\n\n        .sidebar-nav li:nth-child(8):before {\n            background-color: #a7ac8c;\n        }\n\n        .sidebar-nav li:nth-child(9):before {\n            background-color: #2d2366;\n        }\n\n        .sidebar-nav li:nth-child(10):before {\n            background-color: #35acdf;\n        }\n\n        .sidebar-nav li:hover:before,\n        .sidebar-nav li.open:hover:before {\n            width: 100%;\n            -webkit-transition: width .2s ease-in;\n            -moz-transition: width .2s ease-in;\n            -ms-transition: width .2s ease-in;\n            transition: width .2s ease-in;\n        }\n\n        .sidebar-nav li a {\n            display: block;\n            color: #ddd;\n            text-decoration: none;\n            padding: 10px 15px 10px 30px;\n        }\n\n            .sidebar-nav li a:hover,\n            .sidebar-nav li a:active,\n            .sidebar-nav li a:focus,\n            .sidebar-nav li.open a:hover,\n            .sidebar-nav li.open a:active,\n            .sidebar-nav li.open a:focus {\n                color: #fff;\n                text-decoration: none;\n                background-color: transparent;\n            }\n\n    .sidebar-nav > .sidebar-brand {\n        padding: 20%;\n        height: 65px;\n        color: white;\n        font-size: 20px;\n    }\n\n    .sidebar-nav .dropdown-menu {\n        position: relative;\n        width: 100%;\n        padding: 0;\n        margin: 0;\n        border-radius: 0;\n        border: none;\n        background-color: #222;\n        box-shadow: none;\n    }\n\n.navbar-fixed-top {\n    top: auto !important;\n    max-height: 70% !important;\n}\n/*-------------------------------*/\n/*       Hamburger-Cross         */\n/*-------------------------------*/\n.hamburger {\n    position: fixed;\n    top: auto;\n    z-index: 999;\n    display: block;\n    width: 32px;\n    height: 32px;\n    background: transparent;\n    border: none;\n}\n\n    .hamburger:hover,\n    .hamburger:focus,\n    .hamburger:active {\n        outline: none;\n    }\n\n    .hamburger.is-closed:before {\n        content: '';\n        display: block;\n        width: 100px;\n        font-size: 14px;\n        color: #fff;\n        line-height: 32px;\n        text-align: center;\n        opacity: 0;\n        -webkit-transform: translate3d(0,0,0);\n        -webkit-transition: all .35s ease-in-out;\n    }\n\n    .hamburger.is-closed:hover:before {\n        opacity: 1;\n        display: block;\n        -webkit-transform: translate3d(-100px,0,0);\n        -webkit-transition: all .35s ease-in-out;\n    }\n\n    .hamburger.is-closed .hamb-top,\n    .hamburger.is-closed .hamb-middle,\n    .hamburger.is-closed .hamb-bottom,\n    .hamburger.is-open .hamb-top,\n    .hamburger.is-open .hamb-middle,\n    .hamburger.is-open .hamb-bottom {\n        position: absolute;\n        left: 0;\n        height: 4px;\n        width: 100%;\n    }\n\n    .hamburger.is-closed .hamb-top,\n    .hamburger.is-closed .hamb-middle,\n    .hamburger.is-closed .hamb-bottom {\n        background-color: white;\n    }\n\n    .hamburger.is-closed .hamb-top {\n        top: 5px;\n        -webkit-transition: all .35s ease-in-out;\n    }\n\n    .hamburger.is-closed .hamb-middle {\n        top: 50%;\n        margin-top: -2px;\n    }\n\n    .hamburger.is-closed .hamb-bottom {\n        bottom: 5px;\n        -webkit-transition: all .35s ease-in-out;\n    }\n\n    .hamburger.is-closed:hover .hamb-top {\n        top: 0;\n        -webkit-transition: all .35s ease-in-out;\n    }\n\n    .hamburger.is-closed:hover .hamb-bottom {\n        bottom: 0;\n        -webkit-transition: all .35s ease-in-out;\n    }\n\n    .hamburger.is-open .hamb-top,\n    .hamburger.is-open .hamb-middle,\n    .hamburger.is-open .hamb-bottom {\n        background-color: white;\n    }\n\n    .hamburger.is-open .hamb-top,\n    .hamburger.is-open .hamb-bottom {\n        top: 50%;\n        margin-top: -2px;\n    }\n\n    .hamburger.is-open .hamb-top {\n        -webkit-transform: rotate(45deg);\n        -webkit-transition: -webkit-transform .2s cubic-bezier(.73,1,.28,.08);\n    }\n\n    .hamburger.is-open .hamb-middle {\n        display: none;\n    }\n\n    .hamburger.is-open .hamb-bottom {\n        -webkit-transform: rotate(-45deg);\n        -webkit-transition: -webkit-transform .2s cubic-bezier(.73,1,.28,.08);\n    }\n\n    .hamburger.is-open:before {\n        content: '';\n        display: block;\n        width: 100px;\n        font-size: 14px;\n        color: #fff;\n        line-height: 32px;\n        text-align: center;\n        opacity: 0;\n        -webkit-transform: translate3d(0,0,0);\n        -webkit-transition: all .35s ease-in-out;\n    }\n\n    .hamburger.is-open:hover:before {\n        opacity: 1;\n        display: block;\n        -webkit-transform: translate3d(-100px,0,0);\n        -webkit-transition: all .35s ease-in-out;\n    }\n\n/*-------------------------------*/\n/*            Overlay            */\n/*-------------------------------*/\n\n.overlay {\n    position: fixed;\n    display: none;\n    width: 100%;\n    height: 100%;\n    top: 0;\n    left: 0;\n    right: 0;\n    bottom: 0;\n    background-color: rgba(250,250,250,.8);\n    z-index: 1;\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
 /* 171 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -140291,7 +140376,7 @@ exports = module.exports = __webpack_require__(2)();
 
 
 // module
-exports.push([module.i, ".fixedError {\r\n    margin-bottom: 0px;\r\n}\r\n.form-group {\r\n    margin-bottom: 7px !important;\r\n}\r\n\r\n#registrationForm {\r\n    width: 400px;\r\n}\r\n\r\n.formHeader {\r\n    border-bottom: 1px solid #ccc;\r\n    padding-bottom: 10px;\r\n}\r\n\r\n", ""]);
+exports.push([module.i, "body {\n    position: relative;\n    overflow-x: hidden;\n}\n\nbody,\nhtml {\n    height: 100%;\n}\n\n.nav .open > a,\n.nav .open > a:hover,\n.nav .open > a:focus {\n    background-color: transparent;\n}\n\n/*-------------------------------*/\n/*           Wrappers            */\n/*-------------------------------*/\n\n#wrapper {\n    padding-left: 0;\n    -webkit-transition: all 0.5s ease;\n    -moz-transition: all 0.5s ease;\n    -o-transition: all 0.5s ease;\n    transition: all 0.5s ease;\n}\n\n    #wrapper.toggled {\n        padding-left: 15%;\n    }\n\n#sidebar-wrapper {\n    z-index: 1000;\n    left: 220px;\n    width: 0;\n    height: 100%;\n    margin-left: -220px;\n    overflow-y: auto;\n    overflow-x: hidden;\n    background: #1a1a1a;\n    -webkit-transition: all 0.5s ease;\n    -moz-transition: all 0.5s ease;\n    -o-transition: all 0.5s ease;\n    transition: all 0.5s ease;\n}\n\n    #sidebar-wrapper::-webkit-scrollbar {\n        display: none;\n    }\n\n#wrapper.toggled #sidebar-wrapper {\n    width: 15%;\n}\n\n/*-------------------------------*/\n/*     Sidebar nav styles        */\n/*-------------------------------*/\n\n.sidebar-nav {\n    position: absolute;\n    top: 0;\n    width: 100%;\n    margin: 0;\n    padding: 0;\n    list-style: none;\n}\n\n    .sidebar-nav li {\n        position: relative;\n        line-height: 20px;\n        display: inline-block;\n        width: 100%;\n    }\n\n        .sidebar-nav li:before {\n            content: '';\n            position: absolute;\n            top: 0;\n            left: 0;\n            z-index: -1;\n            height: 100%;\n            width: 3px;\n            background-color: #1c1c1c;\n            -webkit-transition: width .2s ease-in;\n            -moz-transition: width .2s ease-in;\n            -ms-transition: width .2s ease-in;\n            transition: width .2s ease-in;\n        }\n\n        .sidebar-nav li:first-child a {\n            color: #fff;\n            background-color: #273a1a;\n        }\n\n        .sidebar-nav li:nth-child(2):before {\n            background-color: #273a1a;\n        }\n\n        .sidebar-nav li:nth-child(3):before {\n            background-color: #243918;\n        }\n\n        .sidebar-nav li:nth-child(4):before {\n            background-color: #2e4720;\n        }\n\n        .sidebar-nav li:nth-child(5):before {\n            background-color: #46562f;\n        }\n\n        .sidebar-nav li:nth-child(6):before {\n            background-color: #596a3d;\n        }\n\n        .sidebar-nav li:nth-child(7):before {\n            background-color: #637f4e;\n        }\n\n        .sidebar-nav li:nth-child(8):before {\n            background-color: #a7ac8c;\n        }\n\n        .sidebar-nav li:nth-child(9):before {\n            background-color: #2d2366;\n        }\n\n        .sidebar-nav li:nth-child(10):before {\n            background-color: #35acdf;\n        }\n\n        .sidebar-nav li:hover:before,\n        .sidebar-nav li.open:hover:before {\n            width: 100%;\n            -webkit-transition: width .2s ease-in;\n            -moz-transition: width .2s ease-in;\n            -ms-transition: width .2s ease-in;\n            transition: width .2s ease-in;\n        }\n\n        .sidebar-nav li a {\n            display: block;\n            color: #ddd;\n            text-decoration: none;\n            padding: 10px 15px 10px 30px;\n        }\n\n            .sidebar-nav li a:hover,\n            .sidebar-nav li a:active,\n            .sidebar-nav li a:focus,\n            .sidebar-nav li.open a:hover,\n            .sidebar-nav li.open a:active,\n            .sidebar-nav li.open a:focus {\n                color: #fff;\n                text-decoration: none;\n                background-color: transparent;\n            }\n\n    .sidebar-nav > .sidebar-brand {\n        padding: 20%;\n        height: 65px;\n        color: white;\n        font-size: 20px;\n    }\n\n    .sidebar-nav .dropdown-menu {\n        position: relative;\n        width: 100%;\n        padding: 0;\n        margin: 0;\n        border-radius: 0;\n        border: none;\n        background-color: #222;\n        box-shadow: none;\n    }\n\n.navbar-fixed-top {\n    top: auto !important;\n    max-height: 70% !important;\n}\n/*-------------------------------*/\n/*       Hamburger-Cross         */\n/*-------------------------------*/\n.hamburger {\n    position: fixed;\n    top: auto;\n    z-index: 999;\n    display: block;\n    width: 32px;\n    height: 32px;\n    background: transparent;\n    border: none;\n}\n\n    .hamburger:hover,\n    .hamburger:focus,\n    .hamburger:active {\n        outline: none;\n    }\n\n    .hamburger.is-closed:before {\n        content: '';\n        display: block;\n        width: 100px;\n        font-size: 14px;\n        color: #fff;\n        line-height: 32px;\n        text-align: center;\n        opacity: 0;\n        -webkit-transform: translate3d(0,0,0);\n        -webkit-transition: all .35s ease-in-out;\n    }\n\n    .hamburger.is-closed:hover:before {\n        opacity: 1;\n        display: block;\n        -webkit-transform: translate3d(-100px,0,0);\n        -webkit-transition: all .35s ease-in-out;\n    }\n\n    .hamburger.is-closed .hamb-top,\n    .hamburger.is-closed .hamb-middle,\n    .hamburger.is-closed .hamb-bottom,\n    .hamburger.is-open .hamb-top,\n    .hamburger.is-open .hamb-middle,\n    .hamburger.is-open .hamb-bottom {\n        position: absolute;\n        left: 0;\n        height: 4px;\n        width: 100%;\n    }\n\n    .hamburger.is-closed .hamb-top,\n    .hamburger.is-closed .hamb-middle,\n    .hamburger.is-closed .hamb-bottom {\n        background-color: white;\n    }\n\n    .hamburger.is-closed .hamb-top {\n        top: 5px;\n        -webkit-transition: all .35s ease-in-out;\n    }\n\n    .hamburger.is-closed .hamb-middle {\n        top: 50%;\n        margin-top: -2px;\n    }\n\n    .hamburger.is-closed .hamb-bottom {\n        bottom: 5px;\n        -webkit-transition: all .35s ease-in-out;\n    }\n\n    .hamburger.is-closed:hover .hamb-top {\n        top: 0;\n        -webkit-transition: all .35s ease-in-out;\n    }\n\n    .hamburger.is-closed:hover .hamb-bottom {\n        bottom: 0;\n        -webkit-transition: all .35s ease-in-out;\n    }\n\n    .hamburger.is-open .hamb-top,\n    .hamburger.is-open .hamb-middle,\n    .hamburger.is-open .hamb-bottom {\n        background-color: white;\n    }\n\n    .hamburger.is-open .hamb-top,\n    .hamburger.is-open .hamb-bottom {\n        top: 50%;\n        margin-top: -2px;\n    }\n\n    .hamburger.is-open .hamb-top {\n        -webkit-transform: rotate(45deg);\n        -webkit-transition: -webkit-transform .2s cubic-bezier(.73,1,.28,.08);\n    }\n\n    .hamburger.is-open .hamb-middle {\n        display: none;\n    }\n\n    .hamburger.is-open .hamb-bottom {\n        -webkit-transform: rotate(-45deg);\n        -webkit-transition: -webkit-transform .2s cubic-bezier(.73,1,.28,.08);\n    }\n\n    .hamburger.is-open:before {\n        content: '';\n        display: block;\n        width: 100px;\n        font-size: 14px;\n        color: #fff;\n        line-height: 32px;\n        text-align: center;\n        opacity: 0;\n        -webkit-transform: translate3d(0,0,0);\n        -webkit-transition: all .35s ease-in-out;\n    }\n\n    .hamburger.is-open:hover:before {\n        opacity: 1;\n        display: block;\n        -webkit-transform: translate3d(-100px,0,0);\n        -webkit-transition: all .35s ease-in-out;\n    }\n\n/*-------------------------------*/\n/*            Overlay            */\n/*-------------------------------*/\n\n.overlay {\n    position: fixed;\n    display: none;\n    width: 100%;\n    height: 100%;\n    top: 0;\n    left: 0;\n    right: 0;\n    bottom: 0;\n    background-color: rgba(250,250,250,.8);\n    z-index: 1;\n}\n", ""]);
 
 // exports
 
@@ -140305,7 +140390,7 @@ exports = module.exports = __webpack_require__(2)();
 
 
 // module
-exports.push([module.i, "/* enable absolute positioning */\r\n.inner-addon {\r\n    position: relative;\r\n}\r\n\r\n    /* style icon */\r\n    .inner-addon .glyphicon {\r\n        position: absolute;\r\n        padding: 10px;\r\n        pointer-events: none;\r\n    }\r\n\r\n/* align icon */\r\n.left-addon .glyphicon {\r\n    left: 0px;\r\n}\r\n\r\n.right-addon .glyphicon {\r\n    right: 0px;\r\n}\r\n\r\n/* add padding  */\r\n.left-addon input {\r\n    padding-left: 30px;\r\n}\r\n\r\n.right-addon input {\r\n    padding-right: 30px;\r\n}\r\n\r\n.btn{\r\n    float:right;\r\n}", ""]);
+exports.push([module.i, ".fixedError {\r\n    margin-bottom: 0px;\r\n}\r\n.form-group {\r\n    margin-bottom: 7px !important;\r\n}\r\n\r\n#registrationForm {\r\n    width: 400px;\r\n}\r\n\r\n.formHeader {\r\n    border-bottom: 1px solid #ccc;\r\n    padding-bottom: 10px;\r\n}\r\n\r\n", ""]);
 
 // exports
 
@@ -140319,7 +140404,7 @@ exports = module.exports = __webpack_require__(2)();
 
 
 // module
-exports.push([module.i, ".custom-btn {\r\n    width: 90px !important;\r\n}\r\n", ""]);
+exports.push([module.i, "/* enable absolute positioning */\r\n.inner-addon {\r\n    position: relative;\r\n}\r\n\r\n    /* style icon */\r\n    .inner-addon .glyphicon {\r\n        position: absolute;\r\n        padding: 10px;\r\n        pointer-events: none;\r\n    }\r\n\r\n/* align icon */\r\n.left-addon .glyphicon {\r\n    left: 0px;\r\n}\r\n\r\n.right-addon .glyphicon {\r\n    right: 0px;\r\n}\r\n\r\n/* add padding  */\r\n.left-addon input {\r\n    padding-left: 30px;\r\n}\r\n\r\n.right-addon input {\r\n    padding-right: 30px;\r\n}\r\n\r\n.btn{\r\n    float:right;\r\n}", ""]);
 
 // exports
 
@@ -140333,7 +140418,7 @@ exports = module.exports = __webpack_require__(2)();
 
 
 // module
-exports.push([module.i, ".castome-paging {\r\n    padding-top: 20px;\r\n}\r\n", ""]);
+exports.push([module.i, ".custom-btn {\r\n    width: 90px !important;\r\n}\r\n", ""]);
 
 // exports
 
@@ -140361,7 +140446,7 @@ exports = module.exports = __webpack_require__(2)();
 
 
 // module
-exports.push([module.i, " :focus {\n    outline: none;\n}\n.row {\n    margin-right: 0 !important;\n    margin-left: 0 !important;\n}\n.side-menu {\n    width: 300px;\n    height: 100%;\n    background-color: #f8f8f8;\n    border-right: 1px solid #e7e7e7;\n    float: left;\n}\n.side-body {\n    margin-left: 350px;\n    position: relative;\n}\n.side-menu .navbar {\n    border: none;\n}\n.side-menu .navbar-header {\n    width: 100%;\n    border-bottom: 1px solid #e7e7e7;\n}\n.side-menu .navbar-nav .active a {\n    background-color: transparent;\n    margin-right: -1px;\n    border-right: 5px solid #e7e7e7;\n}\n.side-menu .navbar-nav li {\n    display: block;\n    width: 100%;\n    border-bottom: 1px solid #e7e7e7;\n}\n.side-menu .navbar-nav li a {\n    padding: 15px;\n}\n.side-menu .navbar-nav li a .glyphicon {\n    padding-right: 10px;\n}\r\n", ""]);
+exports.push([module.i, ".castome-paging {\r\n    padding-top: 20px;\r\n}\r\n", ""]);
 
 // exports
 
@@ -140375,7 +140460,7 @@ exports = module.exports = __webpack_require__(2)();
 
 
 // module
-exports.push([module.i, ".userprofile {\r\n    height: auto;\r\n}\r\n\r\n/*.ng-valid[required], .ng-valid.required {\r\n    border-bottom: 5px solid mediumseagreen;\r\n}*/\r\n\r\n/*.ng-invalid:not(form) {\r\n    border-bottom: 0.5px solid red;\r\n}*/\r\n", ""]);
+exports.push([module.i, " :focus {\n    outline: none;\n}\n.row {\n    margin-right: 0 !important;\n    margin-left: 0 !important;\n}\n.side-menu {\n    width: 300px;\n    height: 100%;\n    background-color: #f8f8f8;\n    border-right: 1px solid #e7e7e7;\n    float: left;\n}\n.side-body {\n    margin-left: 350px;\n    position: relative;\n}\n.side-menu .navbar {\n    border: none;\n}\n.side-menu .navbar-header {\n    width: 100%;\n    border-bottom: 1px solid #e7e7e7;\n}\n.side-menu .navbar-nav .active a {\n    background-color: transparent;\n    margin-right: -1px;\n    border-right: 5px solid #e7e7e7;\n}\n.side-menu .navbar-nav li {\n    display: block;\n    width: 100%;\n    border-bottom: 1px solid #e7e7e7;\n}\n.side-menu .navbar-nav li a {\n    padding: 15px;\n}\n.side-menu .navbar-nav li a .glyphicon {\n    padding-right: 10px;\n}\r\n", ""]);
 
 // exports
 
@@ -140389,7 +140474,7 @@ exports = module.exports = __webpack_require__(2)();
 
 
 // module
-exports.push([module.i, ".scrollable-menu {\r\n    height: auto !important;\r\n    max-height: 200px !important;\r\n    overflow-x: hidden !important;\r\n}\r\n\r\n.btn-info {\r\n    border: solid 1px silver !important;\r\n    background-color: #292c2f !important;\r\n    color: #8f9296;\r\n}\r\n\r\n.form-control {\r\n    width: 100% !important;\r\n}\r\n", ""]);
+exports.push([module.i, ".userprofile {\r\n    height: auto;\r\n}\r\n\r\n/*.ng-valid[required], .ng-valid.required {\r\n    border-bottom: 5px solid mediumseagreen;\r\n}*/\r\n\r\n/*.ng-invalid:not(form) {\r\n    border-bottom: 0.5px solid red;\r\n}*/\r\n", ""]);
 
 // exports
 
@@ -140403,7 +140488,7 @@ exports = module.exports = __webpack_require__(2)();
 
 
 // module
-exports.push([module.i, "h3 {\r\n    color:red\r\n}\r\n", ""]);
+exports.push([module.i, ".scrollable-menu {\r\n    height: auto !important;\r\n    max-height: 200px !important;\r\n    overflow-x: hidden !important;\r\n}\r\n\r\n.btn-info {\r\n    border: solid 1px silver !important;\r\n    background-color: #292c2f !important;\r\n    color: #8f9296;\r\n}\r\n\r\n.form-control {\r\n    width: 100% !important;\r\n}\r\n", ""]);
 
 // exports
 
@@ -140417,7 +140502,7 @@ exports = module.exports = __webpack_require__(2)();
 
 
 // module
-exports.push([module.i, "agm-map {\r\n    height: 300px;\r\n    width: 100%;\r\n}\r\n", ""]);
+exports.push([module.i, "h3 {\r\n    color:red\r\n}\r\n", ""]);
 
 // exports
 
@@ -140431,7 +140516,7 @@ exports = module.exports = __webpack_require__(2)();
 
 
 // module
-exports.push([module.i, ".loader {\r\n    border: 16px solid #f3f3f3;\r\n    border-radius: 50%;\r\n    border-top: 16px solid blue;\r\n    border-left: 16px solid blue;\r\n    border-bottom: 16px solid yellow;\r\n    border-right: 16px solid yellow;\r\n    -webkit-animation: spin 2s linear infinite;\r\n    animation: spin 2s linear infinite;\r\n    width: 65px;\r\n    height: 65px;\r\n    position: absolute;\r\n    top: 40%;\r\n    left: 50%;\r\n    z-index: 3000;\r\n}\r\n\r\n@-webkit-keyframes spin {\r\n    0% {\r\n        -webkit-transform: rotate(0deg);\r\n    }\r\n\r\n    100% {\r\n        -webkit-transform: rotate(360deg);\r\n    }\r\n}\r\n\r\n@keyframes spin {\r\n    0% {\r\n        transform: rotate(0deg);\r\n    }\r\n\r\n    100% {\r\n        transform: rotate(360deg);\r\n    }\r\n}\r\n", ""]);
+exports.push([module.i, "agm-map {\r\n    height: 300px;\r\n    width: 100%;\r\n}\r\n", ""]);
 
 // exports
 
@@ -140445,7 +140530,7 @@ exports = module.exports = __webpack_require__(2)();
 
 
 // module
-exports.push([module.i, "a {\r\n    color:white!important;\r\n}\r\n    a:hover {\r\n        color: navy !important;\r\n    }\r\n.dropdowncolor {\r\n    background-color: #333;\r\n}", ""]);
+exports.push([module.i, ".loader {\r\n    border: 16px solid #f3f3f3;\r\n    border-radius: 50%;\r\n    border-top: 16px solid blue;\r\n    border-left: 16px solid blue;\r\n    border-bottom: 16px solid yellow;\r\n    border-right: 16px solid yellow;\r\n    -webkit-animation: spin 2s linear infinite;\r\n    animation: spin 2s linear infinite;\r\n    width: 65px;\r\n    height: 65px;\r\n    position: absolute;\r\n    top: 40%;\r\n    left: 50%;\r\n    z-index: 3000;\r\n}\r\n\r\n@-webkit-keyframes spin {\r\n    0% {\r\n        -webkit-transform: rotate(0deg);\r\n    }\r\n\r\n    100% {\r\n        -webkit-transform: rotate(360deg);\r\n    }\r\n}\r\n\r\n@keyframes spin {\r\n    0% {\r\n        transform: rotate(0deg);\r\n    }\r\n\r\n    100% {\r\n        transform: rotate(360deg);\r\n    }\r\n}\r\n", ""]);
 
 // exports
 
@@ -140454,16 +140539,30 @@ exports.push([module.i, "a {\r\n    color:white!important;\r\n}\r\n    a:hover {
 /* 183 */
 /***/ (function(module, exports, __webpack_require__) {
 
+exports = module.exports = __webpack_require__(2)();
+// imports
+
+
+// module
+exports.push([module.i, "a {\r\n    color:white!important;\r\n}\r\n    a:hover {\r\n        color: navy !important;\r\n    }\r\n.dropdowncolor {\r\n    background-color: #333;\r\n}", ""]);
+
+// exports
+
+
+/***/ }),
+/* 184 */
+/***/ (function(module, exports, __webpack_require__) {
+
 module.exports = {
-  XmlEntities: __webpack_require__(185),
-  Html4Entities: __webpack_require__(184),
+  XmlEntities: __webpack_require__(186),
+  Html4Entities: __webpack_require__(185),
   Html5Entities: __webpack_require__(97),
   AllHtmlEntities: __webpack_require__(97)
 };
 
 
 /***/ }),
-/* 184 */
+/* 185 */
 /***/ (function(module, exports) {
 
 var HTML_ALPHA = ['apos', 'nbsp', 'iexcl', 'cent', 'pound', 'curren', 'yen', 'brvbar', 'sect', 'uml', 'copy', 'ordf', 'laquo', 'not', 'shy', 'reg', 'macr', 'deg', 'plusmn', 'sup2', 'sup3', 'acute', 'micro', 'para', 'middot', 'cedil', 'sup1', 'ordm', 'raquo', 'frac14', 'frac12', 'frac34', 'iquest', 'Agrave', 'Aacute', 'Acirc', 'Atilde', 'Auml', 'Aring', 'Aelig', 'Ccedil', 'Egrave', 'Eacute', 'Ecirc', 'Euml', 'Igrave', 'Iacute', 'Icirc', 'Iuml', 'ETH', 'Ntilde', 'Ograve', 'Oacute', 'Ocirc', 'Otilde', 'Ouml', 'times', 'Oslash', 'Ugrave', 'Uacute', 'Ucirc', 'Uuml', 'Yacute', 'THORN', 'szlig', 'agrave', 'aacute', 'acirc', 'atilde', 'auml', 'aring', 'aelig', 'ccedil', 'egrave', 'eacute', 'ecirc', 'euml', 'igrave', 'iacute', 'icirc', 'iuml', 'eth', 'ntilde', 'ograve', 'oacute', 'ocirc', 'otilde', 'ouml', 'divide', 'oslash', 'ugrave', 'uacute', 'ucirc', 'uuml', 'yacute', 'thorn', 'yuml', 'quot', 'amp', 'lt', 'gt', 'OElig', 'oelig', 'Scaron', 'scaron', 'Yuml', 'circ', 'tilde', 'ensp', 'emsp', 'thinsp', 'zwnj', 'zwj', 'lrm', 'rlm', 'ndash', 'mdash', 'lsquo', 'rsquo', 'sbquo', 'ldquo', 'rdquo', 'bdquo', 'dagger', 'Dagger', 'permil', 'lsaquo', 'rsaquo', 'euro', 'fnof', 'Alpha', 'Beta', 'Gamma', 'Delta', 'Epsilon', 'Zeta', 'Eta', 'Theta', 'Iota', 'Kappa', 'Lambda', 'Mu', 'Nu', 'Xi', 'Omicron', 'Pi', 'Rho', 'Sigma', 'Tau', 'Upsilon', 'Phi', 'Chi', 'Psi', 'Omega', 'alpha', 'beta', 'gamma', 'delta', 'epsilon', 'zeta', 'eta', 'theta', 'iota', 'kappa', 'lambda', 'mu', 'nu', 'xi', 'omicron', 'pi', 'rho', 'sigmaf', 'sigma', 'tau', 'upsilon', 'phi', 'chi', 'psi', 'omega', 'thetasym', 'upsih', 'piv', 'bull', 'hellip', 'prime', 'Prime', 'oline', 'frasl', 'weierp', 'image', 'real', 'trade', 'alefsym', 'larr', 'uarr', 'rarr', 'darr', 'harr', 'crarr', 'lArr', 'uArr', 'rArr', 'dArr', 'hArr', 'forall', 'part', 'exist', 'empty', 'nabla', 'isin', 'notin', 'ni', 'prod', 'sum', 'minus', 'lowast', 'radic', 'prop', 'infin', 'ang', 'and', 'or', 'cap', 'cup', 'int', 'there4', 'sim', 'cong', 'asymp', 'ne', 'equiv', 'le', 'ge', 'sub', 'sup', 'nsub', 'sube', 'supe', 'oplus', 'otimes', 'perp', 'sdot', 'lceil', 'rceil', 'lfloor', 'rfloor', 'lang', 'rang', 'loz', 'spades', 'clubs', 'hearts', 'diams'];
@@ -140616,7 +140715,7 @@ module.exports = Html4Entities;
 
 
 /***/ }),
-/* 185 */
+/* 186 */
 /***/ (function(module, exports) {
 
 var ALPHA_INDEX = {
@@ -140777,361 +140876,189 @@ module.exports = XmlEntities;
 
 
 /***/ }),
-/* 186 */
+/* 187 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"col-lg-6 col-lg-offset-3\">\r\n    <div class=\"row\">\r\n        <div class=\"text-center\">\r\n            <p class=\"lead\">\r\n                Даний сайт розроблено в підтримку волонтерського руху України.\r\n            </p>\r\n            <p class=\"lead\">\r\n                Основна мета ресурсу - створити майданчик, на якому небайдужі громадяни могли б ознайомитися з діяльністю\r\n                волонтерських оргаізацій, отримати детальну інформацію про те, яким чином ними були витрачені отримані кошти,\r\n                дізнатися про їх нагальні потреби та зробити пожертву.\r\n            </p>\r\n            <p class=\"lead\">\r\n                В свою чергу волонтерські організації, учасники даного ресурсу, мають змогу презентувати себе\r\n                та ділитися з громадянами новинами про свою діяльність.\r\n            </p>\r\n        </div>\r\n    </div>\r\n    <div class=\"row\">\r\n        <div class=\"text-center\">\r\n            <a [routerLink]=\"['']\"><img src=\"/images/volonter.jpg\"/></a>\r\n        </div>\r\n    </div>\r\n    <div class=\"row\">\r\n        <div class=\"text-center\">Розроблено:</div>\r\n        <h4 class=\"text-center\">Lv-242.Net Group</h4>\r\n        <div class=\"text-center\">\r\n            Витрикуш Тарас, Дмитрук Сергій, Желєзняк Віторія, Малиновський Борис,<br />\r\n            Медвідь Оксана, Сипа Василь, Теплюх Богдан, Фай Василь<br />\r\n        </div>\r\n        <div class=\"text-center\">\r\n            <a [routerLink]=\"['']\">www.fundtrack.com.ua</a>\r\n        </div>\r\n    </div>\r\n</div>\r\n";
 
 /***/ }),
-/* 187 */
+/* 188 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"col-lg-6 col-md-12\" *ngFor=\"let event of _model\">\r\n    <div class=\"panel panel-primary panel-size\">\r\n        <div class=\"panel-heading\">\r\n            <div class=\"panel-title pull-left\">\r\n                <a [routerLink]=\"['']\">{{event.organizationName}}</a>\r\n            </div>\r\n            <div class=\"panel-title pull-right\">\r\n                {{event.createDate | date:'shortDate'}}\r\n            </div>\r\n            <div class=\"clearfix\"></div>\r\n        </div>\r\n        <div class=\"panel-body panel-padding\">\r\n            <div class=\" pull-left div-panel-margen\">\r\n                <img src={{event.imageUrl}}/>\r\n            </div>\r\n            <div class=\"div-strings\">\r\n                {{event.description}}\r\n            </div>\r\n            <div class=\"pull-right\">\r\n                <a [routerLink]=\"['/home/eventdetail',event.id]\">Читати далі</a>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>";
 
 /***/ }),
-/* 188 */
+/* 189 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"col-lg-6\">\r\n   <h1>Will be soon</h1>\r\n</div>";
 
 /***/ }),
-/* 189 */
+/* 190 */
 /***/ (function(module, exports) {
 
 module.exports = "<link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css\">\r\n<div class=\"fixedHeader\">\r\n    <nav class=\"navbar navbar-default\">\r\n        <div class=\"container-fluid\">\r\n            <div class=\"navbar-header\">\r\n                <button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#bs-example-navbar-collapse-1\" aria-expanded=\"false\">\r\n                    <span class=\"sr-only\">Toggle navigation</span>\r\n                    <span class=\"icon-bar\"></span>\r\n                    <span class=\"icon-bar\"></span>\r\n                    <span class=\"icon-bar\"></span>\r\n                </button>\r\n                <a class=\"navbar-brand\" [routerLink]=\"['']\" (click)=\"callChild()\">Волонтерські організації <span>України</span></a>\r\n            </div>\r\n            <div class=\"collapse navbar-collapse\" id=\"bs-example-navbar-collapse-1\">\r\n                <ul class=\"nav navbar-nav\">\r\n                    <li><a [routerLink]=\"['about']\">Про нас</a></li>\r\n                </ul>\r\n                <form class=\"navbar-form navbar-left\">\r\n                    <dropdown-org></dropdown-org>\r\n                </form>\r\n                <form class=\"nav navbar-nav navbar-right\">\r\n                    <user-states></user-states>\r\n                </form>\r\n            </div>\r\n        </div>\r\n    </nav>\r\n</div>\r\n<div class=\"content\" style=\"margin-top:auto;\">\r\n    <div class=\"container-fluid\">\r\n        <router-outlet></router-outlet>\r\n    </div>\r\n</div>\r\n<footer class=\"footer footer-distributed\">\r\n    <div style=\"padding: 20px\">\r\n        <div class=\"footer-right\">\r\n            <a href=\"#\"><i class=\"fa fa-facebook\"></i></a>\r\n            <a href=\"#\"><i class=\"fa fa-twitter\"></i></a>\r\n            <a href=\"#\"><i class=\"fa fa-linkedin\"></i></a>\r\n            <a href=\"#\"><i class=\"fa fa-youtube\"></i></a>\r\n        </div>\r\n\r\n        <div class=\"footer-left\">\r\n            <p class=\"footer-links\">\r\n                <a [routerLink]=\"['']\">Наш солдат</a>\r\n                ·\r\n                <a href=\"#\">Блог</a>\r\n                ·\r\n                <a [routerLink]=\"['/about']\">Про нас</a>\r\n                ·\r\n                <a href=\"#\">Faq</a>\r\n                ·\r\n                <a href=\"#\">Контакти</a>\r\n            </p>\r\n            <p>FundTrack &copy; 2017</p>\r\n            <p>{{_versionNumber}}</p>\r\n        </div>\r\n    </div>\r\n</footer>";
 
 /***/ }),
-/* 190 */
+/* 191 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"loginmodal-container\">\r\n    <div>\r\n        <h3 class=\"col-md-4 col-md-offset-4\">Вхід в систему</h3>\r\n    </div>\r\n    <div class=\"col-md-4 col-md-offset-4 form-group has-feedback\">\r\n        <div class=\"input-group\">\r\n            <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-user\" aria-hidden=\"true\"></i></span>\r\n            <input name=\"login\" placeholder=\"Ваш логін\" type=\"text\"\r\n                   [(ngModel)]=\"loginModel.login\" class=\"form-control input-md\">\r\n        </div>\r\n    </div>\r\n    <!-- Text input-->\r\n    <div class=\"col-md-4 col-md-offset-4 form-group has-feedback\">\r\n        <div class=\"input-group\">\r\n            <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-lock\" aria-hidden=\"true\"></i></span>\r\n            <input name=\"password\" [type]=\"type\" placeholder=\"Ваш пароль\"\r\n                   [(ngModel)]=\"loginModel.password\"\r\n                   class=\"form-control input-md\">\r\n            <span class=\"input-group-addon\"><i [ngClass]=\"glyphyconEye\" (click)=\"showPassword()\" aria-hidden=\"true\"></i></span>\r\n        </div>\r\n    </div>\r\n    <!--Error-->\r\n    <div class=\"col-md-4 col-md-offset-4 form-group\">\r\n        <p class=\"error\" *ngIf=\"errorMessage\">{{errorMessage}}</p>\r\n    </div>\r\n    <!-- Button -->\r\n    <div class=\"col-md-4 col-md-offset-4 form-group\">\r\n        <div class=\"pull-right\">\r\n            <button id=\"submit\" name=\"submit\" class=\"btn btn-success\" (click)=\"login()\">Увійти</button>\r\n            <button id=\"submit\" name=\"submit\" class=\"btn btn-primary\" (click)=\"loginWithFacebook('facebook')\">Увійти через Facebook</button>\r\n        </div>\r\n    </div>\r\n    <!--Register-->\r\n    <div class=\"login-help col-md-4 col-md-offset-4\">\r\n        <div class=\"pull-right\">\r\n            <div class=\"sidebar\">\r\n                <a [routerLink]=\"['/registration']\">Реєстрація - </a>\r\n                <a [routerLink]=\"['/begin_password_reset']\">Забули пароль</a>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n";
 
 /***/ }),
-/* 191 */
+/* 192 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"col-lg-12\" *ngIf=\"_eventDetail\">\r\n    <div class=\"panel panel-primary\">\r\n        <div class=\"panel-heading\">\r\n            <div class=\"panel-title pull-left\">\r\n                {{_eventDetail.organizationName}}\r\n            </div>\r\n            <div class=\"panel-title pull-right\">\r\n                {{_eventDetail.createDate | date:'shortDate' }}\r\n            </div>\r\n            <div class=\"clearfix\"></div>\r\n        </div>\r\n        <div class=\"panel-body panel-padding\">\r\n\r\n            <div class=\"carousel slide article-slide\" id=\"article-photo-carousel\">\r\n                <!-- Wrapper for slides -->\r\n                <div class=\"carousel-inner cont-slider\">\r\n                    <div class=\"item active\">\r\n                        <a [routerLink]=\"['']\"><img alt=\"\" title=\"\" src={{_eventDetail.imageUrl[0]}} class=\"img-big\"></a>\r\n                    </div>\r\n                </div>\r\n                <!-- Indicators -->\r\n                <ol class=\"carousel-indicators\">\r\n                    <li class=\"\" data-target=\"#article-photo-carousel\" *ngFor=\"let image of _eventDetail.imageUrl | slice:1; let i = index \" [attr.data-slide-to]=\"i+1\">\r\n                        <img alt=\"\" src={{image}}>\r\n                    </li>\r\n                </ol>\r\n            </div>\r\n\r\n            <div>\r\n                {{_eventDetail.description}}\r\n            </div>\r\n            <div class=\"pull-right\">\r\n                <a [routerLink]=\"['']\">Назад</a>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n\r\n\r\n<!--<div class=\"carousel slide article-slide\" id=\"article-photo-carousel\">-->\r\n    <!-- Wrapper for slides -->\r\n    <!--<div class=\"carousel-inner cont-slider\">\r\n        <div class=\"item active\">\r\n            <a [routerLink]=\"['']\"><img alt=\"\" title=\"\" src={{_eventDetail.imageUrl[0]}} class=\"img-big\"></a>\r\n        </div>\r\n        <div class=\"item\" *ngFor=\"let image of _eventDetail.imageUrl | slice:1\">\r\n            <a [routerLink]=\"['']\"><img alt=\"\" title=\"\" src={{image}} class=\"img-big\"></a>\r\n        </div>\r\n    </div>-->\r\n    <!-- Indicators -->\r\n    <!--<ol class=\"carousel-indicators\">\r\n        <li class=\"active\" data-slide-to=\"0\" data-target=\"#article-photo-carousel\">\r\n            <img alt=\"\" src={{_eventDetail.imageUrl[0]}}>\r\n        </li>\r\n        <li class=\"\" data-target=\"#article-photo-carousel\" *ngFor=\"let image of _eventDetail.imageUrl | slice:1; let i = index \" [attr.data-slide-to]=\"i+1\">\r\n            <img alt=\"\" src={{image}}>\r\n        </li>\r\n    </ol>\r\n</div>-->\r\n";
 
 /***/ }),
-/* 192 */
+/* 193 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"row\">\r\n    <div class=\"col-lg-2 nav-mn\">\r\n        <ul class=\"nav nav-pills nav-stacked lead\">\r\n            <li [routerLinkActive]=\"['link-active']\"><a [routerLink]=\"['']\" (click)=\"callChild()\"><span class=\"glyphicon glyphicon-calendar\"></span> Події</a></li>\r\n            <li [routerLinkActive]=\"['link-active']\"><a [routerLink]=\"['']\"><span class=\"glyphicon glyphicon-duplicate\"></span> Звіти</a></li>\r\n            <li [routerLinkActive]=\"['link-active']\"><a [routerLink]=\"['allrequests']\"><span class=\"glyphicon glyphicon-gift\"></span> Потреби</a></li>\r\n            <li [routerLinkActive]=\"['link-active']\"><a [routerLink]=\"['']\"><span class=\"glyphicon glyphicon-usd\"></span> Пожертвувати</a></li>\r\n            <li [routerLinkActive]=\"['link-active']\"><a [routerLink]=\"['']\"><span class=\"glyphicon glyphicon-briefcase\"></span> Запропонувати</a></li>\r\n            <li [routerLinkActive]=\"['link-active']\"><a [routerLink]=\"['']\"><span class=\"glyphicon glyphicon-camera\"></span> Фотографії</a></li>\r\n        </ul>\r\n    </div>\r\n    <div class=\"col-lg-10 pull-right\">\r\n        <router-outlet></router-outlet>\r\n    </div>\r\n</div>";
 
 /***/ }),
-/* 193 */
-/***/ (function(module, exports) {
-
-module.exports = "<h2 class=\"text-center\">Всі події</h2>\r\n<table class=\"table-fill\">\r\n    <thead>\r\n        <tr>\r\n            <th class=\"text-left\">Дата події</th>\r\n            <th class=\"text-left\">Короткий опис</th>\r\n            <th class=\"text-left\">Дії</th>\r\n        </tr>\r\n    </thead>\r\n    <tbody class=\"table-hover\">\r\n        <tr>\r\n            <td class=\"text-left\">21.04.17</td>\r\n            <td class=\"text-left\">Їздили туда - сюда ...</td>\r\n            <td class=\"text-left\">\r\n                <button class=\"btn btn-default\">Редагувати</button>\r\n                <button class=\"btn btn-default\">Видалити</button>\r\n            </td>\r\n        </tr>\r\n        <tr>\r\n            <td class=\"text-left\">23.04.17</td>\r\n            <td class=\"text-left\">а потім ще раз їздили туда - сюда ...</td>\r\n            <td class=\"text-left\">\r\n                <button class=\"btn btn-default\">Редагувати</button>\r\n                <button class=\"btn btn-default\">Видалити</button>\r\n            </td>\r\n        </tr>\r\n    </tbody>\r\n</table>";
-
-/***/ }),
 /* 194 */
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"wrapper\" [class.toggled]=\"!sideBarIsClosed\" *ngIf=\"organization\">\r\n    <div class=\"overlay\"></div>\r\n    <nav class=\"navbar navbar-inverse navbar-fixed-top\" id=\"sidebar-wrapper\" role=\"navigation\">\r\n        <ul class=\"nav sidebar-nav\">\r\n            <li class=\"hidden-sm hidden-xs sidebar-brand\">{{organization.name}}</li>\r\n            <li class=\"visible-sm visible-xs sidebar-brand\">Меню</li>\r\n            <li>\r\n                <a class=\"hidden-xs\" href=\"#\">Головна</a>\r\n                <a class=\"visible-xs\" href=\"\"><span class=\"glyphicon glyphicon-home\"></span></a>\r\n            </li>\r\n            <li>\r\n                <a class=\"hidden-xs\" [routerLink]=\"['/organization-management/all-events']\">Події</a>\r\n                <a class=\"visible-xs\" [routerLink]=\"['/organization-management/all-events']\"><span class=\"glyphicon glyphicon-bell\"></span></a>\r\n            </li>\r\n            <li>\r\n                <a class=\"hidden-xs\" href=\"#\">Потреби</a>\r\n                <a class=\"visible-xs\" href=\"\"><span class=\"glyphicon glyphicon-bullhorn\"></span></a>\r\n            </li>\r\n            <li>\r\n                <a class=\"hidden-xs\" href=\"#\">Звіти</a>\r\n                <a class=\"visible-xs\" href=\"\"><span class=\"glyphicon glyphicon-briefcase\"></span></a>\r\n            </li>\r\n            <li>\r\n                <a class=\"hidden-xs\" href=\"#\">Налаштування</a>\r\n                <a class=\"visible-xs\" href=\"\"><span class=\"glyphicon glyphicon-cog\"></span></a>\r\n            </li>\r\n        </ul>\r\n    </nav>\r\n    <div class=\"row\">\r\n        <div class=\"col-lg-1 col-md-1 col-sm-1 col-xs-1\">\r\n            <button *ngIf=\"!sideBarIsClosed\" type=\"button\" class=\"hamburger is-open\" (click)=\"showSideBar()\" data-toggle=\"offcanvas\">\r\n                <span class=\"hamb-top\"></span>\r\n                <span class=\"hamb-middle\"></span>\r\n                <span class=\"hamb-bottom\"></span>\r\n            </button>\r\n            <button *ngIf=\"sideBarIsClosed\" type=\"button\" class=\"hamburger is-closed\" (click)=\"showSideBar()\" data-toggle=\"offcanvas\">\r\n                <span class=\"hamb-top\"></span>\r\n                <span class=\"hamb-middle\"></span>\r\n                <span class=\"hamb-bottom\"></span>\r\n            </button>\r\n        </div>\r\n        <div class=\"col-lg-11 col-md-11 col-sm-10 col-xs-10\">\r\n            <router-outlet></router-outlet>\r\n        </div>\r\n    </div>\r\n</div>";
+module.exports = "<h2 class=\"text-center\">Всі події</h2>\r\n<div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">\r\n    <table *ngIf=\"_allEvents\" class=\"table-fill\">\r\n        <thead>\r\n            <tr>\r\n                <th class=\"text-left\">Дата події</th>\r\n                <th class=\"text-left\">Короткий опис</th>\r\n                <th class=\"text-left\">Редагувати</th>\r\n                <th class=\"text-left\">Видалити</th>\r\n            </tr>\r\n        </thead>\r\n        <tbody class=\"table-hover\">\r\n            <tr *ngFor=\"let event of _allEvents\">\r\n                <td class=\"text-left\">{{event.createDate|date:'shortTime'}}</td>\r\n                <td class=\"text-left\">{{event.description|truncate : 50}}</td>\r\n                <td class=\"text-center\">\r\n                    <button class=\"btn btn-default\">Редагувати</button>\r\n                </td>\r\n                <td class=\"text-center\">\r\n                    <button class=\"btn btn-default\">Видалити</button>\r\n                </td>\r\n            </tr>\r\n        </tbody>\r\n    </table>\r\n</div>";
 
 /***/ }),
 /* 195 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"col-md-4 col-md-offset-4\">\r\n    <div *ngIf=\"!emailSend\">\r\n        <div>\r\n            <h4 class=\"text-center\">Впишіть свій e-mail під яким ви зареєстровані в системі</h4>\r\n        </div>\r\n        <form [formGroup]=\"emailForm\" class=\"form-horizontal\" style=\"width: 400px\" novalidate>\r\n            <div class=\"form-group\" [class.has-error]=\"formErrors.email\"\r\n                                    [class.has-success]=\"!formErrors.email && emailForm.get('email').valid\">\r\n                <label class=\"control-label\" for=\"email\">Email</label>\r\n                <div class=\"input-group\">\r\n                    <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-envelope\" aria-hidden=\"true\"></i></span>\r\n                        <input placeholder=\"Ваш e-mail\"\r\n                               formControlName=\"email\" \r\n                               class=\"form-control input-md\" \r\n                               type=\"text\"                     \r\n                               [(ngModel)]=\"recoveryEmail.email\" />            \r\n                </div>  \r\n                <span *ngIf=\"formErrors.email\" class=\"has-error help-block fixedError\">\r\n                    {{ formErrors.email }}\r\n                </span>\r\n                <span *ngIf=\"errorMessage.length > 0\" class=\"text-danger\">\r\n                    {{errorMessage}}\r\n                </span>\r\n            </div>\r\n            <div class=\"form-group\">\r\n                <label class=\"control-label\" for=\"submit\"></label>\r\n                <button id=\"submit\"\r\n                        [disabled]=\"emailForm.invalid\"\r\n                        class=\"btn btn-primary pull-right\" \r\n                        (click)=\"sendEmail()\">Відправити Email</button>\r\n            </div>\r\n        </form>\r\n    </div>    \r\n    <div *ngIf=\"emailSend\">\r\n         <p>На пошту {{recoveryEmail.email}} був відправлений лист для відновлення паролю.</p>\r\n         <p>Якшо він не прийшов протягов 5 хвилин натисніть\r\n        <button (click)=\"sendEmail()\" class=\"btn btn-xs\">Відправити ще раз</button></p>\r\n    </div>\r\n</div>";
+module.exports = "<div id=\"wrapper\" [class.toggled]=\"!sideBarIsClosed\" *ngIf=\"_organization\">\r\n    <div class=\"overlay\"></div>\r\n    <nav class=\"navbar navbar-inverse navbar-fixed-top\" id=\"sidebar-wrapper\" role=\"navigation\">\r\n        <ul class=\"nav sidebar-nav\">\r\n            <li class=\"hidden-sm hidden-xs sidebar-brand\">{{_organization.name}}</li>\r\n            <li class=\"visible-sm visible-xs sidebar-brand\">Меню</li>\r\n            <li>\r\n                <a class=\"hidden-xs\" href=\"#\">Головна</a>\r\n                <a class=\"visible-xs\" href=\"\"><span class=\"glyphicon glyphicon-home\"></span></a>\r\n            </li>\r\n            <li>\r\n                <a class=\"hidden-xs\" [routerLink]=\"['all-events']\">Події</a>\r\n                <a class=\"visible-xs\" [routerLink]=\"['all-events']\"><span class=\"glyphicon glyphicon-bell\"></span></a>\r\n            </li>\r\n            <li class=\"dropdown\">\r\n                <a [routerLink]=\"['all-events']\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">Події <span class=\"caret\"></span></a>\r\n                <ul class=\"dropdown-menu\" role=\"menu\">\r\n                    <li class=\"dropdown-header\">Dropdown heading</li>\r\n                    <li><a href=\"#\">Створити подію</a></li>\r\n                </ul>\r\n            </li>\r\n            <li>\r\n                <a class=\"hidden-xs\" href=\"#\">Потреби</a>\r\n                <a class=\"visible-xs\" href=\"\"><span class=\"glyphicon glyphicon-bullhorn\"></span></a>\r\n            </li>\r\n            <li>\r\n                <a class=\"hidden-xs\" href=\"#\">Звіти</a>\r\n                <a class=\"visible-xs\" href=\"\"><span class=\"glyphicon glyphicon-briefcase\"></span></a>\r\n            </li>\r\n            <li>\r\n                <a class=\"hidden-xs\" href=\"#\">Налаштування</a>\r\n                <a class=\"visible-xs\" href=\"\"><span class=\"glyphicon glyphicon-cog\"></span></a>\r\n            </li>\r\n        </ul>\r\n    </nav>\r\n    <div class=\"row\">\r\n        <div class=\"col-lg-1 col-md-1 col-sm-1 col-xs-1\">\r\n            <button *ngIf=\"!sideBarIsClosed\" type=\"button\" class=\"hamburger is-open\" (click)=\"showSideBar()\" data-toggle=\"offcanvas\">\r\n                <span class=\"hamb-top\"></span>\r\n                <span class=\"hamb-middle\"></span>\r\n                <span class=\"hamb-bottom\"></span>\r\n            </button>\r\n            <button *ngIf=\"sideBarIsClosed\" type=\"button\" class=\"hamburger is-closed\" (click)=\"showSideBar()\" data-toggle=\"offcanvas\">\r\n                <span class=\"hamb-top\"></span>\r\n                <span class=\"hamb-middle\"></span>\r\n                <span class=\"hamb-bottom\"></span>\r\n            </button>\r\n        </div>\r\n        <div class=\"col-lg-11 col-md-11 col-sm-10 col-xs-10\">\r\n            <router-outlet></router-outlet>\r\n        </div>\r\n    </div>\r\n</div>";
 
 /***/ }),
 /* 196 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"col-md-4 col-md-offset-4\">\r\n    <div *ngIf=\"!passwordChanged\">\r\n        <h3 class=\"text-center\">Створення нового паролю</h3>\r\n        <hr />\r\n        <form *ngIf=\"errorMessage.length == 0\" [formGroup]=\"passwordForm\" class=\"form-horizontal\" style=\"width: 400px\" novalidate>\r\n            <div class=\"form-group\" [class.has-error]=\"formErrors.password\"\r\n                 [class.has-success]=\"!formErrors.password && passwordForm.get('password').valid\">\r\n                <label class=\"control-label\" for=\"password\">Новий Пароль</label>\r\n                <div class=\"input-group\">\r\n                    <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-lock\" aria-hidden=\"true\"></i></span>\r\n                    <input placeholder=\"Ваш пароль\" \r\n                           class=\"form-control input-md\" \r\n                           [type]=\"type\"\r\n                           formControlName=\"password\"\r\n                           [(ngModel)]=\"resetPasswordModel.newPassword\" />\r\n                    <span class=\"input-group-addon\"><i [ngClass]=\"glyphyconEye\" (click)=\"showPassword()\" aria-hidden=\"true\"></i></span>\r\n                </div>\r\n                <span *ngIf=\"formErrors.password\" class=\"has-error help-block fixedError\">\r\n                    {{ formErrors.password }}\r\n                </span>\r\n            </div>\r\n\r\n            <div class=\"form-group\" [class.has-error]=\"formErrors.confirmPassword || passwordForm.hasError('mismatchedPasswords')\"\r\n                 [class.has-success]=\"!formErrors.confirmPassword && passwordForm.get('confirmPassword').valid\">\r\n                <label class=\"control-label\" for=\"confirmPassword\">Підтвердіть пароль</label>\r\n                <div class=\"input-group\">\r\n                    <span class=\"input-group-addon glyphicon glyphicon-lock\"><i aria-hidden=\"true\"></i></span>\r\n                    <input type=\"password\"\r\n                           placeholder=\"Підтвердіть пароль\"\r\n                           class=\"form-control input-md\"\r\n                           formControlName=\"confirmPassword\"\r\n                           [(ngModel)]=\"resetPasswordModel.newPasswordConfirm\" />\r\n                </div>\r\n                <div *ngIf=\"formErrors.confirmPassword || passwordForm.hasError('mismatchedPasswords')\" class=\"has-error help-block fixedError\">\r\n                    {{ formErrors.confirmPassword }}\r\n                </div>\r\n                <div *ngIf=\"passwordForm.hasError('mismatchedPasswords')\" class=\"has-error help-block fixedError\">Паролі не співпадають</div>\r\n            </div>\r\n\r\n            <div class=\"form-group\">\r\n                <label class=\"control-label\" for=\"submit\"></label>\r\n                <button id=\"submit\"\r\n                        class=\"btn btn-primary pull-right\"\r\n                        [disabled]=\"passwordForm.invalid\" \r\n                        (click)=\"changePassword()\">\r\n                Змінити Пароль\r\n                </button>               \r\n            </div>\r\n        </form>\r\n        <div *ngIf=\"errorMessage.length > 0\">\r\n            <h1 class=\"text-center text-danger\">{{errorMessage}}</h1>\r\n        </div>\r\n    </div>\r\n    <div *ngIf=\"passwordChanged\">\r\n       <h3>Ваш пароль було змінено.</h3> \r\n       <p>Будь ласка перейдіть на сторінку<a [routerLink]=\"['/login']\"> Логування</a></p>\r\n    </div>\r\n</div>\r\n";
+module.exports = "<div class=\"col-md-4 col-md-offset-4\">\r\n    <div *ngIf=\"!emailSend\">\r\n        <div>\r\n            <h4 class=\"text-center\">Впишіть свій e-mail під яким ви зареєстровані в системі</h4>\r\n        </div>\r\n        <form [formGroup]=\"emailForm\" class=\"form-horizontal\" style=\"width: 400px\" novalidate>\r\n            <div class=\"form-group\" [class.has-error]=\"formErrors.email\"\r\n                                    [class.has-success]=\"!formErrors.email && emailForm.get('email').valid\">\r\n                <label class=\"control-label\" for=\"email\">Email</label>\r\n                <div class=\"input-group\">\r\n                    <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-envelope\" aria-hidden=\"true\"></i></span>\r\n                        <input placeholder=\"Ваш e-mail\"\r\n                               formControlName=\"email\" \r\n                               class=\"form-control input-md\" \r\n                               type=\"text\"                     \r\n                               [(ngModel)]=\"recoveryEmail.email\" />            \r\n                </div>  \r\n                <span *ngIf=\"formErrors.email\" class=\"has-error help-block fixedError\">\r\n                    {{ formErrors.email }}\r\n                </span>\r\n                <span *ngIf=\"errorMessage.length > 0\" class=\"text-danger\">\r\n                    {{errorMessage}}\r\n                </span>\r\n            </div>\r\n            <div class=\"form-group\">\r\n                <label class=\"control-label\" for=\"submit\"></label>\r\n                <button id=\"submit\"\r\n                        [disabled]=\"emailForm.invalid\"\r\n                        class=\"btn btn-primary pull-right\" \r\n                        (click)=\"sendEmail()\">Відправити Email</button>\r\n            </div>\r\n        </form>\r\n    </div>    \r\n    <div *ngIf=\"emailSend\">\r\n         <p>На пошту {{recoveryEmail.email}} був відправлений лист для відновлення паролю.</p>\r\n         <p>Якшо він не прийшов протягов 5 хвилин натисніть\r\n        <button (click)=\"sendEmail()\" class=\"btn btn-xs\">Відправити ще раз</button></p>\r\n    </div>\r\n</div>";
 
 /***/ }),
 /* 197 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"col-lg-4 col-lg-offset-4\">\r\n    <spinner [showSpinner]=\"showUserRegistrationSpinner\"></spinner>\r\n    <form [formGroup]=\"registrationForm\" class=\"form-horizontal\" id=\"registrationForm\" novalidate>\r\n        <h3 class=\"formHeader text-center\">Реєстрація нового користувача</h3>\r\n        <div class=\"form-group\" [class.has-error]=\"formErrors.firstName\"\r\n             [class.has-success]=\"!formErrors.firstName && registrationForm.get('firstName').valid\">\r\n            <label class=\"control-label\" for=\"firstName\">Імя</label>\r\n            <div class=\"input-group\">\r\n                <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-user\" aria-hidden=\"true\"></i></span>\r\n                <input placeholder=\"Ваше імя\" type=\"text\" class=\"form-control\"\r\n                       formControlName=\"firstName\" [(ngModel)]=\"registrationViewModel.firstName\" />\r\n            </div>\r\n            <div>\r\n                <span *ngIf=\"formErrors.firstName\" class=\"has-error help-block fixedError\">\r\n                    {{ formErrors.firstName }}\r\n                </span>\r\n            </div>\r\n        </div>\r\n\r\n        <div class=\"form-group\" [class.has-error]=\"formErrors.lastName\"\r\n             [class.has-success]=\"!formErrors.lastName && registrationForm.get('lastName').valid\">\r\n            <label class=\"control-label\" for=\"lastName\">Прізвище</label>\r\n            <div class=\"input-group\">\r\n                <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-user\" aria-hidden=\"true\"></i></span>\r\n                <input placeholder=\"Ваше прізвище\" type=\"text\" class=\"form-control input-md\"\r\n                       formControlName=\"lastName\" [(ngModel)]=\"registrationViewModel.lastName\" />\r\n            </div>\r\n            <span *ngIf=\"formErrors.lastName\" class=\"has-error help-block fixedError\">\r\n                {{ formErrors.lastName }}\r\n            </span>\r\n        </div>\r\n\r\n        <div class=\"form-group\" [class.has-error]=\"formErrors.login\"\r\n             [class.has-success]=\"!formErrors.login && registrationForm.get('login').valid\">\r\n            <label class=\"control-label\" for=\"login\">Логін</label>\r\n            <div class=\"input-group\">\r\n                <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-user\" aria-hidden=\"true\"></i></span>\r\n                <input placeholder=\"Ваш логін\" type=\"text\" class=\"form-control input-md\"\r\n                       formControlName=\"login\" [(ngModel)]=\"registrationViewModel.login\" />\r\n            </div>\r\n            <span *ngIf=\"formErrors.login\" class=\"has-error help-block fixedError\">\r\n                {{ formErrors.login }}\r\n            </span>\r\n        </div>\r\n\r\n        <div class=\"form-group\" [class.has-error]=\"formErrors.email || errorMessage\"\r\n             [class.has-success]=\"!formErrors.email && registrationForm.get('email').valid\">\r\n            <label class=\"control-label\" for=\"email\">Email</label>\r\n            <div class=\"input-group\">\r\n                <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-envelope\" aria-hidden=\"true\"></i></span>\r\n                <input placeholder=\"Ваш e-mail\" class=\"form-control input-md\" type=\"text\"\r\n                       formControlName=\"email\" [(ngModel)]=\"registrationViewModel.email\" />\r\n            </div>\r\n            <span *ngIf=\"formErrors.email\" class=\"has-error help-block fixedError\">\r\n                {{ formErrors.email }}\r\n            </span>\r\n            <span *ngIf=\"errorMessage\">\r\n                <span class=\"has-error help-block fixedError\">{{errorMessage}}</span>\r\n            </span>\r\n        </div>\r\n\r\n        <div class=\"form-group\" [class.has-error]=\"formErrors.password\"\r\n             [class.has-success]=\"!formErrors.password && registrationForm.get('password').valid\">\r\n            <label class=\"control-label\" for=\"password\">Пароль</label>\r\n            <div class=\"input-group\">\r\n                <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-lock\" aria-hidden=\"true\"></i></span>\r\n                <input placeholder=\"Ваш пароль\" class=\"form-control input-md\" [type]=\"type\"\r\n                       formControlName=\"password\" [(ngModel)]=\"registrationViewModel.password\" />\r\n                <span class=\"input-group-addon\"><i [ngClass]=\"glyphyconEye\" (click)=\"showPassword()\" aria-hidden=\"true\"></i></span>\r\n            </div>\r\n            <span *ngIf=\"formErrors.password\" class=\"has-error help-block fixedError\">\r\n                {{ formErrors.password }}\r\n            </span>\r\n        </div>\r\n\r\n        <div class=\"form-group\" [class.has-error]=\"formErrors.confirmPassword || registrationForm.hasError('mismatchedPasswords')\"\r\n             [class.has-success]=\"!formErrors.confirmPassword && registrationForm.get('confirmPassword').valid\">\r\n            <label class=\"control-label\" for=\"confirmPassword\">Підтвердіть пароль</label>\r\n            <div class=\"input-group\">\r\n                <span class=\"input-group-addon glyphicon glyphicon-lock\"><i aria-hidden=\"true\"></i></span>\r\n                <input type=\"password\" placeholder=\"Підтвердіть пароль\" class=\"form-control input-md\"\r\n                       formControlName=\"confirmPassword\" [(ngModel)]=\"registrationViewModel.passwordConfirm\" />\r\n            </div>\r\n            <div *ngIf=\"formErrors.confirmPassword || registrationForm.hasError('mismatchedPasswords')\" class=\"has-error help-block fixedError\">\r\n                {{ formErrors.confirmPassword }}\r\n            </div>\r\n            <div *ngIf=\"registrationForm.hasError('mismatchedPasswords')\" class=\"has-error help-block fixedError\">Паролі не співпадають</div>\r\n        </div>\r\n\r\n        <div class=\"form-group\">\r\n            <label class=\"control-label\" for=\"submit\"></label>\r\n            <button id=\"submit\" class=\"btn btn-success pull-right\" [disabled]=\"registrationForm.invalid\" (click)=\"register()\">Зареєструватись</button>\r\n        </div>\r\n    </form>\r\n    </div>\r\n";
+module.exports = "<div class=\"col-md-4 col-md-offset-4\">\r\n    <div *ngIf=\"!passwordChanged\">\r\n        <h3 class=\"text-center\">Створення нового паролю</h3>\r\n        <hr />\r\n        <form *ngIf=\"errorMessage.length == 0\" [formGroup]=\"passwordForm\" class=\"form-horizontal\" style=\"width: 400px\" novalidate>\r\n            <div class=\"form-group\" [class.has-error]=\"formErrors.password\"\r\n                 [class.has-success]=\"!formErrors.password && passwordForm.get('password').valid\">\r\n                <label class=\"control-label\" for=\"password\">Новий Пароль</label>\r\n                <div class=\"input-group\">\r\n                    <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-lock\" aria-hidden=\"true\"></i></span>\r\n                    <input placeholder=\"Ваш пароль\" \r\n                           class=\"form-control input-md\" \r\n                           [type]=\"type\"\r\n                           formControlName=\"password\"\r\n                           [(ngModel)]=\"resetPasswordModel.newPassword\" />\r\n                    <span class=\"input-group-addon\"><i [ngClass]=\"glyphyconEye\" (click)=\"showPassword()\" aria-hidden=\"true\"></i></span>\r\n                </div>\r\n                <span *ngIf=\"formErrors.password\" class=\"has-error help-block fixedError\">\r\n                    {{ formErrors.password }}\r\n                </span>\r\n            </div>\r\n\r\n            <div class=\"form-group\" [class.has-error]=\"formErrors.confirmPassword || passwordForm.hasError('mismatchedPasswords')\"\r\n                 [class.has-success]=\"!formErrors.confirmPassword && passwordForm.get('confirmPassword').valid\">\r\n                <label class=\"control-label\" for=\"confirmPassword\">Підтвердіть пароль</label>\r\n                <div class=\"input-group\">\r\n                    <span class=\"input-group-addon glyphicon glyphicon-lock\"><i aria-hidden=\"true\"></i></span>\r\n                    <input type=\"password\"\r\n                           placeholder=\"Підтвердіть пароль\"\r\n                           class=\"form-control input-md\"\r\n                           formControlName=\"confirmPassword\"\r\n                           [(ngModel)]=\"resetPasswordModel.newPasswordConfirm\" />\r\n                </div>\r\n                <div *ngIf=\"formErrors.confirmPassword || passwordForm.hasError('mismatchedPasswords')\" class=\"has-error help-block fixedError\">\r\n                    {{ formErrors.confirmPassword }}\r\n                </div>\r\n                <div *ngIf=\"passwordForm.hasError('mismatchedPasswords')\" class=\"has-error help-block fixedError\">Паролі не співпадають</div>\r\n            </div>\r\n\r\n            <div class=\"form-group\">\r\n                <label class=\"control-label\" for=\"submit\"></label>\r\n                <button id=\"submit\"\r\n                        class=\"btn btn-primary pull-right\"\r\n                        [disabled]=\"passwordForm.invalid\" \r\n                        (click)=\"changePassword()\">\r\n                Змінити Пароль\r\n                </button>               \r\n            </div>\r\n        </form>\r\n        <div *ngIf=\"errorMessage.length > 0\">\r\n            <h1 class=\"text-center text-danger\">{{errorMessage}}</h1>\r\n        </div>\r\n    </div>\r\n    <div *ngIf=\"passwordChanged\">\r\n       <h3>Ваш пароль було змінено.</h3> \r\n       <p>Будь ласка перейдіть на сторінку<a [routerLink]=\"['/login']\"> Логування</a></p>\r\n    </div>\r\n</div>\r\n";
 
 /***/ }),
 /* 198 */
 /***/ (function(module, exports) {
 
-module.exports = "<h2> Форма реєстрації організації</h2>\r\n<div>\r\n    <form #form=\"ngForm\">\r\n        <h4> Загальні відомості </h4>\r\n        <div class=\"form-group\" [class.has-error]=\"name.invalid&&name.touched\">\r\n            <label class=\"control-label\"> Назва організації</label>\r\n            <div class=\"inner-addon left-addon\">\r\n                <i class=\"glyphicon glyphicon-pencil\"></i>\r\n                <input type=\"text\" class=\"form-control\" [(ngModel)]=\"organization.name\" placeholder=\"Введіть назву\" required minlength=\"5\" maxlength=\"50\" name=\"name\" #name=\"ngModel\"/>\r\n            </div>\r\n             <div *ngIf=\"name.errors && (name.dirty || name.touched)\"\r\n                 class=\"alert alert-danger\">\r\n                <div [hidden]=\"!name.errors.required\">\r\n                    Назва організації обов'язкова\r\n                </div>\r\n                <div [hidden]=\"!name.errors.minlength\">\r\n                    Назва має містити принаймі 5 символів.\r\n                </div>\r\n                <div [hidden]=\"!name.errors.maxlength\">\r\n                    Назва не може перевищувати 50 символів.\r\n                </div>\r\n            </div>\r\n            <div class=\"alert-danger\">\r\n                {{nameError}}\r\n            </div>\r\n            </div>\r\n        <div class=\"form-group\" [class.has-error]=\"description.invalid&&description.touched\">\r\n            <label class=\"control-label\"> Опис організації </label>\r\n            <div class=\"inner-addon left-addon\">\r\n                <i class=\"glyphicon glyphicon-pencil\" *ngIf =\"!description.dirty\"></i> \r\n                <textarea class=\"form-control\" [(ngModel)]=\"organization.description\" required minlength=\"20\" placeholder=\"     Введіть опис\" maxlength=\"200\" name=\"description\" #description=\"ngModel\" rows=\"5\"> </textarea>\r\n            </div>\r\n            <div *ngIf=\"description.errors && (description.dirty || description.touched)\"\r\n                 class=\"alert alert-danger\">\r\n                <div [hidden]=\"!description.errors.required\">\r\n                    Опис організації обов'язковий\r\n                </div>\r\n                <div [hidden]=\"!description.errors.minlength\">\r\n                    Опис має містити принаймі 20 символів.\r\n                </div>\r\n                <div [hidden]=\"!description.errors.maxlength\">\r\n                    Опис не може перевищувати 100 символів.\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <h4> Представник </h4>\r\n        <div class=\"form-group\" [class.has-error]=\"login.invalid&&login.touched\">\r\n            <label class=\"control-label\"> Логін адміністратора</label>\r\n            <div class=\"inner-addon left-addon\">\r\n                <i class=\"glyphicon glyphicon-user\"></i>\r\n                <input type=\"text\" class=\"form-control\" required [(ngModel)]=\"organization.administratorLogin\" pattern=\"[a-zA-Z0-9_]*\" placeholder=\"Введіть логін адміністратора\" name=\"login\" #login=\"ngModel\" />\r\n            </div>\r\n            <div *ngIf=\"login.errors && (login.dirty || login.touched)\"\r\n                 class=\"alert alert-danger\">\r\n                <div [hidden]=\"!login.errors.required\">\r\n                    Логін адміністратора обов'язковий\r\n                </div>\r\n                <div [hidden]=\"!login.errors.pattern\">\r\n                    Введено недозволений символ\r\n                </div>\r\n            </div>\r\n            <div class=\"alert-danger\">\r\n                {{userError}}\r\n            </div>\r\n        </div>\r\n        <h4> Місцезнаходження</h4>\r\n        <!--\r\n        <button (click)=\"openModal()\"> Вибрати локацію</button>\r\n       \r\n         <app-modal>\r\n            <div class=\"app-modal-header\">\r\n                <h3>Додати місцезнаходження</h3>\r\n            </div>\r\n            <div class=\"app-modal-body\">\r\n                <map-component> </map-component>\r\n            </div>\r\n            <div class=\"app-modal-footer\">\r\n                <button type=\"button\" class=\"btn btn-default\" (click)=\"modal.hide()\">Закрити</button>\r\n            </div>\r\n        </app-modal> \r\n        -->\r\n        <div class=\"form-group\" [class.has-error]=\"city.invalid&&city.touched\">\r\n            <label class=\"control-label\"> Місто </label>\r\n            <div class=\"inner-addon left-addon\">\r\n                <i class=\"glyphicon glyphicon-home\"></i>\r\n                <input type=\"text\" class=\"form-control\" [(ngModel)]=\"organization.city\" placeholder=\"Введіть місто\" pattern=\"[А-Яа-яїЇіІ]*\" name=\"city\" #city=\"ngModel\" />\r\n            </div>\r\n            <div *ngIf=\"city.errors && (city.dirty || city.touched)\"\r\n                 class=\"alert alert-danger\">\r\n                <div [hidden]=\"!city.errors.required\">\r\n                    Місто обов'язкове\r\n                </div>\r\n                <div [hidden]=\"!city.errors.pattern\">\r\n                    Поле може містити лише кирилицю.\r\n                </div>\r\n            </div>\r\n            </div>\r\n        <div class=\"form-group\" [class.has-error]=\"street.invalid&&street.touched\" >\r\n            <label class=\"control-label\"> Вулиця </label>\r\n            <div class=\"inner-addon left-addon\">\r\n                <i class=\"glyphicon glyphicon-home\"></i>\r\n                <input type=\"text\" class=\"form-control\" [(ngModel)]=\"organization.street\" required placeholder=\"Введіть вулицю\" name=\"street\" #street=\"ngModel\" />\r\n            </div>\r\n            <div *ngIf=\"street.errors && (street.dirty || street.touched)\"\r\n                 class=\"alert alert-danger\">\r\n                <div [hidden]=\"!street.errors.required\">\r\n                    Вулиця обов'язкова\r\n                </div>\r\n            </div>\r\n        </div>\r\n          \r\n        <div class=\"form-group\" [class.has-error]=\"house.invalid&&house.touched\">\r\n            <label class=\"control-label\"> Будинок </label>\r\n            <div class=\"inner-addon left-addon\">\r\n                <i class=\"glyphicon glyphicon-home\"></i>\r\n                <input type=\"text\" class=\"form-control\" [(ngModel)]=\"organization.house\" placeholder=\"Введіть будинок\" name=\"house\" #house=\"ngModel\"/>\r\n            </div>\r\n            <div *ngIf=\"house.errors && (house.dirty || house.touched)\"\r\n                 class=\"alert alert-danger\">\r\n                <div [hidden]=\"!house.errors.required\">\r\n                    Будинок обов'язковий\r\n                </div>\r\n            </div>\r\n        </div>\r\n           \r\n        <button (click)=\"registerOrganization()\" class=\"btn btn-primary\" type=\"submit\" [disabled]=\"form.invalid\"> Зареєструвати </button>\r\n    </form>\r\n</div>";
+module.exports = "<div class=\"col-lg-4 col-lg-offset-4\">\r\n    <spinner [showSpinner]=\"showUserRegistrationSpinner\"></spinner>\r\n    <form [formGroup]=\"registrationForm\" class=\"form-horizontal\" id=\"registrationForm\" novalidate>\r\n        <h3 class=\"formHeader text-center\">Реєстрація нового користувача</h3>\r\n        <div class=\"form-group\" [class.has-error]=\"formErrors.firstName\"\r\n             [class.has-success]=\"!formErrors.firstName && registrationForm.get('firstName').valid\">\r\n            <label class=\"control-label\" for=\"firstName\">Імя</label>\r\n            <div class=\"input-group\">\r\n                <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-user\" aria-hidden=\"true\"></i></span>\r\n                <input placeholder=\"Ваше імя\" type=\"text\" class=\"form-control\"\r\n                       formControlName=\"firstName\" [(ngModel)]=\"registrationViewModel.firstName\" />\r\n            </div>\r\n            <div>\r\n                <span *ngIf=\"formErrors.firstName\" class=\"has-error help-block fixedError\">\r\n                    {{ formErrors.firstName }}\r\n                </span>\r\n            </div>\r\n        </div>\r\n\r\n        <div class=\"form-group\" [class.has-error]=\"formErrors.lastName\"\r\n             [class.has-success]=\"!formErrors.lastName && registrationForm.get('lastName').valid\">\r\n            <label class=\"control-label\" for=\"lastName\">Прізвище</label>\r\n            <div class=\"input-group\">\r\n                <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-user\" aria-hidden=\"true\"></i></span>\r\n                <input placeholder=\"Ваше прізвище\" type=\"text\" class=\"form-control input-md\"\r\n                       formControlName=\"lastName\" [(ngModel)]=\"registrationViewModel.lastName\" />\r\n            </div>\r\n            <span *ngIf=\"formErrors.lastName\" class=\"has-error help-block fixedError\">\r\n                {{ formErrors.lastName }}\r\n            </span>\r\n        </div>\r\n\r\n        <div class=\"form-group\" [class.has-error]=\"formErrors.login\"\r\n             [class.has-success]=\"!formErrors.login && registrationForm.get('login').valid\">\r\n            <label class=\"control-label\" for=\"login\">Логін</label>\r\n            <div class=\"input-group\">\r\n                <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-user\" aria-hidden=\"true\"></i></span>\r\n                <input placeholder=\"Ваш логін\" type=\"text\" class=\"form-control input-md\"\r\n                       formControlName=\"login\" [(ngModel)]=\"registrationViewModel.login\" />\r\n            </div>\r\n            <span *ngIf=\"formErrors.login\" class=\"has-error help-block fixedError\">\r\n                {{ formErrors.login }}\r\n            </span>\r\n        </div>\r\n\r\n        <div class=\"form-group\" [class.has-error]=\"formErrors.email || errorMessage\"\r\n             [class.has-success]=\"!formErrors.email && registrationForm.get('email').valid\">\r\n            <label class=\"control-label\" for=\"email\">Email</label>\r\n            <div class=\"input-group\">\r\n                <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-envelope\" aria-hidden=\"true\"></i></span>\r\n                <input placeholder=\"Ваш e-mail\" class=\"form-control input-md\" type=\"text\"\r\n                       formControlName=\"email\" [(ngModel)]=\"registrationViewModel.email\" />\r\n            </div>\r\n            <span *ngIf=\"formErrors.email\" class=\"has-error help-block fixedError\">\r\n                {{ formErrors.email }}\r\n            </span>\r\n            <span *ngIf=\"errorMessage\">\r\n                <span class=\"has-error help-block fixedError\">{{errorMessage}}</span>\r\n            </span>\r\n        </div>\r\n\r\n        <div class=\"form-group\" [class.has-error]=\"formErrors.password\"\r\n             [class.has-success]=\"!formErrors.password && registrationForm.get('password').valid\">\r\n            <label class=\"control-label\" for=\"password\">Пароль</label>\r\n            <div class=\"input-group\">\r\n                <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-lock\" aria-hidden=\"true\"></i></span>\r\n                <input placeholder=\"Ваш пароль\" class=\"form-control input-md\" [type]=\"type\"\r\n                       formControlName=\"password\" [(ngModel)]=\"registrationViewModel.password\" />\r\n                <span class=\"input-group-addon\"><i [ngClass]=\"glyphyconEye\" (click)=\"showPassword()\" aria-hidden=\"true\"></i></span>\r\n            </div>\r\n            <span *ngIf=\"formErrors.password\" class=\"has-error help-block fixedError\">\r\n                {{ formErrors.password }}\r\n            </span>\r\n        </div>\r\n\r\n        <div class=\"form-group\" [class.has-error]=\"formErrors.confirmPassword || registrationForm.hasError('mismatchedPasswords')\"\r\n             [class.has-success]=\"!formErrors.confirmPassword && registrationForm.get('confirmPassword').valid\">\r\n            <label class=\"control-label\" for=\"confirmPassword\">Підтвердіть пароль</label>\r\n            <div class=\"input-group\">\r\n                <span class=\"input-group-addon glyphicon glyphicon-lock\"><i aria-hidden=\"true\"></i></span>\r\n                <input type=\"password\" placeholder=\"Підтвердіть пароль\" class=\"form-control input-md\"\r\n                       formControlName=\"confirmPassword\" [(ngModel)]=\"registrationViewModel.passwordConfirm\" />\r\n            </div>\r\n            <div *ngIf=\"formErrors.confirmPassword || registrationForm.hasError('mismatchedPasswords')\" class=\"has-error help-block fixedError\">\r\n                {{ formErrors.confirmPassword }}\r\n            </div>\r\n            <div *ngIf=\"registrationForm.hasError('mismatchedPasswords')\" class=\"has-error help-block fixedError\">Паролі не співпадають</div>\r\n        </div>\r\n\r\n        <div class=\"form-group\">\r\n            <label class=\"control-label\" for=\"submit\"></label>\r\n            <button id=\"submit\" class=\"btn btn-success pull-right\" [disabled]=\"registrationForm.invalid\" (click)=\"register()\">Зареєструватись</button>\r\n        </div>\r\n    </form>\r\n    </div>\r\n";
 
 /***/ }),
 /* 199 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"modal fade\" id=\"banModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\" aria-hidden=\"true\">\r\n    <div class=\"modal-dialog\">\r\n        <div class=\"modal-content\">\r\n            <div class=\"modal-header panel-heading\">\r\n                <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button>\r\n                <h4 class=\"modal-title\">Причина Бану : </h4>\r\n            </div>\r\n            <div class=\"modal-body\">\r\n                <textarea #description=\"ngModel\" required [(ngModel)]=\"BanDescription\">                   \r\n                </textarea>           \r\n                <div class=\"alert alert-danger\" *ngIf=\"description.invalid && description.touched\">\r\n                    Повинна бути причина бану!\r\n                </div>  \r\n            </div>\r\n            <div class=\"modal-footer\">      \r\n                <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Закрити</button>\r\n                <button (click)=\"changeStatus()\"\r\n                        class=\"btn btn-primary\" \r\n                        data-dismiss=\"modal\"\r\n                        [disabled]=\"description.invalid && description.touched\">\r\n                    {{banStatus}}\r\n                </button>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>";
+module.exports = "<h2> Форма реєстрації організації</h2>\r\n<div>\r\n    <form #form=\"ngForm\">\r\n        <h4> Загальні відомості </h4>\r\n        <div class=\"form-group\" [class.has-error]=\"name.invalid&&name.touched\">\r\n            <label class=\"control-label\"> Назва організації</label>\r\n            <div class=\"inner-addon left-addon\">\r\n                <i class=\"glyphicon glyphicon-pencil\"></i>\r\n                <input type=\"text\" class=\"form-control\" [(ngModel)]=\"organization.name\" placeholder=\"Введіть назву\" required minlength=\"5\" maxlength=\"50\" name=\"name\" #name=\"ngModel\"/>\r\n            </div>\r\n             <div *ngIf=\"name.errors && (name.dirty || name.touched)\"\r\n                 class=\"alert alert-danger\">\r\n                <div [hidden]=\"!name.errors.required\">\r\n                    Назва організації обов'язкова\r\n                </div>\r\n                <div [hidden]=\"!name.errors.minlength\">\r\n                    Назва має містити принаймі 5 символів.\r\n                </div>\r\n                <div [hidden]=\"!name.errors.maxlength\">\r\n                    Назва не може перевищувати 50 символів.\r\n                </div>\r\n            </div>\r\n            <div class=\"alert-danger\">\r\n                {{nameError}}\r\n            </div>\r\n            </div>\r\n        <div class=\"form-group\" [class.has-error]=\"description.invalid&&description.touched\">\r\n            <label class=\"control-label\"> Опис організації </label>\r\n            <div class=\"inner-addon left-addon\">\r\n                <i class=\"glyphicon glyphicon-pencil\" *ngIf =\"!description.dirty\"></i> \r\n                <textarea class=\"form-control\" [(ngModel)]=\"organization.description\" required minlength=\"20\" placeholder=\"     Введіть опис\" maxlength=\"200\" name=\"description\" #description=\"ngModel\" rows=\"5\"> </textarea>\r\n            </div>\r\n            <div *ngIf=\"description.errors && (description.dirty || description.touched)\"\r\n                 class=\"alert alert-danger\">\r\n                <div [hidden]=\"!description.errors.required\">\r\n                    Опис організації обов'язковий\r\n                </div>\r\n                <div [hidden]=\"!description.errors.minlength\">\r\n                    Опис має містити принаймі 20 символів.\r\n                </div>\r\n                <div [hidden]=\"!description.errors.maxlength\">\r\n                    Опис не може перевищувати 100 символів.\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <h4> Представник </h4>\r\n        <div class=\"form-group\" [class.has-error]=\"login.invalid&&login.touched\">\r\n            <label class=\"control-label\"> Логін адміністратора</label>\r\n            <div class=\"inner-addon left-addon\">\r\n                <i class=\"glyphicon glyphicon-user\"></i>\r\n                <input type=\"text\" class=\"form-control\" required [(ngModel)]=\"organization.administratorLogin\" pattern=\"[a-zA-Z0-9_]*\" placeholder=\"Введіть логін адміністратора\" name=\"login\" #login=\"ngModel\" />\r\n            </div>\r\n            <div *ngIf=\"login.errors && (login.dirty || login.touched)\"\r\n                 class=\"alert alert-danger\">\r\n                <div [hidden]=\"!login.errors.required\">\r\n                    Логін адміністратора обов'язковий\r\n                </div>\r\n                <div [hidden]=\"!login.errors.pattern\">\r\n                    Введено недозволений символ\r\n                </div>\r\n            </div>\r\n            <div class=\"alert-danger\">\r\n                {{userError}}\r\n            </div>\r\n        </div>\r\n        <h4> Місцезнаходження</h4>\r\n        <!--\r\n        <button (click)=\"openModal()\"> Вибрати локацію</button>\r\n       \r\n         <app-modal>\r\n            <div class=\"app-modal-header\">\r\n                <h3>Додати місцезнаходження</h3>\r\n            </div>\r\n            <div class=\"app-modal-body\">\r\n                <map-component> </map-component>\r\n            </div>\r\n            <div class=\"app-modal-footer\">\r\n                <button type=\"button\" class=\"btn btn-default\" (click)=\"modal.hide()\">Закрити</button>\r\n            </div>\r\n        </app-modal> \r\n        -->\r\n        <div class=\"form-group\" [class.has-error]=\"city.invalid&&city.touched\">\r\n            <label class=\"control-label\"> Місто </label>\r\n            <div class=\"inner-addon left-addon\">\r\n                <i class=\"glyphicon glyphicon-home\"></i>\r\n                <input type=\"text\" class=\"form-control\" [(ngModel)]=\"organization.city\" placeholder=\"Введіть місто\" pattern=\"[А-Яа-яїЇіІ]*\" name=\"city\" #city=\"ngModel\" />\r\n            </div>\r\n            <div *ngIf=\"city.errors && (city.dirty || city.touched)\"\r\n                 class=\"alert alert-danger\">\r\n                <div [hidden]=\"!city.errors.required\">\r\n                    Місто обов'язкове\r\n                </div>\r\n                <div [hidden]=\"!city.errors.pattern\">\r\n                    Поле може містити лише кирилицю.\r\n                </div>\r\n            </div>\r\n            </div>\r\n        <div class=\"form-group\" [class.has-error]=\"street.invalid&&street.touched\" >\r\n            <label class=\"control-label\"> Вулиця </label>\r\n            <div class=\"inner-addon left-addon\">\r\n                <i class=\"glyphicon glyphicon-home\"></i>\r\n                <input type=\"text\" class=\"form-control\" [(ngModel)]=\"organization.street\" required placeholder=\"Введіть вулицю\" name=\"street\" #street=\"ngModel\" />\r\n            </div>\r\n            <div *ngIf=\"street.errors && (street.dirty || street.touched)\"\r\n                 class=\"alert alert-danger\">\r\n                <div [hidden]=\"!street.errors.required\">\r\n                    Вулиця обов'язкова\r\n                </div>\r\n            </div>\r\n        </div>\r\n          \r\n        <div class=\"form-group\" [class.has-error]=\"house.invalid&&house.touched\">\r\n            <label class=\"control-label\"> Будинок </label>\r\n            <div class=\"inner-addon left-addon\">\r\n                <i class=\"glyphicon glyphicon-home\"></i>\r\n                <input type=\"text\" class=\"form-control\" [(ngModel)]=\"organization.house\" placeholder=\"Введіть будинок\" name=\"house\" #house=\"ngModel\"/>\r\n            </div>\r\n            <div *ngIf=\"house.errors && (house.dirty || house.touched)\"\r\n                 class=\"alert alert-danger\">\r\n                <div [hidden]=\"!house.errors.required\">\r\n                    Будинок обов'язковий\r\n                </div>\r\n            </div>\r\n        </div>\r\n           \r\n        <button (click)=\"registerOrganization()\" class=\"btn btn-primary\" type=\"submit\" [disabled]=\"form.invalid\"> Зареєструвати </button>\r\n    </form>\r\n</div>";
 
 /***/ }),
 /* 200 */
 /***/ (function(module, exports) {
 
-module.exports = "<h1>Here will be complaints</h1>";
+module.exports = "<div class=\"modal fade\" id=\"banModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\" aria-hidden=\"true\">\r\n    <div class=\"modal-dialog\">\r\n        <div class=\"modal-content\">\r\n            <div class=\"modal-header panel-heading\">\r\n                <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button>\r\n                <h4 class=\"modal-title\">Причина Бану : </h4>\r\n            </div>\r\n            <div class=\"modal-body\">\r\n                <textarea #description=\"ngModel\" required [(ngModel)]=\"BanDescription\">                   \r\n                </textarea>           \r\n                <div class=\"alert alert-danger\" *ngIf=\"description.invalid && description.touched\">\r\n                    Повинна бути причина бану!\r\n                </div>  \r\n            </div>\r\n            <div class=\"modal-footer\">      \r\n                <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Закрити</button>\r\n                <button (click)=\"changeStatus()\"\r\n                        class=\"btn btn-primary\" \r\n                        data-dismiss=\"modal\"\r\n                        [disabled]=\"description.invalid && description.touched\">\r\n                    {{banStatus}}\r\n                </button>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>";
 
 /***/ }),
 /* 201 */
 /***/ (function(module, exports) {
 
-module.exports = "<p *ngIf=\"!arrayToDisplay\"><em>Loading...</em></p>\r\n\r\n<table class='table' *ngIf=\"arrayToDisplay\">\r\n    <thead>\r\n        <tr>\r\n            <th *ngFor=\"let header of headers\">\r\n                {{header}}\r\n            </th>\r\n        </tr>\r\n    </thead>\r\n    <tbody>\r\n        <tr *ngFor=\"let item of arrayToDisplay\">\r\n            <td class=\"text-left\">{{item.title}}</td>\r\n            <td>\r\n                <button class=\"btn custom-btn\" \r\n                        [class.btn-danger]=\"!item.isBanned\"\r\n                        [class.btn-success]=\"item.isBanned\"\r\n                        (click)=\"onActionClick(item)\">\r\n                    <div *ngIf=\"!item.isBanned\">Забанити</div>\r\n                    <div *ngIf=\"item.isBanned\">Відбанити</div>\r\n                </button>\r\n            </td>\r\n        </tr>\r\n    </tbody>\r\n</table>\r\n<app-modal>  \r\n    <div class=\"app-modal-header\">\r\n        <button type=\"button\" class=\"close\" aria-hidden=\"true\" (click)=\"closeModal()\">&times;</button>\r\n        <h4 class=\"modal-title\">Причина Бану : </h4>\r\n    </div>\r\n    <div class=\"app-modal-body\">\r\n        <textarea class=\"form-control\" #description=\"ngModel\"\r\n                  (blur)=\"customeFieldTouched=true\" \r\n                  required\r\n                  [disabled]=\"selectedItemStatus=='Відбанити'\"\r\n                  [(ngModel)]=\"selectedItemBanDescription\">                   \r\n        </textarea>\r\n        <div class=\"text-danger\" *ngIf=\"description.invalid && customeFieldTouched\">\r\n            Повинна бути причина бану!\r\n        </div>\r\n    </div>\r\n    <div class=\"app-modal-footer\">\r\n        <button type=\"button\" class=\"btn btn-default\" (click)=\"closeModal()\">Закрити</button>\r\n        <button (click)=\"statusChange(selectedItemBanDescription)\"\r\n                class=\"btn btn-primary\"\r\n                data-dismiss=\"modal\"\r\n                [disabled]=\"description.invalid\">\r\n            {{selectedItemStatus}}\r\n        </button>\r\n    </div>     \r\n</app-modal>\r\n";
+module.exports = "<h1>Here will be complaints</h1>";
 
 /***/ }),
 /* 202 */
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngIf=\"organizations\">\r\n    <super-admin-grid [arrayToDisplay]=\"organizations\" \r\n                      [headers]=\"['Назва Організації', 'Дія']\"\r\n                      (banStatusChange)=\"changeOrganizationBanStatus($event)\">\r\n\r\n    </super-admin-grid>\r\n</div>\r\n<div class=\"container-fluid\">\r\n    <div class=\"row\">\r\n        <div class=\"col-sm-2 castome-paging\">\r\n            На Сторінці :\r\n        </div>\r\n        <div class=\"text-left col-sm-2 castome-paging\">\r\n            <select-item [items]=\"[4, 5, 6, 7, 8, 9, 10]\"\r\n                         (onSelect)=\"itemsPerPageChange($event)\">\r\n            </select-item>\r\n        </div>\r\n        <div class=\"text-center\" *ngIf=\"totalItems && itemPerPage\">\r\n            <pagination-pages [offset]=\"offset\"\r\n                              [limit]=\"itemPerPage\"\r\n                              [size]=\"totalItems\"\r\n                              [currentPage]=\"currentPage\"\r\n                              (pageChange)=\"onPageChange($event)\">\r\n            </pagination-pages>\r\n        </div>  \r\n    </div>\r\n</div>";
+module.exports = "<p *ngIf=\"!arrayToDisplay\"><em>Loading...</em></p>\r\n\r\n<table class='table' *ngIf=\"arrayToDisplay\">\r\n    <thead>\r\n        <tr>\r\n            <th *ngFor=\"let header of headers\">\r\n                {{header}}\r\n            </th>\r\n        </tr>\r\n    </thead>\r\n    <tbody>\r\n        <tr *ngFor=\"let item of arrayToDisplay\">\r\n            <td class=\"text-left\">{{item.title}}</td>\r\n            <td>\r\n                <button class=\"btn custom-btn\" \r\n                        [class.btn-danger]=\"!item.isBanned\"\r\n                        [class.btn-success]=\"item.isBanned\"\r\n                        (click)=\"onActionClick(item)\">\r\n                    <div *ngIf=\"!item.isBanned\">Забанити</div>\r\n                    <div *ngIf=\"item.isBanned\">Відбанити</div>\r\n                </button>\r\n            </td>\r\n        </tr>\r\n    </tbody>\r\n</table>\r\n<app-modal>  \r\n    <div class=\"app-modal-header\">\r\n        <button type=\"button\" class=\"close\" aria-hidden=\"true\" (click)=\"closeModal()\">&times;</button>\r\n        <h4 class=\"modal-title\">Причина Бану : </h4>\r\n    </div>\r\n    <div class=\"app-modal-body\">\r\n        <textarea class=\"form-control\" #description=\"ngModel\"\r\n                  (blur)=\"customeFieldTouched=true\" \r\n                  required\r\n                  [disabled]=\"selectedItemStatus=='Відбанити'\"\r\n                  [(ngModel)]=\"selectedItemBanDescription\">                   \r\n        </textarea>\r\n        <div class=\"text-danger\" *ngIf=\"description.invalid && customeFieldTouched\">\r\n            Повинна бути причина бану!\r\n        </div>\r\n    </div>\r\n    <div class=\"app-modal-footer\">\r\n        <button type=\"button\" class=\"btn btn-default\" (click)=\"closeModal()\">Закрити</button>\r\n        <button (click)=\"statusChange(selectedItemBanDescription)\"\r\n                class=\"btn btn-primary\"\r\n                data-dismiss=\"modal\"\r\n                [disabled]=\"description.invalid\">\r\n            {{selectedItemStatus}}\r\n        </button>\r\n    </div>     \r\n</app-modal>\r\n";
 
 /***/ }),
 /* 203 */
 /***/ (function(module, exports) {
 
-module.exports = "<spinner [showSpinner]=\"showUsersSpinner\"></spinner>\r\n<div *ngIf=\"users\">\r\n    <super-admin-grid [arrayToDisplay]=\"users\"\r\n                      [headers]=\"['Логін Користувача', 'Дія']\"\r\n                      (banStatusChange)=\"changeUserBanStatus($event)\">\r\n    </super-admin-grid>\r\n</div>\r\n<div class=\"container-fluid\">\r\n    <div class=\"row\">\r\n        <div class=\"col-sm-2 castome-paging\">\r\n            На Сторінці :\r\n        </div>\r\n        <div class=\"text-left col-sm-2 castome-paging\">\r\n            <select-item [items]=\"[4, 5, 6, 7, 8, 9, 10]\"\r\n                         (onSelect)=\"itemsPerPageChange($event)\">\r\n            </select-item>\r\n        </div>\r\n        <div *ngIf=\"totalItems && itemPerPage\" class=\"text-center\">\r\n            <pagination-pages [offset]=\"offset\"\r\n                              [limit]=\"itemPerPage\"\r\n                              [size]=\"totalItems\"\r\n                              [currentPage]=\"currentPage\"\r\n                              (pageChange)=\"onPageChange($event)\">\r\n            </pagination-pages>\r\n        </div>\r\n    </div>\r\n</div>";
+module.exports = "<div *ngIf=\"organizations\">\r\n    <super-admin-grid [arrayToDisplay]=\"organizations\" \r\n                      [headers]=\"['Назва Організації', 'Дія']\"\r\n                      (banStatusChange)=\"changeOrganizationBanStatus($event)\">\r\n\r\n    </super-admin-grid>\r\n</div>\r\n<div class=\"container-fluid\">\r\n    <div class=\"row\">\r\n        <div class=\"col-sm-2 castome-paging\">\r\n            На Сторінці :\r\n        </div>\r\n        <div class=\"text-left col-sm-2 castome-paging\">\r\n            <select-item [items]=\"[4, 5, 6, 7, 8, 9, 10]\"\r\n                         (onSelect)=\"itemsPerPageChange($event)\">\r\n            </select-item>\r\n        </div>\r\n        <div class=\"text-center\" *ngIf=\"totalItems && itemPerPage\">\r\n            <pagination-pages [offset]=\"offset\"\r\n                              [limit]=\"itemPerPage\"\r\n                              [size]=\"totalItems\"\r\n                              [currentPage]=\"currentPage\"\r\n                              (pageChange)=\"onPageChange($event)\">\r\n            </pagination-pages>\r\n        </div>  \r\n    </div>\r\n</div>";
 
 /***/ }),
 /* 204 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">    \r\n    <div class=\"side-menu\">\r\n        <nav class=\"navbar navbar-default\" role=\"navigation\">           \r\n            <div class=\"side-menu-container\">\r\n                <ul class=\"nav navbar-nav\">\r\n                    <li [routerLinkActive]=\"['link-active']\">\r\n                        <a [routerLink]=\"['/superadmin']\">\r\n                            <span class=\"glyphicon glyphicon-user\"></span>\r\n                                Super Admin\r\n                        </a>\r\n                    </li>\r\n                    <li [routerLinkActive]=\"['link-active']\">\r\n                        <a [routerLink]=\"['complaints']\">\r\n                            <span class=\"glyphicon glyphicon-envelope\"></span> \r\n                            Скарги\r\n                        </a>\r\n                    </li>\r\n                    <li [routerLinkActive]=\"['link-active']\">\r\n                        <a [routerLink] =\"['register-organization']\">\r\n                            <span class=\"glyphicon glyphicon-plus\"></span> \r\n                            Додати Організацію\r\n                        </a>\r\n                    </li>\r\n                    <li [routerLinkActive]=\"['link-active']\">\r\n                        <a [routerLink]=\"['organizations']\">\r\n                            <span class=\"glyphicon glyphicon-th-list\"></span> \r\n                            Організації\r\n                        </a>\r\n                    </li>                 \r\n                    <li [routerLinkActive]=\"['link-active']\">\r\n                        <a [routerLink]=\"['users']\"><span class=\"glyphicon glyphicon-th-list\"></span> \r\n                            Користувачі\r\n                        </a>\r\n                    </li>\r\n                </ul>\r\n            </div>\r\n        </nav> \r\n    </div>\r\n    <div class=\"side-body\">      \r\n        <router-outlet></router-outlet>\r\n    </div>\r\n</div>\r\n";
+module.exports = "<spinner [showSpinner]=\"showUsersSpinner\"></spinner>\r\n<div *ngIf=\"users\">\r\n    <super-admin-grid [arrayToDisplay]=\"users\"\r\n                      [headers]=\"['Логін Користувача', 'Дія']\"\r\n                      (banStatusChange)=\"changeUserBanStatus($event)\">\r\n    </super-admin-grid>\r\n</div>\r\n<div class=\"container-fluid\">\r\n    <div class=\"row\">\r\n        <div class=\"col-sm-2 castome-paging\">\r\n            На Сторінці :\r\n        </div>\r\n        <div class=\"text-left col-sm-2 castome-paging\">\r\n            <select-item [items]=\"[4, 5, 6, 7, 8, 9, 10]\"\r\n                         (onSelect)=\"itemsPerPageChange($event)\">\r\n            </select-item>\r\n        </div>\r\n        <div *ngIf=\"totalItems && itemPerPage\" class=\"text-center\">\r\n            <pagination-pages [offset]=\"offset\"\r\n                              [limit]=\"itemPerPage\"\r\n                              [size]=\"totalItems\"\r\n                              [currentPage]=\"currentPage\"\r\n                              (pageChange)=\"onPageChange($event)\">\r\n            </pagination-pages>\r\n        </div>\r\n    </div>\r\n</div>";
 
 /***/ }),
 /* 205 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\r\n    <h3 class=\"page-header\">Редагування профілю</h3>\r\n    <div class=\"row\">\r\n        <div class=\"col-md-4 col-sm-6 col-xs-12\">\r\n            <div class=\"text-center\">\r\n                <img src=\"{{user.photoUrl}}\" class=\"avatar img-responsive img-thumbnail\" style=\"border:none\" alt=\"avatar\" height=\"350\" width=\"250\">\r\n                <input type=\"file\" (change)=\"saveFileInAws($event)\" #imageInput accept=\".png,.jpg\" class=\"text-center center-block well well-sm hidden\">\r\n                <button type=\"button\" class=\"btn btn-success\" (click)=\"imageInput.click()\">Завантажити інше фото</button>\r\n                <hr />\r\n                <button type=\"button\" class=\"btn btn-primary\" (click)=\"onPasswordChange()\">Змінити пароль</button>\r\n            </div>\r\n        </div>\r\n        <div class=\"col-md-8 col-sm-6 col-xs-12 personal-info\">\r\n            <div class=\"alert alert-info alert-dismissable\">\r\n                <a class=\"panel-close close\" data-dismiss=\"alert\">×</a>\r\n                <i class=\"fa fa-coffee\"></i> Тут можна показувати сповіщення для юзера\r\n            </div>\r\n            <h3>Особисті дані</h3>\r\n            <form [formGroup]=\"userForm\" class=\"form-horizontal\" style=\"width:400px;padding-left:20px;\" (ngSubmit)=\"onSubmit()\">\r\n                <div class=\"form-group\">\r\n                    <label class=\"control-label\" for=\"login\">Логін</label>\r\n                    <div class=\"input-group\">\r\n                        <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-user\" aria-hidden=\"true\"></i></span>\r\n                        <input type=\"text\" disabled class=\"form-control\" name=\"user.login\" formControlName=\"login\" [(ngModel)]=\"user.login\" />\r\n                    </div>\r\n                </div>\r\n                <div class=\"form-group\" [class.has-error]=\"formErrors.firstName\" [class.has-success]=\"!formErrors.firstName && userForm.get('firstName').valid\">\r\n                    <label class=\"control-label\" for=\"firstName\">Ім'я</label>\r\n                    <div class=\"input-group\">\r\n                        <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-user\" aria-hidden=\"true\"></i></span>\r\n                        <input type=\"text\" class=\"form-control\" formControlName=\"firstName\" [(ngModel)]=\"user.firstName\" />\r\n                    </div>\r\n                    <div>\r\n                        <span *ngIf=\"formErrors.firstName\" class=\"has-error help-block fixedError\">\r\n                            {{ formErrors.firstName }}\r\n                        </span>\r\n                    </div>\r\n                </div>\r\n                <div class=\"form-group\" [class.has-error]=\"formErrors.lastName\" [class.has-success]=\"!formErrors.lastName && userForm.get('lastName').valid\">\r\n                    <label class=\"control-label\" for=\"user.lastName\">Прізвище</label>\r\n                    <div class=\"input-group\">\r\n                        <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-user\" aria-hidden=\"true\"></i></span>\r\n                        <input type=\"text\" class=\"form-control input-md\" formControlName=\"lastName\" [(ngModel)]=\"user.lastName\" />\r\n                    </div>\r\n                    <span *ngIf=\"formErrors.lastName\" class=\"has-error help-block fixedError\">\r\n                        {{ formErrors.lastName }}\r\n                    </span>\r\n                </div>\r\n                <div class=\"form-group\" [class.has-error]=\"formErrors.address\" [class.has-success]=\"!formErrors.email && userForm.get('address').valid\">\r\n                    <label class=\"control-label\" for=\"address\">Адреса</label>\r\n                    <div class=\"input-group\">\r\n                        <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-envelope\" aria-hidden=\"true\"></i></span>\r\n                        <input class=\"form-control input-md\" type=\"text\" formControlName=\"address\" [(ngModel)]=\"user.address\" />\r\n                    </div>\r\n                    <span *ngIf=\"formErrors.address\" class=\"has-error help-block fixedError\">\r\n                        {{ formErrors.address }}\r\n                    </span>\r\n                </div>\r\n                <div class=\"form-group\" [class.has-error]=\"formErrors.email\" [class.has-success]=\"!formErrors.email && userForm.get('email').valid\">\r\n                    <label class=\"control-label\" for=\"email\">Email</label>\r\n                    <div class=\"input-group\">\r\n                        <span class=\"input-group-addon\"><i aria-hidden=\"true\">@</i></span>\r\n                        <input class=\"form-control input-md\" type=\"text\" formControlName=\"email\" [(ngModel)]=\"user.email\" />\r\n                    </div>\r\n                    <span *ngIf=\"formErrors.email\" class=\"has-error help-block fixedError\">\r\n                        {{ formErrors.email }}\r\n                    </span>\r\n                </div>\r\n                <div class=\"form-group\">\r\n                    <label class=\"control-label\"></label>\r\n                    <button type=\"submit\" class=\"btn btn-primary\" [disabled]=\"!userForm.valid\">Зберегти</button>\r\n                </div>\r\n            </form>\r\n        </div>\r\n    </div>\r\n</div>\r\n<app-modal>\r\n    <div class=\"app-modal-header\">\r\n        <h3>Змінити пароль</h3>\r\n    </div>\r\n    <div class=\"app-modal-body\">\r\n        <form [formGroup]=\"passwordForm\" class=\"form-horizontal\" novalidate>\r\n            <div class=\"form-group\" [class.has-error]=\"formErrors.oldPassword\"\r\n                 [class.has-success]=\"!formErrors.oldPassword && passwordForm.get('oldPassword').valid\">\r\n                <label class=\"col-md-3 control-label\" for=\"oldPassword\">Старий пароль</label>\r\n                <div class=\"col-md-8 input-group\">\r\n                    <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-lock\" aria-hidden=\"true\"></i></span>\r\n                    <input class=\"form-control input-md\" type=\"password\"\r\n                           formControlName=\"oldPassword\" [(ngModel)]=\"passwordContainer.oldPassword\" />\r\n                </div>\r\n                <span *ngIf=\"formErrors.oldPassword\" class=\"has-error help-block fixedError\" style=\"margin-left:200px\">\r\n                    {{ formErrors.oldPassword }}\r\n                </span>\r\n            </div>\r\n            <div class=\"form-group\" [class.has-error]=\"formErrors.newPassword\"\r\n                 [class.has-success]=\"!formErrors.newPassword && passwordForm.get('newPassword').valid\">\r\n                <label class=\"col-md-3 control-label\" for=\"newPassword\">Новий пароль</label>\r\n                <div class=\"col-md-8 input-group\">\r\n                    <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-lock\" aria-hidden=\"true\"></i></span>\r\n                    <input class=\"form-control input-md\" type=\"password\"\r\n                           formControlName=\"newPassword\" [(ngModel)]=\"passwordContainer.newPassword\" />\r\n                </div>\r\n                <span *ngIf=\"formErrors.newPassword\" class=\"has-error help-block fixedError\" style=\"margin-left:200px\">\r\n                    {{ formErrors.newPassword }}\r\n                </span>\r\n            </div>\r\n            <div class=\"form-group\" [class.has-error]=\"formErrors.newPasswordConfirmation\"\r\n                 [class.has-success]=\"!formErrors.newPasswordConfirmation && passwordForm.get('newPasswordConfirmation').valid\">\r\n                <label class=\"col-md-3 control-label\" for=\"newPasswordConfirmation\">Підтвердження пароля</label>\r\n                <div class=\"col-md-8 input-group\">\r\n                    <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-lock\" aria-hidden=\"true\"></i></span>\r\n                    <input class=\"form-control input-md\" type=\"password\"\r\n                           formControlName=\"newPasswordConfirmation\" [(ngModel)]=\"passwordContainer.newPasswordConfirmation\" />\r\n                </div>\r\n                <span *ngIf=\"formErrors.newPasswordConfirmation\" class=\"has-error help-block fixedError\" style=\"margin-left:200px\" >\r\n                    {{ formErrors.newPasswordConfirmation }}\r\n                </span>\r\n            </div>\r\n            <span *ngIf=\"passwordForm.hasError('mismatchedPasswords')\" class=\"has-error help-block fixedError\" style=\"margin-left:200px\"\r\n                 >Паролі не співпадають</span>\r\n        </form>\r\n    </div>\r\n    <div class=\"app-modal-footer\">\r\n        <button type=\"button\" class=\"btn btn-default\" (click)=\"modal.hide()\">Закрити</button>\r\n        <button type=\"button\" class=\"btn btn-primary\" [disabled]=\"passwordForm.invalid\" (click)=\"changePassword()\">Зберегти</button>\r\n        <div class=\"col-md-4 col-md-offset-4 form-group\">\r\n            <p class=\"error\" *ngIf=\"errorMessage\"><span class=\"text-danger\">{{errorMessage}}</span></p>\r\n        </div>\r\n    </div>\r\n</app-modal>";
+module.exports = "<div class=\"row\">    \r\n    <div class=\"side-menu\">\r\n        <nav class=\"navbar navbar-default\" role=\"navigation\">           \r\n            <div class=\"side-menu-container\">\r\n                <ul class=\"nav navbar-nav\">\r\n                    <li [routerLinkActive]=\"['link-active']\">\r\n                        <a [routerLink]=\"['/superadmin']\">\r\n                            <span class=\"glyphicon glyphicon-user\"></span>\r\n                                Super Admin\r\n                        </a>\r\n                    </li>\r\n                    <li [routerLinkActive]=\"['link-active']\">\r\n                        <a [routerLink]=\"['complaints']\">\r\n                            <span class=\"glyphicon glyphicon-envelope\"></span> \r\n                            Скарги\r\n                        </a>\r\n                    </li>\r\n                    <li [routerLinkActive]=\"['link-active']\">\r\n                        <a [routerLink] =\"['register-organization']\">\r\n                            <span class=\"glyphicon glyphicon-plus\"></span> \r\n                            Додати Організацію\r\n                        </a>\r\n                    </li>\r\n                    <li [routerLinkActive]=\"['link-active']\">\r\n                        <a [routerLink]=\"['organizations']\">\r\n                            <span class=\"glyphicon glyphicon-th-list\"></span> \r\n                            Організації\r\n                        </a>\r\n                    </li>                 \r\n                    <li [routerLinkActive]=\"['link-active']\">\r\n                        <a [routerLink]=\"['users']\"><span class=\"glyphicon glyphicon-th-list\"></span> \r\n                            Користувачі\r\n                        </a>\r\n                    </li>\r\n                </ul>\r\n            </div>\r\n        </nav> \r\n    </div>\r\n    <div class=\"side-body\">      \r\n        <router-outlet></router-outlet>\r\n    </div>\r\n</div>\r\n";
 
 /***/ }),
 /* 206 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\r\n    <div class=\"btn-group\">\r\n        <button type=\"button\" class=\"btn btn-info dropdown-toggle\" data-toggle=\"dropdown\">\r\n            {{_selectedOrganizationName ? _selectedOrganizationName : 'Список оргнізацій'}}\r\n            <span class=\"caret\"></span>\r\n        </button>\r\n        <ul class=\"dropdown-menu scrollable-menu\" role=\"menu\">\r\n            <li><input type=\"text\" class=\"form-control\" name=\"filterBy\" [(ngModel)]=\"filterBy\" placeholder=\"Пошук по назві організації\" /></li>\r\n            <li>\r\n                <a [routerLink]=\"['home']\" (click)=\"onSelect()\">Всі організації</a>\r\n            </li>\r\n            <li *ngFor=\"let org of _organizations | organizationsListPipe:filterBy\" (click)=\"onSelect(org)\">\r\n                <a [routerLink]=\"['/home/allevents',org.id]\">{{org.name}}</a>\r\n            </li>\r\n        </ul>\r\n    </div>\r\n</div>\r\n\r\n";
+module.exports = "<div class=\"container\">\r\n    <h3 class=\"page-header\">Редагування профілю</h3>\r\n    <div class=\"row\">\r\n        <div class=\"col-md-4 col-sm-6 col-xs-12\">\r\n            <div class=\"text-center\">\r\n                <img src=\"{{user.photoUrl}}\" class=\"avatar img-responsive img-thumbnail\" style=\"border:none\" alt=\"avatar\" height=\"350\" width=\"250\">\r\n                <input type=\"file\" (change)=\"saveFileInAws($event)\" #imageInput accept=\".png,.jpg\" class=\"text-center center-block well well-sm hidden\">\r\n                <button type=\"button\" class=\"btn btn-success\" (click)=\"imageInput.click()\">Завантажити інше фото</button>\r\n                <hr />\r\n                <button type=\"button\" class=\"btn btn-primary\" (click)=\"onPasswordChange()\">Змінити пароль</button>\r\n            </div>\r\n        </div>\r\n        <div class=\"col-md-8 col-sm-6 col-xs-12 personal-info\">\r\n            <div class=\"alert alert-info alert-dismissable\">\r\n                <a class=\"panel-close close\" data-dismiss=\"alert\">×</a>\r\n                <i class=\"fa fa-coffee\"></i> Тут можна показувати сповіщення для юзера\r\n            </div>\r\n            <h3>Особисті дані</h3>\r\n            <form [formGroup]=\"userForm\" class=\"form-horizontal\" style=\"width:400px;padding-left:20px;\" (ngSubmit)=\"onSubmit()\">\r\n                <div class=\"form-group\">\r\n                    <label class=\"control-label\" for=\"login\">Логін</label>\r\n                    <div class=\"input-group\">\r\n                        <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-user\" aria-hidden=\"true\"></i></span>\r\n                        <input type=\"text\" disabled class=\"form-control\" name=\"user.login\" formControlName=\"login\" [(ngModel)]=\"user.login\" />\r\n                    </div>\r\n                </div>\r\n                <div class=\"form-group\" [class.has-error]=\"formErrors.firstName\" [class.has-success]=\"!formErrors.firstName && userForm.get('firstName').valid\">\r\n                    <label class=\"control-label\" for=\"firstName\">Ім'я</label>\r\n                    <div class=\"input-group\">\r\n                        <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-user\" aria-hidden=\"true\"></i></span>\r\n                        <input type=\"text\" class=\"form-control\" formControlName=\"firstName\" [(ngModel)]=\"user.firstName\" />\r\n                    </div>\r\n                    <div>\r\n                        <span *ngIf=\"formErrors.firstName\" class=\"has-error help-block fixedError\">\r\n                            {{ formErrors.firstName }}\r\n                        </span>\r\n                    </div>\r\n                </div>\r\n                <div class=\"form-group\" [class.has-error]=\"formErrors.lastName\" [class.has-success]=\"!formErrors.lastName && userForm.get('lastName').valid\">\r\n                    <label class=\"control-label\" for=\"user.lastName\">Прізвище</label>\r\n                    <div class=\"input-group\">\r\n                        <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-user\" aria-hidden=\"true\"></i></span>\r\n                        <input type=\"text\" class=\"form-control input-md\" formControlName=\"lastName\" [(ngModel)]=\"user.lastName\" />\r\n                    </div>\r\n                    <span *ngIf=\"formErrors.lastName\" class=\"has-error help-block fixedError\">\r\n                        {{ formErrors.lastName }}\r\n                    </span>\r\n                </div>\r\n                <div class=\"form-group\" [class.has-error]=\"formErrors.address\" [class.has-success]=\"!formErrors.email && userForm.get('address').valid\">\r\n                    <label class=\"control-label\" for=\"address\">Адреса</label>\r\n                    <div class=\"input-group\">\r\n                        <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-envelope\" aria-hidden=\"true\"></i></span>\r\n                        <input class=\"form-control input-md\" type=\"text\" formControlName=\"address\" [(ngModel)]=\"user.address\" />\r\n                    </div>\r\n                    <span *ngIf=\"formErrors.address\" class=\"has-error help-block fixedError\">\r\n                        {{ formErrors.address }}\r\n                    </span>\r\n                </div>\r\n                <div class=\"form-group\" [class.has-error]=\"formErrors.email\" [class.has-success]=\"!formErrors.email && userForm.get('email').valid\">\r\n                    <label class=\"control-label\" for=\"email\">Email</label>\r\n                    <div class=\"input-group\">\r\n                        <span class=\"input-group-addon\"><i aria-hidden=\"true\">@</i></span>\r\n                        <input class=\"form-control input-md\" type=\"text\" formControlName=\"email\" [(ngModel)]=\"user.email\" />\r\n                    </div>\r\n                    <span *ngIf=\"formErrors.email\" class=\"has-error help-block fixedError\">\r\n                        {{ formErrors.email }}\r\n                    </span>\r\n                </div>\r\n                <div class=\"form-group\">\r\n                    <label class=\"control-label\"></label>\r\n                    <button type=\"submit\" class=\"btn btn-primary\" [disabled]=\"!userForm.valid\">Зберегти</button>\r\n                </div>\r\n            </form>\r\n        </div>\r\n    </div>\r\n</div>\r\n<app-modal>\r\n    <div class=\"app-modal-header\">\r\n        <h3>Змінити пароль</h3>\r\n    </div>\r\n    <div class=\"app-modal-body\">\r\n        <form [formGroup]=\"passwordForm\" class=\"form-horizontal\" novalidate>\r\n            <div class=\"form-group\" [class.has-error]=\"formErrors.oldPassword\"\r\n                 [class.has-success]=\"!formErrors.oldPassword && passwordForm.get('oldPassword').valid\">\r\n                <label class=\"col-md-3 control-label\" for=\"oldPassword\">Старий пароль</label>\r\n                <div class=\"col-md-8 input-group\">\r\n                    <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-lock\" aria-hidden=\"true\"></i></span>\r\n                    <input class=\"form-control input-md\" type=\"password\"\r\n                           formControlName=\"oldPassword\" [(ngModel)]=\"passwordContainer.oldPassword\" />\r\n                </div>\r\n                <span *ngIf=\"formErrors.oldPassword\" class=\"has-error help-block fixedError\" style=\"margin-left:200px\">\r\n                    {{ formErrors.oldPassword }}\r\n                </span>\r\n            </div>\r\n            <div class=\"form-group\" [class.has-error]=\"formErrors.newPassword\"\r\n                 [class.has-success]=\"!formErrors.newPassword && passwordForm.get('newPassword').valid\">\r\n                <label class=\"col-md-3 control-label\" for=\"newPassword\">Новий пароль</label>\r\n                <div class=\"col-md-8 input-group\">\r\n                    <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-lock\" aria-hidden=\"true\"></i></span>\r\n                    <input class=\"form-control input-md\" type=\"password\"\r\n                           formControlName=\"newPassword\" [(ngModel)]=\"passwordContainer.newPassword\" />\r\n                </div>\r\n                <span *ngIf=\"formErrors.newPassword\" class=\"has-error help-block fixedError\" style=\"margin-left:200px\">\r\n                    {{ formErrors.newPassword }}\r\n                </span>\r\n            </div>\r\n            <div class=\"form-group\" [class.has-error]=\"formErrors.newPasswordConfirmation\"\r\n                 [class.has-success]=\"!formErrors.newPasswordConfirmation && passwordForm.get('newPasswordConfirmation').valid\">\r\n                <label class=\"col-md-3 control-label\" for=\"newPasswordConfirmation\">Підтвердження пароля</label>\r\n                <div class=\"col-md-8 input-group\">\r\n                    <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-lock\" aria-hidden=\"true\"></i></span>\r\n                    <input class=\"form-control input-md\" type=\"password\"\r\n                           formControlName=\"newPasswordConfirmation\" [(ngModel)]=\"passwordContainer.newPasswordConfirmation\" />\r\n                </div>\r\n                <span *ngIf=\"formErrors.newPasswordConfirmation\" class=\"has-error help-block fixedError\" style=\"margin-left:200px\" >\r\n                    {{ formErrors.newPasswordConfirmation }}\r\n                </span>\r\n            </div>\r\n            <span *ngIf=\"passwordForm.hasError('mismatchedPasswords')\" class=\"has-error help-block fixedError\" style=\"margin-left:200px\"\r\n                 >Паролі не співпадають</span>\r\n        </form>\r\n    </div>\r\n    <div class=\"app-modal-footer\">\r\n        <button type=\"button\" class=\"btn btn-default\" (click)=\"modal.hide()\">Закрити</button>\r\n        <button type=\"button\" class=\"btn btn-primary\" [disabled]=\"passwordForm.invalid\" (click)=\"changePassword()\">Зберегти</button>\r\n        <div class=\"col-md-4 col-md-offset-4 form-group\">\r\n            <p class=\"error\" *ngIf=\"errorMessage\"><span class=\"text-danger\">{{errorMessage}}</span></p>\r\n        </div>\r\n    </div>\r\n</app-modal>";
 
 /***/ }),
 /* 207 */
 /***/ (function(module, exports) {
 
-module.exports = "<h3>Ви не маєте достатньо прав для виконання даної дії.</h3>\r\n<div class=\"col-md-4 col-md-offset-10 form-group\">\r\n    <a [routerLink]=\"['/']\">Домашня сторінка</a>\r\n</div>";
+module.exports = "<div class=\"row\">\r\n    <div class=\"btn-group\">\r\n        <button type=\"button\" class=\"btn btn-info dropdown-toggle\" data-toggle=\"dropdown\">\r\n            {{_selectedOrganizationName ? _selectedOrganizationName : 'Список оргнізацій'}}\r\n            <span class=\"caret\"></span>\r\n        </button>\r\n        <ul class=\"dropdown-menu scrollable-menu\" role=\"menu\">\r\n            <li><input type=\"text\" class=\"form-control\" name=\"filterBy\" [(ngModel)]=\"filterBy\" placeholder=\"Пошук по назві організації\" /></li>\r\n            <li>\r\n                <a [routerLink]=\"['home']\" (click)=\"onSelect()\">Всі організації</a>\r\n            </li>\r\n            <li *ngFor=\"let org of _organizations | organizationsListPipe:filterBy\" (click)=\"onSelect(org)\">\r\n                <a [routerLink]=\"['/home/allevents',org.id]\">{{org.name}}</a>\r\n            </li>\r\n        </ul>\r\n    </div>\r\n</div>\r\n\r\n";
 
 /***/ }),
 /* 208 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row center-block col-lg-12 col-md-12 col-sm-12 col-xs-12\">\r\n    <div>\r\n        <div class=\"form-group\">\r\n            <input placeholder=\"Вулиця, Номер будинку, Місто\"\r\n                   autocorrect=\"off\"\r\n                   autocapitalize=\"off\"\r\n                   spellcheck=\"off\"\r\n                   type=\"text\"\r\n                   class=\"form-control\"\r\n                   #search\r\n                   [formControl]=\"searchControl\" />\r\n            <br />\r\n            <button class=\"btn btn-primary btn-sm\" (click)=\"saveMarkerAndAddressFromDataInAutocompleteForm()\">Зберегти адресу</button>\r\n            <button class=\"btn btn-primary btn-sm\" (click)=\"saveAllAddressesFromMarkers()\">Список адрес</button>\r\n            <button class=\"btn btn-primary btn-sm\" (click)=\"setMarkersFromAddresses()\">Встановити маркери</button>\r\n            <button class=\"btn btn-primary btn-sm\" (click)=\"clearMapFromMarkers()\">Очистити</button>\r\n            <button class=\"btn btn-primary btn-sm\" (click)=\"changeAmountMarkersMode()\">{{allowManyMarkers?'Один маркер':'Багато маркерів'}}</button>\r\n            <ul *ngIf=\"_addresses.length > 0\">\r\n                Збережені адреси\r\n                <li *ngFor=\"let address of _addresses\">{{address}}</li>\r\n            </ul>\r\n        </div>\r\n        <agm-map [latitude]=\"mainPointerLatitude\"\r\n                 [longitude]=\"mainPointerLongitude\"\r\n                 [zoom]=\"zoom\"\r\n                 [disableDefaultUI]=false\r\n                 [zoomControl]=false\r\n                 (mapClick)=\"mapClicked($event)\">\r\n            <agm-marker *ngIf=\"mainPointerLatitude\"\r\n                        [latitude]=\"mainPointerLatitude\"\r\n                        [longitude]=\"mainPointerLongitude\">\r\n            </agm-marker>\r\n            <agm-marker *ngFor=\"let marker of _markers;let i = index\"\r\n                        (markerClick)=\"clickedMarker(marker)\"\r\n                        [latitude]=\"marker.lat\"\r\n                        [longitude]=\"marker.lng\"\r\n                        [markerDraggable]=\"marker.draggable\"\r\n                        (dragEnd)=\"markerDragEnd(marker, $event)\">\r\n                <agm-info-window>\r\n                    <strong>{{marker.name}}</strong>\r\n                    <br />\r\n                    <a class=\"text-danger\" (click)=\"removeMarker(marker)\">Видалити</a>\r\n                </agm-info-window>\r\n            </agm-marker>\r\n        </agm-map>\r\n    </div>\r\n</div>\r\n\r\n";
+module.exports = "<h3>Ви не маєте достатньо прав для виконання даної дії.</h3>\r\n<div class=\"col-md-4 col-md-offset-10 form-group\">\r\n    <a [routerLink]=\"['/']\">Домашня сторінка</a>\r\n</div>";
 
 /***/ }),
 /* 209 */
 /***/ (function(module, exports) {
 
-module.exports = "<div (click)=\"onContainerClicked($event)\" class=\"modal fade\" tabindex=\"1\" [ngClass]=\"{'in': visibleAnimate}\"\r\n     [ngStyle]=\"{'display': visible ? 'block' : 'none', 'opacity': visibleAnimate ? 1 : 0}\">\r\n    <div class=\"modal-dialog\">\r\n        <div class=\"modal-content\">\r\n            <div class=\"modal-header\">\r\n                <ng-content select=\".app-modal-header\"></ng-content>\r\n            </div>\r\n            <div class=\"modal-body\">\r\n                <ng-content select=\".app-modal-body\"></ng-content>\r\n            </div>\r\n            <div class=\"modal-footer\">\r\n                <ng-content select=\".app-modal-footer\"></ng-content>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>";
+module.exports = "<div class=\"row center-block col-lg-12 col-md-12 col-sm-12 col-xs-12\">\r\n    <div>\r\n        <div class=\"form-group\">\r\n            <input placeholder=\"Вулиця, Номер будинку, Місто\"\r\n                   autocorrect=\"off\"\r\n                   autocapitalize=\"off\"\r\n                   spellcheck=\"off\"\r\n                   type=\"text\"\r\n                   class=\"form-control\"\r\n                   #search\r\n                   [formControl]=\"searchControl\" />\r\n            <br />\r\n            <button class=\"btn btn-primary btn-sm\" (click)=\"saveMarkerAndAddressFromDataInAutocompleteForm()\">Зберегти адресу</button>\r\n            <button class=\"btn btn-primary btn-sm\" (click)=\"saveAllAddressesFromMarkers()\">Список адрес</button>\r\n            <button class=\"btn btn-primary btn-sm\" (click)=\"setMarkersFromAddresses()\">Встановити маркери</button>\r\n            <button class=\"btn btn-primary btn-sm\" (click)=\"clearMapFromMarkers()\">Очистити</button>\r\n            <button class=\"btn btn-primary btn-sm\" (click)=\"changeAmountMarkersMode()\">{{allowManyMarkers?'Один маркер':'Багато маркерів'}}</button>\r\n            <ul *ngIf=\"_addresses.length > 0\">\r\n                Збережені адреси\r\n                <li *ngFor=\"let address of _addresses\">{{address}}</li>\r\n            </ul>\r\n        </div>\r\n        <agm-map [latitude]=\"mainPointerLatitude\"\r\n                 [longitude]=\"mainPointerLongitude\"\r\n                 [zoom]=\"zoom\"\r\n                 [disableDefaultUI]=false\r\n                 [zoomControl]=false\r\n                 (mapClick)=\"mapClicked($event)\">\r\n            <agm-marker *ngIf=\"mainPointerLatitude\"\r\n                        [latitude]=\"mainPointerLatitude\"\r\n                        [longitude]=\"mainPointerLongitude\">\r\n            </agm-marker>\r\n            <agm-marker *ngFor=\"let marker of _markers;let i = index\"\r\n                        (markerClick)=\"clickedMarker(marker)\"\r\n                        [latitude]=\"marker.lat\"\r\n                        [longitude]=\"marker.lng\"\r\n                        [markerDraggable]=\"marker.draggable\"\r\n                        (dragEnd)=\"markerDragEnd(marker, $event)\">\r\n                <agm-info-window>\r\n                    <strong>{{marker.name}}</strong>\r\n                    <br />\r\n                    <a class=\"text-danger\" (click)=\"removeMarker(marker)\">Видалити</a>\r\n                </agm-info-window>\r\n            </agm-marker>\r\n        </agm-map>\r\n    </div>\r\n</div>\r\n\r\n";
 
 /***/ }),
 /* 210 */
 /***/ (function(module, exports) {
 
-module.exports = "<p *ngIf=\"!arrayToDisplay\"><em>Loading...</em></p>\r\n\r\n<table class='table' *ngIf=\"arrayToDisplay\">\r\n    <thead>\r\n        <tr>\r\n            <th *ngFor=\"let header of headers\">\r\n                {{header}}\r\n            </th>           \r\n        </tr>\r\n    </thead>\r\n    <tbody>\r\n        <tr *ngFor=\"let item of arrayToDisplay\">\r\n            <td *ngFor=\"let value of getObjectData(item)\">\r\n                <div *ngIf=\"value.key == 'isBanned' \">\r\n                    <div *ngIf=\"value.value == false\">\r\n                        <button>Unban</button>\r\n                    </div>\r\n                    <div *ngIf=\"value.value == true\">\r\n                        <button>Ban</button>\r\n                    </div>\r\n                </div>\r\n                <div *ngIf=\"value.key != 'isBanned'\">\r\n                    {{value.value}}\r\n                </div>                \r\n            </td>            \r\n        </tr>\r\n    </tbody>\r\n</table>";
+module.exports = "<div (click)=\"onContainerClicked($event)\" class=\"modal fade\" tabindex=\"1\" [ngClass]=\"{'in': visibleAnimate}\"\r\n     [ngStyle]=\"{'display': visible ? 'block' : 'none', 'opacity': visibleAnimate ? 1 : 0}\">\r\n    <div class=\"modal-dialog\">\r\n        <div class=\"modal-content\">\r\n            <div class=\"modal-header\">\r\n                <ng-content select=\".app-modal-header\"></ng-content>\r\n            </div>\r\n            <div class=\"modal-body\">\r\n                <ng-content select=\".app-modal-body\"></ng-content>\r\n            </div>\r\n            <div class=\"modal-footer\">\r\n                <ng-content select=\".app-modal-footer\"></ng-content>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>";
 
 /***/ }),
 /* 211 */
 /***/ (function(module, exports) {
 
-module.exports = "<ul class=\"pagination\">\r\n    <li [class.disabled]=\"currentPage == 1\">\r\n        <button (click)=\"selectPage(1)\" class=\"btn btn-default btn-md\">&laquo;</button>\r\n    </li>\r\n    <li [class.disabled]=\"currentPage == 1\">\r\n        <button (click)=\"selectPage(currentPage - 1)\" class=\"btn btn-default btn-md\">&lsaquo;</button>\r\n    </li>\r\n    <li *ngIf=\"(currentPage - range) > 1\">    \r\n        <button class=\"btn btn-default btn-md disabled\" >...</button>\r\n    </li>\r\n    <li *ngFor=\"let page of pages | async\">\r\n        <button (click)=\"selectPage(page)\" \r\n                class=\"btn btn-md btn-default active\"\r\n                [class.active]=\"page == currentPage\">\r\n            {{page}}\r\n        </button>\r\n    </li>\r\n    <li *ngIf=\"(currentPage + range) < totalPages\">      \r\n        <button class=\"btn btn-default btn-md disabled\">...</button>\r\n    </li>\r\n    <li [class.disabled]=\"currentPage == 1\">\r\n        <button (click)=\"selectPage(currentPage + 1)\" class=\"btn btn-default btn-md\">&rsaquo;</button>\r\n    </li>\r\n    <li [class.disabled]=\"currentPage == 1\">\r\n        <button (click)=\"selectPage(totalPages)\" class=\"btn btn-default btn-md\">&raquo;</button>\r\n    </li>   \r\n</ul>";
+module.exports = "<p *ngIf=\"!arrayToDisplay\"><em>Loading...</em></p>\r\n\r\n<table class='table' *ngIf=\"arrayToDisplay\">\r\n    <thead>\r\n        <tr>\r\n            <th *ngFor=\"let header of headers\">\r\n                {{header}}\r\n            </th>           \r\n        </tr>\r\n    </thead>\r\n    <tbody>\r\n        <tr *ngFor=\"let item of arrayToDisplay\">\r\n            <td *ngFor=\"let value of getObjectData(item)\">\r\n                <div *ngIf=\"value.key == 'isBanned' \">\r\n                    <div *ngIf=\"value.value == false\">\r\n                        <button>Unban</button>\r\n                    </div>\r\n                    <div *ngIf=\"value.value == true\">\r\n                        <button>Ban</button>\r\n                    </div>\r\n                </div>\r\n                <div *ngIf=\"value.key != 'isBanned'\">\r\n                    {{value.value}}\r\n                </div>                \r\n            </td>            \r\n        </tr>\r\n    </tbody>\r\n</table>";
 
 /***/ }),
 /* 212 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"form-group\">\r\n    <select class=\"form-control\" (change)=\"onChange($event.target.value)\">\r\n        <option *ngFor=\"let i of items\">{{i}}</option>\r\n    </select>\r\n</div>";
+module.exports = "<ul class=\"pagination\">\r\n    <li [class.disabled]=\"currentPage == 1\">\r\n        <button (click)=\"selectPage(1)\" class=\"btn btn-default btn-md\">&laquo;</button>\r\n    </li>\r\n    <li [class.disabled]=\"currentPage == 1\">\r\n        <button (click)=\"selectPage(currentPage - 1)\" class=\"btn btn-default btn-md\">&lsaquo;</button>\r\n    </li>\r\n    <li *ngIf=\"(currentPage - range) > 1\">    \r\n        <button class=\"btn btn-default btn-md disabled\" >...</button>\r\n    </li>\r\n    <li *ngFor=\"let page of pages | async\">\r\n        <button (click)=\"selectPage(page)\" \r\n                class=\"btn btn-md btn-default active\"\r\n                [class.active]=\"page == currentPage\">\r\n            {{page}}\r\n        </button>\r\n    </li>\r\n    <li *ngIf=\"(currentPage + range) < totalPages\">      \r\n        <button class=\"btn btn-default btn-md disabled\">...</button>\r\n    </li>\r\n    <li [class.disabled]=\"currentPage == 1\">\r\n        <button (click)=\"selectPage(currentPage + 1)\" class=\"btn btn-default btn-md\">&rsaquo;</button>\r\n    </li>\r\n    <li [class.disabled]=\"currentPage == 1\">\r\n        <button (click)=\"selectPage(totalPages)\" class=\"btn btn-default btn-md\">&raquo;</button>\r\n    </li>   \r\n</ul>";
 
 /***/ }),
 /* 213 */
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngIf=\"showSpinner\" class=\"loader\"></div>";
+module.exports = "<div class=\"form-group\">\r\n    <select class=\"form-control\" (change)=\"onChange($event.target.value)\">\r\n        <option *ngFor=\"let i of items\">{{i}}</option>\r\n    </select>\r\n</div>";
 
 /***/ }),
 /* 214 */
 /***/ (function(module, exports) {
 
-module.exports = "<!-- Single button -->\r\n<div *ngIf=\"name\" class=\"btn-group\" >\r\n    <button type=\"button\" class=\"btn btn-default dropdown-toggle\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n        Привіт,{{name}}<span class=\"caret\"></span>\r\n        <span *ngIf=\"isAdmin\"><b>{{user.role}}</b></span>\r\n    </button>\r\n    <ul class=\"dropdown-menu dropdowncolor\">\r\n        <li><a [routerLink]=\"['/userprofile']\">Мій профіль</a></li>\r\n        <li *ngIf=\"isAdmin\"><a [routerLink]=\"['/superadmin']\">Панель адміністратора</a></li>\r\n        <li *ngIf=\"isAdminOfOrganization\"><a [routerLink]=\"['organization-management', idOfOrganization]\">Моя організація</a></li>\r\n        <li><a [routerLink]=\"['/']\" (click)=\"exit()\">Вийти</a></li>\r\n    </ul>\r\n</div>\r\n<div *ngIf=\"!name\">\r\n    <ul class=\"nav nav-pills\">\r\n        <li role=\"presentation\"><a [routerLink]=\"['/login']\"><font size='4'>Увійти</font></a></li>\r\n        <li role=\"presentation\"><a [routerLink]=\"['/registration']\"><font size='4'>Зареєструватися</font></a></li>\r\n    </ul>\r\n</div>\r\n";
+module.exports = "<div *ngIf=\"showSpinner\" class=\"loader\"></div>";
 
 /***/ }),
 /* 215 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-// Copyright Joyent, Inc. and other Node contributors.
-//
-// Permission is hereby granted, free of charge, to any person obtaining a
-// copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to permit
-// persons to whom the Software is furnished to do so, subject to the
-// following conditions:
-//
-// The above copyright notice and this permission notice shall be included
-// in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
-// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
-// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
-// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
-// USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-
-
-// If obj.hasOwnProperty has been overridden, then calling
-// obj.hasOwnProperty(prop) will break.
-// See: https://github.com/joyent/node/issues/1707
-function hasOwnProperty(obj, prop) {
-  return Object.prototype.hasOwnProperty.call(obj, prop);
-}
-
-module.exports = function(qs, sep, eq, options) {
-  sep = sep || '&';
-  eq = eq || '=';
-  var obj = {};
-
-  if (typeof qs !== 'string' || qs.length === 0) {
-    return obj;
-  }
-
-  var regexp = /\+/g;
-  qs = qs.split(sep);
-
-  var maxKeys = 1000;
-  if (options && typeof options.maxKeys === 'number') {
-    maxKeys = options.maxKeys;
-  }
-
-  var len = qs.length;
-  // maxKeys <= 0 means that we should not limit keys count
-  if (maxKeys > 0 && len > maxKeys) {
-    len = maxKeys;
-  }
-
-  for (var i = 0; i < len; ++i) {
-    var x = qs[i].replace(regexp, '%20'),
-        idx = x.indexOf(eq),
-        kstr, vstr, k, v;
-
-    if (idx >= 0) {
-      kstr = x.substr(0, idx);
-      vstr = x.substr(idx + 1);
-    } else {
-      kstr = x;
-      vstr = '';
-    }
-
-    k = decodeURIComponent(kstr);
-    v = decodeURIComponent(vstr);
-
-    if (!hasOwnProperty(obj, k)) {
-      obj[k] = v;
-    } else if (isArray(obj[k])) {
-      obj[k].push(v);
-    } else {
-      obj[k] = [obj[k], v];
-    }
-  }
-
-  return obj;
-};
-
-var isArray = Array.isArray || function (xs) {
-  return Object.prototype.toString.call(xs) === '[object Array]';
-};
-
+module.exports = "<!-- Single button -->\r\n<div *ngIf=\"name\" class=\"btn-group\" >\r\n    <button type=\"button\" class=\"btn btn-default dropdown-toggle\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n        Привіт,{{name}}<span class=\"caret\"></span>\r\n        <span *ngIf=\"isAdmin\"><b>{{user.role}}</b></span>\r\n    </button>\r\n    <ul class=\"dropdown-menu dropdowncolor\">\r\n        <li><a [routerLink]=\"['/userprofile']\">Мій профіль</a></li>\r\n        <li *ngIf=\"isAdmin\"><a [routerLink]=\"['/superadmin']\">Панель адміністратора</a></li>\r\n        <li *ngIf=\"isAdminOfOrganization\"><a [routerLink]=\"['organization-management', idOfOrganization]\">Моя організація</a></li>\r\n        <li><a [routerLink]=\"['/']\" (click)=\"exit()\">Вийти</a></li>\r\n    </ul>\r\n</div>\r\n<div *ngIf=\"!name\">\r\n    <ul class=\"nav nav-pills\">\r\n        <li role=\"presentation\"><a [routerLink]=\"['/login']\"><font size='4'>Увійти</font></a></li>\r\n        <li role=\"presentation\"><a [routerLink]=\"['/registration']\"><font size='4'>Зареєструватися</font></a></li>\r\n    </ul>\r\n</div>\r\n";
 
 /***/ }),
 /* 216 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-// Copyright Joyent, Inc. and other Node contributors.
-//
-// Permission is hereby granted, free of charge, to any person obtaining a
-// copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to permit
-// persons to whom the Software is furnished to do so, subject to the
-// following conditions:
-//
-// The above copyright notice and this permission notice shall be included
-// in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
-// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
-// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
-// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
-// USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-
-
-var stringifyPrimitive = function(v) {
-  switch (typeof v) {
-    case 'string':
-      return v;
-
-    case 'boolean':
-      return v ? 'true' : 'false';
-
-    case 'number':
-      return isFinite(v) ? v : '';
-
-    default:
-      return '';
-  }
-};
-
-module.exports = function(obj, sep, eq, name) {
-  sep = sep || '&';
-  eq = eq || '=';
-  if (obj === null) {
-    obj = undefined;
-  }
-
-  if (typeof obj === 'object') {
-    return map(objectKeys(obj), function(k) {
-      var ks = encodeURIComponent(stringifyPrimitive(k)) + eq;
-      if (isArray(obj[k])) {
-        return map(obj[k], function(v) {
-          return ks + encodeURIComponent(stringifyPrimitive(v));
-        }).join(sep);
-      } else {
-        return ks + encodeURIComponent(stringifyPrimitive(obj[k]));
-      }
-    }).join(sep);
-
-  }
-
-  if (!name) return '';
-  return encodeURIComponent(stringifyPrimitive(name)) + eq +
-         encodeURIComponent(stringifyPrimitive(obj));
-};
-
-var isArray = Array.isArray || function (xs) {
-  return Object.prototype.toString.call(xs) === '[object Array]';
-};
-
-function map (xs, f) {
-  if (xs.map) return xs.map(f);
-  var res = [];
-  for (var i = 0; i < xs.length; i++) {
-    res.push(f(xs[i], i));
-  }
-  return res;
-}
-
-var objectKeys = Object.keys || function (obj) {
-  var res = [];
-  for (var key in obj) {
-    if (Object.prototype.hasOwnProperty.call(obj, key)) res.push(key);
-  }
-  return res;
-};
-
+var Observable_1 = __webpack_require__(1);
+var range_1 = __webpack_require__(221);
+Observable_1.Observable.range = range_1.range;
+//# sourceMappingURL=range.js.map
 
 /***/ }),
 /* 217 */
@@ -141139,10 +141066,10 @@ var objectKeys = Object.keys || function (obj) {
 
 "use strict";
 
-
-exports.decode = exports.parse = __webpack_require__(215);
-exports.encode = exports.stringify = __webpack_require__(216);
-
+var Observable_1 = __webpack_require__(1);
+var filter_1 = __webpack_require__(263);
+Observable_1.Observable.prototype.filter = filter_1.filter;
+//# sourceMappingURL=filter.js.map
 
 /***/ }),
 /* 218 */
@@ -141151,9 +141078,9 @@ exports.encode = exports.stringify = __webpack_require__(216);
 "use strict";
 
 var Observable_1 = __webpack_require__(1);
-var range_1 = __webpack_require__(223);
-Observable_1.Observable.range = range_1.range;
-//# sourceMappingURL=range.js.map
+var switchMap_1 = __webpack_require__(223);
+Observable_1.Observable.prototype.switchMap = switchMap_1.switchMap;
+//# sourceMappingURL=switchMap.js.map
 
 /***/ }),
 /* 219 */
@@ -141162,34 +141089,12 @@ Observable_1.Observable.range = range_1.range;
 "use strict";
 
 var Observable_1 = __webpack_require__(1);
-var filter_1 = __webpack_require__(261);
-Observable_1.Observable.prototype.filter = filter_1.filter;
-//# sourceMappingURL=filter.js.map
-
-/***/ }),
-/* 220 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var Observable_1 = __webpack_require__(1);
-var switchMap_1 = __webpack_require__(225);
-Observable_1.Observable.prototype.switchMap = switchMap_1.switchMap;
-//# sourceMappingURL=switchMap.js.map
-
-/***/ }),
-/* 221 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var Observable_1 = __webpack_require__(1);
-var toArray_1 = __webpack_require__(226);
+var toArray_1 = __webpack_require__(224);
 Observable_1.Observable.prototype.toArray = toArray_1.toArray;
 //# sourceMappingURL=toArray.js.map
 
 /***/ }),
-/* 222 */
+/* 220 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -141291,17 +141196,17 @@ exports.RangeObservable = RangeObservable;
 //# sourceMappingURL=RangeObservable.js.map
 
 /***/ }),
-/* 223 */
+/* 221 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var RangeObservable_1 = __webpack_require__(222);
+var RangeObservable_1 = __webpack_require__(220);
 exports.range = RangeObservable_1.RangeObservable.create;
 //# sourceMappingURL=range.js.map
 
 /***/ }),
-/* 224 */
+/* 222 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -141311,7 +141216,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var Subscriber_1 = __webpack_require__(98);
+var Subscriber_1 = __webpack_require__(99);
 /* tslint:enable:max-line-length */
 /**
  * Perform a side effect for every emission on the source Observable, but return
@@ -141336,7 +141241,7 @@ var Subscriber_1 = __webpack_require__(98);
  * Observer will never happen. `do` therefore simply spies on existing
  * execution, it does not trigger an execution to happen like `subscribe` does.
  *
- * @example <caption>Map every click to the clientX position of that click, while also logging the click event</caption>
+ * @example <caption>Map every every click to the clientX position of that click, while also logging the click event</caption>
  * var clicks = Rx.Observable.fromEvent(document, 'click');
  * var positions = clicks
  *   .do(ev => console.log(ev))
@@ -141420,7 +141325,7 @@ var DoSubscriber = (function (_super) {
 //# sourceMappingURL=do.js.map
 
 /***/ }),
-/* 225 */
+/* 223 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -141430,8 +141335,8 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var OuterSubscriber_1 = __webpack_require__(253);
-var subscribeToResult_1 = __webpack_require__(254);
+var OuterSubscriber_1 = __webpack_require__(255);
+var subscribeToResult_1 = __webpack_require__(256);
 /* tslint:enable:max-line-length */
 /**
  * Projects each source value to an Observable which is merged in the output
@@ -141566,7 +141471,7 @@ var SwitchMapSubscriber = (function (_super) {
 //# sourceMappingURL=switchMap.js.map
 
 /***/ }),
-/* 226 */
+/* 224 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -141576,7 +141481,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var Subscriber_1 = __webpack_require__(98);
+var Subscriber_1 = __webpack_require__(99);
 /**
  * @return {Observable<any[]>|WebSocketSubject<T>|Observable<T>}
  * @method toArray
@@ -141617,12 +141522,12 @@ var ToArraySubscriber = (function (_super) {
 //# sourceMappingURL=toArray.js.map
 
 /***/ }),
-/* 227 */
+/* 225 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var root_1 = __webpack_require__(260);
+var root_1 = __webpack_require__(262);
 /* tslint:enable:max-line-length */
 /**
  * Converts an Observable sequence to a ES2015 compliant promise.
@@ -141665,7 +141570,7 @@ var root_1 = __webpack_require__(260);
  * source.then((value) => console.log('Value: %s', value));
  * // => Value: 42
  *
- * @param {PromiseConstructor} [PromiseCtor] The constructor of the promise. If not provided,
+ * @param PromiseCtor promise The constructor of the promise. If not provided,
  * it will look for a constructor first in Rx.config.Promise then fall back to
  * the native Promise constructor if available.
  * @return {Promise<T>} An ES2015 compatible promise with the last value from
@@ -141695,7 +141600,7 @@ exports.toPromise = toPromise;
 //# sourceMappingURL=toPromise.js.map
 
 /***/ }),
-/* 228 */
+/* 226 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -141708,21 +141613,7 @@ module.exports = function (str) {
 
 
 /***/ }),
-/* 229 */
-/***/ (function(module, exports, __webpack_require__) {
-
-
-        var result = __webpack_require__(162);
-
-        if (typeof result === "string") {
-            module.exports = result;
-        } else {
-            module.exports = result.toString();
-        }
-    
-
-/***/ }),
-/* 230 */
+/* 227 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -141736,7 +141627,7 @@ module.exports = function (str) {
     
 
 /***/ }),
-/* 231 */
+/* 228 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -141750,7 +141641,7 @@ module.exports = function (str) {
     
 
 /***/ }),
-/* 232 */
+/* 229 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -141764,7 +141655,7 @@ module.exports = function (str) {
     
 
 /***/ }),
-/* 233 */
+/* 230 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -141778,7 +141669,7 @@ module.exports = function (str) {
     
 
 /***/ }),
-/* 234 */
+/* 231 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -141792,7 +141683,7 @@ module.exports = function (str) {
     
 
 /***/ }),
-/* 235 */
+/* 232 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -141806,7 +141697,7 @@ module.exports = function (str) {
     
 
 /***/ }),
-/* 236 */
+/* 233 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -141820,7 +141711,7 @@ module.exports = function (str) {
     
 
 /***/ }),
-/* 237 */
+/* 234 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -141834,7 +141725,7 @@ module.exports = function (str) {
     
 
 /***/ }),
-/* 238 */
+/* 235 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -141848,7 +141739,7 @@ module.exports = function (str) {
     
 
 /***/ }),
-/* 239 */
+/* 236 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -141862,7 +141753,7 @@ module.exports = function (str) {
     
 
 /***/ }),
-/* 240 */
+/* 237 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -141876,7 +141767,7 @@ module.exports = function (str) {
     
 
 /***/ }),
-/* 241 */
+/* 238 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -141890,7 +141781,7 @@ module.exports = function (str) {
     
 
 /***/ }),
-/* 242 */
+/* 239 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -141904,7 +141795,7 @@ module.exports = function (str) {
     
 
 /***/ }),
-/* 243 */
+/* 240 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -141918,7 +141809,7 @@ module.exports = function (str) {
     
 
 /***/ }),
-/* 244 */
+/* 241 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -141932,7 +141823,7 @@ module.exports = function (str) {
     
 
 /***/ }),
-/* 245 */
+/* 242 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -141946,7 +141837,7 @@ module.exports = function (str) {
     
 
 /***/ }),
-/* 246 */
+/* 243 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -141960,7 +141851,7 @@ module.exports = function (str) {
     
 
 /***/ }),
-/* 247 */
+/* 244 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -141974,7 +141865,7 @@ module.exports = function (str) {
     
 
 /***/ }),
-/* 248 */
+/* 245 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -141988,7 +141879,7 @@ module.exports = function (str) {
     
 
 /***/ }),
-/* 249 */
+/* 246 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -142002,7 +141893,21 @@ module.exports = function (str) {
     
 
 /***/ }),
-/* 250 */
+/* 247 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+        var result = __webpack_require__(183);
+
+        if (typeof result === "string") {
+            module.exports = result;
+        } else {
+            module.exports = result.toString();
+        }
+    
+
+/***/ }),
+/* 248 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*eslint-env browser*/
@@ -142046,7 +141951,7 @@ var colors = {
 };
 ansiHTML.setColors(colors);
 
-var Entities = __webpack_require__(183).AllHtmlEntities;
+var Entities = __webpack_require__(184).AllHtmlEntities;
 var entities = new Entities();
 
 exports.showProblems =
@@ -142087,7 +141992,7 @@ function problemType (type) {
 
 
 /***/ }),
-/* 251 */
+/* 249 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -142225,73 +142130,289 @@ module.exports = function(hash, moduleMap, options) {
 
 
 /***/ }),
+/* 250 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+// Copyright Joyent, Inc. and other Node contributors.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a
+// copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to permit
+// persons to whom the Software is furnished to do so, subject to the
+// following conditions:
+//
+// The above copyright notice and this permission notice shall be included
+// in all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
+// USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+
+
+// If obj.hasOwnProperty has been overridden, then calling
+// obj.hasOwnProperty(prop) will break.
+// See: https://github.com/joyent/node/issues/1707
+function hasOwnProperty(obj, prop) {
+  return Object.prototype.hasOwnProperty.call(obj, prop);
+}
+
+module.exports = function(qs, sep, eq, options) {
+  sep = sep || '&';
+  eq = eq || '=';
+  var obj = {};
+
+  if (typeof qs !== 'string' || qs.length === 0) {
+    return obj;
+  }
+
+  var regexp = /\+/g;
+  qs = qs.split(sep);
+
+  var maxKeys = 1000;
+  if (options && typeof options.maxKeys === 'number') {
+    maxKeys = options.maxKeys;
+  }
+
+  var len = qs.length;
+  // maxKeys <= 0 means that we should not limit keys count
+  if (maxKeys > 0 && len > maxKeys) {
+    len = maxKeys;
+  }
+
+  for (var i = 0; i < len; ++i) {
+    var x = qs[i].replace(regexp, '%20'),
+        idx = x.indexOf(eq),
+        kstr, vstr, k, v;
+
+    if (idx >= 0) {
+      kstr = x.substr(0, idx);
+      vstr = x.substr(idx + 1);
+    } else {
+      kstr = x;
+      vstr = '';
+    }
+
+    k = decodeURIComponent(kstr);
+    v = decodeURIComponent(vstr);
+
+    if (!hasOwnProperty(obj, k)) {
+      obj[k] = v;
+    } else if (isArray(obj[k])) {
+      obj[k].push(v);
+    } else {
+      obj[k] = [obj[k], v];
+    }
+  }
+
+  return obj;
+};
+
+var isArray = Array.isArray || function (xs) {
+  return Object.prototype.toString.call(xs) === '[object Array]';
+};
+
+
+/***/ }),
+/* 251 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+// Copyright Joyent, Inc. and other Node contributors.
+//
+// Permission is hereby granted, free of charge, to any person obtaining a
+// copy of this software and associated documentation files (the
+// "Software"), to deal in the Software without restriction, including
+// without limitation the rights to use, copy, modify, merge, publish,
+// distribute, sublicense, and/or sell copies of the Software, and to permit
+// persons to whom the Software is furnished to do so, subject to the
+// following conditions:
+//
+// The above copyright notice and this permission notice shall be included
+// in all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
+// USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+
+
+var stringifyPrimitive = function(v) {
+  switch (typeof v) {
+    case 'string':
+      return v;
+
+    case 'boolean':
+      return v ? 'true' : 'false';
+
+    case 'number':
+      return isFinite(v) ? v : '';
+
+    default:
+      return '';
+  }
+};
+
+module.exports = function(obj, sep, eq, name) {
+  sep = sep || '&';
+  eq = eq || '=';
+  if (obj === null) {
+    obj = undefined;
+  }
+
+  if (typeof obj === 'object') {
+    return map(objectKeys(obj), function(k) {
+      var ks = encodeURIComponent(stringifyPrimitive(k)) + eq;
+      if (isArray(obj[k])) {
+        return map(obj[k], function(v) {
+          return ks + encodeURIComponent(stringifyPrimitive(v));
+        }).join(sep);
+      } else {
+        return ks + encodeURIComponent(stringifyPrimitive(obj[k]));
+      }
+    }).join(sep);
+
+  }
+
+  if (!name) return '';
+  return encodeURIComponent(stringifyPrimitive(name)) + eq +
+         encodeURIComponent(stringifyPrimitive(obj));
+};
+
+var isArray = Array.isArray || function (xs) {
+  return Object.prototype.toString.call(xs) === '[object Array]';
+};
+
+function map (xs, f) {
+  if (xs.map) return xs.map(f);
+  var res = [];
+  for (var i = 0; i < xs.length; i++) {
+    res.push(f(xs[i], i));
+  }
+  return res;
+}
+
+var objectKeys = Object.keys || function (obj) {
+  var res = [];
+  for (var key in obj) {
+    if (Object.prototype.hasOwnProperty.call(obj, key)) res.push(key);
+  }
+  return res;
+};
+
+
+/***/ }),
 /* 252 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = (__webpack_require__(3))(124);
+"use strict";
+
+
+exports.decode = exports.parse = __webpack_require__(250);
+exports.encode = exports.stringify = __webpack_require__(251);
+
 
 /***/ }),
 /* 253 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-module.exports = (__webpack_require__(3))(189);
+module.exports = function(module) {
+	if(!module.webpackPolyfill) {
+		module.deprecate = function() {};
+		module.paths = [];
+		// module.parent = undefined by default
+		if(!module.children) module.children = [];
+		Object.defineProperty(module, "loaded", {
+			enumerable: true,
+			get: function() {
+				return module.l;
+			}
+		});
+		Object.defineProperty(module, "id", {
+			enumerable: true,
+			get: function() {
+				return module.i;
+			}
+		});
+		module.webpackPolyfill = 1;
+	}
+	return module;
+};
+
 
 /***/ }),
 /* 254 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = (__webpack_require__(3))(196);
+module.exports = (__webpack_require__(4))(124);
 
 /***/ }),
 /* 255 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = (__webpack_require__(3))(30);
+module.exports = (__webpack_require__(4))(189);
 
 /***/ }),
 /* 256 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = (__webpack_require__(3))(328);
+module.exports = (__webpack_require__(4))(196);
 
 /***/ }),
 /* 257 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = (__webpack_require__(3))(329);
+module.exports = (__webpack_require__(4))(30);
 
 /***/ }),
 /* 258 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = (__webpack_require__(3))(345);
+module.exports = (__webpack_require__(4))(328);
 
 /***/ }),
 /* 259 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = (__webpack_require__(3))(347);
+module.exports = (__webpack_require__(4))(329);
 
 /***/ }),
 /* 260 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = (__webpack_require__(3))(49);
+module.exports = (__webpack_require__(4))(345);
 
 /***/ }),
 /* 261 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = (__webpack_require__(3))(570);
+module.exports = (__webpack_require__(4))(347);
 
 /***/ }),
 /* 262 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = (__webpack_require__(3))(588);
+module.exports = (__webpack_require__(4))(49);
 
 /***/ }),
 /* 263 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = (__webpack_require__(4))(570);
+
+/***/ }),
+/* 264 */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(103);

@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using FundTrack.BLL.Abstract;
 using FundTrack.Infrastructure.ViewModel.EventViewModel;
+using System;
+using System.Linq;
 
 namespace FundTrack.WebUI.Controllers
 {

@@ -8,16 +8,14 @@ import { OrganizationGetGeneralInfoService } from '../../services/concrete/organ
 @Component({
     selector: 'org-management',
     templateUrl: './organization-management.component.html',
-    styleUrls: ['./organization-management.component.css'], 
-    providers: [ OrganizationGetGeneralInfoService ]
+    styleUrls: ['./organization-management.component.css'],
+    providers: [OrganizationGetGeneralInfoService]
 })
 export class OrganizationManagementComponent implements OnInit {
-    organizationId: number;
-    organization: OrganizationGeneralViewModel;
-    private subscription: Subscription;
-    constructor(private _router: ActivatedRoute, private _getGeneralInfoService: OrganizationGetGeneralInfoService) {
-
-    }
+    private _organizationId: number;
+    private _organization: OrganizationGeneralViewModel;
+    private _subscription: Subscription;
+    constructor(private _router: ActivatedRoute, private _getGeneralInfoService: OrganizationGetGeneralInfoService) {}
 
     //property for side bar visible mode
     private sideBarIsClosed: boolean = true;
@@ -32,9 +30,9 @@ export class OrganizationManagementComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.subscription = this._router.params.subscribe(params => {
-            this.organizationId = +params['id'];
-            this.getInformationOfOrganization(this.organizationId);
+        this._subscription = this._router.params.subscribe(params => {
+            this._organizationId = +params['id'];
+            this.getInformationOfOrganization(this._organizationId);
         });
     }
 
@@ -44,8 +42,10 @@ export class OrganizationManagementComponent implements OnInit {
      */
     private getInformationOfOrganization(id: number): void {
         this._getGeneralInfoService.getById(id, 'api/OrganizationProfile/GetInformationById')
-            .subscribe(model => {
-                this.organization = model;
-            })
+            .subscribe(model => this._organization = model)
+    }
+    
+    ngDestroy(): void {
+        this._subscription.unsubscribe();
     }
 }

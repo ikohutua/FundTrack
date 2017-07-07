@@ -5,6 +5,18 @@ namespace FundTrack.DAL.Tests
 {
     public sealed class OrganizationRegistrationRepositoryTest
     {
+        private FundTrackContext _context;
+        private FakeFundTrackDbContextBaseBuilder _fakeBuilder;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="OrganizationRegistrationRepositoryTest"/> class.
+        /// </summary>
+        public OrganizationRegistrationRepositoryTest()
+        {
+            this._fakeBuilder = new FakeFundTrackDbContextBaseBuilder();
+            this._fakeBuilder.SetOrganizations();
+            this._context = this._fakeBuilder.GetFakeContext();
+        }
         /// <summary>
         /// Creates new Record in Organization Repository
         /// Script - gets fake db context and setups repository
@@ -13,23 +25,18 @@ namespace FundTrack.DAL.Tests
         [Fact]
         public void CreatesNewOrganization_FakeDbContext_CollectionOfOrganization()
         {
-            using (var context = FakeDbContextBuilder.GetFakeContext())
-            {
-                //Arrange
-                var repository = new OrganizationRepository(context);
-                
-                //Act
-                var item = new Entities.Organization {Id=5, Name = "Soldair", Description = "Volunteer Organization" };
-                var organization = repository.Create(item);
-                context.SaveChanges();
+            //Arrange
+            var repository = new OrganizationRepository(this._context);
 
-                //Assert
-                Assert.IsType<Entities.Organization>(organization);
-                Assert.Equal("Volunteer Organization", organization.Description);
-                Assert.True(context.Organizations.Count() == 4);                
-            }
+            //Act
+            var item = new Entities.Organization { Id = 5, Name = "Soldair", Description = "Volunteer Organization" };
+            var organization = repository.Create(item);
+            this._context.SaveChanges();
+
+            //Assert
+            Assert.IsType<Entities.Organization>(organization);
+            Assert.Equal("Volunteer Organization", organization.Description);
+            Assert.True(this._context.Organizations.Count() == 4);
         }
-
-
     }
 }

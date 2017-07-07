@@ -5,7 +5,6 @@ using FundTrack.DAL.Tests;
 using FundTrack.Infrastructure.ViewModel;
 using Xunit;
 
-
 namespace FundTrack.BLL.Tests
 {
     /// <summary>
@@ -14,13 +13,15 @@ namespace FundTrack.BLL.Tests
     public sealed class RegisterOrganizationServiceTest
     {
         private FundTrackContext _context;
+        private FakeFundTrackDbContextBaseBuilder _fakeBuilder;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RegisterOrganizationServiceTest"/> class.
         /// </summary>
         public RegisterOrganizationServiceTest()
         {
-            this._context = FakeDbContextBuilder.GetFakeContext();
+            this._fakeBuilder = new FakeFundTrackDbContextBaseBuilder();
+            this._context = this._fakeBuilder.GetFakeContext();
         }
 
         /// <summary>
@@ -48,8 +49,10 @@ namespace FundTrack.BLL.Tests
                 addressRepository,  
                 orgAddressRepository,
                 null,
+                null,
                 null, 
-                roleRepository);
+                roleRepository,
+                null);
 
             var registerService = new OrganizationRegistrationService(unitOfWork);
 
@@ -78,7 +81,6 @@ namespace FundTrack.BLL.Tests
             //Assert
             Assert.False(result.UserError == string.Empty);
             Assert.True(secondResult.NameError == "Організація з такою назвою вже існує");
-
         }
     }
 }

@@ -1,36 +1,46 @@
 ﻿using FundTrack.DAL.Concrete;
 using Microsoft.EntityFrameworkCore;
-using System;
 
 namespace FundTrack.DAL.Tests
 {
     /// <summary>
-    /// Class for creating fake data base context for testing
+    /// Abstract builder for fake data base context
     /// </summary>
-    public sealed class FakeDbContextBuilder
+    public abstract class FakeDbContextBuilder
     {
+        protected FundTrackContext context { get; private set; }
+
+        /// <summary>
+        /// Creates the database context.
+        /// </summary>
+        /// <param name="options">The options.</param>
+        public void CreateDbContext(DbContextOptions<FundTrackContext> options)
+        {
+            context = new FundTrackContext(options);
+        }
+
         /// <summary>
         /// Gets the fake context.
         /// </summary>
         /// <returns> FundTrackContext - fake instance </returns>
-        public static FundTrackContext GetFakeContext()
+        public FundTrackContext GetFakeContext()
         {
-            var options = new DbContextOptionsBuilder<FundTrackContext>()
-                 .UseInMemoryDatabase(Guid.NewGuid().ToString())
-                 .Options;
-            var context = new FundTrackContext(options);
-
-            //Create fake data for
-            //Organizations
-            context.Organizations.Add(new Entities.Organization { Id = 1, Name = "Name 1", Description = "Description 1", });
-            context.Organizations.Add(new Entities.Organization { Id = 2, Name = "Name 2", Description = "Description 2", });
-            context.Organizations.Add(new Entities.Organization { Id = 3, Name = "Name 3", Description = "Description 3", });
-            //EventImages
-            context.EventImages.Add(new Entities.EventImage { Id = 1, EventId = 1, ImageUrl = "EventId = 1" });
-            //Events
-            context.Events.Add(new Entities.Event { Id = 1, Description = "Event Description", OrganizationId = 1 });
-            context.SaveChanges();
             return context;
         }
+
+        /// <summary>
+        /// Sets the organizations.
+        /// </summary>
+        public abstract void SetOrganizations();
+
+        /// <summary>
+        /// Sets the events.
+        /// </summary>
+        public abstract void SetEvents();
+
+        /// <summary>
+        /// Sets the event images.
+        /// </summary>
+        public abstract void SetEventImages();
     }
 }
