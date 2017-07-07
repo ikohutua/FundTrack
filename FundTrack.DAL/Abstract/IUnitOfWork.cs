@@ -69,6 +69,11 @@ namespace FundTrack.DAL.Abstract
         IRepository<Role> RoleRepository { get; }
 
         /// <summary>
+        /// Gets requested item repository
+        /// </summary>
+        IRequestedItemRepository RequestedItemRepository { get; }
+
+        /// <summary>
         /// Saves all changes made in this context to the database.
         /// </summary>
         void SaveChanges();

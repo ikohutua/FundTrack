@@ -41,6 +41,7 @@ namespace FundTrack.BLL.Abstract
         /// <param name="registrationViewModel">RegistrationViewModel</param>
         /// <returns>Registration view model</returns>
         RegistrationViewModel CreateUser(RegistrationViewModel registrationViewModel);
+
         /// <summary>
         /// Send Email with recovery password link
         /// </summary>

@@ -7,6 +7,8 @@ import { AuthorizedUserInfoViewModel } from '../../view-models/concrete/authoriz
 import { FormControl, FormGroup, AbstractControl, Validators, FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { matchingPasswords } from './match-password.validator';
 import { ValidationViewModel } from "../../view-models/concrete/validation-view.model";
+import 'rxjs/add/operator/catch';
+
 
 @Component({
     selector: 'registration',
@@ -22,6 +24,7 @@ export class RegistrationComponent {
     private type: string = "password";
     private glyphyconEye: string = "glyphicon glyphicon-eye-open";
     private registrationForm: FormGroup;
+    private showUserRegistrationSpinner: boolean = false;
 
     //Error messages
     private requiredMessage = "Обовязкове поле для заповнення";
@@ -48,10 +51,11 @@ export class RegistrationComponent {
     private register() {
         this.errorMessage = "";
         localStorage.clear();
+        this.showUserRegistrationSpinner = true;
         this._userService.create(this.registrationViewModel).
             subscribe(a => {
+            this.showUserRegistrationSpinner = false;
             this.autType = a;
-            console.log(this.autType.validationSummary);
             this.errorMessage = a.errorMessage;
             localStorage.setItem(keys.keyToken, this.autType.access_token);
             if (this.errorMessage) {
@@ -65,7 +69,10 @@ export class RegistrationComponent {
                 localStorage.setItem(keys.keyModel, JSON.stringify(this.autType.userModel));
                 this._router.navigate(['/']);              
             }
-        });
+            }, error => {
+                this.errorMessage = <any>error;
+                this.showUserRegistrationSpinner = false;
+            });
     }
 
     private displayValidationSummary(validationSummary: ValidationViewModel[]): void {

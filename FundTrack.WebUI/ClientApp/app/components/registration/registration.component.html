@@ -1,5 +1,5 @@
 ﻿<div class="col-lg-4 col-lg-offset-4">
-    
+    <spinner [showSpinner]="showUserRegistrationSpinner"></spinner>
     <form [formGroup]="registrationForm" class="form-horizontal" id="registrationForm" novalidate>
         <h3 class="formHeader text-center">Реєстрація нового користувача</h3>
         <div class="form-group" [class.has-error]="formErrors.firstName"

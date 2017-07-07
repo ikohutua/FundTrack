@@ -19,6 +19,7 @@ namespace FundTrack.DAL.Concrete
         private readonly IRepository<BankAccount> _bankAccountRepository;
         private readonly IRepository<OrgAccount> _orgAccountRepository;
         private readonly IRepository<Role> _roleRepository;
+        private readonly IRequestedItemRepository _requestedItemRepository;
 
 
         private FundTrackContext _context;
@@ -38,7 +39,8 @@ namespace FundTrack.DAL.Concrete
               IRepository<OrgAddress> orgAddressRepository,
               IRepository<BankAccount> bankAccountRepository,
               IRepository<OrgAccount> orgAccountRepository, 
-              IRepository<Role> roleRepository)
+              IRepository<Role> roleRepository,
+              IRequestedItemRepository requestedItemRepository)
         {
             this._context = contextParam;
             this._organizationsListRepository = organizationsListRepositoryParam;
@@ -51,6 +53,7 @@ namespace FundTrack.DAL.Concrete
             _bankAccountRepository = bankAccountRepository;
             _orgAccountRepository = orgAccountRepository;
             _roleRepository = roleRepository;
+            this._requestedItemRepository = requestedItemRepository;
         }
 
         /// <summary>
@@ -189,7 +192,18 @@ namespace FundTrack.DAL.Concrete
                 return _roleRepository;
             }
         }
-       
+
+        /// <summary>
+        /// Gets requestedItem repository
+        /// </summary>
+        public IRequestedItemRepository RequestedItemRepository
+        {
+            get
+            {
+                return this._requestedItemRepository;
+            }
+        }
+
         /// <summary>
         /// Saves all changes made in this context to the database.
         /// </summary>

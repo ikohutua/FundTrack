@@ -41,6 +41,8 @@ export class SuperAdminUsersComponent implements OnInit {
     */
     public users: SuperAdminItemsViewModel[];
 
+    public showUsersSpinner: boolean = false;
+
     /**
      * Creates new instance of SuperAdminUsersComponent
      * @param _superAdminService
@@ -67,11 +69,13 @@ export class SuperAdminUsersComponent implements OnInit {
      * Trigers when user changes page
      * @param page
      */
-    public onPageChange(page) : void {
+    public onPageChange(page): void {
+        this.showUsersSpinner = true;
         this._superAdminService.getUsersOnPage(page, this.itemPerPage)
             .subscribe((users: SuperAdminItemsViewModel[]) => {
                 this.users = users;
                 this.offset = (page - 1) * this.itemPerPage;
+                this.showUsersSpinner = false;
             });
     }
 
