@@ -12,7 +12,6 @@ import { OrganizationDropdownService } from "../../../services/concrete/organiza
 export class DropdownOrganizationsComponent implements OnInit {
     //for organization-list.pipe
     public filterBy: string;
-
     private _errorMessage: string;
     private _organizations: IOrganizationForFiltering[];
     private _selectedOrganizationName: string;
@@ -44,18 +43,6 @@ export class DropdownOrganizationsComponent implements OnInit {
      * @param IOrganizationForFiltering
      */
     public onSelect(org?: IOrganizationForFiltering): void {
-        if (org) {
-            this._selectedOrganizationName = org.name;
-
-        }
-        else {
-            this._selectedOrganizationName = null;
-
-        }
+        this._selectedOrganizationName = (org) ? org.name : null;
     }
-
-    //private onSelectAll(): void{
-    //    this.selectedOrganizationName = null;
-    //}
-
 }

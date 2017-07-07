@@ -38,7 +38,7 @@ namespace FundTrack.WebUI.Controllers
         [HttpGet("AllEventsByScroll/{countOfEventsToLoad}/{koefToLoadEvent}")]
         public IEnumerable<EventViewModel> AllEventsbyScroll(int countOfEventsToLoad, int koefToLoadEvent)
         {
-            return _service.GetEventsByScroll(countOfEventsToLoad, koefToLoadEvent);
+            return _service.GetAllEventsByScroll(countOfEventsToLoad, koefToLoadEvent);
         }
 
         /// <summary>
@@ -49,7 +49,7 @@ namespace FundTrack.WebUI.Controllers
         [HttpGet("AllEventsOfOrganization/{id}")]
         public IEnumerable<EventViewModel> AllEventsOfOrganization(int id)
         {
-            return _service.GetAllEventsForOrganization(id);
+            return _service.GetAllEventsById(id);
         }
 
         /// <summary>

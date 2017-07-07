@@ -1,4 +1,6 @@
-﻿namespace FundTrack.DAL.Entities
+﻿using System.Collections.Generic;
+
+namespace FundTrack.DAL.Entities
 {
     public class OfferedItem
     {
@@ -16,15 +18,23 @@
         /// <value>
         /// The goods category identifier.
         /// </value>
-        public int GoodsId { get; set; }
+        public int GoodsCategoryId { get; set; }
 
         /// <summary>
-        /// Gets or sets the offer identifier.
+        /// Gets or sets the user identifier.
         /// </summary>
         /// <value>
-        /// The offer identifier.
+        /// The user identifier.
         /// </value>
-        public int OfferId { get; set; }
+        public int UserId { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether this instance is actual.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if this instance is actual; otherwise, <c>false</c>.
+        /// </value>
+        public int StatusId { get; set; }
 
         /// <summary>
         /// Gets or sets the name.
@@ -43,35 +53,39 @@
         public string Description { get; set; }
 
         /// <summary>
-        /// Gets or sets the image URL.
-        /// </summary>
-        /// <value>
-        /// The image URL.
-        /// </value>
-        public string ImageUrl { get; set; }
-
-        /// <summary>
-        /// Gets or sets a value indicating whether this instance is actual.
-        /// </summary>
-        /// <value>
-        ///   <c>true</c> if this instance is actual; otherwise, <c>false</c>.
-        /// </value>
-        public bool IsActual { get; set; }
-
-        /// <summary>
         /// Gets or sets the goods category.
         /// </summary>
         /// <value>
         /// The goods category.
         /// </value>
-        public virtual Goods Goods { get; set; }
+        public virtual GoodsCategory GoodsCategory { get; set; }
 
         /// <summary>
-        /// Gets or sets the offer.
+        /// Gets or sets the status.
         /// </summary>
         /// <value>
-        /// The offer.
+        /// The status.
         /// </value>
-        public virtual Offer Offer { get; set; }
+        public virtual Status Status { get; set; }
+
+        /// <summary>
+        /// Gets or sets the user.
+        /// </summary>
+        /// <value>
+        /// The user.
+        /// </value>
+        public virtual User User { get; set; }
+
+        /// <summary>
+        /// EventImages navigation property
+        /// </summary>
+        public virtual ICollection<OfferedItemImage> OfferedItemImages { get; set; }
+
+        /// <summary>
+        /// EventImages navigation property
+        /// </summary>
+        public virtual ICollection<OrganizationResponse> OrganizationResponses { get; set; }
+
+        public virtual UserResponse UserResponse { get; set; }
     }
 }

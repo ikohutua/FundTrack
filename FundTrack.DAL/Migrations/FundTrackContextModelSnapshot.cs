@@ -349,7 +349,7 @@ namespace FundTrack.DAL.Migrations
                     b.ToTable("FinOps");
                 });
 
-            modelBuilder.Entity("FundTrack.DAL.Entities.Goods", b =>
+            modelBuilder.Entity("FundTrack.DAL.Entities.GoodsCategory", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -361,11 +361,11 @@ namespace FundTrack.DAL.Migrations
                         .HasMaxLength(100);
 
                     b.HasKey("Id")
-                        .HasName("PK_Goods");
+                        .HasName("PK_GoodsCategory");
 
                     b.HasIndex("GoodsTypeId");
 
-                    b.ToTable("Goodss");
+                    b.ToTable("GoodsCategories");
                 });
 
             modelBuilder.Entity("FundTrack.DAL.Entities.GoodsType", b =>
@@ -407,31 +407,6 @@ namespace FundTrack.DAL.Migrations
                     b.ToTable("Membershipes");
                 });
 
-            modelBuilder.Entity("FundTrack.DAL.Entities.Offer", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<DateTime>("CreateDate")
-                        .HasColumnType("datetime");
-
-                    b.Property<string>("Description")
-                        .IsRequired();
-
-                    b.Property<bool>("IsActual");
-
-                    b.Property<string>("Name");
-
-                    b.Property<int>("UserId");
-
-                    b.HasKey("Id")
-                        .HasName("PK_Offer");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Offers");
-                });
-
             modelBuilder.Entity("FundTrack.DAL.Entities.OfferedItem", b =>
                 {
                     b.Property<int>("Id")
@@ -440,25 +415,45 @@ namespace FundTrack.DAL.Migrations
                     b.Property<string>("Description")
                         .IsRequired();
 
-                    b.Property<int>("GoodsId");
-
-                    b.Property<string>("ImageUrl");
-
-                    b.Property<bool>("IsActual");
+                    b.Property<int>("GoodsCategoryId");
 
                     b.Property<string>("Name")
                         .IsRequired();
 
-                    b.Property<int>("OfferId");
+                    b.Property<int>("StatusId");
+
+                    b.Property<int>("UserId");
 
                     b.HasKey("Id")
                         .HasName("PK_OfferedItem");
 
-                    b.HasIndex("GoodsId");
+                    b.HasIndex("GoodsCategoryId");
 
-                    b.HasIndex("OfferId");
+                    b.HasIndex("StatusId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("OfferedItems");
+                });
+
+            modelBuilder.Entity("FundTrack.DAL.Entities.OfferedItemImage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("ImageUrl")
+                        .IsRequired();
+
+                    b.Property<bool>("IsMain");
+
+                    b.Property<int>("OfferedItemId");
+
+                    b.HasKey("Id")
+                        .HasName("PK_OfferedItemImage");
+
+                    b.HasIndex("OfferedItemId");
+
+                    b.ToTable("OfferedItemImages");
                 });
 
             modelBuilder.Entity("FundTrack.DAL.Entities.OrgAccount", b =>
@@ -533,6 +528,28 @@ namespace FundTrack.DAL.Migrations
                     b.ToTable("Organizations");
                 });
 
+            modelBuilder.Entity("FundTrack.DAL.Entities.OrganizationResponse", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Description")
+                        .IsRequired();
+
+                    b.Property<int>("OfferedItemId");
+
+                    b.Property<int>("OrganizationId");
+
+                    b.HasKey("Id")
+                        .HasName("PK_OrganizationResponse");
+
+                    b.HasIndex("OfferedItemId");
+
+                    b.HasIndex("OrganizationId");
+
+                    b.ToTable("OrganizationResponses");
+                });
+
             modelBuilder.Entity("FundTrack.DAL.Entities.PasswordReset", b =>
                 {
                     b.Property<int>("Id")
@@ -578,31 +595,6 @@ namespace FundTrack.DAL.Migrations
                     b.ToTable("Phones");
                 });
 
-            modelBuilder.Entity("FundTrack.DAL.Entities.Request", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<DateTime>("CreateDate")
-                        .HasColumnType("datetime");
-
-                    b.Property<string>("Description")
-                        .IsRequired();
-
-                    b.Property<bool>("IsActual");
-
-                    b.Property<string>("Name");
-
-                    b.Property<int>("OrganizationId");
-
-                    b.HasKey("Id")
-                        .HasName("PK_Request");
-
-                    b.HasIndex("OrganizationId");
-
-                    b.ToTable("Requests");
-                });
-
             modelBuilder.Entity("FundTrack.DAL.Entities.RequestedItem", b =>
                 {
                     b.Property<int>("Id")
@@ -611,25 +603,45 @@ namespace FundTrack.DAL.Migrations
                     b.Property<string>("Description")
                         .IsRequired();
 
-                    b.Property<int>("GoodsId");
-
-                    b.Property<string>("ImageUrl");
-
-                    b.Property<bool>("IsActual");
+                    b.Property<int>("GoodsCategoryId");
 
                     b.Property<string>("Name")
                         .IsRequired();
 
-                    b.Property<int>("RequestId");
+                    b.Property<int>("OrganizationId");
+
+                    b.Property<int>("StatusId");
 
                     b.HasKey("Id")
                         .HasName("PK_RequestedItem");
 
-                    b.HasIndex("GoodsId");
+                    b.HasIndex("GoodsCategoryId");
 
-                    b.HasIndex("RequestId");
+                    b.HasIndex("OrganizationId");
+
+                    b.HasIndex("StatusId");
 
                     b.ToTable("RequestedItems");
+                });
+
+            modelBuilder.Entity("FundTrack.DAL.Entities.RequestedItemImage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("ImageUrl")
+                        .IsRequired();
+
+                    b.Property<bool>("IsMain");
+
+                    b.Property<int>("RequestedItemId");
+
+                    b.HasKey("Id")
+                        .HasName("PK_<RequestedItemImage");
+
+                    b.HasIndex("RequestedItemId");
+
+                    b.ToTable("RequestedItemImages");
                 });
 
             modelBuilder.Entity("FundTrack.DAL.Entities.Role", b =>
@@ -645,6 +657,21 @@ namespace FundTrack.DAL.Migrations
                         .HasName("PK_Role");
 
                     b.ToTable("Roles");
+                });
+
+            modelBuilder.Entity("FundTrack.DAL.Entities.Status", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("StatusName")
+                        .IsRequired()
+                        .HasMaxLength(20);
+
+                    b.HasKey("Id")
+                        .HasName("PK_Status");
+
+                    b.ToTable("Statuses");
                 });
 
             modelBuilder.Entity("FundTrack.DAL.Entities.SubscribeOrganization", b =>
@@ -769,6 +796,33 @@ namespace FundTrack.DAL.Migrations
                     b.ToTable("UserAddresses");
                 });
 
+            modelBuilder.Entity("FundTrack.DAL.Entities.UserResponse", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Description")
+                        .IsRequired();
+
+                    b.Property<int?>("OfferedItemId");
+
+                    b.Property<int>("RequestedItemId");
+
+                    b.Property<int?>("UserId");
+
+                    b.HasKey("Id")
+                        .HasName("PK_UserResponse");
+
+                    b.HasIndex("OfferedItemId")
+                        .IsUnique();
+
+                    b.HasIndex("RequestedItemId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserResponses");
+                });
+
             modelBuilder.Entity("FundTrack.DAL.Entities.Balance", b =>
                 {
                     b.HasOne("FundTrack.DAL.Entities.OrgAccount", "OrgAccount")
@@ -886,12 +940,12 @@ namespace FundTrack.DAL.Migrations
                         .HasConstraintName("FK_FinOp_User");
                 });
 
-            modelBuilder.Entity("FundTrack.DAL.Entities.Goods", b =>
+            modelBuilder.Entity("FundTrack.DAL.Entities.GoodsCategory", b =>
                 {
                     b.HasOne("FundTrack.DAL.Entities.GoodsType", "GoodsType")
                         .WithMany("GoodsCategories")
                         .HasForeignKey("GoodsTypeId")
-                        .HasConstraintName("FK_Goods_GoodsType")
+                        .HasConstraintName("FK_GoodsCategory_GoodsType")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
@@ -916,27 +970,32 @@ namespace FundTrack.DAL.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("FundTrack.DAL.Entities.Offer", b =>
+            modelBuilder.Entity("FundTrack.DAL.Entities.OfferedItem", b =>
                 {
+                    b.HasOne("FundTrack.DAL.Entities.GoodsCategory", "GoodsCategory")
+                        .WithMany("OfferedItems")
+                        .HasForeignKey("GoodsCategoryId")
+                        .HasConstraintName("FK_OfferedItems_GoodsCategory")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("FundTrack.DAL.Entities.Status", "Status")
+                        .WithMany("OfferedItems")
+                        .HasForeignKey("StatusId")
+                        .HasConstraintName("FK_OfferedItems_Status")
+                        .OnDelete(DeleteBehavior.Cascade);
+
                     b.HasOne("FundTrack.DAL.Entities.User", "User")
-                        .WithMany("Offers")
+                        .WithMany("OfferedItems")
                         .HasForeignKey("UserId")
-                        .HasConstraintName("FK_Offer_User")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("FundTrack.DAL.Entities.OfferedItem", b =>
+            modelBuilder.Entity("FundTrack.DAL.Entities.OfferedItemImage", b =>
                 {
-                    b.HasOne("FundTrack.DAL.Entities.Goods", "Goods")
-                        .WithMany("OfferedItems")
-                        .HasForeignKey("GoodsId")
-                        .HasConstraintName("FK_OfferedItems_Goods")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("FundTrack.DAL.Entities.Offer", "Offer")
-                        .WithMany("OfferedItems")
-                        .HasForeignKey("OfferId")
-                        .HasConstraintName("FK_OfferedItems_Offer")
+                    b.HasOne("FundTrack.DAL.Entities.OfferedItem", "OfferedItem")
+                        .WithMany("OfferedItemImages")
+                        .HasForeignKey("OfferedItemId")
+                        .HasConstraintName("FK_OfferedItemImage_OfferedItem")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
@@ -975,6 +1034,21 @@ namespace FundTrack.DAL.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
+            modelBuilder.Entity("FundTrack.DAL.Entities.OrganizationResponse", b =>
+                {
+                    b.HasOne("FundTrack.DAL.Entities.OfferedItem", "OfferedItem")
+                        .WithMany("OrganizationResponses")
+                        .HasForeignKey("OfferedItemId")
+                        .HasConstraintName("FK_OrganizationResponse_OfferedItem")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("FundTrack.DAL.Entities.Organization", "Organization")
+                        .WithMany("OrganizationResponses")
+                        .HasForeignKey("OrganizationId")
+                        .HasConstraintName("FK_OrganizationResponse_Organization")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
             modelBuilder.Entity("FundTrack.DAL.Entities.PasswordReset", b =>
                 {
                     b.HasOne("FundTrack.DAL.Entities.User", "User")
@@ -993,27 +1067,32 @@ namespace FundTrack.DAL.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("FundTrack.DAL.Entities.Request", b =>
+            modelBuilder.Entity("FundTrack.DAL.Entities.RequestedItem", b =>
                 {
+                    b.HasOne("FundTrack.DAL.Entities.GoodsCategory", "GoodsCategory")
+                        .WithMany("RequestedItems")
+                        .HasForeignKey("GoodsCategoryId")
+                        .HasConstraintName("FK_RequestedItem_GoodsCategory")
+                        .OnDelete(DeleteBehavior.Cascade);
+
                     b.HasOne("FundTrack.DAL.Entities.Organization", "Organization")
-                        .WithMany("Requests")
+                        .WithMany("RequestedItems")
                         .HasForeignKey("OrganizationId")
-                        .HasConstraintName("FK_Request_Organization")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("FundTrack.DAL.Entities.Status", "Status")
+                        .WithMany("RequestedItems")
+                        .HasForeignKey("StatusId")
+                        .HasConstraintName("FK_RequestedItem_Status")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("FundTrack.DAL.Entities.RequestedItem", b =>
+            modelBuilder.Entity("FundTrack.DAL.Entities.RequestedItemImage", b =>
                 {
-                    b.HasOne("FundTrack.DAL.Entities.Goods", "Goods")
-                        .WithMany("RequestedItems")
-                        .HasForeignKey("GoodsId")
-                        .HasConstraintName("FK_RequestedItem_Goods")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("FundTrack.DAL.Entities.Request", "Request")
-                        .WithMany("RequestedItems")
-                        .HasForeignKey("RequestId")
-                        .HasConstraintName("FK_RequestedItem_Request")
+                    b.HasOne("FundTrack.DAL.Entities.RequestedItem", "RequestedItem")
+                        .WithMany("RequestedItemImages")
+                        .HasForeignKey("RequestedItemId")
+                        .HasConstraintName("FK_<RequestedItemImage_<RequestedItem")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
@@ -1060,6 +1139,25 @@ namespace FundTrack.DAL.Migrations
                         .HasForeignKey("UserId")
                         .HasConstraintName("FK_UserAddress_User")
                         .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("FundTrack.DAL.Entities.UserResponse", b =>
+                {
+                    b.HasOne("FundTrack.DAL.Entities.OfferedItem", "OfferedItem")
+                        .WithOne("UserResponse")
+                        .HasForeignKey("FundTrack.DAL.Entities.UserResponse", "OfferedItemId")
+                        .HasConstraintName("FK_UserResponse_OfferedItem");
+
+                    b.HasOne("FundTrack.DAL.Entities.RequestedItem", "RequestedItem")
+                        .WithMany("UserResponses")
+                        .HasForeignKey("RequestedItemId")
+                        .HasConstraintName("FK_UserResponse_RequestedItem")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("FundTrack.DAL.Entities.User", "User")
+                        .WithMany("UserResponses")
+                        .HasForeignKey("UserId")
+                        .HasConstraintName("FK_UserResponse_User");
                 });
         }
     }

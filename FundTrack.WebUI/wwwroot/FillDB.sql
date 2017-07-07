@@ -8,6 +8,12 @@ DELETE from EventImages
 DBCC CHECKIDENT ('EventImages', RESEED, 0);
 DELETE from Roles
 DBCC CHECKIDENT ('Roles', RESEED, 0);
+DELETE from Statuses
+DBCC CHECKIDENT ('Statuses', RESEED, 0);
+DELETE from GoodsTypes
+DBCC CHECKIDENT ('GoodsTypes', RESEED, 0);
+DELETE from GoodsCategories
+DBCC CHECKIDENT ('GoodsCategories', RESEED, 0);
 
 INSERT INTO dbo.Organizations
 VALUES 
@@ -267,6 +273,36 @@ VALUES
 (3,
 'https://scontent-waw1-1.xx.fbcdn.net/v/t1.0-9/19248059_841269326025055_2823380829229008327_n.jpg?oh=6f1cfc969fb9893f9e6befe35b7ad6d1&oe=59CE1DEE',
 0)
+
+INSERT INTO dbo.Stauses
+VALUES
+('new'),
+('active'),
+('close')
+GO
+
+INSERT INTO dbo.GoodsTypes
+VALUES
+(N'Взуття'),
+(N'Ліки'),
+(N'Їжа'),
+(N'Техніка'),
+(N'Засоби захисту'),
+(N'Одяг'),
+(N''),
+(N''),
+(N''),
+(N''),
+(N''),
+(N''),
+(N''),
+(N''),
+(N''),
+(N''),
+(N''),
+(N''),
+(N'Інше')
+GO
 
 select * from dbo.Organizations
 select * from dbo.Events

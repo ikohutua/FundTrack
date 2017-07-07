@@ -10,7 +10,7 @@ namespace FundTrack.DAL.Concrete
     {
         public FundTrackContext(DbContextOptions<FundTrackContext> options)
             : base(options)
-        {    
+        {
         }
 
         /// <summary>
@@ -157,15 +157,7 @@ namespace FundTrack.DAL.Concrete
         /// <value>
         /// The goods categorys.
         /// </value>
-        public DbSet<Goods> Goodss { get; set; }
-
-        /// <summary>
-        /// Gets or sets the offers.
-        /// </summary>
-        /// <value>
-        /// The offers.
-        /// </value>
-        public DbSet<Offer> Offers { get; set; }
+        public DbSet<GoodsCategory> GoodsCategories { get; set; }
 
         /// <summary>
         /// Gets or sets the offered items.
@@ -174,14 +166,6 @@ namespace FundTrack.DAL.Concrete
         /// The offered items.
         /// </value>
         public DbSet<OfferedItem> OfferedItems { get; set; }
-
-        /// <summary>
-        /// Gets or sets the requests.
-        /// </summary>
-        /// <value>
-        /// The requests.
-        /// </value>
-        public DbSet<Request> Requests { get; set; }
 
         /// <summary>
         /// Gets or sets the requested items.
@@ -210,6 +194,31 @@ namespace FundTrack.DAL.Concrete
         /// PasswordResets of user
         /// </summary>
         public DbSet<PasswordReset> PasswordResets { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Statuses
+        /// </summary>
+        public DbSet<Status> Statuses { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Statuses
+        /// </summary>
+        public DbSet<OfferedItemImage> OfferedItemImages { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Statuses
+        /// </summary>
+        public DbSet<RequestedItemImage> RequestedItemImages { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Users
+        /// </summary>
+        public DbSet<UserResponse> UserResponses { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Users
+        /// </summary>
+        public DbSet<OrganizationResponse> OrganizationResponses { get; set; }
 
         /// <summary>
         /// Configures model creation
@@ -523,48 +532,16 @@ namespace FundTrack.DAL.Concrete
                 entity.Property(gt => gt.Name).IsRequired().HasMaxLength(50);
             });
 
-            modelBuilder.Entity<Goods>(entity =>
+            modelBuilder.Entity<GoodsCategory>(entity =>
             {
-                entity.HasKey(gc => gc.Id).HasName("PK_Goods");
+                entity.HasKey(gc => gc.Id).HasName("PK_GoodsCategory");
 
                 entity.Property(gc => gc.Name).IsRequired().HasMaxLength(100);
 
                 entity.HasOne(gc => gc.GoodsType)
                        .WithMany(gt => gt.GoodsCategories)
                        .HasForeignKey(gc => gc.GoodsTypeId)
-                       .HasConstraintName("FK_Goods_GoodsType");
-            });
-
-            modelBuilder.Entity<Offer>(entity =>
-            {
-                entity.HasKey(o => o.Id).HasName("PK_Offer");
-
-                entity.Property(o => o.Description).IsRequired();
-
-                entity.Property(o => o.CreateDate).IsRequired().HasColumnType("datetime");
-
-                entity.Property(o => o.IsActual).IsRequired();
-
-                entity.HasOne(o => o.User)
-                       .WithMany(u => u.Offers)
-                       .HasForeignKey(o => o.UserId)
-                       .HasConstraintName("FK_Offer_User");
-            });
-
-            modelBuilder.Entity<Request>(entity =>
-            {
-                entity.HasKey(r => r.Id).HasName("PK_Request");
-
-                entity.Property(r => r.Description).IsRequired();
-
-                entity.Property(r => r.CreateDate).IsRequired().HasColumnType("datetime");
-
-                entity.Property(r => r.IsActual).IsRequired();
-
-                entity.HasOne(r => r.Organization)
-                       .WithMany(o => o.Requests)
-                       .HasForeignKey(o => o.OrganizationId)
-                       .HasConstraintName("FK_Request_Organization");
+                       .HasConstraintName("FK_GoodsCategory_GoodsType");
             });
 
             modelBuilder.Entity<OfferedItem>(entity =>
@@ -575,21 +552,19 @@ namespace FundTrack.DAL.Concrete
 
                 entity.Property(oi => oi.Description).IsRequired();
 
-                entity.Property(oi => oi.ImageUrl);
+                entity.Property(oi => oi.StatusId).IsRequired();
 
-                entity.Property(oi => oi.IsActual).IsRequired();
-
-                entity.HasOne(oi => oi.Offer)
-                       .WithMany(o => o.OfferedItems)
-                       .HasForeignKey(oi => oi.OfferId)
-                       .HasConstraintName("FK_OfferedItems_Offer");
-
-                entity.HasOne(oi => oi.Goods)
+                entity.HasOne(oi => oi.GoodsCategory)
                        .WithMany(gc => gc.OfferedItems)
-                       .HasForeignKey(oi => oi.GoodsId)
-                       .HasConstraintName("FK_OfferedItems_Goods");
+                       .HasForeignKey(oi => oi.GoodsCategoryId)
+                       .HasConstraintName("FK_OfferedItems_GoodsCategory");
+
+                entity.HasOne(oi => oi.Status)
+                       .WithMany(s => s.OfferedItems)
+                       .HasForeignKey(oi => oi.StatusId)
+                       .HasConstraintName("FK_OfferedItems_Status");
             });
-            //
+
             modelBuilder.Entity<RequestedItem>(entity =>
             {
                 entity.HasKey(ri => ri.Id).HasName("PK_RequestedItem");
@@ -598,19 +573,17 @@ namespace FundTrack.DAL.Concrete
 
                 entity.Property(ri => ri.Description).IsRequired();
 
-                entity.Property(ri => ri.ImageUrl);
+                entity.Property(ri => ri.StatusId).IsRequired();
 
-                entity.Property(ri => ri.IsActual).IsRequired();
-
-                entity.HasOne(ri => ri.Request)
-                       .WithMany(o => o.RequestedItems)
-                       .HasForeignKey(ri => ri.RequestId)
-                       .HasConstraintName("FK_RequestedItem_Request");
-
-                entity.HasOne(ri => ri.Goods)
+                entity.HasOne(ri => ri.GoodsCategory)
                        .WithMany(gc => gc.RequestedItems)
-                       .HasForeignKey(ri => ri.GoodsId)
-                       .HasConstraintName("FK_RequestedItem_Goods");
+                       .HasForeignKey(ri => ri.GoodsCategoryId)
+                       .HasConstraintName("FK_RequestedItem_GoodsCategory");
+
+                entity.HasOne(ri => ri.Status)
+                       .WithMany(s => s.RequestedItems)
+                       .HasForeignKey(ri => ri.StatusId)
+                       .HasConstraintName("FK_RequestedItem_Status");
             });
 
             modelBuilder.Entity<BankImport>(entity =>
@@ -685,7 +658,8 @@ namespace FundTrack.DAL.Concrete
                 HasConstraintName("FK_BannedOrganization_Organization");
             });
 
-            modelBuilder.Entity<SubscribeOrganization>(entity => {
+            modelBuilder.Entity<SubscribeOrganization>(entity =>
+            {
                 entity.HasKey(e => e.Id).HasName("PK_SubscribeOrganization");
                 entity.HasOne(e => e.User).
                 WithMany(e => e.SubscribeOrganization).
@@ -696,6 +670,87 @@ namespace FundTrack.DAL.Concrete
                 HasForeignKey(e => e.OrganizationId).
                 HasConstraintName("FK_SubscribeOrganization_Organization");
             });
+
+            modelBuilder.Entity<Status>(entity =>
+                {
+                    entity.HasKey(e => e.Id).HasName("PK_Status");
+
+                    entity.Property(e => e.StatusName).IsRequired().HasMaxLength(20);
+                });
+
+            modelBuilder.Entity<OfferedItemImage>(entity =>
+            {
+                entity.HasKey(e => e.Id).HasName("PK_OfferedItemImage");
+
+                entity.Property(e => e.OfferedItemId).IsRequired();
+
+                entity.Property(e => e.ImageUrl).IsRequired();
+
+                entity.HasOne(oi => oi.OfferedItem)
+                      .WithMany(oii => oii.OfferedItemImages)
+                      .HasForeignKey(oii => oii.OfferedItemId)
+                      .HasConstraintName("FK_OfferedItemImage_OfferedItem");
+            });
+
+            modelBuilder.Entity<RequestedItemImage>(entity =>
+            {
+                entity.HasKey(e => e.Id).HasName("PK_<RequestedItemImage");
+
+                entity.Property(e => e.RequestedItemId).IsRequired();
+
+                entity.Property(e => e.ImageUrl).IsRequired();
+
+                entity.HasOne(ri => ri.RequestedItem)
+                      .WithMany(rii => rii.RequestedItemImages)
+                      .HasForeignKey(rii => rii.RequestedItemId)
+                      .HasConstraintName("FK_<RequestedItemImage_<RequestedItem");
+            });
+
+            modelBuilder.Entity<UserResponse>(entity =>
+            {
+                entity.HasKey(e => e.Id).HasName("PK_UserResponse");
+
+                entity.Property(e => e.RequestedItemId).IsRequired();
+
+                entity.Property(e => e.Description).IsRequired();
+
+                entity.HasOne(ur => ur.RequestedItem)
+                       .WithMany(ri => ri.UserResponses)
+                       .HasForeignKey(ur => ur.RequestedItemId)
+                       .HasConstraintName("FK_UserResponse_RequestedItem");
+
+                entity.HasOne(ur => ur.User)
+                       .WithMany(u => u.UserResponses)
+                       .HasForeignKey(ur => ur.UserId)
+                       .HasConstraintName("FK_UserResponse_User");
+
+                entity.HasOne(e => e.OfferedItem)
+                      .WithOne(e => e.UserResponse)
+                      .HasForeignKey<UserResponse>(e => e.OfferedItemId)
+                      .HasConstraintName("FK_UserResponse_OfferedItem");
+            });
+
+            modelBuilder.Entity<OrganizationResponse>(entity =>
+            {
+                entity.HasKey(e => e.Id).HasName("PK_OrganizationResponse");
+
+                entity.Property(e => e.OfferedItemId).IsRequired();
+
+                entity.Property(e => e.OrganizationId).IsRequired();
+
+                entity.Property(e => e.Description).IsRequired();
+
+                entity.HasOne(or => or.OfferedItem)
+                       .WithMany(oi => oi.OrganizationResponses)
+                       .HasForeignKey(or => or.OfferedItemId)
+                       .HasConstraintName("FK_OrganizationResponse_OfferedItem");
+
+                entity.HasOne(or => or.Organization)
+                       .WithMany(o => o.OrganizationResponses)
+                       .HasForeignKey(or => or.OrganizationId)
+                       .HasConstraintName("FK_OrganizationResponse_Organization");
+            });
+
         }
     }
 }

@@ -8,4 +8,11 @@ import { DropdownOrganizationsComponent } from "../../shared/components/dropdown
     styleUrls: ['./app.component.css']
 })
 
-export class AppComponent { }
+export class AppComponent {
+    private _versionNumber: String = 'v-1.0 (changeset-10623)';
+    @ViewChild(DropdownOrganizationsComponent) childComponent: DropdownOrganizationsComponent;
+
+    callChild() {
+        this.childComponent.onSelect();
+    }
+}

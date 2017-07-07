@@ -12,7 +12,7 @@ namespace FundTrack.BLL.Abstract
         /// Gets specific count of this instance.
         /// </summary>
         /// <returns>Collections of instances</returns>
-        IEnumerable<EventViewModel> GetEventsByScroll(int countOfEventsToLoad, int koefToLoadEvent);
+        IEnumerable<EventViewModel> GetAllEventsByScroll(int countOfEventsToLoad, int koefToLoadEvent);
 
         /// <summary>
         /// Gets this instance.
@@ -24,7 +24,7 @@ namespace FundTrack.BLL.Abstract
         /// Gets this instance.
         /// </summary>
         /// <returns>Collections of specific instances</returns>
-        IEnumerable<EventViewModel> GetAllEventsForOrganization(int id);
+        IEnumerable<EventViewModel> GetAllEventsById(int id);
 
         /// <summary>
         /// Gets Initial data for event pagination

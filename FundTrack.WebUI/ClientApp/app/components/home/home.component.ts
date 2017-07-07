@@ -1,8 +1,9 @@
-﻿import { Component } from '@angular/core'; 
+﻿import { Component, ViewChild } from '@angular/core'; 
 import { MainPageViewModel } from "../../view-models/concrete/main-page-view-model";
 import { IMainPageViewModel } from "../../view-models/abstract/main-page-view-model.interface";
-import { AllEventsComponent } from "../allevents/allevents.component";
 import { ActivatedRoute } from "@angular/router";
+import { DropdownOrganizationsComponent } from '../../shared/components/dropdown-filtering/dropdown-filtering.component';
+
 
 @Component({
     selector: 'home',
@@ -10,4 +11,10 @@ import { ActivatedRoute } from "@angular/router";
     styleUrls: ['./home.component.css']
 })
 
-export class HomeComponent {}
+export class HomeComponent {
+    @ViewChild(DropdownOrganizationsComponent) childComponent: DropdownOrganizationsComponent;
+
+    callChild() {
+        this.childComponent.onSelect();
+    }
+}

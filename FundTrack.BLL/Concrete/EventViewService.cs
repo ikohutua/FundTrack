@@ -30,7 +30,7 @@ namespace FundTrack.BLL.Concrete
         /// Gets  events of all organizations per scrollng.
         /// </summary>
         /// <returns>Collection of EventViewModel</returns>
-        public IEnumerable<EventViewModel> GetEventsByScroll(int countOfEventsToLoad, int koefToLoadEvent)
+        public IEnumerable<EventViewModel> GetAllEventsByScroll(int countOfEventsToLoad, int koefToLoadEvent)
         {
             var events = ((DbSet<Event>)_unitOfWork.EventRepository.Read())
              .Include(e => e.Organization)
@@ -74,7 +74,8 @@ namespace FundTrack.BLL.Concrete
         /// Gets some number of events by specific organization.
         /// </summary>
         /// <returns>Collection of EventViewModels for specific organization</returns>
-        public IEnumerable<EventViewModel> GetAllEventsForOrganization(int id)
+        /// ----------------------------------------------------------------------------------------------------------------------------------------
+        public IEnumerable<EventViewModel> GetAllEventsById(int id)
         {
             var events = ((DbSet<Event>)_unitOfWork.EventRepository.Read())
              .Include(e => e.Organization).Where(o => o.OrganizationId == id)
@@ -89,7 +90,7 @@ namespace FundTrack.BLL.Concrete
                  ImageUrl = c.EventImages.Single(r => r.IsMain == true).ImageUrl
              }).OrderBy(e => e.CreateDate);
 
-            return events;
+            return events as IEnumerable<EventViewModel>;
         }
 
         /// <summary>

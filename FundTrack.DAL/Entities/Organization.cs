@@ -55,7 +55,7 @@ namespace FundTrack.DAL.Entities
         /// <summary>
         /// Gets or Sets Request navigation property
         /// </summary>
-        public virtual ICollection<Request> Requests { get; set; }
+        public virtual ICollection<RequestedItem> RequestedItems { get; set; }
 
         /// <summary>
         /// Gets or Sets Complaint navigation property
@@ -66,5 +66,10 @@ namespace FundTrack.DAL.Entities
         /// Gets or Sets Event navigation property
         /// </summary>
         public virtual ICollection<Event> Events { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Event navigation property
+        /// </summary>
+        public virtual ICollection<OrganizationResponse> OrganizationResponses { get; set; }
     }
 }

@@ -91,12 +91,17 @@ namespace FundTrack.DAL.Entities
         /// <summary>
         /// Gets or Sets Offer navigation property
         /// </summary>
-        public virtual ICollection<Offer> Offers { get; set; }
+        public virtual ICollection<OfferedItem> OfferedItems { get; set; }
 
         /// <summary>
         /// Gets or Sets Complaint navigation property
         /// </summary>
         public virtual ICollection<Complaint> Complaints { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Complaint navigation property
+        /// </summary>
+        public virtual ICollection<UserResponse> UserResponses { get; set; }
 
         /// <summary>
         /// Convert User model to RegistartionViewModel

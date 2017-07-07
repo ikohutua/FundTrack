@@ -33,7 +33,15 @@ namespace FundTrack.BLL.Concrete
         {
             try
             {
-                return this._unitOfWork
+                //return this._unitOfWork
+                //    .OrganizationsForFilteringRepository
+                //    .GetAll
+                //    .Select(o => new OrganizationForFilteringViewModel()
+                //    {
+                //        Id = o.Id,
+                //        Name = o.Name
+                //    });
+                var temp =  this._unitOfWork
                     .OrganizationsForFilteringRepository
                     .GetAll
                     .Select(o => new OrganizationForFilteringViewModel()
@@ -41,6 +49,7 @@ namespace FundTrack.BLL.Concrete
                         Id = o.Id,
                         Name = o.Name
                     });
+                return temp;
             }
             catch (Exception ex)
             {
