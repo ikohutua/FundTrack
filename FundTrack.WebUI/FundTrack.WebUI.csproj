@@ -32,6 +32,7 @@
   </ItemGroup>
   <ItemGroup>
     <!-- Files not to show in IDE -->
+    <None Remove="node_modules.zip" />
     <None Remove="yarn.lock" />
     <Compile Remove="ClientApp\app\shared\components\localStorage\**" />
     <Compile Remove="ClientApp\app\shared\components\temporary\**" />

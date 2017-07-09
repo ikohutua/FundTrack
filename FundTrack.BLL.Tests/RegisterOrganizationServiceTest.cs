@@ -49,9 +49,12 @@ namespace FundTrack.BLL.Tests
                 addressRepository,  
                 orgAddressRepository,
                 null,
-                null,
                 null, 
+                null,
                 roleRepository,
+                null,
+                null,
+                null,
                 null);
 
             var registerService = new OrganizationRegistrationService(unitOfWork);

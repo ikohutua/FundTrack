@@ -58,6 +58,9 @@ namespace FundTrack_WebUI
             services.AddScoped<IRepository<Role>, RoleRepository>();
             services.AddScoped<IRepository<EventImage>, EventImageRepository>();
             services.AddScoped<IRequestedItemRepository, RequestedItemRepository>();
+            services.AddScoped<IRepository<OfferedItem>, OfferedItemRepository>();
+            services.AddScoped<IStatusRepository, StatusRepository>();
+            services.AddScoped<IGoodsCategoryRepository, GoodsCategoryRepository>();
 
 
 
@@ -72,6 +75,7 @@ namespace FundTrack_WebUI
             //services.AddScoped<IEditOrganizationService, EditOrganizationService>();
             services.AddScoped<IEmailSender, EmailSender>();
             services.AddScoped<IEventManagementService, EventManagementService>();
+            services.AddScoped<IOfferedItemService, OfferedItemService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

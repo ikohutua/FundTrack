@@ -1,5 +1,4 @@
-﻿import { UserInfoService } from '../../services/user-info.service';
-import { Component, OnInit, ViewChild, AfterContentChecked, ViewContainerRef } from '@angular/core';
+﻿import { Component, OnInit, ViewChild, AfterContentChecked, ViewContainerRef } from '@angular/core';
 import { UserInfo } from '../../view-models/concrete/user-info.model';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AbstractControl } from '@angular/forms';
@@ -21,7 +20,7 @@ import { AmazonUploadComponent } from '../../shared/components/amazonUploader/am
     selector: 'user-info',
     templateUrl: './user-profile.component.html',
     styleUrls: ['./user-profile.component.css'],
-    providers: [UserInfoService, FormBuilder, UserService]
+    providers: [FormBuilder, UserService]
 })
 
 export class UserProfileComponent implements OnInit {

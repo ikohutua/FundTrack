@@ -21,7 +21,9 @@ namespace FundTrack.DAL.Concrete
         private readonly IRepository<Role> _roleRepository;
         private readonly IRequestedItemRepository _requestedItemRepository;
         private readonly IRepository<EventImage> _eventImageRepository;
-
+        private readonly IRepository<OfferedItem> _offeredItemRepository;
+        private readonly IStatusRepository _statusRepository;
+        private readonly IGoodsCategoryRepository _goodsCategoryRepository;
 
         private FundTrackContext _context;
 
@@ -42,7 +44,11 @@ namespace FundTrack.DAL.Concrete
               IRequestedItemRepository requestedItemRepository,
               IRepository<OrgAccount> orgAccountRepository,
               IRepository<Role> roleRepository,
-              IRepository<EventImage> eventImageRepositoryParam)
+              IRepository<EventImage> eventImageRepositoryParam,
+              IRepository<OfferedItem> offeredItemRepository,
+              IStatusRepository statusRepository,
+              IGoodsCategoryRepository goodsCategoryRepository
+              )
         {
             this._context = contextParam;
             this._organizationsListRepository = organizationsListRepositoryParam;
@@ -56,6 +62,9 @@ namespace FundTrack.DAL.Concrete
             _orgAccountRepository = orgAccountRepository;
             _roleRepository = roleRepository;
             _eventImageRepository = eventImageRepositoryParam;
+            _offeredItemRepository = offeredItemRepository;
+            _statusRepository = statusRepository;
+            _goodsCategoryRepository = goodsCategoryRepository;
         }
 
         /// <summary>
@@ -219,6 +228,29 @@ namespace FundTrack.DAL.Concrete
                 return this._requestedItemRepository;
             }
         }
+        /// <summary>
+        /// Gets repo
+        /// </summary>
+        public IRepository<OfferedItem> OfferedItemRepository
+        {
+            get { return this._offeredItemRepository; }
+        }
+        /// <summary>
+        /// Gets repo
+        /// </summary>
+        public IStatusRepository StatusRepository
+        {
+            get { return this._statusRepository; }
+        }
+        /// <summary>
+        /// Gets repo
+        /// </summary>
+        public IGoodsCategoryRepository GoodsCategoryRepository
+        {
+            get { return this._goodsCategoryRepository; }
+        }
+
+
 
         /// <summary>
         /// Saves all changes made in this context to the database.

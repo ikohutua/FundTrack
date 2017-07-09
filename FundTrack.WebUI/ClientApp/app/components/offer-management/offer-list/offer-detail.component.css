@@ -1,0 +1,28 @@
+﻿input[type="text"] {
+    display: block;
+    margin: 0;
+    width: 100%;
+    font-family: sans-serif;
+    font-size: 18px;
+    box-shadow: none;
+}
+
+    input[type="text"]:focus {
+        outline: none;
+    }
+.style-4 input[type="text"] {
+    padding: 10px 10px 10px 0px;
+    border: none;
+    border-bottom: solid 2px #c9c9c9;
+    transition: border 0.3s;
+}
+
+    .style-4 input[type="text"]:focus,
+    .style-4 input[type="text"].focus {
+        border-bottom: solid 2px #969696;
+    }
+    
+    .col-md-5{
+        padding-left:0px;
+        padding-right:0px;
+    }

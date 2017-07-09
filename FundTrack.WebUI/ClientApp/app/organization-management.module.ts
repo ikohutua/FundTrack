@@ -16,6 +16,9 @@ import { TruncatePipe } from "./shared/pipes/truncate.pipe";
         FormsModule,
         CommonModule,
         OrganizationManagementRoutingModule
+    ],
+    exports: [
+        TruncatePipe
     ]
 })
 export class OrganizationManagementModule { }

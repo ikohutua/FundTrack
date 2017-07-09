@@ -209,5 +209,14 @@ namespace FundTrack.DAL.Repositories
         {
             context.PasswordResets.Remove(context.PasswordResets.FirstOrDefault(u => u.UserID == id));
         }
+        /// <summary>
+        /// Gets User entity by his id
+        /// </summary>
+        /// <param name="id">Id of the user</param>
+        /// <returns>User entity</returns>
+        public User GetUserById(int id)
+        {
+            return this.context.Users.FirstOrDefault(u => u.Id == id);
+        }
     }
 }

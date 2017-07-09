@@ -79,5 +79,11 @@ namespace FundTrack.DAL.Abstract
         /// <param name="email">The email.</param>
         /// <returns></returns>
         User GetFacebookUser(string email);
+        /// <summary>
+        /// Gets User entity by id
+        /// </summary>
+        /// <param name="id">Id of the user</param>
+        /// <returns>User entity</returns>
+        User GetUserById(int id);
     }
 }

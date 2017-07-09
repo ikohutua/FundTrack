@@ -1,0 +1,44 @@
+﻿<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <p class="lead">Речі</p>
+            <div class="table-responsive">
+                <button type="button" class="btn btn-default btn-lg btn-block" [routerLink]="['./add']">
+                    <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> Запропонувати
+                </button>
+                <button type="button" class="btn btn-default btn-lg btn-block" [routerLink]="['./mylist']">
+                    <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Мої пропозиції
+                </button>
+            </div>
+                <div class="panel panel-default" style="margin-top:40px">
+                    <div class="panel-heading">Фільтрувати пропозиції по статусу:</div>
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            Активні
+                            <div class="material-switch pull-right">
+                                <input id="someSwitchOptionInfo" name="someSwitchOption001" type="checkbox" [(ngModel)]="showActive" />
+                                <label for="someSwitchOptionInfo" class="label-info"></label>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            Неактивні
+                            <div class="material-switch pull-right">
+                                <input id="someSwitchOptionWarning" name="someSwitchOption001" type="checkbox" [(ngModel)]="showInactive" />
+                                <label for="someSwitchOptionWarning" class="label-warning"></label>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            Видалені
+                            <div class="material-switch pull-right">
+                                <input id="someSwitchOptionDanger" name="someSwitchOption001" type="checkbox" [(ngModel)]="showRemoved"  />
+                                <label for="someSwitchOptionDanger" class="label-danger"></label>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+        </div>
+        <div class="col-md-9">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>

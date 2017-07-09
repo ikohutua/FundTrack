@@ -9,6 +9,8 @@ import { AppRoutingModule } from "./routes/app-routing.module";
 import { MapModule } from "./map.module";
 import { Angular2FontawesomeModule } from 'angular2-fontawesome/angular2-fontawesome';
 import { OrganizationManagementModule } from "./organization-management.module";
+import { OfferManagementModule } from './offer-management.module';
+
 
 @NgModule({
     bootstrap: [AppComponent],
@@ -24,7 +26,8 @@ import { OrganizationManagementModule } from "./organization-management.module";
         AppRoutingModule, 
         MapModule,
         Angular2FontawesomeModule,
-        OrganizationManagementModule
+        OrganizationManagementModule,
+        OfferManagementModule
     ]
 })
 export class AppModule { }

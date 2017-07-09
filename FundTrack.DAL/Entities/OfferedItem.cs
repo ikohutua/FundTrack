@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using FundTrack.Infrastructure.ViewModel;
+using System.Collections.Generic;
 
 namespace FundTrack.DAL.Entities
 {
@@ -85,7 +86,18 @@ namespace FundTrack.DAL.Entities
         /// EventImages navigation property
         /// </summary>
         public virtual ICollection<OrganizationResponse> OrganizationResponses { get; set; }
-
+        /// <summary>
+        /// UserResponse navigation property
+        /// </summary>
         public virtual UserResponse UserResponse { get; set; }
+        public static implicit operator OfferedItem(OfferedItemViewModel model)
+        {
+            return new OfferedItem
+            {
+                Description = model.Description,
+                Name = model.Name,
+                UserId = model.UserId
+            };
+        }
     }
 }

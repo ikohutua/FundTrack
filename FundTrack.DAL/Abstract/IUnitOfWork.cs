@@ -28,7 +28,7 @@ namespace FundTrack.DAL.Abstract
         /// The users repository.
         /// </value>
         IUserResporitory UsersRepository { get; }
-        
+
         /// <summary>
         /// Gets the event repository.
         /// </summary>
@@ -69,7 +69,7 @@ namespace FundTrack.DAL.Abstract
         /// Gets organization address repository
         /// </summary>
         IRepository<OrgAddress> OrganizationAddressRepository { get; }
-        
+
         /// <summary>
         /// Gets role repository
         /// </summary>
@@ -80,6 +80,18 @@ namespace FundTrack.DAL.Abstract
         /// </summary>
         IRequestedItemRepository RequestedItemRepository { get; }
 
+        /// <summary>
+        /// Gets the repo
+        /// </summary>
+        IRepository<OfferedItem> OfferedItemRepository { get; }
+        /// <summary>
+        /// Gets the repo
+        /// </summary>
+        IStatusRepository StatusRepository { get; }
+        /// <summary>
+        /// Gets the repo
+        /// </summary>
+        IGoodsCategoryRepository GoodsCategoryRepository { get; }
         /// <summary>
         /// Saves all changes made in this context to the database.
         /// </summary>
