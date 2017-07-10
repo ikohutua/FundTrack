@@ -4,6 +4,8 @@ import { FormControl } from "@angular/forms";
 import { MapsAPILoader, LatLngLiteral } from "@agm/core";
 import { } from '@types/googlemaps';
 import { Observable } from "rxjs/Observable";
+import { IAddressViewModel } from "../../../view-models/abstract/address-model.interface";
+import { AddressViewModel } from "../../../view-models/concrete/address-model";
 
 //https://angular-maps.com/api-docs/agm-core/components/AgmInfoWindow.html documentation
 //https://developers.google.com/maps/documentation/geocoding/intro
@@ -20,6 +22,7 @@ export class MapComponent implements OnInit {
     private _temporaryAddressForAutocomplete: string;
     private _addresses: string[] = [];
     private _markers: IMarker[] = [];
+    private _addressResult: IAddressViewModel;
 
     //Latitude can be initialize through attributes in html
     @Input()
@@ -283,11 +286,45 @@ export class MapComponent implements OnInit {
     }
 
     /**
-     * Display all adresses on the map.
-     * @param addresses: string[]
+     * parses IAddressViewModel to formatted address string
+     * @param addressesViewModel
+     * @returns array with formattedd addresses
      */
-    public setMarkers(addresses: string[]): void {
-        this._addresses = addresses;
+    private parseFormattedAddresses(addressesViewModel: IAddressViewModel[]): string[] {
+        var formattedAddresses: string[] = [];
+        for (let i = 0; i < addressesViewModel.length; i++) {
+            let address: string;
+            address += addressesViewModel[i].house + ', ';
+            address += addressesViewModel[i].street + ', ';
+            address += addressesViewModel[i].city;
+            formattedAddresses.push(address);
+        }
+        return formattedAddresses;
+    }
+
+    /**
+     * Parses formatted address string to IAddressViewModel
+     * @param addresses
+     * @returns array with addresses - IAddressViewModel[]
+     */
+    private parseAddressViewModel(addresses: string[]): IAddressViewModel[] {
+        var result: IAddressViewModel[] = [];
+        for (let i = 0; i < addresses.length; i++) {
+            var addressComponents: string[] = addresses[i].split(', ');
+            result[i].house = addressComponents[0];
+            result[i].street = addressComponents[1];
+            result[i].city = addressComponents[2];
+            result[i].country = "Україна";
+        }
+        return result;
+    }
+
+    /**
+     * Display all adresses on the map.
+     * @param addressesViewModel: IAddressViewModel[]
+     */
+    public setMarkers(addressesViewModel: IAddressViewModel[]): void {
+        this._addresses = this.parseFormattedAddresses(addressesViewModel);
         this.setMarkersFromAddresses();
     }
 
@@ -300,10 +337,10 @@ export class MapComponent implements OnInit {
 
     /**
      * Gets Array of formatted addresses
-     * @returns array with addresses
+     * @returns array with addresses - IAddressViewModel[]
      */
-    public getAllAddresses(): string[] {
-        return this._addresses;
+    public getAllAddresses(): IAddressViewModel[] {
+        return this.parseAddressViewModel(this._addresses);
     }
 }
 
