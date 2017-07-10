@@ -19,5 +19,7 @@
         public const string IncorrectCredentials = "Неправильний логін або пароль.";
         public const string UserIsBaned = "На даний момент ви є заблоковані і не можете увійти в систему. Причина бану:";
         public const string MissedEnterData = "Введіть пароль і логін.";
+        public const string InvalidUserRole = "InvalidUserRole";
+        public const string InvalidUser = "InvalidUser";
     }
 }

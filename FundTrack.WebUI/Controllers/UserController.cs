@@ -251,12 +251,12 @@ namespace FundTrack.WebUI.Controllers
         }
 
         /// <summary>
-        /// Gets id of organization
+        /// Gets Id of organization with ban status by login
         /// </summary>
-        /// <param name="login"> Login of user</param>
-        /// <returns>Id</returns>
+        /// <param name="login">User login</param>
+        /// <returns>Organization Id with ban status</returns>
         [HttpGet("GetIdOfOrganization/{login}")]
-        public int GetIdOfOrganization(string login)
+        public OrganizationIdViewModel GetIdOfOrganization(string login)
         {
             return _userDomainService.GetOrganizationId(login);
         }

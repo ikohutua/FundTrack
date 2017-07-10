@@ -9,11 +9,11 @@ import { AppRoutingModule } from "./routes/app-routing.module";
 import { MapModule } from "./map.module";
 import { Angular2FontawesomeModule } from 'angular2-fontawesome/angular2-fontawesome';
 import { OrganizationManagementModule } from "./organization-management.module";
+import { StorageService } from './shared/item-storage-service';
 import { OfferManagementModule } from './offer-management.module';
 
-
 @NgModule({
-    bootstrap: [AppComponent],
+    bootstrap: [AppComponent],    
     declarations: [
         AppComponent
     ],
@@ -28,6 +28,7 @@ import { OfferManagementModule } from './offer-management.module';
         Angular2FontawesomeModule,
         OrganizationManagementModule,
         OfferManagementModule
-    ]
+    ],
+    providers: [StorageService]
 })
 export class AppModule { }

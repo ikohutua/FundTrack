@@ -326,11 +326,11 @@ namespace FundTrack.BLL.DomainServices
         }
 
         /// <summary>
-        /// Gets organization by Id
+        /// Gets organization Id with bann status
         /// </summary>
-        /// <param name="login">Organization login</param>
-        /// <returns>Id of organization</returns>
-        public int GetOrganizationId(string login)
+        /// <param name="login">User login</param>
+        /// <returns>Organization Id with ban status</returns>
+        public OrganizationIdViewModel GetOrganizationId(string login)
         {
             var user = new User();
             user = _unitOfWork.UsersRepository.Read().Where(u => u.Login == login).FirstOrDefault();
@@ -340,16 +340,23 @@ namespace FundTrack.BLL.DomainServices
                 if (membership != null)
                 {
                     int roleId = membership.RoleId;
+
+                    var bannedOrg = _unitOfWork.OrganizationRepository.GetOrganizationsWithBanStatus().FirstOrDefault(o => o.Id == membership.OrgId).BannedOrganization;
+
                     var userRole = _unitOfWork.RoleRepository.Read().Where(r => r.Id == roleId).FirstOrDefault().Name;
                     if (userRole == "admin" || userRole == "superadmin")
                     {
                         int organizationId = membership.OrgId;
-                        return organizationId;
+                        return new OrganizationIdViewModel
+                        {
+                            OrganizationId = organizationId,
+                            BannedDescription = bannedOrg == null ? string.Empty : bannedOrg.Description
+                        };
                     }
-                    else return 0;
+                    throw new BusinessLogicException(ErrorMessages.InvalidUserRole);
                 }
-            }           
-            return 0;
+            }
+            throw new BusinessLogicException(ErrorMessages.InvalidUser);
         }
     }
 }

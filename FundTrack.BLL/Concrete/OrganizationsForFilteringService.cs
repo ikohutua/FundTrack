@@ -44,6 +44,7 @@ namespace FundTrack.BLL.Concrete
                 var temp =  this._unitOfWork
                     .OrganizationsForFilteringRepository
                     .GetAll
+                    .Where(o => o.BannedOrganization == null)
                     .Select(o => new OrganizationForFilteringViewModel()
                     {
                         Id = o.Id,

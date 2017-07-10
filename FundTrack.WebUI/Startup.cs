@@ -44,6 +44,8 @@ namespace FundTrack_WebUI
             // Add framework services.
             services.AddMvc();
 
+            services.AddSignalR();
+
             //dependency injection DAL
             services.AddTransient<IUserResporitory, UserRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
@@ -61,8 +63,6 @@ namespace FundTrack_WebUI
             services.AddScoped<IRepository<OfferedItem>, OfferedItemRepository>();
             services.AddScoped<IStatusRepository, StatusRepository>();
             services.AddScoped<IGoodsCategoryRepository, GoodsCategoryRepository>();
-
-
 
             //dependency injection BLL
             services.AddScoped<IOrganizationsForFilteringService, OrganizationsForFilteringService>();
@@ -123,6 +123,9 @@ namespace FundTrack_WebUI
             {
                 app.UseExceptionHandler("/error");
             }
+
+            app.UseWebSockets();
+            app.UseSignalR();
 
             app.UseMvc(routes =>
             {

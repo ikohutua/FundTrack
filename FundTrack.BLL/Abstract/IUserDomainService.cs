@@ -23,11 +23,11 @@ namespace FundTrack.BLL.Abstract
         UserInfoViewModel ChangePassword(ChangePasswordViewModel changePasswordViewModel);
 
         /// <summary>
-        /// Gets id of organization that user participates in
+        /// Gets organization Id with bann status
         /// </summary>
-        /// <param name="userModel"></param>
-        /// <returns>Id of organization or 0 if there is none for that user</returns>
-        int GetOrganizationId(string login);
+        /// <param name="login">User login</param>
+        /// <returns>Organization Id with ban status</returns>
+        OrganizationIdViewModel GetOrganizationId(string login);
 
         /// <summary>
         /// Gets all users from database

@@ -28,7 +28,7 @@ import { SpinnerComponent } from './shared/components/spinner/spinner.component'
         CommonModule,
         FormsModule,
         RouterModule,
-        ReactiveFormsModule,      
+        ReactiveFormsModule     
     ],
     exports: [
         CommonModule,

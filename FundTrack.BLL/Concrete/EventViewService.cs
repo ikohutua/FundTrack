@@ -34,7 +34,9 @@ namespace FundTrack.BLL.Concrete
         {
             var events = ((DbSet<Event>)_unitOfWork.EventRepository.Read())
              .Include(e => e.Organization)
-             .Include(i => i.EventImages)
+             .Include(e => e.Organization.BannedOrganization)
+             .Where(e => e.Organization.BannedOrganization == null)
+             .Include(i => i.EventImages)             
              .Select(c => new EventViewModel()
              {
                  Id = c.Id,
@@ -57,6 +59,8 @@ namespace FundTrack.BLL.Concrete
             var events = ((DbSet<Event>)_unitOfWork.EventRepository.Read())
              .Include(e => e.Organization)
              .Include(i => i.EventImages)
+             .Include(e => e.Organization.BannedOrganization)
+             .Where(e => e.Organization.BannedOrganization == null)
              .Select(c => new EventViewModel()
              {
                  Id = c.Id,
@@ -78,7 +82,9 @@ namespace FundTrack.BLL.Concrete
         public IEnumerable<EventViewModel> GetAllEventsById(int id)
         {
             IEnumerable<EventViewModel> events = ((DbSet<Event>)_unitOfWork.EventRepository.Read())
-             .Include(e => e.Organization).Where(o => o.OrganizationId == id)
+             .Include(e => e.Organization)
+             .Include(e => e.Organization.BannedOrganization)
+             .Where(e => e.Organization.BannedOrganization == null && e.OrganizationId == id)
              .Include(i => i.EventImages)
              .Select(c => new EventViewModel()
              {

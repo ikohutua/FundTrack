@@ -3,6 +3,7 @@ import * as keys from '../../key.storage';
 import { isBrowser } from 'angular2-universal';
 import { UserService } from '../../../services/concrete/user.service';
 import { AuthorizeUserModel } from '../../../view-models/concrete/authorized-user-info-view.model';
+import { StorageService } from '../../item-storage-service';
 
 @Component({
     selector: 'user-states',
@@ -19,7 +20,7 @@ export class UserStatesComponent implements AfterContentChecked, DoCheck {
     private isAdminOfOrganization: boolean = false;
     private isAdminOfOrganizationForCheck: boolean = false;
     private idOfOrganization: number;
-    public constructor(private _authorizationService: UserService) { }
+    public constructor(private _authorizationService: UserService, private _storage: StorageService) { }
 
     /**
      * close the session current user
@@ -29,6 +30,7 @@ export class UserStatesComponent implements AfterContentChecked, DoCheck {
         this.isAdmin = false;
         this.isAdminOfOrganization = false;
         this._authorizationService.logOff();
+        this._storage.bannedDescription = '';
     }
 
     /**
@@ -61,8 +63,9 @@ export class UserStatesComponent implements AfterContentChecked, DoCheck {
     
     private getIdOfOrganization(): void
     {
-        this._authorizationService.getOrganizationId(this.user.login).subscribe(id => {
-            this.idOfOrganization = id; 
+        this._authorizationService.getOrganizationId(this.user.login).subscribe(orgIdViewModel => {
+            this.idOfOrganization = orgIdViewModel.organizationId;         
+            this._storage.bannedDescription = orgIdViewModel.bannedDescription;            
         });
     }
 }

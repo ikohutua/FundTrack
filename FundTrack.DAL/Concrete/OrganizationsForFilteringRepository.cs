@@ -1,5 +1,6 @@
 ﻿using FundTrack.DAL.Abstract;
 using FundTrack.DAL.Entities;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 
 namespace FundTrack.DAL.Concrete
@@ -31,7 +32,7 @@ namespace FundTrack.DAL.Concrete
         {
             get
             {
-                return _context.Organizations;
+                return _context.Organizations.Include(o => o.BannedOrganization);
             }
         }
     }

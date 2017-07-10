@@ -16,6 +16,7 @@ import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/catch';
 import * as key from '../../shared/key.storage';
 import { AuthService } from "angular2-social-login";
+import { OrganizationIdViewModel } from '../../view-models/abstract/organization-id-view-model';
 
 @Injectable()
 export class UserService {
@@ -159,9 +160,9 @@ export class UserService {
      * Gets id of organization 
      * @param login
      */
-    public getOrganizationId(login: string): Observable<number> {
+    public getOrganizationId(login: string): Observable<OrganizationIdViewModel> {
         return this._http.get('api/User/GetIdOfOrganization/' + login)
-            .map((response: Response) => response.json() as number);
+            .map((response: Response) => response.json() as OrganizationIdViewModel);
     }
 }
 
