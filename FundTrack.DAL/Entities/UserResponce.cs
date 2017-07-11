@@ -1,4 +1,6 @@
-﻿namespace FundTrack.DAL.Entities
+﻿using FundTrack.Infrastructure.ViewModel;
+
+namespace FundTrack.DAL.Entities
 {
     public class UserResponse
     {
@@ -65,6 +67,5 @@
         /// The user.
         /// </value>
         public virtual OfferedItem OfferedItem { get; set; }
-
     }
 }

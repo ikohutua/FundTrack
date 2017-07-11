@@ -1,4 +1,4 @@
-﻿USE FundTrackSS
+﻿USE FundTrackSSLv242
 
 DELETE from Organizations
 DBCC CHECKIDENT ('Organizations', RESEED, 0);
@@ -14,6 +14,8 @@ DELETE from GoodsTypes
 DBCC CHECKIDENT ('GoodsTypes', RESEED, 0);
 DELETE from GoodsCategories
 DBCC CHECKIDENT ('GoodsCategories', RESEED, 0);
+DELETE from RequestedItems
+DBCC CHECKIDENT ('RequestedItems',RESEED,0);
 
 INSERT INTO dbo.Organizations
 VALUES 
@@ -274,7 +276,7 @@ VALUES
 'https://scontent-waw1-1.xx.fbcdn.net/v/t1.0-9/19248059_841269326025055_2823380829229008327_n.jpg?oh=6f1cfc969fb9893f9e6befe35b7ad6d1&oe=59CE1DEE',
 0)
 
-INSERT INTO dbo.Stauses
+INSERT INTO dbo.Statuses
 VALUES
 ('new'),
 ('active'),
@@ -304,6 +306,15 @@ VALUES
 (N'Інше')
 GO
 
+INSERT INTO dbo.RequestedItems
+VALUES
+('Необхідно 20 пар взуття',1,'Черевики',1,1),
+('Необхідно медикаменти від вірусних захворювань',2,'Грип',2,1),
+('Необхідно оносновні види каш:гречка, рис, вівсянка у необмеженій кількості',3,'Харчування',2,1),
+('Необхідна термо білизна 50 шт.',6,'Холодно-зима',4,1),
+('Необхідні медикаменти для надання першої швидкої допомоги',2,'Перша допомога',3,1)
+
 select * from dbo.Organizations
 select * from dbo.Events
 select * from dbo.EventImages
+select * from dbo.RequestedItemImages

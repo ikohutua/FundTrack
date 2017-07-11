@@ -1,0 +1,58 @@
+﻿
+<div class="well container col-md-8 col-md-offset-2" *ngIf="requestDetail">
+    <a [routerLink]="['/home/allrequests']" class="pull-right">Усі запити</a>
+    <section>
+        <div class="input-list style-4 clearfix">
+            <div *ngIf="requestDetail.imagesUrl" class="col-md-2 col-md-offset-0">
+                <gallery [datasource]="requestDetail.imagesUrl"> </gallery>
+            </div>
+            <div class="col-md-8">
+                <div class="col-md-8 childResourse">
+                   <h5>{{requestDetail.name}}</h5>
+                </div>
+                <div class="col-md-8 childResourse">
+                    Організації: {{requestDetail.organizationName}}
+                </div>
+                <div class="col-md-8 childResourse">
+                    <b>Статус: </b> <b><span style="color:#46b2d6;">{{requestDetail.statusName}}</span></b>
+                </div>
+                <div class="col-md-8 childResourse ">
+                    Тип: {{requestDetail.goodsTypeName}}
+                </div>
+                <div class="col-md-8 childResourse ">
+                    Категорія: {{requestDetail.goodsCategoryName}}
+                </div>
+                <div class="col-md-10 childResourse ">
+                    Опис:
+                    <h4>{{requestDetail.description}}</h4>
+                </div>
+            </div>
+        </div>
+        <button id="submit" name="submit" class="btn btn-success pull-right" (click)="onActionClick()">Пожертвувати</button>
+    </section>
+</div>
+<app-modal>
+    <div class="app-modal-header">
+        <button type="button" class="close" aria-hidden="true" (click)="closeModal()">&times;</button>
+        <h4 class="modal-title">Контактні дані: </h4>
+    </div>
+    <div class="app-modal-body">
+        <textarea class="form-control" #description="ngModel"
+                  (blur)="customeFieldTouched=true"
+                  required
+                  [(ngModel)]="responseDescription">
+        </textarea>
+        <div class="text-danger" *ngIf="description.invalid && customeFieldTouched">
+            Вкажіть інформацію, щоб ми могли з вами звязатися.
+        </div>
+    </div>
+    <div class="app-modal-footer">
+        <button type="button" class="btn btn-default" (click)="closeModal()">Закрити</button>
+        <button (click)="setUserResponse()"
+                class="btn btn-primary"
+                data-dismiss="modal"
+                [disabled]="description.invalid">
+            Надіслати
+        </button>
+    </div>
+</app-modal>

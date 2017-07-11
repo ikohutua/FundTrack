@@ -1,6 +1,7 @@
 ﻿using FundTrack.DAL.Abstract;
 using FundTrack.DAL.Concrete;
 using FundTrack.DAL.Entities;
+using FundTrack.Infrastructure;
 using FundTrack.Infrastructure.ViewModel;
 using Microsoft.EntityFrameworkCore;
 using System;

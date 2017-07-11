@@ -81,16 +81,26 @@ namespace FundTrack.DAL.Abstract
         IRequestedItemRepository RequestedItemRepository { get; }
 
         /// <summary>
+        /// Gets the user response repository.
+        /// </summary>
+        /// <value>
+        /// The user response repository.
+        /// </value>
+        IUserResponseRepository UserResponseRepository { get; }
+
+        /// <summary>
         /// Gets the repo
         /// </summary>
         IRepository<OfferedItem> OfferedItemRepository { get; }
         /// <summary>
         /// Gets the repo
         /// </summary>
+        
         IStatusRepository StatusRepository { get; }
         /// <summary>
         /// Gets the repo
         /// </summary>
+        
         IGoodsCategoryRepository GoodsCategoryRepository { get; }
         /// <summary>
         /// Saves all changes made in this context to the database.

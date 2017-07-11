@@ -10,5 +10,18 @@ namespace FundTrack.DAL.Abstract
     /// </summary>
     public interface IRequestedItemRepository : IRepository<RequestedItem>
     {
+        /// <summary>
+        /// Gets the requested item status.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns>Status</returns>
+        Status GetRequestedItemStatus(int id);
+
+        /// <summary>
+        /// Gets the requested item with virtual field.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns>Requested Item</returns>
+        RequestedItem GetRequestedItemsWithVirtualFields(int id);
     }
 }

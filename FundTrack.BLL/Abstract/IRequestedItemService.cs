@@ -41,6 +41,18 @@ namespace FundTrack.BLL.Abstract
         /// <param name="id">Id of requested item</param>
         void DeleteRequestedItem(int id);
 
+        /// <summary>
+        /// Gets the requested item detail.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns> Requested View Model</returns>
+        RequestedItemDetailViewModel GetRequestedItemDetail(int id);
 
+        /// <summary>
+        /// Creates the user response on requested item.
+        /// </summary>
+        /// <param name="userResponse">The user response.</param>
+        /// <returns>Requested View Model</returns>
+        UserResponseViewModel CreateUserResponse(UserResponseViewModel userResponse);
     }
 }

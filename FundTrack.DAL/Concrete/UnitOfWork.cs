@@ -14,6 +14,7 @@ namespace FundTrack.DAL.Concrete
         private readonly IRepository<Event> _eventRepository;
         private readonly IOrganizationRepository _organizationRepository;
         private readonly IMembershipRepository _membershipRepository;
+        private readonly IUserResponseRepository _userResponseRepository;
         private readonly IRepository<Address> _addressRepository;
         private readonly IRepository<OrgAddress> _orgAddressRepository;
         private readonly IRepository<BankAccount> _bankAccountRepository;
@@ -47,6 +48,7 @@ namespace FundTrack.DAL.Concrete
               IRepository<EventImage> eventImageRepositoryParam,
               IRepository<OfferedItem> offeredItemRepository,
               IStatusRepository statusRepository,
+               IUserResponseRepository userResponseRepository,
               IGoodsCategoryRepository goodsCategoryRepository
               )
         {
@@ -65,6 +67,8 @@ namespace FundTrack.DAL.Concrete
             _offeredItemRepository = offeredItemRepository;
             _statusRepository = statusRepository;
             _goodsCategoryRepository = goodsCategoryRepository;
+            _userResponseRepository = userResponseRepository;
+            _requestedItemRepository = requestedItemRepository;
         }
 
         /// <summary>
@@ -228,6 +232,7 @@ namespace FundTrack.DAL.Concrete
                 return this._requestedItemRepository;
             }
         }
+
         /// <summary>
         /// Gets repo
         /// </summary>
@@ -235,6 +240,7 @@ namespace FundTrack.DAL.Concrete
         {
             get { return this._offeredItemRepository; }
         }
+
         /// <summary>
         /// Gets repo
         /// </summary>
@@ -242,6 +248,7 @@ namespace FundTrack.DAL.Concrete
         {
             get { return this._statusRepository; }
         }
+
         /// <summary>
         /// Gets repo
         /// </summary>
@@ -250,7 +257,19 @@ namespace FundTrack.DAL.Concrete
             get { return this._goodsCategoryRepository; }
         }
 
-
+        /// <summary>
+        /// Gets the user response repository.
+        /// </summary>
+        /// <value>
+        /// The user response repository.
+        /// </value>
+        public IUserResponseRepository UserResponseRepository
+        {
+            get
+            {
+                return this._userResponseRepository;
+            }
+        }
 
         /// <summary>
         /// Saves all changes made in this context to the database.

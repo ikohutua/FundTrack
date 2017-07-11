@@ -5,17 +5,13 @@ import { AboutComponent } from "../components/about/about.component";
 import { AllEventsComponent } from "../components/all-events/all-events.component";
 import { EventDetailComponent } from "../components/event-detail/event-detail.component";
 import { AllRequestsComponent } from "../components/all-requests/all-requests.component";
+import { RequestDetailComponent } from "../components/request-detail/request-detail.component";
 
 
 @NgModule({
     imports: [
         RouterModule.forChild([
             {
-                //path: '', component: HomeComponent,
-                //children:
-                //[
-                //    { path: '', component: AllEventsComponent }
-                //]
                 path: '', redirectTo: '/home',
                 pathMatch: 'full',
             },
@@ -23,10 +19,12 @@ import { AllRequestsComponent } from "../components/all-requests/all-requests.co
                 path: 'home', component: HomeComponent,
                 children:
                 [
-                    { path: '', component: AllEventsComponent },
+                    { path: 'allevents', component: AllEventsComponent },
                     { path: 'allevents/:id', component: AllEventsComponent },
                     { path: 'eventdetail/:id', component: EventDetailComponent },
-                    { path: 'allrequests', component: AllRequestsComponent }
+                    { path: 'allrequests', component: AllRequestsComponent },
+                    { path: 'allrequests/:id', component: AllRequestsComponent },
+                    { path: 'requestdetail/:id', component: RequestDetailComponent }
                 ]
             },
             { path: 'about', component: AboutComponent },

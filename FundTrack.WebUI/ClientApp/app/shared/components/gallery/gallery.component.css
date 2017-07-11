@@ -1,0 +1,46 @@
+﻿ul {
+    padding: 0;
+    width: 780px;
+}
+
+li {
+    display: inline;
+}
+
+.tn {
+    margin: 2px 0px;
+    box-shadow: #999 1px 1px 3px 1px;
+    cursor: pointer
+}
+
+.modal-content {
+    width: 670px !important;
+}
+
+.imageSelected {
+    width: 640px;
+    position: relative;
+}
+
+.tn {
+    width: 110px;
+    height: 100px;
+}
+
+.arrow-back, .arrow-forward {
+    position: absolute;
+    opacity: 0.6;
+    background-color: darkolivegreen;
+    padding: 10px;
+    top: 190px;
+    color: white;
+    cursor: pointer;
+}
+
+.arrow-forward {
+    left: 612px;
+}
+
+.arrow-back {
+    right: 612px;
+}

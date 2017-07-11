@@ -1,12 +1,12 @@
 ﻿<div class="row">
     <div class="col-lg-2 nav-mn">
         <ul class="nav nav-pills nav-stacked lead">
-            <li [routerLinkActive]="['link-active']"><a [routerLink]="['']" (click)="callChild()"><span class="glyphicon glyphicon-calendar"></span> Події</a></li>
-            <li [routerLinkActive]="['link-active']"><a [routerLink]="['']"><span class="glyphicon glyphicon-duplicate"></span> Звіти</a></li>
-            <li [routerLinkActive]="['link-active']"><a [routerLink]="['allrequests']"><span class="glyphicon glyphicon-gift"></span> Потреби</a></li>
-            <li [routerLinkActive]="['link-active']"><a [routerLink]="['']"><span class="glyphicon glyphicon-usd"></span> Пожертвувати</a></li>
-            <li [routerLinkActive]="['link-active']"><a [routerLink]="['/offer-management/mylist']"><span class="glyphicon glyphicon-briefcase"></span> Запропонувати</a></li>
-            <li [routerLinkActive]="['link-active']"><a [routerLink]="['']"><span class="glyphicon glyphicon-camera"></span> Фотографії</a></li>
+            <li class="active"><a data-toggle="pill" [routerLink]="['/home/allevents']"><span class="glyphicon glyphicon-calendar"></span> Події</a></li>
+            <li class="active"><a data-toggle="pill" [routerLink]="['/home']"><span class="glyphicon glyphicon-duplicate"></span> Звіти</a></li>
+            <li class="active"><a data-toggle="pill" [routerLink]="['/home/allrequests']"><span class="glyphicon glyphicon-gift"></span> Потреби</a></li>
+            <li class="active"><a data-toggle="pill" [routerLink]="['/offer-management/mylist']"><span class="glyphicon glyphicon-usd"></span> Пожертвувати</a></li>
+            <li class="active"><a data-toggle="pill" [routerLink]="['/home']"><span class="glyphicon glyphicon-briefcase"></span> Запропонувати</a></li>
+            <li class="active"><a data-toggle="pill" [routerLink]="['/home']"><span class="glyphicon glyphicon-camera"></span> Фотографії</a></li>
         </ul>
     </div>
     <div class="col-lg-10 pull-right">

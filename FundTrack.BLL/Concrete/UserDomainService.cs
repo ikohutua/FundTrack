@@ -127,7 +127,7 @@ namespace FundTrack.BLL.DomainServices
         {
             var membership = new Membership
             {
-                RoleId = this._unitOfWork.RoleRepository.Read().Where(r => r.Name == "partner").FirstOrDefault().Id,
+                RoleId = this._unitOfWork.RoleRepository.Read().Where(r => r.Name == UserRoles.Partner).FirstOrDefault().Id,
                 UserId = this._unitOfWork.UsersRepository.GetUser(login).Id,
                 OrgId = 1
             };

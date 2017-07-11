@@ -44,7 +44,7 @@ namespace FundTrack_WebUI
             // Add framework services.
             services.AddMvc();
 
-            services.AddSignalR();
+            //services.AddSignalR();
 
             //dependency injection DAL
             services.AddTransient<IUserResporitory, UserRepository>();
@@ -63,6 +63,7 @@ namespace FundTrack_WebUI
             services.AddScoped<IRepository<OfferedItem>, OfferedItemRepository>();
             services.AddScoped<IStatusRepository, StatusRepository>();
             services.AddScoped<IGoodsCategoryRepository, GoodsCategoryRepository>();
+            services.AddScoped<IUserResponseRepository, UserResponseRepository>();
 
             //dependency injection BLL
             services.AddScoped<IOrganizationsForFilteringService, OrganizationsForFilteringService>();
@@ -75,6 +76,7 @@ namespace FundTrack_WebUI
             //services.AddScoped<IEditOrganizationService, EditOrganizationService>();
             services.AddScoped<IEmailSender, EmailSender>();
             services.AddScoped<IEventManagementService, EventManagementService>();
+            services.AddScoped<IRequestedItemService, RequestedItemService>();
             services.AddScoped<IOfferedItemService, OfferedItemService>();
         }
 
@@ -125,7 +127,7 @@ namespace FundTrack_WebUI
             }
 
             app.UseWebSockets();
-            app.UseSignalR();
+            //app.UseSignalR();
 
             app.UseMvc(routes =>
             {

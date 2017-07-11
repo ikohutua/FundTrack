@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using FundTrack.DAL.Entities;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace FundTrack.DAL.Concrete
 {
@@ -73,6 +74,34 @@ namespace FundTrack.DAL.Concrete
             var updatedRequetedItem = this._dbContext.RequestedItems.Update(item);
 
             return updatedRequetedItem.Entity;
+        }
+
+        /// <summary>
+        /// Gets the requested item status.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns>Status</returns>
+        public Status GetRequestedItemStatus(int id)
+        {
+            return this._dbContext.RequestedItems
+                                  .Include(r => r.Status)
+                                  .FirstOrDefault(r => r.Id == id)
+                                  .Status;
+        }
+
+        /// <summary>
+        /// Gets the requested items with virtual fields.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns>Requested Item</returns>
+        public RequestedItem GetRequestedItemsWithVirtualFields(int id)
+        {
+            return this._dbContext.RequestedItems
+                                  .Include(i => i.Organization)
+                                  .Include(i => i.Status)
+                                  .Include(i => i.RequestedItemImages)
+                                  .Include(i => i.GoodsCategory)
+                                  .FirstOrDefault(i => i.Id == id);
         }
     }
 }
