@@ -59,7 +59,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "0a5f162b47b7e37d2d1c"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "e3a0612c5d4fab0cc7a3"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -706,7 +706,7 @@
 /******/ 	__webpack_require__.h = function() { return hotCurrentHash; };
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return hotCreateRequire(307)(__webpack_require__.s = 307);
+/******/ 	return hotCreateRequire(309)(__webpack_require__.s = 309);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -856,6 +856,29 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 /* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var Observable_1 = __webpack_require__(3);
+var catch_1 = __webpack_require__(303);
+Observable_1.Observable.prototype.catch = catch_1._catch;
+Observable_1.Observable.prototype._catch = catch_1._catch;
+//# sourceMappingURL=catch.js.map
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var Observable_1 = __webpack_require__(3);
+var map_1 = __webpack_require__(298);
+Observable_1.Observable.prototype.map = map_1.map;
+//# sourceMappingURL=map.js.map
+
+/***/ }),
+/* 9 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -879,30 +902,19 @@ var /** @type {?} */ NG_VALUE_ACCESSOR = new __WEBPACK_IMPORTED_MODULE_0__angula
 //# sourceMappingURL=control_value_accessor.js.map
 
 /***/ }),
-/* 8 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var Observable_1 = __webpack_require__(3);
-var catch_1 = __webpack_require__(301);
-Observable_1.Observable.prototype.catch = catch_1._catch;
-Observable_1.Observable.prototype._catch = catch_1._catch;
-//# sourceMappingURL=catch.js.map
-
-/***/ }),
-/* 9 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var Observable_1 = __webpack_require__(3);
-var map_1 = __webpack_require__(296);
-Observable_1.Observable.prototype.map = map_1.map;
-//# sourceMappingURL=map.js.map
-
-/***/ }),
 /* 10 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var Observable_1 = __webpack_require__(3);
+var do_1 = __webpack_require__(262);
+Observable_1.Observable.prototype.do = do_1._do;
+Observable_1.Observable.prototype._do = do_1._do;
+//# sourceMappingURL=do.js.map
+
+/***/ }),
+/* 11 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -910,7 +922,7 @@ Observable_1.Observable.prototype.map = map_1.map;
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NG_ASYNC_VALIDATORS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return Validators; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_operator_toPromise__ = __webpack_require__(263);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_operator_toPromise__ = __webpack_require__(265);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_operator_toPromise__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__facade_collection__ = __webpack_require__(73);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__facade_lang__ = __webpack_require__(20);
@@ -1119,18 +1131,6 @@ function _mergeErrors(arrayOfErrors) {
     return Object.keys(res).length === 0 ? null : res;
 }
 //# sourceMappingURL=validators.js.map
-
-/***/ }),
-/* 11 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var Observable_1 = __webpack_require__(3);
-var do_1 = __webpack_require__(260);
-Observable_1.Observable.prototype.do = do_1._do;
-Observable_1.Observable.prototype._do = do_1._do;
-//# sourceMappingURL=do.js.map
 
 /***/ }),
 /* 12 */
@@ -1349,7 +1349,7 @@ exports.keyBannedOrg = "bannedOrg";
 /* unused harmony export isBuiltInAccessor */
 /* harmony export (immutable) */ __webpack_exports__["g"] = selectValueAccessor;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__facade_lang__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__validators__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__validators__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__checkbox_value_accessor__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__default_value_accessor__ = __webpack_require__(31);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__normalize_validator__ = __webpack_require__(121);
@@ -2047,9 +2047,9 @@ var Observable_1 = __webpack_require__(3);
 var http_2 = __webpack_require__(5);
 var core_1 = __webpack_require__(0);
 var router_1 = __webpack_require__(1);
-__webpack_require__(9);
-__webpack_require__(11);
 __webpack_require__(8);
+__webpack_require__(10);
+__webpack_require__(7);
 var key = __webpack_require__(14);
 var angular2_social_login_1 = __webpack_require__(56);
 var UserService = (function () {
@@ -2323,7 +2323,7 @@ function AbstractFormGroupDirective_tsickle_Closure_declarations() {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__facade_async__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__model__ = __webpack_require__(36);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__validators__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__validators__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__control_container__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__shared__ = __webpack_require__(15);
 /**
@@ -2586,7 +2586,7 @@ function NgForm_tsickle_Closure_declarations() {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return RadioControlRegistry; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RadioControlValueAccessor; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__control_value_accessor__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__control_value_accessor__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ng_control__ = __webpack_require__(18);
 /**
  * @license
@@ -2857,7 +2857,7 @@ function RadioControlValueAccessor_tsickle_Closure_declarations() {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__facade_async__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__facade_collection__ = __webpack_require__(73);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__validators__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__validators__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__control_container__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__reactive_errors__ = __webpack_require__(33);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__shared__ = __webpack_require__(15);
@@ -3168,7 +3168,7 @@ function FormGroupDirective_tsickle_Closure_declarations() {
 /* unused harmony export formArrayNameProvider */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FormArrayName; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__validators__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__validators__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__abstract_form_group_directive__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__control_container__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__reactive_errors__ = __webpack_require__(33);
@@ -3513,7 +3513,7 @@ var ModalComponent = (function () {
 ModalComponent = __decorate([
     core_1.Component({
         selector: 'app-modal',
-        template: __webpack_require__(245)
+        template: __webpack_require__(247)
     })
 ], ModalComponent);
 exports.ModalComponent = ModalComponent;
@@ -3642,7 +3642,7 @@ MapsAPILoader.ctorParameters = function () { return []; };
 /* unused harmony export CHECKBOX_VALUE_ACCESSOR */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CheckboxControlValueAccessor; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__control_value_accessor__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__control_value_accessor__ = __webpack_require__(9);
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -3743,7 +3743,7 @@ function CheckboxControlValueAccessor_tsickle_Closure_declarations() {
 /* unused harmony export DEFAULT_VALUE_ACCESSOR */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DefaultValueAccessor; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__control_value_accessor__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__control_value_accessor__ = __webpack_require__(9);
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -3849,7 +3849,7 @@ function DefaultValueAccessor_tsickle_Closure_declarations() {
 /* unused harmony export modelGroupProvider */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NgModelGroup; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__validators__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__validators__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__abstract_form_group_directive__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__control_container__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ng_form__ = __webpack_require__(23);
@@ -4020,7 +4020,7 @@ var ReactiveErrors = (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NgSelectOption; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__facade_lang__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__control_value_accessor__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__control_value_accessor__ = __webpack_require__(9);
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -4327,7 +4327,7 @@ function NgSelectOption_tsickle_Closure_declarations() {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return NgSelectMultipleOption; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__facade_lang__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__control_value_accessor__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__control_value_accessor__ = __webpack_require__(9);
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -4675,7 +4675,7 @@ function NgSelectMultipleOption_tsickle_Closure_declarations() {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return FormControl; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return FormGroup; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return FormArray; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_observable_fromPromise__ = __webpack_require__(300);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_observable_fromPromise__ = __webpack_require__(302);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_observable_fromPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_rxjs_observable_fromPromise__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__directives_shared__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__facade_async__ = __webpack_require__(19);
@@ -6386,9 +6386,9 @@ function FormArray_tsickle_Closure_declarations() {
 Object.defineProperty(exports, "__esModule", { value: true });
 var http_1 = __webpack_require__(5);
 var Observable_1 = __webpack_require__(3);
-__webpack_require__(9);
-__webpack_require__(11);
 __webpack_require__(8);
+__webpack_require__(10);
+__webpack_require__(7);
 /**
  * Abstract generic class for services
  */
@@ -6492,16 +6492,16 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
 var router_1 = __webpack_require__(1);
 var dropdown_filtering_component_1 = __webpack_require__(59);
-var organization_list_pipe_1 = __webpack_require__(165);
-var events_pipe_1 = __webpack_require__(164);
-var user_states_component_1 = __webpack_require__(163);
+var organization_list_pipe_1 = __webpack_require__(166);
+var events_pipe_1 = __webpack_require__(165);
+var user_states_component_1 = __webpack_require__(164);
 var common_1 = __webpack_require__(17);
 var forms_1 = __webpack_require__(6);
-var pagination_component_1 = __webpack_require__(160);
-var page_item_component_1 = __webpack_require__(159);
+var pagination_component_1 = __webpack_require__(161);
+var page_item_component_1 = __webpack_require__(160);
 var modal_component_1 = __webpack_require__(27);
-var select_component_1 = __webpack_require__(161);
-var spinner_component_1 = __webpack_require__(162);
+var select_component_1 = __webpack_require__(162);
+var spinner_component_1 = __webpack_require__(163);
 var SharedModule = (function () {
     function SharedModule() {
     }
@@ -7763,10 +7763,10 @@ function NgControlStatusGroup_tsickle_Closure_declarations() {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__facade_async__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__model__ = __webpack_require__(36);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__validators__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__validators__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__abstract_form_group_directive__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__control_container__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__control_value_accessor__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__control_value_accessor__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ng_control__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ng_form__ = __webpack_require__(23);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ng_model_group__ = __webpack_require__(32);
@@ -8111,7 +8111,7 @@ function NgModel_tsickle_Closure_declarations() {
 /* unused harmony export NUMBER_VALUE_ACCESSOR */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NumberValueAccessor; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__control_value_accessor__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__control_value_accessor__ = __webpack_require__(9);
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -8219,7 +8219,7 @@ function NumberValueAccessor_tsickle_Closure_declarations() {
 /* unused harmony export RANGE_VALUE_ACCESSOR */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RangeValueAccessor; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__control_value_accessor__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__control_value_accessor__ = __webpack_require__(9);
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -8326,8 +8326,8 @@ function RangeValueAccessor_tsickle_Closure_declarations() {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FormControlDirective; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__facade_async__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__validators__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__control_value_accessor__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__validators__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__control_value_accessor__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ng_control__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__reactive_errors__ = __webpack_require__(33);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__shared__ = __webpack_require__(15);
@@ -8532,10 +8532,10 @@ function FormControlDirective_tsickle_Closure_declarations() {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FormControlName; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__facade_async__ = __webpack_require__(19);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__validators__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__validators__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__abstract_form_group_directive__ = __webpack_require__(22);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__control_container__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__control_value_accessor__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__control_value_accessor__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ng_control__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__reactive_errors__ = __webpack_require__(33);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__shared__ = __webpack_require__(15);
@@ -8840,7 +8840,7 @@ var core_1 = __webpack_require__(0);
 var common_1 = __webpack_require__(17);
 var map_component_1 = __webpack_require__(60);
 var forms_1 = __webpack_require__(6);
-var platform_browser_1 = __webpack_require__(299);
+var platform_browser_1 = __webpack_require__(301);
 var core_2 = __webpack_require__(68);
 var map_routing_module_1 = __webpack_require__(143);
 var MapModule = (function () {
@@ -8892,7 +8892,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var organization_dropdown_service_1 = __webpack_require__(149);
+var organization_dropdown_service_1 = __webpack_require__(150);
 var router_1 = __webpack_require__(1);
 var DropdownOrganizationsComponent = (function () {
     /**
@@ -8948,8 +8948,8 @@ var DropdownOrganizationsComponent = (function () {
 DropdownOrganizationsComponent = __decorate([
     core_1.Component({
         selector: 'dropdown-org',
-        template: __webpack_require__(240),
-        styles: [__webpack_require__(288)],
+        template: __webpack_require__(242),
+        styles: [__webpack_require__(290)],
         providers: [organization_dropdown_service_1.OrganizationDropdownService]
     }),
     __metadata("design:paramtypes", [organization_dropdown_service_1.OrganizationDropdownService,
@@ -9303,8 +9303,8 @@ __decorate([
 MapComponent = __decorate([
     core_1.Component({
         selector: 'map-component',
-        template: __webpack_require__(244),
-        styles: [__webpack_require__(291)]
+        template: __webpack_require__(246),
+        styles: [__webpack_require__(293)]
     }),
     core_1.Injectable(),
     __metadata("design:paramtypes", [core_2.MapsAPILoader, core_1.NgZone])
@@ -11095,7 +11095,7 @@ var TemplateDrivenErrors = (function () {
 /* unused harmony export PATTERN_VALIDATOR */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return PatternValidator; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__validators__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__validators__ = __webpack_require__(11);
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() { this.constructor = d; }
@@ -11997,8 +11997,8 @@ var AboutComponent = (function () {
 }());
 AboutComponent = __decorate([
     core_1.Component({
-        template: __webpack_require__(213),
-        styles: [__webpack_require__(265)]
+        template: __webpack_require__(215),
+        styles: [__webpack_require__(267)]
     })
 ], AboutComponent);
 exports.AboutComponent = AboutComponent;
@@ -12021,7 +12021,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var organization_events_service_1 = __webpack_require__(150);
+var organization_events_service_1 = __webpack_require__(151);
 var router_1 = __webpack_require__(1);
 var AllEventsComponent = (function () {
     function AllEventsComponent(_service, _router) {
@@ -12079,8 +12079,8 @@ __decorate([
 ], AllEventsComponent.prototype, "onScroll", null);
 AllEventsComponent = __decorate([
     core_1.Component({
-        template: __webpack_require__(214),
-        styles: [__webpack_require__(266)],
+        template: __webpack_require__(216),
+        styles: [__webpack_require__(268)],
         providers: [organization_events_service_1.OrganizationEventService]
     }),
     __metadata("design:paramtypes", [organization_events_service_1.OrganizationEventService, router_1.ActivatedRoute])
@@ -12109,8 +12109,8 @@ var AllRequestsComponent = (function () {
 }());
 AllRequestsComponent = __decorate([
     core_1.Component({
-        template: __webpack_require__(215),
-        styles: [__webpack_require__(267)]
+        template: __webpack_require__(217),
+        styles: [__webpack_require__(269)]
     })
 ], AllRequestsComponent);
 exports.AllRequestsComponent = AllRequestsComponent;
@@ -12133,12 +12133,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var login_view_model_1 = __webpack_require__(173);
+var login_view_model_1 = __webpack_require__(175);
 var user_service_1 = __webpack_require__(21);
 var router_1 = __webpack_require__(1);
 var angular2_social_login_1 = __webpack_require__(56);
 var keys = __webpack_require__(14);
-var login_facebook_view_model_1 = __webpack_require__(172);
+var login_facebook_view_model_1 = __webpack_require__(174);
 var AuthorizationComponent = (function () {
     function AuthorizationComponent(_authorizationService, _router, _auth, _ngZone) {
         this._authorizationService = _authorizationService;
@@ -12250,8 +12250,8 @@ __decorate([
 ], AuthorizationComponent.prototype, "loginModel", void 0);
 AuthorizationComponent = __decorate([
     core_1.Component({
-        template: __webpack_require__(217),
-        styles: [__webpack_require__(269)],
+        template: __webpack_require__(219),
+        styles: [__webpack_require__(271)],
         providers: [user_service_1.UserService]
     }),
     __metadata("design:paramtypes", [user_service_1.UserService,
@@ -12306,8 +12306,8 @@ var EventDetailComponent = (function () {
 }());
 EventDetailComponent = __decorate([
     core_1.Component({
-        template: __webpack_require__(218),
-        styles: [__webpack_require__(270)],
+        template: __webpack_require__(220),
+        styles: [__webpack_require__(272)],
         providers: [eventdetail_service_1.EventDetailService]
     }),
     __metadata("design:paramtypes", [eventdetail_service_1.EventDetailService, router_1.ActivatedRoute])
@@ -12348,8 +12348,8 @@ __decorate([
 HomeComponent = __decorate([
     core_1.Component({
         selector: 'home',
-        template: __webpack_require__(219),
-        styles: [__webpack_require__(271)]
+        template: __webpack_require__(221),
+        styles: [__webpack_require__(273)]
     })
 ], HomeComponent);
 exports.HomeComponent = HomeComponent;
@@ -12372,16 +12372,35 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var offer_view_model_1 = __webpack_require__(174);
+var offer_view_model_1 = __webpack_require__(176);
 var router_1 = __webpack_require__(1);
+var goods_service_1 = __webpack_require__(148);
+var goods_type_view_model_1 = __webpack_require__(172);
 var OfferDetailComponent = (function () {
-    function OfferDetailComponent(_router) {
+    function OfferDetailComponent(_router, _goodsService) {
         this._router = _router;
+        this._goodsService = _goodsService;
         this.hidePanel = new core_1.EventEmitter();
+        this.selectedItem = new goods_type_view_model_1.GoodsTypeViewModel();
+        this.categories = new Array();
+        this.types = new Array();
         this.offerItem = new offer_view_model_1.OfferViewModel();
     }
+    OfferDetailComponent.prototype.onSelection = function (typeId) {
+        var _this = this;
+        this._goodsService.getCategories()
+            .subscribe(function (categories) {
+            _this.categories = categories;
+            _this.categories = _this.categories.filter(function (a) { return a.goodsTypeId == typeId; });
+        });
+    };
     OfferDetailComponent.prototype.ngOnInit = function () {
-        this.hidePanel.emit(false);
+        var _this = this;
+        this.selectedItem.id = 0;
+        this._goodsService.getTypes()
+            .subscribe(function (types) {
+            _this.types = types;
+        });
     };
     return OfferDetailComponent;
 }());
@@ -12392,10 +12411,12 @@ __decorate([
 OfferDetailComponent = __decorate([
     core_1.Component({
         selector: 'offer-detail',
-        template: __webpack_require__(220),
-        styles: [__webpack_require__(272)]
+        template: __webpack_require__(222),
+        styles: [__webpack_require__(274)],
+        providers: [goods_service_1.GoodsService]
     }),
-    __metadata("design:paramtypes", [router_1.Router])
+    __metadata("design:paramtypes", [router_1.Router,
+        goods_service_1.GoodsService])
 ], OfferDetailComponent);
 exports.OfferDetailComponent = OfferDetailComponent;
 
@@ -12417,7 +12438,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var user_offer_service_1 = __webpack_require__(148);
+var user_offer_service_1 = __webpack_require__(149);
 var router_1 = __webpack_require__(1);
 var angular2_universal_1 = __webpack_require__(16);
 var key = __webpack_require__(14);
@@ -12458,8 +12479,8 @@ __decorate([
 OfferListComponent = __decorate([
     core_1.Component({
         selector: 'offer-list',
-        template: __webpack_require__(221),
-        styles: [__webpack_require__(273)],
+        template: __webpack_require__(223),
+        styles: [__webpack_require__(275)],
         providers: [user_offer_service_1.UserOfferService]
     }),
     __metadata("design:paramtypes", [router_1.Router,
@@ -12502,8 +12523,8 @@ var OfferItemManagementComponent = (function () {
 OfferItemManagementComponent = __decorate([
     core_1.Component({
         selector: 'offer-management',
-        template: __webpack_require__(222),
-        styles: [__webpack_require__(274)]
+        template: __webpack_require__(224),
+        styles: [__webpack_require__(276)]
     }),
     __metadata("design:paramtypes", [router_1.Router])
 ], OfferItemManagementComponent);
@@ -12528,7 +12549,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
 var router_1 = __webpack_require__(1);
-var organization_management_events_service_1 = __webpack_require__(152);
+var organization_management_events_service_1 = __webpack_require__(153);
 var OrganizationManagementEventComponent = (function () {
     function OrganizationManagementEventComponent(_route, _router, _service) {
         this._route = _route;
@@ -12556,8 +12577,8 @@ var OrganizationManagementEventComponent = (function () {
 OrganizationManagementEventComponent = __decorate([
     core_1.Component({
         selector: 'org-management-event',
-        template: __webpack_require__(223),
-        styles: [__webpack_require__(275)],
+        template: __webpack_require__(225),
+        styles: [__webpack_require__(277)],
         providers: [organization_management_events_service_1.OrganizationManagementEventsService]
     }),
     __metadata("design:paramtypes", [router_1.ActivatedRoute, router_1.Router, organization_management_events_service_1.OrganizationManagementEventsService])
@@ -12670,8 +12691,8 @@ var OrganizationCreateRequestComponent = (function () {
 OrganizationCreateRequestComponent = __decorate([
     core_1.Component({
         selector: 'create-request',
-        template: __webpack_require__(224),
-        styles: [__webpack_require__(276)],
+        template: __webpack_require__(226),
+        styles: [__webpack_require__(278)],
         providers: [organization_management_request_service_1.OrganizationManagementRequestService]
     }),
     __metadata("design:paramtypes", [organization_management_request_service_1.OrganizationManagementRequestService,
@@ -12723,8 +12744,8 @@ __decorate([
 OrganizationDeleteRequestComponent = __decorate([
     core_1.Component({
         selector: 'delete-request',
-        template: __webpack_require__(225),
-        styles: [__webpack_require__(277)],
+        template: __webpack_require__(227),
+        styles: [__webpack_require__(279)],
     })
 ], OrganizationDeleteRequestComponent);
 exports.OrganizationDeleteRequestComponent = OrganizationDeleteRequestComponent;
@@ -12789,8 +12810,8 @@ var OrganizationManagementRequestComponent = (function () {
 OrganizationManagementRequestComponent = __decorate([
     core_1.Component({
         selector: 'org-management-request',
-        template: __webpack_require__(226),
-        styles: [__webpack_require__(278)],
+        template: __webpack_require__(228),
+        styles: [__webpack_require__(280)],
         providers: [organization_management_request_service_1.OrganizationManagementRequestService]
     }),
     core_1.Injectable(),
@@ -12819,7 +12840,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
 var router_1 = __webpack_require__(1);
-var organization_get_general_info_service_1 = __webpack_require__(151);
+var organization_get_general_info_service_1 = __webpack_require__(152);
 var OrganizationManagementComponent = (function () {
     function OrganizationManagementComponent(_router, _getGeneralInfoService) {
         this._router = _router;
@@ -12860,8 +12881,8 @@ var OrganizationManagementComponent = (function () {
 OrganizationManagementComponent = __decorate([
     core_1.Component({
         selector: 'org-management',
-        template: __webpack_require__(227),
-        styles: [__webpack_require__(279)],
+        template: __webpack_require__(229),
+        styles: [__webpack_require__(281)],
         providers: [organization_get_general_info_service_1.OrganizationGetGeneralInfoService]
     }),
     __metadata("design:paramtypes", [router_1.ActivatedRoute, organization_get_general_info_service_1.OrganizationGetGeneralInfoService])
@@ -12889,7 +12910,7 @@ var core_1 = __webpack_require__(0);
 var user_service_1 = __webpack_require__(21);
 var router_1 = __webpack_require__(1);
 var forms_1 = __webpack_require__(6);
-var user_email_view_model_1 = __webpack_require__(179);
+var user_email_view_model_1 = __webpack_require__(181);
 var BeginPasswordResetComponent = (function () {
     /**
      * Creates new instance of BeginPasswordResetComponent
@@ -12982,7 +13003,7 @@ var BeginPasswordResetComponent = (function () {
 BeginPasswordResetComponent = __decorate([
     core_1.Component({
         selector: 'begin-pass-reset',
-        template: __webpack_require__(228),
+        template: __webpack_require__(230),
         providers: [user_service_1.UserService]
     }),
     __metadata("design:paramtypes", [user_service_1.UserService, router_1.Router, forms_1.FormBuilder])
@@ -13007,14 +13028,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var reset_password_view_model_1 = __webpack_require__(177);
+var reset_password_view_model_1 = __webpack_require__(179);
 var router_1 = __webpack_require__(1);
 var router_2 = __webpack_require__(1);
 var user_service_1 = __webpack_require__(21);
-var guid_view_model_1 = __webpack_require__(171);
+var guid_view_model_1 = __webpack_require__(173);
 var forms_1 = __webpack_require__(6);
 var match_password_validator_1 = __webpack_require__(57);
-__webpack_require__(256);
+__webpack_require__(258);
 var NewPasswordComponent = (function () {
     /**
      * Creates new instance of NewPasswordComponent
@@ -13147,7 +13168,7 @@ var NewPasswordComponent = (function () {
 NewPasswordComponent = __decorate([
     core_1.Component({
         selector: 'new-pass-reset',
-        template: __webpack_require__(229),
+        template: __webpack_require__(231),
         providers: [user_service_1.UserService]
     }),
     __metadata("design:paramtypes", [router_1.ActivatedRoute,
@@ -13176,12 +13197,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
 var router_1 = __webpack_require__(1);
-var registration_view_model_1 = __webpack_require__(176);
+var registration_view_model_1 = __webpack_require__(178);
 var user_service_1 = __webpack_require__(21);
 var keys = __webpack_require__(14);
 var forms_1 = __webpack_require__(6);
 var match_password_validator_1 = __webpack_require__(57);
-__webpack_require__(8);
+__webpack_require__(7);
 var RegistrationComponent = (function () {
     function RegistrationComponent(_router, _userService, _formBuilder) {
         this._router = _router;
@@ -13354,8 +13375,8 @@ var RegistrationComponent = (function () {
 RegistrationComponent = __decorate([
     core_1.Component({
         selector: 'registration',
-        template: __webpack_require__(230),
-        styles: [__webpack_require__(280)],
+        template: __webpack_require__(232),
+        styles: [__webpack_require__(282)],
         providers: [user_service_1.UserService]
     }),
     __metadata("design:paramtypes", [router_1.Router,
@@ -13382,8 +13403,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var request_detail_service_1 = __webpack_require__(153);
-var user_response_view_model_1 = __webpack_require__(178);
+var request_detail_service_1 = __webpack_require__(154);
+var user_response_view_model_1 = __webpack_require__(180);
 var modal_component_1 = __webpack_require__(27);
 var router_1 = __webpack_require__(1);
 var core_2 = __webpack_require__(0);
@@ -13466,8 +13487,8 @@ __decorate([
 ], RequestDetailComponent.prototype, "modalWindow", void 0);
 RequestDetailComponent = __decorate([
     core_1.Component({
-        template: __webpack_require__(231),
-        styles: [__webpack_require__(281)],
+        template: __webpack_require__(233),
+        styles: [__webpack_require__(283)],
         providers: [request_detail_service_1.RequestDetailService]
     }),
     __metadata("design:paramtypes", [request_detail_service_1.RequestDetailService,
@@ -13494,7 +13515,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
 var organization_registration_service_1 = __webpack_require__(104);
-var organization_registration_view_model_1 = __webpack_require__(175);
+var organization_registration_view_model_1 = __webpack_require__(177);
 var map_component_1 = __webpack_require__(60);
 var modal_component_1 = __webpack_require__(27);
 var OrganizationRegistrationComponent = (function () {
@@ -13539,8 +13560,8 @@ __decorate([
 OrganizationRegistrationComponent = __decorate([
     core_1.Component({
         selector: 'register-organization',
-        template: __webpack_require__(232),
-        styles: [__webpack_require__(282)],
+        template: __webpack_require__(234),
+        styles: [__webpack_require__(284)],
         providers: [map_component_1.MapComponent]
     })
     /**
@@ -13574,7 +13595,7 @@ var SuperAdminComplaintsComponent = (function () {
 SuperAdminComplaintsComponent = __decorate([
     core_1.Component({
         selector: 'super-admin-complaints',
-        template: __webpack_require__(234)
+        template: __webpack_require__(236)
     })
 ], SuperAdminComplaintsComponent);
 exports.SuperAdminComplaintsComponent = SuperAdminComplaintsComponent;
@@ -13674,8 +13695,8 @@ var SuperAdminOrganizationsComponent = (function () {
 SuperAdminOrganizationsComponent = __decorate([
     core_1.Component({
         selector: 'super-admin-organizations',
-        template: __webpack_require__(236),
-        styles: [__webpack_require__(284)],
+        template: __webpack_require__(238),
+        styles: [__webpack_require__(286)],
         providers: [super_admin_service_1.SuperAdminService]
     })
     /**
@@ -13784,8 +13805,8 @@ var SuperAdminUsersComponent = (function () {
 SuperAdminUsersComponent = __decorate([
     core_1.Component({
         selector: 'super-admin-users',
-        template: __webpack_require__(237),
-        styles: [__webpack_require__(285)],
+        template: __webpack_require__(239),
+        styles: [__webpack_require__(287)],
         providers: [super_admin_service_1.SuperAdminService]
     })
     /**
@@ -13819,8 +13840,8 @@ var SuperAdminComponent = (function () {
 SuperAdminComponent = __decorate([
     core_1.Component({
         selector: 'super-admin',
-        template: __webpack_require__(238),
-        styles: [__webpack_require__(286)]
+        template: __webpack_require__(240),
+        styles: [__webpack_require__(288)]
     })
 ], SuperAdminComponent);
 exports.SuperAdminComponent = SuperAdminComponent;
@@ -13847,12 +13868,12 @@ var forms_1 = __webpack_require__(6);
 var modal_component_1 = __webpack_require__(27);
 var key = __webpack_require__(14);
 var angular2_universal_1 = __webpack_require__(16);
-var authorized_user_info_view_model_1 = __webpack_require__(169);
-var change_password_view_model_1 = __webpack_require__(170);
+var authorized_user_info_view_model_1 = __webpack_require__(170);
+var change_password_view_model_1 = __webpack_require__(171);
 var user_service_1 = __webpack_require__(21);
 var router_1 = __webpack_require__(1);
 var match_password_validator_1 = __webpack_require__(57);
-var amazon_upload_component_1 = __webpack_require__(157);
+var amazon_upload_component_1 = __webpack_require__(158);
 var UserProfileComponent = (function () {
     /**
      * Injecting dependencies
@@ -14122,8 +14143,8 @@ __decorate([
 UserProfileComponent = __decorate([
     core_1.Component({
         selector: 'user-info',
-        template: __webpack_require__(239),
-        styles: [__webpack_require__(287)],
+        template: __webpack_require__(241),
+        styles: [__webpack_require__(289)],
         providers: [forms_1.FormBuilder, user_service_1.UserService]
     }),
     __metadata("design:paramtypes", [user_service_1.UserService,
@@ -14152,7 +14173,7 @@ var common_1 = __webpack_require__(17);
 var organization_management_routing_module_1 = __webpack_require__(145);
 var organization_management_event_component_1 = __webpack_require__(86);
 var forms_1 = __webpack_require__(6);
-var truncate_pipe_1 = __webpack_require__(166);
+var truncate_pipe_1 = __webpack_require__(167);
 var organization_banned_component_1 = __webpack_require__(107);
 var organization_management_request_component_1 = __webpack_require__(89);
 var organization_create_request_component_1 = __webpack_require__(87);
@@ -14247,9 +14268,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
 var http_1 = __webpack_require__(5);
 var Observable_1 = __webpack_require__(3);
-__webpack_require__(9);
-__webpack_require__(11);
 __webpack_require__(8);
+__webpack_require__(10);
+__webpack_require__(7);
 var OrganizationManagementRequestService = (function () {
     function OrganizationManagementRequestService(_http) {
         this._http = _http;
@@ -14363,9 +14384,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
 var http_1 = __webpack_require__(5);
-__webpack_require__(9);
 __webpack_require__(8);
-__webpack_require__(11);
+__webpack_require__(7);
+__webpack_require__(10);
 /**
  * Service to register new organization
  */
@@ -14410,9 +14431,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
 var http_1 = __webpack_require__(5);
+__webpack_require__(7);
+__webpack_require__(10);
 __webpack_require__(8);
-__webpack_require__(11);
-__webpack_require__(9);
 /**
  * Service for super admin actions
  */
@@ -14519,8 +14540,8 @@ var ErrorAuthorizeComponent = (function () {
 }());
 ErrorAuthorizeComponent = __decorate([
     core_1.Component({
-        template: __webpack_require__(241),
-        styles: [__webpack_require__(289)]
+        template: __webpack_require__(243),
+        styles: [__webpack_require__(291)]
     })
 ], ErrorAuthorizeComponent);
 exports.ErrorAuthorizeComponent = ErrorAuthorizeComponent;
@@ -14564,7 +14585,7 @@ var OrganizationBannedComponent = (function () {
 OrganizationBannedComponent = __decorate([
     core_1.Component({
         selector: 'org-banned',
-        template: __webpack_require__(242),
+        template: __webpack_require__(244),
     })
     /**
     * Component for Banned Organization
@@ -14811,11 +14832,11 @@ module.exports = (__webpack_require__(4))(9);
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(302);
+__webpack_require__(304);
 var core_1 = __webpack_require__(0);
 var angular2_universal_1 = __webpack_require__(16);
 var app_module_1 = __webpack_require__(133);
-__webpack_require__(303);
+__webpack_require__(305);
 var rootElemTagName = 'app'; // Update this if you change your root component selector
 // Enable either Hot Module Reloading or production mode
 if (true) {
@@ -14859,7 +14880,7 @@ var options = {
   name: ''
 };
 if (true) {
-  var querystring = __webpack_require__(253);
+  var querystring = __webpack_require__(255);
   var overrides = querystring.parse(__resourceQuery.slice(1));
   if (overrides.path) options.path = overrides.path;
   if (overrides.timeout) options.timeout = overrides.timeout;
@@ -14979,11 +15000,11 @@ if (typeof window !== 'undefined') {
 }
 
 function createReporter() {
-  var strip = __webpack_require__(264);
+  var strip = __webpack_require__(266);
 
   var overlay;
   if (typeof document !== 'undefined' && options.overlay) {
-    overlay = __webpack_require__(294);
+    overlay = __webpack_require__(296);
   }
 
   var styles = {
@@ -15036,7 +15057,7 @@ function createReporter() {
   };
 }
 
-var processUpdate = __webpack_require__(295);
+var processUpdate = __webpack_require__(297);
 
 var customHandler;
 var subscribeAllHandler;
@@ -15101,7 +15122,7 @@ if (module) {
   };
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, "?path=%2F__webpack_hmr", __webpack_require__(306)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, "?path=%2F__webpack_hmr", __webpack_require__(308)(module)))
 
 /***/ }),
 /* 115 */
@@ -15550,7 +15571,7 @@ function ReactiveFormsModule_tsickle_Closure_declarations() {
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return __WEBPACK_IMPORTED_MODULE_2__directives_checkbox_value_accessor__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__directives_control_container__ = __webpack_require__(13);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return __WEBPACK_IMPORTED_MODULE_3__directives_control_container__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__directives_control_value_accessor__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__directives_control_value_accessor__ = __webpack_require__(9);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return __WEBPACK_IMPORTED_MODULE_4__directives_control_value_accessor__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__directives_default_value_accessor__ = __webpack_require__(31);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return __WEBPACK_IMPORTED_MODULE_5__directives_default_value_accessor__["a"]; });
@@ -15594,7 +15615,7 @@ function ReactiveFormsModule_tsickle_Closure_declarations() {
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "C", function() { return __WEBPACK_IMPORTED_MODULE_20__model__["b"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "D", function() { return __WEBPACK_IMPORTED_MODULE_20__model__["c"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "E", function() { return __WEBPACK_IMPORTED_MODULE_20__model__["d"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__validators__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__validators__ = __webpack_require__(11);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "F", function() { return __WEBPACK_IMPORTED_MODULE_21__validators__["a"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "G", function() { return __WEBPACK_IMPORTED_MODULE_21__validators__["b"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "H", function() { return __WEBPACK_IMPORTED_MODULE_21__validators__["c"]; });
@@ -16347,7 +16368,7 @@ var app_component_1 = __webpack_require__(135);
 var home_module_1 = __webpack_require__(138);
 var shared_module_1 = __webpack_require__(38);
 var authorization_module_1 = __webpack_require__(134);
-var super_admin_module_1 = __webpack_require__(167);
+var super_admin_module_1 = __webpack_require__(168);
 var app_routing_module_1 = __webpack_require__(140);
 var map_module_1 = __webpack_require__(58);
 var angular2_fontawesome_1 = __webpack_require__(125);
@@ -16484,8 +16505,8 @@ __decorate([
 AppComponent = __decorate([
     core_1.Component({
         selector: 'app',
-        template: __webpack_require__(216),
-        styles: [__webpack_require__(268)]
+        template: __webpack_require__(218),
+        styles: [__webpack_require__(270)]
     })
 ], AppComponent);
 exports.AppComponent = AppComponent;
@@ -16534,7 +16555,7 @@ __decorate([
 SuperAdminBanComponent = __decorate([
     core_1.Component({
         selector: 'super-admin-ban',
-        template: __webpack_require__(233)
+        template: __webpack_require__(235)
     })
 ], SuperAdminBanComponent);
 exports.SuperAdminBanComponent = SuperAdminBanComponent;
@@ -16558,7 +16579,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
 var modal_component_1 = __webpack_require__(27);
-var super_admin_change_status_view_model_1 = __webpack_require__(168);
+var super_admin_change_status_view_model_1 = __webpack_require__(169);
 var core_2 = __webpack_require__(0);
 var SuperAdminGrid = (function () {
     function SuperAdminGrid() {
@@ -16631,8 +16652,8 @@ __decorate([
 SuperAdminGrid = __decorate([
     core_1.Component({
         selector: 'super-admin-grid',
-        template: __webpack_require__(235),
-        styles: [__webpack_require__(283)]
+        template: __webpack_require__(237),
+        styles: [__webpack_require__(285)]
     })
     /**
     * Componet to dispay Grid for users or organizations
@@ -16661,7 +16682,7 @@ var all_events_component_1 = __webpack_require__(78);
 var event_detail_component_1 = __webpack_require__(81);
 var all_requests_component_1 = __webpack_require__(79);
 var request_detail_component_1 = __webpack_require__(94);
-var gallery_component_1 = __webpack_require__(158);
+var gallery_component_1 = __webpack_require__(159);
 var common_1 = __webpack_require__(17);
 var home_routing_module_1 = __webpack_require__(142);
 var map_module_1 = __webpack_require__(58);
@@ -16786,7 +16807,7 @@ var router_1 = __webpack_require__(1);
 var registration_component_1 = __webpack_require__(93);
 var authorization_component_1 = __webpack_require__(80);
 var user_profile_component_1 = __webpack_require__(100);
-var partner_route_guard_1 = __webpack_require__(155);
+var partner_route_guard_1 = __webpack_require__(156);
 var error_authorize_component_1 = __webpack_require__(106);
 var begin_password_reset_component_1 = __webpack_require__(91);
 var new_password_component_1 = __webpack_require__(92);
@@ -16959,7 +16980,7 @@ var core_1 = __webpack_require__(0);
 var router_1 = __webpack_require__(1);
 var organization_management_component_1 = __webpack_require__(90);
 var organization_management_event_component_1 = __webpack_require__(86);
-var banned_org_guard_1 = __webpack_require__(154);
+var banned_org_guard_1 = __webpack_require__(155);
 var organization_banned_component_1 = __webpack_require__(107);
 var organization_management_request_component_1 = __webpack_require__(89);
 var organization_create_request_component_1 = __webpack_require__(87);
@@ -17012,7 +17033,7 @@ var super_admin_complaints_component_1 = __webpack_require__(96);
 var super_admin_organizations_component_1 = __webpack_require__(97);
 var super_admin_users_component_1 = __webpack_require__(98);
 var organization_registration_component_1 = __webpack_require__(95);
-var superadmin_route_guard_1 = __webpack_require__(156);
+var superadmin_route_guard_1 = __webpack_require__(157);
 var SuperAdminRoutingModule = (function () {
     function SuperAdminRoutingModule() {
     }
@@ -17084,9 +17105,9 @@ var core_1 = __webpack_require__(0);
 var http_1 = __webpack_require__(5);
 var base_service_1 = __webpack_require__(37);
 var Observable_1 = __webpack_require__(3);
-__webpack_require__(9);
-__webpack_require__(11);
 __webpack_require__(8);
+__webpack_require__(10);
+__webpack_require__(7);
 var EventDetailService = (function (_super) {
     __extends(EventDetailService, _super);
     /**
@@ -17141,9 +17162,66 @@ var http_1 = __webpack_require__(5);
 var Observable_1 = __webpack_require__(3);
 var core_1 = __webpack_require__(0);
 var router_1 = __webpack_require__(1);
-__webpack_require__(9);
-__webpack_require__(11);
 __webpack_require__(8);
+__webpack_require__(10);
+__webpack_require__(7);
+var GoodsService = (function () {
+    function GoodsService(_http, _router) {
+        this._http = _http;
+        this._router = _router;
+        this._getCategoriesUrl = 'api/goods/allcategories';
+        this._getTypesUrl = 'api/goods/alltypes';
+    }
+    GoodsService.prototype.getCategories = function () {
+        return this._http.get(this._getCategoriesUrl)
+            .map(function (response) { return response.json(); })
+            .do(function (data) { return console.log('Item: ' + JSON.stringify(data)); })
+            .catch(this.handleError);
+    };
+    GoodsService.prototype.getTypes = function () {
+        return this._http.get(this._getTypesUrl)
+            .map(function (response) { return response.json(); })
+            .do(function (data) { return console.log('Item: ' + JSON.stringify(data)); })
+            .catch(this.handleError);
+    };
+    ///Error handler to report into console
+    GoodsService.prototype.handleError = function (error) {
+        console.error(error);
+        return Observable_1.Observable.throw(error.json().error || 'Server error');
+    };
+    return GoodsService;
+}());
+GoodsService = __decorate([
+    core_1.Injectable(),
+    __metadata("design:paramtypes", [http_1.Http,
+        router_1.Router])
+], GoodsService);
+exports.GoodsService = GoodsService;
+
+
+/***/ }),
+/* 149 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var http_1 = __webpack_require__(5);
+var Observable_1 = __webpack_require__(3);
+var core_1 = __webpack_require__(0);
+var router_1 = __webpack_require__(1);
+__webpack_require__(8);
+__webpack_require__(10);
+__webpack_require__(7);
 var UserOfferService = (function () {
     function UserOfferService(_http, _router) {
         this._http = _http;
@@ -17177,7 +17255,7 @@ exports.UserOfferService = UserOfferService;
 
 
 /***/ }),
-/* 149 */
+/* 150 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17226,7 +17304,7 @@ exports.OrganizationDropdownService = OrganizationDropdownService;
 
 
 /***/ }),
-/* 150 */
+/* 151 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17254,8 +17332,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
 var http_1 = __webpack_require__(5);
 var base_service_1 = __webpack_require__(37);
-__webpack_require__(9);
-__webpack_require__(11);
+__webpack_require__(8);
+__webpack_require__(10);
 var Observable_1 = __webpack_require__(3);
 var OrganizationEventService = (function (_super) {
     __extends(OrganizationEventService, _super);
@@ -17319,7 +17397,7 @@ exports.OrganizationEventService = OrganizationEventService;
 
 
 /***/ }),
-/* 151 */
+/* 152 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17366,7 +17444,7 @@ exports.OrganizationGetGeneralInfoService = OrganizationGetGeneralInfoService;
 
 
 /***/ }),
-/* 152 */
+/* 153 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17384,9 +17462,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
 var http_1 = __webpack_require__(5);
 var Observable_1 = __webpack_require__(3);
-__webpack_require__(9);
-__webpack_require__(11);
 __webpack_require__(8);
+__webpack_require__(10);
+__webpack_require__(7);
 var OrganizationManagementEventsService = (function () {
     function OrganizationManagementEventsService(_http) {
         this._http = _http;
@@ -17429,7 +17507,7 @@ exports.OrganizationManagementEventsService = OrganizationManagementEventsServic
 
 
 /***/ }),
-/* 153 */
+/* 154 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17448,9 +17526,9 @@ var core_1 = __webpack_require__(0);
 var http_1 = __webpack_require__(5);
 var http_2 = __webpack_require__(5);
 var Observable_1 = __webpack_require__(3);
-__webpack_require__(9);
-__webpack_require__(11);
 __webpack_require__(8);
+__webpack_require__(10);
+__webpack_require__(7);
 var RequestDetailService = (function () {
     function RequestDetailService(_http) {
         this._http = _http;
@@ -17500,7 +17578,7 @@ exports.RequestDetailService = RequestDetailService;
 
 
 /***/ }),
-/* 154 */
+/* 155 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17558,7 +17636,7 @@ exports.BannedOrgGuard = BannedOrgGuard;
 
 
 /***/ }),
-/* 155 */
+/* 156 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17604,7 +17682,7 @@ exports.PartnerRouteGuard = PartnerRouteGuard;
 
 
 /***/ }),
-/* 156 */
+/* 157 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17650,7 +17728,7 @@ exports.SuperAdminRouteGuard = SuperAdminRouteGuard;
 
 
 /***/ }),
-/* 157 */
+/* 158 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17663,7 +17741,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-__webpack_require__(180);
+__webpack_require__(182);
 var AmazonUploadComponent = (function () {
     function AmazonUploadComponent() {
         this._amazonKeyId = 'AKIAJH4TLLOIZ5QOBKMQ';
@@ -17696,7 +17774,7 @@ exports.AmazonUploadComponent = AmazonUploadComponent;
 
 
 /***/ }),
-/* 158 */
+/* 159 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17757,15 +17835,15 @@ __decorate([
 GalleryComponent = __decorate([
     core_1.Component({
         selector: 'gallery',
-        template: __webpack_require__(243),
-        styles: [__webpack_require__(290)]
+        template: __webpack_require__(245),
+        styles: [__webpack_require__(292)]
     })
 ], GalleryComponent);
 exports.GalleryComponent = GalleryComponent;
 
 
 /***/ }),
-/* 159 */
+/* 160 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17805,7 +17883,7 @@ __decorate([
 PageItemComponent = __decorate([
     core_1.Component({
         selector: 'pagination-item',
-        template: __webpack_require__(246)
+        template: __webpack_require__(248)
     })
     /**
       * Generic class for grid items
@@ -17815,7 +17893,7 @@ exports.PageItemComponent = PageItemComponent;
 
 
 /***/ }),
-/* 160 */
+/* 161 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17832,11 +17910,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
 var Observable_1 = __webpack_require__(3);
-__webpack_require__(9);
 __webpack_require__(8);
-__webpack_require__(254);
-__webpack_require__(255);
+__webpack_require__(7);
+__webpack_require__(256);
 __webpack_require__(257);
+__webpack_require__(259);
 var PaginationComponent = (function () {
     /**
      * Creates new instance of PaginationComponent
@@ -17936,7 +18014,7 @@ __decorate([
 PaginationComponent = __decorate([
     core_1.Component({
         selector: 'pagination-pages',
-        template: __webpack_require__(247)
+        template: __webpack_require__(249)
     })
     /**
     * Generic class for pagination buttons
@@ -17948,7 +18026,7 @@ exports.PaginationComponent = PaginationComponent;
 
 
 /***/ }),
-/* 161 */
+/* 162 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17991,7 +18069,7 @@ __decorate([
 SelectComponent = __decorate([
     core_1.Component({
         selector: 'select-item',
-        template: __webpack_require__(248)
+        template: __webpack_require__(250)
     })
     /**
      * Generic component for select box
@@ -18001,7 +18079,7 @@ exports.SelectComponent = SelectComponent;
 
 
 /***/ }),
-/* 162 */
+/* 163 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18030,15 +18108,15 @@ __decorate([
 SpinnerComponent = __decorate([
     core_1.Component({
         selector: 'spinner',
-        template: __webpack_require__(249),
-        styles: [__webpack_require__(292)]
+        template: __webpack_require__(251),
+        styles: [__webpack_require__(294)]
     })
 ], SpinnerComponent);
 exports.SpinnerComponent = SpinnerComponent;
 
 
 /***/ }),
-/* 163 */
+/* 164 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18114,8 +18192,8 @@ var UserStatesComponent = (function () {
 UserStatesComponent = __decorate([
     core_1.Component({
         selector: 'user-states',
-        template: __webpack_require__(250),
-        styles: [__webpack_require__(293)],
+        template: __webpack_require__(252),
+        styles: [__webpack_require__(295)],
         providers: [user_service_1.UserService]
     }),
     __metadata("design:paramtypes", [user_service_1.UserService, item_storage_service_1.StorageService])
@@ -18124,7 +18202,7 @@ exports.UserStatesComponent = UserStatesComponent;
 
 
 /***/ }),
-/* 164 */
+/* 165 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18158,7 +18236,7 @@ exports.EventFilterPipe = EventFilterPipe;
 
 
 /***/ }),
-/* 165 */
+/* 166 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18199,7 +18277,7 @@ exports.DropdownOrganizationFilterPipe = DropdownOrganizationFilterPipe;
 
 
 /***/ }),
-/* 166 */
+/* 167 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18238,7 +18316,7 @@ exports.TruncatePipe = TruncatePipe;
 
 
 /***/ }),
-/* 167 */
+/* 168 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18292,7 +18370,7 @@ exports.SuperAdminModule = SuperAdminModule;
 
 
 /***/ }),
-/* 168 */
+/* 169 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18310,7 +18388,7 @@ exports.SuperAdminChangeStatusViewModel = SuperAdminChangeStatusViewModel;
 
 
 /***/ }),
-/* 169 */
+/* 170 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18331,7 +18409,7 @@ exports.AuthorizedUserInfoViewModel = AuthorizedUserInfoViewModel;
 
 
 /***/ }),
-/* 170 */
+/* 171 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18349,7 +18427,22 @@ exports.ChangePasswordViewModel = ChangePasswordViewModel;
 
 
 /***/ }),
-/* 171 */
+/* 172 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var GoodsTypeViewModel = (function () {
+    function GoodsTypeViewModel() {
+    }
+    return GoodsTypeViewModel;
+}());
+exports.GoodsTypeViewModel = GoodsTypeViewModel;
+
+
+/***/ }),
+/* 173 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18367,7 +18460,7 @@ exports.GuidViewModel = GuidViewModel;
 
 
 /***/ }),
-/* 172 */
+/* 174 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18382,7 +18475,7 @@ exports.LoginFacebookViewModel = LoginFacebookViewModel;
 
 
 /***/ }),
-/* 173 */
+/* 175 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18402,7 +18495,7 @@ exports.LoginViewModel = LoginViewModel;
 
 
 /***/ }),
-/* 174 */
+/* 176 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18417,7 +18510,7 @@ exports.OfferViewModel = OfferViewModel;
 
 
 /***/ }),
-/* 175 */
+/* 177 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18432,7 +18525,7 @@ exports.OrganizationRegistrationViewModel = OrganizationRegistrationViewModel;
 
 
 /***/ }),
-/* 176 */
+/* 178 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18447,7 +18540,7 @@ exports.RegistrationViewModel = RegistrationViewModel;
 
 
 /***/ }),
-/* 177 */
+/* 179 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18465,7 +18558,7 @@ exports.ResetPasswordViewModel = ResetPasswordViewModel;
 
 
 /***/ }),
-/* 178 */
+/* 180 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18483,7 +18576,7 @@ exports.UserResponseViewModel = UserResponseViewModel;
 
 
 /***/ }),
-/* 179 */
+/* 181 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18501,7 +18594,7 @@ exports.UserEmailViewModel = UserEmailViewModel;
 
 
 /***/ }),
-/* 180 */
+/* 182 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {var require;var require;var __WEBPACK_AMD_DEFINE_RESULT__;// AWS SDK for JavaScript v2.82.0
@@ -141520,7 +141613,7 @@ require('../clients/browser_default');
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(112)))
 
 /***/ }),
-/* 181 */
+/* 183 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(2)();
@@ -141534,7 +141627,7 @@ exports.push([module.i, ".fborder {\r\n    padding-left: 200px;\r\n    padding-t
 
 
 /***/ }),
-/* 182 */
+/* 184 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(2)();
@@ -141548,7 +141641,7 @@ exports.push([module.i, ".panel-padding {\r\n    padding-left: 50px;\r\n    padd
 
 
 /***/ }),
-/* 183 */
+/* 185 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(2)();
@@ -141557,34 +141650,6 @@ exports = module.exports = __webpack_require__(2)();
 
 // module
 exports.push([module.i, "", ""]);
-
-// exports
-
-
-/***/ }),
-/* 184 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(2)();
-// imports
-
-
-// module
-exports.push([module.i, "body {\r\n    margin: 0px 0px 0px 0px !important;\r\n}\r\n\r\n@media (max-width: 767px) {\r\n    /* On small screens, the nav menu spans the full width of the screen. Leave a space for it. */\r\n\r\n    .body-content {\r\n        padding-top: 50px;\r\n    }\r\n}\r\n\r\napp.container-fluid {\r\n    padding-left: 0;\r\n    padding-right: 0;\r\n}\r\n\r\n.fixedHeader {\r\n    width: 100%;\r\n    top: 0;\r\n    z-index: 3000;\r\n}\r\n\r\n.content {\r\n    margin-top: 90px;\r\n    min-height: 600px;\r\n}\r\n\r\n.userstates {\r\n    align-items: center;\r\n    padding-top: 8px;\r\n}\r\n\r\n.navbar-default {\r\n    background-color: #1a1a1a;\r\n    height: 90px;\r\n    padding: 20px 40px;\r\n}\r\n\r\n.navbar-brand {\r\n    font: normal 24px Arial, Helvetica, sans-serif;\r\n    line-height: 20px;\r\n    margin: 0;\r\n    text-decoration-color: white !important;\r\n    color: lightskyblue;\r\n}\r\n\r\n    .navbar-brand span {\r\n        color: #FFFF99;\r\n    }\r\n\r\n.navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {\r\n    color: cornflowerblue;\r\n}\r\n\r\n.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {\r\n    color: #8f9296;\r\n}\r\n\r\n.footer-distributed {\r\n    background-color: #1a1a1a;\r\n    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);\r\n    box-sizing: border-box;\r\n    width: 100%;\r\n    text-align: left;\r\n    font: normal 16px sans-serif;\r\n}\r\n\r\n    .footer-distributed .footer-left p {\r\n        color: #8f9296;\r\n        font-size: 14px;\r\n        margin: 0;\r\n    }\r\n\r\n    .footer-distributed p.footer-links {\r\n        font-size: 18px;\r\n        font-weight: bold;\r\n        color: #ffffff;\r\n        margin: 0 0 10px;\r\n        padding: 0;\r\n    }\r\n\r\n        .footer-distributed p.footer-links a {\r\n            display: inline-block;\r\n            line-height: 1.8;\r\n            text-decoration: none;\r\n            color: inherit;\r\n        }\r\n\r\n    .footer-distributed .footer-right {\r\n        float: right;\r\n        margin-top: 6px;\r\n        max-width: 180px;\r\n    }\r\n\r\n        .footer-distributed .footer-right a {\r\n            display: inline-block;\r\n            width: 35px;\r\n            height: 35px;\r\n            background-color: #33383b;\r\n            border-radius: 2px;\r\n            font-size: 20px;\r\n            color: #ffffff;\r\n            text-align: center;\r\n            line-height: 35px;\r\n            margin-left: 3px;\r\n        }\r\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 185 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(2)();
-// imports
-exports.push([module.i, "@import url(http://fonts.googleapis.com/css?family=Roboto);", ""]);
-
-// module
-exports.push([module.i, ".loginmodal-container h3 {\n    text-align: center;\n    font-size: 1.8em;\n    font-family: roboto;\n    color:white;\n}\n\n.loginmodal {\n    text-align: center;\n    font-size: 14px;\n    font-family: 'Arial', sans-serif;\n    font-weight: 700;\n    height: 36px;\n    padding: 0 8px;\n}\n\n.loginmodal-submit {\n    border: 0px;\n    color: #fff;\n    text-shadow: 0 1px rgba(0,0,0,0.1);\n    background-color: #4d90fe;\n    padding: 17px 0px;\n    font-family: roboto;\n    font-size: 14px;\n}\n\n    .loginmodal-submit:hover {\n        border: 0px;\n        text-shadow: 0 1px rgba(0,0,0,0.3);\n        background-color: #357ae8;\n    }\n\n.loginmodal-container a {\n    text-decoration: none;\n    color:white;\n    font-weight: 400;\n    text-align: center;\n    display: inline-block;\n    opacity: 0.6;\n    transition: opacity ease 0.5s;\n}\n\n.login-help {\n    font-size: 13px;\n}\n\n.loginmodal-container p {\n    color: red !important;\n}\n\n.sidebar {\n    position: relative;\n}\n", ""]);
 
 // exports
 
@@ -141598,7 +141663,7 @@ exports = module.exports = __webpack_require__(2)();
 
 
 // module
-exports.push([module.i, ".panel-padding {\r\n    padding-left: 50px;\r\n    padding-right: 50px;\r\n}\r\n\r\n.div-panel-margen {\r\n    margin-right: 20px;\r\n    margin-bottom: 20px;\r\n}\r\n\r\n.img-big {\r\n    height: 600px !important;\r\n}\r\n\r\n/* Main carousel style */\r\n/*.carousel {\r\n    width: auto;\r\n}*/\r\n\r\n/* Indicators list style */\r\n.article-slide .carousel-indicators {\r\n    bottom: 0;\r\n    left: 0;\r\n    margin-left: 5px;\r\n    /*width: 100%;*/\r\n}\r\n    /* Indicators list style */\r\n    .article-slide .carousel-indicators li {\r\n        border: medium none;\r\n        border-radius: 0;\r\n        float: left;\r\n        height: 54px;\r\n        margin-bottom: 5px;\r\n        margin-left: 0;\r\n        margin-right: 5px !important;\r\n        margin-top: 0;\r\n        width: auto;\r\n    }\r\n    /* Indicators images style */\r\n    .article-slide .carousel-indicators img {\r\n        border: 2px solid #FFFFFF;\r\n        float: left;\r\n        height: 54px;\r\n        left: 0;\r\n        /*width: 100px;*/\r\n    }\r\n    /* Indicators active image style */\r\n    .article-slide .carousel-indicators .active img {\r\n        border: 2px solid #428BCA;\r\n        opacity: 0.7;\r\n    }\r\n", ""]);
+exports.push([module.i, "body {\r\n    margin: 0px 0px 0px 0px !important;\r\n}\r\n\r\n@media (max-width: 767px) {\r\n    /* On small screens, the nav menu spans the full width of the screen. Leave a space for it. */\r\n\r\n    .body-content {\r\n        padding-top: 50px;\r\n    }\r\n}\r\n\r\napp.container-fluid {\r\n    padding-left: 0;\r\n    padding-right: 0;\r\n}\r\n\r\n.fixedHeader {\r\n    width: 100%;\r\n    top: 0;\r\n    z-index: 3000;\r\n}\r\n\r\n.content {\r\n    margin-top: 90px;\r\n    min-height: 600px;\r\n}\r\n\r\n.userstates {\r\n    align-items: center;\r\n    padding-top: 8px;\r\n}\r\n\r\n.navbar-default {\r\n    background-color: #1a1a1a;\r\n    height: 90px;\r\n    padding: 20px 40px;\r\n}\r\n\r\n.navbar-brand {\r\n    font: normal 24px Arial, Helvetica, sans-serif;\r\n    line-height: 20px;\r\n    margin: 0;\r\n    text-decoration-color: white !important;\r\n    color: lightskyblue;\r\n}\r\n\r\n    .navbar-brand span {\r\n        color: #FFFF99;\r\n    }\r\n\r\n.navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {\r\n    color: cornflowerblue;\r\n}\r\n\r\n.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {\r\n    color: #8f9296;\r\n}\r\n\r\n.footer-distributed {\r\n    background-color: #1a1a1a;\r\n    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);\r\n    box-sizing: border-box;\r\n    width: 100%;\r\n    text-align: left;\r\n    font: normal 16px sans-serif;\r\n}\r\n\r\n    .footer-distributed .footer-left p {\r\n        color: #8f9296;\r\n        font-size: 14px;\r\n        margin: 0;\r\n    }\r\n\r\n    .footer-distributed p.footer-links {\r\n        font-size: 18px;\r\n        font-weight: bold;\r\n        color: #ffffff;\r\n        margin: 0 0 10px;\r\n        padding: 0;\r\n    }\r\n\r\n        .footer-distributed p.footer-links a {\r\n            display: inline-block;\r\n            line-height: 1.8;\r\n            text-decoration: none;\r\n            color: inherit;\r\n        }\r\n\r\n    .footer-distributed .footer-right {\r\n        float: right;\r\n        margin-top: 6px;\r\n        max-width: 180px;\r\n    }\r\n\r\n        .footer-distributed .footer-right a {\r\n            display: inline-block;\r\n            width: 35px;\r\n            height: 35px;\r\n            background-color: #33383b;\r\n            border-radius: 2px;\r\n            font-size: 20px;\r\n            color: #ffffff;\r\n            text-align: center;\r\n            line-height: 35px;\r\n            margin-left: 3px;\r\n        }\r\n\r\n/*@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css);\r\n@import url(https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.3.1/css/mdb.min.css);*/", ""]);
 
 // exports
 
@@ -141609,10 +141674,10 @@ exports.push([module.i, ".panel-padding {\r\n    padding-left: 50px;\r\n    padd
 
 exports = module.exports = __webpack_require__(2)();
 // imports
-
+exports.push([module.i, "@import url(http://fonts.googleapis.com/css?family=Roboto);", ""]);
 
 // module
-exports.push([module.i, "#right-bar {\r\n    background-color: aliceblue;\r\n}\r\n\r\n.nav-mn {\r\n    margin-bottom: 20px;\r\n}\r\n\r\n@media (max-width: 1199px){\r\n    .nav-mn {\r\n        position: relative;\r\n    }\r\n}\r\n\r\n@media (max-width: 2048px) and (min-width: 1200px) {\r\n    .nav-mn {\r\n        position: fixed;\r\n    }\r\n}\r\n", ""]);
+exports.push([module.i, ".loginmodal-container h3 {\n    text-align: center;\n    font-size: 1.8em;\n    font-family: roboto;\n    color:white;\n}\n\n.loginmodal {\n    text-align: center;\n    font-size: 14px;\n    font-family: 'Arial', sans-serif;\n    font-weight: 700;\n    height: 36px;\n    padding: 0 8px;\n}\n\n.loginmodal-submit {\n    border: 0px;\n    color: #fff;\n    text-shadow: 0 1px rgba(0,0,0,0.1);\n    background-color: #4d90fe;\n    padding: 17px 0px;\n    font-family: roboto;\n    font-size: 14px;\n}\n\n    .loginmodal-submit:hover {\n        border: 0px;\n        text-shadow: 0 1px rgba(0,0,0,0.3);\n        background-color: #357ae8;\n    }\n\n.loginmodal-container a {\n    text-decoration: none;\n    color:white;\n    font-weight: 400;\n    text-align: center;\n    display: inline-block;\n    opacity: 0.6;\n    transition: opacity ease 0.5s;\n}\n\n.login-help {\n    font-size: 13px;\n}\n\n.loginmodal-container p {\n    color: red !important;\n}\n\n.sidebar {\n    position: relative;\n}\n", ""]);
 
 // exports
 
@@ -141626,7 +141691,7 @@ exports = module.exports = __webpack_require__(2)();
 
 
 // module
-exports.push([module.i, "input[type=\"text\"] {\r\n    display: block;\r\n    margin: 0;\r\n    width: 100%;\r\n    font-family: sans-serif;\r\n    font-size: 18px;\r\n    box-shadow: none;\r\n}\r\n\r\n    input[type=\"text\"]:focus {\r\n        outline: none;\r\n    }\r\n.style-4 input[type=\"text\"] {\r\n    padding: 10px 10px 10px 0px;\r\n    border: none;\r\n    border-bottom: solid 2px #c9c9c9;\r\n    transition: border 0.3s;\r\n}\r\n\r\n    .style-4 input[type=\"text\"]:focus,\r\n    .style-4 input[type=\"text\"].focus {\r\n        border-bottom: solid 2px #969696;\r\n    }\r\n    \r\n    .col-md-5{\r\n        padding-left:0px;\r\n        padding-right:0px;\r\n    }\r\n", ""]);
+exports.push([module.i, ".panel-padding {\r\n    padding-left: 50px;\r\n    padding-right: 50px;\r\n}\r\n\r\n.div-panel-margen {\r\n    margin-right: 20px;\r\n    margin-bottom: 20px;\r\n}\r\n\r\n.img-big {\r\n    height: 600px !important;\r\n}\r\n\r\n/* Main carousel style */\r\n/*.carousel {\r\n    width: auto;\r\n}*/\r\n\r\n/* Indicators list style */\r\n.article-slide .carousel-indicators {\r\n    bottom: 0;\r\n    left: 0;\r\n    margin-left: 5px;\r\n    /*width: 100%;*/\r\n}\r\n    /* Indicators list style */\r\n    .article-slide .carousel-indicators li {\r\n        border: medium none;\r\n        border-radius: 0;\r\n        float: left;\r\n        height: 54px;\r\n        margin-bottom: 5px;\r\n        margin-left: 0;\r\n        margin-right: 5px !important;\r\n        margin-top: 0;\r\n        width: auto;\r\n    }\r\n    /* Indicators images style */\r\n    .article-slide .carousel-indicators img {\r\n        border: 2px solid #FFFFFF;\r\n        float: left;\r\n        height: 54px;\r\n        left: 0;\r\n        /*width: 100px;*/\r\n    }\r\n    /* Indicators active image style */\r\n    .article-slide .carousel-indicators .active img {\r\n        border: 2px solid #428BCA;\r\n        opacity: 0.7;\r\n    }\r\n", ""]);
 
 // exports
 
@@ -141640,7 +141705,7 @@ exports = module.exports = __webpack_require__(2)();
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, "#right-bar {\r\n    background-color: aliceblue;\r\n}\r\n\r\n.nav-mn {\r\n    margin-bottom: 20px;\r\n}\r\n\r\n@media (max-width: 1199px){\r\n    .nav-mn {\r\n        position: relative;\r\n    }\r\n}\r\n\r\n@media (max-width: 2048px) and (min-width: 1200px) {\r\n    .nav-mn {\r\n        position: fixed;\r\n    }\r\n}\r\n", ""]);
 
 // exports
 
@@ -141654,7 +141719,7 @@ exports = module.exports = __webpack_require__(2)();
 
 
 // module
-exports.push([module.i, ".controlbutton{\r\n    margin-top:10px;\r\n}\r\n\r\n.material-switch > input[type=\"checkbox\"] {\r\n    display: none;\r\n}\r\n\r\n.material-switch > label {\r\n    cursor: pointer;\r\n    height: 0px;\r\n    position: relative;\r\n    width: 40px;\r\n}\r\n\r\n    .material-switch > label::before {\r\n        background: rgb(0, 0, 0);\r\n        box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.5);\r\n        border-radius: 8px;\r\n        content: '';\r\n        height: 16px;\r\n        margin-top: -8px;\r\n        position: absolute;\r\n        opacity: 0.3;\r\n        transition: all 0.4s ease-in-out;\r\n        width: 40px;\r\n    }\r\n\r\n    .material-switch > label::after {\r\n        background: rgb(255, 255, 255);\r\n        border-radius: 16px;\r\n        box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);\r\n        content: '';\r\n        height: 24px;\r\n        left: -4px;\r\n        margin-top: -8px;\r\n        position: absolute;\r\n        top: -4px;\r\n        transition: all 0.3s ease-in-out;\r\n        width: 24px;\r\n    }\r\n\r\n.material-switch > input[type=\"checkbox\"]:checked + label::before {\r\n    background: inherit;\r\n    opacity: 0.5;\r\n}\r\n\r\n.material-switch > input[type=\"checkbox\"]:checked + label::after {\r\n    background: inherit;\r\n    left: 20px;\r\n}", ""]);
+exports.push([module.i, "input[type=\"text\"] {\r\n    display: block;\r\n    margin: 0;\r\n    width: 100%;\r\n    font-family: sans-serif;\r\n    font-size: 18px;\r\n    box-shadow: none;\r\n}\r\n\r\n    input[type=\"text\"]:focus {\r\n        outline: none;\r\n    }\r\n\r\n.style-4 input[type=\"text\"] {\r\n    padding: 10px 10px 10px 0px;\r\n    border: none;\r\n    border-bottom: solid 2px #c9c9c9;\r\n    transition: border 0.3s;\r\n}\r\n\r\n    .style-4 input[type=\"text\"]:focus,\r\n    .style-4 input[type=\"text\"].focus {\r\n        border-bottom: solid 2px #969696;\r\n    }\r\n    \r\n    .col-md-5{\r\n        padding-left:0px;\r\n        padding-right:0px;\r\n    }\r\n    .col-md-6{\r\n        padding-left:0px;\r\n    }\r\n    .col-md-12{\r\n        padding-left:0px;\r\n    }\r\n", ""]);
 
 // exports
 
@@ -141668,7 +141733,7 @@ exports = module.exports = __webpack_require__(2)();
 
 
 // module
-exports.push([module.i, "h2 {\r\n    color: white;\r\n    font-weight: 900;\r\n}\r\n\r\n.table-title h3 {\r\n    color: #1a1a1a;\r\n    font-size: x-large;\r\n    font-weight: 400;\r\n    font-style: normal;\r\n    text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);\r\n    text-transform: uppercase;\r\n}\r\n\r\n\r\n/*** Table Styles **/\r\n\r\n.table-fill {\r\n    background: white;\r\n    border-collapse: collapse;\r\n    margin: auto;\r\n    padding: 5px;\r\n    width: 100%;\r\n    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);\r\n    animation: float 5s infinite;\r\n}\r\n\r\nth {\r\n    color: white;\r\n    background: #1a1a1a;\r\n    border-bottom: 4px solid #243918;\r\n    border-right: 1px solid #243918;\r\n    font-size: 23px;\r\n    font-weight: 100;\r\n    padding: 24px;\r\n    text-align: left;\r\n    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);\r\n    vertical-align: middle;\r\n}\r\n\r\n    th:first-child {\r\n        border-top-left-radius: 3px;\r\n    }\r\n\r\n    th:last-child {\r\n        border-top-right-radius: 3px;\r\n        border-right: none;\r\n    }\r\n\r\ntr {\r\n    border-top: 1px solid #243918;\r\n    border-bottom: 1px solid #243918;\r\n    color: #1a1a1a;\r\n    font-size: 16px;\r\n    font-weight: normal;\r\n    text-shadow: 0 1px 1px rgba(256, 256, 256, 0.1);\r\n}\r\n\r\n    tr:hover td {\r\n        background: #596a3d;\r\n        color: white;\r\n        border-top: 1px solid #22262e;\r\n        border-bottom: 1px solid #22262e;\r\n    }\r\n\r\n    tr:first-child {\r\n        border-top: none;\r\n    }\r\n\r\n    tr:last-child {\r\n        border-bottom: none;\r\n    }\r\n\r\n    tr:nth-child(odd) td {\r\n        background: #afb593;\r\n    }\r\n\r\n    tr:nth-child(odd):hover td {\r\n        background: #596a3d;\r\n        color: white;\r\n    }\r\n\r\n    tr:last-child td:first-child {\r\n        border-bottom-left-radius: 3px;\r\n    }\r\n\r\n    tr:last-child td:last-child {\r\n        border-bottom-right-radius: 3px;\r\n    }\r\n\r\ntd {\r\n    background: #FFFFFF;\r\n    padding: 5px;\r\n    text-align: left;\r\n    vertical-align: middle;\r\n    font-weight: 300;\r\n    font-size: 18px;\r\n    text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);\r\n    border-right: 1px solid #C1C3D1;\r\n}\r\n\r\n    td:last-child {\r\n        border-right: 0px;\r\n    }\r\n\r\nth.text-left {\r\n    text-align: left;\r\n}\r\n\r\nth.text-center {\r\n    text-align: center;\r\n}\r\n\r\nth.text-right {\r\n    text-align: right;\r\n}\r\n\r\ntd.text-left {\r\n    text-align: left;\r\n}\r\n\r\ntd.text-center {\r\n    text-align: center;\r\n}\r\n\r\ntd.text-right {\r\n    text-align: right;\r\n}\r\n", ""]);
+exports.push([module.i, "", ""]);
 
 // exports
 
@@ -141682,7 +141747,7 @@ exports = module.exports = __webpack_require__(2)();
 
 
 // module
-exports.push([module.i, "body {\r\n}\r\n", ""]);
+exports.push([module.i, ".controlbutton{\r\n    margin-top:10px;\r\n}\r\n\r\n.material-switch > input[type=\"checkbox\"] {\r\n    display: none;\r\n}\r\n\r\n.material-switch > label {\r\n    cursor: pointer;\r\n    height: 0px;\r\n    position: relative;\r\n    width: 40px;\r\n}\r\n\r\n    .material-switch > label::before {\r\n        background: rgb(0, 0, 0);\r\n        box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.5);\r\n        border-radius: 8px;\r\n        content: '';\r\n        height: 16px;\r\n        margin-top: -8px;\r\n        position: absolute;\r\n        opacity: 0.3;\r\n        transition: all 0.4s ease-in-out;\r\n        width: 40px;\r\n    }\r\n\r\n    .material-switch > label::after {\r\n        background: rgb(255, 255, 255);\r\n        border-radius: 16px;\r\n        box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);\r\n        content: '';\r\n        height: 24px;\r\n        left: -4px;\r\n        margin-top: -8px;\r\n        position: absolute;\r\n        top: -4px;\r\n        transition: all 0.3s ease-in-out;\r\n        width: 24px;\r\n    }\r\n\r\n.material-switch > input[type=\"checkbox\"]:checked + label::before {\r\n    background: inherit;\r\n    opacity: 0.5;\r\n}\r\n\r\n.material-switch > input[type=\"checkbox\"]:checked + label::after {\r\n    background: inherit;\r\n    left: 20px;\r\n}", ""]);
 
 // exports
 
@@ -141696,7 +141761,7 @@ exports = module.exports = __webpack_require__(2)();
 
 
 // module
-exports.push([module.i, "body {\r\n}\r\n", ""]);
+exports.push([module.i, "h2 {\r\n    color: white;\r\n    font-weight: 900;\r\n}\r\n\r\n.table-title h3 {\r\n    color: #1a1a1a;\r\n    font-size: x-large;\r\n    font-weight: 400;\r\n    font-style: normal;\r\n    text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);\r\n    text-transform: uppercase;\r\n}\r\n\r\n\r\n/*** Table Styles **/\r\n\r\n.table-fill {\r\n    background: white;\r\n    border-collapse: collapse;\r\n    margin: auto;\r\n    padding: 5px;\r\n    width: 100%;\r\n    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);\r\n    animation: float 5s infinite;\r\n}\r\n\r\nth {\r\n    color: white;\r\n    background: #1a1a1a;\r\n    border-bottom: 4px solid #243918;\r\n    border-right: 1px solid #243918;\r\n    font-size: 23px;\r\n    font-weight: 100;\r\n    padding: 24px;\r\n    text-align: left;\r\n    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);\r\n    vertical-align: middle;\r\n}\r\n\r\n    th:first-child {\r\n        border-top-left-radius: 3px;\r\n    }\r\n\r\n    th:last-child {\r\n        border-top-right-radius: 3px;\r\n        border-right: none;\r\n    }\r\n\r\ntr {\r\n    border-top: 1px solid #243918;\r\n    border-bottom: 1px solid #243918;\r\n    color: #1a1a1a;\r\n    font-size: 16px;\r\n    font-weight: normal;\r\n    text-shadow: 0 1px 1px rgba(256, 256, 256, 0.1);\r\n}\r\n\r\n    tr:hover td {\r\n        background: #596a3d;\r\n        color: white;\r\n        border-top: 1px solid #22262e;\r\n        border-bottom: 1px solid #22262e;\r\n    }\r\n\r\n    tr:first-child {\r\n        border-top: none;\r\n    }\r\n\r\n    tr:last-child {\r\n        border-bottom: none;\r\n    }\r\n\r\n    tr:nth-child(odd) td {\r\n        background: #afb593;\r\n    }\r\n\r\n    tr:nth-child(odd):hover td {\r\n        background: #596a3d;\r\n        color: white;\r\n    }\r\n\r\n    tr:last-child td:first-child {\r\n        border-bottom-left-radius: 3px;\r\n    }\r\n\r\n    tr:last-child td:last-child {\r\n        border-bottom-right-radius: 3px;\r\n    }\r\n\r\ntd {\r\n    background: #FFFFFF;\r\n    padding: 5px;\r\n    text-align: left;\r\n    vertical-align: middle;\r\n    font-weight: 300;\r\n    font-size: 18px;\r\n    text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);\r\n    border-right: 1px solid #C1C3D1;\r\n}\r\n\r\n    td:last-child {\r\n        border-right: 0px;\r\n    }\r\n\r\nth.text-left {\r\n    text-align: left;\r\n}\r\n\r\nth.text-center {\r\n    text-align: center;\r\n}\r\n\r\nth.text-right {\r\n    text-align: right;\r\n}\r\n\r\ntd.text-left {\r\n    text-align: left;\r\n}\r\n\r\ntd.text-center {\r\n    text-align: center;\r\n}\r\n\r\ntd.text-right {\r\n    text-align: right;\r\n}\r\n", ""]);
 
 // exports
 
@@ -141710,7 +141775,7 @@ exports = module.exports = __webpack_require__(2)();
 
 
 // module
-exports.push([module.i, "h2 {\r\n    color: white;\r\n    font-weight: 900;\r\n}\r\n\r\n.table-title h3 {\r\n    color: #1a1a1a;\r\n    font-size: x-large;\r\n    font-weight: 400;\r\n    font-style: normal;\r\n    text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);\r\n    text-transform: uppercase;\r\n}\r\n\r\n\r\n/*** Table Styles **/\r\n\r\n.table-fill {\r\n    background: white;\r\n    border-collapse: collapse;\r\n    margin: auto;\r\n    padding: 5px;\r\n    width: 100%;\r\n    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);\r\n    animation: float 5s infinite;\r\n}\r\n\r\nth {\r\n    color: white;\r\n    background: #1a1a1a;\r\n    border-bottom: 4px solid #243918;\r\n    border-right: 1px solid #243918;\r\n    font-size: 23px;\r\n    font-weight: 100;\r\n    padding: 24px;\r\n    text-align: left;\r\n    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);\r\n    vertical-align: middle;\r\n}\r\n\r\n    th:first-child {\r\n        border-top-left-radius: 3px;\r\n    }\r\n\r\n    th:last-child {\r\n        border-top-right-radius: 3px;\r\n        border-right: none;\r\n    }\r\n\r\ntr {\r\n    border-top: 1px solid #243918;\r\n    border-bottom: 1px solid #243918;\r\n    color: #1a1a1a;\r\n    font-size: 16px;\r\n    font-weight: normal;\r\n    text-shadow: 0 1px 1px rgba(256, 256, 256, 0.1);\r\n}\r\n\r\n    tr:hover td {\r\n        background: #596a3d;\r\n        color: white;\r\n        border-top: 1px solid #22262e;\r\n        border-bottom: 1px solid #22262e;\r\n    }\r\n\r\n    tr:first-child {\r\n        border-top: none;\r\n    }\r\n\r\n    tr:last-child {\r\n        border-bottom: none;\r\n    }\r\n\r\n    tr:nth-child(odd) td {\r\n        background: #afb593;\r\n    }\r\n\r\n    tr:nth-child(odd):hover td {\r\n        background: #596a3d;\r\n        color: white;\r\n    }\r\n\r\n    tr:last-child td:first-child {\r\n        border-bottom-left-radius: 3px;\r\n    }\r\n\r\n    tr:last-child td:last-child {\r\n        border-bottom-right-radius: 3px;\r\n    }\r\n\r\ntd {\r\n    background: #FFFFFF;\r\n    padding: 5px;\r\n    text-align: left;\r\n    vertical-align: middle;\r\n    font-weight: 300;\r\n    font-size: 18px;\r\n    text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);\r\n    border-right: 1px solid #C1C3D1;\r\n}\r\n\r\n    td:last-child {\r\n        border-right: 0px;\r\n    }\r\n\r\nth.text-left {\r\n    text-align: left;\r\n}\r\n\r\nth.text-center {\r\n    text-align: center;\r\n}\r\n\r\nth.text-right {\r\n    text-align: right;\r\n}\r\n\r\ntd.text-left {\r\n    text-align: left;\r\n}\r\n\r\ntd.text-center {\r\n    text-align: center;\r\n}\r\n\r\ntd.text-right {\r\n    text-align: right;\r\n}\r\n", ""]);
+exports.push([module.i, "body {\r\n}\r\n", ""]);
 
 // exports
 
@@ -141724,7 +141789,7 @@ exports = module.exports = __webpack_require__(2)();
 
 
 // module
-exports.push([module.i, "body {\n    position: relative;\n    overflow-x: hidden;\n}\n\nbody,\nhtml {\n    height: 100%;\n}\n\n.nav .open > a,\n.nav .open > a:hover,\n.nav .open > a:focus {\n    background-color: transparent;\n}\n\n/*-------------------------------*/\n/*           Wrappers            */\n/*-------------------------------*/\n\n#wrapper {\n    padding-left: 0;\n    -webkit-transition: all 0.5s ease;\n    -moz-transition: all 0.5s ease;\n    -o-transition: all 0.5s ease;\n    transition: all 0.5s ease;\n}\n\n    #wrapper.toggled {\n        padding-left: 15%;\n    }\n\n#sidebar-wrapper {\n    z-index: 1000;\n    left: 220px;\n    width: 0;\n    height: 100%;\n    margin-left: -220px;\n    overflow-y: auto;\n    overflow-x: hidden;\n    background: #1a1a1a;\n    -webkit-transition: all 0.5s ease;\n    -moz-transition: all 0.5s ease;\n    -o-transition: all 0.5s ease;\n    transition: all 0.5s ease;\n}\n\n    #sidebar-wrapper::-webkit-scrollbar {\n        display: none;\n    }\n\n#wrapper.toggled #sidebar-wrapper {\n    width: 15%;\n}\n\n/*-------------------------------*/\n/*     Sidebar nav styles        */\n/*-------------------------------*/\n\n.sidebar-nav {\n    position: absolute;\n    top: 0;\n    width: 100%;\n    margin: 0;\n    padding: 0;\n    list-style: none;\n}\n\n    .sidebar-nav li {\n        position: relative;\n        line-height: 20px;\n        display: inline-block;\n        width: 100%;\n    }\n\n        .sidebar-nav li:before {\n            content: '';\n            position: absolute;\n            top: 0;\n            left: 0;\n            z-index: -1;\n            height: 100%;\n            width: 3px;\n            background-color: #1c1c1c;\n            -webkit-transition: width .2s ease-in;\n            -moz-transition: width .2s ease-in;\n            -ms-transition: width .2s ease-in;\n            transition: width .2s ease-in;\n        }\n\n        .sidebar-nav li:first-child a {\n            color: #fff;\n            background-color: #273a1a;\n        }\n\n        .sidebar-nav li:nth-child(2):before {\n            background-color: #273a1a;\n        }\n\n        .sidebar-nav li:nth-child(3):before {\n            background-color: #243918;\n        }\n\n        .sidebar-nav li:nth-child(4):before {\n            background-color: #2e4720;\n        }\n\n        .sidebar-nav li:nth-child(5):before {\n            background-color: #46562f;\n        }\n\n        .sidebar-nav li:nth-child(6):before {\n            background-color: #596a3d;\n        }\n\n        .sidebar-nav li:nth-child(7):before {\n            background-color: #637f4e;\n        }\n\n        .sidebar-nav li:nth-child(8):before {\n            background-color: #a7ac8c;\n        }\n\n        .sidebar-nav li:nth-child(9):before {\n            background-color: #2d2366;\n        }\n\n        .sidebar-nav li:nth-child(10):before {\n            background-color: #35acdf;\n        }\n\n        .sidebar-nav li:hover:before,\n        .sidebar-nav li.open:hover:before {\n            width: 100%;\n            -webkit-transition: width .2s ease-in;\n            -moz-transition: width .2s ease-in;\n            -ms-transition: width .2s ease-in;\n            transition: width .2s ease-in;\n        }\n\n        .sidebar-nav li a {\n            display: block;\n            color: #ddd;\n            text-decoration: none;\n            padding: 10px 15px 10px 30px;\n        }\n\n            .sidebar-nav li a:hover,\n            .sidebar-nav li a:active,\n            .sidebar-nav li a:focus,\n            .sidebar-nav li.open a:hover,\n            .sidebar-nav li.open a:active,\n            .sidebar-nav li.open a:focus {\n                color: #fff;\n                text-decoration: none;\n                background-color: transparent;\n            }\n\n    .sidebar-nav > .sidebar-brand {\n        padding: 20%;\n        height: 65px;\n        color: white;\n        font-size: 20px;\n    }\n\n    .sidebar-nav .dropdown-menu {\n        position: relative;\n        width: 100%;\n        padding: 0;\n        margin: 0;\n        border-radius: 0;\n        border: none;\n        background-color: #222;\n        box-shadow: none;\n    }\n\n.navbar-fixed-top {\n    top: auto !important;\n    max-height: 70% !important;\n}\n/*-------------------------------*/\n/*       Hamburger-Cross         */\n/*-------------------------------*/\n.hamburger {\n    position: fixed;\n    top: auto;\n    z-index: 999;\n    display: block;\n    width: 32px;\n    height: 32px;\n    background: transparent;\n    border: none;\n}\n\n    .hamburger:hover,\n    .hamburger:focus,\n    .hamburger:active {\n        outline: none;\n    }\n\n    .hamburger.is-closed:before {\n        content: '';\n        display: block;\n        width: 100px;\n        font-size: 14px;\n        color: #fff;\n        line-height: 32px;\n        text-align: center;\n        opacity: 0;\n        -webkit-transform: translate3d(0,0,0);\n        -webkit-transition: all .35s ease-in-out;\n    }\n\n    .hamburger.is-closed:hover:before {\n        opacity: 1;\n        display: block;\n        -webkit-transform: translate3d(-100px,0,0);\n        -webkit-transition: all .35s ease-in-out;\n    }\n\n    .hamburger.is-closed .hamb-top,\n    .hamburger.is-closed .hamb-middle,\n    .hamburger.is-closed .hamb-bottom,\n    .hamburger.is-open .hamb-top,\n    .hamburger.is-open .hamb-middle,\n    .hamburger.is-open .hamb-bottom {\n        position: absolute;\n        left: 0;\n        height: 4px;\n        width: 100%;\n    }\n\n    .hamburger.is-closed .hamb-top,\n    .hamburger.is-closed .hamb-middle,\n    .hamburger.is-closed .hamb-bottom {\n        background-color: white;\n    }\n\n    .hamburger.is-closed .hamb-top {\n        top: 5px;\n        -webkit-transition: all .35s ease-in-out;\n    }\n\n    .hamburger.is-closed .hamb-middle {\n        top: 50%;\n        margin-top: -2px;\n    }\n\n    .hamburger.is-closed .hamb-bottom {\n        bottom: 5px;\n        -webkit-transition: all .35s ease-in-out;\n    }\n\n    .hamburger.is-closed:hover .hamb-top {\n        top: 0;\n        -webkit-transition: all .35s ease-in-out;\n    }\n\n    .hamburger.is-closed:hover .hamb-bottom {\n        bottom: 0;\n        -webkit-transition: all .35s ease-in-out;\n    }\n\n    .hamburger.is-open .hamb-top,\n    .hamburger.is-open .hamb-middle,\n    .hamburger.is-open .hamb-bottom {\n        background-color: white;\n    }\n\n    .hamburger.is-open .hamb-top,\n    .hamburger.is-open .hamb-bottom {\n        top: 50%;\n        margin-top: -2px;\n    }\n\n    .hamburger.is-open .hamb-top {\n        -webkit-transform: rotate(45deg);\n        -webkit-transition: -webkit-transform .2s cubic-bezier(.73,1,.28,.08);\n    }\n\n    .hamburger.is-open .hamb-middle {\n        display: none;\n    }\n\n    .hamburger.is-open .hamb-bottom {\n        -webkit-transform: rotate(-45deg);\n        -webkit-transition: -webkit-transform .2s cubic-bezier(.73,1,.28,.08);\n    }\n\n    .hamburger.is-open:before {\n        content: '';\n        display: block;\n        width: 100px;\n        font-size: 14px;\n        color: #fff;\n        line-height: 32px;\n        text-align: center;\n        opacity: 0;\n        -webkit-transform: translate3d(0,0,0);\n        -webkit-transition: all .35s ease-in-out;\n    }\n\n    .hamburger.is-open:hover:before {\n        opacity: 1;\n        display: block;\n        -webkit-transform: translate3d(-100px,0,0);\n        -webkit-transition: all .35s ease-in-out;\n    }\n\n/*-------------------------------*/\n/*            Overlay            */\n/*-------------------------------*/\n\n.overlay {\n    position: fixed;\n    display: none;\n    width: 100%;\n    height: 100%;\n    top: 0;\n    left: 0;\n    right: 0;\n    bottom: 0;\n    background-color: rgba(250,250,250,.8);\n    z-index: 1;\n}\n", ""]);
+exports.push([module.i, "body {\r\n}\r\n", ""]);
 
 // exports
 
@@ -141738,7 +141803,7 @@ exports = module.exports = __webpack_require__(2)();
 
 
 // module
-exports.push([module.i, ".fixedError {\r\n    margin-bottom: 0px;\r\n}\r\n.form-group {\r\n    margin-bottom: 7px !important;\r\n}\r\n\r\n#registrationForm {\r\n    width: 400px;\r\n}\r\n\r\n.formHeader {\r\n    border-bottom: 1px solid #ccc;\r\n    padding-bottom: 10px;\r\n}\r\n\r\n", ""]);
+exports.push([module.i, "h2 {\r\n    color: white;\r\n    font-weight: 900;\r\n}\r\n\r\n.table-title h3 {\r\n    color: #1a1a1a;\r\n    font-size: x-large;\r\n    font-weight: 400;\r\n    font-style: normal;\r\n    text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);\r\n    text-transform: uppercase;\r\n}\r\n\r\n\r\n/*** Table Styles **/\r\n\r\n.table-fill {\r\n    background: white;\r\n    border-collapse: collapse;\r\n    margin: auto;\r\n    padding: 5px;\r\n    width: 100%;\r\n    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);\r\n    animation: float 5s infinite;\r\n}\r\n\r\nth {\r\n    color: white;\r\n    background: #1a1a1a;\r\n    border-bottom: 4px solid #243918;\r\n    border-right: 1px solid #243918;\r\n    font-size: 23px;\r\n    font-weight: 100;\r\n    padding: 24px;\r\n    text-align: left;\r\n    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);\r\n    vertical-align: middle;\r\n}\r\n\r\n    th:first-child {\r\n        border-top-left-radius: 3px;\r\n    }\r\n\r\n    th:last-child {\r\n        border-top-right-radius: 3px;\r\n        border-right: none;\r\n    }\r\n\r\ntr {\r\n    border-top: 1px solid #243918;\r\n    border-bottom: 1px solid #243918;\r\n    color: #1a1a1a;\r\n    font-size: 16px;\r\n    font-weight: normal;\r\n    text-shadow: 0 1px 1px rgba(256, 256, 256, 0.1);\r\n}\r\n\r\n    tr:hover td {\r\n        background: #596a3d;\r\n        color: white;\r\n        border-top: 1px solid #22262e;\r\n        border-bottom: 1px solid #22262e;\r\n    }\r\n\r\n    tr:first-child {\r\n        border-top: none;\r\n    }\r\n\r\n    tr:last-child {\r\n        border-bottom: none;\r\n    }\r\n\r\n    tr:nth-child(odd) td {\r\n        background: #afb593;\r\n    }\r\n\r\n    tr:nth-child(odd):hover td {\r\n        background: #596a3d;\r\n        color: white;\r\n    }\r\n\r\n    tr:last-child td:first-child {\r\n        border-bottom-left-radius: 3px;\r\n    }\r\n\r\n    tr:last-child td:last-child {\r\n        border-bottom-right-radius: 3px;\r\n    }\r\n\r\ntd {\r\n    background: #FFFFFF;\r\n    padding: 5px;\r\n    text-align: left;\r\n    vertical-align: middle;\r\n    font-weight: 300;\r\n    font-size: 18px;\r\n    text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);\r\n    border-right: 1px solid #C1C3D1;\r\n}\r\n\r\n    td:last-child {\r\n        border-right: 0px;\r\n    }\r\n\r\nth.text-left {\r\n    text-align: left;\r\n}\r\n\r\nth.text-center {\r\n    text-align: center;\r\n}\r\n\r\nth.text-right {\r\n    text-align: right;\r\n}\r\n\r\ntd.text-left {\r\n    text-align: left;\r\n}\r\n\r\ntd.text-center {\r\n    text-align: center;\r\n}\r\n\r\ntd.text-right {\r\n    text-align: right;\r\n}\r\n", ""]);
 
 // exports
 
@@ -141752,7 +141817,7 @@ exports = module.exports = __webpack_require__(2)();
 
 
 // module
-exports.push([module.i, "\n.gallery {\n    display: inline-block;\n    vertical-align: middle;\n    margin-top: 20px;\n}\n\n.childResourse {\n    font-size: 16px;\n    font-family: 'Arial', sans-serif;\n    font-weight: 700;\n    height: 36px;\n    padding: 0 8px;\n}\n\nh4{\n    font-size: 16px;\n    font-family: 'Arial';\n    font-weight: 500;\n    height: 24px;\n    padding: 0 8px;\n}\n\nh5 {\n    font-size: 20px;\n    font-family: 'Arial';\n    font-weight: 700;\n    height: 36px;\n    margin: -10px;\n    padding: 0 8px;\n}\n\na {\n    text-decoration: none;\n    color:darkgray;\n    font-weight: 400;\n    text-align: center;\n    display: inline-block;\n    opacity: 0.6;\n    transition: opacity ease 0.5s;\n}\n\n", ""]);
+exports.push([module.i, "body {\n    position: relative;\n    overflow-x: hidden;\n}\n\nbody,\nhtml {\n    height: 100%;\n}\n\n.nav .open > a,\n.nav .open > a:hover,\n.nav .open > a:focus {\n    background-color: transparent;\n}\n\n/*-------------------------------*/\n/*           Wrappers            */\n/*-------------------------------*/\n\n#wrapper {\n    padding-left: 0;\n    -webkit-transition: all 0.5s ease;\n    -moz-transition: all 0.5s ease;\n    -o-transition: all 0.5s ease;\n    transition: all 0.5s ease;\n}\n\n    #wrapper.toggled {\n        padding-left: 15%;\n    }\n\n#sidebar-wrapper {\n    z-index: 1000;\n    left: 220px;\n    width: 0;\n    height: 100%;\n    margin-left: -220px;\n    overflow-y: auto;\n    overflow-x: hidden;\n    background: #1a1a1a;\n    -webkit-transition: all 0.5s ease;\n    -moz-transition: all 0.5s ease;\n    -o-transition: all 0.5s ease;\n    transition: all 0.5s ease;\n}\n\n    #sidebar-wrapper::-webkit-scrollbar {\n        display: none;\n    }\n\n#wrapper.toggled #sidebar-wrapper {\n    width: 15%;\n}\n\n/*-------------------------------*/\n/*     Sidebar nav styles        */\n/*-------------------------------*/\n\n.sidebar-nav {\n    position: absolute;\n    top: 0;\n    width: 100%;\n    margin: 0;\n    padding: 0;\n    list-style: none;\n}\n\n    .sidebar-nav li {\n        position: relative;\n        line-height: 20px;\n        display: inline-block;\n        width: 100%;\n    }\n\n        .sidebar-nav li:before {\n            content: '';\n            position: absolute;\n            top: 0;\n            left: 0;\n            z-index: -1;\n            height: 100%;\n            width: 3px;\n            background-color: #1c1c1c;\n            -webkit-transition: width .2s ease-in;\n            -moz-transition: width .2s ease-in;\n            -ms-transition: width .2s ease-in;\n            transition: width .2s ease-in;\n        }\n\n        .sidebar-nav li:first-child a {\n            color: #fff;\n            background-color: #273a1a;\n        }\n\n        .sidebar-nav li:nth-child(2):before {\n            background-color: #273a1a;\n        }\n\n        .sidebar-nav li:nth-child(3):before {\n            background-color: #243918;\n        }\n\n        .sidebar-nav li:nth-child(4):before {\n            background-color: #2e4720;\n        }\n\n        .sidebar-nav li:nth-child(5):before {\n            background-color: #46562f;\n        }\n\n        .sidebar-nav li:nth-child(6):before {\n            background-color: #596a3d;\n        }\n\n        .sidebar-nav li:nth-child(7):before {\n            background-color: #637f4e;\n        }\n\n        .sidebar-nav li:nth-child(8):before {\n            background-color: #a7ac8c;\n        }\n\n        .sidebar-nav li:nth-child(9):before {\n            background-color: #2d2366;\n        }\n\n        .sidebar-nav li:nth-child(10):before {\n            background-color: #35acdf;\n        }\n\n        .sidebar-nav li:hover:before,\n        .sidebar-nav li.open:hover:before {\n            width: 100%;\n            -webkit-transition: width .2s ease-in;\n            -moz-transition: width .2s ease-in;\n            -ms-transition: width .2s ease-in;\n            transition: width .2s ease-in;\n        }\n\n        .sidebar-nav li a {\n            display: block;\n            color: #ddd;\n            text-decoration: none;\n            padding: 10px 15px 10px 30px;\n        }\n\n            .sidebar-nav li a:hover,\n            .sidebar-nav li a:active,\n            .sidebar-nav li a:focus,\n            .sidebar-nav li.open a:hover,\n            .sidebar-nav li.open a:active,\n            .sidebar-nav li.open a:focus {\n                color: #fff;\n                text-decoration: none;\n                background-color: transparent;\n            }\n\n    .sidebar-nav > .sidebar-brand {\n        padding: 20%;\n        height: 65px;\n        color: white;\n        font-size: 20px;\n    }\n\n    .sidebar-nav .dropdown-menu {\n        position: relative;\n        width: 100%;\n        padding: 0;\n        margin: 0;\n        border-radius: 0;\n        border: none;\n        background-color: #222;\n        box-shadow: none;\n    }\n\n.navbar-fixed-top {\n    top: auto !important;\n    max-height: 70% !important;\n}\n/*-------------------------------*/\n/*       Hamburger-Cross         */\n/*-------------------------------*/\n.hamburger {\n    position: fixed;\n    top: auto;\n    z-index: 999;\n    display: block;\n    width: 32px;\n    height: 32px;\n    background: transparent;\n    border: none;\n}\n\n    .hamburger:hover,\n    .hamburger:focus,\n    .hamburger:active {\n        outline: none;\n    }\n\n    .hamburger.is-closed:before {\n        content: '';\n        display: block;\n        width: 100px;\n        font-size: 14px;\n        color: #fff;\n        line-height: 32px;\n        text-align: center;\n        opacity: 0;\n        -webkit-transform: translate3d(0,0,0);\n        -webkit-transition: all .35s ease-in-out;\n    }\n\n    .hamburger.is-closed:hover:before {\n        opacity: 1;\n        display: block;\n        -webkit-transform: translate3d(-100px,0,0);\n        -webkit-transition: all .35s ease-in-out;\n    }\n\n    .hamburger.is-closed .hamb-top,\n    .hamburger.is-closed .hamb-middle,\n    .hamburger.is-closed .hamb-bottom,\n    .hamburger.is-open .hamb-top,\n    .hamburger.is-open .hamb-middle,\n    .hamburger.is-open .hamb-bottom {\n        position: absolute;\n        left: 0;\n        height: 4px;\n        width: 100%;\n    }\n\n    .hamburger.is-closed .hamb-top,\n    .hamburger.is-closed .hamb-middle,\n    .hamburger.is-closed .hamb-bottom {\n        background-color: white;\n    }\n\n    .hamburger.is-closed .hamb-top {\n        top: 5px;\n        -webkit-transition: all .35s ease-in-out;\n    }\n\n    .hamburger.is-closed .hamb-middle {\n        top: 50%;\n        margin-top: -2px;\n    }\n\n    .hamburger.is-closed .hamb-bottom {\n        bottom: 5px;\n        -webkit-transition: all .35s ease-in-out;\n    }\n\n    .hamburger.is-closed:hover .hamb-top {\n        top: 0;\n        -webkit-transition: all .35s ease-in-out;\n    }\n\n    .hamburger.is-closed:hover .hamb-bottom {\n        bottom: 0;\n        -webkit-transition: all .35s ease-in-out;\n    }\n\n    .hamburger.is-open .hamb-top,\n    .hamburger.is-open .hamb-middle,\n    .hamburger.is-open .hamb-bottom {\n        background-color: white;\n    }\n\n    .hamburger.is-open .hamb-top,\n    .hamburger.is-open .hamb-bottom {\n        top: 50%;\n        margin-top: -2px;\n    }\n\n    .hamburger.is-open .hamb-top {\n        -webkit-transform: rotate(45deg);\n        -webkit-transition: -webkit-transform .2s cubic-bezier(.73,1,.28,.08);\n    }\n\n    .hamburger.is-open .hamb-middle {\n        display: none;\n    }\n\n    .hamburger.is-open .hamb-bottom {\n        -webkit-transform: rotate(-45deg);\n        -webkit-transition: -webkit-transform .2s cubic-bezier(.73,1,.28,.08);\n    }\n\n    .hamburger.is-open:before {\n        content: '';\n        display: block;\n        width: 100px;\n        font-size: 14px;\n        color: #fff;\n        line-height: 32px;\n        text-align: center;\n        opacity: 0;\n        -webkit-transform: translate3d(0,0,0);\n        -webkit-transition: all .35s ease-in-out;\n    }\n\n    .hamburger.is-open:hover:before {\n        opacity: 1;\n        display: block;\n        -webkit-transform: translate3d(-100px,0,0);\n        -webkit-transition: all .35s ease-in-out;\n    }\n\n/*-------------------------------*/\n/*            Overlay            */\n/*-------------------------------*/\n\n.overlay {\n    position: fixed;\n    display: none;\n    width: 100%;\n    height: 100%;\n    top: 0;\n    left: 0;\n    right: 0;\n    bottom: 0;\n    background-color: rgba(250,250,250,.8);\n    z-index: 1;\n}\n", ""]);
 
 // exports
 
@@ -141766,7 +141831,7 @@ exports = module.exports = __webpack_require__(2)();
 
 
 // module
-exports.push([module.i, "/* enable absolute positioning */\r\n.inner-addon {\r\n    position: relative;\r\n}\r\n\r\n    /* style icon */\r\n    .inner-addon .glyphicon {\r\n        position: absolute;\r\n        padding: 10px;\r\n        pointer-events: none;\r\n    }\r\n\r\n/* align icon */\r\n.left-addon .glyphicon {\r\n    left: 0px;\r\n}\r\n\r\n.right-addon .glyphicon {\r\n    right: 0px;\r\n}\r\n\r\n/* add padding  */\r\n.left-addon input {\r\n    padding-left: 30px;\r\n}\r\n\r\n.right-addon input {\r\n    padding-right: 30px;\r\n}\r\n\r\n.btn{\r\n    float:right;\r\n}", ""]);
+exports.push([module.i, ".fixedError {\r\n    margin-bottom: 0px;\r\n}\r\n.form-group {\r\n    margin-bottom: 7px !important;\r\n}\r\n\r\n#registrationForm {\r\n    width: 400px;\r\n}\r\n\r\n.formHeader {\r\n    border-bottom: 1px solid #ccc;\r\n    padding-bottom: 10px;\r\n}\r\n\r\n", ""]);
 
 // exports
 
@@ -141780,7 +141845,7 @@ exports = module.exports = __webpack_require__(2)();
 
 
 // module
-exports.push([module.i, ".custom-btn {\r\n    width: 90px !important;\r\n}\r\n", ""]);
+exports.push([module.i, "\n.gallery {\n    display: inline-block;\n    vertical-align: middle;\n    margin-top: 20px;\n}\n\n.childResourse {\n    font-size: 16px;\n    font-family: 'Arial', sans-serif;\n    font-weight: 700;\n    height: 36px;\n    padding: 0 8px;\n}\n\nh4{\n    font-size: 16px;\n    font-family: 'Arial';\n    font-weight: 500;\n    height: 24px;\n    padding: 0 8px;\n}\n\nh5 {\n    font-size: 20px;\n    font-family: 'Arial';\n    font-weight: 700;\n    height: 36px;\n    margin: -10px;\n    padding: 0 8px;\n}\n\na {\n    text-decoration: none;\n    color:darkgray;\n    font-weight: 400;\n    text-align: center;\n    display: inline-block;\n    opacity: 0.6;\n    transition: opacity ease 0.5s;\n}\n\n", ""]);
 
 // exports
 
@@ -141794,7 +141859,7 @@ exports = module.exports = __webpack_require__(2)();
 
 
 // module
-exports.push([module.i, ".castome-paging {\r\n    padding-top: 20px;\r\n}\r\n", ""]);
+exports.push([module.i, "/* enable absolute positioning */\r\n.inner-addon {\r\n    position: relative;\r\n}\r\n\r\n    /* style icon */\r\n    .inner-addon .glyphicon {\r\n        position: absolute;\r\n        padding: 10px;\r\n        pointer-events: none;\r\n    }\r\n\r\n/* align icon */\r\n.left-addon .glyphicon {\r\n    left: 0px;\r\n}\r\n\r\n.right-addon .glyphicon {\r\n    right: 0px;\r\n}\r\n\r\n/* add padding  */\r\n.left-addon input {\r\n    padding-left: 30px;\r\n}\r\n\r\n.right-addon input {\r\n    padding-right: 30px;\r\n}\r\n\r\n.btn{\r\n    float:right;\r\n}", ""]);
 
 // exports
 
@@ -141808,7 +141873,7 @@ exports = module.exports = __webpack_require__(2)();
 
 
 // module
-exports.push([module.i, ".castome-paging {\r\n    padding-top: 20px;\r\n}\r\n", ""]);
+exports.push([module.i, ".custom-btn {\r\n    width: 90px !important;\r\n}\r\n", ""]);
 
 // exports
 
@@ -141822,7 +141887,7 @@ exports = module.exports = __webpack_require__(2)();
 
 
 // module
-exports.push([module.i, " :focus {\n    outline: none;\n}\n.row {\n    margin-right: 0 !important;\n    margin-left: 0 !important;\n}\n.side-menu {\n    width: 300px;\n    height: 100%;\n    background-color: #f8f8f8;\n    border-right: 1px solid #e7e7e7;\n    float: left;\n}\n.side-body {\n    margin-left: 350px;\n    position: relative;\n}\n.side-menu .navbar {\n    border: none;\n}\n.side-menu .navbar-header {\n    width: 100%;\n    border-bottom: 1px solid #e7e7e7;\n}\n.side-menu .navbar-nav .active a {\n    background-color: transparent;\n    margin-right: -1px;\n    border-right: 5px solid #e7e7e7;\n}\n.side-menu .navbar-nav li {\n    display: block;\n    width: 100%;\n    border-bottom: 1px solid #e7e7e7;\n}\n.side-menu .navbar-nav li a {\n    padding: 15px;\n}\n.side-menu .navbar-nav li a .glyphicon {\n    padding-right: 10px;\n}\r\n", ""]);
+exports.push([module.i, ".castome-paging {\r\n    padding-top: 20px;\r\n}\r\n", ""]);
 
 // exports
 
@@ -141836,7 +141901,7 @@ exports = module.exports = __webpack_require__(2)();
 
 
 // module
-exports.push([module.i, ".userprofile {\r\n    height: auto;\r\n}\r\n\r\n/*.ng-valid[required], .ng-valid.required {\r\n    border-bottom: 5px solid mediumseagreen;\r\n}*/\r\n\r\n/*.ng-invalid:not(form) {\r\n    border-bottom: 0.5px solid red;\r\n}*/\r\n", ""]);
+exports.push([module.i, ".castome-paging {\r\n    padding-top: 20px;\r\n}\r\n", ""]);
 
 // exports
 
@@ -141850,7 +141915,7 @@ exports = module.exports = __webpack_require__(2)();
 
 
 // module
-exports.push([module.i, ".scrollable-menu {\r\n    height: auto !important;\r\n    max-height: 200px !important;\r\n    overflow-x: hidden !important;\r\n}\r\n\r\n.btn-info {\r\n    border: solid 1px silver !important;\r\n    background-color: #292c2f !important;\r\n    color: #8f9296;\r\n}\r\n\r\n.form-control {\r\n    width: 100% !important;\r\n}\r\n", ""]);
+exports.push([module.i, " :focus {\n    outline: none;\n}\n.row {\n    margin-right: 0 !important;\n    margin-left: 0 !important;\n}\n.side-menu {\n    width: 300px;\n    height: 100%;\n    background-color: #f8f8f8;\n    border-right: 1px solid #e7e7e7;\n    float: left;\n}\n.side-body {\n    margin-left: 350px;\n    position: relative;\n}\n.side-menu .navbar {\n    border: none;\n}\n.side-menu .navbar-header {\n    width: 100%;\n    border-bottom: 1px solid #e7e7e7;\n}\n.side-menu .navbar-nav .active a {\n    background-color: transparent;\n    margin-right: -1px;\n    border-right: 5px solid #e7e7e7;\n}\n.side-menu .navbar-nav li {\n    display: block;\n    width: 100%;\n    border-bottom: 1px solid #e7e7e7;\n}\n.side-menu .navbar-nav li a {\n    padding: 15px;\n}\n.side-menu .navbar-nav li a .glyphicon {\n    padding-right: 10px;\n}\r\n", ""]);
 
 // exports
 
@@ -141864,7 +141929,7 @@ exports = module.exports = __webpack_require__(2)();
 
 
 // module
-exports.push([module.i, "h3 {\r\n    color:red\r\n}\r\n", ""]);
+exports.push([module.i, ".userprofile {\r\n    height: auto;\r\n}\r\n\r\n/*.ng-valid[required], .ng-valid.required {\r\n    border-bottom: 5px solid mediumseagreen;\r\n}*/\r\n\r\n/*.ng-invalid:not(form) {\r\n    border-bottom: 0.5px solid red;\r\n}*/\r\n", ""]);
 
 // exports
 
@@ -141878,7 +141943,7 @@ exports = module.exports = __webpack_require__(2)();
 
 
 // module
-exports.push([module.i, "ul {\r\n    padding: 0;\r\n    width: 780px;\r\n}\r\n\r\nli {\r\n    display: inline;\r\n}\r\n\r\n.tn {\r\n    margin: 2px 0px;\r\n    box-shadow: #999 1px 1px 3px 1px;\r\n    cursor: pointer\r\n}\r\n\r\n.modal-content {\r\n    width: 670px !important;\r\n}\r\n\r\n.imageSelected {\r\n    width: 640px;\r\n    position: relative;\r\n}\r\n\r\n.tn {\r\n    width: 110px;\r\n    height: 100px;\r\n}\r\n\r\n.arrow-back, .arrow-forward {\r\n    position: absolute;\r\n    opacity: 0.6;\r\n    background-color: darkolivegreen;\r\n    padding: 10px;\r\n    top: 190px;\r\n    color: white;\r\n    cursor: pointer;\r\n}\r\n\r\n.arrow-forward {\r\n    left: 612px;\r\n}\r\n\r\n.arrow-back {\r\n    right: 612px;\r\n}\r\n", ""]);
+exports.push([module.i, ".scrollable-menu {\r\n    height: auto !important;\r\n    max-height: 200px !important;\r\n    overflow-x: hidden !important;\r\n}\r\n\r\n.btn-info {\r\n    border: solid 1px silver !important;\r\n    background-color: #292c2f !important;\r\n    color: #8f9296;\r\n}\r\n\r\n.form-control {\r\n    width: 100% !important;\r\n}\r\n", ""]);
 
 // exports
 
@@ -141892,7 +141957,7 @@ exports = module.exports = __webpack_require__(2)();
 
 
 // module
-exports.push([module.i, "agm-map {\r\n    height: 300px;\r\n    width: 100%;\r\n}\r\n", ""]);
+exports.push([module.i, "h3 {\r\n    color:red\r\n}\r\n", ""]);
 
 // exports
 
@@ -141906,7 +141971,7 @@ exports = module.exports = __webpack_require__(2)();
 
 
 // module
-exports.push([module.i, ".loader {\r\n    border: 16px solid #f3f3f3;\r\n    border-radius: 50%;\r\n    border-top: 16px solid blue;\r\n    border-left: 16px solid blue;\r\n    border-bottom: 16px solid yellow;\r\n    border-right: 16px solid yellow;\r\n    -webkit-animation: spin 2s linear infinite;\r\n    animation: spin 2s linear infinite;\r\n    width: 65px;\r\n    height: 65px;\r\n    position: absolute;\r\n    top: 40%;\r\n    left: 50%;\r\n    z-index: 3000;\r\n}\r\n\r\n@-webkit-keyframes spin {\r\n    0% {\r\n        -webkit-transform: rotate(0deg);\r\n    }\r\n\r\n    100% {\r\n        -webkit-transform: rotate(360deg);\r\n    }\r\n}\r\n\r\n@keyframes spin {\r\n    0% {\r\n        transform: rotate(0deg);\r\n    }\r\n\r\n    100% {\r\n        transform: rotate(360deg);\r\n    }\r\n}\r\n", ""]);
+exports.push([module.i, "ul {\r\n    padding: 0;\r\n    width: 780px;\r\n}\r\n\r\nli {\r\n    display: inline;\r\n}\r\n\r\n.tn {\r\n    margin: 2px 0px;\r\n    box-shadow: #999 1px 1px 3px 1px;\r\n    cursor: pointer\r\n}\r\n\r\n.modal-content {\r\n    width: 670px !important;\r\n}\r\n\r\n.imageSelected {\r\n    width: 640px;\r\n    position: relative;\r\n}\r\n\r\n.tn {\r\n    width: 110px;\r\n    height: 100px;\r\n}\r\n\r\n.arrow-back, .arrow-forward {\r\n    position: absolute;\r\n    opacity: 0.6;\r\n    background-color: darkolivegreen;\r\n    padding: 10px;\r\n    top: 190px;\r\n    color: white;\r\n    cursor: pointer;\r\n}\r\n\r\n.arrow-forward {\r\n    left: 612px;\r\n}\r\n\r\n.arrow-back {\r\n    right: 612px;\r\n}\r\n", ""]);
 
 // exports
 
@@ -141920,7 +141985,7 @@ exports = module.exports = __webpack_require__(2)();
 
 
 // module
-exports.push([module.i, "a {\r\n    color:white!important;\r\n}\r\n    a:hover {\r\n        color: navy !important;\r\n    }\r\n.dropdowncolor {\r\n    background-color: #333;\r\n}", ""]);
+exports.push([module.i, "agm-map {\r\n    height: 300px;\r\n    width: 100%;\r\n}\r\n", ""]);
 
 // exports
 
@@ -141929,16 +141994,44 @@ exports.push([module.i, "a {\r\n    color:white!important;\r\n}\r\n    a:hover {
 /* 210 */
 /***/ (function(module, exports, __webpack_require__) {
 
+exports = module.exports = __webpack_require__(2)();
+// imports
+
+
+// module
+exports.push([module.i, ".loader {\r\n    border: 16px solid #f3f3f3;\r\n    border-radius: 50%;\r\n    border-top: 16px solid blue;\r\n    border-left: 16px solid blue;\r\n    border-bottom: 16px solid yellow;\r\n    border-right: 16px solid yellow;\r\n    -webkit-animation: spin 2s linear infinite;\r\n    animation: spin 2s linear infinite;\r\n    width: 65px;\r\n    height: 65px;\r\n    position: absolute;\r\n    top: 40%;\r\n    left: 50%;\r\n    z-index: 3000;\r\n}\r\n\r\n@-webkit-keyframes spin {\r\n    0% {\r\n        -webkit-transform: rotate(0deg);\r\n    }\r\n\r\n    100% {\r\n        -webkit-transform: rotate(360deg);\r\n    }\r\n}\r\n\r\n@keyframes spin {\r\n    0% {\r\n        transform: rotate(0deg);\r\n    }\r\n\r\n    100% {\r\n        transform: rotate(360deg);\r\n    }\r\n}\r\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 211 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(2)();
+// imports
+
+
+// module
+exports.push([module.i, "a {\r\n    color:white!important;\r\n}\r\n    a:hover {\r\n        color: navy !important;\r\n    }\r\n.dropdowncolor {\r\n    background-color: #333;\r\n}", ""]);
+
+// exports
+
+
+/***/ }),
+/* 212 */
+/***/ (function(module, exports, __webpack_require__) {
+
 module.exports = {
-  XmlEntities: __webpack_require__(212),
-  Html4Entities: __webpack_require__(211),
+  XmlEntities: __webpack_require__(214),
+  Html4Entities: __webpack_require__(213),
   Html5Entities: __webpack_require__(109),
   AllHtmlEntities: __webpack_require__(109)
 };
 
 
 /***/ }),
-/* 211 */
+/* 213 */
 /***/ (function(module, exports) {
 
 var HTML_ALPHA = ['apos', 'nbsp', 'iexcl', 'cent', 'pound', 'curren', 'yen', 'brvbar', 'sect', 'uml', 'copy', 'ordf', 'laquo', 'not', 'shy', 'reg', 'macr', 'deg', 'plusmn', 'sup2', 'sup3', 'acute', 'micro', 'para', 'middot', 'cedil', 'sup1', 'ordm', 'raquo', 'frac14', 'frac12', 'frac34', 'iquest', 'Agrave', 'Aacute', 'Acirc', 'Atilde', 'Auml', 'Aring', 'Aelig', 'Ccedil', 'Egrave', 'Eacute', 'Ecirc', 'Euml', 'Igrave', 'Iacute', 'Icirc', 'Iuml', 'ETH', 'Ntilde', 'Ograve', 'Oacute', 'Ocirc', 'Otilde', 'Ouml', 'times', 'Oslash', 'Ugrave', 'Uacute', 'Ucirc', 'Uuml', 'Yacute', 'THORN', 'szlig', 'agrave', 'aacute', 'acirc', 'atilde', 'auml', 'aring', 'aelig', 'ccedil', 'egrave', 'eacute', 'ecirc', 'euml', 'igrave', 'iacute', 'icirc', 'iuml', 'eth', 'ntilde', 'ograve', 'oacute', 'ocirc', 'otilde', 'ouml', 'divide', 'oslash', 'ugrave', 'uacute', 'ucirc', 'uuml', 'yacute', 'thorn', 'yuml', 'quot', 'amp', 'lt', 'gt', 'OElig', 'oelig', 'Scaron', 'scaron', 'Yuml', 'circ', 'tilde', 'ensp', 'emsp', 'thinsp', 'zwnj', 'zwj', 'lrm', 'rlm', 'ndash', 'mdash', 'lsquo', 'rsquo', 'sbquo', 'ldquo', 'rdquo', 'bdquo', 'dagger', 'Dagger', 'permil', 'lsaquo', 'rsaquo', 'euro', 'fnof', 'Alpha', 'Beta', 'Gamma', 'Delta', 'Epsilon', 'Zeta', 'Eta', 'Theta', 'Iota', 'Kappa', 'Lambda', 'Mu', 'Nu', 'Xi', 'Omicron', 'Pi', 'Rho', 'Sigma', 'Tau', 'Upsilon', 'Phi', 'Chi', 'Psi', 'Omega', 'alpha', 'beta', 'gamma', 'delta', 'epsilon', 'zeta', 'eta', 'theta', 'iota', 'kappa', 'lambda', 'mu', 'nu', 'xi', 'omicron', 'pi', 'rho', 'sigmaf', 'sigma', 'tau', 'upsilon', 'phi', 'chi', 'psi', 'omega', 'thetasym', 'upsih', 'piv', 'bull', 'hellip', 'prime', 'Prime', 'oline', 'frasl', 'weierp', 'image', 'real', 'trade', 'alefsym', 'larr', 'uarr', 'rarr', 'darr', 'harr', 'crarr', 'lArr', 'uArr', 'rArr', 'dArr', 'hArr', 'forall', 'part', 'exist', 'empty', 'nabla', 'isin', 'notin', 'ni', 'prod', 'sum', 'minus', 'lowast', 'radic', 'prop', 'infin', 'ang', 'and', 'or', 'cap', 'cup', 'int', 'there4', 'sim', 'cong', 'asymp', 'ne', 'equiv', 'le', 'ge', 'sub', 'sup', 'nsub', 'sube', 'supe', 'oplus', 'otimes', 'perp', 'sdot', 'lceil', 'rceil', 'lfloor', 'rfloor', 'lang', 'rang', 'loz', 'spades', 'clubs', 'hearts', 'diams'];
@@ -142091,7 +142184,7 @@ module.exports = Html4Entities;
 
 
 /***/ }),
-/* 212 */
+/* 214 */
 /***/ (function(module, exports) {
 
 var ALPHA_INDEX = {
@@ -142252,235 +142345,235 @@ module.exports = XmlEntities;
 
 
 /***/ }),
-/* 213 */
+/* 215 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"col-lg-6 col-lg-offset-3\">\r\n    <div class=\"row\">\r\n        <div class=\"text-center\">\r\n            <p class=\"lead\">\r\n                Даний сайт розроблено в підтримку волонтерського руху України.\r\n            </p>\r\n            <p class=\"lead\">\r\n                Основна мета ресурсу - створити майданчик, на якому небайдужі громадяни могли б ознайомитися з діяльністю\r\n                волонтерських оргаізацій, отримати детальну інформацію про те, яким чином ними були витрачені отримані кошти,\r\n                дізнатися про їх нагальні потреби та зробити пожертву.\r\n            </p>\r\n            <p class=\"lead\">\r\n                В свою чергу волонтерські організації, учасники даного ресурсу, мають змогу презентувати себе\r\n                та ділитися з громадянами новинами про свою діяльність.\r\n            </p>\r\n        </div>\r\n    </div>\r\n    <div class=\"row\">\r\n        <div class=\"text-center\">\r\n            <a [routerLink]=\"['']\"><img src=\"/images/volonter.jpg\"/></a>\r\n        </div>\r\n    </div>\r\n    <div class=\"row\">\r\n        <div class=\"text-center\">Розроблено:</div>\r\n        <h4 class=\"text-center\">Lv-242.Net Group</h4>\r\n        <div class=\"text-center\">\r\n            Витрикуш Тарас, Дмитрук Сергій, Желєзняк Віторія, Малиновський Борис,<br />\r\n            Медвідь Оксана, Сипа Василь, Теплюх Богдан, Фай Василь<br />\r\n        </div>\r\n        <div class=\"text-center\">\r\n            <a [routerLink]=\"['']\">www.fundtrack.com.ua</a>\r\n        </div>\r\n    </div>\r\n</div>\r\n";
 
 /***/ }),
-/* 214 */
+/* 216 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"col-lg-6 col-md-12\" *ngFor=\"let event of _model\">\r\n    <div class=\"panel panel-primary panel-size\">\r\n        <div class=\"panel-heading\">\r\n            <div class=\"panel-title pull-left\">\r\n                <a [routerLink]=\"['']\">{{event.organizationName}}</a>\r\n            </div>\r\n            <div class=\"panel-title pull-right\">\r\n                {{event.createDate | date:'shortDate'}}\r\n            </div>\r\n            <div class=\"clearfix\"></div>\r\n        </div>\r\n        <div class=\"panel-body panel-padding\">\r\n            <div class=\" pull-left div-panel-margen\">\r\n                <img src={{event.imageUrl}}/>\r\n            </div>\r\n            <div class=\"div-strings\">\r\n                {{event.description}}\r\n            </div>\r\n            <div class=\"pull-right\">\r\n                <a [routerLink]=\"['/home/eventdetail',event.id]\">Читати далі</a>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>";
 
 /***/ }),
-/* 215 */
+/* 217 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"col-lg-6\">\r\n   <h1>Will be soon</h1>\r\n</div>";
 
 /***/ }),
-/* 216 */
+/* 218 */
 /***/ (function(module, exports) {
 
 module.exports = "<link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css\">\r\n<div class=\"fixedHeader\">\r\n    <nav class=\"navbar navbar-default\">\r\n        <div class=\"container-fluid\">\r\n            <div class=\"navbar-header\">\r\n                <button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#bs-example-navbar-collapse-1\" aria-expanded=\"false\">\r\n                    <span class=\"sr-only\">Toggle navigation</span>\r\n                    <span class=\"icon-bar\"></span>\r\n                    <span class=\"icon-bar\"></span>\r\n                    <span class=\"icon-bar\"></span>\r\n                </button>\r\n                <a class=\"navbar-brand\" [routerLink]=\"['']\" (click)=\"callChild()\">Волонтерські організації <span>України</span></a>\r\n            </div>\r\n            <div class=\"collapse navbar-collapse\" id=\"bs-example-navbar-collapse-1\">\r\n                <ul class=\"nav navbar-nav\">\r\n                    <li><a [routerLink]=\"['about']\">Про нас</a></li>\r\n                </ul>\r\n                <form class=\"navbar-form navbar-left\">\r\n                    <dropdown-org></dropdown-org>\r\n                </form>\r\n                <form class=\"nav navbar-nav navbar-right\">\r\n                    <user-states></user-states>\r\n                </form>\r\n            </div>\r\n        </div>\r\n    </nav>\r\n</div>\r\n<div class=\"content\" style=\"margin-top:auto;\">\r\n    <div class=\"container-fluid\">\r\n        <router-outlet></router-outlet>\r\n    </div>\r\n</div>\r\n<footer class=\"footer footer-distributed\">\r\n    <div style=\"padding: 20px\">\r\n        <div class=\"footer-right\">\r\n            <a href=\"#\"><i class=\"fa fa-facebook\"></i></a>\r\n            <a href=\"#\"><i class=\"fa fa-twitter\"></i></a>\r\n            <a href=\"#\"><i class=\"fa fa-linkedin\"></i></a>\r\n            <a href=\"#\"><i class=\"fa fa-youtube\"></i></a>\r\n        </div>\r\n\r\n        <div class=\"footer-left\">\r\n            <p class=\"footer-links\">\r\n                <a [routerLink]=\"['']\">Наш солдат</a>\r\n                ·\r\n                <a href=\"#\">Блог</a>\r\n                ·\r\n                <a [routerLink]=\"['/about']\">Про нас</a>\r\n                ·\r\n                <a href=\"#\">Faq</a>\r\n                ·\r\n                <a href=\"#\">Контакти</a>\r\n            </p>\r\n            <p>FundTrack &copy; 2017</p>\r\n            <p>{{_versionNumber}}</p>\r\n        </div>\r\n    </div>\r\n</footer>";
 
 /***/ }),
-/* 217 */
+/* 219 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"loginmodal-container\">\r\n    <div>\r\n        <h3 class=\"col-md-4 col-md-offset-4\">Вхід в систему</h3>\r\n    </div>\r\n    <div class=\"col-md-4 col-md-offset-4 form-group has-feedback\">\r\n        <div class=\"input-group\">\r\n            <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-user\" aria-hidden=\"true\"></i></span>\r\n            <input name=\"login\" placeholder=\"Ваш логін\" type=\"text\"\r\n                   [(ngModel)]=\"loginModel.login\" class=\"form-control input-md\">\r\n        </div>\r\n    </div>\r\n    <!-- Text input-->\r\n    <div class=\"col-md-4 col-md-offset-4 form-group has-feedback\">\r\n        <div class=\"input-group\">\r\n            <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-lock\" aria-hidden=\"true\"></i></span>\r\n            <input name=\"password\" [type]=\"type\" placeholder=\"Ваш пароль\"\r\n                   [(ngModel)]=\"loginModel.password\"\r\n                   class=\"form-control input-md\">\r\n            <span class=\"input-group-addon\"><i [ngClass]=\"glyphyconEye\" (click)=\"showPassword()\" aria-hidden=\"true\"></i></span>\r\n        </div>\r\n    </div>\r\n    <!--Error-->\r\n    <div class=\"col-md-4 col-md-offset-4 form-group\">\r\n        <p class=\"error\" *ngIf=\"errorMessage\">{{errorMessage}}</p>\r\n    </div>\r\n    <!-- Button -->\r\n    <div class=\"col-md-4 col-md-offset-4 form-group\">\r\n        <div class=\"pull-right\">\r\n            <button id=\"submit\" name=\"submit\" class=\"btn btn-success\" (click)=\"login()\">Увійти</button>\r\n            <button id=\"submit\" name=\"submit\" class=\"btn btn-success\" (click)=\"loginWithFacebook('facebook')\">Увійти через Facebook</button>\r\n        </div>\r\n    </div>\r\n    <!--Register-->\r\n    <div class=\"login-help col-md-4 col-md-offset-4\">\r\n        <div class=\"pull-right\">\r\n            <div class=\"sidebar\">\r\n                <a [routerLink]=\"['/registration']\">Реєстрація - </a>\r\n                <a [routerLink]=\"['/begin_password_reset']\">Забули пароль</a>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n";
 
 /***/ }),
-/* 218 */
+/* 220 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"col-lg-12\" *ngIf=\"_eventDetail\">\r\n    <div class=\"panel panel-primary\">\r\n        <div class=\"panel-heading\">\r\n            <div class=\"panel-title pull-left\">\r\n                {{_eventDetail.organizationName}}\r\n            </div>\r\n            <div class=\"panel-title pull-right\">\r\n                {{_eventDetail.createDate | date:'shortDate' }}\r\n            </div>\r\n            <div class=\"clearfix\"></div>\r\n        </div>\r\n        <div class=\"panel-body panel-padding\">\r\n\r\n            <div class=\"carousel slide article-slide\" id=\"article-photo-carousel\">\r\n                <!-- Wrapper for slides -->\r\n                <div class=\"carousel-inner cont-slider\">\r\n                    <div class=\"item active\">\r\n                        <a [routerLink]=\"['']\"><img alt=\"\" title=\"\" src={{_eventDetail.imageUrl[0]}} class=\"img-big\"></a>\r\n                    </div>\r\n                </div>\r\n                <!-- Indicators -->\r\n                <ol class=\"carousel-indicators\">\r\n                    <li class=\"\" data-target=\"#article-photo-carousel\" *ngFor=\"let image of _eventDetail.imageUrl | slice:1; let i = index \" [attr.data-slide-to]=\"i+1\">\r\n                        <img alt=\"\" src={{image}}>\r\n                    </li>\r\n                </ol>\r\n            </div>\r\n\r\n            <div>\r\n                {{_eventDetail.description}}\r\n            </div>\r\n            <div class=\"pull-right\">\r\n                <a [routerLink]=\"['']\">Назад</a>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n\r\n\r\n<!--<div class=\"carousel slide article-slide\" id=\"article-photo-carousel\">-->\r\n    <!-- Wrapper for slides -->\r\n    <!--<div class=\"carousel-inner cont-slider\">\r\n        <div class=\"item active\">\r\n            <a [routerLink]=\"['']\"><img alt=\"\" title=\"\" src={{_eventDetail.imageUrl[0]}} class=\"img-big\"></a>\r\n        </div>\r\n        <div class=\"item\" *ngFor=\"let image of _eventDetail.imageUrl | slice:1\">\r\n            <a [routerLink]=\"['']\"><img alt=\"\" title=\"\" src={{image}} class=\"img-big\"></a>\r\n        </div>\r\n    </div>-->\r\n    <!-- Indicators -->\r\n    <!--<ol class=\"carousel-indicators\">\r\n        <li class=\"active\" data-slide-to=\"0\" data-target=\"#article-photo-carousel\">\r\n            <img alt=\"\" src={{_eventDetail.imageUrl[0]}}>\r\n        </li>\r\n        <li class=\"\" data-target=\"#article-photo-carousel\" *ngFor=\"let image of _eventDetail.imageUrl | slice:1; let i = index \" [attr.data-slide-to]=\"i+1\">\r\n            <img alt=\"\" src={{image}}>\r\n        </li>\r\n    </ol>\r\n</div>-->\r\n";
 
 /***/ }),
-/* 219 */
+/* 221 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"row\">\r\n    <div class=\"col-lg-2 nav-mn\">\r\n        <ul class=\"nav nav-pills nav-stacked lead\">\r\n            <li class=\"active\"><a data-toggle=\"pill\" [routerLink]=\"['/home/allevents']\"><span class=\"glyphicon glyphicon-calendar\"></span> Події</a></li>\r\n            <li class=\"active\"><a data-toggle=\"pill\" [routerLink]=\"['/home']\"><span class=\"glyphicon glyphicon-duplicate\"></span> Звіти</a></li>\r\n            <li class=\"active\"><a data-toggle=\"pill\" [routerLink]=\"['/home/allrequests']\"><span class=\"glyphicon glyphicon-gift\"></span> Потреби</a></li>\r\n            <li class=\"active\"><a data-toggle=\"pill\" [routerLink]=\"['/offer-management/mylist']\"><span class=\"glyphicon glyphicon-usd\"></span> Пожертвувати</a></li>\r\n            <li class=\"active\"><a data-toggle=\"pill\" [routerLink]=\"['/home']\"><span class=\"glyphicon glyphicon-briefcase\"></span> Запропонувати</a></li>\r\n            <li class=\"active\"><a data-toggle=\"pill\" [routerLink]=\"['/home']\"><span class=\"glyphicon glyphicon-camera\"></span> Фотографії</a></li>\r\n        </ul>\r\n    </div>\r\n    <div class=\"col-lg-10 pull-right\">\r\n        <router-outlet></router-outlet>\r\n    </div>\r\n</div>";
 
 /***/ }),
-/* 220 */
-/***/ (function(module, exports) {
-
-module.exports = "<div class=\"well container-fluid\">\r\n    <section>\r\n\r\n        <div class=\"input-list style-4 clearfix\">\r\n            <h3>Заголовок</h3>\r\n            <input type=\"text\">\r\n            <h3>Категорія</h3>\r\n            <h3>Підкатегорія</h3>\r\n            <div class=\"col-md-5\">\r\n                <input class=\"col-md-pull-0\" type=\"text\" name=\"product\" list=\"productName\" />\r\n                <datalist id=\"productName\">\r\n                    <option value=\"Pen\">Pen</option>\r\n                    <option value=\"Pencil\">Pencil</option>\r\n                    <option value=\"Paper\">Paper</option>\r\n                </datalist>\r\n            </div>\r\n            <div class=\"col-md-5 col-md-push-2\">\r\n                <input class=\"col-md-pull-0\" type=\"text\" name=\"product\" list=\"productName\" />\r\n                <datalist id=\"productName\">\r\n                    <option value=\"Pen\">Pen</option>\r\n                    <option value=\"Pencil\">Pencil</option>\r\n                    <option value=\"Paper\">Paper</option>\r\n                </datalist>\r\n            </div>\r\n        </div>\r\n    </section>\r\n</div>\r\n";
-
-/***/ }),
-/* 221 */
-/***/ (function(module, exports) {
-
-module.exports = "<div class=\"well container-fluid\" *ngFor=\"let offer of offers\">\r\n    <div class=\"row\">\r\n        <div class=\"col-md-3\">\r\n            <img class=\".img-thumbnail\" height=\"200\" width=\"200\" src=\"{{offer.imageUrl[0]}}\" alt=\"itemImage\" />\r\n        </div>\r\n        <div class=\"col-md-7\">\r\n            <div class=\"col-md-12\">\r\n                <h3> {{offer.name}}</h3>\r\n            </div>\r\n            <div class=\"col-md-12\">\r\n                {{offer.description|truncate : 350}}\r\n            </div>\r\n            <div class=\"col-md-12\" style=\"margin-top:40px;margin-left:-10px;\">\r\n                <div class=\"col-md-4\">\r\n                    <b>Дата створення:</b> {{date}}\r\n                </div>\r\n                <div class=\"col-md-2\">\r\n                    <b>Статус:</b> <b><span style=\"color:#46b2d6;\">{{offer.statusName}}</span></b>\r\n                </div>\r\n                <div class=\"col-md-6 col-md-push-2\">\r\n                        <b>Категорія:</b><br /><b><span>{{offer.goodsTypeName}} - {{offer.goodsCategoryName}}</span></b>\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"col-md-1\">\r\n            <div class=\"btn-group btn-group-vertical controlbutton\">\r\n                <button class=\"btn btn-default \">Змінити</button>\r\n                <button class=\"btn btn-default \">Деактивувати</button>\r\n                <button class=\"btn btn-danger \">Видалити</button>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>";
-
-/***/ }),
 /* 222 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\r\n    <div class=\"row\">\r\n        <div class=\"col-md-3\">\r\n            <p class=\"lead\">Речі</p>\r\n            <div class=\"table-responsive\">\r\n                <button type=\"button\" class=\"btn btn-default btn-lg btn-block\" [routerLink]=\"['./add']\">\r\n                    <span class=\"glyphicon glyphicon-thumbs-up\" aria-hidden=\"true\"></span> Запропонувати\r\n                </button>\r\n                <button type=\"button\" class=\"btn btn-default btn-lg btn-block\" [routerLink]=\"['./mylist']\">\r\n                    <span class=\"glyphicon glyphicon-list-alt\" aria-hidden=\"true\"></span> Мої пропозиції\r\n                </button>\r\n            </div>\r\n                <div class=\"panel panel-default\" style=\"margin-top:40px\">\r\n                    <div class=\"panel-heading\">Фільтрувати пропозиції по статусу:</div>\r\n                    <ul class=\"list-group\">\r\n                        <li class=\"list-group-item\">\r\n                            Активні\r\n                            <div class=\"material-switch pull-right\">\r\n                                <input id=\"someSwitchOptionInfo\" name=\"someSwitchOption001\" type=\"checkbox\" [(ngModel)]=\"showActive\" />\r\n                                <label for=\"someSwitchOptionInfo\" class=\"label-info\"></label>\r\n                            </div>\r\n                        </li>\r\n                        <li class=\"list-group-item\">\r\n                            Неактивні\r\n                            <div class=\"material-switch pull-right\">\r\n                                <input id=\"someSwitchOptionWarning\" name=\"someSwitchOption001\" type=\"checkbox\" [(ngModel)]=\"showInactive\" />\r\n                                <label for=\"someSwitchOptionWarning\" class=\"label-warning\"></label>\r\n                            </div>\r\n                        </li>\r\n                        <li class=\"list-group-item\">\r\n                            Видалені\r\n                            <div class=\"material-switch pull-right\">\r\n                                <input id=\"someSwitchOptionDanger\" name=\"someSwitchOption001\" type=\"checkbox\" [(ngModel)]=\"showRemoved\"  />\r\n                                <label for=\"someSwitchOptionDanger\" class=\"label-danger\"></label>\r\n                            </div>\r\n                        </li>\r\n                    </ul>\r\n                </div>\r\n        </div>\r\n        <div class=\"col-md-9\">\r\n            <router-outlet></router-outlet>\r\n        </div>\r\n    </div>\r\n</div>\r\n";
+module.exports = "<div class=\"well container-fluid\">\r\n    <section>\r\n\r\n        <div class=\"input-list style-4 clearfix\">\r\n            <h3>Заголовок</h3>\r\n            <input type=\"text\">\r\n            <div class=\"col-md-12\">\r\n                <div class=\"col-md-6\">\r\n                    <h3>Категорія</h3>\r\n                </div>\r\n                <div class=\"col-md-6 pull-right\">\r\n                    <h3>Підкатегорія</h3>\r\n                </div>\r\n            </div>\r\n            <div class=\"col-md-5\">\r\n                <select class=\"mdb-select\" [(ngModel)]=\"selectedItem.id\"\r\n                        (change)=\"onSelection($event.target.value)\">\r\n                    <option value=\"0\">Виберіть тип</option>\r\n                    <option *ngFor=\"let type of types \"\r\n                            value={{type.id}}>{{type.name}}\r\n                        </option>\r\n                    </select>>\r\n            </div>\r\n            <div class=\"col-md-5 col-md-push-2\">\r\n                <select>\r\n                    <option *ngIf='selectedItem.id==0' value=\"0\">Виберіть категорію</option>\r\n                    <option *ngFor=\"let category of categories \"\r\n                            value={{category.id}}>{{category.name}}\r\n                    </option>\r\n                </select>\r\n            </div>\r\n        </div>\r\n    </section>\r\n</div>\r\n";
 
 /***/ }),
 /* 223 */
 /***/ (function(module, exports) {
 
-module.exports = "<h2 class=\"text-center\">Всі події</h2>\r\n<div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">\r\n    <table *ngIf=\"_allEvents\" class=\"table-fill\">\r\n        <thead>\r\n            <tr>\r\n                <th class=\"text-left\">Дата події</th>\r\n                <th class=\"text-left\">Короткий опис</th>\r\n                <th class=\"text-left\">Редагувати</th>\r\n                <th class=\"text-left\">Видалити</th>\r\n            </tr>\r\n        </thead>\r\n        <tbody class=\"table-hover\">\r\n            <tr *ngFor=\"let event of _allEvents\">\r\n                <td class=\"text-left\">{{event.createDate|date:'shortTime'}}</td>\r\n                <td class=\"text-left\">{{event.description|truncate : 50}}</td>\r\n                <td class=\"text-center\">\r\n                    <button class=\"btn btn-default\">Редагувати</button>\r\n                </td>\r\n                <td class=\"text-center\">\r\n                    <button class=\"btn btn-default\">Видалити</button>\r\n                </td>\r\n            </tr>\r\n        </tbody>\r\n    </table>\r\n</div>";
+module.exports = "<div class=\"well container-fluid\" *ngFor=\"let offer of offers\">\r\n    <div class=\"row\">\r\n        <div class=\"col-md-3\">\r\n            <img class=\".img-thumbnail\" height=\"200\" width=\"200\" src=\"{{offer.imageUrl[0]}}\" alt=\"itemImage\" />\r\n        </div>\r\n        <div class=\"col-md-7\">\r\n            <div class=\"col-md-12\">\r\n                <h3> {{offer.name}}</h3>\r\n            </div>\r\n            <div class=\"col-md-12\">\r\n                {{offer.description|truncate : 350}}\r\n            </div>\r\n            <div class=\"col-md-12\" style=\"margin-top:40px;margin-left:-10px;\">\r\n                <div class=\"col-md-4\">\r\n                    <b>Дата створення:</b> {{date}}\r\n                </div>\r\n                <div class=\"col-md-2\">\r\n                    <b>Статус:</b> <b><span style=\"color:#46b2d6;\">{{offer.statusName}}</span></b>\r\n                </div>\r\n                <div class=\"col-md-6 col-md-push-2\">\r\n                        <b>Категорія:</b><br /><b><span>{{offer.goodsTypeName}} - {{offer.goodsCategoryName}}</span></b>\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"col-md-1\">\r\n            <div class=\"btn-group btn-group-vertical controlbutton\">\r\n                <button class=\"btn btn-default \">Змінити</button>\r\n                <button class=\"btn btn-default \">Деактивувати</button>\r\n                <button class=\"btn btn-danger \">Видалити</button>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>";
 
 /***/ }),
 /* 224 */
 /***/ (function(module, exports) {
 
-module.exports = "<form>\r\n    <div class=\"form-group\">\r\n        <label class=\"control-label\" for=\"itemName\">Назва:</label>\r\n        <input id=\"itemName\" class=\"form-control\" type=\"text\"\r\n               [(ngModel)]=\"_requestedItem.name\" name=\"itemName\" />\r\n    </div>\r\n\r\n    <div class=\"form-group\">\r\n        <label class=\"control-label\" for=\"itemDescription\">Опис:</label>\r\n        <textarea id=\"itemDescription\" class=\"form-control\" type=\"text\"\r\n               [(ngModel)]=\"_requestedItem.description\" name=\"itemDescription\"></textarea>\r\n    </div>\r\n\r\n    <div class=\"form-group\">\r\n        <label for=\"goodsType\">Тип</label>\r\n        <select id=\"goodsType\" class=\"form-control\" [(ngModel)]=\"_selecteType\" name=\"goodsType\">\r\n            <option selected=\"selected\">Виберіть тип</option>\r\n            <option *ngFor=\"let goodType of _goodsTypes\"\r\n                    [ngValue]=\"goodType\">\r\n                {{goodType.name}}\r\n            </option>\r\n        </select>\r\n    </div>\r\n\r\n    <div class=\"form-group\" *ngIf=\"_selecteType\">\r\n        <label for=\"categoryType\">Категорія</label>\r\n        <select id=\"categoryType\" class=\"form-control\" [(ngModel)]=\"_requestedItem.goodsCategoryId\" name=\"categoryType\">\r\n            <option selected=\"selected\">Виберіть категорію</option>\r\n            <option *ngFor=\"let category of _selecteType.typeCategories\"\r\n                    [value]=\"category.id\">\r\n                {{category.name}}\r\n            </option>\r\n        </select>\r\n    </div>\r\n    <button class=\"btn btn-default\" (click)=\"manageRequestedItems()\">Добавити</button>\r\n</form>";
+module.exports = "<div class=\"container\">\r\n    <div class=\"row\">\r\n        <div class=\"col-md-3\">\r\n            <p class=\"lead\">Речі</p>\r\n            <div class=\"table-responsive\">\r\n                <button type=\"button\" class=\"btn btn-default btn-lg btn-block\" [routerLink]=\"['./add']\">\r\n                    <span class=\"glyphicon glyphicon-thumbs-up\" aria-hidden=\"true\"></span> Запропонувати\r\n                </button>\r\n                <button type=\"button\" class=\"btn btn-default btn-lg btn-block\" [routerLink]=\"['./mylist']\">\r\n                    <span class=\"glyphicon glyphicon-list-alt\" aria-hidden=\"true\"></span> Мої пропозиції\r\n                </button>\r\n            </div>\r\n                <div class=\"panel panel-default\" style=\"margin-top:40px\">\r\n                    <div class=\"panel-heading\">Фільтрувати пропозиції по статусу:</div>\r\n                    <ul class=\"list-group\">\r\n                        <li class=\"list-group-item\">\r\n                            Активні\r\n                            <div class=\"material-switch pull-right\">\r\n                                <input id=\"someSwitchOptionInfo\" name=\"someSwitchOption001\" type=\"checkbox\" [(ngModel)]=\"showActive\" />\r\n                                <label for=\"someSwitchOptionInfo\" class=\"label-info\"></label>\r\n                            </div>\r\n                        </li>\r\n                        <li class=\"list-group-item\">\r\n                            Неактивні\r\n                            <div class=\"material-switch pull-right\">\r\n                                <input id=\"someSwitchOptionWarning\" name=\"someSwitchOption001\" type=\"checkbox\" [(ngModel)]=\"showInactive\" />\r\n                                <label for=\"someSwitchOptionWarning\" class=\"label-warning\"></label>\r\n                            </div>\r\n                        </li>\r\n                        <li class=\"list-group-item\">\r\n                            Видалені\r\n                            <div class=\"material-switch pull-right\">\r\n                                <input id=\"someSwitchOptionDanger\" name=\"someSwitchOption001\" type=\"checkbox\" [(ngModel)]=\"showRemoved\"  />\r\n                                <label for=\"someSwitchOptionDanger\" class=\"label-danger\"></label>\r\n                            </div>\r\n                        </li>\r\n                    </ul>\r\n                </div>\r\n        </div>\r\n        <div class=\"col-md-9\">\r\n            <router-outlet></router-outlet>\r\n        </div>\r\n    </div>\r\n</div>\r\n";
 
 /***/ }),
 /* 225 */
 /***/ (function(module, exports) {
 
-module.exports = "    <div class=\"modal fade\" id=\"deleteRequest\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\">\r\n    <div class=\"modal-dialog\" role=\"document\">\r\n        <div class=\"modal-content\">\r\n            <div class=\"modal-header\">\r\n                <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>\r\n                <h4 class=\"modal-title deleteModalTitle\" id=\"myModalLabel\">Видалити потребу</h4>\r\n            </div>\r\n            <div class=\"modal-body\">\r\n                <span>\r\n                    Підтвердіть видалення потреби\r\n                   \r\n                </span>\r\n            </div>\r\n            <div class=\"modal-footer\">\r\n                <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Закрити</button>\r\n                <button type=\"button\" class=\"btn btn-success\" (click)='deleteConfirmation()' data-dismiss=\"modal\">Видалити</button>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>";
+module.exports = "<h2 class=\"text-center\">Всі події</h2>\r\n<div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">\r\n    <table *ngIf=\"_allEvents\" class=\"table-fill\">\r\n        <thead>\r\n            <tr>\r\n                <th class=\"text-left\">Дата події</th>\r\n                <th class=\"text-left\">Короткий опис</th>\r\n                <th class=\"text-left\">Редагувати</th>\r\n                <th class=\"text-left\">Видалити</th>\r\n            </tr>\r\n        </thead>\r\n        <tbody class=\"table-hover\">\r\n            <tr *ngFor=\"let event of _allEvents\">\r\n                <td class=\"text-left\">{{event.createDate|date:'shortTime'}}</td>\r\n                <td class=\"text-left\">{{event.description|truncate : 50}}</td>\r\n                <td class=\"text-center\">\r\n                    <button class=\"btn btn-default\">Редагувати</button>\r\n                </td>\r\n                <td class=\"text-center\">\r\n                    <button class=\"btn btn-default\">Видалити</button>\r\n                </td>\r\n            </tr>\r\n        </tbody>\r\n    </table>\r\n</div>";
 
 /***/ }),
 /* 226 */
 /***/ (function(module, exports) {
 
-module.exports = "<h2 class=\"text-center\">Всі потреби</h2>\r\n<div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">\r\n    <table *ngIf=\"_allRequestedItems\" class=\"table-fill\">\r\n        <thead>\r\n            <tr>\r\n                <th class=\"text-left\">Назва</th>\r\n                <th class=\"text-left\">Категорія</th>\r\n                <th class=\"text-left\">Опис</th>\r\n                <th class=\"text-left\">Дії</th>\r\n            </tr>\r\n        </thead>\r\n        <tbody class=\"table-hover\">\r\n            <tr *ngFor=\"let requestedItem of _allRequestedItems\">\r\n                <td class=\"text-left\">{{requestedItem.name}}</td>\r\n                <td class=\"text-left\">{{requestedItem.goodsCategory}}</td>\r\n                <td class=\"text-left\">{{requestedItem.description}}</td>\r\n                <td class=\"text-center\">\r\n                    <button class=\"btn btn-default\" [routerLink]=\"['../create-request', requestedItem.id]\" >Редагувати</button>\r\n                    <button class=\"btn btn-danger\" (click)='setCurrentRequestedItem(requestedItem)' data-toggle=\"modal\" data-target=\"#deleteRequest\">Видалити</button>\r\n                </td>\r\n                <delete-request [itemToToDelete]='currentRequestedItem' (onSuccesfullDelete)=\"deleteRequestedItem()\"></delete-request>\r\n            </tr>\r\n        </tbody>\r\n    </table>\r\n    <button [routerLink]=\"['../create-request']\" class=\"btn btn-default pull-right\">Зареєструвати потребу</button>\r\n</div>\r\n";
+module.exports = "<form>\r\n    <div class=\"form-group\">\r\n        <label class=\"control-label\" for=\"itemName\">Назва:</label>\r\n        <input id=\"itemName\" class=\"form-control\" type=\"text\"\r\n               [(ngModel)]=\"_requestedItem.name\" name=\"itemName\" />\r\n    </div>\r\n\r\n    <div class=\"form-group\">\r\n        <label class=\"control-label\" for=\"itemDescription\">Опис:</label>\r\n        <textarea id=\"itemDescription\" class=\"form-control\" type=\"text\"\r\n               [(ngModel)]=\"_requestedItem.description\" name=\"itemDescription\"></textarea>\r\n    </div>\r\n\r\n    <div class=\"form-group\">\r\n        <label for=\"goodsType\">Тип</label>\r\n        <select id=\"goodsType\" class=\"form-control\" [(ngModel)]=\"_selecteType\" name=\"goodsType\">\r\n            <option selected=\"selected\">Виберіть тип</option>\r\n            <option *ngFor=\"let goodType of _goodsTypes\"\r\n                    [ngValue]=\"goodType\">\r\n                {{goodType.name}}\r\n            </option>\r\n        </select>\r\n    </div>\r\n\r\n    <div class=\"form-group\" *ngIf=\"_selecteType\">\r\n        <label for=\"categoryType\">Категорія</label>\r\n        <select id=\"categoryType\" class=\"form-control\" [(ngModel)]=\"_requestedItem.goodsCategoryId\" name=\"categoryType\">\r\n            <option selected=\"selected\">Виберіть категорію</option>\r\n            <option *ngFor=\"let category of _selecteType.typeCategories\"\r\n                    [value]=\"category.id\">\r\n                {{category.name}}\r\n            </option>\r\n        </select>\r\n    </div>\r\n    <button class=\"btn btn-default\" (click)=\"manageRequestedItems()\">Добавити</button>\r\n</form>";
 
 /***/ }),
 /* 227 */
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"wrapper\" [class.toggled]=\"!sideBarIsClosed\" *ngIf=\"_organization\">\r\n    <div class=\"overlay\"></div>\r\n    <nav class=\"navbar navbar-inverse navbar-fixed-top\" id=\"sidebar-wrapper\" role=\"navigation\">\r\n        <ul class=\"nav sidebar-nav\">\r\n            <li class=\"hidden-sm hidden-xs sidebar-brand\">{{_organization.name}}</li>\r\n            <li class=\"visible-sm visible-xs sidebar-brand\">Меню</li>\r\n            <li>\r\n                <a class=\"hidden-xs\" href=\"#\">Головна</a>\r\n                <a class=\"visible-xs\" href=\"\"><span class=\"glyphicon glyphicon-home\"></span></a>\r\n            </li>\r\n            <li>\r\n                <a class=\"hidden-xs\" [routerLink]=\"['all-events']\">Події</a>\r\n                <a class=\"visible-xs\" [routerLink]=\"['all-events']\"><span class=\"glyphicon glyphicon-bell\"></span></a>\r\n            </li>\r\n            <li class=\"dropdown\">\r\n                <a [routerLink]=\"['all-events']\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">Події <span class=\"caret\"></span></a>\r\n                <ul class=\"dropdown-menu\" role=\"menu\">\r\n                    <li class=\"dropdown-header\">Dropdown heading</li>\r\n                    <li><a href=\"#\">Створити подію</a></li>\r\n                </ul>\r\n            </li>\r\n            <li>\r\n                <a class=\"hidden-xs\" [routerLink]=\"['all-requests']\">Потреби</a>\r\n                <a class=\"visible-xs\" href=\"\"><span class=\"glyphicon glyphicon-bullhorn\"></span></a>\r\n            </li>\r\n            <li>\r\n                <a class=\"hidden-xs\" href=\"#\">Звіти</a>\r\n                <a class=\"visible-xs\" href=\"\"><span class=\"glyphicon glyphicon-briefcase\"></span></a>\r\n            </li>\r\n            <li>\r\n                <a class=\"hidden-xs\" href=\"#\">Налаштування</a>\r\n                <a class=\"visible-xs\" href=\"\"><span class=\"glyphicon glyphicon-cog\"></span></a>\r\n            </li>\r\n        </ul>\r\n    </nav>\r\n    <div class=\"row\">\r\n        <div class=\"col-lg-1 col-md-1 col-sm-1 col-xs-1\">\r\n            <button *ngIf=\"!sideBarIsClosed\" type=\"button\" class=\"hamburger is-open\" (click)=\"showSideBar()\" data-toggle=\"offcanvas\">\r\n                <span class=\"hamb-top\"></span>\r\n                <span class=\"hamb-middle\"></span>\r\n                <span class=\"hamb-bottom\"></span>\r\n            </button>\r\n            <button *ngIf=\"sideBarIsClosed\" type=\"button\" class=\"hamburger is-closed\" (click)=\"showSideBar()\" data-toggle=\"offcanvas\">\r\n                <span class=\"hamb-top\"></span>\r\n                <span class=\"hamb-middle\"></span>\r\n                <span class=\"hamb-bottom\"></span>\r\n            </button>\r\n        </div>\r\n        <div class=\"col-lg-11 col-md-11 col-sm-10 col-xs-10\">\r\n            <router-outlet></router-outlet>\r\n        </div>\r\n    </div>\r\n</div>";
+module.exports = "    <div class=\"modal fade\" id=\"deleteRequest\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\">\r\n    <div class=\"modal-dialog\" role=\"document\">\r\n        <div class=\"modal-content\">\r\n            <div class=\"modal-header\">\r\n                <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>\r\n                <h4 class=\"modal-title deleteModalTitle\" id=\"myModalLabel\">Видалити потребу</h4>\r\n            </div>\r\n            <div class=\"modal-body\">\r\n                <span>\r\n                    Підтвердіть видалення потреби\r\n                   \r\n                </span>\r\n            </div>\r\n            <div class=\"modal-footer\">\r\n                <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Закрити</button>\r\n                <button type=\"button\" class=\"btn btn-success\" (click)='deleteConfirmation()' data-dismiss=\"modal\">Видалити</button>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>";
 
 /***/ }),
 /* 228 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"col-md-4 col-md-offset-4\">\r\n    <div *ngIf=\"!emailSend\">\r\n        <div>\r\n            <h4 class=\"text-center\">Впишіть свій e-mail під яким ви зареєстровані в системі</h4>\r\n        </div>\r\n        <form [formGroup]=\"emailForm\" class=\"form-horizontal\" style=\"width: 400px\" novalidate>\r\n            <div class=\"form-group\" [class.has-error]=\"formErrors.email\"\r\n                                    [class.has-success]=\"!formErrors.email && emailForm.get('email').valid\">\r\n                <label class=\"control-label\" for=\"email\">Email</label>\r\n                <div class=\"input-group\">\r\n                    <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-envelope\" aria-hidden=\"true\"></i></span>\r\n                        <input placeholder=\"Ваш e-mail\"\r\n                               formControlName=\"email\" \r\n                               class=\"form-control input-md\" \r\n                               type=\"text\"                     \r\n                               [(ngModel)]=\"recoveryEmail.email\" />            \r\n                </div>  \r\n                <span *ngIf=\"formErrors.email\" class=\"has-error help-block fixedError\">\r\n                    {{ formErrors.email }}\r\n                </span>\r\n                <span *ngIf=\"errorMessage.length > 0\" class=\"text-danger\">\r\n                    {{errorMessage}}\r\n                </span>\r\n            </div>\r\n            <div class=\"form-group\">\r\n                <label class=\"control-label\" for=\"submit\"></label>\r\n                <button id=\"submit\"\r\n                        [disabled]=\"emailForm.invalid\"\r\n                        class=\"btn btn-primary pull-right\" \r\n                        (click)=\"sendEmail()\">Відправити Email</button>\r\n            </div>\r\n        </form>\r\n    </div>    \r\n    <div *ngIf=\"emailSend\">\r\n         <p>На пошту {{recoveryEmail.email}} був відправлений лист для відновлення паролю.</p>\r\n         <p>Якшо він не прийшов протягов 5 хвилин натисніть\r\n        <button (click)=\"sendEmail()\" class=\"btn btn-xs\">Відправити ще раз</button></p>\r\n    </div>\r\n</div>";
+module.exports = "<h2 class=\"text-center\">Всі потреби</h2>\r\n<div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">\r\n    <table *ngIf=\"_allRequestedItems\" class=\"table-fill\">\r\n        <thead>\r\n            <tr>\r\n                <th class=\"text-left\">Назва</th>\r\n                <th class=\"text-left\">Категорія</th>\r\n                <th class=\"text-left\">Опис</th>\r\n                <th class=\"text-left\">Дії</th>\r\n            </tr>\r\n        </thead>\r\n        <tbody class=\"table-hover\">\r\n            <tr *ngFor=\"let requestedItem of _allRequestedItems\">\r\n                <td class=\"text-left\">{{requestedItem.name}}</td>\r\n                <td class=\"text-left\">{{requestedItem.goodsCategory}}</td>\r\n                <td class=\"text-left\">{{requestedItem.description}}</td>\r\n                <td class=\"text-center\">\r\n                    <button class=\"btn btn-default\" [routerLink]=\"['../create-request', requestedItem.id]\" >Редагувати</button>\r\n                    <button class=\"btn btn-danger\" (click)='setCurrentRequestedItem(requestedItem)' data-toggle=\"modal\" data-target=\"#deleteRequest\">Видалити</button>\r\n                </td>\r\n                <delete-request [itemToToDelete]='currentRequestedItem' (onSuccesfullDelete)=\"deleteRequestedItem()\"></delete-request>\r\n            </tr>\r\n        </tbody>\r\n    </table>\r\n    <button [routerLink]=\"['../create-request']\" class=\"btn btn-default pull-right\">Зареєструвати потребу</button>\r\n</div>\r\n";
 
 /***/ }),
 /* 229 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"col-md-4 col-md-offset-4\">\r\n    <div *ngIf=\"!passwordChanged\">\r\n        <h3 class=\"text-center\">Створення нового паролю</h3>\r\n        <hr />\r\n        <form *ngIf=\"errorMessage.length == 0\" [formGroup]=\"passwordForm\" class=\"form-horizontal\" style=\"width: 400px\" novalidate>\r\n            <div class=\"form-group\" [class.has-error]=\"formErrors.password\"\r\n                 [class.has-success]=\"!formErrors.password && passwordForm.get('password').valid\">\r\n                <label class=\"control-label\" for=\"password\">Новий Пароль</label>\r\n                <div class=\"input-group\">\r\n                    <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-lock\" aria-hidden=\"true\"></i></span>\r\n                    <input placeholder=\"Ваш пароль\" \r\n                           class=\"form-control input-md\" \r\n                           [type]=\"type\"\r\n                           formControlName=\"password\"\r\n                           [(ngModel)]=\"resetPasswordModel.newPassword\" />\r\n                    <span class=\"input-group-addon\"><i [ngClass]=\"glyphyconEye\" (click)=\"showPassword()\" aria-hidden=\"true\"></i></span>\r\n                </div>\r\n                <span *ngIf=\"formErrors.password\" class=\"has-error help-block fixedError\">\r\n                    {{ formErrors.password }}\r\n                </span>\r\n            </div>\r\n\r\n            <div class=\"form-group\" [class.has-error]=\"formErrors.confirmPassword || passwordForm.hasError('mismatchedPasswords')\"\r\n                 [class.has-success]=\"!formErrors.confirmPassword && passwordForm.get('confirmPassword').valid\">\r\n                <label class=\"control-label\" for=\"confirmPassword\">Підтвердіть пароль</label>\r\n                <div class=\"input-group\">\r\n                    <span class=\"input-group-addon glyphicon glyphicon-lock\"><i aria-hidden=\"true\"></i></span>\r\n                    <input type=\"password\"\r\n                           placeholder=\"Підтвердіть пароль\"\r\n                           class=\"form-control input-md\"\r\n                           formControlName=\"confirmPassword\"\r\n                           [(ngModel)]=\"resetPasswordModel.newPasswordConfirm\" />\r\n                </div>\r\n                <div *ngIf=\"formErrors.confirmPassword || passwordForm.hasError('mismatchedPasswords')\" class=\"has-error help-block fixedError\">\r\n                    {{ formErrors.confirmPassword }}\r\n                </div>\r\n                <div *ngIf=\"passwordForm.hasError('mismatchedPasswords')\" class=\"has-error help-block fixedError\">Паролі не співпадають</div>\r\n            </div>\r\n\r\n            <div class=\"form-group\">\r\n                <label class=\"control-label\" for=\"submit\"></label>\r\n                <button id=\"submit\"\r\n                        class=\"btn btn-primary pull-right\"\r\n                        [disabled]=\"passwordForm.invalid\" \r\n                        (click)=\"changePassword()\">\r\n                Змінити Пароль\r\n                </button>               \r\n            </div>\r\n        </form>\r\n        <div *ngIf=\"errorMessage.length > 0\">\r\n            <h1 class=\"text-center text-danger\">{{errorMessage}}</h1>\r\n        </div>\r\n    </div>\r\n    <div *ngIf=\"passwordChanged\">\r\n       <h3>Ваш пароль було змінено.</h3> \r\n       <p>Будь ласка перейдіть на сторінку<a [routerLink]=\"['/login']\"> Логування</a></p>\r\n    </div>\r\n</div>\r\n";
+module.exports = "<div id=\"wrapper\" [class.toggled]=\"!sideBarIsClosed\" *ngIf=\"_organization\">\r\n    <div class=\"overlay\"></div>\r\n    <nav class=\"navbar navbar-inverse navbar-fixed-top\" id=\"sidebar-wrapper\" role=\"navigation\">\r\n        <ul class=\"nav sidebar-nav\">\r\n            <li class=\"hidden-sm hidden-xs sidebar-brand\">{{_organization.name}}</li>\r\n            <li class=\"visible-sm visible-xs sidebar-brand\">Меню</li>\r\n            <li>\r\n                <a class=\"hidden-xs\" href=\"#\">Головна</a>\r\n                <a class=\"visible-xs\" href=\"\"><span class=\"glyphicon glyphicon-home\"></span></a>\r\n            </li>\r\n            <li>\r\n                <a class=\"hidden-xs\" [routerLink]=\"['all-events']\">Події</a>\r\n                <a class=\"visible-xs\" [routerLink]=\"['all-events']\"><span class=\"glyphicon glyphicon-bell\"></span></a>\r\n            </li>\r\n            <li class=\"dropdown\">\r\n                <a [routerLink]=\"['all-events']\" class=\"dropdown-toggle\" data-toggle=\"dropdown\">Події <span class=\"caret\"></span></a>\r\n                <ul class=\"dropdown-menu\" role=\"menu\">\r\n                    <li class=\"dropdown-header\">Dropdown heading</li>\r\n                    <li><a href=\"#\">Створити подію</a></li>\r\n                </ul>\r\n            </li>\r\n            <li>\r\n                <a class=\"hidden-xs\" [routerLink]=\"['all-requests']\">Потреби</a>\r\n                <a class=\"visible-xs\" href=\"\"><span class=\"glyphicon glyphicon-bullhorn\"></span></a>\r\n            </li>\r\n            <li>\r\n                <a class=\"hidden-xs\" href=\"#\">Звіти</a>\r\n                <a class=\"visible-xs\" href=\"\"><span class=\"glyphicon glyphicon-briefcase\"></span></a>\r\n            </li>\r\n            <li>\r\n                <a class=\"hidden-xs\" href=\"#\">Налаштування</a>\r\n                <a class=\"visible-xs\" href=\"\"><span class=\"glyphicon glyphicon-cog\"></span></a>\r\n            </li>\r\n        </ul>\r\n    </nav>\r\n    <div class=\"row\">\r\n        <div class=\"col-lg-1 col-md-1 col-sm-1 col-xs-1\">\r\n            <button *ngIf=\"!sideBarIsClosed\" type=\"button\" class=\"hamburger is-open\" (click)=\"showSideBar()\" data-toggle=\"offcanvas\">\r\n                <span class=\"hamb-top\"></span>\r\n                <span class=\"hamb-middle\"></span>\r\n                <span class=\"hamb-bottom\"></span>\r\n            </button>\r\n            <button *ngIf=\"sideBarIsClosed\" type=\"button\" class=\"hamburger is-closed\" (click)=\"showSideBar()\" data-toggle=\"offcanvas\">\r\n                <span class=\"hamb-top\"></span>\r\n                <span class=\"hamb-middle\"></span>\r\n                <span class=\"hamb-bottom\"></span>\r\n            </button>\r\n        </div>\r\n        <div class=\"col-lg-11 col-md-11 col-sm-10 col-xs-10\">\r\n            <router-outlet></router-outlet>\r\n        </div>\r\n    </div>\r\n</div>";
 
 /***/ }),
 /* 230 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"col-lg-4 col-lg-offset-4\">\r\n    <spinner [showSpinner]=\"showUserRegistrationSpinner\"></spinner>\r\n    <form [formGroup]=\"registrationForm\" class=\"form-horizontal\" id=\"registrationForm\" novalidate>\r\n        <h3 class=\"formHeader text-center\">Реєстрація нового користувача</h3>\r\n        <div class=\"form-group\" [class.has-error]=\"formErrors.firstName\"\r\n             [class.has-success]=\"!formErrors.firstName && registrationForm.get('firstName').valid\">\r\n            <label class=\"control-label\" for=\"firstName\">Імя</label>\r\n            <div class=\"input-group\">\r\n                <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-user\" aria-hidden=\"true\"></i></span>\r\n                <input placeholder=\"Ваше імя\" type=\"text\" class=\"form-control\"\r\n                       formControlName=\"firstName\" [(ngModel)]=\"registrationViewModel.firstName\" />\r\n            </div>\r\n            <div>\r\n                <span *ngIf=\"formErrors.firstName\" class=\"has-error help-block fixedError\">\r\n                    {{ formErrors.firstName }}\r\n                </span>\r\n            </div>\r\n        </div>\r\n\r\n        <div class=\"form-group\" [class.has-error]=\"formErrors.lastName\"\r\n             [class.has-success]=\"!formErrors.lastName && registrationForm.get('lastName').valid\">\r\n            <label class=\"control-label\" for=\"lastName\">Прізвище</label>\r\n            <div class=\"input-group\">\r\n                <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-user\" aria-hidden=\"true\"></i></span>\r\n                <input placeholder=\"Ваше прізвище\" type=\"text\" class=\"form-control input-md\"\r\n                       formControlName=\"lastName\" [(ngModel)]=\"registrationViewModel.lastName\" />\r\n            </div>\r\n            <span *ngIf=\"formErrors.lastName\" class=\"has-error help-block fixedError\">\r\n                {{ formErrors.lastName }}\r\n            </span>\r\n        </div>\r\n\r\n        <div class=\"form-group\" [class.has-error]=\"formErrors.login\"\r\n             [class.has-success]=\"!formErrors.login && registrationForm.get('login').valid\">\r\n            <label class=\"control-label\" for=\"login\">Логін</label>\r\n            <div class=\"input-group\">\r\n                <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-user\" aria-hidden=\"true\"></i></span>\r\n                <input placeholder=\"Ваш логін\" type=\"text\" class=\"form-control input-md\"\r\n                       formControlName=\"login\" [(ngModel)]=\"registrationViewModel.login\" />\r\n            </div>\r\n            <span *ngIf=\"formErrors.login\" class=\"has-error help-block fixedError\">\r\n                {{ formErrors.login }}\r\n            </span>\r\n        </div>\r\n\r\n        <div class=\"form-group\" [class.has-error]=\"formErrors.email || errorMessage\"\r\n             [class.has-success]=\"!formErrors.email && registrationForm.get('email').valid\">\r\n            <label class=\"control-label\" for=\"email\">Email</label>\r\n            <div class=\"input-group\">\r\n                <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-envelope\" aria-hidden=\"true\"></i></span>\r\n                <input placeholder=\"Ваш e-mail\" class=\"form-control input-md\" type=\"text\"\r\n                       formControlName=\"email\" [(ngModel)]=\"registrationViewModel.email\" />\r\n            </div>\r\n            <span *ngIf=\"formErrors.email\" class=\"has-error help-block fixedError\">\r\n                {{ formErrors.email }}\r\n            </span>\r\n            <span *ngIf=\"errorMessage\">\r\n                <span class=\"has-error help-block fixedError\">{{errorMessage}}</span>\r\n            </span>\r\n        </div>\r\n\r\n        <div class=\"form-group\" [class.has-error]=\"formErrors.password\"\r\n             [class.has-success]=\"!formErrors.password && registrationForm.get('password').valid\">\r\n            <label class=\"control-label\" for=\"password\">Пароль</label>\r\n            <div class=\"input-group\">\r\n                <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-lock\" aria-hidden=\"true\"></i></span>\r\n                <input placeholder=\"Ваш пароль\" class=\"form-control input-md\" [type]=\"type\"\r\n                       formControlName=\"password\" [(ngModel)]=\"registrationViewModel.password\" />\r\n                <span class=\"input-group-addon\"><i [ngClass]=\"glyphyconEye\" (click)=\"showPassword()\" aria-hidden=\"true\"></i></span>\r\n            </div>\r\n            <span *ngIf=\"formErrors.password\" class=\"has-error help-block fixedError\">\r\n                {{ formErrors.password }}\r\n            </span>\r\n        </div>\r\n\r\n        <div class=\"form-group\" [class.has-error]=\"formErrors.confirmPassword || registrationForm.hasError('mismatchedPasswords')\"\r\n             [class.has-success]=\"!formErrors.confirmPassword && registrationForm.get('confirmPassword').valid\">\r\n            <label class=\"control-label\" for=\"confirmPassword\">Підтвердіть пароль</label>\r\n            <div class=\"input-group\">\r\n                <span class=\"input-group-addon glyphicon glyphicon-lock\"><i aria-hidden=\"true\"></i></span>\r\n                <input type=\"password\" placeholder=\"Підтвердіть пароль\" class=\"form-control input-md\"\r\n                       formControlName=\"confirmPassword\" [(ngModel)]=\"registrationViewModel.passwordConfirm\" />\r\n            </div>\r\n            <div *ngIf=\"formErrors.confirmPassword || registrationForm.hasError('mismatchedPasswords')\" class=\"has-error help-block fixedError\">\r\n                {{ formErrors.confirmPassword }}\r\n            </div>\r\n            <div *ngIf=\"registrationForm.hasError('mismatchedPasswords')\" class=\"has-error help-block fixedError\">Паролі не співпадають</div>\r\n        </div>\r\n\r\n        <div class=\"form-group\">\r\n            <label class=\"control-label\" for=\"submit\"></label>\r\n            <button id=\"submit\" class=\"btn btn-success pull-right\" [disabled]=\"registrationForm.invalid\" (click)=\"register()\">Зареєструватись</button>\r\n        </div>\r\n    </form>\r\n    </div>\r\n";
+module.exports = "<div class=\"col-md-4 col-md-offset-4\">\r\n    <div *ngIf=\"!emailSend\">\r\n        <div>\r\n            <h4 class=\"text-center\">Впишіть свій e-mail під яким ви зареєстровані в системі</h4>\r\n        </div>\r\n        <form [formGroup]=\"emailForm\" class=\"form-horizontal\" style=\"width: 400px\" novalidate>\r\n            <div class=\"form-group\" [class.has-error]=\"formErrors.email\"\r\n                                    [class.has-success]=\"!formErrors.email && emailForm.get('email').valid\">\r\n                <label class=\"control-label\" for=\"email\">Email</label>\r\n                <div class=\"input-group\">\r\n                    <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-envelope\" aria-hidden=\"true\"></i></span>\r\n                        <input placeholder=\"Ваш e-mail\"\r\n                               formControlName=\"email\" \r\n                               class=\"form-control input-md\" \r\n                               type=\"text\"                     \r\n                               [(ngModel)]=\"recoveryEmail.email\" />            \r\n                </div>  \r\n                <span *ngIf=\"formErrors.email\" class=\"has-error help-block fixedError\">\r\n                    {{ formErrors.email }}\r\n                </span>\r\n                <span *ngIf=\"errorMessage.length > 0\" class=\"text-danger\">\r\n                    {{errorMessage}}\r\n                </span>\r\n            </div>\r\n            <div class=\"form-group\">\r\n                <label class=\"control-label\" for=\"submit\"></label>\r\n                <button id=\"submit\"\r\n                        [disabled]=\"emailForm.invalid\"\r\n                        class=\"btn btn-primary pull-right\" \r\n                        (click)=\"sendEmail()\">Відправити Email</button>\r\n            </div>\r\n        </form>\r\n    </div>    \r\n    <div *ngIf=\"emailSend\">\r\n         <p>На пошту {{recoveryEmail.email}} був відправлений лист для відновлення паролю.</p>\r\n         <p>Якшо він не прийшов протягов 5 хвилин натисніть\r\n        <button (click)=\"sendEmail()\" class=\"btn btn-xs\">Відправити ще раз</button></p>\r\n    </div>\r\n</div>";
 
 /***/ }),
 /* 231 */
 /***/ (function(module, exports) {
 
-module.exports = "\r\n<div class=\"well container col-md-8 col-md-offset-2\" *ngIf=\"requestDetail\">\r\n    <a [routerLink]=\"['/home/allrequests']\" class=\"pull-right\">Усі запити</a>\r\n    <section>\r\n        <div class=\"input-list style-4 clearfix\">\r\n            <div *ngIf=\"requestDetail.imagesUrl\" class=\"col-md-2 col-md-offset-0\">\r\n                <gallery [datasource]=\"requestDetail.imagesUrl\"> </gallery>\r\n            </div>\r\n            <div class=\"col-md-8\">\r\n                <div class=\"col-md-8 childResourse\">\r\n                   <h5>{{requestDetail.name}}</h5>\r\n                </div>\r\n                <div class=\"col-md-8 childResourse\">\r\n                    Організації: {{requestDetail.organizationName}}\r\n                </div>\r\n                <div class=\"col-md-8 childResourse\">\r\n                    <b>Статус: </b> <b><span style=\"color:#46b2d6;\">{{requestDetail.statusName}}</span></b>\r\n                </div>\r\n                <div class=\"col-md-8 childResourse \">\r\n                    Тип: {{requestDetail.goodsTypeName}}\r\n                </div>\r\n                <div class=\"col-md-8 childResourse \">\r\n                    Категорія: {{requestDetail.goodsCategoryName}}\r\n                </div>\r\n                <div class=\"col-md-10 childResourse \">\r\n                    Опис:\r\n                    <h4>{{requestDetail.description}}</h4>\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <button id=\"submit\" name=\"submit\" class=\"btn btn-success pull-right\" (click)=\"onActionClick()\">Пожертвувати</button>\r\n    </section>\r\n</div>\r\n<app-modal>\r\n    <div class=\"app-modal-header\">\r\n        <button type=\"button\" class=\"close\" aria-hidden=\"true\" (click)=\"closeModal()\">&times;</button>\r\n        <h4 class=\"modal-title\">Контактні дані: </h4>\r\n    </div>\r\n    <div class=\"app-modal-body\">\r\n        <textarea class=\"form-control\" #description=\"ngModel\"\r\n                  (blur)=\"customeFieldTouched=true\"\r\n                  required\r\n                  [(ngModel)]=\"responseDescription\">\r\n        </textarea>\r\n        <div class=\"text-danger\" *ngIf=\"description.invalid && customeFieldTouched\">\r\n            Вкажіть інформацію, щоб ми могли з вами звязатися.\r\n        </div>\r\n    </div>\r\n    <div class=\"app-modal-footer\">\r\n        <button type=\"button\" class=\"btn btn-default\" (click)=\"closeModal()\">Закрити</button>\r\n        <button (click)=\"setUserResponse()\"\r\n                class=\"btn btn-primary\"\r\n                data-dismiss=\"modal\"\r\n                [disabled]=\"description.invalid\">\r\n            Надіслати\r\n        </button>\r\n    </div>\r\n</app-modal>\r\n";
+module.exports = "<div class=\"col-md-4 col-md-offset-4\">\r\n    <div *ngIf=\"!passwordChanged\">\r\n        <h3 class=\"text-center\">Створення нового паролю</h3>\r\n        <hr />\r\n        <form *ngIf=\"errorMessage.length == 0\" [formGroup]=\"passwordForm\" class=\"form-horizontal\" style=\"width: 400px\" novalidate>\r\n            <div class=\"form-group\" [class.has-error]=\"formErrors.password\"\r\n                 [class.has-success]=\"!formErrors.password && passwordForm.get('password').valid\">\r\n                <label class=\"control-label\" for=\"password\">Новий Пароль</label>\r\n                <div class=\"input-group\">\r\n                    <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-lock\" aria-hidden=\"true\"></i></span>\r\n                    <input placeholder=\"Ваш пароль\" \r\n                           class=\"form-control input-md\" \r\n                           [type]=\"type\"\r\n                           formControlName=\"password\"\r\n                           [(ngModel)]=\"resetPasswordModel.newPassword\" />\r\n                    <span class=\"input-group-addon\"><i [ngClass]=\"glyphyconEye\" (click)=\"showPassword()\" aria-hidden=\"true\"></i></span>\r\n                </div>\r\n                <span *ngIf=\"formErrors.password\" class=\"has-error help-block fixedError\">\r\n                    {{ formErrors.password }}\r\n                </span>\r\n            </div>\r\n\r\n            <div class=\"form-group\" [class.has-error]=\"formErrors.confirmPassword || passwordForm.hasError('mismatchedPasswords')\"\r\n                 [class.has-success]=\"!formErrors.confirmPassword && passwordForm.get('confirmPassword').valid\">\r\n                <label class=\"control-label\" for=\"confirmPassword\">Підтвердіть пароль</label>\r\n                <div class=\"input-group\">\r\n                    <span class=\"input-group-addon glyphicon glyphicon-lock\"><i aria-hidden=\"true\"></i></span>\r\n                    <input type=\"password\"\r\n                           placeholder=\"Підтвердіть пароль\"\r\n                           class=\"form-control input-md\"\r\n                           formControlName=\"confirmPassword\"\r\n                           [(ngModel)]=\"resetPasswordModel.newPasswordConfirm\" />\r\n                </div>\r\n                <div *ngIf=\"formErrors.confirmPassword || passwordForm.hasError('mismatchedPasswords')\" class=\"has-error help-block fixedError\">\r\n                    {{ formErrors.confirmPassword }}\r\n                </div>\r\n                <div *ngIf=\"passwordForm.hasError('mismatchedPasswords')\" class=\"has-error help-block fixedError\">Паролі не співпадають</div>\r\n            </div>\r\n\r\n            <div class=\"form-group\">\r\n                <label class=\"control-label\" for=\"submit\"></label>\r\n                <button id=\"submit\"\r\n                        class=\"btn btn-primary pull-right\"\r\n                        [disabled]=\"passwordForm.invalid\" \r\n                        (click)=\"changePassword()\">\r\n                Змінити Пароль\r\n                </button>               \r\n            </div>\r\n        </form>\r\n        <div *ngIf=\"errorMessage.length > 0\">\r\n            <h1 class=\"text-center text-danger\">{{errorMessage}}</h1>\r\n        </div>\r\n    </div>\r\n    <div *ngIf=\"passwordChanged\">\r\n       <h3>Ваш пароль було змінено.</h3> \r\n       <p>Будь ласка перейдіть на сторінку<a [routerLink]=\"['/login']\"> Логування</a></p>\r\n    </div>\r\n</div>\r\n";
 
 /***/ }),
 /* 232 */
 /***/ (function(module, exports) {
 
-module.exports = "<h2> Форма реєстрації організації</h2>\r\n<div>\r\n    <form #form=\"ngForm\">\r\n        <h4> Загальні відомості </h4>\r\n        <div class=\"form-group\" [class.has-error]=\"name.invalid&&name.touched\">\r\n            <label class=\"control-label\"> Назва організації</label>\r\n            <div class=\"inner-addon left-addon\">\r\n                <i class=\"glyphicon glyphicon-pencil\"></i>\r\n                <input type=\"text\" class=\"form-control\" [(ngModel)]=\"organization.name\" placeholder=\"Введіть назву\" required minlength=\"5\" maxlength=\"50\" name=\"name\" #name=\"ngModel\"/>\r\n            </div>\r\n             <div *ngIf=\"name.errors && (name.dirty || name.touched)\"\r\n                 class=\"alert alert-danger\">\r\n                <div [hidden]=\"!name.errors.required\">\r\n                    Назва організації обов'язкова\r\n                </div>\r\n                <div [hidden]=\"!name.errors.minlength\">\r\n                    Назва має містити принаймі 5 символів.\r\n                </div>\r\n                <div [hidden]=\"!name.errors.maxlength\">\r\n                    Назва не може перевищувати 50 символів.\r\n                </div>\r\n            </div>\r\n            <div class=\"alert-danger\">\r\n                {{nameError}}\r\n            </div>\r\n            </div>\r\n        <div class=\"form-group\" [class.has-error]=\"description.invalid&&description.touched\">\r\n            <label class=\"control-label\"> Опис організації </label>\r\n            <div class=\"inner-addon left-addon\">\r\n                <i class=\"glyphicon glyphicon-pencil\" *ngIf =\"!description.dirty\"></i> \r\n                <textarea class=\"form-control\" [(ngModel)]=\"organization.description\" required minlength=\"20\" placeholder=\"     Введіть опис\" maxlength=\"200\" name=\"description\" #description=\"ngModel\" rows=\"5\"> </textarea>\r\n            </div>\r\n            <div *ngIf=\"description.errors && (description.dirty || description.touched)\"\r\n                 class=\"alert alert-danger\">\r\n                <div [hidden]=\"!description.errors.required\">\r\n                    Опис організації обов'язковий\r\n                </div>\r\n                <div [hidden]=\"!description.errors.minlength\">\r\n                    Опис має містити принаймі 20 символів.\r\n                </div>\r\n                <div [hidden]=\"!description.errors.maxlength\">\r\n                    Опис не може перевищувати 100 символів.\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <h4> Представник </h4>\r\n        <div class=\"form-group\" [class.has-error]=\"login.invalid&&login.touched\">\r\n            <label class=\"control-label\"> Логін адміністратора</label>\r\n            <div class=\"inner-addon left-addon\">\r\n                <i class=\"glyphicon glyphicon-user\"></i>\r\n                <input type=\"text\" class=\"form-control\" required [(ngModel)]=\"organization.administratorLogin\" pattern=\"[a-zA-Z0-9_]*\" placeholder=\"Введіть логін адміністратора\" name=\"login\" #login=\"ngModel\" />\r\n            </div>\r\n            <div *ngIf=\"login.errors && (login.dirty || login.touched)\"\r\n                 class=\"alert alert-danger\">\r\n                <div [hidden]=\"!login.errors.required\">\r\n                    Логін адміністратора обов'язковий\r\n                </div>\r\n                <div [hidden]=\"!login.errors.pattern\">\r\n                    Введено недозволений символ\r\n                </div>\r\n            </div>\r\n            <div class=\"alert-danger\">\r\n                {{userError}}\r\n            </div>\r\n        </div>\r\n        <h4> Місцезнаходження</h4>\r\n        <!--\r\n        <button (click)=\"openModal()\"> Вибрати локацію</button>\r\n       \r\n         <app-modal>\r\n            <div class=\"app-modal-header\">\r\n                <h3>Додати місцезнаходження</h3>\r\n            </div>\r\n            <div class=\"app-modal-body\">\r\n                <map-component> </map-component>\r\n            </div>\r\n            <div class=\"app-modal-footer\">\r\n                <button type=\"button\" class=\"btn btn-default\" (click)=\"modal.hide()\">Закрити</button>\r\n            </div>\r\n        </app-modal> \r\n        -->\r\n        <div class=\"form-group\" [class.has-error]=\"city.invalid&&city.touched\">\r\n            <label class=\"control-label\"> Місто </label>\r\n            <div class=\"inner-addon left-addon\">\r\n                <i class=\"glyphicon glyphicon-home\"></i>\r\n                <input type=\"text\" class=\"form-control\" [(ngModel)]=\"organization.city\" placeholder=\"Введіть місто\" pattern=\"[А-Яа-яїЇіІ]*\" name=\"city\" #city=\"ngModel\" />\r\n            </div>\r\n            <div *ngIf=\"city.errors && (city.dirty || city.touched)\"\r\n                 class=\"alert alert-danger\">\r\n                <div [hidden]=\"!city.errors.required\">\r\n                    Місто обов'язкове\r\n                </div>\r\n                <div [hidden]=\"!city.errors.pattern\">\r\n                    Поле може містити лише кирилицю.\r\n                </div>\r\n            </div>\r\n            </div>\r\n        <div class=\"form-group\" [class.has-error]=\"street.invalid&&street.touched\" >\r\n            <label class=\"control-label\"> Вулиця </label>\r\n            <div class=\"inner-addon left-addon\">\r\n                <i class=\"glyphicon glyphicon-home\"></i>\r\n                <input type=\"text\" class=\"form-control\" [(ngModel)]=\"organization.street\" required placeholder=\"Введіть вулицю\" name=\"street\" #street=\"ngModel\" />\r\n            </div>\r\n            <div *ngIf=\"street.errors && (street.dirty || street.touched)\"\r\n                 class=\"alert alert-danger\">\r\n                <div [hidden]=\"!street.errors.required\">\r\n                    Вулиця обов'язкова\r\n                </div>\r\n            </div>\r\n        </div>\r\n          \r\n        <div class=\"form-group\" [class.has-error]=\"house.invalid&&house.touched\">\r\n            <label class=\"control-label\"> Будинок </label>\r\n            <div class=\"inner-addon left-addon\">\r\n                <i class=\"glyphicon glyphicon-home\"></i>\r\n                <input type=\"text\" class=\"form-control\" [(ngModel)]=\"organization.house\" placeholder=\"Введіть будинок\" name=\"house\" #house=\"ngModel\"/>\r\n            </div>\r\n            <div *ngIf=\"house.errors && (house.dirty || house.touched)\"\r\n                 class=\"alert alert-danger\">\r\n                <div [hidden]=\"!house.errors.required\">\r\n                    Будинок обов'язковий\r\n                </div>\r\n            </div>\r\n        </div>\r\n           \r\n        <button (click)=\"registerOrganization()\" class=\"btn btn-primary\" type=\"submit\" [disabled]=\"form.invalid\"> Зареєструвати </button>\r\n    </form>\r\n</div>";
+module.exports = "<div class=\"col-lg-4 col-lg-offset-4\">\r\n    <spinner [showSpinner]=\"showUserRegistrationSpinner\"></spinner>\r\n    <form [formGroup]=\"registrationForm\" class=\"form-horizontal\" id=\"registrationForm\" novalidate>\r\n        <h3 class=\"formHeader text-center\">Реєстрація нового користувача</h3>\r\n        <div class=\"form-group\" [class.has-error]=\"formErrors.firstName\"\r\n             [class.has-success]=\"!formErrors.firstName && registrationForm.get('firstName').valid\">\r\n            <label class=\"control-label\" for=\"firstName\">Імя</label>\r\n            <div class=\"input-group\">\r\n                <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-user\" aria-hidden=\"true\"></i></span>\r\n                <input placeholder=\"Ваше імя\" type=\"text\" class=\"form-control\"\r\n                       formControlName=\"firstName\" [(ngModel)]=\"registrationViewModel.firstName\" />\r\n            </div>\r\n            <div>\r\n                <span *ngIf=\"formErrors.firstName\" class=\"has-error help-block fixedError\">\r\n                    {{ formErrors.firstName }}\r\n                </span>\r\n            </div>\r\n        </div>\r\n\r\n        <div class=\"form-group\" [class.has-error]=\"formErrors.lastName\"\r\n             [class.has-success]=\"!formErrors.lastName && registrationForm.get('lastName').valid\">\r\n            <label class=\"control-label\" for=\"lastName\">Прізвище</label>\r\n            <div class=\"input-group\">\r\n                <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-user\" aria-hidden=\"true\"></i></span>\r\n                <input placeholder=\"Ваше прізвище\" type=\"text\" class=\"form-control input-md\"\r\n                       formControlName=\"lastName\" [(ngModel)]=\"registrationViewModel.lastName\" />\r\n            </div>\r\n            <span *ngIf=\"formErrors.lastName\" class=\"has-error help-block fixedError\">\r\n                {{ formErrors.lastName }}\r\n            </span>\r\n        </div>\r\n\r\n        <div class=\"form-group\" [class.has-error]=\"formErrors.login\"\r\n             [class.has-success]=\"!formErrors.login && registrationForm.get('login').valid\">\r\n            <label class=\"control-label\" for=\"login\">Логін</label>\r\n            <div class=\"input-group\">\r\n                <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-user\" aria-hidden=\"true\"></i></span>\r\n                <input placeholder=\"Ваш логін\" type=\"text\" class=\"form-control input-md\"\r\n                       formControlName=\"login\" [(ngModel)]=\"registrationViewModel.login\" />\r\n            </div>\r\n            <span *ngIf=\"formErrors.login\" class=\"has-error help-block fixedError\">\r\n                {{ formErrors.login }}\r\n            </span>\r\n        </div>\r\n\r\n        <div class=\"form-group\" [class.has-error]=\"formErrors.email || errorMessage\"\r\n             [class.has-success]=\"!formErrors.email && registrationForm.get('email').valid\">\r\n            <label class=\"control-label\" for=\"email\">Email</label>\r\n            <div class=\"input-group\">\r\n                <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-envelope\" aria-hidden=\"true\"></i></span>\r\n                <input placeholder=\"Ваш e-mail\" class=\"form-control input-md\" type=\"text\"\r\n                       formControlName=\"email\" [(ngModel)]=\"registrationViewModel.email\" />\r\n            </div>\r\n            <span *ngIf=\"formErrors.email\" class=\"has-error help-block fixedError\">\r\n                {{ formErrors.email }}\r\n            </span>\r\n            <span *ngIf=\"errorMessage\">\r\n                <span class=\"has-error help-block fixedError\">{{errorMessage}}</span>\r\n            </span>\r\n        </div>\r\n\r\n        <div class=\"form-group\" [class.has-error]=\"formErrors.password\"\r\n             [class.has-success]=\"!formErrors.password && registrationForm.get('password').valid\">\r\n            <label class=\"control-label\" for=\"password\">Пароль</label>\r\n            <div class=\"input-group\">\r\n                <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-lock\" aria-hidden=\"true\"></i></span>\r\n                <input placeholder=\"Ваш пароль\" class=\"form-control input-md\" [type]=\"type\"\r\n                       formControlName=\"password\" [(ngModel)]=\"registrationViewModel.password\" />\r\n                <span class=\"input-group-addon\"><i [ngClass]=\"glyphyconEye\" (click)=\"showPassword()\" aria-hidden=\"true\"></i></span>\r\n            </div>\r\n            <span *ngIf=\"formErrors.password\" class=\"has-error help-block fixedError\">\r\n                {{ formErrors.password }}\r\n            </span>\r\n        </div>\r\n\r\n        <div class=\"form-group\" [class.has-error]=\"formErrors.confirmPassword || registrationForm.hasError('mismatchedPasswords')\"\r\n             [class.has-success]=\"!formErrors.confirmPassword && registrationForm.get('confirmPassword').valid\">\r\n            <label class=\"control-label\" for=\"confirmPassword\">Підтвердіть пароль</label>\r\n            <div class=\"input-group\">\r\n                <span class=\"input-group-addon glyphicon glyphicon-lock\"><i aria-hidden=\"true\"></i></span>\r\n                <input type=\"password\" placeholder=\"Підтвердіть пароль\" class=\"form-control input-md\"\r\n                       formControlName=\"confirmPassword\" [(ngModel)]=\"registrationViewModel.passwordConfirm\" />\r\n            </div>\r\n            <div *ngIf=\"formErrors.confirmPassword || registrationForm.hasError('mismatchedPasswords')\" class=\"has-error help-block fixedError\">\r\n                {{ formErrors.confirmPassword }}\r\n            </div>\r\n            <div *ngIf=\"registrationForm.hasError('mismatchedPasswords')\" class=\"has-error help-block fixedError\">Паролі не співпадають</div>\r\n        </div>\r\n\r\n        <div class=\"form-group\">\r\n            <label class=\"control-label\" for=\"submit\"></label>\r\n            <button id=\"submit\" class=\"btn btn-success pull-right\" [disabled]=\"registrationForm.invalid\" (click)=\"register()\">Зареєструватись</button>\r\n        </div>\r\n    </form>\r\n    </div>\r\n";
 
 /***/ }),
 /* 233 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"modal fade\" id=\"banModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\" aria-hidden=\"true\">\r\n    <div class=\"modal-dialog\">\r\n        <div class=\"modal-content\">\r\n            <div class=\"modal-header panel-heading\">\r\n                <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button>\r\n                <h4 class=\"modal-title\">Причина Бану : </h4>\r\n            </div>\r\n            <div class=\"modal-body\">\r\n                <textarea #description=\"ngModel\" required [(ngModel)]=\"BanDescription\">                   \r\n                </textarea>           \r\n                <div class=\"alert alert-danger\" *ngIf=\"description.invalid && description.touched\">\r\n                    Повинна бути причина бану!\r\n                </div>  \r\n            </div>\r\n            <div class=\"modal-footer\">      \r\n                <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Закрити</button>\r\n                <button (click)=\"changeStatus()\"\r\n                        class=\"btn btn-primary\" \r\n                        data-dismiss=\"modal\"\r\n                        [disabled]=\"description.invalid && description.touched\">\r\n                    {{banStatus}}\r\n                </button>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>";
+module.exports = "\r\n<div class=\"well container col-md-8 col-md-offset-2\" *ngIf=\"requestDetail\">\r\n    <a [routerLink]=\"['/home/allrequests']\" class=\"pull-right\">Усі запити</a>\r\n    <section>\r\n        <div class=\"input-list style-4 clearfix\">\r\n            <div *ngIf=\"requestDetail.imagesUrl\" class=\"col-md-2 col-md-offset-0\">\r\n                <gallery [datasource]=\"requestDetail.imagesUrl\"> </gallery>\r\n            </div>\r\n            <div class=\"col-md-8\">\r\n                <div class=\"col-md-8 childResourse\">\r\n                   <h5>{{requestDetail.name}}</h5>\r\n                </div>\r\n                <div class=\"col-md-8 childResourse\">\r\n                    Організації: {{requestDetail.organizationName}}\r\n                </div>\r\n                <div class=\"col-md-8 childResourse\">\r\n                    <b>Статус: </b> <b><span style=\"color:#46b2d6;\">{{requestDetail.statusName}}</span></b>\r\n                </div>\r\n                <div class=\"col-md-8 childResourse \">\r\n                    Тип: {{requestDetail.goodsTypeName}}\r\n                </div>\r\n                <div class=\"col-md-8 childResourse \">\r\n                    Категорія: {{requestDetail.goodsCategoryName}}\r\n                </div>\r\n                <div class=\"col-md-10 childResourse \">\r\n                    Опис:\r\n                    <h4>{{requestDetail.description}}</h4>\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <button id=\"submit\" name=\"submit\" class=\"btn btn-success pull-right\" (click)=\"onActionClick()\">Пожертвувати</button>\r\n    </section>\r\n</div>\r\n<app-modal>\r\n    <div class=\"app-modal-header\">\r\n        <button type=\"button\" class=\"close\" aria-hidden=\"true\" (click)=\"closeModal()\">&times;</button>\r\n        <h4 class=\"modal-title\">Контактні дані: </h4>\r\n    </div>\r\n    <div class=\"app-modal-body\">\r\n        <textarea class=\"form-control\" #description=\"ngModel\"\r\n                  (blur)=\"customeFieldTouched=true\"\r\n                  required\r\n                  [(ngModel)]=\"responseDescription\">\r\n        </textarea>\r\n        <div class=\"text-danger\" *ngIf=\"description.invalid && customeFieldTouched\">\r\n            Вкажіть інформацію, щоб ми могли з вами звязатися.\r\n        </div>\r\n    </div>\r\n    <div class=\"app-modal-footer\">\r\n        <button type=\"button\" class=\"btn btn-default\" (click)=\"closeModal()\">Закрити</button>\r\n        <button (click)=\"setUserResponse()\"\r\n                class=\"btn btn-primary\"\r\n                data-dismiss=\"modal\"\r\n                [disabled]=\"description.invalid\">\r\n            Надіслати\r\n        </button>\r\n    </div>\r\n</app-modal>\r\n";
 
 /***/ }),
 /* 234 */
 /***/ (function(module, exports) {
 
-module.exports = "<h1>Here will be complaints</h1>";
+module.exports = "<h2> Форма реєстрації організації</h2>\r\n<div>\r\n    <form #form=\"ngForm\">\r\n        <h4> Загальні відомості </h4>\r\n        <div class=\"form-group\" [class.has-error]=\"name.invalid&&name.touched\">\r\n            <label class=\"control-label\"> Назва організації</label>\r\n            <div class=\"inner-addon left-addon\">\r\n                <i class=\"glyphicon glyphicon-pencil\"></i>\r\n                <input type=\"text\" class=\"form-control\" [(ngModel)]=\"organization.name\" placeholder=\"Введіть назву\" required minlength=\"5\" maxlength=\"50\" name=\"name\" #name=\"ngModel\"/>\r\n            </div>\r\n             <div *ngIf=\"name.errors && (name.dirty || name.touched)\"\r\n                 class=\"alert alert-danger\">\r\n                <div [hidden]=\"!name.errors.required\">\r\n                    Назва організації обов'язкова\r\n                </div>\r\n                <div [hidden]=\"!name.errors.minlength\">\r\n                    Назва має містити принаймі 5 символів.\r\n                </div>\r\n                <div [hidden]=\"!name.errors.maxlength\">\r\n                    Назва не може перевищувати 50 символів.\r\n                </div>\r\n            </div>\r\n            <div class=\"alert-danger\">\r\n                {{nameError}}\r\n            </div>\r\n            </div>\r\n        <div class=\"form-group\" [class.has-error]=\"description.invalid&&description.touched\">\r\n            <label class=\"control-label\"> Опис організації </label>\r\n            <div class=\"inner-addon left-addon\">\r\n                <i class=\"glyphicon glyphicon-pencil\" *ngIf =\"!description.dirty\"></i> \r\n                <textarea class=\"form-control\" [(ngModel)]=\"organization.description\" required minlength=\"20\" placeholder=\"     Введіть опис\" maxlength=\"200\" name=\"description\" #description=\"ngModel\" rows=\"5\"> </textarea>\r\n            </div>\r\n            <div *ngIf=\"description.errors && (description.dirty || description.touched)\"\r\n                 class=\"alert alert-danger\">\r\n                <div [hidden]=\"!description.errors.required\">\r\n                    Опис організації обов'язковий\r\n                </div>\r\n                <div [hidden]=\"!description.errors.minlength\">\r\n                    Опис має містити принаймі 20 символів.\r\n                </div>\r\n                <div [hidden]=\"!description.errors.maxlength\">\r\n                    Опис не може перевищувати 100 символів.\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <h4> Представник </h4>\r\n        <div class=\"form-group\" [class.has-error]=\"login.invalid&&login.touched\">\r\n            <label class=\"control-label\"> Логін адміністратора</label>\r\n            <div class=\"inner-addon left-addon\">\r\n                <i class=\"glyphicon glyphicon-user\"></i>\r\n                <input type=\"text\" class=\"form-control\" required [(ngModel)]=\"organization.administratorLogin\" pattern=\"[a-zA-Z0-9_]*\" placeholder=\"Введіть логін адміністратора\" name=\"login\" #login=\"ngModel\" />\r\n            </div>\r\n            <div *ngIf=\"login.errors && (login.dirty || login.touched)\"\r\n                 class=\"alert alert-danger\">\r\n                <div [hidden]=\"!login.errors.required\">\r\n                    Логін адміністратора обов'язковий\r\n                </div>\r\n                <div [hidden]=\"!login.errors.pattern\">\r\n                    Введено недозволений символ\r\n                </div>\r\n            </div>\r\n            <div class=\"alert-danger\">\r\n                {{userError}}\r\n            </div>\r\n        </div>\r\n        <h4> Місцезнаходження</h4>\r\n        <!--\r\n        <button (click)=\"openModal()\"> Вибрати локацію</button>\r\n       \r\n         <app-modal>\r\n            <div class=\"app-modal-header\">\r\n                <h3>Додати місцезнаходження</h3>\r\n            </div>\r\n            <div class=\"app-modal-body\">\r\n                <map-component> </map-component>\r\n            </div>\r\n            <div class=\"app-modal-footer\">\r\n                <button type=\"button\" class=\"btn btn-default\" (click)=\"modal.hide()\">Закрити</button>\r\n            </div>\r\n        </app-modal> \r\n        -->\r\n        <div class=\"form-group\" [class.has-error]=\"city.invalid&&city.touched\">\r\n            <label class=\"control-label\"> Місто </label>\r\n            <div class=\"inner-addon left-addon\">\r\n                <i class=\"glyphicon glyphicon-home\"></i>\r\n                <input type=\"text\" class=\"form-control\" [(ngModel)]=\"organization.city\" placeholder=\"Введіть місто\" pattern=\"[А-Яа-яїЇіІ]*\" name=\"city\" #city=\"ngModel\" />\r\n            </div>\r\n            <div *ngIf=\"city.errors && (city.dirty || city.touched)\"\r\n                 class=\"alert alert-danger\">\r\n                <div [hidden]=\"!city.errors.required\">\r\n                    Місто обов'язкове\r\n                </div>\r\n                <div [hidden]=\"!city.errors.pattern\">\r\n                    Поле може містити лише кирилицю.\r\n                </div>\r\n            </div>\r\n            </div>\r\n        <div class=\"form-group\" [class.has-error]=\"street.invalid&&street.touched\" >\r\n            <label class=\"control-label\"> Вулиця </label>\r\n            <div class=\"inner-addon left-addon\">\r\n                <i class=\"glyphicon glyphicon-home\"></i>\r\n                <input type=\"text\" class=\"form-control\" [(ngModel)]=\"organization.street\" required placeholder=\"Введіть вулицю\" name=\"street\" #street=\"ngModel\" />\r\n            </div>\r\n            <div *ngIf=\"street.errors && (street.dirty || street.touched)\"\r\n                 class=\"alert alert-danger\">\r\n                <div [hidden]=\"!street.errors.required\">\r\n                    Вулиця обов'язкова\r\n                </div>\r\n            </div>\r\n        </div>\r\n          \r\n        <div class=\"form-group\" [class.has-error]=\"house.invalid&&house.touched\">\r\n            <label class=\"control-label\"> Будинок </label>\r\n            <div class=\"inner-addon left-addon\">\r\n                <i class=\"glyphicon glyphicon-home\"></i>\r\n                <input type=\"text\" class=\"form-control\" [(ngModel)]=\"organization.house\" placeholder=\"Введіть будинок\" name=\"house\" #house=\"ngModel\"/>\r\n            </div>\r\n            <div *ngIf=\"house.errors && (house.dirty || house.touched)\"\r\n                 class=\"alert alert-danger\">\r\n                <div [hidden]=\"!house.errors.required\">\r\n                    Будинок обов'язковий\r\n                </div>\r\n            </div>\r\n        </div>\r\n           \r\n        <button (click)=\"registerOrganization()\" class=\"btn btn-primary\" type=\"submit\" [disabled]=\"form.invalid\"> Зареєструвати </button>\r\n    </form>\r\n</div>";
 
 /***/ }),
 /* 235 */
 /***/ (function(module, exports) {
 
-module.exports = "<p *ngIf=\"!arrayToDisplay\"><em>Loading...</em></p>\r\n\r\n<table class='table' *ngIf=\"arrayToDisplay\">\r\n    <thead>\r\n        <tr>\r\n            <th *ngFor=\"let header of headers\">\r\n                {{header}}\r\n            </th>\r\n        </tr>\r\n    </thead>\r\n    <tbody>\r\n        <tr *ngFor=\"let item of arrayToDisplay\">\r\n            <td class=\"text-left\">{{item.title}}</td>\r\n            <td>\r\n                <button class=\"btn custom-btn\" \r\n                        [class.btn-danger]=\"!item.isBanned\"\r\n                        [class.btn-success]=\"item.isBanned\"\r\n                        (click)=\"onActionClick(item)\">\r\n                    <div *ngIf=\"!item.isBanned\">Забанити</div>\r\n                    <div *ngIf=\"item.isBanned\">Відбанити</div>\r\n                </button>\r\n            </td>\r\n        </tr>\r\n    </tbody>\r\n</table>\r\n<app-modal>  \r\n    <div class=\"app-modal-header\">\r\n        <button type=\"button\" class=\"close\" aria-hidden=\"true\" (click)=\"closeModal()\">&times;</button>\r\n        <h4 class=\"modal-title\">Причина Бану : </h4>\r\n    </div>\r\n    <div class=\"app-modal-body\">\r\n        <textarea class=\"form-control\" #description=\"ngModel\"\r\n                  (blur)=\"customeFieldTouched=true\" \r\n                  required\r\n                  [disabled]=\"selectedItemStatus=='Відбанити'\"\r\n                  [(ngModel)]=\"selectedItemBanDescription\">                   \r\n        </textarea>\r\n        <div class=\"text-danger\" *ngIf=\"description.invalid && customeFieldTouched\">\r\n            Повинна бути причина бану!\r\n        </div>\r\n    </div>\r\n    <div class=\"app-modal-footer\">\r\n        <button type=\"button\" class=\"btn btn-default\" (click)=\"closeModal()\">Закрити</button>\r\n        <button (click)=\"statusChange(selectedItemBanDescription)\"\r\n                class=\"btn btn-primary\"\r\n                data-dismiss=\"modal\"\r\n                [disabled]=\"description.invalid\">\r\n            {{selectedItemStatus}}\r\n        </button>\r\n    </div>     \r\n</app-modal>\r\n";
+module.exports = "<div class=\"modal fade\" id=\"banModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\" aria-hidden=\"true\">\r\n    <div class=\"modal-dialog\">\r\n        <div class=\"modal-content\">\r\n            <div class=\"modal-header panel-heading\">\r\n                <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button>\r\n                <h4 class=\"modal-title\">Причина Бану : </h4>\r\n            </div>\r\n            <div class=\"modal-body\">\r\n                <textarea #description=\"ngModel\" required [(ngModel)]=\"BanDescription\">                   \r\n                </textarea>           \r\n                <div class=\"alert alert-danger\" *ngIf=\"description.invalid && description.touched\">\r\n                    Повинна бути причина бану!\r\n                </div>  \r\n            </div>\r\n            <div class=\"modal-footer\">      \r\n                <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Закрити</button>\r\n                <button (click)=\"changeStatus()\"\r\n                        class=\"btn btn-primary\" \r\n                        data-dismiss=\"modal\"\r\n                        [disabled]=\"description.invalid && description.touched\">\r\n                    {{banStatus}}\r\n                </button>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>";
 
 /***/ }),
 /* 236 */
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngIf=\"organizations\">\r\n    <super-admin-grid [arrayToDisplay]=\"organizations\" \r\n                      [headers]=\"['Назва Організації', 'Дія']\"\r\n                      (banStatusChange)=\"changeOrganizationBanStatus($event)\">\r\n\r\n    </super-admin-grid>\r\n</div>\r\n<div class=\"container-fluid\">\r\n    <div class=\"row\">\r\n        <div class=\"col-sm-2 castome-paging\">\r\n            На Сторінці :\r\n        </div>\r\n        <div class=\"text-left col-sm-2 castome-paging\">\r\n            <select-item [items]=\"[4, 5, 6, 7, 8, 9, 10]\"\r\n                         (onSelect)=\"itemsPerPageChange($event)\">\r\n            </select-item>\r\n        </div>\r\n        <div class=\"text-center\" *ngIf=\"totalItems && itemPerPage\">\r\n            <pagination-pages [offset]=\"offset\"\r\n                              [limit]=\"itemPerPage\"\r\n                              [size]=\"totalItems\"\r\n                              [currentPage]=\"currentPage\"\r\n                              (pageChange)=\"onPageChange($event)\">\r\n            </pagination-pages>\r\n        </div>  \r\n    </div>\r\n</div>";
+module.exports = "<h1>Here will be complaints</h1>";
 
 /***/ }),
 /* 237 */
 /***/ (function(module, exports) {
 
-module.exports = "<spinner [showSpinner]=\"showUsersSpinner\"></spinner>\r\n<div *ngIf=\"users\">\r\n    <super-admin-grid [arrayToDisplay]=\"users\"\r\n                      [headers]=\"['Логін Користувача', 'Дія']\"\r\n                      (banStatusChange)=\"changeUserBanStatus($event)\">\r\n    </super-admin-grid>\r\n</div>\r\n<div class=\"container-fluid\">\r\n    <div class=\"row\">\r\n        <div class=\"col-sm-2 castome-paging\">\r\n            На Сторінці :\r\n        </div>\r\n        <div class=\"text-left col-sm-2 castome-paging\">\r\n            <select-item [items]=\"[4, 5, 6, 7, 8, 9, 10]\"\r\n                         (onSelect)=\"itemsPerPageChange($event)\">\r\n            </select-item>\r\n        </div>\r\n        <div *ngIf=\"totalItems && itemPerPage\" class=\"text-center\">\r\n            <pagination-pages [offset]=\"offset\"\r\n                              [limit]=\"itemPerPage\"\r\n                              [size]=\"totalItems\"\r\n                              [currentPage]=\"currentPage\"\r\n                              (pageChange)=\"onPageChange($event)\">\r\n            </pagination-pages>\r\n        </div>\r\n    </div>\r\n</div>";
+module.exports = "<p *ngIf=\"!arrayToDisplay\"><em>Loading...</em></p>\r\n\r\n<table class='table' *ngIf=\"arrayToDisplay\">\r\n    <thead>\r\n        <tr>\r\n            <th *ngFor=\"let header of headers\">\r\n                {{header}}\r\n            </th>\r\n        </tr>\r\n    </thead>\r\n    <tbody>\r\n        <tr *ngFor=\"let item of arrayToDisplay\">\r\n            <td class=\"text-left\">{{item.title}}</td>\r\n            <td>\r\n                <button class=\"btn custom-btn\" \r\n                        [class.btn-danger]=\"!item.isBanned\"\r\n                        [class.btn-success]=\"item.isBanned\"\r\n                        (click)=\"onActionClick(item)\">\r\n                    <div *ngIf=\"!item.isBanned\">Забанити</div>\r\n                    <div *ngIf=\"item.isBanned\">Відбанити</div>\r\n                </button>\r\n            </td>\r\n        </tr>\r\n    </tbody>\r\n</table>\r\n<app-modal>  \r\n    <div class=\"app-modal-header\">\r\n        <button type=\"button\" class=\"close\" aria-hidden=\"true\" (click)=\"closeModal()\">&times;</button>\r\n        <h4 class=\"modal-title\">Причина Бану : </h4>\r\n    </div>\r\n    <div class=\"app-modal-body\">\r\n        <textarea class=\"form-control\" #description=\"ngModel\"\r\n                  (blur)=\"customeFieldTouched=true\" \r\n                  required\r\n                  [disabled]=\"selectedItemStatus=='Відбанити'\"\r\n                  [(ngModel)]=\"selectedItemBanDescription\">                   \r\n        </textarea>\r\n        <div class=\"text-danger\" *ngIf=\"description.invalid && customeFieldTouched\">\r\n            Повинна бути причина бану!\r\n        </div>\r\n    </div>\r\n    <div class=\"app-modal-footer\">\r\n        <button type=\"button\" class=\"btn btn-default\" (click)=\"closeModal()\">Закрити</button>\r\n        <button (click)=\"statusChange(selectedItemBanDescription)\"\r\n                class=\"btn btn-primary\"\r\n                data-dismiss=\"modal\"\r\n                [disabled]=\"description.invalid\">\r\n            {{selectedItemStatus}}\r\n        </button>\r\n    </div>     \r\n</app-modal>\r\n";
 
 /***/ }),
 /* 238 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">    \r\n    <div class=\"side-menu\">\r\n        <nav class=\"navbar navbar-default\" role=\"navigation\">           \r\n            <div class=\"side-menu-container\">\r\n                <ul class=\"nav navbar-nav\">\r\n                    <li [routerLinkActive]=\"['link-active']\">\r\n                        <a [routerLink]=\"['/superadmin']\">\r\n                            <span class=\"glyphicon glyphicon-user\"></span>\r\n                                Super Admin\r\n                        </a>\r\n                    </li>\r\n                    <li [routerLinkActive]=\"['link-active']\">\r\n                        <a [routerLink]=\"['complaints']\">\r\n                            <span class=\"glyphicon glyphicon-envelope\"></span> \r\n                            Скарги\r\n                        </a>\r\n                    </li>\r\n                    <li [routerLinkActive]=\"['link-active']\">\r\n                        <a [routerLink] =\"['register-organization']\">\r\n                            <span class=\"glyphicon glyphicon-plus\"></span> \r\n                            Додати Організацію\r\n                        </a>\r\n                    </li>\r\n                    <li [routerLinkActive]=\"['link-active']\">\r\n                        <a [routerLink]=\"['organizations']\">\r\n                            <span class=\"glyphicon glyphicon-th-list\"></span> \r\n                            Організації\r\n                        </a>\r\n                    </li>                 \r\n                    <li [routerLinkActive]=\"['link-active']\">\r\n                        <a [routerLink]=\"['users']\"><span class=\"glyphicon glyphicon-th-list\"></span> \r\n                            Користувачі\r\n                        </a>\r\n                    </li>\r\n                </ul>\r\n            </div>\r\n        </nav> \r\n    </div>\r\n    <div class=\"side-body\">      \r\n        <router-outlet></router-outlet>\r\n    </div>\r\n</div>\r\n";
+module.exports = "<div *ngIf=\"organizations\">\r\n    <super-admin-grid [arrayToDisplay]=\"organizations\" \r\n                      [headers]=\"['Назва Організації', 'Дія']\"\r\n                      (banStatusChange)=\"changeOrganizationBanStatus($event)\">\r\n\r\n    </super-admin-grid>\r\n</div>\r\n<div class=\"container-fluid\">\r\n    <div class=\"row\">\r\n        <div class=\"col-sm-2 castome-paging\">\r\n            На Сторінці :\r\n        </div>\r\n        <div class=\"text-left col-sm-2 castome-paging\">\r\n            <select-item [items]=\"[4, 5, 6, 7, 8, 9, 10]\"\r\n                         (onSelect)=\"itemsPerPageChange($event)\">\r\n            </select-item>\r\n        </div>\r\n        <div class=\"text-center\" *ngIf=\"totalItems && itemPerPage\">\r\n            <pagination-pages [offset]=\"offset\"\r\n                              [limit]=\"itemPerPage\"\r\n                              [size]=\"totalItems\"\r\n                              [currentPage]=\"currentPage\"\r\n                              (pageChange)=\"onPageChange($event)\">\r\n            </pagination-pages>\r\n        </div>  \r\n    </div>\r\n</div>";
 
 /***/ }),
 /* 239 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\r\n    <h3 class=\"page-header\">Редагування профілю</h3>\r\n    <div class=\"row\">\r\n        <div class=\"col-md-4 col-sm-6 col-xs-12\">\r\n            <div class=\"text-center\">\r\n                <img src=\"{{user.photoUrl}}\" class=\"avatar img-responsive img-thumbnail\" style=\"border:none\" alt=\"avatar\" height=\"350\" width=\"250\">\r\n                <input type=\"file\" (change)=\"saveFileInAws($event)\" #imageInput accept=\".png,.jpg\" class=\"text-center center-block well well-sm hidden\">\r\n                <button type=\"button\" class=\"btn btn-success\" (click)=\"imageInput.click()\">Завантажити інше фото</button>\r\n                <hr />\r\n                <button type=\"button\" class=\"btn btn-primary\" (click)=\"onPasswordChange()\">Змінити пароль</button>\r\n            </div>\r\n        </div>\r\n        <div class=\"col-md-8 col-sm-6 col-xs-12 personal-info\">\r\n            <div class=\"alert alert-info alert-dismissable\">\r\n                <a class=\"panel-close close\" data-dismiss=\"alert\">×</a>\r\n                <i class=\"fa fa-coffee\"></i> Тут можна показувати сповіщення для юзера\r\n            </div>\r\n            <h3>Особисті дані</h3>\r\n            <form [formGroup]=\"userForm\" class=\"form-horizontal\" style=\"width:400px;padding-left:20px;\" (ngSubmit)=\"onSubmit()\">\r\n                <div class=\"form-group\">\r\n                    <label class=\"control-label\" for=\"login\">Логін</label>\r\n                    <div class=\"input-group\">\r\n                        <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-user\" aria-hidden=\"true\"></i></span>\r\n                        <input type=\"text\" disabled class=\"form-control\" name=\"user.login\" formControlName=\"login\" [(ngModel)]=\"user.login\" />\r\n                    </div>\r\n                </div>\r\n                <div class=\"form-group\" [class.has-error]=\"formErrors.firstName\" [class.has-success]=\"!formErrors.firstName && userForm.get('firstName').valid\">\r\n                    <label class=\"control-label\" for=\"firstName\">Ім'я</label>\r\n                    <div class=\"input-group\">\r\n                        <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-user\" aria-hidden=\"true\"></i></span>\r\n                        <input type=\"text\" class=\"form-control\" formControlName=\"firstName\" [(ngModel)]=\"user.firstName\" />\r\n                    </div>\r\n                    <div>\r\n                        <span *ngIf=\"formErrors.firstName\" class=\"has-error help-block fixedError\">\r\n                            {{ formErrors.firstName }}\r\n                        </span>\r\n                    </div>\r\n                </div>\r\n                <div class=\"form-group\" [class.has-error]=\"formErrors.lastName\" [class.has-success]=\"!formErrors.lastName && userForm.get('lastName').valid\">\r\n                    <label class=\"control-label\" for=\"user.lastName\">Прізвище</label>\r\n                    <div class=\"input-group\">\r\n                        <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-user\" aria-hidden=\"true\"></i></span>\r\n                        <input type=\"text\" class=\"form-control input-md\" formControlName=\"lastName\" [(ngModel)]=\"user.lastName\" />\r\n                    </div>\r\n                    <span *ngIf=\"formErrors.lastName\" class=\"has-error help-block fixedError\">\r\n                        {{ formErrors.lastName }}\r\n                    </span>\r\n                </div>\r\n                <div class=\"form-group\" [class.has-error]=\"formErrors.address\" [class.has-success]=\"!formErrors.email && userForm.get('address').valid\">\r\n                    <label class=\"control-label\" for=\"address\">Адреса</label>\r\n                    <div class=\"input-group\">\r\n                        <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-envelope\" aria-hidden=\"true\"></i></span>\r\n                        <input class=\"form-control input-md\" type=\"text\" formControlName=\"address\" [(ngModel)]=\"user.address\" />\r\n                    </div>\r\n                    <span *ngIf=\"formErrors.address\" class=\"has-error help-block fixedError\">\r\n                        {{ formErrors.address }}\r\n                    </span>\r\n                </div>\r\n                <div class=\"form-group\" [class.has-error]=\"formErrors.email\" [class.has-success]=\"!formErrors.email && userForm.get('email').valid\">\r\n                    <label class=\"control-label\" for=\"email\">Email</label>\r\n                    <div class=\"input-group\">\r\n                        <span class=\"input-group-addon\"><i aria-hidden=\"true\">@</i></span>\r\n                        <input class=\"form-control input-md\" type=\"text\" formControlName=\"email\" [(ngModel)]=\"user.email\" />\r\n                    </div>\r\n                    <span *ngIf=\"formErrors.email\" class=\"has-error help-block fixedError\">\r\n                        {{ formErrors.email }}\r\n                    </span>\r\n                </div>\r\n                <div class=\"form-group\">\r\n                    <label class=\"control-label\"></label>\r\n                    <button type=\"submit\" class=\"btn btn-primary\" [disabled]=\"!userForm.valid\">Зберегти</button>\r\n                </div>\r\n            </form>\r\n        </div>\r\n    </div>\r\n</div>\r\n<app-modal>\r\n    <div class=\"app-modal-header\">\r\n        <h3>Змінити пароль</h3>\r\n    </div>\r\n    <div class=\"app-modal-body\">\r\n        <form [formGroup]=\"passwordForm\" class=\"form-horizontal\" novalidate>\r\n            <div class=\"form-group\" [class.has-error]=\"formErrors.oldPassword\"\r\n                 [class.has-success]=\"!formErrors.oldPassword && passwordForm.get('oldPassword').valid\">\r\n                <label class=\"col-md-3 control-label\" for=\"oldPassword\">Старий пароль</label>\r\n                <div class=\"col-md-8 input-group\">\r\n                    <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-lock\" aria-hidden=\"true\"></i></span>\r\n                    <input class=\"form-control input-md\" type=\"password\"\r\n                           formControlName=\"oldPassword\" [(ngModel)]=\"passwordContainer.oldPassword\" />\r\n                </div>\r\n                <span *ngIf=\"formErrors.oldPassword\" class=\"has-error help-block fixedError\" style=\"margin-left:200px\">\r\n                    {{ formErrors.oldPassword }}\r\n                </span>\r\n            </div>\r\n            <div class=\"form-group\" [class.has-error]=\"formErrors.newPassword\"\r\n                 [class.has-success]=\"!formErrors.newPassword && passwordForm.get('newPassword').valid\">\r\n                <label class=\"col-md-3 control-label\" for=\"newPassword\">Новий пароль</label>\r\n                <div class=\"col-md-8 input-group\">\r\n                    <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-lock\" aria-hidden=\"true\"></i></span>\r\n                    <input class=\"form-control input-md\" type=\"password\"\r\n                           formControlName=\"newPassword\" [(ngModel)]=\"passwordContainer.newPassword\" />\r\n                </div>\r\n                <span *ngIf=\"formErrors.newPassword\" class=\"has-error help-block fixedError\" style=\"margin-left:200px\">\r\n                    {{ formErrors.newPassword }}\r\n                </span>\r\n            </div>\r\n            <div class=\"form-group\" [class.has-error]=\"formErrors.newPasswordConfirmation\"\r\n                 [class.has-success]=\"!formErrors.newPasswordConfirmation && passwordForm.get('newPasswordConfirmation').valid\">\r\n                <label class=\"col-md-3 control-label\" for=\"newPasswordConfirmation\">Підтвердження пароля</label>\r\n                <div class=\"col-md-8 input-group\">\r\n                    <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-lock\" aria-hidden=\"true\"></i></span>\r\n                    <input class=\"form-control input-md\" type=\"password\"\r\n                           formControlName=\"newPasswordConfirmation\" [(ngModel)]=\"passwordContainer.newPasswordConfirmation\" />\r\n                </div>\r\n                <span *ngIf=\"formErrors.newPasswordConfirmation\" class=\"has-error help-block fixedError\" style=\"margin-left:200px\" >\r\n                    {{ formErrors.newPasswordConfirmation }}\r\n                </span>\r\n            </div>\r\n            <span *ngIf=\"passwordForm.hasError('mismatchedPasswords')\" class=\"has-error help-block fixedError\" style=\"margin-left:200px\"\r\n                 >Паролі не співпадають</span>\r\n        </form>\r\n    </div>\r\n    <div class=\"app-modal-footer\">\r\n        <button type=\"button\" class=\"btn btn-default\" (click)=\"modal.hide()\">Закрити</button>\r\n        <button type=\"button\" class=\"btn btn-primary\" [disabled]=\"passwordForm.invalid\" (click)=\"changePassword()\">Зберегти</button>\r\n        <div class=\"col-md-4 col-md-offset-4 form-group\">\r\n            <p class=\"error\" *ngIf=\"errorMessage\"><span class=\"text-danger\">{{errorMessage}}</span></p>\r\n        </div>\r\n    </div>\r\n</app-modal>";
+module.exports = "<spinner [showSpinner]=\"showUsersSpinner\"></spinner>\r\n<div *ngIf=\"users\">\r\n    <super-admin-grid [arrayToDisplay]=\"users\"\r\n                      [headers]=\"['Логін Користувача', 'Дія']\"\r\n                      (banStatusChange)=\"changeUserBanStatus($event)\">\r\n    </super-admin-grid>\r\n</div>\r\n<div class=\"container-fluid\">\r\n    <div class=\"row\">\r\n        <div class=\"col-sm-2 castome-paging\">\r\n            На Сторінці :\r\n        </div>\r\n        <div class=\"text-left col-sm-2 castome-paging\">\r\n            <select-item [items]=\"[4, 5, 6, 7, 8, 9, 10]\"\r\n                         (onSelect)=\"itemsPerPageChange($event)\">\r\n            </select-item>\r\n        </div>\r\n        <div *ngIf=\"totalItems && itemPerPage\" class=\"text-center\">\r\n            <pagination-pages [offset]=\"offset\"\r\n                              [limit]=\"itemPerPage\"\r\n                              [size]=\"totalItems\"\r\n                              [currentPage]=\"currentPage\"\r\n                              (pageChange)=\"onPageChange($event)\">\r\n            </pagination-pages>\r\n        </div>\r\n    </div>\r\n</div>";
 
 /***/ }),
 /* 240 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\r\n    <div class=\"btn-group\">\r\n        <button type=\"button\" class=\"btn btn-info dropdown-toggle\" data-toggle=\"dropdown\">\r\n            {{_selectedOrganizationName ? _selectedOrganizationName : 'Список організацій'}}\r\n            <span class=\"caret\"></span>\r\n        </button>\r\n        <ul class=\"dropdown-menu scrollable-menu\" role=\"menu\">\r\n            <li><input type=\"text\" class=\"form-control\" name=\"filterBy\" [(ngModel)]=\"filterBy\" placeholder=\"Пошук по назві організації\" /></li>\r\n            <li>\r\n                <a [routerLink]=\"['']\" (click)=\"onSelect()\">Усі організації</a>\r\n            </li>\r\n            <li *ngFor=\"let org of _organizations | organizationsListPipe:filterBy\" (click)=\"onSelect(org)\">\r\n                <a>{{org.name}}</a>\r\n            </li>\r\n        </ul>\r\n    </div>\r\n</div>\r\n\r\n";
+module.exports = "<div class=\"row\">    \r\n    <div class=\"side-menu\">\r\n        <nav class=\"navbar navbar-default\" role=\"navigation\">           \r\n            <div class=\"side-menu-container\">\r\n                <ul class=\"nav navbar-nav\">\r\n                    <li [routerLinkActive]=\"['link-active']\">\r\n                        <a [routerLink]=\"['/superadmin']\">\r\n                            <span class=\"glyphicon glyphicon-user\"></span>\r\n                                Super Admin\r\n                        </a>\r\n                    </li>\r\n                    <li [routerLinkActive]=\"['link-active']\">\r\n                        <a [routerLink]=\"['complaints']\">\r\n                            <span class=\"glyphicon glyphicon-envelope\"></span> \r\n                            Скарги\r\n                        </a>\r\n                    </li>\r\n                    <li [routerLinkActive]=\"['link-active']\">\r\n                        <a [routerLink] =\"['register-organization']\">\r\n                            <span class=\"glyphicon glyphicon-plus\"></span> \r\n                            Додати Організацію\r\n                        </a>\r\n                    </li>\r\n                    <li [routerLinkActive]=\"['link-active']\">\r\n                        <a [routerLink]=\"['organizations']\">\r\n                            <span class=\"glyphicon glyphicon-th-list\"></span> \r\n                            Організації\r\n                        </a>\r\n                    </li>                 \r\n                    <li [routerLinkActive]=\"['link-active']\">\r\n                        <a [routerLink]=\"['users']\"><span class=\"glyphicon glyphicon-th-list\"></span> \r\n                            Користувачі\r\n                        </a>\r\n                    </li>\r\n                </ul>\r\n            </div>\r\n        </nav> \r\n    </div>\r\n    <div class=\"side-body\">      \r\n        <router-outlet></router-outlet>\r\n    </div>\r\n</div>\r\n";
 
 /***/ }),
 /* 241 */
 /***/ (function(module, exports) {
 
-module.exports = "<h3>Ви не маєте достатньо прав для виконання даної дії.</h3>\r\n<div class=\"col-md-4 col-md-offset-10 form-group\">\r\n    <a [routerLink]=\"['/']\">Домашня сторінка</a>\r\n</div>";
+module.exports = "<div class=\"container\">\r\n    <h3 class=\"page-header\">Редагування профілю</h3>\r\n    <div class=\"row\">\r\n        <div class=\"col-md-4 col-sm-6 col-xs-12\">\r\n            <div class=\"text-center\">\r\n                <img src=\"{{user.photoUrl}}\" class=\"avatar img-responsive img-thumbnail\" style=\"border:none\" alt=\"avatar\" height=\"350\" width=\"250\">\r\n                <input type=\"file\" (change)=\"saveFileInAws($event)\" #imageInput accept=\".png,.jpg\" class=\"text-center center-block well well-sm hidden\">\r\n                <button type=\"button\" class=\"btn btn-success\" (click)=\"imageInput.click()\">Завантажити інше фото</button>\r\n                <hr />\r\n                <button type=\"button\" class=\"btn btn-primary\" (click)=\"onPasswordChange()\">Змінити пароль</button>\r\n            </div>\r\n        </div>\r\n        <div class=\"col-md-8 col-sm-6 col-xs-12 personal-info\">\r\n            <div class=\"alert alert-info alert-dismissable\">\r\n                <a class=\"panel-close close\" data-dismiss=\"alert\">×</a>\r\n                <i class=\"fa fa-coffee\"></i> Тут можна показувати сповіщення для юзера\r\n            </div>\r\n            <h3>Особисті дані</h3>\r\n            <form [formGroup]=\"userForm\" class=\"form-horizontal\" style=\"width:400px;padding-left:20px;\" (ngSubmit)=\"onSubmit()\">\r\n                <div class=\"form-group\">\r\n                    <label class=\"control-label\" for=\"login\">Логін</label>\r\n                    <div class=\"input-group\">\r\n                        <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-user\" aria-hidden=\"true\"></i></span>\r\n                        <input type=\"text\" disabled class=\"form-control\" name=\"user.login\" formControlName=\"login\" [(ngModel)]=\"user.login\" />\r\n                    </div>\r\n                </div>\r\n                <div class=\"form-group\" [class.has-error]=\"formErrors.firstName\" [class.has-success]=\"!formErrors.firstName && userForm.get('firstName').valid\">\r\n                    <label class=\"control-label\" for=\"firstName\">Ім'я</label>\r\n                    <div class=\"input-group\">\r\n                        <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-user\" aria-hidden=\"true\"></i></span>\r\n                        <input type=\"text\" class=\"form-control\" formControlName=\"firstName\" [(ngModel)]=\"user.firstName\" />\r\n                    </div>\r\n                    <div>\r\n                        <span *ngIf=\"formErrors.firstName\" class=\"has-error help-block fixedError\">\r\n                            {{ formErrors.firstName }}\r\n                        </span>\r\n                    </div>\r\n                </div>\r\n                <div class=\"form-group\" [class.has-error]=\"formErrors.lastName\" [class.has-success]=\"!formErrors.lastName && userForm.get('lastName').valid\">\r\n                    <label class=\"control-label\" for=\"user.lastName\">Прізвище</label>\r\n                    <div class=\"input-group\">\r\n                        <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-user\" aria-hidden=\"true\"></i></span>\r\n                        <input type=\"text\" class=\"form-control input-md\" formControlName=\"lastName\" [(ngModel)]=\"user.lastName\" />\r\n                    </div>\r\n                    <span *ngIf=\"formErrors.lastName\" class=\"has-error help-block fixedError\">\r\n                        {{ formErrors.lastName }}\r\n                    </span>\r\n                </div>\r\n                <div class=\"form-group\" [class.has-error]=\"formErrors.address\" [class.has-success]=\"!formErrors.email && userForm.get('address').valid\">\r\n                    <label class=\"control-label\" for=\"address\">Адреса</label>\r\n                    <div class=\"input-group\">\r\n                        <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-envelope\" aria-hidden=\"true\"></i></span>\r\n                        <input class=\"form-control input-md\" type=\"text\" formControlName=\"address\" [(ngModel)]=\"user.address\" />\r\n                    </div>\r\n                    <span *ngIf=\"formErrors.address\" class=\"has-error help-block fixedError\">\r\n                        {{ formErrors.address }}\r\n                    </span>\r\n                </div>\r\n                <div class=\"form-group\" [class.has-error]=\"formErrors.email\" [class.has-success]=\"!formErrors.email && userForm.get('email').valid\">\r\n                    <label class=\"control-label\" for=\"email\">Email</label>\r\n                    <div class=\"input-group\">\r\n                        <span class=\"input-group-addon\"><i aria-hidden=\"true\">@</i></span>\r\n                        <input class=\"form-control input-md\" type=\"text\" formControlName=\"email\" [(ngModel)]=\"user.email\" />\r\n                    </div>\r\n                    <span *ngIf=\"formErrors.email\" class=\"has-error help-block fixedError\">\r\n                        {{ formErrors.email }}\r\n                    </span>\r\n                </div>\r\n                <div class=\"form-group\">\r\n                    <label class=\"control-label\"></label>\r\n                    <button type=\"submit\" class=\"btn btn-primary\" [disabled]=\"!userForm.valid\">Зберегти</button>\r\n                </div>\r\n            </form>\r\n        </div>\r\n    </div>\r\n</div>\r\n<app-modal>\r\n    <div class=\"app-modal-header\">\r\n        <h3>Змінити пароль</h3>\r\n    </div>\r\n    <div class=\"app-modal-body\">\r\n        <form [formGroup]=\"passwordForm\" class=\"form-horizontal\" novalidate>\r\n            <div class=\"form-group\" [class.has-error]=\"formErrors.oldPassword\"\r\n                 [class.has-success]=\"!formErrors.oldPassword && passwordForm.get('oldPassword').valid\">\r\n                <label class=\"col-md-3 control-label\" for=\"oldPassword\">Старий пароль</label>\r\n                <div class=\"col-md-8 input-group\">\r\n                    <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-lock\" aria-hidden=\"true\"></i></span>\r\n                    <input class=\"form-control input-md\" type=\"password\"\r\n                           formControlName=\"oldPassword\" [(ngModel)]=\"passwordContainer.oldPassword\" />\r\n                </div>\r\n                <span *ngIf=\"formErrors.oldPassword\" class=\"has-error help-block fixedError\" style=\"margin-left:200px\">\r\n                    {{ formErrors.oldPassword }}\r\n                </span>\r\n            </div>\r\n            <div class=\"form-group\" [class.has-error]=\"formErrors.newPassword\"\r\n                 [class.has-success]=\"!formErrors.newPassword && passwordForm.get('newPassword').valid\">\r\n                <label class=\"col-md-3 control-label\" for=\"newPassword\">Новий пароль</label>\r\n                <div class=\"col-md-8 input-group\">\r\n                    <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-lock\" aria-hidden=\"true\"></i></span>\r\n                    <input class=\"form-control input-md\" type=\"password\"\r\n                           formControlName=\"newPassword\" [(ngModel)]=\"passwordContainer.newPassword\" />\r\n                </div>\r\n                <span *ngIf=\"formErrors.newPassword\" class=\"has-error help-block fixedError\" style=\"margin-left:200px\">\r\n                    {{ formErrors.newPassword }}\r\n                </span>\r\n            </div>\r\n            <div class=\"form-group\" [class.has-error]=\"formErrors.newPasswordConfirmation\"\r\n                 [class.has-success]=\"!formErrors.newPasswordConfirmation && passwordForm.get('newPasswordConfirmation').valid\">\r\n                <label class=\"col-md-3 control-label\" for=\"newPasswordConfirmation\">Підтвердження пароля</label>\r\n                <div class=\"col-md-8 input-group\">\r\n                    <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-lock\" aria-hidden=\"true\"></i></span>\r\n                    <input class=\"form-control input-md\" type=\"password\"\r\n                           formControlName=\"newPasswordConfirmation\" [(ngModel)]=\"passwordContainer.newPasswordConfirmation\" />\r\n                </div>\r\n                <span *ngIf=\"formErrors.newPasswordConfirmation\" class=\"has-error help-block fixedError\" style=\"margin-left:200px\" >\r\n                    {{ formErrors.newPasswordConfirmation }}\r\n                </span>\r\n            </div>\r\n            <span *ngIf=\"passwordForm.hasError('mismatchedPasswords')\" class=\"has-error help-block fixedError\" style=\"margin-left:200px\"\r\n                 >Паролі не співпадають</span>\r\n        </form>\r\n    </div>\r\n    <div class=\"app-modal-footer\">\r\n        <button type=\"button\" class=\"btn btn-default\" (click)=\"modal.hide()\">Закрити</button>\r\n        <button type=\"button\" class=\"btn btn-primary\" [disabled]=\"passwordForm.invalid\" (click)=\"changePassword()\">Зберегти</button>\r\n        <div class=\"col-md-4 col-md-offset-4 form-group\">\r\n            <p class=\"error\" *ngIf=\"errorMessage\"><span class=\"text-danger\">{{errorMessage}}</span></p>\r\n        </div>\r\n    </div>\r\n</app-modal>";
 
 /***/ }),
 /* 242 */
 /***/ (function(module, exports) {
 
-module.exports = "<h1>You have been banned</h1>\r\n<h2>Reason : {{_bannedMessage}}</h2>\r\n<h3>Go <a href=\"\">here</a></h3>";
+module.exports = "<div class=\"row\">\r\n    <div class=\"btn-group\">\r\n        <button type=\"button\" class=\"btn btn-info dropdown-toggle\" data-toggle=\"dropdown\">\r\n            {{_selectedOrganizationName ? _selectedOrganizationName : 'Список організацій'}}\r\n            <span class=\"caret\"></span>\r\n        </button>\r\n        <ul class=\"dropdown-menu scrollable-menu\" role=\"menu\">\r\n            <li><input type=\"text\" class=\"form-control\" name=\"filterBy\" [(ngModel)]=\"filterBy\" placeholder=\"Пошук по назві організації\" /></li>\r\n            <li>\r\n                <a [routerLink]=\"['']\" (click)=\"onSelect()\">Усі організації</a>\r\n            </li>\r\n            <li *ngFor=\"let org of _organizations | organizationsListPipe:filterBy\" (click)=\"onSelect(org)\">\r\n                <a>{{org.name}}</a>\r\n            </li>\r\n        </ul>\r\n    </div>\r\n</div>\r\n\r\n";
 
 /***/ }),
 /* 243 */
 /***/ (function(module, exports) {
 
-module.exports = "\r\n<div class=\"modal fade\" id=\"selectedImageModal\">\r\n    <div class=\"modal-dialog\" role=\"document\">\r\n        <div class=\"modal-content\">\r\n            <div class=\"modal-body\">\r\n                <div class=\"selected\" *ngIf=\"selectedImage\">\r\n                    <img src=\"{{selectedImage}}\" class=\"imageSelected\">\r\n                    <div class=\"arrow-back\" *ngIf=\"!isFirstImage\" (click)=navigate(false)>\r\n                        &lt;\r\n                    </div>\r\n                    <div class=\"arrow-forward\" *ngIf=\"!isLastImage\" (click)=navigate(true)>\r\n                        &gt;\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n<ul id=\"thumbnailsList\">\r\n    <li *ngFor=\"let image of datasource\">\r\n        <div>\r\n            <img src=\"{{image}}\" class=\"tn\"\r\n                 data-toggle=\"modal\" data-target=\"#selectedImageModal\"\r\n                 (click)=setSelectedImage(image)>\r\n        </div>\r\n    </li>\r\n</ul>";
+module.exports = "<h3>Ви не маєте достатньо прав для виконання даної дії.</h3>\r\n<div class=\"col-md-4 col-md-offset-10 form-group\">\r\n    <a [routerLink]=\"['/']\">Домашня сторінка</a>\r\n</div>";
 
 /***/ }),
 /* 244 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row center-block col-lg-12 col-md-12 col-sm-12 col-xs-12\">\r\n    <div>\r\n        <div class=\"form-group\">\r\n            <input placeholder=\"Вулиця, Номер будинку, Місто\"\r\n                   autocorrect=\"off\"\r\n                   autocapitalize=\"off\"\r\n                   spellcheck=\"off\"\r\n                   type=\"text\"\r\n                   class=\"form-control\"\r\n                   #search\r\n                   [formControl]=\"searchControl\" />\r\n            <br />\r\n            <button class=\"btn btn-primary btn-sm\" (click)=\"saveMarkerAndAddressFromDataInAutocompleteForm()\">Зберегти адресу</button>\r\n            <button class=\"btn btn-primary btn-sm\" (click)=\"saveAllAddressesFromMarkers()\">Список адрес</button>\r\n            <button class=\"btn btn-primary btn-sm\" (click)=\"setMarkersFromAddresses()\">Встановити маркери</button>\r\n            <button class=\"btn btn-primary btn-sm\" (click)=\"clearMapFromMarkers()\">Очистити</button>\r\n            <button class=\"btn btn-primary btn-sm\" (click)=\"changeAmountMarkersMode()\">{{allowManyMarkers?'Один маркер':'Багато маркерів'}}</button>\r\n            <ul *ngIf=\"_addresses.length > 0\">\r\n                Збережені адреси\r\n                <li *ngFor=\"let address of _addresses\">{{address}}</li>\r\n            </ul>\r\n        </div>\r\n        <agm-map [latitude]=\"mainPointerLatitude\"\r\n                 [longitude]=\"mainPointerLongitude\"\r\n                 [zoom]=\"zoom\"\r\n                 [disableDefaultUI]=false\r\n                 [zoomControl]=false\r\n                 (mapClick)=\"mapClicked($event)\">\r\n            <agm-marker *ngIf=\"mainPointerLatitude\"\r\n                        [latitude]=\"mainPointerLatitude\"\r\n                        [longitude]=\"mainPointerLongitude\">\r\n            </agm-marker>\r\n            <agm-marker *ngFor=\"let marker of _markers;let i = index\"\r\n                        (markerClick)=\"clickedMarker(marker)\"\r\n                        [latitude]=\"marker.lat\"\r\n                        [longitude]=\"marker.lng\"\r\n                        [markerDraggable]=\"marker.draggable\"\r\n                        (dragEnd)=\"markerDragEnd(marker, $event)\">\r\n                <agm-info-window>\r\n                    <strong>{{marker.name}}</strong>\r\n                    <br />\r\n                    <a class=\"text-danger\" (click)=\"removeMarker(marker)\">Видалити</a>\r\n                </agm-info-window>\r\n            </agm-marker>\r\n        </agm-map>\r\n    </div>\r\n</div>\r\n\r\n";
+module.exports = "<h1>You have been banned</h1>\r\n<h2>Reason : {{_bannedMessage}}</h2>\r\n<h3>Go <a href=\"\">here</a></h3>";
 
 /***/ }),
 /* 245 */
 /***/ (function(module, exports) {
 
-module.exports = "<div (click)=\"onContainerClicked($event)\" class=\"modal fade\" tabindex=\"1\" [ngClass]=\"{'in': visibleAnimate}\"\r\n     [ngStyle]=\"{'display': visible ? 'block' : 'none', 'opacity': visibleAnimate ? 1 : 0}\">\r\n    <div class=\"modal-dialog\">\r\n        <div class=\"modal-content\">\r\n            <div class=\"modal-header\">\r\n                <ng-content select=\".app-modal-header\"></ng-content>\r\n            </div>\r\n            <div class=\"modal-body\">\r\n                <ng-content select=\".app-modal-body\"></ng-content>\r\n            </div>\r\n            <div class=\"modal-footer\">\r\n                <ng-content select=\".app-modal-footer\"></ng-content>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>";
+module.exports = "\r\n<div class=\"modal fade\" id=\"selectedImageModal\">\r\n    <div class=\"modal-dialog\" role=\"document\">\r\n        <div class=\"modal-content\">\r\n            <div class=\"modal-body\">\r\n                <div class=\"selected\" *ngIf=\"selectedImage\">\r\n                    <img src=\"{{selectedImage}}\" class=\"imageSelected\">\r\n                    <div class=\"arrow-back\" *ngIf=\"!isFirstImage\" (click)=navigate(false)>\r\n                        &lt;\r\n                    </div>\r\n                    <div class=\"arrow-forward\" *ngIf=\"!isLastImage\" (click)=navigate(true)>\r\n                        &gt;\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n<ul id=\"thumbnailsList\">\r\n    <li *ngFor=\"let image of datasource\">\r\n        <div>\r\n            <img src=\"{{image}}\" class=\"tn\"\r\n                 data-toggle=\"modal\" data-target=\"#selectedImageModal\"\r\n                 (click)=setSelectedImage(image)>\r\n        </div>\r\n    </li>\r\n</ul>";
 
 /***/ }),
 /* 246 */
 /***/ (function(module, exports) {
 
-module.exports = "<p *ngIf=\"!arrayToDisplay\"><em>Loading...</em></p>\r\n\r\n<table class='table' *ngIf=\"arrayToDisplay\">\r\n    <thead>\r\n        <tr>\r\n            <th *ngFor=\"let header of headers\">\r\n                {{header}}\r\n            </th>           \r\n        </tr>\r\n    </thead>\r\n    <tbody>\r\n        <tr *ngFor=\"let item of arrayToDisplay\">\r\n            <td *ngFor=\"let value of getObjectData(item)\">\r\n                <div *ngIf=\"value.key == 'isBanned' \">\r\n                    <div *ngIf=\"value.value == false\">\r\n                        <button>Unban</button>\r\n                    </div>\r\n                    <div *ngIf=\"value.value == true\">\r\n                        <button>Ban</button>\r\n                    </div>\r\n                </div>\r\n                <div *ngIf=\"value.key != 'isBanned'\">\r\n                    {{value.value}}\r\n                </div>                \r\n            </td>            \r\n        </tr>\r\n    </tbody>\r\n</table>";
+module.exports = "<div class=\"row center-block col-lg-12 col-md-12 col-sm-12 col-xs-12\">\r\n    <div>\r\n        <div class=\"form-group\">\r\n            <input placeholder=\"Вулиця, Номер будинку, Місто\"\r\n                   autocorrect=\"off\"\r\n                   autocapitalize=\"off\"\r\n                   spellcheck=\"off\"\r\n                   type=\"text\"\r\n                   class=\"form-control\"\r\n                   #search\r\n                   [formControl]=\"searchControl\" />\r\n            <br />\r\n            <button class=\"btn btn-primary btn-sm\" (click)=\"saveMarkerAndAddressFromDataInAutocompleteForm()\">Зберегти адресу</button>\r\n            <button class=\"btn btn-primary btn-sm\" (click)=\"saveAllAddressesFromMarkers()\">Список адрес</button>\r\n            <button class=\"btn btn-primary btn-sm\" (click)=\"setMarkersFromAddresses()\">Встановити маркери</button>\r\n            <button class=\"btn btn-primary btn-sm\" (click)=\"clearMapFromMarkers()\">Очистити</button>\r\n            <button class=\"btn btn-primary btn-sm\" (click)=\"changeAmountMarkersMode()\">{{allowManyMarkers?'Один маркер':'Багато маркерів'}}</button>\r\n            <ul *ngIf=\"_addresses.length > 0\">\r\n                Збережені адреси\r\n                <li *ngFor=\"let address of _addresses\">{{address}}</li>\r\n            </ul>\r\n        </div>\r\n        <agm-map [latitude]=\"mainPointerLatitude\"\r\n                 [longitude]=\"mainPointerLongitude\"\r\n                 [zoom]=\"zoom\"\r\n                 [disableDefaultUI]=false\r\n                 [zoomControl]=false\r\n                 (mapClick)=\"mapClicked($event)\">\r\n            <agm-marker *ngIf=\"mainPointerLatitude\"\r\n                        [latitude]=\"mainPointerLatitude\"\r\n                        [longitude]=\"mainPointerLongitude\">\r\n            </agm-marker>\r\n            <agm-marker *ngFor=\"let marker of _markers;let i = index\"\r\n                        (markerClick)=\"clickedMarker(marker)\"\r\n                        [latitude]=\"marker.lat\"\r\n                        [longitude]=\"marker.lng\"\r\n                        [markerDraggable]=\"marker.draggable\"\r\n                        (dragEnd)=\"markerDragEnd(marker, $event)\">\r\n                <agm-info-window>\r\n                    <strong>{{marker.name}}</strong>\r\n                    <br />\r\n                    <a class=\"text-danger\" (click)=\"removeMarker(marker)\">Видалити</a>\r\n                </agm-info-window>\r\n            </agm-marker>\r\n        </agm-map>\r\n    </div>\r\n</div>\r\n\r\n";
 
 /***/ }),
 /* 247 */
 /***/ (function(module, exports) {
 
-module.exports = "<ul class=\"pagination\">\r\n    <li [class.disabled]=\"currentPage == 1\">\r\n        <button (click)=\"selectPage(1)\" class=\"btn btn-default btn-md\">&laquo;</button>\r\n    </li>\r\n    <li [class.disabled]=\"currentPage == 1\">\r\n        <button (click)=\"selectPage(currentPage - 1)\" class=\"btn btn-default btn-md\">&lsaquo;</button>\r\n    </li>\r\n    <li *ngIf=\"(currentPage - range) > 1\">    \r\n        <button class=\"btn btn-default btn-md disabled\" >...</button>\r\n    </li>\r\n    <li *ngFor=\"let page of pages | async\">\r\n        <button (click)=\"selectPage(page)\" \r\n                class=\"btn btn-md btn-default active\"\r\n                [class.active]=\"page == currentPage\">\r\n            {{page}}\r\n        </button>\r\n    </li>\r\n    <li *ngIf=\"(currentPage + range) < totalPages\">      \r\n        <button class=\"btn btn-default btn-md disabled\">...</button>\r\n    </li>\r\n    <li [class.disabled]=\"currentPage == 1\">\r\n        <button (click)=\"selectPage(currentPage + 1)\" class=\"btn btn-default btn-md\">&rsaquo;</button>\r\n    </li>\r\n    <li [class.disabled]=\"currentPage == 1\">\r\n        <button (click)=\"selectPage(totalPages)\" class=\"btn btn-default btn-md\">&raquo;</button>\r\n    </li>   \r\n</ul>";
+module.exports = "<div (click)=\"onContainerClicked($event)\" class=\"modal fade\" tabindex=\"1\" [ngClass]=\"{'in': visibleAnimate}\"\r\n     [ngStyle]=\"{'display': visible ? 'block' : 'none', 'opacity': visibleAnimate ? 1 : 0}\">\r\n    <div class=\"modal-dialog\">\r\n        <div class=\"modal-content\">\r\n            <div class=\"modal-header\">\r\n                <ng-content select=\".app-modal-header\"></ng-content>\r\n            </div>\r\n            <div class=\"modal-body\">\r\n                <ng-content select=\".app-modal-body\"></ng-content>\r\n            </div>\r\n            <div class=\"modal-footer\">\r\n                <ng-content select=\".app-modal-footer\"></ng-content>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>";
 
 /***/ }),
 /* 248 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"form-group\">\r\n    <select class=\"form-control\" (change)=\"onChange($event.target.value)\">\r\n        <option *ngFor=\"let i of items\">{{i}}</option>\r\n    </select>\r\n</div>";
+module.exports = "<p *ngIf=\"!arrayToDisplay\"><em>Loading...</em></p>\r\n\r\n<table class='table' *ngIf=\"arrayToDisplay\">\r\n    <thead>\r\n        <tr>\r\n            <th *ngFor=\"let header of headers\">\r\n                {{header}}\r\n            </th>           \r\n        </tr>\r\n    </thead>\r\n    <tbody>\r\n        <tr *ngFor=\"let item of arrayToDisplay\">\r\n            <td *ngFor=\"let value of getObjectData(item)\">\r\n                <div *ngIf=\"value.key == 'isBanned' \">\r\n                    <div *ngIf=\"value.value == false\">\r\n                        <button>Unban</button>\r\n                    </div>\r\n                    <div *ngIf=\"value.value == true\">\r\n                        <button>Ban</button>\r\n                    </div>\r\n                </div>\r\n                <div *ngIf=\"value.key != 'isBanned'\">\r\n                    {{value.value}}\r\n                </div>                \r\n            </td>            \r\n        </tr>\r\n    </tbody>\r\n</table>";
 
 /***/ }),
 /* 249 */
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngIf=\"showSpinner\" class=\"loader\"></div>";
+module.exports = "<ul class=\"pagination\">\r\n    <li [class.disabled]=\"currentPage == 1\">\r\n        <button (click)=\"selectPage(1)\" class=\"btn btn-default btn-md\">&laquo;</button>\r\n    </li>\r\n    <li [class.disabled]=\"currentPage == 1\">\r\n        <button (click)=\"selectPage(currentPage - 1)\" class=\"btn btn-default btn-md\">&lsaquo;</button>\r\n    </li>\r\n    <li *ngIf=\"(currentPage - range) > 1\">    \r\n        <button class=\"btn btn-default btn-md disabled\" >...</button>\r\n    </li>\r\n    <li *ngFor=\"let page of pages | async\">\r\n        <button (click)=\"selectPage(page)\" \r\n                class=\"btn btn-md btn-default active\"\r\n                [class.active]=\"page == currentPage\">\r\n            {{page}}\r\n        </button>\r\n    </li>\r\n    <li *ngIf=\"(currentPage + range) < totalPages\">      \r\n        <button class=\"btn btn-default btn-md disabled\">...</button>\r\n    </li>\r\n    <li [class.disabled]=\"currentPage == 1\">\r\n        <button (click)=\"selectPage(currentPage + 1)\" class=\"btn btn-default btn-md\">&rsaquo;</button>\r\n    </li>\r\n    <li [class.disabled]=\"currentPage == 1\">\r\n        <button (click)=\"selectPage(totalPages)\" class=\"btn btn-default btn-md\">&raquo;</button>\r\n    </li>   \r\n</ul>";
 
 /***/ }),
 /* 250 */
 /***/ (function(module, exports) {
 
-module.exports = "<!-- Single button -->\r\n<div *ngIf=\"name\" class=\"btn-group\" >\r\n    <button type=\"button\" class=\"btn btn-default dropdown-toggle\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n        Привіт,{{name}}<span class=\"caret\"></span>\r\n        <span *ngIf=\"isAdmin\"><b>{{user.role}}</b></span>\r\n    </button>\r\n    <ul class=\"dropdown-menu dropdowncolor\">\r\n        <li><a [routerLink]=\"['/userprofile']\">Мій профіль</a></li>\r\n        <li *ngIf=\"isAdmin\"><a [routerLink]=\"['/superadmin']\">Панель адміністратора</a></li>\r\n        <li *ngIf=\"isAdminOfOrganization\"><a [routerLink]=\"['organization-management', idOfOrganization]\">Моя організація</a></li>\r\n        <li><a [routerLink]=\"['/']\" (click)=\"exit()\">Вийти</a></li>\r\n    </ul>\r\n</div>\r\n<div *ngIf=\"!name\">\r\n    <ul class=\"nav nav-pills\">\r\n        <li role=\"presentation\"><a [routerLink]=\"['/login']\"><font size='4'>Увійти</font></a></li>\r\n        <li role=\"presentation\"><a [routerLink]=\"['/registration']\"><font size='4'>Зареєструватися</font></a></li>\r\n    </ul>\r\n</div>\r\n";
+module.exports = "<div class=\"form-group\">\r\n    <select class=\"form-control\" (change)=\"onChange($event.target.value)\">\r\n        <option *ngFor=\"let i of items\">{{i}}</option>\r\n    </select>\r\n</div>";
 
 /***/ }),
 /* 251 */
+/***/ (function(module, exports) {
+
+module.exports = "<div *ngIf=\"showSpinner\" class=\"loader\"></div>";
+
+/***/ }),
+/* 252 */
+/***/ (function(module, exports) {
+
+module.exports = "<!-- Single button -->\r\n<div *ngIf=\"name\" class=\"btn-group\" >\r\n    <button type=\"button\" class=\"btn btn-default dropdown-toggle\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n        Привіт,{{name}}<span class=\"caret\"></span>\r\n        <span *ngIf=\"isAdmin\"><b>{{user.role}}</b></span>\r\n    </button>\r\n    <ul class=\"dropdown-menu dropdowncolor\">\r\n        <li><a [routerLink]=\"['/userprofile']\">Мій профіль</a></li>\r\n        <li *ngIf=\"isAdmin\"><a [routerLink]=\"['/superadmin']\">Панель адміністратора</a></li>\r\n        <li *ngIf=\"isAdminOfOrganization\"><a [routerLink]=\"['organization-management', idOfOrganization]\">Моя організація</a></li>\r\n        <li><a [routerLink]=\"['/']\" (click)=\"exit()\">Вийти</a></li>\r\n    </ul>\r\n</div>\r\n<div *ngIf=\"!name\">\r\n    <ul class=\"nav nav-pills\">\r\n        <li role=\"presentation\"><a [routerLink]=\"['/login']\"><font size='4'>Увійти</font></a></li>\r\n        <li role=\"presentation\"><a [routerLink]=\"['/registration']\"><font size='4'>Зареєструватися</font></a></li>\r\n    </ul>\r\n</div>\r\n";
+
+/***/ }),
+/* 253 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -142571,7 +142664,7 @@ var isArray = Array.isArray || function (xs) {
 
 
 /***/ }),
-/* 252 */
+/* 254 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -142663,37 +142756,15 @@ var objectKeys = Object.keys || function (obj) {
 
 
 /***/ }),
-/* 253 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.decode = exports.parse = __webpack_require__(251);
-exports.encode = exports.stringify = __webpack_require__(252);
-
-
-/***/ }),
-/* 254 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var Observable_1 = __webpack_require__(3);
-var range_1 = __webpack_require__(259);
-Observable_1.Observable.range = range_1.range;
-//# sourceMappingURL=range.js.map
-
-/***/ }),
 /* 255 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var Observable_1 = __webpack_require__(3);
-var filter_1 = __webpack_require__(305);
-Observable_1.Observable.prototype.filter = filter_1.filter;
-//# sourceMappingURL=filter.js.map
+
+exports.decode = exports.parse = __webpack_require__(253);
+exports.encode = exports.stringify = __webpack_require__(254);
+
 
 /***/ }),
 /* 256 */
@@ -142702,9 +142773,9 @@ Observable_1.Observable.prototype.filter = filter_1.filter;
 "use strict";
 
 var Observable_1 = __webpack_require__(3);
-var switchMap_1 = __webpack_require__(261);
-Observable_1.Observable.prototype.switchMap = switchMap_1.switchMap;
-//# sourceMappingURL=switchMap.js.map
+var range_1 = __webpack_require__(261);
+Observable_1.Observable.range = range_1.range;
+//# sourceMappingURL=range.js.map
 
 /***/ }),
 /* 257 */
@@ -142713,12 +142784,34 @@ Observable_1.Observable.prototype.switchMap = switchMap_1.switchMap;
 "use strict";
 
 var Observable_1 = __webpack_require__(3);
-var toArray_1 = __webpack_require__(262);
+var filter_1 = __webpack_require__(307);
+Observable_1.Observable.prototype.filter = filter_1.filter;
+//# sourceMappingURL=filter.js.map
+
+/***/ }),
+/* 258 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var Observable_1 = __webpack_require__(3);
+var switchMap_1 = __webpack_require__(263);
+Observable_1.Observable.prototype.switchMap = switchMap_1.switchMap;
+//# sourceMappingURL=switchMap.js.map
+
+/***/ }),
+/* 259 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var Observable_1 = __webpack_require__(3);
+var toArray_1 = __webpack_require__(264);
 Observable_1.Observable.prototype.toArray = toArray_1.toArray;
 //# sourceMappingURL=toArray.js.map
 
 /***/ }),
-/* 258 */
+/* 260 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -142820,17 +142913,17 @@ exports.RangeObservable = RangeObservable;
 //# sourceMappingURL=RangeObservable.js.map
 
 /***/ }),
-/* 259 */
+/* 261 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var RangeObservable_1 = __webpack_require__(258);
+var RangeObservable_1 = __webpack_require__(260);
 exports.range = RangeObservable_1.RangeObservable.create;
 //# sourceMappingURL=range.js.map
 
 /***/ }),
-/* 260 */
+/* 262 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -142949,7 +143042,7 @@ var DoSubscriber = (function (_super) {
 //# sourceMappingURL=do.js.map
 
 /***/ }),
-/* 261 */
+/* 263 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -142959,8 +143052,8 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var OuterSubscriber_1 = __webpack_require__(297);
-var subscribeToResult_1 = __webpack_require__(298);
+var OuterSubscriber_1 = __webpack_require__(299);
+var subscribeToResult_1 = __webpack_require__(300);
 /* tslint:enable:max-line-length */
 /**
  * Projects each source value to an Observable which is merged in the output
@@ -143095,7 +143188,7 @@ var SwitchMapSubscriber = (function (_super) {
 //# sourceMappingURL=switchMap.js.map
 
 /***/ }),
-/* 262 */
+/* 264 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -143146,12 +143239,12 @@ var ToArraySubscriber = (function (_super) {
 //# sourceMappingURL=toArray.js.map
 
 /***/ }),
-/* 263 */
+/* 265 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var root_1 = __webpack_require__(304);
+var root_1 = __webpack_require__(306);
 /* tslint:enable:max-line-length */
 /**
  * Converts an Observable sequence to a ES2015 compliant promise.
@@ -143224,7 +143317,7 @@ exports.toPromise = toPromise;
 //# sourceMappingURL=toPromise.js.map
 
 /***/ }),
-/* 264 */
+/* 266 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -143235,34 +143328,6 @@ module.exports = function (str) {
 	return typeof str === 'string' ? str.replace(ansiRegex, '') : str;
 };
 
-
-/***/ }),
-/* 265 */
-/***/ (function(module, exports, __webpack_require__) {
-
-
-        var result = __webpack_require__(181);
-
-        if (typeof result === "string") {
-            module.exports = result;
-        } else {
-            module.exports = result.toString();
-        }
-    
-
-/***/ }),
-/* 266 */
-/***/ (function(module, exports, __webpack_require__) {
-
-
-        var result = __webpack_require__(182);
-
-        if (typeof result === "string") {
-            module.exports = result;
-        } else {
-            module.exports = result.toString();
-        }
-    
 
 /***/ }),
 /* 267 */
@@ -143646,6 +143711,34 @@ module.exports = function (str) {
 /* 294 */
 /***/ (function(module, exports, __webpack_require__) {
 
+
+        var result = __webpack_require__(210);
+
+        if (typeof result === "string") {
+            module.exports = result;
+        } else {
+            module.exports = result.toString();
+        }
+    
+
+/***/ }),
+/* 295 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+        var result = __webpack_require__(211);
+
+        if (typeof result === "string") {
+            module.exports = result;
+        } else {
+            module.exports = result.toString();
+        }
+    
+
+/***/ }),
+/* 296 */
+/***/ (function(module, exports, __webpack_require__) {
+
 /*eslint-env browser*/
 
 var clientOverlay = document.createElement('div');
@@ -143687,7 +143780,7 @@ var colors = {
 };
 ansiHTML.setColors(colors);
 
-var Entities = __webpack_require__(210).AllHtmlEntities;
+var Entities = __webpack_require__(212).AllHtmlEntities;
 var entities = new Entities();
 
 exports.showProblems =
@@ -143728,7 +143821,7 @@ function problemType (type) {
 
 
 /***/ }),
-/* 295 */
+/* 297 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -143866,73 +143959,73 @@ module.exports = function(hash, moduleMap, options) {
 
 
 /***/ }),
-/* 296 */
+/* 298 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = (__webpack_require__(4))(124);
 
 /***/ }),
-/* 297 */
+/* 299 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = (__webpack_require__(4))(189);
 
 /***/ }),
-/* 298 */
+/* 300 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = (__webpack_require__(4))(196);
 
 /***/ }),
-/* 299 */
+/* 301 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = (__webpack_require__(4))(30);
 
 /***/ }),
-/* 300 */
+/* 302 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = (__webpack_require__(4))(328);
 
 /***/ }),
-/* 301 */
+/* 303 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = (__webpack_require__(4))(329);
 
 /***/ }),
-/* 302 */
+/* 304 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = (__webpack_require__(4))(345);
 
 /***/ }),
-/* 303 */
+/* 305 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = (__webpack_require__(4))(347);
 
 /***/ }),
-/* 304 */
+/* 306 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = (__webpack_require__(4))(49);
 
 /***/ }),
-/* 305 */
+/* 307 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = (__webpack_require__(4))(570);
 
 /***/ }),
-/* 306 */
+/* 308 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = (__webpack_require__(4))(588);
 
 /***/ }),
-/* 307 */
+/* 309 */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(115);

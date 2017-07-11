@@ -26,6 +26,7 @@ namespace FundTrack.DAL.Concrete
         private readonly IStatusRepository _statusRepository;
         private readonly IGoodsCategoryRepository _goodsCategoryRepository;
         private readonly IRequestedItemImageRepository _requestedItemImageRepository;
+        private readonly IGoodsTypeRepository _goodsTypeRepository;
 
         private FundTrackContext _context;
 
@@ -51,7 +52,9 @@ namespace FundTrack.DAL.Concrete
               IStatusRepository statusRepository,
               IUserResponseRepository userResponseRepository,
               IGoodsCategoryRepository goodsCategoryRepository,
-              IRequestedItemImageRepository requestedItemImageRepository)
+              IRequestedItemImageRepository requestedItemImageRepository,
+              IGoodsTypeRepository goodsTypeRepository
+              )
         {
             this._context = contextParam;
             this._organizationsListRepository = organizationsListRepositoryParam;
@@ -66,13 +69,12 @@ namespace FundTrack.DAL.Concrete
             _roleRepository = roleRepository;
             _eventImageRepository = eventImageRepositoryParam;
             _offeredItemRepository = offeredItemRepository;
-            _statusRepository = statusRepository;
             _goodsCategoryRepository = goodsCategoryRepository;
             _userResponseRepository = userResponseRepository;
             _requestedItemRepository = requestedItemRepository;
-            _requestedItemRepository = requestedItemRepository;
-            this._statusRepository = statusRepository;
-            this._requestedItemImageRepository = requestedItemImageRepository;
+            _statusRepository = statusRepository;
+            _requestedItemImageRepository = requestedItemImageRepository;
+            _goodsTypeRepository = goodsTypeRepository;
         }
 
         /// <summary>
@@ -274,6 +276,11 @@ namespace FundTrack.DAL.Concrete
                 return this._userResponseRepository;
             }
         }
+        public IGoodsTypeRepository GoodsTypeRepository
+        {
+            get { return this._goodsTypeRepository; }
+        }
+
 
         /// <summary>
         /// Gets requested item image repository

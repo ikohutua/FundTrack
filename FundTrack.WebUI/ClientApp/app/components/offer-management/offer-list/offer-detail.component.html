@@ -4,23 +4,30 @@
         <div class="input-list style-4 clearfix">
             <h3>Заголовок</h3>
             <input type="text">
-            <h3>Категорія</h3>
-            <h3>Підкатегорія</h3>
+            <div class="col-md-12">
+                <div class="col-md-6">
+                    <h3>Категорія</h3>
+                </div>
+                <div class="col-md-6 pull-right">
+                    <h3>Підкатегорія</h3>
+                </div>
+            </div>
             <div class="col-md-5">
-                <input class="col-md-pull-0" type="text" name="product" list="productName" />
-                <datalist id="productName">
-                    <option value="Pen">Pen</option>
-                    <option value="Pencil">Pencil</option>
-                    <option value="Paper">Paper</option>
-                </datalist>
+                <select class="mdb-select" [(ngModel)]="selectedItem.id"
+                        (change)="onSelection($event.target.value)">
+                    <option value="0">Виберіть тип</option>
+                    <option *ngFor="let type of types "
+                            value={{type.id}}>{{type.name}}
+                        </option>
+                    </select>>
             </div>
             <div class="col-md-5 col-md-push-2">
-                <input class="col-md-pull-0" type="text" name="product" list="productName" />
-                <datalist id="productName">
-                    <option value="Pen">Pen</option>
-                    <option value="Pencil">Pencil</option>
-                    <option value="Paper">Paper</option>
-                </datalist>
+                <select>
+                    <option *ngIf='selectedItem.id==0' value="0">Виберіть категорію</option>
+                    <option *ngFor="let category of categories "
+                            value={{category.id}}>{{category.name}}
+                    </option>
+                </select>
             </div>
         </div>
     </section>

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using FundTrack.Infrastructure.ViewModel;
+using System.Collections.Generic;
 
 namespace FundTrack.DAL.Entities
 {
@@ -51,5 +52,14 @@ namespace FundTrack.DAL.Entities
         /// The requested items.
         /// </value>
         public virtual ICollection<RequestedItem> RequestedItems { get; set; }
+        public static implicit operator GoodsCategoryViewModel(GoodsCategory category)
+        {
+            return new GoodsCategoryViewModel
+            {
+                GoodsTypeId = category.GoodsTypeId,
+                Id = category.Id,
+                Name = category.Name
+            };
+        }
     }
 }

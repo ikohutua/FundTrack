@@ -10,6 +10,7 @@
     input[type="text"]:focus {
         outline: none;
     }
+
 .style-4 input[type="text"] {
     padding: 10px 10px 10px 0px;
     border: none;
@@ -25,4 +26,10 @@
     .col-md-5{
         padding-left:0px;
         padding-right:0px;
+    }
+    .col-md-6{
+        padding-left:0px;
+    }
+    .col-md-12{
+        padding-left:0px;
     }

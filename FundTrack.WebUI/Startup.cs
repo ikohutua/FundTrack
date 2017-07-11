@@ -65,7 +65,9 @@ namespace FundTrack_WebUI
             services.AddScoped<IGoodsCategoryRepository, GoodsCategoryRepository>();
             services.AddScoped<IUserResponseRepository, UserResponseRepository>();
             services.AddScoped<IRequestedItemImageRepository, RequestedItemImageRepository>();
-           
+            services.AddScoped<IGoodsTypeRepository, GoodsTypeRepository>();
+
+
 
             //dependency injection BLL
             services.AddScoped<IOrganizationsForFilteringService, OrganizationsForFilteringService>();
@@ -80,6 +82,7 @@ namespace FundTrack_WebUI
             services.AddScoped<IEventManagementService, EventManagementService>();
             services.AddScoped<IRequestedItemService, RequestedItemService>();
             services.AddScoped<IOfferedItemService, OfferedItemService>();
+            services.AddScoped<IGoodsService, GoodsService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -128,7 +131,7 @@ namespace FundTrack_WebUI
                 app.UseExceptionHandler("/error");
             }
 
-            app.UseWebSockets();
+            //app.UseWebSockets();
             //app.UseSignalR();
 
             app.UseMvc(routes =>
