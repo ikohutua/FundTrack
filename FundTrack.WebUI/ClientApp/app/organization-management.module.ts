@@ -6,13 +6,20 @@ import { OrganizationManagementEventComponent } from "./components/organization-
 import { FormsModule } from "@angular/forms";
 import { TruncatePipe } from "./shared/pipes/truncate.pipe";
 import { OrganizationBannedComponent } from './shared/components/error-pages/organization-banned.component';
+import { OrganizationManagementRequestComponent } from "./components/organization-management-request/organization-management-request.component";
+import { OrganizationCreateRequestComponent } from "./components/organization-management-request/organization-create-request.component";
+import { OrganizationDeleteRequestComponent } from "./components/organization-management-request/organization-delete-request.component";
 
 @NgModule({
     declarations: [
         OrganizationManagementComponent,
         OrganizationManagementEventComponent,
         TruncatePipe,
-        OrganizationBannedComponent
+        OrganizationBannedComponent,
+        OrganizationManagementRequestComponent,
+        OrganizationCreateRequestComponent,
+        OrganizationDeleteRequestComponent,
+        TruncatePipe
     ],
     imports: [
         FormsModule,

@@ -12,7 +12,7 @@ namespace FundTrack.BLL.Abstract
         /// Gets all requested items from database
         /// </summary>
         /// <returns>List of items</returns>
-        List<RequestedItemViewModel> GetAllItems();
+        List<RequestedItemViewModel> GetOrganizationRequestedId(int organizationId);
 
         /// <summary>
         /// Gets requested item from database
@@ -47,6 +47,11 @@ namespace FundTrack.BLL.Abstract
         /// <param name="id">The identifier.</param>
         /// <returns> Requested View Model</returns>
         RequestedItemDetailViewModel GetRequestedItemDetail(int id);
+        /// <summary>
+        /// Gets all goods type from databse
+        /// </summary>
+        /// <returns></returns>
+        IEnumerable<GoodsTypeViewModel> GetAllGoodTypes();
 
         /// <summary>
         /// Creates the user response on requested item.
@@ -54,5 +59,10 @@ namespace FundTrack.BLL.Abstract
         /// <param name="userResponse">The user response.</param>
         /// <returns>Requested View Model</returns>
         UserResponseViewModel CreateUserResponse(UserResponseViewModel userResponse);
+        /// <summary>
+        /// Gets all images from database
+        /// </summary>
+        /// <returns>List of images</returns>
+        IEnumerable<RequestedImageViewModel> GetImagesByRequestedId(int requestedItemId);
     }
 }

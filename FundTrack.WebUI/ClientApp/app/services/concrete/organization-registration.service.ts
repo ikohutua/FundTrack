@@ -13,8 +13,7 @@ import { OrganizationRegistrationViewModel } from '../../view-models/concrete/or
  */
 @Injectable()
 export class OrganizationRegistrationService {
-    constructor(private http: Http) {
-       
+    constructor(private http: Http) {      
     }
 
     /**

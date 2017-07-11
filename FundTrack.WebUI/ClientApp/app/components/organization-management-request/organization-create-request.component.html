@@ -1,0 +1,36 @@
+﻿<form>
+    <div class="form-group">
+        <label class="control-label" for="itemName">Назва:</label>
+        <input id="itemName" class="form-control" type="text"
+               [(ngModel)]="_requestedItem.name" name="itemName" />
+    </div>
+
+    <div class="form-group">
+        <label class="control-label" for="itemDescription">Опис:</label>
+        <textarea id="itemDescription" class="form-control" type="text"
+               [(ngModel)]="_requestedItem.description" name="itemDescription"></textarea>
+    </div>
+
+    <div class="form-group">
+        <label for="goodsType">Тип</label>
+        <select id="goodsType" class="form-control" [(ngModel)]="_selecteType" name="goodsType">
+            <option selected="selected">Виберіть тип</option>
+            <option *ngFor="let goodType of _goodsTypes"
+                    [ngValue]="goodType">
+                {{goodType.name}}
+            </option>
+        </select>
+    </div>
+
+    <div class="form-group" *ngIf="_selecteType">
+        <label for="categoryType">Категорія</label>
+        <select id="categoryType" class="form-control" [(ngModel)]="_requestedItem.goodsCategoryId" name="categoryType">
+            <option selected="selected">Виберіть категорію</option>
+            <option *ngFor="let category of _selecteType.typeCategories"
+                    [value]="category.id">
+                {{category.name}}
+            </option>
+        </select>
+    </div>
+    <button class="btn btn-default" (click)="manageRequestedItems()">Добавити</button>
+</form>

@@ -102,6 +102,12 @@ namespace FundTrack.DAL.Abstract
         /// </summary>
         
         IGoodsCategoryRepository GoodsCategoryRepository { get; }
+        
+        /// <summary>
+        /// Gets requested item image repository
+        /// </summary>
+        IRequestedItemImageRepository RequestedItemImageRepository { get; }
+
         /// <summary>
         /// Saves all changes made in this context to the database.
         /// </summary>

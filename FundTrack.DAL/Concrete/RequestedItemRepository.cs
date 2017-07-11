@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using FundTrack.DAL.Entities;
 using System.Linq;
+using System;
 using Microsoft.EntityFrameworkCore;
 
 namespace FundTrack.DAL.Concrete
@@ -51,8 +52,29 @@ namespace FundTrack.DAL.Concrete
         /// <returns>Requested item entity</returns>
         public RequestedItem Get(int id)
         {
-            return this._dbContext.RequestedItems
-                .FirstOrDefault(i => i.Id == id);
+            var requestedItem = this._dbContext.RequestedItems
+                .Include(g => g.GoodsCategory)
+                .Include(g => g.Status)
+                .Include(g => g.RequestedItemImages)
+                .Include(g => g.UserResponses)
+                .FirstOrDefault(r => r.Id == id);
+
+            return requestedItem;
+        }
+
+        /// <summary>
+        /// Gets organization requested items
+        /// </summary>
+        /// <param name="organizationId">Id of organization</param>
+        /// <returns>List of organization requested items</returns>
+        public IEnumerable<RequestedItem> GetOrganizationRequestedItems(int organizationId)
+        {
+            var requestedItems = this._dbContext.RequestedItems
+                .Include(g => g.GoodsCategory)
+                .Include(g => g.Status)
+                .Where(r => r.OrganizationId == organizationId);
+
+            return requestedItems;
         }
 
         /// <summary>
@@ -102,6 +124,32 @@ namespace FundTrack.DAL.Concrete
                                   .Include(i => i.RequestedItemImages)
                                   .Include(i => i.GoodsCategory)
                                   .FirstOrDefault(i => i.Id == id);
+        }
+
+        /// <summary>
+        /// Gets all goodTypes from database
+        /// </summary>
+        /// <returns>List of goodsType</returns>
+        public IEnumerable<GoodsType> GetAllGoodTypes()
+        {
+            var goodsTypes = this._dbContext.GoodsTypes
+                .Include(c => c.GoodsCategories);
+
+            return goodsTypes;
+        }
+
+        /// <summary>
+        /// Gets all images from database
+        /// </summary>
+        /// <param name="requestedItemId">Id of requested item</param>
+        /// <returns>List of images</returns>
+        public IEnumerable<RequestedItemImage> GetAllImages(int requestedItemId)
+        {
+            var images = this._dbContext.RequestedItemImages
+                .Include(i => i.RequestedItem)
+                .Where(i => i.RequestedItemId == requestedItemId);
+
+            return images;
         }
     }
 }

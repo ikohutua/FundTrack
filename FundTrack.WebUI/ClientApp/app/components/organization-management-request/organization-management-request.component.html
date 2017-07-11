@@ -1,0 +1,26 @@
+﻿<h2 class="text-center">Всі потреби</h2>
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <table *ngIf="_allRequestedItems" class="table-fill">
+        <thead>
+            <tr>
+                <th class="text-left">Назва</th>
+                <th class="text-left">Категорія</th>
+                <th class="text-left">Опис</th>
+                <th class="text-left">Дії</th>
+            </tr>
+        </thead>
+        <tbody class="table-hover">
+            <tr *ngFor="let requestedItem of _allRequestedItems">
+                <td class="text-left">{{requestedItem.name}}</td>
+                <td class="text-left">{{requestedItem.goodsCategory}}</td>
+                <td class="text-left">{{requestedItem.description}}</td>
+                <td class="text-center">
+                    <button class="btn btn-default" [routerLink]="['../create-request', requestedItem.id]" >Редагувати</button>
+                    <button class="btn btn-danger" (click)='setCurrentRequestedItem(requestedItem)' data-toggle="modal" data-target="#deleteRequest">Видалити</button>
+                </td>
+                <delete-request [itemToToDelete]='currentRequestedItem' (onSuccesfullDelete)="deleteRequestedItem()"></delete-request>
+            </tr>
+        </tbody>
+    </table>
+    <button [routerLink]="['../create-request']" class="btn btn-default pull-right">Зареєструвати потребу</button>
+</div>

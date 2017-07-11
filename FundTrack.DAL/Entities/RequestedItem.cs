@@ -87,31 +87,5 @@ namespace FundTrack.DAL.Entities
         /// UserResponses navigation property
         /// </summary>
         public virtual ICollection<UserResponse> UserResponses { get; set; }
-
-        /// <summary>
-        /// Convert Requested item entity model to Requested item view model
-        /// </summary>
-        /// <param name="item">Requested item model</param>
-        public static implicit operator RequestedItemViewModel(RequestedItem item)
-        {
-            return new RequestedItemViewModel
-            {
-                Name = item.Name,
-                Description = item.Description
-            };
-        }
-
-        /// <summary>
-        /// Convert Requested item view model to requested item model
-        /// </summary>
-        /// <param name="requestedItem">Requested item view model</param>
-        public static implicit operator RequestedItem(RequestedItemViewModel requestedItemViewModel)
-        {
-            return new RequestedItem
-            {
-                Name = requestedItemViewModel.Name,
-                Description = requestedItemViewModel.Description
-            };
-        }
     }
 }

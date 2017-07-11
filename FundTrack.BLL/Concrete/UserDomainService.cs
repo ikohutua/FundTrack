@@ -233,6 +233,7 @@ namespace FundTrack.BLL.DomainServices
                 throw new Exception("Не намагайтеся нас обманути!");
             }
         }
+
         public UserInfoViewModel UpdateUser(UserInfoViewModel userModel)
         {
             var user = new User();

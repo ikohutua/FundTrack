@@ -8,7 +8,7 @@ import { IEventManagementViewModel } from "../../view-models/abstract/organizati
     selector: 'org-management-event',
     templateUrl: './organization-management-event.component.html',
     styleUrls: ['./organization-management-event.component.css'],
-    providers: [OrganizationManagementEventsService],
+    providers: [OrganizationManagementEventsService]
 })
 
 export class OrganizationManagementEventComponent implements OnInit {

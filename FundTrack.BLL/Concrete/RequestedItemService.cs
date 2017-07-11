@@ -35,11 +35,20 @@ namespace FundTrack.BLL.Concrete
         {
             try
             {
-                RequestedItem requestedItem = requestedItemViewModel;
-                RequestedItemViewModel item = this._unitOfWork.RequestedItemRepository.Create(requestedItem);
+                Status status = this._unitOfWork.StatusRepository.GetStatusByName("new");
+                RequestedItem requestedItem = new RequestedItem
+                {
+                    Name = requestedItemViewModel.Name,
+                    OrganizationId = 1,
+                    StatusId = status.Id,
+                    Description = requestedItemViewModel.Description,
+                    GoodsCategoryId = requestedItemViewModel.GoodsCategoryId
+                };
+
+                requestedItem = this._unitOfWork.RequestedItemRepository.Create(requestedItem);
                 this._unitOfWork.SaveChanges();
 
-                return item;
+                return requestedItemViewModel;
             }
             catch (Exception ex)
             {
@@ -51,29 +60,13 @@ namespace FundTrack.BLL.Concrete
         /// Delete requested item from database
         /// </summary>
         /// <param name="id">Id of requested item</param>
-        public void DeleteRequestedItem(int id)
+        public void DeleteRequestedItem(int itemId)
         {
             try
             {
-                this._unitOfWork.RequestedItemRepository.Delete(id);
+                //delete image before deleting requested item
+                this._unitOfWork.RequestedItemRepository.Delete(itemId);
                 this._unitOfWork.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                throw new BusinessLogicException(ex.Message);
-            }
-        }
-
-        /// <summary>
-        /// Gets all requested items from database
-        /// </summary>
-        /// <returns>List of requested item view model</returns>
-        public List<RequestedItemViewModel> GetAllItems()
-        {
-            try
-            {
-                var allRequestedItems = this._unitOfWork.RequestedItemRepository.Read();
-                return allRequestedItems.Select(r => (RequestedItemViewModel)r).ToList();
             }
             catch (Exception ex)
             {
@@ -90,7 +83,48 @@ namespace FundTrack.BLL.Concrete
         {
             try
             {
-                return this._unitOfWork.RequestedItemRepository.Get(id);
+                RequestedItem requestedItem = this._unitOfWork.RequestedItemRepository.Get(id);
+                return new RequestedItemViewModel
+                {
+                    Id = requestedItem.Id,
+                    Name = requestedItem.Name,
+                    Description = requestedItem.Description,
+                    Status = requestedItem.Status.StatusName,
+                    GoodsCategoryId = requestedItem.GoodsCategoryId,
+                    OrganizationId = requestedItem.OrganizationId,
+                    GoodsCategory = requestedItem.GoodsCategory.Name,
+                };
+            }
+            catch (Exception ex)
+            {
+                throw new BusinessLogicException(ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// Get organization requested item
+        /// </summary>
+        /// <param name="organizationId">Id of organization</param>
+        /// <returns>List of requested items</returns>
+        public List<RequestedItemViewModel> GetOrganizationRequestedId(int organizationId)
+        {
+            try
+            {
+                List<RequestedItemViewModel> requestedItems = this._unitOfWork.RequestedItemRepository
+                    .GetOrganizationRequestedItems(organizationId)
+                    .Select(item =>
+                     new RequestedItemViewModel
+                     {
+                         Id = item.Id,
+                         Name = item.Name,
+                         Description = item.Description,
+                         Status = item.Status?.StatusName,
+                         GoodsCategory = item.GoodsCategory?.Name,
+                         Images = this.GetImagesByRequestedId(item.Id)
+                     })
+                    .ToList();
+
+                return requestedItems;
             }
             catch (Exception ex)
             {
@@ -107,11 +141,24 @@ namespace FundTrack.BLL.Concrete
         {
             try
             {
-                RequestedItem requestedItem = requestedItemViewModel;
-                RequestedItemViewModel item = this._unitOfWork.RequestedItemRepository.Update(requestedItem);
-                this._unitOfWork.SaveChanges();
+                RequestedItem requestedItem = new RequestedItem
+                {
+                    Id = requestedItemViewModel.Id,
+                    Name = requestedItemViewModel.Name,
+                    Description = requestedItemViewModel.Description,
+                    GoodsCategoryId = requestedItemViewModel.GoodsCategoryId,
+                    OrganizationId = requestedItemViewModel.OrganizationId,
+                    StatusId = 1
+                };
 
-                return item;
+                this._unitOfWork.RequestedItemRepository.Update(requestedItem);
+                this._unitOfWork.SaveChanges();
+                //  RequestedItem requestedItem = requestedItemViewModel;
+                // RequestedItemViewModel item = this._unitOfWork.RequestedItemRepository.Update(requestedItem);
+                // this._unitOfWork.SaveChanges();
+
+                // return item;
+                return requestedItemViewModel;
 
             }
             catch (Exception ex)
@@ -192,7 +239,62 @@ namespace FundTrack.BLL.Concrete
                 addedUserResponseModel.Id = addedUserResponse.Id;
                 return addedUserResponseModel;
             }
+
             catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+            
+        /// <summary>
+        /// Gets all goods type from database
+        /// </summary>
+        /// <returns>List of goods type</returns>
+        public IEnumerable<GoodsTypeViewModel> GetAllGoodTypes()
+        {
+            try
+            {
+                var goodsCategories = this._unitOfWork.RequestedItemRepository.GetAllGoodTypes()
+                    .Select(x => new GoodsTypeViewModel
+                    {
+                        Id = x.Id,
+                        Name = x.Name,
+                        TypeCategories = x.GoodsCategories.Select(e => new GoodsCategoryViewModel
+                        {
+                            Id = e.Id,
+                            Name = e.Name
+                        })
+                    });
+
+                return goodsCategories;
+            }
+            catch (Exception ex)
+            {
+                throw new BusinessLogicException(ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// Gets images by requested item id
+        /// </summary>
+        /// <param name="requestedItemId"></param>
+        /// <returns></returns>
+        public IEnumerable<RequestedImageViewModel> GetImagesByRequestedId(int requestedItemId)
+        {
+            try
+            {
+                var allImages = this._unitOfWork.RequestedItemRepository.GetAllImages(requestedItemId)
+                    .Select(i => new RequestedImageViewModel
+                    {
+                        Id = i.Id,
+                        ImageUrl = i.ImageUrl,
+                        IsMain = i.IsMain,
+                        RequestedItemId = i.RequestedItemId
+                    });
+
+                return allImages;
+            }
+            catch(Exception ex)
             {
                 throw new BusinessLogicException(ex.Message);
             }

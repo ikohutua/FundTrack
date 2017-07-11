@@ -1,7 +1,5 @@
 ﻿using FundTrack.DAL.Entities;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace FundTrack.DAL.Abstract
 {
@@ -23,5 +21,8 @@ namespace FundTrack.DAL.Abstract
         /// <param name="id">The identifier.</param>
         /// <returns>Requested Item</returns>
         RequestedItem GetRequestedItemsWithVirtualFields(int id);
+        IEnumerable<RequestedItem> GetOrganizationRequestedItems(int organizationId);
+        IEnumerable<GoodsType> GetAllGoodTypes();
+        IEnumerable<RequestedItemImage> GetAllImages(int requestedItemId);
     }
 }
