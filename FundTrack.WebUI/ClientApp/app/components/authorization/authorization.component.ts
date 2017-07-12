@@ -69,7 +69,6 @@ export class AuthorizationComponent {
                 userForAuthorization.password = this.userRecievedFromFacebook.provider;
                 userForAuthorization.photoUrl = this.userRecievedFromFacebook.image;
                 userForAuthorization.fbLink = this.userRecievedFromFacebook.uid; 
-                debugger;
                 this._ngZone.run(() => {
                     this._authorizationService.logInWithFacebook(userForAuthorization)
                         .subscribe(data => {

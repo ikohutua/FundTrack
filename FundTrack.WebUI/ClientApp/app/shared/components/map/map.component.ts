@@ -5,7 +5,7 @@ import { MapsAPILoader, LatLngLiteral } from "@agm/core";
 import { } from '@types/googlemaps';
 import { Observable } from "rxjs/Observable";
 import { IAddressViewModel } from "../../../view-models/abstract/address-model.interface";
-import { AddressViewModel } from "../../../view-models/concrete/address-model";
+import { AddressViewModel } from "../../../view-models/concrete/edit-organization/address-view.model";
 
 //https://angular-maps.com/api-docs/agm-core/components/AgmInfoWindow.html documentation
 //https://developers.google.com/maps/documentation/geocoding/intro
@@ -147,6 +147,7 @@ export class MapComponent implements OnInit {
      * @returns formatted address: string
      */
     private formatAddress(googleResponse: google.maps.GeocoderResult): string {
+        debugger;
         var formattedAddress: string = '';
         for (let i = 0; i < googleResponse.address_components.length; i++) {
             switch (googleResponse.address_components[i].types.toString()) {
@@ -173,39 +174,28 @@ export class MapComponent implements OnInit {
      * Gets the formatted addresses by coordinates from the _markers
      */
     private saveFormattedAddresses(): void {
-        debugger;
         this._addresses = [];
         var maximumMarkersOnMap = this.getMaximumMarkersOnMap(this._markers.length);
-        for (var i = 0; i < maximumMarkersOnMap; i++) {
-            debugger;
-            let tmp: string;
-            this.get(i, () => tmp);
-            this._addresses.push(tmp);
-        }
-    }
-
-    private get(iterator: number, callback: () => string): void {
-        this._mapsAPILoader.load().then(() => {
-            var location: LatLngLiteral = {
-                lat: this._markers[iterator].lat,
-                lng: this._markers[iterator].lng
-            };
-            var geocoder = new google.maps.Geocoder();
-            geocoder.geocode({ 'location': location }, (results, status) => {
-                if (this.allowManyMarkers) {
-                    var addressContainsInArray = this._addresses.find(a => a == results[0].formatted_address);
-                    if (!addressContainsInArray) {
-                        debugger;
-                        //this._addresses.push(this.formatAddress(results[0]));                       
+        for (let i = 0; i < maximumMarkersOnMap; i++) {
+            this._mapsAPILoader.load().then(() => {
+                var location: LatLngLiteral = {
+                    lat: this._markers[i].lat,
+                    lng: this._markers[i].lng
+                };
+                var geocoder = new google.maps.Geocoder();
+                geocoder.geocode({ 'location': location }, (results, status) => {
+                    if (this.allowManyMarkers) {
+                        var addressContainsInArray = this._addresses.find(a => a == results[0].formatted_address);
+                        if (!addressContainsInArray) {
+                            this._addresses.push(this.formatAddress(results[0]));
+                        }
                     }
                     else {
-                        callback => this.formatAddress(results[0]);
-                        //this._addresses[0] = this.formatAddress(results[0]);
+                        this._addresses[0] = this.formatAddress(results[0]);
                     }
-                }
+                });
             });
-
-        });
+        }
     }
 
     /**
@@ -235,9 +225,11 @@ export class MapComponent implements OnInit {
         if (this._markers.length < this._maximumConcurentRequestsToGoogleMap) {
             if (this.allowManyMarkers) {
                 this._markers.push(this.createNewMarker($event.coords.lat, $event.coords.lng));
+                this.saveFormattedAddresses();
             } else {
                 this.setMainPointer($event.coords.lat, $event.coords.lng);
                 this._markers[0] = this.createNewMarker(this.mainPointerLatitude, this.mainPointerLongitude);
+                this.saveFormattedAddresses();
             }
         }
     }
@@ -271,6 +263,7 @@ export class MapComponent implements OnInit {
                 this._markers[i].lng = newLongitude;
             }
         }
+        this.saveFormattedAddresses();
     }
 
     /**
@@ -279,6 +272,7 @@ export class MapComponent implements OnInit {
      */
     private removeMarker(marker: any): void {
         this._markers.splice(this._markers.findIndex(m => m.lat == parseFloat(marker.lat)), 1);
+        this.saveFormattedAddresses();
     }
 
     /**
@@ -293,6 +287,7 @@ export class MapComponent implements OnInit {
      */
     private clearMapFromMarkers(): void {
         this._markers = [];
+        this.saveFormattedAddresses();
     }
 
     /**
@@ -304,7 +299,7 @@ export class MapComponent implements OnInit {
         var formattedAddresses: string[] = [];
         for (let i = 0; i < addressesViewModel.length; i++) {
             let address: string;
-            address += addressesViewModel[i].house + ', ';
+            address = addressesViewModel[i].house + ', ';
             address += addressesViewModel[i].street + ', ';
             address += addressesViewModel[i].city;
             formattedAddresses.push(address);
@@ -320,11 +315,13 @@ export class MapComponent implements OnInit {
     private parseAddressViewModel(addresses: string[]): IAddressViewModel[] {
         var result: IAddressViewModel[] = [];
         for (let i = 0; i < addresses.length; i++) {
+            let tempAddress: IAddressViewModel = new AddressViewModel();
             var addressComponents: string[] = addresses[i].split(', ');
-            result[i].house = addressComponents[0];
-            result[i].street = addressComponents[1];
-            result[i].city = addressComponents[2];
-            result[i].country = "Україна";
+            tempAddress.house = addressComponents[0];
+            tempAddress.street = addressComponents[1];
+            tempAddress.city = addressComponents[2];
+            tempAddress.country = "Україна";
+            result.push(tempAddress);
         }
         return result;
     }
@@ -336,14 +333,15 @@ export class MapComponent implements OnInit {
     public setMarkers(addressesViewModel: IAddressViewModel[]): void {
         this._addresses = this.parseFormattedAddresses(addressesViewModel);
         this.setMarkersFromAddresses();
-    }
-
-    /**
-     * Save all addresses by markers which setted on the map
-     */
-    public saveAllAddressesFromMarkers(): void {
         this.saveFormattedAddresses();
     }
+
+    ///**
+    // * Save all addresses by markers which setted on the map
+    // */
+    //public saveAllAddressesFromMarkers(): void {
+    //    this.saveFormattedAddresses();
+    //}
 
     /**
      * Gets Array of formatted addresses
