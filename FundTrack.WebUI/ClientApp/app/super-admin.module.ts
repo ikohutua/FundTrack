@@ -11,6 +11,7 @@ import { SuperAdminBanComponent } from './components/super-admin/super-admin-ban
 import { OrganizationRegistrationComponent } from './components/super-admin/organization-registration.component';
 import { MapModule } from './map.module';
 import { OrganizationRegistrationService } from './services/concrete/organization-registration.service';
+import { SuperAdminChatComponent } from './components/super-admin/super-admin-chat.component';
 
 @NgModule({
     declarations: [
@@ -20,7 +21,8 @@ import { OrganizationRegistrationService } from './services/concrete/organizatio
         SuperAdminUsersComponent,
         SuperAdminGrid,
         SuperAdminBanComponent,
-        OrganizationRegistrationComponent
+        OrganizationRegistrationComponent,
+        SuperAdminChatComponent
     ],
     imports: [
         CommonModule,

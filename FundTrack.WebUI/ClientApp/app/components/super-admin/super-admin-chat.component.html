@@ -1,0 +1,8 @@
+﻿<button (click)="sendMessage()">test</button>
+<div>
+    <ul>
+        <li *ngFor="let message of _chatMessages">
+            ------ {{message.Message}} -----
+        </li>
+    </ul>
+</div>

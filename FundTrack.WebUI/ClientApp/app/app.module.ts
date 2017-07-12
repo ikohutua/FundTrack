@@ -11,6 +11,15 @@ import { Angular2FontawesomeModule } from 'angular2-fontawesome/angular2-fontawe
 import { OrganizationManagementModule } from "./organization-management.module";
 import { StorageService } from './shared/item-storage-service';
 import { OfferManagementModule } from './offer-management.module';
+import { SignalRModule, SignalRConfiguration } from 'ng2-signalr';
+
+function createConfig(): SignalRConfiguration {
+    let signalrConfiguration = new SignalRConfiguration();
+    signalrConfiguration.hubName = 'SuperAdminChatHub';
+    signalrConfiguration.url = 'http://localhost:51116/signalr/hubs';
+
+    return signalrConfiguration;
+}
 
 @NgModule({
     bootstrap: [AppComponent],    
@@ -27,7 +36,8 @@ import { OfferManagementModule } from './offer-management.module';
         MapModule,
         Angular2FontawesomeModule,
         OrganizationManagementModule,
-        OfferManagementModule
+        OfferManagementModule,
+        SignalRModule.forRoot(createConfig)
     ],
     providers: [StorageService]
 })
