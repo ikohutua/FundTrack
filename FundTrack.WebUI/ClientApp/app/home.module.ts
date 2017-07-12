@@ -6,6 +6,7 @@ import { EventDetailComponent } from "./components/event-detail/event-detail.com
 import { AllRequestsComponent } from "./components/all-requests/all-requests.component";
 import { RequestDetailComponent } from './components/request-detail/request-detail.component';
 import { GalleryComponent } from './shared/components/gallery/gallery.component';
+import { GalleryEventDetailComponent } from './shared/components/gallery-event-detail/gallery-event-detail.component';
 import { CommonModule } from "@angular/common";
 import { HomeRoutingModule } from "./routes/home-routing.module";
 import { MapModule } from "./map.module";
@@ -19,7 +20,8 @@ import { SharedModule } from "./shared.module";
         EventDetailComponent,
         AllRequestsComponent,
         RequestDetailComponent,
-        GalleryComponent
+        GalleryComponent,
+        GalleryEventDetailComponent
     ],
     imports: [
         CommonModule,

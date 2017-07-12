@@ -1,0 +1,26 @@
+﻿<div class="modal fade" id="selectedImageModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="selected" *ngIf="selectedImage">
+                    <img src="{{selectedImage}}" class="imageSelected">
+                    <div class="arrow-back" *ngIf="!isFirstImage" (click)=navigate(false)>
+                        &lt;
+                    </div>
+                    <div class="arrow-forward" *ngIf="!isLastImage" (click)=navigate(true)>
+                        &gt;
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<ul id="thumbnailsList">
+    <li *ngFor="let image of datasource">
+        <div>
+            <img src="{{image}}" class="tn" 
+                 data-toggle="modal" data-target="#selectedImageModal"
+                 (click)=setSelectedImage(image)>
+        </div>
+    </li>
+</ul>

@@ -1,3 +1,121 @@
-﻿<div class="col-lg-6">
-   <h1>Will be soon</h1>
+﻿<div class="row" style="background-color: #AAB08B">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
+    <div class="col-lg-12" style="min-height:150px">
+        <p style="font-size:large">
+            <br />
+            Допомогти волонтерам можна не тільки грошима.<br />
+            Саме тут Ви можете переглянути повний перелік потреб волонтерських організацій у речах, ліках, продуктах та різноманітих товарах,
+            і при наявності можливості та бажання, запропонувати їм свою допомогу.
+        </p>
+
+    </div>
+    <div class="col-lg-9">
+        <div class="table-responsive">
+            <table id="mytable" class="table table-bordred table-striped">
+                <thead>
+                    <tr>
+                        <th>Назва</th>
+                        <th>Організація</th>
+                        <th>Категорія</th>
+                        <th>Тип</th>
+                        <th>Дата</th>
+                        <th>Статус</th>
+                        <th>Деталі</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of _model">
+                        <td>{{item.name}}</td>
+                        <td>{{item.organization}}</td>
+                        <td>{{item.goodsCategory}}</td>
+                        <td>{{item.goodsType}}</td>
+                        <td>{{item.createDate  | date}}</td>
+                        <td>{{item.status}}</td>
+                        <td><p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit"><span class="glyphicon glyphicon-pencil"></span></button></p></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div *ngIf="totalItems && itemsPerPage" class="text-center">
+            <pagination-pages [offset]="offset"
+                              [limit]="itemsPerPage"
+                              [size]="totalItems"
+                              [currentPage]="currentPage"
+                              (pageChange)="onPageChange($event)">
+            </pagination-pages>
+        </div>
+
+    </div>
+    <div class="col-lg-3">
+        <form class="form-horizontal">
+            <fieldset>
+
+                <!-- Form Name -->
+                <legend>Параметри пошуку</legend>
+
+                <!-- Select Organization -->
+                <div class="form-group">
+                    <label class="col-lg-11 col-lg-offset-1 control-label pull-left" for="selectbasic">Організація</label>
+                    <div class="col-lg-11 col-lg-offset-1">
+                        <select id="selectbasic" name="selectbasic" class="form-control">
+                            <option value="" disabled selected style="display: none;">Виберіть організацію</option>
+                            <option value="1">Всі організації</option>
+                            <option value="2">Option two</option>
+                            <option value="">Option one</option>
+                            <option value="">Option two</option>
+                        </select>
+                    </div>
+                </div>
+                <!-- Select Basic -->
+                <div class="form-group">
+                    <label class="col-lg-11 col-lg-offset-1  control-label" for="selectbasic">Категорія</label>
+                    <div class="col-lg-11 col-lg-offset-1">
+                        <select id="selectbasic" name="selectbasic" class="form-control">
+                            <option value="" disabled selected style="display: none;">Виберіть категорію</option>
+                            <option value="1">Всі категорії</option>
+                            <option value="2">Option two</option>
+                            <option value="">Option one</option>
+                            <option value="">Option two</option>
+                        </select>
+                    </div>
+                </div>
+                <!-- Select Basic -->
+                <div class="form-group">
+                    <label class="col-lg-11 col-lg-offset-1  control-label" for="selectbasic">Тип</label>
+                    <div class="col-lg-11 col-lg-offset-1">
+                        <select id="selectbasic" name="selectbasic" class="form-control">
+                            <option value="" disabled selected style="display: none;">Виберіть тип</option>
+                            <option value="1">Всі типи</option>
+                            <option value="2">Option two</option>
+                            <option value="">Option one</option>
+                            <option value="">Option two</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Select Basic -->
+                <div class="form-group">
+                    <label class="col-lg-11 col-lg-offset-1  control-label" for="selectbasic">Статус</label>
+                    <div class="col-lg-11 col-lg-offset-1">
+                        <select id="selectbasic" name="selectbasic" class="form-control">
+                            <option value="" disabled selected style="display: none;">Виберіть статус</option>
+                            <option value="1">Всі статуси</option>
+                            <option value="2">Option two</option>
+                            <option value="">Option one</option>
+                            <option value="">Option two</option>
+                        </select>
+                    </div>
+                </div>
+                <!-- Button -->
+                <div class="form-group">
+                    <label class="col-lg-11 col-lg-offset-1  control-label" for="singlebutton"></label>
+                    <div class="col-lg-11 col-lg-offset-1">
+                        <button id="singlebutton" name="singlebutton" class="btn btn-primary pull-right">Шукати</button>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
 </div>
+

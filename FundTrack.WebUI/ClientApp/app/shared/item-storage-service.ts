@@ -8,4 +8,5 @@ export class StorageService {
     * Indicates that the organization is banned
     */
     public bannedDescription: string = '';
+    public showDropDown: boolean = true;
 }

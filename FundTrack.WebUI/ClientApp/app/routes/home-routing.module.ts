@@ -12,13 +12,14 @@ import { RequestDetailComponent } from "../components/request-detail/request-det
     imports: [
         RouterModule.forChild([
             {
-                path: '', redirectTo: '/home',
+                path: '', redirectTo: 'home',
                 pathMatch: 'full',
             },
             {
                 path: 'home', component: HomeComponent,
                 children:
                 [
+                    { path: '', component: AllEventsComponent },
                     { path: 'allevents', component: AllEventsComponent },
                     { path: 'allevents/:id', component: AllEventsComponent },
                     { path: 'eventdetail/:id', component: EventDetailComponent },

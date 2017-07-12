@@ -10,23 +10,20 @@
             <div class="clearfix"></div>
         </div>
         <div class="panel-body panel-padding">
-
-            <div class="carousel slide article-slide" id="article-photo-carousel">
-                <!-- Wrapper for slides -->
-                <div class="carousel-inner cont-slider">
-                    <div class="item active">
-                        <a [routerLink]="['']"><img alt="" title="" src={{_eventDetail.imageUrl[0]}} class="img-big"></a>
-                    </div>
-                </div>
-                <!-- Indicators -->
-                <ol class="carousel-indicators">
-                    <li class="" data-target="#article-photo-carousel" *ngFor="let image of _eventDetail.imageUrl | slice:1; let i = index " [attr.data-slide-to]="i+1">
-                        <img alt="" src={{image}}>
-                    </li>
-                </ol>
-            </div>
-
             <div>
+                <div style="float:left; margin-right:50px">
+                    <img alt="" title="" src={{_eventDetail.imageUrl[0]}} class="img-big">
+                </div>
+                <div *ngIf="_eventDetail.imageUrl" style="position:absolute">
+                    <gallery-eventdetail [datasource]="_eventDetail.imageUrl"> </gallery-eventdetail>
+                </div>
+                <!--<div style="position:absolute; height:60px">
+                    <p style="float:left" *ngFor="let image of _eventDetail.imageUrl">
+                        <a [routerLink]="['']"><img class="img-size" alt="" src={{image}}></a>
+                    </p>
+                </div>-->
+            </div>
+            <div >
                 {{_eventDetail.description}}
             </div>
             <div class="pull-right">
@@ -35,25 +32,4 @@
         </div>
     </div>
 </div>
-
-
-<!--<div class="carousel slide article-slide" id="article-photo-carousel">-->
-    <!-- Wrapper for slides -->
-    <!--<div class="carousel-inner cont-slider">
-        <div class="item active">
-            <a [routerLink]="['']"><img alt="" title="" src={{_eventDetail.imageUrl[0]}} class="img-big"></a>
-        </div>
-        <div class="item" *ngFor="let image of _eventDetail.imageUrl | slice:1">
-            <a [routerLink]="['']"><img alt="" title="" src={{image}} class="img-big"></a>
-        </div>
-    </div>-->
-    <!-- Indicators -->
-    <!--<ol class="carousel-indicators">
-        <li class="active" data-slide-to="0" data-target="#article-photo-carousel">
-            <img alt="" src={{_eventDetail.imageUrl[0]}}>
-        </li>
-        <li class="" data-target="#article-photo-carousel" *ngFor="let image of _eventDetail.imageUrl | slice:1; let i = index " [attr.data-slide-to]="i+1">
-            <img alt="" src={{image}}>
-        </li>
-    </ol>
-</div>-->
+<!--class="col-md-2 col-md-offset-0"--> 

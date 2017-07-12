@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using FundTrack.Infrastructure.ViewModel;
+using FundTrack.Infrastructure.ViewModel.RequestedItemModel;
 using FundTrack.DAL.Abstract;
 using System.Linq;
 using FundTrack.DAL.Entities;
@@ -13,9 +14,10 @@ namespace FundTrack.BLL.Concrete
     /// <summary>
     /// Requested item service
     /// </summary>
-    public sealed class RequestedItemService : IRequestedItemService
+    public sealed class RequestedItemService : BaseService, IRequestedItemService
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly int _requestedItemPerPage = 4;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RequestedItemService"/> class.
@@ -275,6 +277,69 @@ namespace FundTrack.BLL.Concrete
         }
 
         /// <summary>
+        /// Gets requested items of all organizations with additional information.
+        /// </summary>
+        /// <returns>Collection of ShowAllRequestedItemModel</returns>
+        public IEnumerable<ShowAllRequestedItemModel> GetRequestedItemToShow()
+        {
+            var events = ((DbSet<RequestedItem>)_unitOfWork.RequestedItemRepository.Read())
+             //.Include(e => e.Organization)
+             //.Include(e => e.GoodsCategory)
+             //.Include(e => e.Status)
+             .Select(c => new ShowAllRequestedItemModel()
+             {
+                 Id = c.Id,
+                 GoodsCategory = c.GoodsCategory.Name,
+                 GoodsType = c.GoodsCategory.GoodsType.Name,
+                 CreateDate = DateTime.Now,
+                 Organization = c.Organization.Name,
+                 Status = c.Status.StatusName,
+                 Name = c.Name,
+                 Description = c.Description
+             }).OrderBy(e => e.GoodsCategory);
+
+            return events;
+        }
+
+        /// <summary>
+        /// Gets  RequestedItem per page.
+        /// </summary>
+        /// <returns>Collection of ShowAllRequestedItemModel</returns>
+        public IEnumerable<ShowAllRequestedItemModel> GetRequestedItemToShowPerPage(int itemsPerPage, int currentPage)
+        {
+            var events = ((DbSet<RequestedItem>)_unitOfWork.RequestedItemRepository.Read())
+              //.Include(e => e.Organization)
+              //.Include(e => e.GoodsCategory)
+              //.Include(e => e.Status)
+              .Select(c => new ShowAllRequestedItemModel()
+              {
+                  Id = c.Id,
+                  GoodsCategory = c.GoodsCategory.Name,
+                  GoodsType = c.GoodsCategory.GoodsType.Name,
+                  CreateDate = DateTime.Now,
+                  Organization = c.Organization.Name,
+                  Status = c.Status.StatusName,
+                  Name = c.Name,
+                  Description = c.Description
+              }).OrderBy(e => e.GoodsCategory);
+
+            return GetPageItems(events, itemsPerPage, currentPage);
+        }
+
+        /// <summary>
+        /// Gets Initial data for pagination
+        /// </summary>
+        /// <returns>Event Initial data</returns>
+        public RequestedItemPaginationInitViewModel GetRequestedItemPaginationData()
+        {
+            return new RequestedItemPaginationInitViewModel
+            {
+                TotalItemsCount = _unitOfWork.RequestedItemRepository.Read().Count(),
+                ItemsPerPage = _requestedItemPerPage
+            };
+        }
+
+        /// <summary>
         /// Gets images by requested item id
         /// </summary>
         /// <param name="requestedItemId"></param>
@@ -294,7 +359,7 @@ namespace FundTrack.BLL.Concrete
 
                 return allImages;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw new BusinessLogicException(ex.Message);
             }

@@ -1,4 +1,5 @@
 ﻿using FundTrack.Infrastructure.ViewModel;
+using FundTrack.Infrastructure.ViewModel.RequestedItemModel;
 using System.Collections.Generic;
 
 namespace FundTrack.BLL.Abstract
@@ -47,11 +48,30 @@ namespace FundTrack.BLL.Abstract
         /// <param name="id">The identifier.</param>
         /// <returns> Requested View Model</returns>
         RequestedItemDetailViewModel GetRequestedItemDetail(int id);
+
         /// <summary>
         /// Gets all goods type from databse
         /// </summary>
         /// <returns></returns>
         IEnumerable<GoodsTypeViewModel> GetAllGoodTypes();
+
+        /// <summary>
+        /// Gets requested items of all organizations with additional information.
+        /// </summary>
+        /// <returns>Collection of ShowAllRequestedItemModel</returns>
+        IEnumerable<ShowAllRequestedItemModel> GetRequestedItemToShow();
+
+        /// <summary>
+        /// Gets Initial data for RequestedItem pagination
+        /// </summary>
+        /// <returns>Pagination Initial data</returns>
+        RequestedItemPaginationInitViewModel GetRequestedItemPaginationData();
+
+        /// <summary>
+        /// Gets specific count of this instance for pagination.
+        /// </summary>
+        /// <returns>Collections of instances</returns>
+        IEnumerable<ShowAllRequestedItemModel> GetRequestedItemToShowPerPage(int itemsPerPage, int currentPage);
 
         /// <summary>
         /// Creates the user response on requested item.

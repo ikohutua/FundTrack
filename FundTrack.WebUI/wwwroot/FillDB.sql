@@ -1,4 +1,6 @@
-﻿
+﻿USE FundTrackSSLv242
+USE FTLocal
+
 DELETE from Organizations
 DBCC CHECKIDENT ('Organizations', RESEED, 0);
 DELETE from Events
@@ -294,6 +296,26 @@ VALUES
 (N'Інше')
 GO
 
+INSERT INTO dbo.GoodsCategories
+VALUES
+(1,N'Чоботи'),
+(1,N'Черевики'),
+(2,N'Обезболюючи'),
+(2,N'протизапальні'),
+(3,N'Консерви'),
+(3,N'Крупи'),
+(4,N'Телефони'),
+(5,N'Окуляри'),
+(6,N'Білизна'),
+(6,N'Шкарпетки'),
+(7,N'Сигарети')
+GO
+
+INSERT INTO dbo.RequestedItems 
+VALUES
+(N'Детальний опис для товару',1,N'Чоботи р,43',1,1)
+GO
+
 INSERT INTO dbo.RequestedItems
 VALUES
 ('Необхідно 20 пар взуття',1,'Черевики',1,1),
@@ -308,4 +330,5 @@ VALUES (N'Мега супер круті берці від американсь�
 select * from dbo.Organizations
 select * from dbo.Events
 select * from dbo.EventImages
+select * from dbo.GoodsTypes
 select * from dbo.RequestedItemImages

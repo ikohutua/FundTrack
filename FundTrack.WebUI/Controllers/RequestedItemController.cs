@@ -4,15 +4,15 @@ using Microsoft.AspNetCore.Mvc;
 using FundTrack.BLL.Concrete;
 using FundTrack.Infrastructure.ViewModel;
 using FundTrack.BLL.Abstract;
+using FundTrack.Infrastructure.ViewModel.RequestedItemModel;
 
 namespace FundTrack.WebUI.Controllers
 {
     /// <summary>
     /// Requested item controller class
     /// </summary>
-    [Produces("application/json")]
-    [Route("api/RequestedItem")]
-    public class RequestedItemController : Controller
+    [Route("api/[controller]")]
+    public sealed class RequestedItemController : Controller
     {
         private readonly IRequestedItemService _requestedItemService;
 
@@ -142,7 +142,43 @@ namespace FundTrack.WebUI.Controllers
         {
             return this._requestedItemService.CreateUserResponse(userResponse);
         }
+
+        /// <summary>
+        /// All the requested items of all organizations with additional information.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns>Returns to WEB info about all events of specific organization</returns>
+        [HttpGet("GetRequestedItemToShow")]
+        public IEnumerable<ShowAllRequestedItemModel> GetRequestedItemToShow()
+        {
+            return _requestedItemService.GetRequestedItemToShow();
+        }
+
+        /// <summary>
+        /// The count of requested items per page with additional information.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns>Returns to WEB info about count of requested items per page with additional information.</returns>
+        [HttpGet("GetRequestedItemToShowPerPage/{itemsPerPage}/{currentPage}")]
+        public IEnumerable<ShowAllRequestedItemModel> GetRequestedItemToShowPerPage(int itemsPerPage, int currentPage)
+        {
+            return _requestedItemService.GetRequestedItemToShowPerPage(itemsPerPage, currentPage);
+        }
+
+
+        /// <summary>
+        /// Gets RequestedItem Data for pagination
+        /// </summary>
+        /// <returns>Organizations pagination data</returns>
+        [HttpGet("GetRequestedItemPaginationData")]
+        public RequestedItemPaginationInitViewModel GetRequestedItemPaginationData()
+        {
+            return _requestedItemService.GetRequestedItemPaginationData();
+        }
+
+
     }
 }
+
 
     
