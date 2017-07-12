@@ -14,10 +14,10 @@
                 <td class="text-left">{{event.createDate|date:'shortTime'}}</td>
                 <td class="text-left">{{event.description|truncate : 50}}</td>
                 <td class="text-center">
-                    <button class="btn btn-default">Редагувати</button>
+                    <button class="btn btn-default" (click)="redirectToDetailEditPage(event.id)">Редагувати</button>
                 </td>
                 <td class="text-center">
-                    <button class="btn btn-default">Видалити</button>
+                    <button class="btn btn-default" (click)="deleteEvent(event.id)">Видалити</button>
                 </td>
             </tr>
         </tbody>

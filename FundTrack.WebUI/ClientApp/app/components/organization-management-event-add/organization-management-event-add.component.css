@@ -1,0 +1,38 @@
+﻿.error-message {
+    color: #ff0000;
+    font-size: x-large;
+}
+
+.has-error label {
+    color: #ff0000 !important;
+}
+
+.btn-default {
+    background-color: #008500 !important;
+    border-color: #243918 !important;
+}
+
+    .btn-default:focus,
+    .btn-default.focus {
+        color: #fffc00 !important;
+        background-color: #269926 !important;
+        border-color: #243918 !important;
+    }
+
+    .btn-default:hover {
+        color: #fffc00 !important;
+        background-color: #269926 !important;
+        border-color: #243918 !important;
+    }
+
+    .btn-default:active,
+    .btn-default.active,
+    .open > .dropdown-toggle.btn-default {
+        color: #fffc00 !important;
+        background-color: #269926 !important;
+        border-color: #243918 !important;
+    }
+
+#background {
+    background: #aab08b;
+}

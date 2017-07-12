@@ -5,10 +5,14 @@ import { OrganizationManagementRoutingModule } from "./routes/organization-manag
 import { OrganizationManagementEventComponent } from "./components/organization-management-event/organization-management-event.component";
 import { FormsModule } from "@angular/forms";
 import { TruncatePipe } from "./shared/pipes/truncate.pipe";
+import { OrganizationManagementEventsService } from "./services/concrete/organization-management/organization-management-events.service";
+import { OrganizationManadementEventEditComponent } from "./components/organization-manadement-event-edit/organization-manadement-event-edit.component";
+import { OrganizationManagementEventAddComponent } from "./components/organization-management-event-add/organization-management-event-add.component";
 import { OrganizationBannedComponent } from './shared/components/error-pages/organization-banned.component';
 import { OrganizationManagementRequestComponent } from "./components/organization-management-request/organization-management-request.component";
 import { OrganizationCreateRequestComponent } from "./components/organization-management-request/organization-create-request.component";
 import { OrganizationDeleteRequestComponent } from "./components/organization-management-request/organization-delete-request.component";
+
 
 @NgModule({
     declarations: [
@@ -19,7 +23,9 @@ import { OrganizationDeleteRequestComponent } from "./components/organization-ma
         OrganizationManagementRequestComponent,
         OrganizationCreateRequestComponent,
         OrganizationDeleteRequestComponent,
-        TruncatePipe
+        TruncatePipe,
+        OrganizationManadementEventEditComponent,
+        OrganizationManagementEventAddComponent
     ],
     imports: [
         FormsModule,
@@ -28,6 +34,9 @@ import { OrganizationDeleteRequestComponent } from "./components/organization-ma
     ],
     exports: [
         TruncatePipe
+    ],
+    providers: [
+        OrganizationManagementEventsService
     ]
 })
 export class OrganizationManagementModule { }

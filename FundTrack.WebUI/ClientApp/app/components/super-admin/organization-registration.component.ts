@@ -49,7 +49,7 @@ export class OrganizationRegistrationComponent implements OnInit {
     }
 
     getAddresses() {
-        //this.addresses = this._map.getAllAddresses();
+       // this.addresses = this._map.getAllAddresses();
         console.log(this.addresses);
     }
 

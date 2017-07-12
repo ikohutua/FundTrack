@@ -29,8 +29,8 @@ namespace FundTrack.DAL.Concrete
         /// <returns></returns>
         public Event Create(Event item)
         {
-            _context.Events.Add(item);
-            return item;
+            var created = _context.Events.Add(item);
+            return created.Entity;
         }
 
         /// <summary>

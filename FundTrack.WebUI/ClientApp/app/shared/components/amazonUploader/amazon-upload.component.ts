@@ -1,5 +1,5 @@
 ﻿import { Component } from '@angular/core';
-require('aws-sdk/dist/aws-sdk');
+//require('aws-sdk/dist/aws-sdk');
 
 @Component({
 })

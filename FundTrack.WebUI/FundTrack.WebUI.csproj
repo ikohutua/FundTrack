@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="wwwroot\images\camouflage_texture.jpg" />
+    <Content Include="wwwroot\images\close.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Controllers\UserInfoController.cs" />

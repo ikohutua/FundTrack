@@ -1,5 +1,4 @@
-﻿USE FundTrackSSLv242
-
+﻿
 DELETE from Organizations
 DBCC CHECKIDENT ('Organizations', RESEED, 0);
 DELETE from Events

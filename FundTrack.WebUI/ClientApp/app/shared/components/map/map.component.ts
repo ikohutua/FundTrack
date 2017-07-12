@@ -147,7 +147,6 @@ export class MapComponent implements OnInit {
      * @returns formatted address: string
      */
     private formatAddress(googleResponse: google.maps.GeocoderResult): string {
-        debugger;
         var formattedAddress: string = '';
         for (let i = 0; i < googleResponse.address_components.length; i++) {
             switch (googleResponse.address_components[i].types.toString()) {
@@ -174,28 +173,39 @@ export class MapComponent implements OnInit {
      * Gets the formatted addresses by coordinates from the _markers
      */
     private saveFormattedAddresses(): void {
+        debugger;
         this._addresses = [];
         var maximumMarkersOnMap = this.getMaximumMarkersOnMap(this._markers.length);
-        for (let i = 0; i < maximumMarkersOnMap; i++) {
-            this._mapsAPILoader.load().then(() => {
-                var location: LatLngLiteral = {
-                    lat: this._markers[i].lat,
-                    lng: this._markers[i].lng
-                };
-                var geocoder = new google.maps.Geocoder();
-                geocoder.geocode({ 'location': location }, (results, status) => {
-                    if (this.allowManyMarkers) {
-                        var addressContainsInArray = this._addresses.find(a => a == results[0].formatted_address);
-                        if (!addressContainsInArray) {
-                            this._addresses.push(this.formatAddress(results[0]));
-                        }
+        for (var i = 0; i < maximumMarkersOnMap; i++) {
+            debugger;
+            let tmp: string;
+            this.get(i, () => tmp);
+            this._addresses.push(tmp);
+        }
+    }
+
+    private get(iterator: number, callback: () => string): void {
+        this._mapsAPILoader.load().then(() => {
+            var location: LatLngLiteral = {
+                lat: this._markers[iterator].lat,
+                lng: this._markers[iterator].lng
+            };
+            var geocoder = new google.maps.Geocoder();
+            geocoder.geocode({ 'location': location }, (results, status) => {
+                if (this.allowManyMarkers) {
+                    var addressContainsInArray = this._addresses.find(a => a == results[0].formatted_address);
+                    if (!addressContainsInArray) {
+                        debugger;
+                        //this._addresses.push(this.formatAddress(results[0]));                       
                     }
                     else {
-                        this._addresses[0] = this.formatAddress(results[0]);
+                        callback => this.formatAddress(results[0]);
+                        //this._addresses[0] = this.formatAddress(results[0]);
                     }
-                });
+                }
             });
-        }
+
+        });
     }
 
     /**

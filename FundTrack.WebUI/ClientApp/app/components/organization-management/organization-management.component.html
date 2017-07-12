@@ -8,15 +8,12 @@
                 <a class="hidden-xs" href="#">Головна</a>
                 <a class="visible-xs" href=""><span class="glyphicon glyphicon-home"></span></a>
             </li>
-            <li>
-                <a class="hidden-xs" [routerLink]="['all-events']">Події</a>
-                <a class="visible-xs" [routerLink]="['all-events']"><span class="glyphicon glyphicon-bell"></span></a>
-            </li>
             <li class="dropdown">
-                <a [routerLink]="['all-events']" class="dropdown-toggle" data-toggle="dropdown">Події <span class="caret"></span></a>
+                <a class="dropdown-toggle" data-toggle="dropdown">Події <span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">
-                    <li class="dropdown-header">Dropdown heading</li>
-                    <li><a href="#">Створити подію</a></li>
+                    <li class="dropdown-header">Події</li>
+                    <li><a [routerLink]="['all-events']">Всі Події</a></li>
+                    <li><a [routerLink]="['add']">Створити подію</a></li>
                 </ul>
             </li>
             <li>

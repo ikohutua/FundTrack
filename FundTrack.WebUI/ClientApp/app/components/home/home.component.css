@@ -6,7 +6,7 @@
     margin-bottom: 20px;
 }
 
-@media (max-width: 1199px){
+@media (max-width: 1199px) {
     .nav-mn {
         position: relative;
     }
@@ -17,3 +17,14 @@
         position: fixed;
     }
 }
+
+
+/*-------------------------------*/
+/*           For sidebar         */
+/*-------------------------------*/
+div.shifted {
+    margin-left: 15%;
+}
+/*-------------------------------*/
+/*           For sidebar         */
+/*-------------------------------*/

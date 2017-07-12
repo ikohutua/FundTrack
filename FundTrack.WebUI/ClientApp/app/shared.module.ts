@@ -11,6 +11,7 @@ import { PageItemComponent } from './shared/components/pagination/page-item.comp
 import { ModalComponent } from './shared/components/modal/modal-component';
 import { SelectComponent } from './shared/components/select/select.component';
 import { SpinnerComponent } from './shared/components/spinner/spinner.component';
+import { SidebarComponent } from "./shared/components/sidebar/sidebar.component";
 
 @NgModule({
     declarations: [
@@ -22,7 +23,8 @@ import { SpinnerComponent } from './shared/components/spinner/spinner.component'
         ModalComponent,
         EventFilterPipe,
         SelectComponent,
-        SpinnerComponent
+        SpinnerComponent,
+        SidebarComponent
     ],
     imports: [
         CommonModule,
@@ -41,7 +43,8 @@ import { SpinnerComponent } from './shared/components/spinner/spinner.component'
         ModalComponent,
         EventFilterPipe,
         SelectComponent,
-        SpinnerComponent
+        SpinnerComponent,
+        SidebarComponent
     ]
 })
 export class SharedModule { }
