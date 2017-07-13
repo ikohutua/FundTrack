@@ -1,6 +1,6 @@
-﻿export class RequestedItemViewModel {
+﻿export class RequestedImageViewModel {
     id: number;
-    url: string;
+    imageUrl: string;
     isMain: boolean;
     requestedItemId: number;
 }

@@ -32,5 +32,17 @@
             </option>
         </select>
     </div>
-    <button class="btn btn-default" (click)="manageRequestedItems()">Добавити</button>
+
+    <div class="form-group">
+        <div>
+            <span *ngFor="let _currentImage of _requestedItem.images">
+                <img src="{{_currentImage.imageUrl}}" class="img-responsive img-thumbnail" style="border:none" height="300" width="200">
+            </span>
+            <img src="http://www.freeiconspng.com/uploads/add-icon--line-iconset--iconsmind-29.png" (click)="imageInput.click()" class="img-responsive img-thumbnail" style="border-width:1px" height="300" width="200">
+            <input type="file" (change)="saveFileInAws($event)" #imageInput accept=".png,.jpg" class="well well-sm hidden">
+        </div>
+    </div>
+
+    {{_errorMessage}}
+    <button class="btn btn-default pull-right" (click)="manageRequestedItems()">Добавити</button>
 </form>

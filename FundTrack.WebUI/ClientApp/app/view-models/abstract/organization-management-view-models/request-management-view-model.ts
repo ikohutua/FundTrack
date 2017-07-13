@@ -1,4 +1,4 @@
-﻿import { RequestedItemViewModel } from "./requested-item-view.model";
+﻿import { RequestedImageViewModel } from "./requested-item-view.model";
 
 export class RequestManagementViewModel {
     id: number;
@@ -8,5 +8,7 @@ export class RequestManagementViewModel {
     goodsCategoryId: number;
     organizationId: number;
     status: string;
-    images: RequestedItemViewModel[];
+    errorMessage: string;
+    goodsTypeId: number;
+    images: RequestedImageViewModel[] = [];
 }

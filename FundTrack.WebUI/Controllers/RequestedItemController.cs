@@ -104,9 +104,19 @@ namespace FundTrack.WebUI.Controllers
         [HttpGet("GetRequestedItem/{id}")]
         public RequestedItemViewModel GetRequestedItem(int id)
         {
-            RequestedItemViewModel requestedItemViewModel = this._requestedItemService.GetItemById(id);
+            try
+            {
+                RequestedItemViewModel requestedItemViewModel = this._requestedItemService.GetItemById(id);
 
-            return requestedItemViewModel;
+                return requestedItemViewModel;
+            }
+            catch(Exception ex)
+            {
+                return new RequestedItemViewModel()
+                {
+                    ErrorMessage = ex.Message
+                };
+            }
         }
 
         /// <summary>
@@ -141,6 +151,25 @@ namespace FundTrack.WebUI.Controllers
         public UserResponseViewModel SetUserResponse([FromBody] UserResponseViewModel userResponse)
         {
             return this._requestedItemService.CreateUserResponse(userResponse);
+        }
+
+        /// <summary>
+        /// Delete currentImage from database
+        /// </summary>
+        /// <param name="currentImageId">Current image id</param>
+        [HttpDelete("DeleteCurrentImage/{currentImageId}")]
+        public JsonResult DeleteCurrentImage(int currentImageId)
+        {
+            try
+            {
+                this._requestedItemService.DeleteCurrentImage(currentImageId);
+
+                return new JsonResult(string.Empty);
+            }
+            catch(Exception ex)
+            {
+                return new JsonResult(ex.Message);
+            }
         }
 
         /// <summary>

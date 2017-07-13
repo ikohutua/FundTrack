@@ -5,6 +5,12 @@ namespace FundTrack.DAL.Abstract
 {
     public interface IUserResporitory : IRepository<User>
     {
+        /// <summary>
+        /// Cheks if user existed
+        /// </summary>
+        /// <param name="email">User email</param>
+        /// <param name="login">User login</param>
+        /// <returns>Existed user</returns>
         bool isUserExisted(string email, string login);
 
         /// <summary>
@@ -79,6 +85,7 @@ namespace FundTrack.DAL.Abstract
         /// <param name="email">The email.</param>
         /// <returns></returns>
         User GetFacebookUser(string email);
+
         /// <summary>
         /// Gets User entity by id
         /// </summary>

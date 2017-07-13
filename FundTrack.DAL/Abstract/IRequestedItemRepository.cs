@@ -21,8 +21,18 @@ namespace FundTrack.DAL.Abstract
         /// <param name="id">The identifier.</param>
         /// <returns>Requested Item</returns>
         RequestedItem GetRequestedItemsWithVirtualFields(int id);
+        
+        /// <summary>
+        /// Gets requested item from database by organization id
+        /// </summary>
+        /// <param name="organizationId">Organization id</param>
+        /// <returns>List of requested items</returns>
         IEnumerable<RequestedItem> GetOrganizationRequestedItems(int organizationId);
+
+        /// <summary>
+        /// Gets all goodstype
+        /// </summary>
+        /// <returns>List of goodstype</returns>
         IEnumerable<GoodsType> GetAllGoodTypes();
-        IEnumerable<RequestedItemImage> GetAllImages(int requestedItemId);
     }
 }

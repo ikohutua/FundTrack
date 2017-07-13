@@ -43,4 +43,20 @@ export class SidebarComponent {
     public redirectToAddEventPage(idOrganization: number): void {
         this._router.navigate(['organization/event/add/' + idOrganization.toString()]);
     }
+
+    /**
+     * Redirect to 'all requests page' in organization management page
+     * @param idOrganization
+     */
+    public redirectToAllRequests(idOrganization: number): void {
+        this._router.navigate(['organization/requests/' + idOrganization.toString()]);
+    }
+
+    /**
+     * Redirect to 'manage requests page' in organization management page
+     * @param idOrganization
+     */
+    public redirectToManageRequestPage(idOrganization: number): void {
+        this._router.navigate(['organization/request/manage/' + idOrganization.toString() + "/0"]);
+    }
 }

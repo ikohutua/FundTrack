@@ -137,19 +137,5 @@ namespace FundTrack.DAL.Concrete
 
             return goodsTypes;
         }
-
-        /// <summary>
-        /// Gets all images from database
-        /// </summary>
-        /// <param name="requestedItemId">Id of requested item</param>
-        /// <returns>List of images</returns>
-        public IEnumerable<RequestedItemImage> GetAllImages(int requestedItemId)
-        {
-            var images = this._dbContext.RequestedItemImages
-                .Include(i => i.RequestedItem)
-                .Where(i => i.RequestedItemId == requestedItemId);
-
-            return images;
-        }
     }
 }

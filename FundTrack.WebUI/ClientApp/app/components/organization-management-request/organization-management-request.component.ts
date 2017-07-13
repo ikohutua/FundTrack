@@ -21,8 +21,7 @@ export class OrganizationManagementRequestComponent implements OnInit {
     private _subscription: Subscription;
 
     ngOnInit(): void {
-        this._subscription = this._route.parent
-            .params.subscribe(params => {
+        this._subscription = this._route.params.subscribe(params => {
                 this._organizationId = +params["id"];
             });
         this.getAllRequestedItems(1);
@@ -52,6 +51,14 @@ export class OrganizationManagementRequestComponent implements OnInit {
             .subscribe(data => this._allRequestedItems
                 .splice(this._allRequestedItems.findIndex(i => i.id == this.currentRequestedItem.id), 1),
             error => this._errorMessage = <any>error);
+    }
+
+    /**
+     * Redirect to 'manage requests page' in organization management page
+     * @param idOrganization
+     */
+    public redirectToManageRequestPage(idRequest: number): void {
+        this._router.navigate(['organization/request/manage/' + this._organizationId + "/" + idRequest]);
     }
  
     ngDestroy(): void {

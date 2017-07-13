@@ -103,20 +103,5 @@ namespace FundTrack.DAL.Concrete
         {
             return this._context.Statuses.FirstOrDefault(s => s.Id == id);
         }
-
-        /// <summary>
-        /// Gets status by name
-        /// </summary>
-        /// <param name="statusName">Status name</param>
-        /// <returns>Status entity</returns>
-        public Status GetStatusByyStatusName(string statusName)
-        {
-            var status = this._context.Statuses
-                .Include(s => s.OfferedItems)
-                .Include(s => s.RequestedItems)
-                .FirstOrDefault(s => s.StatusName == statusName);
-
-            return status;
-        }
     }
 }

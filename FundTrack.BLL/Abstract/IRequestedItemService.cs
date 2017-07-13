@@ -79,10 +79,11 @@ namespace FundTrack.BLL.Abstract
         /// <param name="userResponse">The user response.</param>
         /// <returns>Requested View Model</returns>
         UserResponseViewModel CreateUserResponse(UserResponseViewModel userResponse);
+
         /// <summary>
-        /// Gets all images from database
+        /// Delete current image from database
         /// </summary>
-        /// <returns>List of images</returns>
-        IEnumerable<RequestedImageViewModel> GetImagesByRequestedId(int requestedItemId);
+        /// <param name="currentId"></param>
+        void DeleteCurrentImage(int currentId);
     }
 }

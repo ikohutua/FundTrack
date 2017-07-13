@@ -12,13 +12,6 @@ namespace FundTrack.DAL.Abstract
     public interface IStatusRepository : IRepository<Status>
     {
         /// <summary>
-        /// Gets status by name from database
-        /// </summary>
-        /// <param name="statusName">Status name</param>
-        /// <returns>Status object</returns>
-        Status GetStatusByyStatusName(string statusName);
-
-        /// <summary>
         /// Gets status by its id
         /// </summary>
         /// <param name="id">Id of the status</param>

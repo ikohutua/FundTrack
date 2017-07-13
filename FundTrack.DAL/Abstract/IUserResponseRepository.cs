@@ -8,6 +8,5 @@ namespace FundTrack.DAL.Abstract
     /// <seealso cref="FundTrack.DAL.Abstract.IRepository{FundTrack.DAL.Entities.UserResponse}" />
     public interface IUserResponseRepository:IRepository<UserResponse>
     {
-
     }
 }

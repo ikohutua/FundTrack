@@ -14,6 +14,7 @@ namespace FundTrack.DAL.Abstract
         /// The event image repository.
         /// </value>
         IRepository<EventImage> EventImageRepository { get; }
+
         /// <summary>
         /// Gets the organizations list repository.
         /// </summary>
@@ -21,6 +22,7 @@ namespace FundTrack.DAL.Abstract
         /// The organizations list repository.
         /// </value>
         IOrganizationsForFilteringRepository OrganizationsForFilteringRepository { get; }
+
         /// <summary>
         /// Gets the users repository.
         /// </summary>
@@ -92,15 +94,15 @@ namespace FundTrack.DAL.Abstract
         /// Gets the repo
         /// </summary>
         IRepository<OfferedItem> OfferedItemRepository { get; }
+        
         /// <summary>
         /// Gets the repo
         /// </summary>
-        
         IStatusRepository StatusRepository { get; }
+       
         /// <summary>
         /// Gets the repo
         /// </summary>
-        
         IGoodsCategoryRepository GoodsCategoryRepository { get; }
         
         /// <summary>
@@ -112,6 +114,7 @@ namespace FundTrack.DAL.Abstract
         /// Gets the repo
         /// </summary>
         IGoodsTypeRepository GoodsTypeRepository { get; }
+
         /// <summary>
         /// Saves all changes made in this context to the database.
         /// </summary>

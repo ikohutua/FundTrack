@@ -13,6 +13,8 @@ namespace FundTrack.Infrastructure.ViewModel
         public string Description { get; set; }
         public int GoodsCategoryId { get; set; }
         public int OrganizationId { get; set; }
+        public string ErrorMessage { get; set; }
+        public int GoodsTypeId { get; set; }
         public IEnumerable<RequestedImageViewModel> Images { get; set; }
     }
 }

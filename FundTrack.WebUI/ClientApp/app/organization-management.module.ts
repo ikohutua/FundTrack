@@ -6,13 +6,12 @@ import { TruncatePipe } from "./shared/pipes/truncate.pipe";
 import { OrganizationManagementEventsService } from "./services/concrete/organization-management/organization-management-events.service";
 import { OrganizationBannedComponent } from './shared/components/error-pages/organization-banned.component';
 import { OrganizationManagementRequestComponent } from "./components/organization-management-request/organization-management-request.component";
-import { OrganizationCreateRequestComponent } from "./components/organization-management-request/organization-create-request.component";
+import { OrganizationManageRequestComponent } from "./components/organization-management-request/organization-manage-request.component";
 import { OrganizationDeleteRequestComponent } from "./components/organization-management-request/organization-delete-request.component";
-import { OrganizationManagementComponent } from "./components/organization-management-events/organization-management.component";
 import { OrganizationManagementEventsComponent } from "./components/organization-management-events/organization-management-event.component";
-import { OrganizationManadementEventEditComponent } from "./components/organization-management-events/organization-manadement-event-edit.component";
+import { OrganizationManagementComponent } from "./components/organization-management-events/organization-management.component";
 import { OrganizationManagementEventAddComponent } from "./components/organization-management-events/organization-management-event-add.component";
-
+import { OrganizationManadementEventEditComponent } from "./components/organization-management-events/organization-manadement-event-edit.component";
 
 @NgModule({
     declarations: [
@@ -21,7 +20,7 @@ import { OrganizationManagementEventAddComponent } from "./components/organizati
         TruncatePipe,
         OrganizationBannedComponent,
         OrganizationManagementRequestComponent,
-        OrganizationCreateRequestComponent,
+        OrganizationManageRequestComponent,
         OrganizationDeleteRequestComponent,
         OrganizationManadementEventEditComponent,
         OrganizationManagementEventAddComponent

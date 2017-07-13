@@ -6,6 +6,7 @@ import "rxjs/add/operator/map";
 import 'rxjs/add/operator/do';
 import "rxjs/add/operator/catch";
 import { GoodsTypeViewModel } from "../../../view-models/concrete/goodsType-view.model";
+import { RequestedImageViewModel } from "../../../view-models/abstract/organization-management-view-models/requested-item-view.model";
 
 @Injectable()
 export class OrganizationManagementRequestService {
@@ -15,6 +16,7 @@ export class OrganizationManagementRequestService {
     private _requestToDeleteUrl: string = "api/requestedItem/DeleteRequestedItem";
     private _getByIdRequestedItem: string = "api/requestedItem/GetRequestedItem";
     private _updateRequesterItemUrl: string = "api/requestedItem/UpdateRequestedItem";
+    private _deleteCurrentImageUrl: string = "api/requestedItem/DeleteCurrentImage"
 
     public constructor(private _http: Http) { }
 
@@ -50,11 +52,11 @@ export class OrganizationManagementRequestService {
     }
 
     /**
-     * Adds new requested item
+     * Adds requested item to database
      * @param itemToAdd
      */
     public addRequestedItem(itemToAdd: RequestManagementViewModel): Observable<RequestManagementViewModel> {
-        let body = JSON.stringify(itemToAdd);
+        let body = itemToAdd;
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
         return this._http.post(this._requestToAddUrl, body, options)
@@ -70,6 +72,17 @@ export class OrganizationManagementRequestService {
         return this._http.delete(this._requestToDeleteUrl + '/' + itemId,
         { headers: new Headers({ 'ContentType': 'application/json' }) })
             .map((response: Response) => <RequestManagementViewModel>response.json())
+            .catch(this.handleError);
+    }
+
+    /**
+     * Delete current image
+     * @param imageId
+     */
+    public deleteCurrentImage(imageId: number) {
+        return this._http.delete(this._deleteCurrentImageUrl + '/' + imageId,
+            { headers: new Headers({ 'ContentType': 'application/json' }) })
+            .map((response: Response) => <RequestedImageViewModel>response.json())
             .catch(this.handleError);
     }
 
