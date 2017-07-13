@@ -11,7 +11,7 @@ import { IEventManagementViewModel } from "../../view-models/abstract/organizati
     providers: [OrganizationManagementEventsService]
 })
 
-export class OrganizationManagementEventComponent implements OnInit {
+export class OrganizationManagementEventsComponent implements OnInit {
     private _idForCurrentOrganization: number;
     private _allEvents: IEventManagementViewModel[];
     private _subscription: Subscription;
@@ -20,8 +20,9 @@ export class OrganizationManagementEventComponent implements OnInit {
     constructor(private _route: ActivatedRoute, private _router: Router, private _service: OrganizationManagementEventsService) { }
 
     ngOnInit(): void {
-        this._subscription = this._route.parent.params.subscribe(
+        this._subscription = this._route.params.subscribe(
             params => {
+                debugger;
                 this._idForCurrentOrganization = +params["id"];
                 this.getAllEvents(this._idForCurrentOrganization);
             });
@@ -31,10 +32,11 @@ export class OrganizationManagementEventComponent implements OnInit {
         this._service.getAllEventsByOrganizationId(id)
             .subscribe(events => this._allEvents = events,
             error => this._errorMessage = <any>error);
+        debugger;
     }
 
     private redirectToDetailEditPage(id: number): void {
-        this._router.navigate(['/organization-management/' + this._idForCurrentOrganization.toString() + '/event-edit/' + id.toString()]);
+        this._router.navigate(['organization/event/edit/' + id.toString()]);
     }
 
     private deleteEvent(id: number): void {

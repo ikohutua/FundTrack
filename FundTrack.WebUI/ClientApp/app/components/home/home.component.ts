@@ -12,17 +12,6 @@ import { DropdownOrganizationsComponent } from '../../shared/components/dropdown
 })
 
 export class HomeComponent {
-    /*-------------------------------*/
-    /*           For sidebar         */
-    /*-------------------------------*/
-    public margin: boolean = false;
-
-    public toggleMargin(event: boolean): void {
-        this.margin = event;
-    }
-    /*-------------------------------*/
-    /*           For sidebar         */
-    /*-------------------------------*/
 
     @ViewChild(DropdownOrganizationsComponent) childComponent: DropdownOrganizationsComponent;
 

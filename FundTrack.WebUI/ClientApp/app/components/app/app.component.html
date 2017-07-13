@@ -26,7 +26,8 @@
     </nav>
 </div>
 <div class="content" style="margin-top:auto;">
-    <div class="container-fluid">
+    <sidebar (onOpen)="toggleMargin($event)"></sidebar>
+    <div [class.shifted]="margin">
         <router-outlet></router-outlet>
     </div>
 </div>

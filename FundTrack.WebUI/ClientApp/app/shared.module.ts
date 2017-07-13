@@ -30,9 +30,10 @@ import { SidebarComponent } from "./shared/components/sidebar/sidebar.component"
         CommonModule,
         FormsModule,
         RouterModule,
-        ReactiveFormsModule     
+        ReactiveFormsModule
     ],
     exports: [
+        RouterModule,
         CommonModule,
         FormsModule,
         DropdownOrganizationsComponent,

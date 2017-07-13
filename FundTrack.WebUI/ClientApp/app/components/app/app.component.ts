@@ -19,4 +19,16 @@ export class AppComponent {
     callChild() {
         this.childComponent.onSelect();
     }
+
+    /*-------------------------------*/
+    /*           For sidebar         */
+    /*-------------------------------*/
+    public margin: boolean = false;
+
+    public toggleMargin(event: boolean): void {
+        this.margin = event;
+    }
+    /*-------------------------------*/
+    /*           For sidebar         */
+    /*-------------------------------*/
 }

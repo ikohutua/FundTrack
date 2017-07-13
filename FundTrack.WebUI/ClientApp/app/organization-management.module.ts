@@ -1,29 +1,28 @@
 ﻿import { NgModule } from "@angular/core";
-import { OrganizationManagementComponent } from "./components/organization-management/organization-management.component";
 import { CommonModule } from "@angular/common";
 import { OrganizationManagementRoutingModule } from "./routes/organization-management-routing.module";
-import { OrganizationManagementEventComponent } from "./components/organization-management-event/organization-management-event.component";
 import { FormsModule } from "@angular/forms";
 import { TruncatePipe } from "./shared/pipes/truncate.pipe";
 import { OrganizationManagementEventsService } from "./services/concrete/organization-management/organization-management-events.service";
-import { OrganizationManadementEventEditComponent } from "./components/organization-manadement-event-edit/organization-manadement-event-edit.component";
-import { OrganizationManagementEventAddComponent } from "./components/organization-management-event-add/organization-management-event-add.component";
 import { OrganizationBannedComponent } from './shared/components/error-pages/organization-banned.component';
 import { OrganizationManagementRequestComponent } from "./components/organization-management-request/organization-management-request.component";
 import { OrganizationCreateRequestComponent } from "./components/organization-management-request/organization-create-request.component";
 import { OrganizationDeleteRequestComponent } from "./components/organization-management-request/organization-delete-request.component";
+import { OrganizationManagementComponent } from "./components/organization-management-events/organization-management.component";
+import { OrganizationManagementEventsComponent } from "./components/organization-management-events/organization-management-event.component";
+import { OrganizationManadementEventEditComponent } from "./components/organization-management-events/organization-manadement-event-edit.component";
+import { OrganizationManagementEventAddComponent } from "./components/organization-management-events/organization-management-event-add.component";
 
 
 @NgModule({
     declarations: [
         OrganizationManagementComponent,
-        OrganizationManagementEventComponent,
+        OrganizationManagementEventsComponent,
         TruncatePipe,
         OrganizationBannedComponent,
         OrganizationManagementRequestComponent,
         OrganizationCreateRequestComponent,
         OrganizationDeleteRequestComponent,
-        TruncatePipe,
         OrganizationManadementEventEditComponent,
         OrganizationManagementEventAddComponent
     ],

@@ -106,5 +106,16 @@ app.container-fluid {
             margin-left: 3px;
         }
 
+/*-------------------------------*/
+/*           For sidebar         */
+/*-------------------------------*/
+div.shifted {
+    margin-left: 16%;
+    margin-right: 1%;
+}
+/*-------------------------------*/
+/*           For sidebar         */
+/*-------------------------------*/
+
 /*@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css);
 @import url(https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.3.1/css/mdb.min.css);*/
