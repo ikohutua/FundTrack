@@ -1,0 +1,50 @@
+﻿<div id="wrapper" [class.toggled]="!sideBarIsClosed" *ngIf="_organization">
+    <div class="overlay"></div>
+    <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
+        <ul class="nav sidebar-nav">
+            <li class="hidden-sm hidden-xs sidebar-brand">{{_organization.name}}</li>
+            <li class="visible-sm visible-xs sidebar-brand">Меню</li>
+            <li>
+                <a class="hidden-xs" href="#">Головна</a>
+                <a class="visible-xs" href=""><span class="glyphicon glyphicon-home"></span></a>
+            </li>
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown">Події <span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                    <li class="dropdown-header">Події</li>
+                    <li><a [routerLink]="['all-events']">Всі Події</a></li>
+                    <li><a [routerLink]="['add']">Створити подію</a></li>
+                </ul>
+            </li>
+            <li>
+                <a class="hidden-xs" [routerLink]="['all-requests']">Потреби</a>
+                <a class="visible-xs" href=""><span class="glyphicon glyphicon-bullhorn"></span></a>
+            </li>
+            <li>
+                <a class="hidden-xs" href="#">Звіти</a>
+                <a class="visible-xs" href=""><span class="glyphicon glyphicon-briefcase"></span></a>
+            </li>
+            <li>
+                <a class="hidden-xs" href="#">Налаштування</a>
+                <a class="visible-xs" href=""><span class="glyphicon glyphicon-cog"></span></a>
+            </li>
+        </ul>
+    </nav>
+    <div class="row">
+        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+            <button *ngIf="!sideBarIsClosed" type="button" class="hamburger is-open" (click)="showSideBar()" data-toggle="offcanvas">
+                <span class="hamb-top"></span>
+                <span class="hamb-middle"></span>
+                <span class="hamb-bottom"></span>
+            </button>
+            <button *ngIf="sideBarIsClosed" type="button" class="hamburger is-closed" (click)="showSideBar()" data-toggle="offcanvas">
+                <span class="hamb-top"></span>
+                <span class="hamb-middle"></span>
+                <span class="hamb-bottom"></span>
+            </button>
+        </div>
+        <div class="col-lg-11 col-md-11 col-sm-10 col-xs-10">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>

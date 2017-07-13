@@ -1,0 +1,23 @@
+﻿<div *ngIf="_event" class="container col-lg-12 col-md-12 col-sm-12 col-xs-12" id="background">
+    <h2>Сторінка редагування події</h2>
+    <form #form="ngForm" novalidate>
+        <div class="form-group" [class.has-error]="description.invalid && description.dirty">
+            <label class="control-label">Опис нової події</label>
+            <textarea #description="ngModel"
+                      rows="15"
+                      required
+                      type="text"
+                      class="form-control"
+                      name="description"
+                      [(ngModel)]="_event.description"></textarea>
+            <p *ngIf="description.invalid && description.dirty" class="error-message">
+                Має бути опис події
+            </p>
+        </div>
+        <div *ngFor="let url of _event.images">
+            <img class="img img-responsive" src={{url.imageUrl}}/>
+        </div>
+        <button class="btn btn-default" type="submit" (click)="addNewEvent()" [disabled]="form.invalid">Оновити</button>
+    </form>
+    <br />
+</div>

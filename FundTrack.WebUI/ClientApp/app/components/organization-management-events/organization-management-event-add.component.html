@@ -1,0 +1,29 @@
+﻿<div *ngIf="_event" class="container col-lg-12 col-md-12 col-sm-12 col-xs-12" id="background">
+    <h2>Додати нову подію</h2>
+    <form #form="ngForm" novalidate>
+        <div class="form-group" [class.has-error]="description.invalid && description.dirty">
+            <label class="control-label">Опис нової події</label>
+            <textarea #description="ngModel"
+                      rows="10"
+                      required
+                      type="text"
+                      class="form-control"
+                      name="description"
+                      [(ngModel)]="_event.description"></textarea>
+            <p *ngIf="description.invalid && description.dirty" class="error-message">
+                Має бути опис події
+            </p>
+        </div>
+        <!--<div class="form-group" [class.has-error]="imgUrl.invalid && imgUrl.dirty">
+            <img style="width:100px; height:100px;" src="{{_image.imageUrl}}" />
+            <input type="file" (change)="saveFileInAws($event)" #imageInput accept=".png,.jpg" class="text-center center-block well well-sm hidden">
+            <button type="button" class="btn btn-success" (click)="imageInput.click()">Завантажити фото</button>
+            <hr />
+            <div *ngIf="imgUrl.invalid && imgUrl.dirty" class="alert alert-danger">
+                The field is required.
+            </div>
+        </div>-->
+        <button class="btn btn-default" type="submit" (click)="addNewEvent()" [disabled]="form.invalid">Додати</button>
+    </form>
+    <br />
+</div>
