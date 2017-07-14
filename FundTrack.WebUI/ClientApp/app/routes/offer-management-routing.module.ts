@@ -1,9 +1,9 @@
 ﻿import { NgModule } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { HomeComponent } from "../components/home/home.component";
-import { OfferItemManagementComponent } from "../components/offer-management/offer-management.component";
 import { OfferListComponent } from "../components/offer-management/offer-list/offer-list.component";
 import { OfferDetailComponent } from "../components/offer-management/offer-list/offer-detail.component";
+import { OfferItemManagementComponent } from "../components/offer-management/offer-list/offer-management.component";
 
 @NgModule({
     imports: [RouterModule.forChild([

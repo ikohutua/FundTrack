@@ -20,6 +20,14 @@
                     <li><a (click)="redirectToManageRequestPage(1)">Створити</a></li>
                 </ul>
             </li>
+            <li *ngIf="this.user.role!=null" class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown">Запропонувати речі <span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                    <li class="dropdown-header">Мої речі</li>
+                    <li [routerLinkActive]="['link-active']"><a [routerLink]="['offer-management/mylist']">Мої пропозиції</a></li>
+                    <li [routerLinkActive]="['link-active']"><a [routerLink]="['offer-management/add']">Запропонувати річ</a></li>
+                </ul>
+            </li>
             <li><a href="#">Звіти</a></li>
             <li><a href="#">Налаштування</a></li>
         </ul>

@@ -1,19 +1,36 @@
-﻿import { Component, Output, EventEmitter } from "@angular/core";
+﻿import { Component, Output, EventEmitter, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
+import { isBrowser } from "angular2-universal";
+import * as key from '../../../shared/key.storage';
+import { AuthorizeUserModel } from "../../../view-models/concrete/authorized-user-info-view.model";
 
 @Component({
     selector: 'sidebar',
     templateUrl: './sidebar.component.html',
     styleUrls: ['./sidebar.component.css'],
 })
-export class SidebarComponent {
+export class SidebarComponent implements OnInit {
+    private user: AuthorizeUserModel;
+    //flag that verifies if user if logged in
+    private userRole: string = null;
+    //property for side bar visible mode
+    private sideBarIsClosed: boolean = true;
+    @Output() onOpen: EventEmitter<boolean> = new EventEmitter();
 
     constructor(private _router: Router) { }
 
-    @Output() onOpen: EventEmitter<boolean> = new EventEmitter();
+    ngOnInit(): void
+    {
+        if (isBrowser)
+        {
+            if (localStorage.getItem(key.keyToken)) {
+                this.user = JSON.parse(localStorage.getItem(key.keyModel)) as AuthorizeUserModel;
+            }
+        }
+    }
+   
 
-    //property for side bar visible mode
-    private sideBarIsClosed: boolean = true;
+   
 
     /**
      * Hide or show sidebar

@@ -295,7 +295,7 @@ export class UserProfileComponent implements OnInit {
         }
         else {
             this.user.photoUrl = oldPhotoUrl;
-            alert('Розмр файлу не може перевищувати ' + Math.ceil(maxFileSize / 1000000) + 'МБ');
+            alert('Розмір файлу не може перевищувати ' + Math.ceil(maxFileSize / 1000000) + 'МБ');
         }
     }
     }

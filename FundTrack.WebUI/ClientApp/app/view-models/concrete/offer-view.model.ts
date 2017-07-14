@@ -6,8 +6,14 @@ export class OfferViewModel implements IOfferViewModel{
     goodsCategoryName: string;
     goodsTypeName: string;
     id: number;
-    imageUrl: string[];
+    imageUrl: string[] = new Array<string>();
     name: string;
     statusName: string;
     userId: number;
+    constructor() {
+        for (var i = 0; i < 6; i++) {
+            this.imageUrl[i] = 'https://s3.eu-central-1.amazonaws.com/fundtrack/default-placeholder.png';
+        }
+        
+    }
 }

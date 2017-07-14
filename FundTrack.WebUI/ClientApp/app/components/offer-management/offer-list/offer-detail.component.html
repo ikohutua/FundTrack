@@ -1,14 +1,13 @@
 ﻿<div class="well container-fluid">
     <section>
-
         <div class="input-list style-4 clearfix">
-            <h3>Заголовок</h3>
-            <input type="text">
+            <h3 style="margin-left:15px;">Заголовок</h3>
+            <input type="text" class="titlefield">
             <div class="col-md-12">
-                <div class="col-md-6">
+                <div class="col-md-6" style="margin-left:-13px;">
                     <h3>Категорія</h3>
                 </div>
-                <div class="col-md-6 pull-right">
+                <div class="col-md-6 ">
                     <h3>Підкатегорія</h3>
                 </div>
             </div>
@@ -19,15 +18,53 @@
                     <option *ngFor="let type of types "
                             value={{type.id}}>{{type.name}}
                         </option>
-                    </select>>
+                    </select>
             </div>
-            <div class="col-md-5 col-md-push-2">
+            <div class="col-md-5 col-md-push-1" style="margin-left:-13px;">
                 <select>
                     <option *ngIf='selectedItem.id==0' value="0">Виберіть категорію</option>
                     <option *ngFor="let category of categories "
                             value={{category.id}}>{{category.name}}
                     </option>
                 </select>
+            </div>
+            <div class="col-md-12">
+                <h3>Опис</h3>
+                <textarea></textarea>
+            </div>
+            <br />
+            <div class="col-md-12">
+                <img src={{this.offerItem.imageUrl[0]}} (click)="imageInput1.click()" class="avatar img-responsive img-thumbnail itemimage" style="border:none" alt="avatar" height="150" width="126">
+                <input type="file" (change)="saveFileInAws($event)" #imageInput1 accept=".png,.jpg" class="text-center center-block well well-sm hidden">
+                <img src={{this.offerItem.imageUrl[1]}} (click)="imageInput2.click()" class="avatar img-responsive img-thumbnail itemimage" style="border:none" alt="avatar" height="150" width="126">
+                <input type="file" (change)="saveFileInAws($event)" #imageInput2 accept=".png,.jpg" class="text-center center-block well well-sm hidden">
+                <img src={{this.offerItem.imageUrl[2]}} (click)="imageInput3.click()" class="avatar img-responsive img-thumbnail itemimage" style="border:none" alt="avatar" height="150" width="126">
+                <input type="file" (change)="saveFileInAws($event)" #imageInput3 accept=".png,.jpg" class="text-center center-block well well-sm hidden">
+                <img src={{this.offerItem.imageUrl[3]}} (click)="imageInput4.click()" class="avatar img-responsive img-thumbnail itemimage" style="border:none" alt="avatar" height="150" width="126">
+                <input type="file" (change)="saveFileInAws($event)" #imageInput4 accept=".png,.jpg" class="text-center center-block well well-sm hidden">
+                <img src={{this.offerItem.imageUrl[4]}} (click)="imageInput5.click()" class="avatar img-responsive img-thumbnail itemimage" style="border:none" alt="avatar" height="150" width="126">
+                <input type="file" (change)="saveFileInAws($event)" #imageInput5 accept=".png,.jpg" class="text-center center-block well well-sm hidden">
+                <img src={{this.offerItem.imageUrl[5]}} (click)="imageInput6.click()" class="avatar img-responsive img-thumbnail itemimage" style="border:none" alt="avatar" height="150" width="126">
+                <input type="file" (change)="saveFileInAws($event)" #imageInput6 accept=".png,.jpg" class="text-center center-block well well-sm hidden">
+            </div>
+            <div class="col-md-12" style="margin:10px 10px 10px 10px">
+                <h3>Контактні дані</h3>
+                <hr />
+                <div class="col-md-4">
+                    <label style="padding-left:12px" for="contactName"><span style="font-size:medium;">Контактна особа</span></label>
+                    <input id="contacts" class="contacts" type="text" name="contactName" />
+                </div>
+                <div class="col-md-4">
+                    <label style="padding-left:12px" for="location"><span style="font-size:medium;">Місцезнаходження</span></label>
+                    <input id="location" class="contacts" type="text" name="location" />
+                </div>
+                <div class="col-md-4">
+                    <label style="padding-left:12px" for="phone"><span style="font-size:medium;">Телефон</span></label>
+                    <input id="phone" class="contacts" type="text" name="phone" />
+                </div>
+            </div>
+            <div  class="col-md-12">
+                <button type="submit" class="btn btn-success btn-lg pull-right">Зберегти</button>
             </div>
         </div>
     </section>

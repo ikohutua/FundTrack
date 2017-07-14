@@ -1,6 +1,6 @@
 ﻿import { Component, OnInit } from "@angular/core";
-import { IOfferViewModel } from "../../view-models/abstract/offer-model.interface";
-import { OfferViewModel } from "../../view-models/concrete/offer-view.model";
+import { IOfferViewModel } from "../../../view-models/abstract/offer-model.interface";
+import { OfferViewModel } from "../../../view-models/concrete/offer-view.model";
 import { Router } from "@angular/router";
 
 
