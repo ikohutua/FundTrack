@@ -12,6 +12,7 @@ import { ModalComponent } from './shared/components/modal/modal-component';
 import { SelectComponent } from './shared/components/select/select.component';
 import { SpinnerComponent } from './shared/components/spinner/spinner.component';
 import { SidebarComponent } from "./shared/components/sidebar/sidebar.component";
+import { ChatBoxComponent } from './shared/components/chat-box/chat-box.component';
 
 @NgModule({
     declarations: [
@@ -24,7 +25,8 @@ import { SidebarComponent } from "./shared/components/sidebar/sidebar.component"
         EventFilterPipe,
         SelectComponent,
         SpinnerComponent,
-        SidebarComponent
+        SidebarComponent,
+        ChatBoxComponent
     ],
     imports: [
         CommonModule,
@@ -45,7 +47,8 @@ import { SidebarComponent } from "./shared/components/sidebar/sidebar.component"
         EventFilterPipe,
         SelectComponent,
         SpinnerComponent,
-        SidebarComponent
+        SidebarComponent,
+        ChatBoxComponent
     ]
 })
 export class SharedModule { }

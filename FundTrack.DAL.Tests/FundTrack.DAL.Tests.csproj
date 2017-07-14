@@ -11,6 +11,8 @@
     <TargetFramework>netcoreapp1.1</TargetFramework>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='FundTrackDeploy|AnyCPU'" />
+
   <ItemGroup>
     <PackageReference Include="MailKit" Version="1.16.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="1.1.2" />

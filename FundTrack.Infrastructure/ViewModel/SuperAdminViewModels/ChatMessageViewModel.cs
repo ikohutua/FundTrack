@@ -9,5 +9,15 @@
         /// Gets or Sets message in the chat
         /// </summary>
         public string Message { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Login of User
+        /// </summary>
+        public string Login { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Connection Id of user
+        /// </summary>
+        public string ConnectionId { get; set; }
     }
 }

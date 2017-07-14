@@ -38,12 +38,14 @@ namespace FundTrack_WebUI
             // Db Connection
             // For local connection, go to appsettings.json and write your local connection string
             // Available connection types : 'local','azure-main','azure-test'
-            string connectionType = "azure-main";
+            string connectionType = "ss";
             services.AddDbContext<FundTrackContext>(options => options.UseSqlServer(Configuration.GetConnectionString(connectionType)));
 
             // Add framework services.
             services.AddMvc();
             services.AddSignalR();
+
+            // for iis deploy : https://stackoverflow.com/questions/12731320/web-config-cannot-read-configuration-file-due-to-insufficient-permissions
 
             //dependency injection DAL
             services.AddTransient<IUserResporitory, UserRepository>();

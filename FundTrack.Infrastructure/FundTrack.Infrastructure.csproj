@@ -11,6 +11,8 @@
     <TargetFramework>netcoreapp1.1</TargetFramework>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='FundTrackDeploy|AnyCPU'" />
+
   <ItemGroup>
     <Compile Remove="GoogleStorageVariant2\**" />
     <EmbeddedResource Remove="GoogleStorageVariant2\**" />

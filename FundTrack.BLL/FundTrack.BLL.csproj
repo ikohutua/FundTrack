@@ -11,6 +11,8 @@
     <TargetFramework>netcoreapp1.1</TargetFramework>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='FundTrackDeploy|AnyCPU'" />
+
   <ItemGroup>
     <PackageReference Include="Facebook.SDK" Version="1.0.0" />
     <PackageReference Include="MailKit" Version="1.16.2" />
