@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.SignalR;
+﻿/*using Microsoft.AspNetCore.SignalR;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.SignalR.Hubs;
 using FundTrack.Infrastructure.ViewModel.SuperAdminViewModels;
@@ -53,4 +53,4 @@ namespace FundTrack.WebUI.Hubs
             Clients.Client(_getUserConnectionId(userMessage.Login)).OnSuperAdminMessageSend(new ChatMessageViewModel { Message = userMessage.Message });
         }
     }
-}
+}*/

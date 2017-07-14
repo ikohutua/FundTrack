@@ -43,7 +43,7 @@ namespace FundTrack_WebUI
 
             // Add framework services.
             services.AddMvc();
-            services.AddSignalR();
+            //services.AddSignalR();
 
             // for iis deploy : https://stackoverflow.com/questions/12731320/web-config-cannot-read-configuration-file-due-to-insufficient-permissions
 
@@ -131,7 +131,7 @@ namespace FundTrack_WebUI
             }
 
             app.UseWebSockets();
-            app.UseSignalR();
+           // app.UseSignalR();
 
             app.UseMvc(routes =>
             {
