@@ -14,16 +14,16 @@
                 Має бути опис події
             </p>
         </div>
-        <!--<div class="form-group" [class.has-error]="imgUrl.invalid && imgUrl.dirty">
-            <img style="width:100px; height:100px;" src="{{_image.imageUrl}}" />
-            <input type="file" (change)="saveFileInAws($event)" #imageInput accept=".png,.jpg" class="text-center center-block well well-sm hidden">
-            <button type="button" class="btn btn-success" (click)="imageInput.click()">Завантажити фото</button>
-            <hr />
-            <div *ngIf="imgUrl.invalid && imgUrl.dirty" class="alert alert-danger">
-                The field is required.
+        <div class="form-group">
+            <div>
+                <span *ngFor="let _currentImage of _event.images">
+                    <img src="{{_currentImage.imageUrl}}" class="img-responsive img-thumbnail" style="border:none" height="100" width="100">
+                </span>
+                <img src="http://www.freeiconspng.com/uploads/add-icon--line-iconset--iconsmind-29.png" (click)="imageInput.click()" class="img-responsive img-thumbnail" style="border-width:1px" height="300" width="200">
+                <input type="file" (change)="saveFileInAws($event)" #imageInput accept=".png,.jpg" class="well well-sm hidden">
             </div>
-        </div>-->
-        <button class="btn btn-default" type="submit" (click)="addNewEvent()" [disabled]="form.invalid">Додати</button>
+        </div>
+        <button class="btn btn-success" type="submit" (click)="addNewEvent()" [disabled]="form.invalid">Додати</button>
     </form>
     <br />
 </div>

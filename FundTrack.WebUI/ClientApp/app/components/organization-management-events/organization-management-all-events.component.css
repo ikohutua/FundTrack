@@ -71,11 +71,14 @@
 
 
 .list-group-image {
-    height: 250px;
-    width: auto;
+    margin: auto;
+    display: block;
+    max-height: 250px;
+    max-width: 100%;
     background-color: black;
 }
 
 .photo {
-    background: black;
+    height: 250px;
+    background: #203514;
 }

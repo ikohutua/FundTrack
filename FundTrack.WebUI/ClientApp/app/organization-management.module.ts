@@ -8,27 +8,29 @@ import { OrganizationBannedComponent } from './shared/components/error-pages/org
 import { OrganizationManagementRequestComponent } from "./components/organization-management-request/organization-management-request.component";
 import { OrganizationManageRequestComponent } from "./components/organization-management-request/organization-manage-request.component";
 import { OrganizationDeleteRequestComponent } from "./components/organization-management-request/organization-delete-request.component";
-import { OrganizationManagementEventsComponent } from "./components/organization-management-events/organization-management-event.component";
-import { OrganizationManagementComponent } from "./components/organization-management-events/organization-management.component";
+import { OrganizationManagementAllEventsComponent } from "./components/organization-management-events/organization-management-all-events.component";
 import { OrganizationManagementEventAddComponent } from "./components/organization-management-events/organization-management-event-add.component";
 import { OrganizationManadementEventEditComponent } from "./components/organization-management-events/organization-manadement-event-edit.component";
+import { OrganizationManagementEventDeleteComponent } from "./components/organization-management-events/organization-management-event-delete.component";
+import { SharedModule } from "./shared.module";
 
 @NgModule({
     declarations: [
-        OrganizationManagementComponent,
-        OrganizationManagementEventsComponent,
+        OrganizationManagementAllEventsComponent,
         TruncatePipe,
         OrganizationBannedComponent,
         OrganizationManagementRequestComponent,
         OrganizationManageRequestComponent,
         OrganizationDeleteRequestComponent,
         OrganizationManadementEventEditComponent,
-        OrganizationManagementEventAddComponent
+        OrganizationManagementEventAddComponent,
+        OrganizationManagementEventDeleteComponent
     ],
     imports: [
         FormsModule,
         CommonModule,
-        OrganizationManagementRoutingModule
+        OrganizationManagementRoutingModule,
+        SharedModule
     ],
     exports: [
         TruncatePipe

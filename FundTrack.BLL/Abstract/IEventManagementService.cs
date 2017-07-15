@@ -1,6 +1,6 @@
-﻿using FundTrack.DAL.Entities;
-using FundTrack.Infrastructure.ViewModel;
+﻿using FundTrack.Infrastructure.ViewModel;
 using FundTrack.Infrastructure.ViewModel.EventViewModel;
+using FundTrack.Infrastructure.ViewModel.SuperAdminViewModels;
 using System.Collections.Generic;
 
 namespace FundTrack.BLL.Abstract
@@ -15,7 +15,7 @@ namespace FundTrack.BLL.Abstract
         /// </summary>
         /// <param name="id">The identifier of organization.</param>
         /// <returns> IEnumerable<EventManagementViewModel> </returns>
-        IEnumerable<EventManagementViewModel> GetAllEventsByOrganizationId(int id);
+        IEnumerable<EventManagementViewModel> GetEventsPerPageByOrganizationId(int id, int currentPage, int pageSize);
 
         /// <summary>
         /// Gets the one event by identifier.
@@ -31,6 +31,12 @@ namespace FundTrack.BLL.Abstract
         /// <returns> EventManagementViewModel </returns>
         EventManagementViewModel AddNewEvent(EventManagementViewModel newEvent);
 
+        /// <summary>
+        /// Updates the event.
+        /// </summary>
+        /// <param name="updatedEvent">The updated event.</param>
+        /// <returns> EventManagementViewModel </returns>
+        EventManagementViewModel UpdateEvent(EventManagementViewModel updatedEvent);
 
         /// <summary>
         /// Inserts the images in data base.
@@ -38,6 +44,14 @@ namespace FundTrack.BLL.Abstract
         /// <param name="imagesParam">The collection of images.</param>
         /// <param name="eventId">The event identifier.</param>
         void InsertImagesInDataBase(IEnumerable<ImageViewModel> imagesParam, int eventId);
+
+        /// <summary>
+        /// Updates the images.
+        /// </summary>
+        /// <param name="imagesParam">The collection of images for update.</param>
+        /// <param name="eventId">The event identifier.</param>
+        /// <returns> IEnumerable<ImageViewModel> </returns>
+        IEnumerable<ImageViewModel> UpdateImages(IEnumerable<ImageViewModel> imagesParam, int eventId);
 
         /// <summary>
         /// Deletes the event.
@@ -50,5 +64,12 @@ namespace FundTrack.BLL.Abstract
         /// </summary>
         /// <param name="eventId">The event identifier.</param>
         void DeleteImages(int eventId);
+
+        /// <summary>
+        /// Gets the events initialize data.
+        /// </summary>
+        /// <param name="organizationId">The organization identifier.</param>
+        /// <returns> PaginationInitViewModel </returns>
+        PaginationInitViewModel GetEventsInitData(int organizationId);
     }
 }

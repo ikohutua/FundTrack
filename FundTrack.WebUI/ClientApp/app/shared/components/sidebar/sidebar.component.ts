@@ -9,7 +9,7 @@ import { AuthorizeUserModel } from "../../../view-models/concrete/authorized-use
     templateUrl: './sidebar.component.html',
     styleUrls: ['./sidebar.component.css'],
 })
-export class SidebarComponent implements OnInit {
+export class SidebarComponent /*implements OnInit*/ {
     private user: AuthorizeUserModel;
     //flag that verifies if user is logged in
     private userRole: string = null;
@@ -27,10 +27,7 @@ export class SidebarComponent implements OnInit {
                 this.user = JSON.parse(localStorage.getItem(key.keyModel)) as AuthorizeUserModel;
             }
         }
-    }
-   
-
-   
+    } 
 
     /**
      * Hide or show sidebar

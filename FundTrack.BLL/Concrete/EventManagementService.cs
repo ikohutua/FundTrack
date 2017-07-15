@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using FundTrack.Infrastructure.ViewModel.SuperAdminViewModels;
 
 namespace FundTrack.BLL.Concrete
 {
@@ -14,7 +15,7 @@ namespace FundTrack.BLL.Concrete
     /// Service for event management
     /// </summary>
     /// <seealso cref="FundTrack.BLL.Abstract.IEventManagementService" />
-    public sealed class EventManagementService : IEventManagementService
+    public sealed class EventManagementService : BaseService, IEventManagementService
     {
         private readonly IUnitOfWork _unitOfWork;
 
@@ -22,7 +23,7 @@ namespace FundTrack.BLL.Concrete
         /// Initializes a new instance of the <see cref="EventManagementService"/> class.
         /// </summary>
         /// <param name="unitOfWorkParam">The unit of work parameter.</param>
-        public EventManagementService(IUnitOfWork unitOfWorkParam)
+        public EventManagementService(IUnitOfWork unitOfWorkParam) : base()
         {
             this._unitOfWork = unitOfWorkParam;
         }
@@ -41,10 +42,9 @@ namespace FundTrack.BLL.Concrete
                 OrganizationId = newEvent.OrganizationId,
                 CreateDate = DateTime.Now,
             });
+            this.InsertImagesInDataBase(newEvent.Images, createdEvent.Id);
             this._unitOfWork.SaveChanges();
-            var result = this._unitOfWork.EventRepository.Read().Where(e => e.Description == createdEvent.Description).FirstOrDefault();
-            this.InsertImagesInDataBase(newEvent.Images, result.Id);
-            return this.GetOneEventById(result.Id);
+            return this.GetOneEventById(createdEvent.Id);
         }
 
         /// <summary>
@@ -65,7 +65,7 @@ namespace FundTrack.BLL.Concrete
         public void DeleteImages(int eventId)
         {
             var images = this._unitOfWork.EventImageRepository.Read().Where(i => i.EventId == eventId);
-            for(int i = 0; i < images.Count(); i++)
+            for (int i = 0; i < images.Count(); i++)
             {
                 this._unitOfWork.EventImageRepository.Delete(images.ElementAt(i).Id);
                 this._unitOfWork.SaveChanges();
@@ -77,7 +77,7 @@ namespace FundTrack.BLL.Concrete
         /// </summary>
         /// <param name="id">The identifier for organization</param>
         /// <returns>IEnumerable<EventManagementViewModel></returns>
-        public IEnumerable<EventManagementViewModel> GetAllEventsByOrganizationId(int id)
+        public IEnumerable<EventManagementViewModel> GetEventsPerPageByOrganizationId(int id, int currentPage, int pageSize)
         {
             var result = ((DbSet<Event>)this._unitOfWork.EventRepository.Read())
                 .Where(ev => ev.OrganizationId == id)
@@ -95,7 +95,10 @@ namespace FundTrack.BLL.Concrete
                                        Id = images.Id,
                                        ImageUrl = images.ImageUrl
                                    })
-                }).OrderByDescending(e => e.CreateDate);
+                }).OrderByDescending(e => e.CreateDate)
+                .Skip((currentPage - 1) * pageSize)
+                .Take(pageSize);
+
             return result;
         }
 
@@ -126,7 +129,6 @@ namespace FundTrack.BLL.Concrete
             return result;
         }
 
-
         /// <summary>
         /// Inserts the images in data base.
         /// </summary>
@@ -142,8 +144,82 @@ namespace FundTrack.BLL.Concrete
                     EventId = eventId,
                     ImageUrl = images[i].ImageUrl
                 });
-                this._unitOfWork.SaveChanges();
             }
+            this._unitOfWork.SaveChanges();
+        }
+
+        /// <summary>
+        /// Updates the images.
+        /// </summary>
+        /// <param name="imagesParam">The collection of images for update.</param>
+        /// <param name="eventId">The event identifier.</param>
+        /// <returns> IEnumerable<ImageViewModel> </returns>
+        public IEnumerable<ImageViewModel> UpdateImages(IEnumerable<ImageViewModel> imagesParam, int eventId)
+        {
+            var images = imagesParam.ToList();
+            var updatedImages = new List<ImageViewModel>();
+            for (int i = 0; i < images.Count; i++)
+            {
+                var updatedImage = this._unitOfWork.EventImageRepository.Update(new EventImage()
+                {
+                    Id = images[i].Id,
+                    EventId = eventId,
+                    ImageUrl = images[i].ImageUrl,
+                });
+
+                this._unitOfWork.SaveChanges();
+
+                updatedImages.Add(new ImageViewModel()
+                {
+                    Id = updatedImage.Id,
+                    ImageUrl = updatedImage.ImageUrl
+                });
+            }
+
+            return updatedImages;
+        }
+
+        /// <summary>
+        /// Updates the event.
+        /// </summary>
+        /// <param name="updatedEvent">The updated event.</param>
+        /// <returns> EventManagementViewModel </returns>
+        public EventManagementViewModel UpdateEvent(EventManagementViewModel updatedEvent)
+        {
+            var updatedEventFromDB = this._unitOfWork.EventRepository.Update(new Event()
+            {
+                Id = updatedEvent.Id,
+                CreateDate = updatedEvent.CreateDate,
+                Description = updatedEvent.Description,
+                OrganizationId = updatedEvent.OrganizationId
+            });
+
+            this._unitOfWork.SaveChanges();
+
+            return new EventManagementViewModel()
+            {
+                Id = updatedEventFromDB.Id,
+                CreateDate = updatedEventFromDB.CreateDate,
+                Description = updatedEventFromDB.Description,
+                OrganizationId = updatedEventFromDB.OrganizationId,
+                Images = this.UpdateImages(updatedEvent.Images, updatedEvent.Id)
+            };
+        }
+
+        /// <summary>
+        /// Gets the events initialize data.
+        /// </summary>
+        /// <param name="organizationId">The organization identifier.</param>
+        /// <returns>
+        /// PaginationInitViewModel
+        /// </returns>
+        public PaginationInitViewModel GetEventsInitData(int organizationId)
+        {
+            return new PaginationInitViewModel()
+            {
+                ItemsPerPage = 8,
+                TotalItemsCount = this._unitOfWork.EventRepository.Read().Where(ev => ev.OrganizationId == organizationId).Count()
+            };
         }
     }
 }

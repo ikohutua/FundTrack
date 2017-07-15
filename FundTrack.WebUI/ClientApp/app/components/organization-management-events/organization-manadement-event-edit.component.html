@@ -17,7 +17,7 @@
         <div *ngFor="let url of _event.images">
             <img class="img img-responsive" src={{url.imageUrl}}/>
         </div>
-        <button class="btn btn-default" type="submit" (click)="addNewEvent()" [disabled]="form.invalid">Оновити</button>
+        <button class="btn btn-success" type="submit" (click)="updateEvent()" [disabled]="form.invalid">Оновити</button>
     </form>
     <br />
 </div>

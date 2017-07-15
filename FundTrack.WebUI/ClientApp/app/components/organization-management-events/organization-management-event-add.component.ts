@@ -23,16 +23,15 @@ export class OrganizationManagementEventAddComponent {
 
     /**
      * @constructor
-     * @param _route
-     * @param _service
+     * @param _route: ActivatedRoute
+     * @param _router: Router
+     * @param _service: OrganizationManagementEventsService
      */
     public constructor(private _route: ActivatedRoute, private _router: Router, private _service: OrganizationManagementEventsService) { }
 
     ngOnInit(): void {
-        debugger;
         this._subscription = this._route.params.subscribe(
             params => {
-                debugger;
                 this._idForCurrentOrganization = +params["id"];
                 this._event = new EventManagementViewModel();
             });
@@ -41,13 +40,24 @@ export class OrganizationManagementEventAddComponent {
     /**
      * Adds new event
      */
-    private addNewEvent() {
+    private addNewEvent(): void {
         debugger;
         this._event.organizationId = this._idForCurrentOrganization;
         this._event.createDate = new Date(Date.now());
         this._service.addNewEvent(this._event).subscribe(
-            ev => { debugger; this._event = ev },
+            ev => {
+                this._event = ev;
+            },
             error => { this._errorMessage = <any>error });
+        this._router.navigate(['organization/events/' + this._event.organizationId]);
+    }
+
+    /**
+     * Gets extension of specified file
+     * @param fileName: name of the file extension of which is needed to be retrieved
+     */
+    private getFileExtension(fileName: string): string {
+        return fileName.substring(fileName.lastIndexOf('.') + 1, fileName.length) || fileName;
     }
 
     /**
@@ -56,14 +66,20 @@ export class OrganizationManagementEventAddComponent {
      */
     private saveFileInAws(fileInput: any): void {
         var that = this;
-        this._image = new ImageModel();
-        this._image.imageUrl = '';
         var maxFileSize = 4000000;
         let file = fileInput.target.files[0];
-        let uploadedFileName = file.name;
+        let uploadedFileName = Math.random().toString(36).slice(2) + '.' + this.getFileExtension(file.name);
         if (file.size != null && file.size < maxFileSize) {
             this._uploader.UploadImageToAmazon(file, uploadedFileName).then(function (data) {
-                that._image.imageUrl = data.Location;
+                let image = new ImageModel();
+                image.id = 0;
+                image.imageUrl = data.Location;
+
+                if (that._event.images == null) {
+                    that._event.images = [];
+                }
+
+                that._event.images.push(image);
             })
         }
         else {

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using FundTrack.Infrastructure.ViewModel.SuperAdminViewModels;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace FundTrack.BLL.Concrete
@@ -18,6 +19,15 @@ namespace FundTrack.BLL.Concrete
         public IEnumerable<T> GetPageItems<T>(IEnumerable<T> allItems, int pageSize, int currentPage)
         {
             return allItems.Skip((currentPage - 1) * pageSize).Take(pageSize);
+        }
+
+        public PaginationInitViewModel GetPaginationInitData<T>(IEnumerable<T> items)
+        {
+            return new PaginationInitViewModel
+            {
+                TotalItemsCount = items.Count(),
+                ItemsPerPage = 8
+            };
         }
     }
 }

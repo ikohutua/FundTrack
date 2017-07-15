@@ -41,7 +41,7 @@ namespace FundTrack.BLL.Concrete
         /// </summary>
         /// <param name="currentPage">Current page on grid</param>
         /// <returns>Users for specifice page</returns>
-        public IEnumerable<PagingItemsViewModel> GetUsersPerPage(int currentPage,int pageSize)
+        public IEnumerable<PagingItemsViewModel> GetUsersPerPage(int currentPage, int pageSize)
         {           
             return GetPageItems(_unitOfWork.UsersRepository.GetUsersWithBanStatus(),
                                 pageSize, currentPage)                               

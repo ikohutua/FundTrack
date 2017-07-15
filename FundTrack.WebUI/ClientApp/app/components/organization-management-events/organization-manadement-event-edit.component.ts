@@ -2,7 +2,7 @@
 import { IEventManagementViewModel } from "../../view-models/abstract/organization-management-view-models/event-management-view-model.interface";
 import { OrganizationManagementEventsService } from "../../services/concrete/organization-management/organization-management-events.service";
 import { Subscription } from "rxjs/Subscription";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 
 @Component({
     selector: 'org-management-event',
@@ -14,20 +14,41 @@ export class OrganizationManadementEventEditComponent implements OnInit {
     private _event: IEventManagementViewModel;
     private _subscription: Subscription;
 
-    public constructor(private _router: ActivatedRoute, private _service: OrganizationManagementEventsService) { }
+    /**
+     * @constructor
+     * @param _route: ActivatedRoute
+     * @param _router: Router
+     * @param _service: OrganizationManagementEventsService
+     */
+    public constructor(private _route: ActivatedRoute, private _router: Router, private _service: OrganizationManagementEventsService) { }
 
     ngOnInit(): void {
-        this._subscription = this._router.params.subscribe(params => {
+        this._subscription = this._route.params.subscribe(params => {
             this._idForCurrentEvent = +params['id'];
             this.getInformationOfEvent(this._idForCurrentEvent);
         });
     }
 
-    ngDestroy(): void {
-        this._subscription.unsubscribe();
-    }
-
+    /**
+     * Gets one event by identifier
+     * @param id
+     */
     public getInformationOfEvent(id: number): void{
         this._service.getOneEventById(id).subscribe(event => this._event = event);
+    }
+
+    /**
+     * Updates event
+     */
+    private updateEvent(): void{
+        this._service.updateEvent(this._event)
+            .subscribe(ev => {
+                console.log(ev)
+            });
+        this._router.navigate(['organization/events/' + this._event.organizationId]);
+    }
+
+    ngDestroy(): void {
+        this._subscription.unsubscribe();
     }
 }
