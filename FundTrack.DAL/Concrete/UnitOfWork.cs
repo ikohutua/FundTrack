@@ -11,7 +11,7 @@ namespace FundTrack.DAL.Concrete
     {
         private readonly IOrganizationsForFilteringRepository _organizationsListRepository;
         private readonly IUserResporitory _usersListRepository;
-        private readonly IRepository<Event> _eventRepository;
+        private readonly IEventManagementRepository _eventRepository;
         private readonly IOrganizationRepository _organizationRepository;
         private readonly IMembershipRepository _membershipRepository;
         private readonly IUserResponseRepository _userResponseRepository;
@@ -38,7 +38,7 @@ namespace FundTrack.DAL.Concrete
         public UnitOfWork(FundTrackContext contextParam,
               IOrganizationsForFilteringRepository organizationsListRepositoryParam,
               IUserResporitory userListRepositoryParam,
-              IRepository<Event> eventRepository,
+              IEventManagementRepository eventRepository,
               IOrganizationRepository organizationRepository,
               IMembershipRepository membershipRepositoryParam,
               IRepository<Address> addressRepository,
@@ -111,7 +111,7 @@ namespace FundTrack.DAL.Concrete
         /// <value>
         /// The events repository.
         /// </value>
-        public IRepository<Event> EventRepository
+        public IEventManagementRepository EventRepository
         {
             get
             {

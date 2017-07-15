@@ -52,7 +52,7 @@ namespace FundTrack_WebUI
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IMembershipRepository, MembershipRepository>();
             services.AddScoped<IOrganizationsForFilteringRepository, OrganizationsForFilteringRepository>();
-            services.AddScoped<IRepository<Event>, EventRepository>();
+            services.AddScoped<IEventManagementRepository, EventRepository>();
             services.AddScoped<IOrganizationRepository, OrganizationRepository>();
             services.AddScoped<IRepository<Address>, AddressRepository>();
             services.AddScoped<IRepository<OrgAddress>, OrgAddressRepository>();

@@ -1,7 +1,9 @@
 ﻿using FundTrack.DAL.Abstract;
 using FundTrack.DAL.Entities;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 
 namespace FundTrack.DAL.Concrete
 {
@@ -9,7 +11,7 @@ namespace FundTrack.DAL.Concrete
     /// class for CRUD operation with entity - event
     /// </summary>
     /// <seealso cref="FundTrack.DAL.Abstract.IRepository{FundTrack.DAL.Entities.User}" />
-    public sealed class EventRepository : IRepository<Event>
+    public sealed class EventRepository : IEventManagementRepository
     {
         private readonly FundTrackContext _context;
 
@@ -73,6 +75,35 @@ namespace FundTrack.DAL.Concrete
         {
             _context.Update(item);
             return item;
+        }
+
+        /// <summary>
+        /// Gets the amount of events for the page by the organization ID
+        /// Join with event images
+        /// </summary>
+        /// <param name="organizationId">The organization identifier.</param>
+        /// <returns> IEnumerable<Event> </returns>
+        public IEnumerable<Event> GetEventsByOrganizationIdForPage(int organizationId, int currentPage, int itemsPerPage)
+        {
+            return this._context.Events
+                .Include(im => im.EventImages)
+                .Where(ev => ev.OrganizationId == organizationId)
+                .Skip((currentPage - 1) * itemsPerPage)
+                .Take(itemsPerPage);
+        }
+
+        /// <summary>
+        /// Gets the event by ID
+        /// Join with event images
+        /// </summary>
+        /// <param name="organizationId">The event identifier.</param>
+        /// <returns> Event </returns>
+        public Event GetOneEventById(int eventId)
+        {
+            return this._context.Events
+                .Include(im => im.EventImages)
+                .Where(ev => ev.Id == eventId)
+                .FirstOrDefault();
         }
     }
 }

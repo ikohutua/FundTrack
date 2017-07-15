@@ -1,4 +1,5 @@
-﻿using FundTrack.Infrastructure.ViewModel;
+﻿using FundTrack.DAL.Entities;
+using FundTrack.Infrastructure.ViewModel;
 using FundTrack.Infrastructure.ViewModel.EventViewModel;
 using FundTrack.Infrastructure.ViewModel.SuperAdminViewModels;
 using System.Collections.Generic;
@@ -15,14 +16,14 @@ namespace FundTrack.BLL.Abstract
         /// </summary>
         /// <param name="id">The identifier of organization.</param>
         /// <returns> IEnumerable<EventManagementViewModel> </returns>
-        IEnumerable<EventManagementViewModel> GetEventsPerPageByOrganizationId(int id, int currentPage, int pageSize);
+        IEnumerable<EventManagementViewModel> GetEventsByOrganizationIdForPage(int eventId, int currentPage, int pageSize);
 
         /// <summary>
         /// Gets the one event by identifier.
         /// </summary>
         /// <param name="id">The identifier of event</param>
         /// <returns> EventManagementViewModel </returns>
-        EventManagementViewModel GetOneEventById(int id);
+        EventManagementViewModel GetOneEventById(int eventId);
 
         /// <summary>
         /// Adds the new event.
@@ -57,7 +58,7 @@ namespace FundTrack.BLL.Abstract
         /// Deletes the event.
         /// </summary>
         /// <param name="id">The event identifier.</param>
-        void DeleteEvent(int id);
+        void DeleteEvent(int eventId);
 
         /// <summary>
         /// Deletes the images.
@@ -71,5 +72,12 @@ namespace FundTrack.BLL.Abstract
         /// <param name="organizationId">The organization identifier.</param>
         /// <returns> PaginationInitViewModel </returns>
         PaginationInitViewModel GetEventsInitData(int organizationId);
+
+        /// <summary>
+        /// Converts to image view model.
+        /// </summary>
+        /// <param name="imageList">The image list from database.</param>
+        /// <returns> IEnumerable<ImageViewModel> </returns>
+        IEnumerable<ImageViewModel> ConvertToImageViewModel(IEnumerable<EventImage> imageList);
     }
 }

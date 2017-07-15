@@ -37,7 +37,7 @@ namespace FundTrack.DAL.Abstract
         /// <value>
         /// The event repository.
         /// </value>
-        IRepository<Event> EventRepository { get; }
+        IEventManagementRepository EventRepository { get; }
 
         /// <summary>
         /// Gets the organization repository

@@ -3,7 +3,6 @@ using FundTrack.DAL.Abstract;
 using FundTrack.DAL.Entities;
 using FundTrack.Infrastructure.ViewModel;
 using FundTrack.Infrastructure.ViewModel.EventViewModel;
-using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,27 +34,47 @@ namespace FundTrack.BLL.Concrete
         /// <returns> Event - entity </returns>
         public EventManagementViewModel AddNewEvent(EventManagementViewModel newEvent)
         {
-            var createdEvent = this._unitOfWork.EventRepository.Create(new Event()
+            try
             {
-                Id = 0,
-                Description = newEvent.Description,
-                OrganizationId = newEvent.OrganizationId,
-                CreateDate = DateTime.Now,
-            });
-            this.InsertImagesInDataBase(newEvent.Images, createdEvent.Id);
-            this._unitOfWork.SaveChanges();
-            return this.GetOneEventById(createdEvent.Id);
+                var createdEvent = this._unitOfWork.EventRepository.Create(new Event()
+                {
+                    Id = 0,
+                    Description = newEvent.Description,
+                    OrganizationId = newEvent.OrganizationId,
+                    CreateDate = DateTime.Now,
+                });
+
+                if (createdEvent == null)
+                {
+                    throw new BusinessLogicException("Не вдалось створити нову подію");
+                }
+
+                this.InsertImagesInDataBase(newEvent.Images, createdEvent.Id);
+                this._unitOfWork.SaveChanges();
+                return this.GetOneEventById(createdEvent.Id);
+            }
+            catch (Exception ex)
+            {
+                throw new BusinessLogicException(ex.Message);
+            }
         }
 
         /// <summary>
         /// Deletes the event.
         /// </summary>
         /// <param name="id">The identifier.</param>
-        public void DeleteEvent(int id)
+        public void DeleteEvent(int eventId)
         {
-            this.DeleteImages(id);
-            this._unitOfWork.EventRepository.Delete(id);
-            this._unitOfWork.SaveChanges();
+            try
+            {
+                this.DeleteImages(eventId);
+                this._unitOfWork.EventRepository.Delete(eventId);
+                this._unitOfWork.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw new BusinessLogicException(ex.Message);
+            }
         }
 
         /// <summary>
@@ -64,11 +83,24 @@ namespace FundTrack.BLL.Concrete
         /// <param name="eventId">The event identifier.</param>
         public void DeleteImages(int eventId)
         {
-            var images = this._unitOfWork.EventImageRepository.Read().Where(i => i.EventId == eventId);
-            for (int i = 0; i < images.Count(); i++)
+            try
             {
-                this._unitOfWork.EventImageRepository.Delete(images.ElementAt(i).Id);
+                var images = this._unitOfWork.EventImageRepository.Read().Where(i => i.EventId == eventId);
+
+                if (images == null)
+                {
+                    throw new BusinessLogicException($"В базі даних немає події з ідентифікатором {eventId}");
+                }
+
+                for (int i = 0; i < images.Count(); i++)
+                {
+                    this._unitOfWork.EventImageRepository.Delete(images.ElementAt(i).Id);
+                }
                 this._unitOfWork.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw new BusinessLogicException(ex.Message);
             }
         }
 
@@ -77,56 +109,59 @@ namespace FundTrack.BLL.Concrete
         /// </summary>
         /// <param name="id">The identifier for organization</param>
         /// <returns>IEnumerable<EventManagementViewModel></returns>
-        public IEnumerable<EventManagementViewModel> GetEventsPerPageByOrganizationId(int id, int currentPage, int pageSize)
+        public IEnumerable<EventManagementViewModel> GetEventsByOrganizationIdForPage(int organizationId, int currentPage, int itemsPerPage)
         {
-            var result = ((DbSet<Event>)this._unitOfWork.EventRepository.Read())
-                .Where(ev => ev.OrganizationId == id)
-                .Include(ev => ev.EventImages)
-                .Select(events => new EventManagementViewModel()
-                {
-                    Id = events.Id,
-                    Description = events.Description,
-                    CreateDate = events.CreateDate,
-                    OrganizationId = events.OrganizationId,
-                    Images = events.EventImages
-                                   .Where(im => im.EventId == events.Id)
-                                   .Select(images => new ImageViewModel()
-                                   {
-                                       Id = images.Id,
-                                       ImageUrl = images.ImageUrl
-                                   })
-                }).OrderByDescending(e => e.CreateDate)
-                .Skip((currentPage - 1) * pageSize)
-                .Take(pageSize);
-
-            return result;
+            try
+            {
+                return this._unitOfWork.EventRepository.GetEventsByOrganizationIdForPage(organizationId, currentPage, itemsPerPage).Select(
+                    events => new EventManagementViewModel()
+                    {
+                        Id = events.Id,
+                        Description = events.Description,
+                        CreateDate = events.CreateDate,
+                        OrganizationId = events.OrganizationId,
+                        Images = this.ConvertToImageViewModel(events.EventImages.Where(i => i.EventId == events.Id))
+                    });
+            }
+            catch (Exception ex)
+            {
+                throw new BusinessLogicException(ex.Message);
+            }
         }
 
         /// <summary>
         /// Gets the one event by identifier.
         /// </summary>
-        /// <param name="id">The identifier of event.</param>
-        /// <returns>EventManagementViewModel</returns>
-        public EventManagementViewModel GetOneEventById(int id)
+        /// <param name="eventId"></param>
+        /// <returns>
+        /// EventManagementViewModel
+        /// </returns>
+        /// <exception cref="BusinessLogicException">
+        /// </exception>
+        public EventManagementViewModel GetOneEventById(int eventId)
         {
-            var result = ((DbSet<Event>)this._unitOfWork.EventRepository.Read())
-                .Where(ev => ev.Id == id)
-                .Include(ev => ev.EventImages)
-                .Select(ev => new EventManagementViewModel()
+            try
+            {
+                var ev = this._unitOfWork.EventRepository.GetOneEventById(eventId);
+
+                if (ev == null)
+                {
+                    throw new BusinessLogicException($"Подія з ідентифікатором {eventId} не знайдена");
+                }
+
+                return new EventManagementViewModel()
                 {
                     Id = ev.Id,
-                    Description = ev.Description,
                     CreateDate = ev.CreateDate,
+                    Description = ev.Description,
                     OrganizationId = ev.OrganizationId,
-                    Images = ev.EventImages
-                               .Where(im => im.EventId == ev.Id)
-                               .Select(images => new ImageViewModel()
-                               {
-                                   Id = images.Id,
-                                   ImageUrl = images.ImageUrl
-                               })
-                }).FirstOrDefault();
-            return result;
+                    Images = this.ConvertToImageViewModel(ev.EventImages.Where(i => i.EventId == eventId))
+                };
+            }
+            catch (Exception ex)
+            {
+                throw new BusinessLogicException(ex.Message);
+            }
         }
 
         /// <summary>
@@ -136,16 +171,27 @@ namespace FundTrack.BLL.Concrete
         /// <param name="eventId">The event identifier.</param>
         public void InsertImagesInDataBase(IEnumerable<ImageViewModel> imagesParam, int eventId)
         {
-            var images = imagesParam.ToList();
-            for (int i = 0; i < images.Count; i++)
+            try
             {
-                this._unitOfWork.EventImageRepository.Create(new EventImage()
+                var images = imagesParam.ToList();
+                for (int i = 0; i < images.Count; i++)
                 {
-                    EventId = eventId,
-                    ImageUrl = images[i].ImageUrl
-                });
+                    var createdImage = this._unitOfWork.EventImageRepository.Create(new EventImage()
+                    {
+                        EventId = eventId,
+                        ImageUrl = images[i].ImageUrl
+                    });
+                    if (createdImage == null)
+                    {
+                        throw new BusinessLogicException($"Зображення з адресом {images[i].ImageUrl} не збережено в базі даних");
+                    }
+                }
+                this._unitOfWork.SaveChanges();
             }
-            this._unitOfWork.SaveChanges();
+            catch(Exception ex)
+            {
+                throw new BusinessLogicException(ex.Message);
+            }
         }
 
         /// <summary>
@@ -156,27 +202,47 @@ namespace FundTrack.BLL.Concrete
         /// <returns> IEnumerable<ImageViewModel> </returns>
         public IEnumerable<ImageViewModel> UpdateImages(IEnumerable<ImageViewModel> imagesParam, int eventId)
         {
-            var images = imagesParam.ToList();
-            var updatedImages = new List<ImageViewModel>();
-            for (int i = 0; i < images.Count; i++)
+            try
             {
-                var updatedImage = this._unitOfWork.EventImageRepository.Update(new EventImage()
+                var images = imagesParam.ToList();
+                var updatedImages = new List<ImageViewModel>();
+                for (int i = 0; i < images.Count; i++)
                 {
-                    Id = images[i].Id,
-                    EventId = eventId,
-                    ImageUrl = images[i].ImageUrl,
-                });
+                    var updatedImage = this._unitOfWork.EventImageRepository.Update(new EventImage()
+                    {
+                        Id = images[i].Id,
+                        EventId = eventId,
+                        ImageUrl = images[i].ImageUrl,
+                    });
+
+                    if (updatedImage == null)
+                    {
+                        throw new BusinessLogicException($"Зображення з адресом {images[i].ImageUrl} не оновлено в базі даних");
+                    }
+
+                    updatedImages.Add(new ImageViewModel()
+                    {
+                        Id = updatedImage.Id,
+                        ImageUrl = updatedImage.ImageUrl
+                    });
+                }
+
+                if (updatedImages.Count == 0)
+                {
+                    throw new BusinessLogicException("Не додано жлдного зображення в базу даних");
+                }
 
                 this._unitOfWork.SaveChanges();
-
-                updatedImages.Add(new ImageViewModel()
-                {
-                    Id = updatedImage.Id,
-                    ImageUrl = updatedImage.ImageUrl
-                });
+                return updatedImages;
             }
-
-            return updatedImages;
+            catch (Exception ex)
+            {
+                throw new BusinessLogicException(ex.Message);
+            }
+            finally
+            {
+                this._unitOfWork.SaveChanges();
+            }
         }
 
         /// <summary>
@@ -186,24 +252,36 @@ namespace FundTrack.BLL.Concrete
         /// <returns> EventManagementViewModel </returns>
         public EventManagementViewModel UpdateEvent(EventManagementViewModel updatedEvent)
         {
-            var updatedEventFromDB = this._unitOfWork.EventRepository.Update(new Event()
+            try
             {
-                Id = updatedEvent.Id,
-                CreateDate = updatedEvent.CreateDate,
-                Description = updatedEvent.Description,
-                OrganizationId = updatedEvent.OrganizationId
-            });
+                var updatedEventFromDB = this._unitOfWork.EventRepository.Update(new Event()
+                {
+                    Id = updatedEvent.Id,
+                    CreateDate = updatedEvent.CreateDate,
+                    Description = updatedEvent.Description,
+                    OrganizationId = updatedEvent.OrganizationId
+                });
 
-            this._unitOfWork.SaveChanges();
+                this._unitOfWork.SaveChanges();
 
-            return new EventManagementViewModel()
+                if (updatedEventFromDB == null)
+                {
+                    throw new BusinessLogicException($"Подію з ідентифікатором {updatedEvent.Id} не вдалось оновити");
+                }
+
+                return new EventManagementViewModel()
+                {
+                    Id = updatedEventFromDB.Id,
+                    CreateDate = updatedEventFromDB.CreateDate,
+                    Description = updatedEventFromDB.Description,
+                    OrganizationId = updatedEventFromDB.OrganizationId,
+                    Images = this.UpdateImages(updatedEvent.Images, updatedEvent.Id)
+                };
+            }
+            catch (Exception ex)
             {
-                Id = updatedEventFromDB.Id,
-                CreateDate = updatedEventFromDB.CreateDate,
-                Description = updatedEventFromDB.Description,
-                OrganizationId = updatedEventFromDB.OrganizationId,
-                Images = this.UpdateImages(updatedEvent.Images, updatedEvent.Id)
-            };
+                throw new BusinessLogicException(ex.Message);
+            }
         }
 
         /// <summary>
@@ -215,11 +293,39 @@ namespace FundTrack.BLL.Concrete
         /// </returns>
         public PaginationInitViewModel GetEventsInitData(int organizationId)
         {
-            return new PaginationInitViewModel()
+            try
             {
-                ItemsPerPage = 8,
-                TotalItemsCount = this._unitOfWork.EventRepository.Read().Where(ev => ev.OrganizationId == organizationId).Count()
-            };
+                return new PaginationInitViewModel()
+                {
+                    ItemsPerPage = 4,
+                    TotalItemsCount = this._unitOfWork.EventRepository.Read().Where(ev => ev.OrganizationId == organizationId).Count()
+                };
+            }
+            catch (Exception ex)
+            {
+                throw new BusinessLogicException(ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// Converts 'EventImage' entity to image view model.
+        /// </summary>
+        /// <param name="imageList">The image list from database.</param>
+        /// <returns> IEnumerable<ImageViewModel> </returns>
+        public IEnumerable<ImageViewModel> ConvertToImageViewModel(IEnumerable<EventImage> imageList)
+        {
+            try
+            {
+                return imageList.Select(image => new ImageViewModel()
+                {
+                    Id = image.Id,
+                    ImageUrl = image.ImageUrl
+                });
+            }
+            catch (Exception ex)
+            {
+                throw new BusinessLogicException(ex.Message);
+            }
         }
     }
 }

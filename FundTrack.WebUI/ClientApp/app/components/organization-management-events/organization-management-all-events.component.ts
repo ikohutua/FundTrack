@@ -48,7 +48,7 @@ export class OrganizationManagementAllEventsComponent implements OnInit {
      */
     public onPageChange(page): void {
         this._showUsersSpinner = true;
-        this._service.GetEventsPerPageByOrganizationId(this._idForCurrentOrganization, page, this._itemPerPage).subscribe(
+        this._service.GetEventsByOrganizationIdForPage(this._idForCurrentOrganization, page, this._itemPerPage).subscribe(
             events => {
                 this._allEvents = events;
                 this._offset = (page - 1) * this._itemPerPage;
@@ -76,7 +76,7 @@ export class OrganizationManagementAllEventsComponent implements OnInit {
      * @param pageSize
      */
     private GetEventsPerPageByOrganizationId(idOrganization: number, currentPage: number, pageSize: number): void {
-        this._service.GetEventsPerPageByOrganizationId(idOrganization, currentPage, pageSize)
+        this._service.GetEventsByOrganizationIdForPage(idOrganization, currentPage, pageSize)
             .subscribe(events => {
                 this._allEvents = events;
                 this._showUsersSpinner = false;
@@ -113,7 +113,7 @@ export class OrganizationManagementAllEventsComponent implements OnInit {
      */
     public itemsPerPageChange(amount: number): void {
         this._showUsersSpinner = true;
-        this._service.GetEventsPerPageByOrganizationId(this._idForCurrentOrganization, 1, amount).subscribe(
+        this._service.GetEventsByOrganizationIdForPage(this._idForCurrentOrganization, 1, amount).subscribe(
             events => {
                 this._offset = 0;
                 this._allEvents = events;

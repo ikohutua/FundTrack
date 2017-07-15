@@ -18,15 +18,6 @@ namespace FundTrack.BLL.Concrete
         // unit of work instance
         private readonly IUnitOfWork _unitOfWork;
 
-        private PaginationInitViewModel GetPaginationInitData<T>(IEnumerable<T> items)
-        {
-            return new PaginationInitViewModel
-            {
-                TotalItemsCount = items.Count(),
-                ItemsPerPage = PageSize
-            };
-        }
-
         /// <summary>
         /// Initializes a new instance of the <see cref="SuperAdminService"/> class.
         /// </summary>

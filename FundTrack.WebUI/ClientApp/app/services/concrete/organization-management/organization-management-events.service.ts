@@ -51,8 +51,8 @@ export class OrganizationManagementEventsService {
      * @param pageSize
      * @returns Collection of events - Observable<IEventManagementViewModel[]>
      */
-    public GetEventsPerPageByOrganizationId(idOrganization: number, currentPage: number, pageSize: number): Observable<IEventManagementViewModel[]> {
-        return this._http.get(this._url + 'GetEventsPerPageByOrganizationId/' + idOrganization + "/" + currentPage + "/" + pageSize)
+    public GetEventsByOrganizationIdForPage(idOrganization: number, currentPage: number, pageSize: number): Observable<IEventManagementViewModel[]> {
+        return this._http.get(this._url + 'GetEventsByOrganizationIdForPage/' + idOrganization + "/" + currentPage + "/" + pageSize)
             .map((response: Response) => <IEventManagementViewModel[]>response.json())
             .do(data => console.log('ALL ' + JSON.stringify(data)))
             .catch(this.handleError);

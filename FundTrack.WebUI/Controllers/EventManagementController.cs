@@ -30,10 +30,10 @@ namespace FundTrack.WebUI.Controllers
         /// </summary>
         /// <param name="id">The identifier.</param>
         /// <returns> IEnumerable<EventManagementViewModel> </returns>
-        [HttpGet("GetEventsPerPageByOrganizationId/{idOrganization}/{currentPage}/{pageSize}")]
-        public IEnumerable<EventManagementViewModel> GetEventsPerPageByOrganizationId(int idOrganization, int currentPage, int pageSize)
+        [HttpGet("[action]/{idOrganization}/{currentPage}/{pageSize}")]
+        public IEnumerable<EventManagementViewModel> GetEventsByOrganizationIdForPage(int idOrganization, int currentPage, int pageSize)
         {
-            return this._service.GetEventsPerPageByOrganizationId(idOrganization, currentPage, pageSize);
+            return this._service.GetEventsByOrganizationIdForPage(idOrganization, currentPage, pageSize);
         }
 
         /// <summary>
@@ -83,7 +83,7 @@ namespace FundTrack.WebUI.Controllers
         /// Gets Events Data for pagination
         /// </summary>
         /// <returns>Events pagination data</returns>
-        [HttpGet("GetEventsInitData/{idOrganization}")]
+        [HttpGet("[action]/{idOrganization}")]
         public PaginationInitViewModel GetEventsInitData(int idOrganization)
         {
             return this._service.GetEventsInitData(idOrganization);
