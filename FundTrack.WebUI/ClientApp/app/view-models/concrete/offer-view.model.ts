@@ -10,6 +10,9 @@ export class OfferViewModel implements IOfferViewModel{
     name: string;
     statusName: string;
     userId: number;
+    contactAddress: string;
+    contactPhone: string;
+    contactName: string;
     constructor() {
         for (var i = 0; i < 6; i++) {
             this.imageUrl[i] = 'https://s3.eu-central-1.amazonaws.com/fundtrack/default-placeholder.png';

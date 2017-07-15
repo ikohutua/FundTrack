@@ -1,4 +1,5 @@
 ﻿using FundTrack.BLL.Abstract;
+using FundTrack.Infrastructure.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -25,6 +26,12 @@ namespace FundTrack.WebUI.Controllers
         public JsonResult Get(int id)
         {
             return Json(this._offerService.GetUserOfferedItems(id));
+        }
+        [HttpPost("[action]")]
+        public JsonResult Create([FromBody]OfferedItemViewModel model)
+        {
+            this._offerService.CreateOfferedItem(model);
+            return Json(model);
         }
     }
 }

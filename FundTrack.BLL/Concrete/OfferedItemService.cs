@@ -24,16 +24,29 @@ namespace FundTrack.BLL.Concrete
         /// <returns>OfferedItemViewModel</returns>
         public OfferedItemViewModel CreateOfferedItem(OfferedItemViewModel model)
         {
-            if (model!=null)
+            const string initialStatus = "Активний";
+            try
             {
-                OfferedItem item = (OfferedItem)model;
-                item.Status = this._unitOfWork.StatusRepository.GetStatusByName(model.StatusName);
-                item.User = this._unitOfWork.UsersRepository.GetUserById(model.UserId);
-                item.GoodsCategory = this._unitOfWork.GoodsCategoryRepository.GetGoodsCategoryByName(model.GoodsCategoryName);
-                this._unitOfWork.OfferedItemRepository.Create(item);
-                this._unitOfWork.SaveChanges();
+                if (model != null)
+                {
+                    OfferedItem item = model;
+                    item.User = this._unitOfWork.UsersRepository.GetUserById(model.UserId);
+                    Int32.TryParse(model.GoodsCategoryName, out int categoryId);
+                    item.GoodsCategory = this._unitOfWork.GoodsCategoryRepository.GetGoodsCategoryById(categoryId);
+                    item.Status = this._unitOfWork.StatusRepository.GetStatusByName(initialStatus);
+                    this._unitOfWork.OfferedItemRepository.Create(item);
+                    this._unitOfWork.SaveChanges();
+                    item = this._unitOfWork.OfferedItemRepository.Read().Where(a => a.Description == model.Description && a.Name == model.Name).FirstOrDefault();
+                    item.OfferedItemImages = this.SetPictures(model, item);
+                    this._unitOfWork.SaveChanges();
+                }
+                return model;
             }
-            return model;
+            catch (Exception ex)
+            {
+                throw new BusinessLogicException(ex.Message);
+            }
+
         }
         /// <summary>
         /// Deletes offered item by its id
@@ -105,6 +118,23 @@ namespace FundTrack.BLL.Concrete
         public OfferedItemViewModel UpdateOfferedItem(OfferedItemViewModel model)
         {
             throw new NotImplementedException();
+        }
+        public List<OfferedItemImage> SetPictures(OfferedItemViewModel model, OfferedItem item)
+        {
+            List<OfferedItemImage> picList = new List<OfferedItemImage>();
+            for (int i = 0; i < model.ImageUrl.Length; i++)
+            {
+                OfferedItemImage image = new OfferedItemImage();
+                image.ImageUrl = model.ImageUrl[i];
+                image.OfferedItem = item;
+                image.OfferedItemId = item.Id;
+                if (i == 0)
+                {
+                    image.IsMain = true;
+                }
+                picList.Add(image);
+            }
+            return picList;
         }
     }
 }

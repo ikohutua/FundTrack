@@ -11,7 +11,7 @@ import { AuthorizeUserModel } from "../../../view-models/concrete/authorized-use
 })
 export class SidebarComponent implements OnInit {
     private user: AuthorizeUserModel;
-    //flag that verifies if user if logged in
+    //flag that verifies if user is logged in
     private userRole: string = null;
     //property for side bar visible mode
     private sideBarIsClosed: boolean = true;

@@ -1,4 +1,4 @@
-﻿import { Http, Response } from "@angular/http";
+﻿import { Http, Response, RequestOptionsArgs } from "@angular/http";
 import { Observable } from 'rxjs/Observable';
 import { IOfferViewModel } from '../../../view-models/abstract/offer-model.interface';
 import { Injectable } from "@angular/core";
@@ -14,13 +14,30 @@ import { OfferViewModel } from "../../../view-models/concrete/offer-view.model";
 export class UserOfferService{
     private _getOfferUrl: string = 'api/offer/get';
     private _deleteOfferUrl: string = 'api/offer/delete';
+    private _createOfferUrl: string = 'api/offer/create';
     constructor(private _http: Http,
                 private _router: Router){
     }
+    /**
+     * Creates RequestOptionsArgs
+     * @param body:T
+     * @returns interface RequestOptionsArgs
+     */
+    
+
     public getUserOffers(userId: number): Observable<OfferViewModel[]> {
         return this._http.get(this._getOfferUrl + '/' + userId)
             .map((response: Response) => <OfferViewModel[]>response.json())
             .do(data => console.log('Item: ' + JSON.stringify(data)))
+            .catch(this.handleError);
+    }
+    public createOffer(newOfferItem: OfferViewModel): Observable<OfferViewModel> {
+        let body = newOfferItem;
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+        return this._http.post(this._createOfferUrl, body, options)
+            .map((response: Response) => <OfferViewModel>response.json())
+            .do(data => console.log('ALL ' + JSON.stringify(data)))
             .catch(this.handleError);
     }
     public deleteOffer(offerId: number): Observable<IOfferViewModel[]> {

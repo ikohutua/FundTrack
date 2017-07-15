@@ -9,24 +9,28 @@ import { AmazonUploadComponent } from '../../../shared/components/amazonUploader
 import * as key from '../../../shared/key.storage';
 import { AuthorizeUserModel } from "../../../view-models/concrete/authorized-user-info-view.model";
 import { isBrowser } from "angular2-universal";
-
+import { UserOfferService } from "../../../services/concrete/offer-management/user-offer.service";
 
 @Component({
     selector: 'offer-detail',
     templateUrl: './offer-detail.component.html',
     styleUrls: ['./offer-detail.component.css'],
-    providers:[GoodsService]
+    providers:[GoodsService, UserOfferService]
 })
 export class OfferDetailComponent implements OnInit{
     @Output() hidePanel = new EventEmitter<boolean>();
     private selectedItem = new GoodsTypeViewModel();
+    private maxDescriptionLength: number = 2000;
     public uploader: AmazonUploadComponent = new AmazonUploadComponent();
-
+    private selectedCategory: string = "Виберіть категорію";
+    private selectedType: string = "";
     private categories = new Array<GoodsCategoryViewModel>();
     private types = new Array <GoodsTypeViewModel>();
     private offerItem = new OfferViewModel();
+    private _errorMessage: string = "";
     constructor(private _router: Router,
-        private _goodsService: GoodsService
+        private _goodsService: GoodsService,
+        private _offerService: UserOfferService
     ) {
 
     }
@@ -36,6 +40,14 @@ export class OfferDetailComponent implements OnInit{
                 this.categories = categories;
                 this.categories = this.categories.filter(a => a.goodsTypeId == typeId);
             });
+    }
+    onChange(newValue) {
+        this.selectedCategory = newValue;
+    }
+    onCategorySelection(catValue, typeValue) {
+        debugger;
+        this.selectedCategory = catValue;
+        this.selectedType = typeValue;
     }
     ngOnInit() {
         this.selectedItem.id = 0;
@@ -53,7 +65,13 @@ export class OfferDetailComponent implements OnInit{
     private getFileExtension(fileName: string): string {
         return fileName.substring(fileName.lastIndexOf('.') + 1, fileName.length) || fileName;
     }
-
+    private submit(): void {
+        this.offerItem.goodsCategoryName = this.selectedCategory;
+        this._offerService.createOffer(this.offerItem)
+            .subscribe(data => {
+                this._router.navigate(['/offer-management/mylist'])
+            });
+    }
     private saveFileInAws(fileInput: any): void {
         var that = this;
         var maxFileSize = 4000000;

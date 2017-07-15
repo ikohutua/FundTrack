@@ -2,7 +2,7 @@
     <section>
         <div class="input-list style-4 clearfix">
             <h3 style="margin-left:15px;">Заголовок</h3>
-            <input type="text" class="titlefield">
+            <input type="text" class="titlefield" [(ngModel)]="this.offerItem.name">
             <div class="col-md-12">
                 <div class="col-md-6" style="margin-left:-13px;">
                     <h3>Категорія</h3>
@@ -13,7 +13,7 @@
             </div>
             <div class="col-md-5">
                 <select class="mdb-select" [(ngModel)]="selectedItem.id"
-                        (change)="onSelection($event.target.value)">
+                       #type (change)="onSelection($event.target.value)">
                     <option value="0">Виберіть тип</option>
                     <option *ngFor="let type of types "
                             value={{type.id}}>{{type.name}}
@@ -21,7 +21,7 @@
                     </select>
             </div>
             <div class="col-md-5 col-md-push-1" style="margin-left:-13px;">
-                <select>
+                <select [ngModel]="this.selectedCategory" (ngModelChange)="onChange($event)" name="selectCat">
                     <option *ngIf='selectedItem.id==0' value="0">Виберіть категорію</option>
                     <option *ngFor="let category of categories "
                             value={{category.id}}>{{category.name}}
@@ -30,9 +30,10 @@
             </div>
             <div class="col-md-12">
                 <h3>Опис</h3>
-                <textarea></textarea>
+                <textarea maxlength="2000" [(ngModel)]="this.offerItem.description" #offerItemDescription id="offerItemDescription"></textarea>
+                <small class="form-text text-muted"><code>{{offerItemDescription.value.length}}</code> з <code>{{maxDescriptionLength}}</code> символів</small>
             </div>
-            <br />
+            <div class="col-xs-12" style="height:20px;"></div>
             <div class="col-md-12">
                 <img src={{this.offerItem.imageUrl[0]}} (click)="imageInput1.click()" class="avatar img-responsive img-thumbnail itemimage" style="border:none" alt="avatar" height="150" width="126">
                 <input type="file" (change)="saveFileInAws($event)" #imageInput1 accept=".png,.jpg" class="text-center center-block well well-sm hidden">
@@ -52,19 +53,19 @@
                 <hr />
                 <div class="col-md-4">
                     <label style="padding-left:12px" for="contactName"><span style="font-size:medium;">Контактна особа</span></label>
-                    <input id="contacts" class="contacts" type="text" name="contactName" />
+                    <input id="contacts" class="contacts" type="text" name="contactName" [(ngModel)]="this.offerItem.contactName" />
                 </div>
                 <div class="col-md-4">
                     <label style="padding-left:12px" for="location"><span style="font-size:medium;">Місцезнаходження</span></label>
-                    <input id="location" class="contacts" type="text" name="location" />
+                    <input id="location" class="contacts" type="text" name="location" [(ngModel)]="this.offerItem.contactAddress" />
                 </div>
                 <div class="col-md-4">
                     <label style="padding-left:12px" for="phone"><span style="font-size:medium;">Телефон</span></label>
-                    <input id="phone" class="contacts" type="text" name="phone" />
+                    <input id="phone" class="contacts" type="text" name="phone" [(ngModel)]="this.offerItem.contactPhone" />
                 </div>
             </div>
             <div  class="col-md-12">
-                <button type="submit" class="btn btn-success btn-lg pull-right">Зберегти</button>
+                <button style="padding:5px 10px 5px 10px" type="submit" class="btn btn-success btn-lg pull-right" (click)="submit()">Зберегти і повернутись</button>
             </div>
         </div>
     </section>

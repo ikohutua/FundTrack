@@ -16,8 +16,10 @@ namespace FundTrack.Infrastructure.ViewModel
         public string GoodsCategoryName { get; set; }
         public string GoodsTypeName { get; set; }
         public string Error { get; set; }
-        
+        public string ContactAddress { get; set; }
+        public string ContactPhone { get; set; }
+        public string ContactName { get; set; }
+        public int GoodsCategoryId { get; set; }
 
-        
     }
 }
