@@ -58,6 +58,7 @@ namespace FundTrack.BLL.Tests
                 null,
                 null,
                 null,
+                null,
                 null);
 
             var registerService = new OrganizationRegistrationService(unitOfWork);

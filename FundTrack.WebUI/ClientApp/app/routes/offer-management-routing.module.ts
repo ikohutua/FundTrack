@@ -10,7 +10,8 @@ import { OfferItemManagementComponent } from "../components/offer-management/off
         {
             path: 'offer-management', component: OfferItemManagementComponent,
             children: [{ path: 'mylist', component: OfferListComponent },
-            { path: 'add', component: OfferDetailComponent }
+                { path: 'add', component: OfferDetailComponent },
+                { path: 'offerdetail/:id', component: OfferDetailComponent}
             ]
         }
 

@@ -1,22 +1,19 @@
-﻿import {IOfferViewModel} from '../abstract/offer-model.interface';
+﻿import { OfferedItemImageViewModel } from "./offered-item-image-view.model";
 
-export class OfferViewModel implements IOfferViewModel{
+export class OfferViewModel {
     description: string;
     error: string;
-    goodsCategoryName: string;
+    goodsCategory: string;
+    goodsCategoryId: number;
     goodsTypeName: string;
+    goodsTypeId: number;
     id: number;
-    imageUrl: string[] = new Array<string>();
+    images: OfferedItemImageViewModel[] = [];
+    imageUrl = new Array<string>();
     name: string;
     statusName: string;
     userId: number;
     contactAddress: string;
     contactPhone: string;
     contactName: string;
-    constructor() {
-        for (var i = 0; i < 6; i++) {
-            this.imageUrl[i] = 'https://s3.eu-central-1.amazonaws.com/fundtrack/default-placeholder.png';
-        }
-        
-    }
 }

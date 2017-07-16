@@ -1,6 +1,6 @@
 ﻿import { Component, OnInit } from "@angular/core";
 import { StorageService } from '../../../shared/item-storage-service';
-import { SignalR, BroadcastEventListener, SignalRConnection, ConnectionStatus } from 'ng2-signalr'
+//import { SignalR, BroadcastEventListener, SignalRConnection, ConnectionStatus } from 'ng2-signalr'
 import { ActivatedRoute } from '@angular/router';
 
 @Component({

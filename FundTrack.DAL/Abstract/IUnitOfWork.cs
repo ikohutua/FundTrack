@@ -114,10 +114,15 @@ namespace FundTrack.DAL.Abstract
         /// Gets the repo
         /// </summary>
         IGoodsTypeRepository GoodsTypeRepository { get; }
+        /// <summary>
+        /// Gets the repo
+        /// </summary>
+        IRepository<OfferedItemImage> OfferImagesRepository { get; }
 
         /// <summary>
         /// Saves all changes made in this context to the database.
         /// </summary>
+        /// 
         void SaveChanges();
     }
 }

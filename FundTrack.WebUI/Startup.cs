@@ -67,6 +67,7 @@ namespace FundTrack_WebUI
             services.AddScoped<IUserResponseRepository, UserResponseRepository>();
             services.AddScoped<IRequestedItemImageRepository, RequestedItemImageRepository>();
             services.AddScoped<IGoodsTypeRepository, GoodsTypeRepository>();
+            services.AddScoped<IRepository<OfferedItemImage>, OfferImagesRepository>();
 
             //dependency injection BLL
             services.AddScoped<IOrganizationsForFilteringService, OrganizationsForFilteringService>();

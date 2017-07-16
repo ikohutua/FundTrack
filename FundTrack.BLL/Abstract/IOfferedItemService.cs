@@ -50,5 +50,11 @@ namespace FundTrack.BLL.Abstract
         /// <param name="item">offer item</param>
         /// <returns>OfferedItemViewModel</returns>
         OfferedItemViewModel InitializeOfferedItemViewModel(OfferedItem item);
+        /// <summary>
+        /// Edits offered item, accordingly to received view model
+        /// </summary>
+        /// <param name="model">view model of the offer item</param>
+        /// <returns>updated item</returns>
+        OfferedItemViewModel EditOfferedItem(OfferedItemViewModel model);
     }
 }

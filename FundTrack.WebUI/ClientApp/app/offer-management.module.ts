@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { OfferItemManagementComponent } from "./components/offer-management/offer-list/offer-management.component";
 import { OfferListComponent } from "./components/offer-management/offer-list/offer-list.component";
 import { OfferDetailComponent } from "./components/offer-management/offer-list/offer-detail.component";
+import { SharedModule } from "./shared.module";
 
 
 
@@ -19,7 +20,8 @@ import { OfferDetailComponent } from "./components/offer-management/offer-list/o
         CommonModule,
         OfferManagementRoutingModule,
         OrganizationManagementModule,
-        FormsModule
+        FormsModule,
+        SharedModule
         
     ]
 })

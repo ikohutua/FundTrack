@@ -6,11 +6,13 @@ import { SuperAdminOrganizationsComponent } from '../components/super-admin/supe
 import { SuperAdminUsersComponent } from '../components/super-admin/super-admin-users.component';
 import { OrganizationRegistrationComponent } from '../components/super-admin/organization-registration.component';
 import { SuperAdminRouteGuard } from '../services/concrete/security/superadmin-route-guard';
-import { ConnectionResolver } from '../services/concrete/connection-resolver.service';
-import { SuperAdminChatComponent } from '../components/super-admin/super-admin-chat.component';
+//import { ConnectionResolver } from '../services/concrete/connection-resolver.service';
+//import { SuperAdminChatComponent } from '../components/super-admin/super-admin-chat.component';
 
 @NgModule({
-    providers: [SuperAdminRouteGuard, ConnectionResolver],
+    providers: [SuperAdminRouteGuard
+        //, ConnectionResolver
+    ],
     imports: [
         RouterModule.forChild([
             {
@@ -34,8 +36,8 @@ import { SuperAdminChatComponent } from '../components/super-admin/super-admin-c
                     path: 'register-organization',
                     component: OrganizationRegistrationComponent
                 }]
-            },
-            { path: 'super-admin-chat', component: SuperAdminChatComponent, resolve: { connection: ConnectionResolver } }
+            }
+            //{ path: 'super-admin-chat', component: SuperAdminChatComponent, resolve: { connection: ConnectionResolver } }
         ])
     ],
     exports: [RouterModule]

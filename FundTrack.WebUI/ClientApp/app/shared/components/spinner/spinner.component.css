@@ -13,6 +13,7 @@
     top: 40%;
     left: 50%;
     z-index: 3000;
+    animation-timing-function:ease-in-out;
 }
 
 @-webkit-keyframes spin {

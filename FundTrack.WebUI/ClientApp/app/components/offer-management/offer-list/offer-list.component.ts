@@ -11,7 +11,7 @@ import { AuthorizeUserModel } from "../../../view-models/concrete/authorized-use
     selector: 'offer-list',
     templateUrl: './offer-list.component.html',
     styleUrls: ['./offer-list.component.css'],
-    providers:[UserOfferService]
+    providers: [UserOfferService]
 })
 export class OfferListComponent implements OnInit {
     @Input('showActive') showActive: boolean;
@@ -19,7 +19,7 @@ export class OfferListComponent implements OnInit {
     @Input('showRemoved') showRemoved: boolean;
     private date = new Date().toJSON().slice(0, 10).replace(/-/g, '/');
     private user: AuthorizeUserModel;
-    private offers: OfferViewModel[] = new Array < OfferViewModel>();
+    private offers: OfferViewModel[] = new Array<OfferViewModel>();
     constructor(private _router: Router,
         private _offerService: UserOfferService) {
 
@@ -35,5 +35,22 @@ export class OfferListComponent implements OnInit {
                 this.offers = offers;
             });
     }
-
+    public navigateToEdit(selected: OfferViewModel) {
+        this._router.navigate(['add', selected.id]);
+    }
+    public deleteOfferItem(offerItem: OfferViewModel) {
+        this._offerService.deleteOffer(offerItem.id)
+            .subscribe(() => {
+                this.offers.splice(this.offers.findIndex(o => o.id == offerItem.id), 1);
+            });
+    }
+    ///Delete action confirmation
+    public deleteConfirm(offerItem: OfferViewModel) {
+        if (confirm("Ви справді хочете видалити цю пропозицію?")) {
+            this.deleteOfferItem(offerItem);
+        }
+    }
+    public goToEditPage(selected: OfferViewModel) {
+        this._router.navigate(['offer-management/offerdetail', selected.id]);
+    }
 }

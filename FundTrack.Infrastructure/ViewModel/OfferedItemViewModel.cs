@@ -20,6 +20,7 @@ namespace FundTrack.Infrastructure.ViewModel
         public string ContactPhone { get; set; }
         public string ContactName { get; set; }
         public int GoodsCategoryId { get; set; }
+        public int GoodsTypeId { get; set; }
 
     }
 }

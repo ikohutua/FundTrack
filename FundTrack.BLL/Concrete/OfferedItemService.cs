@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using FundTrack.Infrastructure.ViewModel;
 using FundTrack.DAL.Abstract;
 using FundTrack.DAL.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace FundTrack.BLL.Concrete
 {
@@ -31,12 +32,34 @@ namespace FundTrack.BLL.Concrete
                 {
                     OfferedItem item = model;
                     item.User = this._unitOfWork.UsersRepository.GetUserById(model.UserId);
-                    Int32.TryParse(model.GoodsCategoryName, out int categoryId);
-                    item.GoodsCategory = this._unitOfWork.GoodsCategoryRepository.GetGoodsCategoryById(categoryId);
+                    item.GoodsCategory = this._unitOfWork.GoodsCategoryRepository.GetGoodsCategoryById(model.GoodsCategoryId);
                     item.Status = this._unitOfWork.StatusRepository.GetStatusByName(initialStatus);
                     this._unitOfWork.OfferedItemRepository.Create(item);
                     this._unitOfWork.SaveChanges();
                     item = this._unitOfWork.OfferedItemRepository.Read().Where(a => a.Description == model.Description && a.Name == model.Name).FirstOrDefault();
+                    item.OfferedItemImages = this.SetPictures(model, item);
+                    this._unitOfWork.SaveChanges();
+                }
+                return model;
+            }
+            catch (Exception ex)
+            {
+                throw new BusinessLogicException(ex.Message);
+            }
+
+        }
+        public OfferedItemViewModel EditOfferedItem(OfferedItemViewModel model)
+        {
+            try
+            {
+                if (model != null)
+                {
+                    OfferedItem item = this._unitOfWork.OfferedItemRepository.Get(model.Id);
+                    item.Description = model.Description;
+                    item.Name = model.Name;
+                    item.GoodsCategory = this._unitOfWork.GoodsCategoryRepository.GetGoodsCategoryById(model.GoodsCategoryId);
+                    item.GoodsCategoryId = item.GoodsCategory.Id;
+                    //this._unitOfWork.OfferImagesRepository.DeleteOfferedItemImagesByOfferId(model.Id);
                     item.OfferedItemImages = this.SetPictures(model, item);
                     this._unitOfWork.SaveChanges();
                 }
@@ -54,7 +77,8 @@ namespace FundTrack.BLL.Concrete
         /// <param name="id"></param>
         public void DeleteOfferedItem(int id)
         {
-            throw new NotImplementedException();
+            this._unitOfWork.OfferedItemRepository.Delete(id);
+            this._unitOfWork.SaveChanges();
         }
         /// <summary>
         /// Gets all offered item view models
@@ -63,7 +87,7 @@ namespace FundTrack.BLL.Concrete
         public IEnumerable<OfferedItemViewModel> GetAllOfferedItemViewModels()
         {
             List<OfferedItemViewModel> list = new List<OfferedItemViewModel>();
-            foreach (var item in this._unitOfWork.OfferedItemRepository.Read())
+            foreach (var item in this._unitOfWork.OfferedItemRepository.Read().OrderByDescending(a=>a.Id))
             {
                 list.Add(this.InitializeOfferedItemViewModel(item));
             }
@@ -76,7 +100,19 @@ namespace FundTrack.BLL.Concrete
         /// <returns>OfferedItemViewModel</returns>
         public OfferedItemViewModel GetOfferedItemViewModel(int id)
         {
-            throw new NotImplementedException();
+            var item = this._unitOfWork.OfferedItemRepository.Get(id);
+            var model = new OfferedItemViewModel();
+            model.Description = item.Description;
+            model.Name = item.Name;
+            model.Id = item.Id;
+            model.StatusName = this._unitOfWork.StatusRepository.GetStatusById(item.StatusId).StatusName;
+            model.UserId = item.UserId;
+            model.GoodsCategoryName = this._unitOfWork.GoodsCategoryRepository.GetGoodsCategoryById(item.GoodsCategoryId).Name;
+            model.GoodsTypeName = this._unitOfWork.GoodsTypeRepository.GetGoodsTypeById(item.GoodsCategory.GoodsTypeId).Name;
+            model.GoodsCategoryId = this._unitOfWork.GoodsCategoryRepository.GetGoodsCategoryByName(model.GoodsCategoryName).Id;
+            model.GoodsTypeId = this._unitOfWork.GoodsTypeRepository.GetGoodsTypeByName(model.GoodsTypeName).Id;
+            model.ImageUrl = GetPictures(item);
+            return model;
         }
         /// <summary>
         /// Gets offered items of user by his id
@@ -86,7 +122,7 @@ namespace FundTrack.BLL.Concrete
         public IEnumerable<OfferedItemViewModel> GetUserOfferedItems(int userId)
         {
             List<OfferedItemViewModel> list = new List<OfferedItemViewModel>();
-            foreach (var item in this._unitOfWork.OfferedItemRepository.Read().Where(a=>a.UserId==userId))
+            foreach (var item in this._unitOfWork.OfferedItemRepository.Read().Where(a => a.UserId == userId))
             {
                 list.Add(this.InitializeOfferedItemViewModel(item));
             }
@@ -135,6 +171,30 @@ namespace FundTrack.BLL.Concrete
                 picList.Add(image);
             }
             return picList;
+        }
+        public string[] GetPictures(OfferedItem item)
+        {
+            List<string> picList = new List<string>();
+            var images = this._unitOfWork.OfferImagesRepository.Read().Where(a => a.OfferedItemId==item.Id);
+            foreach (var thing in images)
+            {
+                picList.Add(thing.ImageUrl);
+            }
+            return picList.ToArray();
+        }
+    }
+    public static class OfferedItemImagesExtensions
+    {
+        public static void DeleteOfferedItemImagesByOfferId(this IRepository<OfferedItemImage> repo, int offerItemId)
+        {
+            var items = repo.Read();
+            foreach (var item in items)
+            {
+                if (item.OfferedItemId == offerItemId)
+                {
+                    repo.Delete(item.Id);
+                }
+            }
         }
     }
 }

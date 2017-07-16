@@ -24,9 +24,9 @@
         </div>
         <div class="col-md-1">
             <div class="btn-group btn-group-vertical controlbutton">
-                <button class="btn btn-default ">Змінити</button>
-                <button class="btn btn-default ">Деактивувати</button>
-                <button class="btn btn-danger ">Видалити</button>
+                <button class="btn btn-default" (click)="goToEditPage(offer)">Змінити</button>
+                <button class="btn btn-default">Деактивувати</button>
+                <button class="btn btn-danger" (click)="deleteConfirm(offer)">Видалити</button>
             </div>
         </div>
     </div>

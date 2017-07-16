@@ -44,3 +44,6 @@ textarea {
 .itemimage:hover{
     opacity:0.7;
 }
+.has-error{
+    color: red;
+}

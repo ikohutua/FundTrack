@@ -27,6 +27,7 @@ namespace FundTrack.DAL.Concrete
         private readonly IGoodsCategoryRepository _goodsCategoryRepository;
         private readonly IRequestedItemImageRepository _requestedItemImageRepository;
         private readonly IGoodsTypeRepository _goodsTypeRepository;
+        private readonly IRepository<OfferedItemImage> _offeredItemImageRepository;
 
         private FundTrackContext _context;
 
@@ -53,7 +54,8 @@ namespace FundTrack.DAL.Concrete
               IUserResponseRepository userResponseRepository,
               IGoodsCategoryRepository goodsCategoryRepository,
               IRequestedItemImageRepository requestedItemImageRepository,
-              IGoodsTypeRepository goodsTypeRepository
+              IGoodsTypeRepository goodsTypeRepository,
+              IRepository<OfferedItemImage> offeredItemImageRepository
               )
         {
             this._context = contextParam;
@@ -75,6 +77,7 @@ namespace FundTrack.DAL.Concrete
             _statusRepository = statusRepository;
             _requestedItemImageRepository = requestedItemImageRepository;
             _goodsTypeRepository = goodsTypeRepository;
+            _offeredItemImageRepository = offeredItemImageRepository;
         }
 
         /// <summary>
@@ -290,6 +293,24 @@ namespace FundTrack.DAL.Concrete
             get
             {
                 return this._requestedItemImageRepository;
+            }
+        }
+        /// <summary>
+        /// Gets offered item image repository
+        /// </summary>
+        public IRepository<OfferedItemImage> OfferedItemImageRepository
+        {
+            get
+            {
+                return this._offeredItemImageRepository;
+            }
+        }
+
+        public IRepository<OfferedItemImage> OfferImagesRepository
+        {
+            get
+            {
+                return this._offeredItemImageRepository;
             }
         }
 

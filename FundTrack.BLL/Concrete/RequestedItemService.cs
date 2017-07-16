@@ -293,13 +293,15 @@ namespace FundTrack.BLL.Concrete
                     {
                         Id = x.Id,
                         Name = x.Name,
+                        
                         TypeCategories = x.GoodsCategories.Select(e => new GoodsCategoryViewModel
                         {
                             Id = e.Id,
-                            Name = e.Name
+                            Name = e.Name,
+                            GoodsTypeId=x.Id
                         })
                     });
-
+                
                 return goodsCategories;
             }
             catch (Exception ex)
