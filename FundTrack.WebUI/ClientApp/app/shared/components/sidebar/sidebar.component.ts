@@ -71,6 +71,6 @@ export class SidebarComponent /*implements OnInit*/ {
      * @param idOrganization
      */
     public redirectToManageRequestPage(idOrganization: number): void {
-        this._router.navigate(['organization/request/manage/' + idOrganization.toString() + "/0"]);
+        this._router.navigate(['organization/request/manage/' + idOrganization.toString()]);
     }
 }

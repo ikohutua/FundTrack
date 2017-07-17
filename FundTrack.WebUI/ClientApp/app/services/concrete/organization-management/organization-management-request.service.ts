@@ -7,34 +7,43 @@ import 'rxjs/add/operator/do';
 import "rxjs/add/operator/catch";
 import { GoodsTypeViewModel } from "../../../view-models/concrete/goodsType-view.model";
 import { RequestedImageViewModel } from "../../../view-models/abstract/organization-management-view-models/requested-item-view.model";
+import { BaseSpinnerService } from "../../abstract/base-spinner-service";
+import { SpinnerComponent } from "../../../shared/components/spinner/spinner.component";
+import { RequestedItemInitDataViewModel } from "../../../view-models/concrete/requested-item-init-view.model";
 
 @Injectable()
-export class OrganizationManagementRequestService {
+export class OrganizationManagementRequestService extends BaseSpinnerService<RequestManagementViewModel> {
     private _organizationItemsUrl: string = "api/requestedItem/GetOrganizationRequestedItems";
     private _goodsTypeUrl: string = "api/requestedItem/GetGoodsType";
     private _requestToAddUrl: string = "api/requestedItem/AddRequestedItem";
     private _requestToDeleteUrl: string = "api/requestedItem/DeleteRequestedItem";
     private _getByIdRequestedItem: string = "api/requestedItem/GetRequestedItem";
     private _updateRequesterItemUrl: string = "api/requestedItem/UpdateRequestedItem";
-    private _deleteCurrentImageUrl: string = "api/requestedItem/DeleteCurrentImage"
-
-    public constructor(private _http: Http) { }
+    private _deleteCurrentImageUrl: string = "api/requestedItem/DeleteCurrentImage";
+    private _getItemPerPageUtl: string = "api/requestedItem/GetRequestedItemPerPage";
+    private _getRequestedItemInitDataUrl: string = "api/requestedItem/GetRequestedItemInitData";
+    
+    public constructor(private _http: Http)
+    {
+        super(_http);
+    }
 
     /**
      * Gets all requested items by organization
      * @param id
      */
-    public getAllRequestedItemsByOrganization(id: number): Observable<RequestManagementViewModel[]> {
-        return this._http.get(this._organizationItemsUrl + '/' + id,
-            { headers: new Headers({ 'ContentType': 'application/json' }) })
-            .map((response: Response) => <RequestManagementViewModel[]>response.json())
-            .catch(this.handleError);
+    public getAllRequestedItemsByOrganization(id: number, spinner?: SpinnerComponent): Observable<RequestManagementViewModel[]> {
+        return super.getCollection(this._organizationItemsUrl + '/' + id, null, spinner);
     }
 
     /**
      * Get by id requested item
      * @param itemId
      */
+    //public getRequestedItemById(itemId: number, spinner?: SpinnerComponent): Observable<RequestManagementViewModel> {
+    //    return super.getById(this._getByIdRequestedItem, itemId, null, spinner);            
+    //}
+
     public getRequestedItemById(itemId: number): Observable<RequestManagementViewModel> {
         return this._http.get(this._getByIdRequestedItem + '/' + itemId,
             { headers: new Headers({ 'ContentType': 'application/json' }) })
@@ -100,6 +109,17 @@ export class OrganizationManagementRequestService {
     }
 
     /**
+     * Gets requested items per page
+     * @param organizationId
+     * @param currentPage
+     * @param pageSize
+     */
+    public getRequestedItemsPerPage(organizationId: number, currentPage: number, pageSize: number, spinner?: SpinnerComponent): Observable<RequestManagementViewModel[]> {
+        var url = this._getItemPerPageUtl + '/' + organizationId + '/' + currentPage + '/' + pageSize;
+        return super.getCollection(url, null, spinner);
+    }
+
+    /**
     * Creates RequestOptionsArgs
     * @param body:T
     * @returns interface RequestOptionsArgs
@@ -108,6 +128,16 @@ export class OrganizationManagementRequestService {
         let headers = new Headers({ 'ContentType': 'application/json' });
         let options = new RequestOptions({ headers: headers });
         return { headers: headers, body: body };
+    }
+
+    /**
+     * Gets requested item init data
+     * @param organizationId
+     */
+    public getRequestedItemsInitData(organizationId: number): Observable<RequestedItemInitDataViewModel> {
+        return this._http.get(this._getRequestedItemInitDataUrl + '/' + organizationId)
+            .map((response: Response) => <RequestedItemInitDataViewModel>response.json())
+            .catch(this.handleError);
     }
 
     /**

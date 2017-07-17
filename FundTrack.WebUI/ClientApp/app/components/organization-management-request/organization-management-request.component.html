@@ -1,26 +1,40 @@
-﻿<h2 class="text-center">Всі потреби</h2>
-<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-    <table *ngIf="_allRequestedItems" class="table-fill">
-        <thead>
-            <tr>
-                <th class="text-left">Назва</th>
-                <th class="text-left">Категорія</th>
-                <th class="text-left">Опис</th>
-                <th class="text-left">Дії</th>
-            </tr>
-        </thead>
-        <tbody class="table-hover">
-            <tr *ngFor="let requestedItem of _allRequestedItems">
-                <td class="text-left">{{requestedItem.name}}</td>
-                <td class="text-left">{{requestedItem.goodsCategory}}</td>
-                <td class="text-left">{{requestedItem.description}}</td>
-                <td class="text-center">
-                    <button class="btn btn-default" (click)="redirectToManageRequestPage(requestedItem.id)">Редагувати</button>
-                    <button class="btn btn-danger" (click)='setCurrentRequestedItem(requestedItem)' data-toggle="modal" data-target="#deleteRequest">Видалити</button>
-                </td>
-                <delete-request [itemToToDelete]='currentRequestedItem' (onSuccesfullDelete)="deleteRequestedItem()"></delete-request>
-            </tr>
-        </tbody>
-    </table>
-    <button [routerLink]="['../manage-request']" class="btn btn-default pull-right">Зареєструвати потребу</button>
+﻿<div *ngIf="_allRequestedItems" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 list-group">
+    <spinner></spinner>
+    <div *ngFor="let requestedItem of _allRequestedItems" id="products">
+        <div class="item col-xs-12 col-lg-3">         
+            <div class="thumbnail">
+                <div class="photo">
+                    <img *ngIf="requestedItem.images[0]" class="center-block group list-group-image img-responsive main-image" src="{{requestedItem.images[0].imageUrl}}" alt="" />
+                </div>
+                <div class="caption">
+                    <h4 class="group inner list-group-item-heading">{{requestedItem.name}}</h4>
+                    <p class="group inner list-group-item-text">{{requestedItem.goodsCategory}}</p>
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-xs-12">
+                            <button class="btn btn-success" (click)="redirectToManageRequestPage(requestedItem.id)">Редагувати</button>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-xs-12">
+                            <button class="btn btn-danger" (click)='setCurrentRequestedItem(requestedItem)' data-toggle="modal" data-target="#deleteRequest">Видалити</button>
+                        </div>
+                        <delete-request [itemToToDelete]='currentRequestedItem' (onSuccesfullDelete)="deleteRequestedItem()"></delete-request>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div *ngIf="_allRequestedItems">
+    <div *ngIf="_totalItems && _itemPerPage" class="text-center">
+        <div class="pegination-dropdown">
+            <select-item [items]="[4, 8, 12]"
+                         (onSelect)="itemsPerPageChange($event)">
+            </select-item>
+        </div>
+        <pagination-pages [offset]="_offset"
+                          [limit]="_itemPerPage"
+                          [size]="_totalItems"
+                          [currentPage]="_currentPage"
+                          (pageChange)="onPageChange($event)">
+        </pagination-pages>
+    </div>
 </div>

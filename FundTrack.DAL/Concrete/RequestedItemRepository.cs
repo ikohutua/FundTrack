@@ -72,6 +72,7 @@ namespace FundTrack.DAL.Concrete
             var requestedItems = this._dbContext.RequestedItems
                 .Include(g => g.GoodsCategory)
                 .Include(g => g.Status)
+                .Include(g => g.RequestedItemImages)
                 .Where(r => r.OrganizationId == organizationId);
 
             return requestedItems;
@@ -83,7 +84,7 @@ namespace FundTrack.DAL.Concrete
         /// <returns>List of requested items</returns>
         public IEnumerable<RequestedItem> Read()
         {
-            return this._dbContext.RequestedItems;
+            return this._dbContext.RequestedItems.Include(x => x.RequestedItemImages);
         }
 
         /// <summary>
@@ -136,6 +137,25 @@ namespace FundTrack.DAL.Concrete
                 .Include(c => c.GoodsCategories);
 
             return goodsTypes;
+        }
+        
+        /// <summary>
+        /// Gets requeste item per page
+        /// </summary>
+        /// <param name="organizationId">Organization id</param>
+        /// <param name="currentPage">Current page</param>
+        /// <param name="pageSize">Page size</param>
+        /// <returns>Requested items list</returns>
+        public IEnumerable<RequestedItem> GetRequestedItemPerPageByorganizationId(int organizationId, int currentPage, int pageSize)
+        {
+            var resultList = this._dbContext.RequestedItems
+                .Include(r => r.RequestedItemImages)
+                .Include(r => r.GoodsCategory)
+                .Where(r => r.OrganizationId == organizationId)
+                .Skip((currentPage - 1) * pageSize)
+                .Take(pageSize);
+
+            return resultList;
         }
     }
 }

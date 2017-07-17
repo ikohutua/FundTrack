@@ -5,6 +5,7 @@ using FundTrack.BLL.Concrete;
 using FundTrack.Infrastructure.ViewModel;
 using FundTrack.BLL.Abstract;
 using FundTrack.Infrastructure.ViewModel.RequestedItemModel;
+using System.Threading;
 
 namespace FundTrack.WebUI.Controllers
 {
@@ -194,7 +195,6 @@ namespace FundTrack.WebUI.Controllers
             return _requestedItemService.GetRequestedItemToShowPerPage(itemsPerPage, currentPage);
         }
 
-
         /// <summary>
         /// Gets RequestedItem Data for pagination
         /// </summary>
@@ -205,7 +205,30 @@ namespace FundTrack.WebUI.Controllers
             return _requestedItemService.GetRequestedItemPaginationData();
         }
 
+        /// <summary>
+        /// Gets list of requested items per page
+        /// </summary>
+        /// <param name="organizationId">Organization id</param>
+        /// <param name="currentPage">Current page number</param>
+        /// <param name="pageSize">Page size number</param>
+        /// <returns>Requested items list</returns>
+        [HttpGet("GetRequestedItemPerPage/{organizationId}/{currentPage}/{pageSize}")]
+        public IEnumerable<RequestedItemViewModel> GetRequestedItemPerPage(int organizationId, int currentPage, int pageSize)
+        {
+          
+            return this._requestedItemService.GetRequestedItemPerPageByorganizationId(organizationId, currentPage, pageSize);
+        }
 
+        /// <summary>
+        /// Gets requested item pagination view model
+        /// </summary>
+        /// <param name="organizationId"></param>
+        /// <returns>Pagination view model</returns>
+        [HttpGet("GetRequestedItemInitData/{organizationId}")]
+        public RequestedItemPaginationViewModel GetRequestedItemInitData(int organizationId)
+        {
+            return this._requestedItemService.GetRequestedItemsInitData(organizationId);
+        }
     }
 }
 

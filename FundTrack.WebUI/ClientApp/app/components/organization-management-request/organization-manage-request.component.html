@@ -1,14 +1,81 @@
-﻿<form>
+﻿<div class='container' style="background-image: url(../../../../wwwroot/images/comouflage-white.jpg)">
+    <div class='row'>
+        <div class='col-sm-10 col-sm-offset-1'>
+            <div class='well'>
+                <form>
+                    <div class='row'>
+                        <div class='col-sm-4'>
+                            <div class='form-group'>
+                                <label for='itemName'>Назва</label>
+                                <input id="itemName" class="form-control" type="text" required
+                                       [(ngModel)]="_requestedItem.name" name="itemName" />
+                            </div>
+                            <div class="form-group">
+                                <label for="goodsType">Тип</label>
+                                <select id="goodsType" class="form-control" [(ngModel)]="_selecteType" name="goodsType">
+                                    <option selected="selected">Виберіть тип</option>
+                                    <option *ngFor="let goodType of _goodsTypes"
+                                            [ngValue]="goodType">
+                                        {{goodType.name}}
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="form-group" *ngIf="_selecteType">
+                                <label for="categoryType">Категорія</label>
+                                <select id="categoryType" class="form-control" [(ngModel)]="_requestedItem.goodsCategoryId" name="categoryType">
+                                    <option selected="selected">Виберіть категорію</option>
+                                    <option *ngFor="let category of _selecteType.typeCategories"
+                                            [value]="category.id">
+                                        {{category.name}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class='col-sm-8'>
+                            <div class='form-group'>
+                                <label for='message'>Опис</label>
+                                <textarea id="itemDescription" required class='form-control' name='itemDescription' rows='10'
+                                          [(ngModel)]="_requestedItem.description"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div>
+                                <div *ngFor="let _currentImage of _requestedItem.images" style="display:inline-block">
+                                    <div class="img-container">
+                                        <img src="{{_currentImage.imageUrl}}" class="img-responsive img-thumbnail item-image">
+                                        <a (click)="deleteCurrentImage(_currentImage)"><span class="glyphicon glyphicon-remove"></span></a>
+                                    </div>
+                                </div>
+                                <div class="img-container">
+                                    <img src="http://www.freeiconspng.com/uploads/add-icon--line-iconset--iconsmind-29.png"
+                                         (click)="imageInput.click()" class="img-responsive img-thumbnail add-image item-image" title="Додати зображення">
+                                    <input type="file" (change)="saveFileInAws($event)" #imageInput accept=".png,.jpg" class="well well-sm hidden">
+                                </div>
+                            </div>
+                        </div>
+                        <div class='text-right'>
+                            <button class="btn btn-default pull-right" (click)="manageRequestedItems()">Зберегти</button>
+                            <button class="btn btn-default pull-right" [routerLink]="['/organization/request/manage/1']">Відмінити</button>
+                        </div>
+                    </div>
+                    {{_errorMessage}}
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--<form style="background-color:aliceblue">
     <div class="form-group">
         <label class="control-label" for="itemName">Назва:</label>
-        <input id="itemName" class="form-control" type="text"
+        <input id="itemName" class="form-control" type="text" required
                [(ngModel)]="_requestedItem.name" name="itemName" />
     </div>
 
     <div class="form-group">
         <label class="control-label" for="itemDescription">Опис:</label>
-        <textarea id="itemDescription" class="form-control" type="text"
-                  [(ngModel)]="_requestedItem.description" name="itemDescription"></textarea>
+        <textarea id="itemDescription" class="form-control" type="text" required
+               [(ngModel)]="_requestedItem.description" name="itemDescription"></textarea>
     </div>
 
     <div class="form-group">
@@ -36,13 +103,22 @@
     <div class="form-group">
         <div>
             <span *ngFor="let _currentImage of _requestedItem.images">
-                <img src="{{_currentImage.imageUrl}}" class="img-responsive img-thumbnail" style="border:none" height="300" width="200">
+                <img src="{{_currentImage.imageUrl}}" class="img-responsive img-thumbnail" style="border:none" height="100" width="100">
             </span>
-            <img src="http://www.freeiconspng.com/uploads/add-icon--line-iconset--iconsmind-29.png" (click)="imageInput.click()" class="img-responsive img-thumbnail" style="border-width:1px" height="300" width="200">
+            <img src="http://www.freeiconspng.com/uploads/add-icon--line-iconset--iconsmind-29.png" (click)="imageInput.click()" class="img-responsive img-thumbnail" style="border-width:1px" height="100" width="100">
             <input type="file" (change)="saveFileInAws($event)" #imageInput accept=".png,.jpg" class="well well-sm hidden">
         </div>
     </div>
 
-    {{_errorMessage}}
-    <button class="btn btn-default pull-right" (click)="manageRequestedItems()">Добавити</button>
-</form>
+    <!--<div class="form-group">
+        <div *ngIf="_currentImageUrl" class="col-md-2 col-md-offset-0">
+            <gallery [datasource]="_currentImageUrl"> </gallery>
+        </div>
+    </div>-->
+    <!--{{_errorMessage}}
+    <button class="btn btn-default pull-right" (click)="manageRequestedItems()">Добавити</button>-->
+
+    <!--<spinner></spinner>-->
+<!--</form>-->-->
+
+

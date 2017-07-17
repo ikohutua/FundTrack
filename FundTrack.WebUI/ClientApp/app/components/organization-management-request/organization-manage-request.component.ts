@@ -1,4 +1,4 @@
-﻿import { Component, OnInit, Input } from '@angular/core';
+﻿import { Component, OnInit, Input, ViewChild} from '@angular/core';
 import { Subscription } from "rxjs/Subscription";
 import { ActivatedRoute, Router } from "@angular/router";
 import { RequestManagementViewModel } from '../../view-models/abstract/organization-management-view-models/request-management-view-model';
@@ -7,6 +7,7 @@ import { GoodsTypeViewModel } from "../../view-models/concrete/goodsType-view.mo
 import { GoodsCategoryViewModel } from "../../view-models/concrete/goodsCategory-view.model";
 import { AmazonUploadComponent } from "../../shared/components/amazonUploader/amazon-upload.component";
 import { RequestedImageViewModel } from "../../view-models/abstract/organization-management-view-models/requested-item-view.model";
+import { SpinnerComponent } from "../../shared/components/spinner/spinner.component";
 
 @Component({
     selector: 'manage-request',
@@ -23,26 +24,25 @@ export class OrganizationManageRequestComponent implements OnInit {
     private _goodsTypes: GoodsTypeViewModel[];
     private _selecteType: GoodsTypeViewModel;
     private _subscription: Subscription;
+    private _sub: Subscription;
     private _requestedItemId: number;
     private _currentOrgId: number;
     private _currentImageUrl: string[] = [];
+    //@ViewChild(SpinnerComponent) spinner: SpinnerComponent;
 
     ngOnInit(): void {
         this._requestedItem.images = [];
         this.fillGoodtypes();
         this._route.params.subscribe(params => {
             this._currentOrgId = +params["idOrganization"];
+            this._requestedItemId = +params["idRequest"];
         });
-        this._subscription = this._route
-            .params.subscribe(params => {
-                this._requestedItemId = +params["idRequest"];
-            });
-
+      
         if (this._requestedItemId > 0) {
             this.getByIdRequestedItem(this._requestedItemId);
         }       
     }
-    
+
     /**
      * Initialize new instance of OrganizationCreateRequestComponent
      * @param _service
@@ -68,7 +68,6 @@ export class OrganizationManageRequestComponent implements OnInit {
      * Add new requested item
      */
     private addRequestedItem() {
-        console.log(this._requestedItem);
         this._service.addRequestedItem(this._requestedItem)
             .subscribe(error => this._errorMessage = <any>error);
     }
@@ -91,11 +90,19 @@ export class OrganizationManageRequestComponent implements OnInit {
             error => this._errorMessage = <any>error);
     }
 
-    private deleteCurrentImage(currentImageId: number) {
-        this._service.deleteCurrentImage(currentImageId)
-            .subscribe(data => this._requestedItem.images
-                .splice(this._requestedItem.images.findIndex(i => i.id == currentImageId), 1),
-            error => this._errorMessage = <any>error);
+    private deleteCurrentImage(currentImage: RequestedImageViewModel) {
+        if (currentImage.id > 0) {
+            this._service.deleteCurrentImage(currentImage.id)
+                .subscribe(data => this.deleteImageFromList(currentImage.imageUrl),
+                error => this._errorMessage = <any>error);
+        }
+        else {
+            this.deleteImageFromList(currentImage.imageUrl);
+        }
+    }
+
+    private deleteImageFromList(imageUrl: string) {
+        this._requestedItem.images.splice(this._requestedItem.images.findIndex(i => i.imageUrl == imageUrl), 1)         
     }
 
     /**
@@ -112,7 +119,6 @@ export class OrganizationManageRequestComponent implements OnInit {
      * Manage requested items wich method will be called
      */
     private manageRequestedItems() {
-        console.log(this._requestedItem)
         if (this._requestedItemId > 0) {
             this.editRequestetItem(this._requestedItem);
         }
@@ -141,22 +147,26 @@ export class OrganizationManageRequestComponent implements OnInit {
         var that = this;
         var maxFileSize = 4000000;
         let file = fileInput.target.files[0];
-        let uploadedFileName = this._requestedItem.name + '.' + this.getFileExtension(file.name);
-        if (file.size != null && file.size < maxFileSize) {
-            this.uploader.UploadImageToAmazon(file, uploadedFileName).then(function (data) {
-                let requestedItemImage = new RequestedImageViewModel();
-                requestedItemImage.requestedItemId = 0;
-                requestedItemImage.imageUrl = data.Location;
+        if (file) {
+            var currentDate = new Date();
+            let uploadedFileName = this._requestedItem.name + currentDate.getHours() + currentDate.getMinutes() + currentDate.getSeconds() + '.' + this.getFileExtension(file.name);
+            if (file.size != null && file.size < maxFileSize) {
+                this.uploader.UploadImageToAmazon(file, uploadedFileName).then(function (data) {
+                    let requestedItemImage = new RequestedImageViewModel();
+                    requestedItemImage.requestedItemId = 0;
+                    requestedItemImage.imageUrl = data.Location;
+                    console.log(data.Location);
 
-                if (that._requestedItem.images == null) {
-                    that._requestedItem.images = [];
-                }
+                    if (that._requestedItem.images == null) {
+                        that._requestedItem.images = [];
+                    }
 
-                that._requestedItem.images.push(requestedItemImage);
-            })
-        }
-        else {
-            alert('Розмр файлу не може перевищувати ' + Math.ceil(maxFileSize / 1000000) + 'МБ');
+                    that._requestedItem.images.push(requestedItemImage);
+                })
+            }
+            else {
+                alert('Розмр файлу не може перевищувати ' + Math.ceil(maxFileSize / 1000000) + 'МБ');
+            }
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿import { Component, Input, EventEmitter, Output, OnInit } from "@angular/core"
+﻿import { Component, Input, EventEmitter, Output } from "@angular/core"
 import { RequestManagementViewModel } from "../../view-models/abstract/organization-management-view-models/request-management-view-model";
 
 @Component({
@@ -8,10 +8,8 @@ import { RequestManagementViewModel } from "../../view-models/abstract/organizat
    })
 
 
-export class OrganizationDeleteRequestComponent implements OnInit {
-    ngOnInit(): void {
-        console.log(this.itemToToDelete);
-    }
+export class OrganizationDeleteRequestComponent{
+   
     @Input() itemToToDelete: RequestManagementViewModel = new RequestManagementViewModel();
     @Output() onSuccesfullDelete = new EventEmitter<boolean>();
 

@@ -104,29 +104,33 @@ namespace FundTrack.BLL.Concrete
             try
             {
                 RequestedItem requestedItem = this._unitOfWork.RequestedItemRepository.Get(id);
-                IEnumerable<RequestedItemImage> requestedItemImageList = this._unitOfWork.RequestedItemImageRepository
-                                                .GetImagesByRequestedItemId(requestedItem.Id);
 
                 if (requestedItem == null)
                 {
                     throw new BusinessLogicException($"Потреба з ідентифікатором {id} не знайдена");
                 }
 
-                IEnumerable<RequestedImageViewModel> imagesList = this.ConvertRequestItemImageModelList(requestedItemImageList,
+                //IEnumerable<RequestedItemImage> requestedItemImageList = this._unitOfWork.RequestedItemImageRepository
+                //                                .GetImagesByRequestedItemId(requestedItem.Id);
+
+                IEnumerable<RequestedImageViewModel> imagesList = this.ConvertRequestItemImageModelList(requestedItem.RequestedItemImages,
                                                                   requestedItem.Id);
 
-                return new RequestedItemViewModel
-                {
-                    Id = requestedItem.Id,
-                    Name = requestedItem.Name,
-                    Description = requestedItem.Description,
-                    Status = requestedItem.Status.StatusName,
-                    GoodsCategoryId = requestedItem.GoodsCategoryId,
-                    OrganizationId = requestedItem.OrganizationId,
-                    GoodsCategory = requestedItem.GoodsCategory.Name,
-                    GoodsTypeId = requestedItem.GoodsCategory.GoodsTypeId,
-                    Images = imagesList
-                };
+                RequestedItemViewModel itemViewModel = this.ConvertToRequestedItemViewModel(requestedItem, imagesList);
+
+                return itemViewModel;
+                //return new RequestedItemViewModel
+                //{
+                //    Id = requestedItem.Id,
+                //    Name = requestedItem.Name,
+                //    Description = requestedItem.Description,
+                //    Status = requestedItem.Status.StatusName,
+                //    GoodsCategoryId = requestedItem.GoodsCategoryId,
+                //    OrganizationId = requestedItem.OrganizationId,
+                //    GoodsCategory = requestedItem.GoodsCategory.Name,
+                //    GoodsTypeId = requestedItem.GoodsCategory.GoodsTypeId,
+                //    Images = imagesList
+                //};
             }
             catch (Exception ex)
             {
@@ -153,7 +157,7 @@ namespace FundTrack.BLL.Concrete
                          Description = item.Description,
                          Status = item.Status?.StatusName,
                          GoodsCategory = item.GoodsCategory?.Name,
-                         
+                         Images = this.ConvertRequestItemImageModelList(item.RequestedItemImages, item.Id)               
                      })
                     .ToList();
 
@@ -185,7 +189,7 @@ namespace FundTrack.BLL.Concrete
                     Description = requestedItemViewModel.Description,
                     GoodsCategoryId = requestedItemViewModel.GoodsCategoryId,
                     OrganizationId = requestedItemViewModel.OrganizationId,
-                    StatusId = 1,     
+                    StatusId = 1
                 };
 
                 this._unitOfWork.RequestedItemRepository.Update(requestedItem);
@@ -428,6 +432,70 @@ namespace FundTrack.BLL.Concrete
             {
                 throw new BusinessLogicException(ex.Message);
             }
+        }
+
+        /// <summary>
+        /// Gets requested item per page
+        /// </summary>
+        /// <param name="id">Id of organization</param>
+        /// <param name="currentPage">Current page number</param>
+        /// <param name="pageSize">Page size number</param>
+        /// <returns>List of requested items</returns>
+        public IEnumerable<RequestedItemViewModel> GetRequestedItemPerPageByorganizationId(int id, int currentPage, int pageSize)
+        {
+            var resulList = this._unitOfWork.RequestedItemRepository.GetRequestedItemPerPageByorganizationId(id, currentPage, pageSize)
+                .Select(item =>
+                this.ConvertToRequestedItemViewModel(item, this.ConvertRequestItemImageModelList(item.RequestedItemImages, item.Id)));
+            
+            //.Select(item => new RequestedItemViewModel()
+            //{
+            //    Id = item.Id,
+            //    Name = item.Name,
+            //    Description = item.Description,
+            //    Status = item.Status?.StatusName,
+            //    GoodsCategory = item.GoodsCategory?.Name,
+            //    Images = this.ConvertRequestItemImageModelList(item.RequestedItemImages, item.Id)
+            //});
+
+            return resulList;
+        }
+
+        /// <summary>
+        /// Gets requeted item initialize data
+        /// </summary>
+        /// <param name="organizationId">Id of organization</param>
+        /// <returns>Requested item view model</returns>
+        public RequestedItemPaginationViewModel GetRequestedItemsInitData(int organizationId)
+        {
+            return new RequestedItemPaginationViewModel
+            {
+                RequestedItemsPerPage = 8,
+                TotalRequestedItemsCount = this._unitOfWork.RequestedItemRepository.Read()
+                .Where(r => r.OrganizationId == organizationId)
+                .Count()
+            };
+        }
+
+        /// <summary>
+        /// Converts requested item to requested item view model
+        /// </summary>
+        /// <param name="requestedItem">Requested item model</param>
+        /// <param name="imagesList">Images list</param>
+        /// <returns>Requested item view model</returns>
+        public RequestedItemViewModel ConvertToRequestedItemViewModel(RequestedItem requestedItem, IEnumerable<RequestedImageViewModel> imagesList)
+        {
+            return new RequestedItemViewModel
+            {
+                Id = requestedItem.Id,
+                Name = requestedItem.Name,
+                Description = requestedItem.Description,
+                Status = requestedItem.Status?.StatusName,
+                GoodsCategoryId = requestedItem.GoodsCategoryId,
+                OrganizationId = requestedItem.OrganizationId,
+                GoodsCategory = requestedItem.GoodsCategory?.Name,
+                GoodsTypeId = requestedItem.GoodsCategory.GoodsTypeId,
+                Images = imagesList
+            };
         }
     }
 }

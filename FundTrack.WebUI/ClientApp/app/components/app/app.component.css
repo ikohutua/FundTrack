@@ -5,9 +5,9 @@ body {
 @media (max-width: 767px) {
     /* On small screens, the nav menu spans the full width of the screen. Leave a space for it. */
 
-    .body-content {
-        padding-top: 50px;
-    }
+.body-content {
+    padding-top: 50px;
+}
 }
 
 app.container-fluid {
@@ -45,9 +45,9 @@ app.container-fluid {
     color: lightskyblue;
 }
 
-    .navbar-brand span {
-        color: #FFFF99;
-    }
+.navbar-brand span {
+     color: #FFFF99;
+}
 
 .navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
     color: cornflowerblue;
@@ -66,45 +66,45 @@ app.container-fluid {
     font: normal 16px sans-serif;
 }
 
-    .footer-distributed .footer-left p {
-        color: #8f9296;
-        font-size: 14px;
-        margin: 0;
-    }
+.footer-distributed .footer-left p {
+    color: #8f9296;
+    font-size: 14px;
+    margin: 0;
+}
 
-    .footer-distributed p.footer-links {
-        font-size: 18px;
-        font-weight: bold;
-        color: #ffffff;
-        margin: 0 0 10px;
-        padding: 0;
-    }
+.footer-distributed p.footer-links {
+    font-size: 18px;
+    font-weight: bold;
+    color: #ffffff;
+    margin: 0 0 10px;
+    padding: 0;
+}
 
-        .footer-distributed p.footer-links a {
-            display: inline-block;
-            line-height: 1.8;
-            text-decoration: none;
-            color: inherit;
-        }
+.footer-distributed p.footer-links a {
+    display: inline-block;
+    line-height: 1.8;
+    text-decoration: none;
+    color: inherit;
+}
 
-    .footer-distributed .footer-right {
-        float: right;
-        margin-top: 6px;
-        max-width: 180px;
-    }
+.footer-distributed .footer-right {
+    float: right;
+    margin-top: 6px;
+    max-width: 180px;
+}
 
-        .footer-distributed .footer-right a {
-            display: inline-block;
-            width: 35px;
-            height: 35px;
-            background-color: #33383b;
-            border-radius: 2px;
-            font-size: 20px;
-            color: #ffffff;
-            text-align: center;
-            line-height: 35px;
-            margin-left: 3px;
-        }
+.footer-distributed .footer-right a {
+    display: inline-block;
+    width: 35px;
+    height: 35px;
+    background-color: #33383b;
+    border-radius: 2px;
+    font-size: 20px;
+    color: #ffffff;
+    text-align: center;
+    line-height: 35px;
+    margin-left: 3px;
+}
 
 /*-------------------------------*/
 /*           For sidebar         */

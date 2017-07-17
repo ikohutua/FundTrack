@@ -13,6 +13,10 @@ import { OrganizationManagementEventAddComponent } from "./components/organizati
 import { OrganizationManadementEventEditComponent } from "./components/organization-management-events/organization-manadement-event-edit.component";
 import { OrganizationManagementEventDeleteComponent } from "./components/organization-management-events/organization-management-event-delete.component";
 import { SharedModule } from "./shared.module";
+import { SpinnerComponent } from "./shared/components/spinner/spinner.component";
+
+import { HomeModule } from "./home.module";
+import { GalleryComponent } from "./shared/components/gallery/gallery.component";
 
 @NgModule({
     declarations: [
@@ -24,7 +28,9 @@ import { SharedModule } from "./shared.module";
         OrganizationDeleteRequestComponent,
         OrganizationManadementEventEditComponent,
         OrganizationManagementEventAddComponent,
-        OrganizationManagementEventDeleteComponent
+        OrganizationManagementEventDeleteComponent,
+        //SpinnerComponent    
+        //GalleryComponent
     ],
     imports: [
         FormsModule,
@@ -33,7 +39,8 @@ import { SharedModule } from "./shared.module";
         SharedModule
     ],
     exports: [
-        TruncatePipe
+        TruncatePipe,
+        SpinnerComponent
     ],
     providers: [
         OrganizationManagementEventsService

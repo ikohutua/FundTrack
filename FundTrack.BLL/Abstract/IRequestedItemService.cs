@@ -1,4 +1,5 @@
-﻿using FundTrack.Infrastructure.ViewModel;
+﻿using FundTrack.DAL.Entities;
+using FundTrack.Infrastructure.ViewModel;
 using FundTrack.Infrastructure.ViewModel.RequestedItemModel;
 using System.Collections.Generic;
 
@@ -85,5 +86,24 @@ namespace FundTrack.BLL.Abstract
         /// </summary>
         /// <param name="currentId"></param>
         void DeleteCurrentImage(int currentId);
+
+        /// <summary>
+        /// Gets requested item per page
+        /// </summary>
+        IEnumerable<RequestedItemViewModel> GetRequestedItemPerPageByorganizationId(int id, int currentPage, int pageSize);
+
+        /// <summary>
+        /// Gets requested item initialize data
+        /// </summary>
+        /// <param name="organizationId">Id of organization</param>
+        /// <returns>List of requested items</returns>
+        RequestedItemPaginationViewModel GetRequestedItemsInitData(int organizationId);
+
+        /// <summary>
+        /// Converts requested item to requested item view model
+        /// </summary>
+        /// <param name="requestedItem">Requested item model</param>
+        /// <returns>Requested item view model</returns>
+        RequestedItemViewModel ConvertToRequestedItemViewModel(RequestedItem requestedItem, IEnumerable<RequestedImageViewModel> imagesList);
     }
 }

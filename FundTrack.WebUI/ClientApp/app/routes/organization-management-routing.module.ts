@@ -21,8 +21,8 @@ import { OrganizationManagementAllEventsComponent } from "../components/organiza
         { path: 'organization/event/edit/:id', component: OrganizationManadementEventEditComponent },
         { path: 'organization/event/add/:id', component: OrganizationManagementEventAddComponent },
         { path: 'organization/requests/:id', component: OrganizationManagementRequestComponent },
+        { path: 'organization/request/manage/:idOrganization', component: OrganizationManageRequestComponent },
         { path: 'organization/request/manage/:idOrganization/:idRequest', component: OrganizationManageRequestComponent },
-        { path: 'organization/request/manage', component: OrganizationManageRequestComponent },
         { path: 'organization/request/delete', component: OrganizationDeleteRequestComponent }
     ])],
     exports: [RouterModule]

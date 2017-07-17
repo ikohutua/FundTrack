@@ -12,6 +12,7 @@ import { OrganizationManagementModule } from "./organization-management.module";
 import { StorageService } from './shared/item-storage-service';
 import { OfferManagementModule } from './offer-management.module';
 //import { SignalRModule, SignalRConfiguration } from 'ng2-signalr';
+import { SpinnerComponent } from "./shared/components/spinner/spinner.component";
 
 //function createConfig(): SignalRConfiguration {
 //    let signalrConfiguration = new SignalRConfiguration();

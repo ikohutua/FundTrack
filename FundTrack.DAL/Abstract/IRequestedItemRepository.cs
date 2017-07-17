@@ -34,5 +34,14 @@ namespace FundTrack.DAL.Abstract
         /// </summary>
         /// <returns>List of goodstype</returns>
         IEnumerable<GoodsType> GetAllGoodTypes();
+
+        /// <summary>
+        /// Gets requested item per page
+        /// </summary>
+        /// <param name="organizationId">Organization id</param>
+        /// <param name="currentPage">Current page number</param>
+        /// <param name="pageSize">Page size</param>
+        /// <returns>List of requested items</returns>
+        IEnumerable<RequestedItem> GetRequestedItemPerPageByorganizationId(int organizationId, int currentPage, int pageSize);
     }
 }

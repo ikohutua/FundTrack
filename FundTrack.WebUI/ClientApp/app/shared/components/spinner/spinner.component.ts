@@ -1,4 +1,4 @@
-﻿import { Component, Input } from '@angular/core';
+﻿import { Component, Input, Injectable } from '@angular/core';
 
 @Component({
     selector: 'spinner',
@@ -8,4 +8,12 @@
 
 export class SpinnerComponent {
     @Input() public showSpinner: boolean = false;
+
+    public show() {
+        this.showSpinner = true;
+    }
+
+    public hide() {
+        this.showSpinner = false;
+    }
 }
