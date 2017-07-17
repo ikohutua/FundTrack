@@ -11,7 +11,6 @@ html {
 }
 body {
   margin: 0;
-  background:url('../images/camouflage_texture.jpg');
 }
 article,
 aside,
@@ -1604,8 +1603,8 @@ pre code {
   }
 }
 .container-fluid {
-  padding-right: 0px;
-  padding-left: 0px;
+  padding-right: 15px;
+  padding-left: 15px;
   margin-right: auto;
   margin-left: auto;
 }
