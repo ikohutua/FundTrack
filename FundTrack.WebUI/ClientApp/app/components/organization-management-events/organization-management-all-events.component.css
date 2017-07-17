@@ -25,6 +25,10 @@
     border-radius: 0px;
 }
 
+div.item{
+    height:500px;
+}
+
 .item.list-group-item {
     float: none;
     width: 100%;
@@ -81,4 +85,13 @@
 .photo {
     height: 250px;
     background: #203514;
+}
+
+.pagination-dropdown {
+    width: 12%;
+}
+
+#for-select-item {
+    font-size: large;
+    color: yellow;
 }

@@ -2,6 +2,7 @@
 using FundTrack.Infrastructure.ViewModel.EventViewModel;
 using FundTrack.Infrastructure.ViewModel.SuperAdminViewModels;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 
 namespace FundTrack.WebUI.Controllers
@@ -26,36 +27,71 @@ namespace FundTrack.WebUI.Controllers
         }
 
         /// <summary>
-        /// Gets all events by organization identifier.
+        /// Gets events by organization identifier for current page.
         /// </summary>
-        /// <param name="id">The identifier.</param>
-        /// <returns> IEnumerable<EventManagementViewModel> </returns>
+        /// <param name="idOrganization">The identifier organization.</param>
+        /// <param name="currentPage">The current page.</param>
+        /// <param name="pageSize">Size of the page.</param>
+        /// <returns>IEnumerable<EventManagementViewModel></returns>
         [HttpGet("[action]/{idOrganization}/{currentPage}/{pageSize}")]
         public IEnumerable<EventManagementViewModel> GetEventsByOrganizationIdForPage(int idOrganization, int currentPage, int pageSize)
         {
-            return this._service.GetEventsByOrganizationIdForPage(idOrganization, currentPage, pageSize);
+            try
+            {
+                return this._service.GetEventsByOrganizationIdForPage(idOrganization, currentPage, pageSize);
+            }
+            catch (Exception ex)
+            {
+                return new List<EventManagementViewModel>()
+                {
+                    new EventManagementViewModel()
+                    {
+                        ErrorMessage = ex.Message
+                    }
+                };
+            }
         }
 
         /// <summary>
-        /// Gets the one event by identifier.
+        /// Gets the event by identifier.
         /// </summary>
-        /// <param name="id">The identifier of event.</param>
-        /// <returns> EventManagementViewModel </returns>
+        /// <param name="idOrganization">The identifier organization.</param>
+        /// <returns>EventManagementViewModel</returns>
         [HttpGet("[action]/{idOrganization}")]
         public EventManagementViewModel GetOneEventById(int idOrganization)
         {
-            return this._service.GetOneEventById(idOrganization);
+            try
+            {
+                return this._service.GetOneEventById(idOrganization);
+            }
+            catch (Exception ex)
+            {
+                return new EventManagementViewModel()
+                {
+                    ErrorMessage = ex.Message
+                };
+            }
         }
 
         /// <summary>
         /// Adds the new event.
         /// </summary>
         /// <param name="newEvent">The new event.</param>
-        /// <returns> EventManagementViewModel </returns>
+        /// <returns>EventManagementViewModel</returns>
         [HttpPost("[action]")]
         public EventManagementViewModel AddNewEvent([FromBody]EventManagementViewModel newEvent)
         {
-            return this._service.AddNewEvent(newEvent);
+            try
+            {
+                return this._service.AddNewEvent(newEvent);
+            }
+            catch (Exception ex)
+            {
+                return new EventManagementViewModel()
+                {
+                    ErrorMessage = ex.Message
+                };
+            }
         }
 
         /// <summary>
@@ -63,30 +99,68 @@ namespace FundTrack.WebUI.Controllers
         /// </summary>
         /// <param name="id">The identifier.</param>
         [HttpDelete("[action]/{id}")]
-        public void DeleteEvent(int id)
+        public JsonResult DeleteEvent(int id)
         {
-            this._service.DeleteEvent(id);
+            try
+            {
+                this._service.DeleteEvent(id);
+                return new JsonResult(string.Empty);
+            }
+            catch (Exception ex)
+            {
+                return new JsonResult(ex.Message);
+            }
         }
 
         /// <summary>
         /// Updates the event.
         /// </summary>
         /// <param name="updatedEvent">The updated event.</param>
-        /// <returns> EventManagementViewModel </returns>
+        /// <returns>EventManagementViewModel</returns>
         [HttpPut("[action]")]
         public EventManagementViewModel UpdateEvent([FromBody]EventManagementViewModel updatedEvent)
         {
-            return this._service.UpdateEvent(updatedEvent);
+            try
+            {
+                return this._service.UpdateEvent(updatedEvent);
+            }
+            catch (Exception ex)
+            {
+                return new EventManagementViewModel()
+                {
+                    ErrorMessage = ex.Message
+                };
+            }
         }
 
         /// <summary>
-        /// Gets Events Data for pagination
+        /// Gets the events initialize data.
         /// </summary>
-        /// <returns>Events pagination data</returns>
+        /// <param name="idOrganization">The identifier organization.</param>
+        /// <returns>PaginationInitViewModel</returns>
         [HttpGet("[action]/{idOrganization}")]
         public PaginationInitViewModel GetEventsInitData(int idOrganization)
         {
             return this._service.GetEventsInitData(idOrganization);
+        }
+
+        /// <summary>
+        /// Deletes the current image.
+        /// </summary>
+        /// <param name="idImage">The identifier for image.</param>
+        /// <returns>JsonResult</returns>
+        [HttpDelete("[action]/{idImage}")]
+        public JsonResult DeleteCurrentImage(int idImage)
+        {
+            try
+            {
+                this._service.DeleteCurrentImage(idImage);
+                return new JsonResult(string.Empty);
+            }
+            catch(Exception ex)
+            {
+                return new JsonResult(ex.Message);
+            }
         }
     }
 }

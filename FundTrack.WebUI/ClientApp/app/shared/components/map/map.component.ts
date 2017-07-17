@@ -336,13 +336,6 @@ export class MapComponent implements OnInit {
         this.saveFormattedAddresses();
     }
 
-    ///**
-    // * Save all addresses by markers which setted on the map
-    // */
-    //public saveAllAddressesFromMarkers(): void {
-    //    this.saveFormattedAddresses();
-    //}
-
     /**
      * Gets Array of formatted addresses
      * @returns array with addresses - IAddressViewModel[]

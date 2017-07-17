@@ -1,23 +1,20 @@
 ﻿<spinner [showSpinner]="_showUsersSpinner"></spinner>
-<h2 class="text-center">Всі події</h2>
 <div *ngIf="_allEvents" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 list-group">
     <div *ngFor="let event of _allEvents" id="products">
-        <div class="item col-xs-12 col-lg-3">
+        <div class="item col-lg-3 col-md-4 col-sm-6 col-xs-12">
             <div class="thumbnail">
                 <div class="photo">
                     <img class="list-group-image" src="{{event.images[0].imageUrl}}" alt="" />
                 </div>
                 <div class="caption">
+                    <h3>{{event.createDate|date:'shortTime'}}</h3>
                     <p class="group inner list-group-item-text">{{event.description|truncate : 150}}</p>
                     <div class="row">
-                        <div class="col-lg-4 col-xs-12 col-md-4">
-                            <p>{{event.createDate|date:'shortTime'}}</p>
+                        <div class="col-lg-6 col-md-6 col-xs-12">
+                            <button class="center-block btn btn-success" (click)="redirectToDetailEditPage(event.id)">Редагувати</button>
                         </div>
-                        <div class="col-lg-4 col-md-4 col-xs-12">
-                            <button class="btn btn-success" (click)="redirectToDetailEditPage(event.id)">Редагувати</button>
-                        </div>
-                        <div class="col-lg-4 col-md-4 col-xs-12">
-                            <button class="btn btn-danger" (click)='setCurrentEventItem(event)' data-toggle="modal" data-target="#deleteEvent">Видалити</button>
+                        <div class="col-lg-6 col-md-6 col-xs-12">
+                            <button class="center-block btn btn-danger" (click)='setCurrentEventItem(event)' data-toggle="modal" data-target="#deleteEvent">Видалити</button>
                         </div>
                         <delete-event [itemToToDelete]='_currentEventItem' (onSuccesfullDelete)="deleteEvent()"></delete-event>
                     </div>
@@ -27,12 +24,13 @@
     </div>
 </div>
 <div *ngIf="_allEvents">
+    <div class="center-block pagination-dropdown">
+        <span id="for-select-item">Показати по:</span>
+        <select-item [items]="[4, 8, 12, 24, 48]"
+                     (onSelect)="itemsPerPageChange($event)">
+        </select-item>
+    </div>
     <div *ngIf="_totalItems && _itemPerPage" class="text-center">
-        <div class="pegination-dropdown">
-            <select-item [items]="[4, 8, 12]"
-                         (onSelect)="itemsPerPageChange($event)">
-            </select-item>
-        </div>
         <pagination-pages [offset]="_offset"
                           [limit]="_itemPerPage"
                           [size]="_totalItems"

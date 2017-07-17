@@ -33,15 +33,7 @@ namespace FundTrack.BLL.Concrete
         {
             try
             {
-                //return this._unitOfWork
-                //    .OrganizationsForFilteringRepository
-                //    .GetAll
-                //    .Select(o => new OrganizationForFilteringViewModel()
-                //    {
-                //        Id = o.Id,
-                //        Name = o.Name
-                //    });
-                var temp =  this._unitOfWork
+                var result =  this._unitOfWork
                     .OrganizationsForFilteringRepository
                     .GetAll
                     .Where(o => o.BannedOrganization == null)
@@ -50,7 +42,13 @@ namespace FundTrack.BLL.Concrete
                         Id = o.Id,
                         Name = o.Name
                     });
-                return temp;
+
+                if (result == null)
+                {
+                    throw new BusinessLogicException($"Немає жодної організації в базі даних");
+                }
+
+                return result;
             }
             catch (Exception ex)
             {

@@ -1,4 +1,4 @@
-﻿    using FundTrack.BLL.Abstract;
+﻿using FundTrack.BLL.Abstract;
 using FundTrack.DAL.Abstract;
 using FundTrack.DAL.Entities;
 using FundTrack.Infrastructure.ViewModel;
@@ -27,11 +27,14 @@ namespace FundTrack.BLL.Concrete
             this._unitOfWork = unitOfWorkParam;
         }
 
-        /// <summary>
-        /// Adds new event.
-        /// </summary>
-        /// <param name="newEvent">The new event view model</param>
-        /// <returns> Event - entity </returns>
+        /// <summary>Adds the new event.</summary>
+        /// <param name="newEvent">The new event EventManagementViewModel.</param>
+        /// <returns>EventManagementViewModel</returns>
+        /// <exception cref="BusinessLogicException">
+        /// Не вдалось створити нову подію
+        /// or
+        /// Exception.Message
+        /// </exception>
         public EventManagementViewModel AddNewEvent(EventManagementViewModel newEvent)
         {
             try
@@ -59,10 +62,9 @@ namespace FundTrack.BLL.Concrete
             }
         }
 
-        /// <summary>
-        /// Deletes the event.
-        /// </summary>
-        /// <param name="id">The identifier.</param>
+        /// <summary>Deletes the event.</summary>
+        /// <param name="eventId">The event identifier.</param>
+        /// <exception cref="BusinessLogicException"></exception>
         public void DeleteEvent(int eventId)
         {
             try
@@ -77,10 +79,13 @@ namespace FundTrack.BLL.Concrete
             }
         }
 
-        /// <summary>
-        /// Deletes the images.
-        /// </summary>
+        /// <summary>Deletes images for concrete event.</summary>
         /// <param name="eventId">The event identifier.</param>
+        /// <exception cref="BusinessLogicException">
+        /// В базі даних немає події з ідентифікатором Id
+        /// or
+        /// Exception.Message
+        /// </exception>
         public void DeleteImages(int eventId)
         {
             try
@@ -104,11 +109,12 @@ namespace FundTrack.BLL.Concrete
             }
         }
 
-        /// <summary>
-        /// Gets all events by organization identifier.
-        /// </summary>
-        /// <param name="id">The identifier for organization</param>
-        /// <returns>IEnumerable<EventManagementViewModel></returns>
+        /// <summary>Gets events by organization identifier for current page.</summary>
+        /// <param name="organizationId">The organization identifier.</param>
+        /// <param name="currentPage">The current page.</param>
+        /// <param name="itemsPerPage">The items per page.</param>
+        /// <returns> IEnumerable<EventManagementViewModel> </returns>
+        /// <exception cref="BusinessLogicException"></exception>
         public IEnumerable<EventManagementViewModel> GetEventsByOrganizationIdForPage(int organizationId, int currentPage, int itemsPerPage)
         {
             try
@@ -129,14 +135,13 @@ namespace FundTrack.BLL.Concrete
             }
         }
 
-        /// <summary>
-        /// Gets the one event by identifier.
-        /// </summary>
-        /// <param name="eventId"></param>
-        /// <returns>
-        /// EventManagementViewModel
-        /// </returns>
+        /// <summary>Gets the event by identifier.</summary>
+        /// <param name="eventId">The event identifier.</param>
+        /// <returns>EventManagementViewModel</returns>
         /// <exception cref="BusinessLogicException">
+        /// Подія з ідентифікатором eventId не знайдена
+        /// or
+        /// Exception.Message
         /// </exception>
         public EventManagementViewModel GetOneEventById(int eventId)
         {
@@ -164,11 +169,14 @@ namespace FundTrack.BLL.Concrete
             }
         }
 
-        /// <summary>
-        /// Inserts the images in data base.
-        /// </summary>
+        /// <summary>Inserts the images in data base.</summary>
         /// <param name="imagesParam">The collection of images.</param>
         /// <param name="eventId">The event identifier.</param>
+        /// <exception cref="BusinessLogicException">
+        /// Зображення з адресом ImageUrl не збережено в базі даних
+        /// or
+        /// Exception.Message
+        /// </exception>
         public void InsertImagesInDataBase(IEnumerable<ImageViewModel> imagesParam, int eventId)
         {
             try
@@ -188,52 +196,79 @@ namespace FundTrack.BLL.Concrete
                 }
                 this._unitOfWork.SaveChanges();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw new BusinessLogicException(ex.Message);
             }
         }
 
-        /// <summary>
-        /// Updates the images.
-        /// </summary>
-        /// <param name="imagesParam">The collection of images for update.</param>
+        /// <summary>Adds the new image in data base.</summary>
+        /// <param name="image">The image.</param>
+        /// <returns>EventImage</returns>
+        /// <exception cref="BusinessLogicException">
+        /// Не вдалось зберегти нове зображення в базі даних
+        /// or 
+        /// Exception
+        /// </exception>
+        public EventImage AddNewImageInDataBase(EventImage image)
+        {
+            try
+            {
+                var created = this._unitOfWork.EventImageRepository.Create(image);
+
+                if (created == null)
+                {
+                    throw new BusinessLogicException($"Не вдалось зберегти нове зображення в базі даних");
+                }
+
+                this._unitOfWork.SaveChanges();
+
+                return created;
+            }
+            catch (Exception ex)
+            {
+                throw new BusinessLogicException(ex.Message);
+            }
+        }
+
+        /// <summary>Updates images for concrete event.</summary>
+        /// <param name="imagesParam">The collection of images.</param>
         /// <param name="eventId">The event identifier.</param>
-        /// <returns> IEnumerable<ImageViewModel> </returns>
+        /// <returns>IEnumerable<ImageViewModel></returns>
+        /// <exception cref="BusinessLogicException">
+        /// Не додано жодного зображення в базу даних
+        /// or
+        /// Exception.Message
+        /// </exception>
         public IEnumerable<ImageViewModel> UpdateImages(IEnumerable<ImageViewModel> imagesParam, int eventId)
         {
             try
             {
                 var images = imagesParam.ToList();
-                var updatedImages = new List<ImageViewModel>();
                 for (int i = 0; i < images.Count; i++)
                 {
-                    var updatedImage = this._unitOfWork.EventImageRepository.Update(new EventImage()
+                    //if image is new
+                    if (images[i].Id == 0)
                     {
-                        Id = images[i].Id,
-                        EventId = eventId,
-                        ImageUrl = images[i].ImageUrl,
-                    });
+                        var created = this.AddNewImageInDataBase(new EventImage()
+                        {
+                            Id = 0,
+                            EventId = eventId,
+                            ImageUrl = images[i].ImageUrl
+                        });
 
-                    if (updatedImage == null)
-                    {
-                        throw new BusinessLogicException($"Зображення з адресом {images[i].ImageUrl} не оновлено в базі даних");
+                        //creates view model for image
+                        images[i] = new ImageViewModel()
+                        {
+                            Id = created.Id,
+                            ImageUrl = created.ImageUrl
+                        };
                     }
-
-                    updatedImages.Add(new ImageViewModel()
-                    {
-                        Id = updatedImage.Id,
-                        ImageUrl = updatedImage.ImageUrl
-                    });
-                }
-
-                if (updatedImages.Count == 0)
-                {
-                    throw new BusinessLogicException("Не додано жлдного зображення в базу даних");
+                    this._unitOfWork.SaveChanges();
                 }
 
                 this._unitOfWork.SaveChanges();
-                return updatedImages;
+                return images;
             }
             catch (Exception ex)
             {
@@ -245,11 +280,14 @@ namespace FundTrack.BLL.Concrete
             }
         }
 
-        /// <summary>
-        /// Updates the event.
-        /// </summary>
+        /// <summary>Updates the event.</summary>
         /// <param name="updatedEvent">The updated event.</param>
-        /// <returns> EventManagementViewModel </returns>
+        /// <returns>EventManagementViewModel</returns>
+        /// <exception cref="BusinessLogicException">
+        /// Подію з ідентифікатором Id не вдалось оновити
+        /// or
+        /// Exception.Message
+        /// </exception>
         public EventManagementViewModel UpdateEvent(EventManagementViewModel updatedEvent)
         {
             try
@@ -284,13 +322,10 @@ namespace FundTrack.BLL.Concrete
             }
         }
 
-        /// <summary>
-        /// Gets the events initialize data.
-        /// </summary>
+        /// <summary>Gets the events initialize data.</summary>
         /// <param name="organizationId">The organization identifier.</param>
-        /// <returns>
-        /// PaginationInitViewModel
-        /// </returns>
+        /// <returns>PaginationInitViewModel</returns>
+        /// <exception cref="BusinessLogicException"></exception>
         public PaginationInitViewModel GetEventsInitData(int organizationId)
         {
             try
@@ -307,11 +342,10 @@ namespace FundTrack.BLL.Concrete
             }
         }
 
-        /// <summary>
-        /// Converts 'EventImage' entity to image view model.
-        /// </summary>
-        /// <param name="imageList">The image list from database.</param>
-        /// <returns> IEnumerable<ImageViewModel> </returns>
+        /// <summary>Convert 'EventImage' to 'ImageViewModel'.</summary>
+        /// <param name="imageList">The collection of images.</param>
+        /// <returns>IEnumerable<ImageViewModel></returns>
+        /// <exception cref="BusinessLogicException"></exception>
         public IEnumerable<ImageViewModel> ConvertToImageViewModel(IEnumerable<EventImage> imageList)
         {
             try
@@ -321,6 +355,24 @@ namespace FundTrack.BLL.Concrete
                     Id = image.Id,
                     ImageUrl = image.ImageUrl
                 });
+            }
+            catch (Exception ex)
+            {
+                throw new BusinessLogicException(ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// Deletes the current image.
+        /// </summary>
+        /// <param name="idImage">The identifier for image.</param>
+        /// <exception cref="BusinessLogicException"></exception>
+        public void DeleteCurrentImage(int idImage)
+        {
+            try
+            {
+                this._unitOfWork.EventImageRepository.Delete(idImage);
+                this._unitOfWork.SaveChanges();
             }
             catch (Exception ex)
             {

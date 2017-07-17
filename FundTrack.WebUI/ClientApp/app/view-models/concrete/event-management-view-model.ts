@@ -2,6 +2,7 @@
 import { IImageModel } from "../abstract/organization-management-view-models/image-url-view-model.interface";
 
 export class EventManagementViewModel implements IEventManagementViewModel {
+    errorMessage: string;
     id: number;
     organizationId: number;
     description: string;

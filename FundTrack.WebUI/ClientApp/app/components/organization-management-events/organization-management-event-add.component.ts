@@ -6,6 +6,7 @@ import { Subscription } from "rxjs/Subscription";
 import { EventManagementViewModel } from "../../view-models/concrete/event-management-view-model";
 import { ImageModel } from "../../view-models/concrete/image-url-view-model";
 import { AmazonUploadComponent } from "../../shared/components/amazonUploader/amazon-upload.component";
+import { IImageModel } from "../../view-models/abstract/organization-management-view-models/image-url-view-model.interface";
 
 @Component({
     selector: 'org-management-add',
@@ -15,11 +16,11 @@ import { AmazonUploadComponent } from "../../shared/components/amazonUploader/am
 
 export class OrganizationManagementEventAddComponent {
     private _idForCurrentOrganization: number;
-    private _event: IEventManagementViewModel;
+    private _event: IEventManagementViewModel = new EventManagementViewModel();
     private _subscription: Subscription;
     private _errorMessage: string;
-    private _image: ImageModel;
     private _uploader: AmazonUploadComponent = new AmazonUploadComponent();
+    private _currentImage: IImageModel;
 
     /**
      * @constructor
@@ -41,15 +42,11 @@ export class OrganizationManagementEventAddComponent {
      * Adds new event
      */
     private addNewEvent(): void {
-        debugger;
         this._event.organizationId = this._idForCurrentOrganization;
         this._event.createDate = new Date(Date.now());
         this._service.addNewEvent(this._event).subscribe(
-            ev => {
-                this._event = ev;
-            },
+            () => { this._router.navigate(['organization/events/' + this._event.organizationId]); },
             error => { this._errorMessage = <any>error });
-        this._router.navigate(['organization/events/' + this._event.organizationId]);
     }
 
     /**
@@ -74,17 +71,30 @@ export class OrganizationManagementEventAddComponent {
                 let image = new ImageModel();
                 image.id = 0;
                 image.imageUrl = data.Location;
-
                 if (that._event.images == null) {
                     that._event.images = [];
                 }
-
                 that._event.images.push(image);
             })
         }
         else {
             alert('Розмр файлу не може перевищувати ' + Math.ceil(maxFileSize / 1000000) + 'МБ');
         }
+    }
+
+    /**
+     * Deletes image from local list
+     * @param imageUrl
+     */
+    private deleteImageFromList(imageUrl: string): void {
+        this._event.images.splice(this._event.images.findIndex(i => i.imageUrl == imageUrl), 1)
+    }
+
+    /**
+     * Redirect to all events list
+     */
+    private redirectToAllEvents(): void {
+        this._router.navigate(['organization/events/' + this._idForCurrentOrganization]);
     }
 
     ngDestroy(): void {

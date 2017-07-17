@@ -40,7 +40,6 @@ export class OrganizationManagementEventsService {
         let body = newEvent;
         return this._http.post(this._url + 'AddNewEvent/', body, this.getRequestArgs(newEvent))
             .map((response: Response) => <IEventManagementViewModel>response.json())
-            .do(data => console.log('Added Event ' + JSON.stringify(data)))
             .catch(this.handleError);
     }
 
@@ -54,7 +53,6 @@ export class OrganizationManagementEventsService {
     public GetEventsByOrganizationIdForPage(idOrganization: number, currentPage: number, pageSize: number): Observable<IEventManagementViewModel[]> {
         return this._http.get(this._url + 'GetEventsByOrganizationIdForPage/' + idOrganization + "/" + currentPage + "/" + pageSize)
             .map((response: Response) => <IEventManagementViewModel[]>response.json())
-            .do(data => console.log('ALL ' + JSON.stringify(data)))
             .catch(this.handleError);
     }
 
@@ -66,7 +64,6 @@ export class OrganizationManagementEventsService {
     public getOneEventById(id: number): Observable<IEventManagementViewModel> {
         return this._http.get(this._url + "GetOneEventById/" + id)
             .map((response: Response) => <IEventManagementViewModel>response.json())
-            .do(data => console.log('Event ' + JSON.stringify(data)))
             .catch(this.handleError);
     }
 
@@ -79,7 +76,6 @@ export class OrganizationManagementEventsService {
         let body = updatedEvent;
         return this._http.put(this._url + "UpdateEvent/", body, this.getRequestArgs(updatedEvent))
             .map((response: Response) => <IEventManagementViewModel>response.json())
-            .do(data => console.log('Updated Event ' + JSON.stringify(data)))
             .catch(this.handleError);
     }
 
@@ -98,7 +94,15 @@ export class OrganizationManagementEventsService {
     public GetEventsInitData(idOrganization: number): Observable<IEventManagementInitViewModel> {
         return this._http.get(this._url + "GetEventsInitData/" + idOrganization)
             .map((response: Response) => <IEventManagementInitViewModel>response.json())
-            .do(data => console.log('IEventManagementInitViewModel - ' + JSON.stringify(data)))
+            .catch(this.handleError);
+    }
+
+    /**
+     * Deletes the current image.
+     * @param idImage
+     */
+    public deleteCurrentImage(idImage: number): Observable<any> {
+        return this._http.delete(this._url + "DeleteCurrentImage/" + idImage)
             .catch(this.handleError);
     }
 }

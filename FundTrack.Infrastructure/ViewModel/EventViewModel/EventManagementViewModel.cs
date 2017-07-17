@@ -40,5 +40,13 @@ namespace FundTrack.Infrastructure.ViewModel.EventViewModel
         /// The images.
         /// </value>
         public IEnumerable<ImageViewModel> Images { get; set; }
+
+        /// <summary>
+        /// Gets or sets the error message.
+        /// </summary>
+        /// <value>
+        /// The error message.
+        /// </value>
+        public string ErrorMessage { get; set; }
     }
 }

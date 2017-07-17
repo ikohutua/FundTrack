@@ -12,56 +12,58 @@ namespace FundTrack.BLL.Abstract
     public interface IEventManagementService
     {
         /// <summary>
-        /// Gets all events by organization identifier.
+        /// Gets events by organization identifier for page.
         /// </summary>
-        /// <param name="id">The identifier of organization.</param>
-        /// <returns> IEnumerable<EventManagementViewModel> </returns>
+        /// <param name="eventId">The event identifier.</param>
+        /// <param name="currentPage">The current page.</param>
+        /// <param name="pageSize">Size of the page.</param>
+        /// <returns>IEnumerable<EventManagementViewModel></returns>
         IEnumerable<EventManagementViewModel> GetEventsByOrganizationIdForPage(int eventId, int currentPage, int pageSize);
 
         /// <summary>
-        /// Gets the one event by identifier.
+        /// Gets one event by identifier.
         /// </summary>
-        /// <param name="id">The identifier of event</param>
-        /// <returns> EventManagementViewModel </returns>
+        /// <param name="eventId">The event identifier.</param>
+        /// <returns>EventManagementViewModel</returns>
         EventManagementViewModel GetOneEventById(int eventId);
 
         /// <summary>
         /// Adds the new event.
         /// </summary>
-        /// <param name="newEvent">The new event EventManagementViewModel</param>
-        /// <returns> EventManagementViewModel </returns>
+        /// <param name="newEvent">The new event.</param>
+        /// <returns>EventManagementViewModel</returns>
         EventManagementViewModel AddNewEvent(EventManagementViewModel newEvent);
 
         /// <summary>
         /// Updates the event.
         /// </summary>
         /// <param name="updatedEvent">The updated event.</param>
-        /// <returns> EventManagementViewModel </returns>
+        /// <returns>EventManagementViewModel</returns>
         EventManagementViewModel UpdateEvent(EventManagementViewModel updatedEvent);
 
         /// <summary>
         /// Inserts the images in data base.
         /// </summary>
-        /// <param name="imagesParam">The collection of images.</param>
+        /// <param name="imagesParam">The images parameter.</param>
         /// <param name="eventId">The event identifier.</param>
         void InsertImagesInDataBase(IEnumerable<ImageViewModel> imagesParam, int eventId);
 
         /// <summary>
-        /// Updates the images.
+        /// Updates the images for concrete event.
         /// </summary>
-        /// <param name="imagesParam">The collection of images for update.</param>
+        /// <param name="imagesParam">The images parameter.</param>
         /// <param name="eventId">The event identifier.</param>
-        /// <returns> IEnumerable<ImageViewModel> </returns>
+        /// <returns>IEnumerable<ImageViewModel></returns>
         IEnumerable<ImageViewModel> UpdateImages(IEnumerable<ImageViewModel> imagesParam, int eventId);
 
         /// <summary>
         /// Deletes the event.
         /// </summary>
-        /// <param name="id">The event identifier.</param>
+        /// <param name="eventId">The event identifier.</param>
         void DeleteEvent(int eventId);
 
         /// <summary>
-        /// Deletes the images.
+        /// Deletes the images for concrete event.
         /// </summary>
         /// <param name="eventId">The event identifier.</param>
         void DeleteImages(int eventId);
@@ -70,14 +72,27 @@ namespace FundTrack.BLL.Abstract
         /// Gets the events initialize data.
         /// </summary>
         /// <param name="organizationId">The organization identifier.</param>
-        /// <returns> PaginationInitViewModel </returns>
+        /// <returns>PaginationInitViewModel</returns>
         PaginationInitViewModel GetEventsInitData(int organizationId);
 
         /// <summary>
-        /// Converts to image view model.
+        /// Converts 'EventImage' to 'ImageViewModel'
         /// </summary>
-        /// <param name="imageList">The image list from database.</param>
-        /// <returns> IEnumerable<ImageViewModel> </returns>
+        /// <param name="imageList">The image list.</param>
+        /// <returns>IEnumerable<ImageViewModel></returns>
         IEnumerable<ImageViewModel> ConvertToImageViewModel(IEnumerable<EventImage> imageList);
+
+        /// <summary>
+        /// Deletes the current image.
+        /// </summary>
+        /// <param name="idImage">The identifier for image.</param>
+        void DeleteCurrentImage(int idImage);
+
+        /// <summary>
+        /// Adds the new image in data base.
+        /// </summary>
+        /// <param name="image">The image.</param>
+        /// <returns>EventImage</returns>
+        EventImage AddNewImageInDataBase(EventImage image);
     }
 }
