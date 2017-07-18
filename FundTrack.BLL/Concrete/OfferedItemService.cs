@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FundTrack.BLL.Concrete
 {
-    public class OfferedItemService : IOfferedItemService
+    public class OfferedItemService : BaseService, IOfferedItemService
     {
         private readonly IUnitOfWork _unitOfWork;
         public OfferedItemService(IUnitOfWork unitOfWork)
@@ -48,6 +48,11 @@ namespace FundTrack.BLL.Concrete
             }
 
         }
+        /// <summary>
+        /// Edits offer item, that matches received offered item view model
+        /// </summary>
+        /// <param name="model">offer item view model, received from front end</param>
+        /// <returns>Edited offer item view model</returns>
         public OfferedItemViewModel EditOfferedItem(OfferedItemViewModel model)
         {
             try
@@ -59,7 +64,7 @@ namespace FundTrack.BLL.Concrete
                     item.Name = model.Name;
                     item.GoodsCategory = this._unitOfWork.GoodsCategoryRepository.GetGoodsCategoryById(model.GoodsCategoryId);
                     item.GoodsCategoryId = item.GoodsCategory.Id;
-                    //this._unitOfWork.OfferImagesRepository.DeleteOfferedItemImagesByOfferId(model.Id);
+                    this._unitOfWork.OfferImagesRepository.DeleteOfferedItemImagesByOfferedItemId(model.Id);
                     item.OfferedItemImages = this.SetPictures(model, item);
                     this._unitOfWork.SaveChanges();
                 }
@@ -74,7 +79,7 @@ namespace FundTrack.BLL.Concrete
         /// <summary>
         /// Deletes offered item by its id
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="id">id of the offer item entity</param>
         public void DeleteOfferedItem(int id)
         {
             this._unitOfWork.OfferedItemRepository.Delete(id);
@@ -128,6 +133,15 @@ namespace FundTrack.BLL.Concrete
             }
             return list;
         }
+        public IEnumerable<OfferedItemViewModel> GetPagedUserOfferedItems(int userId, int itemsToLoad, int itemsToSkip)
+        {
+            List<OfferedItemViewModel> list = new List<OfferedItemViewModel>();
+            foreach (var item in this._unitOfWork.OfferedItemRepository.Read().Where(a => a.UserId == userId))
+            {
+                list.Add(this.InitializeOfferedItemViewModel(item));
+            }
+            return GetPageItems(list, itemsToLoad, itemsToSkip);
+        }
         /// <summary>
         /// Initializes offered item view model based on offer item entity
         /// </summary>
@@ -147,14 +161,11 @@ namespace FundTrack.BLL.Concrete
             return model;
         }
         /// <summary>
-        /// Updates new Offer Item
+        /// Sets specified images of specified offer item
         /// </summary>
-        /// <param name="model">base model for updating offer item</param>
-        /// <returns>OfferedItemViewModel</returns>
-        public OfferedItemViewModel UpdateOfferedItem(OfferedItemViewModel model)
-        {
-            throw new NotImplementedException();
-        }
+        /// <param name="model">Offer item view model</param>
+        /// <param name="item">Offered item entity</param>
+        /// <returns>List of offered item images</returns>
         public List<OfferedItemImage> SetPictures(OfferedItemViewModel model, OfferedItem item)
         {
             List<OfferedItemImage> picList = new List<OfferedItemImage>();
@@ -172,6 +183,11 @@ namespace FundTrack.BLL.Concrete
             }
             return picList;
         }
+        /// <summary>
+        /// Gets pictures of specified offered item
+        /// </summary>
+        /// <param name="item">Offered item entity</param>
+        /// <returns>Array of image urls</returns>
         public string[] GetPictures(OfferedItem item)
         {
             List<string> picList = new List<string>();
@@ -181,20 +197,6 @@ namespace FundTrack.BLL.Concrete
                 picList.Add(thing.ImageUrl);
             }
             return picList.ToArray();
-        }
-    }
-    public static class OfferedItemImagesExtensions
-    {
-        public static void DeleteOfferedItemImagesByOfferId(this IRepository<OfferedItemImage> repo, int offerItemId)
-        {
-            var items = repo.Read();
-            foreach (var item in items)
-            {
-                if (item.OfferedItemId == offerItemId)
-                {
-                    repo.Delete(item.Id);
-                }
-            }
         }
     }
 }

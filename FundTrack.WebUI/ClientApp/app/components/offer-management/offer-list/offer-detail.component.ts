@@ -61,7 +61,6 @@ export class OfferDetailComponent implements OnInit {
                 }
             })
             .subscribe(data => {
-                debugger;
                 this.offerItem = data;
                 this.offerItem.images = new Array<OfferedItemImageViewModel>();
                 this.offerItem.images = this.convertFromArray(this.offerItem);

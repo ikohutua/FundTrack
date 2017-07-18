@@ -117,7 +117,7 @@ namespace FundTrack.DAL.Abstract
         /// <summary>
         /// Gets the repo
         /// </summary>
-        IRepository<OfferedItemImage> OfferImagesRepository { get; }
+        IOfferImagesRepository OfferImagesRepository { get; }
 
         /// <summary>
         /// Saves all changes made in this context to the database.

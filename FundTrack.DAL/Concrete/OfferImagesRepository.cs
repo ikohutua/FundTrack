@@ -1,5 +1,6 @@
 ﻿using FundTrack.DAL.Abstract;
 using FundTrack.DAL.Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace FundTrack.DAL.Concrete
 {
-    public class OfferImagesRepository : IRepository<OfferedItemImage>
+    public class OfferImagesRepository : IOfferImagesRepository
     {
         private readonly FundTrackContext _context;
         public OfferImagesRepository(FundTrackContext context)
@@ -26,6 +27,12 @@ namespace FundTrack.DAL.Concrete
             OfferedItemImage offeredItemImage = _context.OfferedItemImages.FirstOrDefault(a => a.Id == id);
             if (offeredItemImage != null)
                 _context.OfferedItemImages.Remove(offeredItemImage);
+        }
+
+        public void DeleteOfferedItemImagesByOfferedItemId(int offeredItemId)
+        {
+            _context.OfferedItemImages.RemoveRange(_context.OfferedItemImages.Where(x => x.OfferedItemId == offeredItemId));
+            _context.SaveChanges();
         }
 
         public OfferedItemImage Get(int id)

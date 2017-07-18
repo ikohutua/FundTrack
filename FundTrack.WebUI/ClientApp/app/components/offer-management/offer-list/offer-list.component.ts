@@ -1,4 +1,4 @@
-﻿import { Component, OnInit, Input } from "@angular/core";
+﻿import { Component, OnInit, Input, HostListener } from "@angular/core";
 import { IOfferViewModel } from "../../../view-models/abstract/offer-model.interface";
 import { OfferViewModel } from "../../../view-models/concrete/offer-view.model";
 import { UserOfferService } from "../../../services/concrete/offer-management/user-offer.service";
@@ -20,6 +20,8 @@ export class OfferListComponent implements OnInit {
     private date = new Date().toJSON().slice(0, 10).replace(/-/g, '/');
     private user: AuthorizeUserModel;
     private offers: OfferViewModel[] = new Array<OfferViewModel>();
+    private _currentPage: number = 1;
+    private _itemsPerPage: number = 4;
     constructor(private _router: Router,
         private _offerService: UserOfferService) {
 
@@ -30,10 +32,8 @@ export class OfferListComponent implements OnInit {
                 this.user = JSON.parse(localStorage.getItem(key.keyModel)) as AuthorizeUserModel;
             }
         };
-        this._offerService.getUserOffers(this.user.id)
-            .subscribe(offers => {
-                this.offers = offers;
-            });
+        this._offerService.getInitialData(this.user.id)
+            .subscribe(offers => this.offers = offers);
     }
     public navigateToEdit(selected: OfferViewModel) {
         this._router.navigate(['add', selected.id]);
@@ -52,5 +52,21 @@ export class OfferListComponent implements OnInit {
     }
     public goToEditPage(selected: OfferViewModel) {
         this._router.navigate(['offer-management/offerdetail', selected.id]);
+    }
+
+    public getOfferedItemsOnScroll():void{
+        this._offerService.getPagedUserOffers(this.user.id, this._itemsPerPage, this._currentPage)
+            .subscribe(offers => {
+                this.offers = this.offers.concat(offers);
+            });
+    }
+
+    @HostListener('window:scroll', ['$event'])
+    onScroll($event: Event): void {
+        if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+                this._currentPage = this._currentPage + 1;
+                this.getOfferedItemsOnScroll();
+            
+        }
     }
 }

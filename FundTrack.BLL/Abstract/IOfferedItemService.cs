@@ -39,12 +39,6 @@ namespace FundTrack.BLL.Abstract
         /// <returns>OfferedItemViewModel</returns>
         OfferedItemViewModel CreateOfferedItem(OfferedItemViewModel model);
         /// <summary>
-        /// Updates new Offer Item
-        /// </summary>
-        /// <param name="model">base model for updating offer item</param>
-        /// <returns>OfferedItemViewModel</returns>
-        OfferedItemViewModel UpdateOfferedItem(OfferedItemViewModel model);
-        /// <summary>
         /// Initializes offered item view model based on offer item entity
         /// </summary>
         /// <param name="item">offer item</param>
@@ -56,5 +50,13 @@ namespace FundTrack.BLL.Abstract
         /// <param name="model">view model of the offer item</param>
         /// <returns>updated item</returns>
         OfferedItemViewModel EditOfferedItem(OfferedItemViewModel model);
+        /// <summary>
+        /// Gets paged offer item view models
+        /// </summary>
+        /// <param name="userId">id of the user</param>
+        /// <param name="itemsToLoad"></param>
+        /// <param name="itemsToSkip"></param>
+        /// <returns>filtered offer item view models</returns>
+        IEnumerable<OfferedItemViewModel> GetPagedUserOfferedItems(int userId, int itemsToLoad, int itemsToSkip);
     }
 }
