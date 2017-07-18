@@ -1,14 +1,16 @@
 ﻿ul {
-    padding: 0;
-    width: 780px;
+    padding: 10px;
+    width: 120px;
 }
 
 li {
     display: inline;
+    overflow: scroll;
+    height: 200px;
 }
 
 .tn {
-    margin: 2px 0px;
+    margin: 5px 0px;
     box-shadow: #999 1px 1px 3px 1px;
     cursor: pointer
 }
@@ -43,4 +45,24 @@ li {
 
 .arrow-back {
     right: 612px;
+}
+
+.scroll {
+    opacity: 0.3;
+    background-color: darkolivegreen;
+    padding: 10px;
+    width: 117px;
+    padding: 10px;
+    top: 10px;
+    height: 10px;
+    color: white;
+    cursor: pointer;
+}
+
+.scrollable-menu {
+    width:137px;
+    height: auto !important;
+    max-height: 330px !important;
+    margin:10px;
+    overflow-x: hidden !important;
 }

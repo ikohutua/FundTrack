@@ -1,17 +1,23 @@
-﻿import { Component, Input } from "@angular/core";
+﻿import { Component, Input, ViewChild, OnInit } from "@angular/core";
+import { ModalComponent } from '../modal/modal-component';
 
 @Component({
     selector: 'gallery',
+    host: { '(window:keydown)': 'hotkeys($event)' },
     template: require('./gallery.component.html'),
     styles: [require('./gallery.component.css')]
 })
 
-export class GalleryComponent {
-    @Input() public datasource;
+export class GalleryComponent{
+    @Input() public datasource: string[];
     public selectedImage: any;
     private isFirstImage: boolean;
     private isLastImage: boolean;
     private index: number;
+
+    @ViewChild(ModalComponent)
+
+    public modalWindow: ModalComponent
 
     /**
      * find the index selecr image
@@ -45,6 +51,16 @@ export class GalleryComponent {
         }
         if (this.index == this.datasource.length - 1) {
             this.isLastImage = true;
+        }
+    }
+
+    public hotkeys(event) {
+        if (this.selectedImage) {
+            if (event.keyCode == 37) {
+                this.navigate(false);
+            } else if (event.keyCode == 39) {
+                this.navigate(true);
+            }
         }
     }
 }

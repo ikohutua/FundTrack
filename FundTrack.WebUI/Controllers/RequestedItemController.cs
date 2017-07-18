@@ -189,10 +189,10 @@ namespace FundTrack.WebUI.Controllers
         /// </summary>
         /// <param name="id">The identifier.</param>
         /// <returns>Returns to WEB info about count of requested items per page with additional information.</returns>
-        [HttpGet("GetRequestedItemToShowPerPage/{itemsPerPage}/{currentPage}")]
-        public IEnumerable<ShowAllRequestedItemModel> GetRequestedItemToShowPerPage(int itemsPerPage, int currentPage)
+        [HttpPost("GetRequestedItemToShowPerPage")]
+        public IEnumerable<ShowAllRequestedItemModel> GetRequestedItemToShowPerPage([FromBody] FilterPaginationViewModel filters)
         {
-            return _requestedItemService.GetRequestedItemToShowPerPage(itemsPerPage, currentPage);
+            return _requestedItemService.GetRequestedItemToShowPerPage(filters);
         }
 
         /// <summary>
@@ -228,6 +228,17 @@ namespace FundTrack.WebUI.Controllers
         public RequestedItemPaginationViewModel GetRequestedItemInitData(int organizationId)
         {
             return this._requestedItemService.GetRequestedItemsInitData(organizationId);
+        }
+
+        /// <summary>
+        /// Gets filter requested item pagination view model
+        /// </summary>
+        /// <param name="filters">The filters.</param>
+        /// <returns></returns>
+        [HttpPost("GetFilterRequestedItemPaginationData")]
+        public RequestedItemPaginationInitViewModel GetFilterRequestedItemPaginationData([FromBody] FilterRequstedViewModel filters)
+        {
+            return this._requestedItemService.GetFilterRequestedItemPaginationData(filters);
         }
     }
 }

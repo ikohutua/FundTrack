@@ -17,7 +17,7 @@ namespace FundTrack.BLL.Concrete
     public sealed class RequestedItemService : BaseService, IRequestedItemService
     {
         private readonly IUnitOfWork _unitOfWork;
-        private readonly int _requestedItemPerPage = 4;
+        private readonly int _requestedItemPerPage = 2;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RequestedItemService"/> class.
@@ -35,17 +35,17 @@ namespace FundTrack.BLL.Concrete
         /// <returns>Requested item view model</returns>
         public RequestedItemViewModel CreateRequestedItem(RequestedItemViewModel requestedItemViewModel)
         {
-            const string InitialStatusName = "Новий"; 
+            const string InitialStatusName = "Новий";
             try
             {
-                if(requestedItemViewModel == null)
+                if (requestedItemViewModel == null)
                 {
                     throw new ArgumentNullException(nameof(requestedItemViewModel));
                 }
 
                 Status status = this._unitOfWork.StatusRepository.GetStatusByName(InitialStatusName);
 
-                if(status == null)
+                if (status == null)
                 {
                     throw new BusinessLogicException($"Статус {InitialStatusName} не знайдено");
                 }
@@ -63,11 +63,11 @@ namespace FundTrack.BLL.Concrete
 
                 var requestedImagesList = this.ConvertViewModelImageList(requestedItemViewModel.Images,
                     requestedItem.Id);
-                    
+
                 this._unitOfWork.RequestedItemImageRepository.SaveListOfImages(requestedImagesList);
 
                 this._unitOfWork.SaveChanges();
-                
+
                 return requestedItemViewModel;
             }
             catch (Exception ex)
@@ -157,7 +157,7 @@ namespace FundTrack.BLL.Concrete
                          Description = item.Description,
                          Status = item.Status?.StatusName,
                          GoodsCategory = item.GoodsCategory?.Name,
-                         Images = this.ConvertRequestItemImageModelList(item.RequestedItemImages, item.Id)               
+                         Images = this.ConvertRequestItemImageModelList(item.RequestedItemImages, item.Id)
                      })
                     .ToList();
 
@@ -196,7 +196,7 @@ namespace FundTrack.BLL.Concrete
                 this._unitOfWork.RequestedItemImageRepository.SaveListOfImages(imagesList);
 
                 this._unitOfWork.SaveChanges();
-               
+
                 return requestedItemViewModel;
             }
             catch (Exception ex)
@@ -214,25 +214,21 @@ namespace FundTrack.BLL.Concrete
         {
             try
             {
-                return ((DbSet<RequestedItem>)this._unitOfWork.RequestedItemRepository
-                                                              .Read())
-                                                              .Include(i => i.Organization)
-                                                              .Include(i => i.Status)
-                                                              .Include(i => i.RequestedItemImages)
-                                                              .Include(i => i.GoodsCategory)
-                                                              .Select(item => new RequestedItemDetailViewModel
-                                                              {
-                                                                  Id = item.Id,
-                                                                  Name = item.Name,
-                                                                  Description = item.Description,
-                                                                  GoodsCategoryName = item.GoodsCategory.Name,
-                                                                  GoodsTypeName = item.GoodsCategory.GoodsType.Name,
-                                                                  StatusName = item.Status.StatusName,
-                                                                  OrganizationName = item.Organization.Name,
-                                                                  ImagesUrl = item.RequestedItemImages.Select(i => i.ImageUrl).ToList(),
-                                                                  MainImageUrl = item.RequestedItemImages.FirstOrDefault(i => i.IsMain == true).ImageUrl
-                                                              })
-                                                              .FirstOrDefault(i => i.Id == id);
+                return this._unitOfWork.RequestedItemRepository
+                           .ReadAsQueryable()
+                           .Select(item => new RequestedItemDetailViewModel
+                           {
+                               Id = item.Id,
+                               Name = item.Name,
+                               Description = item.Description,
+                               GoodsCategoryName = item.GoodsCategory.Name,
+                               GoodsTypeName = item.GoodsCategory.GoodsType.Name,
+                               StatusName = item.Status.StatusName,
+                               OrganizationName = item.Organization.Name,
+                               ImagesUrl = item.RequestedItemImages.Select(i => i.ImageUrl).ToList(),
+                               MainImageUrl = item.RequestedItemImages.FirstOrDefault(i => i.IsMain == true).ImageUrl
+                           })
+                           .FirstOrDefault(i => i.Id == id);
             }
             catch (Exception ex)
             {
@@ -283,7 +279,7 @@ namespace FundTrack.BLL.Concrete
                 throw new Exception(ex.Message);
             }
         }
-            
+
         /// <summary>
         /// Gets all goods type from database
         /// </summary>
@@ -297,15 +293,15 @@ namespace FundTrack.BLL.Concrete
                     {
                         Id = x.Id,
                         Name = x.Name,
-                        
+
                         TypeCategories = x.GoodsCategories.Select(e => new GoodsCategoryViewModel
                         {
                             Id = e.Id,
                             Name = e.Name,
-                            GoodsTypeId=x.Id
+                            GoodsTypeId = x.Id
                         })
                     });
-                
+
                 return goodsCategories;
             }
             catch (Exception ex)
@@ -320,10 +316,7 @@ namespace FundTrack.BLL.Concrete
         /// <returns>Collection of ShowAllRequestedItemModel</returns>
         public IEnumerable<ShowAllRequestedItemModel> GetRequestedItemToShow()
         {
-            var events = ((DbSet<RequestedItem>)_unitOfWork.RequestedItemRepository.Read())
-             //.Include(e => e.Organization)
-             //.Include(e => e.GoodsCategory)
-             //.Include(e => e.Status)
+            var events = ((DbSet<RequestedItem>)_unitOfWork.RequestedItemRepository.ReadAsQueryable())
              .Select(c => new ShowAllRequestedItemModel()
              {
                  Id = c.Id,
@@ -343,25 +336,24 @@ namespace FundTrack.BLL.Concrete
         /// Gets  RequestedItem per page.
         /// </summary>
         /// <returns>Collection of ShowAllRequestedItemModel</returns>
-        public IEnumerable<ShowAllRequestedItemModel> GetRequestedItemToShowPerPage(int itemsPerPage, int currentPage)
+        public IEnumerable<ShowAllRequestedItemModel> GetRequestedItemToShowPerPage(FilterPaginationViewModel filter)
         {
-            var events = ((DbSet<RequestedItem>)_unitOfWork.RequestedItemRepository.Read())
-              //.Include(e => e.Organization)
-              //.Include(e => e.GoodsCategory)
-              //.Include(e => e.Status)
-              .Select(c => new ShowAllRequestedItemModel()
-              {
-                  Id = c.Id,
-                  GoodsCategory = c.GoodsCategory.Name,
-                  GoodsType = c.GoodsCategory.GoodsType.Name,
-                  CreateDate = DateTime.Now,
-                  Organization = c.Organization.Name,
-                  Status = c.Status.StatusName,
-                  Name = c.Name,
-                  Description = c.Description
-              }).OrderBy(e => e.GoodsCategory);
+            var _showRequstedItems = filter.filterOptions != null ? this._unitOfWork.RequestedItemRepository.FilterRequestedItem(filter.filterOptions)
+                : this._unitOfWork.RequestedItemRepository.ReadAsQueryable();
 
-            return GetPageItems(events, itemsPerPage, currentPage);
+            var events = _showRequstedItems.Select(c => new ShowAllRequestedItemModel()
+            {
+                Id = c.Id,
+                GoodsCategory = c.GoodsCategory.Name,
+                GoodsType = c.GoodsCategory.GoodsType.Name,
+                CreateDate = DateTime.Now,
+                Organization = c.Organization.Name,
+                Status = c.Status.StatusName,
+                Name = c.Name,
+                Description = c.Description
+            }).OrderBy(e => e.GoodsCategory);
+
+            return GetPageItems(events, filter.ItemsPerPage, filter.CurrentPage);
         }
 
         /// <summary>
@@ -372,7 +364,21 @@ namespace FundTrack.BLL.Concrete
         {
             return new RequestedItemPaginationInitViewModel
             {
-                TotalItemsCount = _unitOfWork.RequestedItemRepository.Read().Count(),
+                TotalItemsCount = _unitOfWork.RequestedItemRepository.ReadAsQueryable().Count(),
+                ItemsPerPage = _requestedItemPerPage
+            };
+        }
+
+        /// <summary>
+        /// Gets the filter requsted item pagination data.
+        /// </summary>
+        /// <param name="filters">The filters.</param>
+        /// <returns></returns>
+        public RequestedItemPaginationInitViewModel GetFilterRequestedItemPaginationData(FilterRequstedViewModel filters)
+        {
+            return new RequestedItemPaginationInitViewModel
+            {
+                TotalItemsCount = _unitOfWork.RequestedItemRepository.FilterRequestedItem(filters).Count(),
                 ItemsPerPage = _requestedItemPerPage
             };
         }
@@ -446,17 +452,6 @@ namespace FundTrack.BLL.Concrete
             var resulList = this._unitOfWork.RequestedItemRepository.GetRequestedItemPerPageByorganizationId(id, currentPage, pageSize)
                 .Select(item =>
                 this.ConvertToRequestedItemViewModel(item, this.ConvertRequestItemImageModelList(item.RequestedItemImages, item.Id)));
-            
-            //.Select(item => new RequestedItemViewModel()
-            //{
-            //    Id = item.Id,
-            //    Name = item.Name,
-            //    Description = item.Description,
-            //    Status = item.Status?.StatusName,
-            //    GoodsCategory = item.GoodsCategory?.Name,
-            //    Images = this.ConvertRequestItemImageModelList(item.RequestedItemImages, item.Id)
-            //});
-
             return resulList;
         }
 

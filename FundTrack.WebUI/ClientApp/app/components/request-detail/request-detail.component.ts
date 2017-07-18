@@ -20,6 +20,7 @@ export class RequestDetailComponent implements OnInit, OnDestroy {
     private _errorMessage: string;
     private _subscription: Subscription;
     private userResponse: UserResponseViewModel = new UserResponseViewModel();
+    @Input() phoneNumber:string;
     @Input() responseDescription: string;
     @ViewChild(ModalComponent)
 
@@ -40,11 +41,7 @@ export class RequestDetailComponent implements OnInit, OnDestroy {
 
     private getRequestedDetail(id: number) {
         this._requestDetailService.getRequestDetail(id).subscribe(
-            request => {
-                console.log("Request");
-                console.log(request);
-                this.requestDetail = request;
-            },
+            request => this.requestDetail = request,
             error => this._errorMessage = error
         )
     }
@@ -52,7 +49,6 @@ export class RequestDetailComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this._subscription = this._activatedRoute.params.subscribe(params => {
             let id = +params['id'];
-            console.log(id);
             this.getRequestedDetail(id);
         });
     }
@@ -80,15 +76,13 @@ export class RequestDetailComponent implements OnInit, OnDestroy {
             let user = JSON.parse(localStorage.getItem(keys.keyModel)) as AuthorizeUserModel;
             this.userResponse.userId = user.id;
         }
-        console.log(this.userResponse);
-        this.userResponse.description = this.responseDescription;
+        this.userResponse.description = this.phoneNumber+ '_Enter_' +this.responseDescription;
         this.userResponse.requestedItemId = this.requestDetail.id;
         this._requestDetailService.setUserResponse(this.userResponse).subscribe(
             userResponse => {
                 this.userResponse = userResponse;
-                console.log("Response");
-                console.log(userResponse);
                 this.responseDescription = "";
+                this.phoneNumber="";
                 this.closeModal();
             })
     }

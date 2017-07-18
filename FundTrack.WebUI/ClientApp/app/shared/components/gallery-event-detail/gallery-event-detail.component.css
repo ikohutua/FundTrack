@@ -5,10 +5,12 @@
 
 li {
     display: inline;
+    overflow: scroll;
+    height: 200px;
 }
 
 .tn {
-    margin: 2px 0px;
+    margin: 5px 0px;
     box-shadow: #999 1px 1px 3px 1px;
     cursor: pointer
 }
@@ -23,22 +25,17 @@ li {
 }
 
 .tn {
-    border: medium none;
-    margin-left: 5px;
-    margin-top: 530px;
-    border: 2px solid #FFFFFF;
-    float: left;
-    height: 54px;
-    width: auto;
+    width: 110px;
+    height: 100px;
 }
 
 .arrow-back, .arrow-forward {
     position: absolute;
-    opacity: 0.8;
-    background-color: white;
+    opacity: 0.6;
+    background-color: darkolivegreen;
     padding: 10px;
     top: 190px;
-    color: black;
+    color: white;
     cursor: pointer;
 }
 
@@ -48,4 +45,20 @@ li {
 
 .arrow-back {
     right: 612px;
+}
+
+.nobr {
+    font-size: 26px;
+}
+
+.scroll {
+    opacity: 0.3;
+    background-color: darkolivegreen;
+    padding: 10px;
+    width: 117px;
+    padding: 10px;
+    top: 10px;
+    height: 10px;
+    color: white;
+    cursor: pointer;
 }

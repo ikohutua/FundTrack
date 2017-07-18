@@ -1,30 +1,34 @@
 ﻿
 <div class="well container col-md-8 col-md-offset-2" *ngIf="requestDetail">
-    <a [routerLink]="['/home/allrequests']" class="pull-right">Усі запити</a>
+    <div class="row-fluid">
+        <div class="childName">
+            {{requestDetail.name}}
+        </div>
+        <a [routerLink]="['/home/allrequests']" class="pull-right" style="color:#46b2d6;">Перейти до всіх запитів</a>
+    </div>
     <section>
         <div class="input-list style-4 clearfix">
             <div *ngIf="requestDetail.imagesUrl" class="col-md-2 col-md-offset-0">
                 <gallery [datasource]="requestDetail.imagesUrl"> </gallery>
             </div>
-            <div class="col-md-8">
-                <div class="col-md-8 childResourse">
-                   <h5>{{requestDetail.name}}</h5>
-                </div>
-                <div class="col-md-8 childResourse">
+            <div class="col-md-10">
+                <div class="col-md-12 childResourse">
                     Організації: {{requestDetail.organizationName}}
                 </div>
-                <div class="col-md-8 childResourse">
+                <div class="col-md-12 childResourse">
                     <b>Статус: </b> <b><span style="color:#46b2d6;">{{requestDetail.statusName}}</span></b>
                 </div>
-                <div class="col-md-8 childResourse ">
+                <div class="col-md-12 childResourse ">
                     Тип: {{requestDetail.goodsTypeName}}
                 </div>
-                <div class="col-md-8 childResourse ">
+                <div class="col-md-12 childResourse ">
                     Категорія: {{requestDetail.goodsCategoryName}}
                 </div>
-                <div class="col-md-10 childResourse ">
+                <div class="col-md-12 childResourse ">
                     Опис:
-                    <h4>{{requestDetail.description}}</h4>
+                </div>
+                <div class="col-md-12 description">
+                    {{requestDetail.description}}
                 </div>
             </div>
         </div>
@@ -37,12 +41,22 @@
         <h4 class="modal-title">Контактні дані: </h4>
     </div>
     <div class="app-modal-body">
-        <textarea class="form-control" #description="ngModel"
-                  (blur)="customeFieldTouched=true"
-                  required
-                  [(ngModel)]="responseDescription">
+        <div>
+            <label class="control-label">Номер телефону:</label>
+            <input class="col-md-12" type="text"
+                   #number="ngModel"
+                   required
+                   (blur)="customeFieldTouched=true"
+                   [(ngModel)]="phoneNumber" />
+        </div>
+        <div>
+            <label class="control-label">Додаткова інформація:</label>
+            <textarea class="form-control" #description="ngModel"                      
+                      required
+                      [(ngModel)]="responseDescription">
         </textarea>
-        <div class="text-danger" *ngIf="description.invalid && customeFieldTouched">
+        </div>
+        <div class="text-danger" *ngIf="number.invalid && customeFieldTouched">
             Вкажіть інформацію, щоб ми могли з вами звязатися.
         </div>
     </div>

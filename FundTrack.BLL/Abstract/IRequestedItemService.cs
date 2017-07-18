@@ -72,7 +72,7 @@ namespace FundTrack.BLL.Abstract
         /// Gets specific count of this instance for pagination.
         /// </summary>
         /// <returns>Collections of instances</returns>
-        IEnumerable<ShowAllRequestedItemModel> GetRequestedItemToShowPerPage(int itemsPerPage, int currentPage);
+        IEnumerable<ShowAllRequestedItemModel> GetRequestedItemToShowPerPage(FilterPaginationViewModel filter);
 
         /// <summary>
         /// Creates the user response on requested item.
@@ -98,6 +98,13 @@ namespace FundTrack.BLL.Abstract
         /// <param name="organizationId">Id of organization</param>
         /// <returns>List of requested items</returns>
         RequestedItemPaginationViewModel GetRequestedItemsInitData(int organizationId);
+
+        /// <summary>
+        /// Filters the requested items.
+        /// </summary>
+        /// <param name="filters">The filters.</param>
+        /// <returns></returns>
+        RequestedItemPaginationInitViewModel GetFilterRequestedItemPaginationData(FilterRequstedViewModel filters);
 
         /// <summary>
         /// Converts requested item to requested item view model

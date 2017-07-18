@@ -4,6 +4,7 @@ using FundTrack.DAL.Entities;
 using System.Linq;
 using System;
 using Microsoft.EntityFrameworkCore;
+using FundTrack.Infrastructure.ViewModel;
 
 namespace FundTrack.DAL.Concrete
 {
@@ -99,6 +100,16 @@ namespace FundTrack.DAL.Concrete
             return updatedRequetedItem.Entity;
         }
 
+
+        /// <summary>
+        /// Reads as queryable.
+        /// </summary>
+        /// <returns>List of requested item</returns>
+        public IQueryable<RequestedItem> ReadAsQueryable()
+        {
+            return this._dbContext.RequestedItems;
+        }
+
         /// <summary>
         /// Gets the requested item status.
         /// </summary>
@@ -156,6 +167,20 @@ namespace FundTrack.DAL.Concrete
                 .Take(pageSize);
 
             return resultList;
+        }
+
+        /// <summary>
+        /// Filters the requested item.
+        /// </summary>
+        /// <param name="filters">The filters.</param>
+        /// <returns>List filter requsted item</returns>
+        public IQueryable<RequestedItem> FilterRequestedItem(FilterRequstedViewModel filters)
+        {
+            return this._dbContext.RequestedItems
+                                  .Where(i => i.Organization.Name == (filters.OrganizationFilter != "" ? filters.OrganizationFilter : i.Organization.Name))
+                                  .Where(i => i.GoodsCategory.Name == (filters.CategoryFilter != "" ? filters.CategoryFilter : i.GoodsCategory.Name))
+                                  .Where(i => i.GoodsCategory.GoodsType.Name == (filters.TypeFilter != "" ? filters.TypeFilter : i.GoodsCategory.GoodsType.Name))
+                                  .Where(i => i.Status.StatusName == (filters.StatusFilter != "" ? filters.StatusFilter : i.Status.StatusName));
         }
     }
 }

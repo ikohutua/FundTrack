@@ -1,5 +1,7 @@
 ﻿using FundTrack.DAL.Entities;
+using FundTrack.Infrastructure.ViewModel;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace FundTrack.DAL.Abstract
 {
@@ -30,10 +32,23 @@ namespace FundTrack.DAL.Abstract
         IEnumerable<RequestedItem> GetOrganizationRequestedItems(int organizationId);
 
         /// <summary>
+        /// Reads as queryable.
+        /// </summary>
+        /// <returns></returns>
+        IQueryable<RequestedItem> ReadAsQueryable();
+
+        /// <summary>
         /// Gets all goodstype
         /// </summary>
         /// <returns>List of goodstype</returns>
         IEnumerable<GoodsType> GetAllGoodTypes();
+
+        /// <summary>
+        /// Filters the requested item.
+        /// </summary>
+        /// <param name="filters">The filters.</param>
+        /// <returns>List of requested item</returns>
+        IQueryable<RequestedItem> FilterRequestedItem(FilterRequstedViewModel filters);
 
         /// <summary>
         /// Gets requested item per page
