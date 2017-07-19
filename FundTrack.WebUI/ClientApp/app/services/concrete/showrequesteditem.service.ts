@@ -8,19 +8,26 @@ import 'rxjs/add/operator/do';
 import "rxjs/add/operator/catch";
 import { RequestedItemInitViewModel } from "../../view-models/abstract/requesteditem-initpaginationdata-view-model";
 import { ShowRequestedItem } from "../../view-models/concrete/showrequesteditem-model.interface";
+import { GoodsTypeViewModel } from "../../view-models/concrete/goods-type-view.model";
+import { GoodsCategoryViewModel } from "../../view-models/concrete/goods-category-view.model";
+import { GoodsStatusViewModel } from "../../view-models/concrete/goods-status-model";
+import { IOrganizationForFiltering } from "../../view-models/abstract/organization-for-filtering.interface";
 import { FilterRequstedViewModel } from '../../view-models/concrete/filter-requests-view.model';
 
 @Injectable()
 export class ShowRequestedItemService extends BaseService<IShowRequestedItem>{
     private _urlForPagination: string = 'api/RequestedItem/GetRequestedItemPaginationData';
     private _urlGetRequestedItemToShowPerPage: string = 'api/RequestedItem/GetRequestedItemToShowPerPage';
+    private _urlGetOrganizations: string = 'api/RequestedItem/GetOrganizations';
+    private _urlGetCategories: string = 'api/RequestedItem/GetCategories';
+    private _urlGetTypes: string = 'api/RequestedItem/GetTypes';
+    private _urlGetStatuses: string = 'api/RequestedItem/GetStatuses';
     private _urlFilterRequestedItem: string = 'api/RequestedItem/GetFilterRequestedItemPaginationData';
 
-
-   /**
-   * @constructor
-   * @param http
-   */
+    /**
+ * @constructor
+ * @param http
+ */
     constructor(private http: Http) {
         super(http, 'api/RequestedItem/GetRequestedItemToShow');
     }
@@ -32,12 +39,6 @@ export class ShowRequestedItemService extends BaseService<IShowRequestedItem>{
         return this.http.get(this._urlForPagination)
             .map((response: Response) => response.json() as RequestedItemInitViewModel)
     }
-
-    //public getItemsOnScroll(additionString: string, itemsPerPage: number, currentPage: number): Observable<IEventModel[]> {
-    //    return this.http.get(additionString + '/' + itemsPerPage + '/' + currentPage)
-    //        .map((response: Response) => <IEventModel[]>response.json())
-    //        .catch(this.handleErrorHere);
-    //}
 
     public getRequestedItemOnPage(itemsPerPage: number, currentPage: number, filters: FilterRequstedViewModel) {
 
@@ -58,6 +59,29 @@ export class ShowRequestedItemService extends BaseService<IShowRequestedItem>{
     public getFilterRequestedItemInitData(filters: FilterRequstedViewModel): Observable<RequestedItemInitViewModel> {
         return this.http.post(this._urlFilterRequestedItem, JSON.stringify(filters), this.getRequestOptions())
             .map((response: Response) => response.json() as ShowRequestedItem[])
+            .catch(this.handleErrorHere);
+    }
+
+    public getOrgaizations(): Observable<IOrganizationForFiltering[]> {
+        return this.getCollections<IOrganizationForFiltering>(this._urlGetOrganizations);
+    }
+
+    public getCategories(): Observable<GoodsCategoryViewModel[]> {
+        return this.getCollections<GoodsCategoryViewModel>(this._urlGetCategories);
+    }
+
+    public getTypes(): Observable<GoodsTypeViewModel[]> {
+        return this.getCollections<GoodsTypeViewModel>(this._urlGetTypes);
+    }
+
+    public getStatuses(): Observable<GoodsStatusViewModel[]> {
+        return this.getCollections<GoodsStatusViewModel>(this._urlGetStatuses);
+    }
+
+    private getCollections<T>(_myUrl: string): Observable<T[]> {
+        return this.http.get(_myUrl)
+            .map((response: Response) => response.json() as T[])
+            .do(data => console.log('ALL ' + JSON.stringify(data)))
             .catch(this.handleErrorHere);
     }
 

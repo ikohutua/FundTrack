@@ -12,7 +12,8 @@
                     <li><a (click)="redirectToAddEventPage(1)">Створити</a></li>
                 </ul>
             </li>
-            <li *ngIf="this.user && this.user.role=='admin'" class="dropdown">
+            <li><a (click)="redirectToShowAllRequests()">Потреби</a></li>
+<li *ngIf="this.user && this.user.role=='admin'" class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown">Потреби <span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">
                     <li class="dropdown-header">Потреби</li>

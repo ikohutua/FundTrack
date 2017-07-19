@@ -1,4 +1,5 @@
-﻿import { Component, Input } from "@angular/core";
+﻿/// <reference path="../../item-storage-service.ts" />
+import { Component, Input } from "@angular/core";
 
 @Component({
     selector: 'gallery-eventdetail',

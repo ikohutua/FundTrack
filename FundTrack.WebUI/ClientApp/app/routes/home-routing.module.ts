@@ -12,9 +12,9 @@ import { RequestDetailComponent } from "../components/request-detail/request-det
     imports: [
         RouterModule.forChild([
             {
-                path: '', redirectTo: 'home',
+                path: '', redirectTo: '/home/allevents',
                 pathMatch: 'full',
-            },
+            }, 
             {
                 path: 'home', component: HomeComponent,
                 children:

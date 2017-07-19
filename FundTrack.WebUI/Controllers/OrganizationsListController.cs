@@ -1,6 +1,5 @@
 ﻿using FundTrack.BLL.Abstract;
 using FundTrack.Infrastructure.ViewModel;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 

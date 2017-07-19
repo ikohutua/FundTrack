@@ -2,7 +2,7 @@
 <div class="col-lg-6 col-md-12" *ngFor="let event of _model">
     <div class="panel panel-primary panel-size">
         <div class="panel-heading">
-            <div class="panel-title pull-left">
+            <div class="panel-title pull-left lead">
                 <a [routerLink]="['']">{{event.organizationName}}</a>
             </div>
             <div class="panel-title pull-right">
@@ -18,7 +18,7 @@
                 {{event.description}}
             </div>
             <div class="pull-right">
-                <a [routerLink]="['/home/eventdetail',event.id]">Читати далі</a>
+                <a [routerLink]="['/home/eventdetail',event.id]" class="linkBack">Читати далі</a>
             </div>
         </div>
     </div>

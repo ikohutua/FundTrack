@@ -67,6 +67,14 @@ export class SidebarComponent /*implements OnInit*/ {
     }
 
     /**
+ * Redirect to 'all requests page' in organization management page
+ * @param idOrganization
+ */
+    public redirectToShowAllRequests(): void {
+        this._router.navigate(['home/allrequests']);
+    }
+
+    /**
      * Redirect to 'manage requests page' in organization management page
      * @param idOrganization
      */

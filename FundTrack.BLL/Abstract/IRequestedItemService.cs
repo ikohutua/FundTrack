@@ -112,5 +112,29 @@ namespace FundTrack.BLL.Abstract
         /// <param name="requestedItem">Requested item model</param>
         /// <returns>Requested item view model</returns>
         RequestedItemViewModel ConvertToRequestedItemViewModel(RequestedItem requestedItem, IEnumerable<RequestedImageViewModel> imagesList);
+
+        /// <summary>
+        /// Gets all organizations for filtering of RequestedItem 
+        /// </summary>
+        /// <returns>Organizations data</returns>
+        IEnumerable<OrganizationForFilteringViewModel> GetOrganizations();
+
+        /// <summary>
+        /// Gets all categories for filtering of RequestedItem 
+        /// </summary>
+        /// <returns>Categories data</returns>
+        IEnumerable<GoodsCategoryForFilteringViewModel> GetCategories();
+
+        /// <summary>
+        /// Gets all types for filtering of RequestedItem 
+        /// </summary>
+        /// <returns>Types data</returns>
+        IEnumerable<GoodsTypeForFilteringViewModel> GetTypes();
+
+        /// <summary>
+        /// Gets all statuses for filtering of RequestedItem 
+        /// </summary>
+        /// <returns>Statuses data</returns>
+        IEnumerable<StatusForFilteringViewModel> GetStatuses();
     }
 }

@@ -48,7 +48,6 @@ export class AllEventsComponent implements OnInit, OnDestroy {
                 },
                 error => this._errorMessage = <any>error);
         }
-
     }
 
     ngOnInit(): void {
@@ -66,7 +65,7 @@ export class AllEventsComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy(): void {
-        this._subscription.unsubscribe();
+        //this._subscription.unsubscribe();
     }
 
     @HostListener('window:scroll', ['$event'])

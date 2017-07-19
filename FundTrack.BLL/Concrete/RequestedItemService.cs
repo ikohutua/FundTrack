@@ -17,7 +17,7 @@ namespace FundTrack.BLL.Concrete
     public sealed class RequestedItemService : BaseService, IRequestedItemService
     {
         private readonly IUnitOfWork _unitOfWork;
-        private readonly int _requestedItemPerPage = 2;
+        private readonly int _requestedItemPerPage = 3;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RequestedItemService"/> class.
@@ -491,6 +491,98 @@ namespace FundTrack.BLL.Concrete
                 GoodsTypeId = requestedItem.GoodsCategory.GoodsTypeId,
                 Images = imagesList
             };
+        }
+
+        /// <summary>
+        /// Gets all organizations from database
+        /// </summary>
+        /// <returns>List of </returns>
+        public IEnumerable<OrganizationForFilteringViewModel> GetOrganizations()
+        {
+            try
+            {
+                var organizations = _unitOfWork.OrganizationRepository.Read()
+              .Select(c => new OrganizationForFilteringViewModel()
+              {
+                  Id = c.Id,
+                  Name = c.Name,
+              }).OrderBy(e => e.Name);
+
+                return organizations;
+            }
+            catch (Exception ex)
+            {
+                throw new BusinessLogicException(ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// Gets all goods categories from database
+        /// </summary>
+        /// <returns>List of goods categories</returns>
+        public IEnumerable<GoodsCategoryForFilteringViewModel> GetCategories()
+        {
+            try
+            {
+                var categories = _unitOfWork.GoodsCategoryRepository.Read()
+              .Select(c => new GoodsCategoryForFilteringViewModel()
+              {
+                  Id = c.Id,
+                  Name = c.Name,
+              }).OrderBy(e => e.Name);
+
+                return categories;
+            }
+            catch (Exception ex)
+            {
+                throw new BusinessLogicException(ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// Gets all goods type from database
+        /// </summary>
+        /// <returns>List of goods type</returns>
+        public IEnumerable<GoodsTypeForFilteringViewModel> GetTypes()
+        {
+            try
+            {
+                var types = _unitOfWork.GoodsTypeRepository.Read()
+              .Select(c => new GoodsTypeForFilteringViewModel()
+              {
+                  Id = c.Id,
+                  Name = c.Name,
+              }).OrderBy(e => e.Name);
+
+                return types;
+            }
+            catch (Exception ex)
+            {
+                throw new BusinessLogicException(ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// Gets all statuses of requested items from database
+        /// </summary>
+        /// <returns>List of statuses</returns>
+        public IEnumerable<StatusForFilteringViewModel> GetStatuses()
+        {
+            try
+            {
+                var statuses = _unitOfWork.StatusRepository.Read()
+              .Select(c => new StatusForFilteringViewModel()
+              {
+                  Id = c.Id,
+                  Name = c.StatusName,
+              }).OrderBy(e => e.Name);
+
+                return statuses;
+            }
+            catch (Exception ex)
+            {
+                throw new BusinessLogicException(ex.Message);
+            }
         }
     }
 }

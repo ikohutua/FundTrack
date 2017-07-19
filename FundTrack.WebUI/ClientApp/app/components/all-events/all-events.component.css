@@ -4,9 +4,9 @@
 }
 
 .panel > .panel-heading {
-    color: black;
-    background-color: #fffc00;
-    border-color: #f5f5f5;
+    background-color: #314720;
+    border-color: #314720;
+    color:white;
 }
 
 .panel {
@@ -29,4 +29,11 @@
 
 img {
     max-height: 200px;
+}
+
+a.linkBack {
+    color: #314720;
+    text-decoration-line: underline;
+    font:bold !important;
+    font-weight:400 !important;
 }

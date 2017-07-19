@@ -131,6 +131,31 @@ namespace FundTrack.WebUI.Controllers
                 return goodsType;                         
         }
 
+        [HttpGet("[action]")]
+        public IEnumerable<OrganizationForFilteringViewModel> GetOrganizations()
+        {
+            return _requestedItemService.GetOrganizations(); 
+        }
+
+        [HttpGet("[action]")]
+        public IEnumerable<GoodsCategoryForFilteringViewModel> GetCategories()
+        {
+            return _requestedItemService.GetCategories();
+        }
+
+        [HttpGet("[action]")]
+        public IEnumerable<GoodsTypeForFilteringViewModel> GetTypes()
+        {
+            return _requestedItemService.GetTypes();
+        }
+
+        [HttpGet("[action]")]
+        public IEnumerable<StatusForFilteringViewModel> GetStatuses()
+        {
+            return _requestedItemService.GetStatuses();
+        }
+        
+
         /// <summary>
         /// Gets the request item detail.
         /// </summary>

@@ -9,4 +9,5 @@ export class StorageService {
     */
     public bannedDescription: string = '';
     public showDropDown: boolean = true;
+    //public selectedRequestedItem: string = null;
 }

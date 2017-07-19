@@ -1,9 +1,16 @@
-﻿.fborder {
-    padding-left: 200px;
-    padding-top: 50px;
-    padding-right: 200px;
-    padding-bottom: 50px;
-}
-img {
+﻿img {
     width: 300px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    border-radius: 10px;
+}
+.maindiv-style {
+    padding-left: 30px;
+    padding-top: 50px;
+    padding-right: 30px;
+    padding-bottom: 50px;
+    background-color: #314720;
+    border-color: #314720;
+    color: white;
+    border-radius: 10px;
 }

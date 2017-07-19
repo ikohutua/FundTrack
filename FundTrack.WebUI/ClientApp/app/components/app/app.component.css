@@ -20,7 +20,12 @@ app.container-fluid {
     top: 0;
     z-index: 3000;
 }
-
+.footer {
+    position: relative;
+    bottom: 0px;
+    border: 1px solid white;
+    margin-top:100px;
+}
 .content {
     margin-top: 90px;
     min-height: 600px;
