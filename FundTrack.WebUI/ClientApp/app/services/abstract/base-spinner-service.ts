@@ -79,17 +79,14 @@ export abstract class BaseSpinnerService<T> {
     }
 
     private showSpinner(spinner?: SpinnerComponent) {
-        console.log(spinner);
-        if (spinner != null) {
+        if (spinner) {
             spinner.show();
-            console.log(spinner.showSpinner);
         }
     }
 
     private hideSpinner(spinner?: SpinnerComponent) {
-        if (spinner != null) {
+        if (spinner) {
             spinner.hide();
-            console.log(spinner.showSpinner);
         }
     }
     /**

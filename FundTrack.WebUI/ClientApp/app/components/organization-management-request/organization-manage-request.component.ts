@@ -28,6 +28,8 @@ export class OrganizationManageRequestComponent implements OnInit {
     private _requestedItemId: number;
     private _currentOrgId: number;
     private _currentImageUrl: string[] = [];
+    
+    private addingImage: string = "http://www.freeiconspng.com/uploads/add-icon--line-iconset--iconsmind-29.png";
     //@ViewChild(SpinnerComponent) spinner: SpinnerComponent;
 
     ngOnInit(): void {
@@ -39,7 +41,7 @@ export class OrganizationManageRequestComponent implements OnInit {
         });
       
         if (this._requestedItemId > 0) {
-            this.getByIdRequestedItem(this._requestedItemId);
+            this.getByIdRequestedItem(this._requestedItemId);          
         }       
     }
 
@@ -64,12 +66,37 @@ export class OrganizationManageRequestComponent implements OnInit {
             })
     }
 
+    private isTypeSelected() {
+        if (this._selecteType != null && this._selecteType.id != undefined) {
+            return true;
+        }
+        return false;
+    }
+
+    private isCategorySelected() {
+        console.log(this._requestedItem.goodsCategoryId);
+        if (this._requestedItem.goodsCategoryId != undefined && !Number.isNaN(Number(this._requestedItem.goodsCategoryId))) {
+
+            return true;
+        }
+        return false;
+    }
+
     /**
      * Add new requested item
      */
     private addRequestedItem() {
+        this._requestedItem.goodsTypeId = this._selecteType.id;
         this._service.addRequestedItem(this._requestedItem)
-            .subscribe(error => this._errorMessage = <any>error);
+            .subscribe((c) => {
+                if (c.errorMessage != "") {
+                    this._router.navigate(["/organization/requests/1"])
+                }
+                else {
+                    this._errorMessage = c.errorMessage;
+                }               
+            },
+                error => this._errorMessage = <any>error);
     }
 
     /**
@@ -90,6 +117,10 @@ export class OrganizationManageRequestComponent implements OnInit {
             error => this._errorMessage = <any>error);
     }
 
+    /**
+     * delete current image from database or from list
+     * @param currentImage
+     */
     private deleteCurrentImage(currentImage: RequestedImageViewModel) {
         if (currentImage.id > 0) {
             this._service.deleteCurrentImage(currentImage.id)
@@ -101,6 +132,10 @@ export class OrganizationManageRequestComponent implements OnInit {
         }
     }
 
+    /**
+     * Delete image from list
+     * @param imageUrl
+     */
     private deleteImageFromList(imageUrl: string) {
         this._requestedItem.images.splice(this._requestedItem.images.findIndex(i => i.imageUrl == imageUrl), 1)         
     }
@@ -111,8 +146,11 @@ export class OrganizationManageRequestComponent implements OnInit {
      */
     private editRequestetItem(item: RequestManagementViewModel) {
         this._service.editRequestedItem(item)
-            .subscribe(r => this._requestedItem = r,
-            error => this._errorMessage = <any>error);
+            .subscribe(r => {
+                    this._requestedItem = r,
+                    this._router.navigate(['/organization/requests/1']),
+                    error => this._errorMessage = <any>error
+            });
     }
 
     /**
@@ -127,6 +165,17 @@ export class OrganizationManageRequestComponent implements OnInit {
         }
     }
 
+    /**
+     * Navigate to all requested items page
+     */
+    private backToAllItems(): void {
+        this._router.navigate(["/organization/requests/1"]);
+    }
+
+    /**
+     * Set goodType by if for dropdown
+     * @param goodTypeId
+     */
     private setGoodsType(goodTypeId: number) {
         this._selecteType = this._goodsTypes.find(c => c.id == goodTypeId);
     }
@@ -155,7 +204,7 @@ export class OrganizationManageRequestComponent implements OnInit {
                     let requestedItemImage = new RequestedImageViewModel();
                     requestedItemImage.requestedItemId = 0;
                     requestedItemImage.imageUrl = data.Location;
-                    console.log(data.Location);
+         
 
                     if (that._requestedItem.images == null) {
                         that._requestedItem.images = [];
@@ -165,7 +214,7 @@ export class OrganizationManageRequestComponent implements OnInit {
                 })
             }
             else {
-                alert('Розмр файлу не може перевищувати ' + Math.ceil(maxFileSize / 1000000) + 'МБ');
+                alert('Розмір файлу не може перевищувати ' + Math.ceil(maxFileSize / 1000000) + 'МБ');
             }
         }
     }

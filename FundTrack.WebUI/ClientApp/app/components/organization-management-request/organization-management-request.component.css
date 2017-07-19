@@ -32,38 +32,39 @@
     margin-bottom: 10px;
 }
 
-    .item.list-group-item:nth-of-type(odd):hover, .item.list-group-item:hover {
-        background: #428bca;
-    }
+.item.list-group-item:nth-of-type(odd):hover, .item.list-group-item:hover {
+    background: #428bca;
+}
 
-    .item.list-group-item .list-group-image {
-        margin-right: 10px;
-    }
+item.list-group-item .list-group-image {
+    margin-right: 10px;
+}
 
-    .item.list-group-item .thumbnail {
-        margin-bottom: 0px;
-    }
+.item.list-group-item .thumbnail {
+    margin-bottom: 0px;
+}
 
-    .item.list-group-item .caption {
-        padding: 9px 9px 0px 9px;
-    }
+.item.list-group-item .caption {
+    padding: 9px 9px 0px 9px;
+    border-top: 0.8px solid black;
+}
 
-    .item.list-group-item:nth-of-type(odd) {
-        background: #eeeeee;
-    }
+.item.list-group-item:nth-of-type(odd) {
+    background: #eeeeee;
+}
 
-    .item.list-group-item:before, .item.list-group-item:after {
-        display: table;
-        content: " ";
-    }
+.item.list-group-item:before, .item.list-group-item:after {
+    display: table;
+    content: " ";
+}
 
-    .item.list-group-item img {
-        float: left;
-    }
+.item.list-group-item img {
+    float: left;
+}
 
-    .item.list-group-item:after {
-        clear: both;
-    }
+.item.list-group-item:after {
+    clear: both;
+}
 
 .list-group-item-text {
     margin: 0 0 11px;
@@ -87,6 +88,80 @@
     background-color: white;
 }
 
-.thumbnail > .caption {
+.caption {
     background-color: #fcfcf9;
+    border-top: 1px solid #ccc;
 }
+
+.thumbnail > .caption {
+   
+    border-top: 0.8px solid black;
+}
+
+.action-icons {
+    right: 0;
+    top: 0;
+    position: absolute;
+    padding-right: 18px;
+    padding-top: 11px;
+    color: #db380f;
+}
+
+.action-icons{
+    cursor:pointer;
+}
+
+.item-header {
+    border-bottom: 1px solid #ccc;
+}
+
+.header-text {
+    padding-top: -5px;
+    padding-left: 10px;
+}
+
+/* relevant styles */
+.caption-wrap {
+    position: inherit center;
+}
+
+.item-description-layer {
+    position: absolute;
+    top: 0;
+    bottom: 20px;
+    left: 15px;
+    right: 15px;
+    background: rgba(51, 79, 56, 0.8);
+    color: #fff;
+    visibility: hidden;
+    opacity: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* transition effect. not necessary */
+    transition: opacity .2s, visibility .2s;
+}
+
+.caption-wrap:hover .item-description-layer {
+    visibility: visible;
+    opacity: 1;
+}
+
+.item-description {
+  transition: .2s;
+  transform: translateY(1em);
+}
+
+.caption-wrap:hover .item-description {
+  transform: translateY(0);
+}
+
+.text-style {
+    font-weight: bold;
+    color: #31a07f;
+}
+
+.item-description{
+    overflow: hidden;
+}
+ 

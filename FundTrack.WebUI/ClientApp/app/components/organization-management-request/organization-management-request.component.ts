@@ -22,7 +22,7 @@ export class OrganizationManagementRequestComponent implements OnInit {
     private _subscription: Subscription;
     private _totalItems: number;
     private _offset: number = 0;
-    private _itemPerPage: number = 8;
+    private _itemPerPage: number = 4;
     private _currentPage: number = 1;
 
     @ViewChild(SpinnerComponent) spinner: SpinnerComponent;

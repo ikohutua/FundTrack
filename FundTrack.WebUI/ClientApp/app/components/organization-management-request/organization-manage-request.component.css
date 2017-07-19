@@ -2,6 +2,7 @@
     border: solid 1px;
     height: 100px;
     width: 100px;
+   
 }
 
 .img-container {
@@ -10,10 +11,11 @@
     overflow: hidden; /* added */
     margin-right: 7px;
     cursor: pointer;
+    margin-left:13px
 }
 
 .img-container img {
-        width: 100px;
+    width: 100px;
 }
         /* remove if using in grid system */
 
@@ -23,32 +25,33 @@
 }
 
 .img-container:hover a {
-        opacity: 1; /* added */
-        top: 0; /* added */
-        z-index: 500;
-    }
+    opacity: 1; /* added */
+    top: 0; /* added */
+    z-index: 500;
+}
         /* added */
-    .img-container:hover a span {
-        color: orangered;
-        font-size: 25px;
-        top: 50%;
-        position: absolute;
-        left: 0;
-        right: 0;
-        transform: translateY(-50%);
-    }
+.img-container:hover a span {
+     color: orangered;
+     font-size: 25px;
+     top: 50%;
+     position: absolute;
+     left: 0;
+     right: 0;
+     transform: translateY(-50%);
+}
     /* added */
-    .img-container a {
-        display: inline-block;
-        position: absolute;
-        top: -100%;
-        opacity: 0;
-        left: 0;
-        bottom: 0;
-        right: 0;
-        text-align: center;
-        color: inherit;
-    }
-.add-image{
-   
+.img-container a {
+     display: inline-block;
+     position: absolute;
+     top: -100%;
+     opacity: 0;
+     left: 0;
+     bottom: 0;
+     right: 0;
+     text-align: center;
+     color: inherit;
+}
+
+.fixedError {
+    margin-bottom: 0px;
 }

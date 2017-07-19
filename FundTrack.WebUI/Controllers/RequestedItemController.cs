@@ -6,6 +6,8 @@ using FundTrack.Infrastructure.ViewModel;
 using FundTrack.BLL.Abstract;
 using FundTrack.Infrastructure.ViewModel.RequestedItemModel;
 using System.Threading;
+using System.Linq;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace FundTrack.WebUI.Controllers
 {
@@ -32,16 +34,30 @@ namespace FundTrack.WebUI.Controllers
         /// <param name="requestedItemViewModel">Requested item view model</param>
         /// <returns>Json result</returns>
         [HttpPost("[action]")]
-        public JsonResult AddRequestedItem([FromBody]RequestedItemViewModel requestedItemViewModel)
+        public RequestedItemViewModel AddRequestedItem([FromBody]RequestedItemViewModel requestedItemViewModel)
         {
             try
             {
-                this._requestedItemService.CreateRequestedItem(requestedItemViewModel);
-                return new JsonResult(string.Empty);
+                if (ModelState.IsValid)
+                {
+                    return this._requestedItemService.CreateRequestedItem(requestedItemViewModel);                 
+                }
+                else
+                {
+                    var errors = ModelState.Values.SelectMany(e => e.Errors).Select(e => e.ErrorMessage);
+                    string generalError = string.Join(" ", errors);
+                    return new RequestedItemViewModel
+                    {
+                        ErrorMessage = generalError
+                    };
+                }
             }
             catch (Exception ex)
             {
-                return new JsonResult(ex.Message);
+                return new RequestedItemViewModel
+                {
+                    ErrorMessage = ex.Message
+                };
             }
         }
 
@@ -51,17 +67,33 @@ namespace FundTrack.WebUI.Controllers
         /// <param name="requestedItemViewModel">Requested item view model</param>
         /// <returns>Json result</returns>
         [HttpPut("[action]")]
-        public JsonResult UpdateRequestedItem([FromBody]RequestedItemViewModel requestedItemViewModel)
+        public RequestedItemViewModel UpdateRequestedItem([FromBody]RequestedItemViewModel requestedItemViewModel)
         {
             try
             {
-                this._requestedItemService.UpdateRequestedItem(requestedItemViewModel);
+                if (ModelState.IsValid)
+                {
+                    var requestedItem = this._requestedItemService.UpdateRequestedItem(requestedItemViewModel);
 
-                return new JsonResult(string.Empty);
+                    return requestedItem;
+                }
+                else
+                {
+                    var errors = ModelState.Values.SelectMany(e => e.Errors).Select(e => e.ErrorMessage);
+                    string generalError = string.Join(" ", errors);
+
+                    return new RequestedItemViewModel
+                    {
+                        ErrorMessage = generalError
+                    };
+                }
             }
             catch (Exception ex)
             {
-                return new JsonResult(ex.Message);
+                return new RequestedItemViewModel
+                {
+                    ErrorMessage = ex.Message
+                };
             }
         }
 
@@ -92,9 +124,15 @@ namespace FundTrack.WebUI.Controllers
         [HttpGet("GetOrganizationRequestedItems/{organizationId}")]
         public IEnumerable<RequestedItemViewModel> GetOrganizationRequestedItems(int organizationId)
         {
-            List<RequestedItemViewModel> allItems = this._requestedItemService.GetOrganizationRequestedId(organizationId);
-
-            return allItems;
+            try
+            {
+                List<RequestedItemViewModel> allItems = this._requestedItemService.GetOrganizationRequestedId(organizationId);
+                return allItems;
+            }
+            catch(Exception ex)
+            {
+                return null;
+            }
         }
 
         /// <summary>
