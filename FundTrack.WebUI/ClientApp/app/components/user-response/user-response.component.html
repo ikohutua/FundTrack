@@ -1,0 +1,32 @@
+﻿<div>
+    <h2>Відповіді</h2>
+    <div>
+        <table class="table-bordered table">
+            <thead>
+                <tr>
+                    <th> Item Name</th>
+                    <th> Login </th>
+                    <th> Email </th>
+                    <th> Date </th>
+                    <th> Description </th>
+                    <th> Status </th>
+                    <th> Action </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let userResponse of _userResponses">
+                    <td> {{userResponse.requestedItemName}} </td>                    
+                    <td> {{userResponse.userLogin}}</td>
+                    <td> {{userResponse.userEmail}}</td>
+                    <td> {{userResponse.createDate | date:'shortDate'}}</td>
+                    <td> {{userResponse.description}}</td>
+                    <td> {{userResponse.statusName}}</td>
+                    <td>
+                    <button class="btn-link"> Accept </button>
+                    <button class="btn-link"> Decline </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

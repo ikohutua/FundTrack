@@ -4,8 +4,8 @@ using FundTrack.DAL.Entities;
 using System.Linq;
 using System;
 using Microsoft.EntityFrameworkCore;
-using FundTrack.Infrastructure.ViewModel;
 using FundTrack.DAL.Extensions;
+using FundTrack.Infrastructure.ViewModel;
 
 namespace FundTrack.DAL.Concrete
 {

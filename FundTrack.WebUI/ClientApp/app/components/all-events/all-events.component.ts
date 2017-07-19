@@ -1,4 +1,4 @@
-﻿import { Component, OnInit, Input, HostListener, OnDestroy } from '@angular/core';
+﻿import { Component, OnInit, Input, HostListener, OnDestroy, AfterContentChecked } from '@angular/core';
 import { MainPageViewModel } from "../../view-models/concrete/main-page-view-model";
 import { IEventModel } from "../../view-models/abstract/event-model.interface";
 import { EventModel } from "../../view-models/concrete/event-model";
@@ -13,7 +13,7 @@ import { ActivatedRoute } from "@angular/router";
     providers: [OrganizationEventService]
 })
 
-export class AllEventsComponent implements OnInit, OnDestroy {
+export class AllEventsComponent implements OnInit, OnDestroy, AfterContentChecked {
     private _model: EventModel[] = new Array<EventModel>();
     private _errorMessage: string;
     private _subscription: Subscription;
@@ -62,6 +62,14 @@ export class AllEventsComponent implements OnInit, OnDestroy {
             this.getEventsList(id);
         });
 
+    }
+
+    ngAfterContentChecked() {
+        if (sessionStorage.getItem("id")) {
+            let id = +sessionStorage.getItem("id");
+            this.getEventsList(id);
+            sessionStorage.clear();
+        }
     }
 
     ngOnDestroy(): void {

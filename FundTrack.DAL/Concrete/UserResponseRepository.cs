@@ -59,6 +59,11 @@ namespace FundTrack.DAL.Concrete
             return this._context.UserResponses;
         }
 
+        public IQueryable<UserResponse> ReadAsQueryable()
+        {
+            return this._context.UserResponses;
+        }
+
         /// <summary>
         /// Updates the UserResponse in db.
         /// </summary>
