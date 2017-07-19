@@ -5,6 +5,7 @@ using System.Linq;
 using System;
 using Microsoft.EntityFrameworkCore;
 using FundTrack.Infrastructure.ViewModel;
+using FundTrack.DAL.Extensions;
 
 namespace FundTrack.DAL.Concrete
 {
@@ -111,6 +112,16 @@ namespace FundTrack.DAL.Concrete
         }
 
         /// <summary>
+        /// Reads as queryable.
+        /// </summary>
+        /// <returns>List of requested item</returns>
+        public IQueryable<RequestedItem> ReadForPagination(int ItemsPerPage, int CurrentPage)
+        {
+            return this._dbContext.RequestedItems
+                       .GetItemsPerPage(ItemsPerPage, CurrentPage);
+        }
+
+        /// <summary>
         /// Gets the requested item status.
         /// </summary>
         /// <param name="id">The identifier.</param>
@@ -149,7 +160,7 @@ namespace FundTrack.DAL.Concrete
 
             return goodsTypes;
         }
-        
+
         /// <summary>
         /// Gets requeste item per page
         /// </summary>
@@ -167,6 +178,21 @@ namespace FundTrack.DAL.Concrete
                 .Take(pageSize);
 
             return resultList;
+        }
+
+        /// <summary>
+        /// Filters the requested item.
+        /// </summary>
+        /// <param name="filters">The filters.</param>
+        /// <returns>List filter requsted item</returns>
+        public IQueryable<RequestedItem> FilterRequestedItem(FilterPaginationViewModel filters)
+        {
+            return this._dbContext.RequestedItems
+                                  .Where(i => i.Organization.Name == (filters.filterOptions.OrganizationFilter != "" ? filters.filterOptions.OrganizationFilter : i.Organization.Name))
+                                  .Where(i => i.GoodsCategory.Name == (filters.filterOptions.CategoryFilter != "" ? filters.filterOptions.CategoryFilter : i.GoodsCategory.Name))
+                                  .Where(i => i.GoodsCategory.GoodsType.Name == (filters.filterOptions.TypeFilter != "" ? filters.filterOptions.TypeFilter : i.GoodsCategory.GoodsType.Name))
+                                  .Where(i => i.Status.StatusName == (filters.filterOptions.StatusFilter != "" ? filters.filterOptions.StatusFilter : i.Status.StatusName))
+                                  .GetItemsPerPage(filters.ItemsPerPage, filters.CurrentPage);
         }
 
         /// <summary>

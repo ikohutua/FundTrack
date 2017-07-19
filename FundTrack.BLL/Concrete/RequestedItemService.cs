@@ -251,7 +251,7 @@ namespace FundTrack.BLL.Concrete
                     RequestedItemId = userResponseModel.RequestedItemId
                 };
 
-                if (userResponseModel.Id != 0)
+                if (userResponseModel.UserId != 0)
                 {
                     userResponse.UserId = userResponseModel.UserId;
                 }
@@ -338,10 +338,10 @@ namespace FundTrack.BLL.Concrete
         /// <returns>Collection of ShowAllRequestedItemModel</returns>
         public IEnumerable<ShowAllRequestedItemModel> GetRequestedItemToShowPerPage(FilterPaginationViewModel filter)
         {
-            var _showRequstedItems = filter.filterOptions != null ? this._unitOfWork.RequestedItemRepository.FilterRequestedItem(filter.filterOptions)
-                : this._unitOfWork.RequestedItemRepository.ReadAsQueryable();
+            var _showRequstedItems = filter.filterOptions != null ? this._unitOfWork.RequestedItemRepository.FilterRequestedItem(filter)
+                : this._unitOfWork.RequestedItemRepository.ReadForPagination(filter.ItemsPerPage, filter.CurrentPage);
 
-            var events = _showRequstedItems.Select(c => new ShowAllRequestedItemModel()
+            return _showRequstedItems.Select(c => new ShowAllRequestedItemModel()
             {
                 Id = c.Id,
                 GoodsCategory = c.GoodsCategory.Name,
@@ -351,9 +351,8 @@ namespace FundTrack.BLL.Concrete
                 Status = c.Status.StatusName,
                 Name = c.Name,
                 Description = c.Description
-            }).OrderBy(e => e.GoodsCategory);
-
-            return GetPageItems(events, filter.ItemsPerPage, filter.CurrentPage);
+            })
+            .OrderBy(e => e.GoodsCategory);
         }
 
         /// <summary>

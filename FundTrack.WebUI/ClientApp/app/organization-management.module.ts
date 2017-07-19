@@ -14,6 +14,7 @@ import { OrganizationManadementEventEditComponent } from "./components/organizat
 import { OrganizationManagementEventDeleteComponent } from "./components/organization-management-events/organization-management-event-delete.component";
 import { SharedModule } from "./shared.module";
 import { SpinnerComponent } from "./shared/components/spinner/spinner.component";
+import { UserResponseComponent } from './components/user-response/user-response.component';
 
 import { HomeModule } from "./home.module";
 import { GalleryComponent } from "./shared/components/gallery/gallery.component";
@@ -29,6 +30,7 @@ import { GalleryComponent } from "./shared/components/gallery/gallery.component"
         OrganizationManadementEventEditComponent,
         OrganizationManagementEventAddComponent,
         OrganizationManagementEventDeleteComponent,
+        UserResponseComponent
         //SpinnerComponent    
         //GalleryComponent
     ],

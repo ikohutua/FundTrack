@@ -38,6 +38,15 @@ namespace FundTrack.DAL.Abstract
         IQueryable<RequestedItem> ReadAsQueryable();
 
         /// <summary>
+        /// Reads for pagination.
+        /// </summary>
+        /// <param name="CurrentPage">The current page.</param>
+        /// <param name="ItemsPerage">The items perage.</param>
+        /// <returns></returns>
+        IQueryable<RequestedItem> ReadForPagination(int ItemsPerPage, int CurrentPage);
+
+
+        /// <summary>
         /// Gets all goodstype
         /// </summary>
         /// <returns>List of goodstype</returns>
@@ -49,6 +58,13 @@ namespace FundTrack.DAL.Abstract
         /// <param name="filters">The filters.</param>
         /// <returns>List of requested item</returns>
         IQueryable<RequestedItem> FilterRequestedItem(FilterRequstedViewModel filters);
+
+        /// <summary>
+        /// Filters the requested item.
+        /// </summary>
+        /// <param name="filters">The filters.</param>
+        /// <returns>List of requested item</returns>
+        IQueryable<RequestedItem> FilterRequestedItem(FilterPaginationViewModel filters);
 
         /// <summary>
         /// Gets requested item per page

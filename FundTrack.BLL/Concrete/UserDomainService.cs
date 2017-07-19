@@ -181,15 +181,11 @@ namespace FundTrack.BLL.DomainServices
                         photoUrl = user.PhotoUrl
                     };
 
-                    if (this._unitOfWork.MembershipRepository.IsUserHasRole(user.Id))
-                    {
-                        userInfoView.role = this._unitOfWork.MembershipRepository.GetRole(user.Id);
-                    }
-                    else
+                    if (!this._unitOfWork.MembershipRepository.IsUserHasRole(user.Id))
                     {
                         this.CreateUserRole(userInfoView.login);
-                        userInfoView.role = this._unitOfWork.MembershipRepository.GetRole(user.Id);
                     }
+                    userInfoView.role = this._unitOfWork.MembershipRepository.GetRole(user.Id);
                     return userInfoView;
                 }
             }
@@ -335,7 +331,7 @@ namespace FundTrack.BLL.DomainServices
         {
             var user = new User();
             user = _unitOfWork.UsersRepository.Read().Where(u => u.Login == login).FirstOrDefault();
-            if (user!= null)
+            if (user != null)
             {
                 var membership = _unitOfWork.MembershipRepository.Read().Where(m => m.UserId == user.Id).FirstOrDefault();
                 if (membership != null)

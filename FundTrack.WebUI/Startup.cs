@@ -83,6 +83,7 @@ namespace FundTrack_WebUI
             services.AddScoped<IRequestedItemService, RequestedItemService>();
             services.AddScoped<IOfferedItemService, OfferedItemService>();
             services.AddScoped<IGoodsService, GoodsService>();
+            services.AddScoped<IUserResponseService, UserResponseService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

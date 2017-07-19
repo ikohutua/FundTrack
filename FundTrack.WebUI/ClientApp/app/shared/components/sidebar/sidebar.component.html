@@ -19,6 +19,7 @@
                     <li class="dropdown-header">Потреби</li>
                     <li><a (click)="redirectToAllRequests(1)">Всі Потреби</a></li>
                     <li><a (click)="redirectToManageRequestPage(1)">Створити</a></li>
+                    <li><a (click)="redirectToAllResponsesPage(1)">Відповіді</a></li>
                 </ul>
             </li>
             <li *ngIf="this.user && this.user.role!=null" class="dropdown">

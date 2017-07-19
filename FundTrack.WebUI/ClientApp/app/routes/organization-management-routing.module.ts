@@ -8,6 +8,8 @@ import { OrganizationDeleteRequestComponent } from "../components/organization-m
 import { OrganizationManadementEventEditComponent } from "../components/organization-management-events/organization-manadement-event-edit.component";
 import { OrganizationManagementEventAddComponent } from "../components/organization-management-events/organization-management-event-add.component";
 import { OrganizationManagementAllEventsComponent } from "../components/organization-management-events/organization-management-all-events.component";
+import { UserResponseComponent } from '../components/user-response/user-response.component';
+
 
 @NgModule({
     providers: [BannedOrgGuard],
@@ -23,7 +25,8 @@ import { OrganizationManagementAllEventsComponent } from "../components/organiza
         { path: 'organization/requests/:id', component: OrganizationManagementRequestComponent },
         { path: 'organization/request/manage/:idOrganization', component: OrganizationManageRequestComponent },
         { path: 'organization/request/manage/:idOrganization/:idRequest', component: OrganizationManageRequestComponent },
-        { path: 'organization/request/delete', component: OrganizationDeleteRequestComponent }
+        { path: 'organization/request/delete', component: OrganizationDeleteRequestComponent },
+        { path: 'organization/request/response/:idOrganization', component: UserResponseComponent }
     ])],
     exports: [RouterModule]
 })

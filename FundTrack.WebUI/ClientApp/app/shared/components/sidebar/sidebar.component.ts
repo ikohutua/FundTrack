@@ -19,15 +19,13 @@ export class SidebarComponent /*implements OnInit*/ {
 
     constructor(private _router: Router) { }
 
-    ngOnInit(): void
-    {
-        if (isBrowser)
-        {
+    ngOnInit(): void {
+        if (isBrowser) {
             if (localStorage.getItem(key.keyToken)) {
                 this.user = JSON.parse(localStorage.getItem(key.keyModel)) as AuthorizeUserModel;
             }
         }
-    } 
+    }
 
     /**
      * Hide or show sidebar
@@ -64,6 +62,14 @@ export class SidebarComponent /*implements OnInit*/ {
      */
     public redirectToAllRequests(idOrganization: number): void {
         this._router.navigate(['organization/requests/' + idOrganization.toString()]);
+    }
+
+    /**
+    *Redirect to 'all response page' in organization managment page
+    * @param idOrganization
+    */
+    public redirectToAllResponsesPage(idOrganization: number): void {
+        this._router.navigate(['organization/request/response/' + idOrganization.toString()]);
     }
 
     /**
