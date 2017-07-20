@@ -38,7 +38,7 @@ namespace FundTrack.DAL.Concrete
 
         public OfferedItemImage Get(int id)
         {
-            throw new NotImplementedException();
+            return this._context.OfferedItemImages.SingleOrDefault(a => a.Id == id);
         }
 
         public IEnumerable<OfferedItemImage> GetOfferedItemImageByOfferItemId(int offerItemId)

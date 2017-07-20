@@ -112,6 +112,7 @@ export class OfferDetailComponent implements OnInit {
         }
     }
     private saveFileInAws(fileInput: any): any {
+        debugger;
         var that = this;
         var maxFileSize = 4000000;
         let file = fileInput.target.files[0];
@@ -143,6 +144,14 @@ export class OfferDetailComponent implements OnInit {
         this.offerItem.image.splice(this.offerItem.image.findIndex(a => a.imageUrl == image.imageUrl), 1);
         if (image.isMain == true) {
             this.offerItem.image[0].isMain = true;
+        }
+    }
+    private setCurrentImageAsMain(image: OfferedItemImageViewModel) {
+        if (this.offerItem.image) {
+            for (var i = 0; i < this.offerItem.image.length; i++) {
+                this.offerItem.image[i].isMain = false;
+            }
+            image.isMain = true;
         }
     }
 }

@@ -59,7 +59,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "d88ed581162c7faef14d"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "7208ce54227a11537f97"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -787,7 +787,7 @@ module.exports = (__webpack_require__(4))(13);
 /* 4 */
 /***/ (function(module, exports) {
 
-module.exports = vendor_63c80cfe1838e98bc80c;
+module.exports = vendor_59e348384b03c3958476;
 
 /***/ }),
 /* 5 */
@@ -1706,7 +1706,7 @@ exports.StorageService = StorageService;
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EventEmitter; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_Subject__ = __webpack_require__(120);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_Subject__ = __webpack_require__(121);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_Subject___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_rxjs_Subject__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_Observable__);
@@ -2056,7 +2056,7 @@ function escapeRegExp(s) {
     return s.replace(/([.*+?^=!:${}()|[\]\/\\])/g, '\\$1');
 }
 //# sourceMappingURL=lang.js.map
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(121)))
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(119)))
 
 /***/ }),
 /* 22 */
@@ -12808,6 +12808,7 @@ var OfferDetailComponent = (function () {
         }
     };
     OfferDetailComponent.prototype.saveFileInAws = function (fileInput) {
+        debugger;
         var that = this;
         var maxFileSize = 4000000;
         var file = fileInput.target.files[0];
@@ -12837,6 +12838,14 @@ var OfferDetailComponent = (function () {
         this.offerItem.image.splice(this.offerItem.image.findIndex(function (a) { return a.imageUrl == image.imageUrl; }), 1);
         if (image.isMain == true) {
             this.offerItem.image[0].isMain = true;
+        }
+    };
+    OfferDetailComponent.prototype.setCurrentImageAsMain = function (image) {
+        if (this.offerItem.image) {
+            for (var i = 0; i < this.offerItem.image.length; i++) {
+                this.offerItem.image[i].isMain = false;
+            }
+            image.isMain = true;
         }
     };
     return OfferDetailComponent;
@@ -12901,6 +12910,7 @@ var OfferListComponent = (function () {
         ;
         this._offerService.getInitialData(this.user.id)
             .subscribe(function (offers) {
+            debugger;
             _this.offers = offers;
             _this.checkForMissingImages(_this.offers);
             _this.setMainImage(_this.offers);
@@ -12956,7 +12966,7 @@ var OfferListComponent = (function () {
         for (var i = 0; i < offers.length; i++) {
             for (var j = 0; j < offers[i].image.length; j++) {
                 var currentImage = offers[i].image[j];
-                if (currentImage.isMain = true) {
+                if (currentImage.isMain) {
                     offers[i].mainImage = currentImage;
                     break;
                 }
@@ -16025,19 +16035,19 @@ module.exports = Html5Entities;
 /* 119 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = (__webpack_require__(4))(21);
+module.exports = (__webpack_require__(4))(11);
 
 /***/ }),
 /* 120 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = (__webpack_require__(4))(85);
+module.exports = (__webpack_require__(4))(21);
 
 /***/ }),
 /* 121 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = (__webpack_require__(4))(9);
+module.exports = (__webpack_require__(4))(85);
 
 /***/ }),
 /* 122 */
@@ -143149,7 +143159,7 @@ require('../clients/browser_default');
 },{"../clients/browser_default":163,"./browser_loader":224,"./core":227}]},{},[480]);
 
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(121)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(119)))
 
 /***/ }),
 /* 196 */
@@ -143258,7 +143268,7 @@ exports = module.exports = __webpack_require__(1)();
 
 
 // module
-exports.push([module.i, "input[type=\"text\"] {\r\n    display: block;\r\n    margin: 0;\r\n    width: 100%;\r\n    font-family: sans-serif;\r\n    font-size: 18px;\r\n    box-shadow: none;\r\n}\r\n\r\n    input[type=\"text\"]:focus {\r\n        outline: none;\r\n    }\r\n\r\n.style-4 input[type=\"text\"] {\r\n    padding: 10px 10px 10px 10px;\r\n    border: none;\r\n    border-bottom: solid 2px #c9c9c9;\r\n    transition: border 0.3s;\r\n    margin-left:14px;\r\n    margin-right:20px;\r\n    width: 96%;\r\n}\r\n\r\n    .style-4 input[type=\"text\"]:focus,\r\n    .style-4 input[type=\"text\"].focus {\r\n        border-bottom: solid 2px #969696;\r\n    }\r\n\r\ntextarea {\r\n    width: 100%;\r\n    height: 100px;\r\n    padding: 12px 20px;\r\n    box-sizing: border-box;\r\n    border: 2px solid #ccc;\r\n    border-radius: 4px;\r\n    font-size: 16px;\r\n    resize: none;\r\n}\r\n.titlefield {\r\n    margin: 0,10px,0,0;\r\n    padding: 3px,4px,5px,6px;\r\n}\r\n\r\n.itemimage:hover{\r\n    opacity:0.7;\r\n}\r\n.has-error{\r\n    color: red;\r\n}\r\n\r\n.img-container {\r\n    position: relative;\r\n    display: inline-block; /* added */\r\n    overflow: hidden; /* added */\r\n    margin-right: 7px;\r\n    cursor: pointer;\r\n}\r\n\r\n    .img-container:hover img {\r\n        opacity: 0.5 !important;\r\n    }\r\n\r\n    .img-container:hover a {\r\n        opacity: 1; /* added */\r\n        top: 0; /* added */\r\n        z-index: 500;\r\n    }\r\n        /* added */\r\n        .img-container:hover a span {\r\n            color: red;\r\n            font-size: 25px;\r\n            top: 50%;\r\n            position: absolute;\r\n            left: 0;\r\n            right: 0;\r\n            transform: translateY(-50%);\r\n        }\r\n    /* added */\r\n    .img-container a {\r\n        display: inline-block;\r\n        position: absolute;\r\n        top: -100%;\r\n        opacity: 0;\r\n        left: 10px;\r\n        bottom: 0;\r\n        right: 0;\r\n        text-align: left;\r\n        color: inherit;\r\n    }\r\n\r\n", ""]);
+exports.push([module.i, "input[type=\"text\"] {\r\n    display: block;\r\n    margin: 0;\r\n    width: 100%;\r\n    font-family: sans-serif;\r\n    font-size: 18px;\r\n    box-shadow: none;\r\n}\r\n\r\n    input[type=\"text\"]:focus {\r\n        outline: none;\r\n    }\r\n\r\n.style-4 input[type=\"text\"] {\r\n    padding: 10px 10px 10px 10px;\r\n    border: none;\r\n    border-bottom: solid 2px #c9c9c9;\r\n    transition: border 0.3s;\r\n    margin-left:14px;\r\n    margin-right:20px;\r\n    width: 96%;\r\n}\r\n\r\n    .style-4 input[type=\"text\"]:focus,\r\n    .style-4 input[type=\"text\"].focus {\r\n        border-bottom: solid 2px #969696;\r\n    }\r\n\r\ntextarea {\r\n    width: 100%;\r\n    height: 100px;\r\n    padding: 12px 20px;\r\n    box-sizing: border-box;\r\n    border: 2px solid #ccc;\r\n    border-radius: 4px;\r\n    font-size: 16px;\r\n    resize: none;\r\n}\r\n.titlefield {\r\n    margin: 0,10px,0,0;\r\n    padding: 3px,4px,5px,6px;\r\n}\r\n\r\n.itemimage:hover{\r\n    opacity:0.7;\r\n}\r\n.has-error{\r\n    color: red;\r\n}\r\n.mainimage {\r\n    padding: 5px;\r\n    border: 5px solid #021a40;\r\n    background-color: #1959af;\r\n}\r\n\r\n.ismain {\r\n    border: 20px solid #ddd;\r\n    border-radius: 4px;\r\n    padding: 5px;\r\n}\r\n.img-container {\r\n    position: relative;\r\n    display: inline-block; \r\n    overflow: hidden; \r\n    margin-right: 7px;\r\n    cursor: pointer;\r\n}\r\n\r\n    .img-container:hover img {\r\n        opacity: 0.5 !important;\r\n    }\r\n    .img-container a span {\r\n        color: red;\r\n        font-size: 25px;\r\n        top: 10%;\r\n        position: absolute;\r\n        left: 0;\r\n        right: 0;\r\n        transform: translateY(-50%);\r\n    }\r\n.makemain {\r\n    position: absolute;\r\n    top: 110px;\r\n    right: 25px;\r\n    font-size: 18px;\r\n}\r\n\r\n", ""]);
 
 // exports
 
@@ -143999,13 +144009,13 @@ module.exports = "<div class=\"row\">\r\n    <router-outlet></router-outlet>\r\n
 /* 240 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"well container-fluid\">\r\n    <spinner [showSpinner]=\"showUserRegistrationSpinner\"></spinner>\r\n    <section>\r\n        <div class=\"panel-heading\">\r\n            <h3><u>{{header}}</u></h3>\r\n        </div>\r\n        <div class=\"input-list style-4 clearfix\">\r\n            <h4 style=\"margin-left:15px;\">Заголовок</h4>\r\n            <input type=\"text\" class=\"titlefield\" [(ngModel)]=\"this.offerItem.name\" name=\"name\" required maxlength=\"100\" #name=\"ngModel\">\r\n            <div style=\"padding-left:15px;\" *ngIf=\"name.errors && (name.dirty || name.touched)\">\r\n                <div [hidden]=\"!name.errors.required\">\r\n                    <span class=\"has-error\">Заголовок є обов'язковим</span>\r\n                </div>\r\n                <div [hidden]=\"!name.errors.maxlength\">\r\n                    Довжина не може перевищувати 100 символів\r\n                </div>\r\n            </div>\r\n            <div class=\"col-md-12\">\r\n                <div class=\"col-md-6\" style=\"margin-left:-13px;\">\r\n                    <h4>Категорія</h4>\r\n                </div>\r\n                <div class=\"col-md-6 \">\r\n                    <h4>Підкатегорія</h4>\r\n                </div>\r\n            </div>\r\n            <div>\r\n                <div class=\"col-md-5\">\r\n                    <select [(ngModel)]=\"_selectedType\" class=\"mdb-select\" #type>\r\n                        <option selected=\"selected\">Виберіть тип</option>\r\n                        <option *ngFor=\"let goodType of _goodsTypes\"\r\n                                [ngValue]=\"goodType\">\r\n                            {{goodType.name}}\r\n                        </option>\r\n                    </select>\r\n                </div>\r\n                <div class=\"col-md-5 col-md-push-1\" style=\"margin-left:-13px;\">\r\n                    <select [(ngModel)]=\"offerItem.goodsCategoryId\">\r\n                        <option selected=\"selected\">Виберіть категорію</option>\r\n                        <option *ngFor=\"let category of _selectedType.typeCategories\"\r\n                                [value]=\"category.id\">\r\n                            {{category.name}}\r\n                        </option>\r\n                    </select>\r\n                </div>\r\n            </div>\r\n            <div class=\"col-md-12\">\r\n                <h4>Опис</h4>\r\n                <textarea maxlength=\"2000\" [(ngModel)]=\"this.offerItem.description\" #offerItemDescription id=\"offerItemDescription\"></textarea>\r\n                <small class=\"form-text text-muted\"><code>{{offerItemDescription.value.length}}</code> з <code>{{maxDescriptionLength}}</code> символів</small>\r\n            </div>\r\n            <div class=\"col-xs-12\" style=\"height:20px;\"></div>\r\n            <div class=\"col-md-12\">\r\n                <div class=\"img-container\">\r\n                    <img src='https://s3.eu-central-1.amazonaws.com/fundtrack/default-placeholder.png' (click)=\"imageInput1.click()\" class=\"avatar img-responsive img-thumbnail itemimage\" style=\"border:none\" alt=\"avatar\" width=\"126\">\r\n                    <input type=\"file\" (change)=\"saveFileInAws($event)\" #imageInput1 accept=\".png,.jpg\" class=\"text-center center-block well well-sm hidden\">\r\n                </div>\r\n                <div *ngFor=\"let image of _images\" style=\"display:inline-block\">\r\n                    <div class=\"img-container\">\r\n                        <img src=\"{{image.imageUrl}}\" class=\"avatar img-responsive img-thumbnail itemimage\" style=\"border:none\" alt=\"avatar\" width=\"126\">\r\n                        <a><span class=\"glyphicon glyphicon-remove\"></span></a>\r\n                        <a (click)=\"deleteCurrentImage(image)\"><span id=\"setmain\" class=\"glyphicon glyphicon-pencil\"></span></a>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n            <!--<div class=\"col-md-12\" style=\"margin:10px 10px 10px 10px\">\r\n                <h4>Контактні дані</h4>\r\n                <hr />\r\n                <div class=\"col-md-4\">\r\n                    <label style=\"padding-left:12px\" for=\"contactName\"><span style=\"font-size:medium;\">Контактна особа</span></label>\r\n                    <input id=\"contacts\" class=\"contacts\" type=\"text\" name=\"contactName\" [(ngModel)]=\"this.offerItem.contactName\" />\r\n                </div>\r\n                <div class=\"col-md-4\">\r\n                    <label style=\"padding-left:12px\" for=\"location\"><span style=\"font-size:medium;\">Місцезнаходження</span></label>\r\n                    <input id=\"location\" class=\"contacts\" type=\"text\" name=\"location\" [(ngModel)]=\"this.offerItem.contactAddress\" />\r\n                </div>\r\n                <div class=\"col-md-4\">\r\n                    <label style=\"padding-left:12px\" for=\"phone\"><span style=\"font-size:medium;\">Телефон</span></label>\r\n                    <input id=\"phone\" class=\"contacts\" type=\"text\" name=\"phone\" [(ngModel)]=\"this.offerItem.contactPhone\" />\r\n                </div>\r\n            </div>-->\r\n            <div class=\"col-md-12\">\r\n                <button style=\"padding:5px 10px 5px 10px\" type=\"submit\" class=\"btn btn-success btn-lg pull-right\" (click)=\"submit()\">Зберегти і повернутись</button>\r\n            </div>\r\n        </div>\r\n    </section>\r\n</div>\r\n";
+module.exports = "<div class=\"well container-fluid\">\r\n    <spinner [showSpinner]=\"showUserRegistrationSpinner\"></spinner>\r\n    <section>\r\n        <div class=\"panel-heading\">\r\n            <h3><u>{{header}}</u></h3>\r\n        </div>\r\n        <div class=\"input-list style-4 clearfix\">\r\n            <h4 style=\"margin-left:15px;\">Заголовок</h4>\r\n            <input type=\"text\" class=\"titlefield form-control\" [(ngModel)]=\"this.offerItem.name\" name=\"name\" required maxlength=\"100\" #name=\"ngModel\">\r\n            <div style=\"padding-left:15px;\" *ngIf=\"name.errors && (name.dirty || name.touched)\">\r\n                <div [hidden]=\"!name.errors.required\">\r\n                    <span class=\"has-error\">Заголовок є обов'язковим</span>\r\n                </div>\r\n                <div [hidden]=\"!name.errors.maxlength\">\r\n                    Довжина не може перевищувати 100 символів\r\n                </div>\r\n            </div>\r\n            <div class=\"col-md-12\">\r\n                <div class=\"col-md-6\" style=\"margin-left:-13px;\">\r\n                    <h4>Категорія</h4>\r\n                </div>\r\n                <div class=\"col-md-6 \">\r\n                    <h4>Підкатегорія</h4>\r\n                </div>\r\n            </div>\r\n            <div>\r\n                <div class=\"col-md-5\">\r\n                    <select [(ngModel)]=\"_selectedType\" class=\"mdb-select form-control\" name=\"type\" required #type=\"ngModel\">\r\n                        <option selected=\"\"></option>\r\n                        <option *ngFor=\"let goodType of _goodsTypes\"\r\n                                [ngValue]=\"goodType\">\r\n                            {{goodType.name}}\r\n                        </option>\r\n                    </select>\r\n                    <div [hidden]=\"type.valid || type.untouched\" class=\"has-error\">\r\n                        Виберіть тип\r\n                    </div>\r\n                </div>\r\n                <div class=\"col-md-5 col-md-push-1\" style=\"margin-left:-13px;\">\r\n                    <select [(ngModel)]=\"offerItem.goodsCategoryId\" class=\"mdb-select form-control\" name=\"category\" required #category=\"ngModel\">\r\n                        <option selected=\"\"></option>\r\n                        <option *ngFor=\"let category of _selectedType.typeCategories\"\r\n                                [ngValue]=\"category.id\">\r\n                            {{category.name}}\r\n                        </option>\r\n                    </select>\r\n                    <div [hidden]=\"category.valid || category.untouched\" class=\"has-error\">\r\n                        Виберіть категорію\r\n                    </div>\r\n                </div>\r\n            </div>\r\n            <div class=\"col-md-12\">\r\n                <h4>Опис</h4>\r\n                <textarea required class=\"form-control\" name=\"description\" maxlength=\"2000\" [(ngModel)]=\"this.offerItem.description\" #offerItemDescription id=\"offerItemDescription\" #description=\"ngModel\"></textarea>\r\n                <div [hidden]=\"description.valid || description.untouched\" class=\"has-error\">\r\n                   Опис є обов'язковим\r\n                </div>\r\n                <small class=\"form-text text-muted\"><code>{{offerItemDescription.value.length}}</code> з <code>{{maxDescriptionLength}}</code> символів</small>\r\n            </div>\r\n            <div class=\"col-xs-12\" style=\"height:20px;\"></div>\r\n            <div class=\"col-md-12\">\r\n                <div class=\"img-container\">\r\n                    <img src='https://s3.eu-central-1.amazonaws.com/fundtrack/default-placeholder.png' (click)=\"imageInput1.click()\" class=\"avatar img-responsive img-thumbnail itemimage\" style=\"border:none\" alt=\"avatar\" width=\"126\">\r\n                    <input type=\"file\" (change)=\"saveFileInAws($event)\" #imageInput1 accept=\".png,.jpg\" class=\"text-center center-block well well-sm hidden\">\r\n                </div>\r\n                <div *ngFor=\"let image of _images\" style=\"display:inline-block\">\r\n                    <div class=\"img-container\">\r\n                        <img src=\"{{image.imageUrl}}\" [ngClass]=\"{'mainimage': image.isMain==true}\" class=\"avatar img-responsive img-thumbnail itemimage\" style=\"border:none\" alt=\"avatar\" width=\"126\">\r\n                        <a title=\"Видалити малюнок\" (click)=\"deleteCurrentImage(image)\"><span class=\"glyphicon glyphicon-remove\"></span></a>\r\n                        <a title=\"Зробити головним\" class=\"makemain\" (click)=\"setCurrentImageAsMain(image)\"><span class=\"glyphicon glyphicon-edit\" style=\"color:blue\"></span></a>\r\n                        <!--<div>\r\n                            <a><span id=\"setmain\" class=\"glyphicon glyphicon-pencil\"></span></a>\r\n                        </div>-->\r\n                        <!--<div style=\"position:absolute; z-index:9999999\">\r\n                            <a (click)=\"deleteCurrentImage(image)\"><span class=\"glyphicon glyphicon-remove\"></span></a>\r\n                        </div>-->\r\n                    </div>\r\n                </div>\r\n            </div>\r\n            <!--<div class=\"col-md-12\" style=\"margin:10px 10px 10px 10px\">\r\n                <h4>Контактні дані</h4>\r\n                <hr />\r\n                <div class=\"col-md-4\">\r\n                    <label style=\"padding-left:12px\" for=\"contactName\"><span style=\"font-size:medium;\">Контактна особа</span></label>\r\n                    <input id=\"contacts\" class=\"contacts\" type=\"text\" name=\"contactName\" [(ngModel)]=\"this.offerItem.contactName\" />\r\n                </div>\r\n                <div class=\"col-md-4\">\r\n                    <label style=\"padding-left:12px\" for=\"location\"><span style=\"font-size:medium;\">Місцезнаходження</span></label>\r\n                    <input id=\"location\" class=\"contacts\" type=\"text\" name=\"location\" [(ngModel)]=\"this.offerItem.contactAddress\" />\r\n                </div>\r\n                <div class=\"col-md-4\">\r\n                    <label style=\"padding-left:12px\" for=\"phone\"><span style=\"font-size:medium;\">Телефон</span></label>\r\n                    <input id=\"phone\" class=\"contacts\" type=\"text\" name=\"phone\" [(ngModel)]=\"this.offerItem.contactPhone\" />\r\n                </div>\r\n            </div>-->\r\n            <div class=\"col-md-12\">\r\n                <button [disabled]=\"name.invalid || description.invalid || type.invalid || category.invalid\" style=\"padding:5px 10px 5px 10px\" type=\"submit\" class=\"btn btn-success btn-lg pull-right\" (click)=\"submit()\">Зберегти і повернутись</button>\r\n            </div>\r\n        </div>\r\n    </section>\r\n</div>\r\n";
 
 /***/ }),
 /* 241 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"well container-fluid\" *ngFor=\"let offer of offers\">\r\n    <div class=\"row\">\r\n        <div class=\"col-md-3\" *ngIf=\"offer.image\">\r\n            <img class=\".img-thumbnail\" height=\"200\" width=\"200\" src=\"{{offer.mainImage.imageUrl}}\" alt=\"itemImage\" />\r\n        </div>\r\n        <div class=\"col-md-7\">\r\n            <div class=\"col-md-12\">\r\n                <h3> {{offer.name}}</h3>\r\n            </div>\r\n            <div class=\"col-md-12\">\r\n                {{offer.description|truncate : 350}}\r\n            </div>\r\n            <div class=\"col-md-12\" style=\"margin-top:40px;margin-left:-10px;\">\r\n                <div class=\"col-md-4\">\r\n                    <b>Дата створення:</b> {{date}}\r\n                </div>\r\n                <div class=\"col-md-2\">\r\n                    <b>Статус:</b> <b><span style=\"color:#46b2d6;\">{{offer.statusName}}</span></b>\r\n                </div>\r\n                <div class=\"col-md-6 col-md-push-2\">\r\n                        <b>Категорія:</b><br /><b><span>{{offer.goodsTypeName}} - {{offer.goodsCategoryName}}</span></b>\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"col-md-1\">\r\n            <div class=\"btn-group btn-group-vertical controlbutton\">\r\n                <button class=\"btn btn-default\" (click)=\"goToEditPage(offer)\">Змінити</button>\r\n                <button class=\"btn btn-default\">Деактивувати</button>\r\n                <button class=\"btn btn-danger\" (click)=\"deleteConfirm(offer)\">Видалити</button>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n<!--<div class=\"well container-fluid\" *ngIf=\"!=offers\">\r\n    <h3>У Вас немає жодної доданої речі</h3>\r\n</div>-->";
+module.exports = "<div class=\"well container-fluid\" *ngFor=\"let offer of offers\">\r\n    <div class=\"row\">\r\n        <div class=\"col-md-3\" *ngIf=\"offer.image\">\r\n            <img class=\".img-thumbnail\" height=\"200\" width=\"200\" src=\"{{offer.mainImage.imageUrl}}\" alt=\"itemImage\" />\r\n        </div>\r\n        <div class=\"col-md-7\">\r\n            <div class=\"col-md-12\">\r\n                <h3> {{offer.name}}</h3>\r\n            </div>\r\n            <div class=\"col-md-12\">\r\n                {{offer.description|truncate : 350}}\r\n            </div>\r\n            <div class=\"col-md-12\" style=\"margin-top:40px;margin-left:-10px;\">\r\n                <div class=\"col-md-4\">\r\n                    <b>Дата створення:</b> {{date}}\r\n                </div>\r\n                <div class=\"col-md-2\">\r\n                    <b>Статус:</b> <b><span style=\"color:#2db50b\">{{offer.statusName}}</span></b>\r\n                </div>\r\n                <div class=\"col-md-6 col-md-push-2\">\r\n                        <b>Категорія:</b><br /><b><span>{{offer.goodsTypeName}} - {{offer.goodsCategoryName}}</span></b>\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"col-md-1\">\r\n            <div class=\"btn-group btn-group-vertical controlbutton\">\r\n                <button class=\"btn btn-default\" (click)=\"goToEditPage(offer)\">Змінити</button>\r\n                <button class=\"btn btn-default\">Деактивувати</button>\r\n                <button class=\"btn btn-danger\" (click)=\"deleteConfirm(offer)\">Видалити</button>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n<!--<div class=\"well container-fluid\" *ngIf=\"!=offers\">\r\n    <h3>У Вас немає жодної доданої речі</h3>\r\n</div>-->";
 
 /***/ }),
 /* 242 */
@@ -144572,7 +144582,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var Subscriber_1 = __webpack_require__(119);
+var Subscriber_1 = __webpack_require__(120);
 /* tslint:enable:max-line-length */
 /**
  * Perform a side effect for every emission on the source Observable, but return
@@ -144837,7 +144847,7 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var Subscriber_1 = __webpack_require__(119);
+var Subscriber_1 = __webpack_require__(120);
 /**
  * @return {Observable<any[]>|WebSocketSubject<T>|Observable<T>}
  * @method toArray
@@ -145689,7 +145699,7 @@ module.exports = (__webpack_require__(4))(196);
 /* 329 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = (__webpack_require__(4))(31);
+module.exports = (__webpack_require__(4))(30);
 
 /***/ }),
 /* 330 */

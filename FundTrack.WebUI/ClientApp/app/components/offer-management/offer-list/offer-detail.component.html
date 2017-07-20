@@ -6,7 +6,7 @@
         </div>
         <div class="input-list style-4 clearfix">
             <h4 style="margin-left:15px;">Заголовок</h4>
-            <input type="text" class="titlefield" [(ngModel)]="this.offerItem.name" name="name" required maxlength="100" #name="ngModel">
+            <input type="text" class="titlefield form-control" [(ngModel)]="this.offerItem.name" name="name" required maxlength="100" #name="ngModel">
             <div style="padding-left:15px;" *ngIf="name.errors && (name.dirty || name.touched)">
                 <div [hidden]="!name.errors.required">
                     <span class="has-error">Заголовок є обов'язковим</span>
@@ -25,27 +25,36 @@
             </div>
             <div>
                 <div class="col-md-5">
-                    <select [(ngModel)]="_selectedType" class="mdb-select" #type>
-                        <option selected="selected">Виберіть тип</option>
+                    <select [(ngModel)]="_selectedType" class="mdb-select form-control" name="type" required #type="ngModel">
+                        <option selected=""></option>
                         <option *ngFor="let goodType of _goodsTypes"
                                 [ngValue]="goodType">
                             {{goodType.name}}
                         </option>
                     </select>
+                    <div [hidden]="type.valid || type.untouched" class="has-error">
+                        Виберіть тип
+                    </div>
                 </div>
                 <div class="col-md-5 col-md-push-1" style="margin-left:-13px;">
-                    <select [(ngModel)]="offerItem.goodsCategoryId">
-                        <option selected="selected">Виберіть категорію</option>
+                    <select [(ngModel)]="offerItem.goodsCategoryId" class="mdb-select form-control" name="category" required #category="ngModel">
+                        <option selected=""></option>
                         <option *ngFor="let category of _selectedType.typeCategories"
-                                [value]="category.id">
+                                [ngValue]="category.id">
                             {{category.name}}
                         </option>
                     </select>
+                    <div [hidden]="category.valid || category.untouched" class="has-error">
+                        Виберіть категорію
+                    </div>
                 </div>
             </div>
             <div class="col-md-12">
                 <h4>Опис</h4>
-                <textarea maxlength="2000" [(ngModel)]="this.offerItem.description" #offerItemDescription id="offerItemDescription"></textarea>
+                <textarea required class="form-control" name="description" maxlength="2000" [(ngModel)]="this.offerItem.description" #offerItemDescription id="offerItemDescription" #description="ngModel"></textarea>
+                <div [hidden]="description.valid || description.untouched" class="has-error">
+                   Опис є обов'язковим
+                </div>
                 <small class="form-text text-muted"><code>{{offerItemDescription.value.length}}</code> з <code>{{maxDescriptionLength}}</code> символів</small>
             </div>
             <div class="col-xs-12" style="height:20px;"></div>
@@ -56,9 +65,15 @@
                 </div>
                 <div *ngFor="let image of _images" style="display:inline-block">
                     <div class="img-container">
-                        <img src="{{image.imageUrl}}" class="avatar img-responsive img-thumbnail itemimage" style="border:none" alt="avatar" width="126">
-                        <a><span class="glyphicon glyphicon-remove"></span></a>
-                        <a (click)="deleteCurrentImage(image)"><span id="setmain" class="glyphicon glyphicon-pencil"></span></a>
+                        <img src="{{image.imageUrl}}" [ngClass]="{'mainimage': image.isMain==true}" class="avatar img-responsive img-thumbnail itemimage" style="border:none" alt="avatar" width="126">
+                        <a title="Видалити малюнок" (click)="deleteCurrentImage(image)"><span class="glyphicon glyphicon-remove"></span></a>
+                        <a title="Зробити головним" class="makemain" (click)="setCurrentImageAsMain(image)"><span class="glyphicon glyphicon-edit" style="color:blue"></span></a>
+                        <!--<div>
+                            <a><span id="setmain" class="glyphicon glyphicon-pencil"></span></a>
+                        </div>-->
+                        <!--<div style="position:absolute; z-index:9999999">
+                            <a (click)="deleteCurrentImage(image)"><span class="glyphicon glyphicon-remove"></span></a>
+                        </div>-->
                     </div>
                 </div>
             </div>
@@ -79,7 +94,7 @@
                 </div>
             </div>-->
             <div class="col-md-12">
-                <button style="padding:5px 10px 5px 10px" type="submit" class="btn btn-success btn-lg pull-right" (click)="submit()">Зберегти і повернутись</button>
+                <button [disabled]="name.invalid || description.invalid || type.invalid || category.invalid" style="padding:5px 10px 5px 10px" type="submit" class="btn btn-success btn-lg pull-right" (click)="submit()">Зберегти і повернутись</button>
             </div>
         </div>
     </section>

@@ -36,6 +36,7 @@ export class OfferListComponent implements OnInit {
         };
         this._offerService.getInitialData(this.user.id)
             .subscribe(offers => {
+                debugger;
                 this.offers = offers;
                 this.checkForMissingImages(this.offers);
                 this.setMainImage(this.offers);
@@ -94,7 +95,7 @@ export class OfferListComponent implements OnInit {
         for (var i = 0; i < offers.length; i++) {
             for (var j = 0; j < offers[i].image.length; j++) {
                 let currentImage = offers[i].image[j];
-                if (currentImage.isMain = true) {
+                if (currentImage.isMain) {
                     offers[i].mainImage = currentImage;
                     break;
                 }

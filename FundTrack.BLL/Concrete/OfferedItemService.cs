@@ -228,10 +228,14 @@ namespace FundTrack.BLL.Concrete
         }
         public IEnumerable<OfferedItemImageViewModel> SetOfferedItemPictures(IEnumerable<OfferedItemImageViewModel> images, OfferedItem item)
         {
-            var mainImage = images.Where(a => a.IsMain == true).Take(1);
+            var mainImage = images.Where(a => a.IsMain == true).Take(1).ToArray();
             if (mainImage.Count()!=0)
             {
                 this.ClearMainImageStatus(item);
+                if (mainImage[0].Id!=0 && mainImage[0].IsMain==true)
+                {
+                    this._unitOfWork.OfferImagesRepository.Get(mainImage[0].Id).IsMain=true;
+                }
             }
             var newImages = images.Where(a => a.Id == 0).Select(
                 image => new OfferedItemImage
