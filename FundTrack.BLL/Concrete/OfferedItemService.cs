@@ -34,10 +34,8 @@ namespace FundTrack.BLL.Concrete
                     item.User = this._unitOfWork.UsersRepository.GetUserById(model.UserId);
                     item.GoodsCategory = this._unitOfWork.GoodsCategoryRepository.GetGoodsCategoryById(model.GoodsCategoryId);
                     item.Status = this._unitOfWork.StatusRepository.GetStatusByName(initialStatus);
-                    this._unitOfWork.OfferedItemRepository.Create(item);
-                    this._unitOfWork.SaveChanges();
-                    item = this._unitOfWork.OfferedItemRepository.Read().Where(a => a.Description == model.Description && a.Name == model.Name).FirstOrDefault();
-                    item.OfferedItemImages = this.SetPictures(model, item);
+                    var createdItem=this._unitOfWork.OfferedItemRepository.Create(item);
+                    this.SetNewPictures(model, createdItem);
                     this._unitOfWork.SaveChanges();
                 }
                 return model;
@@ -64,8 +62,7 @@ namespace FundTrack.BLL.Concrete
                     item.Name = model.Name;
                     item.GoodsCategory = this._unitOfWork.GoodsCategoryRepository.GetGoodsCategoryById(model.GoodsCategoryId);
                     item.GoodsCategoryId = item.GoodsCategory.Id;
-                    this._unitOfWork.OfferImagesRepository.DeleteOfferedItemImagesByOfferedItemId(model.Id);
-                    item.OfferedItemImages = this.SetPictures(model, item);
+                    this.SetOfferedItemPictures(model.Image, item);
                     this._unitOfWork.SaveChanges();
                 }
                 return model;
@@ -92,7 +89,7 @@ namespace FundTrack.BLL.Concrete
         public IEnumerable<OfferedItemViewModel> GetAllOfferedItemViewModels()
         {
             List<OfferedItemViewModel> list = new List<OfferedItemViewModel>();
-            foreach (var item in this._unitOfWork.OfferedItemRepository.Read().OrderByDescending(a=>a.Id))
+            foreach (var item in this._unitOfWork.OfferedItemRepository.Read().OrderByDescending(a => a.Id))
             {
                 list.Add(this.InitializeOfferedItemViewModel(item));
             }
@@ -116,7 +113,7 @@ namespace FundTrack.BLL.Concrete
             model.GoodsTypeName = this._unitOfWork.GoodsTypeRepository.GetGoodsTypeById(item.GoodsCategory.GoodsTypeId).Name;
             model.GoodsCategoryId = this._unitOfWork.GoodsCategoryRepository.GetGoodsCategoryByName(model.GoodsCategoryName).Id;
             model.GoodsTypeId = this._unitOfWork.GoodsTypeRepository.GetGoodsTypeByName(model.GoodsTypeName).Id;
-            model.ImageUrl = GetPictures(item);
+            model.Image = this.GetOfferedItemPictures(id).ToArray();
             return model;
         }
         /// <summary>
@@ -129,18 +126,18 @@ namespace FundTrack.BLL.Concrete
             List<OfferedItemViewModel> list = new List<OfferedItemViewModel>();
             foreach (var item in this._unitOfWork.OfferedItemRepository.Read().Where(a => a.UserId == userId))
             {
-                list.Add(this.InitializeOfferedItemViewModel(item));
+                list.Add(this.InitializeOfferedItemViewModel2(item));
             }
             return list;
         }
-        public IEnumerable<OfferedItemViewModel> GetPagedUserOfferedItems(int userId, int itemsToLoad, int itemsToSkip)
+        public IEnumerable<OfferedItemViewModel> GetPagedUserOfferedItems(int userId, int itemsToLoad, int offset)
         {
             List<OfferedItemViewModel> list = new List<OfferedItemViewModel>();
             foreach (var item in this._unitOfWork.OfferedItemRepository.Read().Where(a => a.UserId == userId))
             {
-                list.Add(this.InitializeOfferedItemViewModel(item));
+                list.Add(this.InitializeOfferedItemViewModel2(item));
             }
-            return GetPageItems(list, itemsToLoad, itemsToSkip);
+            return GetPageItems(list, itemsToLoad, offset);
         }
         /// <summary>
         /// Initializes offered item view model based on offer item entity
@@ -160,28 +157,55 @@ namespace FundTrack.BLL.Concrete
             model.ImageUrl = item.OfferedItemImages.Select(a => a.ImageUrl).ToArray();
             return model;
         }
+
+        public OfferedItemViewModel InitializeOfferedItemViewModel2(OfferedItem item)
+        {
+            OfferedItemViewModel model = new OfferedItemViewModel()
+            {
+                Description = item.Description,
+                Name = item.Name,
+                Id = item.Id,
+                GoodsCategoryName = item.GoodsCategory.Name,
+                StatusName = item.Status.StatusName,
+                UserId = item.UserId,
+                GoodsTypeName = item.GoodsCategory.GoodsType.Name
+            };
+            model.Image = this._unitOfWork.OfferImagesRepository.Read().Where(a => a.OfferedItemId == model.Id)
+                .Select(a => new OfferedItemImageViewModel
+                {
+                    ImageUrl = a.ImageUrl,
+                    IsMain = a.IsMain,
+                    OfferedItemId = model.Id,
+                    Id = a.Id
+                })
+                .ToArray();
+            return model;
+        }
+
+
+
+
+
+
         /// <summary>
         /// Sets specified images of specified offer item
         /// </summary>
         /// <param name="model">Offer item view model</param>
         /// <param name="item">Offered item entity</param>
         /// <returns>List of offered item images</returns>
-        public List<OfferedItemImage> SetPictures(OfferedItemViewModel model, OfferedItem item)
+        public OfferedItemImageViewModel[] SetNewPictures(OfferedItemViewModel model, OfferedItem item)
         {
-            List<OfferedItemImage> picList = new List<OfferedItemImage>();
-            for (int i = 0; i < model.ImageUrl.Length; i++)
+            foreach (var thing in model.Image)
             {
-                OfferedItemImage image = new OfferedItemImage();
-                image.ImageUrl = model.ImageUrl[i];
-                image.OfferedItem = item;
-                image.OfferedItemId = item.Id;
-                if (i == 0)
+                var newImage = new OfferedItemImage
                 {
-                    image.IsMain = true;
-                }
-                picList.Add(image);
+                    ImageUrl=thing.ImageUrl,
+                    IsMain=thing.IsMain,
+                    OfferedItemId=item.Id
+                };
+                this._unitOfWork.OfferImagesRepository.Create(newImage);
             }
-            return picList;
+            return model.Image;
         }
         /// <summary>
         /// Gets pictures of specified offered item
@@ -191,12 +215,84 @@ namespace FundTrack.BLL.Concrete
         public string[] GetPictures(OfferedItem item)
         {
             List<string> picList = new List<string>();
-            var images = this._unitOfWork.OfferImagesRepository.Read().Where(a => a.OfferedItemId==item.Id);
+            var images = this._unitOfWork.OfferImagesRepository.Read().Where(a => a.OfferedItemId == item.Id);
             foreach (var thing in images)
             {
                 picList.Add(thing.ImageUrl);
             }
             return picList.ToArray();
         }
+        public IEnumerable<OfferedItemImageViewModel> GetOfferedItemPictures(int itemId)
+        {
+            return this.ConvertRequestItemImageModelList(this._unitOfWork.OfferImagesRepository.GetOfferedItemImageByOfferItemId(itemId));
+        }
+        public IEnumerable<OfferedItemImageViewModel> SetOfferedItemPictures(IEnumerable<OfferedItemImageViewModel> images, OfferedItem item)
+        {
+            var mainImage = images.Where(a => a.IsMain == true).Take(1);
+            if (mainImage.Count()!=0)
+            {
+                this.ClearMainImageStatus(item);
+            }
+            var newImages = images.Where(a => a.Id == 0).Select(
+                image => new OfferedItemImage
+                {
+                    ImageUrl = image.ImageUrl,
+                    IsMain = image.IsMain,
+                    OfferedItemId = image.OfferedItemId,
+                    OfferedItem = item
+                }
+                );
+            IEnumerable<OfferedItemImage> incomingImages = images.Select(
+                image => new OfferedItemImage
+                {
+                    Id = image.Id,
+                    ImageUrl = image.ImageUrl,
+                    IsMain = image.IsMain,
+                    OfferedItemId = item.Id
+                }
+                ).ToList();
+            var missingImages = this._unitOfWork.OfferImagesRepository.GetOfferedItemImageByOfferItemId(item.Id).Except(incomingImages, new DAL.Comparers.OfferedItemImageComparator());
+            foreach (var stuff in missingImages)
+            {
+                this._unitOfWork.OfferImagesRepository.Delete(stuff.Id);
+            }
+            foreach (var picture in newImages)
+            {
+                this._unitOfWork.OfferImagesRepository.Create(picture);
+            }
+            
+            return images;
+        }
+
+        /// <summary>
+        /// Returns offer item image view models fro offered item image entities
+        /// </summary>
+        /// <param name="imageList"></param>
+        /// <returns></returns>
+        private IEnumerable<OfferedItemImageViewModel> ConvertRequestItemImageModelList(IEnumerable<OfferedItemImage> imageList)
+        {
+            IEnumerable<OfferedItemImageViewModel> images = imageList
+                    .Select(image => new OfferedItemImageViewModel
+                    {
+                        Id = image.Id,
+                        IsMain = image.IsMain,
+                        OfferedItemId=image.OfferedItemId,
+                        ImageUrl=image.ImageUrl
+                    });
+                    return images;
+        }
+        /// <summary>
+        /// Removes isMain flag from all images of specified Offer item
+        /// </summary>
+        /// <param name="item"></param>
+        private void ClearMainImageStatus(OfferedItem item)
+        {
+            var images=this._unitOfWork.OfferImagesRepository.GetOfferedItemImageByOfferItemId(item.Id);
+            foreach (var thing in images)
+            {
+                thing.IsMain = false;
+            }
+        }
+        
     }
 }

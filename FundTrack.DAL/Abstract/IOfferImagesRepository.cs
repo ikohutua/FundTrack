@@ -48,6 +48,12 @@ namespace FundTrack.DAL.Abstract
         /// </summary>
         /// <param name="offeredItemId">offered item id property value</param>
         void DeleteOfferedItemImagesByOfferedItemId(int offeredItemId);
+        /// <summary>
+        /// Gets all offered item images that has specified offer item id field
+        /// </summary>
+        /// <param name="offerItemId">offer item id</param>
+        /// <returns>collection of OfferedItemImages</returns>
+        IEnumerable<OfferedItemImage> GetOfferedItemImageByOfferItemId(int offerItemId);
 
     }
 }

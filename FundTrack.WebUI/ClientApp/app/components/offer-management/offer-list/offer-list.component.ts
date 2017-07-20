@@ -6,6 +6,7 @@ import { Router } from "@angular/router";
 import { isBrowser } from "angular2-universal";
 import * as key from '../../../shared/key.storage';
 import { AuthorizeUserModel } from "../../../view-models/concrete/authorized-user-info-view.model";
+import { OfferedItemImageViewModel } from "../../../view-models/concrete/offered-item-image-view.model";
 
 @Component({
     selector: 'offer-list',
@@ -22,6 +23,7 @@ export class OfferListComponent implements OnInit {
     private offers: OfferViewModel[] = new Array<OfferViewModel>();
     private _currentPage: number = 1;
     private _itemsPerPage: number = 4;
+    
     constructor(private _router: Router,
         private _offerService: UserOfferService) {
 
@@ -33,7 +35,12 @@ export class OfferListComponent implements OnInit {
             }
         };
         this._offerService.getInitialData(this.user.id)
-            .subscribe(offers => this.offers = offers);
+            .subscribe(offers => {
+                this.offers = offers;
+                this.checkForMissingImages(this.offers);
+                this.setMainImage(this.offers);
+            });
+        
     }
     public navigateToEdit(selected: OfferViewModel) {
         this._router.navigate(['add', selected.id]);
@@ -54,10 +61,12 @@ export class OfferListComponent implements OnInit {
         this._router.navigate(['offer-management/offerdetail', selected.id]);
     }
 
-    public getOfferedItemsOnScroll():void{
+    public getOfferedItemsOnScroll(): void{
         this._offerService.getPagedUserOffers(this.user.id, this._itemsPerPage, this._currentPage)
             .subscribe(offers => {
                 this.offers = this.offers.concat(offers);
+                this.checkForMissingImages(this.offers.splice(this._currentPage * this._itemsPerPage, this._currentPage * this._itemsPerPage + this._itemsPerPage));
+                this.setMainImage(this.offers);
             });
     }
 
@@ -67,6 +76,29 @@ export class OfferListComponent implements OnInit {
                 this._currentPage = this._currentPage + 1;
                 this.getOfferedItemsOnScroll();
             
+        }
+    }
+    private checkForMissingImages(offers: OfferViewModel[]): void {
+        for (var i = 0; i < this.offers.length; i++) {
+            if (this.offers[i].image.length == 0) {
+                let fakeImage = new OfferedItemImageViewModel();
+                fakeImage.id = 1;
+                fakeImage.imageUrl = 'https://s3.eu-central-1.amazonaws.com/fundtrack/default_image_placeholder.png';
+                fakeImage.isMain = true;
+                fakeImage.offeredItemId = this.offers[i].id;
+                this.offers[i].image.push(fakeImage);
+            }
+        }
+    }
+    private setMainImage(offers: OfferViewModel[]): void {
+        for (var i = 0; i < offers.length; i++) {
+            for (var j = 0; j < offers[i].image.length; j++) {
+                let currentImage = offers[i].image[j];
+                if (currentImage.isMain = true) {
+                    offers[i].mainImage = currentImage;
+                    break;
+                }
+            }
         }
     }
 }

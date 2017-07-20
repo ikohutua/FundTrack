@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace FundTrack.DAL.Entities
 {
@@ -40,5 +41,6 @@ namespace FundTrack.DAL.Entities
         /// Event navigation property
         /// </summary>
         public virtual OfferedItem OfferedItem { get; set; }
+
     }
 }

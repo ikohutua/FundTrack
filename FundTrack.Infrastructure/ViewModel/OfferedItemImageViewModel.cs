@@ -8,8 +8,9 @@ namespace FundTrack.Infrastructure.ViewModel
 {
     public class OfferedItemImageViewModel
     {
-        public int id { get; set; }
-        public string imageUrl { get; set; }
-        public int offeredItemId { get; set; }
+        public int Id { get; set; }
+        public string ImageUrl { get; set; }
+        public int OfferedItemId { get; set; }
+        public bool IsMain { get; set; }
     }
 }

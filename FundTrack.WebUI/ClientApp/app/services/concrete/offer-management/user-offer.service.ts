@@ -97,6 +97,7 @@ export class UserOfferService{
     public getPagedUserOffers(userId: number, itemsPerPage: number = 4, currentPage: number = 1): Observable<OfferViewModel[]> {
         return this._http.get(this._getPagedItemsUrl + '/' + userId + '/' + itemsPerPage + '/' + currentPage)
             .map((response: Response) => <OfferViewModel[]>response.json())
+            .do(data => console.log('ALL ' + JSON.stringify(data)))
             .catch(this.handleError);
     }
     public getInitialData(userId: number): Observable<OfferViewModel[]> {

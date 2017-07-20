@@ -8,8 +8,9 @@ export class OfferViewModel {
     goodsTypeName: string;
     goodsTypeId: number;
     id: number;
-    images: OfferedItemImageViewModel[] = [];
+    image = new Array<OfferedItemImageViewModel>();
     imageUrl = new Array<string>();
+    mainImage = new OfferedItemImageViewModel();
     name: string;
     statusName: string;
     userId: number;

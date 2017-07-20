@@ -8,7 +8,7 @@
             <h4 style="margin-left:15px;">Заголовок</h4>
             <input type="text" class="titlefield" [(ngModel)]="this.offerItem.name" name="name" required maxlength="100" #name="ngModel">
             <div style="padding-left:15px;" *ngIf="name.errors && (name.dirty || name.touched)">
-                <div  [hidden]="!name.errors.required">
+                <div [hidden]="!name.errors.required">
                     <span class="has-error">Заголовок є обов'язковим</span>
                 </div>
                 <div [hidden]="!name.errors.maxlength">
@@ -23,7 +23,7 @@
                     <h4>Підкатегорія</h4>
                 </div>
             </div>
-            <div >
+            <div>
                 <div class="col-md-5">
                     <select [(ngModel)]="_selectedType" class="mdb-select" #type>
                         <option selected="selected">Виберіть тип</option>
@@ -50,11 +50,17 @@
             </div>
             <div class="col-xs-12" style="height:20px;"></div>
             <div class="col-md-12">
-                <img src='https://s3.eu-central-1.amazonaws.com/fundtrack/default-placeholder.png' (click)="imageInput1.click()" class="avatar img-responsive img-thumbnail itemimage" style="border:none" alt="avatar"  width="126">
-                <input type="file" (change)="saveFileInAws($event)" #imageInput1 accept=".png,.jpg" class="text-center center-block well well-sm hidden">
-                <span *ngFor="let image of offerItem.images">
-                    <img src="{{image.imageUrl}}" class="avatar img-responsive img-thumbnail itemimage" style="border:none" alt="avatar" width="126">
-                </span>
+                <div class="img-container">
+                    <img src='https://s3.eu-central-1.amazonaws.com/fundtrack/default-placeholder.png' (click)="imageInput1.click()" class="avatar img-responsive img-thumbnail itemimage" style="border:none" alt="avatar" width="126">
+                    <input type="file" (change)="saveFileInAws($event)" #imageInput1 accept=".png,.jpg" class="text-center center-block well well-sm hidden">
+                </div>
+                <div *ngFor="let image of _images" style="display:inline-block">
+                    <div class="img-container">
+                        <img src="{{image.imageUrl}}" class="avatar img-responsive img-thumbnail itemimage" style="border:none" alt="avatar" width="126">
+                        <a><span class="glyphicon glyphicon-remove"></span></a>
+                        <a (click)="deleteCurrentImage(image)"><span id="setmain" class="glyphicon glyphicon-pencil"></span></a>
+                    </div>
+                </div>
             </div>
             <!--<div class="col-md-12" style="margin:10px 10px 10px 10px">
                 <h4>Контактні дані</h4>
@@ -72,7 +78,7 @@
                     <input id="phone" class="contacts" type="text" name="phone" [(ngModel)]="this.offerItem.contactPhone" />
                 </div>
             </div>-->
-            <div  class="col-md-12">
+            <div class="col-md-12">
                 <button style="padding:5px 10px 5px 10px" type="submit" class="btn btn-success btn-lg pull-right" (click)="submit()">Зберегти і повернутись</button>
             </div>
         </div>

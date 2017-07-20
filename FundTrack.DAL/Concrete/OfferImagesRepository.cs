@@ -19,7 +19,8 @@ namespace FundTrack.DAL.Concrete
 
         public OfferedItemImage Create(OfferedItemImage item)
         {
-            throw new NotImplementedException();
+            this._context.Add(item);
+            return item;
         }
 
         public void Delete(int id)
@@ -38,6 +39,12 @@ namespace FundTrack.DAL.Concrete
         public OfferedItemImage Get(int id)
         {
             throw new NotImplementedException();
+        }
+
+        public IEnumerable<OfferedItemImage> GetOfferedItemImageByOfferItemId(int offerItemId)
+        {
+            return this._context.OfferedItemImages.Where(a => a.OfferedItemId == offerItemId);
+                
         }
 
         public IEnumerable<OfferedItemImage> Read()

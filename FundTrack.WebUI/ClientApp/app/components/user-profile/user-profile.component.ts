@@ -290,6 +290,9 @@ export class UserProfileComponent implements OnInit {
         let uploadedFileName = this.user.login + '.' + this.getFileExtension(file.name);
         if (file.size != null && file.size < maxFileSize) {
             this.uploader.UploadImageToAmazon(file, uploadedFileName).then(function (data) {
+                if (!data.Location) {
+                    that.saveFileInAws(fileInput);
+                }
                 that.user.photoUrl = data.Location;
             })
         }

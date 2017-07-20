@@ -1,6 +1,8 @@
-﻿
-export class OfferedItemImageViewModel {
+﻿export class OfferedItemImageViewModel {
     id: number;
     imageUrl: string;
     offeredItemId: number;
+    isMain: boolean;
 }
+
+

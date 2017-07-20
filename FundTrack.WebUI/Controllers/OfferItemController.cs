@@ -78,7 +78,8 @@ namespace FundTrack.WebUI.Controllers
         [HttpGet("GetOfferedItemPortion/{userId}/{itemsLoadCount}/{itemsLoadRatio}")]
         public JsonResult GetOfferedItemPortion(int userId,int itemsLoadCount, int itemsLoadRatio)
         {
-            return Json(_offerService.GetPagedUserOfferedItems(userId, itemsLoadCount, itemsLoadRatio));
+            var result = Json(_offerService.GetPagedUserOfferedItems(userId, itemsLoadCount, itemsLoadRatio));
+            return result;
         }
     }
         
