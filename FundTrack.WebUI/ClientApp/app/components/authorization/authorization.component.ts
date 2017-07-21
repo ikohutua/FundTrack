@@ -8,12 +8,14 @@ import { AuthorizedUserInfoViewModel } from '../../view-models/concrete/authoriz
 import { AuthService } from "angular2-social-login";
 import * as keys from '../../shared/key.storage';
 import { LoginFacebookViewModel } from '../../view-models/concrete/login-facebook-view.model';
+import { StorageService } from "../../shared/item-storage-service";
+import { UserResponseService } from "../../services/concrete/organization-management/user-responses.service";
 
 @Component({
     template: require('./authorization.component.html'),
     styles: [require('./authorization.component.css')],
     host: { '(window:keydown)': 'hotkeys($event)' },
-    providers: [UserService]
+    providers: [UserService, UserResponseService]
 })
 export class AuthorizationComponent {
     private type: string = "password";
@@ -33,6 +35,8 @@ export class AuthorizationComponent {
     public constructor(private _authorizationService: UserService,
         private _router: Router,
         private _auth: AuthService,
+        private _storage: StorageService,
+        private _userResponseService: UserResponseService,
         private _ngZone: NgZone) {
     }
 
@@ -57,7 +61,7 @@ export class AuthorizationComponent {
         this.loginModel.login = "";
         this.loginModel.password = "";
         let userNamesFacebook;
-        let userForAuthorization: LoginFacebookViewModel = new LoginFacebookViewModel();
+        let userForAuthorization: LoginFacebookViewModel=new LoginFacebookViewModel();
         localStorage.clear();
         this._auth.login(provider)
             .subscribe(data => {
@@ -69,7 +73,7 @@ export class AuthorizationComponent {
                 userForAuthorization.login = this.userRecievedFromFacebook.email;
                 userForAuthorization.password = this.userRecievedFromFacebook.provider;
                 userForAuthorization.photoUrl = this.userRecievedFromFacebook.image;
-                userForAuthorization.fbLink = this.userRecievedFromFacebook.uid; 
+                userForAuthorization.fbLink = this.userRecievedFromFacebook.uid;
                 this._ngZone.run(() => {
                     this._authorizationService.logInWithFacebook(userForAuthorization)
                         .subscribe(data => {
@@ -121,6 +125,11 @@ export class AuthorizationComponent {
         localStorage.setItem(keys.keyToken, this.userAuthorizedInfo.access_token);
         if (!this.errorMessage) {
             localStorage.setItem(keys.keyModel, JSON.stringify(this.userAuthorizedInfo.userModel));
+            this._userResponseService.getUserResponseWithNewStatus(this.userAuthorizedInfo.userModel.orgId)
+                .subscribe(count => {
+                    this._storage.emitAuthorizeUserEvent(this.userAuthorizedInfo.userModel, count);
+                    sessionStorage.setItem("NewResponse", count.toString());
+                });
             this._router.navigate(['/']);
         }
         else {
@@ -130,8 +139,8 @@ export class AuthorizationComponent {
     }
 
     public hotkeys(event) {
-            if (event.keyCode == 13) {
-                this.login();
-            }
+        if (event.keyCode == 13) {
+            this.login();
         }
+    }
 }

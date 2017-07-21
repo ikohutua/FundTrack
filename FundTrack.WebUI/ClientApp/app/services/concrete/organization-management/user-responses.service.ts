@@ -7,6 +7,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/catch';
 import { RequestedItemInitViewModel } from "../../../view-models/abstract/requesteditem-initpaginationdata-view-model";
+import * as key from '../../../shared/key.storage';
 
 @Injectable()
 export class UserResponseService {
@@ -19,7 +20,7 @@ export class UserResponseService {
      */
     public getUserResponsesByOrganization(organizationId: number): Observable<UserResponseOnRequestsViewModel[]> {
         let userResponseUrl = 'api/UserResponse/GetUserResponse';
-        return this._http.get(userResponseUrl + '/' + organizationId)
+        return this._http.get(userResponseUrl + '/' + organizationId, this.getRequestOptions())
             .map((response: Response) => <UserResponseOnRequestsViewModel[]>response.json())
             .catch(this.handleError)
     }
@@ -46,7 +47,7 @@ export class UserResponseService {
      */
     public getUserResponseWithNewStatus(organizationId: number): Observable<number> {
         let userResponseCountNewStatus = 'api/UserResponse/GetUserResonseWithNewStatus';
-        return this._http.get(userResponseCountNewStatus + '/' + organizationId)
+        return this._http.get(userResponseCountNewStatus + '/' + organizationId, this.getRequestOptions())
             .map((response: Response) => <number>response.json())
             .catch(this.handleError)
     }
@@ -58,7 +59,7 @@ export class UserResponseService {
      */
     public getUserResponseOnPage(organizationId: number, itemsPerPage: number, currentPage: number): Observable<UserResponseOnRequestsViewModel[]> {
         let _urlGetUserResponseToShowPerPage = "api/UserResponse/GetUserResponseToShowPerPage";
-        return this._http.get(_urlGetUserResponseToShowPerPage + '/' + organizationId + '/' + currentPage + '/' + itemsPerPage)
+        return this._http.get(_urlGetUserResponseToShowPerPage + '/' + organizationId + '/' + currentPage + '/' + itemsPerPage, this.getRequestOptions)
             .map((response: Response) => response.json() as UserResponseOnRequestsViewModel[])
             .catch(this.handleError);
     }
@@ -68,15 +69,14 @@ export class UserResponseService {
      */
     public getRequestedItemInitData(organizationId: number): Observable<number> {
         let _urlForPagination = "api/UserResponse/GetUserResponsePaginationData"
-        return this._http.get(_urlForPagination + '/' + organizationId)
+        return this._http.get(_urlForPagination + '/' + organizationId, this.getRequestOptions())
             .map((response: Response) => response.json() as number)
             .catch(this.handleError);
     }
 
     public deleteUserResponse(responseId: number) {
         let _urlForDeleteResponse = "api/UserResponse/DeleteUserResponse";
-        return this._http.delete(_urlForDeleteResponse + '/' + responseId,
-            { headers: new Headers({ 'ContentType': 'application/json' }) })
+        return this._http.delete(_urlForDeleteResponse + '/' + responseId, this.getRequestOptions())
             .map((response: Response) => response.json() as UserResponseOnRequestsViewModel )
             .catch(this.handleError);
     }
@@ -94,6 +94,7 @@ export class UserResponseService {
     */
     private getRequestOptions() {
         let headers = new Headers({ 'Content-Type': 'application/json' });
+        headers.append("Authorization", "Bearer " + localStorage.getItem(key.keyToken));
         let options = new RequestOptions({ headers: headers });
         return options;
     }

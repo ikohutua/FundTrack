@@ -10,25 +10,58 @@ import { OrganizationManagementEventAddComponent } from "../components/organizat
 import { OrganizationManagementAllEventsComponent } from "../components/organization-management-events/organization-management-all-events.component";
 import { UserResponseComponent } from '../components/user-response/user-response.component';
 import { DetailInfoRequestedItemComponent } from "../components/organization-management-request/detail-info-request.component";
+import { AdminRouteGuard } from "../services/concrete/security/admin-route-guard";
 
 
 @NgModule({
-    providers: [BannedOrgGuard],
+    providers: [AdminRouteGuard],
     imports: [RouterModule.forChild([
-        //{
-        //    path: 'organization/:id', component: OrganizationManagementComponent,
-        //    canActivate: [BannedOrgGuard],
-        //},
         { path: 'orgbanned', component: OrganizationBannedComponent },
-        { path: 'organization/events/:id', component: OrganizationManagementAllEventsComponent },
-        { path: 'organization/event/edit/:id', component: OrganizationManadementEventEditComponent },
-        { path: 'organization/event/add/:id', component: OrganizationManagementEventAddComponent },
-        { path: 'organization/requests/:id', component: OrganizationManagementRequestComponent },
-        { path: 'organization/request/manage/:idOrganization', component: OrganizationManageRequestComponent },
-        { path: 'organization/request/manage/:idOrganization/:idRequest', component: OrganizationManageRequestComponent },
-        { path: 'organization/request/delete', component: OrganizationDeleteRequestComponent },
-        { path: 'organization/request/response/:idOrganization', component: UserResponseComponent },
-        { path: 'organization/request/detail', component: DetailInfoRequestedItemComponent }
+        {
+            path: 'organization/events/:id',
+            component: OrganizationManagementAllEventsComponent,
+            canActivate: [AdminRouteGuard]
+        },
+        {
+            path: 'organization/event/edit/:id',
+            component: OrganizationManadementEventEditComponent,
+            canActivate: [AdminRouteGuard]
+        },
+        {
+            path: 'organization/event/add/:id',
+            component: OrganizationManagementEventAddComponent,
+            canActivate: [AdminRouteGuard]
+        },
+        {
+            path: 'organization/requests/:id',
+            component: OrganizationManagementRequestComponent,
+            canActivate: [AdminRouteGuard]
+        },
+        {
+            path: 'organization/request/manage/:idOrganization',
+            component: OrganizationManageRequestComponent,
+            canActivate: [AdminRouteGuard]
+        },
+        {
+            path: 'organization/request/manage/:idOrganization/:idRequest',
+            component: OrganizationManageRequestComponent,
+            canActivate: [AdminRouteGuard]
+        },
+        {
+            path: 'organization/request/delete',
+            component: OrganizationDeleteRequestComponent,
+            canActivate: [AdminRouteGuard]
+        },
+        {
+            path: 'organization/request/response/:idOrganization',
+            component: UserResponseComponent,
+            canActivate: [AdminRouteGuard]
+        },
+        {
+            path: 'organization/request/detail',
+            component: DetailInfoRequestedItemComponent,
+            canActivate: [AdminRouteGuard]
+        }
     ])],
     exports: [RouterModule]
 })

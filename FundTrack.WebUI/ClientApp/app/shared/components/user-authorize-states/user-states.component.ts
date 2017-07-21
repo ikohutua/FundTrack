@@ -25,11 +25,12 @@ export class UserStatesComponent implements AfterContentChecked, DoCheck {
     /**
      * close the session current user
      */
-    public exit():void {
+    public exit(): void {
         this.name = null;
         this.isAdmin = false;
         this.isAdminOfOrganization = false;
         this._authorizationService.logOff();
+        this._storage.emitAuthorizeUserEvent(null, 0);
         this._storage.bannedDescription = '';
     }
 
@@ -54,18 +55,16 @@ export class UserStatesComponent implements AfterContentChecked, DoCheck {
     }
 
     ngDoCheck() {
-        if (this.isAdminOfOrganization !== this.isAdminOfOrganizationForCheck)
-        {
+        if (this.isAdminOfOrganization !== this.isAdminOfOrganizationForCheck) {
             this.isAdminOfOrganization = true;
             this.getIdOfOrganization();
         }
     }
-    
-    private getIdOfOrganization(): void
-    {
+
+    private getIdOfOrganization(): void {
         this._authorizationService.getOrganizationId(this.user.login).subscribe(orgIdViewModel => {
-            this.idOfOrganization = orgIdViewModel.organizationId;         
-            this._storage.bannedDescription = orgIdViewModel.bannedDescription;            
+            this.idOfOrganization = orgIdViewModel.organizationId;
+            this._storage.bannedDescription = orgIdViewModel.bannedDescription;
         });
     }
 }

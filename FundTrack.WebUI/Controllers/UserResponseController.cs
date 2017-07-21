@@ -7,11 +7,12 @@ using Microsoft.AspNetCore.Mvc;
 using FundTrack.BLL.Abstract;
 using FundTrack.Infrastructure.ViewModel;
 using FundTrack.Infrastructure.ViewModel.RequestedItemModel;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FundTrack.WebUI.Controllers
 {
     /// <summary>
-    ///This is a controller for user responses
+    /// This is a controller for user responses
     /// </summary>
     /// <seealso cref="Microsoft.AspNetCore.Mvc.Controller" />
     [Produces("application/json")]
@@ -45,6 +46,7 @@ namespace FundTrack.WebUI.Controllers
         /// <param name="status">The status.</param>
         /// <param name="requestId">The request identifier.</param>
         /// <returns></returns>
+        [Authorize]
         [HttpPost("ChangeUserResponseStatus")]
         public UserResponsesOnRequestsViewModel ChangeUserResponseStatus([FromBody]UserResponseChangeStatusViewModel newStatus)
         {
@@ -89,6 +91,7 @@ namespace FundTrack.WebUI.Controllers
         /// Delete user response
         /// </summary>
         /// <param name="responseId"></param>
+        [Authorize]
         [HttpDelete("DeleteUserResponse/{responseId}")]
         public JsonResult DeleteUserResponse(int responseId)
         {

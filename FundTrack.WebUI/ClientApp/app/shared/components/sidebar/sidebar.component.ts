@@ -1,4 +1,4 @@
-﻿import { Component, Output, EventEmitter, OnInit, AfterContentChecked, DoCheck,OnChanges } from "@angular/core";
+﻿import { Component, Output, EventEmitter, OnInit, AfterContentChecked, DoCheck, OnChanges } from "@angular/core";
 import { Router } from "@angular/router";
 import { isBrowser } from "angular2-universal";
 import * as key from '../../../shared/key.storage';
@@ -36,8 +36,9 @@ export class SidebarComponent /*implements OnInit*/ {
                         sessionStorage.setItem("NewResponse", count.toString());
                     });
             }
-            this._storage.getNavChangeEmitter().subscribe(count => this.newUserResponse = count);
         }
+        this._storage.getNavChangeEmitter().subscribe(count => this.newUserResponse = count);
+        this._storage.getAuthorizeUserEmitter().subscribe(user => this.user = user);
     }
 
     /**
