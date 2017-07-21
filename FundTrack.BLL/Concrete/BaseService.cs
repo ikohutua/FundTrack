@@ -21,12 +21,19 @@ namespace FundTrack.BLL.Concrete
             return allItems.Skip((currentPage - 1) * pageSize).Take(pageSize);
         }
 
-        public PaginationInitViewModel GetPaginationInitData<T>(IEnumerable<T> items)
+        /// <summary>
+        /// Gets the pagination initialize data.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="items">Items to count</param>
+        /// <param name="itemsPerPage">Number of items on page</param>
+        /// <returns>Initial pagination data</returns>
+        public PaginationInitViewModel GetPaginationInitData<T>(IEnumerable<T> items,int itemsPerPage)
         {
             return new PaginationInitViewModel
             {
                 TotalItemsCount = items.Count(),
-                ItemsPerPage = 8
+                ItemsPerPage = itemsPerPage
             };
         }
     }

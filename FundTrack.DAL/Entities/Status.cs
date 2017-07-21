@@ -37,6 +37,14 @@ namespace FundTrack.DAL.Entities
         /// The requested items.
         /// </value>
         public virtual ICollection<RequestedItem> RequestedItems { get; set; }
+
+        /// <summary>
+        /// Gets or sets the user responses.
+        /// </summary>
+        /// <value>
+        /// The user responses.
+        /// </value>
+        public virtual ICollection<UserResponse> UserResponses { get; set; }
     }
 }
 

@@ -1,28 +1,45 @@
-﻿import { Component, Output, EventEmitter, OnInit } from "@angular/core";
+﻿import { Component, Output, EventEmitter, OnInit, AfterContentChecked } from "@angular/core";
 import { Router } from "@angular/router";
 import { isBrowser } from "angular2-universal";
 import * as key from '../../../shared/key.storage';
 import { AuthorizeUserModel } from "../../../view-models/concrete/authorized-user-info-view.model";
+import { StorageService } from "../../item-storage-service";
+import { UserResponseService } from "../../../services/concrete/organization-management/user-responses.service";
 
 @Component({
     selector: 'sidebar',
     templateUrl: './sidebar.component.html',
     styleUrls: ['./sidebar.component.css'],
+    providers: [UserResponseService]
 })
-export class SidebarComponent /*implements OnInit*/ {
+export class SidebarComponent /*implements OnInit*/ implements AfterContentChecked {
     private user: AuthorizeUserModel;
     //flag that verifies if user is logged in
     private userRole: string = null;
     //property for side bar visible mode
     private sideBarIsClosed: boolean = true;
+
+    private newUserResponse: number;
     @Output() onOpen: EventEmitter<boolean> = new EventEmitter();
 
-    constructor(private _router: Router) { }
+    constructor(private _router: Router,
+        private _userResponseService: UserResponseService) { }
 
     ngOnInit(): void {
         if (isBrowser) {
             if (localStorage.getItem(key.keyToken)) {
-                this.user = JSON.parse(localStorage.getItem(key.keyModel)) as AuthorizeUserModel;
+                this.user = JSON.parse(localStorage.getItem(key.keyModel)) as AuthorizeUserModel;               
+            }
+        }
+    }
+
+    ngAfterContentChecked() {
+        if (isBrowser) {
+            if (this.user) {
+                this._userResponseService.getUserResponseWithNewStatus(this.user.orgId)
+                    .subscribe(count => {
+                        this.newUserResponse = count;
+                    });
             }
         }
     }

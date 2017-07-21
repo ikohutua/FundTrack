@@ -11,6 +11,7 @@
         public string address { get; set; }
         public string photoUrl { get; set; }
         public string role { get; set; }
+        public int orgId { get; set; }
 
     }
     

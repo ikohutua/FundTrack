@@ -76,11 +76,13 @@ export class RequestDetailComponent implements OnInit, OnDestroy {
             let user = JSON.parse(localStorage.getItem(keys.keyModel)) as AuthorizeUserModel;
             this.userResponse.userId = user.id;
         }
-        this.userResponse.description = this.phoneNumber+ '_Enter_' +this.responseDescription;
+        this.userResponse.description = this.phoneNumber+ '\t' +this.responseDescription;
         this.userResponse.requestedItemId = this.requestDetail.id;
         this._requestDetailService.setUserResponse(this.userResponse).subscribe(
             userResponse => {
                 this.userResponse = userResponse;
+                console.log("Response");
+                console.log(this.userResponse);
                 this.responseDescription = "";
                 this.phoneNumber="";
                 this.closeModal();

@@ -32,19 +32,57 @@ namespace FundTrack.BLL.Concrete
         public IEnumerable<UserResponsesOnRequestsViewModel> GetUserResponsesOnRequests(int organizationId)
         {
             var responses = this._unitOfWork.UserResponseRepository
-                                           .ReadAsQueryable()
-                                           .Select(u => new UserResponsesOnRequestsViewModel
-                                           {
-                                               Id = u.Id,
-                                               RequestedItemName = u.RequestedItem.Name,
-                                               StatusName = "New",
-                                               UserLogin = u.User.Login,
-                                               UserEmail = u.User.Email,
-                                               CreateDate = DateTime.Now,
-                                               OrganizationId = u.RequestedItem.OrganizationId,
-                                               Description = u.Description
-                                           })
+                                            .ReadAsQueryable()
+                                            .Select(u => new UserResponsesOnRequestsViewModel
+                                            {
+                                                Id = u.Id,
+                                                RequestedItemName = u.RequestedItem.Name,
+                                                StatusName = u.Status.StatusName,
+                                                UserLogin = u.User.Login,
+                                                UserEmail = u.User.Email,
+                                                CreateDate = DateTime.Now,
+                                                OrganizationId = u.RequestedItem.OrganizationId,
+                                                Description = u.Description
+                                            })
                                             .Where(u => u.OrganizationId == organizationId);
+            return responses;
+        }
+
+        /// <summary>
+        /// Changes the user response status.
+        /// </summary>
+        /// <param name="changeStatusModel">The new status.</param>
+        /// <returns></returns>
+        public UserResponsesOnRequestsViewModel ChangeUserResponseStatus(UserResponseChangeStatusViewModel changeStatusModel)
+        {
+            var userResponse = this._unitOfWork.UserResponseRepository.Get(changeStatusModel.Id);
+            userResponse.StatusId = changeStatusModel.Id;
+            this._unitOfWork.UserResponseRepository.Update(userResponse);
+            this._unitOfWork.SaveChanges();
+            return new UserResponsesOnRequestsViewModel
+            {
+                Id = userResponse.Id,
+                RequestedItemName = userResponse.RequestedItem.Name,
+                StatusName = userResponse.Status.StatusName,
+                UserLogin = userResponse.User != null ? userResponse.User.Login : string.Empty,
+                UserEmail = userResponse.User != null ? userResponse.User.Email : string.Empty,
+                CreateDate = DateTime.Now,
+                OrganizationId = userResponse.RequestedItem.OrganizationId,
+                Description = userResponse.Description
+            };
+        }
+
+        /// <summary>
+        /// Gets the user resonse with new status.
+        /// </summary>
+        /// <param name="organizationId">The organization identifier.</param>
+        /// <returns></returns>
+        public int GetUserResponseWithNewStatus(int organizationId)
+        {
+            var responses = this._unitOfWork.UserResponseRepository
+                                            .ReadAsQueryable()
+                                            .Where(u => u.RequestedItem.OrganizationId == organizationId)
+                                            .Count();
             return responses;
         }
     }

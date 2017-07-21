@@ -1,5 +1,6 @@
 ﻿using FundTrack.DAL.Abstract;
 using FundTrack.DAL.Entities;
+using Microsoft.EntityFrameworkCore;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,6 +39,9 @@ namespace FundTrack.DAL.Concrete
         public UserResponse Get(int id)
         {
             return this._context.UserResponses
+                       .Include(u=>u.Status)
+                       .Include(u=>u.RequestedItem)
+                       .Include(u=>u.User)
                        .FirstOrDefault(u => u.Id == id);
         }
 

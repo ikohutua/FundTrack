@@ -68,7 +68,7 @@ export class AllEventsComponent implements OnInit, OnDestroy, AfterContentChecke
         if (sessionStorage.getItem("id")) {
             let id = +sessionStorage.getItem("id");
             this.getEventsList(id);
-            sessionStorage.clear();
+            sessionStorage.removeItem("id");
         }
     }
 

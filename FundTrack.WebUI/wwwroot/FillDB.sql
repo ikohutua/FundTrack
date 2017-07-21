@@ -1,4 +1,4 @@
-﻿USE FundTrackSSLv242
+﻿
 
 DELETE from Organizations
 DBCC CHECKIDENT ('Organizations', RESEED, 0);
@@ -338,12 +338,8 @@ VALUES
 ('https://www.1staidsupplies.com/sc_images/products/quikclot-acs-hemostatic-sponge_1008_large_image.jpg',0,4),
 ('http://www.surv24.ru/blogs/wp-content/uploads/2014/11/gemostop1.png',0,4)
 
-INSERT INTO dbo.OfferedItems
-VALUES (N'Мега супер круті берці від американських друзів',4,N'Берці легка хода',1,1)
-
 select * from dbo.Organizations
 select * from dbo.Events
 select * from dbo.EventImages
 select * from dbo.GoodsTypes
 select * from dbo.RequestedItems
-select * from dbo.RequestedItemImages

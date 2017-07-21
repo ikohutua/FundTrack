@@ -13,6 +13,7 @@ export class AuthorizeUserModel {
     public address: string;
     public photoUrl: string;
     public role: string;
+    public orgId: number;
 }
 
 export class AuthorizedUserInfoViewModel {

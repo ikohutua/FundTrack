@@ -35,6 +35,14 @@ namespace FundTrack.DAL.Entities
         /// The user identifier.
         /// </value>
         public int? OfferedItemId { get; set; }
+
+        /// <summary>
+        /// Gets or sets the status identifier.
+        /// </summary>
+        /// <value>
+        /// The status identifier.
+        /// </value>
+        public int? StatusId { get; set; }
         
         /// <summary>
         /// Gets or sets the description.
@@ -67,5 +75,13 @@ namespace FundTrack.DAL.Entities
         /// The user.
         /// </value>
         public virtual OfferedItem OfferedItem { get; set; }
+
+        /// <summary>
+        /// Gets or sets the status.
+        /// </summary>
+        /// <value>
+        /// The status.
+        /// </value>
+        public virtual Status Status { get; set; }
     }
 }

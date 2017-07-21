@@ -69,7 +69,7 @@ namespace FundTrack.BLL.Concrete
         /// <returns>Pagination Initial data</returns>
         public PaginationInitViewModel GetUsersPaginationData()
         {
-            return GetPaginationInitData(_unitOfWork.UsersRepository.GetUsersWithBanStatus());
+            return GetPaginationInitData(_unitOfWork.UsersRepository.GetUsersWithBanStatus(), PageSize);
         }
 
         /// <summary>
@@ -78,7 +78,7 @@ namespace FundTrack.BLL.Concrete
         /// <returns>Pagination Initial data</returns>
         public PaginationInitViewModel GetOrganizationPaginationData()
         {
-            return GetPaginationInitData(_unitOfWork.OrganizationRepository.Read());
+            return GetPaginationInitData(_unitOfWork.OrganizationRepository.Read(), PageSize);
         }
 
         /// <summary>

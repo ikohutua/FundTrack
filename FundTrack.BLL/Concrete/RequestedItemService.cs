@@ -248,21 +248,13 @@ namespace FundTrack.BLL.Concrete
                 var userResponse = new UserResponse
                 {
                     Description = userResponseModel.Description,
-                    RequestedItemId = userResponseModel.RequestedItemId
+                    RequestedItemId = userResponseModel.RequestedItemId,
+                    StatusId = this._unitOfWork.StatusRepository.GetStatusByName(StuffStatus.New).Id
                 };
 
                 if (userResponseModel.UserId != 0)
                 {
                     userResponse.UserId = userResponseModel.UserId;
-                }
-
-                var requestedItem = this._unitOfWork.RequestedItemRepository.Get(userResponse.RequestedItemId);
-                var newStatusId = this._unitOfWork.StatusRepository.GetStatusByName(StuffStatus.New).Id;
-
-                if (requestedItem.StatusId == newStatusId)
-                {
-                    requestedItem.StatusId = this._unitOfWork.StatusRepository.GetStatusByName(StuffStatus.InProgress).Id;
-                    this._unitOfWork.RequestedItemRepository.Update(requestedItem);
                 }
 
                 var addedUserResponse = this._unitOfWork.UserResponseRepository.Create(userResponse);
@@ -276,7 +268,7 @@ namespace FundTrack.BLL.Concrete
 
             catch (Exception ex)
             {
-                throw new Exception(ex.Message);
+                throw new BusinessLogicException(ex.Message);
             }
         }
 

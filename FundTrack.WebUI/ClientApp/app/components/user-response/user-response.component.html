@@ -4,29 +4,57 @@
         <table class="table-bordered table">
             <thead>
                 <tr>
-                    <th> Item Name</th>
-                    <th> Login </th>
-                    <th> Email </th>
-                    <th> Date </th>
-                    <th> Description </th>
-                    <th> Status </th>
-                    <th> Action </th>
+                    <th> Назва потреби</th>
+                    <th> Логін користувача </th>
+                    <th> Пошта користувача </th>
+                    <th> Дата </th>
+                    <th> Опис </th>
+                    <th> Статус </th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let userResponse of _userResponses">
-                    <td> {{userResponse.requestedItemName}} </td>                    
+                    <td> {{userResponse.requestedItemName}} </td>
                     <td> {{userResponse.userLogin}}</td>
                     <td> {{userResponse.userEmail}}</td>
                     <td> {{userResponse.createDate | date:'shortDate'}}</td>
                     <td> {{userResponse.description}}</td>
-                    <td> {{userResponse.statusName}}</td>
                     <td>
-                    <button class="btn-link"> Accept </button>
-                    <button class="btn-link"> Decline </button>
+                        <div class="row">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
+                                    {{userResponse.statusName}}
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu scrollable-menu" role="menu">
+                                    <li *ngFor="let status of _statuses" 
+                                        (click)="onSelectStatus(userResponse.statusName,status.name,userResponse.id)">
+                                        <a *ngIf="status.name!=userResponse.statusName">{{status.name}}</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
                     </td>
                 </tr>
             </tbody>
         </table>
     </div>
 </div>
+
+<app-modal>
+    <div class="app-modal-header">
+        <button type="button" class="close" aria-hidden="true" (click)="closeModal()">&times;</button>
+        <h4 class="modal-title">Зміна стану відповіді: </h4>
+    </div>
+    <div class="app-modal-body">
+        Ви впевнені що хочете змінити стан відповіді з "{{oldStatus}}" на "{{newStatus}}" ?
+    </div>
+    <div class="app-modal-footer">
+        <button type="button" class="btn btn-default" (click)="closeModal()">Ні</button>
+        <button (click)="changeStatus()"
+                class="btn btn-primary"
+                data-dismiss="modal">
+            Так
+        </button>
+    </div>
+</app-modal>

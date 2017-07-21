@@ -186,6 +186,7 @@ namespace FundTrack.BLL.DomainServices
                         this.CreateUserRole(userInfoView.login);
                     }
                     userInfoView.role = this._unitOfWork.MembershipRepository.GetRole(user.Id);
+                    userInfoView.orgId = this._unitOfWork.MembershipRepository.GetOrganizationId(user.Id);
                     return userInfoView;
                 }
             }

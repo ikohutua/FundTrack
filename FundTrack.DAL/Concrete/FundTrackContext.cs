@@ -714,6 +714,11 @@ namespace FundTrack.DAL.Concrete
 
                 entity.Property(e => e.Description).IsRequired();
 
+                entity.HasOne(ur => ur.Status)
+                      .WithMany(s => s.UserResponses)
+                      .HasForeignKey(ur => ur.StatusId)
+                      .HasConstraintName("FK_UserResponse_Status");
+
                 entity.HasOne(ur => ur.RequestedItem)
                        .WithMany(ri => ri.UserResponses)
                        .HasForeignKey(ur => ur.RequestedItemId)

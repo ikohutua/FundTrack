@@ -99,5 +99,12 @@ namespace FundTrack.DAL.Concrete
         {
             return this.context.Membershipes.Any(m => m.UserId == userId);
         }
+
+        public int GetOrganizationId(int userId)
+        {
+            return this.context.Membershipes
+                              .FirstOrDefault(m => m.UserId == userId)
+                              .OrgId;
+        }
     }
 }

@@ -37,5 +37,28 @@ namespace FundTrack.WebUI.Controllers
         {
             return this._userResponseService.GetUserResponsesOnRequests(organizationId);
         }
+
+        /// <summary>
+        /// Changes the user response status.
+        /// </summary>
+        /// <param name="status">The status.</param>
+        /// <param name="requestId">The request identifier.</param>
+        /// <returns></returns>
+        [HttpPost("ChangeUserResponseStatus")]
+        public UserResponsesOnRequestsViewModel ChangeUserResponseStatus([FromBody]UserResponseChangeStatusViewModel newStatus)
+        {
+            return this._userResponseService.ChangeUserResponseStatus(newStatus);
+        }
+
+        /// <summary>
+        /// Gets the count new status.
+        /// </summary>
+        /// <param name="organizationId">The organization identifier.</param>
+        /// <returns></returns>
+        [HttpGet("GetUserResonseWithNewStatus/{organizationId}")]
+        public int GetCountNewStatus(int organizationId)
+        {
+            return this._userResponseService.GetUserResponseWithNewStatus(organizationId);
+        }
     }
 }

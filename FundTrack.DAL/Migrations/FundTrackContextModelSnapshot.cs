@@ -808,6 +808,8 @@ namespace FundTrack.DAL.Migrations
 
                     b.Property<int>("RequestedItemId");
 
+                    b.Property<int?>("StatusId");
+
                     b.Property<int?>("UserId");
 
                     b.HasKey("Id")
@@ -817,6 +819,8 @@ namespace FundTrack.DAL.Migrations
                         .IsUnique();
 
                     b.HasIndex("RequestedItemId");
+
+                    b.HasIndex("StatusId");
 
                     b.HasIndex("UserId");
 
@@ -1153,6 +1157,11 @@ namespace FundTrack.DAL.Migrations
                         .HasForeignKey("RequestedItemId")
                         .HasConstraintName("FK_UserResponse_RequestedItem")
                         .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("FundTrack.DAL.Entities.Status", "Status")
+                        .WithMany("UserResponses")
+                        .HasForeignKey("StatusId")
+                        .HasConstraintName("FK_UserResponse_Status");
 
                     b.HasOne("FundTrack.DAL.Entities.User", "User")
                         .WithMany("UserResponses")

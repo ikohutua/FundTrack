@@ -96,3 +96,19 @@ h2 {
 .app-modal-body {
     color: #233915;
 }
+
+.scrollable-menu {
+    height: auto !important;
+    max-height: 200px !important;
+    overflow-x: hidden !important;
+}
+
+.btn-info {
+    border: solid 1px silver !important;
+    background-color: #292c2f !important;
+    color:white;
+    padding:5px;
+}
+.row {
+    margin-left:6px;
+}
