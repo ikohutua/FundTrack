@@ -34,7 +34,7 @@ namespace FundTrack.BLL.Concrete
                     item.User = this._unitOfWork.UsersRepository.GetUserById(model.UserId);
                     item.GoodsCategory = this._unitOfWork.GoodsCategoryRepository.GetGoodsCategoryById(model.GoodsCategoryId);
                     item.Status = this._unitOfWork.StatusRepository.GetStatusByName(initialStatus);
-                    var createdItem=this._unitOfWork.OfferedItemRepository.Create(item);
+                    var createdItem = this._unitOfWork.OfferedItemRepository.Create(item);
                     this.SetNewPictures(model, createdItem);
                     this._unitOfWork.SaveChanges();
                 }
@@ -44,7 +44,6 @@ namespace FundTrack.BLL.Concrete
             {
                 throw new BusinessLogicException(ex.Message);
             }
-
         }
         /// <summary>
         /// Edits offer item, that matches received offered item view model
@@ -71,7 +70,6 @@ namespace FundTrack.BLL.Concrete
             {
                 throw new BusinessLogicException(ex.Message);
             }
-
         }
         /// <summary>
         /// Deletes offered item by its id
@@ -79,8 +77,16 @@ namespace FundTrack.BLL.Concrete
         /// <param name="id">id of the offer item entity</param>
         public void DeleteOfferedItem(int id)
         {
-            this._unitOfWork.OfferedItemRepository.Delete(id);
-            this._unitOfWork.SaveChanges();
+            try
+            {
+                this._unitOfWork.OfferedItemRepository.Delete(id);
+                this._unitOfWork.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw new BusinessLogicException(ex.Message);
+            }
+           
         }
         /// <summary>
         /// Gets all offered item view models
@@ -123,42 +129,44 @@ namespace FundTrack.BLL.Concrete
         /// <returns>collection of OfferedItemViewModels</returns>
         public IEnumerable<OfferedItemViewModel> GetUserOfferedItems(int userId)
         {
-            List<OfferedItemViewModel> list = new List<OfferedItemViewModel>();
-            foreach (var item in this._unitOfWork.OfferedItemRepository.Read().Where(a => a.UserId == userId))
+            try
             {
-                list.Add(this.InitializeOfferedItemViewModel2(item));
+                List<OfferedItemViewModel> list = new List<OfferedItemViewModel>();
+                foreach (var item in this._unitOfWork.OfferedItemRepository.Read().Where(a => a.UserId == userId))
+                {
+                    list.Add(this.InitializeOfferedItemViewModel(item));
+                }
+                return list;
             }
-            return list;
+            catch (Exception ex)
+            {
+                throw new BusinessLogicException(ex.Message);
+            }
         }
+
+        /// <summary>
+        /// Gets user offered items, based on received parameters
+        /// </summary>
+        /// <param name="userId">Id of User entity</param>
+        /// <param name="itemsToLoad">amount of items to be loaded</param>
+        /// <param name="offset">Amount of items to skip, starting from first</param>
+        /// <returns>Offered Item View Models</returns>
         public IEnumerable<OfferedItemViewModel> GetPagedUserOfferedItems(int userId, int itemsToLoad, int offset)
         {
             List<OfferedItemViewModel> list = new List<OfferedItemViewModel>();
             foreach (var item in this._unitOfWork.OfferedItemRepository.Read().Where(a => a.UserId == userId))
             {
-                list.Add(this.InitializeOfferedItemViewModel2(item));
+                list.Add(this.InitializeOfferedItemViewModel(item));
             }
             return GetPageItems(list, itemsToLoad, offset);
         }
+
         /// <summary>
         /// Initializes offered item view model based on offer item entity
         /// </summary>
         /// <param name="item">offer item</param>
         /// <returns>OfferedItemViewModel</returns>
         public OfferedItemViewModel InitializeOfferedItemViewModel(OfferedItem item)
-        {
-            OfferedItemViewModel model = new OfferedItemViewModel();
-            model.Description = item.Description;
-            model.Name = item.Name;
-            model.Id = item.Id;
-            model.GoodsCategoryName = item.GoodsCategory.Name;
-            model.StatusName = item.Status.StatusName;
-            model.UserId = item.UserId;
-            model.GoodsTypeName = item.GoodsCategory.GoodsType.Name;
-            model.ImageUrl = item.OfferedItemImages.Select(a => a.ImageUrl).ToArray();
-            return model;
-        }
-
-        public OfferedItemViewModel InitializeOfferedItemViewModel2(OfferedItem item)
         {
             OfferedItemViewModel model = new OfferedItemViewModel()
             {
@@ -182,11 +190,6 @@ namespace FundTrack.BLL.Concrete
             return model;
         }
 
-
-
-
-
-
         /// <summary>
         /// Sets specified images of specified offer item
         /// </summary>
@@ -199,45 +202,42 @@ namespace FundTrack.BLL.Concrete
             {
                 var newImage = new OfferedItemImage
                 {
-                    ImageUrl=thing.ImageUrl,
-                    IsMain=thing.IsMain,
-                    OfferedItemId=item.Id
+                    ImageUrl = thing.ImageUrl,
+                    IsMain = thing.IsMain,
+                    OfferedItemId = item.Id
                 };
                 this._unitOfWork.OfferImagesRepository.Create(newImage);
             }
             return model.Image;
         }
+        
         /// <summary>
-        /// Gets pictures of specified offered item
+        /// Gets offered item images of the specified item by it's id
         /// </summary>
-        /// <param name="item">Offered item entity</param>
-        /// <returns>Array of image urls</returns>
-        public string[] GetPictures(OfferedItem item)
-        {
-            List<string> picList = new List<string>();
-            var images = this._unitOfWork.OfferImagesRepository.Read().Where(a => a.OfferedItemId == item.Id);
-            foreach (var thing in images)
-            {
-                picList.Add(thing.ImageUrl);
-            }
-            return picList.ToArray();
-        }
+        /// <param name="itemId">offered item id</param>
+        /// <returns>offered item image view models of the specified offered item</returns>
         public IEnumerable<OfferedItemImageViewModel> GetOfferedItemPictures(int itemId)
         {
             return this.ConvertRequestItemImageModelList(this._unitOfWork.OfferImagesRepository.GetOfferedItemImageByOfferItemId(itemId));
         }
+        /// <summary>
+        /// Set pictures, received as param for specified offered item id
+        /// </summary>
+        /// <param name="images">IEnumerable of offered item image view models</param>
+        /// <param name="item">offered item entity</param>
+        /// <returns>Offered Item Image View models</returns>
         public IEnumerable<OfferedItemImageViewModel> SetOfferedItemPictures(IEnumerable<OfferedItemImageViewModel> images, OfferedItem item)
         {
             var mainImage = images.Where(a => a.IsMain == true).Take(1).ToArray();
-            if (mainImage.Count()!=0)
+            if (mainImage.Count() != 0)
             {
                 this.ClearMainImageStatus(item);
-                if (mainImage[0].Id!=0 && mainImage[0].IsMain==true)
+                if (mainImage[0].Id != 0 && mainImage[0].IsMain == true)
                 {
-                    this._unitOfWork.OfferImagesRepository.Get(mainImage[0].Id).IsMain=true;
+                    this._unitOfWork.OfferImagesRepository.Get(mainImage[0].Id).IsMain = true;
                 }
             }
-            var newImages = images.Where(a => a.Id == 0).Select(
+            IEnumerable<OfferedItemImage> newImages = images.Where(a => a.Id == 0).Select(
                 image => new OfferedItemImage
                 {
                     ImageUrl = image.ImageUrl,
@@ -255,7 +255,7 @@ namespace FundTrack.BLL.Concrete
                     OfferedItemId = item.Id
                 }
                 ).ToList();
-            var missingImages = this._unitOfWork.OfferImagesRepository.GetOfferedItemImageByOfferItemId(item.Id).Except(incomingImages, new DAL.Comparers.OfferedItemImageComparator());
+            IEnumerable<OfferedItemImage> missingImages = this._unitOfWork.OfferImagesRepository.GetOfferedItemImageByOfferItemId(item.Id).Except(incomingImages, new DAL.Comparers.OfferedItemImageComparator());
             foreach (var stuff in missingImages)
             {
                 this._unitOfWork.OfferImagesRepository.Delete(stuff.Id);
@@ -264,7 +264,6 @@ namespace FundTrack.BLL.Concrete
             {
                 this._unitOfWork.OfferImagesRepository.Create(picture);
             }
-            
             return images;
         }
 
@@ -280,23 +279,54 @@ namespace FundTrack.BLL.Concrete
                     {
                         Id = image.Id,
                         IsMain = image.IsMain,
-                        OfferedItemId=image.OfferedItemId,
-                        ImageUrl=image.ImageUrl
+                        OfferedItemId = image.OfferedItemId,
+                        ImageUrl = image.ImageUrl
                     });
-                    return images;
+            return images;
         }
         /// <summary>
-        /// Removes isMain flag from all images of specified Offer item
+        /// Removes isMain flag from all images of specified Offered item
         /// </summary>
         /// <param name="item"></param>
         private void ClearMainImageStatus(OfferedItem item)
         {
-            var images=this._unitOfWork.OfferImagesRepository.GetOfferedItemImageByOfferItemId(item.Id);
+            var images = this._unitOfWork.OfferImagesRepository.GetOfferedItemImageByOfferItemId(item.Id);
             foreach (var thing in images)
             {
                 thing.IsMain = false;
             }
         }
-        
+
+        /// <summary>
+        /// Changes status of offered item to received in the view model
+        /// </summary>
+        /// <param name="model">View model</param>
+        /// <returns>View model</returns>
+        public OfferItemChangeStatusViewModel ChangeOfferItemStatus(OfferItemChangeStatusViewModel model)
+        {
+            try
+            {
+                var item = this._unitOfWork.OfferedItemRepository.Get(model.OfferItemId);
+                if (item.UserId==model.UserId)
+                {
+                    item.Status = this._unitOfWork.StatusRepository.GetStatusByName(model.OfferItemStatus);
+                    this._unitOfWork.SaveChanges();
+                    return model;
+                }
+                else
+                {
+                    return new OfferItemChangeStatusViewModel { ErrorMessage = "Недостатньо прав" };
+                }
+                
+            }
+            catch (Exception e)
+            {
+                return new OfferItemChangeStatusViewModel
+                {
+                    ErrorMessage = e.Message
+                };
+            }
+           
+        }
     }
 }

@@ -7,6 +7,7 @@ import { isBrowser } from "angular2-universal";
 import * as key from '../../../shared/key.storage';
 import { AuthorizeUserModel } from "../../../view-models/concrete/authorized-user-info-view.model";
 import { OfferedItemImageViewModel } from "../../../view-models/concrete/offered-item-image-view.model";
+import { OfferItemChangeStatusViewModel } from "../../../view-models/concrete/offer-item-change-status-view.model";
 
 @Component({
     selector: 'offer-list',
@@ -36,33 +37,62 @@ export class OfferListComponent implements OnInit {
         };
         this._offerService.getInitialData(this.user.id)
             .subscribe(offers => {
-                debugger;
                 this.offers = offers;
                 this.checkForMissingImages(this.offers);
                 this.setMainImage(this.offers);
             });
         
     }
-    public navigateToEdit(selected: OfferViewModel) {
+    private navigateToEdit(selected: OfferViewModel) {
         this._router.navigate(['add', selected.id]);
     }
-    public deleteOfferItem(offerItem: OfferViewModel) {
+    private deleteOfferItem(offerItem: OfferViewModel) {
         this._offerService.deleteOffer(offerItem.id)
             .subscribe(() => {
                 this.offers.splice(this.offers.findIndex(o => o.id == offerItem.id), 1);
             });
     }
+    private changeOfferItemStatus(offerItem: OfferViewModel) {
+        let model = new OfferItemChangeStatusViewModel();
+        model.offerItemId = offerItem.id;
+        model.userId = this.user.id;
+        if (offerItem.statusName == 'Активний') {
+            model.offerItemStatus = 'Неактивний';
+            this._offerService.changeOfferItemStatus(model)
+                .subscribe(data => {
+                    if (data.errorMessage == null) {
+                        offerItem.statusName = 'Неактивний';
+                    }
+                    else {
+                        alert(data.errorMessage);
+                    }
+                })
+        }
+        else if (offerItem.statusName == 'Неактивний') {
+            model.offerItemStatus = 'Активний';
+            this._offerService.changeOfferItemStatus(model)
+                .subscribe(data => {
+                    if (data.errorMessage == null) {
+                        offerItem.statusName = 'Активний';
+                    }
+                    else {
+                        alert(data.errorMessage);
+                    }
+                })
+        }
+        else return;
+    }
     ///Delete action confirmation
-    public deleteConfirm(offerItem: OfferViewModel) {
+    private deleteConfirm(offerItem: OfferViewModel) {
         if (confirm("Ви справді хочете видалити цю пропозицію?")) {
             this.deleteOfferItem(offerItem);
         }
     }
-    public goToEditPage(selected: OfferViewModel) {
+    private goToEditPage(selected: OfferViewModel) {
         this._router.navigate(['offer-management/offerdetail', selected.id]);
     }
 
-    public getOfferedItemsOnScroll(): void{
+    private getOfferedItemsOnScroll(): void{
         this._offerService.getPagedUserOffers(this.user.id, this._itemsPerPage, this._currentPage)
             .subscribe(offers => {
                 this.offers = this.offers.concat(offers);

@@ -15,7 +15,7 @@
                     <b>Дата створення:</b> {{date}}
                 </div>
                 <div class="col-md-2">
-                    <b>Статус:</b> <b><span style="color:#2db50b">{{offer.statusName}}</span></b>
+                    <b>Статус:</b> <b><span [ngClass]="{'activated':offer.statusName=='Активний','deactivated':offer.statusName=='Неактивний'}" >{{offer.statusName}}</span></b>
                 </div>
                 <div class="col-md-6 col-md-push-2">
                         <b>Категорія:</b><br /><b><span>{{offer.goodsTypeName}} - {{offer.goodsCategoryName}}</span></b>
@@ -24,9 +24,9 @@
         </div>
         <div class="col-md-1">
             <div class="btn-group btn-group-vertical controlbutton">
-                <button class="btn btn-default" (click)="goToEditPage(offer)">Змінити</button>
-                <button class="btn btn-default">Деактивувати</button>
-                <button class="btn btn-danger" (click)="deleteConfirm(offer)">Видалити</button>
+                <button class="btn btn-default buttoncontrol" (click)="goToEditPage(offer)">Змінити</button>
+                <button class="btn btn-default buttoncontrol" (click)="changeOfferItemStatus(offer)">{{offer.statusName=='Активний'? 'Дезактивувати' : 'Активувати'}}</button>
+                <button class="btn btn-danger buttoncontrol" (click)="deleteConfirm(offer)">Видалити</button>
             </div>
         </div>
     </div>

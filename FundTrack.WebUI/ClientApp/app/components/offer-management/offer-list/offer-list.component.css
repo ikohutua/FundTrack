@@ -5,3 +5,13 @@
     width: auto;
     height: auto;
 }
+.buttoncontrol {
+    width: 115px !important;
+}
+
+.deactivated {
+    color: #f0ad4e;
+}
+.activated {
+    color: #5cb85c;
+}

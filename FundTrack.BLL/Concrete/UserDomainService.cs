@@ -230,7 +230,11 @@ namespace FundTrack.BLL.DomainServices
                 throw new Exception("Не намагайтеся нас обманути!");
             }
         }
-
+        /// <summary>
+        /// Updates user, based on received view model
+        /// </summary>
+        /// <param name="userModel">User Info View Model</param>
+        /// <returns>Updated User Info View Model</returns>
         public UserInfoViewModel UpdateUser(UserInfoViewModel userModel)
         {
             var user = new User();

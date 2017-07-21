@@ -10,6 +10,8 @@ import { RequestOptions, Request, RequestMethod } from '@angular/http';
 import { Headers } from '@angular/http';
 import { OfferViewModel } from "../../../view-models/concrete/offer-view.model";
 import { GoodsTypeViewModel } from "../../../view-models/concrete/goodsType-view.model";
+import * as key from '../../../shared/key.storage';
+import { OfferItemChangeStatusViewModel } from "../../../view-models/concrete/offer-item-change-status-view.model";
 
 @Injectable()
 export class UserOfferService{
@@ -20,6 +22,7 @@ export class UserOfferService{
     private _editOfferUrl: string = 'api/offer/edit';
     private _goodsTypeUrl: string = "api/requestedItem/GetGoodsType";
     private _getPagedItemsUrl: string = 'api/offer/GetOfferedItemPortion';
+    private _changeOfferStatusUrl: string = 'api/offer/ChangeOfferItemStatus';
     constructor(private _http: Http,
                 private _router: Router){
     }
@@ -28,7 +31,7 @@ export class UserOfferService{
      * @param userId
      */
     public getUserOffers(userId: number): Observable<OfferViewModel[]> {
-        return this._http.get(this._getOfferUrl + '/' + userId)
+        return this._http.get(this._getOfferUrl + '/' + userId, this.getRequestOptions())
             .map((response: Response) => <OfferViewModel[]>response.json())
             .do(data => console.log('Item: ' + JSON.stringify(data)))
             .catch(this.handleError);
@@ -40,6 +43,7 @@ export class UserOfferService{
     public createOffer(newOfferItem: OfferViewModel): Observable<OfferViewModel> {
         let body = newOfferItem;
         let headers = new Headers({ 'Content-Type': 'application/json' });
+        headers.append("Authorization", "Bearer " + localStorage.getItem(key.keyToken));
         let options = new RequestOptions({ headers: headers });
         return this._http.post(this._createOfferUrl, body, options)
             .map((response: Response) => <OfferViewModel>response.json())
@@ -51,7 +55,7 @@ export class UserOfferService{
      * @param offerId
      */
     public deleteOffer(offerId: number) {
-        return this._http.delete(this._deleteOfferUrl + '/' + offerId)
+        return this._http.delete(this._deleteOfferUrl + '/' + offerId, this.getRequestOptions())
             .catch(this.handleError);
     }
     /**
@@ -74,10 +78,14 @@ export class UserOfferService{
      */
     public editOffer(offerItem: OfferViewModel): Observable<OfferViewModel> {
         let body = offerItem;
-        let headers = new Headers({ 'Content-Type': 'application/json' });
-        let options = new RequestOptions({ headers: headers });
-        return this._http.put(this._editOfferUrl, body, options)
+        return this._http.put(this._editOfferUrl, body, this.getRequestOptions)
             .map((response: Response) => <OfferViewModel>response.json())
+            .catch(this.handleError);
+    }
+    public changeOfferItemStatus(model: OfferItemChangeStatusViewModel): Observable<OfferItemChangeStatusViewModel> {
+        let body = model;
+        return this._http.post(this._changeOfferStatusUrl, body, this.getRequestOptions())
+            .map((response: Response) => <OfferItemChangeStatusViewModel>response.json())
             .catch(this.handleError);
     }
     /**
@@ -95,12 +103,19 @@ export class UserOfferService{
      * @param currentPage
      */
     public getPagedUserOffers(userId: number, itemsPerPage: number = 4, currentPage: number = 1): Observable<OfferViewModel[]> {
-        return this._http.get(this._getPagedItemsUrl + '/' + userId + '/' + itemsPerPage + '/' + currentPage)
+        return this._http.get(this._getPagedItemsUrl + '/' + userId + '/' + itemsPerPage + '/' + currentPage, this.getRequestOptions())
             .map((response: Response) => <OfferViewModel[]>response.json())
             .do(data => console.log('ALL ' + JSON.stringify(data)))
             .catch(this.handleError);
     }
     public getInitialData(userId: number): Observable<OfferViewModel[]> {
         return this.getPagedUserOffers(userId);
+    }
+
+    private getRequestOptions() {
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        headers.append("Authorization", "Bearer " + localStorage.getItem(key.keyToken));
+        let options = new RequestOptions({ headers: headers });
+        return options;
     }
 }

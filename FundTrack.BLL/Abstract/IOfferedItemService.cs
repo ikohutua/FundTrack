@@ -58,5 +58,11 @@ namespace FundTrack.BLL.Abstract
         /// <param name="itemsToSkip"></param>
         /// <returns>filtered offer item view models</returns>
         IEnumerable<OfferedItemViewModel> GetPagedUserOfferedItems(int userId, int itemsToLoad, int itemsToSkip);
+        /// <summary>
+        /// Changes status of offer item
+        /// </summary>
+        /// <param name="model">model, containing data about offer item status, id</param>
+        /// <returns>offer item view model</returns>
+        OfferItemChangeStatusViewModel ChangeOfferItemStatus(OfferItemChangeStatusViewModel model);
     }
 }

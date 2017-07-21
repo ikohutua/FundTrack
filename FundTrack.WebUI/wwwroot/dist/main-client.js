@@ -59,7 +59,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "57dbbe1ce61c9ed04aff"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "b71f7984cec00715cc2b"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -706,7 +706,7 @@
 /******/ 	__webpack_require__.h = function() { return hotCurrentHash; };
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return hotCreateRequire(341)(__webpack_require__.s = 341);
+/******/ 	return hotCreateRequire(342)(__webpack_require__.s = 342);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -802,7 +802,7 @@ module.exports = (__webpack_require__(4))(198);
 "use strict";
 
 var Observable_1 = __webpack_require__(3);
-var catch_1 = __webpack_require__(335);
+var catch_1 = __webpack_require__(336);
 Observable_1.Observable.prototype.catch = catch_1._catch;
 Observable_1.Observable.prototype._catch = catch_1._catch;
 //# sourceMappingURL=catch.js.map
@@ -814,7 +814,7 @@ Observable_1.Observable.prototype._catch = catch_1._catch;
 "use strict";
 
 var Observable_1 = __webpack_require__(3);
-var map_1 = __webpack_require__(330);
+var map_1 = __webpack_require__(331);
 Observable_1.Observable.prototype.map = map_1.map;
 //# sourceMappingURL=map.js.map
 
@@ -825,7 +825,7 @@ Observable_1.Observable.prototype.map = map_1.map;
 "use strict";
 
 var Observable_1 = __webpack_require__(3);
-var do_1 = __webpack_require__(288);
+var do_1 = __webpack_require__(289);
 Observable_1.Observable.prototype.do = do_1._do;
 Observable_1.Observable.prototype._do = do_1._do;
 //# sourceMappingURL=do.js.map
@@ -891,6 +891,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 /* 10 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.keyToken = "token";
+exports.keyModel = "model";
+exports.keyError = "error";
+exports.keyBannedOrg = "bannedOrg";
+
+
+/***/ }),
+/* 11 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -914,19 +927,6 @@ var /** @type {?} */ NG_VALUE_ACCESSOR = new __WEBPACK_IMPORTED_MODULE_0__angula
 //# sourceMappingURL=control_value_accessor.js.map
 
 /***/ }),
-/* 11 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.keyToken = "token";
-exports.keyModel = "model";
-exports.keyError = "error";
-exports.keyBannedOrg = "bannedOrg";
-
-
-/***/ }),
 /* 12 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -935,7 +935,7 @@ exports.keyBannedOrg = "bannedOrg";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NG_ASYNC_VALIDATORS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return Validators; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_operator_toPromise__ = __webpack_require__(291);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_operator_toPromise__ = __webpack_require__(292);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_operator_toPromise__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__facade_collection__ = __webpack_require__(78);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__facade_lang__ = __webpack_require__(22);
@@ -1753,7 +1753,7 @@ var ModalComponent = (function () {
 ModalComponent = __decorate([
     core_1.Component({
         selector: 'app-modal',
-        template: __webpack_require__(272)
+        template: __webpack_require__(273)
     })
 ], ModalComponent);
 exports.ModalComponent = ModalComponent;
@@ -2141,7 +2141,7 @@ var router_1 = __webpack_require__(2);
 __webpack_require__(7);
 __webpack_require__(8);
 __webpack_require__(6);
-var key = __webpack_require__(11);
+var key = __webpack_require__(10);
 var angular2_social_login_1 = __webpack_require__(58);
 var UserService = (function () {
     function UserService(_http, _router, _auth, _ngZone) {
@@ -2754,7 +2754,7 @@ function NgForm_tsickle_Closure_declarations() {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return RadioControlRegistry; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RadioControlValueAccessor; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__control_value_accessor__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__control_value_accessor__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ng_control__ = __webpack_require__(19);
 /**
  * @license
@@ -3653,7 +3653,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-__webpack_require__(196);
+__webpack_require__(197);
 var AmazonUploadComponent = (function () {
     function AmazonUploadComponent() {
         this._amazonKeyId = 'AKIAJH4TLLOIZ5QOBKMQ';
@@ -3808,7 +3808,7 @@ MapsAPILoader.ctorParameters = function () { return []; };
 /* unused harmony export CHECKBOX_VALUE_ACCESSOR */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CheckboxControlValueAccessor; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__control_value_accessor__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__control_value_accessor__ = __webpack_require__(11);
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -3909,7 +3909,7 @@ function CheckboxControlValueAccessor_tsickle_Closure_declarations() {
 /* unused harmony export DEFAULT_VALUE_ACCESSOR */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DefaultValueAccessor; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__control_value_accessor__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__control_value_accessor__ = __webpack_require__(11);
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -4186,7 +4186,7 @@ var ReactiveErrors = (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NgSelectOption; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__facade_lang__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__control_value_accessor__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__control_value_accessor__ = __webpack_require__(11);
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -4493,7 +4493,7 @@ function NgSelectOption_tsickle_Closure_declarations() {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return NgSelectMultipleOption; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__facade_lang__ = __webpack_require__(22);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__control_value_accessor__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__control_value_accessor__ = __webpack_require__(11);
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -4841,7 +4841,7 @@ function NgSelectMultipleOption_tsickle_Closure_declarations() {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return FormControl; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return FormGroup; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return FormArray; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_observable_fromPromise__ = __webpack_require__(334);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_observable_fromPromise__ = __webpack_require__(335);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_observable_fromPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_rxjs_observable_fromPromise__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__directives_shared__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__facade_async__ = __webpack_require__(21);
@@ -7959,7 +7959,7 @@ function NgControlStatusGroup_tsickle_Closure_declarations() {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__validators__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__abstract_form_group_directive__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__control_container__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__control_value_accessor__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__control_value_accessor__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ng_control__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ng_form__ = __webpack_require__(26);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ng_model_group__ = __webpack_require__(35);
@@ -8304,7 +8304,7 @@ function NgModel_tsickle_Closure_declarations() {
 /* unused harmony export NUMBER_VALUE_ACCESSOR */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NumberValueAccessor; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__control_value_accessor__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__control_value_accessor__ = __webpack_require__(11);
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -8412,7 +8412,7 @@ function NumberValueAccessor_tsickle_Closure_declarations() {
 /* unused harmony export RANGE_VALUE_ACCESSOR */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RangeValueAccessor; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__control_value_accessor__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__control_value_accessor__ = __webpack_require__(11);
 /**
  * @license
  * Copyright Google Inc. All Rights Reserved.
@@ -8520,7 +8520,7 @@ function RangeValueAccessor_tsickle_Closure_declarations() {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__facade_async__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__validators__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__control_value_accessor__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__control_value_accessor__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ng_control__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__reactive_errors__ = __webpack_require__(36);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__shared__ = __webpack_require__(17);
@@ -8728,7 +8728,7 @@ function FormControlDirective_tsickle_Closure_declarations() {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__validators__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__abstract_form_group_directive__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__control_container__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__control_value_accessor__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__control_value_accessor__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ng_control__ = __webpack_require__(19);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__reactive_errors__ = __webpack_require__(36);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__shared__ = __webpack_require__(17);
@@ -9033,7 +9033,7 @@ var core_1 = __webpack_require__(0);
 var common_1 = __webpack_require__(18);
 var map_component_1 = __webpack_require__(62);
 var forms_1 = __webpack_require__(9);
-var platform_browser_1 = __webpack_require__(333);
+var platform_browser_1 = __webpack_require__(334);
 var core_2 = __webpack_require__(73);
 var map_routing_module_1 = __webpack_require__(156);
 var MapModule = (function () {
@@ -9122,8 +9122,8 @@ var DropdownOrganizationsComponent = (function () {
 DropdownOrganizationsComponent = __decorate([
     core_1.Component({
         selector: 'dropdown-org',
-        template: __webpack_require__(266),
-        styles: [__webpack_require__(320)],
+        template: __webpack_require__(267),
+        styles: [__webpack_require__(321)],
         providers: [organization_dropdown_service_1.OrganizationDropdownService]
     }),
     __metadata("design:paramtypes", [organization_dropdown_service_1.OrganizationDropdownService])
@@ -9478,8 +9478,8 @@ __decorate([
 MapComponent = __decorate([
     core_1.Component({
         selector: 'map-component',
-        template: __webpack_require__(271),
-        styles: [__webpack_require__(324)]
+        template: __webpack_require__(272),
+        styles: [__webpack_require__(325)]
     }),
     core_1.Injectable(),
     __metadata("design:paramtypes", [core_2.MapsAPILoader, core_1.NgZone])
@@ -9523,8 +9523,8 @@ __decorate([
 SpinnerComponent = __decorate([
     core_1.Component({
         selector: 'spinner',
-        template: __webpack_require__(277),
-        styles: [__webpack_require__(326)]
+        template: __webpack_require__(278),
+        styles: [__webpack_require__(327)]
     })
 ], SpinnerComponent);
 exports.SpinnerComponent = SpinnerComponent;
@@ -12150,7 +12150,7 @@ var AuthService = (function () {
                                         }
                                     });
                                 }
-                            }, { scope: 'email', auth_type: "rerequest" });
+                            }, { scope: 'email' });
                         }
                     });
                     break;
@@ -12180,7 +12180,7 @@ var AuthService = (function () {
                     var ref = d.getElementsByTagName('script')[0];
                     gSignout = d.createElement('script');
                     gSignout.src = "https://accounts.google.com/Logout";
-                    gSignout.type = "text/html";
+                    gSignout.type = "text/javascript";
                     gSignout.id = "gSignout";
                     localStorage.removeItem('_login_provider');
                     observer.next(true);
@@ -12208,10 +12208,8 @@ var AuthService = (function () {
         var currentUser = this.gauth.currentUser.get();
         var profile = currentUser.getBasicProfile();
         var idToken = currentUser.getAuthResponse().id_token;
-        var accessToken = currentUser.getAuthResponse().access_token;
         return {
-            token: accessToken,
-            idToken: idToken,
+            token: idToken,
             uid: profile.getId(),
             name: profile.getName(),
             email: profile.getEmail(),
@@ -12219,11 +12217,11 @@ var AuthService = (function () {
             provider: "google"
         };
     };
-    AuthService = __decorate([
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])()
-    ], AuthService);
     return AuthService;
 }());
+AuthService = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])()
+], AuthService);
 
 //# sourceMappingURL=auth.service.js.map
 
@@ -12259,8 +12257,8 @@ var AboutComponent = (function () {
 }());
 AboutComponent = __decorate([
     core_1.Component({
-        template: __webpack_require__(235),
-        styles: [__webpack_require__(293)]
+        template: __webpack_require__(236),
+        styles: [__webpack_require__(294)]
     }),
     __metadata("design:paramtypes", [item_storage_service_1.StorageService])
 ], AboutComponent);
@@ -12357,8 +12355,8 @@ __decorate([
 ], AllEventsComponent.prototype, "onScroll", null);
 AllEventsComponent = __decorate([
     core_1.Component({
-        template: __webpack_require__(236),
-        styles: [__webpack_require__(294)],
+        template: __webpack_require__(237),
+        styles: [__webpack_require__(295)],
         providers: [organization_events_service_1.OrganizationEventService]
     }),
     __metadata("design:paramtypes", [organization_events_service_1.OrganizationEventService, router_1.ActivatedRoute])
@@ -12475,8 +12473,8 @@ var AllRequestsComponent = (function () {
 }());
 AllRequestsComponent = __decorate([
     core_1.Component({
-        template: __webpack_require__(237),
-        styles: [__webpack_require__(295)],
+        template: __webpack_require__(238),
+        styles: [__webpack_require__(296)],
         providers: [showrequesteditem_service_1.ShowRequestedItemService]
     }),
     __metadata("design:paramtypes", [showrequesteditem_service_1.ShowRequestedItemService, item_storage_service_1.StorageService, router_1.Router])
@@ -12505,7 +12503,7 @@ var login_view_model_1 = __webpack_require__(189);
 var user_service_1 = __webpack_require__(23);
 var router_1 = __webpack_require__(2);
 var angular2_social_login_1 = __webpack_require__(58);
-var keys = __webpack_require__(11);
+var keys = __webpack_require__(10);
 var login_facebook_view_model_1 = __webpack_require__(188);
 var AuthorizationComponent = (function () {
     function AuthorizationComponent(_authorizationService, _router, _auth, _ngZone) {
@@ -12622,8 +12620,8 @@ __decorate([
 ], AuthorizationComponent.prototype, "loginModel", void 0);
 AuthorizationComponent = __decorate([
     core_1.Component({
-        template: __webpack_require__(239),
-        styles: [__webpack_require__(297)],
+        template: __webpack_require__(240),
+        styles: [__webpack_require__(298)],
         host: { '(window:keydown)': 'hotkeys($event)' },
         providers: [user_service_1.UserService]
     }),
@@ -12679,8 +12677,8 @@ var EventDetailComponent = (function () {
 }());
 EventDetailComponent = __decorate([
     core_1.Component({
-        template: __webpack_require__(240),
-        styles: [__webpack_require__(298)],
+        template: __webpack_require__(241),
+        styles: [__webpack_require__(299)],
         providers: [eventdetail_service_1.EventDetailService]
     }),
     __metadata("design:paramtypes", [eventdetail_service_1.EventDetailService, router_1.ActivatedRoute])
@@ -12721,8 +12719,8 @@ __decorate([
 HomeComponent = __decorate([
     core_1.Component({
         selector: 'home',
-        template: __webpack_require__(241),
-        styles: [__webpack_require__(299)]
+        template: __webpack_require__(242),
+        styles: [__webpack_require__(300)]
     })
 ], HomeComponent);
 exports.HomeComponent = HomeComponent;
@@ -12747,12 +12745,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
 var offered_item_image_view_model_1 = __webpack_require__(65);
 var user_offer_service_1 = __webpack_require__(111);
-var offer_view_model_1 = __webpack_require__(190);
+var offer_view_model_1 = __webpack_require__(191);
 var router_1 = __webpack_require__(2);
 var goods_service_1 = __webpack_require__(162);
 var goods_type_view_model_1 = __webpack_require__(186);
 var amazon_upload_component_1 = __webpack_require__(30);
-var key = __webpack_require__(11);
+var key = __webpack_require__(10);
 var angular2_universal_1 = __webpack_require__(14);
 var Observable_1 = __webpack_require__(3);
 var OfferDetailComponent = (function () {
@@ -12892,8 +12890,8 @@ __decorate([
 OfferDetailComponent = __decorate([
     core_1.Component({
         selector: 'offer-detail',
-        template: __webpack_require__(242),
-        styles: [__webpack_require__(300)],
+        template: __webpack_require__(243),
+        styles: [__webpack_require__(301)],
         providers: [user_offer_service_1.UserOfferService, goods_service_1.GoodsService]
     }),
     __metadata("design:paramtypes", [router_1.Router,
@@ -12924,8 +12922,9 @@ var core_1 = __webpack_require__(0);
 var user_offer_service_1 = __webpack_require__(111);
 var router_1 = __webpack_require__(2);
 var angular2_universal_1 = __webpack_require__(14);
-var key = __webpack_require__(11);
+var key = __webpack_require__(10);
 var offered_item_image_view_model_1 = __webpack_require__(65);
+var offer_item_change_status_view_model_1 = __webpack_require__(190);
 var OfferListComponent = (function () {
     function OfferListComponent(_router, _offerService) {
         this._router = _router;
@@ -12945,7 +12944,6 @@ var OfferListComponent = (function () {
         ;
         this._offerService.getInitialData(this.user.id)
             .subscribe(function (offers) {
-            debugger;
             _this.offers = offers;
             _this.checkForMissingImages(_this.offers);
             _this.setMainImage(_this.offers);
@@ -12960,6 +12958,37 @@ var OfferListComponent = (function () {
             .subscribe(function () {
             _this.offers.splice(_this.offers.findIndex(function (o) { return o.id == offerItem.id; }), 1);
         });
+    };
+    OfferListComponent.prototype.changeOfferItemStatus = function (offerItem) {
+        var model = new offer_item_change_status_view_model_1.OfferItemChangeStatusViewModel();
+        model.offerItemId = offerItem.id;
+        model.userId = this.user.id;
+        if (offerItem.statusName == 'Активний') {
+            model.offerItemStatus = 'Неактивний';
+            this._offerService.changeOfferItemStatus(model)
+                .subscribe(function (data) {
+                if (data.errorMessage == null) {
+                    offerItem.statusName = 'Неактивний';
+                }
+                else {
+                    alert(data.errorMessage);
+                }
+            });
+        }
+        else if (offerItem.statusName == 'Неактивний') {
+            model.offerItemStatus = 'Активний';
+            this._offerService.changeOfferItemStatus(model)
+                .subscribe(function (data) {
+                if (data.errorMessage == null) {
+                    offerItem.statusName = 'Активний';
+                }
+                else {
+                    alert(data.errorMessage);
+                }
+            });
+        }
+        else
+            return;
     };
     ///Delete action confirmation
     OfferListComponent.prototype.deleteConfirm = function (offerItem) {
@@ -13031,8 +13060,8 @@ __decorate([
 OfferListComponent = __decorate([
     core_1.Component({
         selector: 'offer-list',
-        template: __webpack_require__(243),
-        styles: [__webpack_require__(301)],
+        template: __webpack_require__(244),
+        styles: [__webpack_require__(302)],
         providers: [user_offer_service_1.UserOfferService]
     }),
     __metadata("design:paramtypes", [router_1.Router,
@@ -13075,8 +13104,8 @@ var OfferItemManagementComponent = (function () {
 OfferItemManagementComponent = __decorate([
     core_1.Component({
         selector: 'offer-management',
-        template: __webpack_require__(244),
-        styles: [__webpack_require__(302)]
+        template: __webpack_require__(245),
+        styles: [__webpack_require__(303)]
     }),
     __metadata("design:paramtypes", [router_1.Router])
 ], OfferItemManagementComponent);
@@ -13207,8 +13236,8 @@ var OrganizationManadementEventEditComponent = (function () {
 OrganizationManadementEventEditComponent = __decorate([
     core_1.Component({
         selector: 'org-management-event',
-        template: __webpack_require__(245),
-        styles: [__webpack_require__(303)]
+        template: __webpack_require__(246),
+        styles: [__webpack_require__(304)]
     }),
     __metadata("design:paramtypes", [router_1.ActivatedRoute, router_1.Router, organization_management_events_service_1.OrganizationManagementEventsService])
 ], OrganizationManadementEventEditComponent);
@@ -13341,8 +13370,8 @@ var OrganizationManagementAllEventsComponent = (function () {
 OrganizationManagementAllEventsComponent = __decorate([
     core_1.Component({
         selector: 'org-management-event',
-        template: __webpack_require__(246),
-        styles: [__webpack_require__(304)],
+        template: __webpack_require__(247),
+        styles: [__webpack_require__(305)],
         providers: [organization_management_events_service_1.OrganizationManagementEventsService]
     }),
     __metadata("design:paramtypes", [router_1.ActivatedRoute, router_1.Router, organization_management_events_service_1.OrganizationManagementEventsService])
@@ -13454,8 +13483,8 @@ var OrganizationManagementEventAddComponent = (function () {
 OrganizationManagementEventAddComponent = __decorate([
     core_1.Component({
         selector: 'org-management-add',
-        template: __webpack_require__(247),
-        styles: [__webpack_require__(305)]
+        template: __webpack_require__(248),
+        styles: [__webpack_require__(306)]
     }),
     __metadata("design:paramtypes", [router_1.ActivatedRoute, router_1.Router, organization_management_events_service_1.OrganizationManagementEventsService])
 ], OrganizationManagementEventAddComponent);
@@ -13493,8 +13522,8 @@ __decorate([
 DetailInfoRequestedItemComponent = __decorate([
     core_1.Component({
         selector: 'detail-info',
-        template: __webpack_require__(249),
-        styles: [__webpack_require__(307)],
+        template: __webpack_require__(250),
+        styles: [__webpack_require__(308)],
     })
 ], DetailInfoRequestedItemComponent);
 exports.DetailInfoRequestedItemComponent = DetailInfoRequestedItemComponent;
@@ -13539,8 +13568,8 @@ __decorate([
 OrganizationDeleteRequestComponent = __decorate([
     core_1.Component({
         selector: 'delete-request',
-        template: __webpack_require__(250),
-        styles: [__webpack_require__(308)],
+        template: __webpack_require__(251),
+        styles: [__webpack_require__(309)],
     })
 ], OrganizationDeleteRequestComponent);
 exports.OrganizationDeleteRequestComponent = OrganizationDeleteRequestComponent;
@@ -13750,8 +13779,8 @@ var OrganizationManageRequestComponent = (function () {
 OrganizationManageRequestComponent = __decorate([
     core_1.Component({
         selector: 'manage-request',
-        template: __webpack_require__(251),
-        styles: [__webpack_require__(309)],
+        template: __webpack_require__(252),
+        styles: [__webpack_require__(310)],
         providers: [organization_management_request_service_1.OrganizationManagementRequestService]
     }),
     __metadata("design:paramtypes", [organization_management_request_service_1.OrganizationManagementRequestService,
@@ -13901,8 +13930,8 @@ __decorate([
 OrganizationManagementRequestComponent = __decorate([
     core_1.Component({
         selector: 'org-management-request',
-        template: __webpack_require__(252),
-        styles: [__webpack_require__(310)],
+        template: __webpack_require__(253),
+        styles: [__webpack_require__(311)],
         providers: [organization_management_request_service_1.OrganizationManagementRequestService]
     }),
     core_1.Injectable(),
@@ -13933,7 +13962,7 @@ var core_1 = __webpack_require__(0);
 var user_service_1 = __webpack_require__(23);
 var router_1 = __webpack_require__(2);
 var forms_1 = __webpack_require__(9);
-var user_email_view_model_1 = __webpack_require__(195);
+var user_email_view_model_1 = __webpack_require__(196);
 var BeginPasswordResetComponent = (function () {
     /**
      * Creates new instance of BeginPasswordResetComponent
@@ -14026,7 +14055,7 @@ var BeginPasswordResetComponent = (function () {
 BeginPasswordResetComponent = __decorate([
     core_1.Component({
         selector: 'begin-pass-reset',
-        template: __webpack_require__(253),
+        template: __webpack_require__(254),
         providers: [user_service_1.UserService]
     }),
     __metadata("design:paramtypes", [user_service_1.UserService, router_1.Router, forms_1.FormBuilder])
@@ -14051,14 +14080,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var reset_password_view_model_1 = __webpack_require__(193);
+var reset_password_view_model_1 = __webpack_require__(194);
 var router_1 = __webpack_require__(2);
 var router_2 = __webpack_require__(2);
 var user_service_1 = __webpack_require__(23);
 var guid_view_model_1 = __webpack_require__(187);
 var forms_1 = __webpack_require__(9);
 var match_password_validator_1 = __webpack_require__(59);
-__webpack_require__(284);
+__webpack_require__(285);
 var NewPasswordComponent = (function () {
     /**
      * Creates new instance of NewPasswordComponent
@@ -14191,7 +14220,7 @@ var NewPasswordComponent = (function () {
 NewPasswordComponent = __decorate([
     core_1.Component({
         selector: 'new-pass-reset',
-        template: __webpack_require__(254),
+        template: __webpack_require__(255),
         providers: [user_service_1.UserService]
     }),
     __metadata("design:paramtypes", [router_1.ActivatedRoute,
@@ -14220,9 +14249,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
 var router_1 = __webpack_require__(2);
-var registration_view_model_1 = __webpack_require__(192);
+var registration_view_model_1 = __webpack_require__(193);
 var user_service_1 = __webpack_require__(23);
-var keys = __webpack_require__(11);
+var keys = __webpack_require__(10);
 var forms_1 = __webpack_require__(9);
 var match_password_validator_1 = __webpack_require__(59);
 __webpack_require__(6);
@@ -14398,8 +14427,8 @@ var RegistrationComponent = (function () {
 RegistrationComponent = __decorate([
     core_1.Component({
         selector: 'registration',
-        template: __webpack_require__(255),
-        styles: [__webpack_require__(311)],
+        template: __webpack_require__(256),
+        styles: [__webpack_require__(312)],
         providers: [user_service_1.UserService]
     }),
     __metadata("design:paramtypes", [router_1.Router,
@@ -14427,11 +14456,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
 var request_detail_service_1 = __webpack_require__(165);
-var user_response_view_model_1 = __webpack_require__(194);
+var user_response_view_model_1 = __webpack_require__(195);
 var modal_component_1 = __webpack_require__(20);
 var router_1 = __webpack_require__(2);
 var core_2 = __webpack_require__(0);
-var keys = __webpack_require__(11);
+var keys = __webpack_require__(10);
 var item_storage_service_1 = __webpack_require__(13);
 var RequestDetailComponent = (function () {
     function RequestDetailComponent(_requestDetailService, _activatedRoute, _storage) {
@@ -14512,8 +14541,8 @@ __decorate([
 ], RequestDetailComponent.prototype, "modalWindow", void 0);
 RequestDetailComponent = __decorate([
     core_1.Component({
-        template: __webpack_require__(256),
-        styles: [__webpack_require__(312)],
+        template: __webpack_require__(257),
+        styles: [__webpack_require__(313)],
         providers: [request_detail_service_1.RequestDetailService]
     }),
     __metadata("design:paramtypes", [request_detail_service_1.RequestDetailService,
@@ -14541,7 +14570,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
 var organization_registration_service_1 = __webpack_require__(114);
-var organization_registration_view_model_1 = __webpack_require__(191);
+var organization_registration_view_model_1 = __webpack_require__(192);
 var map_component_1 = __webpack_require__(62);
 var modal_component_1 = __webpack_require__(20);
 var OrganizationRegistrationComponent = (function () {
@@ -14586,8 +14615,8 @@ __decorate([
 OrganizationRegistrationComponent = __decorate([
     core_1.Component({
         selector: 'register-organization',
-        template: __webpack_require__(257),
-        styles: [__webpack_require__(313)],
+        template: __webpack_require__(258),
+        styles: [__webpack_require__(314)],
         providers: [map_component_1.MapComponent]
     })
     /**
@@ -14621,7 +14650,7 @@ var SuperAdminComplaintsComponent = (function () {
 SuperAdminComplaintsComponent = __decorate([
     core_1.Component({
         selector: 'super-admin-complaints',
-        template: __webpack_require__(259)
+        template: __webpack_require__(260)
     })
 ], SuperAdminComplaintsComponent);
 exports.SuperAdminComplaintsComponent = SuperAdminComplaintsComponent;
@@ -14721,8 +14750,8 @@ var SuperAdminOrganizationsComponent = (function () {
 SuperAdminOrganizationsComponent = __decorate([
     core_1.Component({
         selector: 'super-admin-organizations',
-        template: __webpack_require__(261),
-        styles: [__webpack_require__(315)],
+        template: __webpack_require__(262),
+        styles: [__webpack_require__(316)],
         providers: [super_admin_service_1.SuperAdminService]
     })
     /**
@@ -14831,8 +14860,8 @@ var SuperAdminUsersComponent = (function () {
 SuperAdminUsersComponent = __decorate([
     core_1.Component({
         selector: 'super-admin-users',
-        template: __webpack_require__(262),
-        styles: [__webpack_require__(316)],
+        template: __webpack_require__(263),
+        styles: [__webpack_require__(317)],
         providers: [super_admin_service_1.SuperAdminService]
     })
     /**
@@ -14866,8 +14895,8 @@ var SuperAdminComponent = (function () {
 SuperAdminComponent = __decorate([
     core_1.Component({
         selector: 'super-admin',
-        template: __webpack_require__(263),
-        styles: [__webpack_require__(317)]
+        template: __webpack_require__(264),
+        styles: [__webpack_require__(318)]
     })
 ], SuperAdminComponent);
 exports.SuperAdminComponent = SuperAdminComponent;
@@ -14892,7 +14921,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
 var forms_1 = __webpack_require__(9);
 var modal_component_1 = __webpack_require__(20);
-var key = __webpack_require__(11);
+var key = __webpack_require__(10);
 var angular2_universal_1 = __webpack_require__(14);
 var authorized_user_info_view_model_1 = __webpack_require__(182);
 var change_password_view_model_1 = __webpack_require__(183);
@@ -15172,8 +15201,8 @@ __decorate([
 UserProfileComponent = __decorate([
     core_1.Component({
         selector: 'user-info',
-        template: __webpack_require__(264),
-        styles: [__webpack_require__(318)],
+        template: __webpack_require__(265),
+        styles: [__webpack_require__(319)],
         providers: [forms_1.FormBuilder, user_service_1.UserService]
     }),
     __metadata("design:paramtypes", [user_service_1.UserService,
@@ -15301,8 +15330,8 @@ __decorate([
 ], UserResponseComponent.prototype, "modalWindow", void 0);
 UserResponseComponent = __decorate([
     core_1.Component({
-        template: __webpack_require__(265),
-        styles: [__webpack_require__(319)],
+        template: __webpack_require__(266),
+        styles: [__webpack_require__(320)],
         providers: [user_responses_service_1.UserResponseService, showrequesteditem_service_1.ShowRequestedItemService]
     }),
     __metadata("design:paramtypes", [user_responses_service_1.UserResponseService,
@@ -15393,7 +15422,7 @@ exports.OrganizationManagementModule = OrganizationManagementModule;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var angular2_universal_1 = __webpack_require__(14);
-var keys = __webpack_require__(11);
+var keys = __webpack_require__(10);
 /**
  * Abstract class for Guard service
  */
@@ -15451,6 +15480,7 @@ __webpack_require__(8);
 __webpack_require__(6);
 var http_2 = __webpack_require__(5);
 var http_3 = __webpack_require__(5);
+var key = __webpack_require__(10);
 var UserOfferService = (function () {
     function UserOfferService(_http, _router) {
         this._http = _http;
@@ -15462,13 +15492,14 @@ var UserOfferService = (function () {
         this._editOfferUrl = 'api/offer/edit';
         this._goodsTypeUrl = "api/requestedItem/GetGoodsType";
         this._getPagedItemsUrl = 'api/offer/GetOfferedItemPortion';
+        this._changeOfferStatusUrl = 'api/offer/ChangeOfferItemStatus';
     }
     /**
      * Gets user's offer items by user id
      * @param userId
      */
     UserOfferService.prototype.getUserOffers = function (userId) {
-        return this._http.get(this._getOfferUrl + '/' + userId)
+        return this._http.get(this._getOfferUrl + '/' + userId, this.getRequestOptions())
             .map(function (response) { return response.json(); })
             .do(function (data) { return console.log('Item: ' + JSON.stringify(data)); })
             .catch(this.handleError);
@@ -15480,6 +15511,7 @@ var UserOfferService = (function () {
     UserOfferService.prototype.createOffer = function (newOfferItem) {
         var body = newOfferItem;
         var headers = new http_3.Headers({ 'Content-Type': 'application/json' });
+        headers.append("Authorization", "Bearer " + localStorage.getItem(key.keyToken));
         var options = new http_2.RequestOptions({ headers: headers });
         return this._http.post(this._createOfferUrl, body, options)
             .map(function (response) { return response.json(); })
@@ -15491,7 +15523,7 @@ var UserOfferService = (function () {
      * @param offerId
      */
     UserOfferService.prototype.deleteOffer = function (offerId) {
-        return this._http.delete(this._deleteOfferUrl + '/' + offerId)
+        return this._http.delete(this._deleteOfferUrl + '/' + offerId, this.getRequestOptions())
             .catch(this.handleError);
     };
     /**
@@ -15514,9 +15546,13 @@ var UserOfferService = (function () {
      */
     UserOfferService.prototype.editOffer = function (offerItem) {
         var body = offerItem;
-        var headers = new http_3.Headers({ 'Content-Type': 'application/json' });
-        var options = new http_2.RequestOptions({ headers: headers });
-        return this._http.put(this._editOfferUrl, body, options)
+        return this._http.put(this._editOfferUrl, body, this.getRequestOptions)
+            .map(function (response) { return response.json(); })
+            .catch(this.handleError);
+    };
+    UserOfferService.prototype.changeOfferItemStatus = function (model) {
+        var body = model;
+        return this._http.post(this._changeOfferStatusUrl, body, this.getRequestOptions())
             .map(function (response) { return response.json(); })
             .catch(this.handleError);
     };
@@ -15537,13 +15573,19 @@ var UserOfferService = (function () {
     UserOfferService.prototype.getPagedUserOffers = function (userId, itemsPerPage, currentPage) {
         if (itemsPerPage === void 0) { itemsPerPage = 4; }
         if (currentPage === void 0) { currentPage = 1; }
-        return this._http.get(this._getPagedItemsUrl + '/' + userId + '/' + itemsPerPage + '/' + currentPage)
+        return this._http.get(this._getPagedItemsUrl + '/' + userId + '/' + itemsPerPage + '/' + currentPage, this.getRequestOptions())
             .map(function (response) { return response.json(); })
             .do(function (data) { return console.log('ALL ' + JSON.stringify(data)); })
             .catch(this.handleError);
     };
     UserOfferService.prototype.getInitialData = function (userId) {
         return this.getPagedUserOffers(userId);
+    };
+    UserOfferService.prototype.getRequestOptions = function () {
+        var headers = new http_3.Headers({ 'Content-Type': 'application/json' });
+        headers.append("Authorization", "Bearer " + localStorage.getItem(key.keyToken));
+        var options = new http_2.RequestOptions({ headers: headers });
+        return options;
     };
     return UserOfferService;
 }());
@@ -16125,8 +16167,8 @@ var ErrorAuthorizeComponent = (function () {
 }());
 ErrorAuthorizeComponent = __decorate([
     core_1.Component({
-        template: __webpack_require__(267),
-        styles: [__webpack_require__(321)]
+        template: __webpack_require__(268),
+        styles: [__webpack_require__(322)]
     })
 ], ErrorAuthorizeComponent);
 exports.ErrorAuthorizeComponent = ErrorAuthorizeComponent;
@@ -16170,7 +16212,7 @@ var OrganizationBannedComponent = (function () {
 OrganizationBannedComponent = __decorate([
     core_1.Component({
         selector: 'org-banned',
-        template: __webpack_require__(268),
+        template: __webpack_require__(269),
     })
     /**
     * Component for Banned Organization
@@ -16432,11 +16474,11 @@ module.exports = (__webpack_require__(4))(9);
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(336);
+__webpack_require__(337);
 var core_1 = __webpack_require__(0);
 var angular2_universal_1 = __webpack_require__(14);
 var app_module_1 = __webpack_require__(145);
-__webpack_require__(337);
+__webpack_require__(338);
 var rootElemTagName = 'app'; // Update this if you change your root component selector
 // Enable either Hot Module Reloading or production mode
 if (true) {
@@ -16480,7 +16522,7 @@ var options = {
   name: ''
 };
 if (true) {
-  var querystring = __webpack_require__(281);
+  var querystring = __webpack_require__(282);
   var overrides = querystring.parse(__resourceQuery.slice(1));
   if (overrides.path) options.path = overrides.path;
   if (overrides.timeout) options.timeout = overrides.timeout;
@@ -16600,11 +16642,11 @@ if (typeof window !== 'undefined') {
 }
 
 function createReporter() {
-  var strip = __webpack_require__(292);
+  var strip = __webpack_require__(293);
 
   var overlay;
   if (typeof document !== 'undefined' && options.overlay) {
-    overlay = __webpack_require__(328);
+    overlay = __webpack_require__(329);
   }
 
   var styles = {
@@ -16657,7 +16699,7 @@ function createReporter() {
   };
 }
 
-var processUpdate = __webpack_require__(329);
+var processUpdate = __webpack_require__(330);
 
 var customHandler;
 var subscribeAllHandler;
@@ -16722,7 +16764,7 @@ if (module) {
   };
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, "?path=%2F__webpack_hmr", __webpack_require__(340)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, "?path=%2F__webpack_hmr", __webpack_require__(341)(module)))
 
 /***/ }),
 /* 127 */
@@ -17171,7 +17213,7 @@ function ReactiveFormsModule_tsickle_Closure_declarations() {
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return __WEBPACK_IMPORTED_MODULE_2__directives_checkbox_value_accessor__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__directives_control_container__ = __webpack_require__(16);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return __WEBPACK_IMPORTED_MODULE_3__directives_control_container__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__directives_control_value_accessor__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__directives_control_value_accessor__ = __webpack_require__(11);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return __WEBPACK_IMPORTED_MODULE_4__directives_control_value_accessor__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__directives_default_value_accessor__ = __webpack_require__(34);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return __WEBPACK_IMPORTED_MODULE_5__directives_default_value_accessor__["a"]; });
@@ -17671,13 +17713,13 @@ var Angular2SocialLoginModule = (function () {
             loadProvidersScripts[provider](config[provider]);
         });
     };
-    Angular2SocialLoginModule = __decorate([
-        __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
-            providers: [__WEBPACK_IMPORTED_MODULE_1__auth_service__["a" /* AuthService */]]
-        })
-    ], Angular2SocialLoginModule);
     return Angular2SocialLoginModule;
 }());
+Angular2SocialLoginModule = __decorate([
+    __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
+        providers: [__WEBPACK_IMPORTED_MODULE_1__auth_service__["a" /* AuthService */]]
+    })
+], Angular2SocialLoginModule);
 
 //# sourceMappingURL=angular2-social-login.module.js.map
 
@@ -18122,8 +18164,8 @@ __decorate([
 AppComponent = __decorate([
     core_1.Component({
         selector: 'app',
-        template: __webpack_require__(238),
-        styles: [__webpack_require__(296)]
+        template: __webpack_require__(239),
+        styles: [__webpack_require__(297)]
     }),
     __metadata("design:paramtypes", [item_storage_service_1.StorageService])
 ], AppComponent);
@@ -18169,8 +18211,8 @@ __decorate([
 OrganizationManagementEventDeleteComponent = __decorate([
     core_1.Component({
         selector: 'delete-event',
-        template: __webpack_require__(248),
-        styles: [__webpack_require__(306)],
+        template: __webpack_require__(249),
+        styles: [__webpack_require__(307)],
     })
 ], OrganizationManagementEventDeleteComponent);
 exports.OrganizationManagementEventDeleteComponent = OrganizationManagementEventDeleteComponent;
@@ -18219,7 +18261,7 @@ __decorate([
 SuperAdminBanComponent = __decorate([
     core_1.Component({
         selector: 'super-admin-ban',
-        template: __webpack_require__(258)
+        template: __webpack_require__(259)
     })
 ], SuperAdminBanComponent);
 exports.SuperAdminBanComponent = SuperAdminBanComponent;
@@ -18316,8 +18358,8 @@ __decorate([
 SuperAdminGrid = __decorate([
     core_1.Component({
         selector: 'super-admin-grid',
-        template: __webpack_require__(260),
-        styles: [__webpack_require__(314)]
+        template: __webpack_require__(261),
+        styles: [__webpack_require__(315)]
     })
     /**
     * Componet to dispay Grid for users or organizations
@@ -19194,7 +19236,7 @@ var router_1 = __webpack_require__(2);
 var core_1 = __webpack_require__(0);
 var angular2_universal_1 = __webpack_require__(14);
 var item_storage_service_1 = __webpack_require__(13);
-var keys = __webpack_require__(11);
+var keys = __webpack_require__(10);
 var BannedOrgGuard = (function () {
     /**
      * Creates new instance of BannedOrgGuard
@@ -19387,8 +19429,8 @@ __decorate([
 GalleryEventDetailComponent = __decorate([
     core_1.Component({
         selector: 'gallery-eventdetail',
-        template: __webpack_require__(269),
-        styles: [__webpack_require__(322)]
+        template: __webpack_require__(270),
+        styles: [__webpack_require__(323)]
     })
 ], GalleryEventDetailComponent);
 exports.GalleryEventDetailComponent = GalleryEventDetailComponent;
@@ -19477,8 +19519,8 @@ GalleryComponent = __decorate([
     core_1.Component({
         selector: 'gallery',
         host: { '(window:keydown)': 'hotkeys($event)' },
-        template: __webpack_require__(270),
-        styles: [__webpack_require__(323)]
+        template: __webpack_require__(271),
+        styles: [__webpack_require__(324)]
     })
 ], GalleryComponent);
 exports.GalleryComponent = GalleryComponent;
@@ -19525,7 +19567,7 @@ __decorate([
 PageItemComponent = __decorate([
     core_1.Component({
         selector: 'pagination-item',
-        template: __webpack_require__(273)
+        template: __webpack_require__(274)
     })
     /**
       * Generic class for grid items
@@ -19554,9 +19596,9 @@ var core_1 = __webpack_require__(0);
 var Observable_1 = __webpack_require__(3);
 __webpack_require__(7);
 __webpack_require__(6);
-__webpack_require__(282);
 __webpack_require__(283);
-__webpack_require__(285);
+__webpack_require__(284);
+__webpack_require__(286);
 var PaginationComponent = (function () {
     /**
      * Creates new instance of PaginationComponent
@@ -19656,7 +19698,7 @@ __decorate([
 PaginationComponent = __decorate([
     core_1.Component({
         selector: 'pagination-pages',
-        template: __webpack_require__(274)
+        template: __webpack_require__(275)
     })
     /**
     * Generic class for pagination buttons
@@ -19711,7 +19753,7 @@ __decorate([
 SelectComponent = __decorate([
     core_1.Component({
         selector: 'select-item',
-        template: __webpack_require__(275)
+        template: __webpack_require__(276)
     })
     /**
      * Generic component for select box
@@ -19739,7 +19781,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
 var router_1 = __webpack_require__(2);
 var angular2_universal_1 = __webpack_require__(14);
-var key = __webpack_require__(11);
+var key = __webpack_require__(10);
 var item_storage_service_1 = __webpack_require__(13);
 var user_responses_service_1 = __webpack_require__(113);
 var SidebarComponent = (function () {
@@ -19831,8 +19873,8 @@ __decorate([
 SidebarComponent = __decorate([
     core_1.Component({
         selector: 'sidebar',
-        template: __webpack_require__(276),
-        styles: [__webpack_require__(325)],
+        template: __webpack_require__(277),
+        styles: [__webpack_require__(326)],
         providers: [user_responses_service_1.UserResponseService]
     }),
     __metadata("design:paramtypes", [router_1.Router,
@@ -19859,7 +19901,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var keys = __webpack_require__(11);
+var keys = __webpack_require__(10);
 var angular2_universal_1 = __webpack_require__(14);
 var user_service_1 = __webpack_require__(23);
 var item_storage_service_1 = __webpack_require__(13);
@@ -19919,8 +19961,8 @@ var UserStatesComponent = (function () {
 UserStatesComponent = __decorate([
     core_1.Component({
         selector: 'user-states',
-        template: __webpack_require__(278),
-        styles: [__webpack_require__(327)],
+        template: __webpack_require__(279),
+        styles: [__webpack_require__(328)],
         providers: [user_service_1.UserService]
     }),
     __metadata("design:paramtypes", [user_service_1.UserService, item_storage_service_1.StorageService])
@@ -20276,6 +20318,21 @@ exports.LoginViewModel = LoginViewModel;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
+var OfferItemChangeStatusViewModel = (function () {
+    function OfferItemChangeStatusViewModel() {
+    }
+    return OfferItemChangeStatusViewModel;
+}());
+exports.OfferItemChangeStatusViewModel = OfferItemChangeStatusViewModel;
+
+
+/***/ }),
+/* 191 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
 var offered_item_image_view_model_1 = __webpack_require__(65);
 var OfferViewModel = (function () {
     function OfferViewModel() {
@@ -20289,7 +20346,7 @@ exports.OfferViewModel = OfferViewModel;
 
 
 /***/ }),
-/* 191 */
+/* 192 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20304,7 +20361,7 @@ exports.OrganizationRegistrationViewModel = OrganizationRegistrationViewModel;
 
 
 /***/ }),
-/* 192 */
+/* 193 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20319,7 +20376,7 @@ exports.RegistrationViewModel = RegistrationViewModel;
 
 
 /***/ }),
-/* 193 */
+/* 194 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20337,7 +20394,7 @@ exports.ResetPasswordViewModel = ResetPasswordViewModel;
 
 
 /***/ }),
-/* 194 */
+/* 195 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20355,7 +20412,7 @@ exports.UserResponseViewModel = UserResponseViewModel;
 
 
 /***/ }),
-/* 195 */
+/* 196 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20373,10 +20430,10 @@ exports.UserEmailViewModel = UserEmailViewModel;
 
 
 /***/ }),
-/* 196 */
+/* 197 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(global) {var require;var require;var __WEBPACK_AMD_DEFINE_RESULT__;// AWS SDK for JavaScript v2.88.0
+/* WEBPACK VAR INJECTION */(function(global) {var require;var require;var __WEBPACK_AMD_DEFINE_RESULT__;// AWS SDK for JavaScript v2.82.0
 // Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 // License at https://sdk.amazonaws.com/js/BUNDLE_LICENSE.txt
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return require(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
@@ -21289,30 +21346,6 @@ module.exports={
         }
       }
     },
-    "DeleteGatewayResponse": {
-      "http": {
-        "method": "DELETE",
-        "requestUri": "/restapis/{restapi_id}/gatewayresponses/{response_type}",
-        "responseCode": 202
-      },
-      "input": {
-        "type": "structure",
-        "required": [
-          "restApiId",
-          "responseType"
-        ],
-        "members": {
-          "restApiId": {
-            "location": "uri",
-            "locationName": "restapi_id"
-          },
-          "responseType": {
-            "location": "uri",
-            "locationName": "response_type"
-          }
-        }
-      }
-    },
     "DeleteIntegration": {
       "http": {
         "method": "DELETE",
@@ -21657,7 +21690,7 @@ module.exports={
         }
       },
       "output": {
-        "shape": "S2m"
+        "shape": "S2k"
       }
     },
     "GetAccount": {
@@ -21670,7 +21703,7 @@ module.exports={
         "members": {}
       },
       "output": {
-        "shape": "S2o"
+        "shape": "S2m"
       }
     },
     "GetApiKey": {
@@ -21898,7 +21931,7 @@ module.exports={
         }
       },
       "output": {
-        "shape": "S2m"
+        "shape": "S2k"
       }
     },
     "GetClientCertificates": {
@@ -21928,7 +21961,7 @@ module.exports={
             "locationName": "item",
             "type": "list",
             "member": {
-              "shape": "S2m"
+              "shape": "S2k"
             }
           }
         }
@@ -22255,72 +22288,6 @@ module.exports={
           }
         },
         "payload": "body"
-      }
-    },
-    "GetGatewayResponse": {
-      "http": {
-        "method": "GET",
-        "requestUri": "/restapis/{restapi_id}/gatewayresponses/{response_type}"
-      },
-      "input": {
-        "type": "structure",
-        "required": [
-          "restApiId",
-          "responseType"
-        ],
-        "members": {
-          "restApiId": {
-            "location": "uri",
-            "locationName": "restapi_id"
-          },
-          "responseType": {
-            "location": "uri",
-            "locationName": "response_type"
-          }
-        }
-      },
-      "output": {
-        "shape": "S3p"
-      }
-    },
-    "GetGatewayResponses": {
-      "http": {
-        "method": "GET",
-        "requestUri": "/restapis/{restapi_id}/gatewayresponses"
-      },
-      "input": {
-        "type": "structure",
-        "required": [
-          "restApiId"
-        ],
-        "members": {
-          "restApiId": {
-            "location": "uri",
-            "locationName": "restapi_id"
-          },
-          "position": {
-            "location": "querystring",
-            "locationName": "position"
-          },
-          "limit": {
-            "location": "querystring",
-            "locationName": "limit",
-            "type": "integer"
-          }
-        }
-      },
-      "output": {
-        "type": "structure",
-        "members": {
-          "position": {},
-          "items": {
-            "locationName": "item",
-            "type": "list",
-            "member": {
-              "shape": "S3p"
-            }
-          }
-        }
       }
     },
     "GetIntegration": {
@@ -22821,7 +22788,7 @@ module.exports={
         }
       },
       "output": {
-        "shape": "S4i"
+        "shape": "S4b"
       }
     },
     "GetSdkTypes": {
@@ -22851,7 +22818,7 @@ module.exports={
             "locationName": "item",
             "type": "list",
             "member": {
-              "shape": "S4i"
+              "shape": "S4b"
             }
           }
         }
@@ -22957,7 +22924,7 @@ module.exports={
         }
       },
       "output": {
-        "shape": "S4t"
+        "shape": "S4m"
       }
     },
     "GetUsagePlan": {
@@ -23199,40 +23166,6 @@ module.exports={
       },
       "output": {
         "shape": "S1g"
-      }
-    },
-    "PutGatewayResponse": {
-      "http": {
-        "method": "PUT",
-        "requestUri": "/restapis/{restapi_id}/gatewayresponses/{response_type}",
-        "responseCode": 201
-      },
-      "input": {
-        "type": "structure",
-        "required": [
-          "restApiId",
-          "responseType"
-        ],
-        "members": {
-          "restApiId": {
-            "location": "uri",
-            "locationName": "restapi_id"
-          },
-          "responseType": {
-            "location": "uri",
-            "locationName": "response_type"
-          },
-          "statusCode": {},
-          "responseParameters": {
-            "shape": "Sk"
-          },
-          "responseTemplates": {
-            "shape": "Sk"
-          }
-        }
-      },
-      "output": {
-        "shape": "S3p"
       }
     },
     "PutIntegration": {
@@ -23479,7 +23412,7 @@ module.exports={
             "locationName": "authorizer_id"
           },
           "headers": {
-            "shape": "S5k"
+            "shape": "S5c"
           },
           "pathWithQueryString": {},
           "body": {},
@@ -23543,7 +23476,7 @@ module.exports={
           "pathWithQueryString": {},
           "body": {},
           "headers": {
-            "shape": "S5k"
+            "shape": "S5c"
           },
           "clientCertificateId": {},
           "stageVariables": {
@@ -23559,7 +23492,7 @@ module.exports={
           },
           "body": {},
           "headers": {
-            "shape": "S5k"
+            "shape": "S5c"
           },
           "log": {},
           "latency": {
@@ -23577,12 +23510,12 @@ module.exports={
         "type": "structure",
         "members": {
           "patchOperations": {
-            "shape": "S5q"
+            "shape": "S5i"
           }
         }
       },
       "output": {
-        "shape": "S2o"
+        "shape": "S2m"
       }
     },
     "UpdateApiKey": {
@@ -23601,7 +23534,7 @@ module.exports={
             "locationName": "api_Key"
           },
           "patchOperations": {
-            "shape": "S5q"
+            "shape": "S5i"
           }
         }
       },
@@ -23630,7 +23563,7 @@ module.exports={
             "locationName": "authorizer_id"
           },
           "patchOperations": {
-            "shape": "S5q"
+            "shape": "S5i"
           }
         }
       },
@@ -23659,7 +23592,7 @@ module.exports={
             "locationName": "base_path"
           },
           "patchOperations": {
-            "shape": "S5q"
+            "shape": "S5i"
           }
         }
       },
@@ -23683,12 +23616,12 @@ module.exports={
             "locationName": "clientcertificate_id"
           },
           "patchOperations": {
-            "shape": "S5q"
+            "shape": "S5i"
           }
         }
       },
       "output": {
-        "shape": "S2m"
+        "shape": "S2k"
       }
     },
     "UpdateDeployment": {
@@ -23712,7 +23645,7 @@ module.exports={
             "locationName": "deployment_id"
           },
           "patchOperations": {
-            "shape": "S5q"
+            "shape": "S5i"
           }
         }
       },
@@ -23741,7 +23674,7 @@ module.exports={
             "locationName": "part_id"
           },
           "patchOperations": {
-            "shape": "S5q"
+            "shape": "S5i"
           }
         }
       },
@@ -23770,7 +23703,7 @@ module.exports={
             "locationName": "doc_version"
           },
           "patchOperations": {
-            "shape": "S5q"
+            "shape": "S5i"
           }
         }
       },
@@ -23794,41 +23727,12 @@ module.exports={
             "locationName": "domain_name"
           },
           "patchOperations": {
-            "shape": "S5q"
+            "shape": "S5i"
           }
         }
       },
       "output": {
         "shape": "Sx"
-      }
-    },
-    "UpdateGatewayResponse": {
-      "http": {
-        "method": "PATCH",
-        "requestUri": "/restapis/{restapi_id}/gatewayresponses/{response_type}"
-      },
-      "input": {
-        "type": "structure",
-        "required": [
-          "restApiId",
-          "responseType"
-        ],
-        "members": {
-          "restApiId": {
-            "location": "uri",
-            "locationName": "restapi_id"
-          },
-          "responseType": {
-            "location": "uri",
-            "locationName": "response_type"
-          },
-          "patchOperations": {
-            "shape": "S5q"
-          }
-        }
-      },
-      "output": {
-        "shape": "S3p"
       }
     },
     "UpdateIntegration": {
@@ -23857,7 +23761,7 @@ module.exports={
             "locationName": "http_method"
           },
           "patchOperations": {
-            "shape": "S5q"
+            "shape": "S5i"
           }
         }
       },
@@ -23896,7 +23800,7 @@ module.exports={
             "locationName": "status_code"
           },
           "patchOperations": {
-            "shape": "S5q"
+            "shape": "S5i"
           }
         }
       },
@@ -23930,7 +23834,7 @@ module.exports={
             "locationName": "http_method"
           },
           "patchOperations": {
-            "shape": "S5q"
+            "shape": "S5i"
           }
         }
       },
@@ -23970,7 +23874,7 @@ module.exports={
             "locationName": "status_code"
           },
           "patchOperations": {
-            "shape": "S5q"
+            "shape": "S5i"
           }
         }
       },
@@ -23999,7 +23903,7 @@ module.exports={
             "locationName": "model_name"
           },
           "patchOperations": {
-            "shape": "S5q"
+            "shape": "S5i"
           }
         }
       },
@@ -24028,7 +23932,7 @@ module.exports={
             "locationName": "requestvalidator_id"
           },
           "patchOperations": {
-            "shape": "S5q"
+            "shape": "S5i"
           }
         }
       },
@@ -24057,7 +23961,7 @@ module.exports={
             "locationName": "resource_id"
           },
           "patchOperations": {
-            "shape": "S5q"
+            "shape": "S5i"
           }
         }
       },
@@ -24081,7 +23985,7 @@ module.exports={
             "locationName": "restapi_id"
           },
           "patchOperations": {
-            "shape": "S5q"
+            "shape": "S5i"
           }
         }
       },
@@ -24110,7 +24014,7 @@ module.exports={
             "locationName": "stage_name"
           },
           "patchOperations": {
-            "shape": "S5q"
+            "shape": "S5i"
           }
         }
       },
@@ -24139,12 +24043,12 @@ module.exports={
             "locationName": "keyId"
           },
           "patchOperations": {
-            "shape": "S5q"
+            "shape": "S5i"
           }
         }
       },
       "output": {
-        "shape": "S4t"
+        "shape": "S4m"
       }
     },
     "UpdateUsagePlan": {
@@ -24163,7 +24067,7 @@ module.exports={
             "locationName": "usageplanId"
           },
           "patchOperations": {
-            "shape": "S5q"
+            "shape": "S5i"
           }
         }
       },
@@ -24573,7 +24477,7 @@ module.exports={
         "name": {}
       }
     },
-    "S2m": {
+    "S2k": {
       "type": "structure",
       "members": {
         "clientCertificateId": {},
@@ -24587,7 +24491,7 @@ module.exports={
         }
       }
     },
-    "S2o": {
+    "S2m": {
       "type": "structure",
       "members": {
         "cloudwatchRoleArn": {},
@@ -24600,23 +24504,7 @@ module.exports={
         "apiKeyVersion": {}
       }
     },
-    "S3p": {
-      "type": "structure",
-      "members": {
-        "responseType": {},
-        "statusCode": {},
-        "responseParameters": {
-          "shape": "Sk"
-        },
-        "responseTemplates": {
-          "shape": "Sk"
-        },
-        "defaultResponse": {
-          "type": "boolean"
-        }
-      }
-    },
-    "S4i": {
+    "S4b": {
       "type": "structure",
       "members": {
         "id": {},
@@ -24639,7 +24527,7 @@ module.exports={
         }
       }
     },
-    "S4t": {
+    "S4m": {
       "type": "structure",
       "members": {
         "usagePlanId": {},
@@ -24662,12 +24550,12 @@ module.exports={
         }
       }
     },
-    "S5k": {
+    "S5c": {
       "type": "map",
       "key": {},
       "value": {}
     },
-    "S5q": {
+    "S5i": {
       "type": "list",
       "member": {
         "type": "structure",
@@ -25988,10 +25876,14 @@ module.exports={
                   "type": "integer"
                 },
                 "Alarms": {
-                  "shape": "S3w"
-                },
-                "TargetTrackingConfiguration": {
-                  "shape": "S3y"
+                  "type": "list",
+                  "member": {
+                    "type": "structure",
+                    "members": {
+                      "AlarmName": {},
+                      "AlarmARN": {}
+                    }
+                  }
                 }
               }
             }
@@ -26023,7 +25915,7 @@ module.exports={
         ],
         "members": {
           "Activities": {
-            "shape": "S4e"
+            "shape": "S41"
           },
           "NextToken": {}
         }
@@ -26175,7 +26067,7 @@ module.exports={
         "type": "structure",
         "members": {
           "Activities": {
-            "shape": "S4e"
+            "shape": "S41"
           }
         }
       }
@@ -26229,7 +26121,7 @@ module.exports={
         "members": {
           "AutoScalingGroupName": {},
           "Metrics": {
-            "shape": "S54"
+            "shape": "S4r"
           }
         }
       }
@@ -26244,7 +26136,7 @@ module.exports={
         "members": {
           "AutoScalingGroupName": {},
           "Metrics": {
-            "shape": "S54"
+            "shape": "S4r"
           },
           "Granularity": {}
         }
@@ -26272,7 +26164,7 @@ module.exports={
         "type": "structure",
         "members": {
           "Activities": {
-            "shape": "S4e"
+            "shape": "S41"
           }
         }
       }
@@ -26316,7 +26208,7 @@ module.exports={
         "type": "structure",
         "members": {
           "Activities": {
-            "shape": "S4e"
+            "shape": "S41"
           }
         }
       }
@@ -26369,7 +26261,8 @@ module.exports={
         "type": "structure",
         "required": [
           "AutoScalingGroupName",
-          "PolicyName"
+          "PolicyName",
+          "AdjustmentType"
         ],
         "members": {
           "AutoScalingGroupName": {},
@@ -26394,9 +26287,6 @@ module.exports={
           },
           "EstimatedInstanceWarmup": {
             "type": "integer"
-          },
-          "TargetTrackingConfiguration": {
-            "shape": "S3y"
           }
         }
       },
@@ -26404,10 +26294,7 @@ module.exports={
         "resultWrapper": "PutScalingPolicyResult",
         "type": "structure",
         "members": {
-          "PolicyARN": {},
-          "Alarms": {
-            "shape": "S3w"
-          }
+          "PolicyARN": {}
         }
       }
     },
@@ -26465,7 +26352,7 @@ module.exports={
     },
     "ResumeProcesses": {
       "input": {
-        "shape": "S5l"
+        "shape": "S58"
       }
     },
     "SetDesiredCapacity": {
@@ -26528,7 +26415,7 @@ module.exports={
     },
     "SuspendProcesses": {
       "input": {
-        "shape": "S5l"
+        "shape": "S58"
       }
     },
     "TerminateInstanceInAutoScalingGroup": {
@@ -26550,7 +26437,7 @@ module.exports={
         "type": "structure",
         "members": {
           "Activity": {
-            "shape": "S4f"
+            "shape": "S42"
           }
         }
       }
@@ -26732,75 +26619,13 @@ module.exports={
         }
       }
     },
-    "S3w": {
+    "S41": {
       "type": "list",
       "member": {
-        "type": "structure",
-        "members": {
-          "AlarmName": {},
-          "AlarmARN": {}
-        }
+        "shape": "S42"
       }
     },
-    "S3y": {
-      "type": "structure",
-      "required": [
-        "TargetValue"
-      ],
-      "members": {
-        "PredefinedMetricSpecification": {
-          "type": "structure",
-          "required": [
-            "PredefinedMetricType"
-          ],
-          "members": {
-            "PredefinedMetricType": {},
-            "ResourceLabel": {}
-          }
-        },
-        "CustomizedMetricSpecification": {
-          "type": "structure",
-          "required": [
-            "MetricName",
-            "Namespace",
-            "Statistic"
-          ],
-          "members": {
-            "MetricName": {},
-            "Namespace": {},
-            "Dimensions": {
-              "type": "list",
-              "member": {
-                "type": "structure",
-                "required": [
-                  "Name",
-                  "Value"
-                ],
-                "members": {
-                  "Name": {},
-                  "Value": {}
-                }
-              }
-            },
-            "Statistic": {},
-            "Unit": {}
-          }
-        },
-        "TargetValue": {
-          "type": "double"
-        },
-        "DisableScaleIn": {
-          "type": "boolean"
-        }
-      }
-    },
-    "S4e": {
-      "type": "list",
-      "member": {
-        "shape": "S4f"
-      }
-    },
-    "S4f": {
+    "S42": {
       "type": "structure",
       "required": [
         "ActivityId",
@@ -26828,11 +26653,11 @@ module.exports={
         "Details": {}
       }
     },
-    "S54": {
+    "S4r": {
       "type": "list",
       "member": {}
     },
-    "S5l": {
+    "S58": {
       "type": "structure",
       "required": [
         "AutoScalingGroupName"
@@ -37358,31 +37183,28 @@ module.exports={
           "AliasAttributes": {
             "shape": "S3l"
           },
-          "UsernameAttributes": {
-            "shape": "S3n"
-          },
           "SmsVerificationMessage": {},
           "EmailVerificationMessage": {},
           "EmailVerificationSubject": {},
           "SmsAuthenticationMessage": {},
           "MfaConfiguration": {},
           "DeviceConfiguration": {
-            "shape": "S3t"
+            "shape": "S3r"
           },
           "EmailConfiguration": {
-            "shape": "S3u"
+            "shape": "S3s"
           },
           "SmsConfiguration": {
-            "shape": "S3w"
+            "shape": "S3u"
           },
           "UserPoolTags": {
-            "shape": "S3x"
+            "shape": "S3v"
           },
           "AdminCreateUserConfig": {
-            "shape": "S3y"
+            "shape": "S3w"
           },
           "Schema": {
-            "shape": "S41"
+            "shape": "S3z"
           }
         }
       },
@@ -37390,7 +37212,7 @@ module.exports={
         "type": "structure",
         "members": {
           "UserPool": {
-            "shape": "S43"
+            "shape": "S41"
           }
         }
       }
@@ -37412,29 +37234,29 @@ module.exports={
             "type": "integer"
           },
           "ReadAttributes": {
-            "shape": "S49"
+            "shape": "S47"
           },
           "WriteAttributes": {
-            "shape": "S49"
+            "shape": "S47"
           },
           "ExplicitAuthFlows": {
-            "shape": "S4b"
+            "shape": "S49"
           },
           "SupportedIdentityProviders": {
-            "shape": "S4d"
+            "shape": "S4b"
           },
           "CallbackURLs": {
-            "shape": "S4e"
+            "shape": "S4c"
           },
           "LogoutURLs": {
-            "shape": "S4g"
+            "shape": "S4e"
           },
           "DefaultRedirectURI": {},
           "AllowedOAuthFlows": {
-            "shape": "S4h"
+            "shape": "S4f"
           },
           "AllowedOAuthScopes": {
-            "shape": "S4j"
+            "shape": "S4h"
           },
           "AllowedOAuthFlowsUserPoolClient": {
             "type": "boolean"
@@ -37445,7 +37267,7 @@ module.exports={
         "type": "structure",
         "members": {
           "UserPoolClient": {
-            "shape": "S4m"
+            "shape": "S4k"
           }
         }
       }
@@ -37631,7 +37453,7 @@ module.exports={
         "type": "structure",
         "members": {
           "UserPool": {
-            "shape": "S43"
+            "shape": "S41"
           }
         }
       }
@@ -37654,7 +37476,7 @@ module.exports={
         "type": "structure",
         "members": {
           "UserPoolClient": {
-            "shape": "S4m"
+            "shape": "S4k"
           }
         }
       }
@@ -37724,7 +37546,7 @@ module.exports={
         "type": "structure",
         "members": {
           "CodeDeliveryDetails": {
-            "shape": "S5i"
+            "shape": "S5g"
           }
         }
       },
@@ -37871,7 +37693,7 @@ module.exports={
         "type": "structure",
         "members": {
           "CodeDeliveryDetails": {
-            "shape": "S5i"
+            "shape": "S5g"
           }
         }
       },
@@ -38143,7 +37965,7 @@ module.exports={
         "type": "structure",
         "members": {
           "Users": {
-            "shape": "S6r"
+            "shape": "S6p"
           },
           "PaginationToken": {}
         }
@@ -38169,7 +37991,7 @@ module.exports={
         "type": "structure",
         "members": {
           "Users": {
-            "shape": "S6r"
+            "shape": "S6p"
           },
           "NextToken": {}
         }
@@ -38198,7 +38020,7 @@ module.exports={
         "type": "structure",
         "members": {
           "CodeDeliveryDetails": {
-            "shape": "S5i"
+            "shape": "S5g"
           }
         }
       },
@@ -38298,7 +38120,7 @@ module.exports={
             "type": "boolean"
           },
           "CodeDeliveryDetails": {
-            "shape": "S5i"
+            "shape": "S5g"
           },
           "UserSub": {}
         }
@@ -38448,7 +38270,7 @@ module.exports={
           "CodeDeliveryDetailsList": {
             "type": "list",
             "member": {
-              "shape": "S5i"
+              "shape": "S5g"
             }
           }
         }
@@ -38478,19 +38300,19 @@ module.exports={
           "SmsAuthenticationMessage": {},
           "MfaConfiguration": {},
           "DeviceConfiguration": {
-            "shape": "S3t"
+            "shape": "S3r"
           },
           "EmailConfiguration": {
-            "shape": "S3u"
+            "shape": "S3s"
           },
           "SmsConfiguration": {
-            "shape": "S3w"
+            "shape": "S3u"
           },
           "UserPoolTags": {
-            "shape": "S3x"
+            "shape": "S3v"
           },
           "AdminCreateUserConfig": {
-            "shape": "S3y"
+            "shape": "S3w"
           }
         }
       },
@@ -38516,29 +38338,29 @@ module.exports={
             "type": "integer"
           },
           "ReadAttributes": {
-            "shape": "S49"
+            "shape": "S47"
           },
           "WriteAttributes": {
-            "shape": "S49"
+            "shape": "S47"
           },
           "ExplicitAuthFlows": {
-            "shape": "S4b"
+            "shape": "S49"
           },
           "SupportedIdentityProviders": {
-            "shape": "S4d"
+            "shape": "S4b"
           },
           "CallbackURLs": {
-            "shape": "S4e"
+            "shape": "S4c"
           },
           "LogoutURLs": {
-            "shape": "S4g"
+            "shape": "S4e"
           },
           "DefaultRedirectURI": {},
           "AllowedOAuthFlows": {
-            "shape": "S4h"
+            "shape": "S4f"
           },
           "AllowedOAuthScopes": {
-            "shape": "S4j"
+            "shape": "S4h"
           },
           "AllowedOAuthFlowsUserPoolClient": {
             "type": "boolean"
@@ -38549,7 +38371,7 @@ module.exports={
         "type": "structure",
         "members": {
           "UserPoolClient": {
-            "shape": "S4m"
+            "shape": "S4k"
           }
         }
       }
@@ -38888,11 +38710,7 @@ module.exports={
       "type": "list",
       "member": {}
     },
-    "S3n": {
-      "type": "list",
-      "member": {}
-    },
-    "S3t": {
+    "S3r": {
       "type": "structure",
       "members": {
         "ChallengeRequiredOnNewDevice": {
@@ -38903,14 +38721,14 @@ module.exports={
         }
       }
     },
-    "S3u": {
+    "S3s": {
       "type": "structure",
       "members": {
         "SourceArn": {},
         "ReplyToEmailAddress": {}
       }
     },
-    "S3w": {
+    "S3u": {
       "type": "structure",
       "required": [
         "SnsCallerArn"
@@ -38920,12 +38738,12 @@ module.exports={
         "ExternalId": {}
       }
     },
-    "S3x": {
+    "S3v": {
       "type": "map",
       "key": {},
       "value": {}
     },
-    "S3y": {
+    "S3w": {
       "type": "structure",
       "members": {
         "AllowAdminCreateUserOnly": {
@@ -38944,13 +38762,13 @@ module.exports={
         }
       }
     },
-    "S41": {
+    "S3z": {
       "type": "list",
       "member": {
         "shape": "S4"
       }
     },
-    "S43": {
+    "S41": {
       "type": "structure",
       "members": {
         "Id": {},
@@ -38969,7 +38787,7 @@ module.exports={
           "type": "timestamp"
         },
         "SchemaAttributes": {
-          "shape": "S41"
+          "shape": "S3z"
         },
         "AutoVerifiedAttributes": {
           "shape": "S3j"
@@ -38977,35 +38795,36 @@ module.exports={
         "AliasAttributes": {
           "shape": "S3l"
         },
-        "UsernameAttributes": {
-          "shape": "S3n"
-        },
         "SmsVerificationMessage": {},
         "EmailVerificationMessage": {},
         "EmailVerificationSubject": {},
         "SmsAuthenticationMessage": {},
         "MfaConfiguration": {},
         "DeviceConfiguration": {
-          "shape": "S3t"
+          "shape": "S3r"
         },
         "EstimatedNumberOfUsers": {
           "type": "integer"
         },
         "EmailConfiguration": {
-          "shape": "S3u"
+          "shape": "S3s"
         },
         "SmsConfiguration": {
-          "shape": "S3w"
+          "shape": "S3u"
         },
         "UserPoolTags": {
-          "shape": "S3x"
+          "shape": "S3v"
         },
         "SmsConfigurationFailure": {},
         "EmailConfigurationFailure": {},
         "AdminCreateUserConfig": {
-          "shape": "S3y"
+          "shape": "S3w"
         }
       }
+    },
+    "S47": {
+      "type": "list",
+      "member": {}
     },
     "S49": {
       "type": "list",
@@ -39015,7 +38834,7 @@ module.exports={
       "type": "list",
       "member": {}
     },
-    "S4d": {
+    "S4c": {
       "type": "list",
       "member": {}
     },
@@ -39023,7 +38842,7 @@ module.exports={
       "type": "list",
       "member": {}
     },
-    "S4g": {
+    "S4f": {
       "type": "list",
       "member": {}
     },
@@ -39031,11 +38850,7 @@ module.exports={
       "type": "list",
       "member": {}
     },
-    "S4j": {
-      "type": "list",
-      "member": {}
-    },
-    "S4m": {
+    "S4k": {
       "type": "structure",
       "members": {
         "UserPoolId": {},
@@ -39057,36 +38872,36 @@ module.exports={
           "type": "integer"
         },
         "ReadAttributes": {
-          "shape": "S49"
+          "shape": "S47"
         },
         "WriteAttributes": {
-          "shape": "S49"
+          "shape": "S47"
         },
         "ExplicitAuthFlows": {
-          "shape": "S4b"
+          "shape": "S49"
         },
         "SupportedIdentityProviders": {
-          "shape": "S4d"
+          "shape": "S4b"
         },
         "CallbackURLs": {
-          "shape": "S4e"
+          "shape": "S4c"
         },
         "LogoutURLs": {
-          "shape": "S4g"
+          "shape": "S4e"
         },
         "DefaultRedirectURI": {},
         "AllowedOAuthFlows": {
-          "shape": "S4h"
+          "shape": "S4f"
         },
         "AllowedOAuthScopes": {
-          "shape": "S4j"
+          "shape": "S4h"
         },
         "AllowedOAuthFlowsUserPoolClient": {
           "type": "boolean"
         }
       }
     },
-    "S5i": {
+    "S5g": {
       "type": "structure",
       "members": {
         "Destination": {},
@@ -39094,7 +38909,7 @@ module.exports={
         "AttributeName": {}
       }
     },
-    "S6r": {
+    "S6p": {
       "type": "list",
       "member": {
         "shape": "Ss"
@@ -46846,33 +46661,6 @@ module.exports={
         }
       }
     },
-    "CreateNetworkInterfacePermission": {
-      "input": {
-        "type": "structure",
-        "required": [
-          "NetworkInterfaceId",
-          "Permission"
-        ],
-        "members": {
-          "NetworkInterfaceId": {},
-          "AwsAccountId": {},
-          "AwsService": {},
-          "Permission": {},
-          "DryRun": {
-            "type": "boolean"
-          }
-        }
-      },
-      "output": {
-        "type": "structure",
-        "members": {
-          "InterfacePermission": {
-            "shape": "S61",
-            "locationName": "interfacePermission"
-          }
-        }
-      }
-    },
     "CreatePlacementGroup": {
       "input": {
         "type": "structure",
@@ -47017,7 +46805,7 @@ module.exports={
         "type": "structure",
         "members": {
           "RouteTable": {
-            "shape": "S6e",
+            "shape": "S68",
             "locationName": "routeTable"
           }
         }
@@ -47067,7 +46855,7 @@ module.exports={
         }
       },
       "output": {
-        "shape": "S6q"
+        "shape": "S6k"
       }
     },
     "CreateSpotDatafeedSubscription": {
@@ -47093,7 +46881,7 @@ module.exports={
         "type": "structure",
         "members": {
           "SpotDatafeedSubscription": {
-            "shape": "S6u",
+            "shape": "S6o",
             "locationName": "spotDatafeedSubscription"
           }
         }
@@ -47121,7 +46909,7 @@ module.exports={
         "type": "structure",
         "members": {
           "Subnet": {
-            "shape": "S6z",
+            "shape": "S6t",
             "locationName": "subnet"
           }
         }
@@ -47140,7 +46928,7 @@ module.exports={
             "type": "boolean"
           },
           "Resources": {
-            "shape": "S73",
+            "shape": "S6x",
             "locationName": "ResourceId"
           },
           "Tags": {
@@ -47176,13 +46964,13 @@ module.exports={
             "type": "boolean"
           },
           "TagSpecifications": {
-            "shape": "S75",
+            "shape": "S6z",
             "locationName": "TagSpecification"
           }
         }
       },
       "output": {
-        "shape": "S78"
+        "shape": "S72"
       }
     },
     "CreateVpc": {
@@ -47210,7 +46998,7 @@ module.exports={
         "type": "structure",
         "members": {
           "Vpc": {
-            "shape": "S7e",
+            "shape": "S78",
             "locationName": "vpc"
           }
         }
@@ -47244,7 +47032,7 @@ module.exports={
             "locationName": "clientToken"
           },
           "VpcEndpoint": {
-            "shape": "S7j",
+            "shape": "S7d",
             "locationName": "vpcEndpoint"
           }
         }
@@ -47311,7 +47099,7 @@ module.exports={
         "type": "structure",
         "members": {
           "VpnConnection": {
-            "shape": "S7q",
+            "shape": "S7k",
             "locationName": "vpnConnection"
           }
         }
@@ -47349,7 +47137,7 @@ module.exports={
         "type": "structure",
         "members": {
           "VpnGateway": {
-            "shape": "S82",
+            "shape": "S7w",
             "locationName": "vpnGateway"
           }
         }
@@ -47543,32 +47331,6 @@ module.exports={
         }
       }
     },
-    "DeleteNetworkInterfacePermission": {
-      "input": {
-        "type": "structure",
-        "required": [
-          "NetworkInterfacePermissionId"
-        ],
-        "members": {
-          "NetworkInterfacePermissionId": {},
-          "Force": {
-            "type": "boolean"
-          },
-          "DryRun": {
-            "type": "boolean"
-          }
-        }
-      },
-      "output": {
-        "type": "structure",
-        "members": {
-          "Return": {
-            "locationName": "return",
-            "type": "boolean"
-          }
-        }
-      }
-    },
     "DeletePlacementGroup": {
       "input": {
         "type": "structure",
@@ -47692,7 +47454,7 @@ module.exports={
             "type": "boolean"
           },
           "Resources": {
-            "shape": "S73",
+            "shape": "S6x",
             "locationName": "resourceId"
           },
           "Tags": {
@@ -47896,7 +47658,7 @@ module.exports={
         "type": "structure",
         "members": {
           "Filters": {
-            "shape": "S9a",
+            "shape": "S92",
             "locationName": "Filter"
           },
           "PublicIps": {
@@ -47964,7 +47726,7 @@ module.exports={
         "type": "structure",
         "members": {
           "Filters": {
-            "shape": "S9a",
+            "shape": "S92",
             "locationName": "Filter"
           },
           "ZoneNames": {
@@ -48030,7 +47792,7 @@ module.exports={
             }
           },
           "Filters": {
-            "shape": "S9a",
+            "shape": "S92",
             "locationName": "Filter"
           },
           "DryRun": {
@@ -48058,7 +47820,7 @@ module.exports={
         "type": "structure",
         "members": {
           "Filters": {
-            "shape": "S9a",
+            "shape": "S92",
             "locationName": "Filter"
           },
           "DryRun": {
@@ -48066,7 +47828,7 @@ module.exports={
             "type": "boolean"
           },
           "InstanceIds": {
-            "shape": "S9u",
+            "shape": "S9m",
             "locationName": "InstanceId"
           },
           "MaxResults": {
@@ -48135,7 +47897,7 @@ module.exports={
             "locationName": "conversionTasks",
             "type": "list",
             "member": {
-              "shape": "Sa2",
+              "shape": "S9u",
               "locationName": "item"
             }
           }
@@ -48154,7 +47916,7 @@ module.exports={
             }
           },
           "Filters": {
-            "shape": "S9a",
+            "shape": "S92",
             "locationName": "Filter"
           },
           "DryRun": {
@@ -48189,7 +47951,7 @@ module.exports={
             }
           },
           "Filters": {
-            "shape": "S9a",
+            "shape": "S92",
             "locationName": "Filter"
           },
           "DryRun": {
@@ -48281,7 +48043,7 @@ module.exports={
         "type": "structure",
         "members": {
           "Filter": {
-            "shape": "S9a"
+            "shape": "S92"
           },
           "FlowLogIds": {
             "shape": "S2z",
@@ -48355,11 +48117,11 @@ module.exports={
             }
           },
           "Owners": {
-            "shape": "Sax",
+            "shape": "Sap",
             "locationName": "Owner"
           },
           "Filters": {
-            "shape": "S9a",
+            "shape": "S92",
             "locationName": "Filter"
           },
           "NextToken": {},
@@ -48430,7 +48192,7 @@ module.exports={
                   "locationName": "ownerAlias"
                 },
                 "ProductCodes": {
-                  "shape": "Sb6",
+                  "shape": "Say",
                   "locationName": "productCodes"
                 },
                 "Tags": {
@@ -48451,7 +48213,7 @@ module.exports={
         "type": "structure",
         "members": {
           "Filter": {
-            "shape": "S9a"
+            "shape": "S92"
           },
           "MaxDuration": {
             "type": "integer"
@@ -48511,7 +48273,7 @@ module.exports={
         "type": "structure",
         "members": {
           "Filter": {
-            "shape": "S9a"
+            "shape": "S92"
           },
           "HostReservationIdSet": {
             "type": "list",
@@ -48550,7 +48312,7 @@ module.exports={
                   "type": "timestamp"
                 },
                 "HostIdSet": {
-                  "shape": "Sbj",
+                  "shape": "Sbb",
                   "locationName": "hostIdSet"
                 },
                 "HostReservationId": {
@@ -48592,11 +48354,11 @@ module.exports={
         "type": "structure",
         "members": {
           "Filter": {
-            "shape": "S9a",
+            "shape": "S92",
             "locationName": "filter"
           },
           "HostIds": {
-            "shape": "Sbm",
+            "shape": "Sbe",
             "locationName": "hostId"
           },
           "MaxResults": {
@@ -48725,7 +48487,7 @@ module.exports={
             }
           },
           "Filters": {
-            "shape": "S9a",
+            "shape": "S92",
             "locationName": "Filter"
           },
           "MaxResults": {
@@ -48762,7 +48524,7 @@ module.exports={
         "type": "structure",
         "members": {
           "Statuses": {
-            "shape": "Sc3",
+            "shape": "Sbv",
             "locationName": "statusSet"
           }
         }
@@ -48787,7 +48549,7 @@ module.exports={
         "type": "structure",
         "members": {
           "Statuses": {
-            "shape": "Sc3",
+            "shape": "Sbv",
             "locationName": "statusSet"
           }
         }
@@ -48813,18 +48575,18 @@ module.exports={
         "type": "structure",
         "members": {
           "BlockDeviceMappings": {
-            "shape": "Sca",
+            "shape": "Sc2",
             "locationName": "blockDeviceMapping"
           },
           "ImageId": {
             "locationName": "imageId"
           },
           "LaunchPermissions": {
-            "shape": "Scb",
+            "shape": "Sc3",
             "locationName": "launchPermission"
           },
           "ProductCodes": {
-            "shape": "Sb6",
+            "shape": "Say",
             "locationName": "productCodes"
           },
           "Description": {
@@ -48858,7 +48620,7 @@ module.exports={
             }
           },
           "Filters": {
-            "shape": "S9a",
+            "shape": "S92",
             "locationName": "Filter"
           },
           "ImageIds": {
@@ -48869,7 +48631,7 @@ module.exports={
             }
           },
           "Owners": {
-            "shape": "Sax",
+            "shape": "Sap",
             "locationName": "Owner"
           },
           "DryRun": {
@@ -48917,7 +48679,7 @@ module.exports={
                   "locationName": "platform"
                 },
                 "ProductCodes": {
-                  "shape": "Sb6",
+                  "shape": "Say",
                   "locationName": "productCodes"
                 },
                 "RamdiskId": {
@@ -48927,7 +48689,7 @@ module.exports={
                   "locationName": "imageState"
                 },
                 "BlockDeviceMappings": {
-                  "shape": "Sca",
+                  "shape": "Sc2",
                   "locationName": "blockDeviceMapping"
                 },
                 "Description": {
@@ -48956,7 +48718,7 @@ module.exports={
                   "locationName": "sriovNetSupport"
                 },
                 "StateReason": {
-                  "shape": "Scp",
+                  "shape": "Sch",
                   "locationName": "stateReason"
                 },
                 "Tags": {
@@ -48980,10 +48742,10 @@ module.exports={
             "type": "boolean"
           },
           "Filters": {
-            "shape": "S9a"
+            "shape": "S92"
           },
           "ImportTaskIds": {
-            "shape": "Scs",
+            "shape": "Sck",
             "locationName": "ImportTaskId"
           },
           "MaxResults": {
@@ -49027,7 +48789,7 @@ module.exports={
                   "locationName": "progress"
                 },
                 "SnapshotDetails": {
-                  "shape": "Scw",
+                  "shape": "Sco",
                   "locationName": "snapshotDetailSet"
                 },
                 "Status": {
@@ -49053,10 +48815,10 @@ module.exports={
             "type": "boolean"
           },
           "Filters": {
-            "shape": "S9a"
+            "shape": "S92"
           },
           "ImportTaskIds": {
-            "shape": "Scs",
+            "shape": "Sck",
             "locationName": "ImportTaskId"
           },
           "MaxResults": {
@@ -49082,7 +48844,7 @@ module.exports={
                   "locationName": "importTaskId"
                 },
                 "SnapshotTaskDetail": {
-                  "shape": "Sd3",
+                  "shape": "Scv",
                   "locationName": "snapshotTaskDetail"
                 }
               }
@@ -49122,19 +48884,19 @@ module.exports={
             "locationName": "groupSet"
           },
           "BlockDeviceMappings": {
-            "shape": "Sd7",
+            "shape": "Scz",
             "locationName": "blockDeviceMapping"
           },
           "DisableApiTermination": {
-            "shape": "Sda",
+            "shape": "Sd2",
             "locationName": "disableApiTermination"
           },
           "EnaSupport": {
-            "shape": "Sda",
+            "shape": "Sd2",
             "locationName": "enaSupport"
           },
           "EbsOptimized": {
-            "shape": "Sda",
+            "shape": "Sd2",
             "locationName": "ebsOptimized"
           },
           "InstanceId": {
@@ -49153,7 +48915,7 @@ module.exports={
             "locationName": "kernel"
           },
           "ProductCodes": {
-            "shape": "Sb6",
+            "shape": "Say",
             "locationName": "productCodes"
           },
           "RamdiskId": {
@@ -49165,7 +48927,7 @@ module.exports={
             "locationName": "rootDeviceName"
           },
           "SourceDestCheck": {
-            "shape": "Sda",
+            "shape": "Sd2",
             "locationName": "sourceDestCheck"
           },
           "SriovNetSupport": {
@@ -49184,11 +48946,11 @@ module.exports={
         "type": "structure",
         "members": {
           "Filters": {
-            "shape": "S9a",
+            "shape": "S92",
             "locationName": "Filter"
           },
           "InstanceIds": {
-            "shape": "S9u",
+            "shape": "S9m",
             "locationName": "InstanceId"
           },
           "MaxResults": {
@@ -49246,15 +49008,15 @@ module.exports={
                   "locationName": "instanceId"
                 },
                 "InstanceState": {
-                  "shape": "Sdi",
+                  "shape": "Sda",
                   "locationName": "instanceState"
                 },
                 "InstanceStatus": {
-                  "shape": "Sdk",
+                  "shape": "Sdc",
                   "locationName": "instanceStatus"
                 },
                 "SystemStatus": {
-                  "shape": "Sdk",
+                  "shape": "Sdc",
                   "locationName": "systemStatus"
                 }
               }
@@ -49271,11 +49033,11 @@ module.exports={
         "type": "structure",
         "members": {
           "Filters": {
-            "shape": "S9a",
+            "shape": "S92",
             "locationName": "Filter"
           },
           "InstanceIds": {
-            "shape": "S9u",
+            "shape": "S9m",
             "locationName": "InstanceId"
           },
           "DryRun": {
@@ -49298,7 +49060,7 @@ module.exports={
             "locationName": "reservationSet",
             "type": "list",
             "member": {
-              "shape": "Sdt",
+              "shape": "Sdl",
               "locationName": "item"
             }
           },
@@ -49313,7 +49075,7 @@ module.exports={
         "type": "structure",
         "members": {
           "Filters": {
-            "shape": "S9a",
+            "shape": "S92",
             "locationName": "Filter"
           },
           "DryRun": {
@@ -49345,7 +49107,7 @@ module.exports={
         "type": "structure",
         "members": {
           "Filters": {
-            "shape": "S9a",
+            "shape": "S92",
             "locationName": "Filter"
           },
           "KeyNames": {
@@ -49388,7 +49150,7 @@ module.exports={
         "type": "structure",
         "members": {
           "Filters": {
-            "shape": "S9a",
+            "shape": "S92",
             "locationName": "filter"
           },
           "DryRun": {
@@ -49438,7 +49200,7 @@ module.exports={
         "type": "structure",
         "members": {
           "Filter": {
-            "shape": "S9a"
+            "shape": "S92"
           },
           "MaxResults": {
             "type": "integer"
@@ -49472,7 +49234,7 @@ module.exports={
         "type": "structure",
         "members": {
           "Filters": {
-            "shape": "S9a",
+            "shape": "S92",
             "locationName": "Filter"
           },
           "DryRun": {
@@ -49537,44 +49299,8 @@ module.exports={
             "locationName": "networkInterfaceId"
           },
           "SourceDestCheck": {
-            "shape": "Sda",
+            "shape": "Sd2",
             "locationName": "sourceDestCheck"
-          }
-        }
-      }
-    },
-    "DescribeNetworkInterfacePermissions": {
-      "input": {
-        "type": "structure",
-        "members": {
-          "NetworkInterfacePermissionIds": {
-            "locationName": "NetworkInterfacePermissionId",
-            "type": "list",
-            "member": {}
-          },
-          "Filters": {
-            "shape": "S9a",
-            "locationName": "Filter"
-          },
-          "NextToken": {},
-          "MaxResults": {
-            "type": "integer"
-          }
-        }
-      },
-      "output": {
-        "type": "structure",
-        "members": {
-          "NetworkInterfacePermissions": {
-            "locationName": "networkInterfacePermissions",
-            "type": "list",
-            "member": {
-              "shape": "S61",
-              "locationName": "item"
-            }
-          },
-          "NextToken": {
-            "locationName": "nextToken"
           }
         }
       }
@@ -49584,7 +49310,7 @@ module.exports={
         "type": "structure",
         "members": {
           "Filters": {
-            "shape": "S9a",
+            "shape": "S92",
             "locationName": "filter"
           },
           "DryRun": {
@@ -49619,7 +49345,7 @@ module.exports={
         "type": "structure",
         "members": {
           "Filters": {
-            "shape": "S9a",
+            "shape": "S92",
             "locationName": "Filter"
           },
           "DryRun": {
@@ -49666,7 +49392,7 @@ module.exports={
             "type": "boolean"
           },
           "Filters": {
-            "shape": "S9a",
+            "shape": "S92",
             "locationName": "Filter"
           },
           "MaxResults": {
@@ -49713,7 +49439,7 @@ module.exports={
         "type": "structure",
         "members": {
           "Filters": {
-            "shape": "S9a",
+            "shape": "S92",
             "locationName": "Filter"
           },
           "RegionNames": {
@@ -49756,12 +49482,12 @@ module.exports={
         "type": "structure",
         "members": {
           "Filters": {
-            "shape": "S9a",
+            "shape": "S92",
             "locationName": "Filter"
           },
           "OfferingClass": {},
           "ReservedInstancesIds": {
-            "shape": "Sfi",
+            "shape": "Sf6",
             "locationName": "ReservedInstancesId"
           },
           "DryRun": {
@@ -49835,7 +49561,7 @@ module.exports={
                   "locationName": "offeringType"
                 },
                 "RecurringCharges": {
-                  "shape": "Sfq",
+                  "shape": "Sfe",
                   "locationName": "recurringCharges"
                 },
                 "Scope": {
@@ -49856,7 +49582,7 @@ module.exports={
         "type": "structure",
         "members": {
           "Filters": {
-            "shape": "S9a",
+            "shape": "S92",
             "locationName": "Filter"
           },
           "ReservedInstancesId": {
@@ -49882,7 +49608,7 @@ module.exports={
         "type": "structure",
         "members": {
           "Filters": {
-            "shape": "S9a",
+            "shape": "S92",
             "locationName": "Filter"
           },
           "ReservedInstancesModificationIds": {
@@ -49932,7 +49658,7 @@ module.exports={
                         "locationName": "reservedInstancesId"
                       },
                       "TargetConfiguration": {
-                        "shape": "Sg3",
+                        "shape": "Sfr",
                         "locationName": "targetConfiguration"
                       }
                     }
@@ -49976,7 +49702,7 @@ module.exports={
         "members": {
           "AvailabilityZone": {},
           "Filters": {
-            "shape": "S9a",
+            "shape": "S92",
             "locationName": "Filter"
           },
           "IncludeMarketplace": {
@@ -50087,7 +49813,7 @@ module.exports={
                   }
                 },
                 "RecurringCharges": {
-                  "shape": "Sfq",
+                  "shape": "Sfe",
                   "locationName": "recurringCharges"
                 },
                 "Scope": {
@@ -50107,7 +49833,7 @@ module.exports={
         "type": "structure",
         "members": {
           "Filters": {
-            "shape": "S9a",
+            "shape": "S92",
             "locationName": "Filter"
           },
           "DryRun": {
@@ -50127,7 +49853,7 @@ module.exports={
             "locationName": "routeTableSet",
             "type": "list",
             "member": {
-              "shape": "S6e",
+              "shape": "S68",
               "locationName": "item"
             }
           }
@@ -50146,7 +49872,7 @@ module.exports={
             "type": "boolean"
           },
           "Filters": {
-            "shape": "S9a",
+            "shape": "S92",
             "locationName": "Filter"
           },
           "FirstSlotStartTimeRange": {
@@ -50245,7 +49971,7 @@ module.exports={
                   "locationName": "purchaseToken"
                 },
                 "Recurrence": {
-                  "shape": "Sgn",
+                  "shape": "Sgb",
                   "locationName": "recurrence"
                 },
                 "SlotDurationInHours": {
@@ -50270,7 +49996,7 @@ module.exports={
             "type": "boolean"
           },
           "Filters": {
-            "shape": "S9a",
+            "shape": "S92",
             "locationName": "Filter"
           },
           "MaxResults": {
@@ -50307,7 +50033,7 @@ module.exports={
             "locationName": "scheduledInstanceSet",
             "type": "list",
             "member": {
-              "shape": "Sgu",
+              "shape": "Sgi",
               "locationName": "item"
             }
           }
@@ -50366,7 +50092,7 @@ module.exports={
         "type": "structure",
         "members": {
           "Filters": {
-            "shape": "S9a",
+            "shape": "S92",
             "locationName": "Filter"
           },
           "GroupIds": {
@@ -50374,7 +50100,7 @@ module.exports={
             "locationName": "GroupId"
           },
           "GroupNames": {
-            "shape": "Sh1",
+            "shape": "Sgp",
             "locationName": "GroupName"
           },
           "DryRun": {
@@ -50446,11 +50172,11 @@ module.exports={
         "type": "structure",
         "members": {
           "CreateVolumePermissions": {
-            "shape": "Sh8",
+            "shape": "Sgw",
             "locationName": "createVolumePermission"
           },
           "ProductCodes": {
-            "shape": "Sb6",
+            "shape": "Say",
             "locationName": "productCodes"
           },
           "SnapshotId": {
@@ -50464,7 +50190,7 @@ module.exports={
         "type": "structure",
         "members": {
           "Filters": {
-            "shape": "S9a",
+            "shape": "S92",
             "locationName": "Filter"
           },
           "MaxResults": {
@@ -50472,7 +50198,7 @@ module.exports={
           },
           "NextToken": {},
           "OwnerIds": {
-            "shape": "Sax",
+            "shape": "Sap",
             "locationName": "Owner"
           },
           "RestorableByUserIds": {
@@ -50500,7 +50226,7 @@ module.exports={
             "locationName": "snapshotSet",
             "type": "list",
             "member": {
-              "shape": "S6q",
+              "shape": "S6k",
               "locationName": "item"
             }
           },
@@ -50524,7 +50250,7 @@ module.exports={
         "type": "structure",
         "members": {
           "SpotDatafeedSubscription": {
-            "shape": "S6u",
+            "shape": "S6o",
             "locationName": "spotDatafeedSubscription"
           }
         }
@@ -50736,7 +50462,7 @@ module.exports={
                   "type": "timestamp"
                 },
                 "SpotFleetRequestConfig": {
-                  "shape": "Shx",
+                  "shape": "Shl",
                   "locationName": "spotFleetRequestConfig"
                 },
                 "SpotFleetRequestId": {
@@ -50756,7 +50482,7 @@ module.exports={
         "type": "structure",
         "members": {
           "Filters": {
-            "shape": "S9a",
+            "shape": "S92",
             "locationName": "Filter"
           },
           "DryRun": {
@@ -50773,7 +50499,7 @@ module.exports={
         "type": "structure",
         "members": {
           "SpotInstanceRequests": {
-            "shape": "Si9",
+            "shape": "Shx",
             "locationName": "spotInstanceRequestSet"
           }
         }
@@ -50784,7 +50510,7 @@ module.exports={
         "type": "structure",
         "members": {
           "Filters": {
-            "shape": "S9a",
+            "shape": "S92",
             "locationName": "Filter"
           },
           "AvailabilityZone": {
@@ -50899,11 +50625,11 @@ module.exports={
                   "locationName": "groupName"
                 },
                 "StaleIpPermissions": {
-                  "shape": "Siq",
+                  "shape": "Sie",
                   "locationName": "staleIpPermissions"
                 },
                 "StaleIpPermissionsEgress": {
-                  "shape": "Siq",
+                  "shape": "Sie",
                   "locationName": "staleIpPermissionsEgress"
                 },
                 "VpcId": {
@@ -50920,7 +50646,7 @@ module.exports={
         "type": "structure",
         "members": {
           "Filters": {
-            "shape": "S9a",
+            "shape": "S92",
             "locationName": "Filter"
           },
           "SubnetIds": {
@@ -50943,7 +50669,7 @@ module.exports={
             "locationName": "subnetSet",
             "type": "list",
             "member": {
-              "shape": "S6z",
+              "shape": "S6t",
               "locationName": "item"
             }
           }
@@ -50959,7 +50685,7 @@ module.exports={
             "type": "boolean"
           },
           "Filters": {
-            "shape": "S9a",
+            "shape": "S92",
             "locationName": "Filter"
           },
           "MaxResults": {
@@ -51021,11 +50747,11 @@ module.exports={
         "type": "structure",
         "members": {
           "AutoEnableIO": {
-            "shape": "Sda",
+            "shape": "Sd2",
             "locationName": "autoEnableIO"
           },
           "ProductCodes": {
-            "shape": "Sb6",
+            "shape": "Say",
             "locationName": "productCodes"
           },
           "VolumeId": {
@@ -51039,7 +50765,7 @@ module.exports={
         "type": "structure",
         "members": {
           "Filters": {
-            "shape": "S9a",
+            "shape": "S92",
             "locationName": "Filter"
           },
           "MaxResults": {
@@ -51047,7 +50773,7 @@ module.exports={
           },
           "NextToken": {},
           "VolumeIds": {
-            "shape": "Sj7",
+            "shape": "Siv",
             "locationName": "VolumeId"
           },
           "DryRun": {
@@ -51160,11 +50886,11 @@ module.exports={
         "type": "structure",
         "members": {
           "Filters": {
-            "shape": "S9a",
+            "shape": "S92",
             "locationName": "Filter"
           },
           "VolumeIds": {
-            "shape": "Sj7",
+            "shape": "Siv",
             "locationName": "VolumeId"
           },
           "DryRun": {
@@ -51187,7 +50913,7 @@ module.exports={
             "locationName": "volumeSet",
             "type": "list",
             "member": {
-              "shape": "S78",
+              "shape": "S72",
               "locationName": "item"
             }
           },
@@ -51205,11 +50931,11 @@ module.exports={
             "type": "boolean"
           },
           "VolumeIds": {
-            "shape": "Sj7",
+            "shape": "Siv",
             "locationName": "VolumeId"
           },
           "Filters": {
-            "shape": "S9a",
+            "shape": "S92",
             "locationName": "Filter"
           },
           "NextToken": {},
@@ -51225,7 +50951,7 @@ module.exports={
             "locationName": "volumeModificationSet",
             "type": "list",
             "member": {
-              "shape": "Sjq",
+              "shape": "Sje",
               "locationName": "item"
             }
           },
@@ -51258,11 +50984,11 @@ module.exports={
             "locationName": "vpcId"
           },
           "EnableDnsHostnames": {
-            "shape": "Sda",
+            "shape": "Sd2",
             "locationName": "enableDnsHostnames"
           },
           "EnableDnsSupport": {
-            "shape": "Sda",
+            "shape": "Sd2",
             "locationName": "enableDnsSupport"
           }
         }
@@ -51273,7 +50999,7 @@ module.exports={
         "type": "structure",
         "members": {
           "Filters": {
-            "shape": "S9a",
+            "shape": "S92",
             "locationName": "Filter"
           },
           "DryRun": {
@@ -51281,7 +51007,7 @@ module.exports={
             "type": "boolean"
           },
           "VpcIds": {
-            "shape": "Sjw",
+            "shape": "Sjk",
             "locationName": "VpcId"
           }
         }
@@ -51325,7 +51051,7 @@ module.exports={
             "locationName": "nextToken"
           },
           "VpcIds": {
-            "shape": "Sjw"
+            "shape": "Sjk"
           }
         }
       },
@@ -51389,7 +51115,7 @@ module.exports={
             "type": "boolean"
           },
           "Filters": {
-            "shape": "S9a",
+            "shape": "S92",
             "locationName": "Filter"
           },
           "MaxResults": {
@@ -51412,7 +51138,7 @@ module.exports={
             "locationName": "vpcEndpointSet",
             "type": "list",
             "member": {
-              "shape": "S7j",
+              "shape": "S7d",
               "locationName": "item"
             }
           }
@@ -51424,7 +51150,7 @@ module.exports={
         "type": "structure",
         "members": {
           "Filters": {
-            "shape": "S9a",
+            "shape": "S92",
             "locationName": "Filter"
           },
           "DryRun": {
@@ -51456,7 +51182,7 @@ module.exports={
         "type": "structure",
         "members": {
           "Filters": {
-            "shape": "S9a",
+            "shape": "S92",
             "locationName": "Filter"
           },
           "VpcIds": {
@@ -51479,7 +51205,7 @@ module.exports={
             "locationName": "vpcSet",
             "type": "list",
             "member": {
-              "shape": "S7e",
+              "shape": "S78",
               "locationName": "item"
             }
           }
@@ -51491,7 +51217,7 @@ module.exports={
         "type": "structure",
         "members": {
           "Filters": {
-            "shape": "S9a",
+            "shape": "S92",
             "locationName": "Filter"
           },
           "VpnConnectionIds": {
@@ -51514,7 +51240,7 @@ module.exports={
             "locationName": "vpnConnectionSet",
             "type": "list",
             "member": {
-              "shape": "S7q",
+              "shape": "S7k",
               "locationName": "item"
             }
           }
@@ -51526,7 +51252,7 @@ module.exports={
         "type": "structure",
         "members": {
           "Filters": {
-            "shape": "S9a",
+            "shape": "S92",
             "locationName": "Filter"
           },
           "VpnGatewayIds": {
@@ -51549,7 +51275,7 @@ module.exports={
             "locationName": "vpnGatewaySet",
             "type": "list",
             "member": {
-              "shape": "S82",
+              "shape": "S7w",
               "locationName": "item"
             }
           }
@@ -51964,7 +51690,7 @@ module.exports={
         ],
         "members": {
           "HostIdSet": {
-            "shape": "Sli"
+            "shape": "Sl6"
           },
           "OfferingId": {}
         }
@@ -51976,7 +51702,7 @@ module.exports={
             "locationName": "currencyCode"
           },
           "Purchase": {
-            "shape": "Slk",
+            "shape": "Sl8",
             "locationName": "purchase"
           },
           "TotalHourlyPrice": {
@@ -52056,7 +51782,7 @@ module.exports={
             "locationName": "paymentDue"
           },
           "ReservedInstanceValueRollup": {
-            "shape": "Slq",
+            "shape": "Sle",
             "locationName": "reservedInstanceValueRollup"
           },
           "ReservedInstanceValueSet": {
@@ -52067,7 +51793,7 @@ module.exports={
               "type": "structure",
               "members": {
                 "ReservationValue": {
-                  "shape": "Slq",
+                  "shape": "Sle",
                   "locationName": "reservationValue"
                 },
                 "ReservedInstanceId": {
@@ -52077,7 +51803,7 @@ module.exports={
             }
           },
           "TargetConfigurationValueRollup": {
-            "shape": "Slq",
+            "shape": "Sle",
             "locationName": "targetConfigurationValueRollup"
           },
           "TargetConfigurationValueSet": {
@@ -52088,7 +51814,7 @@ module.exports={
               "type": "structure",
               "members": {
                 "ReservationValue": {
-                  "shape": "Slq",
+                  "shape": "Sle",
                   "locationName": "reservationValue"
                 },
                 "TargetConfiguration": {
@@ -52119,7 +51845,7 @@ module.exports={
         "members": {
           "Architecture": {},
           "ClientData": {
-            "shape": "Slx"
+            "shape": "Sll"
           },
           "ClientToken": {},
           "Description": {},
@@ -52136,7 +51862,7 @@ module.exports={
                 "SnapshotId": {},
                 "Url": {},
                 "UserBucket": {
-                  "shape": "Sm0"
+                  "shape": "Slo"
                 }
               }
             }
@@ -52178,7 +51904,7 @@ module.exports={
             "locationName": "progress"
           },
           "SnapshotDetails": {
-            "shape": "Scw",
+            "shape": "Sco",
             "locationName": "snapshotDetailSet"
           },
           "Status": {
@@ -52208,10 +51934,10 @@ module.exports={
               "members": {
                 "Description": {},
                 "Image": {
-                  "shape": "Sm5"
+                  "shape": "Slt"
                 },
                 "Volume": {
-                  "shape": "Sm6"
+                  "shape": "Slu"
                 }
               }
             }
@@ -52235,7 +51961,7 @@ module.exports={
                 "locationName": "GroupId"
               },
               "GroupNames": {
-                "shape": "Sm8",
+                "shape": "Slw",
                 "locationName": "GroupName"
               },
               "InstanceInitiatedShutdownBehavior": {
@@ -52249,7 +51975,7 @@ module.exports={
                 "type": "boolean"
               },
               "Placement": {
-                "shape": "Sdz",
+                "shape": "Sdr",
                 "locationName": "placement"
               },
               "PrivateIpAddress": {
@@ -52278,7 +52004,7 @@ module.exports={
         "type": "structure",
         "members": {
           "ConversionTask": {
-            "shape": "Sa2",
+            "shape": "S9u",
             "locationName": "conversionTask"
           }
         }
@@ -52322,7 +52048,7 @@ module.exports={
         "type": "structure",
         "members": {
           "ClientData": {
-            "shape": "Slx"
+            "shape": "Sll"
           },
           "ClientToken": {},
           "Description": {},
@@ -52333,7 +52059,7 @@ module.exports={
               "Format": {},
               "Url": {},
               "UserBucket": {
-                "shape": "Sm0"
+                "shape": "Slo"
               }
             }
           },
@@ -52353,7 +52079,7 @@ module.exports={
             "locationName": "importTaskId"
           },
           "SnapshotTaskDetail": {
-            "shape": "Sd3",
+            "shape": "Scv",
             "locationName": "snapshotTaskDetail"
           }
         }
@@ -52379,11 +52105,11 @@ module.exports={
             "type": "boolean"
           },
           "Image": {
-            "shape": "Sm5",
+            "shape": "Slt",
             "locationName": "image"
           },
           "Volume": {
-            "shape": "Sm6",
+            "shape": "Slu",
             "locationName": "volume"
           }
         }
@@ -52392,7 +52118,7 @@ module.exports={
         "type": "structure",
         "members": {
           "ConversionTask": {
-            "shape": "Sa2",
+            "shape": "S9u",
             "locationName": "conversionTask"
           }
         }
@@ -52410,7 +52136,7 @@ module.exports={
             "locationName": "autoPlacement"
           },
           "HostIds": {
-            "shape": "Sbm",
+            "shape": "Sbe",
             "locationName": "hostId"
           }
         }
@@ -52423,7 +52149,7 @@ module.exports={
             "locationName": "successful"
           },
           "Unsuccessful": {
-            "shape": "Sml",
+            "shape": "Sm9",
             "locationName": "unsuccessful"
           }
         }
@@ -52482,10 +52208,10 @@ module.exports={
             "type": "structure",
             "members": {
               "Add": {
-                "shape": "Scb"
+                "shape": "Sc3"
               },
               "Remove": {
-                "shape": "Scb"
+                "shape": "Sc3"
               }
             }
           },
@@ -52505,7 +52231,7 @@ module.exports={
             }
           },
           "UserIds": {
-            "shape": "Smt",
+            "shape": "Smh",
             "locationName": "UserId"
           },
           "Value": {},
@@ -52524,7 +52250,7 @@ module.exports={
         ],
         "members": {
           "SourceDestCheck": {
-            "shape": "Sda"
+            "shape": "Sd2"
           },
           "Attribute": {
             "locationName": "attribute"
@@ -52562,7 +52288,7 @@ module.exports={
             }
           },
           "DisableApiTermination": {
-            "shape": "Sda",
+            "shape": "Sd2",
             "locationName": "disableApiTermination"
           },
           "DryRun": {
@@ -52570,11 +52296,11 @@ module.exports={
             "type": "boolean"
           },
           "EbsOptimized": {
-            "shape": "Sda",
+            "shape": "Sd2",
             "locationName": "ebsOptimized"
           },
           "EnaSupport": {
-            "shape": "Sda",
+            "shape": "Sd2",
             "locationName": "enaSupport"
           },
           "Groups": {
@@ -52687,7 +52413,7 @@ module.exports={
             "locationName": "networkInterfaceId"
           },
           "SourceDestCheck": {
-            "shape": "Sda",
+            "shape": "Sd2",
             "locationName": "sourceDestCheck"
           }
         }
@@ -52702,7 +52428,7 @@ module.exports={
         ],
         "members": {
           "ReservedInstancesIds": {
-            "shape": "Sfi",
+            "shape": "Sf6",
             "locationName": "ReservedInstancesId"
           },
           "ClientToken": {
@@ -52712,7 +52438,7 @@ module.exports={
             "locationName": "ReservedInstancesConfigurationSetItemType",
             "type": "list",
             "member": {
-              "shape": "Sg3",
+              "shape": "Sfr",
               "locationName": "item"
             }
           }
@@ -52739,21 +52465,21 @@ module.exports={
             "type": "structure",
             "members": {
               "Add": {
-                "shape": "Sh8"
+                "shape": "Sgw"
               },
               "Remove": {
-                "shape": "Sh8"
+                "shape": "Sgw"
               }
             }
           },
           "GroupNames": {
-            "shape": "Sh1",
+            "shape": "Sgp",
             "locationName": "UserGroup"
           },
           "OperationType": {},
           "SnapshotId": {},
           "UserIds": {
-            "shape": "Smt",
+            "shape": "Smh",
             "locationName": "UserId"
           },
           "DryRun": {
@@ -52800,10 +52526,10 @@ module.exports={
         ],
         "members": {
           "AssignIpv6AddressOnCreation": {
-            "shape": "Sda"
+            "shape": "Sd2"
           },
           "MapPublicIpOnLaunch": {
-            "shape": "Sda"
+            "shape": "Sd2"
           },
           "SubnetId": {
             "locationName": "subnetId"
@@ -52835,7 +52561,7 @@ module.exports={
         "type": "structure",
         "members": {
           "VolumeModification": {
-            "shape": "Sjq",
+            "shape": "Sje",
             "locationName": "volumeModification"
           }
         }
@@ -52849,7 +52575,7 @@ module.exports={
         ],
         "members": {
           "AutoEnableIO": {
-            "shape": "Sda"
+            "shape": "Sd2"
           },
           "VolumeId": {},
           "DryRun": {
@@ -52867,10 +52593,10 @@ module.exports={
         ],
         "members": {
           "EnableDnsHostnames": {
-            "shape": "Sda"
+            "shape": "Sd2"
           },
           "EnableDnsSupport": {
-            "shape": "Sda"
+            "shape": "Sd2"
           },
           "VpcId": {
             "locationName": "vpcId"
@@ -52921,13 +52647,13 @@ module.exports={
         ],
         "members": {
           "AccepterPeeringConnectionOptions": {
-            "shape": "Snk"
+            "shape": "Sn8"
           },
           "DryRun": {
             "type": "boolean"
           },
           "RequesterPeeringConnectionOptions": {
-            "shape": "Snk"
+            "shape": "Sn8"
           },
           "VpcPeeringConnectionId": {}
         }
@@ -52936,11 +52662,11 @@ module.exports={
         "type": "structure",
         "members": {
           "AccepterPeeringConnectionOptions": {
-            "shape": "Snm",
+            "shape": "Sna",
             "locationName": "accepterPeeringConnectionOptions"
           },
           "RequesterPeeringConnectionOptions": {
-            "shape": "Snm",
+            "shape": "Sna",
             "locationName": "requesterPeeringConnectionOptions"
           }
         }
@@ -52954,7 +52680,7 @@ module.exports={
         ],
         "members": {
           "InstanceIds": {
-            "shape": "S9u",
+            "shape": "S9m",
             "locationName": "InstanceId"
           },
           "DryRun": {
@@ -52967,7 +52693,7 @@ module.exports={
         "type": "structure",
         "members": {
           "InstanceMonitorings": {
-            "shape": "Snp",
+            "shape": "Snd",
             "locationName": "instancesSet"
           }
         }
@@ -53012,7 +52738,7 @@ module.exports={
           "ClientToken": {},
           "CurrencyCode": {},
           "HostIdSet": {
-            "shape": "Sli"
+            "shape": "Sl6"
           },
           "LimitPrice": {},
           "OfferingId": {}
@@ -53028,7 +52754,7 @@ module.exports={
             "locationName": "currencyCode"
           },
           "Purchase": {
-            "shape": "Slk",
+            "shape": "Sl8",
             "locationName": "purchase"
           },
           "TotalHourlyPrice": {
@@ -53120,7 +52846,7 @@ module.exports={
             "locationName": "scheduledInstanceSet",
             "type": "list",
             "member": {
-              "shape": "Sgu",
+              "shape": "Sgi",
               "locationName": "item"
             }
           }
@@ -53135,7 +52861,7 @@ module.exports={
         ],
         "members": {
           "InstanceIds": {
-            "shape": "S9u",
+            "shape": "S9m",
             "locationName": "InstanceId"
           },
           "DryRun": {
@@ -53254,7 +52980,7 @@ module.exports={
         ],
         "members": {
           "HostIds": {
-            "shape": "Sbm",
+            "shape": "Sbe",
             "locationName": "hostId"
           }
         }
@@ -53267,7 +52993,7 @@ module.exports={
             "locationName": "successful"
           },
           "Unsuccessful": {
-            "shape": "Sml",
+            "shape": "Sm9",
             "locationName": "unsuccessful"
           }
         }
@@ -53466,7 +53192,7 @@ module.exports={
             "type": "timestamp"
           },
           "Instances": {
-            "shape": "S9u",
+            "shape": "S9m",
             "locationName": "instanceId"
           },
           "ReasonCodes": {
@@ -53498,7 +53224,7 @@ module.exports={
             "type": "boolean"
           },
           "SpotFleetRequestConfig": {
-            "shape": "Shx",
+            "shape": "Shl",
             "locationName": "spotFleetRequestConfig"
           }
         }
@@ -53558,7 +53284,7 @@ module.exports={
                 "locationName": "addressingType"
               },
               "BlockDeviceMappings": {
-                "shape": "Sca",
+                "shape": "Sc2",
                 "locationName": "blockDeviceMapping"
               },
               "EbsOptimized": {
@@ -53582,15 +53308,15 @@ module.exports={
                 "locationName": "keyName"
               },
               "Monitoring": {
-                "shape": "Sic",
+                "shape": "Si0",
                 "locationName": "monitoring"
               },
               "NetworkInterfaces": {
-                "shape": "Si3",
+                "shape": "Shr",
                 "locationName": "NetworkInterface"
               },
               "Placement": {
-                "shape": "Si5",
+                "shape": "Sht",
                 "locationName": "placement"
               },
               "RamdiskId": {
@@ -53624,7 +53350,7 @@ module.exports={
         "type": "structure",
         "members": {
           "SpotInstanceRequests": {
-            "shape": "Si9",
+            "shape": "Shx",
             "locationName": "spotInstanceRequestSet"
           }
         }
@@ -53831,10 +53557,10 @@ module.exports={
             "type": "integer"
           },
           "Monitoring": {
-            "shape": "Sic"
+            "shape": "Si0"
           },
           "Placement": {
-            "shape": "Sdz"
+            "shape": "Sdr"
           },
           "RamdiskId": {},
           "SecurityGroupIds": {
@@ -53842,7 +53568,7 @@ module.exports={
             "locationName": "SecurityGroupId"
           },
           "SecurityGroups": {
-            "shape": "Sm8",
+            "shape": "Slw",
             "locationName": "SecurityGroup"
           },
           "SubnetId": {},
@@ -53873,20 +53599,20 @@ module.exports={
             "locationName": "instanceInitiatedShutdownBehavior"
           },
           "NetworkInterfaces": {
-            "shape": "Si3",
+            "shape": "Shr",
             "locationName": "networkInterface"
           },
           "PrivateIpAddress": {
             "locationName": "privateIpAddress"
           },
           "TagSpecifications": {
-            "shape": "S75",
+            "shape": "S6z",
             "locationName": "TagSpecification"
           }
         }
       },
       "output": {
-        "shape": "Sdt"
+        "shape": "Sdl"
       }
     },
     "RunScheduledInstances": {
@@ -53984,7 +53710,7 @@ module.exports={
                       "type": "integer"
                     },
                     "Groups": {
-                      "shape": "Spd",
+                      "shape": "Sp1",
                       "locationName": "Group"
                     },
                     "Ipv6AddressCount": {
@@ -54033,7 +53759,7 @@ module.exports={
               },
               "RamdiskId": {},
               "SecurityGroupIds": {
-                "shape": "Spd",
+                "shape": "Sp1",
                 "locationName": "SecurityGroupId"
               },
               "SubnetId": {},
@@ -54064,7 +53790,7 @@ module.exports={
         ],
         "members": {
           "InstanceIds": {
-            "shape": "S9u",
+            "shape": "S9m",
             "locationName": "InstanceId"
           },
           "AdditionalInfo": {
@@ -54080,7 +53806,7 @@ module.exports={
         "type": "structure",
         "members": {
           "StartingInstances": {
-            "shape": "Spo",
+            "shape": "Spc",
             "locationName": "instancesSet"
           }
         }
@@ -54094,7 +53820,7 @@ module.exports={
         ],
         "members": {
           "InstanceIds": {
-            "shape": "S9u",
+            "shape": "S9m",
             "locationName": "InstanceId"
           },
           "DryRun": {
@@ -54111,7 +53837,7 @@ module.exports={
         "type": "structure",
         "members": {
           "StoppingInstances": {
-            "shape": "Spo",
+            "shape": "Spc",
             "locationName": "instancesSet"
           }
         }
@@ -54125,7 +53851,7 @@ module.exports={
         ],
         "members": {
           "InstanceIds": {
-            "shape": "S9u",
+            "shape": "S9m",
             "locationName": "InstanceId"
           },
           "DryRun": {
@@ -54138,7 +53864,7 @@ module.exports={
         "type": "structure",
         "members": {
           "TerminatingInstances": {
-            "shape": "Spo",
+            "shape": "Spc",
             "locationName": "instancesSet"
           }
         }
@@ -54200,7 +53926,7 @@ module.exports={
         ],
         "members": {
           "InstanceIds": {
-            "shape": "S9u",
+            "shape": "S9m",
             "locationName": "InstanceId"
           },
           "DryRun": {
@@ -54213,7 +53939,7 @@ module.exports={
         "type": "structure",
         "members": {
           "InstanceMonitorings": {
-            "shape": "Snp",
+            "shape": "Snd",
             "locationName": "instancesSet"
           }
         }
@@ -55360,39 +55086,7 @@ module.exports={
         }
       }
     },
-    "S61": {
-      "type": "structure",
-      "members": {
-        "NetworkInterfacePermissionId": {
-          "locationName": "networkInterfacePermissionId"
-        },
-        "NetworkInterfaceId": {
-          "locationName": "networkInterfaceId"
-        },
-        "AwsAccountId": {
-          "locationName": "awsAccountId"
-        },
-        "AwsService": {
-          "locationName": "awsService"
-        },
-        "Permission": {
-          "locationName": "permission"
-        },
-        "PermissionState": {
-          "locationName": "permissionState",
-          "type": "structure",
-          "members": {
-            "State": {
-              "locationName": "state"
-            },
-            "StatusMessage": {
-              "locationName": "statusMessage"
-            }
-          }
-        }
-      }
-    },
-    "S6e": {
+    "S68": {
       "type": "structure",
       "members": {
         "Associations": {
@@ -55489,7 +55183,7 @@ module.exports={
         }
       }
     },
-    "S6q": {
+    "S6k": {
       "type": "structure",
       "members": {
         "DataEncryptionKeyId": {
@@ -55540,14 +55234,14 @@ module.exports={
         }
       }
     },
-    "S6u": {
+    "S6o": {
       "type": "structure",
       "members": {
         "Bucket": {
           "locationName": "bucket"
         },
         "Fault": {
-          "shape": "S6v",
+          "shape": "S6p",
           "locationName": "fault"
         },
         "OwnerId": {
@@ -55561,7 +55255,7 @@ module.exports={
         }
       }
     },
-    "S6v": {
+    "S6p": {
       "type": "structure",
       "members": {
         "Code": {
@@ -55572,7 +55266,7 @@ module.exports={
         }
       }
     },
-    "S6z": {
+    "S6t": {
       "type": "structure",
       "members": {
         "AvailabilityZone": {
@@ -55620,11 +55314,11 @@ module.exports={
         }
       }
     },
-    "S73": {
+    "S6x": {
       "type": "list",
       "member": {}
     },
-    "S75": {
+    "S6z": {
       "type": "list",
       "member": {
         "locationName": "item",
@@ -55640,7 +55334,7 @@ module.exports={
         }
       }
     },
-    "S78": {
+    "S72": {
       "type": "structure",
       "members": {
         "Attachments": {
@@ -55691,7 +55385,7 @@ module.exports={
         }
       }
     },
-    "S7e": {
+    "S78": {
       "type": "structure",
       "members": {
         "CidrBlock": {
@@ -55727,7 +55421,7 @@ module.exports={
         }
       }
     },
-    "S7j": {
+    "S7d": {
       "type": "structure",
       "members": {
         "CreationTimestamp": {
@@ -55755,7 +55449,7 @@ module.exports={
         }
       }
     },
-    "S7q": {
+    "S7k": {
       "type": "structure",
       "members": {
         "CustomerGatewayConfiguration": {
@@ -55838,7 +55532,7 @@ module.exports={
         }
       }
     },
-    "S82": {
+    "S7w": {
       "type": "structure",
       "members": {
         "AvailabilityZone": {
@@ -55867,7 +55561,7 @@ module.exports={
         }
       }
     },
-    "S9a": {
+    "S92": {
       "type": "list",
       "member": {
         "locationName": "Filter",
@@ -55881,13 +55575,13 @@ module.exports={
         }
       }
     },
-    "S9u": {
+    "S9m": {
       "type": "list",
       "member": {
         "locationName": "InstanceId"
       }
     },
-    "Sa2": {
+    "S9u": {
       "type": "structure",
       "required": [
         "ConversionTaskId",
@@ -55941,7 +55635,7 @@ module.exports={
                     "locationName": "description"
                   },
                   "Image": {
-                    "shape": "Sa7",
+                    "shape": "S9z",
                     "locationName": "image"
                   },
                   "Status": {
@@ -55951,7 +55645,7 @@ module.exports={
                     "locationName": "statusMessage"
                   },
                   "Volume": {
-                    "shape": "Sa8",
+                    "shape": "Sa0",
                     "locationName": "volume"
                   }
                 }
@@ -55980,11 +55674,11 @@ module.exports={
               "locationName": "description"
             },
             "Image": {
-              "shape": "Sa7",
+              "shape": "S9z",
               "locationName": "image"
             },
             "Volume": {
-              "shape": "Sa8",
+              "shape": "Sa0",
               "locationName": "volume"
             }
           }
@@ -56001,7 +55695,7 @@ module.exports={
         }
       }
     },
-    "Sa7": {
+    "S9z": {
       "type": "structure",
       "required": [
         "Format",
@@ -56024,7 +55718,7 @@ module.exports={
         }
       }
     },
-    "Sa8": {
+    "Sa0": {
       "type": "structure",
       "required": [
         "Id"
@@ -56039,13 +55733,13 @@ module.exports={
         }
       }
     },
-    "Sax": {
+    "Sap": {
       "type": "list",
       "member": {
         "locationName": "Owner"
       }
     },
-    "Sb6": {
+    "Say": {
       "type": "list",
       "member": {
         "locationName": "item",
@@ -56060,19 +55754,19 @@ module.exports={
         }
       }
     },
-    "Sbj": {
+    "Sbb": {
       "type": "list",
       "member": {
         "locationName": "item"
       }
     },
-    "Sbm": {
+    "Sbe": {
       "type": "list",
       "member": {
         "locationName": "item"
       }
     },
-    "Sc3": {
+    "Sbv": {
       "type": "list",
       "member": {
         "locationName": "item",
@@ -56092,14 +55786,14 @@ module.exports={
         }
       }
     },
-    "Sca": {
+    "Sc2": {
       "type": "list",
       "member": {
         "shape": "S4f",
         "locationName": "item"
       }
     },
-    "Scb": {
+    "Sc3": {
       "type": "list",
       "member": {
         "locationName": "item",
@@ -56114,7 +55808,7 @@ module.exports={
         }
       }
     },
-    "Scp": {
+    "Sch": {
       "type": "structure",
       "members": {
         "Code": {
@@ -56125,13 +55819,13 @@ module.exports={
         }
       }
     },
-    "Scs": {
+    "Sck": {
       "type": "list",
       "member": {
         "locationName": "ImportTaskId"
       }
     },
-    "Scw": {
+    "Sco": {
       "type": "list",
       "member": {
         "locationName": "item",
@@ -56166,13 +55860,13 @@ module.exports={
             "locationName": "url"
           },
           "UserBucket": {
-            "shape": "Scy",
+            "shape": "Scq",
             "locationName": "userBucket"
           }
         }
       }
     },
-    "Scy": {
+    "Scq": {
       "type": "structure",
       "members": {
         "S3Bucket": {
@@ -56183,7 +55877,7 @@ module.exports={
         }
       }
     },
-    "Sd3": {
+    "Scv": {
       "type": "structure",
       "members": {
         "Description": {
@@ -56212,12 +55906,12 @@ module.exports={
           "locationName": "url"
         },
         "UserBucket": {
-          "shape": "Scy",
+          "shape": "Scq",
           "locationName": "userBucket"
         }
       }
     },
-    "Sd7": {
+    "Scz": {
       "type": "list",
       "member": {
         "locationName": "item",
@@ -56249,7 +55943,7 @@ module.exports={
         }
       }
     },
-    "Sda": {
+    "Sd2": {
       "type": "structure",
       "members": {
         "Value": {
@@ -56258,7 +55952,7 @@ module.exports={
         }
       }
     },
-    "Sdi": {
+    "Sda": {
       "type": "structure",
       "members": {
         "Code": {
@@ -56270,7 +55964,7 @@ module.exports={
         }
       }
     },
-    "Sdk": {
+    "Sdc": {
       "type": "structure",
       "members": {
         "Details": {
@@ -56298,7 +55992,7 @@ module.exports={
         }
       }
     },
-    "Sdt": {
+    "Sdl": {
       "type": "structure",
       "members": {
         "Groups": {
@@ -56336,11 +56030,11 @@ module.exports={
                 "type": "timestamp"
               },
               "Monitoring": {
-                "shape": "Sdx",
+                "shape": "Sdp",
                 "locationName": "monitoring"
               },
               "Placement": {
-                "shape": "Sdz",
+                "shape": "Sdr",
                 "locationName": "placement"
               },
               "Platform": {
@@ -56353,7 +56047,7 @@ module.exports={
                 "locationName": "privateIpAddress"
               },
               "ProductCodes": {
-                "shape": "Sb6",
+                "shape": "Say",
                 "locationName": "productCodes"
               },
               "PublicDnsName": {
@@ -56366,7 +56060,7 @@ module.exports={
                 "locationName": "ramdiskId"
               },
               "State": {
-                "shape": "Sdi",
+                "shape": "Sda",
                 "locationName": "instanceState"
               },
               "StateTransitionReason": {
@@ -56382,7 +56076,7 @@ module.exports={
                 "locationName": "architecture"
               },
               "BlockDeviceMappings": {
-                "shape": "Sd7",
+                "shape": "Scz",
                 "locationName": "blockDeviceMapping"
               },
               "ClientToken": {
@@ -56414,7 +56108,7 @@ module.exports={
                   "type": "structure",
                   "members": {
                     "Association": {
-                      "shape": "Se3",
+                      "shape": "Sdv",
                       "locationName": "association"
                     },
                     "Attachment": {
@@ -56475,7 +56169,7 @@ module.exports={
                         "type": "structure",
                         "members": {
                           "Association": {
-                            "shape": "Se3",
+                            "shape": "Sdv",
                             "locationName": "association"
                           },
                           "Primary": {
@@ -56528,7 +56222,7 @@ module.exports={
                 "locationName": "sriovNetSupport"
               },
               "StateReason": {
-                "shape": "Scp",
+                "shape": "Sch",
                 "locationName": "stateReason"
               },
               "Tags": {
@@ -56552,7 +56246,7 @@ module.exports={
         }
       }
     },
-    "Sdx": {
+    "Sdp": {
       "type": "structure",
       "members": {
         "State": {
@@ -56560,7 +56254,7 @@ module.exports={
         }
       }
     },
-    "Sdz": {
+    "Sdr": {
       "type": "structure",
       "members": {
         "AvailabilityZone": {
@@ -56583,7 +56277,7 @@ module.exports={
         }
       }
     },
-    "Se3": {
+    "Sdv": {
       "type": "structure",
       "members": {
         "IpOwnerId": {
@@ -56597,13 +56291,13 @@ module.exports={
         }
       }
     },
-    "Sfi": {
+    "Sf6": {
       "type": "list",
       "member": {
         "locationName": "ReservedInstancesId"
       }
     },
-    "Sfq": {
+    "Sfe": {
       "type": "list",
       "member": {
         "locationName": "item",
@@ -56619,7 +56313,7 @@ module.exports={
         }
       }
     },
-    "Sg3": {
+    "Sfr": {
       "type": "structure",
       "members": {
         "AvailabilityZone": {
@@ -56640,7 +56334,7 @@ module.exports={
         }
       }
     },
-    "Sgn": {
+    "Sgb": {
       "type": "structure",
       "members": {
         "Frequency": {
@@ -56667,7 +56361,7 @@ module.exports={
         }
       }
     },
-    "Sgu": {
+    "Sgi": {
       "type": "structure",
       "members": {
         "AvailabilityZone": {
@@ -56702,7 +56396,7 @@ module.exports={
           "type": "timestamp"
         },
         "Recurrence": {
-          "shape": "Sgn",
+          "shape": "Sgb",
           "locationName": "recurrence"
         },
         "ScheduledInstanceId": {
@@ -56726,13 +56420,13 @@ module.exports={
         }
       }
     },
-    "Sh1": {
+    "Sgp": {
       "type": "list",
       "member": {
         "locationName": "GroupName"
       }
     },
-    "Sh8": {
+    "Sgw": {
       "type": "list",
       "member": {
         "locationName": "item",
@@ -56747,7 +56441,7 @@ module.exports={
         }
       }
     },
-    "Shx": {
+    "Shl": {
       "type": "structure",
       "required": [
         "IamFleetRole",
@@ -56787,7 +56481,7 @@ module.exports={
                 "locationName": "addressingType"
               },
               "BlockDeviceMappings": {
-                "shape": "Sca",
+                "shape": "Sc2",
                 "locationName": "blockDeviceMapping"
               },
               "EbsOptimized": {
@@ -56821,11 +56515,11 @@ module.exports={
                 }
               },
               "NetworkInterfaces": {
-                "shape": "Si3",
+                "shape": "Shr",
                 "locationName": "networkInterfaceSet"
               },
               "Placement": {
-                "shape": "Si5",
+                "shape": "Sht",
                 "locationName": "placement"
               },
               "RamdiskId": {
@@ -56875,7 +56569,7 @@ module.exports={
         }
       }
     },
-    "Si3": {
+    "Shr": {
       "type": "list",
       "member": {
         "locationName": "item",
@@ -56930,7 +56624,7 @@ module.exports={
         }
       }
     },
-    "Si5": {
+    "Sht": {
       "type": "structure",
       "members": {
         "AvailabilityZone": {
@@ -56944,7 +56638,7 @@ module.exports={
         }
       }
     },
-    "Si9": {
+    "Shx": {
       "type": "list",
       "member": {
         "locationName": "item",
@@ -56965,7 +56659,7 @@ module.exports={
             "type": "timestamp"
           },
           "Fault": {
-            "shape": "S6v",
+            "shape": "S6p",
             "locationName": "fault"
           },
           "InstanceId": {
@@ -56989,7 +56683,7 @@ module.exports={
                 "locationName": "addressingType"
               },
               "BlockDeviceMappings": {
-                "shape": "Sca",
+                "shape": "Sc2",
                 "locationName": "blockDeviceMapping"
               },
               "EbsOptimized": {
@@ -57013,11 +56707,11 @@ module.exports={
                 "locationName": "keyName"
               },
               "NetworkInterfaces": {
-                "shape": "Si3",
+                "shape": "Shr",
                 "locationName": "networkInterfaceSet"
               },
               "Placement": {
-                "shape": "Si5",
+                "shape": "Sht",
                 "locationName": "placement"
               },
               "RamdiskId": {
@@ -57027,7 +56721,7 @@ module.exports={
                 "locationName": "subnetId"
               },
               "Monitoring": {
-                "shape": "Sic",
+                "shape": "Si0",
                 "locationName": "monitoring"
               }
             }
@@ -57081,7 +56775,7 @@ module.exports={
         }
       }
     },
-    "Sic": {
+    "Si0": {
       "type": "structure",
       "required": [
         "Enabled"
@@ -57093,7 +56787,7 @@ module.exports={
         }
       }
     },
-    "Siq": {
+    "Sie": {
       "type": "list",
       "member": {
         "locationName": "item",
@@ -57135,13 +56829,13 @@ module.exports={
         }
       }
     },
-    "Sj7": {
+    "Siv": {
       "type": "list",
       "member": {
         "locationName": "VolumeId"
       }
     },
-    "Sjq": {
+    "Sje": {
       "type": "structure",
       "members": {
         "VolumeId": {
@@ -57189,19 +56883,19 @@ module.exports={
         }
       }
     },
-    "Sjw": {
+    "Sjk": {
       "type": "list",
       "member": {
         "locationName": "VpcId"
       }
     },
-    "Sli": {
+    "Sl6": {
       "type": "list",
       "member": {
         "locationName": "item"
       }
     },
-    "Slk": {
+    "Sl8": {
       "type": "list",
       "member": {
         "type": "structure",
@@ -57214,7 +56908,7 @@ module.exports={
             "type": "integer"
           },
           "HostIdSet": {
-            "shape": "Sbj",
+            "shape": "Sbb",
             "locationName": "hostIdSet"
           },
           "HostReservationId": {
@@ -57235,7 +56929,7 @@ module.exports={
         }
       }
     },
-    "Slq": {
+    "Sle": {
       "type": "structure",
       "members": {
         "HourlyPrice": {
@@ -57249,7 +56943,7 @@ module.exports={
         }
       }
     },
-    "Slx": {
+    "Sll": {
       "type": "structure",
       "members": {
         "Comment": {},
@@ -57264,14 +56958,14 @@ module.exports={
         }
       }
     },
-    "Sm0": {
+    "Slo": {
       "type": "structure",
       "members": {
         "S3Bucket": {},
         "S3Key": {}
       }
     },
-    "Sm5": {
+    "Slt": {
       "type": "structure",
       "required": [
         "Bytes",
@@ -57291,7 +56985,7 @@ module.exports={
         }
       }
     },
-    "Sm6": {
+    "Slu": {
       "type": "structure",
       "required": [
         "Size"
@@ -57303,26 +56997,26 @@ module.exports={
         }
       }
     },
-    "Sm8": {
+    "Slw": {
       "type": "list",
       "member": {
         "locationName": "SecurityGroup"
       }
     },
-    "Sml": {
+    "Sm9": {
       "type": "list",
       "member": {
         "shape": "S48",
         "locationName": "item"
       }
     },
-    "Smt": {
+    "Smh": {
       "type": "list",
       "member": {
         "locationName": "UserId"
       }
     },
-    "Snk": {
+    "Sn8": {
       "type": "structure",
       "members": {
         "AllowDnsResolutionFromRemoteVpc": {
@@ -57336,7 +57030,7 @@ module.exports={
         }
       }
     },
-    "Snm": {
+    "Sna": {
       "type": "structure",
       "members": {
         "AllowDnsResolutionFromRemoteVpc": {
@@ -57353,7 +57047,7 @@ module.exports={
         }
       }
     },
-    "Snp": {
+    "Snd": {
       "type": "list",
       "member": {
         "locationName": "item",
@@ -57363,33 +57057,33 @@ module.exports={
             "locationName": "instanceId"
           },
           "Monitoring": {
-            "shape": "Sdx",
+            "shape": "Sdp",
             "locationName": "monitoring"
           }
         }
       }
     },
-    "Spd": {
+    "Sp1": {
       "type": "list",
       "member": {
         "locationName": "SecurityGroupId"
       }
     },
-    "Spo": {
+    "Spc": {
       "type": "list",
       "member": {
         "locationName": "item",
         "type": "structure",
         "members": {
           "CurrentState": {
-            "shape": "Sdi",
+            "shape": "Sda",
             "locationName": "currentState"
           },
           "InstanceId": {
             "locationName": "instanceId"
           },
           "PreviousState": {
-            "shape": "Sdi",
+            "shape": "Sda",
             "locationName": "previousState"
           }
         }
@@ -66502,12 +66196,7 @@ module.exports={
               },
               "SecurityConfiguration": {},
               "AutoScalingRole": {},
-              "ScaleDownBehavior": {},
-              "CustomAmiId": {},
-              "EbsRootVolumeSize": {
-                "type": "integer"
-              },
-              "RepoUpgradeOnBoot": {}
+              "ScaleDownBehavior": {}
             }
           }
         }
@@ -66637,7 +66326,7 @@ module.exports={
                     "Ec2KeyName": {},
                     "Ec2SubnetId": {},
                     "Placement": {
-                      "shape": "S2u"
+                      "shape": "S2t"
                     },
                     "KeepJobFlowAliveWhenNoSteps": {
                       "type": "boolean"
@@ -66689,13 +66378,13 @@ module.exports={
                     "type": "structure",
                     "members": {
                       "BootstrapActionConfig": {
-                        "shape": "S31"
+                        "shape": "S30"
                       }
                     }
                   }
                 },
                 "SupportedProducts": {
-                  "shape": "S33"
+                  "shape": "S32"
                 },
                 "VisibleToAllUsers": {
                   "type": "boolean"
@@ -66753,11 +66442,11 @@ module.exports={
               "Id": {},
               "Name": {},
               "Config": {
-                "shape": "S39"
+                "shape": "S38"
               },
               "ActionOnFailure": {},
               "Status": {
-                "shape": "S3a"
+                "shape": "S39"
               }
             }
           }
@@ -66913,7 +66602,7 @@ module.exports={
                         "shape": "Sh"
                       },
                       "EbsBlockDevices": {
-                        "shape": "S41"
+                        "shape": "S40"
                       },
                       "EbsOptimized": {
                         "type": "boolean"
@@ -66993,16 +66682,16 @@ module.exports={
                   "shape": "Sh"
                 },
                 "EbsBlockDevices": {
-                  "shape": "S41"
+                  "shape": "S40"
                 },
                 "EbsOptimized": {
                   "type": "boolean"
                 },
                 "ShrinkPolicy": {
-                  "shape": "S4d"
+                  "shape": "S4c"
                 },
                 "AutoScalingPolicy": {
-                  "shape": "S4h"
+                  "shape": "S4g"
                 }
               }
             }
@@ -67150,11 +66839,11 @@ module.exports={
                 "Id": {},
                 "Name": {},
                 "Config": {
-                  "shape": "S39"
+                  "shape": "S38"
                 },
                 "ActionOnFailure": {},
                 "Status": {
-                  "shape": "S3a"
+                  "shape": "S39"
                 }
               }
             }
@@ -67212,7 +66901,7 @@ module.exports={
                   "member": {}
                 },
                 "ShrinkPolicy": {
-                  "shape": "S4d"
+                  "shape": "S4c"
                 }
               }
             }
@@ -67242,7 +66931,7 @@ module.exports={
           "ClusterId": {},
           "InstanceGroupId": {},
           "AutoScalingPolicy": {
-            "shape": "S4h"
+            "shape": "S4g"
           }
         }
       }
@@ -67315,7 +67004,7 @@ module.exports={
               },
               "Ec2KeyName": {},
               "Placement": {
-                "shape": "S2u"
+                "shape": "S2t"
               },
               "KeepJobFlowAliveWhenNoSteps": {
                 "type": "boolean"
@@ -67332,10 +67021,10 @@ module.exports={
               "EmrManagedSlaveSecurityGroup": {},
               "ServiceAccessSecurityGroup": {},
               "AdditionalMasterSecurityGroups": {
-                "shape": "S5n"
+                "shape": "S5m"
               },
               "AdditionalSlaveSecurityGroups": {
-                "shape": "S5n"
+                "shape": "S5m"
               }
             }
           },
@@ -67345,11 +67034,11 @@ module.exports={
           "BootstrapActions": {
             "type": "list",
             "member": {
-              "shape": "S31"
+              "shape": "S30"
             }
           },
           "SupportedProducts": {
-            "shape": "S33"
+            "shape": "S32"
           },
           "NewSupportedProducts": {
             "type": "list",
@@ -67379,12 +67068,7 @@ module.exports={
           },
           "SecurityConfiguration": {},
           "AutoScalingRole": {},
-          "ScaleDownBehavior": {},
-          "CustomAmiId": {},
-          "EbsRootVolumeSize": {
-            "type": "integer"
-          },
-          "RepoUpgradeOnBoot": {}
+          "ScaleDownBehavior": {}
         }
       },
       "output": {
@@ -67823,7 +67507,7 @@ module.exports={
         }
       }
     },
-    "S2u": {
+    "S2t": {
       "type": "structure",
       "members": {
         "AvailabilityZone": {},
@@ -67832,7 +67516,7 @@ module.exports={
         }
       }
     },
-    "S31": {
+    "S30": {
       "type": "structure",
       "required": [
         "Name",
@@ -67854,11 +67538,11 @@ module.exports={
         }
       }
     },
-    "S33": {
+    "S32": {
       "type": "list",
       "member": {}
     },
-    "S39": {
+    "S38": {
       "type": "structure",
       "members": {
         "Jar": {},
@@ -67871,7 +67555,7 @@ module.exports={
         }
       }
     },
-    "S3a": {
+    "S39": {
       "type": "structure",
       "members": {
         "State": {},
@@ -67906,7 +67590,7 @@ module.exports={
         }
       }
     },
-    "S41": {
+    "S40": {
       "type": "list",
       "member": {
         "type": "structure",
@@ -67918,7 +67602,7 @@ module.exports={
         }
       }
     },
-    "S4d": {
+    "S4c": {
       "type": "structure",
       "members": {
         "DecommissionTimeout": {
@@ -67928,10 +67612,10 @@ module.exports={
           "type": "structure",
           "members": {
             "InstancesToTerminate": {
-              "shape": "S4f"
+              "shape": "S4e"
             },
             "InstancesToProtect": {
-              "shape": "S4f"
+              "shape": "S4e"
             },
             "InstanceTerminationTimeout": {
               "type": "integer"
@@ -67940,11 +67624,11 @@ module.exports={
         }
       }
     },
-    "S4f": {
+    "S4e": {
       "type": "list",
       "member": {}
     },
-    "S4h": {
+    "S4g": {
       "type": "structure",
       "members": {
         "Status": {
@@ -67968,7 +67652,7 @@ module.exports={
         }
       }
     },
-    "S5n": {
+    "S5m": {
       "type": "list",
       "member": {}
     }
@@ -79360,14 +79044,6 @@ module.exports={
       "input": {
         "type": "structure",
         "members": {
-          "MasterRegion": {
-            "location": "querystring",
-            "locationName": "MasterRegion"
-          },
-          "FunctionVersion": {
-            "location": "querystring",
-            "locationName": "FunctionVersion"
-          },
           "Marker": {
             "location": "querystring",
             "locationName": "Marker"
@@ -79384,7 +79060,7 @@ module.exports={
         "members": {
           "NextMarker": {},
           "Functions": {
-            "shape": "S2r"
+            "shape": "S2n"
           }
         }
       }
@@ -79447,7 +79123,7 @@ module.exports={
         "members": {
           "NextMarker": {},
           "Versions": {
-            "shape": "S2r"
+            "shape": "S2n"
           }
         }
       }
@@ -79836,11 +79512,10 @@ module.exports={
           "members": {
             "Mode": {}
           }
-        },
-        "MasterArn": {}
+        }
       }
     },
-    "S2r": {
+    "S2n": {
       "type": "list",
       "member": {
         "shape": "S1h"
@@ -122953,8 +122628,8 @@ module.exports={
 },{}],159:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = AWS.Service;
-var apiLoader = AWS.apiLoader;
+var Service = require('../lib/service');
+var apiLoader = require('../lib/api_loader');
 
 apiLoader.services['acm'] = {};
 AWS.ACM = Service.defineService('acm', ['2015-12-08']);
@@ -122970,11 +122645,11 @@ Object.defineProperty(apiLoader.services['acm'], '2015-12-08', {
 
 module.exports = AWS.ACM;
 
-},{"../apis/acm-2015-12-08.min.json":1,"../apis/acm-2015-12-08.paginators.json":2,"../lib/core":227,"../lib/node_loader":224}],160:[function(require,module,exports){
+},{"../apis/acm-2015-12-08.min.json":1,"../apis/acm-2015-12-08.paginators.json":2,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266}],160:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = AWS.Service;
-var apiLoader = AWS.apiLoader;
+var Service = require('../lib/service');
+var apiLoader = require('../lib/api_loader');
 
 apiLoader.services['apigateway'] = {};
 AWS.APIGateway = Service.defineService('apigateway', ['2015-07-09']);
@@ -122991,11 +122666,11 @@ Object.defineProperty(apiLoader.services['apigateway'], '2015-07-09', {
 
 module.exports = AWS.APIGateway;
 
-},{"../apis/apigateway-2015-07-09.min.json":3,"../apis/apigateway-2015-07-09.paginators.json":4,"../lib/core":227,"../lib/node_loader":224,"../lib/services/apigateway":267}],161:[function(require,module,exports){
+},{"../apis/apigateway-2015-07-09.min.json":3,"../apis/apigateway-2015-07-09.paginators.json":4,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266,"../lib/services/apigateway":267}],161:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = AWS.Service;
-var apiLoader = AWS.apiLoader;
+var Service = require('../lib/service');
+var apiLoader = require('../lib/api_loader');
 
 apiLoader.services['applicationautoscaling'] = {};
 AWS.ApplicationAutoScaling = Service.defineService('applicationautoscaling', ['2016-02-06']);
@@ -123011,11 +122686,11 @@ Object.defineProperty(apiLoader.services['applicationautoscaling'], '2016-02-06'
 
 module.exports = AWS.ApplicationAutoScaling;
 
-},{"../apis/application-autoscaling-2016-02-06.min.json":5,"../apis/application-autoscaling-2016-02-06.paginators.json":6,"../lib/core":227,"../lib/node_loader":224}],162:[function(require,module,exports){
+},{"../apis/application-autoscaling-2016-02-06.min.json":5,"../apis/application-autoscaling-2016-02-06.paginators.json":6,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266}],162:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = AWS.Service;
-var apiLoader = AWS.apiLoader;
+var Service = require('../lib/service');
+var apiLoader = require('../lib/api_loader');
 
 apiLoader.services['autoscaling'] = {};
 AWS.AutoScaling = Service.defineService('autoscaling', ['2011-01-01']);
@@ -123031,8 +122706,10 @@ Object.defineProperty(apiLoader.services['autoscaling'], '2011-01-01', {
 
 module.exports = AWS.AutoScaling;
 
-},{"../apis/autoscaling-2011-01-01.min.json":7,"../apis/autoscaling-2011-01-01.paginators.json":8,"../lib/core":227,"../lib/node_loader":224}],163:[function(require,module,exports){
+},{"../apis/autoscaling-2011-01-01.min.json":7,"../apis/autoscaling-2011-01-01.paginators.json":8,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266}],163:[function(require,module,exports){
 require('../lib/node_loader');
+var AWS = require('../lib/core');
+
 module.exports = {
   ACM: require('./acm'),
   APIGateway: require('./apigateway'),
@@ -123098,11 +122775,11 @@ module.exports = {
   WAF: require('./waf'),
   WorkDocs: require('./workdocs')
 };
-},{"../lib/node_loader":224,"./acm":159,"./apigateway":160,"./applicationautoscaling":161,"./autoscaling":162,"./cloudformation":164,"./cloudfront":165,"./cloudhsm":166,"./cloudtrail":167,"./cloudwatch":168,"./cloudwatchevents":169,"./cloudwatchlogs":170,"./codecommit":171,"./codedeploy":172,"./codepipeline":173,"./cognitoidentity":174,"./cognitoidentityserviceprovider":175,"./cognitosync":176,"./configservice":177,"./cur":178,"./devicefarm":179,"./directconnect":180,"./dynamodb":181,"./dynamodbstreams":182,"./ec2":183,"./ecr":184,"./ecs":185,"./efs":186,"./elasticache":187,"./elasticbeanstalk":188,"./elastictranscoder":189,"./elb":190,"./elbv2":191,"./emr":192,"./firehose":193,"./gamelift":194,"./inspector":195,"./iot":196,"./iotdata":197,"./kinesis":198,"./kms":199,"./lambda":200,"./lexruntime":201,"./machinelearning":202,"./marketplacecommerceanalytics":203,"./mobileanalytics":204,"./mturk":205,"./opsworks":206,"./polly":207,"./rds":208,"./redshift":209,"./rekognition":210,"./route53":211,"./route53domains":212,"./s3":213,"./servicecatalog":214,"./ses":215,"./sns":216,"./sqs":217,"./ssm":218,"./storagegateway":219,"./sts":220,"./waf":221,"./workdocs":222}],164:[function(require,module,exports){
+},{"../lib/core":227,"../lib/node_loader":224,"./acm":159,"./apigateway":160,"./applicationautoscaling":161,"./autoscaling":162,"./cloudformation":164,"./cloudfront":165,"./cloudhsm":166,"./cloudtrail":167,"./cloudwatch":168,"./cloudwatchevents":169,"./cloudwatchlogs":170,"./codecommit":171,"./codedeploy":172,"./codepipeline":173,"./cognitoidentity":174,"./cognitoidentityserviceprovider":175,"./cognitosync":176,"./configservice":177,"./cur":178,"./devicefarm":179,"./directconnect":180,"./dynamodb":181,"./dynamodbstreams":182,"./ec2":183,"./ecr":184,"./ecs":185,"./efs":186,"./elasticache":187,"./elasticbeanstalk":188,"./elastictranscoder":189,"./elb":190,"./elbv2":191,"./emr":192,"./firehose":193,"./gamelift":194,"./inspector":195,"./iot":196,"./iotdata":197,"./kinesis":198,"./kms":199,"./lambda":200,"./lexruntime":201,"./machinelearning":202,"./marketplacecommerceanalytics":203,"./mobileanalytics":204,"./mturk":205,"./opsworks":206,"./polly":207,"./rds":208,"./redshift":209,"./rekognition":210,"./route53":211,"./route53domains":212,"./s3":213,"./servicecatalog":214,"./ses":215,"./sns":216,"./sqs":217,"./ssm":218,"./storagegateway":219,"./sts":220,"./waf":221,"./workdocs":222}],164:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = AWS.Service;
-var apiLoader = AWS.apiLoader;
+var Service = require('../lib/service');
+var apiLoader = require('../lib/api_loader');
 
 apiLoader.services['cloudformation'] = {};
 AWS.CloudFormation = Service.defineService('cloudformation', ['2010-05-15']);
@@ -123119,11 +122796,11 @@ Object.defineProperty(apiLoader.services['cloudformation'], '2010-05-15', {
 
 module.exports = AWS.CloudFormation;
 
-},{"../apis/cloudformation-2010-05-15.min.json":9,"../apis/cloudformation-2010-05-15.paginators.json":10,"../apis/cloudformation-2010-05-15.waiters2.json":11,"../lib/core":227,"../lib/node_loader":224}],165:[function(require,module,exports){
+},{"../apis/cloudformation-2010-05-15.min.json":9,"../apis/cloudformation-2010-05-15.paginators.json":10,"../apis/cloudformation-2010-05-15.waiters2.json":11,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266}],165:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = AWS.Service;
-var apiLoader = AWS.apiLoader;
+var Service = require('../lib/service');
+var apiLoader = require('../lib/api_loader');
 
 apiLoader.services['cloudfront'] = {};
 AWS.CloudFront = Service.defineService('cloudfront', ['2013-05-12*', '2013-11-11*', '2014-05-31*', '2014-10-21*', '2014-11-06*', '2015-04-17*', '2015-07-27*', '2015-09-17*', '2016-01-13*', '2016-01-28*', '2016-08-01*', '2016-08-20*', '2016-09-07*', '2016-09-29*', '2016-11-25', '2016-11-25*', '2017-03-25']);
@@ -123151,11 +122828,11 @@ Object.defineProperty(apiLoader.services['cloudfront'], '2017-03-25', {
 
 module.exports = AWS.CloudFront;
 
-},{"../apis/cloudfront-2016-11-25.min.json":12,"../apis/cloudfront-2016-11-25.paginators.json":13,"../apis/cloudfront-2016-11-25.waiters2.json":14,"../apis/cloudfront-2017-03-25.min.json":15,"../apis/cloudfront-2017-03-25.paginators.json":16,"../apis/cloudfront-2017-03-25.waiters2.json":17,"../lib/core":227,"../lib/node_loader":224,"../lib/services/cloudfront":268}],166:[function(require,module,exports){
+},{"../apis/cloudfront-2016-11-25.min.json":12,"../apis/cloudfront-2016-11-25.paginators.json":13,"../apis/cloudfront-2016-11-25.waiters2.json":14,"../apis/cloudfront-2017-03-25.min.json":15,"../apis/cloudfront-2017-03-25.paginators.json":16,"../apis/cloudfront-2017-03-25.waiters2.json":17,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266,"../lib/services/cloudfront":268}],166:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = AWS.Service;
-var apiLoader = AWS.apiLoader;
+var Service = require('../lib/service');
+var apiLoader = require('../lib/api_loader');
 
 apiLoader.services['cloudhsm'] = {};
 AWS.CloudHSM = Service.defineService('cloudhsm', ['2014-05-30']);
@@ -123170,11 +122847,11 @@ Object.defineProperty(apiLoader.services['cloudhsm'], '2014-05-30', {
 
 module.exports = AWS.CloudHSM;
 
-},{"../apis/cloudhsm-2014-05-30.min.json":18,"../lib/core":227,"../lib/node_loader":224}],167:[function(require,module,exports){
+},{"../apis/cloudhsm-2014-05-30.min.json":18,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266}],167:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = AWS.Service;
-var apiLoader = AWS.apiLoader;
+var Service = require('../lib/service');
+var apiLoader = require('../lib/api_loader');
 
 apiLoader.services['cloudtrail'] = {};
 AWS.CloudTrail = Service.defineService('cloudtrail', ['2013-11-01']);
@@ -123190,11 +122867,11 @@ Object.defineProperty(apiLoader.services['cloudtrail'], '2013-11-01', {
 
 module.exports = AWS.CloudTrail;
 
-},{"../apis/cloudtrail-2013-11-01.min.json":19,"../apis/cloudtrail-2013-11-01.paginators.json":20,"../lib/core":227,"../lib/node_loader":224}],168:[function(require,module,exports){
+},{"../apis/cloudtrail-2013-11-01.min.json":19,"../apis/cloudtrail-2013-11-01.paginators.json":20,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266}],168:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = AWS.Service;
-var apiLoader = AWS.apiLoader;
+var Service = require('../lib/service');
+var apiLoader = require('../lib/api_loader');
 
 apiLoader.services['cloudwatch'] = {};
 AWS.CloudWatch = Service.defineService('cloudwatch', ['2010-08-01']);
@@ -123211,11 +122888,11 @@ Object.defineProperty(apiLoader.services['cloudwatch'], '2010-08-01', {
 
 module.exports = AWS.CloudWatch;
 
-},{"../apis/monitoring-2010-08-01.min.json":104,"../apis/monitoring-2010-08-01.paginators.json":105,"../apis/monitoring-2010-08-01.waiters2.json":106,"../lib/core":227,"../lib/node_loader":224}],169:[function(require,module,exports){
+},{"../apis/monitoring-2010-08-01.min.json":104,"../apis/monitoring-2010-08-01.paginators.json":105,"../apis/monitoring-2010-08-01.waiters2.json":106,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266}],169:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = AWS.Service;
-var apiLoader = AWS.apiLoader;
+var Service = require('../lib/service');
+var apiLoader = require('../lib/api_loader');
 
 apiLoader.services['cloudwatchevents'] = {};
 AWS.CloudWatchEvents = Service.defineService('cloudwatchevents', ['2014-02-03*', '2015-10-07']);
@@ -123231,11 +122908,11 @@ Object.defineProperty(apiLoader.services['cloudwatchevents'], '2015-10-07', {
 
 module.exports = AWS.CloudWatchEvents;
 
-},{"../apis/events-2015-10-07.min.json":76,"../apis/events-2015-10-07.paginators.json":77,"../lib/core":227,"../lib/node_loader":224}],170:[function(require,module,exports){
+},{"../apis/events-2015-10-07.min.json":76,"../apis/events-2015-10-07.paginators.json":77,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266}],170:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = AWS.Service;
-var apiLoader = AWS.apiLoader;
+var Service = require('../lib/service');
+var apiLoader = require('../lib/api_loader');
 
 apiLoader.services['cloudwatchlogs'] = {};
 AWS.CloudWatchLogs = Service.defineService('cloudwatchlogs', ['2014-03-28']);
@@ -123251,11 +122928,11 @@ Object.defineProperty(apiLoader.services['cloudwatchlogs'], '2014-03-28', {
 
 module.exports = AWS.CloudWatchLogs;
 
-},{"../apis/logs-2014-03-28.min.json":95,"../apis/logs-2014-03-28.paginators.json":96,"../lib/core":227,"../lib/node_loader":224}],171:[function(require,module,exports){
+},{"../apis/logs-2014-03-28.min.json":95,"../apis/logs-2014-03-28.paginators.json":96,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266}],171:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = AWS.Service;
-var apiLoader = AWS.apiLoader;
+var Service = require('../lib/service');
+var apiLoader = require('../lib/api_loader');
 
 apiLoader.services['codecommit'] = {};
 AWS.CodeCommit = Service.defineService('codecommit', ['2015-04-13']);
@@ -123271,11 +122948,11 @@ Object.defineProperty(apiLoader.services['codecommit'], '2015-04-13', {
 
 module.exports = AWS.CodeCommit;
 
-},{"../apis/codecommit-2015-04-13.min.json":21,"../apis/codecommit-2015-04-13.paginators.json":22,"../lib/core":227,"../lib/node_loader":224}],172:[function(require,module,exports){
+},{"../apis/codecommit-2015-04-13.min.json":21,"../apis/codecommit-2015-04-13.paginators.json":22,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266}],172:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = AWS.Service;
-var apiLoader = AWS.apiLoader;
+var Service = require('../lib/service');
+var apiLoader = require('../lib/api_loader');
 
 apiLoader.services['codedeploy'] = {};
 AWS.CodeDeploy = Service.defineService('codedeploy', ['2014-10-06']);
@@ -123292,11 +122969,11 @@ Object.defineProperty(apiLoader.services['codedeploy'], '2014-10-06', {
 
 module.exports = AWS.CodeDeploy;
 
-},{"../apis/codedeploy-2014-10-06.min.json":23,"../apis/codedeploy-2014-10-06.paginators.json":24,"../apis/codedeploy-2014-10-06.waiters2.json":25,"../lib/core":227,"../lib/node_loader":224}],173:[function(require,module,exports){
+},{"../apis/codedeploy-2014-10-06.min.json":23,"../apis/codedeploy-2014-10-06.paginators.json":24,"../apis/codedeploy-2014-10-06.waiters2.json":25,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266}],173:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = AWS.Service;
-var apiLoader = AWS.apiLoader;
+var Service = require('../lib/service');
+var apiLoader = require('../lib/api_loader');
 
 apiLoader.services['codepipeline'] = {};
 AWS.CodePipeline = Service.defineService('codepipeline', ['2015-07-09']);
@@ -123312,11 +122989,11 @@ Object.defineProperty(apiLoader.services['codepipeline'], '2015-07-09', {
 
 module.exports = AWS.CodePipeline;
 
-},{"../apis/codepipeline-2015-07-09.min.json":26,"../apis/codepipeline-2015-07-09.paginators.json":27,"../lib/core":227,"../lib/node_loader":224}],174:[function(require,module,exports){
+},{"../apis/codepipeline-2015-07-09.min.json":26,"../apis/codepipeline-2015-07-09.paginators.json":27,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266}],174:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = AWS.Service;
-var apiLoader = AWS.apiLoader;
+var Service = require('../lib/service');
+var apiLoader = require('../lib/api_loader');
 
 apiLoader.services['cognitoidentity'] = {};
 AWS.CognitoIdentity = Service.defineService('cognitoidentity', ['2014-06-30']);
@@ -123333,11 +123010,11 @@ Object.defineProperty(apiLoader.services['cognitoidentity'], '2014-06-30', {
 
 module.exports = AWS.CognitoIdentity;
 
-},{"../apis/cognito-identity-2014-06-30.min.json":28,"../apis/cognito-identity-2014-06-30.paginators.json":29,"../lib/core":227,"../lib/node_loader":224,"../lib/services/cognitoidentity":269}],175:[function(require,module,exports){
+},{"../apis/cognito-identity-2014-06-30.min.json":28,"../apis/cognito-identity-2014-06-30.paginators.json":29,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266,"../lib/services/cognitoidentity":269}],175:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = AWS.Service;
-var apiLoader = AWS.apiLoader;
+var Service = require('../lib/service');
+var apiLoader = require('../lib/api_loader');
 
 apiLoader.services['cognitoidentityserviceprovider'] = {};
 AWS.CognitoIdentityServiceProvider = Service.defineService('cognitoidentityserviceprovider', ['2016-04-18']);
@@ -123353,11 +123030,11 @@ Object.defineProperty(apiLoader.services['cognitoidentityserviceprovider'], '201
 
 module.exports = AWS.CognitoIdentityServiceProvider;
 
-},{"../apis/cognito-idp-2016-04-18.min.json":30,"../apis/cognito-idp-2016-04-18.paginators.json":31,"../lib/core":227,"../lib/node_loader":224}],176:[function(require,module,exports){
+},{"../apis/cognito-idp-2016-04-18.min.json":30,"../apis/cognito-idp-2016-04-18.paginators.json":31,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266}],176:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = AWS.Service;
-var apiLoader = AWS.apiLoader;
+var Service = require('../lib/service');
+var apiLoader = require('../lib/api_loader');
 
 apiLoader.services['cognitosync'] = {};
 AWS.CognitoSync = Service.defineService('cognitosync', ['2014-06-30']);
@@ -123372,11 +123049,11 @@ Object.defineProperty(apiLoader.services['cognitosync'], '2014-06-30', {
 
 module.exports = AWS.CognitoSync;
 
-},{"../apis/cognito-sync-2014-06-30.min.json":32,"../lib/core":227,"../lib/node_loader":224}],177:[function(require,module,exports){
+},{"../apis/cognito-sync-2014-06-30.min.json":32,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266}],177:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = AWS.Service;
-var apiLoader = AWS.apiLoader;
+var Service = require('../lib/service');
+var apiLoader = require('../lib/api_loader');
 
 apiLoader.services['configservice'] = {};
 AWS.ConfigService = Service.defineService('configservice', ['2014-11-12']);
@@ -123392,11 +123069,11 @@ Object.defineProperty(apiLoader.services['configservice'], '2014-11-12', {
 
 module.exports = AWS.ConfigService;
 
-},{"../apis/config-2014-11-12.min.json":33,"../apis/config-2014-11-12.paginators.json":34,"../lib/core":227,"../lib/node_loader":224}],178:[function(require,module,exports){
+},{"../apis/config-2014-11-12.min.json":33,"../apis/config-2014-11-12.paginators.json":34,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266}],178:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = AWS.Service;
-var apiLoader = AWS.apiLoader;
+var Service = require('../lib/service');
+var apiLoader = require('../lib/api_loader');
 
 apiLoader.services['cur'] = {};
 AWS.CUR = Service.defineService('cur', ['2017-01-06']);
@@ -123412,11 +123089,11 @@ Object.defineProperty(apiLoader.services['cur'], '2017-01-06', {
 
 module.exports = AWS.CUR;
 
-},{"../apis/cur-2017-01-06.min.json":35,"../apis/cur-2017-01-06.paginators.json":36,"../lib/core":227,"../lib/node_loader":224}],179:[function(require,module,exports){
+},{"../apis/cur-2017-01-06.min.json":35,"../apis/cur-2017-01-06.paginators.json":36,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266}],179:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = AWS.Service;
-var apiLoader = AWS.apiLoader;
+var Service = require('../lib/service');
+var apiLoader = require('../lib/api_loader');
 
 apiLoader.services['devicefarm'] = {};
 AWS.DeviceFarm = Service.defineService('devicefarm', ['2015-06-23']);
@@ -123432,11 +123109,11 @@ Object.defineProperty(apiLoader.services['devicefarm'], '2015-06-23', {
 
 module.exports = AWS.DeviceFarm;
 
-},{"../apis/devicefarm-2015-06-23.min.json":37,"../apis/devicefarm-2015-06-23.paginators.json":38,"../lib/core":227,"../lib/node_loader":224}],180:[function(require,module,exports){
+},{"../apis/devicefarm-2015-06-23.min.json":37,"../apis/devicefarm-2015-06-23.paginators.json":38,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266}],180:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = AWS.Service;
-var apiLoader = AWS.apiLoader;
+var Service = require('../lib/service');
+var apiLoader = require('../lib/api_loader');
 
 apiLoader.services['directconnect'] = {};
 AWS.DirectConnect = Service.defineService('directconnect', ['2012-10-25']);
@@ -123452,11 +123129,11 @@ Object.defineProperty(apiLoader.services['directconnect'], '2012-10-25', {
 
 module.exports = AWS.DirectConnect;
 
-},{"../apis/directconnect-2012-10-25.min.json":39,"../apis/directconnect-2012-10-25.paginators.json":40,"../lib/core":227,"../lib/node_loader":224}],181:[function(require,module,exports){
+},{"../apis/directconnect-2012-10-25.min.json":39,"../apis/directconnect-2012-10-25.paginators.json":40,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266}],181:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = AWS.Service;
-var apiLoader = AWS.apiLoader;
+var Service = require('../lib/service');
+var apiLoader = require('../lib/api_loader');
 
 apiLoader.services['dynamodb'] = {};
 AWS.DynamoDB = Service.defineService('dynamodb', ['2011-12-05', '2012-08-10']);
@@ -123484,11 +123161,11 @@ Object.defineProperty(apiLoader.services['dynamodb'], '2012-08-10', {
 
 module.exports = AWS.DynamoDB;
 
-},{"../apis/dynamodb-2011-12-05.min.json":41,"../apis/dynamodb-2011-12-05.paginators.json":42,"../apis/dynamodb-2011-12-05.waiters2.json":43,"../apis/dynamodb-2012-08-10.min.json":44,"../apis/dynamodb-2012-08-10.paginators.json":45,"../apis/dynamodb-2012-08-10.waiters2.json":46,"../lib/core":227,"../lib/node_loader":224,"../lib/services/dynamodb":270}],182:[function(require,module,exports){
+},{"../apis/dynamodb-2011-12-05.min.json":41,"../apis/dynamodb-2011-12-05.paginators.json":42,"../apis/dynamodb-2011-12-05.waiters2.json":43,"../apis/dynamodb-2012-08-10.min.json":44,"../apis/dynamodb-2012-08-10.paginators.json":45,"../apis/dynamodb-2012-08-10.waiters2.json":46,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266,"../lib/services/dynamodb":270}],182:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = AWS.Service;
-var apiLoader = AWS.apiLoader;
+var Service = require('../lib/service');
+var apiLoader = require('../lib/api_loader');
 
 apiLoader.services['dynamodbstreams'] = {};
 AWS.DynamoDBStreams = Service.defineService('dynamodbstreams', ['2012-08-10']);
@@ -123504,11 +123181,11 @@ Object.defineProperty(apiLoader.services['dynamodbstreams'], '2012-08-10', {
 
 module.exports = AWS.DynamoDBStreams;
 
-},{"../apis/streams.dynamodb-2012-08-10.min.json":151,"../apis/streams.dynamodb-2012-08-10.paginators.json":152,"../lib/core":227,"../lib/node_loader":224}],183:[function(require,module,exports){
+},{"../apis/streams.dynamodb-2012-08-10.min.json":151,"../apis/streams.dynamodb-2012-08-10.paginators.json":152,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266}],183:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = AWS.Service;
-var apiLoader = AWS.apiLoader;
+var Service = require('../lib/service');
+var apiLoader = require('../lib/api_loader');
 
 apiLoader.services['ec2'] = {};
 AWS.EC2 = Service.defineService('ec2', ['2013-06-15*', '2013-10-15*', '2014-02-01*', '2014-05-01*', '2014-06-15*', '2014-09-01*', '2014-10-01*', '2015-03-01*', '2015-04-15*', '2015-10-01*', '2016-04-01*', '2016-09-15*', '2016-11-15']);
@@ -123526,11 +123203,11 @@ Object.defineProperty(apiLoader.services['ec2'], '2016-11-15', {
 
 module.exports = AWS.EC2;
 
-},{"../apis/ec2-2016-11-15.min.json":47,"../apis/ec2-2016-11-15.paginators.json":48,"../apis/ec2-2016-11-15.waiters2.json":49,"../lib/core":227,"../lib/node_loader":224,"../lib/services/ec2":271}],184:[function(require,module,exports){
+},{"../apis/ec2-2016-11-15.min.json":47,"../apis/ec2-2016-11-15.paginators.json":48,"../apis/ec2-2016-11-15.waiters2.json":49,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266,"../lib/services/ec2":271}],184:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = AWS.Service;
-var apiLoader = AWS.apiLoader;
+var Service = require('../lib/service');
+var apiLoader = require('../lib/api_loader');
 
 apiLoader.services['ecr'] = {};
 AWS.ECR = Service.defineService('ecr', ['2015-09-21']);
@@ -123546,11 +123223,11 @@ Object.defineProperty(apiLoader.services['ecr'], '2015-09-21', {
 
 module.exports = AWS.ECR;
 
-},{"../apis/ecr-2015-09-21.min.json":50,"../apis/ecr-2015-09-21.paginators.json":51,"../lib/core":227,"../lib/node_loader":224}],185:[function(require,module,exports){
+},{"../apis/ecr-2015-09-21.min.json":50,"../apis/ecr-2015-09-21.paginators.json":51,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266}],185:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = AWS.Service;
-var apiLoader = AWS.apiLoader;
+var Service = require('../lib/service');
+var apiLoader = require('../lib/api_loader');
 
 apiLoader.services['ecs'] = {};
 AWS.ECS = Service.defineService('ecs', ['2014-11-13']);
@@ -123567,11 +123244,11 @@ Object.defineProperty(apiLoader.services['ecs'], '2014-11-13', {
 
 module.exports = AWS.ECS;
 
-},{"../apis/ecs-2014-11-13.min.json":52,"../apis/ecs-2014-11-13.paginators.json":53,"../apis/ecs-2014-11-13.waiters2.json":54,"../lib/core":227,"../lib/node_loader":224}],186:[function(require,module,exports){
+},{"../apis/ecs-2014-11-13.min.json":52,"../apis/ecs-2014-11-13.paginators.json":53,"../apis/ecs-2014-11-13.waiters2.json":54,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266}],186:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = AWS.Service;
-var apiLoader = AWS.apiLoader;
+var Service = require('../lib/service');
+var apiLoader = require('../lib/api_loader');
 
 apiLoader.services['efs'] = {};
 AWS.EFS = Service.defineService('efs', ['2015-02-01']);
@@ -123586,11 +123263,11 @@ Object.defineProperty(apiLoader.services['efs'], '2015-02-01', {
 
 module.exports = AWS.EFS;
 
-},{"../apis/elasticfilesystem-2015-02-01.min.json":60,"../lib/core":227,"../lib/node_loader":224}],187:[function(require,module,exports){
+},{"../apis/elasticfilesystem-2015-02-01.min.json":60,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266}],187:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = AWS.Service;
-var apiLoader = AWS.apiLoader;
+var Service = require('../lib/service');
+var apiLoader = require('../lib/api_loader');
 
 apiLoader.services['elasticache'] = {};
 AWS.ElastiCache = Service.defineService('elasticache', ['2012-11-15*', '2014-03-24*', '2014-07-15*', '2014-09-30*', '2015-02-02']);
@@ -123607,11 +123284,11 @@ Object.defineProperty(apiLoader.services['elasticache'], '2015-02-02', {
 
 module.exports = AWS.ElastiCache;
 
-},{"../apis/elasticache-2015-02-02.min.json":55,"../apis/elasticache-2015-02-02.paginators.json":56,"../apis/elasticache-2015-02-02.waiters2.json":57,"../lib/core":227,"../lib/node_loader":224}],188:[function(require,module,exports){
+},{"../apis/elasticache-2015-02-02.min.json":55,"../apis/elasticache-2015-02-02.paginators.json":56,"../apis/elasticache-2015-02-02.waiters2.json":57,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266}],188:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = AWS.Service;
-var apiLoader = AWS.apiLoader;
+var Service = require('../lib/service');
+var apiLoader = require('../lib/api_loader');
 
 apiLoader.services['elasticbeanstalk'] = {};
 AWS.ElasticBeanstalk = Service.defineService('elasticbeanstalk', ['2010-12-01']);
@@ -123627,11 +123304,11 @@ Object.defineProperty(apiLoader.services['elasticbeanstalk'], '2010-12-01', {
 
 module.exports = AWS.ElasticBeanstalk;
 
-},{"../apis/elasticbeanstalk-2010-12-01.min.json":58,"../apis/elasticbeanstalk-2010-12-01.paginators.json":59,"../lib/core":227,"../lib/node_loader":224}],189:[function(require,module,exports){
+},{"../apis/elasticbeanstalk-2010-12-01.min.json":58,"../apis/elasticbeanstalk-2010-12-01.paginators.json":59,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266}],189:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = AWS.Service;
-var apiLoader = AWS.apiLoader;
+var Service = require('../lib/service');
+var apiLoader = require('../lib/api_loader');
 
 apiLoader.services['elastictranscoder'] = {};
 AWS.ElasticTranscoder = Service.defineService('elastictranscoder', ['2012-09-25']);
@@ -123648,11 +123325,11 @@ Object.defineProperty(apiLoader.services['elastictranscoder'], '2012-09-25', {
 
 module.exports = AWS.ElasticTranscoder;
 
-},{"../apis/elastictranscoder-2012-09-25.min.json":70,"../apis/elastictranscoder-2012-09-25.paginators.json":71,"../apis/elastictranscoder-2012-09-25.waiters2.json":72,"../lib/core":227,"../lib/node_loader":224}],190:[function(require,module,exports){
+},{"../apis/elastictranscoder-2012-09-25.min.json":70,"../apis/elastictranscoder-2012-09-25.paginators.json":71,"../apis/elastictranscoder-2012-09-25.waiters2.json":72,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266}],190:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = AWS.Service;
-var apiLoader = AWS.apiLoader;
+var Service = require('../lib/service');
+var apiLoader = require('../lib/api_loader');
 
 apiLoader.services['elb'] = {};
 AWS.ELB = Service.defineService('elb', ['2012-06-01']);
@@ -123669,11 +123346,11 @@ Object.defineProperty(apiLoader.services['elb'], '2012-06-01', {
 
 module.exports = AWS.ELB;
 
-},{"../apis/elasticloadbalancing-2012-06-01.min.json":61,"../apis/elasticloadbalancing-2012-06-01.paginators.json":62,"../apis/elasticloadbalancing-2012-06-01.waiters2.json":63,"../lib/core":227,"../lib/node_loader":224}],191:[function(require,module,exports){
+},{"../apis/elasticloadbalancing-2012-06-01.min.json":61,"../apis/elasticloadbalancing-2012-06-01.paginators.json":62,"../apis/elasticloadbalancing-2012-06-01.waiters2.json":63,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266}],191:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = AWS.Service;
-var apiLoader = AWS.apiLoader;
+var Service = require('../lib/service');
+var apiLoader = require('../lib/api_loader');
 
 apiLoader.services['elbv2'] = {};
 AWS.ELBv2 = Service.defineService('elbv2', ['2015-12-01']);
@@ -123690,11 +123367,11 @@ Object.defineProperty(apiLoader.services['elbv2'], '2015-12-01', {
 
 module.exports = AWS.ELBv2;
 
-},{"../apis/elasticloadbalancingv2-2015-12-01.min.json":64,"../apis/elasticloadbalancingv2-2015-12-01.paginators.json":65,"../apis/elasticloadbalancingv2-2015-12-01.waiters2.json":66,"../lib/core":227,"../lib/node_loader":224}],192:[function(require,module,exports){
+},{"../apis/elasticloadbalancingv2-2015-12-01.min.json":64,"../apis/elasticloadbalancingv2-2015-12-01.paginators.json":65,"../apis/elasticloadbalancingv2-2015-12-01.waiters2.json":66,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266}],192:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = AWS.Service;
-var apiLoader = AWS.apiLoader;
+var Service = require('../lib/service');
+var apiLoader = require('../lib/api_loader');
 
 apiLoader.services['emr'] = {};
 AWS.EMR = Service.defineService('emr', ['2009-03-31']);
@@ -123711,11 +123388,11 @@ Object.defineProperty(apiLoader.services['emr'], '2009-03-31', {
 
 module.exports = AWS.EMR;
 
-},{"../apis/elasticmapreduce-2009-03-31.min.json":67,"../apis/elasticmapreduce-2009-03-31.paginators.json":68,"../apis/elasticmapreduce-2009-03-31.waiters2.json":69,"../lib/core":227,"../lib/node_loader":224}],193:[function(require,module,exports){
+},{"../apis/elasticmapreduce-2009-03-31.min.json":67,"../apis/elasticmapreduce-2009-03-31.paginators.json":68,"../apis/elasticmapreduce-2009-03-31.waiters2.json":69,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266}],193:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = AWS.Service;
-var apiLoader = AWS.apiLoader;
+var Service = require('../lib/service');
+var apiLoader = require('../lib/api_loader');
 
 apiLoader.services['firehose'] = {};
 AWS.Firehose = Service.defineService('firehose', ['2015-08-04']);
@@ -123730,11 +123407,11 @@ Object.defineProperty(apiLoader.services['firehose'], '2015-08-04', {
 
 module.exports = AWS.Firehose;
 
-},{"../apis/firehose-2015-08-04.min.json":78,"../lib/core":227,"../lib/node_loader":224}],194:[function(require,module,exports){
+},{"../apis/firehose-2015-08-04.min.json":78,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266}],194:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = AWS.Service;
-var apiLoader = AWS.apiLoader;
+var Service = require('../lib/service');
+var apiLoader = require('../lib/api_loader');
 
 apiLoader.services['gamelift'] = {};
 AWS.GameLift = Service.defineService('gamelift', ['2015-10-01']);
@@ -123750,11 +123427,11 @@ Object.defineProperty(apiLoader.services['gamelift'], '2015-10-01', {
 
 module.exports = AWS.GameLift;
 
-},{"../apis/gamelift-2015-10-01.min.json":79,"../apis/gamelift-2015-10-01.paginators.json":80,"../lib/core":227,"../lib/node_loader":224}],195:[function(require,module,exports){
+},{"../apis/gamelift-2015-10-01.min.json":79,"../apis/gamelift-2015-10-01.paginators.json":80,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266}],195:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = AWS.Service;
-var apiLoader = AWS.apiLoader;
+var Service = require('../lib/service');
+var apiLoader = require('../lib/api_loader');
 
 apiLoader.services['inspector'] = {};
 AWS.Inspector = Service.defineService('inspector', ['2015-08-18*', '2016-02-16']);
@@ -123770,11 +123447,11 @@ Object.defineProperty(apiLoader.services['inspector'], '2016-02-16', {
 
 module.exports = AWS.Inspector;
 
-},{"../apis/inspector-2016-02-16.min.json":81,"../apis/inspector-2016-02-16.paginators.json":82,"../lib/core":227,"../lib/node_loader":224}],196:[function(require,module,exports){
+},{"../apis/inspector-2016-02-16.min.json":81,"../apis/inspector-2016-02-16.paginators.json":82,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266}],196:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = AWS.Service;
-var apiLoader = AWS.apiLoader;
+var Service = require('../lib/service');
+var apiLoader = require('../lib/api_loader');
 
 apiLoader.services['iot'] = {};
 AWS.Iot = Service.defineService('iot', ['2015-05-28']);
@@ -123790,11 +123467,11 @@ Object.defineProperty(apiLoader.services['iot'], '2015-05-28', {
 
 module.exports = AWS.Iot;
 
-},{"../apis/iot-2015-05-28.min.json":83,"../apis/iot-2015-05-28.paginators.json":84,"../lib/core":227,"../lib/node_loader":224}],197:[function(require,module,exports){
+},{"../apis/iot-2015-05-28.min.json":83,"../apis/iot-2015-05-28.paginators.json":84,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266}],197:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = AWS.Service;
-var apiLoader = AWS.apiLoader;
+var Service = require('../lib/service');
+var apiLoader = require('../lib/api_loader');
 
 apiLoader.services['iotdata'] = {};
 AWS.IotData = Service.defineService('iotdata', ['2015-05-28']);
@@ -123810,11 +123487,11 @@ Object.defineProperty(apiLoader.services['iotdata'], '2015-05-28', {
 
 module.exports = AWS.IotData;
 
-},{"../apis/iot-data-2015-05-28.min.json":85,"../lib/core":227,"../lib/node_loader":224,"../lib/services/iotdata":272}],198:[function(require,module,exports){
+},{"../apis/iot-data-2015-05-28.min.json":85,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266,"../lib/services/iotdata":272}],198:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = AWS.Service;
-var apiLoader = AWS.apiLoader;
+var Service = require('../lib/service');
+var apiLoader = require('../lib/api_loader');
 
 apiLoader.services['kinesis'] = {};
 AWS.Kinesis = Service.defineService('kinesis', ['2013-12-02']);
@@ -123831,11 +123508,11 @@ Object.defineProperty(apiLoader.services['kinesis'], '2013-12-02', {
 
 module.exports = AWS.Kinesis;
 
-},{"../apis/kinesis-2013-12-02.min.json":86,"../apis/kinesis-2013-12-02.paginators.json":87,"../apis/kinesis-2013-12-02.waiters2.json":88,"../lib/core":227,"../lib/node_loader":224}],199:[function(require,module,exports){
+},{"../apis/kinesis-2013-12-02.min.json":86,"../apis/kinesis-2013-12-02.paginators.json":87,"../apis/kinesis-2013-12-02.waiters2.json":88,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266}],199:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = AWS.Service;
-var apiLoader = AWS.apiLoader;
+var Service = require('../lib/service');
+var apiLoader = require('../lib/api_loader');
 
 apiLoader.services['kms'] = {};
 AWS.KMS = Service.defineService('kms', ['2014-11-01']);
@@ -123851,11 +123528,11 @@ Object.defineProperty(apiLoader.services['kms'], '2014-11-01', {
 
 module.exports = AWS.KMS;
 
-},{"../apis/kms-2014-11-01.min.json":89,"../apis/kms-2014-11-01.paginators.json":90,"../lib/core":227,"../lib/node_loader":224}],200:[function(require,module,exports){
+},{"../apis/kms-2014-11-01.min.json":89,"../apis/kms-2014-11-01.paginators.json":90,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266}],200:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = AWS.Service;
-var apiLoader = AWS.apiLoader;
+var Service = require('../lib/service');
+var apiLoader = require('../lib/api_loader');
 
 apiLoader.services['lambda'] = {};
 AWS.Lambda = Service.defineService('lambda', ['2014-11-11', '2015-03-31']);
@@ -123881,11 +123558,11 @@ Object.defineProperty(apiLoader.services['lambda'], '2015-03-31', {
 
 module.exports = AWS.Lambda;
 
-},{"../apis/lambda-2014-11-11.min.json":91,"../apis/lambda-2014-11-11.paginators.json":92,"../apis/lambda-2015-03-31.min.json":93,"../apis/lambda-2015-03-31.paginators.json":94,"../lib/core":227,"../lib/node_loader":224,"../lib/services/lambda":273}],201:[function(require,module,exports){
+},{"../apis/lambda-2014-11-11.min.json":91,"../apis/lambda-2014-11-11.paginators.json":92,"../apis/lambda-2015-03-31.min.json":93,"../apis/lambda-2015-03-31.paginators.json":94,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266,"../lib/services/lambda":273}],201:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = AWS.Service;
-var apiLoader = AWS.apiLoader;
+var Service = require('../lib/service');
+var apiLoader = require('../lib/api_loader');
 
 apiLoader.services['lexruntime'] = {};
 AWS.LexRuntime = Service.defineService('lexruntime', ['2016-11-28']);
@@ -123901,11 +123578,11 @@ Object.defineProperty(apiLoader.services['lexruntime'], '2016-11-28', {
 
 module.exports = AWS.LexRuntime;
 
-},{"../apis/runtime.lex-2016-11-28.min.json":136,"../apis/runtime.lex-2016-11-28.paginators.json":137,"../lib/core":227,"../lib/node_loader":224}],202:[function(require,module,exports){
+},{"../apis/runtime.lex-2016-11-28.min.json":136,"../apis/runtime.lex-2016-11-28.paginators.json":137,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266}],202:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = AWS.Service;
-var apiLoader = AWS.apiLoader;
+var Service = require('../lib/service');
+var apiLoader = require('../lib/api_loader');
 
 apiLoader.services['machinelearning'] = {};
 AWS.MachineLearning = Service.defineService('machinelearning', ['2014-12-12']);
@@ -123923,11 +123600,11 @@ Object.defineProperty(apiLoader.services['machinelearning'], '2014-12-12', {
 
 module.exports = AWS.MachineLearning;
 
-},{"../apis/machinelearning-2014-12-12.min.json":97,"../apis/machinelearning-2014-12-12.paginators.json":98,"../apis/machinelearning-2014-12-12.waiters2.json":99,"../lib/core":227,"../lib/node_loader":224,"../lib/services/machinelearning":274}],203:[function(require,module,exports){
+},{"../apis/machinelearning-2014-12-12.min.json":97,"../apis/machinelearning-2014-12-12.paginators.json":98,"../apis/machinelearning-2014-12-12.waiters2.json":99,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266,"../lib/services/machinelearning":274}],203:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = AWS.Service;
-var apiLoader = AWS.apiLoader;
+var Service = require('../lib/service');
+var apiLoader = require('../lib/api_loader');
 
 apiLoader.services['marketplacecommerceanalytics'] = {};
 AWS.MarketplaceCommerceAnalytics = Service.defineService('marketplacecommerceanalytics', ['2015-07-01']);
@@ -123943,11 +123620,11 @@ Object.defineProperty(apiLoader.services['marketplacecommerceanalytics'], '2015-
 
 module.exports = AWS.MarketplaceCommerceAnalytics;
 
-},{"../apis/marketplacecommerceanalytics-2015-07-01.min.json":100,"../apis/marketplacecommerceanalytics-2015-07-01.paginators.json":101,"../lib/core":227,"../lib/node_loader":224}],204:[function(require,module,exports){
+},{"../apis/marketplacecommerceanalytics-2015-07-01.min.json":100,"../apis/marketplacecommerceanalytics-2015-07-01.paginators.json":101,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266}],204:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = AWS.Service;
-var apiLoader = AWS.apiLoader;
+var Service = require('../lib/service');
+var apiLoader = require('../lib/api_loader');
 
 apiLoader.services['mobileanalytics'] = {};
 AWS.MobileAnalytics = Service.defineService('mobileanalytics', ['2014-06-05']);
@@ -123962,11 +123639,11 @@ Object.defineProperty(apiLoader.services['mobileanalytics'], '2014-06-05', {
 
 module.exports = AWS.MobileAnalytics;
 
-},{"../apis/mobileanalytics-2014-06-05.min.json":103,"../lib/core":227,"../lib/node_loader":224}],205:[function(require,module,exports){
+},{"../apis/mobileanalytics-2014-06-05.min.json":103,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266}],205:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = AWS.Service;
-var apiLoader = AWS.apiLoader;
+var Service = require('../lib/service');
+var apiLoader = require('../lib/api_loader');
 
 apiLoader.services['mturk'] = {};
 AWS.MTurk = Service.defineService('mturk', ['2017-01-17']);
@@ -123982,11 +123659,11 @@ Object.defineProperty(apiLoader.services['mturk'], '2017-01-17', {
 
 module.exports = AWS.MTurk;
 
-},{"../apis/mturk-requester-2017-01-17.min.json":107,"../apis/mturk-requester-2017-01-17.paginators.json":108,"../lib/core":227,"../lib/node_loader":224}],206:[function(require,module,exports){
+},{"../apis/mturk-requester-2017-01-17.min.json":107,"../apis/mturk-requester-2017-01-17.paginators.json":108,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266}],206:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = AWS.Service;
-var apiLoader = AWS.apiLoader;
+var Service = require('../lib/service');
+var apiLoader = require('../lib/api_loader');
 
 apiLoader.services['opsworks'] = {};
 AWS.OpsWorks = Service.defineService('opsworks', ['2013-02-18']);
@@ -124003,11 +123680,11 @@ Object.defineProperty(apiLoader.services['opsworks'], '2013-02-18', {
 
 module.exports = AWS.OpsWorks;
 
-},{"../apis/opsworks-2013-02-18.min.json":109,"../apis/opsworks-2013-02-18.paginators.json":110,"../apis/opsworks-2013-02-18.waiters2.json":111,"../lib/core":227,"../lib/node_loader":224}],207:[function(require,module,exports){
+},{"../apis/opsworks-2013-02-18.min.json":109,"../apis/opsworks-2013-02-18.paginators.json":110,"../apis/opsworks-2013-02-18.waiters2.json":111,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266}],207:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = AWS.Service;
-var apiLoader = AWS.apiLoader;
+var Service = require('../lib/service');
+var apiLoader = require('../lib/api_loader');
 
 apiLoader.services['polly'] = {};
 AWS.Polly = Service.defineService('polly', ['2016-06-10']);
@@ -124024,11 +123701,11 @@ Object.defineProperty(apiLoader.services['polly'], '2016-06-10', {
 
 module.exports = AWS.Polly;
 
-},{"../apis/polly-2016-06-10.min.json":112,"../apis/polly-2016-06-10.paginators.json":113,"../lib/core":227,"../lib/node_loader":224,"../lib/services/polly":275}],208:[function(require,module,exports){
+},{"../apis/polly-2016-06-10.min.json":112,"../apis/polly-2016-06-10.paginators.json":113,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266,"../lib/services/polly":275}],208:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = AWS.Service;
-var apiLoader = AWS.apiLoader;
+var Service = require('../lib/service');
+var apiLoader = require('../lib/api_loader');
 
 apiLoader.services['rds'] = {};
 AWS.RDS = Service.defineService('rds', ['2013-01-10', '2013-02-12', '2013-09-09', '2014-09-01', '2014-09-01*', '2014-10-31']);
@@ -124083,11 +123760,11 @@ Object.defineProperty(apiLoader.services['rds'], '2014-10-31', {
 
 module.exports = AWS.RDS;
 
-},{"../apis/rds-2013-01-10.min.json":114,"../apis/rds-2013-01-10.paginators.json":115,"../apis/rds-2013-02-12.min.json":116,"../apis/rds-2013-02-12.paginators.json":117,"../apis/rds-2013-09-09.min.json":118,"../apis/rds-2013-09-09.paginators.json":119,"../apis/rds-2013-09-09.waiters2.json":120,"../apis/rds-2014-09-01.min.json":121,"../apis/rds-2014-09-01.paginators.json":122,"../apis/rds-2014-10-31.min.json":123,"../apis/rds-2014-10-31.paginators.json":124,"../apis/rds-2014-10-31.waiters2.json":125,"../lib/core":227,"../lib/node_loader":224,"../lib/services/rds":276}],209:[function(require,module,exports){
+},{"../apis/rds-2013-01-10.min.json":114,"../apis/rds-2013-01-10.paginators.json":115,"../apis/rds-2013-02-12.min.json":116,"../apis/rds-2013-02-12.paginators.json":117,"../apis/rds-2013-09-09.min.json":118,"../apis/rds-2013-09-09.paginators.json":119,"../apis/rds-2013-09-09.waiters2.json":120,"../apis/rds-2014-09-01.min.json":121,"../apis/rds-2014-09-01.paginators.json":122,"../apis/rds-2014-10-31.min.json":123,"../apis/rds-2014-10-31.paginators.json":124,"../apis/rds-2014-10-31.waiters2.json":125,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266,"../lib/services/rds":276}],209:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = AWS.Service;
-var apiLoader = AWS.apiLoader;
+var Service = require('../lib/service');
+var apiLoader = require('../lib/api_loader');
 
 apiLoader.services['redshift'] = {};
 AWS.Redshift = Service.defineService('redshift', ['2012-12-01']);
@@ -124104,11 +123781,11 @@ Object.defineProperty(apiLoader.services['redshift'], '2012-12-01', {
 
 module.exports = AWS.Redshift;
 
-},{"../apis/redshift-2012-12-01.min.json":126,"../apis/redshift-2012-12-01.paginators.json":127,"../apis/redshift-2012-12-01.waiters2.json":128,"../lib/core":227,"../lib/node_loader":224}],210:[function(require,module,exports){
+},{"../apis/redshift-2012-12-01.min.json":126,"../apis/redshift-2012-12-01.paginators.json":127,"../apis/redshift-2012-12-01.waiters2.json":128,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266}],210:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = AWS.Service;
-var apiLoader = AWS.apiLoader;
+var Service = require('../lib/service');
+var apiLoader = require('../lib/api_loader');
 
 apiLoader.services['rekognition'] = {};
 AWS.Rekognition = Service.defineService('rekognition', ['2016-06-27']);
@@ -124124,11 +123801,11 @@ Object.defineProperty(apiLoader.services['rekognition'], '2016-06-27', {
 
 module.exports = AWS.Rekognition;
 
-},{"../apis/rekognition-2016-06-27.min.json":129,"../apis/rekognition-2016-06-27.paginators.json":130,"../lib/core":227,"../lib/node_loader":224}],211:[function(require,module,exports){
+},{"../apis/rekognition-2016-06-27.min.json":129,"../apis/rekognition-2016-06-27.paginators.json":130,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266}],211:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = AWS.Service;
-var apiLoader = AWS.apiLoader;
+var Service = require('../lib/service');
+var apiLoader = require('../lib/api_loader');
 
 apiLoader.services['route53'] = {};
 AWS.Route53 = Service.defineService('route53', ['2013-04-01']);
@@ -124146,11 +123823,11 @@ Object.defineProperty(apiLoader.services['route53'], '2013-04-01', {
 
 module.exports = AWS.Route53;
 
-},{"../apis/route53-2013-04-01.min.json":131,"../apis/route53-2013-04-01.paginators.json":132,"../apis/route53-2013-04-01.waiters2.json":133,"../lib/core":227,"../lib/node_loader":224,"../lib/services/route53":277}],212:[function(require,module,exports){
+},{"../apis/route53-2013-04-01.min.json":131,"../apis/route53-2013-04-01.paginators.json":132,"../apis/route53-2013-04-01.waiters2.json":133,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266,"../lib/services/route53":277}],212:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = AWS.Service;
-var apiLoader = AWS.apiLoader;
+var Service = require('../lib/service');
+var apiLoader = require('../lib/api_loader');
 
 apiLoader.services['route53domains'] = {};
 AWS.Route53Domains = Service.defineService('route53domains', ['2014-05-15']);
@@ -124166,11 +123843,11 @@ Object.defineProperty(apiLoader.services['route53domains'], '2014-05-15', {
 
 module.exports = AWS.Route53Domains;
 
-},{"../apis/route53domains-2014-05-15.min.json":134,"../apis/route53domains-2014-05-15.paginators.json":135,"../lib/core":227,"../lib/node_loader":224}],213:[function(require,module,exports){
+},{"../apis/route53domains-2014-05-15.min.json":134,"../apis/route53domains-2014-05-15.paginators.json":135,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266}],213:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = AWS.Service;
-var apiLoader = AWS.apiLoader;
+var Service = require('../lib/service');
+var apiLoader = require('../lib/api_loader');
 
 apiLoader.services['s3'] = {};
 AWS.S3 = Service.defineService('s3', ['2006-03-01']);
@@ -124188,11 +123865,11 @@ Object.defineProperty(apiLoader.services['s3'], '2006-03-01', {
 
 module.exports = AWS.S3;
 
-},{"../apis/s3-2006-03-01.min.json":138,"../apis/s3-2006-03-01.paginators.json":139,"../apis/s3-2006-03-01.waiters2.json":140,"../lib/core":227,"../lib/node_loader":224,"../lib/services/s3":278}],214:[function(require,module,exports){
+},{"../apis/s3-2006-03-01.min.json":138,"../apis/s3-2006-03-01.paginators.json":139,"../apis/s3-2006-03-01.waiters2.json":140,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266,"../lib/services/s3":278}],214:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = AWS.Service;
-var apiLoader = AWS.apiLoader;
+var Service = require('../lib/service');
+var apiLoader = require('../lib/api_loader');
 
 apiLoader.services['servicecatalog'] = {};
 AWS.ServiceCatalog = Service.defineService('servicecatalog', ['2015-12-10']);
@@ -124208,11 +123885,11 @@ Object.defineProperty(apiLoader.services['servicecatalog'], '2015-12-10', {
 
 module.exports = AWS.ServiceCatalog;
 
-},{"../apis/servicecatalog-2015-12-10.min.json":141,"../apis/servicecatalog-2015-12-10.paginators.json":142,"../lib/core":227,"../lib/node_loader":224}],215:[function(require,module,exports){
+},{"../apis/servicecatalog-2015-12-10.min.json":141,"../apis/servicecatalog-2015-12-10.paginators.json":142,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266}],215:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = AWS.Service;
-var apiLoader = AWS.apiLoader;
+var Service = require('../lib/service');
+var apiLoader = require('../lib/api_loader');
 
 apiLoader.services['ses'] = {};
 AWS.SES = Service.defineService('ses', ['2010-12-01']);
@@ -124229,11 +123906,11 @@ Object.defineProperty(apiLoader.services['ses'], '2010-12-01', {
 
 module.exports = AWS.SES;
 
-},{"../apis/email-2010-12-01.min.json":73,"../apis/email-2010-12-01.paginators.json":74,"../apis/email-2010-12-01.waiters2.json":75,"../lib/core":227,"../lib/node_loader":224}],216:[function(require,module,exports){
+},{"../apis/email-2010-12-01.min.json":73,"../apis/email-2010-12-01.paginators.json":74,"../apis/email-2010-12-01.waiters2.json":75,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266}],216:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = AWS.Service;
-var apiLoader = AWS.apiLoader;
+var Service = require('../lib/service');
+var apiLoader = require('../lib/api_loader');
 
 apiLoader.services['sns'] = {};
 AWS.SNS = Service.defineService('sns', ['2010-03-31']);
@@ -124249,11 +123926,11 @@ Object.defineProperty(apiLoader.services['sns'], '2010-03-31', {
 
 module.exports = AWS.SNS;
 
-},{"../apis/sns-2010-03-31.min.json":143,"../apis/sns-2010-03-31.paginators.json":144,"../lib/core":227,"../lib/node_loader":224}],217:[function(require,module,exports){
+},{"../apis/sns-2010-03-31.min.json":143,"../apis/sns-2010-03-31.paginators.json":144,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266}],217:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = AWS.Service;
-var apiLoader = AWS.apiLoader;
+var Service = require('../lib/service');
+var apiLoader = require('../lib/api_loader');
 
 apiLoader.services['sqs'] = {};
 AWS.SQS = Service.defineService('sqs', ['2012-11-05']);
@@ -124270,11 +123947,11 @@ Object.defineProperty(apiLoader.services['sqs'], '2012-11-05', {
 
 module.exports = AWS.SQS;
 
-},{"../apis/sqs-2012-11-05.min.json":145,"../apis/sqs-2012-11-05.paginators.json":146,"../lib/core":227,"../lib/node_loader":224,"../lib/services/sqs":279}],218:[function(require,module,exports){
+},{"../apis/sqs-2012-11-05.min.json":145,"../apis/sqs-2012-11-05.paginators.json":146,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266,"../lib/services/sqs":279}],218:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = AWS.Service;
-var apiLoader = AWS.apiLoader;
+var Service = require('../lib/service');
+var apiLoader = require('../lib/api_loader');
 
 apiLoader.services['ssm'] = {};
 AWS.SSM = Service.defineService('ssm', ['2014-11-06']);
@@ -124290,11 +123967,11 @@ Object.defineProperty(apiLoader.services['ssm'], '2014-11-06', {
 
 module.exports = AWS.SSM;
 
-},{"../apis/ssm-2014-11-06.min.json":147,"../apis/ssm-2014-11-06.paginators.json":148,"../lib/core":227,"../lib/node_loader":224}],219:[function(require,module,exports){
+},{"../apis/ssm-2014-11-06.min.json":147,"../apis/ssm-2014-11-06.paginators.json":148,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266}],219:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = AWS.Service;
-var apiLoader = AWS.apiLoader;
+var Service = require('../lib/service');
+var apiLoader = require('../lib/api_loader');
 
 apiLoader.services['storagegateway'] = {};
 AWS.StorageGateway = Service.defineService('storagegateway', ['2013-06-30']);
@@ -124310,11 +123987,11 @@ Object.defineProperty(apiLoader.services['storagegateway'], '2013-06-30', {
 
 module.exports = AWS.StorageGateway;
 
-},{"../apis/storagegateway-2013-06-30.min.json":149,"../apis/storagegateway-2013-06-30.paginators.json":150,"../lib/core":227,"../lib/node_loader":224}],220:[function(require,module,exports){
+},{"../apis/storagegateway-2013-06-30.min.json":149,"../apis/storagegateway-2013-06-30.paginators.json":150,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266}],220:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = AWS.Service;
-var apiLoader = AWS.apiLoader;
+var Service = require('../lib/service');
+var apiLoader = require('../lib/api_loader');
 
 apiLoader.services['sts'] = {};
 AWS.STS = Service.defineService('sts', ['2011-06-15']);
@@ -124331,11 +124008,11 @@ Object.defineProperty(apiLoader.services['sts'], '2011-06-15', {
 
 module.exports = AWS.STS;
 
-},{"../apis/sts-2011-06-15.min.json":153,"../apis/sts-2011-06-15.paginators.json":154,"../lib/core":227,"../lib/node_loader":224,"../lib/services/sts":280}],221:[function(require,module,exports){
+},{"../apis/sts-2011-06-15.min.json":153,"../apis/sts-2011-06-15.paginators.json":154,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266,"../lib/services/sts":280}],221:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = AWS.Service;
-var apiLoader = AWS.apiLoader;
+var Service = require('../lib/service');
+var apiLoader = require('../lib/api_loader');
 
 apiLoader.services['waf'] = {};
 AWS.WAF = Service.defineService('waf', ['2015-08-24']);
@@ -124351,11 +124028,11 @@ Object.defineProperty(apiLoader.services['waf'], '2015-08-24', {
 
 module.exports = AWS.WAF;
 
-},{"../apis/waf-2015-08-24.min.json":155,"../apis/waf-2015-08-24.paginators.json":156,"../lib/core":227,"../lib/node_loader":224}],222:[function(require,module,exports){
+},{"../apis/waf-2015-08-24.min.json":155,"../apis/waf-2015-08-24.paginators.json":156,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266}],222:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = AWS.Service;
-var apiLoader = AWS.apiLoader;
+var Service = require('../lib/service');
+var apiLoader = require('../lib/api_loader');
 
 apiLoader.services['workdocs'] = {};
 AWS.WorkDocs = Service.defineService('workdocs', ['2016-05-01']);
@@ -124371,19 +124048,22 @@ Object.defineProperty(apiLoader.services['workdocs'], '2016-05-01', {
 
 module.exports = AWS.WorkDocs;
 
-},{"../apis/workdocs-2016-05-01.min.json":157,"../apis/workdocs-2016-05-01.paginators.json":158,"../lib/core":227,"../lib/node_loader":224}],223:[function(require,module,exports){
-function apiLoader(svc, version) {
-  if (!apiLoader.services.hasOwnProperty(svc)) {
+},{"../apis/workdocs-2016-05-01.min.json":157,"../apis/workdocs-2016-05-01.paginators.json":158,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266}],223:[function(require,module,exports){
+var AWS = require('./core');
+
+AWS.apiLoader = function(svc, version) {
+  if (!AWS.apiLoader.services.hasOwnProperty(svc)) {
     throw new Error('InvalidService: Failed to load api for ' + svc);
   }
-  return apiLoader.services[svc][version];
-}
+  return AWS.apiLoader.services[svc][version];
+};
 
 
-apiLoader.services = {};
-module.exports = apiLoader;
+AWS.apiLoader.services = {};
 
-},{}],224:[function(require,module,exports){
+module.exports = AWS.apiLoader;
+
+},{"./core":227}],224:[function(require,module,exports){
 (function (process){
 var util = require('./util');
 
@@ -124394,14 +124074,8 @@ util.querystring = require('querystring/');
 util.environment = 'js';
 
 var AWS = require('./core');
-module.exports = AWS;
 
-require('./credentials');
-require('./credentials/credential_provider_chain');
-require('./credentials/temporary_credentials');
-require('./credentials/web_identity_credentials');
-require('./credentials/cognito_identity_credentials');
-require('./credentials/saml_credentials');
+require('./api_loader');
 
 AWS.XML.Parser = require('./xml/browser_parser');
 
@@ -124413,7 +124087,7 @@ if (typeof process === 'undefined') {
   };
 }
 }).call(this,require('_process'))
-},{"./core":227,"./credentials":228,"./credentials/cognito_identity_credentials":229,"./credentials/credential_provider_chain":230,"./credentials/saml_credentials":231,"./credentials/temporary_credentials":232,"./credentials/web_identity_credentials":233,"./http/xhr":241,"./util":290,"./xml/browser_parser":291,"_process":446,"buffer/":295,"crypto-browserify":297,"querystring/":453,"url/":454}],225:[function(require,module,exports){
+},{"./api_loader":223,"./core":227,"./http/xhr":241,"./util":290,"./xml/browser_parser":291,"_process":446,"buffer/":295,"crypto-browserify":297,"querystring/":453,"url/":454}],225:[function(require,module,exports){
 var AWS = require('../core'),
     url = AWS.util.url,
     crypto = AWS.util.crypto.lib,
@@ -124777,7 +124451,7 @@ module.exports = AWS;
 AWS.util.update(AWS, {
 
 
-  VERSION: '2.88.0',
+  VERSION: '2.82.0',
 
 
   Signers: {},
@@ -124812,12 +124486,21 @@ AWS.util.update(AWS, {
     ResourceWaiter: require('./model/resource_waiter')
   },
 
+  util: require('./util'),
 
-  apiLoader: require('./api_loader')
+
+  apiLoader: function() { throw new Error('No API loader set'); }
 });
 
 require('./service');
 require('./config');
+
+require('./credentials');
+require('./credentials/credential_provider_chain');
+require('./credentials/temporary_credentials');
+require('./credentials/web_identity_credentials');
+require('./credentials/cognito_identity_credentials');
+require('./credentials/saml_credentials');
 
 require('./http');
 require('./sequential_executor');
@@ -124831,7 +124514,7 @@ require('./param_validator');
 
 AWS.events = new AWS.SequentialExecutor();
 
-},{"./api_loader":223,"./config":226,"./event_listeners":239,"./http":240,"./json/builder":242,"./json/parser":243,"./model/api":244,"./model/operation":246,"./model/paginator":247,"./model/resource_waiter":248,"./model/shape":249,"./param_validator":250,"./protocol/json":252,"./protocol/query":253,"./protocol/rest":254,"./protocol/rest_json":255,"./protocol/rest_xml":256,"./request":261,"./resource_waiter":262,"./response":263,"./sequential_executor":265,"./service":266,"./signers/request_signer":282,"./util":290,"./xml/builder":292}],228:[function(require,module,exports){
+},{"./config":226,"./credentials":228,"./credentials/cognito_identity_credentials":229,"./credentials/credential_provider_chain":230,"./credentials/saml_credentials":231,"./credentials/temporary_credentials":232,"./credentials/web_identity_credentials":233,"./event_listeners":239,"./http":240,"./json/builder":242,"./json/parser":243,"./model/api":244,"./model/operation":246,"./model/paginator":247,"./model/resource_waiter":248,"./model/shape":249,"./param_validator":250,"./protocol/json":252,"./protocol/query":253,"./protocol/rest":254,"./protocol/rest_json":255,"./protocol/rest_xml":256,"./request":261,"./resource_waiter":262,"./response":263,"./sequential_executor":265,"./service":266,"./signers/request_signer":282,"./util":290,"./xml/builder":292}],228:[function(require,module,exports){
 var AWS = require('./core');
 
 
@@ -126112,16 +125795,12 @@ AWS.EventListeners = {
       }
 
       function error(err) {
-        if (err.code !== 'RequestAbortedError') {
-          var errCode = err.code === 'TimeoutError' ? err.code : 'NetworkingError';
-          err = AWS.util.error(err, {
-            code: errCode,
-            region: resp.request.httpRequest.region,
-            hostname: resp.request.httpRequest.endpoint.hostname,
-            retryable: true
-          });
-        }
-        resp.error = err;
+        resp.error = AWS.util.error(err, {
+          code: 'NetworkingError',
+          region: resp.request.httpRequest.region,
+          hostname: resp.request.httpRequest.endpoint.hostname,
+          retryable: true
+        });
         resp.request.emit('httpError', [resp.error, resp], function() {
           done();
         });
@@ -127526,7 +127205,7 @@ AWS.ParamValidator = AWS.util.inherit({
 
 },{"./core":227}],251:[function(require,module,exports){
 var AWS = require('../core');
-var rest = AWS.Protocol.Rest;
+var rest = require('../protocol/rest');
 
 
 AWS.Polly.Presigner = AWS.util.inherit({
@@ -127596,7 +127275,7 @@ AWS.Polly.Presigner = AWS.util.inherit({
     }
 });
 
-},{"../core":227}],252:[function(require,module,exports){
+},{"../core":227,"../protocol/rest":254}],252:[function(require,module,exports){
 var util = require('../util');
 var JsonBuilder = require('../json/builder');
 var JsonParser = require('../json/parser');
@@ -129973,7 +129652,6 @@ AWS.Service = inherit({
 
 
   retryableError: function retryableError(error) {
-    if (this.timeoutError(error)) return true;
     if (this.networkingError(error)) return true;
     if (this.expiredCredentialsError(error)) return true;
     if (this.throttledError(error)) return true;
@@ -129984,11 +129662,6 @@ AWS.Service = inherit({
 
   networkingError: function networkingError(error) {
     return error.code === 'NetworkingError';
-  },
-
-
-  timeoutError: function timeoutError(error) {
-    return error.code === 'TimeoutError';
   },
 
 
@@ -143776,7 +143449,7 @@ require('../clients/browser_default');
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(124)))
 
 /***/ }),
-/* 197 */
+/* 198 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)();
@@ -143790,7 +143463,7 @@ exports.push([module.i, "img {\r\n    width: 300px;\r\n    margin-top: 30px;\r\n
 
 
 /***/ }),
-/* 198 */
+/* 199 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)();
@@ -143804,7 +143477,7 @@ exports.push([module.i, ".panel-padding {\r\n    padding-left: 50px;\r\n    padd
 
 
 /***/ }),
-/* 199 */
+/* 200 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)();
@@ -143818,7 +143491,7 @@ exports.push([module.i, ".fundtrack-style {\r\n    background-color: #314720;\r\
 
 
 /***/ }),
-/* 200 */
+/* 201 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)();
@@ -143832,7 +143505,7 @@ exports.push([module.i, "body {\r\n    margin: 0px 0px 0px 0px !important;\r\n}\
 
 
 /***/ }),
-/* 201 */
+/* 202 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)();
@@ -143846,7 +143519,7 @@ exports.push([module.i, ".loginmodal-container h3 {\n    text-align: center;\n  
 
 
 /***/ }),
-/* 202 */
+/* 203 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)();
@@ -143860,7 +143533,7 @@ exports.push([module.i, ".panel-padding {\r\n    padding-left: 20px;\r\n    padd
 
 
 /***/ }),
-/* 203 */
+/* 204 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)();
@@ -143874,7 +143547,7 @@ exports.push([module.i, "#right-bar {\r\n    background-color: aliceblue;\r\n}\r
 
 
 /***/ }),
-/* 204 */
+/* 205 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(1)();
@@ -143888,20 +143561,6 @@ exports.push([module.i, "input[type=\"text\"] {\r\n    display: block;\r\n    ma
 
 
 /***/ }),
-/* 205 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(1)();
-// imports
-
-
-// module
-exports.push([module.i, "img {\r\n    display: block;\r\n    max-width: 200px;\r\n    max-height: 200px;\r\n    width: auto;\r\n    height: auto;\r\n}\r\n", ""]);
-
-// exports
-
-
-/***/ }),
 /* 206 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -143910,7 +143569,7 @@ exports = module.exports = __webpack_require__(1)();
 
 
 // module
-exports.push([module.i, ".controlbutton{\r\n    margin-top:10px;\r\n}\r\n\r\n.material-switch > input[type=\"checkbox\"] {\r\n    display: none;\r\n}\r\n\r\n.material-switch > label {\r\n    cursor: pointer;\r\n    height: 0px;\r\n    position: relative;\r\n    width: 40px;\r\n}\r\n\r\n    .material-switch > label::before {\r\n        background: rgb(0, 0, 0);\r\n        box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.5);\r\n        border-radius: 8px;\r\n        content: '';\r\n        height: 16px;\r\n        margin-top: -8px;\r\n        position: absolute;\r\n        opacity: 0.3;\r\n        transition: all 0.4s ease-in-out;\r\n        width: 40px;\r\n    }\r\n\r\n    .material-switch > label::after {\r\n        background: rgb(255, 255, 255);\r\n        border-radius: 16px;\r\n        box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);\r\n        content: '';\r\n        height: 24px;\r\n        left: -4px;\r\n        margin-top: -8px;\r\n        position: absolute;\r\n        top: -4px;\r\n        transition: all 0.3s ease-in-out;\r\n        width: 24px;\r\n    }\r\n\r\n.material-switch > input[type=\"checkbox\"]:checked + label::before {\r\n    background: inherit;\r\n    opacity: 0.5;\r\n}\r\n\r\n.material-switch > input[type=\"checkbox\"]:checked + label::after {\r\n    background: inherit;\r\n    left: 20px;\r\n}", ""]);
+exports.push([module.i, "img {\r\n    display: block;\r\n    max-width: 200px;\r\n    max-height: 200px;\r\n    width: auto;\r\n    height: auto;\r\n}\r\n.buttoncontrol {\r\n    width: 115px !important;\r\n}\r\n\r\n.deactivated {\r\n    color: #f0ad4e;\r\n}\r\n.activated {\r\n    color: #5cb85c;\r\n}", ""]);
 
 // exports
 
@@ -143924,7 +143583,7 @@ exports = module.exports = __webpack_require__(1)();
 
 
 // module
-exports.push([module.i, "body {\r\n}\r\n\r\nimg {\r\n    height: 300px;\r\n}\r\n\r\n#background{\r\n    background-color:#aab08b;\r\n}\r\n\r\n\r\n/********************************************************\r\n                 FOR IMAGE UPLOADER\r\n********************************************************/\r\n\r\n\r\n.item-image {\r\n    border: solid 1px;\r\n    height: 100px;\r\n    width: 100px;\r\n}\r\n\r\n.img-container {\r\n    position: relative;\r\n    display: inline-block; /* added */\r\n    overflow: hidden; /* added */\r\n    margin-right: 7px;\r\n    cursor: pointer;\r\n}\r\n\r\n    .img-container img {\r\n        width: 100px;\r\n    }\r\n    /* remove if using in grid system */\r\n\r\n\r\n    .img-container:hover img {\r\n        opacity: 0.5 !important;\r\n    }\r\n\r\n    .img-container:hover a {\r\n        opacity: 1; /* added */\r\n        top: 0; /* added */\r\n        z-index: 500;\r\n    }\r\n        /* added */\r\n        .img-container:hover a span {\r\n            color: orangered;\r\n            font-size: 25px;\r\n            top: 50%;\r\n            position: absolute;\r\n            left: 0;\r\n            right: 0;\r\n            transform: translateY(-50%);\r\n        }\r\n    /* added */\r\n    .img-container a {\r\n        display: inline-block;\r\n        position: absolute;\r\n        top: -100%;\r\n        opacity: 0;\r\n        left: 0;\r\n        bottom: 0;\r\n        right: 0;\r\n        text-align: center;\r\n        color: inherit;\r\n    }", ""]);
+exports.push([module.i, ".controlbutton{\r\n    margin-top:10px;\r\n}\r\n\r\n.material-switch > input[type=\"checkbox\"] {\r\n    display: none;\r\n}\r\n\r\n.material-switch > label {\r\n    cursor: pointer;\r\n    height: 0px;\r\n    position: relative;\r\n    width: 40px;\r\n}\r\n\r\n    .material-switch > label::before {\r\n        background: rgb(0, 0, 0);\r\n        box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.5);\r\n        border-radius: 8px;\r\n        content: '';\r\n        height: 16px;\r\n        margin-top: -8px;\r\n        position: absolute;\r\n        opacity: 0.3;\r\n        transition: all 0.4s ease-in-out;\r\n        width: 40px;\r\n    }\r\n\r\n    .material-switch > label::after {\r\n        background: rgb(255, 255, 255);\r\n        border-radius: 16px;\r\n        box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);\r\n        content: '';\r\n        height: 24px;\r\n        left: -4px;\r\n        margin-top: -8px;\r\n        position: absolute;\r\n        top: -4px;\r\n        transition: all 0.3s ease-in-out;\r\n        width: 24px;\r\n    }\r\n\r\n.material-switch > input[type=\"checkbox\"]:checked + label::before {\r\n    background: inherit;\r\n    opacity: 0.5;\r\n}\r\n\r\n.material-switch > input[type=\"checkbox\"]:checked + label::after {\r\n    background: inherit;\r\n    left: 20px;\r\n}", ""]);
 
 // exports
 
@@ -143938,7 +143597,7 @@ exports = module.exports = __webpack_require__(1)();
 
 
 // module
-exports.push([module.i, "h2 {\r\n    color: #fffc00;\r\n    font-weight: 500;\r\n}\r\n\r\n.table-title h3 {\r\n    color: #1a1a1a;\r\n    font-size: x-large;\r\n    font-weight: 400;\r\n    font-style: normal;\r\n    text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);\r\n    text-transform: uppercase;\r\n}\r\n\r\n/*form Grid*/\r\n\r\n.glyphicon {\r\n    margin-right: 5px;\r\n}\r\n\r\n.thumbnail {\r\n    padding: 0px;\r\n    -webkit-border-radius: 0px;\r\n    -moz-border-radius: 0px;\r\n    border-radius: 0px;\r\n}\r\n\r\ndiv.item{\r\n    height:500px;\r\n}\r\n\r\n.item.list-group-item {\r\n    float: none;\r\n    width: 100%;\r\n    background-color: #fff;\r\n    margin-bottom: 10px;\r\n}\r\n\r\n    .item.list-group-item:nth-of-type(odd):hover, .item.list-group-item:hover {\r\n        background: #428bca;\r\n    }\r\n\r\n    .item.list-group-item .list-group-image {\r\n        margin-right: 10px;\r\n    }\r\n\r\n    .item.list-group-item .thumbnail {\r\n        margin-bottom: 0px;\r\n    }\r\n\r\n    .item.list-group-item .caption {\r\n        padding: 9px 9px 0px 9px;\r\n    }\r\n\r\n    .item.list-group-item:nth-of-type(odd) {\r\n        background: #eeeeee;\r\n    }\r\n\r\n    .item.list-group-item:before, .item.list-group-item:after {\r\n        display: table;\r\n        content: \" \";\r\n    }\r\n\r\n    .item.list-group-item img {\r\n        float: left;\r\n    }\r\n\r\n    .item.list-group-item:after {\r\n        clear: both;\r\n    }\r\n\r\n.list-group-item-text {\r\n    margin: 0 0 11px;\r\n}\r\n\r\n\r\n.list-group-image {\r\n    margin: auto;\r\n    display: block;\r\n    max-height: 250px;\r\n    max-width: 100%;\r\n    background-color: black;\r\n}\r\n\r\n.photo {\r\n    height: 250px;\r\n    background: #203514;\r\n}\r\n\r\n.pagination-dropdown {\r\n    width: 12%;\r\n}\r\n\r\n#for-select-item {\r\n    font-size: large;\r\n    color: yellow;\r\n}\r\n", ""]);
+exports.push([module.i, "body {\r\n}\r\n\r\nimg {\r\n    height: 300px;\r\n}\r\n\r\n#background{\r\n    background-color:#aab08b;\r\n}\r\n\r\n\r\n/********************************************************\r\n                 FOR IMAGE UPLOADER\r\n********************************************************/\r\n\r\n\r\n.item-image {\r\n    border: solid 1px;\r\n    height: 100px;\r\n    width: 100px;\r\n}\r\n\r\n.img-container {\r\n    position: relative;\r\n    display: inline-block; /* added */\r\n    overflow: hidden; /* added */\r\n    margin-right: 7px;\r\n    cursor: pointer;\r\n}\r\n\r\n    .img-container img {\r\n        width: 100px;\r\n    }\r\n    /* remove if using in grid system */\r\n\r\n\r\n    .img-container:hover img {\r\n        opacity: 0.5 !important;\r\n    }\r\n\r\n    .img-container:hover a {\r\n        opacity: 1; /* added */\r\n        top: 0; /* added */\r\n        z-index: 500;\r\n    }\r\n        /* added */\r\n        .img-container:hover a span {\r\n            color: orangered;\r\n            font-size: 25px;\r\n            top: 50%;\r\n            position: absolute;\r\n            left: 0;\r\n            right: 0;\r\n            transform: translateY(-50%);\r\n        }\r\n    /* added */\r\n    .img-container a {\r\n        display: inline-block;\r\n        position: absolute;\r\n        top: -100%;\r\n        opacity: 0;\r\n        left: 0;\r\n        bottom: 0;\r\n        right: 0;\r\n        text-align: center;\r\n        color: inherit;\r\n    }", ""]);
 
 // exports
 
@@ -143952,7 +143611,7 @@ exports = module.exports = __webpack_require__(1)();
 
 
 // module
-exports.push([module.i, ".error-message {\r\n    color: #ff0000;\r\n    font-size: x-large;\r\n}\r\n\r\n.has-error label {\r\n    color: #ff0000 !important;\r\n}\r\n\r\n#background {\r\n    background: #aab08b;\r\n}\r\n\r\n\r\n\r\n\r\n\r\n/********************************************************\r\n                 FOR IMAGE UPLOADER\r\n********************************************************/\r\n\r\n\r\n.item-image {\r\n    border: solid 1px;\r\n    height: 100px;\r\n    width: 100px;\r\n}\r\n\r\n.img-container {\r\n    position: relative;\r\n    display: inline-block; /* added */\r\n    overflow: hidden; /* added */\r\n    margin-right: 7px;\r\n    cursor: pointer;\r\n}\r\n\r\n    .img-container img {\r\n        width: 100px;\r\n    }\r\n    /* remove if using in grid system */\r\n\r\n\r\n    .img-container:hover img {\r\n        opacity: 0.5 !important;\r\n    }\r\n\r\n    .img-container:hover a {\r\n        opacity: 1; /* added */\r\n        top: 0; /* added */\r\n        z-index: 500;\r\n    }\r\n        /* added */\r\n        .img-container:hover a span {\r\n            color: orangered;\r\n            font-size: 25px;\r\n            top: 50%;\r\n            position: absolute;\r\n            left: 0;\r\n            right: 0;\r\n            transform: translateY(-50%);\r\n        }\r\n    /* added */\r\n    .img-container a {\r\n        display: inline-block;\r\n        position: absolute;\r\n        top: -100%;\r\n        opacity: 0;\r\n        left: 0;\r\n        bottom: 0;\r\n        right: 0;\r\n        text-align: center;\r\n        color: inherit;\r\n    }", ""]);
+exports.push([module.i, "h2 {\r\n    color: #fffc00;\r\n    font-weight: 500;\r\n}\r\n\r\n.table-title h3 {\r\n    color: #1a1a1a;\r\n    font-size: x-large;\r\n    font-weight: 400;\r\n    font-style: normal;\r\n    text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);\r\n    text-transform: uppercase;\r\n}\r\n\r\n/*form Grid*/\r\n\r\n.glyphicon {\r\n    margin-right: 5px;\r\n}\r\n\r\n.thumbnail {\r\n    padding: 0px;\r\n    -webkit-border-radius: 0px;\r\n    -moz-border-radius: 0px;\r\n    border-radius: 0px;\r\n}\r\n\r\ndiv.item{\r\n    height:500px;\r\n}\r\n\r\n.item.list-group-item {\r\n    float: none;\r\n    width: 100%;\r\n    background-color: #fff;\r\n    margin-bottom: 10px;\r\n}\r\n\r\n    .item.list-group-item:nth-of-type(odd):hover, .item.list-group-item:hover {\r\n        background: #428bca;\r\n    }\r\n\r\n    .item.list-group-item .list-group-image {\r\n        margin-right: 10px;\r\n    }\r\n\r\n    .item.list-group-item .thumbnail {\r\n        margin-bottom: 0px;\r\n    }\r\n\r\n    .item.list-group-item .caption {\r\n        padding: 9px 9px 0px 9px;\r\n    }\r\n\r\n    .item.list-group-item:nth-of-type(odd) {\r\n        background: #eeeeee;\r\n    }\r\n\r\n    .item.list-group-item:before, .item.list-group-item:after {\r\n        display: table;\r\n        content: \" \";\r\n    }\r\n\r\n    .item.list-group-item img {\r\n        float: left;\r\n    }\r\n\r\n    .item.list-group-item:after {\r\n        clear: both;\r\n    }\r\n\r\n.list-group-item-text {\r\n    margin: 0 0 11px;\r\n}\r\n\r\n\r\n.list-group-image {\r\n    margin: auto;\r\n    display: block;\r\n    max-height: 250px;\r\n    max-width: 100%;\r\n    background-color: black;\r\n}\r\n\r\n.photo {\r\n    height: 250px;\r\n    background: #203514;\r\n}\r\n\r\n.pagination-dropdown {\r\n    width: 12%;\r\n}\r\n\r\n#for-select-item {\r\n    font-size: large;\r\n    color: yellow;\r\n}\r\n", ""]);
 
 // exports
 
@@ -143966,7 +143625,7 @@ exports = module.exports = __webpack_require__(1)();
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, ".error-message {\r\n    color: #ff0000;\r\n    font-size: x-large;\r\n}\r\n\r\n.has-error label {\r\n    color: #ff0000 !important;\r\n}\r\n\r\n#background {\r\n    background: #aab08b;\r\n}\r\n\r\n\r\n\r\n\r\n\r\n/********************************************************\r\n                 FOR IMAGE UPLOADER\r\n********************************************************/\r\n\r\n\r\n.item-image {\r\n    border: solid 1px;\r\n    height: 100px;\r\n    width: 100px;\r\n}\r\n\r\n.img-container {\r\n    position: relative;\r\n    display: inline-block; /* added */\r\n    overflow: hidden; /* added */\r\n    margin-right: 7px;\r\n    cursor: pointer;\r\n}\r\n\r\n    .img-container img {\r\n        width: 100px;\r\n    }\r\n    /* remove if using in grid system */\r\n\r\n\r\n    .img-container:hover img {\r\n        opacity: 0.5 !important;\r\n    }\r\n\r\n    .img-container:hover a {\r\n        opacity: 1; /* added */\r\n        top: 0; /* added */\r\n        z-index: 500;\r\n    }\r\n        /* added */\r\n        .img-container:hover a span {\r\n            color: orangered;\r\n            font-size: 25px;\r\n            top: 50%;\r\n            position: absolute;\r\n            left: 0;\r\n            right: 0;\r\n            transform: translateY(-50%);\r\n        }\r\n    /* added */\r\n    .img-container a {\r\n        display: inline-block;\r\n        position: absolute;\r\n        top: -100%;\r\n        opacity: 0;\r\n        left: 0;\r\n        bottom: 0;\r\n        right: 0;\r\n        text-align: center;\r\n        color: inherit;\r\n    }", ""]);
 
 // exports
 
@@ -143980,7 +143639,7 @@ exports = module.exports = __webpack_require__(1)();
 
 
 // module
-exports.push([module.i, "body {\r\n}\r\n", ""]);
+exports.push([module.i, "", ""]);
 
 // exports
 
@@ -144008,7 +143667,7 @@ exports = module.exports = __webpack_require__(1)();
 
 
 // module
-exports.push([module.i, ".item-image {\r\n    border: solid 1px;\r\n    height: 100px;\r\n    width: 100px;\r\n   \r\n}\r\n\r\n.img-container {\r\n    position: relative;\r\n    display: inline-block; /* added */\r\n    overflow: hidden; /* added */\r\n    margin-right: 7px;\r\n    cursor: pointer;\r\n    margin-left:13px\r\n}\r\n\r\n.img-container img {\r\n    width: 100px;\r\n}\r\n        /* remove if using in grid system */\r\n\r\n\r\n.img-container:hover img{\r\n    opacity: 0.5!important;\r\n}\r\n\r\n.img-container:hover a {\r\n    opacity: 1; /* added */\r\n    top: 0; /* added */\r\n    z-index: 500;\r\n}\r\n        /* added */\r\n.img-container:hover a span {\r\n     color: orangered;\r\n     font-size: 25px;\r\n     top: 50%;\r\n     position: absolute;\r\n     left: 0;\r\n     right: 0;\r\n     transform: translateY(-50%);\r\n}\r\n    /* added */\r\n.img-container a {\r\n     display: inline-block;\r\n     position: absolute;\r\n     top: -100%;\r\n     opacity: 0;\r\n     left: 0;\r\n     bottom: 0;\r\n     right: 0;\r\n     text-align: center;\r\n     color: inherit;\r\n}\r\n\r\n.fixedError {\r\n    margin-bottom: 0px;\r\n}", ""]);
+exports.push([module.i, "body {\r\n}\r\n", ""]);
 
 // exports
 
@@ -144022,7 +143681,7 @@ exports = module.exports = __webpack_require__(1)();
 
 
 // module
-exports.push([module.i, "h2 {\r\n    color: #fffc00;\r\n    font-weight: 500;\r\n}\r\n\r\n.table-title h3 {\r\n    color: #1a1a1a;\r\n    font-size: x-large;\r\n    font-weight: 400;\r\n    font-style: normal;\r\n    text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);\r\n    text-transform: uppercase;\r\n}\r\n\r\n/*form Grid*/\r\n\r\n.glyphicon {\r\n    margin-right: 5px;\r\n}\r\n\r\n.thumbnail {\r\n    padding: 0px;\r\n    -webkit-border-radius: 0px;\r\n    -moz-border-radius: 0px;\r\n    border-radius: 0px;\r\n}\r\n\r\n.item.list-group-item {\r\n    float: none;\r\n    width: 100%;\r\n    background-color: #f5f5f5;\r\n    margin-bottom: 10px;\r\n}\r\n\r\n.item.list-group-item:nth-of-type(odd):hover, .item.list-group-item:hover {\r\n    background: #428bca;\r\n}\r\n\r\nitem.list-group-item .list-group-image {\r\n    margin-right: 10px;\r\n}\r\n\r\n.item.list-group-item .thumbnail {\r\n    margin-bottom: 0px;\r\n}\r\n\r\n.item.list-group-item .caption {\r\n    padding: 9px 9px 0px 9px;\r\n    border-top: 0.8px solid black;\r\n}\r\n\r\n.item.list-group-item:nth-of-type(odd) {\r\n    background: #eeeeee;\r\n}\r\n\r\n.item.list-group-item:before, .item.list-group-item:after {\r\n    display: table;\r\n    content: \" \";\r\n}\r\n\r\n.item.list-group-item img {\r\n    float: left;\r\n}\r\n\r\n.item.list-group-item:after {\r\n    clear: both;\r\n}\r\n\r\n.list-group-item-text {\r\n    margin: 0 0 11px;\r\n}\r\n\r\n\r\n.list-group-image {\r\n    max-height: 250px;\r\n    width: auto;\r\n    background-color: black;\r\n}\r\n\r\n.photo {\r\n    height: 250px;\r\n    background: white;\r\n    vertical-align: middle;\r\n}\r\n\r\n.main-image {\r\n    padding: 5px;\r\n    background-color: white;\r\n}\r\n\r\n.caption {\r\n    background-color: #516d3a;\r\n    border-top: 1px solid #ccc;\r\n}\r\n\r\n.thumbnail > .caption {\r\n   \r\n    border-top: 0.8px solid black;\r\n}\r\n\r\n.action-icons {\r\n    right: 0;\r\n    top: 0;\r\n    position: absolute;\r\n    padding-right: 18px;\r\n    padding-top: 11px;\r\n    color: #db380f;\r\n}\r\n\r\n.action-icons{\r\n    cursor:pointer;\r\n}\r\n\r\n.item-header {\r\n    border-bottom: 2px solid #ccc;\r\n}\r\n\r\n.header-text {\r\n    padding-top: -5px;\r\n    padding-left: 10px;\r\n    color: #587443;\r\n}\r\n\r\n/* relevant styles */\r\n.caption-wrap {\r\n    position: inherit center;\r\n}\r\n\r\n.item-description-layer {\r\n    position: absolute;\r\n    top: 0;\r\n    bottom: 20px;\r\n    left: 15px;\r\n    right: 15px;\r\n    background: rgba(51, 79, 56, 0.8);\r\n    color: #fff;\r\n    visibility: hidden;\r\n    opacity: 0;\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: center;\r\n    /* transition effect. not necessary */\r\n    transition: opacity .2s, visibility .2s;\r\n}\r\n\r\n.caption-wrap:hover .item-description-layer {\r\n    visibility: visible;\r\n    opacity: 1;\r\n}\r\n\r\n.item-description {\r\n  transition: .2s;\r\n  transform: translateY(1em);\r\n}\r\n\r\n.caption-wrap:hover .item-description {\r\n  transform: translateY(0);\r\n}\r\n\r\n.text-style {\r\n    font-weight: bold;\r\n    color: #ddd;\r\n}\r\n\r\n.item-description{\r\n    overflow: hidden;\r\n}\r\n\r\n.pagination-dropdown {\r\n    width: 12%;\r\n}\r\n\r\n#for-select-item {\r\n    font-size: large;\r\n    color: yellow;\r\n}\r\n\r\n.caption{\r\n    color: white;\r\n}\r\n ", ""]);
+exports.push([module.i, ".item-image {\r\n    border: solid 1px;\r\n    height: 100px;\r\n    width: 100px;\r\n   \r\n}\r\n\r\n.img-container {\r\n    position: relative;\r\n    display: inline-block; /* added */\r\n    overflow: hidden; /* added */\r\n    margin-right: 7px;\r\n    cursor: pointer;\r\n    margin-left:13px\r\n}\r\n\r\n.img-container img {\r\n    width: 100px;\r\n}\r\n        /* remove if using in grid system */\r\n\r\n\r\n.img-container:hover img{\r\n    opacity: 0.5!important;\r\n}\r\n\r\n.img-container:hover a {\r\n    opacity: 1; /* added */\r\n    top: 0; /* added */\r\n    z-index: 500;\r\n}\r\n        /* added */\r\n.img-container:hover a span {\r\n     color: orangered;\r\n     font-size: 25px;\r\n     top: 50%;\r\n     position: absolute;\r\n     left: 0;\r\n     right: 0;\r\n     transform: translateY(-50%);\r\n}\r\n    /* added */\r\n.img-container a {\r\n     display: inline-block;\r\n     position: absolute;\r\n     top: -100%;\r\n     opacity: 0;\r\n     left: 0;\r\n     bottom: 0;\r\n     right: 0;\r\n     text-align: center;\r\n     color: inherit;\r\n}\r\n\r\n.fixedError {\r\n    margin-bottom: 0px;\r\n}", ""]);
 
 // exports
 
@@ -144036,7 +143695,7 @@ exports = module.exports = __webpack_require__(1)();
 
 
 // module
-exports.push([module.i, ".fixedError {\r\n    margin-bottom: 0px;\r\n}\r\n.form-group {\r\n    margin-bottom: 7px !important;\r\n}\r\n\r\n#registrationForm {\r\n    width: 400px;\r\n}\r\n\r\n.formHeader {\r\n    border-bottom: 1px solid #ccc;\r\n    padding-bottom: 10px;\r\n}\r\n\r\n", ""]);
+exports.push([module.i, "h2 {\r\n    color: #fffc00;\r\n    font-weight: 500;\r\n}\r\n\r\n.table-title h3 {\r\n    color: #1a1a1a;\r\n    font-size: x-large;\r\n    font-weight: 400;\r\n    font-style: normal;\r\n    text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);\r\n    text-transform: uppercase;\r\n}\r\n\r\n/*form Grid*/\r\n\r\n.glyphicon {\r\n    margin-right: 5px;\r\n}\r\n\r\n.thumbnail {\r\n    padding: 0px;\r\n    -webkit-border-radius: 0px;\r\n    -moz-border-radius: 0px;\r\n    border-radius: 0px;\r\n}\r\n\r\n.item.list-group-item {\r\n    float: none;\r\n    width: 100%;\r\n    background-color: #f5f5f5;\r\n    margin-bottom: 10px;\r\n}\r\n\r\n.item.list-group-item:nth-of-type(odd):hover, .item.list-group-item:hover {\r\n    background: #428bca;\r\n}\r\n\r\nitem.list-group-item .list-group-image {\r\n    margin-right: 10px;\r\n}\r\n\r\n.item.list-group-item .thumbnail {\r\n    margin-bottom: 0px;\r\n}\r\n\r\n.item.list-group-item .caption {\r\n    padding: 9px 9px 0px 9px;\r\n    border-top: 0.8px solid black;\r\n}\r\n\r\n.item.list-group-item:nth-of-type(odd) {\r\n    background: #eeeeee;\r\n}\r\n\r\n.item.list-group-item:before, .item.list-group-item:after {\r\n    display: table;\r\n    content: \" \";\r\n}\r\n\r\n.item.list-group-item img {\r\n    float: left;\r\n}\r\n\r\n.item.list-group-item:after {\r\n    clear: both;\r\n}\r\n\r\n.list-group-item-text {\r\n    margin: 0 0 11px;\r\n}\r\n\r\n\r\n.list-group-image {\r\n    max-height: 250px;\r\n    width: auto;\r\n    background-color: black;\r\n}\r\n\r\n.photo {\r\n    height: 250px;\r\n    background: white;\r\n    vertical-align: middle;\r\n}\r\n\r\n.main-image {\r\n    padding: 5px;\r\n    background-color: white;\r\n}\r\n\r\n.caption {\r\n    background-color: #516d3a;\r\n    border-top: 1px solid #ccc;\r\n}\r\n\r\n.thumbnail > .caption {\r\n   \r\n    border-top: 0.8px solid black;\r\n}\r\n\r\n.action-icons {\r\n    right: 0;\r\n    top: 0;\r\n    position: absolute;\r\n    padding-right: 18px;\r\n    padding-top: 11px;\r\n    color: #db380f;\r\n}\r\n\r\n.action-icons{\r\n    cursor:pointer;\r\n}\r\n\r\n.item-header {\r\n    border-bottom: 2px solid #ccc;\r\n}\r\n\r\n.header-text {\r\n    padding-top: -5px;\r\n    padding-left: 10px;\r\n    color: #587443;\r\n}\r\n\r\n/* relevant styles */\r\n.caption-wrap {\r\n    position: inherit center;\r\n}\r\n\r\n.item-description-layer {\r\n    position: absolute;\r\n    top: 0;\r\n    bottom: 20px;\r\n    left: 15px;\r\n    right: 15px;\r\n    background: rgba(51, 79, 56, 0.8);\r\n    color: #fff;\r\n    visibility: hidden;\r\n    opacity: 0;\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: center;\r\n    /* transition effect. not necessary */\r\n    transition: opacity .2s, visibility .2s;\r\n}\r\n\r\n.caption-wrap:hover .item-description-layer {\r\n    visibility: visible;\r\n    opacity: 1;\r\n}\r\n\r\n.item-description {\r\n  transition: .2s;\r\n  transform: translateY(1em);\r\n}\r\n\r\n.caption-wrap:hover .item-description {\r\n  transform: translateY(0);\r\n}\r\n\r\n.text-style {\r\n    font-weight: bold;\r\n    color: #ddd;\r\n}\r\n\r\n.item-description{\r\n    overflow: hidden;\r\n}\r\n\r\n.pagination-dropdown {\r\n    width: 12%;\r\n}\r\n\r\n#for-select-item {\r\n    font-size: large;\r\n    color: yellow;\r\n}\r\n\r\n.caption{\r\n    color: white;\r\n}\r\n ", ""]);
 
 // exports
 
@@ -144050,7 +143709,7 @@ exports = module.exports = __webpack_require__(1)();
 
 
 // module
-exports.push([module.i, "\r\n.gallery {\r\n    display: inline-block;\r\n    vertical-align: middle;\r\n    margin-top: 20px;\r\n    margin-right:30px;\r\n}\r\n\r\n.childResourse {\r\n    font-size: 16px;\r\n    font-family: 'Arial', sans-serif;\r\n    font-weight: 700;\r\n    height: 36px;\r\n    padding: 0 8px;\r\n}\r\n\r\n.description {\r\n    font-size: 16px;\r\n    font-family: 'Arial';\r\n    font-weight: 500;\r\n    padding: 0 8px;\r\n}\r\n\r\n\r\n.childName {\r\n    font-size: 20px;\r\n    font-family: 'Arial';\r\n    font-weight: 700;\r\n    margin: 20px;\r\n}\r\n\r\na {\r\n    text-decoration: none;\r\n    color: #314720;\r\n    font-weight: 400;\r\n    text-align: center;\r\n    display: inline-block;\r\n    opacity: 0.6;\r\n    transition: opacity ease 0.5s;\r\n}\r\n\r\n.well-container {\r\n    height: auto;\r\n}\r\n\r\n.btn-fundtrack-style {\r\n    background-color: #314720;\r\n    border-color: white;\r\n    border-width: 2px;\r\n    color: white;\r\n}\r\n\r\nspan {\r\n    color: #314720;\r\n}\r\n", ""]);
+exports.push([module.i, ".fixedError {\r\n    margin-bottom: 0px;\r\n}\r\n.form-group {\r\n    margin-bottom: 7px !important;\r\n}\r\n\r\n#registrationForm {\r\n    width: 400px;\r\n}\r\n\r\n.formHeader {\r\n    border-bottom: 1px solid #ccc;\r\n    padding-bottom: 10px;\r\n}\r\n\r\n", ""]);
 
 // exports
 
@@ -144064,7 +143723,7 @@ exports = module.exports = __webpack_require__(1)();
 
 
 // module
-exports.push([module.i, "/* enable absolute positioning */\r\n.inner-addon {\r\n    position: relative;\r\n}\r\n\r\n    /* style icon */\r\n    .inner-addon .glyphicon {\r\n        position: absolute;\r\n        padding: 10px;\r\n        pointer-events: none;\r\n    }\r\n\r\n/* align icon */\r\n.left-addon .glyphicon {\r\n    left: 0px;\r\n}\r\n\r\n.right-addon .glyphicon {\r\n    right: 0px;\r\n}\r\n\r\n/* add padding  */\r\n.left-addon input {\r\n    padding-left: 30px;\r\n}\r\n\r\n.right-addon input {\r\n    padding-right: 30px;\r\n}\r\n\r\n.btn{\r\n    float:right;\r\n}", ""]);
+exports.push([module.i, "\r\n.gallery {\r\n    display: inline-block;\r\n    vertical-align: middle;\r\n    margin-top: 20px;\r\n    margin-right:30px;\r\n}\r\n\r\n.childResourse {\r\n    font-size: 16px;\r\n    font-family: 'Arial', sans-serif;\r\n    font-weight: 700;\r\n    height: 36px;\r\n    padding: 0 8px;\r\n}\r\n\r\n.description {\r\n    font-size: 16px;\r\n    font-family: 'Arial';\r\n    font-weight: 500;\r\n    padding: 0 8px;\r\n}\r\n\r\n\r\n.childName {\r\n    font-size: 20px;\r\n    font-family: 'Arial';\r\n    font-weight: 700;\r\n    margin: 20px;\r\n}\r\n\r\na {\r\n    text-decoration: none;\r\n    color: #314720;\r\n    font-weight: 400;\r\n    text-align: center;\r\n    display: inline-block;\r\n    opacity: 0.6;\r\n    transition: opacity ease 0.5s;\r\n}\r\n\r\n.well-container {\r\n    height: auto;\r\n}\r\n\r\n.btn-fundtrack-style {\r\n    background-color: #314720;\r\n    border-color: white;\r\n    border-width: 2px;\r\n    color: white;\r\n}\r\n\r\nspan {\r\n    color: #314720;\r\n}\r\n", ""]);
 
 // exports
 
@@ -144078,7 +143737,7 @@ exports = module.exports = __webpack_require__(1)();
 
 
 // module
-exports.push([module.i, ".custom-btn {\r\n    width: 90px !important;\r\n}\r\n", ""]);
+exports.push([module.i, "/* enable absolute positioning */\r\n.inner-addon {\r\n    position: relative;\r\n}\r\n\r\n    /* style icon */\r\n    .inner-addon .glyphicon {\r\n        position: absolute;\r\n        padding: 10px;\r\n        pointer-events: none;\r\n    }\r\n\r\n/* align icon */\r\n.left-addon .glyphicon {\r\n    left: 0px;\r\n}\r\n\r\n.right-addon .glyphicon {\r\n    right: 0px;\r\n}\r\n\r\n/* add padding  */\r\n.left-addon input {\r\n    padding-left: 30px;\r\n}\r\n\r\n.right-addon input {\r\n    padding-right: 30px;\r\n}\r\n\r\n.btn{\r\n    float:right;\r\n}", ""]);
 
 // exports
 
@@ -144092,7 +143751,7 @@ exports = module.exports = __webpack_require__(1)();
 
 
 // module
-exports.push([module.i, ".castome-paging {\r\n    padding-top: 20px;\r\n}\r\n", ""]);
+exports.push([module.i, ".custom-btn {\r\n    width: 90px !important;\r\n}\r\n", ""]);
 
 // exports
 
@@ -144120,7 +143779,7 @@ exports = module.exports = __webpack_require__(1)();
 
 
 // module
-exports.push([module.i, " :focus {\n    outline: none;\n}\n.row {\n    margin-right: 0 !important;\n    margin-left: 0 !important;\n}\n.side-menu {\n    width: 300px;\n    height: 100%;\n    background-color: #f8f8f8;\n    border-right: 1px solid #e7e7e7;\n    float: left;\n}\n.side-body {\n    margin-left: 350px;\n    position: relative;\n}\n.side-menu .navbar {\n    border: none;\n}\n.side-menu .navbar-header {\n    width: 100%;\n    border-bottom: 1px solid #e7e7e7;\n}\n.side-menu .navbar-nav .active a {\n    background-color: transparent;\n    margin-right: -1px;\n    border-right: 5px solid #e7e7e7;\n}\n.side-menu .navbar-nav li {\n    display: block;\n    width: 100%;\n    border-bottom: 1px solid #e7e7e7;\n}\n.side-menu .navbar-nav li a {\n    padding: 15px;\n}\n.side-menu .navbar-nav li a .glyphicon {\n    padding-right: 10px;\n}\r\n", ""]);
+exports.push([module.i, ".castome-paging {\r\n    padding-top: 20px;\r\n}\r\n", ""]);
 
 // exports
 
@@ -144134,7 +143793,7 @@ exports = module.exports = __webpack_require__(1)();
 
 
 // module
-exports.push([module.i, ".userprofile {\r\n    height: auto;\r\n}\r\n\r\n/*.ng-valid[required], .ng-valid.required {\r\n    border-bottom: 5px solid mediumseagreen;\r\n}*/\r\n\r\n/*.ng-invalid:not(form) {\r\n    border-bottom: 0.5px solid red;\r\n}*/\r\n", ""]);
+exports.push([module.i, " :focus {\n    outline: none;\n}\n.row {\n    margin-right: 0 !important;\n    margin-left: 0 !important;\n}\n.side-menu {\n    width: 300px;\n    height: 100%;\n    background-color: #f8f8f8;\n    border-right: 1px solid #e7e7e7;\n    float: left;\n}\n.side-body {\n    margin-left: 350px;\n    position: relative;\n}\n.side-menu .navbar {\n    border: none;\n}\n.side-menu .navbar-header {\n    width: 100%;\n    border-bottom: 1px solid #e7e7e7;\n}\n.side-menu .navbar-nav .active a {\n    background-color: transparent;\n    margin-right: -1px;\n    border-right: 5px solid #e7e7e7;\n}\n.side-menu .navbar-nav li {\n    display: block;\n    width: 100%;\n    border-bottom: 1px solid #e7e7e7;\n}\n.side-menu .navbar-nav li a {\n    padding: 15px;\n}\n.side-menu .navbar-nav li a .glyphicon {\n    padding-right: 10px;\n}\r\n", ""]);
 
 // exports
 
@@ -144148,7 +143807,7 @@ exports = module.exports = __webpack_require__(1)();
 
 
 // module
-exports.push([module.i, ".background {\r\n    position: relative;\r\n    z-index: 2;\r\n    padding: 10px 25px;\r\n    width: 85%;\r\n    background-color: #A3A987;\r\n    margin: 0 25px;\r\n}\r\n\r\n.emptyDiv {\r\n    position: absolute;\r\n    height: 100%;\r\n    width: 100%;\r\n    background-color: #A3A987;\r\n    z-index: 1;\r\n    opacity: 0.9;\r\n    padding: 0 25px;\r\n}\r\n\r\n.table {\r\n    width: 94%;\r\n    max-width: 94%;\r\n    margin:3%;\r\n    /*margin-bottom: 20px;*/\r\n    background-color: #fff;\r\n    opacity: 1.9;\r\n}\r\n\r\n.fundtrack-style {\r\n    width: 94%;\r\n    max-width: 94%;\r\n    margin: 3%;\r\n    background-color: #314720;\r\n    /*border-color: #314720;*/\r\n    color: white;\r\n    margin-bottom: 5px;\r\n}\r\n\r\nthead {\r\n    background-color: #1a1a1a;\r\n    color: white;\r\n}\r\n\r\ntbody > tr:nth-child(2n+1) {\r\n    background-color: #627F49;\r\n    color: white;\r\n}\r\n\r\n    tbody > tr:nth-child(2n+1) .btn-link:hover {\r\n        color: #989826;\r\n    }\r\n\r\ntbody > tr:nth-child(2n) {\r\n    background-color: #233915;\r\n    color: white;\r\n}\r\n\r\n    tbody > tr:nth-child(2n) .btn-link:hover {\r\n        color: #989826;\r\n    }\r\n\r\ntextarea {\r\n    border-radius: 7px;\r\n}\r\n\r\n.right {\r\n    float: right;\r\n}\r\n\r\n.btn-primary {\r\n    color: #fff;\r\n    background-color: #627F49;\r\n    border-color: #233915;\r\n}\r\n\r\n    .btn-primary:hover {\r\n        background-color: #233915;\r\n    }\r\n\r\n.addressDiv {\r\n    background-color: #a2a886;\r\n    padding: 5px;\r\n    width: 100%;\r\n    display: flex;\r\n    justify-content: space-between;\r\n    align-items: center;\r\n    margin: 5px 0;\r\n    border-radius: 7px;\r\n}\r\n\r\n\r\n.btn-link {\r\n    color: white;\r\n}\r\n\r\nh2 {\r\n    margin:3%;\r\n    padding-top: 25px;\r\n    font-weight: bold;\r\n}\r\n\r\n.app-modal-header {\r\n    color: #233915;\r\n}\r\n\r\n.app-modal-body {\r\n    color: #233915;\r\n}\r\n\r\n.scrollable-menu {\r\n    height: auto !important;\r\n    max-height: 200px !important;\r\n    overflow-x: hidden !important;\r\n}\r\n\r\n.btn-info {\r\n    border: solid 1px silver !important;\r\n    background-color: #292c2f !important;\r\n    color:white;\r\n    padding:5px;\r\n}\r\n.row {\r\n    margin-left:6px;\r\n}\r\n\r\n.pagination-dropdown {\r\n    color:white;\r\n}\r\n", ""]);
+exports.push([module.i, ".userprofile {\r\n    height: auto;\r\n}\r\n\r\n/*.ng-valid[required], .ng-valid.required {\r\n    border-bottom: 5px solid mediumseagreen;\r\n}*/\r\n\r\n/*.ng-invalid:not(form) {\r\n    border-bottom: 0.5px solid red;\r\n}*/\r\n", ""]);
 
 // exports
 
@@ -144162,7 +143821,7 @@ exports = module.exports = __webpack_require__(1)();
 
 
 // module
-exports.push([module.i, ".scrollable-menu {\r\n    height: auto !important;\r\n    max-height: 200px !important;\r\n    overflow-x: hidden !important;\r\n}\r\n\r\n.btn-info {\r\n    border: solid 1px silver !important;\r\n    background-color: #292c2f !important;\r\n    color: #8f9296;\r\n}\r\n\r\n.form-control {\r\n    width: 100% !important;\r\n}\r\n", ""]);
+exports.push([module.i, ".background {\r\n    position: relative;\r\n    z-index: 2;\r\n    padding: 10px 25px;\r\n    width: 85%;\r\n    background-color: #A3A987;\r\n    margin: 0 25px;\r\n}\r\n\r\n.emptyDiv {\r\n    position: absolute;\r\n    height: 100%;\r\n    width: 100%;\r\n    background-color: #A3A987;\r\n    z-index: 1;\r\n    opacity: 0.9;\r\n    padding: 0 25px;\r\n}\r\n\r\n.table {\r\n    width: 94%;\r\n    max-width: 94%;\r\n    margin:3%;\r\n    /*margin-bottom: 20px;*/\r\n    background-color: #fff;\r\n    opacity: 1.9;\r\n}\r\n\r\n.fundtrack-style {\r\n    width: 94%;\r\n    max-width: 94%;\r\n    margin: 3%;\r\n    background-color: #314720;\r\n    /*border-color: #314720;*/\r\n    color: white;\r\n    margin-bottom: 5px;\r\n}\r\n\r\nthead {\r\n    background-color: #1a1a1a;\r\n    color: white;\r\n}\r\n\r\ntbody > tr:nth-child(2n+1) {\r\n    background-color: #627F49;\r\n    color: white;\r\n}\r\n\r\n    tbody > tr:nth-child(2n+1) .btn-link:hover {\r\n        color: #989826;\r\n    }\r\n\r\ntbody > tr:nth-child(2n) {\r\n    background-color: #233915;\r\n    color: white;\r\n}\r\n\r\n    tbody > tr:nth-child(2n) .btn-link:hover {\r\n        color: #989826;\r\n    }\r\n\r\ntextarea {\r\n    border-radius: 7px;\r\n}\r\n\r\n.right {\r\n    float: right;\r\n}\r\n\r\n.btn-primary {\r\n    color: #fff;\r\n    background-color: #627F49;\r\n    border-color: #233915;\r\n}\r\n\r\n    .btn-primary:hover {\r\n        background-color: #233915;\r\n    }\r\n\r\n.addressDiv {\r\n    background-color: #a2a886;\r\n    padding: 5px;\r\n    width: 100%;\r\n    display: flex;\r\n    justify-content: space-between;\r\n    align-items: center;\r\n    margin: 5px 0;\r\n    border-radius: 7px;\r\n}\r\n\r\n\r\n.btn-link {\r\n    color: white;\r\n}\r\n\r\nh2 {\r\n    margin:3%;\r\n    padding-top: 25px;\r\n    font-weight: bold;\r\n}\r\n\r\n.app-modal-header {\r\n    color: #233915;\r\n}\r\n\r\n.app-modal-body {\r\n    color: #233915;\r\n}\r\n\r\n.scrollable-menu {\r\n    height: auto !important;\r\n    max-height: 200px !important;\r\n    overflow-x: hidden !important;\r\n}\r\n\r\n.btn-info {\r\n    border: solid 1px silver !important;\r\n    background-color: #292c2f !important;\r\n    color:white;\r\n    padding:5px;\r\n}\r\n.row {\r\n    margin-left:6px;\r\n}\r\n\r\n.pagination-dropdown {\r\n    color:white;\r\n}\r\n", ""]);
 
 // exports
 
@@ -144176,7 +143835,7 @@ exports = module.exports = __webpack_require__(1)();
 
 
 // module
-exports.push([module.i, "h3 {\r\n    color:red\r\n}\r\n", ""]);
+exports.push([module.i, ".scrollable-menu {\r\n    height: auto !important;\r\n    max-height: 200px !important;\r\n    overflow-x: hidden !important;\r\n}\r\n\r\n.btn-info {\r\n    border: solid 1px silver !important;\r\n    background-color: #292c2f !important;\r\n    color: #8f9296;\r\n}\r\n\r\n.form-control {\r\n    width: 100% !important;\r\n}\r\n", ""]);
 
 // exports
 
@@ -144190,7 +143849,7 @@ exports = module.exports = __webpack_require__(1)();
 
 
 // module
-exports.push([module.i, "ul {\r\n    padding: 0;\r\n    width: 780px;\r\n}\r\n\r\nli {\r\n    display: inline;\r\n}\r\n\r\n.tn {\r\n    margin: 2px 0px;\r\n    box-shadow: #999 1px 1px 3px 1px;\r\n    cursor: pointer\r\n}\r\n\r\n.modal-content {\r\n    width: 670px !important;\r\n}\r\n\r\n.imageSelected {\r\n    width: 640px;\r\n    position: relative;\r\n}\r\n\r\n.tn {\r\n    border: medium none;\r\n    margin-left: 5px;\r\n    margin-top: 530px;\r\n    border: 2px solid #FFFFFF;\r\n    float: left;\r\n    height: 54px;\r\n    width: auto;\r\n}\r\n\r\n.arrow-back, .arrow-forward {\r\n    position: absolute;\r\n    opacity: 0.8;\r\n    background-color: white;\r\n    padding: 10px;\r\n    top: 190px;\r\n    color: black;\r\n    cursor: pointer;\r\n}\r\n\r\n.arrow-forward {\r\n    left: 612px;\r\n}\r\n\r\n.arrow-back {\r\n    right: 612px;\r\n}", ""]);
+exports.push([module.i, "h3 {\r\n    color:red\r\n}\r\n", ""]);
 
 // exports
 
@@ -144204,7 +143863,7 @@ exports = module.exports = __webpack_require__(1)();
 
 
 // module
-exports.push([module.i, "ul {\r\n    padding: 10px;\r\n    width: 120px;\r\n}\r\n\r\nli {\r\n    display: inline;\r\n    overflow-x: scroll;\r\n    height: 200px;\r\n}\r\n\r\n.tn {\r\n    margin: 5px 0px;\r\n    box-shadow: #999 1px 1px 3px 1px;\r\n    cursor: pointer\r\n}\r\n\r\n.modal-content {\r\n    width: 670px !important;\r\n}\r\n\r\n.imageSelected {\r\n    width: 640px;\r\n    position: relative;\r\n}\r\n\r\n.tn {\r\n    width: 110px;\r\n    height: 100px;\r\n}\r\n\r\n.arrow-back, .arrow-forward {\r\n    position: absolute;\r\n    opacity: 0.6;\r\n    background-color: #314720;\r\n    padding: 10px;\r\n    top: 190px;\r\n    color: white;\r\n    cursor: pointer;\r\n}\r\n\r\n.arrow-forward {\r\n    left: 612px;\r\n}\r\n\r\n.arrow-back {\r\n    right: 612px;\r\n}\r\n\r\n.scroll {\r\n    opacity: 0.3;\r\n    background-color: darkolivegreen;\r\n    padding: 10px;\r\n    width: 117px;\r\n    padding: 10px;\r\n    top: 10px;\r\n    height: 10px;\r\n    color: white;\r\n    cursor: pointer;\r\n}\r\n\r\n.scrollable-menu {\r\n    width:137px;\r\n    height: auto !important;\r\n    max-height: 350px !important;\r\n    margin:10px;\r\n    overflow-x: hidden !important;\r\n}\r\n", ""]);
+exports.push([module.i, "ul {\r\n    padding: 0;\r\n    width: 780px;\r\n}\r\n\r\nli {\r\n    display: inline;\r\n}\r\n\r\n.tn {\r\n    margin: 2px 0px;\r\n    box-shadow: #999 1px 1px 3px 1px;\r\n    cursor: pointer\r\n}\r\n\r\n.modal-content {\r\n    width: 670px !important;\r\n}\r\n\r\n.imageSelected {\r\n    width: 640px;\r\n    position: relative;\r\n}\r\n\r\n.tn {\r\n    border: medium none;\r\n    margin-left: 5px;\r\n    margin-top: 530px;\r\n    border: 2px solid #FFFFFF;\r\n    float: left;\r\n    height: 54px;\r\n    width: auto;\r\n}\r\n\r\n.arrow-back, .arrow-forward {\r\n    position: absolute;\r\n    opacity: 0.8;\r\n    background-color: white;\r\n    padding: 10px;\r\n    top: 190px;\r\n    color: black;\r\n    cursor: pointer;\r\n}\r\n\r\n.arrow-forward {\r\n    left: 612px;\r\n}\r\n\r\n.arrow-back {\r\n    right: 612px;\r\n}", ""]);
 
 // exports
 
@@ -144218,7 +143877,7 @@ exports = module.exports = __webpack_require__(1)();
 
 
 // module
-exports.push([module.i, "agm-map {\r\n    height: 300px;\r\n    width: 100%;\r\n}\r\n", ""]);
+exports.push([module.i, "ul {\r\n    padding: 10px;\r\n    width: 120px;\r\n}\r\n\r\nli {\r\n    display: inline;\r\n    overflow-x: scroll;\r\n    height: 200px;\r\n}\r\n\r\n.tn {\r\n    margin: 5px 0px;\r\n    box-shadow: #999 1px 1px 3px 1px;\r\n    cursor: pointer\r\n}\r\n\r\n.modal-content {\r\n    width: 670px !important;\r\n}\r\n\r\n.imageSelected {\r\n    width: 640px;\r\n    position: relative;\r\n}\r\n\r\n.tn {\r\n    width: 110px;\r\n    height: 100px;\r\n}\r\n\r\n.arrow-back, .arrow-forward {\r\n    position: absolute;\r\n    opacity: 0.6;\r\n    background-color: #314720;\r\n    padding: 10px;\r\n    top: 190px;\r\n    color: white;\r\n    cursor: pointer;\r\n}\r\n\r\n.arrow-forward {\r\n    left: 612px;\r\n}\r\n\r\n.arrow-back {\r\n    right: 612px;\r\n}\r\n\r\n.scroll {\r\n    opacity: 0.3;\r\n    background-color: darkolivegreen;\r\n    padding: 10px;\r\n    width: 117px;\r\n    padding: 10px;\r\n    top: 10px;\r\n    height: 10px;\r\n    color: white;\r\n    cursor: pointer;\r\n}\r\n\r\n.scrollable-menu {\r\n    width:137px;\r\n    height: auto !important;\r\n    max-height: 350px !important;\r\n    margin:10px;\r\n    overflow-x: hidden !important;\r\n}\r\n", ""]);
 
 // exports
 
@@ -144232,7 +143891,7 @@ exports = module.exports = __webpack_require__(1)();
 
 
 // module
-exports.push([module.i, "body {\n    position: relative;\n    overflow-x: hidden;\n}\n\nbody,\nhtml {\n    height: 100%;\n}\n\n.nav .open > a,\n.nav .open > a:hover,\n.nav .open > a:focus {\n    background-color: transparent;\n}\n\n/*-------------------------------*/\n/*           Wrappers            */\n/*-------------------------------*/\n\n#wrapper {\n    padding-left: 0;\n    -webkit-transition: all 0.5s ease;\n    -moz-transition: all 0.5s ease;\n    -o-transition: all 0.5s ease;\n    transition: all 0.5s ease;\n}\n\n    #wrapper.toggled {\n        padding-left: 15%;\n    }\n\n#sidebar-wrapper {\n    border-top: solid 1px white;\n    border-right: solid 1px white;\n    border-bottom: solid 1px white;\n    border-radius:5px;\n    z-index: 1000;\n    left: 220px;\n    width: 0;\n    height: 100%;\n    margin-left: -220px;\n    overflow-y: auto;\n    overflow-x: hidden;\n    background: #1a1a1a;\n    -webkit-transition: all 0.5s ease;\n    -moz-transition: all 0.5s ease;\n    -o-transition: all 0.5s ease;\n    transition: all 0.5s ease;\n}\n\n    #sidebar-wrapper::-webkit-scrollbar {\n        display: none;\n    }\n\n#wrapper.toggled #sidebar-wrapper {\n    width: 15%;\n}\n\n/*-------------------------------*/\n/*     Sidebar nav styles        */\n/*-------------------------------*/\n\n.sidebar-nav {\n    position: absolute;\n    top: 0;\n    width: 100%;\n    margin: 0;\n    padding: 0;\n    list-style: none;\n}\n\n    .sidebar-nav li {\n        position: relative;\n        line-height: 20px;\n        display: inline-block;\n        width: 100%;\n    }\n\n        .sidebar-nav li:before {\n            content: '';\n            position: absolute;\n            top: 0;\n            left: 0;\n            z-index: -1;\n            height: 100%;\n            width: 3px;\n            background-color: #1c1c1c;\n            -webkit-transition: width .2s ease-in;\n            -moz-transition: width .2s ease-in;\n            -ms-transition: width .2s ease-in;\n            transition: width .2s ease-in;\n        }\n\n        .sidebar-nav li:first-child a {\n            color: #fff;\n            background-color: #273a1a;\n        }\n\n        .sidebar-nav li:nth-child(2):before {\n            background-color: #273a1a;\n        }\n\n        .sidebar-nav li:nth-child(3):before {\n            background-color: #243918;\n        }\n\n        .sidebar-nav li:nth-child(4):before {\n            background-color: #2e4720;\n        }\n\n        .sidebar-nav li:nth-child(5):before {\n            background-color: #46562f;\n        }\n\n        .sidebar-nav li:nth-child(6):before {\n            background-color: #596a3d;\n        }\n\n        .sidebar-nav li:nth-child(7):before {\n            background-color: #637f4e;\n        }\n\n        .sidebar-nav li:nth-child(8):before {\n            background-color: #a7ac8c;\n        }\n\n        .sidebar-nav li:nth-child(9):before {\n            background-color: #2d2366;\n        }\n\n        .sidebar-nav li:nth-child(10):before {\n            background-color: #35acdf;\n        }\n\n        .sidebar-nav li:hover:before,\n        .sidebar-nav li.open:hover:before {\n            width: 100%;\n            -webkit-transition: width .2s ease-in;\n            -moz-transition: width .2s ease-in;\n            -ms-transition: width .2s ease-in;\n            transition: width .2s ease-in;\n        }\n\n        .sidebar-nav li a {\n            display: block;\n            color: #ddd;\n            text-decoration: none;\n            padding: 10px 15px 10px 30px;\n        }\n\n            .sidebar-nav li a:hover,\n            .sidebar-nav li a:active,\n            .sidebar-nav li a:focus,\n            .sidebar-nav li.open a:hover,\n            .sidebar-nav li.open a:active,\n            .sidebar-nav li.open a:focus {\n                color: #fff;\n                text-decoration: none;\n                background-color: transparent;\n            }\n\n    .sidebar-nav > .sidebar-brand {\n        padding: 20%;\n        height: 65px;\n        color: white;\n        font-size: 20px;\n    }\n\n    .sidebar-nav .dropdown-menu {\n        position: relative;\n        width: 100%;\n        padding: 0;\n        margin: 0;\n        border-radius: 0;\n        border: none;\n        background-color: #222;\n        box-shadow: none;\n    }\n\n.navbar-fixed-top {\n    top: auto !important;\n    max-height: 70% !important;\n}\n/*-------------------------------*/\n/*       Hamburger-Cross         */\n/*-------------------------------*/\n.hamburger {\n    position: fixed;\n    top: auto;\n    z-index: 1001;\n    display: block;\n    width: 32px;\n    height: 32px;\n    background: transparent;\n    border: none;\n}\n\n    .hamburger:hover,\n    .hamburger:focus,\n    .hamburger:active {\n        outline: none;\n    }\n\n    .hamburger.is-closed:before {\n        content: '';\n        display: block;\n        width: 100px;\n        font-size: 14px;\n        color: #fff;\n        line-height: 32px;\n        text-align: center;\n        opacity: 0;\n        -webkit-transform: translate3d(0,0,0);\n        -webkit-transition: all .35s ease-in-out;\n    }\n\n    .hamburger.is-closed:hover:before {\n        opacity: 1;\n        display: block;\n        -webkit-transform: translate3d(-100px,0,0);\n        -webkit-transition: all .35s ease-in-out;\n    }\n\n    .hamburger.is-closed .hamb-top,\n    .hamburger.is-closed .hamb-middle,\n    .hamburger.is-closed .hamb-bottom{\n        position: absolute;\n        left: 0px;\n        height: 4px;\n        width: 100%;\n    }\n\n    .hamburger.is-open .hamb-top,\n    .hamburger.is-open .hamb-middle,\n    .hamburger.is-open .hamb-bottom {\n        position: absolute;\n        left: -45px;\n        height: 4px;\n        width: 100%;\n    }\n    \n    \n    .hamburger.is-closed .hamb-top,\n    .hamburger.is-closed .hamb-middle,\n    .hamburger.is-closed .hamb-bottom {\n        background-color: black;\n    }\n\n    .hamburger.is-closed .hamb-top {\n        top: 5px;\n        -webkit-transition: all .35s ease-in-out;\n    }\n\n    .hamburger.is-closed .hamb-middle {\n        top: 50%;\n        margin-top: -2px;\n    }\n\n    .hamburger.is-closed .hamb-bottom {\n        bottom: 5px;\n        -webkit-transition: all .35s ease-in-out;\n    }\n\n    .hamburger.is-closed:hover .hamb-top {\n        top: 0;\n        -webkit-transition: all .35s ease-in-out;\n    }\n\n    .hamburger.is-closed:hover .hamb-bottom {\n        bottom: 0;\n        -webkit-transition: all .35s ease-in-out;\n    }\n\n    .hamburger.is-open .hamb-top,\n    .hamburger.is-open .hamb-middle,\n    .hamburger.is-open .hamb-bottom {\n        background-color: white;\n    }\n\n    .hamburger.is-open .hamb-top,\n    .hamburger.is-open .hamb-bottom {\n        top: 50%;\n        margin-top: -2px;\n    }\n\n    .hamburger.is-open .hamb-top {\n        -webkit-transform: rotate(45deg);\n        -webkit-transition: -webkit-transform .2s cubic-bezier(.73,1,.28,.08);\n    }\n\n    .hamburger.is-open .hamb-middle {\n        display: none;\n    }\n\n    .hamburger.is-open .hamb-bottom {\n        -webkit-transform: rotate(-45deg);\n        -webkit-transition: -webkit-transform .2s cubic-bezier(.73,1,.28,.08);\n    }\n\n    .hamburger.is-open:before {\n        content: '';\n        display: block;\n        width: 100px;\n        font-size: 14px;\n        color: #fff;\n        line-height: 32px;\n        text-align: center;\n        opacity: 0;\n        -webkit-transform: translate3d(0,0,0);\n        -webkit-transition: all .35s ease-in-out;\n    }\n\n    .hamburger.is-open:hover:before {\n        opacity: 1;\n        display: block;\n        -webkit-transform: translate3d(-100px,0,0);\n        -webkit-transition: all .35s ease-in-out;\n    }\n\n/*-------------------------------*/\n/*            Overlay            */\n/*-------------------------------*/\n\n.overlay {\n    position: fixed;\n    display: none;\n    width: 100%;\n    height: 100%;\n    top: 0;\n    left: 0;\n    right: 0;\n    bottom: 0;\n    background-color: rgba(250,250,250,.8);\n    z-index: 1;\n}\n\n.alert {\n    color: red;\n}\n", ""]);
+exports.push([module.i, "agm-map {\r\n    height: 300px;\r\n    width: 100%;\r\n}\r\n", ""]);
 
 // exports
 
@@ -144246,7 +143905,7 @@ exports = module.exports = __webpack_require__(1)();
 
 
 // module
-exports.push([module.i, ".loader {\r\n    border: 16px solid #f3f3f3;\r\n    border-radius: 50%;\r\n    border-top: 16px solid blue;\r\n    border-left: 16px solid blue;\r\n    border-bottom: 16px solid yellow;\r\n    border-right: 16px solid yellow;\r\n    -webkit-animation: spin 2s linear infinite;\r\n    animation: spin 2s linear infinite;\r\n    width: 65px;\r\n    height: 65px;\r\n    position: absolute;\r\n    top: 40%;\r\n    left: 50%;\r\n    z-index: 3000;\r\n    animation-timing-function:ease-in-out;\r\n}\r\n\r\n@-webkit-keyframes spin {\r\n    0% {\r\n        -webkit-transform: rotate(0deg);\r\n    }\r\n\r\n    100% {\r\n        -webkit-transform: rotate(360deg);\r\n    }\r\n}\r\n\r\n@keyframes spin {\r\n    0% {\r\n        transform: rotate(0deg);\r\n    }\r\n\r\n    100% {\r\n        transform: rotate(360deg);\r\n    }\r\n}\r\n", ""]);
+exports.push([module.i, "body {\n    position: relative;\n    overflow-x: hidden;\n}\n\nbody,\nhtml {\n    height: 100%;\n}\n\n.nav .open > a,\n.nav .open > a:hover,\n.nav .open > a:focus {\n    background-color: transparent;\n}\n\n/*-------------------------------*/\n/*           Wrappers            */\n/*-------------------------------*/\n\n#wrapper {\n    padding-left: 0;\n    -webkit-transition: all 0.5s ease;\n    -moz-transition: all 0.5s ease;\n    -o-transition: all 0.5s ease;\n    transition: all 0.5s ease;\n}\n\n    #wrapper.toggled {\n        padding-left: 15%;\n    }\n\n#sidebar-wrapper {\n    border-top: solid 1px white;\n    border-right: solid 1px white;\n    border-bottom: solid 1px white;\n    border-radius:5px;\n    z-index: 1000;\n    left: 220px;\n    width: 0;\n    height: 100%;\n    margin-left: -220px;\n    overflow-y: auto;\n    overflow-x: hidden;\n    background: #1a1a1a;\n    -webkit-transition: all 0.5s ease;\n    -moz-transition: all 0.5s ease;\n    -o-transition: all 0.5s ease;\n    transition: all 0.5s ease;\n}\n\n    #sidebar-wrapper::-webkit-scrollbar {\n        display: none;\n    }\n\n#wrapper.toggled #sidebar-wrapper {\n    width: 15%;\n}\n\n/*-------------------------------*/\n/*     Sidebar nav styles        */\n/*-------------------------------*/\n\n.sidebar-nav {\n    position: absolute;\n    top: 0;\n    width: 100%;\n    margin: 0;\n    padding: 0;\n    list-style: none;\n}\n\n    .sidebar-nav li {\n        position: relative;\n        line-height: 20px;\n        display: inline-block;\n        width: 100%;\n    }\n\n        .sidebar-nav li:before {\n            content: '';\n            position: absolute;\n            top: 0;\n            left: 0;\n            z-index: -1;\n            height: 100%;\n            width: 3px;\n            background-color: #1c1c1c;\n            -webkit-transition: width .2s ease-in;\n            -moz-transition: width .2s ease-in;\n            -ms-transition: width .2s ease-in;\n            transition: width .2s ease-in;\n        }\n\n        .sidebar-nav li:first-child a {\n            color: #fff;\n            background-color: #273a1a;\n        }\n\n        .sidebar-nav li:nth-child(2):before {\n            background-color: #273a1a;\n        }\n\n        .sidebar-nav li:nth-child(3):before {\n            background-color: #243918;\n        }\n\n        .sidebar-nav li:nth-child(4):before {\n            background-color: #2e4720;\n        }\n\n        .sidebar-nav li:nth-child(5):before {\n            background-color: #46562f;\n        }\n\n        .sidebar-nav li:nth-child(6):before {\n            background-color: #596a3d;\n        }\n\n        .sidebar-nav li:nth-child(7):before {\n            background-color: #637f4e;\n        }\n\n        .sidebar-nav li:nth-child(8):before {\n            background-color: #a7ac8c;\n        }\n\n        .sidebar-nav li:nth-child(9):before {\n            background-color: #2d2366;\n        }\n\n        .sidebar-nav li:nth-child(10):before {\n            background-color: #35acdf;\n        }\n\n        .sidebar-nav li:hover:before,\n        .sidebar-nav li.open:hover:before {\n            width: 100%;\n            -webkit-transition: width .2s ease-in;\n            -moz-transition: width .2s ease-in;\n            -ms-transition: width .2s ease-in;\n            transition: width .2s ease-in;\n        }\n\n        .sidebar-nav li a {\n            display: block;\n            color: #ddd;\n            text-decoration: none;\n            padding: 10px 15px 10px 30px;\n        }\n\n            .sidebar-nav li a:hover,\n            .sidebar-nav li a:active,\n            .sidebar-nav li a:focus,\n            .sidebar-nav li.open a:hover,\n            .sidebar-nav li.open a:active,\n            .sidebar-nav li.open a:focus {\n                color: #fff;\n                text-decoration: none;\n                background-color: transparent;\n            }\n\n    .sidebar-nav > .sidebar-brand {\n        padding: 20%;\n        height: 65px;\n        color: white;\n        font-size: 20px;\n    }\n\n    .sidebar-nav .dropdown-menu {\n        position: relative;\n        width: 100%;\n        padding: 0;\n        margin: 0;\n        border-radius: 0;\n        border: none;\n        background-color: #222;\n        box-shadow: none;\n    }\n\n.navbar-fixed-top {\n    top: auto !important;\n    max-height: 70% !important;\n}\n/*-------------------------------*/\n/*       Hamburger-Cross         */\n/*-------------------------------*/\n.hamburger {\n    position: fixed;\n    top: auto;\n    z-index: 1001;\n    display: block;\n    width: 32px;\n    height: 32px;\n    background: transparent;\n    border: none;\n}\n\n    .hamburger:hover,\n    .hamburger:focus,\n    .hamburger:active {\n        outline: none;\n    }\n\n    .hamburger.is-closed:before {\n        content: '';\n        display: block;\n        width: 100px;\n        font-size: 14px;\n        color: #fff;\n        line-height: 32px;\n        text-align: center;\n        opacity: 0;\n        -webkit-transform: translate3d(0,0,0);\n        -webkit-transition: all .35s ease-in-out;\n    }\n\n    .hamburger.is-closed:hover:before {\n        opacity: 1;\n        display: block;\n        -webkit-transform: translate3d(-100px,0,0);\n        -webkit-transition: all .35s ease-in-out;\n    }\n\n    .hamburger.is-closed .hamb-top,\n    .hamburger.is-closed .hamb-middle,\n    .hamburger.is-closed .hamb-bottom{\n        position: absolute;\n        left: 0px;\n        height: 4px;\n        width: 100%;\n    }\n\n    .hamburger.is-open .hamb-top,\n    .hamburger.is-open .hamb-middle,\n    .hamburger.is-open .hamb-bottom {\n        position: absolute;\n        left: -45px;\n        height: 4px;\n        width: 100%;\n    }\n    \n    \n    .hamburger.is-closed .hamb-top,\n    .hamburger.is-closed .hamb-middle,\n    .hamburger.is-closed .hamb-bottom {\n        background-color: black;\n    }\n\n    .hamburger.is-closed .hamb-top {\n        top: 5px;\n        -webkit-transition: all .35s ease-in-out;\n    }\n\n    .hamburger.is-closed .hamb-middle {\n        top: 50%;\n        margin-top: -2px;\n    }\n\n    .hamburger.is-closed .hamb-bottom {\n        bottom: 5px;\n        -webkit-transition: all .35s ease-in-out;\n    }\n\n    .hamburger.is-closed:hover .hamb-top {\n        top: 0;\n        -webkit-transition: all .35s ease-in-out;\n    }\n\n    .hamburger.is-closed:hover .hamb-bottom {\n        bottom: 0;\n        -webkit-transition: all .35s ease-in-out;\n    }\n\n    .hamburger.is-open .hamb-top,\n    .hamburger.is-open .hamb-middle,\n    .hamburger.is-open .hamb-bottom {\n        background-color: white;\n    }\n\n    .hamburger.is-open .hamb-top,\n    .hamburger.is-open .hamb-bottom {\n        top: 50%;\n        margin-top: -2px;\n    }\n\n    .hamburger.is-open .hamb-top {\n        -webkit-transform: rotate(45deg);\n        -webkit-transition: -webkit-transform .2s cubic-bezier(.73,1,.28,.08);\n    }\n\n    .hamburger.is-open .hamb-middle {\n        display: none;\n    }\n\n    .hamburger.is-open .hamb-bottom {\n        -webkit-transform: rotate(-45deg);\n        -webkit-transition: -webkit-transform .2s cubic-bezier(.73,1,.28,.08);\n    }\n\n    .hamburger.is-open:before {\n        content: '';\n        display: block;\n        width: 100px;\n        font-size: 14px;\n        color: #fff;\n        line-height: 32px;\n        text-align: center;\n        opacity: 0;\n        -webkit-transform: translate3d(0,0,0);\n        -webkit-transition: all .35s ease-in-out;\n    }\n\n    .hamburger.is-open:hover:before {\n        opacity: 1;\n        display: block;\n        -webkit-transform: translate3d(-100px,0,0);\n        -webkit-transition: all .35s ease-in-out;\n    }\n\n/*-------------------------------*/\n/*            Overlay            */\n/*-------------------------------*/\n\n.overlay {\n    position: fixed;\n    display: none;\n    width: 100%;\n    height: 100%;\n    top: 0;\n    left: 0;\n    right: 0;\n    bottom: 0;\n    background-color: rgba(250,250,250,.8);\n    z-index: 1;\n}\n\n.alert {\n    color: red;\n}\n", ""]);
 
 // exports
 
@@ -144260,7 +143919,7 @@ exports = module.exports = __webpack_require__(1)();
 
 
 // module
-exports.push([module.i, "a {\r\n    color:white!important;\r\n}\r\n    a:hover {\r\n        color: navy !important;\r\n    }\r\n.dropdowncolor {\r\n    background-color: #333;\r\n}", ""]);
+exports.push([module.i, ".loader {\r\n    border: 16px solid #f3f3f3;\r\n    border-radius: 50%;\r\n    border-top: 16px solid blue;\r\n    border-left: 16px solid blue;\r\n    border-bottom: 16px solid yellow;\r\n    border-right: 16px solid yellow;\r\n    -webkit-animation: spin 2s linear infinite;\r\n    animation: spin 2s linear infinite;\r\n    width: 65px;\r\n    height: 65px;\r\n    position: absolute;\r\n    top: 40%;\r\n    left: 50%;\r\n    z-index: 3000;\r\n    animation-timing-function:ease-in-out;\r\n}\r\n\r\n@-webkit-keyframes spin {\r\n    0% {\r\n        -webkit-transform: rotate(0deg);\r\n    }\r\n\r\n    100% {\r\n        -webkit-transform: rotate(360deg);\r\n    }\r\n}\r\n\r\n@keyframes spin {\r\n    0% {\r\n        transform: rotate(0deg);\r\n    }\r\n\r\n    100% {\r\n        transform: rotate(360deg);\r\n    }\r\n}\r\n", ""]);
 
 // exports
 
@@ -144269,16 +143928,30 @@ exports.push([module.i, "a {\r\n    color:white!important;\r\n}\r\n    a:hover {
 /* 232 */
 /***/ (function(module, exports, __webpack_require__) {
 
+exports = module.exports = __webpack_require__(1)();
+// imports
+
+
+// module
+exports.push([module.i, "a {\r\n    color:white!important;\r\n}\r\n    a:hover {\r\n        color: navy !important;\r\n    }\r\n.dropdowncolor {\r\n    background-color: #333;\r\n}", ""]);
+
+// exports
+
+
+/***/ }),
+/* 233 */
+/***/ (function(module, exports, __webpack_require__) {
+
 module.exports = {
-  XmlEntities: __webpack_require__(234),
-  Html4Entities: __webpack_require__(233),
+  XmlEntities: __webpack_require__(235),
+  Html4Entities: __webpack_require__(234),
   Html5Entities: __webpack_require__(121),
   AllHtmlEntities: __webpack_require__(121)
 };
 
 
 /***/ }),
-/* 233 */
+/* 234 */
 /***/ (function(module, exports) {
 
 var HTML_ALPHA = ['apos', 'nbsp', 'iexcl', 'cent', 'pound', 'curren', 'yen', 'brvbar', 'sect', 'uml', 'copy', 'ordf', 'laquo', 'not', 'shy', 'reg', 'macr', 'deg', 'plusmn', 'sup2', 'sup3', 'acute', 'micro', 'para', 'middot', 'cedil', 'sup1', 'ordm', 'raquo', 'frac14', 'frac12', 'frac34', 'iquest', 'Agrave', 'Aacute', 'Acirc', 'Atilde', 'Auml', 'Aring', 'Aelig', 'Ccedil', 'Egrave', 'Eacute', 'Ecirc', 'Euml', 'Igrave', 'Iacute', 'Icirc', 'Iuml', 'ETH', 'Ntilde', 'Ograve', 'Oacute', 'Ocirc', 'Otilde', 'Ouml', 'times', 'Oslash', 'Ugrave', 'Uacute', 'Ucirc', 'Uuml', 'Yacute', 'THORN', 'szlig', 'agrave', 'aacute', 'acirc', 'atilde', 'auml', 'aring', 'aelig', 'ccedil', 'egrave', 'eacute', 'ecirc', 'euml', 'igrave', 'iacute', 'icirc', 'iuml', 'eth', 'ntilde', 'ograve', 'oacute', 'ocirc', 'otilde', 'ouml', 'divide', 'oslash', 'ugrave', 'uacute', 'ucirc', 'uuml', 'yacute', 'thorn', 'yuml', 'quot', 'amp', 'lt', 'gt', 'OElig', 'oelig', 'Scaron', 'scaron', 'Yuml', 'circ', 'tilde', 'ensp', 'emsp', 'thinsp', 'zwnj', 'zwj', 'lrm', 'rlm', 'ndash', 'mdash', 'lsquo', 'rsquo', 'sbquo', 'ldquo', 'rdquo', 'bdquo', 'dagger', 'Dagger', 'permil', 'lsaquo', 'rsaquo', 'euro', 'fnof', 'Alpha', 'Beta', 'Gamma', 'Delta', 'Epsilon', 'Zeta', 'Eta', 'Theta', 'Iota', 'Kappa', 'Lambda', 'Mu', 'Nu', 'Xi', 'Omicron', 'Pi', 'Rho', 'Sigma', 'Tau', 'Upsilon', 'Phi', 'Chi', 'Psi', 'Omega', 'alpha', 'beta', 'gamma', 'delta', 'epsilon', 'zeta', 'eta', 'theta', 'iota', 'kappa', 'lambda', 'mu', 'nu', 'xi', 'omicron', 'pi', 'rho', 'sigmaf', 'sigma', 'tau', 'upsilon', 'phi', 'chi', 'psi', 'omega', 'thetasym', 'upsih', 'piv', 'bull', 'hellip', 'prime', 'Prime', 'oline', 'frasl', 'weierp', 'image', 'real', 'trade', 'alefsym', 'larr', 'uarr', 'rarr', 'darr', 'harr', 'crarr', 'lArr', 'uArr', 'rArr', 'dArr', 'hArr', 'forall', 'part', 'exist', 'empty', 'nabla', 'isin', 'notin', 'ni', 'prod', 'sum', 'minus', 'lowast', 'radic', 'prop', 'infin', 'ang', 'and', 'or', 'cap', 'cup', 'int', 'there4', 'sim', 'cong', 'asymp', 'ne', 'equiv', 'le', 'ge', 'sub', 'sup', 'nsub', 'sube', 'supe', 'oplus', 'otimes', 'perp', 'sdot', 'lceil', 'rceil', 'lfloor', 'rfloor', 'lang', 'rang', 'loz', 'spades', 'clubs', 'hearts', 'diams'];
@@ -144431,7 +144104,7 @@ module.exports = Html4Entities;
 
 
 /***/ }),
-/* 234 */
+/* 235 */
 /***/ (function(module, exports) {
 
 var ALPHA_INDEX = {
@@ -144592,271 +144265,271 @@ module.exports = XmlEntities;
 
 
 /***/ }),
-/* 235 */
+/* 236 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"col-lg-8 col-lg-offset-2 maindiv-style\">\r\n    <div class=\"text-center\">\r\n        <p class=\"lead\">\r\n            Даний сайт розроблено в підтримку волонтерського руху України.\r\n        </p>\r\n        <p class=\"lead\">\r\n            Основна мета ресурсу - створити майданчик, на якому небайдужі громадяни могли б ознайомитися з діяльністю\r\n            волонтерських оргаізацій, отримати детальну інформацію про те, яким чином ними були витрачені отримані кошти,\r\n            дізнатися про їх нагальні потреби та зробити пожертву.\r\n        </p>\r\n        <p class=\"lead\">\r\n            В свою чергу волонтерські організації, учасники даного ресурсу, мають змогу презентувати себе\r\n            та ділитися з громадянами новинами про свою діяльність.\r\n        </p>\r\n        <a [routerLink]=\"['']\"><img src=\"/images/volonter.jpg\" /></a>\r\n        <h4 class=\"text-center\">Lv-242.Net Group</h4>\r\n        Витрикуш Тарас, Дмитрук Сергій, Желєзняк Віторія, Малиновський Борис,<br />\r\n        Медвідь Оксана, Сипа Василь, Теплюх Богдан, Фай Василь<br />\r\n        <a [routerLink]=\"['']\">www.fundtrack.com.ua</a>\r\n    </div>\r\n</div>\r\n";
 
 /***/ }),
-/* 236 */
+/* 237 */
 /***/ (function(module, exports) {
 
 module.exports = "<!--<spinner [showSpinner]=\"showUsersSpinner\"></spinner>-->\r\n<div class=\"col-lg-6 col-md-12\" *ngFor=\"let event of _model\">\r\n    <div class=\"panel panel-primary panel-size\">\r\n        <div class=\"panel-heading\">\r\n            <div class=\"panel-title pull-left lead\">\r\n                <a [routerLink]=\"['']\">{{event.organizationName}}</a>\r\n            </div>\r\n            <div class=\"panel-title pull-right\">\r\n                {{event.createDate | date:'shortDate'}}\r\n            </div>\r\n            <div class=\"clearfix\"></div>\r\n        </div>\r\n        <div class=\"panel-body panel-padding\">\r\n            <div class=\" pull-left div-panel-margen\">\r\n                <img src={{event.imageUrl}}/>\r\n            </div>\r\n            <div class=\"div-strings\">\r\n                {{event.description}}\r\n            </div>\r\n            <div class=\"pull-right\">\r\n                <a [routerLink]=\"['/home/eventdetail',event.id]\" class=\"linkBack\">Читати далі</a>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>";
 
 /***/ }),
-/* 237 */
+/* 238 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"col-lg-10 col-lg-offset-1 fundtrack-style\" style=\"font-size:large; border-radius:5px; text-align:center; padding:10px;\">\r\n    Допомогти волонтерам можна не тільки грошима.<br />\r\n    Саме тут Ви можете переглянути повний перелік потреб волонтерських організацій у речах, ліках, продуктах та різноманітих товарах,\r\n    і при наявності можливості та бажання, запропонувати їм свою допомогу.\r\n</div>\r\n\r\n<div class=\"col-lg-10 col-lg-offset-1 fundtrack-style\" style=\"border-radius:5px; margin-top:10px; margin-bottom:10px; border-color: white !important; border-width:2px !important;\">\r\n    <div class=\"form-group\" style=\"float:left !important; margin:20px\">\r\n        <!--<label class=\"control-label\" for=\"selectbasic\">Організвція</label>-->\r\n        <div>\r\n            <select name=\"selectbasic\" class=\"form-control\" [(ngModel)]=\"_organization\">\r\n                <option value=\"\" disabled selected style=\"display: none;\">Виберіть організацію</option>\r\n                <option value=\"\">Всі організації</option>\r\n                <option value={{item.name}} *ngFor=\"let item of _organizations\">{{item.name}}</option>\r\n            </select>\r\n        </div>\r\n    </div>\r\n    <div class=\"form-group\" style=\"float:left !important; margin:20px\">\r\n        <div>\r\n            <select name=\"selectbasic\" class=\"form-control\" [(ngModel)]=\"_category\">\r\n                <option value=\"\" disabled selected style=\"display: none;\">Виберіть категорію</option>\r\n                <option value=\"\">Всі категорії</option>\r\n                <option value={{item.name}} *ngFor=\"let item of _categories\">{{item.name}}</option>\r\n            </select>\r\n        </div>\r\n    </div>\r\n    <div class=\"form-group\" style=\"float:left !important; margin:20px\">\r\n        <div>\r\n            <select name=\"selectbasic\" class=\"form-control\" [(ngModel)]=\"_type\">\r\n                <option value=\"\" disabled selected style=\"display: none;\">Виберіть тип</option>\r\n                <option value=\"\">Всі типи</option>\r\n                <option value={{item.name}} *ngFor=\"let item of _types\">{{item.name}}</option>\r\n            </select>\r\n        </div>\r\n    </div>\r\n    <div class=\"form-group\" style=\"float:left !important; margin:20px\">\r\n        <div>\r\n            <select name=\"selectbasic\" class=\"form-control\" [(ngModel)]=\"_status\">\r\n                <option value=\"\" disabled selected style=\"display: none;\">Виберіть статус</option>\r\n                <option value=\"\">Всі статуси</option>\r\n                <option value={{item.name}} *ngFor=\"let item of _statuses\">{{item.name}}</option>\r\n            </select>\r\n        </div>\r\n    </div>\r\n    <div class=\"form-group\">\r\n        <div>\r\n            <button id=\"singlebutton\" name=\"singlebutton\" class=\"btn btn-fundtrack-style pull-right\" style=\"margin:20px\" (click)=\"filteredRequestedItems()\">Шукати</button>\r\n        </div>\r\n    </div>\r\n</div>\r\n\r\n<div class=\"col-lg-10 col-lg-offset-1\">\r\n    <div class=\"col-lg-4 col-md-6 col-sm-12 col-xs-12\" *ngFor=\"let item of _model\">\r\n        <div class=\"thumbnail\">\r\n            <div class=\"caption fundtrack-style\">\r\n                <h4 style=\"display:inline;\">{{item.organization}}</h4>\r\n            </div>\r\n            <img src=\"http://placehold.it/400x250/000/fff\" alt=\"\" style=\"height:250px !important\">\r\n            <div class=\"caption\">\r\n                <h3>{{item.name}}</h3>\r\n                <p style=\"height:200px !important\">{{item.description}}</p>\r\n                <div class=\"row\">\r\n                    <div class=\"pull-right\" style=\"margin-right:10px\">\r\n                        <button id=\"singlebutton\" name=\"singlebutton\" class=\"btn pull-right btn-fundtrack-style\" (click)=\"onClick(item)\">Переглянути</button>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n<div class=\"row col-lg-12 col-md-12 col-sm-12\">\r\n    <div *ngIf=\"totalItems && itemsPerPage\" class=\"text-center\">\r\n        <pagination-pages [offset]=\"offset\"\r\n                          [limit]=\"itemsPerPage\"\r\n                          [size]=\"totalItems\"\r\n                          [currentPage]=\"currentPage\"\r\n                          (pageChange)=\"onPageChange($event)\">\r\n        </pagination-pages>\r\n    </div>\r\n</div>";
 
 /***/ }),
-/* 238 */
+/* 239 */
 /***/ (function(module, exports) {
 
 module.exports = "<link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css\">\r\n<div class=\"fixedHeader\">\r\n    <nav class=\"navbar navbar-default\">\r\n        <div class=\"container-fluid\">\r\n            <div class=\"navbar-header\">\r\n                <button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#bs-example-navbar-collapse-1\" aria-expanded=\"false\">\r\n                    <span class=\"sr-only\">Toggle navigation</span>\r\n                    <span class=\"icon-bar\"></span>\r\n                    <span class=\"icon-bar\"></span>\r\n                    <span class=\"icon-bar\"></span>\r\n                </button>\r\n                <a class=\"navbar-brand\" [routerLink]=\"['']\" (click)=\"callChild()\">Волонтерські організації<span>України</span></a>\r\n            </div>\r\n            <div class=\"collapse navbar-collapse\" id=\"bs-example-navbar-collapse-1\">\r\n                <ul class=\"nav navbar-nav\">\r\n                    <li><a [routerLink]=\"['about']\">Про нас</a></li>\r\n                </ul>\r\n                <form class=\"navbar-form navbar-left\" *ngIf=\"_service.showDropDown\">\r\n                    <dropdown-org></dropdown-org>\r\n                </form>\r\n                <form class=\"nav navbar-nav navbar-right\">\r\n                    <user-states></user-states>\r\n                </form>\r\n            </div>\r\n        </div>\r\n    </nav>\r\n</div>\r\n<div class=\"content\" style=\"margin-top:auto;\">\r\n    <sidebar (onOpen)=\"toggleMargin($event)\"></sidebar>\r\n    <div [class.shifted]=\"margin\" style=\"margin-left:50px;\">\r\n        <router-outlet></router-outlet>\r\n    </div>\r\n</div>\r\n<footer class=\"footer footer-distributed\">\r\n    <div style=\"padding: 20px\">\r\n        <div class=\"footer-right\">\r\n            <a href=\"#\"><i class=\"fa fa-facebook\"></i></a>\r\n            <a href=\"#\"><i class=\"fa fa-twitter\"></i></a>\r\n            <a href=\"#\"><i class=\"fa fa-linkedin\"></i></a>\r\n            <a href=\"#\"><i class=\"fa fa-youtube\"></i></a>\r\n        </div>\r\n\r\n        <div class=\"footer-left\">\r\n            <p class=\"footer-links\">\r\n                <a [routerLink]=\"['']\">Наш солдат</a>\r\n                ·\r\n                <a href=\"#\">Блог</a>\r\n                ·\r\n                <a [routerLink]=\"['/about']\">Про нас</a>\r\n                ·\r\n                <a href=\"#\">Faq</a>\r\n                ·\r\n                <a href=\"#\">Контакти</a>\r\n            </p>\r\n            <p>FundTrack &copy; 2017</p>\r\n            <p>{{_versionNumber}}</p>\r\n        </div>\r\n    </div>\r\n</footer>";
 
 /***/ }),
-/* 239 */
+/* 240 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"loginmodal-container\">\r\n    <div>\r\n        <h3 class=\"col-md-4 col-md-offset-4\">Вхід в систему</h3>\r\n    </div>\r\n    <div class=\"col-md-4 col-md-offset-4 form-group has-feedback\">\r\n        <div class=\"input-group\">\r\n            <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-user\" aria-hidden=\"true\"></i></span>\r\n            <input name=\"login\" placeholder=\"Ваш логін\" type=\"text\"\r\n                   [(ngModel)]=\"loginModel.login\" class=\"form-control input-md\">\r\n        </div>\r\n    </div>\r\n    <!-- Text input-->\r\n    <div class=\"col-md-4 col-md-offset-4 form-group has-feedback\">\r\n        <div class=\"input-group\">\r\n            <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-lock\" aria-hidden=\"true\"></i></span>\r\n            <input name=\"password\" [type]=\"type\" placeholder=\"Ваш пароль\"\r\n                   [(ngModel)]=\"loginModel.password\"\r\n                   class=\"form-control input-md\">\r\n            <span class=\"input-group-addon\"><i [ngClass]=\"glyphyconEye\" (click)=\"showPassword()\" aria-hidden=\"true\"></i></span>\r\n        </div>\r\n    </div>\r\n    <!--Error-->\r\n    <div class=\"col-md-4 col-md-offset-4 form-group\">\r\n        <p class=\"error\" *ngIf=\"errorMessage\">{{errorMessage}}</p>\r\n    </div>\r\n    <!-- Button -->\r\n    <div class=\"col-md-4 col-md-offset-4 form-group\">\r\n        <div class=\"pull-right\">\r\n            <button id=\"submit\" name=\"submit\" class=\"btn btn-default\" (click)=\"login()\">Увійти</button>\r\n            <button id=\"submit\" name=\"submit\" class=\"btn btn-fundtrack-style\" (click)=\"loginWithFacebook('facebook')\">Увійти через Facebook</button>\r\n        </div>\r\n    </div>\r\n    <!--Register-->\r\n    <div class=\"login-help col-md-4 col-md-offset-4\">\r\n        <div class=\"pull-right\">\r\n            <div class=\"sidebar\">\r\n                <a [routerLink]=\"['/registration']\">Реєстрація - </a>\r\n                <a [routerLink]=\"['/begin_password_reset']\">Забули пароль</a>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n";
 
 /***/ }),
-/* 240 */
+/* 241 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"col-lg-12\" *ngIf=\"_eventDetail\">\r\n    <div class=\"panel panel-primary\">\r\n        <div class=\"panel-heading\">\r\n            <div class=\"panel-title pull-left\">\r\n                {{_eventDetail.organizationName}}\r\n            </div>\r\n            <div class=\"panel-title pull-right\">\r\n                {{_eventDetail.createDate | date:'shortDate' }}\r\n            </div>\r\n            <div class=\"clearfix\"></div>\r\n        </div>\r\n        <div class=\"panel-body panel-padding\">\r\n            <div>\r\n                <div style=\"float:left; margin-right:50px\">\r\n                    <img alt=\"\" title=\"\" src={{_eventDetail.imageUrl[0]}} class=\"img-big\">\r\n                </div>\r\n                <div *ngIf=\"_eventDetail.imageUrl\" style=\"position:absolute\">\r\n                    <gallery-eventdetail [datasource]=\"_eventDetail.imageUrl\"> </gallery-eventdetail>\r\n                </div>\r\n                <!--<div style=\"position:absolute; height:60px\">\r\n                    <p style=\"float:left\" *ngFor=\"let image of _eventDetail.imageUrl\">\r\n                        <a [routerLink]=\"['']\"><img class=\"img-size\" alt=\"\" src={{image}}></a>\r\n                    </p>\r\n                </div>-->\r\n            </div>\r\n            <div style=\"min-height:575px\">\r\n                {{_eventDetail.description}}\r\n            </div>\r\n            <div class=\"pull-right\">\r\n                <a [routerLink]=\"['']\" class=\"btn linkBack\">Назад</a>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>";
 
 /***/ }),
-/* 241 */
+/* 242 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"row\">\r\n    <router-outlet></router-outlet>\r\n</div>";
 
 /***/ }),
-/* 242 */
+/* 243 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"well container-fluid\">\r\n    <spinner [showSpinner]=\"showUserRegistrationSpinner\"></spinner>\r\n    <section>\r\n        <div class=\"panel-heading\">\r\n            <h3><u>{{header}}</u></h3>\r\n        </div>\r\n        <div class=\"input-list style-4 clearfix\">\r\n            <h4 style=\"margin-left:15px;\">Заголовок</h4>\r\n            <input type=\"text\" class=\"titlefield form-control\" [(ngModel)]=\"this.offerItem.name\" name=\"name\" required maxlength=\"100\" #name=\"ngModel\">\r\n            <div style=\"padding-left:15px;\" *ngIf=\"name.errors && (name.dirty || name.touched)\">\r\n                <div [hidden]=\"!name.errors.required\">\r\n                    <span class=\"has-error\">Заголовок є обов'язковим</span>\r\n                </div>\r\n                <div [hidden]=\"!name.errors.maxlength\">\r\n                    Довжина не може перевищувати 100 символів\r\n                </div>\r\n            </div>\r\n            <div class=\"col-md-12\">\r\n                <div class=\"col-md-6\" style=\"margin-left:-13px;\">\r\n                    <h4>Категорія</h4>\r\n                </div>\r\n                <div class=\"col-md-6 \">\r\n                    <h4>Підкатегорія</h4>\r\n                </div>\r\n            </div>\r\n            <div>\r\n                <div class=\"col-md-5\">\r\n                    <select [(ngModel)]=\"_selectedType\" class=\"mdb-select form-control\" name=\"type\" required #type=\"ngModel\">\r\n                        <option selected=\"\"></option>\r\n                        <option *ngFor=\"let goodType of _goodsTypes\"\r\n                                [ngValue]=\"goodType\">\r\n                            {{goodType.name}}\r\n                        </option>\r\n                    </select>\r\n                    <div [hidden]=\"type.valid || type.untouched\" class=\"has-error\">\r\n                        Виберіть тип\r\n                    </div>\r\n                </div>\r\n                <div class=\"col-md-5 col-md-push-1\" style=\"margin-left:-13px;\">\r\n                    <select [(ngModel)]=\"offerItem.goodsCategoryId\" class=\"mdb-select form-control\" name=\"category\" required #category=\"ngModel\">\r\n                        <option selected=\"\"></option>\r\n                        <option *ngFor=\"let category of _selectedType.typeCategories\"\r\n                                [ngValue]=\"category.id\">\r\n                            {{category.name}}\r\n                        </option>\r\n                    </select>\r\n                    <div [hidden]=\"category.valid || category.untouched\" class=\"has-error\">\r\n                        Виберіть категорію\r\n                    </div>\r\n                </div>\r\n            </div>\r\n            <div class=\"col-md-12\">\r\n                <h4>Опис</h4>\r\n                <textarea required class=\"form-control\" name=\"description\" maxlength=\"2000\" [(ngModel)]=\"this.offerItem.description\" #offerItemDescription id=\"offerItemDescription\" #description=\"ngModel\"></textarea>\r\n                <div [hidden]=\"description.valid || description.untouched\" class=\"has-error\">\r\n                   Опис є обов'язковим\r\n                </div>\r\n                <small class=\"form-text text-muted\"><code>{{offerItemDescription.value.length}}</code> з <code>{{maxDescriptionLength}}</code> символів</small>\r\n            </div>\r\n            <div class=\"col-xs-12\" style=\"height:20px;\"></div>\r\n            <div class=\"col-md-12\">\r\n                <div class=\"img-container\">\r\n                    <img src='https://s3.eu-central-1.amazonaws.com/fundtrack/default-placeholder.png' (click)=\"imageInput1.click()\" class=\"avatar img-responsive img-thumbnail itemimage\" style=\"border:none\" alt=\"avatar\" width=\"126\">\r\n                    <input type=\"file\" (change)=\"saveFileInAws($event)\" #imageInput1 accept=\".png,.jpg\" class=\"text-center center-block well well-sm hidden\">\r\n                </div>\r\n                <div *ngFor=\"let image of _images\" style=\"display:inline-block\">\r\n                    <div class=\"img-container\">\r\n                        <img src=\"{{image.imageUrl}}\" [ngClass]=\"{'mainimage': image.isMain==true}\" class=\"avatar img-responsive img-thumbnail itemimage\" style=\"border:none\" alt=\"avatar\" width=\"126\">\r\n                        <a title=\"Видалити малюнок\" (click)=\"deleteCurrentImage(image)\"><span class=\"glyphicon glyphicon-remove\"></span></a>\r\n                        <a title=\"Зробити головним\" class=\"makemain\" (click)=\"setCurrentImageAsMain(image)\"><span class=\"glyphicon glyphicon-edit\" style=\"color:blue\"></span></a>\r\n                        <!--<div>\r\n                            <a><span id=\"setmain\" class=\"glyphicon glyphicon-pencil\"></span></a>\r\n                        </div>-->\r\n                        <!--<div style=\"position:absolute; z-index:9999999\">\r\n                            <a (click)=\"deleteCurrentImage(image)\"><span class=\"glyphicon glyphicon-remove\"></span></a>\r\n                        </div>-->\r\n                    </div>\r\n                </div>\r\n            </div>\r\n            <!--<div class=\"col-md-12\" style=\"margin:10px 10px 10px 10px\">\r\n                <h4>Контактні дані</h4>\r\n                <hr />\r\n                <div class=\"col-md-4\">\r\n                    <label style=\"padding-left:12px\" for=\"contactName\"><span style=\"font-size:medium;\">Контактна особа</span></label>\r\n                    <input id=\"contacts\" class=\"contacts\" type=\"text\" name=\"contactName\" [(ngModel)]=\"this.offerItem.contactName\" />\r\n                </div>\r\n                <div class=\"col-md-4\">\r\n                    <label style=\"padding-left:12px\" for=\"location\"><span style=\"font-size:medium;\">Місцезнаходження</span></label>\r\n                    <input id=\"location\" class=\"contacts\" type=\"text\" name=\"location\" [(ngModel)]=\"this.offerItem.contactAddress\" />\r\n                </div>\r\n                <div class=\"col-md-4\">\r\n                    <label style=\"padding-left:12px\" for=\"phone\"><span style=\"font-size:medium;\">Телефон</span></label>\r\n                    <input id=\"phone\" class=\"contacts\" type=\"text\" name=\"phone\" [(ngModel)]=\"this.offerItem.contactPhone\" />\r\n                </div>\r\n            </div>-->\r\n            <div class=\"col-md-12\">\r\n                <button [disabled]=\"name.invalid || description.invalid || type.invalid || category.invalid\" style=\"padding:5px 10px 5px 10px\" type=\"submit\" class=\"btn btn-success btn-lg pull-right\" (click)=\"submit()\">Зберегти і повернутись</button>\r\n            </div>\r\n        </div>\r\n    </section>\r\n</div>\r\n";
 
 /***/ }),
-/* 243 */
-/***/ (function(module, exports) {
-
-module.exports = "<div class=\"well container-fluid\" *ngFor=\"let offer of offers\">\r\n    <div class=\"row\">\r\n        <div class=\"col-md-3\" *ngIf=\"offer.image\">\r\n            <img class=\".img-thumbnail\" height=\"200\" width=\"200\" src=\"{{offer.mainImage.imageUrl}}\" alt=\"itemImage\" />\r\n        </div>\r\n        <div class=\"col-md-7\">\r\n            <div class=\"col-md-12\">\r\n                <h3> {{offer.name}}</h3>\r\n            </div>\r\n            <div class=\"col-md-12\">\r\n                {{offer.description|truncate : 350}}\r\n            </div>\r\n            <div class=\"col-md-12\" style=\"margin-top:40px;margin-left:-10px;\">\r\n                <div class=\"col-md-4\">\r\n                    <b>Дата створення:</b> {{date}}\r\n                </div>\r\n                <div class=\"col-md-2\">\r\n                    <b>Статус:</b> <b><span style=\"color:#2db50b\">{{offer.statusName}}</span></b>\r\n                </div>\r\n                <div class=\"col-md-6 col-md-push-2\">\r\n                        <b>Категорія:</b><br /><b><span>{{offer.goodsTypeName}} - {{offer.goodsCategoryName}}</span></b>\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"col-md-1\">\r\n            <div class=\"btn-group btn-group-vertical controlbutton\">\r\n                <button class=\"btn btn-default\" (click)=\"goToEditPage(offer)\">Змінити</button>\r\n                <button class=\"btn btn-default\">Деактивувати</button>\r\n                <button class=\"btn btn-danger\" (click)=\"deleteConfirm(offer)\">Видалити</button>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n<!--<div class=\"well container-fluid\" *ngIf=\"!=offers\">\r\n    <h3>У Вас немає жодної доданої речі</h3>\r\n</div>-->";
-
-/***/ }),
 /* 244 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\r\n    <div class=\"row\">\r\n        <div class=\"col-md-3\">\r\n            <p class=\"lead\">Речі</p>\r\n            <div class=\"table-responsive\">\r\n                <button type=\"button\" class=\"btn btn-default btn-lg btn-block\" [routerLink]=\"['./add']\">\r\n                    <span class=\"glyphicon glyphicon-thumbs-up\" aria-hidden=\"true\"></span> Запропонувати\r\n                </button>\r\n                <button type=\"button\" class=\"btn btn-default btn-lg btn-block\" [routerLink]=\"['./mylist']\">\r\n                    <span class=\"glyphicon glyphicon-list-alt\" aria-hidden=\"true\"></span> Мої пропозиції\r\n                </button>\r\n            </div>\r\n                <div class=\"panel panel-default\" style=\"margin-top:40px\">\r\n                    <div class=\"panel-heading\">Фільтрувати пропозиції по статусу:</div>\r\n                    <ul class=\"list-group\">\r\n                        <li class=\"list-group-item\">\r\n                            Активні\r\n                            <div class=\"material-switch pull-right\">\r\n                                <input id=\"someSwitchOptionInfo\" name=\"someSwitchOption001\" type=\"checkbox\" [(ngModel)]=\"showActive\" />\r\n                                <label for=\"someSwitchOptionInfo\" class=\"label-success\"></label>\r\n                            </div>\r\n                        </li>\r\n                        <li class=\"list-group-item\">\r\n                            Неактивні\r\n                            <div class=\"material-switch pull-right\">\r\n                                <input id=\"someSwitchOptionWarning\" name=\"someSwitchOption002\" type=\"checkbox\" [(ngModel)]=\"showInactive\" />\r\n                                <label for=\"someSwitchOptionWarning\" class=\"label-warning\"></label>\r\n                            </div>\r\n                        </li>\r\n                        <li class=\"list-group-item\">\r\n                            Видалені\r\n                            <div class=\"material-switch pull-right\">\r\n                                <input id=\"someSwitchOptionDanger\" name=\"someSwitchOption003\" type=\"checkbox\" [(ngModel)]=\"showRemoved\"  />\r\n                                <label for=\"someSwitchOptionDanger\" class=\"label-danger\"></label>\r\n                            </div>\r\n                        </li>\r\n                    </ul>\r\n                </div>\r\n        </div>\r\n        <div class=\"col-md-9\">\r\n            <router-outlet></router-outlet>\r\n        </div>\r\n    </div>\r\n</div>\r\n";
+module.exports = "<div class=\"well container-fluid\" *ngFor=\"let offer of offers\">\r\n    <div class=\"row\">\r\n        <div class=\"col-md-3\" *ngIf=\"offer.image\">\r\n            <img class=\".img-thumbnail\" height=\"200\" width=\"200\" src=\"{{offer.mainImage.imageUrl}}\" alt=\"itemImage\" />\r\n        </div>\r\n        <div class=\"col-md-7\">\r\n            <div class=\"col-md-12\">\r\n                <h3> {{offer.name}}</h3>\r\n            </div>\r\n            <div class=\"col-md-12\">\r\n                {{offer.description|truncate : 350}}\r\n            </div>\r\n            <div class=\"col-md-12\" style=\"margin-top:40px;margin-left:-10px;\">\r\n                <div class=\"col-md-4\">\r\n                    <b>Дата створення:</b> {{date}}\r\n                </div>\r\n                <div class=\"col-md-2\">\r\n                    <b>Статус:</b> <b><span [ngClass]=\"{'activated':offer.statusName=='Активний','deactivated':offer.statusName=='Неактивний'}\" >{{offer.statusName}}</span></b>\r\n                </div>\r\n                <div class=\"col-md-6 col-md-push-2\">\r\n                        <b>Категорія:</b><br /><b><span>{{offer.goodsTypeName}} - {{offer.goodsCategoryName}}</span></b>\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <div class=\"col-md-1\">\r\n            <div class=\"btn-group btn-group-vertical controlbutton\">\r\n                <button class=\"btn btn-default buttoncontrol\" (click)=\"goToEditPage(offer)\">Змінити</button>\r\n                <button class=\"btn btn-default buttoncontrol\" (click)=\"changeOfferItemStatus(offer)\">{{offer.statusName=='Активний'? 'Дезактивувати' : 'Активувати'}}</button>\r\n                <button class=\"btn btn-danger buttoncontrol\" (click)=\"deleteConfirm(offer)\">Видалити</button>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n<!--<div class=\"well container-fluid\" *ngIf=\"!=offers\">\r\n    <h3>У Вас немає жодної доданої речі</h3>\r\n</div>-->";
 
 /***/ }),
 /* 245 */
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngIf=\"_event\" class=\"col-sm-10 col-sm-offset-1\">\r\n    <div class='well'>\r\n        <h2>Сторінка редагування події</h2>\r\n        <form #form=\"ngForm\" novalidate>\r\n            <div class=\"form-group\" [class.has-error]=\"description.invalid && description.dirty\">\r\n                <label class=\"control-label\">Опис нової події</label>\r\n                <textarea #description=\"ngModel\"\r\n                          rows=\"15\"\r\n                          required\r\n                          type=\"text\"\r\n                          class=\"form-control\"\r\n                          name=\"description\"\r\n                          [(ngModel)]=\"_event.description\"></textarea>\r\n                <p *ngIf=\"description.invalid && description.dirty\" class=\"error-message\">\r\n                    Має бути опис події\r\n                </p>\r\n            </div>\r\n            <div class=\"form-group\">\r\n                <div>\r\n                    <div *ngFor=\"let _currentImage of _event.images\" style=\"display:inline-block\">\r\n                        <div class=\"img-container\">\r\n                            <img src=\"{{_currentImage.imageUrl}}\" class=\"img-responsive img-thumbnail item-image\">\r\n                            <a (click)=\"deleteCurrentImage(_currentImage)\"><span class=\"glyphicon glyphicon-remove\"></span></a>\r\n                        </div>\r\n                    </div>\r\n                    <div class=\"img-container\">\r\n                        <img src=\"http://www.freeiconspng.com/uploads/add-icon--line-iconset--iconsmind-29.png\"\r\n                             (click)=\"imageInput.click()\" class=\"img-responsive img-thumbnail add-image item-image\" title=\"Додати зображення\">\r\n                        <input type=\"file\" (change)=\"saveFileInAws($event)\" #imageInput accept=\".png,.jpg\" class=\"well well-sm hidden\">\r\n                    </div>\r\n                </div>\r\n            </div>\r\n            <div class='text-right'>\r\n                <button class=\"btn btn-success pull-right\" (click)=\"updateEvent()\">Зберегти</button>\r\n                <button class=\"btn btn-warning pull-right\" (click)=\"redirectToAllEvents()\">Відмінити</button>\r\n            </div>\r\n        </form>\r\n        <br />\r\n    </div>\r\n</div>";
+module.exports = "<div class=\"container\">\r\n    <div class=\"row\">\r\n        <div class=\"col-md-3\">\r\n            <p class=\"lead\">Речі</p>\r\n            <div class=\"table-responsive\">\r\n                <button type=\"button\" class=\"btn btn-default btn-lg btn-block\" [routerLink]=\"['./add']\">\r\n                    <span class=\"glyphicon glyphicon-thumbs-up\" aria-hidden=\"true\"></span> Запропонувати\r\n                </button>\r\n                <button type=\"button\" class=\"btn btn-default btn-lg btn-block\" [routerLink]=\"['./mylist']\">\r\n                    <span class=\"glyphicon glyphicon-list-alt\" aria-hidden=\"true\"></span> Мої пропозиції\r\n                </button>\r\n            </div>\r\n                <div class=\"panel panel-default\" style=\"margin-top:40px\">\r\n                    <div class=\"panel-heading\">Фільтрувати пропозиції по статусу:</div>\r\n                    <ul class=\"list-group\">\r\n                        <li class=\"list-group-item\">\r\n                            Активні\r\n                            <div class=\"material-switch pull-right\">\r\n                                <input id=\"someSwitchOptionInfo\" name=\"someSwitchOption001\" type=\"checkbox\" [(ngModel)]=\"showActive\" />\r\n                                <label for=\"someSwitchOptionInfo\" class=\"label-success\"></label>\r\n                            </div>\r\n                        </li>\r\n                        <li class=\"list-group-item\">\r\n                            Неактивні\r\n                            <div class=\"material-switch pull-right\">\r\n                                <input id=\"someSwitchOptionWarning\" name=\"someSwitchOption002\" type=\"checkbox\" [(ngModel)]=\"showInactive\" />\r\n                                <label for=\"someSwitchOptionWarning\" class=\"label-warning\"></label>\r\n                            </div>\r\n                        </li>\r\n                        <!--<li class=\"list-group-item\">\r\n                            Видалені\r\n                            <div class=\"material-switch pull-right\">\r\n                                <input id=\"someSwitchOptionDanger\" name=\"someSwitchOption003\" type=\"checkbox\" [(ngModel)]=\"showRemoved\"  />\r\n                                <label for=\"someSwitchOptionDanger\" class=\"label-danger\"></label>\r\n                            </div>\r\n                        </li>-->\r\n                    </ul>\r\n                </div>\r\n        </div>\r\n        <div class=\"col-md-9\">\r\n            <router-outlet></router-outlet>\r\n        </div>\r\n    </div>\r\n</div>\r\n";
 
 /***/ }),
 /* 246 */
 /***/ (function(module, exports) {
 
-module.exports = "<spinner [showSpinner]=\"_showUsersSpinner\"></spinner>\r\n<div *ngIf=\"_allEvents\" class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12 list-group\">\r\n    <div *ngFor=\"let event of _allEvents\" id=\"products\">\r\n        <div class=\"item col-lg-3 col-md-4 col-sm-6 col-xs-12\">\r\n            <div class=\"thumbnail\">\r\n                <div class=\"photo\">\r\n                    <img class=\"list-group-image\" src=\"{{event.images[0].imageUrl}}\" alt=\"\" />\r\n                </div>\r\n                <div class=\"caption\">\r\n                    <h3>{{event.createDate|date:'shortTime'}}</h3>\r\n                    <p class=\"group inner list-group-item-text\">{{event.description|truncate : 150  }}</p>\r\n                    <div class=\"row\">\r\n                        <div class=\"col-lg-6 col-md-6 col-xs-12\">\r\n                            <button class=\"center-block btn btn-success\" (click)=\"redirectToDetailEditPage(event.id)\">Редагувати</button>\r\n                        </div>\r\n                        <div class=\"col-lg-6 col-md-6 col-xs-12\">\r\n                            <button class=\"center-block btn btn-danger\" (click)='setCurrentEventItem(event)' data-toggle=\"modal\" data-target=\"#deleteEvent\">Видалити</button>\r\n                        </div>\r\n                        <delete-event [itemToToDelete]='_currentEventItem' (onSuccesfullDelete)=\"deleteEvent()\"></delete-event>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n<div *ngIf=\"_allEvents\">\r\n    <div class=\"center-block pagination-dropdown\">\r\n        <span id=\"for-select-item\">Показати по:</span>\r\n        <select-item [items]=\"[4, 8, 12, 24, 48]\"\r\n                     (onSelect)=\"itemsPerPageChange($event)\">\r\n        </select-item>\r\n    </div>\r\n    <div class=\"text-center\" *ngIf=\"_totalItems && _itemPerPage\">\r\n        <pagination-pages [offset]=\"_offset\"\r\n                          [limit]=\"_itemPerPage\"\r\n                          [size]=\"_totalItems\"\r\n                          [currentPage]=\"_currentPage\"\r\n                          (pageChange)=\"onPageChange($event)\"\r\n                          class=\"col-md-12\">\r\n        </pagination-pages>\r\n    </div>\r\n</div>\r\n\r\n\r\n\r\n\r\n";
+module.exports = "<div *ngIf=\"_event\" class=\"col-sm-10 col-sm-offset-1\">\r\n    <div class='well'>\r\n        <h2>Сторінка редагування події</h2>\r\n        <form #form=\"ngForm\" novalidate>\r\n            <div class=\"form-group\" [class.has-error]=\"description.invalid && description.dirty\">\r\n                <label class=\"control-label\">Опис нової події</label>\r\n                <textarea #description=\"ngModel\"\r\n                          rows=\"15\"\r\n                          required\r\n                          type=\"text\"\r\n                          class=\"form-control\"\r\n                          name=\"description\"\r\n                          [(ngModel)]=\"_event.description\"></textarea>\r\n                <p *ngIf=\"description.invalid && description.dirty\" class=\"error-message\">\r\n                    Має бути опис події\r\n                </p>\r\n            </div>\r\n            <div class=\"form-group\">\r\n                <div>\r\n                    <div *ngFor=\"let _currentImage of _event.images\" style=\"display:inline-block\">\r\n                        <div class=\"img-container\">\r\n                            <img src=\"{{_currentImage.imageUrl}}\" class=\"img-responsive img-thumbnail item-image\">\r\n                            <a (click)=\"deleteCurrentImage(_currentImage)\"><span class=\"glyphicon glyphicon-remove\"></span></a>\r\n                        </div>\r\n                    </div>\r\n                    <div class=\"img-container\">\r\n                        <img src=\"http://www.freeiconspng.com/uploads/add-icon--line-iconset--iconsmind-29.png\"\r\n                             (click)=\"imageInput.click()\" class=\"img-responsive img-thumbnail add-image item-image\" title=\"Додати зображення\">\r\n                        <input type=\"file\" (change)=\"saveFileInAws($event)\" #imageInput accept=\".png,.jpg\" class=\"well well-sm hidden\">\r\n                    </div>\r\n                </div>\r\n            </div>\r\n            <div class='text-right'>\r\n                <button class=\"btn btn-success pull-right\" (click)=\"updateEvent()\">Зберегти</button>\r\n                <button class=\"btn btn-warning pull-right\" (click)=\"redirectToAllEvents()\">Відмінити</button>\r\n            </div>\r\n        </form>\r\n        <br />\r\n    </div>\r\n</div>";
 
 /***/ }),
 /* 247 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class='col-sm-10 col-sm-offset-1'>\r\n    <div class='well'>\r\n        <form>\r\n            <div class='row'>\r\n                <div class=\"form-group\" [class.has-error]=\"description.invalid && description.dirty\">\r\n                    <label class=\"control-label\">Опис нової події</label>\r\n                    <textarea #description=\"ngModel\"\r\n                              rows=\"15\"\r\n                              required\r\n                              type=\"text\"\r\n                              class=\"form-control\"\r\n                              name=\"description\"\r\n                              [(ngModel)]=\"_event.description\"></textarea>\r\n                    <p *ngIf=\"description.invalid && description.dirty\" class=\"error-message\">\r\n                        Має бути опис події\r\n                    </p>\r\n                </div>\r\n                <div class=\"form-group\">\r\n                    <div>\r\n                        <div *ngFor=\"let _currentImage of _event.images\" style=\"display:inline-block\">\r\n                            <div class=\"img-container\">\r\n                                <img src=\"{{_currentImage.imageUrl}}\" class=\"img-responsive img-thumbnail item-image\">\r\n                                <a (click)=\"deleteImageFromList(_currentImage.imageUrl)\"><span class=\"glyphicon glyphicon-remove\"></span></a>\r\n                            </div>\r\n                        </div>\r\n                        <div class=\"img-container\">\r\n                            <img src=\"http://www.freeiconspng.com/uploads/add-icon--line-iconset--iconsmind-29.png\"\r\n                                 (click)=\"imageInput.click()\" class=\"img-responsive img-thumbnail add-image item-image\" title=\"Додати зображення\">\r\n                            <input type=\"file\" (change)=\"saveFileInAws($event)\" #imageInput accept=\".png,.jpg\" class=\"well well-sm hidden\">\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n                <div class='text-right'>\r\n                    <button class=\"btn btn-success pull-right\" (click)=\"addNewEvent()\">Зберегти</button>\r\n                    <button class=\"btn btn-warning pull-right\" (click)=\"redirectToAllEvents()\">Відмінити</button>\r\n                </div>\r\n            </div>\r\n            {{_errorMessage}}\r\n        </form>\r\n    </div>\r\n</div>\r\n";
+module.exports = "<spinner [showSpinner]=\"_showUsersSpinner\"></spinner>\r\n<div *ngIf=\"_allEvents\" class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12 list-group\">\r\n    <div *ngFor=\"let event of _allEvents\" id=\"products\">\r\n        <div class=\"item col-lg-3 col-md-4 col-sm-6 col-xs-12\">\r\n            <div class=\"thumbnail\">\r\n                <div class=\"photo\">\r\n                    <img class=\"list-group-image\" src=\"{{event.images[0].imageUrl}}\" alt=\"\" />\r\n                </div>\r\n                <div class=\"caption\">\r\n                    <h3>{{event.createDate|date:'shortTime'}}</h3>\r\n                    <p class=\"group inner list-group-item-text\">{{event.description|truncate : 150  }}</p>\r\n                    <div class=\"row\">\r\n                        <div class=\"col-lg-6 col-md-6 col-xs-12\">\r\n                            <button class=\"center-block btn btn-success\" (click)=\"redirectToDetailEditPage(event.id)\">Редагувати</button>\r\n                        </div>\r\n                        <div class=\"col-lg-6 col-md-6 col-xs-12\">\r\n                            <button class=\"center-block btn btn-danger\" (click)='setCurrentEventItem(event)' data-toggle=\"modal\" data-target=\"#deleteEvent\">Видалити</button>\r\n                        </div>\r\n                        <delete-event [itemToToDelete]='_currentEventItem' (onSuccesfullDelete)=\"deleteEvent()\"></delete-event>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n<div *ngIf=\"_allEvents\">\r\n    <div class=\"center-block pagination-dropdown\">\r\n        <span id=\"for-select-item\">Показати по:</span>\r\n        <select-item [items]=\"[4, 8, 12, 24, 48]\"\r\n                     (onSelect)=\"itemsPerPageChange($event)\">\r\n        </select-item>\r\n    </div>\r\n    <div class=\"text-center\" *ngIf=\"_totalItems && _itemPerPage\">\r\n        <pagination-pages [offset]=\"_offset\"\r\n                          [limit]=\"_itemPerPage\"\r\n                          [size]=\"_totalItems\"\r\n                          [currentPage]=\"_currentPage\"\r\n                          (pageChange)=\"onPageChange($event)\"\r\n                          class=\"col-md-12\">\r\n        </pagination-pages>\r\n    </div>\r\n</div>\r\n\r\n\r\n\r\n\r\n";
 
 /***/ }),
 /* 248 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"modal fade\" id=\"deleteEvent\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\">\r\n    <div class=\"modal-dialog\" role=\"document\">\r\n        <div class=\"modal-content\">\r\n            <div class=\"modal-header\">\r\n                <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>\r\n                <h4 class=\"modal-title deleteModalTitle\" id=\"myModalLabel\">Видалити Подію</h4>\r\n            </div>\r\n            <div class=\"modal-body\">\r\n                <span>\r\n                    Підтвердіть видалення події\r\n\r\n                </span>\r\n            </div>\r\n            <div class=\"modal-footer\">\r\n                <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Закрити</button>\r\n                <button type=\"button\" class=\"btn btn-success\" (click)='deleteConfirmation()' data-dismiss=\"modal\">Видалити</button>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>";
+module.exports = "<div class='col-sm-10 col-sm-offset-1'>\r\n    <div class='well'>\r\n        <form>\r\n            <div class='row'>\r\n                <div class=\"form-group\" [class.has-error]=\"description.invalid && description.dirty\">\r\n                    <label class=\"control-label\">Опис нової події</label>\r\n                    <textarea #description=\"ngModel\"\r\n                              rows=\"15\"\r\n                              required\r\n                              type=\"text\"\r\n                              class=\"form-control\"\r\n                              name=\"description\"\r\n                              [(ngModel)]=\"_event.description\"></textarea>\r\n                    <p *ngIf=\"description.invalid && description.dirty\" class=\"error-message\">\r\n                        Має бути опис події\r\n                    </p>\r\n                </div>\r\n                <div class=\"form-group\">\r\n                    <div>\r\n                        <div *ngFor=\"let _currentImage of _event.images\" style=\"display:inline-block\">\r\n                            <div class=\"img-container\">\r\n                                <img src=\"{{_currentImage.imageUrl}}\" class=\"img-responsive img-thumbnail item-image\">\r\n                                <a (click)=\"deleteImageFromList(_currentImage.imageUrl)\"><span class=\"glyphicon glyphicon-remove\"></span></a>\r\n                            </div>\r\n                        </div>\r\n                        <div class=\"img-container\">\r\n                            <img src=\"http://www.freeiconspng.com/uploads/add-icon--line-iconset--iconsmind-29.png\"\r\n                                 (click)=\"imageInput.click()\" class=\"img-responsive img-thumbnail add-image item-image\" title=\"Додати зображення\">\r\n                            <input type=\"file\" (change)=\"saveFileInAws($event)\" #imageInput accept=\".png,.jpg\" class=\"well well-sm hidden\">\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n                <div class='text-right'>\r\n                    <button class=\"btn btn-success pull-right\" (click)=\"addNewEvent()\">Зберегти</button>\r\n                    <button class=\"btn btn-warning pull-right\" (click)=\"redirectToAllEvents()\">Відмінити</button>\r\n                </div>\r\n            </div>\r\n            {{_errorMessage}}\r\n        </form>\r\n    </div>\r\n</div>\r\n";
 
 /***/ }),
 /* 249 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"modal fade\" id=\"detailInfo\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\">\r\n    <div class=\"modal-dialog\" role=\"document\">\r\n        <div class=\"modal-content\">\r\n            <div class=\"modal-header\">\r\n                <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>\r\n                <h4 class=\"modal-title deleteModalTitle\" id=\"myModalLabel\">Детальна інформація</h4>\r\n            </div>\r\n            <div class=\"modal-body\">\r\n                <div class=\"thumbnail\">\r\n                    <img class=\"img-responsive\" src=\"http://placehold.it/800x300\" alt=\"\">\r\n                    <div class=\"caption-full\">\r\n                        <h3>\r\n                            {{detailInfoRequest.name}}\r\n                        </h3>\r\n                        <h4>{{detailInfoRequest.goodsCategory}}</h4>\r\n                        <p>{{detailInfoRequest.description}}</p>\r\n                    </div>\r\n                </div>\r\n            <div class=\"modal-footer\">\r\n                <button type=\"button\" class=\"btn btn-warning\" data-dismiss=\"modal\">Закрити</button>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>";
+module.exports = "<div class=\"modal fade\" id=\"deleteEvent\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\">\r\n    <div class=\"modal-dialog\" role=\"document\">\r\n        <div class=\"modal-content\">\r\n            <div class=\"modal-header\">\r\n                <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>\r\n                <h4 class=\"modal-title deleteModalTitle\" id=\"myModalLabel\">Видалити Подію</h4>\r\n            </div>\r\n            <div class=\"modal-body\">\r\n                <span>\r\n                    Підтвердіть видалення події\r\n\r\n                </span>\r\n            </div>\r\n            <div class=\"modal-footer\">\r\n                <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Закрити</button>\r\n                <button type=\"button\" class=\"btn btn-success\" (click)='deleteConfirmation()' data-dismiss=\"modal\">Видалити</button>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>";
 
 /***/ }),
 /* 250 */
 /***/ (function(module, exports) {
 
-module.exports = "    <div class=\"modal fade\" id=\"deleteRequest\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\">\r\n    <div class=\"modal-dialog\" role=\"document\">\r\n        <div class=\"modal-content\">\r\n            <div class=\"modal-header\">\r\n                <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>\r\n                <h4 class=\"modal-title deleteModalTitle\" id=\"myModalLabel\">Видалити потребу</h4>\r\n            </div>\r\n            <div class=\"modal-body\">\r\n                <span>\r\n                    Підтвердіть видалення потреби               \r\n                </span>\r\n            </div>\r\n            <div class=\"modal-footer\">\r\n                <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Закрити</button>\r\n                <button type=\"button\" class=\"btn btn-danger\" (click)='deleteConfirmation()' data-dismiss=\"modal\">Видалити</button>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>";
+module.exports = "<div class=\"modal fade\" id=\"detailInfo\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\">\r\n    <div class=\"modal-dialog\" role=\"document\">\r\n        <div class=\"modal-content\">\r\n            <div class=\"modal-header\">\r\n                <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>\r\n                <h4 class=\"modal-title deleteModalTitle\" id=\"myModalLabel\">Детальна інформація</h4>\r\n            </div>\r\n            <div class=\"modal-body\">\r\n                <div class=\"thumbnail\">\r\n                    <img class=\"img-responsive\" src=\"http://placehold.it/800x300\" alt=\"\">\r\n                    <div class=\"caption-full\">\r\n                        <h3>\r\n                            {{detailInfoRequest.name}}\r\n                        </h3>\r\n                        <h4>{{detailInfoRequest.goodsCategory}}</h4>\r\n                        <p>{{detailInfoRequest.description}}</p>\r\n                    </div>\r\n                </div>\r\n            <div class=\"modal-footer\">\r\n                <button type=\"button\" class=\"btn btn-warning\" data-dismiss=\"modal\">Закрити</button>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>";
 
 /***/ }),
 /* 251 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class='container' style=\"background-image: url(../../../../wwwroot/images/comouflage-white.jpg)\">\r\n    <div class='row'>\r\n        <div class='col-sm-10 col-sm-offset-1'>\r\n            <div class='well'>\r\n                <form #form=\"ngForm\" novalidate>\r\n                    \r\n                    <div class='row'>\r\n                        <div class='col-sm-4'>\r\n                            <div class='form-group' [class.has-error]=\"itemName.invalid && itemName.dirty\">\r\n                                <label for='itemName'>Назва</label>\r\n                                <input #itemName=\"ngModel\" id=\"itemName\" class=\"form-control\" type=\"text\" required \r\n                                       [(ngModel)]=\"_requestedItem.name\" name=\"itemName\" />\r\n                            </div>\r\n                            <span *ngIf=\"itemName.invalid && itemName.dirty\" class=\"has-error fixedError\">\r\n                                Обовязкове поле для заповнення\r\n                            </span>\r\n                            <div class=\"form-group\">\r\n                                <label for=\"goodsType\">Тип</label>\r\n                                <select required id=\"goodsType\" class=\"form-control\" [(ngModel)]=\"_selecteType\" name=\"goodsType\">\r\n                                    <option selected=\"selected\">Виберіть тип</option>\r\n                                    <option *ngFor=\"let goodType of _goodsTypes\"\r\n                                            [ngValue]=\"goodType\">\r\n                                        {{goodType.name}}\r\n                                    </option>\r\n                                </select>\r\n                            </div>\r\n                            <div class=\"form-group\" *ngIf=\"_selecteType\">\r\n                                <label for=\"categoryType\">Категорія</label>\r\n                                <select [disabled]=\"!isTypeSelected()\" required id=\"categoryType\" class=\"form-control\" [(ngModel)]=\"_requestedItem.goodsCategoryId\" name=\"categoryType\">\r\n                                    <option selected=\"selected\">Виберіть категорію</option>\r\n                                    <option *ngFor=\"let category of _selecteType.typeCategories\"\r\n                                            [value]=\"category.id\">\r\n                                        {{category.name}}\r\n                                    </option>\r\n                                </select>\r\n                            </div>\r\n                        </div>\r\n                        <div class='col-sm-8'>\r\n                            <div class='form-group' [class.has-error]=\"itemDescription.invalid && itemDescription.dirty\">\r\n                                <label for='message'>Опис</label>\r\n                                <textarea id=\"itemDescription\" required class='form-control'\r\n                                          name='itemDescription' rows='9' #itemDescription=\"ngModel\"\r\n                                          [(ngModel)]=\"_requestedItem.description\"></textarea>\r\n                            </div>\r\n                            <span *ngIf=\"itemDescription.invalid && itemDescription.dirty\" class=\"has-error help-block fixedError\">\r\n                                Обовязкове поле для заповнення\r\n                            </span>\r\n                         </div>\r\n       \r\n                        <hr />\r\n                        <div class=\"form-group\">                      \r\n                            <div>\r\n                                <div *ngFor=\"let _currentImage of _requestedItem.images\" style=\"display:inline-block\">\r\n                                    <div class=\"img-container\">\r\n                                        <img src=\"{{_currentImage.imageUrl}}\" class=\"img-responsive img-thumbnail item-image\">\r\n                                        <a (click)=\"deleteCurrentImage(_currentImage)\"><span class=\"glyphicon glyphicon-remove\"></span></a>\r\n                                    </div>\r\n                                </div>\r\n                                <div class=\"img-container\">\r\n                                    <img src={{addingImage}}\r\n                                         (click)=\"imageInput.click()\" class=\"img-responsive img-thumbnail add-image item-image\" title=\"Додати зображення\">\r\n                                    <input type=\"file\" (change)=\"saveFileInAws($event)\" #imageInput accept=\".png,.jpg\" class=\"well well-sm hidden\">\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                        <div class='text-right'>\r\n                            <button class=\"btn btn-success pull-right\" (click)=\"manageRequestedItems()\" [disabled]=\"form.invalid || !isCategorySelected() || !isTypeSelected()\" style=\"margin-right: 14px\">Зберегти</button>\r\n                            <button class=\"btn btn-warning pull-right\" (click)=\"backToAllItems()\" style=\"margin-right: 7px\">Відмінити</button>\r\n                        </div>\r\n                    </div>\r\n                    {{_errorMessage}}\r\n                </form>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n";
+module.exports = "    <div class=\"modal fade\" id=\"deleteRequest\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\">\r\n    <div class=\"modal-dialog\" role=\"document\">\r\n        <div class=\"modal-content\">\r\n            <div class=\"modal-header\">\r\n                <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>\r\n                <h4 class=\"modal-title deleteModalTitle\" id=\"myModalLabel\">Видалити потребу</h4>\r\n            </div>\r\n            <div class=\"modal-body\">\r\n                <span>\r\n                    Підтвердіть видалення потреби               \r\n                </span>\r\n            </div>\r\n            <div class=\"modal-footer\">\r\n                <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Закрити</button>\r\n                <button type=\"button\" class=\"btn btn-danger\" (click)='deleteConfirmation()' data-dismiss=\"modal\">Видалити</button>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>";
 
 /***/ }),
 /* 252 */
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngIf=\"_allRequestedItems\" class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12 list-group\">\r\n    <spinner></spinner>\r\n    <div *ngFor=\"let requestedItem of _allRequestedItems\" id=\"products\">\r\n        <div class=\"item col-xs-12 col-lg-3\">        \r\n            <div class=\"thumbnail\">\r\n                <div class=\"item-header\">\r\n                    <h4 class=\"header-text\">{{requestedItem.name}}</h4>\r\n                    <div class=\"action-icons\">\r\n                        <a data-toggle=\"modal\" data-target=\"#detailInfo\"><span class=\"glyphicon glyphicon-info-sign\"></span></a>                       \r\n                        <a (click)=\"redirectToManageRequestPage(requestedItem.id)\"><span class=\"glyphicon glyphicon-pencil\"></span></a>\r\n                        <a (click)='setCurrentRequestedItem(requestedItem)' data-toggle=\"modal\" data-target=\"#deleteRequest\"><span class=\"glyphicon glyphicon-trash\"></span></a>\r\n                    </div>                    \r\n                </div>\r\n                <div class=\"photo\">\r\n                    <img *ngIf=\"requestedItem.images[0]\" class=\"center-block group list-group-image img-responsive main-image\" src=\"{{requestedItem.images[0].imageUrl}}\" alt=\"\" />            \r\n                </div>\r\n                <div class=\"caption-wrap\">\r\n                    <div class=\"caption\">\r\n                        <p class=\"group inner list-group-item-text\"><span class=\"text-style\">Категорія: </span>{{requestedItem.goodsCategory}}</p>\r\n                        <p class=\"group inner list-group-item-text\"><span class=\"text-style\">Опис: </span>{{requestedItem.description|truncate : 25}}</p>\r\n                        <div class=\"item-description-layer\">\r\n                            <div class=\"item-description\"><p>{{requestedItem.description}}</p></div>\r\n                        </div>\r\n                    </div>                    \r\n                </div>\r\n                <div class=\"row\">\r\n                    <delete-request [itemToToDelete]='currentRequestedItem' (onSuccesfullDelete)=\"deleteRequestedItem()\"></delete-request>\r\n                </div>\r\n                <div class=\"row\">\r\n                    <detail-info [detailInfoRequest]=\"requestedItem\"></detail-info>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n<div *ngIf=\"_allRequestedItems\">\r\n    <div class=\"center-block pagination-dropdown\">   \r\n        <span id=\"for-select-item\">Показувати по:</span>\r\n            <select-item [items]=\"[4, 8, 12]\"\r\n                         (onSelect)=\"itemsPerPageChange($event)\">\r\n            </select-item>\r\n       </div>\r\n       <div class=\"text-center\" *ngIf=\"_totalItems && _itemPerPage\">\r\n        <pagination-pages [offset]=\"_offset\"\r\n                          [limit]=\"_itemPerPage\"\r\n                          [size]=\"_totalItems\"\r\n                          [currentPage]=\"_currentPage\"\r\n                          (pageChange)=\"onPageChange($event)\"\r\n                          class=\"col-md-12\">\r\n        </pagination-pages>\r\n    </div>\r\n</div>";
+module.exports = "<div class='container' style=\"background-image: url(../../../../wwwroot/images/comouflage-white.jpg)\">\r\n    <div class='row'>\r\n        <div class='col-sm-10 col-sm-offset-1'>\r\n            <div class='well'>\r\n                <form #form=\"ngForm\" novalidate>\r\n                    \r\n                    <div class='row'>\r\n                        <div class='col-sm-4'>\r\n                            <div class='form-group' [class.has-error]=\"itemName.invalid && itemName.dirty\">\r\n                                <label for='itemName'>Назва</label>\r\n                                <input #itemName=\"ngModel\" id=\"itemName\" class=\"form-control\" type=\"text\" required \r\n                                       [(ngModel)]=\"_requestedItem.name\" name=\"itemName\" />\r\n                            </div>\r\n                            <span *ngIf=\"itemName.invalid && itemName.dirty\" class=\"has-error fixedError\">\r\n                                Обовязкове поле для заповнення\r\n                            </span>\r\n                            <div class=\"form-group\">\r\n                                <label for=\"goodsType\">Тип</label>\r\n                                <select required id=\"goodsType\" class=\"form-control\" [(ngModel)]=\"_selecteType\" name=\"goodsType\">\r\n                                    <option selected=\"selected\">Виберіть тип</option>\r\n                                    <option *ngFor=\"let goodType of _goodsTypes\"\r\n                                            [ngValue]=\"goodType\">\r\n                                        {{goodType.name}}\r\n                                    </option>\r\n                                </select>\r\n                            </div>\r\n                            <div class=\"form-group\" *ngIf=\"_selecteType\">\r\n                                <label for=\"categoryType\">Категорія</label>\r\n                                <select [disabled]=\"!isTypeSelected()\" required id=\"categoryType\" class=\"form-control\" [(ngModel)]=\"_requestedItem.goodsCategoryId\" name=\"categoryType\">\r\n                                    <option selected=\"selected\">Виберіть категорію</option>\r\n                                    <option *ngFor=\"let category of _selecteType.typeCategories\"\r\n                                            [value]=\"category.id\">\r\n                                        {{category.name}}\r\n                                    </option>\r\n                                </select>\r\n                            </div>\r\n                        </div>\r\n                        <div class='col-sm-8'>\r\n                            <div class='form-group' [class.has-error]=\"itemDescription.invalid && itemDescription.dirty\">\r\n                                <label for='message'>Опис</label>\r\n                                <textarea id=\"itemDescription\" required class='form-control'\r\n                                          name='itemDescription' rows='9' #itemDescription=\"ngModel\"\r\n                                          [(ngModel)]=\"_requestedItem.description\"></textarea>\r\n                            </div>\r\n                            <span *ngIf=\"itemDescription.invalid && itemDescription.dirty\" class=\"has-error help-block fixedError\">\r\n                                Обовязкове поле для заповнення\r\n                            </span>\r\n                         </div>\r\n       \r\n                        <hr />\r\n                        <div class=\"form-group\">                      \r\n                            <div>\r\n                                <div *ngFor=\"let _currentImage of _requestedItem.images\" style=\"display:inline-block\">\r\n                                    <div class=\"img-container\">\r\n                                        <img src=\"{{_currentImage.imageUrl}}\" class=\"img-responsive img-thumbnail item-image\">\r\n                                        <a (click)=\"deleteCurrentImage(_currentImage)\"><span class=\"glyphicon glyphicon-remove\"></span></a>\r\n                                    </div>\r\n                                </div>\r\n                                <div class=\"img-container\">\r\n                                    <img src={{addingImage}}\r\n                                         (click)=\"imageInput.click()\" class=\"img-responsive img-thumbnail add-image item-image\" title=\"Додати зображення\">\r\n                                    <input type=\"file\" (change)=\"saveFileInAws($event)\" #imageInput accept=\".png,.jpg\" class=\"well well-sm hidden\">\r\n                                </div>\r\n                            </div>\r\n                        </div>\r\n                        <div class='text-right'>\r\n                            <button class=\"btn btn-success pull-right\" (click)=\"manageRequestedItems()\" [disabled]=\"form.invalid || !isCategorySelected() || !isTypeSelected()\" style=\"margin-right: 14px\">Зберегти</button>\r\n                            <button class=\"btn btn-warning pull-right\" (click)=\"backToAllItems()\" style=\"margin-right: 7px\">Відмінити</button>\r\n                        </div>\r\n                    </div>\r\n                    {{_errorMessage}}\r\n                </form>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n";
 
 /***/ }),
 /* 253 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"col-md-4 col-md-offset-4\">\r\n    <div *ngIf=\"!emailSend\">\r\n        <div>\r\n            <h4 class=\"text-center\">Впишіть свій e-mail під яким ви зареєстровані в системі</h4>\r\n        </div>\r\n        <form [formGroup]=\"emailForm\" class=\"form-horizontal\" style=\"width: 400px\" novalidate>\r\n            <div class=\"form-group\" [class.has-error]=\"formErrors.email\"\r\n                                    [class.has-success]=\"!formErrors.email && emailForm.get('email').valid\">\r\n                <label class=\"control-label\" for=\"email\">Email</label>\r\n                <div class=\"input-group\">\r\n                    <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-envelope\" aria-hidden=\"true\"></i></span>\r\n                        <input placeholder=\"Ваш e-mail\"\r\n                               formControlName=\"email\" \r\n                               class=\"form-control input-md\" \r\n                               type=\"text\"                     \r\n                               [(ngModel)]=\"recoveryEmail.email\" />            \r\n                </div>  \r\n                <span *ngIf=\"formErrors.email\" class=\"has-error help-block fixedError\">\r\n                    {{ formErrors.email }}\r\n                </span>\r\n                <span *ngIf=\"errorMessage.length > 0\" class=\"text-danger\">\r\n                    {{errorMessage}}\r\n                </span>\r\n            </div>\r\n            <div class=\"form-group\">\r\n                <label class=\"control-label\" for=\"submit\"></label>\r\n                <button id=\"submit\"\r\n                        [disabled]=\"emailForm.invalid\"\r\n                        class=\"btn btn-primary pull-right\" \r\n                        (click)=\"sendEmail()\">Відправити Email</button>\r\n            </div>\r\n        </form>\r\n    </div>    \r\n    <div *ngIf=\"emailSend\">\r\n         <p>На пошту {{recoveryEmail.email}} був відправлений лист для відновлення паролю.</p>\r\n         <p>Якшо він не прийшов протягов 5 хвилин натисніть\r\n        <button (click)=\"sendEmail()\" class=\"btn btn-xs\">Відправити ще раз</button></p>\r\n    </div>\r\n</div>";
+module.exports = "<div *ngIf=\"_allRequestedItems\" class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12 list-group\">\r\n    <spinner></spinner>\r\n    <div *ngFor=\"let requestedItem of _allRequestedItems\" id=\"products\">\r\n        <div class=\"item col-xs-12 col-lg-3\">        \r\n            <div class=\"thumbnail\">\r\n                <div class=\"item-header\">\r\n                    <h4 class=\"header-text\">{{requestedItem.name}}</h4>\r\n                    <div class=\"action-icons\">\r\n                        <a data-toggle=\"modal\" data-target=\"#detailInfo\"><span class=\"glyphicon glyphicon-info-sign\"></span></a>                       \r\n                        <a (click)=\"redirectToManageRequestPage(requestedItem.id)\"><span class=\"glyphicon glyphicon-pencil\"></span></a>\r\n                        <a (click)='setCurrentRequestedItem(requestedItem)' data-toggle=\"modal\" data-target=\"#deleteRequest\"><span class=\"glyphicon glyphicon-trash\"></span></a>\r\n                    </div>                    \r\n                </div>\r\n                <div class=\"photo\">\r\n                    <img *ngIf=\"requestedItem.images[0]\" class=\"center-block group list-group-image img-responsive main-image\" src=\"{{requestedItem.images[0].imageUrl}}\" alt=\"\" />            \r\n                </div>\r\n                <div class=\"caption-wrap\">\r\n                    <div class=\"caption\">\r\n                        <p class=\"group inner list-group-item-text\"><span class=\"text-style\">Категорія: </span>{{requestedItem.goodsCategory}}</p>\r\n                        <p class=\"group inner list-group-item-text\"><span class=\"text-style\">Опис: </span>{{requestedItem.description|truncate : 25}}</p>\r\n                        <div class=\"item-description-layer\">\r\n                            <div class=\"item-description\"><p>{{requestedItem.description}}</p></div>\r\n                        </div>\r\n                    </div>                    \r\n                </div>\r\n                <div class=\"row\">\r\n                    <delete-request [itemToToDelete]='currentRequestedItem' (onSuccesfullDelete)=\"deleteRequestedItem()\"></delete-request>\r\n                </div>\r\n                <div class=\"row\">\r\n                    <detail-info [detailInfoRequest]=\"requestedItem\"></detail-info>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n<div *ngIf=\"_allRequestedItems\">\r\n    <div class=\"center-block pagination-dropdown\">   \r\n        <span id=\"for-select-item\">Показувати по:</span>\r\n            <select-item [items]=\"[4, 8, 12]\"\r\n                         (onSelect)=\"itemsPerPageChange($event)\">\r\n            </select-item>\r\n       </div>\r\n       <div class=\"text-center\" *ngIf=\"_totalItems && _itemPerPage\">\r\n        <pagination-pages [offset]=\"_offset\"\r\n                          [limit]=\"_itemPerPage\"\r\n                          [size]=\"_totalItems\"\r\n                          [currentPage]=\"_currentPage\"\r\n                          (pageChange)=\"onPageChange($event)\"\r\n                          class=\"col-md-12\">\r\n        </pagination-pages>\r\n    </div>\r\n</div>";
 
 /***/ }),
 /* 254 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"col-md-4 col-md-offset-4\">\r\n    <div *ngIf=\"!passwordChanged\">\r\n        <h3 class=\"text-center\">Створення нового паролю</h3>\r\n        <hr />\r\n        <form *ngIf=\"errorMessage.length == 0\" [formGroup]=\"passwordForm\" class=\"form-horizontal\" style=\"width: 400px\" novalidate>\r\n            <div class=\"form-group\" [class.has-error]=\"formErrors.password\"\r\n                 [class.has-success]=\"!formErrors.password && passwordForm.get('password').valid\">\r\n                <label class=\"control-label\" for=\"password\">Новий Пароль</label>\r\n                <div class=\"input-group\">\r\n                    <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-lock\" aria-hidden=\"true\"></i></span>\r\n                    <input placeholder=\"Ваш пароль\" \r\n                           class=\"form-control input-md\" \r\n                           [type]=\"type\"\r\n                           formControlName=\"password\"\r\n                           [(ngModel)]=\"resetPasswordModel.newPassword\" />\r\n                    <span class=\"input-group-addon\"><i [ngClass]=\"glyphyconEye\" (click)=\"showPassword()\" aria-hidden=\"true\"></i></span>\r\n                </div>\r\n                <span *ngIf=\"formErrors.password\" class=\"has-error help-block fixedError\">\r\n                    {{ formErrors.password }}\r\n                </span>\r\n            </div>\r\n\r\n            <div class=\"form-group\" [class.has-error]=\"formErrors.confirmPassword || passwordForm.hasError('mismatchedPasswords')\"\r\n                 [class.has-success]=\"!formErrors.confirmPassword && passwordForm.get('confirmPassword').valid\">\r\n                <label class=\"control-label\" for=\"confirmPassword\">Підтвердіть пароль</label>\r\n                <div class=\"input-group\">\r\n                    <span class=\"input-group-addon glyphicon glyphicon-lock\"><i aria-hidden=\"true\"></i></span>\r\n                    <input type=\"password\"\r\n                           placeholder=\"Підтвердіть пароль\"\r\n                           class=\"form-control input-md\"\r\n                           formControlName=\"confirmPassword\"\r\n                           [(ngModel)]=\"resetPasswordModel.newPasswordConfirm\" />\r\n                </div>\r\n                <div *ngIf=\"formErrors.confirmPassword || passwordForm.hasError('mismatchedPasswords')\" class=\"has-error help-block fixedError\">\r\n                    {{ formErrors.confirmPassword }}\r\n                </div>\r\n                <div *ngIf=\"passwordForm.hasError('mismatchedPasswords')\" class=\"has-error help-block fixedError\">Паролі не співпадають</div>\r\n            </div>\r\n\r\n            <div class=\"form-group\">\r\n                <label class=\"control-label\" for=\"submit\"></label>\r\n                <button id=\"submit\"\r\n                        class=\"btn btn-primary pull-right\"\r\n                        [disabled]=\"passwordForm.invalid\" \r\n                        (click)=\"changePassword()\">\r\n                Змінити Пароль\r\n                </button>               \r\n            </div>\r\n        </form>\r\n        <div *ngIf=\"errorMessage.length > 0\">\r\n            <h1 class=\"text-center text-danger\">{{errorMessage}}</h1>\r\n        </div>\r\n    </div>\r\n    <div *ngIf=\"passwordChanged\">\r\n       <h3>Ваш пароль було змінено.</h3> \r\n       <p>Будь ласка перейдіть на сторінку<a [routerLink]=\"['/login']\"> Логування</a></p>\r\n    </div>\r\n</div>\r\n";
+module.exports = "<div class=\"col-md-4 col-md-offset-4\">\r\n    <div *ngIf=\"!emailSend\">\r\n        <div>\r\n            <h4 class=\"text-center\">Впишіть свій e-mail під яким ви зареєстровані в системі</h4>\r\n        </div>\r\n        <form [formGroup]=\"emailForm\" class=\"form-horizontal\" style=\"width: 400px\" novalidate>\r\n            <div class=\"form-group\" [class.has-error]=\"formErrors.email\"\r\n                                    [class.has-success]=\"!formErrors.email && emailForm.get('email').valid\">\r\n                <label class=\"control-label\" for=\"email\">Email</label>\r\n                <div class=\"input-group\">\r\n                    <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-envelope\" aria-hidden=\"true\"></i></span>\r\n                        <input placeholder=\"Ваш e-mail\"\r\n                               formControlName=\"email\" \r\n                               class=\"form-control input-md\" \r\n                               type=\"text\"                     \r\n                               [(ngModel)]=\"recoveryEmail.email\" />            \r\n                </div>  \r\n                <span *ngIf=\"formErrors.email\" class=\"has-error help-block fixedError\">\r\n                    {{ formErrors.email }}\r\n                </span>\r\n                <span *ngIf=\"errorMessage.length > 0\" class=\"text-danger\">\r\n                    {{errorMessage}}\r\n                </span>\r\n            </div>\r\n            <div class=\"form-group\">\r\n                <label class=\"control-label\" for=\"submit\"></label>\r\n                <button id=\"submit\"\r\n                        [disabled]=\"emailForm.invalid\"\r\n                        class=\"btn btn-primary pull-right\" \r\n                        (click)=\"sendEmail()\">Відправити Email</button>\r\n            </div>\r\n        </form>\r\n    </div>    \r\n    <div *ngIf=\"emailSend\">\r\n         <p>На пошту {{recoveryEmail.email}} був відправлений лист для відновлення паролю.</p>\r\n         <p>Якшо він не прийшов протягов 5 хвилин натисніть\r\n        <button (click)=\"sendEmail()\" class=\"btn btn-xs\">Відправити ще раз</button></p>\r\n    </div>\r\n</div>";
 
 /***/ }),
 /* 255 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"col-lg-4 col-lg-offset-4\">\r\n    <!--<spinner [showSpinner]=\"showUserRegistrationSpinner\"></spinner>-->\r\n    <form [formGroup]=\"registrationForm\" class=\"form-horizontal\" id=\"registrationForm\" novalidate>\r\n        <h3 class=\"formHeader text-center\">Реєстрація нового користувача</h3>\r\n        <div class=\"form-group\" [class.has-error]=\"formErrors.firstName\"\r\n             [class.has-success]=\"!formErrors.firstName && registrationForm.get('firstName').valid\">\r\n            <label class=\"control-label\" for=\"firstName\">Імя</label>\r\n            <div class=\"input-group\">\r\n                <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-user\" aria-hidden=\"true\"></i></span>\r\n                <input placeholder=\"Ваше імя\" type=\"text\" class=\"form-control\"\r\n                       formControlName=\"firstName\" [(ngModel)]=\"registrationViewModel.firstName\" />\r\n            </div>\r\n            <div>\r\n                <span *ngIf=\"formErrors.firstName\" class=\"has-error help-block fixedError\">\r\n                    {{ formErrors.firstName }}\r\n                </span>\r\n            </div>\r\n        </div>\r\n\r\n        <div class=\"form-group\" [class.has-error]=\"formErrors.lastName\"\r\n             [class.has-success]=\"!formErrors.lastName && registrationForm.get('lastName').valid\">\r\n            <label class=\"control-label\" for=\"lastName\">Прізвище</label>\r\n            <div class=\"input-group\">\r\n                <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-user\" aria-hidden=\"true\"></i></span>\r\n                <input placeholder=\"Ваше прізвище\" type=\"text\" class=\"form-control input-md\"\r\n                       formControlName=\"lastName\" [(ngModel)]=\"registrationViewModel.lastName\" />\r\n            </div>\r\n            <span *ngIf=\"formErrors.lastName\" class=\"has-error help-block fixedError\">\r\n                {{ formErrors.lastName }}\r\n            </span>\r\n        </div>\r\n\r\n        <div class=\"form-group\" [class.has-error]=\"formErrors.login\"\r\n             [class.has-success]=\"!formErrors.login && registrationForm.get('login').valid\">\r\n            <label class=\"control-label\" for=\"login\">Логін</label>\r\n            <div class=\"input-group\">\r\n                <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-user\" aria-hidden=\"true\"></i></span>\r\n                <input placeholder=\"Ваш логін\" type=\"text\" class=\"form-control input-md\"\r\n                       formControlName=\"login\" [(ngModel)]=\"registrationViewModel.login\" />\r\n            </div>\r\n            <span *ngIf=\"formErrors.login\" class=\"has-error help-block fixedError\">\r\n                {{ formErrors.login }}\r\n            </span>\r\n        </div>\r\n\r\n        <div class=\"form-group\" [class.has-error]=\"formErrors.email || errorMessage\"\r\n             [class.has-success]=\"!formErrors.email && registrationForm.get('email').valid\">\r\n            <label class=\"control-label\" for=\"email\">Email</label>\r\n            <div class=\"input-group\">\r\n                <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-envelope\" aria-hidden=\"true\"></i></span>\r\n                <input placeholder=\"Ваш e-mail\" class=\"form-control input-md\" type=\"text\"\r\n                       formControlName=\"email\" [(ngModel)]=\"registrationViewModel.email\" />\r\n            </div>\r\n            <span *ngIf=\"formErrors.email\" class=\"has-error help-block fixedError\">\r\n                {{ formErrors.email }}\r\n            </span>\r\n            <span *ngIf=\"errorMessage\">\r\n                <span class=\"has-error help-block fixedError\">{{errorMessage}}</span>\r\n            </span>\r\n        </div>\r\n\r\n        <div class=\"form-group\" [class.has-error]=\"formErrors.password\"\r\n             [class.has-success]=\"!formErrors.password && registrationForm.get('password').valid\">\r\n            <label class=\"control-label\" for=\"password\">Пароль</label>\r\n            <div class=\"input-group\">\r\n                <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-lock\" aria-hidden=\"true\"></i></span>\r\n                <input placeholder=\"Ваш пароль\" class=\"form-control input-md\" [type]=\"type\"\r\n                       formControlName=\"password\" [(ngModel)]=\"registrationViewModel.password\" />\r\n                <span class=\"input-group-addon\"><i [ngClass]=\"glyphyconEye\" (click)=\"showPassword()\" aria-hidden=\"true\"></i></span>\r\n            </div>\r\n            <span *ngIf=\"formErrors.password\" class=\"has-error help-block fixedError\">\r\n                {{ formErrors.password }}\r\n            </span>\r\n        </div>\r\n\r\n        <div class=\"form-group\" [class.has-error]=\"formErrors.confirmPassword || registrationForm.hasError('mismatchedPasswords')\"\r\n             [class.has-success]=\"!formErrors.confirmPassword && registrationForm.get('confirmPassword').valid\">\r\n            <label class=\"control-label\" for=\"confirmPassword\">Підтвердіть пароль</label>\r\n            <div class=\"input-group\">\r\n                <span class=\"input-group-addon glyphicon glyphicon-lock\"><i aria-hidden=\"true\"></i></span>\r\n                <input type=\"password\" placeholder=\"Підтвердіть пароль\" class=\"form-control input-md\"\r\n                       formControlName=\"confirmPassword\" [(ngModel)]=\"registrationViewModel.passwordConfirm\" />\r\n            </div>\r\n            <div *ngIf=\"formErrors.confirmPassword || registrationForm.hasError('mismatchedPasswords')\" class=\"has-error help-block fixedError\">\r\n                {{ formErrors.confirmPassword }}\r\n            </div>\r\n            <div *ngIf=\"registrationForm.hasError('mismatchedPasswords')\" class=\"has-error help-block fixedError\">Паролі не співпадають</div>\r\n        </div>\r\n\r\n        <div class=\"form-group\">\r\n            <label class=\"control-label\" for=\"submit\"></label>\r\n            <button id=\"submit\" class=\"btn btn-success pull-right\" [disabled]=\"registrationForm.invalid\" (click)=\"register()\">Зареєструватись</button>\r\n        </div>\r\n    </form>\r\n    </div>\r\n";
+module.exports = "<div class=\"col-md-4 col-md-offset-4\">\r\n    <div *ngIf=\"!passwordChanged\">\r\n        <h3 class=\"text-center\">Створення нового паролю</h3>\r\n        <hr />\r\n        <form *ngIf=\"errorMessage.length == 0\" [formGroup]=\"passwordForm\" class=\"form-horizontal\" style=\"width: 400px\" novalidate>\r\n            <div class=\"form-group\" [class.has-error]=\"formErrors.password\"\r\n                 [class.has-success]=\"!formErrors.password && passwordForm.get('password').valid\">\r\n                <label class=\"control-label\" for=\"password\">Новий Пароль</label>\r\n                <div class=\"input-group\">\r\n                    <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-lock\" aria-hidden=\"true\"></i></span>\r\n                    <input placeholder=\"Ваш пароль\" \r\n                           class=\"form-control input-md\" \r\n                           [type]=\"type\"\r\n                           formControlName=\"password\"\r\n                           [(ngModel)]=\"resetPasswordModel.newPassword\" />\r\n                    <span class=\"input-group-addon\"><i [ngClass]=\"glyphyconEye\" (click)=\"showPassword()\" aria-hidden=\"true\"></i></span>\r\n                </div>\r\n                <span *ngIf=\"formErrors.password\" class=\"has-error help-block fixedError\">\r\n                    {{ formErrors.password }}\r\n                </span>\r\n            </div>\r\n\r\n            <div class=\"form-group\" [class.has-error]=\"formErrors.confirmPassword || passwordForm.hasError('mismatchedPasswords')\"\r\n                 [class.has-success]=\"!formErrors.confirmPassword && passwordForm.get('confirmPassword').valid\">\r\n                <label class=\"control-label\" for=\"confirmPassword\">Підтвердіть пароль</label>\r\n                <div class=\"input-group\">\r\n                    <span class=\"input-group-addon glyphicon glyphicon-lock\"><i aria-hidden=\"true\"></i></span>\r\n                    <input type=\"password\"\r\n                           placeholder=\"Підтвердіть пароль\"\r\n                           class=\"form-control input-md\"\r\n                           formControlName=\"confirmPassword\"\r\n                           [(ngModel)]=\"resetPasswordModel.newPasswordConfirm\" />\r\n                </div>\r\n                <div *ngIf=\"formErrors.confirmPassword || passwordForm.hasError('mismatchedPasswords')\" class=\"has-error help-block fixedError\">\r\n                    {{ formErrors.confirmPassword }}\r\n                </div>\r\n                <div *ngIf=\"passwordForm.hasError('mismatchedPasswords')\" class=\"has-error help-block fixedError\">Паролі не співпадають</div>\r\n            </div>\r\n\r\n            <div class=\"form-group\">\r\n                <label class=\"control-label\" for=\"submit\"></label>\r\n                <button id=\"submit\"\r\n                        class=\"btn btn-primary pull-right\"\r\n                        [disabled]=\"passwordForm.invalid\" \r\n                        (click)=\"changePassword()\">\r\n                Змінити Пароль\r\n                </button>               \r\n            </div>\r\n        </form>\r\n        <div *ngIf=\"errorMessage.length > 0\">\r\n            <h1 class=\"text-center text-danger\">{{errorMessage}}</h1>\r\n        </div>\r\n    </div>\r\n    <div *ngIf=\"passwordChanged\">\r\n       <h3>Ваш пароль було змінено.</h3> \r\n       <p>Будь ласка перейдіть на сторінку<a [routerLink]=\"['/login']\"> Логування</a></p>\r\n    </div>\r\n</div>\r\n";
 
 /***/ }),
 /* 256 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"well container col-md-8 col-md-offset-2\" *ngIf=\"requestDetail\">\r\n    <div class=\"row-fluid\">\r\n        <div class=\"childName\">\r\n            {{requestDetail.name}}\r\n        </div>\r\n        <a [routerLink]=\"['/home/allrequests']\" class=\"pull-right\">Перейти до всіх запитів</a>\r\n    </div>\r\n    <section>\r\n        <div class=\"input-list style-4 clearfix\">\r\n            <div *ngIf=\"requestDetail.imagesUrl\" class=\"col-md-2 col-md-offset-0\">\r\n                <gallery [datasource]=\"requestDetail.imagesUrl\"> </gallery>\r\n            </div>\r\n            <div class=\"col-md-10\">\r\n                <div class=\"col-md-12 childResourse\">\r\n                    Організації: {{requestDetail.organizationName}}\r\n                </div>\r\n                <div class=\"col-md-12 childResourse\">\r\n                    <b>Статус: </b> <b><span>{{requestDetail.statusName}}</span></b>\r\n                </div>\r\n                <div class=\"col-md-12 childResourse \">\r\n                    Тип: {{requestDetail.goodsTypeName}}\r\n                </div>\r\n                <div class=\"col-md-12 childResourse \">\r\n                    Категорія: {{requestDetail.goodsCategoryName}}\r\n                </div>\r\n                <div class=\"col-md-12 childResourse \">\r\n                    Опис:\r\n                </div>\r\n                <div class=\"col-md-12 description\">\r\n                    {{requestDetail.description}}\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <button id=\"submit\" name=\"submit\" class=\"btn pull-right btn-fundtrack-style\" (click)=\"onActionClick()\">Пожертвувати</button>\r\n    </section>\r\n</div>\r\n<app-modal>\r\n    <div class=\"app-modal-header\">\r\n        <button type=\"button\" class=\"close\" aria-hidden=\"true\" (click)=\"closeModal()\">&times;</button>\r\n        <h4 class=\"modal-title\">Контактні дані: </h4>\r\n    </div>\r\n    <div class=\"app-modal-body\">\r\n        <div>\r\n            <label class=\"control-label\">Номер телефону:</label>\r\n            <input class=\"col-md-12\" type=\"text\"\r\n                   #number=\"ngModel\"\r\n                   pattern=\"[+0-9]*\"\r\n                   required\r\n                   (blur)=\"customeFieldTouched=true\"\r\n                   [(ngModel)]=\"phoneNumber\" />\r\n        </div>\r\n        <div>\r\n            <label class=\"control-label\">Додаткова інформація:</label>\r\n            <textarea class=\"form-control\" #description=\"ngModel\"\r\n                      required\r\n                      [(ngModel)]=\"responseDescription\">\r\n        </textarea>\r\n        </div>\r\n        <div *ngIf=\"number.invalid && customeFieldTouched \"\r\n             class=\"alert alert-danger\">\r\n            <div [hidden]=\"!number.errors.required\">\r\n                Вкажіть інформацію, щоб ми могли з вами звязатися.\r\n            </div>\r\n            <div [hidden]=\"!number.errors.pattern\">\r\n                Номер телефону може містити тільки цифри і \"+\".\r\n            </div>\r\n        </div>\r\n    </div>\r\n    <div class=\"app-modal-footer\">\r\n        <button type=\"button\" class=\"btn btn-default\" (click)=\"closeModal()\">Закрити</button>\r\n        <button (click)=\"setUserResponse()\"\r\n                class=\"btn btn-fundtrack-style\"\r\n                data-dismiss=\"modal\"\r\n                [disabled]=\"number.invalid\">\r\n            Надіслати\r\n        </button>\r\n    </div>\r\n</app-modal>\r\n";
+module.exports = "<div class=\"col-lg-4 col-lg-offset-4\">\r\n    <!--<spinner [showSpinner]=\"showUserRegistrationSpinner\"></spinner>-->\r\n    <form [formGroup]=\"registrationForm\" class=\"form-horizontal\" id=\"registrationForm\" novalidate>\r\n        <h3 class=\"formHeader text-center\">Реєстрація нового користувача</h3>\r\n        <div class=\"form-group\" [class.has-error]=\"formErrors.firstName\"\r\n             [class.has-success]=\"!formErrors.firstName && registrationForm.get('firstName').valid\">\r\n            <label class=\"control-label\" for=\"firstName\">Імя</label>\r\n            <div class=\"input-group\">\r\n                <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-user\" aria-hidden=\"true\"></i></span>\r\n                <input placeholder=\"Ваше імя\" type=\"text\" class=\"form-control\"\r\n                       formControlName=\"firstName\" [(ngModel)]=\"registrationViewModel.firstName\" />\r\n            </div>\r\n            <div>\r\n                <span *ngIf=\"formErrors.firstName\" class=\"has-error help-block fixedError\">\r\n                    {{ formErrors.firstName }}\r\n                </span>\r\n            </div>\r\n        </div>\r\n\r\n        <div class=\"form-group\" [class.has-error]=\"formErrors.lastName\"\r\n             [class.has-success]=\"!formErrors.lastName && registrationForm.get('lastName').valid\">\r\n            <label class=\"control-label\" for=\"lastName\">Прізвище</label>\r\n            <div class=\"input-group\">\r\n                <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-user\" aria-hidden=\"true\"></i></span>\r\n                <input placeholder=\"Ваше прізвище\" type=\"text\" class=\"form-control input-md\"\r\n                       formControlName=\"lastName\" [(ngModel)]=\"registrationViewModel.lastName\" />\r\n            </div>\r\n            <span *ngIf=\"formErrors.lastName\" class=\"has-error help-block fixedError\">\r\n                {{ formErrors.lastName }}\r\n            </span>\r\n        </div>\r\n\r\n        <div class=\"form-group\" [class.has-error]=\"formErrors.login\"\r\n             [class.has-success]=\"!formErrors.login && registrationForm.get('login').valid\">\r\n            <label class=\"control-label\" for=\"login\">Логін</label>\r\n            <div class=\"input-group\">\r\n                <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-user\" aria-hidden=\"true\"></i></span>\r\n                <input placeholder=\"Ваш логін\" type=\"text\" class=\"form-control input-md\"\r\n                       formControlName=\"login\" [(ngModel)]=\"registrationViewModel.login\" />\r\n            </div>\r\n            <span *ngIf=\"formErrors.login\" class=\"has-error help-block fixedError\">\r\n                {{ formErrors.login }}\r\n            </span>\r\n        </div>\r\n\r\n        <div class=\"form-group\" [class.has-error]=\"formErrors.email || errorMessage\"\r\n             [class.has-success]=\"!formErrors.email && registrationForm.get('email').valid\">\r\n            <label class=\"control-label\" for=\"email\">Email</label>\r\n            <div class=\"input-group\">\r\n                <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-envelope\" aria-hidden=\"true\"></i></span>\r\n                <input placeholder=\"Ваш e-mail\" class=\"form-control input-md\" type=\"text\"\r\n                       formControlName=\"email\" [(ngModel)]=\"registrationViewModel.email\" />\r\n            </div>\r\n            <span *ngIf=\"formErrors.email\" class=\"has-error help-block fixedError\">\r\n                {{ formErrors.email }}\r\n            </span>\r\n            <span *ngIf=\"errorMessage\">\r\n                <span class=\"has-error help-block fixedError\">{{errorMessage}}</span>\r\n            </span>\r\n        </div>\r\n\r\n        <div class=\"form-group\" [class.has-error]=\"formErrors.password\"\r\n             [class.has-success]=\"!formErrors.password && registrationForm.get('password').valid\">\r\n            <label class=\"control-label\" for=\"password\">Пароль</label>\r\n            <div class=\"input-group\">\r\n                <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-lock\" aria-hidden=\"true\"></i></span>\r\n                <input placeholder=\"Ваш пароль\" class=\"form-control input-md\" [type]=\"type\"\r\n                       formControlName=\"password\" [(ngModel)]=\"registrationViewModel.password\" />\r\n                <span class=\"input-group-addon\"><i [ngClass]=\"glyphyconEye\" (click)=\"showPassword()\" aria-hidden=\"true\"></i></span>\r\n            </div>\r\n            <span *ngIf=\"formErrors.password\" class=\"has-error help-block fixedError\">\r\n                {{ formErrors.password }}\r\n            </span>\r\n        </div>\r\n\r\n        <div class=\"form-group\" [class.has-error]=\"formErrors.confirmPassword || registrationForm.hasError('mismatchedPasswords')\"\r\n             [class.has-success]=\"!formErrors.confirmPassword && registrationForm.get('confirmPassword').valid\">\r\n            <label class=\"control-label\" for=\"confirmPassword\">Підтвердіть пароль</label>\r\n            <div class=\"input-group\">\r\n                <span class=\"input-group-addon glyphicon glyphicon-lock\"><i aria-hidden=\"true\"></i></span>\r\n                <input type=\"password\" placeholder=\"Підтвердіть пароль\" class=\"form-control input-md\"\r\n                       formControlName=\"confirmPassword\" [(ngModel)]=\"registrationViewModel.passwordConfirm\" />\r\n            </div>\r\n            <div *ngIf=\"formErrors.confirmPassword || registrationForm.hasError('mismatchedPasswords')\" class=\"has-error help-block fixedError\">\r\n                {{ formErrors.confirmPassword }}\r\n            </div>\r\n            <div *ngIf=\"registrationForm.hasError('mismatchedPasswords')\" class=\"has-error help-block fixedError\">Паролі не співпадають</div>\r\n        </div>\r\n\r\n        <div class=\"form-group\">\r\n            <label class=\"control-label\" for=\"submit\"></label>\r\n            <button id=\"submit\" class=\"btn btn-success pull-right\" [disabled]=\"registrationForm.invalid\" (click)=\"register()\">Зареєструватись</button>\r\n        </div>\r\n    </form>\r\n    </div>\r\n";
 
 /***/ }),
 /* 257 */
 /***/ (function(module, exports) {
 
-module.exports = "<h2> Форма реєстрації організації</h2>\r\n<div>\r\n    <form #form=\"ngForm\">\r\n        <h4> Загальні відомості </h4>\r\n        <div class=\"form-group\" [class.has-error]=\"name.invalid&&name.touched\">\r\n            <label class=\"control-label\"> Назва організації</label>\r\n            <div class=\"inner-addon left-addon\">\r\n                <i class=\"glyphicon glyphicon-pencil\"></i>\r\n                <input type=\"text\" class=\"form-control\" [(ngModel)]=\"organization.name\" placeholder=\"Введіть назву\" required minlength=\"5\" maxlength=\"50\" name=\"name\" #name=\"ngModel\"/>\r\n            </div>\r\n             <div *ngIf=\"name.errors && (name.dirty || name.touched)\"\r\n                 class=\"alert alert-danger\">\r\n                <div [hidden]=\"!name.errors.required\">\r\n                    Назва організації обов'язкова\r\n                </div>\r\n                <div [hidden]=\"!name.errors.minlength\">\r\n                    Назва має містити принаймі 5 символів.\r\n                </div>\r\n                <div [hidden]=\"!name.errors.maxlength\">\r\n                    Назва не може перевищувати 50 символів.\r\n                </div>\r\n            </div>\r\n            <div class=\"alert-danger\">\r\n                {{nameError}}\r\n            </div>\r\n            </div>\r\n        <div class=\"form-group\" [class.has-error]=\"description.invalid&&description.touched\">\r\n            <label class=\"control-label\"> Опис організації </label>\r\n            <div class=\"inner-addon left-addon\">\r\n                <i class=\"glyphicon glyphicon-pencil\" *ngIf =\"!description.dirty\"></i> \r\n                <textarea class=\"form-control\" [(ngModel)]=\"organization.description\" required minlength=\"20\" placeholder=\"     Введіть опис\" maxlength=\"200\" name=\"description\" #description=\"ngModel\" rows=\"5\"> </textarea>\r\n            </div>\r\n            <div *ngIf=\"description.errors && (description.dirty || description.touched)\"\r\n                 class=\"alert alert-danger\">\r\n                <div [hidden]=\"!description.errors.required\">\r\n                    Опис організації обов'язковий\r\n                </div>\r\n                <div [hidden]=\"!description.errors.minlength\">\r\n                    Опис має містити принаймі 20 символів.\r\n                </div>\r\n                <div [hidden]=\"!description.errors.maxlength\">\r\n                    Опис не може перевищувати 100 символів.\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <h4> Представник </h4>\r\n        <div class=\"form-group\" [class.has-error]=\"login.invalid&&login.touched\">\r\n            <label class=\"control-label\"> Логін адміністратора</label>\r\n            <div class=\"inner-addon left-addon\">\r\n                <i class=\"glyphicon glyphicon-user\"></i>\r\n                <input type=\"text\" class=\"form-control\" required [(ngModel)]=\"organization.administratorLogin\" pattern=\"[a-zA-Z0-9_]*\" placeholder=\"Введіть логін адміністратора\" name=\"login\" #login=\"ngModel\" />\r\n            </div>\r\n            <div *ngIf=\"login.errors && (login.dirty || login.touched)\"\r\n                 class=\"alert alert-danger\">\r\n                <div [hidden]=\"!login.errors.required\">\r\n                    Логін адміністратора обов'язковий\r\n                </div>\r\n                <div [hidden]=\"!login.errors.pattern\">\r\n                    Введено недозволений символ\r\n                </div>\r\n            </div>\r\n            <div class=\"alert-danger\">\r\n                {{userError}}\r\n            </div>\r\n        </div>\r\n        <h4> Місцезнаходження</h4>\r\n        <!--\r\n        <button (click)=\"openModal()\"> Вибрати локацію</button>\r\n       \r\n         <app-modal>\r\n            <div class=\"app-modal-header\">\r\n                <h3>Додати місцезнаходження</h3>\r\n            </div>\r\n            <div class=\"app-modal-body\">\r\n                <map-component> </map-component>\r\n            </div>\r\n            <div class=\"app-modal-footer\">\r\n                <button type=\"button\" class=\"btn btn-default\" (click)=\"modal.hide()\">Закрити</button>\r\n            </div>\r\n        </app-modal> \r\n        -->\r\n        <div class=\"form-group\" [class.has-error]=\"city.invalid&&city.touched\">\r\n            <label class=\"control-label\"> Місто </label>\r\n            <div class=\"inner-addon left-addon\">\r\n                <i class=\"glyphicon glyphicon-home\"></i>\r\n                <input type=\"text\" class=\"form-control\" [(ngModel)]=\"organization.city\" placeholder=\"Введіть місто\" pattern=\"[А-Яа-яїЇіІ]*\" name=\"city\" #city=\"ngModel\" />\r\n            </div>\r\n            <div *ngIf=\"city.errors && (city.dirty || city.touched)\"\r\n                 class=\"alert alert-danger\">\r\n                <div [hidden]=\"!city.errors.required\">\r\n                    Місто обов'язкове\r\n                </div>\r\n                <div [hidden]=\"!city.errors.pattern\">\r\n                    Поле може містити лише кирилицю.\r\n                </div>\r\n            </div>\r\n            </div>\r\n        <div class=\"form-group\" [class.has-error]=\"street.invalid&&street.touched\" >\r\n            <label class=\"control-label\"> Вулиця </label>\r\n            <div class=\"inner-addon left-addon\">\r\n                <i class=\"glyphicon glyphicon-home\"></i>\r\n                <input type=\"text\" class=\"form-control\" [(ngModel)]=\"organization.street\" required placeholder=\"Введіть вулицю\" name=\"street\" #street=\"ngModel\" />\r\n            </div>\r\n            <div *ngIf=\"street.errors && (street.dirty || street.touched)\"\r\n                 class=\"alert alert-danger\">\r\n                <div [hidden]=\"!street.errors.required\">\r\n                    Вулиця обов'язкова\r\n                </div>\r\n            </div>\r\n        </div>\r\n          \r\n        <div class=\"form-group\" [class.has-error]=\"house.invalid&&house.touched\">\r\n            <label class=\"control-label\"> Будинок </label>\r\n            <div class=\"inner-addon left-addon\">\r\n                <i class=\"glyphicon glyphicon-home\"></i>\r\n                <input type=\"text\" class=\"form-control\" [(ngModel)]=\"organization.house\" placeholder=\"Введіть будинок\" name=\"house\" #house=\"ngModel\"/>\r\n            </div>\r\n            <div *ngIf=\"house.errors && (house.dirty || house.touched)\"\r\n                 class=\"alert alert-danger\">\r\n                <div [hidden]=\"!house.errors.required\">\r\n                    Будинок обов'язковий\r\n                </div>\r\n            </div>\r\n        </div>\r\n           \r\n        <button (click)=\"registerOrganization()\" class=\"btn btn-primary\" type=\"submit\" [disabled]=\"form.invalid\"> Зареєструвати </button>\r\n    </form>\r\n</div>";
+module.exports = "<div class=\"well container col-md-8 col-md-offset-2\" *ngIf=\"requestDetail\">\r\n    <div class=\"row-fluid\">\r\n        <div class=\"childName\">\r\n            {{requestDetail.name}}\r\n        </div>\r\n        <a [routerLink]=\"['/home/allrequests']\" class=\"pull-right\">Перейти до всіх запитів</a>\r\n    </div>\r\n    <section>\r\n        <div class=\"input-list style-4 clearfix\">\r\n            <div *ngIf=\"requestDetail.imagesUrl\" class=\"col-md-2 col-md-offset-0\">\r\n                <gallery [datasource]=\"requestDetail.imagesUrl\"> </gallery>\r\n            </div>\r\n            <div class=\"col-md-10\">\r\n                <div class=\"col-md-12 childResourse\">\r\n                    Організації: {{requestDetail.organizationName}}\r\n                </div>\r\n                <div class=\"col-md-12 childResourse\">\r\n                    <b>Статус: </b> <b><span>{{requestDetail.statusName}}</span></b>\r\n                </div>\r\n                <div class=\"col-md-12 childResourse \">\r\n                    Тип: {{requestDetail.goodsTypeName}}\r\n                </div>\r\n                <div class=\"col-md-12 childResourse \">\r\n                    Категорія: {{requestDetail.goodsCategoryName}}\r\n                </div>\r\n                <div class=\"col-md-12 childResourse \">\r\n                    Опис:\r\n                </div>\r\n                <div class=\"col-md-12 description\">\r\n                    {{requestDetail.description}}\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <button id=\"submit\" name=\"submit\" class=\"btn pull-right btn-fundtrack-style\" (click)=\"onActionClick()\">Пожертвувати</button>\r\n    </section>\r\n</div>\r\n<app-modal>\r\n    <div class=\"app-modal-header\">\r\n        <button type=\"button\" class=\"close\" aria-hidden=\"true\" (click)=\"closeModal()\">&times;</button>\r\n        <h4 class=\"modal-title\">Контактні дані: </h4>\r\n    </div>\r\n    <div class=\"app-modal-body\">\r\n        <div>\r\n            <label class=\"control-label\">Номер телефону:</label>\r\n            <input class=\"col-md-12\" type=\"text\"\r\n                   #number=\"ngModel\"\r\n                   pattern=\"[+0-9]*\"\r\n                   required\r\n                   (blur)=\"customeFieldTouched=true\"\r\n                   [(ngModel)]=\"phoneNumber\" />\r\n        </div>\r\n        <div>\r\n            <label class=\"control-label\">Додаткова інформація:</label>\r\n            <textarea class=\"form-control\" #description=\"ngModel\"\r\n                      required\r\n                      [(ngModel)]=\"responseDescription\">\r\n        </textarea>\r\n        </div>\r\n        <div *ngIf=\"number.invalid && customeFieldTouched \"\r\n             class=\"alert alert-danger\">\r\n            <div [hidden]=\"!number.errors.required\">\r\n                Вкажіть інформацію, щоб ми могли з вами звязатися.\r\n            </div>\r\n            <div [hidden]=\"!number.errors.pattern\">\r\n                Номер телефону може містити тільки цифри і \"+\".\r\n            </div>\r\n        </div>\r\n    </div>\r\n    <div class=\"app-modal-footer\">\r\n        <button type=\"button\" class=\"btn btn-default\" (click)=\"closeModal()\">Закрити</button>\r\n        <button (click)=\"setUserResponse()\"\r\n                class=\"btn btn-fundtrack-style\"\r\n                data-dismiss=\"modal\"\r\n                [disabled]=\"number.invalid\">\r\n            Надіслати\r\n        </button>\r\n    </div>\r\n</app-modal>\r\n";
 
 /***/ }),
 /* 258 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"modal fade\" id=\"banModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\" aria-hidden=\"true\">\r\n    <div class=\"modal-dialog\">\r\n        <div class=\"modal-content\">\r\n            <div class=\"modal-header panel-heading\">\r\n                <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button>\r\n                <h4 class=\"modal-title\">Причина Бану : </h4>\r\n            </div>\r\n            <div class=\"modal-body\">\r\n                <textarea #description=\"ngModel\" required [(ngModel)]=\"BanDescription\">                   \r\n                </textarea>           \r\n                <div class=\"alert alert-danger\" *ngIf=\"description.invalid && description.touched\">\r\n                    Повинна бути причина бану!\r\n                </div>  \r\n            </div>\r\n            <div class=\"modal-footer\">      \r\n                <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Закрити</button>\r\n                <button (click)=\"changeStatus()\"\r\n                        class=\"btn btn-primary\" \r\n                        data-dismiss=\"modal\"\r\n                        [disabled]=\"description.invalid && description.touched\">\r\n                    {{banStatus}}\r\n                </button>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>";
+module.exports = "<h2> Форма реєстрації організації</h2>\r\n<div>\r\n    <form #form=\"ngForm\">\r\n        <h4> Загальні відомості </h4>\r\n        <div class=\"form-group\" [class.has-error]=\"name.invalid&&name.touched\">\r\n            <label class=\"control-label\"> Назва організації</label>\r\n            <div class=\"inner-addon left-addon\">\r\n                <i class=\"glyphicon glyphicon-pencil\"></i>\r\n                <input type=\"text\" class=\"form-control\" [(ngModel)]=\"organization.name\" placeholder=\"Введіть назву\" required minlength=\"5\" maxlength=\"50\" name=\"name\" #name=\"ngModel\"/>\r\n            </div>\r\n             <div *ngIf=\"name.errors && (name.dirty || name.touched)\"\r\n                 class=\"alert alert-danger\">\r\n                <div [hidden]=\"!name.errors.required\">\r\n                    Назва організації обов'язкова\r\n                </div>\r\n                <div [hidden]=\"!name.errors.minlength\">\r\n                    Назва має містити принаймі 5 символів.\r\n                </div>\r\n                <div [hidden]=\"!name.errors.maxlength\">\r\n                    Назва не може перевищувати 50 символів.\r\n                </div>\r\n            </div>\r\n            <div class=\"alert-danger\">\r\n                {{nameError}}\r\n            </div>\r\n            </div>\r\n        <div class=\"form-group\" [class.has-error]=\"description.invalid&&description.touched\">\r\n            <label class=\"control-label\"> Опис організації </label>\r\n            <div class=\"inner-addon left-addon\">\r\n                <i class=\"glyphicon glyphicon-pencil\" *ngIf =\"!description.dirty\"></i> \r\n                <textarea class=\"form-control\" [(ngModel)]=\"organization.description\" required minlength=\"20\" placeholder=\"     Введіть опис\" maxlength=\"200\" name=\"description\" #description=\"ngModel\" rows=\"5\"> </textarea>\r\n            </div>\r\n            <div *ngIf=\"description.errors && (description.dirty || description.touched)\"\r\n                 class=\"alert alert-danger\">\r\n                <div [hidden]=\"!description.errors.required\">\r\n                    Опис організації обов'язковий\r\n                </div>\r\n                <div [hidden]=\"!description.errors.minlength\">\r\n                    Опис має містити принаймі 20 символів.\r\n                </div>\r\n                <div [hidden]=\"!description.errors.maxlength\">\r\n                    Опис не може перевищувати 100 символів.\r\n                </div>\r\n            </div>\r\n        </div>\r\n        <h4> Представник </h4>\r\n        <div class=\"form-group\" [class.has-error]=\"login.invalid&&login.touched\">\r\n            <label class=\"control-label\"> Логін адміністратора</label>\r\n            <div class=\"inner-addon left-addon\">\r\n                <i class=\"glyphicon glyphicon-user\"></i>\r\n                <input type=\"text\" class=\"form-control\" required [(ngModel)]=\"organization.administratorLogin\" pattern=\"[a-zA-Z0-9_]*\" placeholder=\"Введіть логін адміністратора\" name=\"login\" #login=\"ngModel\" />\r\n            </div>\r\n            <div *ngIf=\"login.errors && (login.dirty || login.touched)\"\r\n                 class=\"alert alert-danger\">\r\n                <div [hidden]=\"!login.errors.required\">\r\n                    Логін адміністратора обов'язковий\r\n                </div>\r\n                <div [hidden]=\"!login.errors.pattern\">\r\n                    Введено недозволений символ\r\n                </div>\r\n            </div>\r\n            <div class=\"alert-danger\">\r\n                {{userError}}\r\n            </div>\r\n        </div>\r\n        <h4> Місцезнаходження</h4>\r\n        <!--\r\n        <button (click)=\"openModal()\"> Вибрати локацію</button>\r\n       \r\n         <app-modal>\r\n            <div class=\"app-modal-header\">\r\n                <h3>Додати місцезнаходження</h3>\r\n            </div>\r\n            <div class=\"app-modal-body\">\r\n                <map-component> </map-component>\r\n            </div>\r\n            <div class=\"app-modal-footer\">\r\n                <button type=\"button\" class=\"btn btn-default\" (click)=\"modal.hide()\">Закрити</button>\r\n            </div>\r\n        </app-modal> \r\n        -->\r\n        <div class=\"form-group\" [class.has-error]=\"city.invalid&&city.touched\">\r\n            <label class=\"control-label\"> Місто </label>\r\n            <div class=\"inner-addon left-addon\">\r\n                <i class=\"glyphicon glyphicon-home\"></i>\r\n                <input type=\"text\" class=\"form-control\" [(ngModel)]=\"organization.city\" placeholder=\"Введіть місто\" pattern=\"[А-Яа-яїЇіІ]*\" name=\"city\" #city=\"ngModel\" />\r\n            </div>\r\n            <div *ngIf=\"city.errors && (city.dirty || city.touched)\"\r\n                 class=\"alert alert-danger\">\r\n                <div [hidden]=\"!city.errors.required\">\r\n                    Місто обов'язкове\r\n                </div>\r\n                <div [hidden]=\"!city.errors.pattern\">\r\n                    Поле може містити лише кирилицю.\r\n                </div>\r\n            </div>\r\n            </div>\r\n        <div class=\"form-group\" [class.has-error]=\"street.invalid&&street.touched\" >\r\n            <label class=\"control-label\"> Вулиця </label>\r\n            <div class=\"inner-addon left-addon\">\r\n                <i class=\"glyphicon glyphicon-home\"></i>\r\n                <input type=\"text\" class=\"form-control\" [(ngModel)]=\"organization.street\" required placeholder=\"Введіть вулицю\" name=\"street\" #street=\"ngModel\" />\r\n            </div>\r\n            <div *ngIf=\"street.errors && (street.dirty || street.touched)\"\r\n                 class=\"alert alert-danger\">\r\n                <div [hidden]=\"!street.errors.required\">\r\n                    Вулиця обов'язкова\r\n                </div>\r\n            </div>\r\n        </div>\r\n          \r\n        <div class=\"form-group\" [class.has-error]=\"house.invalid&&house.touched\">\r\n            <label class=\"control-label\"> Будинок </label>\r\n            <div class=\"inner-addon left-addon\">\r\n                <i class=\"glyphicon glyphicon-home\"></i>\r\n                <input type=\"text\" class=\"form-control\" [(ngModel)]=\"organization.house\" placeholder=\"Введіть будинок\" name=\"house\" #house=\"ngModel\"/>\r\n            </div>\r\n            <div *ngIf=\"house.errors && (house.dirty || house.touched)\"\r\n                 class=\"alert alert-danger\">\r\n                <div [hidden]=\"!house.errors.required\">\r\n                    Будинок обов'язковий\r\n                </div>\r\n            </div>\r\n        </div>\r\n           \r\n        <button (click)=\"registerOrganization()\" class=\"btn btn-primary\" type=\"submit\" [disabled]=\"form.invalid\"> Зареєструвати </button>\r\n    </form>\r\n</div>";
 
 /***/ }),
 /* 259 */
 /***/ (function(module, exports) {
 
-module.exports = "<h1>Here will be complaints</h1>";
+module.exports = "<div class=\"modal fade\" id=\"banModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\" aria-hidden=\"true\">\r\n    <div class=\"modal-dialog\">\r\n        <div class=\"modal-content\">\r\n            <div class=\"modal-header panel-heading\">\r\n                <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button>\r\n                <h4 class=\"modal-title\">Причина Бану : </h4>\r\n            </div>\r\n            <div class=\"modal-body\">\r\n                <textarea #description=\"ngModel\" required [(ngModel)]=\"BanDescription\">                   \r\n                </textarea>           \r\n                <div class=\"alert alert-danger\" *ngIf=\"description.invalid && description.touched\">\r\n                    Повинна бути причина бану!\r\n                </div>  \r\n            </div>\r\n            <div class=\"modal-footer\">      \r\n                <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Закрити</button>\r\n                <button (click)=\"changeStatus()\"\r\n                        class=\"btn btn-primary\" \r\n                        data-dismiss=\"modal\"\r\n                        [disabled]=\"description.invalid && description.touched\">\r\n                    {{banStatus}}\r\n                </button>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>";
 
 /***/ }),
 /* 260 */
 /***/ (function(module, exports) {
 
-module.exports = "<p *ngIf=\"!arrayToDisplay\"><em>Loading...</em></p>\r\n\r\n<table class='table' *ngIf=\"arrayToDisplay\">\r\n    <thead>\r\n        <tr>\r\n            <th *ngFor=\"let header of headers\">\r\n                {{header}}\r\n            </th>\r\n        </tr>\r\n    </thead>\r\n    <tbody>\r\n        <tr *ngFor=\"let item of arrayToDisplay\">\r\n            <td class=\"text-left\">{{item.title}}</td>\r\n            <td>\r\n                <button class=\"btn custom-btn\" \r\n                        [class.btn-danger]=\"!item.isBanned\"\r\n                        [class.btn-success]=\"item.isBanned\"\r\n                        (click)=\"onActionClick(item)\">\r\n                    <div *ngIf=\"!item.isBanned\">Забанити</div>\r\n                    <div *ngIf=\"item.isBanned\">Відбанити</div>\r\n                </button>\r\n            </td>\r\n        </tr>\r\n    </tbody>\r\n</table>\r\n<app-modal>  \r\n    <div class=\"app-modal-header\">\r\n        <button type=\"button\" class=\"close\" aria-hidden=\"true\" (click)=\"closeModal()\">&times;</button>\r\n        <h4 class=\"modal-title\">Причина Бану : </h4>\r\n    </div>\r\n    <div class=\"app-modal-body\">\r\n        <textarea class=\"form-control\" #description=\"ngModel\"\r\n                  (blur)=\"customeFieldTouched=true\" \r\n                  required\r\n                  [disabled]=\"selectedItemStatus=='Відбанити'\"\r\n                  [(ngModel)]=\"selectedItemBanDescription\">                   \r\n        </textarea>\r\n        <div class=\"text-danger\" *ngIf=\"description.invalid && customeFieldTouched\">\r\n            Повинна бути причина бану!\r\n        </div>\r\n    </div>\r\n    <div class=\"app-modal-footer\">\r\n        <button type=\"button\" class=\"btn btn-default\" (click)=\"closeModal()\">Закрити</button>\r\n        <button (click)=\"statusChange(selectedItemBanDescription)\"\r\n                class=\"btn btn-primary\"\r\n                data-dismiss=\"modal\"\r\n                [disabled]=\"description.invalid\">\r\n            {{selectedItemStatus}}\r\n        </button>\r\n    </div>     \r\n</app-modal>\r\n";
+module.exports = "<h1>Here will be complaints</h1>";
 
 /***/ }),
 /* 261 */
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngIf=\"organizations\">\r\n    <super-admin-grid [arrayToDisplay]=\"organizations\" \r\n                      [headers]=\"['Назва Організації', 'Дія']\"\r\n                      (banStatusChange)=\"changeOrganizationBanStatus($event)\">\r\n\r\n    </super-admin-grid>\r\n</div>\r\n<div class=\"container-fluid\">\r\n    <div class=\"row\">\r\n        <div class=\"col-sm-2 castome-paging\">\r\n            На Сторінці :\r\n        </div>\r\n        <div class=\"text-left col-sm-2 castome-paging\">\r\n            <select-item [items]=\"[4, 5, 6, 7, 8, 9, 10]\"\r\n                         (onSelect)=\"itemsPerPageChange($event)\">\r\n            </select-item>\r\n        </div>\r\n        <div class=\"text-center\" *ngIf=\"totalItems && itemPerPage\">\r\n            <pagination-pages [offset]=\"offset\"\r\n                              [limit]=\"itemPerPage\"\r\n                              [size]=\"totalItems\"\r\n                              [currentPage]=\"currentPage\"\r\n                              (pageChange)=\"onPageChange($event)\">\r\n            </pagination-pages>\r\n        </div>  \r\n    </div>\r\n</div>";
+module.exports = "<p *ngIf=\"!arrayToDisplay\"><em>Loading...</em></p>\r\n\r\n<table class='table' *ngIf=\"arrayToDisplay\">\r\n    <thead>\r\n        <tr>\r\n            <th *ngFor=\"let header of headers\">\r\n                {{header}}\r\n            </th>\r\n        </tr>\r\n    </thead>\r\n    <tbody>\r\n        <tr *ngFor=\"let item of arrayToDisplay\">\r\n            <td class=\"text-left\">{{item.title}}</td>\r\n            <td>\r\n                <button class=\"btn custom-btn\" \r\n                        [class.btn-danger]=\"!item.isBanned\"\r\n                        [class.btn-success]=\"item.isBanned\"\r\n                        (click)=\"onActionClick(item)\">\r\n                    <div *ngIf=\"!item.isBanned\">Забанити</div>\r\n                    <div *ngIf=\"item.isBanned\">Відбанити</div>\r\n                </button>\r\n            </td>\r\n        </tr>\r\n    </tbody>\r\n</table>\r\n<app-modal>  \r\n    <div class=\"app-modal-header\">\r\n        <button type=\"button\" class=\"close\" aria-hidden=\"true\" (click)=\"closeModal()\">&times;</button>\r\n        <h4 class=\"modal-title\">Причина Бану : </h4>\r\n    </div>\r\n    <div class=\"app-modal-body\">\r\n        <textarea class=\"form-control\" #description=\"ngModel\"\r\n                  (blur)=\"customeFieldTouched=true\" \r\n                  required\r\n                  [disabled]=\"selectedItemStatus=='Відбанити'\"\r\n                  [(ngModel)]=\"selectedItemBanDescription\">                   \r\n        </textarea>\r\n        <div class=\"text-danger\" *ngIf=\"description.invalid && customeFieldTouched\">\r\n            Повинна бути причина бану!\r\n        </div>\r\n    </div>\r\n    <div class=\"app-modal-footer\">\r\n        <button type=\"button\" class=\"btn btn-default\" (click)=\"closeModal()\">Закрити</button>\r\n        <button (click)=\"statusChange(selectedItemBanDescription)\"\r\n                class=\"btn btn-primary\"\r\n                data-dismiss=\"modal\"\r\n                [disabled]=\"description.invalid\">\r\n            {{selectedItemStatus}}\r\n        </button>\r\n    </div>     \r\n</app-modal>\r\n";
 
 /***/ }),
 /* 262 */
 /***/ (function(module, exports) {
 
-module.exports = "<!--<spinner [showSpinner]=\"showUsersSpinner\"></spinner>-->\r\n<div *ngIf=\"users\">\r\n    <super-admin-grid [arrayToDisplay]=\"users\"\r\n                      [headers]=\"['Логін Користувача', 'Дія']\"\r\n                      (banStatusChange)=\"changeUserBanStatus($event)\">\r\n    </super-admin-grid>\r\n</div>\r\n<div class=\"container-fluid\">\r\n    <div class=\"row\">\r\n        <div class=\"col-sm-2 castome-paging\">\r\n            На Сторінці :\r\n        </div>\r\n        <div class=\"text-left col-sm-2 castome-paging\">\r\n            <select-item [items]=\"[4, 5, 6, 7, 8, 9, 10]\"\r\n                         (onSelect)=\"itemsPerPageChange($event)\">\r\n            </select-item>\r\n        </div>\r\n        <div *ngIf=\"totalItems && itemPerPage\" class=\"text-center\">\r\n            <pagination-pages [offset]=\"offset\"\r\n                              [limit]=\"itemPerPage\"\r\n                              [size]=\"totalItems\"\r\n                              [currentPage]=\"currentPage\"\r\n                              (pageChange)=\"onPageChange($event)\">\r\n            </pagination-pages>\r\n        </div>\r\n    </div>\r\n</div>";
+module.exports = "<div *ngIf=\"organizations\">\r\n    <super-admin-grid [arrayToDisplay]=\"organizations\" \r\n                      [headers]=\"['Назва Організації', 'Дія']\"\r\n                      (banStatusChange)=\"changeOrganizationBanStatus($event)\">\r\n\r\n    </super-admin-grid>\r\n</div>\r\n<div class=\"container-fluid\">\r\n    <div class=\"row\">\r\n        <div class=\"col-sm-2 castome-paging\">\r\n            На Сторінці :\r\n        </div>\r\n        <div class=\"text-left col-sm-2 castome-paging\">\r\n            <select-item [items]=\"[4, 5, 6, 7, 8, 9, 10]\"\r\n                         (onSelect)=\"itemsPerPageChange($event)\">\r\n            </select-item>\r\n        </div>\r\n        <div class=\"text-center\" *ngIf=\"totalItems && itemPerPage\">\r\n            <pagination-pages [offset]=\"offset\"\r\n                              [limit]=\"itemPerPage\"\r\n                              [size]=\"totalItems\"\r\n                              [currentPage]=\"currentPage\"\r\n                              (pageChange)=\"onPageChange($event)\">\r\n            </pagination-pages>\r\n        </div>  \r\n    </div>\r\n</div>";
 
 /***/ }),
 /* 263 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">    \r\n    <div class=\"side-menu\">\r\n        <nav class=\"navbar navbar-default\" role=\"navigation\">           \r\n            <div class=\"side-menu-container\">\r\n                <ul class=\"nav navbar-nav\">\r\n                    <li [routerLinkActive]=\"['link-active']\">\r\n                        <a [routerLink]=\"['/superadmin']\">\r\n                            <span class=\"glyphicon glyphicon-user\"></span>\r\n                                Super Admin\r\n                        </a>\r\n                    </li>\r\n                    <li [routerLinkActive]=\"['link-active']\">\r\n                        <a [routerLink]=\"['complaints']\">\r\n                            <span class=\"glyphicon glyphicon-envelope\"></span> \r\n                            Скарги\r\n                        </a>\r\n                    </li>\r\n                    <li [routerLinkActive]=\"['link-active']\">\r\n                        <a [routerLink] =\"['register-organization']\">\r\n                            <span class=\"glyphicon glyphicon-plus\"></span> \r\n                            Додати Організацію\r\n                        </a>\r\n                    </li>\r\n                    <li [routerLinkActive]=\"['link-active']\">\r\n                        <a [routerLink]=\"['organizations']\">\r\n                            <span class=\"glyphicon glyphicon-th-list\"></span> \r\n                            Організації\r\n                        </a>\r\n                    </li>                 \r\n                    <li [routerLinkActive]=\"['link-active']\">\r\n                        <a [routerLink]=\"['users']\"><span class=\"glyphicon glyphicon-th-list\"></span> \r\n                            Користувачі\r\n                        </a>\r\n                    </li>\r\n                </ul>\r\n            </div>\r\n        </nav> \r\n    </div>\r\n    <div class=\"side-body\">      \r\n        <router-outlet></router-outlet>\r\n    </div>\r\n</div>\r\n";
+module.exports = "<!--<spinner [showSpinner]=\"showUsersSpinner\"></spinner>-->\r\n<div *ngIf=\"users\">\r\n    <super-admin-grid [arrayToDisplay]=\"users\"\r\n                      [headers]=\"['Логін Користувача', 'Дія']\"\r\n                      (banStatusChange)=\"changeUserBanStatus($event)\">\r\n    </super-admin-grid>\r\n</div>\r\n<div class=\"container-fluid\">\r\n    <div class=\"row\">\r\n        <div class=\"col-sm-2 castome-paging\">\r\n            На Сторінці :\r\n        </div>\r\n        <div class=\"text-left col-sm-2 castome-paging\">\r\n            <select-item [items]=\"[4, 5, 6, 7, 8, 9, 10]\"\r\n                         (onSelect)=\"itemsPerPageChange($event)\">\r\n            </select-item>\r\n        </div>\r\n        <div *ngIf=\"totalItems && itemPerPage\" class=\"text-center\">\r\n            <pagination-pages [offset]=\"offset\"\r\n                              [limit]=\"itemPerPage\"\r\n                              [size]=\"totalItems\"\r\n                              [currentPage]=\"currentPage\"\r\n                              (pageChange)=\"onPageChange($event)\">\r\n            </pagination-pages>\r\n        </div>\r\n    </div>\r\n</div>";
 
 /***/ }),
 /* 264 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\r\n    <h3 class=\"page-header\">Редагування профілю</h3>\r\n    <div class=\"row\">\r\n        <div class=\"col-md-4 col-sm-6 col-xs-12\">\r\n            <div class=\"text-center\">\r\n                <img src=\"{{user.photoUrl}}\" class=\"avatar img-responsive img-thumbnail\" style=\"border:none\" alt=\"avatar\" height=\"350\" width=\"250\">\r\n                <input type=\"file\" (change)=\"saveFileInAws($event)\" #imageInput accept=\".png,.jpg\" class=\"text-center center-block well well-sm hidden\">\r\n                <button type=\"button\" class=\"btn btn-success\" (click)=\"imageInput.click()\">Завантажити інше фото</button>\r\n                <hr />\r\n                <button type=\"button\" class=\"btn btn-primary\" (click)=\"onPasswordChange()\">Змінити пароль</button>\r\n            </div>\r\n        </div>\r\n        <div class=\"col-md-8 col-sm-6 col-xs-12 personal-info\">\r\n            <div class=\"alert alert-info alert-dismissable\">\r\n                <a class=\"panel-close close\" data-dismiss=\"alert\">×</a>\r\n                <i class=\"fa fa-coffee\"></i> Тут можна показувати сповіщення для юзера\r\n            </div>\r\n            <h3>Особисті дані</h3>\r\n            <form [formGroup]=\"userForm\" class=\"form-horizontal\" style=\"width:400px;padding-left:20px;\" (ngSubmit)=\"onSubmit()\">\r\n                <div class=\"form-group\">\r\n                    <label class=\"control-label\" for=\"login\">Логін</label>\r\n                    <div class=\"input-group\">\r\n                        <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-user\" aria-hidden=\"true\"></i></span>\r\n                        <input type=\"text\" disabled class=\"form-control\" name=\"user.login\" formControlName=\"login\" [(ngModel)]=\"user.login\" />\r\n                    </div>\r\n                </div>\r\n                <div class=\"form-group\" [class.has-error]=\"formErrors.firstName\" [class.has-success]=\"!formErrors.firstName && userForm.get('firstName').valid\">\r\n                    <label class=\"control-label\" for=\"firstName\">Ім'я</label>\r\n                    <div class=\"input-group\">\r\n                        <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-user\" aria-hidden=\"true\"></i></span>\r\n                        <input type=\"text\" class=\"form-control\" formControlName=\"firstName\" [(ngModel)]=\"user.firstName\" />\r\n                    </div>\r\n                    <div>\r\n                        <span *ngIf=\"formErrors.firstName\" class=\"has-error help-block fixedError\">\r\n                            {{ formErrors.firstName }}\r\n                        </span>\r\n                    </div>\r\n                </div>\r\n                <div class=\"form-group\" [class.has-error]=\"formErrors.lastName\" [class.has-success]=\"!formErrors.lastName && userForm.get('lastName').valid\">\r\n                    <label class=\"control-label\" for=\"user.lastName\">Прізвище</label>\r\n                    <div class=\"input-group\">\r\n                        <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-user\" aria-hidden=\"true\"></i></span>\r\n                        <input type=\"text\" class=\"form-control input-md\" formControlName=\"lastName\" [(ngModel)]=\"user.lastName\" />\r\n                    </div>\r\n                    <span *ngIf=\"formErrors.lastName\" class=\"has-error help-block fixedError\">\r\n                        {{ formErrors.lastName }}\r\n                    </span>\r\n                </div>\r\n                <div class=\"form-group\" [class.has-error]=\"formErrors.address\" [class.has-success]=\"!formErrors.email && userForm.get('address').valid\">\r\n                    <label class=\"control-label\" for=\"address\">Адреса</label>\r\n                    <div class=\"input-group\">\r\n                        <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-envelope\" aria-hidden=\"true\"></i></span>\r\n                        <input class=\"form-control input-md\" type=\"text\" formControlName=\"address\" [(ngModel)]=\"user.address\" />\r\n                    </div>\r\n                    <span *ngIf=\"formErrors.address\" class=\"has-error help-block fixedError\">\r\n                        {{ formErrors.address }}\r\n                    </span>\r\n                </div>\r\n                <div class=\"form-group\" [class.has-error]=\"formErrors.email\" [class.has-success]=\"!formErrors.email && userForm.get('email').valid\">\r\n                    <label class=\"control-label\" for=\"email\">Email</label>\r\n                    <div class=\"input-group\">\r\n                        <span class=\"input-group-addon\"><i aria-hidden=\"true\">@</i></span>\r\n                        <input class=\"form-control input-md\" type=\"text\" formControlName=\"email\" [(ngModel)]=\"user.email\" />\r\n                    </div>\r\n                    <span *ngIf=\"formErrors.email\" class=\"has-error help-block fixedError\">\r\n                        {{ formErrors.email }}\r\n                    </span>\r\n                </div>\r\n                <div class=\"form-group\">\r\n                    <label class=\"control-label\"></label>\r\n                    <button type=\"submit\" class=\"btn btn-primary\" [disabled]=\"!userForm.valid\">Зберегти</button>\r\n                </div>\r\n            </form>\r\n        </div>\r\n    </div>\r\n</div>\r\n<app-modal>\r\n    <div class=\"app-modal-header\">\r\n        <h3>Змінити пароль</h3>\r\n    </div>\r\n    <div class=\"app-modal-body\">\r\n        <form [formGroup]=\"passwordForm\" class=\"form-horizontal\" novalidate>\r\n            <div class=\"form-group\" [class.has-error]=\"formErrors.oldPassword\"\r\n                 [class.has-success]=\"!formErrors.oldPassword && passwordForm.get('oldPassword').valid\">\r\n                <label class=\"col-md-3 control-label\" for=\"oldPassword\">Старий пароль</label>\r\n                <div class=\"col-md-8 input-group\">\r\n                    <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-lock\" aria-hidden=\"true\"></i></span>\r\n                    <input class=\"form-control input-md\" type=\"password\"\r\n                           formControlName=\"oldPassword\" [(ngModel)]=\"passwordContainer.oldPassword\" />\r\n                </div>\r\n                <span *ngIf=\"formErrors.oldPassword\" class=\"has-error help-block fixedError\" style=\"margin-left:200px\">\r\n                    {{ formErrors.oldPassword }}\r\n                </span>\r\n            </div>\r\n            <div class=\"form-group\" [class.has-error]=\"formErrors.newPassword\"\r\n                 [class.has-success]=\"!formErrors.newPassword && passwordForm.get('newPassword').valid\">\r\n                <label class=\"col-md-3 control-label\" for=\"newPassword\">Новий пароль</label>\r\n                <div class=\"col-md-8 input-group\">\r\n                    <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-lock\" aria-hidden=\"true\"></i></span>\r\n                    <input class=\"form-control input-md\" type=\"password\"\r\n                           formControlName=\"newPassword\" [(ngModel)]=\"passwordContainer.newPassword\" />\r\n                </div>\r\n                <span *ngIf=\"formErrors.newPassword\" class=\"has-error help-block fixedError\" style=\"margin-left:200px\">\r\n                    {{ formErrors.newPassword }}\r\n                </span>\r\n            </div>\r\n            <div class=\"form-group\" [class.has-error]=\"formErrors.newPasswordConfirmation\"\r\n                 [class.has-success]=\"!formErrors.newPasswordConfirmation && passwordForm.get('newPasswordConfirmation').valid\">\r\n                <label class=\"col-md-3 control-label\" for=\"newPasswordConfirmation\">Підтвердження пароля</label>\r\n                <div class=\"col-md-8 input-group\">\r\n                    <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-lock\" aria-hidden=\"true\"></i></span>\r\n                    <input class=\"form-control input-md\" type=\"password\"\r\n                           formControlName=\"newPasswordConfirmation\" [(ngModel)]=\"passwordContainer.newPasswordConfirmation\" />\r\n                </div>\r\n                <span *ngIf=\"formErrors.newPasswordConfirmation\" class=\"has-error help-block fixedError\" style=\"margin-left:200px\" >\r\n                    {{ formErrors.newPasswordConfirmation }}\r\n                </span>\r\n            </div>\r\n            <span *ngIf=\"passwordForm.hasError('mismatchedPasswords')\" class=\"has-error help-block fixedError\" style=\"margin-left:200px\"\r\n                 >Паролі не співпадають</span>\r\n        </form>\r\n    </div>\r\n    <div class=\"app-modal-footer\">\r\n        <button type=\"button\" class=\"btn btn-default\" (click)=\"modal.hide()\">Закрити</button>\r\n        <button type=\"button\" class=\"btn btn-primary\" [disabled]=\"passwordForm.invalid\" (click)=\"changePassword()\">Зберегти</button>\r\n        <div class=\"col-md-4 col-md-offset-4 form-group\">\r\n            <p class=\"error\" *ngIf=\"errorMessage\"><span class=\"text-danger\">{{errorMessage}}</span></p>\r\n        </div>\r\n    </div>\r\n</app-modal>";
+module.exports = "<div class=\"row\">    \r\n    <div class=\"side-menu\">\r\n        <nav class=\"navbar navbar-default\" role=\"navigation\">           \r\n            <div class=\"side-menu-container\">\r\n                <ul class=\"nav navbar-nav\">\r\n                    <li [routerLinkActive]=\"['link-active']\">\r\n                        <a [routerLink]=\"['/superadmin']\">\r\n                            <span class=\"glyphicon glyphicon-user\"></span>\r\n                                Super Admin\r\n                        </a>\r\n                    </li>\r\n                    <li [routerLinkActive]=\"['link-active']\">\r\n                        <a [routerLink]=\"['complaints']\">\r\n                            <span class=\"glyphicon glyphicon-envelope\"></span> \r\n                            Скарги\r\n                        </a>\r\n                    </li>\r\n                    <li [routerLinkActive]=\"['link-active']\">\r\n                        <a [routerLink] =\"['register-organization']\">\r\n                            <span class=\"glyphicon glyphicon-plus\"></span> \r\n                            Додати Організацію\r\n                        </a>\r\n                    </li>\r\n                    <li [routerLinkActive]=\"['link-active']\">\r\n                        <a [routerLink]=\"['organizations']\">\r\n                            <span class=\"glyphicon glyphicon-th-list\"></span> \r\n                            Організації\r\n                        </a>\r\n                    </li>                 \r\n                    <li [routerLinkActive]=\"['link-active']\">\r\n                        <a [routerLink]=\"['users']\"><span class=\"glyphicon glyphicon-th-list\"></span> \r\n                            Користувачі\r\n                        </a>\r\n                    </li>\r\n                </ul>\r\n            </div>\r\n        </nav> \r\n    </div>\r\n    <div class=\"side-body\">      \r\n        <router-outlet></router-outlet>\r\n    </div>\r\n</div>\r\n";
 
 /***/ }),
 /* 265 */
 /***/ (function(module, exports) {
 
-module.exports = "<div>\r\n    <div class=\"col-md-12 fundtrack-style\" style=\"font-size:large; border-radius:5px; text-align:center; padding:10px;\">\r\n        Відгуки\r\n        </div>\r\n        <div>\r\n            <table class=\"table-bordered table\">\r\n                <thead>\r\n                    <tr>\r\n                        <th> Назва потреби</th>\r\n                        <th> Логін користувача </th>\r\n                        <th> Пошта користувача </th>\r\n                        <th> Дата </th>\r\n                        <th> Опис </th>\r\n                        <th> Статус </th>\r\n                    </tr>\r\n                </thead>\r\n                <tbody>\r\n                    <tr *ngFor=\"let userResponse of _userResponses\">\r\n                        <td> {{userResponse.requestedItemName}} </td>\r\n                        <td> {{userResponse.userLogin}}</td>\r\n                        <td> {{userResponse.userEmail}}</td>\r\n                        <td> {{userResponse.createDate | date:'shortDate'}}</td>\r\n                        <td> {{userResponse.description}}</td>\r\n                        <td>\r\n                            <div class=\"row\">\r\n                                <div class=\"btn-group\">\r\n                                    <button type=\"button\" class=\"btn btn-info dropdown-toggle\" data-toggle=\"dropdown\">\r\n                                        {{userResponse.statusName}}\r\n                                        <span class=\"caret\"></span>\r\n                                    </button>\r\n                                    <ul class=\"dropdown-menu scrollable-menu\" role=\"menu\">\r\n                                        <li *ngFor=\"let status of _statuses\"\r\n                                            (click)=\"onSelectStatus(userResponse.statusName,status,userResponse.id)\">\r\n                                            <a *ngIf=\"status.name!=userResponse.statusName\">{{status.name}}</a>\r\n                                        </li>\r\n                                    </ul>\r\n                                </div>\r\n                            </div>\r\n                        </td>\r\n                    </tr>\r\n                </tbody>\r\n            </table>\r\n        </div>\r\n    </div>\r\n\r\n<div class=\"row\">\r\n    <div class=\"col-md-12\" *ngIf=\"totalItems && itemsPerPage\">\r\n        <pagination-pages [offset]=\"offset\"\r\n                          [limit]=\"itemsPerPage\"\r\n                          [size]=\"totalItems\"\r\n                          [currentPage]=\"currentPage\"\r\n                          (pageChange)=\"onPageChange($event)\">\r\n                          class=\"col-md-6\">\r\n        </pagination-pages>\r\n        <div class=\"pagination-dropdown col-md-offset-4 col-md-1\">\r\n            На сторінці:\r\n            <select-item [items]=\"[6, 8, 10,12,14,16]\"\r\n                         (onSelect)=\"itemsPerPageChange($event)\">\r\n            </select-item>\r\n        </div>\r\n    </div>\r\n</div>\r\n\r\n\r\n<app-modal>\r\n    <div class=\"app-modal-header\">\r\n        <button type=\"button\" class=\"close\" aria-hidden=\"true\" (click)=\"closeModal()\">&times;</button>\r\n        <h4 class=\"modal-title\">Зміна стану відгуку: </h4>\r\n    </div>\r\n    <div class=\"app-modal-body\">\r\n        <div *ngIf=\"!isDeleteResponse\">\r\n        Ви впевнені що хочете змінити стан відгуку з \"{{oldStatus}}\" на \"{{newStatusName}}\" ?\r\n            </div>\r\n        <div *ngIf=\"isDeleteResponse\">\r\n            При зміні стану відгуку на \"{{newStatusName}}\" даний відгук буде видалено з таблиці. Продовжити операцію?\r\n        </div>\r\n    </div>\r\n    <div class=\"app-modal-footer\">\r\n        <button type=\"button\" class=\"btn btn-default\" (click)=\"closeModal()\">Ні</button>\r\n        <button (click)=\"changeStatus()\"\r\n                class=\"btn btn-primary\"\r\n                data-dismiss=\"modal\">\r\n            Так\r\n        </button>\r\n    </div>\r\n</app-modal>\r\n";
+module.exports = "<div class=\"container\">\r\n    <h3 class=\"page-header\">Редагування профілю</h3>\r\n    <div class=\"row\">\r\n        <div class=\"col-md-4 col-sm-6 col-xs-12\">\r\n            <div class=\"text-center\">\r\n                <img src=\"{{user.photoUrl}}\" class=\"avatar img-responsive img-thumbnail\" style=\"border:none\" alt=\"avatar\" height=\"350\" width=\"250\">\r\n                <input type=\"file\" (change)=\"saveFileInAws($event)\" #imageInput accept=\".png,.jpg\" class=\"text-center center-block well well-sm hidden\">\r\n                <button type=\"button\" class=\"btn btn-success\" (click)=\"imageInput.click()\">Завантажити інше фото</button>\r\n                <hr />\r\n                <button type=\"button\" class=\"btn btn-primary\" (click)=\"onPasswordChange()\">Змінити пароль</button>\r\n            </div>\r\n        </div>\r\n        <div class=\"col-md-8 col-sm-6 col-xs-12 personal-info\">\r\n            <div class=\"alert alert-info alert-dismissable\">\r\n                <a class=\"panel-close close\" data-dismiss=\"alert\">×</a>\r\n                <i class=\"fa fa-coffee\"></i> Тут можна показувати сповіщення для юзера\r\n            </div>\r\n            <h3>Особисті дані</h3>\r\n            <form [formGroup]=\"userForm\" class=\"form-horizontal\" style=\"width:400px;padding-left:20px;\" (ngSubmit)=\"onSubmit()\">\r\n                <div class=\"form-group\">\r\n                    <label class=\"control-label\" for=\"login\">Логін</label>\r\n                    <div class=\"input-group\">\r\n                        <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-user\" aria-hidden=\"true\"></i></span>\r\n                        <input type=\"text\" disabled class=\"form-control\" name=\"user.login\" formControlName=\"login\" [(ngModel)]=\"user.login\" />\r\n                    </div>\r\n                </div>\r\n                <div class=\"form-group\" [class.has-error]=\"formErrors.firstName\" [class.has-success]=\"!formErrors.firstName && userForm.get('firstName').valid\">\r\n                    <label class=\"control-label\" for=\"firstName\">Ім'я</label>\r\n                    <div class=\"input-group\">\r\n                        <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-user\" aria-hidden=\"true\"></i></span>\r\n                        <input type=\"text\" class=\"form-control\" formControlName=\"firstName\" [(ngModel)]=\"user.firstName\" />\r\n                    </div>\r\n                    <div>\r\n                        <span *ngIf=\"formErrors.firstName\" class=\"has-error help-block fixedError\">\r\n                            {{ formErrors.firstName }}\r\n                        </span>\r\n                    </div>\r\n                </div>\r\n                <div class=\"form-group\" [class.has-error]=\"formErrors.lastName\" [class.has-success]=\"!formErrors.lastName && userForm.get('lastName').valid\">\r\n                    <label class=\"control-label\" for=\"user.lastName\">Прізвище</label>\r\n                    <div class=\"input-group\">\r\n                        <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-user\" aria-hidden=\"true\"></i></span>\r\n                        <input type=\"text\" class=\"form-control input-md\" formControlName=\"lastName\" [(ngModel)]=\"user.lastName\" />\r\n                    </div>\r\n                    <span *ngIf=\"formErrors.lastName\" class=\"has-error help-block fixedError\">\r\n                        {{ formErrors.lastName }}\r\n                    </span>\r\n                </div>\r\n                <div class=\"form-group\" [class.has-error]=\"formErrors.address\" [class.has-success]=\"!formErrors.email && userForm.get('address').valid\">\r\n                    <label class=\"control-label\" for=\"address\">Адреса</label>\r\n                    <div class=\"input-group\">\r\n                        <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-envelope\" aria-hidden=\"true\"></i></span>\r\n                        <input class=\"form-control input-md\" type=\"text\" formControlName=\"address\" [(ngModel)]=\"user.address\" />\r\n                    </div>\r\n                    <span *ngIf=\"formErrors.address\" class=\"has-error help-block fixedError\">\r\n                        {{ formErrors.address }}\r\n                    </span>\r\n                </div>\r\n                <div class=\"form-group\" [class.has-error]=\"formErrors.email\" [class.has-success]=\"!formErrors.email && userForm.get('email').valid\">\r\n                    <label class=\"control-label\" for=\"email\">Email</label>\r\n                    <div class=\"input-group\">\r\n                        <span class=\"input-group-addon\"><i aria-hidden=\"true\">@</i></span>\r\n                        <input class=\"form-control input-md\" type=\"text\" formControlName=\"email\" [(ngModel)]=\"user.email\" />\r\n                    </div>\r\n                    <span *ngIf=\"formErrors.email\" class=\"has-error help-block fixedError\">\r\n                        {{ formErrors.email }}\r\n                    </span>\r\n                </div>\r\n                <div class=\"form-group\">\r\n                    <label class=\"control-label\"></label>\r\n                    <button type=\"submit\" class=\"btn btn-primary\" [disabled]=\"!userForm.valid\">Зберегти</button>\r\n                </div>\r\n            </form>\r\n        </div>\r\n    </div>\r\n</div>\r\n<app-modal>\r\n    <div class=\"app-modal-header\">\r\n        <h3>Змінити пароль</h3>\r\n    </div>\r\n    <div class=\"app-modal-body\">\r\n        <form [formGroup]=\"passwordForm\" class=\"form-horizontal\" novalidate>\r\n            <div class=\"form-group\" [class.has-error]=\"formErrors.oldPassword\"\r\n                 [class.has-success]=\"!formErrors.oldPassword && passwordForm.get('oldPassword').valid\">\r\n                <label class=\"col-md-3 control-label\" for=\"oldPassword\">Старий пароль</label>\r\n                <div class=\"col-md-8 input-group\">\r\n                    <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-lock\" aria-hidden=\"true\"></i></span>\r\n                    <input class=\"form-control input-md\" type=\"password\"\r\n                           formControlName=\"oldPassword\" [(ngModel)]=\"passwordContainer.oldPassword\" />\r\n                </div>\r\n                <span *ngIf=\"formErrors.oldPassword\" class=\"has-error help-block fixedError\" style=\"margin-left:200px\">\r\n                    {{ formErrors.oldPassword }}\r\n                </span>\r\n            </div>\r\n            <div class=\"form-group\" [class.has-error]=\"formErrors.newPassword\"\r\n                 [class.has-success]=\"!formErrors.newPassword && passwordForm.get('newPassword').valid\">\r\n                <label class=\"col-md-3 control-label\" for=\"newPassword\">Новий пароль</label>\r\n                <div class=\"col-md-8 input-group\">\r\n                    <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-lock\" aria-hidden=\"true\"></i></span>\r\n                    <input class=\"form-control input-md\" type=\"password\"\r\n                           formControlName=\"newPassword\" [(ngModel)]=\"passwordContainer.newPassword\" />\r\n                </div>\r\n                <span *ngIf=\"formErrors.newPassword\" class=\"has-error help-block fixedError\" style=\"margin-left:200px\">\r\n                    {{ formErrors.newPassword }}\r\n                </span>\r\n            </div>\r\n            <div class=\"form-group\" [class.has-error]=\"formErrors.newPasswordConfirmation\"\r\n                 [class.has-success]=\"!formErrors.newPasswordConfirmation && passwordForm.get('newPasswordConfirmation').valid\">\r\n                <label class=\"col-md-3 control-label\" for=\"newPasswordConfirmation\">Підтвердження пароля</label>\r\n                <div class=\"col-md-8 input-group\">\r\n                    <span class=\"input-group-addon\"><i class=\"glyphicon glyphicon-lock\" aria-hidden=\"true\"></i></span>\r\n                    <input class=\"form-control input-md\" type=\"password\"\r\n                           formControlName=\"newPasswordConfirmation\" [(ngModel)]=\"passwordContainer.newPasswordConfirmation\" />\r\n                </div>\r\n                <span *ngIf=\"formErrors.newPasswordConfirmation\" class=\"has-error help-block fixedError\" style=\"margin-left:200px\" >\r\n                    {{ formErrors.newPasswordConfirmation }}\r\n                </span>\r\n            </div>\r\n            <span *ngIf=\"passwordForm.hasError('mismatchedPasswords')\" class=\"has-error help-block fixedError\" style=\"margin-left:200px\"\r\n                 >Паролі не співпадають</span>\r\n        </form>\r\n    </div>\r\n    <div class=\"app-modal-footer\">\r\n        <button type=\"button\" class=\"btn btn-default\" (click)=\"modal.hide()\">Закрити</button>\r\n        <button type=\"button\" class=\"btn btn-primary\" [disabled]=\"passwordForm.invalid\" (click)=\"changePassword()\">Зберегти</button>\r\n        <div class=\"col-md-4 col-md-offset-4 form-group\">\r\n            <p class=\"error\" *ngIf=\"errorMessage\"><span class=\"text-danger\">{{errorMessage}}</span></p>\r\n        </div>\r\n    </div>\r\n</app-modal>";
 
 /***/ }),
 /* 266 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\r\n    <div class=\"btn-group\">\r\n        <button type=\"button\" class=\"btn btn-info dropdown-toggle\" data-toggle=\"dropdown\">\r\n            {{_selectedOrganizationName ? _selectedOrganizationName : 'Список організацій'}}\r\n            <span class=\"caret\"></span>\r\n        </button>\r\n        <ul class=\"dropdown-menu scrollable-menu\" role=\"menu\">\r\n            <li><input type=\"text\" class=\"form-control\" name=\"filterBy\" [(ngModel)]=\"filterBy\" placeholder=\"Пошук по назві організації\" /></li>\r\n            <li>\r\n                <a [routerLink]=\"['']\" (click)=\"onSelect()\">Усі організації</a>\r\n            </li>\r\n            <li *ngFor=\"let org of _organizations | organizationsListPipe:filterBy\" (click)=\"onSelect(org)\">\r\n                <a>{{org.name}}</a>\r\n            </li>\r\n        </ul>\r\n    </div>\r\n</div>\r\n\r\n";
+module.exports = "<div>\r\n    <div class=\"col-md-12 fundtrack-style\" style=\"font-size:large; border-radius:5px; text-align:center; padding:10px;\">\r\n        Відгуки\r\n        </div>\r\n        <div>\r\n            <table class=\"table-bordered table\">\r\n                <thead>\r\n                    <tr>\r\n                        <th> Назва потреби</th>\r\n                        <th> Логін користувача </th>\r\n                        <th> Пошта користувача </th>\r\n                        <th> Дата </th>\r\n                        <th> Опис </th>\r\n                        <th> Статус </th>\r\n                    </tr>\r\n                </thead>\r\n                <tbody>\r\n                    <tr *ngFor=\"let userResponse of _userResponses\">\r\n                        <td> {{userResponse.requestedItemName}} </td>\r\n                        <td> {{userResponse.userLogin}}</td>\r\n                        <td> {{userResponse.userEmail}}</td>\r\n                        <td> {{userResponse.createDate | date:'shortDate'}}</td>\r\n                        <td> {{userResponse.description}}</td>\r\n                        <td>\r\n                            <div class=\"row\">\r\n                                <div class=\"btn-group\">\r\n                                    <button type=\"button\" class=\"btn btn-info dropdown-toggle\" data-toggle=\"dropdown\">\r\n                                        {{userResponse.statusName}}\r\n                                        <span class=\"caret\"></span>\r\n                                    </button>\r\n                                    <ul class=\"dropdown-menu scrollable-menu\" role=\"menu\">\r\n                                        <li *ngFor=\"let status of _statuses\"\r\n                                            (click)=\"onSelectStatus(userResponse.statusName,status,userResponse.id)\">\r\n                                            <a *ngIf=\"status.name!=userResponse.statusName\">{{status.name}}</a>\r\n                                        </li>\r\n                                    </ul>\r\n                                </div>\r\n                            </div>\r\n                        </td>\r\n                    </tr>\r\n                </tbody>\r\n            </table>\r\n        </div>\r\n    </div>\r\n\r\n<div class=\"row\">\r\n    <div class=\"col-md-12\" *ngIf=\"totalItems && itemsPerPage\">\r\n        <pagination-pages [offset]=\"offset\"\r\n                          [limit]=\"itemsPerPage\"\r\n                          [size]=\"totalItems\"\r\n                          [currentPage]=\"currentPage\"\r\n                          (pageChange)=\"onPageChange($event)\">\r\n                          class=\"col-md-6\">\r\n        </pagination-pages>\r\n        <div class=\"pagination-dropdown col-md-offset-4 col-md-1\">\r\n            На сторінці:\r\n            <select-item [items]=\"[6, 8, 10,12,14,16]\"\r\n                         (onSelect)=\"itemsPerPageChange($event)\">\r\n            </select-item>\r\n        </div>\r\n    </div>\r\n</div>\r\n\r\n\r\n<app-modal>\r\n    <div class=\"app-modal-header\">\r\n        <button type=\"button\" class=\"close\" aria-hidden=\"true\" (click)=\"closeModal()\">&times;</button>\r\n        <h4 class=\"modal-title\">Зміна стану відгуку: </h4>\r\n    </div>\r\n    <div class=\"app-modal-body\">\r\n        <div *ngIf=\"!isDeleteResponse\">\r\n        Ви впевнені що хочете змінити стан відгуку з \"{{oldStatus}}\" на \"{{newStatusName}}\" ?\r\n            </div>\r\n        <div *ngIf=\"isDeleteResponse\">\r\n            При зміні стану відгуку на \"{{newStatusName}}\" даний відгук буде видалено з таблиці. Продовжити операцію?\r\n        </div>\r\n    </div>\r\n    <div class=\"app-modal-footer\">\r\n        <button type=\"button\" class=\"btn btn-default\" (click)=\"closeModal()\">Ні</button>\r\n        <button (click)=\"changeStatus()\"\r\n                class=\"btn btn-primary\"\r\n                data-dismiss=\"modal\">\r\n            Так\r\n        </button>\r\n    </div>\r\n</app-modal>\r\n";
 
 /***/ }),
 /* 267 */
 /***/ (function(module, exports) {
 
-module.exports = "<h3>Ви не маєте достатньо прав для виконання даної дії.</h3>\r\n<div class=\"col-md-4 col-md-offset-10 form-group\">\r\n    <a [routerLink]=\"['/']\">Домашня сторінка</a>\r\n</div>";
+module.exports = "<div class=\"row\">\r\n    <div class=\"btn-group\">\r\n        <button type=\"button\" class=\"btn btn-info dropdown-toggle\" data-toggle=\"dropdown\">\r\n            {{_selectedOrganizationName ? _selectedOrganizationName : 'Список організацій'}}\r\n            <span class=\"caret\"></span>\r\n        </button>\r\n        <ul class=\"dropdown-menu scrollable-menu\" role=\"menu\">\r\n            <li><input type=\"text\" class=\"form-control\" name=\"filterBy\" [(ngModel)]=\"filterBy\" placeholder=\"Пошук по назві організації\" /></li>\r\n            <li>\r\n                <a [routerLink]=\"['']\" (click)=\"onSelect()\">Усі організації</a>\r\n            </li>\r\n            <li *ngFor=\"let org of _organizations | organizationsListPipe:filterBy\" (click)=\"onSelect(org)\">\r\n                <a>{{org.name}}</a>\r\n            </li>\r\n        </ul>\r\n    </div>\r\n</div>\r\n\r\n";
 
 /***/ }),
 /* 268 */
 /***/ (function(module, exports) {
 
-module.exports = "<h1>You have been banned</h1>\r\n<h2>Reason : {{_bannedMessage}}</h2>\r\n<h3>Go <a [routerLink]=\"['/super-admin-chat']\">Here</a></h3>";
+module.exports = "<h3>Ви не маєте достатньо прав для виконання даної дії.</h3>\r\n<div class=\"col-md-4 col-md-offset-10 form-group\">\r\n    <a [routerLink]=\"['/']\">Домашня сторінка</a>\r\n</div>";
 
 /***/ }),
 /* 269 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"modal fade\" id=\"selectedImageModal\">\r\n    <div class=\"modal-dialog\" role=\"document\">\r\n        <div class=\"modal-content\">\r\n            <div class=\"modal-body\">\r\n                <div class=\"selected\" *ngIf=\"selectedImage\">\r\n                    <img src=\"{{selectedImage}}\" class=\"imageSelected\">\r\n                    <div class=\"arrow-back\" *ngIf=\"!isFirstImage\" (click)=navigate(false)>\r\n                        &lt;\r\n                    </div>\r\n                    <div class=\"arrow-forward\" *ngIf=\"!isLastImage\" (click)=navigate(true)>\r\n                        &gt;\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n<ul id=\"thumbnailsList\">\r\n    <li *ngFor=\"let image of datasource\">\r\n        <div>\r\n            <img src=\"{{image}}\" class=\"tn\" \r\n                 data-toggle=\"modal\" data-target=\"#selectedImageModal\"\r\n                 (click)=setSelectedImage(image)>\r\n        </div>\r\n    </li>\r\n</ul>";
+module.exports = "<h1>You have been banned</h1>\r\n<h2>Reason : {{_bannedMessage}}</h2>\r\n<h3>Go <a [routerLink]=\"['/super-admin-chat']\">Here</a></h3>";
 
 /***/ }),
 /* 270 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"modal fade\" id=\"selectedImageModal\">\r\n    <div class=\"modal-dialog\" role=\"document\">\r\n        <div class=\"modal-content\">\r\n            <div class=\"modal-body\">\r\n                <button type=\"button\" class=\"close\" id=\"openModalButton\" [hidden]=\"false\" data-toggle=\"modal\" data-target=\"#selectedImageModal\">&times;</button>\r\n                <div class=\"selected\" *ngIf=\"selectedImage\">\r\n                    <img src=\"{{selectedImage}}\" class=\"imageSelected\">\r\n                    <div class=\"arrow-back\" *ngIf=\"!isFirstImage\" (click)=navigate(false)>\r\n                        &lt;\r\n                    </div>\r\n                    <div class=\"arrow-forward\" *ngIf=\"!isLastImage\" (click)=navigate(true)>\r\n                        &gt;\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n\r\n<div class=\"clearfix\">\r\n    <ul id=\"thumbnailsList\" class=\"scrollable-menu\">\r\n        <li *ngFor=\"let image of datasource\">\r\n            <div>\r\n                <img src=\"{{image}}\" class=\"tn\"\r\n                     data-toggle=\"modal\" data-target=\"#selectedImageModal\"\r\n                     (click)=setSelectedImage(image)>\r\n            </div>\r\n        </li>\r\n    </ul>\r\n</div>\r\n\r\n";
+module.exports = "<div class=\"modal fade\" id=\"selectedImageModal\">\r\n    <div class=\"modal-dialog\" role=\"document\">\r\n        <div class=\"modal-content\">\r\n            <div class=\"modal-body\">\r\n                <div class=\"selected\" *ngIf=\"selectedImage\">\r\n                    <img src=\"{{selectedImage}}\" class=\"imageSelected\">\r\n                    <div class=\"arrow-back\" *ngIf=\"!isFirstImage\" (click)=navigate(false)>\r\n                        &lt;\r\n                    </div>\r\n                    <div class=\"arrow-forward\" *ngIf=\"!isLastImage\" (click)=navigate(true)>\r\n                        &gt;\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n<ul id=\"thumbnailsList\">\r\n    <li *ngFor=\"let image of datasource\">\r\n        <div>\r\n            <img src=\"{{image}}\" class=\"tn\" \r\n                 data-toggle=\"modal\" data-target=\"#selectedImageModal\"\r\n                 (click)=setSelectedImage(image)>\r\n        </div>\r\n    </li>\r\n</ul>";
 
 /***/ }),
 /* 271 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row center-block col-lg-12 col-md-12 col-sm-12 col-xs-12\">\r\n    <div>\r\n        <div class=\"form-group\">\r\n            <input placeholder=\"Вулиця, Номер будинку, Місто\"\r\n                   autocorrect=\"off\"\r\n                   autocapitalize=\"off\"\r\n                   spellcheck=\"off\"\r\n                   type=\"text\"\r\n                   class=\"form-control\"\r\n                   #search\r\n                   [formControl]=\"searchControl\" />\r\n            <br />\r\n            <button class=\"btn btn-primary btn-sm\" (click)=\"saveMarkerAndAddressFromDataInAutocompleteForm()\">Зберегти адресу</button>\r\n            <button class=\"btn btn-primary btn-sm\" (click)=\"saveAllAddressesFromMarkers()\">Список адрес</button>\r\n            <button class=\"btn btn-primary btn-sm\" (click)=\"setMarkersFromAddresses()\">Встановити маркери</button>\r\n            <button class=\"btn btn-primary btn-sm\" (click)=\"clearMapFromMarkers()\">Очистити</button>\r\n            <button class=\"btn btn-primary btn-sm\" (click)=\"changeAmountMarkersMode()\">{{allowManyMarkers?'Один маркер':'Багато маркерів'}}</button>\r\n            <ul *ngIf=\"_addresses.length > 0\">\r\n                Збережені адреси\r\n                <li *ngFor=\"let address of _addresses\">{{address}}</li>\r\n            </ul>\r\n        </div>\r\n        <agm-map [latitude]=\"mainPointerLatitude\"\r\n                 [longitude]=\"mainPointerLongitude\"\r\n                 [zoom]=\"zoom\"\r\n                 [disableDefaultUI]=false\r\n                 [zoomControl]=false\r\n                 (mapClick)=\"mapClicked($event)\">\r\n            <agm-marker *ngIf=\"mainPointerLatitude\"\r\n                        [latitude]=\"mainPointerLatitude\"\r\n                        [longitude]=\"mainPointerLongitude\">\r\n            </agm-marker>\r\n            <agm-marker *ngFor=\"let marker of _markers;let i = index\"\r\n                        (markerClick)=\"clickedMarker(marker)\"\r\n                        [latitude]=\"marker.lat\"\r\n                        [longitude]=\"marker.lng\"\r\n                        [markerDraggable]=\"marker.draggable\"\r\n                        (dragEnd)=\"markerDragEnd(marker, $event)\">\r\n                <agm-info-window>\r\n                    <strong>{{marker.name}}</strong>\r\n                    <br />\r\n                    <a class=\"text-danger\" (click)=\"removeMarker(marker)\">Видалити</a>\r\n                </agm-info-window>\r\n            </agm-marker>\r\n        </agm-map>\r\n    </div>\r\n</div>\r\n\r\n";
+module.exports = "<div class=\"modal fade\" id=\"selectedImageModal\">\r\n    <div class=\"modal-dialog\" role=\"document\">\r\n        <div class=\"modal-content\">\r\n            <div class=\"modal-body\">\r\n                <button type=\"button\" class=\"close\" id=\"openModalButton\" [hidden]=\"false\" data-toggle=\"modal\" data-target=\"#selectedImageModal\">&times;</button>\r\n                <div class=\"selected\" *ngIf=\"selectedImage\">\r\n                    <img src=\"{{selectedImage}}\" class=\"imageSelected\">\r\n                    <div class=\"arrow-back\" *ngIf=\"!isFirstImage\" (click)=navigate(false)>\r\n                        &lt;\r\n                    </div>\r\n                    <div class=\"arrow-forward\" *ngIf=\"!isLastImage\" (click)=navigate(true)>\r\n                        &gt;\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n\r\n<div class=\"clearfix\">\r\n    <ul id=\"thumbnailsList\" class=\"scrollable-menu\">\r\n        <li *ngFor=\"let image of datasource\">\r\n            <div>\r\n                <img src=\"{{image}}\" class=\"tn\"\r\n                     data-toggle=\"modal\" data-target=\"#selectedImageModal\"\r\n                     (click)=setSelectedImage(image)>\r\n            </div>\r\n        </li>\r\n    </ul>\r\n</div>\r\n\r\n";
 
 /***/ }),
 /* 272 */
 /***/ (function(module, exports) {
 
-module.exports = "<div (click)=\"onContainerClicked($event)\" class=\"modal fade\" tabindex=\"1\" [ngClass]=\"{'in': visibleAnimate}\"\r\n     [ngStyle]=\"{'display': visible ? 'block' : 'none', 'opacity': visibleAnimate ? 1 : 0}\">\r\n    <div class=\"modal-dialog\">\r\n        <div class=\"modal-content\">\r\n            <div class=\"modal-header\">\r\n                <ng-content select=\".app-modal-header\"></ng-content>\r\n            </div>\r\n            <div class=\"modal-body\">\r\n                <ng-content select=\".app-modal-body\"></ng-content>\r\n            </div>\r\n            <div class=\"modal-footer\">\r\n                <ng-content select=\".app-modal-footer\"></ng-content>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>";
+module.exports = "<div class=\"row center-block col-lg-12 col-md-12 col-sm-12 col-xs-12\">\r\n    <div>\r\n        <div class=\"form-group\">\r\n            <input placeholder=\"Вулиця, Номер будинку, Місто\"\r\n                   autocorrect=\"off\"\r\n                   autocapitalize=\"off\"\r\n                   spellcheck=\"off\"\r\n                   type=\"text\"\r\n                   class=\"form-control\"\r\n                   #search\r\n                   [formControl]=\"searchControl\" />\r\n            <br />\r\n            <button class=\"btn btn-primary btn-sm\" (click)=\"saveMarkerAndAddressFromDataInAutocompleteForm()\">Зберегти адресу</button>\r\n            <button class=\"btn btn-primary btn-sm\" (click)=\"saveAllAddressesFromMarkers()\">Список адрес</button>\r\n            <button class=\"btn btn-primary btn-sm\" (click)=\"setMarkersFromAddresses()\">Встановити маркери</button>\r\n            <button class=\"btn btn-primary btn-sm\" (click)=\"clearMapFromMarkers()\">Очистити</button>\r\n            <button class=\"btn btn-primary btn-sm\" (click)=\"changeAmountMarkersMode()\">{{allowManyMarkers?'Один маркер':'Багато маркерів'}}</button>\r\n            <ul *ngIf=\"_addresses.length > 0\">\r\n                Збережені адреси\r\n                <li *ngFor=\"let address of _addresses\">{{address}}</li>\r\n            </ul>\r\n        </div>\r\n        <agm-map [latitude]=\"mainPointerLatitude\"\r\n                 [longitude]=\"mainPointerLongitude\"\r\n                 [zoom]=\"zoom\"\r\n                 [disableDefaultUI]=false\r\n                 [zoomControl]=false\r\n                 (mapClick)=\"mapClicked($event)\">\r\n            <agm-marker *ngIf=\"mainPointerLatitude\"\r\n                        [latitude]=\"mainPointerLatitude\"\r\n                        [longitude]=\"mainPointerLongitude\">\r\n            </agm-marker>\r\n            <agm-marker *ngFor=\"let marker of _markers;let i = index\"\r\n                        (markerClick)=\"clickedMarker(marker)\"\r\n                        [latitude]=\"marker.lat\"\r\n                        [longitude]=\"marker.lng\"\r\n                        [markerDraggable]=\"marker.draggable\"\r\n                        (dragEnd)=\"markerDragEnd(marker, $event)\">\r\n                <agm-info-window>\r\n                    <strong>{{marker.name}}</strong>\r\n                    <br />\r\n                    <a class=\"text-danger\" (click)=\"removeMarker(marker)\">Видалити</a>\r\n                </agm-info-window>\r\n            </agm-marker>\r\n        </agm-map>\r\n    </div>\r\n</div>\r\n\r\n";
 
 /***/ }),
 /* 273 */
 /***/ (function(module, exports) {
 
-module.exports = "<p *ngIf=\"!arrayToDisplay\"><em>Loading...</em></p>\r\n\r\n<table class='table' *ngIf=\"arrayToDisplay\">\r\n    <thead>\r\n        <tr>\r\n            <th *ngFor=\"let header of headers\">\r\n                {{header}}\r\n            </th>           \r\n        </tr>\r\n    </thead>\r\n    <tbody>\r\n        <tr *ngFor=\"let item of arrayToDisplay\">\r\n            <td *ngFor=\"let value of getObjectData(item)\">\r\n                <div *ngIf=\"value.key == 'isBanned' \">\r\n                    <div *ngIf=\"value.value == false\">\r\n                        <button>Unban</button>\r\n                    </div>\r\n                    <div *ngIf=\"value.value == true\">\r\n                        <button>Ban</button>\r\n                    </div>\r\n                </div>\r\n                <div *ngIf=\"value.key != 'isBanned'\">\r\n                    {{value.value}}\r\n                </div>                \r\n            </td>            \r\n        </tr>\r\n    </tbody>\r\n</table>";
+module.exports = "<div (click)=\"onContainerClicked($event)\" class=\"modal fade\" tabindex=\"1\" [ngClass]=\"{'in': visibleAnimate}\"\r\n     [ngStyle]=\"{'display': visible ? 'block' : 'none', 'opacity': visibleAnimate ? 1 : 0}\">\r\n    <div class=\"modal-dialog\">\r\n        <div class=\"modal-content\">\r\n            <div class=\"modal-header\">\r\n                <ng-content select=\".app-modal-header\"></ng-content>\r\n            </div>\r\n            <div class=\"modal-body\">\r\n                <ng-content select=\".app-modal-body\"></ng-content>\r\n            </div>\r\n            <div class=\"modal-footer\">\r\n                <ng-content select=\".app-modal-footer\"></ng-content>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>";
 
 /***/ }),
 /* 274 */
 /***/ (function(module, exports) {
 
-module.exports = "<ul class=\"pagination\">\r\n    <li [class.disabled]=\"currentPage == 1\">\r\n        <button (click)=\"selectPage(1)\" class=\"btn btn-default btn-md\">&laquo;</button>\r\n    </li>\r\n    <li [class.disabled]=\"currentPage == 1\">\r\n        <button (click)=\"selectPage(currentPage - 1)\" class=\"btn btn-default btn-md\">&lsaquo;</button>\r\n    </li>\r\n    <li *ngIf=\"(currentPage - range) > 1\">    \r\n        <button class=\"btn btn-default btn-md disabled\" >...</button>\r\n    </li>\r\n    <li *ngFor=\"let page of pages | async\">\r\n        <button (click)=\"selectPage(page)\" \r\n                class=\"btn btn-md btn-default active\"\r\n                [class.active]=\"page == currentPage\">\r\n            {{page}}\r\n        </button>\r\n    </li>\r\n    <li *ngIf=\"(currentPage + range) < totalPages\">      \r\n        <button class=\"btn btn-default btn-md disabled\">...</button>\r\n    </li>\r\n    <li [class.disabled]=\"currentPage == 1\">\r\n        <button (click)=\"selectPage(currentPage + 1)\" class=\"btn btn-default btn-md\">&rsaquo;</button>\r\n    </li>\r\n    <li [class.disabled]=\"currentPage == 1\">\r\n        <button (click)=\"selectPage(totalPages)\" class=\"btn btn-default btn-md\">&raquo;</button>\r\n    </li>   \r\n</ul>";
+module.exports = "<p *ngIf=\"!arrayToDisplay\"><em>Loading...</em></p>\r\n\r\n<table class='table' *ngIf=\"arrayToDisplay\">\r\n    <thead>\r\n        <tr>\r\n            <th *ngFor=\"let header of headers\">\r\n                {{header}}\r\n            </th>           \r\n        </tr>\r\n    </thead>\r\n    <tbody>\r\n        <tr *ngFor=\"let item of arrayToDisplay\">\r\n            <td *ngFor=\"let value of getObjectData(item)\">\r\n                <div *ngIf=\"value.key == 'isBanned' \">\r\n                    <div *ngIf=\"value.value == false\">\r\n                        <button>Unban</button>\r\n                    </div>\r\n                    <div *ngIf=\"value.value == true\">\r\n                        <button>Ban</button>\r\n                    </div>\r\n                </div>\r\n                <div *ngIf=\"value.key != 'isBanned'\">\r\n                    {{value.value}}\r\n                </div>                \r\n            </td>            \r\n        </tr>\r\n    </tbody>\r\n</table>";
 
 /***/ }),
 /* 275 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"form-group\">\r\n    <select class=\"form-control\" (change)=\"onChange($event.target.value)\">\r\n        <option *ngFor=\"let i of items\">{{i}}</option>\r\n    </select>\r\n</div>";
+module.exports = "<ul class=\"pagination\">\r\n    <li [class.disabled]=\"currentPage == 1\">\r\n        <button (click)=\"selectPage(1)\" class=\"btn btn-default btn-md\">&laquo;</button>\r\n    </li>\r\n    <li [class.disabled]=\"currentPage == 1\">\r\n        <button (click)=\"selectPage(currentPage - 1)\" class=\"btn btn-default btn-md\">&lsaquo;</button>\r\n    </li>\r\n    <li *ngIf=\"(currentPage - range) > 1\">    \r\n        <button class=\"btn btn-default btn-md disabled\" >...</button>\r\n    </li>\r\n    <li *ngFor=\"let page of pages | async\">\r\n        <button (click)=\"selectPage(page)\" \r\n                class=\"btn btn-md btn-default active\"\r\n                [class.active]=\"page == currentPage\">\r\n            {{page}}\r\n        </button>\r\n    </li>\r\n    <li *ngIf=\"(currentPage + range) < totalPages\">      \r\n        <button class=\"btn btn-default btn-md disabled\">...</button>\r\n    </li>\r\n    <li [class.disabled]=\"currentPage == 1\">\r\n        <button (click)=\"selectPage(currentPage + 1)\" class=\"btn btn-default btn-md\">&rsaquo;</button>\r\n    </li>\r\n    <li [class.disabled]=\"currentPage == 1\">\r\n        <button (click)=\"selectPage(totalPages)\" class=\"btn btn-default btn-md\">&raquo;</button>\r\n    </li>   \r\n</ul>";
 
 /***/ }),
 /* 276 */
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"wrapper\" [class.toggled]=\"!sideBarIsClosed\">\r\n    <div class=\"overlay\"></div>\r\n    <nav class=\"navbar navbar-inverse navbar-fixed-top\" id=\"sidebar-wrapper\" role=\"navigation\">\r\n        <ul class=\"nav sidebar-nav\">\r\n            <li class=\"sidebar-brand\">Привіт!</li>\r\n            <li><a href=\"#\">Головна</a></li>\r\n            <li *ngIf=\"this.user && this.user.role=='admin'\" class=\"dropdown\">\r\n                <a class=\"dropdown-toggle\" data-toggle=\"dropdown\">Події <span class=\"caret\"></span></a>\r\n                <ul class=\"dropdown-menu\" role=\"menu\">\r\n                    <li class=\"dropdown-header\">Події</li>\r\n                    <li><a (click)=\"redirectToAllEvents(1)\">Всі Події</a></li>\r\n                    <li><a (click)=\"redirectToAddEventPage(1)\">Створити</a></li>\r\n                </ul>\r\n            </li>\r\n            <li><a (click)=\"redirectToShowAllRequests()\">Потреби</a></li>\r\n            <li *ngIf=\"this.user && this.user.role=='admin'\" class=\"dropdown\">\r\n                <a class=\"dropdown-toggle\" data-toggle=\"dropdown\">Потреби <span class=\"caret\"></span></a>\r\n                <ul class=\"dropdown-menu\" role=\"menu\">\r\n                    <li class=\"dropdown-header\">Потреби</li>\r\n                    <li><a (click)=\"redirectToAllRequests(1)\">Всі Потреби</a></li>\r\n                    <li><a (click)=\"redirectToManageRequestPage(1)\">Створити</a></li>\r\n                    <li>\r\n                        <a (click)=\"redirectToAllResponsesPage()\">\r\n                            Відгуки\r\n                            <span class=\"alert\">\r\n                                <strong>+{{newUserResponse}}</strong>\r\n                            </span>\r\n                        </a>\r\n                    </li>\r\n                </ul>\r\n            </li>\r\n            <li *ngIf=\"this.user && this.user.role!=null\" class=\"dropdown\">\r\n                <a class=\"dropdown-toggle\" data-toggle=\"dropdown\">Запропонувати речі <span class=\"caret\"></span></a>\r\n                <ul class=\"dropdown-menu\" role=\"menu\">\r\n                    <li class=\"dropdown-header\">Мої речі</li>\r\n                    <li [routerLinkActive]=\"['link-active']\"><a [routerLink]=\"['offer-management/mylist']\">Мої пропозиції</a></li>\r\n                    <li [routerLinkActive]=\"['link-active']\"><a [routerLink]=\"['offer-management/add']\">Запропонувати річ</a></li>\r\n                </ul>\r\n            </li>\r\n            <li><a href=\"#\">Звіти</a></li>\r\n            <li><a href=\"#\">Налаштування</a></li>\r\n        </ul>\r\n    </nav>\r\n    <button *ngIf=\"!sideBarIsClosed\" type=\"button\" class=\"hamburger is-open\" (click)=\"showSideBar()\" data-toggle=\"offcanvas\">\r\n        <span class=\"hamb-top\"></span>\r\n        <span class=\"hamb-middle\"></span>\r\n        <span class=\"hamb-bottom\"></span>\r\n    </button>\r\n    <button *ngIf=\"sideBarIsClosed\" type=\"button\" class=\"hamburger is-closed\" (click)=\"showSideBar()\" data-toggle=\"offcanvas\">\r\n        <span class=\"hamb-top\"></span>\r\n        <span class=\"hamb-middle\"></span>\r\n        <span class=\"hamb-bottom\"></span>\r\n    </button>\r\n</div>\r\n";
+module.exports = "<div class=\"form-group\">\r\n    <select class=\"form-control\" (change)=\"onChange($event.target.value)\">\r\n        <option *ngFor=\"let i of items\">{{i}}</option>\r\n    </select>\r\n</div>";
 
 /***/ }),
 /* 277 */
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngIf=\"showSpinner\" class=\"loader\"></div>";
+module.exports = "<div id=\"wrapper\" [class.toggled]=\"!sideBarIsClosed\">\r\n    <div class=\"overlay\"></div>\r\n    <nav class=\"navbar navbar-inverse navbar-fixed-top\" id=\"sidebar-wrapper\" role=\"navigation\">\r\n        <ul class=\"nav sidebar-nav\">\r\n            <li class=\"sidebar-brand\">Привіт!</li>\r\n            <li><a href=\"#\">Головна</a></li>\r\n            <li *ngIf=\"this.user && this.user.role=='admin'\" class=\"dropdown\">\r\n                <a class=\"dropdown-toggle\" data-toggle=\"dropdown\">Події <span class=\"caret\"></span></a>\r\n                <ul class=\"dropdown-menu\" role=\"menu\">\r\n                    <li class=\"dropdown-header\">Події</li>\r\n                    <li><a (click)=\"redirectToAllEvents(1)\">Всі Події</a></li>\r\n                    <li><a (click)=\"redirectToAddEventPage(1)\">Створити</a></li>\r\n                </ul>\r\n            </li>\r\n            <li><a (click)=\"redirectToShowAllRequests()\">Потреби</a></li>\r\n            <li *ngIf=\"this.user && this.user.role=='admin'\" class=\"dropdown\">\r\n                <a class=\"dropdown-toggle\" data-toggle=\"dropdown\">Потреби <span class=\"caret\"></span></a>\r\n                <ul class=\"dropdown-menu\" role=\"menu\">\r\n                    <li class=\"dropdown-header\">Потреби</li>\r\n                    <li><a (click)=\"redirectToAllRequests(1)\">Всі Потреби</a></li>\r\n                    <li><a (click)=\"redirectToManageRequestPage(1)\">Створити</a></li>\r\n                    <li>\r\n                        <a (click)=\"redirectToAllResponsesPage()\">\r\n                            Відгуки\r\n                            <span class=\"alert\">\r\n                                <strong>+{{newUserResponse}}</strong>\r\n                            </span>\r\n                        </a>\r\n                    </li>\r\n                </ul>\r\n            </li>\r\n            <li *ngIf=\"this.user && this.user.role!=null\" class=\"dropdown\">\r\n                <a class=\"dropdown-toggle\" data-toggle=\"dropdown\">Запропонувати речі <span class=\"caret\"></span></a>\r\n                <ul class=\"dropdown-menu\" role=\"menu\">\r\n                    <li class=\"dropdown-header\">Мої речі</li>\r\n                    <li [routerLinkActive]=\"['link-active']\"><a [routerLink]=\"['offer-management/mylist']\">Мої пропозиції</a></li>\r\n                    <li [routerLinkActive]=\"['link-active']\"><a [routerLink]=\"['offer-management/add']\">Запропонувати річ</a></li>\r\n                </ul>\r\n            </li>\r\n            <li><a href=\"#\">Звіти</a></li>\r\n            <li><a href=\"#\">Налаштування</a></li>\r\n        </ul>\r\n    </nav>\r\n    <button *ngIf=\"!sideBarIsClosed\" type=\"button\" class=\"hamburger is-open\" (click)=\"showSideBar()\" data-toggle=\"offcanvas\">\r\n        <span class=\"hamb-top\"></span>\r\n        <span class=\"hamb-middle\"></span>\r\n        <span class=\"hamb-bottom\"></span>\r\n    </button>\r\n    <button *ngIf=\"sideBarIsClosed\" type=\"button\" class=\"hamburger is-closed\" (click)=\"showSideBar()\" data-toggle=\"offcanvas\">\r\n        <span class=\"hamb-top\"></span>\r\n        <span class=\"hamb-middle\"></span>\r\n        <span class=\"hamb-bottom\"></span>\r\n    </button>\r\n</div>\r\n";
 
 /***/ }),
 /* 278 */
 /***/ (function(module, exports) {
 
-module.exports = "<!-- Single button -->\r\n<div *ngIf=\"name\" class=\"btn-group\" >\r\n    <button type=\"button\" class=\"btn btn-default dropdown-toggle\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n        Привіт,{{name}}<span class=\"caret\"></span>\r\n        <span *ngIf=\"isAdmin\"><b>{{user.role}}</b></span>\r\n    </button>\r\n    <ul class=\"dropdown-menu dropdowncolor\">\r\n        <li><a [routerLink]=\"['/userprofile']\">Мій профіль</a></li>\r\n        <li *ngIf=\"isAdmin\"><a [routerLink]=\"['/superadmin']\">Панель адміністратора</a></li>\r\n        <li *ngIf=\"isAdminOfOrganization\"><a [routerLink]=\"['organization-management', idOfOrganization]\">Моя організація</a></li>\r\n        <li><a [routerLink]=\"['/']\" (click)=\"exit()\">Вийти</a></li>\r\n    </ul>\r\n</div>\r\n<div *ngIf=\"!name\">\r\n    <ul class=\"nav nav-pills\">\r\n        <li role=\"presentation\"><a [routerLink]=\"['/login']\"><font size='4'>Увійти</font></a></li>\r\n        <li role=\"presentation\"><a [routerLink]=\"['/registration']\"><font size='4'>Зареєструватися</font></a></li>\r\n    </ul>\r\n</div>\r\n";
+module.exports = "<div *ngIf=\"showSpinner\" class=\"loader\"></div>";
 
 /***/ }),
 /* 279 */
+/***/ (function(module, exports) {
+
+module.exports = "<!-- Single button -->\r\n<div *ngIf=\"name\" class=\"btn-group\" >\r\n    <button type=\"button\" class=\"btn btn-default dropdown-toggle\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n        Привіт,{{name}}<span class=\"caret\"></span>\r\n        <span *ngIf=\"isAdmin\"><b>{{user.role}}</b></span>\r\n    </button>\r\n    <ul class=\"dropdown-menu dropdowncolor\">\r\n        <li><a [routerLink]=\"['/userprofile']\">Мій профіль</a></li>\r\n        <li *ngIf=\"isAdmin\"><a [routerLink]=\"['/superadmin']\">Панель адміністратора</a></li>\r\n        <li *ngIf=\"isAdminOfOrganization\"><a [routerLink]=\"['organization-management', idOfOrganization]\">Моя організація</a></li>\r\n        <li><a [routerLink]=\"['/']\" (click)=\"exit()\">Вийти</a></li>\r\n    </ul>\r\n</div>\r\n<div *ngIf=\"!name\">\r\n    <ul class=\"nav nav-pills\">\r\n        <li role=\"presentation\"><a [routerLink]=\"['/login']\"><font size='4'>Увійти</font></a></li>\r\n        <li role=\"presentation\"><a [routerLink]=\"['/registration']\"><font size='4'>Зареєструватися</font></a></li>\r\n    </ul>\r\n</div>\r\n";
+
+/***/ }),
+/* 280 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -144947,7 +144620,7 @@ var isArray = Array.isArray || function (xs) {
 
 
 /***/ }),
-/* 280 */
+/* 281 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -145039,26 +144712,15 @@ var objectKeys = Object.keys || function (obj) {
 
 
 /***/ }),
-/* 281 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-exports.decode = exports.parse = __webpack_require__(279);
-exports.encode = exports.stringify = __webpack_require__(280);
-
-
-/***/ }),
 /* 282 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var Observable_1 = __webpack_require__(3);
-var range_1 = __webpack_require__(287);
-Observable_1.Observable.range = range_1.range;
-//# sourceMappingURL=range.js.map
+
+exports.decode = exports.parse = __webpack_require__(280);
+exports.encode = exports.stringify = __webpack_require__(281);
+
 
 /***/ }),
 /* 283 */
@@ -145067,9 +144729,9 @@ Observable_1.Observable.range = range_1.range;
 "use strict";
 
 var Observable_1 = __webpack_require__(3);
-var filter_1 = __webpack_require__(339);
-Observable_1.Observable.prototype.filter = filter_1.filter;
-//# sourceMappingURL=filter.js.map
+var range_1 = __webpack_require__(288);
+Observable_1.Observable.range = range_1.range;
+//# sourceMappingURL=range.js.map
 
 /***/ }),
 /* 284 */
@@ -145078,9 +144740,9 @@ Observable_1.Observable.prototype.filter = filter_1.filter;
 "use strict";
 
 var Observable_1 = __webpack_require__(3);
-var switchMap_1 = __webpack_require__(289);
-Observable_1.Observable.prototype.switchMap = switchMap_1.switchMap;
-//# sourceMappingURL=switchMap.js.map
+var filter_1 = __webpack_require__(340);
+Observable_1.Observable.prototype.filter = filter_1.filter;
+//# sourceMappingURL=filter.js.map
 
 /***/ }),
 /* 285 */
@@ -145089,12 +144751,23 @@ Observable_1.Observable.prototype.switchMap = switchMap_1.switchMap;
 "use strict";
 
 var Observable_1 = __webpack_require__(3);
-var toArray_1 = __webpack_require__(290);
+var switchMap_1 = __webpack_require__(290);
+Observable_1.Observable.prototype.switchMap = switchMap_1.switchMap;
+//# sourceMappingURL=switchMap.js.map
+
+/***/ }),
+/* 286 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var Observable_1 = __webpack_require__(3);
+var toArray_1 = __webpack_require__(291);
 Observable_1.Observable.prototype.toArray = toArray_1.toArray;
 //# sourceMappingURL=toArray.js.map
 
 /***/ }),
-/* 286 */
+/* 287 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -145196,17 +144869,17 @@ exports.RangeObservable = RangeObservable;
 //# sourceMappingURL=RangeObservable.js.map
 
 /***/ }),
-/* 287 */
+/* 288 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var RangeObservable_1 = __webpack_require__(286);
+var RangeObservable_1 = __webpack_require__(287);
 exports.range = RangeObservable_1.RangeObservable.create;
 //# sourceMappingURL=range.js.map
 
 /***/ }),
-/* 288 */
+/* 289 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -145325,7 +144998,7 @@ var DoSubscriber = (function (_super) {
 //# sourceMappingURL=do.js.map
 
 /***/ }),
-/* 289 */
+/* 290 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -145335,8 +145008,8 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var OuterSubscriber_1 = __webpack_require__(331);
-var subscribeToResult_1 = __webpack_require__(332);
+var OuterSubscriber_1 = __webpack_require__(332);
+var subscribeToResult_1 = __webpack_require__(333);
 /* tslint:enable:max-line-length */
 /**
  * Projects each source value to an Observable which is merged in the output
@@ -145471,7 +145144,7 @@ var SwitchMapSubscriber = (function (_super) {
 //# sourceMappingURL=switchMap.js.map
 
 /***/ }),
-/* 290 */
+/* 291 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -145522,12 +145195,12 @@ var ToArraySubscriber = (function (_super) {
 //# sourceMappingURL=toArray.js.map
 
 /***/ }),
-/* 291 */
+/* 292 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var root_1 = __webpack_require__(338);
+var root_1 = __webpack_require__(339);
 /* tslint:enable:max-line-length */
 /**
  * Converts an Observable sequence to a ES2015 compliant promise.
@@ -145600,7 +145273,7 @@ exports.toPromise = toPromise;
 //# sourceMappingURL=toPromise.js.map
 
 /***/ }),
-/* 292 */
+/* 293 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -145611,20 +145284,6 @@ module.exports = function (str) {
 	return typeof str === 'string' ? str.replace(ansiRegex, '') : str;
 };
 
-
-/***/ }),
-/* 293 */
-/***/ (function(module, exports, __webpack_require__) {
-
-
-        var result = __webpack_require__(197);
-
-        if (typeof result === "string") {
-            module.exports = result;
-        } else {
-            module.exports = result.toString();
-        }
-    
 
 /***/ }),
 /* 294 */
@@ -146106,6 +145765,20 @@ module.exports = function (str) {
 /* 328 */
 /***/ (function(module, exports, __webpack_require__) {
 
+
+        var result = __webpack_require__(232);
+
+        if (typeof result === "string") {
+            module.exports = result;
+        } else {
+            module.exports = result.toString();
+        }
+    
+
+/***/ }),
+/* 329 */
+/***/ (function(module, exports, __webpack_require__) {
+
 /*eslint-env browser*/
 
 var clientOverlay = document.createElement('div');
@@ -146147,7 +145820,7 @@ var colors = {
 };
 ansiHTML.setColors(colors);
 
-var Entities = __webpack_require__(232).AllHtmlEntities;
+var Entities = __webpack_require__(233).AllHtmlEntities;
 var entities = new Entities();
 
 exports.showProblems =
@@ -146188,7 +145861,7 @@ function problemType (type) {
 
 
 /***/ }),
-/* 329 */
+/* 330 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -146326,73 +145999,73 @@ module.exports = function(hash, moduleMap, options) {
 
 
 /***/ }),
-/* 330 */
+/* 331 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = (__webpack_require__(4))(124);
 
 /***/ }),
-/* 331 */
+/* 332 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = (__webpack_require__(4))(189);
 
 /***/ }),
-/* 332 */
+/* 333 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = (__webpack_require__(4))(196);
 
 /***/ }),
-/* 333 */
+/* 334 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = (__webpack_require__(4))(31);
 
 /***/ }),
-/* 334 */
+/* 335 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = (__webpack_require__(4))(328);
 
 /***/ }),
-/* 335 */
+/* 336 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = (__webpack_require__(4))(329);
 
 /***/ }),
-/* 336 */
+/* 337 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = (__webpack_require__(4))(345);
 
 /***/ }),
-/* 337 */
+/* 338 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = (__webpack_require__(4))(347);
 
 /***/ }),
-/* 338 */
+/* 339 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = (__webpack_require__(4))(49);
 
 /***/ }),
-/* 339 */
+/* 340 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = (__webpack_require__(4))(570);
 
 /***/ }),
-/* 340 */
+/* 341 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = (__webpack_require__(4))(588);
 
 /***/ }),
-/* 341 */
+/* 342 */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(127);

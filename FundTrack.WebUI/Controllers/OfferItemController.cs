@@ -1,5 +1,6 @@
 ﻿using FundTrack.BLL.Abstract;
 using FundTrack.Infrastructure.ViewModel;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,9 @@ using System.Threading.Tasks;
 
 namespace FundTrack.WebUI.Controllers
 {
+    /// <summary>
+    /// Controller, that handles operations for User Offer Items
+    /// </summary>
     [Route("api/[controller]")]
     public class OfferController : Controller
     {
@@ -53,6 +57,7 @@ namespace FundTrack.WebUI.Controllers
         /// </summary>
         /// <param name="id">id of the offer item</param>
         /// <returns>200 status code if delete succeded</returns>
+        [Authorize]
         [HttpDelete("[action]/{id}")]
         public StatusCodeResult Delete(int id)
         {
@@ -64,6 +69,7 @@ namespace FundTrack.WebUI.Controllers
         /// </summary>
         /// <param name="model">offer item view model received from front end</param>
         /// <returns>Edited offer item view model from offer item object</returns>
+       
         [HttpPut("[action]")]
         public JsonResult Edit([FromBody]OfferedItemViewModel model)
         {
@@ -75,11 +81,18 @@ namespace FundTrack.WebUI.Controllers
         /// <param name="itemsLoadCount">amount of items to be loaded</param>
         /// <param name="itemsLoadRatio">amount of items to skip from the beginning</param>
         /// <returns>Offer Item View Models</returns>
+        [Authorize]
         [HttpGet("GetOfferedItemPortion/{userId}/{itemsLoadCount}/{itemsLoadRatio}")]
         public JsonResult GetOfferedItemPortion(int userId,int itemsLoadCount, int itemsLoadRatio)
         {
             var result = Json(_offerService.GetPagedUserOfferedItems(userId, itemsLoadCount, itemsLoadRatio));
             return result;
+        }
+        [Authorize]
+        [HttpPost("[action]")]
+        public JsonResult ChangeOfferItemStatus([FromBody] OfferItemChangeStatusViewModel model)
+        {
+            return Json(this._offerService.ChangeOfferItemStatus(model));
         }
     }
         
