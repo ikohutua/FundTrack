@@ -1,4 +1,4 @@
-﻿import { Component, Output, EventEmitter, OnInit, AfterContentChecked } from "@angular/core";
+﻿import { Component, Output, EventEmitter, OnInit, AfterContentChecked, DoCheck,OnChanges } from "@angular/core";
 import { Router } from "@angular/router";
 import { isBrowser } from "angular2-universal";
 import * as key from '../../../shared/key.storage';
@@ -12,7 +12,7 @@ import { UserResponseService } from "../../../services/concrete/organization-man
     styleUrls: ['./sidebar.component.css'],
     providers: [UserResponseService]
 })
-export class SidebarComponent /*implements OnInit*/ implements AfterContentChecked {
+export class SidebarComponent /*implements OnInit*/ {
     private user: AuthorizeUserModel;
     //flag that verifies if user is logged in
     private userRole: string = null;
@@ -23,24 +23,20 @@ export class SidebarComponent /*implements OnInit*/ implements AfterContentCheck
     @Output() onOpen: EventEmitter<boolean> = new EventEmitter();
 
     constructor(private _router: Router,
-        private _userResponseService: UserResponseService) { }
+        private _userResponseService: UserResponseService,
+        private _storage: StorageService) { }
 
     ngOnInit(): void {
         if (isBrowser) {
             if (localStorage.getItem(key.keyToken)) {
-                this.user = JSON.parse(localStorage.getItem(key.keyModel)) as AuthorizeUserModel;               
-            }
-        }
-    }
-
-    ngAfterContentChecked() {
-        if (isBrowser) {
-            if (this.user) {
+                this.user = JSON.parse(localStorage.getItem(key.keyModel)) as AuthorizeUserModel;
                 this._userResponseService.getUserResponseWithNewStatus(this.user.orgId)
                     .subscribe(count => {
                         this.newUserResponse = count;
+                        sessionStorage.setItem("NewResponse", count.toString());
                     });
             }
+            this._storage.getNavChangeEmitter().subscribe(count => this.newUserResponse = count);
         }
     }
 
@@ -85,14 +81,14 @@ export class SidebarComponent /*implements OnInit*/ implements AfterContentCheck
     *Redirect to 'all response page' in organization managment page
     * @param idOrganization
     */
-    public redirectToAllResponsesPage(idOrganization: number): void {
-        this._router.navigate(['organization/request/response/' + idOrganization.toString()]);
+    public redirectToAllResponsesPage(): void {
+        this._router.navigate(['organization/request/response/' + this.user.orgId.toString()]);
     }
 
     /**
- * Redirect to 'all requests page' in organization management page
- * @param idOrganization
- */
+     * Redirect to 'all requests page' in organization management page
+     * @param idOrganization
+     */
     public redirectToShowAllRequests(): void {
         this._router.navigate(['home/allrequests']);
     }

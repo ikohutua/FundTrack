@@ -7,6 +7,7 @@ import { GoodsStatusViewModel } from "../../view-models/concrete/goods-status-mo
 import { ModalComponent } from '../../shared/components/modal/modal-component';
 import { ViewChild } from '@angular/core';
 import { StorageService } from "../../shared/item-storage-service";
+import { RequestedItemInitViewModel } from "../../view-models/abstract/requesteditem-initpaginationdata-view-model";
 
 @Component({
     template: require('./user-response.component.html'),
@@ -17,41 +18,52 @@ import { StorageService } from "../../shared/item-storage-service";
 export class UserResponseComponent implements OnInit {
     private _userResponses: UserResponseOnRequestsViewModel[] = new Array<UserResponseOnRequestsViewModel>();
     private _statuses: GoodsStatusViewModel[] = new Array<GoodsStatusViewModel>();
+    private isDeleteResponse: boolean = false;
+
+    public totalItems;
+    public itemsPerPage: number = 6;
+    public offset: number = 0;
+    public currentPage: number = 1;
 
     private oldStatus: string;
     private newStatus: GoodsStatusViewModel;
     private responseId: number;
+    private newStatusName: string;
+    private organizationId: number;
 
     @ViewChild(ModalComponent)
     public modalWindow: ModalComponent
 
     public constructor(private _userResponseService: UserResponseService,
         private _serviceForStatus: ShowRequestedItemService,
-        private _storage: StorageService,
         private _router: Router,
+        private _storage: StorageService,
         private _route: ActivatedRoute) { }
 
     ngOnInit() {
-        let organizationId;
-        this._storage.newUserResponseCount = 2;
         this._route.params.subscribe(params => {
-            organizationId = +params["idOrganization"];
+            this.organizationId = +params["idOrganization"];
         });
-        this._userResponseService.getUserResponsesByOrganization(organizationId).subscribe(
-            response => {
-                this._userResponses = response;
-            });
+
+        this._userResponseService.getRequestedItemInitData(this.organizationId).subscribe((data: number) => {
+            this.totalItems = data;
+            this.getUserResponsePerPage(this.currentPage);
+        });
+
         this._serviceForStatus.getStatuses().subscribe(statuses => {
             this._statuses = statuses;
         });
     }
 
     public onSelectStatus(oldStatusName: string, newStatus: GoodsStatusViewModel, responseId: number): void {
-        console.log("id");
-        console.log(newStatus.id);
         this.oldStatus = oldStatusName;
         this.newStatus = newStatus;
+        this.newStatusName = newStatus.name;
         this.responseId = responseId;
+        this.isDeleteResponse = false;
+        if (this.newStatus.name == 'Виконаний' || this.newStatus.name == 'Неактивний') {
+            this.isDeleteResponse = true;
+        }
         this.modalWindow.show();
     }
 
@@ -63,12 +75,49 @@ export class UserResponseComponent implements OnInit {
     }
 
     public changeStatus() {
-        this._userResponseService.changeUserResponseStatus(this.newStatus.id, this.responseId).subscribe(
-            response => {
-                let index = this._userResponses.findIndex(element => element.id == this.responseId);
-                this._userResponses[index] = response;
-                this.closeModal();
+        let index = this._userResponses.findIndex(element => element.id == this.responseId);
+        if (!this.isDeleteResponse)
+            this._userResponseService.changeUserResponseStatus(this.newStatus.id, this.responseId).subscribe(
+                response => {
+                    this._userResponses[index] = response;
+                    this._subscribeOnChangeStatus();
+                });
+        else {
+            this._userResponseService.deleteUserResponse(this.responseId).subscribe(() => {
+                this._userResponses.splice(index, 1);
+                this._subscribeOnChangeStatus();
             });
+        }
+
+    }
+
+    public onPageChange(page): void {
+        this._userResponseService.getUserResponseOnPage(this.organizationId, this.itemsPerPage, page).subscribe(userResponses => {
+            this._userResponses = userResponses;
+            this.offset = (page - 1) * this.itemsPerPage;
+        });
+    }
+
+    /**
+    * Trigers when user changes items to display on page
+    * @param amount
+    */
+    private itemsPerPageChange(amount: number): void {
+        this.itemsPerPage = amount;
+        this.getUserResponsePerPage(1);
+    }
+
+    private getUserResponsePerPage(page: number) {
+        this._userResponseService.getUserResponseOnPage(this.organizationId, this.itemsPerPage, page).subscribe(userResponses => {
+            this.offset = 0;
+            this._userResponses = userResponses;
+        });
+    }
+
+    private _subscribeOnChangeStatus() {
+        this._userResponseService.getUserResponseWithNewStatus(this.organizationId)
+            .subscribe(count => this._storage.emitNavChangeEvent(count));
+        this.closeModal();
     }
 
 }

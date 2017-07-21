@@ -40,6 +40,12 @@ export class ShowRequestedItemService extends BaseService<IShowRequestedItem>{
             .map((response: Response) => response.json() as RequestedItemInitViewModel)
     }
 
+    /**
+     * get Requested Item on page by pagination
+     * @param itemsPerPage
+     * @param currentPage
+     * @param filters
+     */
     public getRequestedItemOnPage(itemsPerPage: number, currentPage: number, filters: FilterRequstedViewModel) {
 
         let body = {

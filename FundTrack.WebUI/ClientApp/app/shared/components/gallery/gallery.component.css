@@ -32,7 +32,7 @@ li {
 .arrow-back, .arrow-forward {
     position: absolute;
     opacity: 0.6;
-    background-color: darkolivegreen;
+    background-color: #314720;
     padding: 10px;
     top: 190px;
     color: white;
@@ -62,7 +62,7 @@ li {
 .scrollable-menu {
     width:137px;
     height: auto !important;
-    max-height: 330px !important;
+    max-height: 350px !important;
     margin:10px;
     overflow-x: hidden !important;
 }

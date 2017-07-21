@@ -12,7 +12,13 @@ namespace FundTrack.DAL.Abstract
         /// <summary>
         /// Reads as queryable.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>List user responses</returns>
         IQueryable<UserResponse> ReadAsQueryable();
+
+        /// <summary>
+        /// Reads as queryable for pagination
+        /// </summary>
+        /// <returns>List user response</returns>
+        IQueryable<UserResponse> ReadForPagination(int OrganizationId, int ItemsPerPage, int CurrentPage);
     }
 }

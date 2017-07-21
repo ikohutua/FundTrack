@@ -334,3 +334,7 @@ html {
     background-color: rgba(250,250,250,.8);
     z-index: 1;
 }
+
+.alert {
+    color: red;
+}

@@ -1,5 +1,6 @@
 ﻿using FundTrack.DAL.Abstract;
 using FundTrack.DAL.Entities;
+using FundTrack.DAL.Extensions;
 using Microsoft.EntityFrameworkCore;
 using System.Collections;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using System.Linq;
 
 namespace FundTrack.DAL.Concrete
 {
-    public sealed class UserResponseRepository:IUserResponseRepository
+    public sealed class UserResponseRepository : IUserResponseRepository
     {
         private readonly FundTrackContext _context;
 
@@ -39,10 +40,10 @@ namespace FundTrack.DAL.Concrete
         public UserResponse Get(int id)
         {
             return this._context.UserResponses
-                       .Include(u=>u.Status)
-                       .Include(u=>u.RequestedItem)
-                       .Include(u=>u.User)
-                       .FirstOrDefault(u => u.Id == id);
+                                .Include(u => u.Status)
+                                .Include(u => u.RequestedItem)
+                                .Include(u => u.User)
+                                .FirstOrDefault(u => u.Id == id);
         }
 
         /// <summary>
@@ -63,9 +64,24 @@ namespace FundTrack.DAL.Concrete
             return this._context.UserResponses;
         }
 
+        /// <summary>
+        /// Reads as queryable for pagination.
+        /// </summary>
+        /// <returns>List of user response</returns>
         public IQueryable<UserResponse> ReadAsQueryable()
         {
             return this._context.UserResponses;
+        }
+
+        /// <summary>
+        /// Reads as queryable for pagination.
+        /// </summary>
+        /// <returns>List of user response</returns>
+        public IQueryable<UserResponse> ReadForPagination(int OrganizationId, int ItemsPerPage, int CurrentPage)
+        {
+            return this._context.UserResponses
+                                .Where(u => u.RequestedItem.OrganizationId == OrganizationId)
+                                .GetItemsPerPage(ItemsPerPage, CurrentPage);
         }
 
         /// <summary>
@@ -75,7 +91,7 @@ namespace FundTrack.DAL.Concrete
         /// <returns>UserResponse</returns>
         public UserResponse Update(UserResponse item)
         {
-            var userResponse=this._context.UserResponses.Update(item);
+            var userResponse = this._context.UserResponses.Update(item);
             return userResponse.Entity;
         }
     }

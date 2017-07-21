@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using FundTrack.BLL.Abstract;
 using FundTrack.Infrastructure.ViewModel;
+using FundTrack.Infrastructure.ViewModel.RequestedItemModel;
 
 namespace FundTrack.WebUI.Controllers
 {
@@ -51,7 +52,7 @@ namespace FundTrack.WebUI.Controllers
         }
 
         /// <summary>
-        /// Gets the count new status.
+        /// Gets the count user response which is new
         /// </summary>
         /// <param name="organizationId">The organization identifier.</param>
         /// <returns></returns>
@@ -59,6 +60,48 @@ namespace FundTrack.WebUI.Controllers
         public int GetCountNewStatus(int organizationId)
         {
             return this._userResponseService.GetUserResponseWithNewStatus(organizationId);
+        }
+
+        /// <summary>
+        /// Gets UserResponse Data for pagination
+        /// </summary>
+        /// <returns>Organizations pagination data</returns>
+        [HttpGet("GetUserResponsePaginationData/{organizationId}")]
+        public int GetRequestedItemPaginationData(int organizationId)
+        {
+            return this._userResponseService.GetRequestedItemPaginationData(organizationId);
+        }
+
+        /// <summary>
+        /// Gets list of user response per page
+        /// </summary>
+        /// <param name="organizationId">Organization id</param>
+        /// <param name="currentPage">Current page number</param>
+        /// <param name="itemsPerPage">Page size number</param>
+        /// <returns>Requested items list</returns>
+        [HttpGet("GetUserResponseToShowPerPage/{organizationId}/{currentPage}/{itemsPerPage}")]
+        public IEnumerable<UserResponsesOnRequestsViewModel> GetUserResponsePagination(int organizationId,int currentPage, int itemsPerPage)
+        {
+            return this._userResponseService.GetRequestedItemToShowPerPage(organizationId, itemsPerPage, currentPage);
+        }
+
+        /// <summary>
+        /// Delete user response
+        /// </summary>
+        /// <param name="responseId"></param>
+        [HttpDelete("DeleteUserResponse/{responseId}")]
+        public JsonResult DeleteUserResponse(int responseId)
+        {
+            try
+            {
+                this._userResponseService.DeleteUserResponse(responseId);
+
+                return new JsonResult(string.Empty);
+            }
+            catch (Exception ex)
+            {
+                return new JsonResult(ex.Message);
+            }
         }
     }
 }

@@ -20,11 +20,11 @@
                     <li><a (click)="redirectToAllRequests(1)">Всі Потреби</a></li>
                     <li><a (click)="redirectToManageRequestPage(1)">Створити</a></li>
                     <li>
-                        <a (click)="redirectToAllResponsesPage(1)">
+                        <a (click)="redirectToAllResponsesPage()">
                             Відгуки
-                            <div *ngIf="newUserResponse !=0">
-                                +{{newUserResponse}}
-                            </div>
+                            <span class="alert">
+                                <strong>+{{newUserResponse}}</strong>
+                            </span>
                         </a>
                     </li>
                 </ul>

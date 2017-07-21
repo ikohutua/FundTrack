@@ -4,7 +4,7 @@
     text-align: center;
     font-size: 1.8em;
     font-family: roboto;
-    color:white;
+    color: white;
 }
 
 .loginmodal {
@@ -16,7 +16,7 @@
     padding: 0 8px;
 }
 
-.loginmodal-submit {
+/*.loginmodal-submit {
     border: 0px;
     color: #fff;
     text-shadow: 0 1px rgba(0,0,0,0.1);
@@ -24,17 +24,24 @@
     padding: 17px 0px;
     font-family: roboto;
     font-size: 14px;
+}*/
+
+.btn-fundtrack-style {
+    background-color: #314720;
+    border-color: white;
+    border-width: 2px;
+    color: white;
 }
 
-    .loginmodal-submit:hover {
-        border: 0px;
-        text-shadow: 0 1px rgba(0,0,0,0.3);
-        background-color: #357ae8;
-    }
+.loginmodal-submit:hover {
+    border: 0px;
+    text-shadow: 0 1px rgba(0,0,0,0.3);
+    background-color: #357ae8;
+}
 
 .loginmodal-container a {
     text-decoration: none;
-    color:white;
+    color: white;
     font-weight: 400;
     text-align: center;
     display: inline-block;

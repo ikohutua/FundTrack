@@ -1,53 +1,79 @@
 ﻿<div>
-    <h2>Відповіді</h2>
-    <div>
-        <table class="table-bordered table">
-            <thead>
-                <tr>
-                    <th> Назва потреби</th>
-                    <th> Логін користувача </th>
-                    <th> Пошта користувача </th>
-                    <th> Дата </th>
-                    <th> Опис </th>
-                    <th> Статус </th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let userResponse of _userResponses">
-                    <td> {{userResponse.requestedItemName}} </td>
-                    <td> {{userResponse.userLogin}}</td>
-                    <td> {{userResponse.userEmail}}</td>
-                    <td> {{userResponse.createDate | date:'shortDate'}}</td>
-                    <td> {{userResponse.description}}</td>
-                    <td>
-                        <div class="row">
-                            <div class="btn-group">
-                                <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
-                                    {{userResponse.statusName}}
-                                    <span class="caret"></span>
-                                </button>
-                                <ul class="dropdown-menu scrollable-menu" role="menu">
-                                    <li *ngFor="let status of _statuses" 
-                                        (click)="onSelectStatus(userResponse.statusName,status.name,userResponse.id)">
-                                        <a *ngIf="status.name!=userResponse.statusName">{{status.name}}</a>
-                                    </li>
-                                </ul>
+    <div class="col-md-12 fundtrack-style" style="font-size:large; border-radius:5px; text-align:center; padding:10px;">
+        Відгуки
+        </div>
+        <div>
+            <table class="table-bordered table">
+                <thead>
+                    <tr>
+                        <th> Назва потреби</th>
+                        <th> Логін користувача </th>
+                        <th> Пошта користувача </th>
+                        <th> Дата </th>
+                        <th> Опис </th>
+                        <th> Статус </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let userResponse of _userResponses">
+                        <td> {{userResponse.requestedItemName}} </td>
+                        <td> {{userResponse.userLogin}}</td>
+                        <td> {{userResponse.userEmail}}</td>
+                        <td> {{userResponse.createDate | date:'shortDate'}}</td>
+                        <td> {{userResponse.description}}</td>
+                        <td>
+                            <div class="row">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">
+                                        {{userResponse.statusName}}
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu scrollable-menu" role="menu">
+                                        <li *ngFor="let status of _statuses"
+                                            (click)="onSelectStatus(userResponse.statusName,status,userResponse.id)">
+                                            <a *ngIf="status.name!=userResponse.statusName">{{status.name}}</a>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+<div class="row">
+    <div class="col-md-12" *ngIf="totalItems && itemsPerPage">
+        <pagination-pages [offset]="offset"
+                          [limit]="itemsPerPage"
+                          [size]="totalItems"
+                          [currentPage]="currentPage"
+                          (pageChange)="onPageChange($event)">
+                          class="col-md-6">
+        </pagination-pages>
+        <div class="pagination-dropdown col-md-offset-4 col-md-1">
+            На сторінці:
+            <select-item [items]="[6, 8, 10,12,14,16]"
+                         (onSelect)="itemsPerPageChange($event)">
+            </select-item>
+        </div>
     </div>
 </div>
+
 
 <app-modal>
     <div class="app-modal-header">
         <button type="button" class="close" aria-hidden="true" (click)="closeModal()">&times;</button>
-        <h4 class="modal-title">Зміна стану відповіді: </h4>
+        <h4 class="modal-title">Зміна стану відгуку: </h4>
     </div>
     <div class="app-modal-body">
-        Ви впевнені що хочете змінити стан відповіді з "{{oldStatus}}" на "{{newStatus}}" ?
+        <div *ngIf="!isDeleteResponse">
+        Ви впевнені що хочете змінити стан відгуку з "{{oldStatus}}" на "{{newStatusName}}" ?
+            </div>
+        <div *ngIf="isDeleteResponse">
+            При зміні стану відгуку на "{{newStatusName}}" даний відгук буде видалено з таблиці. Продовжити операцію?
+        </div>
     </div>
     <div class="app-modal-footer">
         <button type="button" class="btn btn-default" (click)="closeModal()">Ні</button>

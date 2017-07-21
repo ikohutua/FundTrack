@@ -8,6 +8,7 @@ import { ActivatedRoute } from "@angular/router";
 import { Subscription } from "rxjs/Subscription";
 import { ViewChild } from '@angular/core';
 import * as keys from '../../shared/key.storage';
+import { StorageService } from "../../shared/item-storage-service";
 
 @Component({
     template: require('./request-detail.component.html'),
@@ -20,7 +21,7 @@ export class RequestDetailComponent implements OnInit, OnDestroy {
     private _errorMessage: string;
     private _subscription: Subscription;
     private userResponse: UserResponseViewModel = new UserResponseViewModel();
-    @Input() phoneNumber:string;
+    @Input() phoneNumber: string;
     @Input() responseDescription: string;
     @ViewChild(ModalComponent)
 
@@ -37,7 +38,8 @@ export class RequestDetailComponent implements OnInit, OnDestroy {
     public customeFieldTouched = false;
 
     public constructor(private _requestDetailService: RequestDetailService,
-        private _activatedRoute: ActivatedRoute) { }
+        private _activatedRoute: ActivatedRoute,
+        private _storage: StorageService) { }
 
     private getRequestedDetail(id: number) {
         this._requestDetailService.getRequestDetail(id).subscribe(
@@ -76,15 +78,16 @@ export class RequestDetailComponent implements OnInit, OnDestroy {
             let user = JSON.parse(localStorage.getItem(keys.keyModel)) as AuthorizeUserModel;
             this.userResponse.userId = user.id;
         }
-        this.userResponse.description = this.phoneNumber+ '\t' +this.responseDescription;
+        this.userResponse.description = this.phoneNumber + '\t' + this.responseDescription;
         this.userResponse.requestedItemId = this.requestDetail.id;
         this._requestDetailService.setUserResponse(this.userResponse).subscribe(
             userResponse => {
                 this.userResponse = userResponse;
-                console.log("Response");
-                console.log(this.userResponse);
                 this.responseDescription = "";
-                this.phoneNumber="";
+                this.phoneNumber = "";
+                let count = +sessionStorage.getItem("NewResponse");
+                this._storage.emitNavChangeEvent(count + 1);
+                sessionStorage.setItem("NewResponse", (count + 1).toString());
                 this.closeModal();
             })
     }

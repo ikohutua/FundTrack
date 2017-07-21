@@ -12,6 +12,7 @@ import { LoginFacebookViewModel } from '../../view-models/concrete/login-faceboo
 @Component({
     template: require('./authorization.component.html'),
     styles: [require('./authorization.component.css')],
+    host: { '(window:keydown)': 'hotkeys($event)' },
     providers: [UserService]
 })
 export class AuthorizationComponent {
@@ -127,4 +128,10 @@ export class AuthorizationComponent {
             localStorage.setItem(keys.keyError, this.userAuthorizedInfo.errorMessage);
         }
     }
+
+    public hotkeys(event) {
+            if (event.keyCode == 13) {
+                this.login();
+            }
+        }
 }

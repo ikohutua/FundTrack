@@ -112,7 +112,7 @@ namespace FundTrack.DAL.Concrete
         }
 
         /// <summary>
-        /// Reads as queryable.
+        /// Reads as queryable for pagination.
         /// </summary>
         /// <returns>List of requested item</returns>
         public IQueryable<RequestedItem> ReadForPagination(int ItemsPerPage, int CurrentPage)

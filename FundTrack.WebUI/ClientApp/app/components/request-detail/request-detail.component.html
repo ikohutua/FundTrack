@@ -3,7 +3,7 @@
         <div class="childName">
             {{requestDetail.name}}
         </div>
-        <a [routerLink]="['/home/allrequests']" class="pull-right" style="color:#46b2d6;">Перейти до всіх запитів</a>
+        <a [routerLink]="['/home/allrequests']" class="pull-right">Перейти до всіх запитів</a>
     </div>
     <section>
         <div class="input-list style-4 clearfix">
@@ -15,7 +15,7 @@
                     Організації: {{requestDetail.organizationName}}
                 </div>
                 <div class="col-md-12 childResourse">
-                    <b>Статус: </b> <b><span style="color:#46b2d6;">{{requestDetail.statusName}}</span></b>
+                    <b>Статус: </b> <b><span>{{requestDetail.statusName}}</span></b>
                 </div>
                 <div class="col-md-12 childResourse ">
                     Тип: {{requestDetail.goodsTypeName}}
@@ -31,7 +31,7 @@
                 </div>
             </div>
         </div>
-        <button id="submit" name="submit" class="btn btn-success pull-right" (click)="onActionClick()">Пожертвувати</button>
+        <button id="submit" name="submit" class="btn pull-right btn-fundtrack-style" (click)="onActionClick()">Пожертвувати</button>
     </section>
 </div>
 <app-modal>
@@ -44,27 +44,34 @@
             <label class="control-label">Номер телефону:</label>
             <input class="col-md-12" type="text"
                    #number="ngModel"
+                   pattern="[+0-9]*"
                    required
                    (blur)="customeFieldTouched=true"
                    [(ngModel)]="phoneNumber" />
         </div>
         <div>
             <label class="control-label">Додаткова інформація:</label>
-            <textarea class="form-control" #description="ngModel"                      
+            <textarea class="form-control" #description="ngModel"
                       required
                       [(ngModel)]="responseDescription">
         </textarea>
         </div>
-        <div class="text-danger" *ngIf="number.invalid && customeFieldTouched">
-            Вкажіть інформацію, щоб ми могли з вами звязатися.
+        <div *ngIf="number.invalid && customeFieldTouched "
+             class="alert alert-danger">
+            <div [hidden]="!number.errors.required">
+                Вкажіть інформацію, щоб ми могли з вами звязатися.
+            </div>
+            <div [hidden]="!number.errors.pattern">
+                Номер телефону може містити тільки цифри і "+".
+            </div>
         </div>
     </div>
     <div class="app-modal-footer">
         <button type="button" class="btn btn-default" (click)="closeModal()">Закрити</button>
         <button (click)="setUserResponse()"
-                class="btn btn-primary"
+                class="btn btn-fundtrack-style"
                 data-dismiss="modal"
-                [disabled]="description.invalid">
+                [disabled]="number.invalid">
             Надіслати
         </button>
     </div>
