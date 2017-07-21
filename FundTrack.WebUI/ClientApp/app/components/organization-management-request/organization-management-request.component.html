@@ -6,8 +6,9 @@
                 <div class="item-header">
                     <h4 class="header-text">{{requestedItem.name}}</h4>
                     <div class="action-icons">
+                        <a data-toggle="modal" data-target="#detailInfo"><span class="glyphicon glyphicon-info-sign"></span></a>                       
                         <a (click)="redirectToManageRequestPage(requestedItem.id)"><span class="glyphicon glyphicon-pencil"></span></a>
-                        <a  (click)='setCurrentRequestedItem(requestedItem)' data-toggle="modal" data-target="#deleteRequest"><span class="glyphicon glyphicon-trash"></span></a>                       
+                        <a (click)='setCurrentRequestedItem(requestedItem)' data-toggle="modal" data-target="#deleteRequest"><span class="glyphicon glyphicon-trash"></span></a>
                     </div>                    
                 </div>
                 <div class="photo">
@@ -25,24 +26,27 @@
                 <div class="row">
                     <delete-request [itemToToDelete]='currentRequestedItem' (onSuccesfullDelete)="deleteRequestedItem()"></delete-request>
                 </div>
+                <div class="row">
+                    <detail-info [detailInfoRequest]="requestedItem"></detail-info>
+                </div>
             </div>
         </div>
     </div>
 </div>
-<div class="row" *ngIf="_allRequestedItems">
-    <div class="col-md-12"*ngIf="_totalItems && _itemPerPage">
+<div *ngIf="_allRequestedItems">
+    <div class="center-block pagination-dropdown">   
+        <span id="for-select-item">Показувати по:</span>
+            <select-item [items]="[4, 8, 12]"
+                         (onSelect)="itemsPerPageChange($event)">
+            </select-item>
+       </div>
+       <div class="text-center" *ngIf="_totalItems && _itemPerPage">
         <pagination-pages [offset]="_offset"
                           [limit]="_itemPerPage"
                           [size]="_totalItems"
                           [currentPage]="_currentPage"
                           (pageChange)="onPageChange($event)"
-                          class="col-md-6">
+                          class="col-md-12">
         </pagination-pages>
-        <div class="pegination-dropdown col-md-6">
-           Кількість на сторінку:
-            <select-item [items]="[4, 8, 12]"
-                         (onSelect)="itemsPerPageChange($event)">
-            </select-item>
-        </div>
     </div>
 </div>

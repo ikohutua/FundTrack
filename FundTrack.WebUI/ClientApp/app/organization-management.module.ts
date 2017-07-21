@@ -15,9 +15,9 @@ import { OrganizationManagementEventDeleteComponent } from "./components/organiz
 import { SharedModule } from "./shared.module";
 import { SpinnerComponent } from "./shared/components/spinner/spinner.component";
 import { UserResponseComponent } from './components/user-response/user-response.component';
-
 import { HomeModule } from "./home.module";
 import { GalleryComponent } from "./shared/components/gallery/gallery.component";
+import { DetailInfoRequestedItemComponent } from "./components/organization-management-request/detail-info-request.component";
 
 @NgModule({
     declarations: [
@@ -30,7 +30,8 @@ import { GalleryComponent } from "./shared/components/gallery/gallery.component"
         OrganizationManadementEventEditComponent,
         OrganizationManagementEventAddComponent,
         OrganizationManagementEventDeleteComponent,
-        UserResponseComponent
+        UserResponseComponent,
+        DetailInfoRequestedItemComponent
         //SpinnerComponent    
         //GalleryComponent
     ],

@@ -9,6 +9,7 @@ import { OrganizationManadementEventEditComponent } from "../components/organiza
 import { OrganizationManagementEventAddComponent } from "../components/organization-management-events/organization-management-event-add.component";
 import { OrganizationManagementAllEventsComponent } from "../components/organization-management-events/organization-management-all-events.component";
 import { UserResponseComponent } from '../components/user-response/user-response.component';
+import { DetailInfoRequestedItemComponent } from "../components/organization-management-request/detail-info-request.component";
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { UserResponseComponent } from '../components/user-response/user-response
         { path: 'organization/request/manage/:idOrganization', component: OrganizationManageRequestComponent },
         { path: 'organization/request/manage/:idOrganization/:idRequest', component: OrganizationManageRequestComponent },
         { path: 'organization/request/delete', component: OrganizationDeleteRequestComponent },
-        { path: 'organization/request/response/:idOrganization', component: UserResponseComponent }
+        { path: 'organization/request/response/:idOrganization', component: UserResponseComponent },
+        { path: 'organization/request/detail', component: DetailInfoRequestedItemComponent }
     ])],
     exports: [RouterModule]
 })

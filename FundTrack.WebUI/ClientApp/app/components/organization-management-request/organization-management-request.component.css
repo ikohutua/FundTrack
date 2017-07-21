@@ -28,7 +28,7 @@
 .item.list-group-item {
     float: none;
     width: 100%;
-    background-color: #fff;
+    background-color: #f5f5f5;
     margin-bottom: 10px;
 }
 
@@ -89,7 +89,7 @@ item.list-group-item .list-group-image {
 }
 
 .caption {
-    background-color: #fcfcf9;
+    background-color: #516d3a;
     border-top: 1px solid #ccc;
 }
 
@@ -112,12 +112,13 @@ item.list-group-item .list-group-image {
 }
 
 .item-header {
-    border-bottom: 1px solid #ccc;
+    border-bottom: 2px solid #ccc;
 }
 
 .header-text {
     padding-top: -5px;
     padding-left: 10px;
+    color: #587443;
 }
 
 /* relevant styles */
@@ -158,10 +159,23 @@ item.list-group-item .list-group-image {
 
 .text-style {
     font-weight: bold;
-    color: #31a07f;
+    color: #ddd;
 }
 
 .item-description{
     overflow: hidden;
+}
+
+.pagination-dropdown {
+    width: 12%;
+}
+
+#for-select-item {
+    font-size: large;
+    color: yellow;
+}
+
+.caption{
+    color: white;
 }
  
