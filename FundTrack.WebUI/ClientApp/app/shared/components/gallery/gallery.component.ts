@@ -54,6 +54,10 @@ export class GalleryComponent{
         }
     }
 
+    /**
+     * cat navigate to another image using keys
+     * @param event
+     */
     public hotkeys(event) {
         if (this.selectedImage) {
             if (event.keyCode == 37) {

@@ -41,13 +41,6 @@ export class RequestDetailComponent implements OnInit, OnDestroy {
         private _activatedRoute: ActivatedRoute,
         private _storage: StorageService) { }
 
-    private getRequestedDetail(id: number) {
-        this._requestDetailService.getRequestDetail(id).subscribe(
-            request => this.requestDetail = request,
-            error => this._errorMessage = error
-        )
-    }
-
     ngOnInit() {
         this._subscription = this._activatedRoute.params.subscribe(params => {
             let id = +params['id'];
@@ -95,4 +88,12 @@ export class RequestDetailComponent implements OnInit, OnDestroy {
     ngOnDestroy() {
         this._subscription.unsubscribe();
     }
+
+    private getRequestedDetail(id: number) {
+        this._requestDetailService.getRequestDetail(id).subscribe(
+            request => this.requestDetail = request,
+            error => this._errorMessage = error
+        )
+    }
+
 }

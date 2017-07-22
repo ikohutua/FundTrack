@@ -16,20 +16,8 @@
     padding: 0 8px;
 }
 
-/*.loginmodal-submit {
-    border: 0px;
-    color: #fff;
-    text-shadow: 0 1px rgba(0,0,0,0.1);
-    background-color: #4d90fe;
-    padding: 17px 0px;
-    font-family: roboto;
-    font-size: 14px;
-}*/
-
 .btn-fundtrack-style {
     background-color: #314720;
-    border-color: white;
-    border-width: 2px;
     color: white;
 }
 

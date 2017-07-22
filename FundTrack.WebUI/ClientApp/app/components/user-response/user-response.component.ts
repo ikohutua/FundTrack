@@ -55,6 +55,12 @@ export class UserResponseComponent implements OnInit {
         });
     }
 
+    /**
+     * action which happened when select status in dropdown
+     * @param oldStatusName
+     * @param newStatus
+     * @param responseId
+     */
     public onSelectStatus(oldStatusName: string, newStatus: GoodsStatusViewModel, responseId: number): void {
         this.oldStatus = oldStatusName;
         this.newStatus = newStatus;
@@ -74,6 +80,9 @@ export class UserResponseComponent implements OnInit {
         this.modalWindow.hide();
     }
 
+    /**
+     * change status with old status to new status
+     */
     public changeStatus() {
         let index = this._userResponses.findIndex(element => element.id == this.responseId);
         if (!this.isDeleteResponse)
@@ -91,6 +100,10 @@ export class UserResponseComponent implements OnInit {
 
     }
 
+    /**
+     * action which happened when navigate pagination page
+     * @param page
+     */
     public onPageChange(page): void {
         this._userResponseService.getUserResponseOnPage(this.organizationId, this.itemsPerPage, page).subscribe(userResponses => {
             this._userResponses = userResponses;
@@ -114,6 +127,9 @@ export class UserResponseComponent implements OnInit {
         });
     }
 
+    /**
+     * event which update count new user response
+     */
     private _subscribeOnChangeStatus() {
         this._userResponseService.getUserResponseWithNewStatus(this.organizationId)
             .subscribe(count => this._storage.emitNavChangeEvent(count));
