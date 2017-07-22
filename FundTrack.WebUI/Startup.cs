@@ -37,8 +37,8 @@ namespace FundTrack_WebUI
         {
             // Db Connection
             // For local connection, go to appsettings.json and write your local connection string
-            // Available connection types : 'local','azure-main','azure-test'
-            string connectionType = "azure-main";
+            // Available connection types : 'local','azure-main','azure-test', 'ss'
+            string connectionType = "ss";
             services.AddDbContext<FundTrackContext>(options => options.UseSqlServer(Configuration.GetConnectionString(connectionType)));
 
             // Add framework services.
@@ -76,12 +76,13 @@ namespace FundTrack_WebUI
             services.AddScoped<IOrganizationRegistrationService, OrganizationRegistrationService>();
             services.AddScoped<ISuperAdminService, SuperAdminService>();
             services.AddScoped<IOrganizationProfileService, OrganizationProfileService>();
-            //services.AddScoped<IEditOrganizationService, EditOrganizationService>();
             services.AddScoped<IEmailSender, EmailSender>();
             services.AddScoped<IEventManagementService, EventManagementService>();
             services.AddScoped<IRequestedItemService, RequestedItemService>();
             services.AddScoped<IOfferedItemService, OfferedItemService>();
             services.AddScoped<IGoodsService, GoodsService>();
+            services.AddScoped<IOrganizationProfileService, OrganizationProfileService>();
+            services.AddScoped<IModeratorService, ModeratorService>();
             services.AddScoped<IUserResponseService, UserResponseService>();
         }
 

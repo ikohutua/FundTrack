@@ -1,0 +1,168 @@
+﻿<div>
+    <!--<div class="emptyDiv">
+
+    </div>-->
+    <div *ngIf="organization" class="background">
+        <form>
+            <h2> Опис організації</h2>
+                <textarea class="form-control" [(ngModel)]="organization.description" name="description" rows="7" cols="100"> {{organization.description}}</textarea>
+            <div>
+                <button type="submit" class="btn btn-primary right" (click)="editDescriptionOfOrganization()">Редагувати</button>
+            </div>
+        </form>
+            <div>    
+                <h2> Представники </h2>
+                <div>
+                    <table class="table-bordered table">
+                        <thead>
+                            <tr>
+                                <th> Ім'я </th>
+                                <th> Прізвище </th>
+                                <th> Логін </th>
+                                <th> Email </th>
+                                <th *ngIf="isAdmin">  </th>
+                            </tr>
+                        </thead>
+                        <tbody *ngIf="isAnyModerators">
+                            <tr *ngFor="let moderator of moderatorArray">
+                                <td> {{moderator.firstName}} </td>
+                                <td> {{moderator.lastName}}</td>
+                                <td> {{moderator.login}}</td>
+                                <td> {{moderator.email}}</td>
+                                <td *ngIf="isAdmin"> <button class="btn-link" (click)="deactivateModerator(moderator)"> Видалити </button> </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <button *ngIf="isAdmin" class="btn btn-primary right" (click)="openModal(modal)"> Додати </button>
+            </div>
+            <div *ngIf="orgAddress.addresses">
+                <h2> Список адрес </h2>
+                <div *ngFor="let address of orgAddress.addresses" class="addressDiv">
+                    <div class="col-md-10">
+                        <p> {{address.street}}, {{address.house}}, {{address.city}}, {{address.country}} </p>
+                    </div>
+                    <div class="col-md-1">
+                        <button (click)="openModalWithMap(mapModal, address)" class="btn right">
+                            <span class="glyphicon glyphicon-pencil"> </span>
+                        </button>
+                    </div>
+                        <div class="col-md-1">
+                            <button (click)="deleteAddress(address)" class="btn btn-link" [disabled]="disableDelete">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </button>
+                        </div>                    
+                </div>
+                <button (click)="addAddressModal.show()" class="right"> 
+                    <span class="glyphicon glyphicon-plus"></span>
+                </button>
+                <div class="row"> 
+                    <map-component 
+                                    [zoom]="5"
+                                    [allowManyMarkers]="true" 
+                                    [showAutocomplete]="false" 
+                                    > </map-component>                    
+                </div>
+            </div>
+    </div>
+</div>
+
+ <app-modal #moderator>
+    <div class="app-modal-header">
+        <h4> Додати модератора </h4>
+    </div>
+    <div class="app-modal-body">
+        <h3> Виберіть логін </h3>
+        <select class="form-control" [(ngModel)]="newModerator.login">
+            <option *ngFor="let m of possibleModerators">{{m.login}}</option>
+        </select>
+    </div>
+    <div class="app-modal-footer">
+        <button class="btn btn-primary"  (click)="addModerator()"> Додати </button>
+        <button type="button" class="btn btn-primary" (click)="closeModal(modal)">Закрити</button>
+    </div>
+</app-modal>
+
+
+<app-modal #mapModal (onModalOpen)="modalOpens($event)">
+    <div class="app-modal-header">
+        <h2> Редагувати адресу </h2>
+    </div>
+    <div class="app-modal-body" >
+        <div class="row">
+            <input class="form-modal" type="text" name="cityTest" [(ngModel)]="addressToEdit.city" />
+            <input class="form-modal" type="text" name="streetTest" [(ngModel)]="addressToEdit.street" />
+            <input class="form-modal" type="text" name="houseTest" [(ngModel)]="addressToEdit.house" />
+        </div>
+            <div class="row">
+                <map-component
+                               [zoom]="19"
+                               [allowManyMarkers]="false"
+                               [idAddress]="addressToEdit.id"
+                               [city]="addressToEdit.city"
+                               [street]="addressToEdit.street"
+                               [house]="addressToEdit.house"
+                               [showAutocomplete]="false"
+                               (onCangeAddress)="showAddress($event)">
+                </map-component>
+            </div>
+    </div>
+    <div class="app-modal-footer">
+        <button type="button" class="btn btn-primary" (click)="updateAddress(addressToEdit)">Зберегти</button>
+        <button type="button" class="btn btn-primary" (click)="mapModal.hide()">Закрити</button>
+    </div>
+</app-modal>
+
+<app-modal #addAddressModal>
+    <div class="app-modal-header">
+        <h2> Додати адресу </h2>
+    </div>
+    <div class="app-modal-body">
+        <div class="form-group" [class.has-error]="city.invalid&&city.touched">
+            <label class="control-label"> Місто </label>
+            <div class="inner-addon left-addon">
+                <i class="glyphicon glyphicon-home"></i>
+                <input class="form-control" type="text" name="city" placeholder="Введіть місто" [(ngModel)]="newAddress.city" pattern="[А-Яа-яїЇіІ]*" #city="ngModel" required /><br />
+            </div>
+        </div>
+        <div *ngIf="city.errors && (city.dirty || city.touched)"
+             class="alert alert-danger">
+            <div [hidden]="!city.errors.required">
+                Місто обов'язкове
+            </div>
+            <div [hidden]="!city.errors.pattern">
+                Поле може містити лише кирилицю.
+            </div>
+        </div>
+        <div class="form-group" [class.has-error]="street.invalid&&street.touched">
+            <label class="control-label"> Вулиця </label>
+            <div class="inner-addon left-addon">
+                <i class="glyphicon glyphicon-home"></i>
+                <input class="form-control" type="text" name="street" placeholder="Введіть вулицю" [(ngModel)]="newAddress.street" #street="ngModel" required/><br />
+            </div>
+            <div *ngIf="street.errors && (street.dirty || street.touched)"
+                 class="alert alert-danger">
+                <div [hidden]="!street.errors.required">
+                    Вулиця обов'язкова
+                </div>
+            </div>
+        </div>
+        <div class="form-group" [class.has-error]="house.invalid&&house.touched">
+            <label class="control-label"> Будинок </label>
+            <div class="inner-addon left-addon">
+                <i class="glyphicon glyphicon-home"></i>
+                <input class="form-control" type="text" name="house" placeholder="Введіть будинок" [(ngModel)]="newAddress.house" #house="ngModel" required/><br />
+            </div>
+        </div>
+        <div *ngIf="house.errors && (house.dirty || house.touched)"
+             class="alert alert-danger">
+            <div [hidden]="!house.errors.required">
+                Будинок обов'язковий
+            </div>
+        </div>
+    </div>
+    <div class="app-modal-footer">
+        <button type="submit" class="btn btn-primary" (click)="addAddress(newAddress)">Зберегти</button>
+        <button type="button" class="btn btn-primary" (click)="addAddressModal.hide()">Закрити</button>
+    </div>
+</app-modal>

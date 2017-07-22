@@ -2,6 +2,7 @@
 using FundTrack.DAL.Entities;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace FundTrack.DAL.Concrete
 {
@@ -28,8 +29,8 @@ namespace FundTrack.DAL.Concrete
         /// <returns></returns>
         public OrgAddress Create(OrgAddress item)
         {
-            _context.OrgAddresses.Add(item);
-            return item;
+            var added = _context.OrgAddresses.Add(item);
+            return added.Entity;
         }
 
         /// <summary>
@@ -38,9 +39,10 @@ namespace FundTrack.DAL.Concrete
         /// <param name="id">Recives id of address</param>
         public void Delete(int id)
         {
-            OrgAddress _orgAddress = _context.OrgAddresses.FirstOrDefault(c => c.Id == id);
-            if (_orgAddress != null)
-                _context.OrgAddresses.Remove(_orgAddress);
+            var orgAddress = _context.OrgAddresses.Include(a => a.Address).First();
+            //OrgAddress _orgAddress = _context.OrgAddresses.FirstOrDefault(c => c.Id == id);
+            if (orgAddress != null)
+                _context.OrgAddresses.Remove(orgAddress);
         }
 
         /// <summary>

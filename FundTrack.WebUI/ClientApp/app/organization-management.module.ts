@@ -18,6 +18,8 @@ import { HomeModule } from "./home.module";
 import { GalleryComponent } from "./shared/components/gallery/gallery.component";
 import { DetailInfoRequestedItemComponent } from "./components/organization-management-request/detail-info-request.component";
 import { OrganizationManagementEventDetailComponent } from "./components/organization-management-events/organization-management-event-detail.component";
+import { OrganizationEditComponent } from "./components/organization-edit/organization-edit.component";
+import { MapModule } from './map.module';
 
 @NgModule({
     declarations: [
@@ -31,15 +33,18 @@ import { OrganizationManagementEventDetailComponent } from "./components/organiz
         OrganizationManagementEventDeleteComponent,
         OrganizationManagementEventDetailComponent,
         UserResponseComponent,
-        DetailInfoRequestedItemComponent
+        DetailInfoRequestedItemComponent,
         //SpinnerComponent    
         //GalleryComponent
+        OrganizationManagementEventDeleteComponent, 
+        OrganizationEditComponent
     ],
     imports: [
         FormsModule,
         CommonModule,
         OrganizationManagementRoutingModule,
-        SharedModule
+        SharedModule, 
+        MapModule
     ],
     exports: [
         SpinnerComponent

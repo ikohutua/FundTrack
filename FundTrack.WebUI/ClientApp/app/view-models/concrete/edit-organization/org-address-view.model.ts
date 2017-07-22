@@ -2,5 +2,6 @@
 
 export class OrgAddressViewModel {
     orgId: number;
+    errorMessage: string;
     addresses: AddressViewModel[];
 }

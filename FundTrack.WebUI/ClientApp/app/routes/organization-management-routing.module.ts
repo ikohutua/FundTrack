@@ -12,6 +12,7 @@ import { UserResponseComponent } from '../components/user-response/user-response
 import { DetailInfoRequestedItemComponent } from "../components/organization-management-request/detail-info-request.component";
 import { OrganizationManagementEventDetailComponent } from "../components/organization-management-events/organization-management-event-detail.component";
 import { AdminRouteGuard } from "../services/concrete/security/admin-route-guard";
+import { OrganizationEditComponent } from '../components/organization-edit/organization-edit.component';
 
 @NgModule({
     providers: [AdminRouteGuard],
@@ -66,7 +67,10 @@ import { AdminRouteGuard } from "../services/concrete/security/admin-route-guard
             path: 'organization/request/detail',
             component: DetailInfoRequestedItemComponent,
             canActivate: [AdminRouteGuard]
-        }
+        }, 
+        { 
+            path: 'organization/edit/:id',
+            component: OrganizationEditComponent}
     ])],
     exports: [RouterModule]
 })

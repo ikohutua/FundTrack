@@ -50,7 +50,9 @@
                 <a (click)="redirectToPage('superadmin/organizations')">Організації</a>
             </li>
             <li><a href="#">Звіти</a></li>
-            <li><a href="#">Налаштування</a></li>
+            <li *ngIf="this.user && (this.user.role=='admin' || this.user.role=='moderator')">
+                <a (click)="redirectToEditOrganizationPage()">Налаштування</a>
+            </li>
         </ul>
     </nav>
     <button *ngIf="!sideBarIsClosed" type="button" class="hamburger is-open" (click)="showSideBar()" data-toggle="offcanvas">

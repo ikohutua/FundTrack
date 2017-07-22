@@ -28,8 +28,8 @@ namespace FundTrack.DAL.Concrete
         /// <returns></returns>
         public Address Create(Address item)
         {
-            _context.Addresses.Add(item);
-            return item;
+            var added = _context.Addresses.Add(item);
+            return added.Entity;
         }
 
         /// <summary>
@@ -70,7 +70,17 @@ namespace FundTrack.DAL.Concrete
         /// <param name="item">Address to update.</param>
         public Address Update(Address item)
         {
-            _context.Update(item);
+            var itemToUpdate = _context.Addresses.FirstOrDefault(i => i.Id == item.Id);
+            if (itemToUpdate != null)
+            {
+                itemToUpdate.City = item.City;
+                itemToUpdate.Building = item.Building;
+                itemToUpdate.Country = item.Country;
+                itemToUpdate.Street = item.Street;
+                itemToUpdate.Id = item.Id;
+
+                return itemToUpdate;
+            }
             return item;
         }
     }

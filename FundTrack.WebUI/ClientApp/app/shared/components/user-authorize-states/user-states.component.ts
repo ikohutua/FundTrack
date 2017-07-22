@@ -19,6 +19,8 @@ export class UserStatesComponent implements AfterContentChecked, DoCheck {
     private isAdmin: boolean = false;
     private isAdminOfOrganization: boolean = false;
     private isAdminOfOrganizationForCheck: boolean = false;
+    private isModeratorOfOrganization: boolean = false;
+    private isModeratorOfOrganizationForCheck: boolean = false;
     private idOfOrganization: number;
     public constructor(private _authorizationService: UserService, private _storage: StorageService) { }
 
@@ -29,6 +31,7 @@ export class UserStatesComponent implements AfterContentChecked, DoCheck {
         this.name = null;
         this.isAdmin = false;
         this.isAdminOfOrganization = false;
+        this.isAdminOfOrganizationForCheck = false;
         this._authorizationService.logOff();
         this._storage.emitAuthorizeUserEvent(null, 0);
         this._storage.bannedDescription = '';
@@ -48,6 +51,9 @@ export class UserStatesComponent implements AfterContentChecked, DoCheck {
                 else if (this.user.role == 'admin') {
                     this.isAdminOfOrganizationForCheck = true;
                 }
+                else if (this.user.role = 'moderator') {
+                    this.isModeratorOfOrganizationForCheck = true;
+                }
             }
             return true;
         }
@@ -57,6 +63,11 @@ export class UserStatesComponent implements AfterContentChecked, DoCheck {
     ngDoCheck() {
         if (this.isAdminOfOrganization !== this.isAdminOfOrganizationForCheck) {
             this.isAdminOfOrganization = true;
+            this.getIdOfOrganization();
+        }
+        else if (this.isModeratorOfOrganization !== this.isModeratorOfOrganizationForCheck)
+        {
+            this.isModeratorOfOrganization = true;
             this.getIdOfOrganization();
         }
     }

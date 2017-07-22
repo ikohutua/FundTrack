@@ -30,7 +30,7 @@ namespace FundTrack.BLL.Concrete
             var checkOrganization = _unitOfWork.OrganizationRepository.Read().Where(o => o.Name == item.Name).FirstOrDefault();
             if (checkOrganization == null)
             {
-                var user = _unitOfWork.UsersRepository.Read().Where(u => u.Login == item.AdministratorLogin).FirstOrDefault();
+                var user = _unitOfWork.UsersRepository.GetUser(item.AdministratorLogin);
                 if (user != null)
                 {
                     var role = _unitOfWork.RoleRepository.Read().Where(r => r.Name == "admin").FirstOrDefault();
@@ -51,6 +51,9 @@ namespace FundTrack.BLL.Concrete
 
                         var orgAddres = new OrgAddress { OrgId = organization.Id, AddressId = address.Id };
                         _unitOfWork.OrganizationAddressRepository.Create(orgAddres);
+                        _unitOfWork.SaveChanges();
+
+                        organization.OrgAddresses.Add(orgAddres);
                         _unitOfWork.SaveChanges();
 
                         var result = new OrganizationRegistrationViewModel

@@ -69,7 +69,15 @@ namespace FundTrack.DAL.Concrete
         /// <returns>Exist user</returns>
         public Membership Update(Membership item)
         {
-            this.context.Membershipes.Update(item);
+            var itemToUpdate = context.Membershipes.FirstOrDefault(i => i.Id == item.Id);
+            if (itemToUpdate != null)
+            {
+                itemToUpdate.OrgId = item.OrgId;
+                itemToUpdate.RoleId = item.RoleId;
+                itemToUpdate.UserId = item.UserId;
+
+                return itemToUpdate;
+            }
             return item;
         }
 

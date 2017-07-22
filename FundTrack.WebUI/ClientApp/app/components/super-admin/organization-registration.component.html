@@ -1,5 +1,5 @@
-﻿<h2> Форма реєстрації організації</h2>
-<div>
+﻿<div class="back">
+    <h2> Форма реєстрації організації</h2>
     <form #form="ngForm">
         <h4> Загальні відомості </h4>
         <div class="form-group" [class.has-error]="name.invalid&&name.touched">
@@ -113,7 +113,7 @@
             <label class="control-label"> Будинок </label>
             <div class="inner-addon left-addon">
                 <i class="glyphicon glyphicon-home"></i>
-                <input type="text" class="form-control" [(ngModel)]="organization.house" placeholder="Введіть будинок" name="house" #house="ngModel"/>
+                <input type="text" class="form-control" [(ngModel)]="organization.house" placeholder="Введіть будинок" name="house" #house="ngModel" required/>
             </div>
             <div *ngIf="house.errors && (house.dirty || house.touched)"
                  class="alert alert-danger">

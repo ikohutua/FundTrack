@@ -27,8 +27,8 @@ namespace FundTrack.DAL.Concrete
         /// <param name="item">The organization.</param>
         public Organization Create(Organization item)
         {
-            _context.Organizations.Add(item);
-            return item;
+            var added = _context.Organizations.Add(item);
+            return added.Entity;
         }
 
         /// <summary>
@@ -69,7 +69,14 @@ namespace FundTrack.DAL.Concrete
         /// <param name="item">The organization.</param>
         public Organization Update(Organization item)
         {
-            _context.Update(item);
+            var itemToUpdate = _context.Organizations.FirstOrDefault(i => i.Id == item.Id);
+            if (itemToUpdate != null)
+            {
+                itemToUpdate.Name = item.Name;
+                itemToUpdate.Description = item.Description;
+
+                return itemToUpdate;
+            }           
             return item;
         }
 

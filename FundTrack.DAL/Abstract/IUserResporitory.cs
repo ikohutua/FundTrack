@@ -25,6 +25,8 @@ namespace FundTrack.DAL.Abstract
         /// <returns>All Users with ban status</returns>
         IEnumerable<User> GetAllUsersWithBanStatus();
 
+        IEnumerable<User> GetUsersWithUnbannedStatus();
+
         /// <summary>
         /// Checks if user has reset password link
         /// </summary>

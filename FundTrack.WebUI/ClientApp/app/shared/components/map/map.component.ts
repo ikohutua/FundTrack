@@ -1,7 +1,7 @@
 ﻿import { Component, Injectable, Input, ElementRef, ViewChild, NgZone, OnInit, Output, EventEmitter, OnChanges } from '@angular/core';
 import { IMarker } from "../../../models/map/marker.interface";
 import { FormControl } from "@angular/forms";
-import { MapsAPILoader, LatLngLiteral, GoogleMapsAPIWrapper } from "@agm/core";
+import { MapsAPILoader, LatLngLiteral } from "@agm/core";
 import { } from '@types/googlemaps';
 import { IAddressViewModel } from "../../../view-models/abstract/address-model.interface";
 import { AddressViewModel } from "../../../view-models/concrete/edit-organization/address-view.model";
@@ -9,8 +9,7 @@ import { AddressViewModel } from "../../../view-models/concrete/edit-organizatio
 @Component({
     selector: 'map-component',
     templateUrl: './map.component.html',
-    styleUrls: ['./map.component.css'],
-    providers: [GoogleMapsAPIWrapper]
+    styleUrls: ['./map.component.css']
 })
 
 @Injectable()
@@ -33,7 +32,7 @@ export class MapComponent implements OnInit, OnChanges {
     public house: string = "";
     @Output()
     //Works when the marker position changed 
-    onChangeAddress: EventEmitter<IAddressViewModel[]> = new EventEmitter();
+    onCangeAddress: EventEmitter<IAddressViewModel[]> = new EventEmitter();
     //..................................................................................
 
     //Latitude can be initialize through attributes in html
@@ -61,7 +60,7 @@ export class MapComponent implements OnInit, OnChanges {
      * @param _mapsAPILoader
      * @param _ngZone
      */
-    constructor(private _mapsAPILoader: MapsAPILoader, private _ngZone: NgZone, private _mapsApiWrapper: GoogleMapsAPIWrapper) { }
+    constructor(private _mapsAPILoader: MapsAPILoader, private _ngZone: NgZone) { }
 
     /**
      * Works when the map in one-marker mode.
@@ -69,7 +68,6 @@ export class MapComponent implements OnInit, OnChanges {
     ngOnChanges() {
         if (!this.allowManyMarkers) {
             this.setMarkerFromInputAttributes(this.createAddressString(), this.idAddress);
-            this._mapsApiWrapper.triggerMapEvent("resize");
         }
     }
 
@@ -82,7 +80,6 @@ export class MapComponent implements OnInit, OnChanges {
     ngOnInit(): void {
         this._maximumConcurentRequestsToGoogleMap = 5;
         this.setMainPointerOnCurrentLocation();
-        this._mapsApiWrapper.triggerMapEvent("resize");
         //create search FormControl
         this.searchControl = new FormControl();
         if (this.showAutocomplete) {
@@ -168,7 +165,7 @@ export class MapComponent implements OnInit, OnChanges {
      * @param addresses
      */
     private sendAddress(addresses: IAddressViewModel[]): void {
-        this.onChangeAddress.emit(addresses);
+        this.onCangeAddress.emit(addresses);
     }
 
     /**
@@ -330,6 +327,19 @@ export class MapComponent implements OnInit, OnChanges {
         }
         this.setMarkersFromAddresses();
     }
+
+    /**
+    * triggers google map 'resize' event
+    */
+    public triggerResize(): void {
+
+        window.setTimeout(function () {
+            google.maps.event.trigger(this, 'resize')
+        }, 0);
+    }
 }
+
+
+   
 
 

@@ -249,7 +249,6 @@ export class UserProfileComponent implements OnInit {
      * Changes password using old and new password fields through user service component and navigates to main page if success
      */
     private changePassword(): void {
-        debugger;
         this.userService.changePassword(this.passwordContainer)
             .subscribe(data => {
                 this.passwordContainer = data;

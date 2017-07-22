@@ -219,6 +219,7 @@ namespace FundTrack.DAL.Repositories
         {
             context.PasswordResets.Remove(context.PasswordResets.FirstOrDefault(u => u.UserID == id));
         }
+        
         /// <summary>
         /// Gets User entity by his id
         /// </summary>
@@ -227,6 +228,16 @@ namespace FundTrack.DAL.Repositories
         public User GetUserById(int id)
         {
             return this.context.Users.FirstOrDefault(u => u.Id == id);
+        }
+
+        /// <summary>
+        /// Gets users with unbanned status and role "partner"
+        /// </summary>
+        /// <returns>IEnumerable of users</returns>
+        public IEnumerable<User> GetUsersWithUnbannedStatus()
+        {
+            return context.Users.Include(u => u.Membership)
+                .Where(u => (u.BannedUser == null) && (u.Membership.Role.Name == UserRoles.Partner));
         }
     }
 }

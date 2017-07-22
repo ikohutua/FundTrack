@@ -1,0 +1,157 @@
+﻿.background {
+    position: relative;
+    z-index: 2;
+    padding: 10px 25px;
+    width: 85%;
+    background-color: #f5f5f5;
+    margin: 0 25px;
+}
+
+.emptyDiv {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: #A3A987;
+    z-index: 1;
+    opacity: 0.9;
+    padding: 0 25px;
+   
+}
+
+.table {
+    width: 100%;
+    max-width: 100%;
+    /*margin-bottom: 20px;*/
+    background-color: #fff;
+    opacity: 1.9;
+}
+
+thead {
+    background-color: #1a1a1a;
+    color: white;
+}
+
+tbody > tr:nth-child(2n+1) {
+    background-color: #627F49;
+    color: white;
+}
+
+    tbody > tr:nth-child(2n+1) .btn-link:hover {
+        color: #989826;
+    }
+
+tbody > tr:nth-child(2n) {
+    background-color: #233915;
+    color: white;
+}
+
+tbody > tr:nth-child(2n) .btn-link:hover {
+    color: #989826;
+}
+
+textarea{
+    border-radius: 7px;
+}
+
+.right{
+    float: right;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #627F49;
+    border-color: #233915;
+}
+
+.btn-primary:hover {    
+ background-color: #233915;
+}
+
+.addressDiv {
+    background-color: #a2a886;
+    padding: 5px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 5px 0;
+    border-radius: 7px;
+}
+
+.divFoot{
+    height: 400px;
+}
+
+.btn-link {
+    color: white;
+}
+
+h2 {
+    padding-top: 25px;
+    font-weight: bold;
+}
+
+.app-modal-header {
+    color: #233915;
+}
+
+.app-modal-body {
+    color: #233915;
+}
+
+.icon-button {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    outline: none;
+    border: 0;
+    background: transparent;
+}
+
+/* enable absolute positioning */
+.inner-addon {
+    position: relative;
+}
+
+    /* style icon */
+    .inner-addon .glyphicon {
+        position: absolute;
+        padding: 10px;
+        pointer-events: none;
+    }
+
+/* align icon */
+.left-addon .glyphicon {
+    left: 0px;
+}
+
+.right-addon .glyphicon {
+    right: 0px;
+}
+
+/* add padding  */
+.left-addon input {
+    padding-left: 30px;
+}
+
+.right-addon input {
+    padding-right: 30px;
+}
+
+.form-modal {
+    width: 32%;
+    height: 34px;
+    padding: 3px 6px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}

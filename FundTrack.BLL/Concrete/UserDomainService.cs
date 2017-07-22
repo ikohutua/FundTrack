@@ -346,8 +346,9 @@ namespace FundTrack.BLL.DomainServices
                     var bannedOrg = _unitOfWork.OrganizationRepository.GetOrganizationsWithBanStatus().FirstOrDefault(o => o.Id == membership.OrgId).BannedOrganization;
 
                     var userRole = _unitOfWork.RoleRepository.Read().Where(r => r.Id == roleId).FirstOrDefault().Name;
-                    if (userRole == "admin" || userRole == "superadmin")
+                    if (userRole == "admin" || userRole == "moderator")
                     {
+
                         int organizationId = membership.OrgId;
                         return new OrganizationIdViewModel
                         {
