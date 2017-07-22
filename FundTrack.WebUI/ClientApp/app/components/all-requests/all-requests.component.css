@@ -1,8 +1,16 @@
 ﻿.fundtrack-style {
     background-color: #314720;
-    /*border-color: #314720;*/
     color: white;
-    margin-bottom: 5px;
+    font-size: large;
+    text-align: center;
+    padding: 10px;
+}
+
+.fundtrack-style-border {
+    border: 2px solid white;
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .btn-fundtrack-style {
@@ -10,6 +18,11 @@
     border-color: white;
     border-width: 2px;
     color: white;
+    margin-right: 1%
+}
+
+.castome-paging {
+    padding-top: 20px;
 }
 
 .thumbnail {

@@ -8,7 +8,7 @@ import 'rxjs/add/operator/do';
 import "rxjs/add/operator/catch";
 import { RequestedItemInitViewModel } from "../../view-models/abstract/requesteditem-initpaginationdata-view-model";
 import { ShowRequestedItem } from "../../view-models/concrete/showrequesteditem-model.interface";
-import { GoodsTypeViewModel } from "../../view-models/concrete/goods-type-view.model";
+import { GoodsTypeShortViewModel } from "../../view-models/concrete/goods-type-view.model";
 import { GoodsCategoryViewModel } from "../../view-models/concrete/goods-category-view.model";
 import { GoodsStatusViewModel } from "../../view-models/concrete/goods-status-model";
 import { IOrganizationForFiltering } from "../../view-models/abstract/organization-for-filtering.interface";
@@ -76,8 +76,8 @@ export class ShowRequestedItemService extends BaseService<IShowRequestedItem>{
         return this.getCollections<GoodsCategoryViewModel>(this._urlGetCategories);
     }
 
-    public getTypes(): Observable<GoodsTypeViewModel[]> {
-        return this.getCollections<GoodsTypeViewModel>(this._urlGetTypes);
+    public getTypes(): Observable<GoodsTypeShortViewModel[]> {
+        return this.getCollections<GoodsTypeShortViewModel>(this._urlGetTypes);
     }
 
     public getStatuses(): Observable<GoodsStatusViewModel[]> {

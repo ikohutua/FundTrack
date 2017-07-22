@@ -1,4 +1,5 @@
 ﻿using FundTrack.Infrastructure.ViewModel;
+using System;
 
 namespace FundTrack.DAL.Entities
 {

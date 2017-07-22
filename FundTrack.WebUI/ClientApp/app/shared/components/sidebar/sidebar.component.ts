@@ -91,6 +91,7 @@ export class SidebarComponent /*implements OnInit*/ {
      * @param idOrganization
      */
     public redirectToShowAllRequests(): void {
+        this.showSideBar();
         this._router.navigate(['home/allrequests']);
     }
 

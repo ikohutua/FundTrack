@@ -1,4 +1,4 @@
-﻿<!--<spinner [showSpinner]="showUsersSpinner"></spinner>-->
+﻿<spinner [showSpinner]="showUsersSpinner"></spinner>
 <div class="col-lg-6 col-md-12" *ngFor="let event of _model">
     <div class="panel panel-primary panel-size">
         <div class="panel-heading">
@@ -6,7 +6,7 @@
                 <a [routerLink]="['']">{{event.organizationName}}</a>
             </div>
             <div class="panel-title pull-right">
-                {{event.createDate | date:'shortDate'}}
+                {{event.createDate | date:'short'}}
             </div>
             <div class="clearfix"></div>
         </div>

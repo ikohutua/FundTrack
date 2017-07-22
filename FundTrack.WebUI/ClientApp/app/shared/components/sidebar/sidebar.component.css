@@ -30,6 +30,9 @@ html {
         padding-left: 15%;
     }
 
+li:hover {
+    cursor:pointer;
+}
 #sidebar-wrapper {
     border-top: solid 1px white;
     border-right: solid 1px white;

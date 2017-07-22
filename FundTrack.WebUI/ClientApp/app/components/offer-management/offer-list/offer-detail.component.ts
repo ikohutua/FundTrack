@@ -6,7 +6,7 @@ import { OfferViewModel } from "../../../view-models/concrete/offer-view.model";
 import { Router, ActivatedRoute, Params } from "@angular/router";
 import { GoodsService } from "../../../services/concrete/goods/goods.service";
 import { GoodsCategoryViewModel } from "../../../view-models/concrete/goods-category-view.model";
-import { GoodsTypeViewModel } from "../../../view-models/concrete/goods-type-view.model";
+import { GoodsTypeShortViewModel } from "../../../view-models/concrete/goods-type-view.model";
 import { AmazonUploadComponent } from '../../../shared/components/amazonUploader/amazon-upload.component';
 import * as key from '../../../shared/key.storage';
 import { AuthorizeUserModel } from "../../../view-models/concrete/authorized-user-info-view.model";
@@ -27,8 +27,8 @@ export class OfferDetailComponent implements OnInit {
     private header: string;
     private offerItem = new OfferViewModel();
     private showUserRegistrationSpinner: boolean = false;
-    private _goodsTypes = new Array<GoodsTypeViewModel>();
-    private _selectedType = new GoodsTypeViewModel();
+    private _goodsTypes = new Array<GoodsTypeShortViewModel>();
+    private _selectedType = new GoodsTypeShortViewModel();
     private _images = new Array<OfferedItemImageViewModel>();
 
     private _errorMessage: string = "";

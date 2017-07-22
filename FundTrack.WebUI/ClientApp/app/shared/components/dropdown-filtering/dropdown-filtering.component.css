@@ -13,3 +13,7 @@
 .form-control {
     width: 100% !important;
 }
+
+li:hover{
+    cursor:pointer;
+}

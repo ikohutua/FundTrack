@@ -1,8 +1,10 @@
-﻿/// <reference path="../../item-storage-service.ts" />
-import { Component, Input } from "@angular/core";
+﻿// <reference path="../../item-storage-service.ts" />
+import { Component, Input, ViewChild } from "@angular/core";
+import { ModalComponent } from "../modal/modal-component";
 
 @Component({
     selector: 'gallery-eventdetail',
+    host: { '(window:keydown)': 'hotkeys($event)' },
     template: require('./gallery-event-detail.component.html'),
     styles: [require('./gallery-event-detail.component.css')]
 })
@@ -13,6 +15,10 @@ export class GalleryEventDetailComponent {
     private isFirstImage: boolean;
     private isLastImage: boolean;
     private index: number;
+
+    @ViewChild(ModalComponent)
+
+    public modalWindow: ModalComponent
 
     /**
      * find the index selecr image
@@ -48,4 +54,15 @@ export class GalleryEventDetailComponent {
             this.isLastImage = true;
         }
     }
+
+    public hotkeys(event) {
+        if (this.selectedImage) {
+            if (event.keyCode == 37) {
+                this.navigate(false);
+            } else if (event.keyCode == 39) {
+                this.navigate(true);
+            }
+        }
+    }
+
 }

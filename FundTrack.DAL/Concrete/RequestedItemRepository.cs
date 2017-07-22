@@ -108,7 +108,7 @@ namespace FundTrack.DAL.Concrete
         /// <returns>List of requested item</returns>
         public IQueryable<RequestedItem> ReadAsQueryable()
         {
-            return this._dbContext.RequestedItems;
+            return this._dbContext.RequestedItems.Include(x => x.RequestedItemImages);
         }
 
         /// <summary>
@@ -202,7 +202,7 @@ namespace FundTrack.DAL.Concrete
         /// <returns>List filter requsted item</returns>
         public IQueryable<RequestedItem> FilterRequestedItem(FilterRequstedViewModel filters)
         {
-            return this._dbContext.RequestedItems
+            return this._dbContext.RequestedItems.Include(x => x.RequestedItemImages)
                                   .Where(i => i.Organization.Name == (filters.OrganizationFilter != "" ? filters.OrganizationFilter : i.Organization.Name))
                                   .Where(i => i.GoodsCategory.Name == (filters.CategoryFilter != "" ? filters.CategoryFilter : i.GoodsCategory.Name))
                                   .Where(i => i.GoodsCategory.GoodsType.Name == (filters.TypeFilter != "" ? filters.TypeFilter : i.GoodsCategory.GoodsType.Name))

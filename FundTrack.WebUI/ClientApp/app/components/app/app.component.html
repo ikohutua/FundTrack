@@ -27,8 +27,10 @@
 </div>
 <div class="content" style="margin-top:auto;">
     <sidebar (onOpen)="toggleMargin($event)"></sidebar>
-    <div [class.shifted]="margin" style="margin-left:50px;">
-        <router-outlet></router-outlet>
+    <div [class.shifted]="margin">
+        <div style="margin-left:3%;">
+            <router-outlet></router-outlet>
+        </div>
     </div>
 </div>
 <footer class="footer footer-distributed">

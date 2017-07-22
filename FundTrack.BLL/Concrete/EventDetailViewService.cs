@@ -76,6 +76,8 @@ namespace FundTrack.BLL.Concrete
         /// </returns>
         public EventDetailViewModel ReadById(int id)
         {
+            try
+            {
             EventDetailViewModel eventDetailViewModel = new EventDetailViewModel();
             var eventDetail = ((DbSet<Event>)_unitOfWork.EventRepository.Read())
                 .Include(e => e.Organization)
@@ -98,6 +100,11 @@ namespace FundTrack.BLL.Concrete
             eventDetailViewModel.ImageUrl = eventDetail.ImageUrl;
 
             return eventDetailViewModel;
+            }
+            catch (Exception ex)
+            {
+                throw new BusinessLogicException(ex.Message);
+            }
         }
 
         /// <summary>

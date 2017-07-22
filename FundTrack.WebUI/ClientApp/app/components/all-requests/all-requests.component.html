@@ -1,14 +1,14 @@
-﻿<div class="col-lg-10 col-lg-offset-1 fundtrack-style" style="font-size:large; border-radius:5px; text-align:center; padding:10px;">
+﻿<div class="col-lg-10 col-lg-offset-1 fundtrack-style fundtrack-style-border" style="font-size:large;text-align:center; padding:10px;">
     Допомогти волонтерам можна не тільки грошима.<br />
     Саме тут Ви можете переглянути повний перелік потреб волонтерських організацій у речах, ліках, продуктах та різноманітих товарах,
     і при наявності можливості та бажання, запропонувати їм свою допомогу.
 </div>
 
-<div class="col-lg-10 col-lg-offset-1 fundtrack-style" style="border-radius:5px; margin-top:10px; margin-bottom:10px; border-color: white !important; border-width:2px !important;">
+<div class="col-lg-10 col-lg-offset-1 fundtrack-style fundtrack-style-border">
     <div class="form-group" style="float:left !important; margin:20px">
-        <!--<label class="control-label" for="selectbasic">Організвція</label>-->
+        <!--<label for="organization">Организація</label>-->
         <div>
-            <select name="selectbasic" class="form-control" [(ngModel)]="_organization">
+            <select id="organization" name="selectbasic" class="form-control" [(ngModel)]="_organization">
                 <option value="" disabled selected style="display: none;">Виберіть організацію</option>
                 <option value="">Всі організації</option>
                 <option value={{item.name}} *ngFor="let item of _organizations">{{item.name}}</option>
@@ -17,48 +17,44 @@
     </div>
     <div class="form-group" style="float:left !important; margin:20px">
         <div>
-            <select name="selectbasic" class="form-control" [(ngModel)]="_category">
+            <select id="goodsType" name="goodsType" class="form-control" [(ngModel)]="_type" (change)="selectType()">
+                <option value="" disabled selected style="display:none;">Виберіть тип</option>
+                <option value="">Всі типи</option>
+                <option value={{item.name}} *ngFor="let item of _goodsTypes">{{item.name}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group" style="float:left !important; margin:20px" *ngIf="_type">
+        <div>
+            <select id="categoryType" class="form-control" [(ngModel)]="_category" name="categoryType">
                 <option value="" disabled selected style="display: none;">Виберіть категорію</option>
                 <option value="">Всі категорії</option>
-                <option value={{item.name}} *ngFor="let item of _categories">{{item.name}}</option>
+                <option value={{item.name}} *ngFor="let item of _selecteType.typeCategories">{{item.name}}</option>
             </select>
         </div>
     </div>
     <div class="form-group" style="float:left !important; margin:20px">
-        <div>
-            <select name="selectbasic" class="form-control" [(ngModel)]="_type">
-                <option value="" disabled selected style="display: none;">Виберіть тип</option>
-                <option value="">Всі типи</option>
-                <option value={{item.name}} *ngFor="let item of _types">{{item.name}}</option>
-            </select>
-        </div>
+        <select id="status" name="selectbasic" class="form-control" [(ngModel)]="_status">
+            <option value="" disabled selected style="display: none;">Виберіть статус</option>
+            <option value="">Всі статуси</option>
+            <option value={{item.name}} *ngFor="let item of _statuses">{{item.name}}</option>
+        </select>
     </div>
-    <div class="form-group" style="float:left !important; margin:20px">
-        <div>
-            <select name="selectbasic" class="form-control" [(ngModel)]="_status">
-                <option value="" disabled selected style="display: none;">Виберіть статус</option>
-                <option value="">Всі статуси</option>
-                <option value={{item.name}} *ngFor="let item of _statuses">{{item.name}}</option>
-            </select>
-        </div>
-    </div>
-    <div class="form-group">
-        <div>
-            <button id="singlebutton" name="singlebutton" class="btn btn-fundtrack-style pull-right" style="margin:20px" (click)="filteredRequestedItems()">Шукати</button>
-        </div>
+    <div class="form-group" style="margin:20px">
+        <button id="cancelbutton" name="cancelbutton" class="btn btn-fundtrack-style pull-right " (click)="cancelFilter()">Скасувати</button>
+        <button id="filteredbutton" name="cancelbutton" class="btn btn-fundtrack-style pull-right " (click)="filteredRequestedItems()">Шукати</button>
     </div>
 </div>
-
 <div class="col-lg-10 col-lg-offset-1">
     <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12" *ngFor="let item of _model">
         <div class="thumbnail">
-            <div class="caption fundtrack-style">
+            <div class="caption fundtrack-style"  style="margin-bottom:5px">
                 <h4 style="display:inline;">{{item.organization}}</h4>
             </div>
             <img src="http://placehold.it/400x250/000/fff" alt="" style="height:250px !important">
             <div class="caption">
                 <h3>{{item.name}}</h3>
-                <p style="height:200px !important">{{item.description}}</p>
+                <p style="height:200px !important">{{item.description|truncate : 300}}</p>
                 <div class="row">
                     <div class="pull-right" style="margin-right:10px">
                         <button id="singlebutton" name="singlebutton" class="btn pull-right btn-fundtrack-style" (click)="onClick(item)">Переглянути</button>
@@ -68,8 +64,16 @@
         </div>
     </div>
 </div>
-<div class="row col-lg-12 col-md-12 col-sm-12">
-    <div *ngIf="totalItems && itemsPerPage" class="text-center">
+<div class="row col-lg-10 col-lg-offset-1 fundtrack-style fundtrack-style-border" *ngIf="totalItems && itemsPerPage">
+    <div class="col-lg-2 castome-paging">
+        Елементів на сторінці :
+    </div>
+    <div class="text-left col-lg-2 castome-paging">
+        <select-item [items]="[3, 6, 9, 12]"
+                     (onSelect)="itemsPerPageChange($event)">
+        </select-item>
+    </div>
+    <div class="text-center">
         <pagination-pages [offset]="offset"
                           [limit]="itemsPerPage"
                           [size]="totalItems"

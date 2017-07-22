@@ -8,7 +8,7 @@ import 'rxjs/add/operator/catch';
 import { RequestOptions, Request, RequestMethod } from '@angular/http';
 import { Headers } from '@angular/http';
 import { GoodsCategoryViewModel } from "../../../view-models/concrete/goods-category-view.model";
-import { GoodsTypeViewModel } from "../../../view-models/concrete/goods-type-view.model";
+import { GoodsTypeShortViewModel } from "../../../view-models/concrete/goods-type-view.model";
 
 @Injectable()
 export class GoodsService {
@@ -23,9 +23,9 @@ export class GoodsService {
             .do(data => console.log('Item: ' + JSON.stringify(data)))
             .catch(this.handleError);
     }
-    public getTypes(): Observable<GoodsTypeViewModel[]> {
+    public getTypes(): Observable<GoodsTypeShortViewModel[]> {
         return this._http.get(this._getTypesUrl)
-            .map((response: Response) => <GoodsTypeViewModel[]>response.json())
+            .map((response: Response) => <GoodsTypeShortViewModel[]>response.json())
             .do(data => console.log('Item: ' + JSON.stringify(data)))
             .catch(this.handleError);
     }

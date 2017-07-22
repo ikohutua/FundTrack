@@ -5,6 +5,7 @@ using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using FundTrack.DAL.Entities;
 using FundTrack.Infrastructure.ViewModel.EventViewModel;
+using System;
 
 namespace FundTrack.BLL.Concrete
 {
@@ -32,6 +33,8 @@ namespace FundTrack.BLL.Concrete
         /// <returns>Collection of EventViewModel</returns>
         public IEnumerable<EventViewModel> GetAllEventsByScroll(int countOfEventsToLoad, int koefToLoadEvent)
         {
+            try
+            { 
             var events = ((DbSet<Event>)_unitOfWork.EventRepository.Read())
              .Include(e => e.Organization)
              .Include(e => e.Organization.BannedOrganization)
@@ -49,13 +52,21 @@ namespace FundTrack.BLL.Concrete
 
             return GetPageItems(events, countOfEventsToLoad, koefToLoadEvent);
         }
+            catch (Exception ex)
+            {
+                throw new BusinessLogicException(ex.Message);
+    }
 
-        /// <summary>
-        /// Gets  events of all organizations.
-        /// </summary>
-        /// <returns>Collection of EventViewModel</returns>
-        public IEnumerable<EventViewModel> GetAllEvents()
+}
+
+/// <summary>
+/// Gets  events of all organizations.
+/// </summary>
+/// <returns>Collection of EventViewModel</returns>
+public IEnumerable<EventViewModel> GetAllEvents()
         {
+            try
+            { 
             var events = ((DbSet<Event>)_unitOfWork.EventRepository.Read())
              .Include(e => e.Organization)
              .Include(i => i.EventImages)
@@ -73,14 +84,22 @@ namespace FundTrack.BLL.Concrete
 
             return events;
         }
+            catch (Exception ex)
+            {
+                throw new BusinessLogicException(ex.Message);
+    }
 
-        /// <summary>
-        /// Gets some number of events by specific organization.
-        /// </summary>
-        /// <returns>Collection of EventViewModels for specific organization</returns>
-        /// ----------------------------------------------------------------------------------------------------------------------------------------
-        public IEnumerable<EventViewModel> GetAllEventsById(int id)
+}
+
+/// <summary>
+/// Gets some number of events by specific organization.
+/// </summary>
+/// <returns>Collection of EventViewModels for specific organization</returns>
+/// ----------------------------------------------------------------------------------------------------------------------------------------
+public IEnumerable<EventViewModel> GetAllEventsById(int id)
         {
+            try
+            { 
             IEnumerable<EventViewModel> events = ((DbSet<Event>)_unitOfWork.EventRepository.Read())
              .Include(e => e.Organization)
              .Include(e => e.Organization.BannedOrganization)
@@ -98,12 +117,18 @@ namespace FundTrack.BLL.Concrete
 
             return events as IEnumerable<EventViewModel>;
         }
+            catch (Exception ex)
+            {
+                throw new BusinessLogicException(ex.Message);
+    }
 
-        /// <summary>
-        /// Gets Initial data for event pagination
-        /// </summary>
-        /// <returns>Event Initial data</returns>
-        public EventPaginationInitViewModel GetEventPaginationData()
+}
+
+/// <summary>
+/// Gets Initial data for event pagination
+/// </summary>
+/// <returns>Event Initial data</returns>
+public EventPaginationInitViewModel GetEventPaginationData()
         {
             return new EventPaginationInitViewModel
             {

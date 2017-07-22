@@ -7,14 +7,16 @@ import { IOrganizationForFiltering } from "../../view-models/abstract/organizati
 import { ISearchingDataForRequestedItem } from "../../view-models/abstract/searching-data-for-requesteditems-model";
 import { Router } from "@angular/router";
 import { GoodsCategoryViewModel } from "../../view-models/concrete/goods-category-view.model";
-import { GoodsTypeViewModel } from "../../view-models/concrete/goods-type-view.model";
+import { GoodsTypeShortViewModel } from "../../view-models/concrete/goods-type-view.model";
 import { GoodsStatusViewModel } from "../../view-models/concrete/goods-status-model";
 import { FilterRequstedViewModel } from '../../view-models/concrete/filter-requests-view.model';
+import { OrganizationManagementRequestService } from "../../services/concrete/organization-management/organization-management-request.service";
+import { GoodsTypeViewModel } from "../../view-models/concrete/goodsType-view.model";
 
 @Component({
     templateUrl: './all-requests.component.html',
     styleUrls: ['./all-requests.component.css'],
-    providers: [ShowRequestedItemService]
+    providers: [ShowRequestedItemService, OrganizationManagementRequestService]
 })
 
 export class AllRequestsComponent implements OnInit, OnDestroy {
@@ -32,20 +34,26 @@ export class AllRequestsComponent implements OnInit, OnDestroy {
 
     private _model: ShowRequestedItem[] = new Array<ShowRequestedItem>();
     private _organizations: IOrganizationForFiltering[] = new Array<IOrganizationForFiltering>();
-    private _types: GoodsTypeViewModel[] = new Array<GoodsTypeViewModel>();
-    private _categories: GoodsCategoryViewModel[] = new Array<GoodsCategoryViewModel>();
     private _statuses: GoodsStatusViewModel[] = new Array<GoodsStatusViewModel>();
     private _filters: FilterRequstedViewModel = new FilterRequstedViewModel();
+    private _goodsTypes: GoodsTypeViewModel[] = new Array<GoodsTypeViewModel>();
+    private _selecteType: GoodsTypeViewModel = new GoodsTypeViewModel;
 
     private _searchingDataForRequestedItem: ISearchingDataForRequestedItem;
 
-    constructor(private _service: ShowRequestedItemService, private _storageService: StorageService, private _router: Router) { }
+    constructor(private _service: ShowRequestedItemService,
+        private _storageService: StorageService,
+        private _router: Router,
+        private _organizationManagementRequest: OrganizationManagementRequestService) { }
 
     ngOnInit(): void {
         this._storageService.showDropDown = false;
         this.getDataForSearching();
-        this._isFilter = false;
+        this.loadAllRequestedItem();
+    }
 
+    loadAllRequestedItem() {
+        this._isFilter = false;
         this._service.getRequestedItemInitData().subscribe((data: RequestedItemInitViewModel) => {
             this.totalItems = data.totalItemsCount;
             this.itemsPerPage = data.itemsPerPage;
@@ -58,6 +66,11 @@ export class AllRequestsComponent implements OnInit, OnDestroy {
 
     ngOnDestroy(): void {
         this._storageService.showDropDown = true;
+    }
+
+    private selectType(): void {
+        this._category = '';
+        this._selecteType = this._goodsTypes.find(i => i.name == this._type);
     }
 
     public onPageChange(page): void {
@@ -75,22 +88,23 @@ export class AllRequestsComponent implements OnInit, OnDestroy {
         this._service.getOrgaizations().subscribe((organizations: IOrganizationForFiltering[]) => {
             this._organizations = organizations;
         });
-        this._service.getCategories().subscribe((categories: GoodsCategoryViewModel[]) => {
-            this._categories = categories;
-        });
-        this._service.getTypes().subscribe((types: GoodsTypeViewModel[]) => {
-            this._types = types;
-        });
+
         this._service.getStatuses().subscribe((statuses: GoodsStatusViewModel[]) => {
             this._statuses = statuses;
         });
+
+        this._organizationManagementRequest.getAllGoodsTypes().subscribe((goodsTypes: GoodsTypeViewModel[]) => {
+            this._goodsTypes = goodsTypes;
+        },
+            error => {
+                this._errorMessage = <any>error;
+            })
     }
 
     public filteredRequestedItems() {
         this._isFilter = true;
         this._service.getFilterRequestedItemInitData(this.setupFilters()).subscribe((data: RequestedItemInitViewModel) => {
             this.totalItems = data.totalItemsCount;
-            this.itemsPerPage = data.itemsPerPage;
             this._service.getRequestedItemOnPage(this.itemsPerPage, this.currentPage, this.setupFilters()).subscribe((requesteditem: ShowRequestedItem[]) => {
                 this._model = requesteditem;
                 console.log(this._model);
@@ -98,6 +112,13 @@ export class AllRequestsComponent implements OnInit, OnDestroy {
         });
     }
 
+    cancelFilter() {
+        this._organization = '';
+        this._type = '';
+        this._category = '';
+        this._status = '';
+        this.loadAllRequestedItem();
+    }
     private setupFilters(): FilterRequstedViewModel {
         this._filters.organizationFilter = this._organization;
         this._filters.categoryFilter = this._category;
@@ -107,7 +128,12 @@ export class AllRequestsComponent implements OnInit, OnDestroy {
     }
 
     onClick(item) {
-        //this._storageService.selectedRequestedItem = item.name;
         this._router.navigate(['home/requestdetail/' + item.id]);
+    }
+
+    public itemsPerPageChange(amount: number): void {
+        this.offset = 0;
+        this.itemsPerPage = amount;
+        this.filteredRequestedItems();
     }
 }

@@ -2,7 +2,6 @@
 import { CommonModule } from "@angular/common";
 import { OrganizationManagementRoutingModule } from "./routes/organization-management-routing.module";
 import { FormsModule } from "@angular/forms";
-import { TruncatePipe } from "./shared/pipes/truncate.pipe";
 import { OrganizationManagementEventsService } from "./services/concrete/organization-management/organization-management-events.service";
 import { OrganizationBannedComponent } from './shared/components/error-pages/organization-banned.component';
 import { OrganizationManagementRequestComponent } from "./components/organization-management-request/organization-management-request.component";
@@ -22,7 +21,6 @@ import { DetailInfoRequestedItemComponent } from "./components/organization-mana
 @NgModule({
     declarations: [
         OrganizationManagementAllEventsComponent,
-        TruncatePipe,
         OrganizationBannedComponent,
         OrganizationManagementRequestComponent,
         OrganizationManageRequestComponent,
@@ -42,7 +40,6 @@ import { DetailInfoRequestedItemComponent } from "./components/organization-mana
         SharedModule
     ],
     exports: [
-        TruncatePipe,
         SpinnerComponent
     ],
     providers: [

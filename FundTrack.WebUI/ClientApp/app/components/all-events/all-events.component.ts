@@ -61,7 +61,6 @@ export class AllEventsComponent implements OnInit, OnDestroy, AfterContentChecke
             let id = +params['id'];
             this.getEventsList(id);
         });
-
     }
 
     ngAfterContentChecked() {
