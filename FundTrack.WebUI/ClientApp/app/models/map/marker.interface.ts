@@ -1,6 +1,6 @@
 ﻿//interface for google maps marker
 export interface IMarker {
-    name?: string;
+    id: number;
     lat: number;
     lng: number;
     draggable: boolean;

@@ -10,8 +10,8 @@ import { OrganizationManagementEventAddComponent } from "../components/organizat
 import { OrganizationManagementAllEventsComponent } from "../components/organization-management-events/organization-management-all-events.component";
 import { UserResponseComponent } from '../components/user-response/user-response.component';
 import { DetailInfoRequestedItemComponent } from "../components/organization-management-request/detail-info-request.component";
+import { OrganizationManagementEventDetailComponent } from "../components/organization-management-events/organization-management-event-detail.component";
 import { AdminRouteGuard } from "../services/concrete/security/admin-route-guard";
-
 
 @NgModule({
     providers: [AdminRouteGuard],
@@ -30,6 +30,11 @@ import { AdminRouteGuard } from "../services/concrete/security/admin-route-guard
         {
             path: 'organization/event/add/:id',
             component: OrganizationManagementEventAddComponent,
+            canActivate: [AdminRouteGuard]
+        },
+        {
+            path: 'organization/event/detail/:id',
+            component: OrganizationManagementEventDetailComponent,
             canActivate: [AdminRouteGuard]
         },
         {

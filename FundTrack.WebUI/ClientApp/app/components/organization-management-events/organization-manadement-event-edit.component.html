@@ -3,7 +3,7 @@
         <h2>Сторінка редагування події</h2>
         <form #form="ngForm" novalidate>
             <div class="form-group" [class.has-error]="description.invalid && description.dirty">
-                <label class="control-label">Опис нової події</label>
+                <label class="control-label">Опис події</label>
                 <textarea #description="ngModel"
                           rows="15"
                           required
@@ -31,8 +31,8 @@
                 </div>
             </div>
             <div class='text-right'>
-                <button class="btn btn-success pull-right" (click)="updateEvent()">Зберегти</button>
-                <button class="btn btn-warning pull-right" (click)="redirectToAllEvents()">Відмінити</button>
+                <button class="btn btn-success pull-right" (click)="updateEvent()" [disabled]="form.invalid">Зберегти</button>
+                <button class="btn btn-warning pull-right" (click)="redirectToAllEvents()" style="margin-right: 7px">Скасувати</button>
             </div>
         </form>
         <br />

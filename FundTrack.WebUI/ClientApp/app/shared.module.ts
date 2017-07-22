@@ -12,6 +12,7 @@ import { ModalComponent } from './shared/components/modal/modal-component';
 import { SelectComponent } from './shared/components/select/select.component';
 import { SpinnerComponent } from './shared/components/spinner/spinner.component';
 import { SidebarComponent } from "./shared/components/sidebar/sidebar.component";
+import { GalleryComponent } from './shared/components/gallery/gallery.component';
 import { TruncatePipe } from "./shared/pipes/truncate.pipe";
 //import { ChatBoxComponent } from './shared/components/chat-box/chat-box.component';
 
@@ -27,9 +28,8 @@ import { TruncatePipe } from "./shared/pipes/truncate.pipe";
         EventFilterPipe,
         SelectComponent,
         SpinnerComponent,
-        SidebarComponent
-        //,
-        //ChatBoxComponent
+        SidebarComponent,
+        GalleryComponent
     ],
     imports: [
         CommonModule,
@@ -50,10 +50,9 @@ import { TruncatePipe } from "./shared/pipes/truncate.pipe";
         EventFilterPipe,
         SelectComponent,
         SpinnerComponent,
-        TruncatePipe,
-        SidebarComponent
-        //,
-        //ChatBoxComponent
+        SidebarComponent,
+        GalleryComponent,
+        TruncatePipe
     ]
 })
 export class SharedModule { }

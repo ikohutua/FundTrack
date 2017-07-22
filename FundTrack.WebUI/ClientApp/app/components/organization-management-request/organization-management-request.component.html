@@ -6,9 +6,9 @@
                 <div class="item-header">
                     <h4 class="header-text">{{requestedItem.name}}</h4>
                     <div class="action-icons">
-                        <a (click)='setCurrentRequestedItem(requestedItem)' data-toggle="modal" data-target="#detailInfo"><span class="glyphicon glyphicon-info-sign"></span></a>                       
-                        <a (click)="redirectToManageRequestPage(requestedItem.id)"><span class="glyphicon glyphicon-pencil"></span></a>
-                        <a (click)='setCurrentRequestedItem(requestedItem)' data-toggle="modal" data-target="#deleteRequest"><span class="glyphicon glyphicon-trash"></span></a>
+                        <a (click)="setCurrentRequestedItem(requestedItem)" data-toggle="modal" data-target="#detailInfo"><span class="glyphicon glyphicon-info-sign green"></span></a>                       
+                        <a (click)="redirectToManageRequestPage(requestedItem.id)"><span class="glyphicon glyphicon-pencil green"></span></a>
+                        <a (click)='setCurrentRequestedItem(requestedItem)' data-toggle="modal" data-target="#deleteRequest"><span class="glyphicon glyphicon-trash green"></span></a>
                     </div>                    
                 </div>
                 <div class="photo">

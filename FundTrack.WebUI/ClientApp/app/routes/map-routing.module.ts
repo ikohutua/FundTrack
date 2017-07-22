@@ -1,11 +1,11 @@
 ﻿import { NgModule } from "@angular/core";
 import { RouterModule } from "@angular/router";
-import { MapComponent } from "../shared/components/map/map.component";
+import { TestMap } from "../components/test-map/test-map";
 
 @NgModule({
     imports: [RouterModule.forChild(
     [
-        { path: 'map', component: MapComponent }
+            { path: 'map', component: TestMap }
     ])]
 })
 export class MapRoutingModule { }

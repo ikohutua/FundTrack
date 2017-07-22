@@ -50,7 +50,7 @@ export class OrganizationManagementEventsService {
      * @param pageSize
      * @returns Collection of events - Observable<IEventManagementViewModel[]>
      */
-    public GetEventsByOrganizationIdForPage(idOrganization: number, currentPage: number, pageSize: number): Observable<IEventManagementViewModel[]> {
+    public getEventsByOrganizationIdForPage(idOrganization: number, currentPage: number, pageSize: number): Observable<IEventManagementViewModel[]> {
         return this._http.get(this._url + 'GetEventsByOrganizationIdForPage/' + idOrganization + "/" + currentPage + "/" + pageSize)
             .map((response: Response) => <IEventManagementViewModel[]>response.json())
             .catch(this.handleError);
@@ -91,7 +91,7 @@ export class OrganizationManagementEventsService {
      * Gets Events Init Data
      * @param idOrganization
      */
-    public GetEventsInitData(idOrganization: number): Observable<IEventManagementInitViewModel> {
+    public getEventsInitData(idOrganization: number): Observable<IEventManagementInitViewModel> {
         return this._http.get(this._url + "GetEventsInitData/" + idOrganization)
             .map((response: Response) => <IEventManagementInitViewModel>response.json())
             .catch(this.handleError);

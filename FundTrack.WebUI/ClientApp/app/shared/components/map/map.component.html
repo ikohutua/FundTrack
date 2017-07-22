@@ -1,6 +1,6 @@
 ﻿<div class="row center-block col-lg-12 col-md-12 col-sm-12 col-xs-12">
     <div>
-        <div class="form-group">
+        <div *ngIf="showAutocomplete" class="form-group">
             <input placeholder="Вулиця, Номер будинку, Місто"
                    autocorrect="off"
                    autocapitalize="off"
@@ -9,12 +9,7 @@
                    class="form-control"
                    #search
                    [formControl]="searchControl" />
-            <br />
-            <button class="btn btn-primary btn-sm" (click)="saveMarkerAndAddressFromDataInAutocompleteForm()">Зберегти адресу</button>
-            <button class="btn btn-primary btn-sm" (click)="saveAllAddressesFromMarkers()">Список адрес</button>
-            <button class="btn btn-primary btn-sm" (click)="setMarkersFromAddresses()">Встановити маркери</button>
-            <button class="btn btn-primary btn-sm" (click)="clearMapFromMarkers()">Очистити</button>
-            <button class="btn btn-primary btn-sm" (click)="changeAmountMarkersMode()">{{allowManyMarkers?'Один маркер':'Багато маркерів'}}</button>
+            <br />          
             <ul *ngIf="_addresses.length > 0">
                 Збережені адреси
                 <li *ngFor="let address of _addresses">{{address}}</li>

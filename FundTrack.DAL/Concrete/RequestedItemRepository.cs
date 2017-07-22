@@ -101,7 +101,6 @@ namespace FundTrack.DAL.Concrete
             return updatedRequetedItem.Entity;
         }
 
-
         /// <summary>
         /// Reads as queryable.
         /// </summary>

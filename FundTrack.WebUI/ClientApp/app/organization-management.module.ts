@@ -17,6 +17,7 @@ import { UserResponseComponent } from './components/user-response/user-response.
 import { HomeModule } from "./home.module";
 import { GalleryComponent } from "./shared/components/gallery/gallery.component";
 import { DetailInfoRequestedItemComponent } from "./components/organization-management-request/detail-info-request.component";
+import { OrganizationManagementEventDetailComponent } from "./components/organization-management-events/organization-management-event-detail.component";
 
 @NgModule({
     declarations: [
@@ -28,6 +29,7 @@ import { DetailInfoRequestedItemComponent } from "./components/organization-mana
         OrganizationManadementEventEditComponent,
         OrganizationManagementEventAddComponent,
         OrganizationManagementEventDeleteComponent,
+        OrganizationManagementEventDetailComponent,
         UserResponseComponent,
         DetailInfoRequestedItemComponent
         //SpinnerComponent    

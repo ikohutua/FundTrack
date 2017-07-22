@@ -136,10 +136,13 @@ item.list-group-item .list-group-image {
 
 #for-select-item {
     font-size: large;
-    color: yellow;
+    color: white;
 }
 
 .caption{
     color: white;
 }
  
+.green{
+    color: #587443;
+}

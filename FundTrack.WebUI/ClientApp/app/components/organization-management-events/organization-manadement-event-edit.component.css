@@ -1,4 +1,10 @@
-﻿body {
+﻿.error-message {
+    color: #ff0000;
+    font-size: x-large;
+}
+
+.has-error label {
+    color: #ff0000 !important;
 }
 
 img {

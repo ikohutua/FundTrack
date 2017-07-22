@@ -50,7 +50,7 @@ export class OrganizationManadementEventEditComponent implements OnInit {
             .subscribe(() => this._router.navigate(['organization/events/' + this._event.organizationId]));
     }
 
-    /**
+   /**
     * Gets extension of specified file
     * @param fileName: name of the file extension of which is needed to be retrieved
     */

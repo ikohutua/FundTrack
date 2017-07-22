@@ -1,0 +1,25 @@
+﻿ <div class="container">
+    <input type="text" name="cityTest" [(ngModel)]="cityTest" />
+    <input type="text" name="streetTest" [(ngModel)]="streetTest" />
+    <input type="text" name="houseTest" [(ngModel)]="houseTest" />
+    <br />
+    <map-component #map
+                    [zoom]="18"
+                    [allowManyMarkers]="false" 
+                    [city]="cityTest" 
+                    [street]="streetTest" 
+                    [house]="houseTest" 
+                    [showAutocomplete]="false"
+                    (onChangeAddress)="showAddress($event)">
+    </map-component>
+</div> 
+
+<!--<div>
+    <button class="btn btn-default" (click)="this.setMap()">set markers</button>
+    <map-component #map 
+                    [zoom]="5"
+                    [allowManyMarkers]="true" 
+                    [showAutocomplete]="false" 
+                    (getAddress)="showAddress($event)">
+    </map-component>
+</div>-->

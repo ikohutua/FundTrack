@@ -38,7 +38,7 @@ export class OrganizationManagementAllEventsComponent implements OnInit {
         this._subscription = this._route.params.subscribe(
             params => {
                 this._idForCurrentOrganization = +params["id"];
-                this.GetEventsInitData(this._idForCurrentOrganization);
+                this.getEventsInitData(this._idForCurrentOrganization);
             });
     }
 
@@ -48,7 +48,7 @@ export class OrganizationManagementAllEventsComponent implements OnInit {
      */
     public onPageChange(page): void {
         this._showUsersSpinner = true;
-        this._service.GetEventsByOrganizationIdForPage(this._idForCurrentOrganization, page, this._itemPerPage).subscribe(
+        this._service.getEventsByOrganizationIdForPage(this._idForCurrentOrganization, page, this._itemPerPage).subscribe(
             events => {
                 this._allEvents = events;
                 this._offset = (page - 1) * this._itemPerPage;
@@ -61,11 +61,11 @@ export class OrganizationManagementAllEventsComponent implements OnInit {
      * Gets events initial data
      * @param idOrganization
      */
-    private GetEventsInitData(idOrganization: number): void {
-        this._service.GetEventsInitData(idOrganization).subscribe(response => {
+    private getEventsInitData(idOrganization: number): void {
+        this._service.getEventsInitData(idOrganization).subscribe(response => {
             this._totalItems = response.totalItemsCount;
             this._itemPerPage = response.itemsPerPage;
-            this.GetEventsPerPageByOrganizationId(this._idForCurrentOrganization, this._currentPage, this._itemPerPage);
+            this.getEventsPerPageByOrganizationId(this._idForCurrentOrganization, this._currentPage, this._itemPerPage);
         });
     }
 
@@ -75,8 +75,8 @@ export class OrganizationManagementAllEventsComponent implements OnInit {
      * @param currentPage
      * @param pageSize
      */
-    private GetEventsPerPageByOrganizationId(idOrganization: number, currentPage: number, pageSize: number): void {
-        this._service.GetEventsByOrganizationIdForPage(idOrganization, currentPage, pageSize)
+    private getEventsPerPageByOrganizationId(idOrganization: number, currentPage: number, pageSize: number): void {
+        this._service.getEventsByOrganizationIdForPage(idOrganization, currentPage, pageSize)
             .subscribe(events => {
                 this._allEvents = events;
                 this._showUsersSpinner = false;
@@ -113,7 +113,7 @@ export class OrganizationManagementAllEventsComponent implements OnInit {
      */
     public itemsPerPageChange(amount: number): void {
         this._showUsersSpinner = true;
-        this._service.GetEventsByOrganizationIdForPage(this._idForCurrentOrganization, 1, amount).subscribe(
+        this._service.getEventsByOrganizationIdForPage(this._idForCurrentOrganization, 1, amount).subscribe(
             events => {
                 this._offset = 0;
                 this._allEvents = events;
@@ -122,6 +122,14 @@ export class OrganizationManagementAllEventsComponent implements OnInit {
             });
     }
 
+    /**
+     * Redirect to event deteil page
+     * @param id 
+     */
+    private redirectToDeteilPage(id: number) {
+        this._router.navigate(['organization/event/detail/' + id]);
+    }
+    
     ngDestroy(): void {
         this._subscription.unsubscribe();
     }

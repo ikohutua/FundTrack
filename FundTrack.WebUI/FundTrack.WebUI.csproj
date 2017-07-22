@@ -55,6 +55,11 @@
     <Content Include="wwwroot\images\camouflage_texture.jpg" />
     <Content Include="wwwroot\images\comouflage-white.jpg" />
     <Content Include="wwwroot\images\comuflage-white.jpg" />
+    <Content Include="wwwroot\images\NotAvailableImage1x1.jpg" />
+    <Content Include="wwwroot\images\NotAvailableImage5x3.jpg" />
+    <Content Include="wwwroot\images\NotAvailableImage7x3.jpg" />
+    <Content Include="wwwroot\images\NotAvailableImage8x3.jpg" />
+    <Content Include="wwwroot\script.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Controllers\UserInfoController.cs" />

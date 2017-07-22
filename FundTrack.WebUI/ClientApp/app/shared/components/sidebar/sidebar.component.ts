@@ -58,16 +58,16 @@ export class SidebarComponent /*implements OnInit*/ {
      * Redirect to all events in organization management page
      * @param id for organization
      */
-    public redirectToAllEvents(idOrganization: number): void {
-        this._router.navigate(['organization/events/' + idOrganization.toString()]);
+    public redirectToAllEvents(): void {
+        this._router.navigate(['organization/events/' + this.user.orgId]);
     }
 
     /**
      * Redirect to 'add new event page' in organization management page
      * @param idOrganization
      */
-    public redirectToAddEventPage(idOrganization: number): void {
-        this._router.navigate(['organization/event/add/' + idOrganization.toString()]);
+    public redirectToAddEventPage(): void {
+        this._router.navigate(['organization/event/add/' + this.user.orgId]);
     }
 
     /**
@@ -75,7 +75,7 @@ export class SidebarComponent /*implements OnInit*/ {
      * @param idOrganization
      */
     public redirectToAllRequests(idOrganization: number): void {
-        this._router.navigate(['organization/requests/' + idOrganization.toString()]);
+        this._router.navigate(['organization/requests/' + idOrganization]);
     }
 
     /**

@@ -414,7 +414,7 @@ namespace FundTrack.BLL.Concrete
         {
             return new RequestedItemPaginationViewModel
             {
-                RequestedItemsPerPage = 8,
+                RequestedItemsPerPage = 4,
                 TotalRequestedItemsCount = this._unitOfWork.RequestedItemRepository.Read()
                 .Where(r => r.OrganizationId == organizationId)
                 .Count()
