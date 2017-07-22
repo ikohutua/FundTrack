@@ -59,7 +59,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "5c4d2c6493476523526f"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "ab6acf46743cbba74da5"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -706,7 +706,7 @@
 /******/ 	__webpack_require__.h = function() { return hotCurrentHash; };
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return hotCreateRequire(345)(__webpack_require__.s = 345);
+/******/ 	return hotCreateRequire(343)(__webpack_require__.s = 343);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -802,7 +802,7 @@ module.exports = (__webpack_require__(4))(198);
 "use strict";
 
 var Observable_1 = __webpack_require__(3);
-var catch_1 = __webpack_require__(339);
+var catch_1 = __webpack_require__(337);
 Observable_1.Observable.prototype.catch = catch_1._catch;
 Observable_1.Observable.prototype._catch = catch_1._catch;
 //# sourceMappingURL=catch.js.map
@@ -814,7 +814,7 @@ Observable_1.Observable.prototype._catch = catch_1._catch;
 "use strict";
 
 var Observable_1 = __webpack_require__(3);
-var map_1 = __webpack_require__(333);
+var map_1 = __webpack_require__(332);
 Observable_1.Observable.prototype.map = map_1.map;
 //# sourceMappingURL=map.js.map
 
@@ -825,7 +825,7 @@ Observable_1.Observable.prototype.map = map_1.map;
 "use strict";
 
 var Observable_1 = __webpack_require__(3);
-var do_1 = __webpack_require__(291);
+var do_1 = __webpack_require__(290);
 Observable_1.Observable.prototype.do = do_1._do;
 Observable_1.Observable.prototype._do = do_1._do;
 //# sourceMappingURL=do.js.map
@@ -986,7 +986,7 @@ exports.StorageService = StorageService;
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NG_ASYNC_VALIDATORS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return Validators; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_operator_toPromise__ = __webpack_require__(294);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_operator_toPromise__ = __webpack_require__(293);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_operator_toPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_operator_toPromise__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__facade_collection__ = __webpack_require__(81);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__facade_lang__ = __webpack_require__(22);
@@ -4852,7 +4852,7 @@ function NgSelectMultipleOption_tsickle_Closure_declarations() {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return FormControl; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return FormGroup; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return FormArray; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_observable_fromPromise__ = __webpack_require__(338);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_observable_fromPromise__ = __webpack_require__(336);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rxjs_observable_fromPromise___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_rxjs_observable_fromPromise__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__directives_shared__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__facade_async__ = __webpack_require__(21);
@@ -9044,7 +9044,7 @@ var core_1 = __webpack_require__(0);
 var common_1 = __webpack_require__(19);
 var map_component_1 = __webpack_require__(65);
 var forms_1 = __webpack_require__(9);
-var platform_browser_1 = __webpack_require__(337);
+var platform_browser_1 = __webpack_require__(335);
 var core_2 = __webpack_require__(76);
 var map_routing_module_1 = __webpack_require__(156);
 var MapModule = (function () {
@@ -9452,7 +9452,7 @@ DropdownOrganizationsComponent = __decorate([
     core_1.Component({
         selector: 'dropdown-org',
         template: __webpack_require__(268),
-        styles: [__webpack_require__(323)],
+        styles: [__webpack_require__(322)],
         providers: [organization_dropdown_service_1.OrganizationDropdownService]
     }),
     __metadata("design:paramtypes", [organization_dropdown_service_1.OrganizationDropdownService])
@@ -9808,7 +9808,7 @@ MapComponent = __decorate([
     core_1.Component({
         selector: 'map-component',
         template: __webpack_require__(273),
-        styles: [__webpack_require__(327)]
+        styles: [__webpack_require__(326)]
     }),
     core_1.Injectable(),
     __metadata("design:paramtypes", [core_2.MapsAPILoader, core_1.NgZone])
@@ -9853,7 +9853,7 @@ SpinnerComponent = __decorate([
     core_1.Component({
         selector: 'spinner',
         template: __webpack_require__(279),
-        styles: [__webpack_require__(329)]
+        styles: [__webpack_require__(328)]
     })
 ], SpinnerComponent);
 exports.SpinnerComponent = SpinnerComponent;
@@ -12589,7 +12589,7 @@ var AboutComponent = (function () {
 AboutComponent = __decorate([
     core_1.Component({
         template: __webpack_require__(237),
-        styles: [__webpack_require__(296)]
+        styles: [__webpack_require__(295)]
     }),
     __metadata("design:paramtypes", [item_storage_service_1.StorageService])
 ], AboutComponent);
@@ -12687,7 +12687,7 @@ __decorate([
 AllEventsComponent = __decorate([
     core_1.Component({
         template: __webpack_require__(238),
-        styles: [__webpack_require__(297)],
+        styles: [__webpack_require__(296)],
         providers: [organization_events_service_1.OrganizationEventService]
     }),
     __metadata("design:paramtypes", [organization_events_service_1.OrganizationEventService, router_1.ActivatedRoute])
@@ -12825,7 +12825,7 @@ var AllRequestsComponent = (function () {
 AllRequestsComponent = __decorate([
     core_1.Component({
         template: __webpack_require__(239),
-        styles: [__webpack_require__(298)],
+        styles: [__webpack_require__(297)],
         providers: [showrequesteditem_service_1.ShowRequestedItemService, organization_management_request_service_1.OrganizationManagementRequestService]
     }),
     __metadata("design:paramtypes", [showrequesteditem_service_1.ShowRequestedItemService,
@@ -12985,7 +12985,7 @@ __decorate([
 AuthorizationComponent = __decorate([
     core_1.Component({
         template: __webpack_require__(241),
-        styles: [__webpack_require__(300)],
+        styles: [__webpack_require__(299)],
         host: { '(window:keydown)': 'hotkeys($event)' },
         providers: [user_service_1.UserService, user_responses_service_1.UserResponseService]
     }),
@@ -13048,7 +13048,7 @@ var EventDetailComponent = (function () {
 EventDetailComponent = __decorate([
     core_1.Component({
         template: __webpack_require__(242),
-        styles: [__webpack_require__(301)],
+        styles: [__webpack_require__(300)],
         providers: [eventdetail_service_1.EventDetailService]
     }),
     __metadata("design:paramtypes", [eventdetail_service_1.EventDetailService, router_1.ActivatedRoute, item_storage_service_1.StorageService])
@@ -13090,7 +13090,7 @@ HomeComponent = __decorate([
     core_1.Component({
         selector: 'home',
         template: __webpack_require__(243),
-        styles: [__webpack_require__(302)]
+        styles: [__webpack_require__(301)]
     })
 ], HomeComponent);
 exports.HomeComponent = HomeComponent;
@@ -13261,7 +13261,7 @@ OfferDetailComponent = __decorate([
     core_1.Component({
         selector: 'offer-detail',
         template: __webpack_require__(244),
-        styles: [__webpack_require__(303)],
+        styles: [__webpack_require__(302)],
         providers: [user_offer_service_1.UserOfferService, goods_service_1.GoodsService]
     }),
     __metadata("design:paramtypes", [router_1.Router,
@@ -13431,7 +13431,7 @@ OfferListComponent = __decorate([
     core_1.Component({
         selector: 'offer-list',
         template: __webpack_require__(245),
-        styles: [__webpack_require__(304)],
+        styles: [__webpack_require__(303)],
         providers: [user_offer_service_1.UserOfferService]
     }),
     __metadata("design:paramtypes", [router_1.Router,
@@ -13475,7 +13475,7 @@ OfferItemManagementComponent = __decorate([
     core_1.Component({
         selector: 'offer-management',
         template: __webpack_require__(246),
-        styles: [__webpack_require__(305)]
+        styles: [__webpack_require__(304)]
     }),
     __metadata("design:paramtypes", [router_1.Router])
 ], OfferItemManagementComponent);
@@ -13607,7 +13607,7 @@ OrganizationManadementEventEditComponent = __decorate([
     core_1.Component({
         selector: 'org-management-event',
         template: __webpack_require__(247),
-        styles: [__webpack_require__(306)]
+        styles: [__webpack_require__(305)]
     }),
     __metadata("design:paramtypes", [router_1.ActivatedRoute, router_1.Router, organization_management_events_service_1.OrganizationManagementEventsService])
 ], OrganizationManadementEventEditComponent);
@@ -13741,7 +13741,7 @@ OrganizationManagementAllEventsComponent = __decorate([
     core_1.Component({
         selector: 'org-management-event',
         template: __webpack_require__(248),
-        styles: [__webpack_require__(307)],
+        styles: [__webpack_require__(306)],
         providers: [organization_management_events_service_1.OrganizationManagementEventsService]
     }),
     __metadata("design:paramtypes", [router_1.ActivatedRoute, router_1.Router, organization_management_events_service_1.OrganizationManagementEventsService])
@@ -13854,7 +13854,7 @@ OrganizationManagementEventAddComponent = __decorate([
     core_1.Component({
         selector: 'org-management-add',
         template: __webpack_require__(249),
-        styles: [__webpack_require__(308)]
+        styles: [__webpack_require__(307)]
     }),
     __metadata("design:paramtypes", [router_1.ActivatedRoute, router_1.Router, organization_management_events_service_1.OrganizationManagementEventsService])
 ], OrganizationManagementEventAddComponent);
@@ -13893,7 +13893,7 @@ DetailInfoRequestedItemComponent = __decorate([
     core_1.Component({
         selector: 'detail-info',
         template: __webpack_require__(251),
-        styles: [__webpack_require__(310)],
+        styles: [__webpack_require__(309)],
     })
 ], DetailInfoRequestedItemComponent);
 exports.DetailInfoRequestedItemComponent = DetailInfoRequestedItemComponent;
@@ -13939,7 +13939,7 @@ OrganizationDeleteRequestComponent = __decorate([
     core_1.Component({
         selector: 'delete-request',
         template: __webpack_require__(252),
-        styles: [__webpack_require__(311)],
+        styles: [__webpack_require__(310)],
     })
 ], OrganizationDeleteRequestComponent);
 exports.OrganizationDeleteRequestComponent = OrganizationDeleteRequestComponent;
@@ -14150,7 +14150,7 @@ OrganizationManageRequestComponent = __decorate([
     core_1.Component({
         selector: 'manage-request',
         template: __webpack_require__(253),
-        styles: [__webpack_require__(312)],
+        styles: [__webpack_require__(311)],
         providers: [organization_management_request_service_1.OrganizationManagementRequestService]
     }),
     __metadata("design:paramtypes", [organization_management_request_service_1.OrganizationManagementRequestService,
@@ -14301,7 +14301,7 @@ OrganizationManagementRequestComponent = __decorate([
     core_1.Component({
         selector: 'org-management-request',
         template: __webpack_require__(254),
-        styles: [__webpack_require__(313)],
+        styles: [__webpack_require__(312)],
         providers: [organization_management_request_service_1.OrganizationManagementRequestService]
     }),
     core_1.Injectable(),
@@ -14457,7 +14457,7 @@ var user_service_1 = __webpack_require__(23);
 var guid_view_model_1 = __webpack_require__(188);
 var forms_1 = __webpack_require__(9);
 var match_password_validator_1 = __webpack_require__(59);
-__webpack_require__(287);
+__webpack_require__(286);
 var NewPasswordComponent = (function () {
     /**
      * Creates new instance of NewPasswordComponent
@@ -14798,7 +14798,7 @@ RegistrationComponent = __decorate([
     core_1.Component({
         selector: 'registration',
         template: __webpack_require__(257),
-        styles: [__webpack_require__(314)],
+        styles: [__webpack_require__(313)],
         providers: [user_service_1.UserService]
     }),
     __metadata("design:paramtypes", [router_1.Router,
@@ -14912,7 +14912,7 @@ __decorate([
 RequestDetailComponent = __decorate([
     core_1.Component({
         template: __webpack_require__(258),
-        styles: [__webpack_require__(315)],
+        styles: [__webpack_require__(314)],
         providers: [request_detail_service_1.RequestDetailService]
     }),
     __metadata("design:paramtypes", [request_detail_service_1.RequestDetailService,
@@ -14986,7 +14986,7 @@ OrganizationRegistrationComponent = __decorate([
     core_1.Component({
         selector: 'register-organization',
         template: __webpack_require__(259),
-        styles: [__webpack_require__(316)],
+        styles: [__webpack_require__(315)],
         providers: [map_component_1.MapComponent]
     })
     /**
@@ -15121,7 +15121,7 @@ SuperAdminOrganizationsComponent = __decorate([
     core_1.Component({
         selector: 'super-admin-organizations',
         template: __webpack_require__(263),
-        styles: [__webpack_require__(318)],
+        styles: [__webpack_require__(317)],
         providers: [super_admin_service_1.SuperAdminService]
     })
     /**
@@ -15231,7 +15231,7 @@ SuperAdminUsersComponent = __decorate([
     core_1.Component({
         selector: 'super-admin-users',
         template: __webpack_require__(264),
-        styles: [__webpack_require__(319)],
+        styles: [__webpack_require__(318)],
         providers: [super_admin_service_1.SuperAdminService]
     })
     /**
@@ -15266,7 +15266,7 @@ SuperAdminComponent = __decorate([
     core_1.Component({
         selector: 'super-admin',
         template: __webpack_require__(265),
-        styles: [__webpack_require__(320)]
+        styles: [__webpack_require__(319)]
     })
 ], SuperAdminComponent);
 exports.SuperAdminComponent = SuperAdminComponent;
@@ -15572,7 +15572,7 @@ UserProfileComponent = __decorate([
     core_1.Component({
         selector: 'user-info',
         template: __webpack_require__(266),
-        styles: [__webpack_require__(321)],
+        styles: [__webpack_require__(320)],
         providers: [forms_1.FormBuilder, user_service_1.UserService]
     }),
     __metadata("design:paramtypes", [user_service_1.UserService,
@@ -15701,7 +15701,7 @@ __decorate([
 UserResponseComponent = __decorate([
     core_1.Component({
         template: __webpack_require__(267),
-        styles: [__webpack_require__(322)],
+        styles: [__webpack_require__(321)],
         providers: [user_responses_service_1.UserResponseService, showrequesteditem_service_1.ShowRequestedItemService]
     }),
     __metadata("design:paramtypes", [user_responses_service_1.UserResponseService,
@@ -16219,7 +16219,7 @@ var ErrorAuthorizeComponent = (function () {
 ErrorAuthorizeComponent = __decorate([
     core_1.Component({
         template: __webpack_require__(269),
-        styles: [__webpack_require__(324)]
+        styles: [__webpack_require__(323)]
     })
 ], ErrorAuthorizeComponent);
 exports.ErrorAuthorizeComponent = ErrorAuthorizeComponent;
@@ -16525,11 +16525,11 @@ module.exports = (__webpack_require__(4))(9);
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(340);
+__webpack_require__(338);
 var core_1 = __webpack_require__(0);
 var angular2_universal_1 = __webpack_require__(16);
 var app_module_1 = __webpack_require__(145);
-__webpack_require__(341);
+__webpack_require__(339);
 var rootElemTagName = 'app'; // Update this if you change your root component selector
 // Enable either Hot Module Reloading or production mode
 if (true) {
@@ -16573,8 +16573,7 @@ var options = {
   name: ''
 };
 if (true) {
-  var path = __webpack_require__(281);
-  var querystring = __webpack_require__(284);
+  var querystring = __webpack_require__(283);
   var overrides = querystring.parse(__resourceQuery.slice(1));
   if (overrides.path) options.path = overrides.path;
   if (overrides.timeout) options.timeout = overrides.timeout;
@@ -16591,7 +16590,7 @@ if (true) {
     options.warn = false;
   }
   if (overrides.dynamicPublicPath) {
-    options.path = path.join(__webpack_require__.p, options.path);
+    options.path = __webpack_require__.p + options.path;
   }
 }
 
@@ -16694,11 +16693,11 @@ if (typeof window !== 'undefined') {
 }
 
 function createReporter() {
-  var strip = __webpack_require__(295);
+  var strip = __webpack_require__(294);
 
   var overlay;
   if (typeof document !== 'undefined' && options.overlay) {
-    overlay = __webpack_require__(331);
+    overlay = __webpack_require__(330);
   }
 
   var styles = {
@@ -16751,7 +16750,7 @@ function createReporter() {
   };
 }
 
-var processUpdate = __webpack_require__(332);
+var processUpdate = __webpack_require__(331);
 
 var customHandler;
 var subscribeAllHandler;
@@ -16816,7 +16815,7 @@ if (module) {
   };
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, "?path=%2F__webpack_hmr", __webpack_require__(344)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, "?path=%2F__webpack_hmr", __webpack_require__(342)(module)))
 
 /***/ }),
 /* 127 */
@@ -18217,7 +18216,7 @@ AppComponent = __decorate([
     core_1.Component({
         selector: 'app',
         template: __webpack_require__(240),
-        styles: [__webpack_require__(299)]
+        styles: [__webpack_require__(298)]
     }),
     __metadata("design:paramtypes", [item_storage_service_1.StorageService])
 ], AppComponent);
@@ -18264,7 +18263,7 @@ OrganizationManagementEventDeleteComponent = __decorate([
     core_1.Component({
         selector: 'delete-event',
         template: __webpack_require__(250),
-        styles: [__webpack_require__(309)],
+        styles: [__webpack_require__(308)],
     })
 ], OrganizationManagementEventDeleteComponent);
 exports.OrganizationManagementEventDeleteComponent = OrganizationManagementEventDeleteComponent;
@@ -18411,7 +18410,7 @@ SuperAdminGrid = __decorate([
     core_1.Component({
         selector: 'super-admin-grid',
         template: __webpack_require__(262),
-        styles: [__webpack_require__(317)]
+        styles: [__webpack_require__(316)]
     })
     /**
     * Componet to dispay Grid for users or organizations
@@ -19523,7 +19522,7 @@ GalleryEventDetailComponent = __decorate([
         selector: 'gallery-eventdetail',
         host: { '(window:keydown)': 'hotkeys($event)' },
         template: __webpack_require__(271),
-        styles: [__webpack_require__(325)]
+        styles: [__webpack_require__(324)]
     })
 ], GalleryEventDetailComponent);
 exports.GalleryEventDetailComponent = GalleryEventDetailComponent;
@@ -19613,7 +19612,7 @@ GalleryComponent = __decorate([
         selector: 'gallery',
         host: { '(window:keydown)': 'hotkeys($event)' },
         template: __webpack_require__(272),
-        styles: [__webpack_require__(326)]
+        styles: [__webpack_require__(325)]
     })
 ], GalleryComponent);
 exports.GalleryComponent = GalleryComponent;
@@ -19689,9 +19688,9 @@ var core_1 = __webpack_require__(0);
 var Observable_1 = __webpack_require__(3);
 __webpack_require__(7);
 __webpack_require__(6);
+__webpack_require__(284);
 __webpack_require__(285);
-__webpack_require__(286);
-__webpack_require__(288);
+__webpack_require__(287);
 var PaginationComponent = (function () {
     /**
      * Creates new instance of PaginationComponent
@@ -19944,6 +19943,9 @@ var SidebarComponent = (function () {
     SidebarComponent.prototype.redirectToAllResponsesPage = function () {
         this._router.navigate(['organization/request/response/' + this.user.orgId.toString()]);
     };
+    SidebarComponent.prototype.redirectToPage = function (url) {
+        this._router.navigate([url]);
+    };
     /**
      * Redirect to 'all requests page' in organization management page
      * @param idOrganization
@@ -19969,7 +19971,7 @@ SidebarComponent = __decorate([
     core_1.Component({
         selector: 'sidebar',
         template: __webpack_require__(278),
-        styles: [__webpack_require__(328)],
+        styles: [__webpack_require__(327)],
         providers: [user_responses_service_1.UserResponseService]
     }),
     __metadata("design:paramtypes", [router_1.Router,
@@ -20058,7 +20060,7 @@ UserStatesComponent = __decorate([
     core_1.Component({
         selector: 'user-states',
         template: __webpack_require__(280),
-        styles: [__webpack_require__(330)],
+        styles: [__webpack_require__(329)],
         providers: [user_service_1.UserService]
     }),
     __metadata("design:paramtypes", [user_service_1.UserService, item_storage_service_1.StorageService])
@@ -20544,7 +20546,7 @@ exports.UserEmailViewModel = UserEmailViewModel;
 /* 198 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(global) {var require;var require;var __WEBPACK_AMD_DEFINE_RESULT__;// AWS SDK for JavaScript v2.82.0
+/* WEBPACK VAR INJECTION */(function(global) {var require;var require;var __WEBPACK_AMD_DEFINE_RESULT__;// AWS SDK for JavaScript v2.87.0
 // Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 // License at https://sdk.amazonaws.com/js/BUNDLE_LICENSE.txt
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return require(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
@@ -21457,6 +21459,30 @@ module.exports={
         }
       }
     },
+    "DeleteGatewayResponse": {
+      "http": {
+        "method": "DELETE",
+        "requestUri": "/restapis/{restapi_id}/gatewayresponses/{response_type}",
+        "responseCode": 202
+      },
+      "input": {
+        "type": "structure",
+        "required": [
+          "restApiId",
+          "responseType"
+        ],
+        "members": {
+          "restApiId": {
+            "location": "uri",
+            "locationName": "restapi_id"
+          },
+          "responseType": {
+            "location": "uri",
+            "locationName": "response_type"
+          }
+        }
+      }
+    },
     "DeleteIntegration": {
       "http": {
         "method": "DELETE",
@@ -21801,7 +21827,7 @@ module.exports={
         }
       },
       "output": {
-        "shape": "S2k"
+        "shape": "S2m"
       }
     },
     "GetAccount": {
@@ -21814,7 +21840,7 @@ module.exports={
         "members": {}
       },
       "output": {
-        "shape": "S2m"
+        "shape": "S2o"
       }
     },
     "GetApiKey": {
@@ -22042,7 +22068,7 @@ module.exports={
         }
       },
       "output": {
-        "shape": "S2k"
+        "shape": "S2m"
       }
     },
     "GetClientCertificates": {
@@ -22072,7 +22098,7 @@ module.exports={
             "locationName": "item",
             "type": "list",
             "member": {
-              "shape": "S2k"
+              "shape": "S2m"
             }
           }
         }
@@ -22399,6 +22425,72 @@ module.exports={
           }
         },
         "payload": "body"
+      }
+    },
+    "GetGatewayResponse": {
+      "http": {
+        "method": "GET",
+        "requestUri": "/restapis/{restapi_id}/gatewayresponses/{response_type}"
+      },
+      "input": {
+        "type": "structure",
+        "required": [
+          "restApiId",
+          "responseType"
+        ],
+        "members": {
+          "restApiId": {
+            "location": "uri",
+            "locationName": "restapi_id"
+          },
+          "responseType": {
+            "location": "uri",
+            "locationName": "response_type"
+          }
+        }
+      },
+      "output": {
+        "shape": "S3p"
+      }
+    },
+    "GetGatewayResponses": {
+      "http": {
+        "method": "GET",
+        "requestUri": "/restapis/{restapi_id}/gatewayresponses"
+      },
+      "input": {
+        "type": "structure",
+        "required": [
+          "restApiId"
+        ],
+        "members": {
+          "restApiId": {
+            "location": "uri",
+            "locationName": "restapi_id"
+          },
+          "position": {
+            "location": "querystring",
+            "locationName": "position"
+          },
+          "limit": {
+            "location": "querystring",
+            "locationName": "limit",
+            "type": "integer"
+          }
+        }
+      },
+      "output": {
+        "type": "structure",
+        "members": {
+          "position": {},
+          "items": {
+            "locationName": "item",
+            "type": "list",
+            "member": {
+              "shape": "S3p"
+            }
+          }
+        }
       }
     },
     "GetIntegration": {
@@ -22899,7 +22991,7 @@ module.exports={
         }
       },
       "output": {
-        "shape": "S4b"
+        "shape": "S4i"
       }
     },
     "GetSdkTypes": {
@@ -22929,7 +23021,7 @@ module.exports={
             "locationName": "item",
             "type": "list",
             "member": {
-              "shape": "S4b"
+              "shape": "S4i"
             }
           }
         }
@@ -23035,7 +23127,7 @@ module.exports={
         }
       },
       "output": {
-        "shape": "S4m"
+        "shape": "S4t"
       }
     },
     "GetUsagePlan": {
@@ -23277,6 +23369,40 @@ module.exports={
       },
       "output": {
         "shape": "S1g"
+      }
+    },
+    "PutGatewayResponse": {
+      "http": {
+        "method": "PUT",
+        "requestUri": "/restapis/{restapi_id}/gatewayresponses/{response_type}",
+        "responseCode": 201
+      },
+      "input": {
+        "type": "structure",
+        "required": [
+          "restApiId",
+          "responseType"
+        ],
+        "members": {
+          "restApiId": {
+            "location": "uri",
+            "locationName": "restapi_id"
+          },
+          "responseType": {
+            "location": "uri",
+            "locationName": "response_type"
+          },
+          "statusCode": {},
+          "responseParameters": {
+            "shape": "Sk"
+          },
+          "responseTemplates": {
+            "shape": "Sk"
+          }
+        }
+      },
+      "output": {
+        "shape": "S3p"
       }
     },
     "PutIntegration": {
@@ -23523,7 +23649,7 @@ module.exports={
             "locationName": "authorizer_id"
           },
           "headers": {
-            "shape": "S5c"
+            "shape": "S5k"
           },
           "pathWithQueryString": {},
           "body": {},
@@ -23587,7 +23713,7 @@ module.exports={
           "pathWithQueryString": {},
           "body": {},
           "headers": {
-            "shape": "S5c"
+            "shape": "S5k"
           },
           "clientCertificateId": {},
           "stageVariables": {
@@ -23603,7 +23729,7 @@ module.exports={
           },
           "body": {},
           "headers": {
-            "shape": "S5c"
+            "shape": "S5k"
           },
           "log": {},
           "latency": {
@@ -23621,12 +23747,12 @@ module.exports={
         "type": "structure",
         "members": {
           "patchOperations": {
-            "shape": "S5i"
+            "shape": "S5q"
           }
         }
       },
       "output": {
-        "shape": "S2m"
+        "shape": "S2o"
       }
     },
     "UpdateApiKey": {
@@ -23645,7 +23771,7 @@ module.exports={
             "locationName": "api_Key"
           },
           "patchOperations": {
-            "shape": "S5i"
+            "shape": "S5q"
           }
         }
       },
@@ -23674,7 +23800,7 @@ module.exports={
             "locationName": "authorizer_id"
           },
           "patchOperations": {
-            "shape": "S5i"
+            "shape": "S5q"
           }
         }
       },
@@ -23703,7 +23829,7 @@ module.exports={
             "locationName": "base_path"
           },
           "patchOperations": {
-            "shape": "S5i"
+            "shape": "S5q"
           }
         }
       },
@@ -23727,12 +23853,12 @@ module.exports={
             "locationName": "clientcertificate_id"
           },
           "patchOperations": {
-            "shape": "S5i"
+            "shape": "S5q"
           }
         }
       },
       "output": {
-        "shape": "S2k"
+        "shape": "S2m"
       }
     },
     "UpdateDeployment": {
@@ -23756,7 +23882,7 @@ module.exports={
             "locationName": "deployment_id"
           },
           "patchOperations": {
-            "shape": "S5i"
+            "shape": "S5q"
           }
         }
       },
@@ -23785,7 +23911,7 @@ module.exports={
             "locationName": "part_id"
           },
           "patchOperations": {
-            "shape": "S5i"
+            "shape": "S5q"
           }
         }
       },
@@ -23814,7 +23940,7 @@ module.exports={
             "locationName": "doc_version"
           },
           "patchOperations": {
-            "shape": "S5i"
+            "shape": "S5q"
           }
         }
       },
@@ -23838,12 +23964,41 @@ module.exports={
             "locationName": "domain_name"
           },
           "patchOperations": {
-            "shape": "S5i"
+            "shape": "S5q"
           }
         }
       },
       "output": {
         "shape": "Sx"
+      }
+    },
+    "UpdateGatewayResponse": {
+      "http": {
+        "method": "PATCH",
+        "requestUri": "/restapis/{restapi_id}/gatewayresponses/{response_type}"
+      },
+      "input": {
+        "type": "structure",
+        "required": [
+          "restApiId",
+          "responseType"
+        ],
+        "members": {
+          "restApiId": {
+            "location": "uri",
+            "locationName": "restapi_id"
+          },
+          "responseType": {
+            "location": "uri",
+            "locationName": "response_type"
+          },
+          "patchOperations": {
+            "shape": "S5q"
+          }
+        }
+      },
+      "output": {
+        "shape": "S3p"
       }
     },
     "UpdateIntegration": {
@@ -23872,7 +24027,7 @@ module.exports={
             "locationName": "http_method"
           },
           "patchOperations": {
-            "shape": "S5i"
+            "shape": "S5q"
           }
         }
       },
@@ -23911,7 +24066,7 @@ module.exports={
             "locationName": "status_code"
           },
           "patchOperations": {
-            "shape": "S5i"
+            "shape": "S5q"
           }
         }
       },
@@ -23945,7 +24100,7 @@ module.exports={
             "locationName": "http_method"
           },
           "patchOperations": {
-            "shape": "S5i"
+            "shape": "S5q"
           }
         }
       },
@@ -23985,7 +24140,7 @@ module.exports={
             "locationName": "status_code"
           },
           "patchOperations": {
-            "shape": "S5i"
+            "shape": "S5q"
           }
         }
       },
@@ -24014,7 +24169,7 @@ module.exports={
             "locationName": "model_name"
           },
           "patchOperations": {
-            "shape": "S5i"
+            "shape": "S5q"
           }
         }
       },
@@ -24043,7 +24198,7 @@ module.exports={
             "locationName": "requestvalidator_id"
           },
           "patchOperations": {
-            "shape": "S5i"
+            "shape": "S5q"
           }
         }
       },
@@ -24072,7 +24227,7 @@ module.exports={
             "locationName": "resource_id"
           },
           "patchOperations": {
-            "shape": "S5i"
+            "shape": "S5q"
           }
         }
       },
@@ -24096,7 +24251,7 @@ module.exports={
             "locationName": "restapi_id"
           },
           "patchOperations": {
-            "shape": "S5i"
+            "shape": "S5q"
           }
         }
       },
@@ -24125,7 +24280,7 @@ module.exports={
             "locationName": "stage_name"
           },
           "patchOperations": {
-            "shape": "S5i"
+            "shape": "S5q"
           }
         }
       },
@@ -24154,12 +24309,12 @@ module.exports={
             "locationName": "keyId"
           },
           "patchOperations": {
-            "shape": "S5i"
+            "shape": "S5q"
           }
         }
       },
       "output": {
-        "shape": "S4m"
+        "shape": "S4t"
       }
     },
     "UpdateUsagePlan": {
@@ -24178,7 +24333,7 @@ module.exports={
             "locationName": "usageplanId"
           },
           "patchOperations": {
-            "shape": "S5i"
+            "shape": "S5q"
           }
         }
       },
@@ -24588,7 +24743,7 @@ module.exports={
         "name": {}
       }
     },
-    "S2k": {
+    "S2m": {
       "type": "structure",
       "members": {
         "clientCertificateId": {},
@@ -24602,7 +24757,7 @@ module.exports={
         }
       }
     },
-    "S2m": {
+    "S2o": {
       "type": "structure",
       "members": {
         "cloudwatchRoleArn": {},
@@ -24615,7 +24770,23 @@ module.exports={
         "apiKeyVersion": {}
       }
     },
-    "S4b": {
+    "S3p": {
+      "type": "structure",
+      "members": {
+        "responseType": {},
+        "statusCode": {},
+        "responseParameters": {
+          "shape": "Sk"
+        },
+        "responseTemplates": {
+          "shape": "Sk"
+        },
+        "defaultResponse": {
+          "type": "boolean"
+        }
+      }
+    },
+    "S4i": {
       "type": "structure",
       "members": {
         "id": {},
@@ -24638,7 +24809,7 @@ module.exports={
         }
       }
     },
-    "S4m": {
+    "S4t": {
       "type": "structure",
       "members": {
         "usagePlanId": {},
@@ -24661,12 +24832,12 @@ module.exports={
         }
       }
     },
-    "S5c": {
+    "S5k": {
       "type": "map",
       "key": {},
       "value": {}
     },
-    "S5i": {
+    "S5q": {
       "type": "list",
       "member": {
         "type": "structure",
@@ -25987,14 +26158,10 @@ module.exports={
                   "type": "integer"
                 },
                 "Alarms": {
-                  "type": "list",
-                  "member": {
-                    "type": "structure",
-                    "members": {
-                      "AlarmName": {},
-                      "AlarmARN": {}
-                    }
-                  }
+                  "shape": "S3w"
+                },
+                "TargetTrackingConfiguration": {
+                  "shape": "S3y"
                 }
               }
             }
@@ -26026,7 +26193,7 @@ module.exports={
         ],
         "members": {
           "Activities": {
-            "shape": "S41"
+            "shape": "S4e"
           },
           "NextToken": {}
         }
@@ -26178,7 +26345,7 @@ module.exports={
         "type": "structure",
         "members": {
           "Activities": {
-            "shape": "S41"
+            "shape": "S4e"
           }
         }
       }
@@ -26232,7 +26399,7 @@ module.exports={
         "members": {
           "AutoScalingGroupName": {},
           "Metrics": {
-            "shape": "S4r"
+            "shape": "S54"
           }
         }
       }
@@ -26247,7 +26414,7 @@ module.exports={
         "members": {
           "AutoScalingGroupName": {},
           "Metrics": {
-            "shape": "S4r"
+            "shape": "S54"
           },
           "Granularity": {}
         }
@@ -26275,7 +26442,7 @@ module.exports={
         "type": "structure",
         "members": {
           "Activities": {
-            "shape": "S41"
+            "shape": "S4e"
           }
         }
       }
@@ -26319,7 +26486,7 @@ module.exports={
         "type": "structure",
         "members": {
           "Activities": {
-            "shape": "S41"
+            "shape": "S4e"
           }
         }
       }
@@ -26372,8 +26539,7 @@ module.exports={
         "type": "structure",
         "required": [
           "AutoScalingGroupName",
-          "PolicyName",
-          "AdjustmentType"
+          "PolicyName"
         ],
         "members": {
           "AutoScalingGroupName": {},
@@ -26398,6 +26564,9 @@ module.exports={
           },
           "EstimatedInstanceWarmup": {
             "type": "integer"
+          },
+          "TargetTrackingConfiguration": {
+            "shape": "S3y"
           }
         }
       },
@@ -26405,7 +26574,10 @@ module.exports={
         "resultWrapper": "PutScalingPolicyResult",
         "type": "structure",
         "members": {
-          "PolicyARN": {}
+          "PolicyARN": {},
+          "Alarms": {
+            "shape": "S3w"
+          }
         }
       }
     },
@@ -26463,7 +26635,7 @@ module.exports={
     },
     "ResumeProcesses": {
       "input": {
-        "shape": "S58"
+        "shape": "S5l"
       }
     },
     "SetDesiredCapacity": {
@@ -26526,7 +26698,7 @@ module.exports={
     },
     "SuspendProcesses": {
       "input": {
-        "shape": "S58"
+        "shape": "S5l"
       }
     },
     "TerminateInstanceInAutoScalingGroup": {
@@ -26548,7 +26720,7 @@ module.exports={
         "type": "structure",
         "members": {
           "Activity": {
-            "shape": "S42"
+            "shape": "S4f"
           }
         }
       }
@@ -26730,13 +26902,75 @@ module.exports={
         }
       }
     },
-    "S41": {
+    "S3w": {
       "type": "list",
       "member": {
-        "shape": "S42"
+        "type": "structure",
+        "members": {
+          "AlarmName": {},
+          "AlarmARN": {}
+        }
       }
     },
-    "S42": {
+    "S3y": {
+      "type": "structure",
+      "required": [
+        "TargetValue"
+      ],
+      "members": {
+        "PredefinedMetricSpecification": {
+          "type": "structure",
+          "required": [
+            "PredefinedMetricType"
+          ],
+          "members": {
+            "PredefinedMetricType": {},
+            "ResourceLabel": {}
+          }
+        },
+        "CustomizedMetricSpecification": {
+          "type": "structure",
+          "required": [
+            "MetricName",
+            "Namespace",
+            "Statistic"
+          ],
+          "members": {
+            "MetricName": {},
+            "Namespace": {},
+            "Dimensions": {
+              "type": "list",
+              "member": {
+                "type": "structure",
+                "required": [
+                  "Name",
+                  "Value"
+                ],
+                "members": {
+                  "Name": {},
+                  "Value": {}
+                }
+              }
+            },
+            "Statistic": {},
+            "Unit": {}
+          }
+        },
+        "TargetValue": {
+          "type": "double"
+        },
+        "DisableScaleIn": {
+          "type": "boolean"
+        }
+      }
+    },
+    "S4e": {
+      "type": "list",
+      "member": {
+        "shape": "S4f"
+      }
+    },
+    "S4f": {
       "type": "structure",
       "required": [
         "ActivityId",
@@ -26764,11 +26998,11 @@ module.exports={
         "Details": {}
       }
     },
-    "S4r": {
+    "S54": {
       "type": "list",
       "member": {}
     },
-    "S58": {
+    "S5l": {
       "type": "structure",
       "required": [
         "AutoScalingGroupName"
@@ -37294,28 +37528,31 @@ module.exports={
           "AliasAttributes": {
             "shape": "S3l"
           },
+          "UsernameAttributes": {
+            "shape": "S3n"
+          },
           "SmsVerificationMessage": {},
           "EmailVerificationMessage": {},
           "EmailVerificationSubject": {},
           "SmsAuthenticationMessage": {},
           "MfaConfiguration": {},
           "DeviceConfiguration": {
-            "shape": "S3r"
+            "shape": "S3t"
           },
           "EmailConfiguration": {
-            "shape": "S3s"
-          },
-          "SmsConfiguration": {
             "shape": "S3u"
           },
-          "UserPoolTags": {
-            "shape": "S3v"
-          },
-          "AdminCreateUserConfig": {
+          "SmsConfiguration": {
             "shape": "S3w"
           },
+          "UserPoolTags": {
+            "shape": "S3x"
+          },
+          "AdminCreateUserConfig": {
+            "shape": "S3y"
+          },
           "Schema": {
-            "shape": "S3z"
+            "shape": "S41"
           }
         }
       },
@@ -37323,7 +37560,7 @@ module.exports={
         "type": "structure",
         "members": {
           "UserPool": {
-            "shape": "S41"
+            "shape": "S43"
           }
         }
       }
@@ -37345,29 +37582,29 @@ module.exports={
             "type": "integer"
           },
           "ReadAttributes": {
-            "shape": "S47"
-          },
-          "WriteAttributes": {
-            "shape": "S47"
-          },
-          "ExplicitAuthFlows": {
             "shape": "S49"
           },
-          "SupportedIdentityProviders": {
+          "WriteAttributes": {
+            "shape": "S49"
+          },
+          "ExplicitAuthFlows": {
             "shape": "S4b"
           },
+          "SupportedIdentityProviders": {
+            "shape": "S4d"
+          },
           "CallbackURLs": {
-            "shape": "S4c"
+            "shape": "S4e"
           },
           "LogoutURLs": {
-            "shape": "S4e"
+            "shape": "S4g"
           },
           "DefaultRedirectURI": {},
           "AllowedOAuthFlows": {
-            "shape": "S4f"
+            "shape": "S4h"
           },
           "AllowedOAuthScopes": {
-            "shape": "S4h"
+            "shape": "S4j"
           },
           "AllowedOAuthFlowsUserPoolClient": {
             "type": "boolean"
@@ -37378,7 +37615,7 @@ module.exports={
         "type": "structure",
         "members": {
           "UserPoolClient": {
-            "shape": "S4k"
+            "shape": "S4m"
           }
         }
       }
@@ -37564,7 +37801,7 @@ module.exports={
         "type": "structure",
         "members": {
           "UserPool": {
-            "shape": "S41"
+            "shape": "S43"
           }
         }
       }
@@ -37587,7 +37824,7 @@ module.exports={
         "type": "structure",
         "members": {
           "UserPoolClient": {
-            "shape": "S4k"
+            "shape": "S4m"
           }
         }
       }
@@ -37657,7 +37894,7 @@ module.exports={
         "type": "structure",
         "members": {
           "CodeDeliveryDetails": {
-            "shape": "S5g"
+            "shape": "S5i"
           }
         }
       },
@@ -37804,7 +38041,7 @@ module.exports={
         "type": "structure",
         "members": {
           "CodeDeliveryDetails": {
-            "shape": "S5g"
+            "shape": "S5i"
           }
         }
       },
@@ -38076,7 +38313,7 @@ module.exports={
         "type": "structure",
         "members": {
           "Users": {
-            "shape": "S6p"
+            "shape": "S6r"
           },
           "PaginationToken": {}
         }
@@ -38102,7 +38339,7 @@ module.exports={
         "type": "structure",
         "members": {
           "Users": {
-            "shape": "S6p"
+            "shape": "S6r"
           },
           "NextToken": {}
         }
@@ -38131,7 +38368,7 @@ module.exports={
         "type": "structure",
         "members": {
           "CodeDeliveryDetails": {
-            "shape": "S5g"
+            "shape": "S5i"
           }
         }
       },
@@ -38231,7 +38468,7 @@ module.exports={
             "type": "boolean"
           },
           "CodeDeliveryDetails": {
-            "shape": "S5g"
+            "shape": "S5i"
           },
           "UserSub": {}
         }
@@ -38381,7 +38618,7 @@ module.exports={
           "CodeDeliveryDetailsList": {
             "type": "list",
             "member": {
-              "shape": "S5g"
+              "shape": "S5i"
             }
           }
         }
@@ -38411,19 +38648,19 @@ module.exports={
           "SmsAuthenticationMessage": {},
           "MfaConfiguration": {},
           "DeviceConfiguration": {
-            "shape": "S3r"
+            "shape": "S3t"
           },
           "EmailConfiguration": {
-            "shape": "S3s"
-          },
-          "SmsConfiguration": {
             "shape": "S3u"
           },
+          "SmsConfiguration": {
+            "shape": "S3w"
+          },
           "UserPoolTags": {
-            "shape": "S3v"
+            "shape": "S3x"
           },
           "AdminCreateUserConfig": {
-            "shape": "S3w"
+            "shape": "S3y"
           }
         }
       },
@@ -38449,29 +38686,29 @@ module.exports={
             "type": "integer"
           },
           "ReadAttributes": {
-            "shape": "S47"
-          },
-          "WriteAttributes": {
-            "shape": "S47"
-          },
-          "ExplicitAuthFlows": {
             "shape": "S49"
           },
-          "SupportedIdentityProviders": {
+          "WriteAttributes": {
+            "shape": "S49"
+          },
+          "ExplicitAuthFlows": {
             "shape": "S4b"
           },
+          "SupportedIdentityProviders": {
+            "shape": "S4d"
+          },
           "CallbackURLs": {
-            "shape": "S4c"
+            "shape": "S4e"
           },
           "LogoutURLs": {
-            "shape": "S4e"
+            "shape": "S4g"
           },
           "DefaultRedirectURI": {},
           "AllowedOAuthFlows": {
-            "shape": "S4f"
+            "shape": "S4h"
           },
           "AllowedOAuthScopes": {
-            "shape": "S4h"
+            "shape": "S4j"
           },
           "AllowedOAuthFlowsUserPoolClient": {
             "type": "boolean"
@@ -38482,7 +38719,7 @@ module.exports={
         "type": "structure",
         "members": {
           "UserPoolClient": {
-            "shape": "S4k"
+            "shape": "S4m"
           }
         }
       }
@@ -38821,7 +39058,11 @@ module.exports={
       "type": "list",
       "member": {}
     },
-    "S3r": {
+    "S3n": {
+      "type": "list",
+      "member": {}
+    },
+    "S3t": {
       "type": "structure",
       "members": {
         "ChallengeRequiredOnNewDevice": {
@@ -38832,14 +39073,14 @@ module.exports={
         }
       }
     },
-    "S3s": {
+    "S3u": {
       "type": "structure",
       "members": {
         "SourceArn": {},
         "ReplyToEmailAddress": {}
       }
     },
-    "S3u": {
+    "S3w": {
       "type": "structure",
       "required": [
         "SnsCallerArn"
@@ -38849,12 +39090,12 @@ module.exports={
         "ExternalId": {}
       }
     },
-    "S3v": {
+    "S3x": {
       "type": "map",
       "key": {},
       "value": {}
     },
-    "S3w": {
+    "S3y": {
       "type": "structure",
       "members": {
         "AllowAdminCreateUserOnly": {
@@ -38873,13 +39114,13 @@ module.exports={
         }
       }
     },
-    "S3z": {
+    "S41": {
       "type": "list",
       "member": {
         "shape": "S4"
       }
     },
-    "S41": {
+    "S43": {
       "type": "structure",
       "members": {
         "Id": {},
@@ -38898,7 +39139,7 @@ module.exports={
           "type": "timestamp"
         },
         "SchemaAttributes": {
-          "shape": "S3z"
+          "shape": "S41"
         },
         "AutoVerifiedAttributes": {
           "shape": "S3j"
@@ -38906,36 +39147,35 @@ module.exports={
         "AliasAttributes": {
           "shape": "S3l"
         },
+        "UsernameAttributes": {
+          "shape": "S3n"
+        },
         "SmsVerificationMessage": {},
         "EmailVerificationMessage": {},
         "EmailVerificationSubject": {},
         "SmsAuthenticationMessage": {},
         "MfaConfiguration": {},
         "DeviceConfiguration": {
-          "shape": "S3r"
+          "shape": "S3t"
         },
         "EstimatedNumberOfUsers": {
           "type": "integer"
         },
         "EmailConfiguration": {
-          "shape": "S3s"
-        },
-        "SmsConfiguration": {
           "shape": "S3u"
         },
+        "SmsConfiguration": {
+          "shape": "S3w"
+        },
         "UserPoolTags": {
-          "shape": "S3v"
+          "shape": "S3x"
         },
         "SmsConfigurationFailure": {},
         "EmailConfigurationFailure": {},
         "AdminCreateUserConfig": {
-          "shape": "S3w"
+          "shape": "S3y"
         }
       }
-    },
-    "S47": {
-      "type": "list",
-      "member": {}
     },
     "S49": {
       "type": "list",
@@ -38945,7 +39185,7 @@ module.exports={
       "type": "list",
       "member": {}
     },
-    "S4c": {
+    "S4d": {
       "type": "list",
       "member": {}
     },
@@ -38953,7 +39193,7 @@ module.exports={
       "type": "list",
       "member": {}
     },
-    "S4f": {
+    "S4g": {
       "type": "list",
       "member": {}
     },
@@ -38961,7 +39201,11 @@ module.exports={
       "type": "list",
       "member": {}
     },
-    "S4k": {
+    "S4j": {
+      "type": "list",
+      "member": {}
+    },
+    "S4m": {
       "type": "structure",
       "members": {
         "UserPoolId": {},
@@ -38983,36 +39227,36 @@ module.exports={
           "type": "integer"
         },
         "ReadAttributes": {
-          "shape": "S47"
-        },
-        "WriteAttributes": {
-          "shape": "S47"
-        },
-        "ExplicitAuthFlows": {
           "shape": "S49"
         },
-        "SupportedIdentityProviders": {
+        "WriteAttributes": {
+          "shape": "S49"
+        },
+        "ExplicitAuthFlows": {
           "shape": "S4b"
         },
+        "SupportedIdentityProviders": {
+          "shape": "S4d"
+        },
         "CallbackURLs": {
-          "shape": "S4c"
+          "shape": "S4e"
         },
         "LogoutURLs": {
-          "shape": "S4e"
+          "shape": "S4g"
         },
         "DefaultRedirectURI": {},
         "AllowedOAuthFlows": {
-          "shape": "S4f"
+          "shape": "S4h"
         },
         "AllowedOAuthScopes": {
-          "shape": "S4h"
+          "shape": "S4j"
         },
         "AllowedOAuthFlowsUserPoolClient": {
           "type": "boolean"
         }
       }
     },
-    "S5g": {
+    "S5i": {
       "type": "structure",
       "members": {
         "Destination": {},
@@ -39020,7 +39264,7 @@ module.exports={
         "AttributeName": {}
       }
     },
-    "S6p": {
+    "S6r": {
       "type": "list",
       "member": {
         "shape": "Ss"
@@ -46772,6 +47016,33 @@ module.exports={
         }
       }
     },
+    "CreateNetworkInterfacePermission": {
+      "input": {
+        "type": "structure",
+        "required": [
+          "NetworkInterfaceId",
+          "Permission"
+        ],
+        "members": {
+          "NetworkInterfaceId": {},
+          "AwsAccountId": {},
+          "AwsService": {},
+          "Permission": {},
+          "DryRun": {
+            "type": "boolean"
+          }
+        }
+      },
+      "output": {
+        "type": "structure",
+        "members": {
+          "InterfacePermission": {
+            "shape": "S61",
+            "locationName": "interfacePermission"
+          }
+        }
+      }
+    },
     "CreatePlacementGroup": {
       "input": {
         "type": "structure",
@@ -46916,7 +47187,7 @@ module.exports={
         "type": "structure",
         "members": {
           "RouteTable": {
-            "shape": "S68",
+            "shape": "S6e",
             "locationName": "routeTable"
           }
         }
@@ -46966,7 +47237,7 @@ module.exports={
         }
       },
       "output": {
-        "shape": "S6k"
+        "shape": "S6q"
       }
     },
     "CreateSpotDatafeedSubscription": {
@@ -46992,7 +47263,7 @@ module.exports={
         "type": "structure",
         "members": {
           "SpotDatafeedSubscription": {
-            "shape": "S6o",
+            "shape": "S6u",
             "locationName": "spotDatafeedSubscription"
           }
         }
@@ -47020,7 +47291,7 @@ module.exports={
         "type": "structure",
         "members": {
           "Subnet": {
-            "shape": "S6t",
+            "shape": "S6z",
             "locationName": "subnet"
           }
         }
@@ -47039,7 +47310,7 @@ module.exports={
             "type": "boolean"
           },
           "Resources": {
-            "shape": "S6x",
+            "shape": "S73",
             "locationName": "ResourceId"
           },
           "Tags": {
@@ -47075,13 +47346,13 @@ module.exports={
             "type": "boolean"
           },
           "TagSpecifications": {
-            "shape": "S6z",
+            "shape": "S75",
             "locationName": "TagSpecification"
           }
         }
       },
       "output": {
-        "shape": "S72"
+        "shape": "S78"
       }
     },
     "CreateVpc": {
@@ -47109,7 +47380,7 @@ module.exports={
         "type": "structure",
         "members": {
           "Vpc": {
-            "shape": "S78",
+            "shape": "S7e",
             "locationName": "vpc"
           }
         }
@@ -47143,7 +47414,7 @@ module.exports={
             "locationName": "clientToken"
           },
           "VpcEndpoint": {
-            "shape": "S7d",
+            "shape": "S7j",
             "locationName": "vpcEndpoint"
           }
         }
@@ -47210,7 +47481,7 @@ module.exports={
         "type": "structure",
         "members": {
           "VpnConnection": {
-            "shape": "S7k",
+            "shape": "S7q",
             "locationName": "vpnConnection"
           }
         }
@@ -47248,7 +47519,7 @@ module.exports={
         "type": "structure",
         "members": {
           "VpnGateway": {
-            "shape": "S7w",
+            "shape": "S82",
             "locationName": "vpnGateway"
           }
         }
@@ -47442,6 +47713,32 @@ module.exports={
         }
       }
     },
+    "DeleteNetworkInterfacePermission": {
+      "input": {
+        "type": "structure",
+        "required": [
+          "NetworkInterfacePermissionId"
+        ],
+        "members": {
+          "NetworkInterfacePermissionId": {},
+          "Force": {
+            "type": "boolean"
+          },
+          "DryRun": {
+            "type": "boolean"
+          }
+        }
+      },
+      "output": {
+        "type": "structure",
+        "members": {
+          "Return": {
+            "locationName": "return",
+            "type": "boolean"
+          }
+        }
+      }
+    },
     "DeletePlacementGroup": {
       "input": {
         "type": "structure",
@@ -47565,7 +47862,7 @@ module.exports={
             "type": "boolean"
           },
           "Resources": {
-            "shape": "S6x",
+            "shape": "S73",
             "locationName": "resourceId"
           },
           "Tags": {
@@ -47769,7 +48066,7 @@ module.exports={
         "type": "structure",
         "members": {
           "Filters": {
-            "shape": "S92",
+            "shape": "S9a",
             "locationName": "Filter"
           },
           "PublicIps": {
@@ -47837,7 +48134,7 @@ module.exports={
         "type": "structure",
         "members": {
           "Filters": {
-            "shape": "S92",
+            "shape": "S9a",
             "locationName": "Filter"
           },
           "ZoneNames": {
@@ -47903,7 +48200,7 @@ module.exports={
             }
           },
           "Filters": {
-            "shape": "S92",
+            "shape": "S9a",
             "locationName": "Filter"
           },
           "DryRun": {
@@ -47931,7 +48228,7 @@ module.exports={
         "type": "structure",
         "members": {
           "Filters": {
-            "shape": "S92",
+            "shape": "S9a",
             "locationName": "Filter"
           },
           "DryRun": {
@@ -47939,7 +48236,7 @@ module.exports={
             "type": "boolean"
           },
           "InstanceIds": {
-            "shape": "S9m",
+            "shape": "S9u",
             "locationName": "InstanceId"
           },
           "MaxResults": {
@@ -48008,7 +48305,7 @@ module.exports={
             "locationName": "conversionTasks",
             "type": "list",
             "member": {
-              "shape": "S9u",
+              "shape": "Sa2",
               "locationName": "item"
             }
           }
@@ -48027,7 +48324,7 @@ module.exports={
             }
           },
           "Filters": {
-            "shape": "S92",
+            "shape": "S9a",
             "locationName": "Filter"
           },
           "DryRun": {
@@ -48062,7 +48359,7 @@ module.exports={
             }
           },
           "Filters": {
-            "shape": "S92",
+            "shape": "S9a",
             "locationName": "Filter"
           },
           "DryRun": {
@@ -48154,7 +48451,7 @@ module.exports={
         "type": "structure",
         "members": {
           "Filter": {
-            "shape": "S92"
+            "shape": "S9a"
           },
           "FlowLogIds": {
             "shape": "S2z",
@@ -48228,11 +48525,11 @@ module.exports={
             }
           },
           "Owners": {
-            "shape": "Sap",
+            "shape": "Sax",
             "locationName": "Owner"
           },
           "Filters": {
-            "shape": "S92",
+            "shape": "S9a",
             "locationName": "Filter"
           },
           "NextToken": {},
@@ -48303,7 +48600,7 @@ module.exports={
                   "locationName": "ownerAlias"
                 },
                 "ProductCodes": {
-                  "shape": "Say",
+                  "shape": "Sb6",
                   "locationName": "productCodes"
                 },
                 "Tags": {
@@ -48324,7 +48621,7 @@ module.exports={
         "type": "structure",
         "members": {
           "Filter": {
-            "shape": "S92"
+            "shape": "S9a"
           },
           "MaxDuration": {
             "type": "integer"
@@ -48384,7 +48681,7 @@ module.exports={
         "type": "structure",
         "members": {
           "Filter": {
-            "shape": "S92"
+            "shape": "S9a"
           },
           "HostReservationIdSet": {
             "type": "list",
@@ -48423,7 +48720,7 @@ module.exports={
                   "type": "timestamp"
                 },
                 "HostIdSet": {
-                  "shape": "Sbb",
+                  "shape": "Sbj",
                   "locationName": "hostIdSet"
                 },
                 "HostReservationId": {
@@ -48465,11 +48762,11 @@ module.exports={
         "type": "structure",
         "members": {
           "Filter": {
-            "shape": "S92",
+            "shape": "S9a",
             "locationName": "filter"
           },
           "HostIds": {
-            "shape": "Sbe",
+            "shape": "Sbm",
             "locationName": "hostId"
           },
           "MaxResults": {
@@ -48598,7 +48895,7 @@ module.exports={
             }
           },
           "Filters": {
-            "shape": "S92",
+            "shape": "S9a",
             "locationName": "Filter"
           },
           "MaxResults": {
@@ -48635,7 +48932,7 @@ module.exports={
         "type": "structure",
         "members": {
           "Statuses": {
-            "shape": "Sbv",
+            "shape": "Sc3",
             "locationName": "statusSet"
           }
         }
@@ -48660,7 +48957,7 @@ module.exports={
         "type": "structure",
         "members": {
           "Statuses": {
-            "shape": "Sbv",
+            "shape": "Sc3",
             "locationName": "statusSet"
           }
         }
@@ -48686,18 +48983,18 @@ module.exports={
         "type": "structure",
         "members": {
           "BlockDeviceMappings": {
-            "shape": "Sc2",
+            "shape": "Sca",
             "locationName": "blockDeviceMapping"
           },
           "ImageId": {
             "locationName": "imageId"
           },
           "LaunchPermissions": {
-            "shape": "Sc3",
+            "shape": "Scb",
             "locationName": "launchPermission"
           },
           "ProductCodes": {
-            "shape": "Say",
+            "shape": "Sb6",
             "locationName": "productCodes"
           },
           "Description": {
@@ -48731,7 +49028,7 @@ module.exports={
             }
           },
           "Filters": {
-            "shape": "S92",
+            "shape": "S9a",
             "locationName": "Filter"
           },
           "ImageIds": {
@@ -48742,7 +49039,7 @@ module.exports={
             }
           },
           "Owners": {
-            "shape": "Sap",
+            "shape": "Sax",
             "locationName": "Owner"
           },
           "DryRun": {
@@ -48790,7 +49087,7 @@ module.exports={
                   "locationName": "platform"
                 },
                 "ProductCodes": {
-                  "shape": "Say",
+                  "shape": "Sb6",
                   "locationName": "productCodes"
                 },
                 "RamdiskId": {
@@ -48800,7 +49097,7 @@ module.exports={
                   "locationName": "imageState"
                 },
                 "BlockDeviceMappings": {
-                  "shape": "Sc2",
+                  "shape": "Sca",
                   "locationName": "blockDeviceMapping"
                 },
                 "Description": {
@@ -48829,7 +49126,7 @@ module.exports={
                   "locationName": "sriovNetSupport"
                 },
                 "StateReason": {
-                  "shape": "Sch",
+                  "shape": "Scp",
                   "locationName": "stateReason"
                 },
                 "Tags": {
@@ -48853,10 +49150,10 @@ module.exports={
             "type": "boolean"
           },
           "Filters": {
-            "shape": "S92"
+            "shape": "S9a"
           },
           "ImportTaskIds": {
-            "shape": "Sck",
+            "shape": "Scs",
             "locationName": "ImportTaskId"
           },
           "MaxResults": {
@@ -48900,7 +49197,7 @@ module.exports={
                   "locationName": "progress"
                 },
                 "SnapshotDetails": {
-                  "shape": "Sco",
+                  "shape": "Scw",
                   "locationName": "snapshotDetailSet"
                 },
                 "Status": {
@@ -48926,10 +49223,10 @@ module.exports={
             "type": "boolean"
           },
           "Filters": {
-            "shape": "S92"
+            "shape": "S9a"
           },
           "ImportTaskIds": {
-            "shape": "Sck",
+            "shape": "Scs",
             "locationName": "ImportTaskId"
           },
           "MaxResults": {
@@ -48955,7 +49252,7 @@ module.exports={
                   "locationName": "importTaskId"
                 },
                 "SnapshotTaskDetail": {
-                  "shape": "Scv",
+                  "shape": "Sd3",
                   "locationName": "snapshotTaskDetail"
                 }
               }
@@ -48995,19 +49292,19 @@ module.exports={
             "locationName": "groupSet"
           },
           "BlockDeviceMappings": {
-            "shape": "Scz",
+            "shape": "Sd7",
             "locationName": "blockDeviceMapping"
           },
           "DisableApiTermination": {
-            "shape": "Sd2",
+            "shape": "Sda",
             "locationName": "disableApiTermination"
           },
           "EnaSupport": {
-            "shape": "Sd2",
+            "shape": "Sda",
             "locationName": "enaSupport"
           },
           "EbsOptimized": {
-            "shape": "Sd2",
+            "shape": "Sda",
             "locationName": "ebsOptimized"
           },
           "InstanceId": {
@@ -49026,7 +49323,7 @@ module.exports={
             "locationName": "kernel"
           },
           "ProductCodes": {
-            "shape": "Say",
+            "shape": "Sb6",
             "locationName": "productCodes"
           },
           "RamdiskId": {
@@ -49038,7 +49335,7 @@ module.exports={
             "locationName": "rootDeviceName"
           },
           "SourceDestCheck": {
-            "shape": "Sd2",
+            "shape": "Sda",
             "locationName": "sourceDestCheck"
           },
           "SriovNetSupport": {
@@ -49057,11 +49354,11 @@ module.exports={
         "type": "structure",
         "members": {
           "Filters": {
-            "shape": "S92",
+            "shape": "S9a",
             "locationName": "Filter"
           },
           "InstanceIds": {
-            "shape": "S9m",
+            "shape": "S9u",
             "locationName": "InstanceId"
           },
           "MaxResults": {
@@ -49119,15 +49416,15 @@ module.exports={
                   "locationName": "instanceId"
                 },
                 "InstanceState": {
-                  "shape": "Sda",
+                  "shape": "Sdi",
                   "locationName": "instanceState"
                 },
                 "InstanceStatus": {
-                  "shape": "Sdc",
+                  "shape": "Sdk",
                   "locationName": "instanceStatus"
                 },
                 "SystemStatus": {
-                  "shape": "Sdc",
+                  "shape": "Sdk",
                   "locationName": "systemStatus"
                 }
               }
@@ -49144,11 +49441,11 @@ module.exports={
         "type": "structure",
         "members": {
           "Filters": {
-            "shape": "S92",
+            "shape": "S9a",
             "locationName": "Filter"
           },
           "InstanceIds": {
-            "shape": "S9m",
+            "shape": "S9u",
             "locationName": "InstanceId"
           },
           "DryRun": {
@@ -49171,7 +49468,7 @@ module.exports={
             "locationName": "reservationSet",
             "type": "list",
             "member": {
-              "shape": "Sdl",
+              "shape": "Sdt",
               "locationName": "item"
             }
           },
@@ -49186,7 +49483,7 @@ module.exports={
         "type": "structure",
         "members": {
           "Filters": {
-            "shape": "S92",
+            "shape": "S9a",
             "locationName": "Filter"
           },
           "DryRun": {
@@ -49218,7 +49515,7 @@ module.exports={
         "type": "structure",
         "members": {
           "Filters": {
-            "shape": "S92",
+            "shape": "S9a",
             "locationName": "Filter"
           },
           "KeyNames": {
@@ -49261,7 +49558,7 @@ module.exports={
         "type": "structure",
         "members": {
           "Filters": {
-            "shape": "S92",
+            "shape": "S9a",
             "locationName": "filter"
           },
           "DryRun": {
@@ -49311,7 +49608,7 @@ module.exports={
         "type": "structure",
         "members": {
           "Filter": {
-            "shape": "S92"
+            "shape": "S9a"
           },
           "MaxResults": {
             "type": "integer"
@@ -49345,7 +49642,7 @@ module.exports={
         "type": "structure",
         "members": {
           "Filters": {
-            "shape": "S92",
+            "shape": "S9a",
             "locationName": "Filter"
           },
           "DryRun": {
@@ -49410,8 +49707,44 @@ module.exports={
             "locationName": "networkInterfaceId"
           },
           "SourceDestCheck": {
-            "shape": "Sd2",
+            "shape": "Sda",
             "locationName": "sourceDestCheck"
+          }
+        }
+      }
+    },
+    "DescribeNetworkInterfacePermissions": {
+      "input": {
+        "type": "structure",
+        "members": {
+          "NetworkInterfacePermissionIds": {
+            "locationName": "NetworkInterfacePermissionId",
+            "type": "list",
+            "member": {}
+          },
+          "Filters": {
+            "shape": "S9a",
+            "locationName": "Filter"
+          },
+          "NextToken": {},
+          "MaxResults": {
+            "type": "integer"
+          }
+        }
+      },
+      "output": {
+        "type": "structure",
+        "members": {
+          "NetworkInterfacePermissions": {
+            "locationName": "networkInterfacePermissions",
+            "type": "list",
+            "member": {
+              "shape": "S61",
+              "locationName": "item"
+            }
+          },
+          "NextToken": {
+            "locationName": "nextToken"
           }
         }
       }
@@ -49421,7 +49754,7 @@ module.exports={
         "type": "structure",
         "members": {
           "Filters": {
-            "shape": "S92",
+            "shape": "S9a",
             "locationName": "filter"
           },
           "DryRun": {
@@ -49456,7 +49789,7 @@ module.exports={
         "type": "structure",
         "members": {
           "Filters": {
-            "shape": "S92",
+            "shape": "S9a",
             "locationName": "Filter"
           },
           "DryRun": {
@@ -49503,7 +49836,7 @@ module.exports={
             "type": "boolean"
           },
           "Filters": {
-            "shape": "S92",
+            "shape": "S9a",
             "locationName": "Filter"
           },
           "MaxResults": {
@@ -49550,7 +49883,7 @@ module.exports={
         "type": "structure",
         "members": {
           "Filters": {
-            "shape": "S92",
+            "shape": "S9a",
             "locationName": "Filter"
           },
           "RegionNames": {
@@ -49593,12 +49926,12 @@ module.exports={
         "type": "structure",
         "members": {
           "Filters": {
-            "shape": "S92",
+            "shape": "S9a",
             "locationName": "Filter"
           },
           "OfferingClass": {},
           "ReservedInstancesIds": {
-            "shape": "Sf6",
+            "shape": "Sfi",
             "locationName": "ReservedInstancesId"
           },
           "DryRun": {
@@ -49672,7 +50005,7 @@ module.exports={
                   "locationName": "offeringType"
                 },
                 "RecurringCharges": {
-                  "shape": "Sfe",
+                  "shape": "Sfq",
                   "locationName": "recurringCharges"
                 },
                 "Scope": {
@@ -49693,7 +50026,7 @@ module.exports={
         "type": "structure",
         "members": {
           "Filters": {
-            "shape": "S92",
+            "shape": "S9a",
             "locationName": "Filter"
           },
           "ReservedInstancesId": {
@@ -49719,7 +50052,7 @@ module.exports={
         "type": "structure",
         "members": {
           "Filters": {
-            "shape": "S92",
+            "shape": "S9a",
             "locationName": "Filter"
           },
           "ReservedInstancesModificationIds": {
@@ -49769,7 +50102,7 @@ module.exports={
                         "locationName": "reservedInstancesId"
                       },
                       "TargetConfiguration": {
-                        "shape": "Sfr",
+                        "shape": "Sg3",
                         "locationName": "targetConfiguration"
                       }
                     }
@@ -49813,7 +50146,7 @@ module.exports={
         "members": {
           "AvailabilityZone": {},
           "Filters": {
-            "shape": "S92",
+            "shape": "S9a",
             "locationName": "Filter"
           },
           "IncludeMarketplace": {
@@ -49924,7 +50257,7 @@ module.exports={
                   }
                 },
                 "RecurringCharges": {
-                  "shape": "Sfe",
+                  "shape": "Sfq",
                   "locationName": "recurringCharges"
                 },
                 "Scope": {
@@ -49944,7 +50277,7 @@ module.exports={
         "type": "structure",
         "members": {
           "Filters": {
-            "shape": "S92",
+            "shape": "S9a",
             "locationName": "Filter"
           },
           "DryRun": {
@@ -49964,7 +50297,7 @@ module.exports={
             "locationName": "routeTableSet",
             "type": "list",
             "member": {
-              "shape": "S68",
+              "shape": "S6e",
               "locationName": "item"
             }
           }
@@ -49983,7 +50316,7 @@ module.exports={
             "type": "boolean"
           },
           "Filters": {
-            "shape": "S92",
+            "shape": "S9a",
             "locationName": "Filter"
           },
           "FirstSlotStartTimeRange": {
@@ -50082,7 +50415,7 @@ module.exports={
                   "locationName": "purchaseToken"
                 },
                 "Recurrence": {
-                  "shape": "Sgb",
+                  "shape": "Sgn",
                   "locationName": "recurrence"
                 },
                 "SlotDurationInHours": {
@@ -50107,7 +50440,7 @@ module.exports={
             "type": "boolean"
           },
           "Filters": {
-            "shape": "S92",
+            "shape": "S9a",
             "locationName": "Filter"
           },
           "MaxResults": {
@@ -50144,7 +50477,7 @@ module.exports={
             "locationName": "scheduledInstanceSet",
             "type": "list",
             "member": {
-              "shape": "Sgi",
+              "shape": "Sgu",
               "locationName": "item"
             }
           }
@@ -50203,7 +50536,7 @@ module.exports={
         "type": "structure",
         "members": {
           "Filters": {
-            "shape": "S92",
+            "shape": "S9a",
             "locationName": "Filter"
           },
           "GroupIds": {
@@ -50211,7 +50544,7 @@ module.exports={
             "locationName": "GroupId"
           },
           "GroupNames": {
-            "shape": "Sgp",
+            "shape": "Sh1",
             "locationName": "GroupName"
           },
           "DryRun": {
@@ -50283,11 +50616,11 @@ module.exports={
         "type": "structure",
         "members": {
           "CreateVolumePermissions": {
-            "shape": "Sgw",
+            "shape": "Sh8",
             "locationName": "createVolumePermission"
           },
           "ProductCodes": {
-            "shape": "Say",
+            "shape": "Sb6",
             "locationName": "productCodes"
           },
           "SnapshotId": {
@@ -50301,7 +50634,7 @@ module.exports={
         "type": "structure",
         "members": {
           "Filters": {
-            "shape": "S92",
+            "shape": "S9a",
             "locationName": "Filter"
           },
           "MaxResults": {
@@ -50309,7 +50642,7 @@ module.exports={
           },
           "NextToken": {},
           "OwnerIds": {
-            "shape": "Sap",
+            "shape": "Sax",
             "locationName": "Owner"
           },
           "RestorableByUserIds": {
@@ -50337,7 +50670,7 @@ module.exports={
             "locationName": "snapshotSet",
             "type": "list",
             "member": {
-              "shape": "S6k",
+              "shape": "S6q",
               "locationName": "item"
             }
           },
@@ -50361,7 +50694,7 @@ module.exports={
         "type": "structure",
         "members": {
           "SpotDatafeedSubscription": {
-            "shape": "S6o",
+            "shape": "S6u",
             "locationName": "spotDatafeedSubscription"
           }
         }
@@ -50573,7 +50906,7 @@ module.exports={
                   "type": "timestamp"
                 },
                 "SpotFleetRequestConfig": {
-                  "shape": "Shl",
+                  "shape": "Shx",
                   "locationName": "spotFleetRequestConfig"
                 },
                 "SpotFleetRequestId": {
@@ -50593,7 +50926,7 @@ module.exports={
         "type": "structure",
         "members": {
           "Filters": {
-            "shape": "S92",
+            "shape": "S9a",
             "locationName": "Filter"
           },
           "DryRun": {
@@ -50610,7 +50943,7 @@ module.exports={
         "type": "structure",
         "members": {
           "SpotInstanceRequests": {
-            "shape": "Shx",
+            "shape": "Si9",
             "locationName": "spotInstanceRequestSet"
           }
         }
@@ -50621,7 +50954,7 @@ module.exports={
         "type": "structure",
         "members": {
           "Filters": {
-            "shape": "S92",
+            "shape": "S9a",
             "locationName": "Filter"
           },
           "AvailabilityZone": {
@@ -50736,11 +51069,11 @@ module.exports={
                   "locationName": "groupName"
                 },
                 "StaleIpPermissions": {
-                  "shape": "Sie",
+                  "shape": "Siq",
                   "locationName": "staleIpPermissions"
                 },
                 "StaleIpPermissionsEgress": {
-                  "shape": "Sie",
+                  "shape": "Siq",
                   "locationName": "staleIpPermissionsEgress"
                 },
                 "VpcId": {
@@ -50757,7 +51090,7 @@ module.exports={
         "type": "structure",
         "members": {
           "Filters": {
-            "shape": "S92",
+            "shape": "S9a",
             "locationName": "Filter"
           },
           "SubnetIds": {
@@ -50780,7 +51113,7 @@ module.exports={
             "locationName": "subnetSet",
             "type": "list",
             "member": {
-              "shape": "S6t",
+              "shape": "S6z",
               "locationName": "item"
             }
           }
@@ -50796,7 +51129,7 @@ module.exports={
             "type": "boolean"
           },
           "Filters": {
-            "shape": "S92",
+            "shape": "S9a",
             "locationName": "Filter"
           },
           "MaxResults": {
@@ -50858,11 +51191,11 @@ module.exports={
         "type": "structure",
         "members": {
           "AutoEnableIO": {
-            "shape": "Sd2",
+            "shape": "Sda",
             "locationName": "autoEnableIO"
           },
           "ProductCodes": {
-            "shape": "Say",
+            "shape": "Sb6",
             "locationName": "productCodes"
           },
           "VolumeId": {
@@ -50876,7 +51209,7 @@ module.exports={
         "type": "structure",
         "members": {
           "Filters": {
-            "shape": "S92",
+            "shape": "S9a",
             "locationName": "Filter"
           },
           "MaxResults": {
@@ -50884,7 +51217,7 @@ module.exports={
           },
           "NextToken": {},
           "VolumeIds": {
-            "shape": "Siv",
+            "shape": "Sj7",
             "locationName": "VolumeId"
           },
           "DryRun": {
@@ -50997,11 +51330,11 @@ module.exports={
         "type": "structure",
         "members": {
           "Filters": {
-            "shape": "S92",
+            "shape": "S9a",
             "locationName": "Filter"
           },
           "VolumeIds": {
-            "shape": "Siv",
+            "shape": "Sj7",
             "locationName": "VolumeId"
           },
           "DryRun": {
@@ -51024,7 +51357,7 @@ module.exports={
             "locationName": "volumeSet",
             "type": "list",
             "member": {
-              "shape": "S72",
+              "shape": "S78",
               "locationName": "item"
             }
           },
@@ -51042,11 +51375,11 @@ module.exports={
             "type": "boolean"
           },
           "VolumeIds": {
-            "shape": "Siv",
+            "shape": "Sj7",
             "locationName": "VolumeId"
           },
           "Filters": {
-            "shape": "S92",
+            "shape": "S9a",
             "locationName": "Filter"
           },
           "NextToken": {},
@@ -51062,7 +51395,7 @@ module.exports={
             "locationName": "volumeModificationSet",
             "type": "list",
             "member": {
-              "shape": "Sje",
+              "shape": "Sjq",
               "locationName": "item"
             }
           },
@@ -51095,11 +51428,11 @@ module.exports={
             "locationName": "vpcId"
           },
           "EnableDnsHostnames": {
-            "shape": "Sd2",
+            "shape": "Sda",
             "locationName": "enableDnsHostnames"
           },
           "EnableDnsSupport": {
-            "shape": "Sd2",
+            "shape": "Sda",
             "locationName": "enableDnsSupport"
           }
         }
@@ -51110,7 +51443,7 @@ module.exports={
         "type": "structure",
         "members": {
           "Filters": {
-            "shape": "S92",
+            "shape": "S9a",
             "locationName": "Filter"
           },
           "DryRun": {
@@ -51118,7 +51451,7 @@ module.exports={
             "type": "boolean"
           },
           "VpcIds": {
-            "shape": "Sjk",
+            "shape": "Sjw",
             "locationName": "VpcId"
           }
         }
@@ -51162,7 +51495,7 @@ module.exports={
             "locationName": "nextToken"
           },
           "VpcIds": {
-            "shape": "Sjk"
+            "shape": "Sjw"
           }
         }
       },
@@ -51226,7 +51559,7 @@ module.exports={
             "type": "boolean"
           },
           "Filters": {
-            "shape": "S92",
+            "shape": "S9a",
             "locationName": "Filter"
           },
           "MaxResults": {
@@ -51249,7 +51582,7 @@ module.exports={
             "locationName": "vpcEndpointSet",
             "type": "list",
             "member": {
-              "shape": "S7d",
+              "shape": "S7j",
               "locationName": "item"
             }
           }
@@ -51261,7 +51594,7 @@ module.exports={
         "type": "structure",
         "members": {
           "Filters": {
-            "shape": "S92",
+            "shape": "S9a",
             "locationName": "Filter"
           },
           "DryRun": {
@@ -51293,7 +51626,7 @@ module.exports={
         "type": "structure",
         "members": {
           "Filters": {
-            "shape": "S92",
+            "shape": "S9a",
             "locationName": "Filter"
           },
           "VpcIds": {
@@ -51316,7 +51649,7 @@ module.exports={
             "locationName": "vpcSet",
             "type": "list",
             "member": {
-              "shape": "S78",
+              "shape": "S7e",
               "locationName": "item"
             }
           }
@@ -51328,7 +51661,7 @@ module.exports={
         "type": "structure",
         "members": {
           "Filters": {
-            "shape": "S92",
+            "shape": "S9a",
             "locationName": "Filter"
           },
           "VpnConnectionIds": {
@@ -51351,7 +51684,7 @@ module.exports={
             "locationName": "vpnConnectionSet",
             "type": "list",
             "member": {
-              "shape": "S7k",
+              "shape": "S7q",
               "locationName": "item"
             }
           }
@@ -51363,7 +51696,7 @@ module.exports={
         "type": "structure",
         "members": {
           "Filters": {
-            "shape": "S92",
+            "shape": "S9a",
             "locationName": "Filter"
           },
           "VpnGatewayIds": {
@@ -51386,7 +51719,7 @@ module.exports={
             "locationName": "vpnGatewaySet",
             "type": "list",
             "member": {
-              "shape": "S7w",
+              "shape": "S82",
               "locationName": "item"
             }
           }
@@ -51801,7 +52134,7 @@ module.exports={
         ],
         "members": {
           "HostIdSet": {
-            "shape": "Sl6"
+            "shape": "Sli"
           },
           "OfferingId": {}
         }
@@ -51813,7 +52146,7 @@ module.exports={
             "locationName": "currencyCode"
           },
           "Purchase": {
-            "shape": "Sl8",
+            "shape": "Slk",
             "locationName": "purchase"
           },
           "TotalHourlyPrice": {
@@ -51893,7 +52226,7 @@ module.exports={
             "locationName": "paymentDue"
           },
           "ReservedInstanceValueRollup": {
-            "shape": "Sle",
+            "shape": "Slq",
             "locationName": "reservedInstanceValueRollup"
           },
           "ReservedInstanceValueSet": {
@@ -51904,7 +52237,7 @@ module.exports={
               "type": "structure",
               "members": {
                 "ReservationValue": {
-                  "shape": "Sle",
+                  "shape": "Slq",
                   "locationName": "reservationValue"
                 },
                 "ReservedInstanceId": {
@@ -51914,7 +52247,7 @@ module.exports={
             }
           },
           "TargetConfigurationValueRollup": {
-            "shape": "Sle",
+            "shape": "Slq",
             "locationName": "targetConfigurationValueRollup"
           },
           "TargetConfigurationValueSet": {
@@ -51925,7 +52258,7 @@ module.exports={
               "type": "structure",
               "members": {
                 "ReservationValue": {
-                  "shape": "Sle",
+                  "shape": "Slq",
                   "locationName": "reservationValue"
                 },
                 "TargetConfiguration": {
@@ -51956,7 +52289,7 @@ module.exports={
         "members": {
           "Architecture": {},
           "ClientData": {
-            "shape": "Sll"
+            "shape": "Slx"
           },
           "ClientToken": {},
           "Description": {},
@@ -51973,7 +52306,7 @@ module.exports={
                 "SnapshotId": {},
                 "Url": {},
                 "UserBucket": {
-                  "shape": "Slo"
+                  "shape": "Sm0"
                 }
               }
             }
@@ -52015,7 +52348,7 @@ module.exports={
             "locationName": "progress"
           },
           "SnapshotDetails": {
-            "shape": "Sco",
+            "shape": "Scw",
             "locationName": "snapshotDetailSet"
           },
           "Status": {
@@ -52045,10 +52378,10 @@ module.exports={
               "members": {
                 "Description": {},
                 "Image": {
-                  "shape": "Slt"
+                  "shape": "Sm5"
                 },
                 "Volume": {
-                  "shape": "Slu"
+                  "shape": "Sm6"
                 }
               }
             }
@@ -52072,7 +52405,7 @@ module.exports={
                 "locationName": "GroupId"
               },
               "GroupNames": {
-                "shape": "Slw",
+                "shape": "Sm8",
                 "locationName": "GroupName"
               },
               "InstanceInitiatedShutdownBehavior": {
@@ -52086,7 +52419,7 @@ module.exports={
                 "type": "boolean"
               },
               "Placement": {
-                "shape": "Sdr",
+                "shape": "Sdz",
                 "locationName": "placement"
               },
               "PrivateIpAddress": {
@@ -52115,7 +52448,7 @@ module.exports={
         "type": "structure",
         "members": {
           "ConversionTask": {
-            "shape": "S9u",
+            "shape": "Sa2",
             "locationName": "conversionTask"
           }
         }
@@ -52159,7 +52492,7 @@ module.exports={
         "type": "structure",
         "members": {
           "ClientData": {
-            "shape": "Sll"
+            "shape": "Slx"
           },
           "ClientToken": {},
           "Description": {},
@@ -52170,7 +52503,7 @@ module.exports={
               "Format": {},
               "Url": {},
               "UserBucket": {
-                "shape": "Slo"
+                "shape": "Sm0"
               }
             }
           },
@@ -52190,7 +52523,7 @@ module.exports={
             "locationName": "importTaskId"
           },
           "SnapshotTaskDetail": {
-            "shape": "Scv",
+            "shape": "Sd3",
             "locationName": "snapshotTaskDetail"
           }
         }
@@ -52216,11 +52549,11 @@ module.exports={
             "type": "boolean"
           },
           "Image": {
-            "shape": "Slt",
+            "shape": "Sm5",
             "locationName": "image"
           },
           "Volume": {
-            "shape": "Slu",
+            "shape": "Sm6",
             "locationName": "volume"
           }
         }
@@ -52229,7 +52562,7 @@ module.exports={
         "type": "structure",
         "members": {
           "ConversionTask": {
-            "shape": "S9u",
+            "shape": "Sa2",
             "locationName": "conversionTask"
           }
         }
@@ -52247,7 +52580,7 @@ module.exports={
             "locationName": "autoPlacement"
           },
           "HostIds": {
-            "shape": "Sbe",
+            "shape": "Sbm",
             "locationName": "hostId"
           }
         }
@@ -52260,7 +52593,7 @@ module.exports={
             "locationName": "successful"
           },
           "Unsuccessful": {
-            "shape": "Sm9",
+            "shape": "Sml",
             "locationName": "unsuccessful"
           }
         }
@@ -52319,10 +52652,10 @@ module.exports={
             "type": "structure",
             "members": {
               "Add": {
-                "shape": "Sc3"
+                "shape": "Scb"
               },
               "Remove": {
-                "shape": "Sc3"
+                "shape": "Scb"
               }
             }
           },
@@ -52342,7 +52675,7 @@ module.exports={
             }
           },
           "UserIds": {
-            "shape": "Smh",
+            "shape": "Smt",
             "locationName": "UserId"
           },
           "Value": {},
@@ -52361,7 +52694,7 @@ module.exports={
         ],
         "members": {
           "SourceDestCheck": {
-            "shape": "Sd2"
+            "shape": "Sda"
           },
           "Attribute": {
             "locationName": "attribute"
@@ -52399,7 +52732,7 @@ module.exports={
             }
           },
           "DisableApiTermination": {
-            "shape": "Sd2",
+            "shape": "Sda",
             "locationName": "disableApiTermination"
           },
           "DryRun": {
@@ -52407,11 +52740,11 @@ module.exports={
             "type": "boolean"
           },
           "EbsOptimized": {
-            "shape": "Sd2",
+            "shape": "Sda",
             "locationName": "ebsOptimized"
           },
           "EnaSupport": {
-            "shape": "Sd2",
+            "shape": "Sda",
             "locationName": "enaSupport"
           },
           "Groups": {
@@ -52524,7 +52857,7 @@ module.exports={
             "locationName": "networkInterfaceId"
           },
           "SourceDestCheck": {
-            "shape": "Sd2",
+            "shape": "Sda",
             "locationName": "sourceDestCheck"
           }
         }
@@ -52539,7 +52872,7 @@ module.exports={
         ],
         "members": {
           "ReservedInstancesIds": {
-            "shape": "Sf6",
+            "shape": "Sfi",
             "locationName": "ReservedInstancesId"
           },
           "ClientToken": {
@@ -52549,7 +52882,7 @@ module.exports={
             "locationName": "ReservedInstancesConfigurationSetItemType",
             "type": "list",
             "member": {
-              "shape": "Sfr",
+              "shape": "Sg3",
               "locationName": "item"
             }
           }
@@ -52576,21 +52909,21 @@ module.exports={
             "type": "structure",
             "members": {
               "Add": {
-                "shape": "Sgw"
+                "shape": "Sh8"
               },
               "Remove": {
-                "shape": "Sgw"
+                "shape": "Sh8"
               }
             }
           },
           "GroupNames": {
-            "shape": "Sgp",
+            "shape": "Sh1",
             "locationName": "UserGroup"
           },
           "OperationType": {},
           "SnapshotId": {},
           "UserIds": {
-            "shape": "Smh",
+            "shape": "Smt",
             "locationName": "UserId"
           },
           "DryRun": {
@@ -52637,10 +52970,10 @@ module.exports={
         ],
         "members": {
           "AssignIpv6AddressOnCreation": {
-            "shape": "Sd2"
+            "shape": "Sda"
           },
           "MapPublicIpOnLaunch": {
-            "shape": "Sd2"
+            "shape": "Sda"
           },
           "SubnetId": {
             "locationName": "subnetId"
@@ -52672,7 +53005,7 @@ module.exports={
         "type": "structure",
         "members": {
           "VolumeModification": {
-            "shape": "Sje",
+            "shape": "Sjq",
             "locationName": "volumeModification"
           }
         }
@@ -52686,7 +53019,7 @@ module.exports={
         ],
         "members": {
           "AutoEnableIO": {
-            "shape": "Sd2"
+            "shape": "Sda"
           },
           "VolumeId": {},
           "DryRun": {
@@ -52704,10 +53037,10 @@ module.exports={
         ],
         "members": {
           "EnableDnsHostnames": {
-            "shape": "Sd2"
+            "shape": "Sda"
           },
           "EnableDnsSupport": {
-            "shape": "Sd2"
+            "shape": "Sda"
           },
           "VpcId": {
             "locationName": "vpcId"
@@ -52758,13 +53091,13 @@ module.exports={
         ],
         "members": {
           "AccepterPeeringConnectionOptions": {
-            "shape": "Sn8"
+            "shape": "Snk"
           },
           "DryRun": {
             "type": "boolean"
           },
           "RequesterPeeringConnectionOptions": {
-            "shape": "Sn8"
+            "shape": "Snk"
           },
           "VpcPeeringConnectionId": {}
         }
@@ -52773,11 +53106,11 @@ module.exports={
         "type": "structure",
         "members": {
           "AccepterPeeringConnectionOptions": {
-            "shape": "Sna",
+            "shape": "Snm",
             "locationName": "accepterPeeringConnectionOptions"
           },
           "RequesterPeeringConnectionOptions": {
-            "shape": "Sna",
+            "shape": "Snm",
             "locationName": "requesterPeeringConnectionOptions"
           }
         }
@@ -52791,7 +53124,7 @@ module.exports={
         ],
         "members": {
           "InstanceIds": {
-            "shape": "S9m",
+            "shape": "S9u",
             "locationName": "InstanceId"
           },
           "DryRun": {
@@ -52804,7 +53137,7 @@ module.exports={
         "type": "structure",
         "members": {
           "InstanceMonitorings": {
-            "shape": "Snd",
+            "shape": "Snp",
             "locationName": "instancesSet"
           }
         }
@@ -52849,7 +53182,7 @@ module.exports={
           "ClientToken": {},
           "CurrencyCode": {},
           "HostIdSet": {
-            "shape": "Sl6"
+            "shape": "Sli"
           },
           "LimitPrice": {},
           "OfferingId": {}
@@ -52865,7 +53198,7 @@ module.exports={
             "locationName": "currencyCode"
           },
           "Purchase": {
-            "shape": "Sl8",
+            "shape": "Slk",
             "locationName": "purchase"
           },
           "TotalHourlyPrice": {
@@ -52957,7 +53290,7 @@ module.exports={
             "locationName": "scheduledInstanceSet",
             "type": "list",
             "member": {
-              "shape": "Sgi",
+              "shape": "Sgu",
               "locationName": "item"
             }
           }
@@ -52972,7 +53305,7 @@ module.exports={
         ],
         "members": {
           "InstanceIds": {
-            "shape": "S9m",
+            "shape": "S9u",
             "locationName": "InstanceId"
           },
           "DryRun": {
@@ -53091,7 +53424,7 @@ module.exports={
         ],
         "members": {
           "HostIds": {
-            "shape": "Sbe",
+            "shape": "Sbm",
             "locationName": "hostId"
           }
         }
@@ -53104,7 +53437,7 @@ module.exports={
             "locationName": "successful"
           },
           "Unsuccessful": {
-            "shape": "Sm9",
+            "shape": "Sml",
             "locationName": "unsuccessful"
           }
         }
@@ -53303,7 +53636,7 @@ module.exports={
             "type": "timestamp"
           },
           "Instances": {
-            "shape": "S9m",
+            "shape": "S9u",
             "locationName": "instanceId"
           },
           "ReasonCodes": {
@@ -53335,7 +53668,7 @@ module.exports={
             "type": "boolean"
           },
           "SpotFleetRequestConfig": {
-            "shape": "Shl",
+            "shape": "Shx",
             "locationName": "spotFleetRequestConfig"
           }
         }
@@ -53395,7 +53728,7 @@ module.exports={
                 "locationName": "addressingType"
               },
               "BlockDeviceMappings": {
-                "shape": "Sc2",
+                "shape": "Sca",
                 "locationName": "blockDeviceMapping"
               },
               "EbsOptimized": {
@@ -53419,15 +53752,15 @@ module.exports={
                 "locationName": "keyName"
               },
               "Monitoring": {
-                "shape": "Si0",
+                "shape": "Sic",
                 "locationName": "monitoring"
               },
               "NetworkInterfaces": {
-                "shape": "Shr",
+                "shape": "Si3",
                 "locationName": "NetworkInterface"
               },
               "Placement": {
-                "shape": "Sht",
+                "shape": "Si5",
                 "locationName": "placement"
               },
               "RamdiskId": {
@@ -53461,7 +53794,7 @@ module.exports={
         "type": "structure",
         "members": {
           "SpotInstanceRequests": {
-            "shape": "Shx",
+            "shape": "Si9",
             "locationName": "spotInstanceRequestSet"
           }
         }
@@ -53668,10 +54001,10 @@ module.exports={
             "type": "integer"
           },
           "Monitoring": {
-            "shape": "Si0"
+            "shape": "Sic"
           },
           "Placement": {
-            "shape": "Sdr"
+            "shape": "Sdz"
           },
           "RamdiskId": {},
           "SecurityGroupIds": {
@@ -53679,7 +54012,7 @@ module.exports={
             "locationName": "SecurityGroupId"
           },
           "SecurityGroups": {
-            "shape": "Slw",
+            "shape": "Sm8",
             "locationName": "SecurityGroup"
           },
           "SubnetId": {},
@@ -53710,20 +54043,20 @@ module.exports={
             "locationName": "instanceInitiatedShutdownBehavior"
           },
           "NetworkInterfaces": {
-            "shape": "Shr",
+            "shape": "Si3",
             "locationName": "networkInterface"
           },
           "PrivateIpAddress": {
             "locationName": "privateIpAddress"
           },
           "TagSpecifications": {
-            "shape": "S6z",
+            "shape": "S75",
             "locationName": "TagSpecification"
           }
         }
       },
       "output": {
-        "shape": "Sdl"
+        "shape": "Sdt"
       }
     },
     "RunScheduledInstances": {
@@ -53821,7 +54154,7 @@ module.exports={
                       "type": "integer"
                     },
                     "Groups": {
-                      "shape": "Sp1",
+                      "shape": "Spd",
                       "locationName": "Group"
                     },
                     "Ipv6AddressCount": {
@@ -53870,7 +54203,7 @@ module.exports={
               },
               "RamdiskId": {},
               "SecurityGroupIds": {
-                "shape": "Sp1",
+                "shape": "Spd",
                 "locationName": "SecurityGroupId"
               },
               "SubnetId": {},
@@ -53901,7 +54234,7 @@ module.exports={
         ],
         "members": {
           "InstanceIds": {
-            "shape": "S9m",
+            "shape": "S9u",
             "locationName": "InstanceId"
           },
           "AdditionalInfo": {
@@ -53917,7 +54250,7 @@ module.exports={
         "type": "structure",
         "members": {
           "StartingInstances": {
-            "shape": "Spc",
+            "shape": "Spo",
             "locationName": "instancesSet"
           }
         }
@@ -53931,7 +54264,7 @@ module.exports={
         ],
         "members": {
           "InstanceIds": {
-            "shape": "S9m",
+            "shape": "S9u",
             "locationName": "InstanceId"
           },
           "DryRun": {
@@ -53948,7 +54281,7 @@ module.exports={
         "type": "structure",
         "members": {
           "StoppingInstances": {
-            "shape": "Spc",
+            "shape": "Spo",
             "locationName": "instancesSet"
           }
         }
@@ -53962,7 +54295,7 @@ module.exports={
         ],
         "members": {
           "InstanceIds": {
-            "shape": "S9m",
+            "shape": "S9u",
             "locationName": "InstanceId"
           },
           "DryRun": {
@@ -53975,7 +54308,7 @@ module.exports={
         "type": "structure",
         "members": {
           "TerminatingInstances": {
-            "shape": "Spc",
+            "shape": "Spo",
             "locationName": "instancesSet"
           }
         }
@@ -54037,7 +54370,7 @@ module.exports={
         ],
         "members": {
           "InstanceIds": {
-            "shape": "S9m",
+            "shape": "S9u",
             "locationName": "InstanceId"
           },
           "DryRun": {
@@ -54050,7 +54383,7 @@ module.exports={
         "type": "structure",
         "members": {
           "InstanceMonitorings": {
-            "shape": "Snd",
+            "shape": "Snp",
             "locationName": "instancesSet"
           }
         }
@@ -55197,7 +55530,39 @@ module.exports={
         }
       }
     },
-    "S68": {
+    "S61": {
+      "type": "structure",
+      "members": {
+        "NetworkInterfacePermissionId": {
+          "locationName": "networkInterfacePermissionId"
+        },
+        "NetworkInterfaceId": {
+          "locationName": "networkInterfaceId"
+        },
+        "AwsAccountId": {
+          "locationName": "awsAccountId"
+        },
+        "AwsService": {
+          "locationName": "awsService"
+        },
+        "Permission": {
+          "locationName": "permission"
+        },
+        "PermissionState": {
+          "locationName": "permissionState",
+          "type": "structure",
+          "members": {
+            "State": {
+              "locationName": "state"
+            },
+            "StatusMessage": {
+              "locationName": "statusMessage"
+            }
+          }
+        }
+      }
+    },
+    "S6e": {
       "type": "structure",
       "members": {
         "Associations": {
@@ -55294,7 +55659,7 @@ module.exports={
         }
       }
     },
-    "S6k": {
+    "S6q": {
       "type": "structure",
       "members": {
         "DataEncryptionKeyId": {
@@ -55345,14 +55710,14 @@ module.exports={
         }
       }
     },
-    "S6o": {
+    "S6u": {
       "type": "structure",
       "members": {
         "Bucket": {
           "locationName": "bucket"
         },
         "Fault": {
-          "shape": "S6p",
+          "shape": "S6v",
           "locationName": "fault"
         },
         "OwnerId": {
@@ -55366,7 +55731,7 @@ module.exports={
         }
       }
     },
-    "S6p": {
+    "S6v": {
       "type": "structure",
       "members": {
         "Code": {
@@ -55377,7 +55742,7 @@ module.exports={
         }
       }
     },
-    "S6t": {
+    "S6z": {
       "type": "structure",
       "members": {
         "AvailabilityZone": {
@@ -55425,11 +55790,11 @@ module.exports={
         }
       }
     },
-    "S6x": {
+    "S73": {
       "type": "list",
       "member": {}
     },
-    "S6z": {
+    "S75": {
       "type": "list",
       "member": {
         "locationName": "item",
@@ -55445,7 +55810,7 @@ module.exports={
         }
       }
     },
-    "S72": {
+    "S78": {
       "type": "structure",
       "members": {
         "Attachments": {
@@ -55496,7 +55861,7 @@ module.exports={
         }
       }
     },
-    "S78": {
+    "S7e": {
       "type": "structure",
       "members": {
         "CidrBlock": {
@@ -55532,7 +55897,7 @@ module.exports={
         }
       }
     },
-    "S7d": {
+    "S7j": {
       "type": "structure",
       "members": {
         "CreationTimestamp": {
@@ -55560,7 +55925,7 @@ module.exports={
         }
       }
     },
-    "S7k": {
+    "S7q": {
       "type": "structure",
       "members": {
         "CustomerGatewayConfiguration": {
@@ -55643,7 +56008,7 @@ module.exports={
         }
       }
     },
-    "S7w": {
+    "S82": {
       "type": "structure",
       "members": {
         "AvailabilityZone": {
@@ -55672,7 +56037,7 @@ module.exports={
         }
       }
     },
-    "S92": {
+    "S9a": {
       "type": "list",
       "member": {
         "locationName": "Filter",
@@ -55686,13 +56051,13 @@ module.exports={
         }
       }
     },
-    "S9m": {
+    "S9u": {
       "type": "list",
       "member": {
         "locationName": "InstanceId"
       }
     },
-    "S9u": {
+    "Sa2": {
       "type": "structure",
       "required": [
         "ConversionTaskId",
@@ -55746,7 +56111,7 @@ module.exports={
                     "locationName": "description"
                   },
                   "Image": {
-                    "shape": "S9z",
+                    "shape": "Sa7",
                     "locationName": "image"
                   },
                   "Status": {
@@ -55756,7 +56121,7 @@ module.exports={
                     "locationName": "statusMessage"
                   },
                   "Volume": {
-                    "shape": "Sa0",
+                    "shape": "Sa8",
                     "locationName": "volume"
                   }
                 }
@@ -55785,11 +56150,11 @@ module.exports={
               "locationName": "description"
             },
             "Image": {
-              "shape": "S9z",
+              "shape": "Sa7",
               "locationName": "image"
             },
             "Volume": {
-              "shape": "Sa0",
+              "shape": "Sa8",
               "locationName": "volume"
             }
           }
@@ -55806,7 +56171,7 @@ module.exports={
         }
       }
     },
-    "S9z": {
+    "Sa7": {
       "type": "structure",
       "required": [
         "Format",
@@ -55829,7 +56194,7 @@ module.exports={
         }
       }
     },
-    "Sa0": {
+    "Sa8": {
       "type": "structure",
       "required": [
         "Id"
@@ -55844,13 +56209,13 @@ module.exports={
         }
       }
     },
-    "Sap": {
+    "Sax": {
       "type": "list",
       "member": {
         "locationName": "Owner"
       }
     },
-    "Say": {
+    "Sb6": {
       "type": "list",
       "member": {
         "locationName": "item",
@@ -55865,19 +56230,19 @@ module.exports={
         }
       }
     },
-    "Sbb": {
+    "Sbj": {
       "type": "list",
       "member": {
         "locationName": "item"
       }
     },
-    "Sbe": {
+    "Sbm": {
       "type": "list",
       "member": {
         "locationName": "item"
       }
     },
-    "Sbv": {
+    "Sc3": {
       "type": "list",
       "member": {
         "locationName": "item",
@@ -55897,14 +56262,14 @@ module.exports={
         }
       }
     },
-    "Sc2": {
+    "Sca": {
       "type": "list",
       "member": {
         "shape": "S4f",
         "locationName": "item"
       }
     },
-    "Sc3": {
+    "Scb": {
       "type": "list",
       "member": {
         "locationName": "item",
@@ -55919,7 +56284,7 @@ module.exports={
         }
       }
     },
-    "Sch": {
+    "Scp": {
       "type": "structure",
       "members": {
         "Code": {
@@ -55930,13 +56295,13 @@ module.exports={
         }
       }
     },
-    "Sck": {
+    "Scs": {
       "type": "list",
       "member": {
         "locationName": "ImportTaskId"
       }
     },
-    "Sco": {
+    "Scw": {
       "type": "list",
       "member": {
         "locationName": "item",
@@ -55971,13 +56336,13 @@ module.exports={
             "locationName": "url"
           },
           "UserBucket": {
-            "shape": "Scq",
+            "shape": "Scy",
             "locationName": "userBucket"
           }
         }
       }
     },
-    "Scq": {
+    "Scy": {
       "type": "structure",
       "members": {
         "S3Bucket": {
@@ -55988,7 +56353,7 @@ module.exports={
         }
       }
     },
-    "Scv": {
+    "Sd3": {
       "type": "structure",
       "members": {
         "Description": {
@@ -56017,12 +56382,12 @@ module.exports={
           "locationName": "url"
         },
         "UserBucket": {
-          "shape": "Scq",
+          "shape": "Scy",
           "locationName": "userBucket"
         }
       }
     },
-    "Scz": {
+    "Sd7": {
       "type": "list",
       "member": {
         "locationName": "item",
@@ -56054,7 +56419,7 @@ module.exports={
         }
       }
     },
-    "Sd2": {
+    "Sda": {
       "type": "structure",
       "members": {
         "Value": {
@@ -56063,7 +56428,7 @@ module.exports={
         }
       }
     },
-    "Sda": {
+    "Sdi": {
       "type": "structure",
       "members": {
         "Code": {
@@ -56075,7 +56440,7 @@ module.exports={
         }
       }
     },
-    "Sdc": {
+    "Sdk": {
       "type": "structure",
       "members": {
         "Details": {
@@ -56103,7 +56468,7 @@ module.exports={
         }
       }
     },
-    "Sdl": {
+    "Sdt": {
       "type": "structure",
       "members": {
         "Groups": {
@@ -56141,11 +56506,11 @@ module.exports={
                 "type": "timestamp"
               },
               "Monitoring": {
-                "shape": "Sdp",
+                "shape": "Sdx",
                 "locationName": "monitoring"
               },
               "Placement": {
-                "shape": "Sdr",
+                "shape": "Sdz",
                 "locationName": "placement"
               },
               "Platform": {
@@ -56158,7 +56523,7 @@ module.exports={
                 "locationName": "privateIpAddress"
               },
               "ProductCodes": {
-                "shape": "Say",
+                "shape": "Sb6",
                 "locationName": "productCodes"
               },
               "PublicDnsName": {
@@ -56171,7 +56536,7 @@ module.exports={
                 "locationName": "ramdiskId"
               },
               "State": {
-                "shape": "Sda",
+                "shape": "Sdi",
                 "locationName": "instanceState"
               },
               "StateTransitionReason": {
@@ -56187,7 +56552,7 @@ module.exports={
                 "locationName": "architecture"
               },
               "BlockDeviceMappings": {
-                "shape": "Scz",
+                "shape": "Sd7",
                 "locationName": "blockDeviceMapping"
               },
               "ClientToken": {
@@ -56219,7 +56584,7 @@ module.exports={
                   "type": "structure",
                   "members": {
                     "Association": {
-                      "shape": "Sdv",
+                      "shape": "Se3",
                       "locationName": "association"
                     },
                     "Attachment": {
@@ -56280,7 +56645,7 @@ module.exports={
                         "type": "structure",
                         "members": {
                           "Association": {
-                            "shape": "Sdv",
+                            "shape": "Se3",
                             "locationName": "association"
                           },
                           "Primary": {
@@ -56333,7 +56698,7 @@ module.exports={
                 "locationName": "sriovNetSupport"
               },
               "StateReason": {
-                "shape": "Sch",
+                "shape": "Scp",
                 "locationName": "stateReason"
               },
               "Tags": {
@@ -56357,7 +56722,7 @@ module.exports={
         }
       }
     },
-    "Sdp": {
+    "Sdx": {
       "type": "structure",
       "members": {
         "State": {
@@ -56365,7 +56730,7 @@ module.exports={
         }
       }
     },
-    "Sdr": {
+    "Sdz": {
       "type": "structure",
       "members": {
         "AvailabilityZone": {
@@ -56388,7 +56753,7 @@ module.exports={
         }
       }
     },
-    "Sdv": {
+    "Se3": {
       "type": "structure",
       "members": {
         "IpOwnerId": {
@@ -56402,13 +56767,13 @@ module.exports={
         }
       }
     },
-    "Sf6": {
+    "Sfi": {
       "type": "list",
       "member": {
         "locationName": "ReservedInstancesId"
       }
     },
-    "Sfe": {
+    "Sfq": {
       "type": "list",
       "member": {
         "locationName": "item",
@@ -56424,7 +56789,7 @@ module.exports={
         }
       }
     },
-    "Sfr": {
+    "Sg3": {
       "type": "structure",
       "members": {
         "AvailabilityZone": {
@@ -56445,7 +56810,7 @@ module.exports={
         }
       }
     },
-    "Sgb": {
+    "Sgn": {
       "type": "structure",
       "members": {
         "Frequency": {
@@ -56472,7 +56837,7 @@ module.exports={
         }
       }
     },
-    "Sgi": {
+    "Sgu": {
       "type": "structure",
       "members": {
         "AvailabilityZone": {
@@ -56507,7 +56872,7 @@ module.exports={
           "type": "timestamp"
         },
         "Recurrence": {
-          "shape": "Sgb",
+          "shape": "Sgn",
           "locationName": "recurrence"
         },
         "ScheduledInstanceId": {
@@ -56531,13 +56896,13 @@ module.exports={
         }
       }
     },
-    "Sgp": {
+    "Sh1": {
       "type": "list",
       "member": {
         "locationName": "GroupName"
       }
     },
-    "Sgw": {
+    "Sh8": {
       "type": "list",
       "member": {
         "locationName": "item",
@@ -56552,7 +56917,7 @@ module.exports={
         }
       }
     },
-    "Shl": {
+    "Shx": {
       "type": "structure",
       "required": [
         "IamFleetRole",
@@ -56592,7 +56957,7 @@ module.exports={
                 "locationName": "addressingType"
               },
               "BlockDeviceMappings": {
-                "shape": "Sc2",
+                "shape": "Sca",
                 "locationName": "blockDeviceMapping"
               },
               "EbsOptimized": {
@@ -56626,11 +56991,11 @@ module.exports={
                 }
               },
               "NetworkInterfaces": {
-                "shape": "Shr",
+                "shape": "Si3",
                 "locationName": "networkInterfaceSet"
               },
               "Placement": {
-                "shape": "Sht",
+                "shape": "Si5",
                 "locationName": "placement"
               },
               "RamdiskId": {
@@ -56680,7 +57045,7 @@ module.exports={
         }
       }
     },
-    "Shr": {
+    "Si3": {
       "type": "list",
       "member": {
         "locationName": "item",
@@ -56735,7 +57100,7 @@ module.exports={
         }
       }
     },
-    "Sht": {
+    "Si5": {
       "type": "structure",
       "members": {
         "AvailabilityZone": {
@@ -56749,7 +57114,7 @@ module.exports={
         }
       }
     },
-    "Shx": {
+    "Si9": {
       "type": "list",
       "member": {
         "locationName": "item",
@@ -56770,7 +57135,7 @@ module.exports={
             "type": "timestamp"
           },
           "Fault": {
-            "shape": "S6p",
+            "shape": "S6v",
             "locationName": "fault"
           },
           "InstanceId": {
@@ -56794,7 +57159,7 @@ module.exports={
                 "locationName": "addressingType"
               },
               "BlockDeviceMappings": {
-                "shape": "Sc2",
+                "shape": "Sca",
                 "locationName": "blockDeviceMapping"
               },
               "EbsOptimized": {
@@ -56818,11 +57183,11 @@ module.exports={
                 "locationName": "keyName"
               },
               "NetworkInterfaces": {
-                "shape": "Shr",
+                "shape": "Si3",
                 "locationName": "networkInterfaceSet"
               },
               "Placement": {
-                "shape": "Sht",
+                "shape": "Si5",
                 "locationName": "placement"
               },
               "RamdiskId": {
@@ -56832,7 +57197,7 @@ module.exports={
                 "locationName": "subnetId"
               },
               "Monitoring": {
-                "shape": "Si0",
+                "shape": "Sic",
                 "locationName": "monitoring"
               }
             }
@@ -56886,7 +57251,7 @@ module.exports={
         }
       }
     },
-    "Si0": {
+    "Sic": {
       "type": "structure",
       "required": [
         "Enabled"
@@ -56898,7 +57263,7 @@ module.exports={
         }
       }
     },
-    "Sie": {
+    "Siq": {
       "type": "list",
       "member": {
         "locationName": "item",
@@ -56940,13 +57305,13 @@ module.exports={
         }
       }
     },
-    "Siv": {
+    "Sj7": {
       "type": "list",
       "member": {
         "locationName": "VolumeId"
       }
     },
-    "Sje": {
+    "Sjq": {
       "type": "structure",
       "members": {
         "VolumeId": {
@@ -56994,19 +57359,19 @@ module.exports={
         }
       }
     },
-    "Sjk": {
+    "Sjw": {
       "type": "list",
       "member": {
         "locationName": "VpcId"
       }
     },
-    "Sl6": {
+    "Sli": {
       "type": "list",
       "member": {
         "locationName": "item"
       }
     },
-    "Sl8": {
+    "Slk": {
       "type": "list",
       "member": {
         "type": "structure",
@@ -57019,7 +57384,7 @@ module.exports={
             "type": "integer"
           },
           "HostIdSet": {
-            "shape": "Sbb",
+            "shape": "Sbj",
             "locationName": "hostIdSet"
           },
           "HostReservationId": {
@@ -57040,7 +57405,7 @@ module.exports={
         }
       }
     },
-    "Sle": {
+    "Slq": {
       "type": "structure",
       "members": {
         "HourlyPrice": {
@@ -57054,7 +57419,7 @@ module.exports={
         }
       }
     },
-    "Sll": {
+    "Slx": {
       "type": "structure",
       "members": {
         "Comment": {},
@@ -57069,14 +57434,14 @@ module.exports={
         }
       }
     },
-    "Slo": {
+    "Sm0": {
       "type": "structure",
       "members": {
         "S3Bucket": {},
         "S3Key": {}
       }
     },
-    "Slt": {
+    "Sm5": {
       "type": "structure",
       "required": [
         "Bytes",
@@ -57096,7 +57461,7 @@ module.exports={
         }
       }
     },
-    "Slu": {
+    "Sm6": {
       "type": "structure",
       "required": [
         "Size"
@@ -57108,26 +57473,26 @@ module.exports={
         }
       }
     },
-    "Slw": {
+    "Sm8": {
       "type": "list",
       "member": {
         "locationName": "SecurityGroup"
       }
     },
-    "Sm9": {
+    "Sml": {
       "type": "list",
       "member": {
         "shape": "S48",
         "locationName": "item"
       }
     },
-    "Smh": {
+    "Smt": {
       "type": "list",
       "member": {
         "locationName": "UserId"
       }
     },
-    "Sn8": {
+    "Snk": {
       "type": "structure",
       "members": {
         "AllowDnsResolutionFromRemoteVpc": {
@@ -57141,7 +57506,7 @@ module.exports={
         }
       }
     },
-    "Sna": {
+    "Snm": {
       "type": "structure",
       "members": {
         "AllowDnsResolutionFromRemoteVpc": {
@@ -57158,7 +57523,7 @@ module.exports={
         }
       }
     },
-    "Snd": {
+    "Snp": {
       "type": "list",
       "member": {
         "locationName": "item",
@@ -57168,33 +57533,33 @@ module.exports={
             "locationName": "instanceId"
           },
           "Monitoring": {
-            "shape": "Sdp",
+            "shape": "Sdx",
             "locationName": "monitoring"
           }
         }
       }
     },
-    "Sp1": {
+    "Spd": {
       "type": "list",
       "member": {
         "locationName": "SecurityGroupId"
       }
     },
-    "Spc": {
+    "Spo": {
       "type": "list",
       "member": {
         "locationName": "item",
         "type": "structure",
         "members": {
           "CurrentState": {
-            "shape": "Sda",
+            "shape": "Sdi",
             "locationName": "currentState"
           },
           "InstanceId": {
             "locationName": "instanceId"
           },
           "PreviousState": {
-            "shape": "Sda",
+            "shape": "Sdi",
             "locationName": "previousState"
           }
         }
@@ -79155,6 +79520,14 @@ module.exports={
       "input": {
         "type": "structure",
         "members": {
+          "MasterRegion": {
+            "location": "querystring",
+            "locationName": "MasterRegion"
+          },
+          "FunctionVersion": {
+            "location": "querystring",
+            "locationName": "FunctionVersion"
+          },
           "Marker": {
             "location": "querystring",
             "locationName": "Marker"
@@ -79171,7 +79544,7 @@ module.exports={
         "members": {
           "NextMarker": {},
           "Functions": {
-            "shape": "S2n"
+            "shape": "S2r"
           }
         }
       }
@@ -79234,7 +79607,7 @@ module.exports={
         "members": {
           "NextMarker": {},
           "Versions": {
-            "shape": "S2n"
+            "shape": "S2r"
           }
         }
       }
@@ -79623,10 +79996,11 @@ module.exports={
           "members": {
             "Mode": {}
           }
-        }
+        },
+        "MasterArn": {}
       }
     },
-    "S2n": {
+    "S2r": {
       "type": "list",
       "member": {
         "shape": "S1h"
@@ -122739,8 +123113,8 @@ module.exports={
 },{}],159:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = require('../lib/service');
-var apiLoader = require('../lib/api_loader');
+var Service = AWS.Service;
+var apiLoader = AWS.apiLoader;
 
 apiLoader.services['acm'] = {};
 AWS.ACM = Service.defineService('acm', ['2015-12-08']);
@@ -122756,11 +123130,11 @@ Object.defineProperty(apiLoader.services['acm'], '2015-12-08', {
 
 module.exports = AWS.ACM;
 
-},{"../apis/acm-2015-12-08.min.json":1,"../apis/acm-2015-12-08.paginators.json":2,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266}],160:[function(require,module,exports){
+},{"../apis/acm-2015-12-08.min.json":1,"../apis/acm-2015-12-08.paginators.json":2,"../lib/core":227,"../lib/node_loader":224}],160:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = require('../lib/service');
-var apiLoader = require('../lib/api_loader');
+var Service = AWS.Service;
+var apiLoader = AWS.apiLoader;
 
 apiLoader.services['apigateway'] = {};
 AWS.APIGateway = Service.defineService('apigateway', ['2015-07-09']);
@@ -122777,11 +123151,11 @@ Object.defineProperty(apiLoader.services['apigateway'], '2015-07-09', {
 
 module.exports = AWS.APIGateway;
 
-},{"../apis/apigateway-2015-07-09.min.json":3,"../apis/apigateway-2015-07-09.paginators.json":4,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266,"../lib/services/apigateway":267}],161:[function(require,module,exports){
+},{"../apis/apigateway-2015-07-09.min.json":3,"../apis/apigateway-2015-07-09.paginators.json":4,"../lib/core":227,"../lib/node_loader":224,"../lib/services/apigateway":267}],161:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = require('../lib/service');
-var apiLoader = require('../lib/api_loader');
+var Service = AWS.Service;
+var apiLoader = AWS.apiLoader;
 
 apiLoader.services['applicationautoscaling'] = {};
 AWS.ApplicationAutoScaling = Service.defineService('applicationautoscaling', ['2016-02-06']);
@@ -122797,11 +123171,11 @@ Object.defineProperty(apiLoader.services['applicationautoscaling'], '2016-02-06'
 
 module.exports = AWS.ApplicationAutoScaling;
 
-},{"../apis/application-autoscaling-2016-02-06.min.json":5,"../apis/application-autoscaling-2016-02-06.paginators.json":6,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266}],162:[function(require,module,exports){
+},{"../apis/application-autoscaling-2016-02-06.min.json":5,"../apis/application-autoscaling-2016-02-06.paginators.json":6,"../lib/core":227,"../lib/node_loader":224}],162:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = require('../lib/service');
-var apiLoader = require('../lib/api_loader');
+var Service = AWS.Service;
+var apiLoader = AWS.apiLoader;
 
 apiLoader.services['autoscaling'] = {};
 AWS.AutoScaling = Service.defineService('autoscaling', ['2011-01-01']);
@@ -122817,10 +123191,8 @@ Object.defineProperty(apiLoader.services['autoscaling'], '2011-01-01', {
 
 module.exports = AWS.AutoScaling;
 
-},{"../apis/autoscaling-2011-01-01.min.json":7,"../apis/autoscaling-2011-01-01.paginators.json":8,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266}],163:[function(require,module,exports){
+},{"../apis/autoscaling-2011-01-01.min.json":7,"../apis/autoscaling-2011-01-01.paginators.json":8,"../lib/core":227,"../lib/node_loader":224}],163:[function(require,module,exports){
 require('../lib/node_loader');
-var AWS = require('../lib/core');
-
 module.exports = {
   ACM: require('./acm'),
   APIGateway: require('./apigateway'),
@@ -122886,11 +123258,11 @@ module.exports = {
   WAF: require('./waf'),
   WorkDocs: require('./workdocs')
 };
-},{"../lib/core":227,"../lib/node_loader":224,"./acm":159,"./apigateway":160,"./applicationautoscaling":161,"./autoscaling":162,"./cloudformation":164,"./cloudfront":165,"./cloudhsm":166,"./cloudtrail":167,"./cloudwatch":168,"./cloudwatchevents":169,"./cloudwatchlogs":170,"./codecommit":171,"./codedeploy":172,"./codepipeline":173,"./cognitoidentity":174,"./cognitoidentityserviceprovider":175,"./cognitosync":176,"./configservice":177,"./cur":178,"./devicefarm":179,"./directconnect":180,"./dynamodb":181,"./dynamodbstreams":182,"./ec2":183,"./ecr":184,"./ecs":185,"./efs":186,"./elasticache":187,"./elasticbeanstalk":188,"./elastictranscoder":189,"./elb":190,"./elbv2":191,"./emr":192,"./firehose":193,"./gamelift":194,"./inspector":195,"./iot":196,"./iotdata":197,"./kinesis":198,"./kms":199,"./lambda":200,"./lexruntime":201,"./machinelearning":202,"./marketplacecommerceanalytics":203,"./mobileanalytics":204,"./mturk":205,"./opsworks":206,"./polly":207,"./rds":208,"./redshift":209,"./rekognition":210,"./route53":211,"./route53domains":212,"./s3":213,"./servicecatalog":214,"./ses":215,"./sns":216,"./sqs":217,"./ssm":218,"./storagegateway":219,"./sts":220,"./waf":221,"./workdocs":222}],164:[function(require,module,exports){
+},{"../lib/node_loader":224,"./acm":159,"./apigateway":160,"./applicationautoscaling":161,"./autoscaling":162,"./cloudformation":164,"./cloudfront":165,"./cloudhsm":166,"./cloudtrail":167,"./cloudwatch":168,"./cloudwatchevents":169,"./cloudwatchlogs":170,"./codecommit":171,"./codedeploy":172,"./codepipeline":173,"./cognitoidentity":174,"./cognitoidentityserviceprovider":175,"./cognitosync":176,"./configservice":177,"./cur":178,"./devicefarm":179,"./directconnect":180,"./dynamodb":181,"./dynamodbstreams":182,"./ec2":183,"./ecr":184,"./ecs":185,"./efs":186,"./elasticache":187,"./elasticbeanstalk":188,"./elastictranscoder":189,"./elb":190,"./elbv2":191,"./emr":192,"./firehose":193,"./gamelift":194,"./inspector":195,"./iot":196,"./iotdata":197,"./kinesis":198,"./kms":199,"./lambda":200,"./lexruntime":201,"./machinelearning":202,"./marketplacecommerceanalytics":203,"./mobileanalytics":204,"./mturk":205,"./opsworks":206,"./polly":207,"./rds":208,"./redshift":209,"./rekognition":210,"./route53":211,"./route53domains":212,"./s3":213,"./servicecatalog":214,"./ses":215,"./sns":216,"./sqs":217,"./ssm":218,"./storagegateway":219,"./sts":220,"./waf":221,"./workdocs":222}],164:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = require('../lib/service');
-var apiLoader = require('../lib/api_loader');
+var Service = AWS.Service;
+var apiLoader = AWS.apiLoader;
 
 apiLoader.services['cloudformation'] = {};
 AWS.CloudFormation = Service.defineService('cloudformation', ['2010-05-15']);
@@ -122907,11 +123279,11 @@ Object.defineProperty(apiLoader.services['cloudformation'], '2010-05-15', {
 
 module.exports = AWS.CloudFormation;
 
-},{"../apis/cloudformation-2010-05-15.min.json":9,"../apis/cloudformation-2010-05-15.paginators.json":10,"../apis/cloudformation-2010-05-15.waiters2.json":11,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266}],165:[function(require,module,exports){
+},{"../apis/cloudformation-2010-05-15.min.json":9,"../apis/cloudformation-2010-05-15.paginators.json":10,"../apis/cloudformation-2010-05-15.waiters2.json":11,"../lib/core":227,"../lib/node_loader":224}],165:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = require('../lib/service');
-var apiLoader = require('../lib/api_loader');
+var Service = AWS.Service;
+var apiLoader = AWS.apiLoader;
 
 apiLoader.services['cloudfront'] = {};
 AWS.CloudFront = Service.defineService('cloudfront', ['2013-05-12*', '2013-11-11*', '2014-05-31*', '2014-10-21*', '2014-11-06*', '2015-04-17*', '2015-07-27*', '2015-09-17*', '2016-01-13*', '2016-01-28*', '2016-08-01*', '2016-08-20*', '2016-09-07*', '2016-09-29*', '2016-11-25', '2016-11-25*', '2017-03-25']);
@@ -122939,11 +123311,11 @@ Object.defineProperty(apiLoader.services['cloudfront'], '2017-03-25', {
 
 module.exports = AWS.CloudFront;
 
-},{"../apis/cloudfront-2016-11-25.min.json":12,"../apis/cloudfront-2016-11-25.paginators.json":13,"../apis/cloudfront-2016-11-25.waiters2.json":14,"../apis/cloudfront-2017-03-25.min.json":15,"../apis/cloudfront-2017-03-25.paginators.json":16,"../apis/cloudfront-2017-03-25.waiters2.json":17,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266,"../lib/services/cloudfront":268}],166:[function(require,module,exports){
+},{"../apis/cloudfront-2016-11-25.min.json":12,"../apis/cloudfront-2016-11-25.paginators.json":13,"../apis/cloudfront-2016-11-25.waiters2.json":14,"../apis/cloudfront-2017-03-25.min.json":15,"../apis/cloudfront-2017-03-25.paginators.json":16,"../apis/cloudfront-2017-03-25.waiters2.json":17,"../lib/core":227,"../lib/node_loader":224,"../lib/services/cloudfront":268}],166:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = require('../lib/service');
-var apiLoader = require('../lib/api_loader');
+var Service = AWS.Service;
+var apiLoader = AWS.apiLoader;
 
 apiLoader.services['cloudhsm'] = {};
 AWS.CloudHSM = Service.defineService('cloudhsm', ['2014-05-30']);
@@ -122958,11 +123330,11 @@ Object.defineProperty(apiLoader.services['cloudhsm'], '2014-05-30', {
 
 module.exports = AWS.CloudHSM;
 
-},{"../apis/cloudhsm-2014-05-30.min.json":18,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266}],167:[function(require,module,exports){
+},{"../apis/cloudhsm-2014-05-30.min.json":18,"../lib/core":227,"../lib/node_loader":224}],167:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = require('../lib/service');
-var apiLoader = require('../lib/api_loader');
+var Service = AWS.Service;
+var apiLoader = AWS.apiLoader;
 
 apiLoader.services['cloudtrail'] = {};
 AWS.CloudTrail = Service.defineService('cloudtrail', ['2013-11-01']);
@@ -122978,11 +123350,11 @@ Object.defineProperty(apiLoader.services['cloudtrail'], '2013-11-01', {
 
 module.exports = AWS.CloudTrail;
 
-},{"../apis/cloudtrail-2013-11-01.min.json":19,"../apis/cloudtrail-2013-11-01.paginators.json":20,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266}],168:[function(require,module,exports){
+},{"../apis/cloudtrail-2013-11-01.min.json":19,"../apis/cloudtrail-2013-11-01.paginators.json":20,"../lib/core":227,"../lib/node_loader":224}],168:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = require('../lib/service');
-var apiLoader = require('../lib/api_loader');
+var Service = AWS.Service;
+var apiLoader = AWS.apiLoader;
 
 apiLoader.services['cloudwatch'] = {};
 AWS.CloudWatch = Service.defineService('cloudwatch', ['2010-08-01']);
@@ -122999,11 +123371,11 @@ Object.defineProperty(apiLoader.services['cloudwatch'], '2010-08-01', {
 
 module.exports = AWS.CloudWatch;
 
-},{"../apis/monitoring-2010-08-01.min.json":104,"../apis/monitoring-2010-08-01.paginators.json":105,"../apis/monitoring-2010-08-01.waiters2.json":106,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266}],169:[function(require,module,exports){
+},{"../apis/monitoring-2010-08-01.min.json":104,"../apis/monitoring-2010-08-01.paginators.json":105,"../apis/monitoring-2010-08-01.waiters2.json":106,"../lib/core":227,"../lib/node_loader":224}],169:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = require('../lib/service');
-var apiLoader = require('../lib/api_loader');
+var Service = AWS.Service;
+var apiLoader = AWS.apiLoader;
 
 apiLoader.services['cloudwatchevents'] = {};
 AWS.CloudWatchEvents = Service.defineService('cloudwatchevents', ['2014-02-03*', '2015-10-07']);
@@ -123019,11 +123391,11 @@ Object.defineProperty(apiLoader.services['cloudwatchevents'], '2015-10-07', {
 
 module.exports = AWS.CloudWatchEvents;
 
-},{"../apis/events-2015-10-07.min.json":76,"../apis/events-2015-10-07.paginators.json":77,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266}],170:[function(require,module,exports){
+},{"../apis/events-2015-10-07.min.json":76,"../apis/events-2015-10-07.paginators.json":77,"../lib/core":227,"../lib/node_loader":224}],170:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = require('../lib/service');
-var apiLoader = require('../lib/api_loader');
+var Service = AWS.Service;
+var apiLoader = AWS.apiLoader;
 
 apiLoader.services['cloudwatchlogs'] = {};
 AWS.CloudWatchLogs = Service.defineService('cloudwatchlogs', ['2014-03-28']);
@@ -123039,11 +123411,11 @@ Object.defineProperty(apiLoader.services['cloudwatchlogs'], '2014-03-28', {
 
 module.exports = AWS.CloudWatchLogs;
 
-},{"../apis/logs-2014-03-28.min.json":95,"../apis/logs-2014-03-28.paginators.json":96,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266}],171:[function(require,module,exports){
+},{"../apis/logs-2014-03-28.min.json":95,"../apis/logs-2014-03-28.paginators.json":96,"../lib/core":227,"../lib/node_loader":224}],171:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = require('../lib/service');
-var apiLoader = require('../lib/api_loader');
+var Service = AWS.Service;
+var apiLoader = AWS.apiLoader;
 
 apiLoader.services['codecommit'] = {};
 AWS.CodeCommit = Service.defineService('codecommit', ['2015-04-13']);
@@ -123059,11 +123431,11 @@ Object.defineProperty(apiLoader.services['codecommit'], '2015-04-13', {
 
 module.exports = AWS.CodeCommit;
 
-},{"../apis/codecommit-2015-04-13.min.json":21,"../apis/codecommit-2015-04-13.paginators.json":22,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266}],172:[function(require,module,exports){
+},{"../apis/codecommit-2015-04-13.min.json":21,"../apis/codecommit-2015-04-13.paginators.json":22,"../lib/core":227,"../lib/node_loader":224}],172:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = require('../lib/service');
-var apiLoader = require('../lib/api_loader');
+var Service = AWS.Service;
+var apiLoader = AWS.apiLoader;
 
 apiLoader.services['codedeploy'] = {};
 AWS.CodeDeploy = Service.defineService('codedeploy', ['2014-10-06']);
@@ -123080,11 +123452,11 @@ Object.defineProperty(apiLoader.services['codedeploy'], '2014-10-06', {
 
 module.exports = AWS.CodeDeploy;
 
-},{"../apis/codedeploy-2014-10-06.min.json":23,"../apis/codedeploy-2014-10-06.paginators.json":24,"../apis/codedeploy-2014-10-06.waiters2.json":25,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266}],173:[function(require,module,exports){
+},{"../apis/codedeploy-2014-10-06.min.json":23,"../apis/codedeploy-2014-10-06.paginators.json":24,"../apis/codedeploy-2014-10-06.waiters2.json":25,"../lib/core":227,"../lib/node_loader":224}],173:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = require('../lib/service');
-var apiLoader = require('../lib/api_loader');
+var Service = AWS.Service;
+var apiLoader = AWS.apiLoader;
 
 apiLoader.services['codepipeline'] = {};
 AWS.CodePipeline = Service.defineService('codepipeline', ['2015-07-09']);
@@ -123100,11 +123472,11 @@ Object.defineProperty(apiLoader.services['codepipeline'], '2015-07-09', {
 
 module.exports = AWS.CodePipeline;
 
-},{"../apis/codepipeline-2015-07-09.min.json":26,"../apis/codepipeline-2015-07-09.paginators.json":27,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266}],174:[function(require,module,exports){
+},{"../apis/codepipeline-2015-07-09.min.json":26,"../apis/codepipeline-2015-07-09.paginators.json":27,"../lib/core":227,"../lib/node_loader":224}],174:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = require('../lib/service');
-var apiLoader = require('../lib/api_loader');
+var Service = AWS.Service;
+var apiLoader = AWS.apiLoader;
 
 apiLoader.services['cognitoidentity'] = {};
 AWS.CognitoIdentity = Service.defineService('cognitoidentity', ['2014-06-30']);
@@ -123121,11 +123493,11 @@ Object.defineProperty(apiLoader.services['cognitoidentity'], '2014-06-30', {
 
 module.exports = AWS.CognitoIdentity;
 
-},{"../apis/cognito-identity-2014-06-30.min.json":28,"../apis/cognito-identity-2014-06-30.paginators.json":29,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266,"../lib/services/cognitoidentity":269}],175:[function(require,module,exports){
+},{"../apis/cognito-identity-2014-06-30.min.json":28,"../apis/cognito-identity-2014-06-30.paginators.json":29,"../lib/core":227,"../lib/node_loader":224,"../lib/services/cognitoidentity":269}],175:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = require('../lib/service');
-var apiLoader = require('../lib/api_loader');
+var Service = AWS.Service;
+var apiLoader = AWS.apiLoader;
 
 apiLoader.services['cognitoidentityserviceprovider'] = {};
 AWS.CognitoIdentityServiceProvider = Service.defineService('cognitoidentityserviceprovider', ['2016-04-18']);
@@ -123141,11 +123513,11 @@ Object.defineProperty(apiLoader.services['cognitoidentityserviceprovider'], '201
 
 module.exports = AWS.CognitoIdentityServiceProvider;
 
-},{"../apis/cognito-idp-2016-04-18.min.json":30,"../apis/cognito-idp-2016-04-18.paginators.json":31,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266}],176:[function(require,module,exports){
+},{"../apis/cognito-idp-2016-04-18.min.json":30,"../apis/cognito-idp-2016-04-18.paginators.json":31,"../lib/core":227,"../lib/node_loader":224}],176:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = require('../lib/service');
-var apiLoader = require('../lib/api_loader');
+var Service = AWS.Service;
+var apiLoader = AWS.apiLoader;
 
 apiLoader.services['cognitosync'] = {};
 AWS.CognitoSync = Service.defineService('cognitosync', ['2014-06-30']);
@@ -123160,11 +123532,11 @@ Object.defineProperty(apiLoader.services['cognitosync'], '2014-06-30', {
 
 module.exports = AWS.CognitoSync;
 
-},{"../apis/cognito-sync-2014-06-30.min.json":32,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266}],177:[function(require,module,exports){
+},{"../apis/cognito-sync-2014-06-30.min.json":32,"../lib/core":227,"../lib/node_loader":224}],177:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = require('../lib/service');
-var apiLoader = require('../lib/api_loader');
+var Service = AWS.Service;
+var apiLoader = AWS.apiLoader;
 
 apiLoader.services['configservice'] = {};
 AWS.ConfigService = Service.defineService('configservice', ['2014-11-12']);
@@ -123180,11 +123552,11 @@ Object.defineProperty(apiLoader.services['configservice'], '2014-11-12', {
 
 module.exports = AWS.ConfigService;
 
-},{"../apis/config-2014-11-12.min.json":33,"../apis/config-2014-11-12.paginators.json":34,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266}],178:[function(require,module,exports){
+},{"../apis/config-2014-11-12.min.json":33,"../apis/config-2014-11-12.paginators.json":34,"../lib/core":227,"../lib/node_loader":224}],178:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = require('../lib/service');
-var apiLoader = require('../lib/api_loader');
+var Service = AWS.Service;
+var apiLoader = AWS.apiLoader;
 
 apiLoader.services['cur'] = {};
 AWS.CUR = Service.defineService('cur', ['2017-01-06']);
@@ -123200,11 +123572,11 @@ Object.defineProperty(apiLoader.services['cur'], '2017-01-06', {
 
 module.exports = AWS.CUR;
 
-},{"../apis/cur-2017-01-06.min.json":35,"../apis/cur-2017-01-06.paginators.json":36,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266}],179:[function(require,module,exports){
+},{"../apis/cur-2017-01-06.min.json":35,"../apis/cur-2017-01-06.paginators.json":36,"../lib/core":227,"../lib/node_loader":224}],179:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = require('../lib/service');
-var apiLoader = require('../lib/api_loader');
+var Service = AWS.Service;
+var apiLoader = AWS.apiLoader;
 
 apiLoader.services['devicefarm'] = {};
 AWS.DeviceFarm = Service.defineService('devicefarm', ['2015-06-23']);
@@ -123220,11 +123592,11 @@ Object.defineProperty(apiLoader.services['devicefarm'], '2015-06-23', {
 
 module.exports = AWS.DeviceFarm;
 
-},{"../apis/devicefarm-2015-06-23.min.json":37,"../apis/devicefarm-2015-06-23.paginators.json":38,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266}],180:[function(require,module,exports){
+},{"../apis/devicefarm-2015-06-23.min.json":37,"../apis/devicefarm-2015-06-23.paginators.json":38,"../lib/core":227,"../lib/node_loader":224}],180:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = require('../lib/service');
-var apiLoader = require('../lib/api_loader');
+var Service = AWS.Service;
+var apiLoader = AWS.apiLoader;
 
 apiLoader.services['directconnect'] = {};
 AWS.DirectConnect = Service.defineService('directconnect', ['2012-10-25']);
@@ -123240,11 +123612,11 @@ Object.defineProperty(apiLoader.services['directconnect'], '2012-10-25', {
 
 module.exports = AWS.DirectConnect;
 
-},{"../apis/directconnect-2012-10-25.min.json":39,"../apis/directconnect-2012-10-25.paginators.json":40,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266}],181:[function(require,module,exports){
+},{"../apis/directconnect-2012-10-25.min.json":39,"../apis/directconnect-2012-10-25.paginators.json":40,"../lib/core":227,"../lib/node_loader":224}],181:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = require('../lib/service');
-var apiLoader = require('../lib/api_loader');
+var Service = AWS.Service;
+var apiLoader = AWS.apiLoader;
 
 apiLoader.services['dynamodb'] = {};
 AWS.DynamoDB = Service.defineService('dynamodb', ['2011-12-05', '2012-08-10']);
@@ -123272,11 +123644,11 @@ Object.defineProperty(apiLoader.services['dynamodb'], '2012-08-10', {
 
 module.exports = AWS.DynamoDB;
 
-},{"../apis/dynamodb-2011-12-05.min.json":41,"../apis/dynamodb-2011-12-05.paginators.json":42,"../apis/dynamodb-2011-12-05.waiters2.json":43,"../apis/dynamodb-2012-08-10.min.json":44,"../apis/dynamodb-2012-08-10.paginators.json":45,"../apis/dynamodb-2012-08-10.waiters2.json":46,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266,"../lib/services/dynamodb":270}],182:[function(require,module,exports){
+},{"../apis/dynamodb-2011-12-05.min.json":41,"../apis/dynamodb-2011-12-05.paginators.json":42,"../apis/dynamodb-2011-12-05.waiters2.json":43,"../apis/dynamodb-2012-08-10.min.json":44,"../apis/dynamodb-2012-08-10.paginators.json":45,"../apis/dynamodb-2012-08-10.waiters2.json":46,"../lib/core":227,"../lib/node_loader":224,"../lib/services/dynamodb":270}],182:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = require('../lib/service');
-var apiLoader = require('../lib/api_loader');
+var Service = AWS.Service;
+var apiLoader = AWS.apiLoader;
 
 apiLoader.services['dynamodbstreams'] = {};
 AWS.DynamoDBStreams = Service.defineService('dynamodbstreams', ['2012-08-10']);
@@ -123292,11 +123664,11 @@ Object.defineProperty(apiLoader.services['dynamodbstreams'], '2012-08-10', {
 
 module.exports = AWS.DynamoDBStreams;
 
-},{"../apis/streams.dynamodb-2012-08-10.min.json":151,"../apis/streams.dynamodb-2012-08-10.paginators.json":152,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266}],183:[function(require,module,exports){
+},{"../apis/streams.dynamodb-2012-08-10.min.json":151,"../apis/streams.dynamodb-2012-08-10.paginators.json":152,"../lib/core":227,"../lib/node_loader":224}],183:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = require('../lib/service');
-var apiLoader = require('../lib/api_loader');
+var Service = AWS.Service;
+var apiLoader = AWS.apiLoader;
 
 apiLoader.services['ec2'] = {};
 AWS.EC2 = Service.defineService('ec2', ['2013-06-15*', '2013-10-15*', '2014-02-01*', '2014-05-01*', '2014-06-15*', '2014-09-01*', '2014-10-01*', '2015-03-01*', '2015-04-15*', '2015-10-01*', '2016-04-01*', '2016-09-15*', '2016-11-15']);
@@ -123314,11 +123686,11 @@ Object.defineProperty(apiLoader.services['ec2'], '2016-11-15', {
 
 module.exports = AWS.EC2;
 
-},{"../apis/ec2-2016-11-15.min.json":47,"../apis/ec2-2016-11-15.paginators.json":48,"../apis/ec2-2016-11-15.waiters2.json":49,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266,"../lib/services/ec2":271}],184:[function(require,module,exports){
+},{"../apis/ec2-2016-11-15.min.json":47,"../apis/ec2-2016-11-15.paginators.json":48,"../apis/ec2-2016-11-15.waiters2.json":49,"../lib/core":227,"../lib/node_loader":224,"../lib/services/ec2":271}],184:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = require('../lib/service');
-var apiLoader = require('../lib/api_loader');
+var Service = AWS.Service;
+var apiLoader = AWS.apiLoader;
 
 apiLoader.services['ecr'] = {};
 AWS.ECR = Service.defineService('ecr', ['2015-09-21']);
@@ -123334,11 +123706,11 @@ Object.defineProperty(apiLoader.services['ecr'], '2015-09-21', {
 
 module.exports = AWS.ECR;
 
-},{"../apis/ecr-2015-09-21.min.json":50,"../apis/ecr-2015-09-21.paginators.json":51,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266}],185:[function(require,module,exports){
+},{"../apis/ecr-2015-09-21.min.json":50,"../apis/ecr-2015-09-21.paginators.json":51,"../lib/core":227,"../lib/node_loader":224}],185:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = require('../lib/service');
-var apiLoader = require('../lib/api_loader');
+var Service = AWS.Service;
+var apiLoader = AWS.apiLoader;
 
 apiLoader.services['ecs'] = {};
 AWS.ECS = Service.defineService('ecs', ['2014-11-13']);
@@ -123355,11 +123727,11 @@ Object.defineProperty(apiLoader.services['ecs'], '2014-11-13', {
 
 module.exports = AWS.ECS;
 
-},{"../apis/ecs-2014-11-13.min.json":52,"../apis/ecs-2014-11-13.paginators.json":53,"../apis/ecs-2014-11-13.waiters2.json":54,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266}],186:[function(require,module,exports){
+},{"../apis/ecs-2014-11-13.min.json":52,"../apis/ecs-2014-11-13.paginators.json":53,"../apis/ecs-2014-11-13.waiters2.json":54,"../lib/core":227,"../lib/node_loader":224}],186:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = require('../lib/service');
-var apiLoader = require('../lib/api_loader');
+var Service = AWS.Service;
+var apiLoader = AWS.apiLoader;
 
 apiLoader.services['efs'] = {};
 AWS.EFS = Service.defineService('efs', ['2015-02-01']);
@@ -123374,11 +123746,11 @@ Object.defineProperty(apiLoader.services['efs'], '2015-02-01', {
 
 module.exports = AWS.EFS;
 
-},{"../apis/elasticfilesystem-2015-02-01.min.json":60,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266}],187:[function(require,module,exports){
+},{"../apis/elasticfilesystem-2015-02-01.min.json":60,"../lib/core":227,"../lib/node_loader":224}],187:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = require('../lib/service');
-var apiLoader = require('../lib/api_loader');
+var Service = AWS.Service;
+var apiLoader = AWS.apiLoader;
 
 apiLoader.services['elasticache'] = {};
 AWS.ElastiCache = Service.defineService('elasticache', ['2012-11-15*', '2014-03-24*', '2014-07-15*', '2014-09-30*', '2015-02-02']);
@@ -123395,11 +123767,11 @@ Object.defineProperty(apiLoader.services['elasticache'], '2015-02-02', {
 
 module.exports = AWS.ElastiCache;
 
-},{"../apis/elasticache-2015-02-02.min.json":55,"../apis/elasticache-2015-02-02.paginators.json":56,"../apis/elasticache-2015-02-02.waiters2.json":57,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266}],188:[function(require,module,exports){
+},{"../apis/elasticache-2015-02-02.min.json":55,"../apis/elasticache-2015-02-02.paginators.json":56,"../apis/elasticache-2015-02-02.waiters2.json":57,"../lib/core":227,"../lib/node_loader":224}],188:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = require('../lib/service');
-var apiLoader = require('../lib/api_loader');
+var Service = AWS.Service;
+var apiLoader = AWS.apiLoader;
 
 apiLoader.services['elasticbeanstalk'] = {};
 AWS.ElasticBeanstalk = Service.defineService('elasticbeanstalk', ['2010-12-01']);
@@ -123415,11 +123787,11 @@ Object.defineProperty(apiLoader.services['elasticbeanstalk'], '2010-12-01', {
 
 module.exports = AWS.ElasticBeanstalk;
 
-},{"../apis/elasticbeanstalk-2010-12-01.min.json":58,"../apis/elasticbeanstalk-2010-12-01.paginators.json":59,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266}],189:[function(require,module,exports){
+},{"../apis/elasticbeanstalk-2010-12-01.min.json":58,"../apis/elasticbeanstalk-2010-12-01.paginators.json":59,"../lib/core":227,"../lib/node_loader":224}],189:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = require('../lib/service');
-var apiLoader = require('../lib/api_loader');
+var Service = AWS.Service;
+var apiLoader = AWS.apiLoader;
 
 apiLoader.services['elastictranscoder'] = {};
 AWS.ElasticTranscoder = Service.defineService('elastictranscoder', ['2012-09-25']);
@@ -123436,11 +123808,11 @@ Object.defineProperty(apiLoader.services['elastictranscoder'], '2012-09-25', {
 
 module.exports = AWS.ElasticTranscoder;
 
-},{"../apis/elastictranscoder-2012-09-25.min.json":70,"../apis/elastictranscoder-2012-09-25.paginators.json":71,"../apis/elastictranscoder-2012-09-25.waiters2.json":72,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266}],190:[function(require,module,exports){
+},{"../apis/elastictranscoder-2012-09-25.min.json":70,"../apis/elastictranscoder-2012-09-25.paginators.json":71,"../apis/elastictranscoder-2012-09-25.waiters2.json":72,"../lib/core":227,"../lib/node_loader":224}],190:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = require('../lib/service');
-var apiLoader = require('../lib/api_loader');
+var Service = AWS.Service;
+var apiLoader = AWS.apiLoader;
 
 apiLoader.services['elb'] = {};
 AWS.ELB = Service.defineService('elb', ['2012-06-01']);
@@ -123457,11 +123829,11 @@ Object.defineProperty(apiLoader.services['elb'], '2012-06-01', {
 
 module.exports = AWS.ELB;
 
-},{"../apis/elasticloadbalancing-2012-06-01.min.json":61,"../apis/elasticloadbalancing-2012-06-01.paginators.json":62,"../apis/elasticloadbalancing-2012-06-01.waiters2.json":63,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266}],191:[function(require,module,exports){
+},{"../apis/elasticloadbalancing-2012-06-01.min.json":61,"../apis/elasticloadbalancing-2012-06-01.paginators.json":62,"../apis/elasticloadbalancing-2012-06-01.waiters2.json":63,"../lib/core":227,"../lib/node_loader":224}],191:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = require('../lib/service');
-var apiLoader = require('../lib/api_loader');
+var Service = AWS.Service;
+var apiLoader = AWS.apiLoader;
 
 apiLoader.services['elbv2'] = {};
 AWS.ELBv2 = Service.defineService('elbv2', ['2015-12-01']);
@@ -123478,11 +123850,11 @@ Object.defineProperty(apiLoader.services['elbv2'], '2015-12-01', {
 
 module.exports = AWS.ELBv2;
 
-},{"../apis/elasticloadbalancingv2-2015-12-01.min.json":64,"../apis/elasticloadbalancingv2-2015-12-01.paginators.json":65,"../apis/elasticloadbalancingv2-2015-12-01.waiters2.json":66,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266}],192:[function(require,module,exports){
+},{"../apis/elasticloadbalancingv2-2015-12-01.min.json":64,"../apis/elasticloadbalancingv2-2015-12-01.paginators.json":65,"../apis/elasticloadbalancingv2-2015-12-01.waiters2.json":66,"../lib/core":227,"../lib/node_loader":224}],192:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = require('../lib/service');
-var apiLoader = require('../lib/api_loader');
+var Service = AWS.Service;
+var apiLoader = AWS.apiLoader;
 
 apiLoader.services['emr'] = {};
 AWS.EMR = Service.defineService('emr', ['2009-03-31']);
@@ -123499,11 +123871,11 @@ Object.defineProperty(apiLoader.services['emr'], '2009-03-31', {
 
 module.exports = AWS.EMR;
 
-},{"../apis/elasticmapreduce-2009-03-31.min.json":67,"../apis/elasticmapreduce-2009-03-31.paginators.json":68,"../apis/elasticmapreduce-2009-03-31.waiters2.json":69,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266}],193:[function(require,module,exports){
+},{"../apis/elasticmapreduce-2009-03-31.min.json":67,"../apis/elasticmapreduce-2009-03-31.paginators.json":68,"../apis/elasticmapreduce-2009-03-31.waiters2.json":69,"../lib/core":227,"../lib/node_loader":224}],193:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = require('../lib/service');
-var apiLoader = require('../lib/api_loader');
+var Service = AWS.Service;
+var apiLoader = AWS.apiLoader;
 
 apiLoader.services['firehose'] = {};
 AWS.Firehose = Service.defineService('firehose', ['2015-08-04']);
@@ -123518,11 +123890,11 @@ Object.defineProperty(apiLoader.services['firehose'], '2015-08-04', {
 
 module.exports = AWS.Firehose;
 
-},{"../apis/firehose-2015-08-04.min.json":78,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266}],194:[function(require,module,exports){
+},{"../apis/firehose-2015-08-04.min.json":78,"../lib/core":227,"../lib/node_loader":224}],194:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = require('../lib/service');
-var apiLoader = require('../lib/api_loader');
+var Service = AWS.Service;
+var apiLoader = AWS.apiLoader;
 
 apiLoader.services['gamelift'] = {};
 AWS.GameLift = Service.defineService('gamelift', ['2015-10-01']);
@@ -123538,11 +123910,11 @@ Object.defineProperty(apiLoader.services['gamelift'], '2015-10-01', {
 
 module.exports = AWS.GameLift;
 
-},{"../apis/gamelift-2015-10-01.min.json":79,"../apis/gamelift-2015-10-01.paginators.json":80,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266}],195:[function(require,module,exports){
+},{"../apis/gamelift-2015-10-01.min.json":79,"../apis/gamelift-2015-10-01.paginators.json":80,"../lib/core":227,"../lib/node_loader":224}],195:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = require('../lib/service');
-var apiLoader = require('../lib/api_loader');
+var Service = AWS.Service;
+var apiLoader = AWS.apiLoader;
 
 apiLoader.services['inspector'] = {};
 AWS.Inspector = Service.defineService('inspector', ['2015-08-18*', '2016-02-16']);
@@ -123558,11 +123930,11 @@ Object.defineProperty(apiLoader.services['inspector'], '2016-02-16', {
 
 module.exports = AWS.Inspector;
 
-},{"../apis/inspector-2016-02-16.min.json":81,"../apis/inspector-2016-02-16.paginators.json":82,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266}],196:[function(require,module,exports){
+},{"../apis/inspector-2016-02-16.min.json":81,"../apis/inspector-2016-02-16.paginators.json":82,"../lib/core":227,"../lib/node_loader":224}],196:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = require('../lib/service');
-var apiLoader = require('../lib/api_loader');
+var Service = AWS.Service;
+var apiLoader = AWS.apiLoader;
 
 apiLoader.services['iot'] = {};
 AWS.Iot = Service.defineService('iot', ['2015-05-28']);
@@ -123578,11 +123950,11 @@ Object.defineProperty(apiLoader.services['iot'], '2015-05-28', {
 
 module.exports = AWS.Iot;
 
-},{"../apis/iot-2015-05-28.min.json":83,"../apis/iot-2015-05-28.paginators.json":84,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266}],197:[function(require,module,exports){
+},{"../apis/iot-2015-05-28.min.json":83,"../apis/iot-2015-05-28.paginators.json":84,"../lib/core":227,"../lib/node_loader":224}],197:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = require('../lib/service');
-var apiLoader = require('../lib/api_loader');
+var Service = AWS.Service;
+var apiLoader = AWS.apiLoader;
 
 apiLoader.services['iotdata'] = {};
 AWS.IotData = Service.defineService('iotdata', ['2015-05-28']);
@@ -123598,11 +123970,11 @@ Object.defineProperty(apiLoader.services['iotdata'], '2015-05-28', {
 
 module.exports = AWS.IotData;
 
-},{"../apis/iot-data-2015-05-28.min.json":85,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266,"../lib/services/iotdata":272}],198:[function(require,module,exports){
+},{"../apis/iot-data-2015-05-28.min.json":85,"../lib/core":227,"../lib/node_loader":224,"../lib/services/iotdata":272}],198:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = require('../lib/service');
-var apiLoader = require('../lib/api_loader');
+var Service = AWS.Service;
+var apiLoader = AWS.apiLoader;
 
 apiLoader.services['kinesis'] = {};
 AWS.Kinesis = Service.defineService('kinesis', ['2013-12-02']);
@@ -123619,11 +123991,11 @@ Object.defineProperty(apiLoader.services['kinesis'], '2013-12-02', {
 
 module.exports = AWS.Kinesis;
 
-},{"../apis/kinesis-2013-12-02.min.json":86,"../apis/kinesis-2013-12-02.paginators.json":87,"../apis/kinesis-2013-12-02.waiters2.json":88,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266}],199:[function(require,module,exports){
+},{"../apis/kinesis-2013-12-02.min.json":86,"../apis/kinesis-2013-12-02.paginators.json":87,"../apis/kinesis-2013-12-02.waiters2.json":88,"../lib/core":227,"../lib/node_loader":224}],199:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = require('../lib/service');
-var apiLoader = require('../lib/api_loader');
+var Service = AWS.Service;
+var apiLoader = AWS.apiLoader;
 
 apiLoader.services['kms'] = {};
 AWS.KMS = Service.defineService('kms', ['2014-11-01']);
@@ -123639,11 +124011,11 @@ Object.defineProperty(apiLoader.services['kms'], '2014-11-01', {
 
 module.exports = AWS.KMS;
 
-},{"../apis/kms-2014-11-01.min.json":89,"../apis/kms-2014-11-01.paginators.json":90,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266}],200:[function(require,module,exports){
+},{"../apis/kms-2014-11-01.min.json":89,"../apis/kms-2014-11-01.paginators.json":90,"../lib/core":227,"../lib/node_loader":224}],200:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = require('../lib/service');
-var apiLoader = require('../lib/api_loader');
+var Service = AWS.Service;
+var apiLoader = AWS.apiLoader;
 
 apiLoader.services['lambda'] = {};
 AWS.Lambda = Service.defineService('lambda', ['2014-11-11', '2015-03-31']);
@@ -123669,11 +124041,11 @@ Object.defineProperty(apiLoader.services['lambda'], '2015-03-31', {
 
 module.exports = AWS.Lambda;
 
-},{"../apis/lambda-2014-11-11.min.json":91,"../apis/lambda-2014-11-11.paginators.json":92,"../apis/lambda-2015-03-31.min.json":93,"../apis/lambda-2015-03-31.paginators.json":94,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266,"../lib/services/lambda":273}],201:[function(require,module,exports){
+},{"../apis/lambda-2014-11-11.min.json":91,"../apis/lambda-2014-11-11.paginators.json":92,"../apis/lambda-2015-03-31.min.json":93,"../apis/lambda-2015-03-31.paginators.json":94,"../lib/core":227,"../lib/node_loader":224,"../lib/services/lambda":273}],201:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = require('../lib/service');
-var apiLoader = require('../lib/api_loader');
+var Service = AWS.Service;
+var apiLoader = AWS.apiLoader;
 
 apiLoader.services['lexruntime'] = {};
 AWS.LexRuntime = Service.defineService('lexruntime', ['2016-11-28']);
@@ -123689,11 +124061,11 @@ Object.defineProperty(apiLoader.services['lexruntime'], '2016-11-28', {
 
 module.exports = AWS.LexRuntime;
 
-},{"../apis/runtime.lex-2016-11-28.min.json":136,"../apis/runtime.lex-2016-11-28.paginators.json":137,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266}],202:[function(require,module,exports){
+},{"../apis/runtime.lex-2016-11-28.min.json":136,"../apis/runtime.lex-2016-11-28.paginators.json":137,"../lib/core":227,"../lib/node_loader":224}],202:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = require('../lib/service');
-var apiLoader = require('../lib/api_loader');
+var Service = AWS.Service;
+var apiLoader = AWS.apiLoader;
 
 apiLoader.services['machinelearning'] = {};
 AWS.MachineLearning = Service.defineService('machinelearning', ['2014-12-12']);
@@ -123711,11 +124083,11 @@ Object.defineProperty(apiLoader.services['machinelearning'], '2014-12-12', {
 
 module.exports = AWS.MachineLearning;
 
-},{"../apis/machinelearning-2014-12-12.min.json":97,"../apis/machinelearning-2014-12-12.paginators.json":98,"../apis/machinelearning-2014-12-12.waiters2.json":99,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266,"../lib/services/machinelearning":274}],203:[function(require,module,exports){
+},{"../apis/machinelearning-2014-12-12.min.json":97,"../apis/machinelearning-2014-12-12.paginators.json":98,"../apis/machinelearning-2014-12-12.waiters2.json":99,"../lib/core":227,"../lib/node_loader":224,"../lib/services/machinelearning":274}],203:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = require('../lib/service');
-var apiLoader = require('../lib/api_loader');
+var Service = AWS.Service;
+var apiLoader = AWS.apiLoader;
 
 apiLoader.services['marketplacecommerceanalytics'] = {};
 AWS.MarketplaceCommerceAnalytics = Service.defineService('marketplacecommerceanalytics', ['2015-07-01']);
@@ -123731,11 +124103,11 @@ Object.defineProperty(apiLoader.services['marketplacecommerceanalytics'], '2015-
 
 module.exports = AWS.MarketplaceCommerceAnalytics;
 
-},{"../apis/marketplacecommerceanalytics-2015-07-01.min.json":100,"../apis/marketplacecommerceanalytics-2015-07-01.paginators.json":101,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266}],204:[function(require,module,exports){
+},{"../apis/marketplacecommerceanalytics-2015-07-01.min.json":100,"../apis/marketplacecommerceanalytics-2015-07-01.paginators.json":101,"../lib/core":227,"../lib/node_loader":224}],204:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = require('../lib/service');
-var apiLoader = require('../lib/api_loader');
+var Service = AWS.Service;
+var apiLoader = AWS.apiLoader;
 
 apiLoader.services['mobileanalytics'] = {};
 AWS.MobileAnalytics = Service.defineService('mobileanalytics', ['2014-06-05']);
@@ -123750,11 +124122,11 @@ Object.defineProperty(apiLoader.services['mobileanalytics'], '2014-06-05', {
 
 module.exports = AWS.MobileAnalytics;
 
-},{"../apis/mobileanalytics-2014-06-05.min.json":103,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266}],205:[function(require,module,exports){
+},{"../apis/mobileanalytics-2014-06-05.min.json":103,"../lib/core":227,"../lib/node_loader":224}],205:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = require('../lib/service');
-var apiLoader = require('../lib/api_loader');
+var Service = AWS.Service;
+var apiLoader = AWS.apiLoader;
 
 apiLoader.services['mturk'] = {};
 AWS.MTurk = Service.defineService('mturk', ['2017-01-17']);
@@ -123770,11 +124142,11 @@ Object.defineProperty(apiLoader.services['mturk'], '2017-01-17', {
 
 module.exports = AWS.MTurk;
 
-},{"../apis/mturk-requester-2017-01-17.min.json":107,"../apis/mturk-requester-2017-01-17.paginators.json":108,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266}],206:[function(require,module,exports){
+},{"../apis/mturk-requester-2017-01-17.min.json":107,"../apis/mturk-requester-2017-01-17.paginators.json":108,"../lib/core":227,"../lib/node_loader":224}],206:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = require('../lib/service');
-var apiLoader = require('../lib/api_loader');
+var Service = AWS.Service;
+var apiLoader = AWS.apiLoader;
 
 apiLoader.services['opsworks'] = {};
 AWS.OpsWorks = Service.defineService('opsworks', ['2013-02-18']);
@@ -123791,11 +124163,11 @@ Object.defineProperty(apiLoader.services['opsworks'], '2013-02-18', {
 
 module.exports = AWS.OpsWorks;
 
-},{"../apis/opsworks-2013-02-18.min.json":109,"../apis/opsworks-2013-02-18.paginators.json":110,"../apis/opsworks-2013-02-18.waiters2.json":111,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266}],207:[function(require,module,exports){
+},{"../apis/opsworks-2013-02-18.min.json":109,"../apis/opsworks-2013-02-18.paginators.json":110,"../apis/opsworks-2013-02-18.waiters2.json":111,"../lib/core":227,"../lib/node_loader":224}],207:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = require('../lib/service');
-var apiLoader = require('../lib/api_loader');
+var Service = AWS.Service;
+var apiLoader = AWS.apiLoader;
 
 apiLoader.services['polly'] = {};
 AWS.Polly = Service.defineService('polly', ['2016-06-10']);
@@ -123812,11 +124184,11 @@ Object.defineProperty(apiLoader.services['polly'], '2016-06-10', {
 
 module.exports = AWS.Polly;
 
-},{"../apis/polly-2016-06-10.min.json":112,"../apis/polly-2016-06-10.paginators.json":113,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266,"../lib/services/polly":275}],208:[function(require,module,exports){
+},{"../apis/polly-2016-06-10.min.json":112,"../apis/polly-2016-06-10.paginators.json":113,"../lib/core":227,"../lib/node_loader":224,"../lib/services/polly":275}],208:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = require('../lib/service');
-var apiLoader = require('../lib/api_loader');
+var Service = AWS.Service;
+var apiLoader = AWS.apiLoader;
 
 apiLoader.services['rds'] = {};
 AWS.RDS = Service.defineService('rds', ['2013-01-10', '2013-02-12', '2013-09-09', '2014-09-01', '2014-09-01*', '2014-10-31']);
@@ -123871,11 +124243,11 @@ Object.defineProperty(apiLoader.services['rds'], '2014-10-31', {
 
 module.exports = AWS.RDS;
 
-},{"../apis/rds-2013-01-10.min.json":114,"../apis/rds-2013-01-10.paginators.json":115,"../apis/rds-2013-02-12.min.json":116,"../apis/rds-2013-02-12.paginators.json":117,"../apis/rds-2013-09-09.min.json":118,"../apis/rds-2013-09-09.paginators.json":119,"../apis/rds-2013-09-09.waiters2.json":120,"../apis/rds-2014-09-01.min.json":121,"../apis/rds-2014-09-01.paginators.json":122,"../apis/rds-2014-10-31.min.json":123,"../apis/rds-2014-10-31.paginators.json":124,"../apis/rds-2014-10-31.waiters2.json":125,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266,"../lib/services/rds":276}],209:[function(require,module,exports){
+},{"../apis/rds-2013-01-10.min.json":114,"../apis/rds-2013-01-10.paginators.json":115,"../apis/rds-2013-02-12.min.json":116,"../apis/rds-2013-02-12.paginators.json":117,"../apis/rds-2013-09-09.min.json":118,"../apis/rds-2013-09-09.paginators.json":119,"../apis/rds-2013-09-09.waiters2.json":120,"../apis/rds-2014-09-01.min.json":121,"../apis/rds-2014-09-01.paginators.json":122,"../apis/rds-2014-10-31.min.json":123,"../apis/rds-2014-10-31.paginators.json":124,"../apis/rds-2014-10-31.waiters2.json":125,"../lib/core":227,"../lib/node_loader":224,"../lib/services/rds":276}],209:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = require('../lib/service');
-var apiLoader = require('../lib/api_loader');
+var Service = AWS.Service;
+var apiLoader = AWS.apiLoader;
 
 apiLoader.services['redshift'] = {};
 AWS.Redshift = Service.defineService('redshift', ['2012-12-01']);
@@ -123892,11 +124264,11 @@ Object.defineProperty(apiLoader.services['redshift'], '2012-12-01', {
 
 module.exports = AWS.Redshift;
 
-},{"../apis/redshift-2012-12-01.min.json":126,"../apis/redshift-2012-12-01.paginators.json":127,"../apis/redshift-2012-12-01.waiters2.json":128,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266}],210:[function(require,module,exports){
+},{"../apis/redshift-2012-12-01.min.json":126,"../apis/redshift-2012-12-01.paginators.json":127,"../apis/redshift-2012-12-01.waiters2.json":128,"../lib/core":227,"../lib/node_loader":224}],210:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = require('../lib/service');
-var apiLoader = require('../lib/api_loader');
+var Service = AWS.Service;
+var apiLoader = AWS.apiLoader;
 
 apiLoader.services['rekognition'] = {};
 AWS.Rekognition = Service.defineService('rekognition', ['2016-06-27']);
@@ -123912,11 +124284,11 @@ Object.defineProperty(apiLoader.services['rekognition'], '2016-06-27', {
 
 module.exports = AWS.Rekognition;
 
-},{"../apis/rekognition-2016-06-27.min.json":129,"../apis/rekognition-2016-06-27.paginators.json":130,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266}],211:[function(require,module,exports){
+},{"../apis/rekognition-2016-06-27.min.json":129,"../apis/rekognition-2016-06-27.paginators.json":130,"../lib/core":227,"../lib/node_loader":224}],211:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = require('../lib/service');
-var apiLoader = require('../lib/api_loader');
+var Service = AWS.Service;
+var apiLoader = AWS.apiLoader;
 
 apiLoader.services['route53'] = {};
 AWS.Route53 = Service.defineService('route53', ['2013-04-01']);
@@ -123934,11 +124306,11 @@ Object.defineProperty(apiLoader.services['route53'], '2013-04-01', {
 
 module.exports = AWS.Route53;
 
-},{"../apis/route53-2013-04-01.min.json":131,"../apis/route53-2013-04-01.paginators.json":132,"../apis/route53-2013-04-01.waiters2.json":133,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266,"../lib/services/route53":277}],212:[function(require,module,exports){
+},{"../apis/route53-2013-04-01.min.json":131,"../apis/route53-2013-04-01.paginators.json":132,"../apis/route53-2013-04-01.waiters2.json":133,"../lib/core":227,"../lib/node_loader":224,"../lib/services/route53":277}],212:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = require('../lib/service');
-var apiLoader = require('../lib/api_loader');
+var Service = AWS.Service;
+var apiLoader = AWS.apiLoader;
 
 apiLoader.services['route53domains'] = {};
 AWS.Route53Domains = Service.defineService('route53domains', ['2014-05-15']);
@@ -123954,11 +124326,11 @@ Object.defineProperty(apiLoader.services['route53domains'], '2014-05-15', {
 
 module.exports = AWS.Route53Domains;
 
-},{"../apis/route53domains-2014-05-15.min.json":134,"../apis/route53domains-2014-05-15.paginators.json":135,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266}],213:[function(require,module,exports){
+},{"../apis/route53domains-2014-05-15.min.json":134,"../apis/route53domains-2014-05-15.paginators.json":135,"../lib/core":227,"../lib/node_loader":224}],213:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = require('../lib/service');
-var apiLoader = require('../lib/api_loader');
+var Service = AWS.Service;
+var apiLoader = AWS.apiLoader;
 
 apiLoader.services['s3'] = {};
 AWS.S3 = Service.defineService('s3', ['2006-03-01']);
@@ -123976,11 +124348,11 @@ Object.defineProperty(apiLoader.services['s3'], '2006-03-01', {
 
 module.exports = AWS.S3;
 
-},{"../apis/s3-2006-03-01.min.json":138,"../apis/s3-2006-03-01.paginators.json":139,"../apis/s3-2006-03-01.waiters2.json":140,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266,"../lib/services/s3":278}],214:[function(require,module,exports){
+},{"../apis/s3-2006-03-01.min.json":138,"../apis/s3-2006-03-01.paginators.json":139,"../apis/s3-2006-03-01.waiters2.json":140,"../lib/core":227,"../lib/node_loader":224,"../lib/services/s3":278}],214:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = require('../lib/service');
-var apiLoader = require('../lib/api_loader');
+var Service = AWS.Service;
+var apiLoader = AWS.apiLoader;
 
 apiLoader.services['servicecatalog'] = {};
 AWS.ServiceCatalog = Service.defineService('servicecatalog', ['2015-12-10']);
@@ -123996,11 +124368,11 @@ Object.defineProperty(apiLoader.services['servicecatalog'], '2015-12-10', {
 
 module.exports = AWS.ServiceCatalog;
 
-},{"../apis/servicecatalog-2015-12-10.min.json":141,"../apis/servicecatalog-2015-12-10.paginators.json":142,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266}],215:[function(require,module,exports){
+},{"../apis/servicecatalog-2015-12-10.min.json":141,"../apis/servicecatalog-2015-12-10.paginators.json":142,"../lib/core":227,"../lib/node_loader":224}],215:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = require('../lib/service');
-var apiLoader = require('../lib/api_loader');
+var Service = AWS.Service;
+var apiLoader = AWS.apiLoader;
 
 apiLoader.services['ses'] = {};
 AWS.SES = Service.defineService('ses', ['2010-12-01']);
@@ -124017,11 +124389,11 @@ Object.defineProperty(apiLoader.services['ses'], '2010-12-01', {
 
 module.exports = AWS.SES;
 
-},{"../apis/email-2010-12-01.min.json":73,"../apis/email-2010-12-01.paginators.json":74,"../apis/email-2010-12-01.waiters2.json":75,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266}],216:[function(require,module,exports){
+},{"../apis/email-2010-12-01.min.json":73,"../apis/email-2010-12-01.paginators.json":74,"../apis/email-2010-12-01.waiters2.json":75,"../lib/core":227,"../lib/node_loader":224}],216:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = require('../lib/service');
-var apiLoader = require('../lib/api_loader');
+var Service = AWS.Service;
+var apiLoader = AWS.apiLoader;
 
 apiLoader.services['sns'] = {};
 AWS.SNS = Service.defineService('sns', ['2010-03-31']);
@@ -124037,11 +124409,11 @@ Object.defineProperty(apiLoader.services['sns'], '2010-03-31', {
 
 module.exports = AWS.SNS;
 
-},{"../apis/sns-2010-03-31.min.json":143,"../apis/sns-2010-03-31.paginators.json":144,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266}],217:[function(require,module,exports){
+},{"../apis/sns-2010-03-31.min.json":143,"../apis/sns-2010-03-31.paginators.json":144,"../lib/core":227,"../lib/node_loader":224}],217:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = require('../lib/service');
-var apiLoader = require('../lib/api_loader');
+var Service = AWS.Service;
+var apiLoader = AWS.apiLoader;
 
 apiLoader.services['sqs'] = {};
 AWS.SQS = Service.defineService('sqs', ['2012-11-05']);
@@ -124058,11 +124430,11 @@ Object.defineProperty(apiLoader.services['sqs'], '2012-11-05', {
 
 module.exports = AWS.SQS;
 
-},{"../apis/sqs-2012-11-05.min.json":145,"../apis/sqs-2012-11-05.paginators.json":146,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266,"../lib/services/sqs":279}],218:[function(require,module,exports){
+},{"../apis/sqs-2012-11-05.min.json":145,"../apis/sqs-2012-11-05.paginators.json":146,"../lib/core":227,"../lib/node_loader":224,"../lib/services/sqs":279}],218:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = require('../lib/service');
-var apiLoader = require('../lib/api_loader');
+var Service = AWS.Service;
+var apiLoader = AWS.apiLoader;
 
 apiLoader.services['ssm'] = {};
 AWS.SSM = Service.defineService('ssm', ['2014-11-06']);
@@ -124078,11 +124450,11 @@ Object.defineProperty(apiLoader.services['ssm'], '2014-11-06', {
 
 module.exports = AWS.SSM;
 
-},{"../apis/ssm-2014-11-06.min.json":147,"../apis/ssm-2014-11-06.paginators.json":148,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266}],219:[function(require,module,exports){
+},{"../apis/ssm-2014-11-06.min.json":147,"../apis/ssm-2014-11-06.paginators.json":148,"../lib/core":227,"../lib/node_loader":224}],219:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = require('../lib/service');
-var apiLoader = require('../lib/api_loader');
+var Service = AWS.Service;
+var apiLoader = AWS.apiLoader;
 
 apiLoader.services['storagegateway'] = {};
 AWS.StorageGateway = Service.defineService('storagegateway', ['2013-06-30']);
@@ -124098,11 +124470,11 @@ Object.defineProperty(apiLoader.services['storagegateway'], '2013-06-30', {
 
 module.exports = AWS.StorageGateway;
 
-},{"../apis/storagegateway-2013-06-30.min.json":149,"../apis/storagegateway-2013-06-30.paginators.json":150,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266}],220:[function(require,module,exports){
+},{"../apis/storagegateway-2013-06-30.min.json":149,"../apis/storagegateway-2013-06-30.paginators.json":150,"../lib/core":227,"../lib/node_loader":224}],220:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = require('../lib/service');
-var apiLoader = require('../lib/api_loader');
+var Service = AWS.Service;
+var apiLoader = AWS.apiLoader;
 
 apiLoader.services['sts'] = {};
 AWS.STS = Service.defineService('sts', ['2011-06-15']);
@@ -124119,11 +124491,11 @@ Object.defineProperty(apiLoader.services['sts'], '2011-06-15', {
 
 module.exports = AWS.STS;
 
-},{"../apis/sts-2011-06-15.min.json":153,"../apis/sts-2011-06-15.paginators.json":154,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266,"../lib/services/sts":280}],221:[function(require,module,exports){
+},{"../apis/sts-2011-06-15.min.json":153,"../apis/sts-2011-06-15.paginators.json":154,"../lib/core":227,"../lib/node_loader":224,"../lib/services/sts":280}],221:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = require('../lib/service');
-var apiLoader = require('../lib/api_loader');
+var Service = AWS.Service;
+var apiLoader = AWS.apiLoader;
 
 apiLoader.services['waf'] = {};
 AWS.WAF = Service.defineService('waf', ['2015-08-24']);
@@ -124139,11 +124511,11 @@ Object.defineProperty(apiLoader.services['waf'], '2015-08-24', {
 
 module.exports = AWS.WAF;
 
-},{"../apis/waf-2015-08-24.min.json":155,"../apis/waf-2015-08-24.paginators.json":156,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266}],222:[function(require,module,exports){
+},{"../apis/waf-2015-08-24.min.json":155,"../apis/waf-2015-08-24.paginators.json":156,"../lib/core":227,"../lib/node_loader":224}],222:[function(require,module,exports){
 require('../lib/node_loader');
 var AWS = require('../lib/core');
-var Service = require('../lib/service');
-var apiLoader = require('../lib/api_loader');
+var Service = AWS.Service;
+var apiLoader = AWS.apiLoader;
 
 apiLoader.services['workdocs'] = {};
 AWS.WorkDocs = Service.defineService('workdocs', ['2016-05-01']);
@@ -124159,22 +124531,19 @@ Object.defineProperty(apiLoader.services['workdocs'], '2016-05-01', {
 
 module.exports = AWS.WorkDocs;
 
-},{"../apis/workdocs-2016-05-01.min.json":157,"../apis/workdocs-2016-05-01.paginators.json":158,"../lib/api_loader":223,"../lib/core":227,"../lib/node_loader":224,"../lib/service":266}],223:[function(require,module,exports){
-var AWS = require('./core');
-
-AWS.apiLoader = function(svc, version) {
-  if (!AWS.apiLoader.services.hasOwnProperty(svc)) {
+},{"../apis/workdocs-2016-05-01.min.json":157,"../apis/workdocs-2016-05-01.paginators.json":158,"../lib/core":227,"../lib/node_loader":224}],223:[function(require,module,exports){
+function apiLoader(svc, version) {
+  if (!apiLoader.services.hasOwnProperty(svc)) {
     throw new Error('InvalidService: Failed to load api for ' + svc);
   }
-  return AWS.apiLoader.services[svc][version];
-};
+  return apiLoader.services[svc][version];
+}
 
 
-AWS.apiLoader.services = {};
+apiLoader.services = {};
+module.exports = apiLoader;
 
-module.exports = AWS.apiLoader;
-
-},{"./core":227}],224:[function(require,module,exports){
+},{}],224:[function(require,module,exports){
 (function (process){
 var util = require('./util');
 
@@ -124185,8 +124554,14 @@ util.querystring = require('querystring/');
 util.environment = 'js';
 
 var AWS = require('./core');
+module.exports = AWS;
 
-require('./api_loader');
+require('./credentials');
+require('./credentials/credential_provider_chain');
+require('./credentials/temporary_credentials');
+require('./credentials/web_identity_credentials');
+require('./credentials/cognito_identity_credentials');
+require('./credentials/saml_credentials');
 
 AWS.XML.Parser = require('./xml/browser_parser');
 
@@ -124198,7 +124573,7 @@ if (typeof process === 'undefined') {
   };
 }
 }).call(this,require('_process'))
-},{"./api_loader":223,"./core":227,"./http/xhr":241,"./util":290,"./xml/browser_parser":291,"_process":446,"buffer/":295,"crypto-browserify":297,"querystring/":453,"url/":454}],225:[function(require,module,exports){
+},{"./core":227,"./credentials":228,"./credentials/cognito_identity_credentials":229,"./credentials/credential_provider_chain":230,"./credentials/saml_credentials":231,"./credentials/temporary_credentials":232,"./credentials/web_identity_credentials":233,"./http/xhr":241,"./util":290,"./xml/browser_parser":291,"_process":446,"buffer/":295,"crypto-browserify":297,"querystring/":453,"url/":454}],225:[function(require,module,exports){
 var AWS = require('../core'),
     url = AWS.util.url,
     crypto = AWS.util.crypto.lib,
@@ -124562,7 +124937,7 @@ module.exports = AWS;
 AWS.util.update(AWS, {
 
 
-  VERSION: '2.82.0',
+  VERSION: '2.87.0',
 
 
   Signers: {},
@@ -124597,21 +124972,12 @@ AWS.util.update(AWS, {
     ResourceWaiter: require('./model/resource_waiter')
   },
 
-  util: require('./util'),
 
-
-  apiLoader: function() { throw new Error('No API loader set'); }
+  apiLoader: require('./api_loader')
 });
 
 require('./service');
 require('./config');
-
-require('./credentials');
-require('./credentials/credential_provider_chain');
-require('./credentials/temporary_credentials');
-require('./credentials/web_identity_credentials');
-require('./credentials/cognito_identity_credentials');
-require('./credentials/saml_credentials');
 
 require('./http');
 require('./sequential_executor');
@@ -124625,7 +124991,7 @@ require('./param_validator');
 
 AWS.events = new AWS.SequentialExecutor();
 
-},{"./config":226,"./credentials":228,"./credentials/cognito_identity_credentials":229,"./credentials/credential_provider_chain":230,"./credentials/saml_credentials":231,"./credentials/temporary_credentials":232,"./credentials/web_identity_credentials":233,"./event_listeners":239,"./http":240,"./json/builder":242,"./json/parser":243,"./model/api":244,"./model/operation":246,"./model/paginator":247,"./model/resource_waiter":248,"./model/shape":249,"./param_validator":250,"./protocol/json":252,"./protocol/query":253,"./protocol/rest":254,"./protocol/rest_json":255,"./protocol/rest_xml":256,"./request":261,"./resource_waiter":262,"./response":263,"./sequential_executor":265,"./service":266,"./signers/request_signer":282,"./util":290,"./xml/builder":292}],228:[function(require,module,exports){
+},{"./api_loader":223,"./config":226,"./event_listeners":239,"./http":240,"./json/builder":242,"./json/parser":243,"./model/api":244,"./model/operation":246,"./model/paginator":247,"./model/resource_waiter":248,"./model/shape":249,"./param_validator":250,"./protocol/json":252,"./protocol/query":253,"./protocol/rest":254,"./protocol/rest_json":255,"./protocol/rest_xml":256,"./request":261,"./resource_waiter":262,"./response":263,"./sequential_executor":265,"./service":266,"./signers/request_signer":282,"./util":290,"./xml/builder":292}],228:[function(require,module,exports){
 var AWS = require('./core');
 
 
@@ -125906,12 +126272,16 @@ AWS.EventListeners = {
       }
 
       function error(err) {
-        resp.error = AWS.util.error(err, {
-          code: 'NetworkingError',
-          region: resp.request.httpRequest.region,
-          hostname: resp.request.httpRequest.endpoint.hostname,
-          retryable: true
-        });
+        if (err.code !== 'RequestAbortedError') {
+          var errCode = err.code === 'TimeoutError' ? err.code : 'NetworkingError';
+          err = AWS.util.error(err, {
+            code: errCode,
+            region: resp.request.httpRequest.region,
+            hostname: resp.request.httpRequest.endpoint.hostname,
+            retryable: true
+          });
+        }
+        resp.error = err;
         resp.request.emit('httpError', [resp.error, resp], function() {
           done();
         });
@@ -127316,7 +127686,7 @@ AWS.ParamValidator = AWS.util.inherit({
 
 },{"./core":227}],251:[function(require,module,exports){
 var AWS = require('../core');
-var rest = require('../protocol/rest');
+var rest = AWS.Protocol.Rest;
 
 
 AWS.Polly.Presigner = AWS.util.inherit({
@@ -127386,7 +127756,7 @@ AWS.Polly.Presigner = AWS.util.inherit({
     }
 });
 
-},{"../core":227,"../protocol/rest":254}],252:[function(require,module,exports){
+},{"../core":227}],252:[function(require,module,exports){
 var util = require('../util');
 var JsonBuilder = require('../json/builder');
 var JsonParser = require('../json/parser');
@@ -129763,6 +130133,7 @@ AWS.Service = inherit({
 
 
   retryableError: function retryableError(error) {
+    if (this.timeoutError(error)) return true;
     if (this.networkingError(error)) return true;
     if (this.expiredCredentialsError(error)) return true;
     if (this.throttledError(error)) return true;
@@ -129773,6 +130144,11 @@ AWS.Service = inherit({
 
   networkingError: function networkingError(error) {
     return error.code === 'NetworkingError';
+  },
+
+
+  timeoutError: function timeoutError(error) {
+    return error.code === 'TimeoutError';
   },
 
 
@@ -143862,7 +144238,7 @@ exports = module.exports = __webpack_require__(1)();
 
 
 // module
-exports.push([module.i, ".custom-btn {\r\n    width: 90px !important;\r\n}\r\n", ""]);
+exports.push([module.i, ".custom-btn {\r\n    width: 90px !important;\r\n}\r\n\r\n.bg-color {\r\n    background-color: #aab08b\r\n}", ""]);
 
 // exports
 
@@ -143876,7 +144252,7 @@ exports = module.exports = __webpack_require__(1)();
 
 
 // module
-exports.push([module.i, ".castome-paging {\r\n    padding-top: 20px;\r\n}\r\n", ""]);
+exports.push([module.i, ".castome-paging {\r\n    padding-top: 20px;\r\n}\r\n\r\n.bg-color {\r\n    background-color: #aab08b\r\n}\r\n", ""]);
 
 // exports
 
@@ -143890,7 +144266,7 @@ exports = module.exports = __webpack_require__(1)();
 
 
 // module
-exports.push([module.i, ".castome-paging {\r\n    padding-top: 20px;\r\n}\r\n", ""]);
+exports.push([module.i, ".castome-paging {\r\n    padding-top: 20px;\r\n}\r\n\r\n.bg-color {\r\n    background-color: #aab08b\r\n}", ""]);
 
 // exports
 
@@ -144529,25 +144905,25 @@ module.exports = "<h1>Here will be complaints</h1>";
 /* 262 */
 /***/ (function(module, exports) {
 
-module.exports = "<p *ngIf=\"!arrayToDisplay\"><em>Loading...</em></p>\r\n\r\n<table class='table' *ngIf=\"arrayToDisplay\">\r\n    <thead>\r\n        <tr>\r\n            <th *ngFor=\"let header of headers\">\r\n                {{header}}\r\n            </th>\r\n        </tr>\r\n    </thead>\r\n    <tbody>\r\n        <tr *ngFor=\"let item of arrayToDisplay\">\r\n            <td class=\"text-left\">{{item.title}}</td>\r\n            <td>\r\n                <button class=\"btn custom-btn\" \r\n                        [class.btn-danger]=\"!item.isBanned\"\r\n                        [class.btn-success]=\"item.isBanned\"\r\n                        (click)=\"onActionClick(item)\">\r\n                    <div *ngIf=\"!item.isBanned\">Забанити</div>\r\n                    <div *ngIf=\"item.isBanned\">Відбанити</div>\r\n                </button>\r\n            </td>\r\n        </tr>\r\n    </tbody>\r\n</table>\r\n<app-modal>  \r\n    <div class=\"app-modal-header\">\r\n        <button type=\"button\" class=\"close\" aria-hidden=\"true\" (click)=\"closeModal()\">&times;</button>\r\n        <h4 class=\"modal-title\">Причина Бану : </h4>\r\n    </div>\r\n    <div class=\"app-modal-body\">\r\n        <textarea class=\"form-control\" #description=\"ngModel\"\r\n                  (blur)=\"customeFieldTouched=true\" \r\n                  required\r\n                  [disabled]=\"selectedItemStatus=='Відбанити'\"\r\n                  [(ngModel)]=\"selectedItemBanDescription\">                   \r\n        </textarea>\r\n        <div class=\"text-danger\" *ngIf=\"description.invalid && customeFieldTouched\">\r\n            Повинна бути причина бану!\r\n        </div>\r\n    </div>\r\n    <div class=\"app-modal-footer\">\r\n        <button type=\"button\" class=\"btn btn-default\" (click)=\"closeModal()\">Закрити</button>\r\n        <button (click)=\"statusChange(selectedItemBanDescription)\"\r\n                class=\"btn btn-primary\"\r\n                data-dismiss=\"modal\"\r\n                [disabled]=\"description.invalid\">\r\n            {{selectedItemStatus}}\r\n        </button>\r\n    </div>     \r\n</app-modal>\r\n";
+module.exports = "<p *ngIf=\"!arrayToDisplay\"><em>Loading...</em></p>\r\n\r\n<table class='table table-bordered' *ngIf=\"arrayToDisplay\">\r\n    <thead>\r\n        <tr>\r\n            <th *ngFor=\"let header of headers\">\r\n                {{header}}\r\n            </th>\r\n        </tr>\r\n    </thead>\r\n    <tbody>\r\n        <tr *ngFor=\"let item of arrayToDisplay\">\r\n            <td class=\"text-left\">{{item.title}}</td>\r\n            <td>\r\n                <button class=\"btn custom-btn\" \r\n                        [class.btn-danger]=\"!item.isBanned\"\r\n                        [class.btn-success]=\"item.isBanned\"\r\n                        (click)=\"onActionClick(item)\">\r\n                    <div *ngIf=\"!item.isBanned\">Забанити</div>\r\n                    <div *ngIf=\"item.isBanned\">Відбанити</div>\r\n                </button>\r\n            </td>\r\n        </tr>\r\n    </tbody>\r\n</table>\r\n<app-modal>  \r\n    <div class=\"app-modal-header\">\r\n        <button type=\"button\" class=\"close\" aria-hidden=\"true\" (click)=\"closeModal()\">&times;</button>\r\n        <h4 class=\"modal-title\">Причина Бану : </h4>\r\n    </div>\r\n    <div class=\"app-modal-body\">\r\n        <textarea class=\"form-control\" #description=\"ngModel\"\r\n                  (blur)=\"customeFieldTouched=true\" \r\n                  required\r\n                  [disabled]=\"selectedItemStatus=='Відбанити'\"\r\n                  [(ngModel)]=\"selectedItemBanDescription\">                   \r\n        </textarea>\r\n        <div class=\"text-danger\" *ngIf=\"description.invalid && customeFieldTouched\">\r\n            Повинна бути причина бану!\r\n        </div>\r\n    </div>\r\n    <div class=\"app-modal-footer\">\r\n        <button type=\"button\" class=\"btn btn-default\" (click)=\"closeModal()\">Закрити</button>\r\n        <button (click)=\"statusChange(selectedItemBanDescription)\"\r\n                class=\"btn btn-primary\"\r\n                data-dismiss=\"modal\"\r\n                [disabled]=\"description.invalid\">\r\n            {{selectedItemStatus}}\r\n        </button>\r\n    </div>     \r\n</app-modal>\r\n";
 
 /***/ }),
 /* 263 */
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngIf=\"organizations\">\r\n    <super-admin-grid [arrayToDisplay]=\"organizations\" \r\n                      [headers]=\"['Назва Організації', 'Дія']\"\r\n                      (banStatusChange)=\"changeOrganizationBanStatus($event)\">\r\n\r\n    </super-admin-grid>\r\n</div>\r\n<div class=\"container-fluid\">\r\n    <div class=\"row\">\r\n        <div class=\"col-sm-2 castome-paging\">\r\n            На Сторінці :\r\n        </div>\r\n        <div class=\"text-left col-sm-2 castome-paging\">\r\n            <select-item [items]=\"[4, 5, 6, 7, 8, 9, 10]\"\r\n                         (onSelect)=\"itemsPerPageChange($event)\">\r\n            </select-item>\r\n        </div>\r\n        <div class=\"text-center\" *ngIf=\"totalItems && itemPerPage\">\r\n            <pagination-pages [offset]=\"offset\"\r\n                              [limit]=\"itemPerPage\"\r\n                              [size]=\"totalItems\"\r\n                              [currentPage]=\"currentPage\"\r\n                              (pageChange)=\"onPageChange($event)\">\r\n            </pagination-pages>\r\n        </div>  \r\n    </div>\r\n</div>";
+module.exports = "<div class=\"bg-color\">\r\n    <div *ngIf=\"organizations\">\r\n        <super-admin-grid [arrayToDisplay]=\"organizations\" \r\n                          [headers]=\"['Назва Організації', 'Дія']\"\r\n                          (banStatusChange)=\"changeOrganizationBanStatus($event)\">\r\n\r\n        </super-admin-grid>\r\n    </div>\r\n    <div class=\"container-fluid\">\r\n        <div class=\"row\">\r\n            <div class=\"col-sm-2 castome-paging\">\r\n                На Сторінці :\r\n            </div>\r\n            <div class=\"text-left col-sm-2 castome-paging\">\r\n                <select-item [items]=\"[4, 5, 6, 7, 8, 9, 10]\"\r\n                             (onSelect)=\"itemsPerPageChange($event)\">\r\n                </select-item>\r\n            </div>\r\n            <div class=\"text-center\" *ngIf=\"totalItems && itemPerPage\">\r\n                <pagination-pages [offset]=\"offset\"\r\n                                  [limit]=\"itemPerPage\"\r\n                                  [size]=\"totalItems\"\r\n                                  [currentPage]=\"currentPage\"\r\n                                  (pageChange)=\"onPageChange($event)\">\r\n                </pagination-pages>\r\n            </div>  \r\n        </div>\r\n    </div>\r\n</div>";
 
 /***/ }),
 /* 264 */
 /***/ (function(module, exports) {
 
-module.exports = "<!--<spinner [showSpinner]=\"showUsersSpinner\"></spinner>-->\r\n<div *ngIf=\"users\">\r\n    <super-admin-grid [arrayToDisplay]=\"users\"\r\n                      [headers]=\"['Логін Користувача', 'Дія']\"\r\n                      (banStatusChange)=\"changeUserBanStatus($event)\">\r\n    </super-admin-grid>\r\n</div>\r\n<div class=\"container-fluid\">\r\n    <div class=\"row\">\r\n        <div class=\"col-sm-2 castome-paging\">\r\n            На Сторінці :\r\n        </div>\r\n        <div class=\"text-left col-sm-2 castome-paging\">\r\n            <select-item [items]=\"[4, 5, 6, 7, 8, 9, 10]\"\r\n                         (onSelect)=\"itemsPerPageChange($event)\">\r\n            </select-item>\r\n        </div>\r\n        <div *ngIf=\"totalItems && itemPerPage\" class=\"text-center\">\r\n            <pagination-pages [offset]=\"offset\"\r\n                              [limit]=\"itemPerPage\"\r\n                              [size]=\"totalItems\"\r\n                              [currentPage]=\"currentPage\"\r\n                              (pageChange)=\"onPageChange($event)\">\r\n            </pagination-pages>\r\n        </div>\r\n    </div>\r\n</div>";
+module.exports = "<!--<spinner [showSpinner]=\"showUsersSpinner\"></spinner>-->\r\n<div class=\"bg-color\">\r\n    <div *ngIf=\"users\">\r\n        <super-admin-grid [arrayToDisplay]=\"users\"\r\n                          [headers]=\"['Логін Користувача', 'Дія']\"\r\n                          (banStatusChange)=\"changeUserBanStatus($event)\">\r\n        </super-admin-grid>\r\n    </div>\r\n    <div class=\"container-fluid\">\r\n        <div class=\"row\">\r\n            <div class=\"col-sm-2 castome-paging\">\r\n                На Сторінці :\r\n            </div>\r\n            <div class=\"text-left col-sm-2 castome-paging\">\r\n                <select-item [items]=\"[4, 5, 6, 7, 8, 9, 10]\"\r\n                             (onSelect)=\"itemsPerPageChange($event)\">\r\n                </select-item>\r\n            </div>\r\n            <div *ngIf=\"totalItems && itemPerPage\" class=\"text-center\">\r\n                <pagination-pages [offset]=\"offset\"\r\n                                  [limit]=\"itemPerPage\"\r\n                                  [size]=\"totalItems\"\r\n                                  [currentPage]=\"currentPage\"\r\n                                  (pageChange)=\"onPageChange($event)\">\r\n                </pagination-pages>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>";
 
 /***/ }),
 /* 265 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">    \r\n    <div class=\"side-menu\">\r\n        <nav class=\"navbar navbar-default\" role=\"navigation\">           \r\n            <div class=\"side-menu-container\">\r\n                <ul class=\"nav navbar-nav\">\r\n                    <li [routerLinkActive]=\"['link-active']\">\r\n                        <a [routerLink]=\"['/superadmin']\">\r\n                            <span class=\"glyphicon glyphicon-user\"></span>\r\n                                Super Admin\r\n                        </a>\r\n                    </li>\r\n                    <li [routerLinkActive]=\"['link-active']\">\r\n                        <a [routerLink]=\"['complaints']\">\r\n                            <span class=\"glyphicon glyphicon-envelope\"></span> \r\n                            Скарги\r\n                        </a>\r\n                    </li>\r\n                    <li [routerLinkActive]=\"['link-active']\">\r\n                        <a [routerLink] =\"['register-organization']\">\r\n                            <span class=\"glyphicon glyphicon-plus\"></span> \r\n                            Додати Організацію\r\n                        </a>\r\n                    </li>\r\n                    <li [routerLinkActive]=\"['link-active']\">\r\n                        <a [routerLink]=\"['organizations']\">\r\n                            <span class=\"glyphicon glyphicon-th-list\"></span> \r\n                            Організації\r\n                        </a>\r\n                    </li>                 \r\n                    <li [routerLinkActive]=\"['link-active']\">\r\n                        <a [routerLink]=\"['users']\"><span class=\"glyphicon glyphicon-th-list\"></span> \r\n                            Користувачі\r\n                        </a>\r\n                    </li>\r\n                </ul>\r\n            </div>\r\n        </nav> \r\n    </div>\r\n    <div class=\"side-body\">      \r\n        <router-outlet></router-outlet>\r\n    </div>\r\n</div>\r\n";
+module.exports = "<div class=\"row\">       \r\n    <div>      \r\n        <router-outlet></router-outlet>\r\n    </div>\r\n</div>\r\n";
 
 /***/ }),
 /* 266 */
@@ -144625,7 +145001,7 @@ module.exports = "<div class=\"form-group\">\r\n    <select class=\"form-control
 /* 278 */
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"wrapper\" [class.toggled]=\"!sideBarIsClosed\">\r\n    <div class=\"overlay\"></div>\r\n    <nav class=\"navbar navbar-inverse navbar-fixed-top\" id=\"sidebar-wrapper\" role=\"navigation\">\r\n        <ul class=\"nav sidebar-nav\">\r\n            <li class=\"sidebar-brand\">Привіт!</li>\r\n            <li><a href=\"#\">Головна</a></li>\r\n            <li *ngIf=\"this.user && this.user.role=='admin'\" class=\"dropdown\">\r\n                <a class=\"dropdown-toggle\" data-toggle=\"dropdown\">Події <span class=\"caret\"></span></a>\r\n                <ul class=\"dropdown-menu\" role=\"menu\">\r\n                    <li class=\"dropdown-header\">Події</li>\r\n                    <li><a (click)=\"redirectToAllEvents(1)\">Всі Події</a></li>\r\n                    <li><a (click)=\"redirectToAddEventPage(1)\">Створити</a></li>\r\n                </ul>\r\n            </li>\r\n            <li><a (click)=\"redirectToShowAllRequests()\">Список потреб</a></li>\r\n            <li *ngIf=\"this.user && this.user.role=='admin'\" class=\"dropdown\">\r\n                <a class=\"dropdown-toggle\" data-toggle=\"dropdown\">Потреби <span class=\"caret\"></span></a>\r\n                <ul class=\"dropdown-menu\" role=\"menu\">\r\n                    <li class=\"dropdown-header\">Потреби</li>\r\n                    <li><a (click)=\"redirectToAllRequests(1)\">Всі Потреби</a></li>\r\n                    <li><a (click)=\"redirectToManageRequestPage(1)\">Створити</a></li>\r\n                    <li>\r\n                        <a (click)=\"redirectToAllResponsesPage()\">\r\n                            Відгуки\r\n                            <span class=\"alert\">\r\n                                <strong>+{{newUserResponse}}</strong>\r\n                            </span>\r\n                        </a>\r\n                    </li>\r\n                </ul>\r\n            </li>\r\n            <li *ngIf=\"this.user && this.user.role!=null\" class=\"dropdown\">\r\n                <a class=\"dropdown-toggle\" data-toggle=\"dropdown\">Запропонувати речі <span class=\"caret\"></span></a>\r\n                <ul class=\"dropdown-menu\" role=\"menu\">\r\n                    <li class=\"dropdown-header\">Мої речі</li>\r\n                    <li [routerLinkActive]=\"['link-active']\"><a [routerLink]=\"['offer-management/mylist']\">Мої пропозиції</a></li>\r\n                    <li [routerLinkActive]=\"['link-active']\"><a [routerLink]=\"['offer-management/add']\">Запропонувати річ</a></li>\r\n                </ul>\r\n            </li>\r\n            <li><a href=\"#\">Звіти</a></li>\r\n            <li><a href=\"#\">Налаштування</a></li>\r\n        </ul>\r\n    </nav>\r\n    <button *ngIf=\"!sideBarIsClosed\" type=\"button\" class=\"hamburger is-open\" (click)=\"showSideBar()\" data-toggle=\"offcanvas\">\r\n        <span class=\"hamb-top\"></span>\r\n        <span class=\"hamb-middle\"></span>\r\n        <span class=\"hamb-bottom\"></span>\r\n    </button>\r\n    <button *ngIf=\"sideBarIsClosed\" type=\"button\" class=\"hamburger is-closed\" (click)=\"showSideBar()\" data-toggle=\"offcanvas\">\r\n        <span class=\"hamb-top\"></span>\r\n        <span class=\"hamb-middle\"></span>\r\n        <span class=\"hamb-bottom\"></span>\r\n    </button>\r\n</div>\r\n";
+module.exports = "<div id=\"wrapper\" [class.toggled]=\"!sideBarIsClosed\">\r\n    <div class=\"overlay\"></div>\r\n    <nav class=\"navbar navbar-inverse navbar-fixed-top\" id=\"sidebar-wrapper\" role=\"navigation\">\r\n        <ul class=\"nav sidebar-nav\">\r\n            <li class=\"sidebar-brand\">Привіт!</li>\r\n            <li><a href=\"#\">Головна</a></li>\r\n            <li *ngIf=\"this.user && this.user.role=='admin'\" class=\"dropdown\">\r\n                <a class=\"dropdown-toggle\" data-toggle=\"dropdown\">Події <span class=\"caret\"></span></a>\r\n                <ul class=\"dropdown-menu\" role=\"menu\">\r\n                    <li class=\"dropdown-header\">Події</li>\r\n                    <li><a (click)=\"redirectToAllEvents(1)\">Всі Події</a></li>\r\n                    <li><a (click)=\"redirectToAddEventPage(1)\">Створити</a></li>\r\n                </ul>\r\n            </li>\r\n            <li><a (click)=\"redirectToShowAllRequests()\">Список потреб</a></li>\r\n            <li *ngIf=\"this.user && this.user.role=='admin'\" class=\"dropdown\">\r\n                <a class=\"dropdown-toggle\" data-toggle=\"dropdown\">Потреби <span class=\"caret\"></span></a>\r\n                <ul class=\"dropdown-menu\" role=\"menu\">\r\n                    <li class=\"dropdown-header\">Потреби</li>\r\n                    <li><a (click)=\"redirectToAllRequests(1)\">Всі Потреби</a></li>\r\n                    <li><a (click)=\"redirectToManageRequestPage(1)\">Створити</a></li>\r\n                    <li>\r\n                        <a (click)=\"redirectToAllResponsesPage()\">\r\n                            Відгуки\r\n                            <span class=\"alert\">\r\n                                <strong>+{{newUserResponse}}</strong>\r\n                            </span>\r\n                        </a>\r\n                    </li>\r\n                </ul>\r\n            </li>\r\n            <li *ngIf=\"this.user && this.user.role!=null\" class=\"dropdown\">\r\n                <a class=\"dropdown-toggle\" data-toggle=\"dropdown\">Запропонувати речі <span class=\"caret\"></span></a>\r\n                <ul class=\"dropdown-menu\" role=\"menu\">\r\n                    <li class=\"dropdown-header\">Мої речі</li>\r\n                    <li [routerLinkActive]=\"['link-active']\"><a [routerLink]=\"['offer-management/mylist']\">Мої пропозиції</a></li>\r\n                    <li [routerLinkActive]=\"['link-active']\"><a [routerLink]=\"['offer-management/add']\">Запропонувати річ</a></li>\r\n                </ul>\r\n            </li>\r\n            <li *ngIf=\"this.user && this.user.role=='superadmin'\">\r\n                <a (click)=\"redirectToPage('superadmin/complaints')\">Скарги</a>\r\n            </li>\r\n            <li *ngIf=\"this.user && this.user.role=='superadmin'\">\r\n                <a (click)=\"redirectToPage('superadmin/register-organization')\">Додати Організацію</a>\r\n            </li>\r\n            <li *ngIf=\"this.user && this.user.role=='superadmin'\">\r\n                <a (click)=\"redirectToPage('superadmin/users')\">Користувачі</a>\r\n            </li>\r\n            <li *ngIf=\"this.user && this.user.role=='superadmin'\">\r\n                <a (click)=\"redirectToPage('superadmin/organizations')\">Організації</a>\r\n            </li>\r\n            <li><a href=\"#\">Звіти</a></li>\r\n            <li><a href=\"#\">Налаштування</a></li>\r\n        </ul>\r\n    </nav>\r\n    <button *ngIf=\"!sideBarIsClosed\" type=\"button\" class=\"hamburger is-open\" (click)=\"showSideBar()\" data-toggle=\"offcanvas\">\r\n        <span class=\"hamb-top\"></span>\r\n        <span class=\"hamb-middle\"></span>\r\n        <span class=\"hamb-bottom\"></span>\r\n    </button>\r\n    <button *ngIf=\"sideBarIsClosed\" type=\"button\" class=\"hamburger is-closed\" (click)=\"showSideBar()\" data-toggle=\"offcanvas\">\r\n        <span class=\"hamb-top\"></span>\r\n        <span class=\"hamb-middle\"></span>\r\n        <span class=\"hamb-bottom\"></span>\r\n    </button>\r\n</div>\r\n";
 
 /***/ }),
 /* 279 */
@@ -144641,237 +145017,6 @@ module.exports = "<!-- Single button -->\r\n<div *ngIf=\"name\" class=\"btn-grou
 
 /***/ }),
 /* 281 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* WEBPACK VAR INJECTION */(function(process) {// Copyright Joyent, Inc. and other Node contributors.
-//
-// Permission is hereby granted, free of charge, to any person obtaining a
-// copy of this software and associated documentation files (the
-// "Software"), to deal in the Software without restriction, including
-// without limitation the rights to use, copy, modify, merge, publish,
-// distribute, sublicense, and/or sell copies of the Software, and to permit
-// persons to whom the Software is furnished to do so, subject to the
-// following conditions:
-//
-// The above copyright notice and this permission notice shall be included
-// in all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
-// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
-// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
-// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
-// OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
-// USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-// resolves . and .. elements in a path array with directory names there
-// must be no slashes, empty elements, or device names (c:\) in the array
-// (so also no leading and trailing slashes - it does not distinguish
-// relative and absolute paths)
-function normalizeArray(parts, allowAboveRoot) {
-  // if the path tries to go above the root, `up` ends up > 0
-  var up = 0;
-  for (var i = parts.length - 1; i >= 0; i--) {
-    var last = parts[i];
-    if (last === '.') {
-      parts.splice(i, 1);
-    } else if (last === '..') {
-      parts.splice(i, 1);
-      up++;
-    } else if (up) {
-      parts.splice(i, 1);
-      up--;
-    }
-  }
-
-  // if the path is allowed to go above the root, restore leading ..s
-  if (allowAboveRoot) {
-    for (; up--; up) {
-      parts.unshift('..');
-    }
-  }
-
-  return parts;
-}
-
-// Split a filename into [root, dir, basename, ext], unix version
-// 'root' is just a slash, or nothing.
-var splitPathRe =
-    /^(\/?|)([\s\S]*?)((?:\.{1,2}|[^\/]+?|)(\.[^.\/]*|))(?:[\/]*)$/;
-var splitPath = function(filename) {
-  return splitPathRe.exec(filename).slice(1);
-};
-
-// path.resolve([from ...], to)
-// posix version
-exports.resolve = function() {
-  var resolvedPath = '',
-      resolvedAbsolute = false;
-
-  for (var i = arguments.length - 1; i >= -1 && !resolvedAbsolute; i--) {
-    var path = (i >= 0) ? arguments[i] : process.cwd();
-
-    // Skip empty and invalid entries
-    if (typeof path !== 'string') {
-      throw new TypeError('Arguments to path.resolve must be strings');
-    } else if (!path) {
-      continue;
-    }
-
-    resolvedPath = path + '/' + resolvedPath;
-    resolvedAbsolute = path.charAt(0) === '/';
-  }
-
-  // At this point the path should be resolved to a full absolute path, but
-  // handle relative paths to be safe (might happen when process.cwd() fails)
-
-  // Normalize the path
-  resolvedPath = normalizeArray(filter(resolvedPath.split('/'), function(p) {
-    return !!p;
-  }), !resolvedAbsolute).join('/');
-
-  return ((resolvedAbsolute ? '/' : '') + resolvedPath) || '.';
-};
-
-// path.normalize(path)
-// posix version
-exports.normalize = function(path) {
-  var isAbsolute = exports.isAbsolute(path),
-      trailingSlash = substr(path, -1) === '/';
-
-  // Normalize the path
-  path = normalizeArray(filter(path.split('/'), function(p) {
-    return !!p;
-  }), !isAbsolute).join('/');
-
-  if (!path && !isAbsolute) {
-    path = '.';
-  }
-  if (path && trailingSlash) {
-    path += '/';
-  }
-
-  return (isAbsolute ? '/' : '') + path;
-};
-
-// posix version
-exports.isAbsolute = function(path) {
-  return path.charAt(0) === '/';
-};
-
-// posix version
-exports.join = function() {
-  var paths = Array.prototype.slice.call(arguments, 0);
-  return exports.normalize(filter(paths, function(p, index) {
-    if (typeof p !== 'string') {
-      throw new TypeError('Arguments to path.join must be strings');
-    }
-    return p;
-  }).join('/'));
-};
-
-
-// path.relative(from, to)
-// posix version
-exports.relative = function(from, to) {
-  from = exports.resolve(from).substr(1);
-  to = exports.resolve(to).substr(1);
-
-  function trim(arr) {
-    var start = 0;
-    for (; start < arr.length; start++) {
-      if (arr[start] !== '') break;
-    }
-
-    var end = arr.length - 1;
-    for (; end >= 0; end--) {
-      if (arr[end] !== '') break;
-    }
-
-    if (start > end) return [];
-    return arr.slice(start, end - start + 1);
-  }
-
-  var fromParts = trim(from.split('/'));
-  var toParts = trim(to.split('/'));
-
-  var length = Math.min(fromParts.length, toParts.length);
-  var samePartsLength = length;
-  for (var i = 0; i < length; i++) {
-    if (fromParts[i] !== toParts[i]) {
-      samePartsLength = i;
-      break;
-    }
-  }
-
-  var outputParts = [];
-  for (var i = samePartsLength; i < fromParts.length; i++) {
-    outputParts.push('..');
-  }
-
-  outputParts = outputParts.concat(toParts.slice(samePartsLength));
-
-  return outputParts.join('/');
-};
-
-exports.sep = '/';
-exports.delimiter = ':';
-
-exports.dirname = function(path) {
-  var result = splitPath(path),
-      root = result[0],
-      dir = result[1];
-
-  if (!root && !dir) {
-    // No dirname whatsoever
-    return '.';
-  }
-
-  if (dir) {
-    // It has a dirname, strip trailing slash
-    dir = dir.substr(0, dir.length - 1);
-  }
-
-  return root + dir;
-};
-
-
-exports.basename = function(path, ext) {
-  var f = splitPath(path)[2];
-  // TODO: make this comparison case-insensitive on windows?
-  if (ext && f.substr(-1 * ext.length) === ext) {
-    f = f.substr(0, f.length - ext.length);
-  }
-  return f;
-};
-
-
-exports.extname = function(path) {
-  return splitPath(path)[3];
-};
-
-function filter (xs, f) {
-    if (xs.filter) return xs.filter(f);
-    var res = [];
-    for (var i = 0; i < xs.length; i++) {
-        if (f(xs[i], i, xs)) res.push(xs[i]);
-    }
-    return res;
-}
-
-// String.prototype.substr - negative index don't work in IE8
-var substr = 'ab'.substr(-1) === 'b'
-    ? function (str, start, len) { return str.substr(start, len) }
-    : function (str, start, len) {
-        if (start < 0) start = str.length + start;
-        return str.substr(start, len);
-    }
-;
-
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(336)))
-
-/***/ }),
-/* 282 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -144962,7 +145107,7 @@ var isArray = Array.isArray || function (xs) {
 
 
 /***/ }),
-/* 283 */
+/* 282 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -145054,15 +145199,26 @@ var objectKeys = Object.keys || function (obj) {
 
 
 /***/ }),
-/* 284 */
+/* 283 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-exports.decode = exports.parse = __webpack_require__(282);
-exports.encode = exports.stringify = __webpack_require__(283);
+exports.decode = exports.parse = __webpack_require__(281);
+exports.encode = exports.stringify = __webpack_require__(282);
 
+
+/***/ }),
+/* 284 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var Observable_1 = __webpack_require__(3);
+var range_1 = __webpack_require__(289);
+Observable_1.Observable.range = range_1.range;
+//# sourceMappingURL=range.js.map
 
 /***/ }),
 /* 285 */
@@ -145071,9 +145227,9 @@ exports.encode = exports.stringify = __webpack_require__(283);
 "use strict";
 
 var Observable_1 = __webpack_require__(3);
-var range_1 = __webpack_require__(290);
-Observable_1.Observable.range = range_1.range;
-//# sourceMappingURL=range.js.map
+var filter_1 = __webpack_require__(341);
+Observable_1.Observable.prototype.filter = filter_1.filter;
+//# sourceMappingURL=filter.js.map
 
 /***/ }),
 /* 286 */
@@ -145082,9 +145238,9 @@ Observable_1.Observable.range = range_1.range;
 "use strict";
 
 var Observable_1 = __webpack_require__(3);
-var filter_1 = __webpack_require__(343);
-Observable_1.Observable.prototype.filter = filter_1.filter;
-//# sourceMappingURL=filter.js.map
+var switchMap_1 = __webpack_require__(291);
+Observable_1.Observable.prototype.switchMap = switchMap_1.switchMap;
+//# sourceMappingURL=switchMap.js.map
 
 /***/ }),
 /* 287 */
@@ -145093,23 +145249,12 @@ Observable_1.Observable.prototype.filter = filter_1.filter;
 "use strict";
 
 var Observable_1 = __webpack_require__(3);
-var switchMap_1 = __webpack_require__(292);
-Observable_1.Observable.prototype.switchMap = switchMap_1.switchMap;
-//# sourceMappingURL=switchMap.js.map
-
-/***/ }),
-/* 288 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var Observable_1 = __webpack_require__(3);
-var toArray_1 = __webpack_require__(293);
+var toArray_1 = __webpack_require__(292);
 Observable_1.Observable.prototype.toArray = toArray_1.toArray;
 //# sourceMappingURL=toArray.js.map
 
 /***/ }),
-/* 289 */
+/* 288 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -145211,17 +145356,17 @@ exports.RangeObservable = RangeObservable;
 //# sourceMappingURL=RangeObservable.js.map
 
 /***/ }),
-/* 290 */
+/* 289 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var RangeObservable_1 = __webpack_require__(289);
+var RangeObservable_1 = __webpack_require__(288);
 exports.range = RangeObservable_1.RangeObservable.create;
 //# sourceMappingURL=range.js.map
 
 /***/ }),
-/* 291 */
+/* 290 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -145340,7 +145485,7 @@ var DoSubscriber = (function (_super) {
 //# sourceMappingURL=do.js.map
 
 /***/ }),
-/* 292 */
+/* 291 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -145350,8 +145495,8 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var OuterSubscriber_1 = __webpack_require__(334);
-var subscribeToResult_1 = __webpack_require__(335);
+var OuterSubscriber_1 = __webpack_require__(333);
+var subscribeToResult_1 = __webpack_require__(334);
 /* tslint:enable:max-line-length */
 /**
  * Projects each source value to an Observable which is merged in the output
@@ -145486,7 +145631,7 @@ var SwitchMapSubscriber = (function (_super) {
 //# sourceMappingURL=switchMap.js.map
 
 /***/ }),
-/* 293 */
+/* 292 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -145537,12 +145682,12 @@ var ToArraySubscriber = (function (_super) {
 //# sourceMappingURL=toArray.js.map
 
 /***/ }),
-/* 294 */
+/* 293 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var root_1 = __webpack_require__(342);
+var root_1 = __webpack_require__(340);
 /* tslint:enable:max-line-length */
 /**
  * Converts an Observable sequence to a ES2015 compliant promise.
@@ -145615,7 +145760,7 @@ exports.toPromise = toPromise;
 //# sourceMappingURL=toPromise.js.map
 
 /***/ }),
-/* 295 */
+/* 294 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -145628,7 +145773,7 @@ module.exports = function (str) {
 
 
 /***/ }),
-/* 296 */
+/* 295 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -145642,7 +145787,7 @@ module.exports = function (str) {
     
 
 /***/ }),
-/* 297 */
+/* 296 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -145656,7 +145801,7 @@ module.exports = function (str) {
     
 
 /***/ }),
-/* 298 */
+/* 297 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -145670,7 +145815,7 @@ module.exports = function (str) {
     
 
 /***/ }),
-/* 299 */
+/* 298 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -145684,7 +145829,7 @@ module.exports = function (str) {
     
 
 /***/ }),
-/* 300 */
+/* 299 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -145698,7 +145843,7 @@ module.exports = function (str) {
     
 
 /***/ }),
-/* 301 */
+/* 300 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -145712,7 +145857,7 @@ module.exports = function (str) {
     
 
 /***/ }),
-/* 302 */
+/* 301 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -145726,7 +145871,7 @@ module.exports = function (str) {
     
 
 /***/ }),
-/* 303 */
+/* 302 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -145740,7 +145885,7 @@ module.exports = function (str) {
     
 
 /***/ }),
-/* 304 */
+/* 303 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -145754,7 +145899,7 @@ module.exports = function (str) {
     
 
 /***/ }),
-/* 305 */
+/* 304 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -145768,7 +145913,7 @@ module.exports = function (str) {
     
 
 /***/ }),
-/* 306 */
+/* 305 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -145782,7 +145927,7 @@ module.exports = function (str) {
     
 
 /***/ }),
-/* 307 */
+/* 306 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -145796,7 +145941,7 @@ module.exports = function (str) {
     
 
 /***/ }),
-/* 308 */
+/* 307 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -145810,7 +145955,7 @@ module.exports = function (str) {
     
 
 /***/ }),
-/* 309 */
+/* 308 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -145824,7 +145969,7 @@ module.exports = function (str) {
     
 
 /***/ }),
-/* 310 */
+/* 309 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -145838,7 +145983,7 @@ module.exports = function (str) {
     
 
 /***/ }),
-/* 311 */
+/* 310 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -145852,7 +145997,7 @@ module.exports = function (str) {
     
 
 /***/ }),
-/* 312 */
+/* 311 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -145866,7 +146011,7 @@ module.exports = function (str) {
     
 
 /***/ }),
-/* 313 */
+/* 312 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -145880,7 +146025,7 @@ module.exports = function (str) {
     
 
 /***/ }),
-/* 314 */
+/* 313 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -145894,7 +146039,7 @@ module.exports = function (str) {
     
 
 /***/ }),
-/* 315 */
+/* 314 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -145908,7 +146053,7 @@ module.exports = function (str) {
     
 
 /***/ }),
-/* 316 */
+/* 315 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -145922,7 +146067,7 @@ module.exports = function (str) {
     
 
 /***/ }),
-/* 317 */
+/* 316 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -145936,7 +146081,7 @@ module.exports = function (str) {
     
 
 /***/ }),
-/* 318 */
+/* 317 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -145950,7 +146095,7 @@ module.exports = function (str) {
     
 
 /***/ }),
-/* 319 */
+/* 318 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -145964,7 +146109,7 @@ module.exports = function (str) {
     
 
 /***/ }),
-/* 320 */
+/* 319 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -145978,7 +146123,7 @@ module.exports = function (str) {
     
 
 /***/ }),
-/* 321 */
+/* 320 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -145992,7 +146137,7 @@ module.exports = function (str) {
     
 
 /***/ }),
-/* 322 */
+/* 321 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -146006,7 +146151,7 @@ module.exports = function (str) {
     
 
 /***/ }),
-/* 323 */
+/* 322 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -146020,7 +146165,7 @@ module.exports = function (str) {
     
 
 /***/ }),
-/* 324 */
+/* 323 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -146034,7 +146179,7 @@ module.exports = function (str) {
     
 
 /***/ }),
-/* 325 */
+/* 324 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -146048,7 +146193,7 @@ module.exports = function (str) {
     
 
 /***/ }),
-/* 326 */
+/* 325 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -146062,7 +146207,7 @@ module.exports = function (str) {
     
 
 /***/ }),
-/* 327 */
+/* 326 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -146076,7 +146221,7 @@ module.exports = function (str) {
     
 
 /***/ }),
-/* 328 */
+/* 327 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -146090,7 +146235,7 @@ module.exports = function (str) {
     
 
 /***/ }),
-/* 329 */
+/* 328 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -146104,7 +146249,7 @@ module.exports = function (str) {
     
 
 /***/ }),
-/* 330 */
+/* 329 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -146118,7 +146263,7 @@ module.exports = function (str) {
     
 
 /***/ }),
-/* 331 */
+/* 330 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*eslint-env browser*/
@@ -146203,7 +146348,7 @@ function problemType (type) {
 
 
 /***/ }),
-/* 332 */
+/* 331 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -146341,79 +146486,73 @@ module.exports = function(hash, moduleMap, options) {
 
 
 /***/ }),
-/* 333 */
+/* 332 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = (__webpack_require__(4))(124);
 
 /***/ }),
-/* 334 */
+/* 333 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = (__webpack_require__(4))(189);
 
 /***/ }),
-/* 335 */
+/* 334 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = (__webpack_require__(4))(196);
 
 /***/ }),
-/* 336 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = (__webpack_require__(4))(20);
-
-/***/ }),
-/* 337 */
+/* 335 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = (__webpack_require__(4))(31);
 
 /***/ }),
-/* 338 */
+/* 336 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = (__webpack_require__(4))(328);
 
 /***/ }),
-/* 339 */
+/* 337 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = (__webpack_require__(4))(329);
 
 /***/ }),
-/* 340 */
+/* 338 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = (__webpack_require__(4))(345);
 
 /***/ }),
-/* 341 */
+/* 339 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = (__webpack_require__(4))(347);
 
 /***/ }),
-/* 342 */
+/* 340 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = (__webpack_require__(4))(49);
 
 /***/ }),
-/* 343 */
+/* 341 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = (__webpack_require__(4))(570);
 
 /***/ }),
-/* 344 */
+/* 342 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = (__webpack_require__(4))(588);
 
 /***/ }),
-/* 345 */
+/* 343 */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(127);

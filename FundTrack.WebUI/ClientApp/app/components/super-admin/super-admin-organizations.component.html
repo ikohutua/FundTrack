@@ -1,27 +1,29 @@
-﻿<div *ngIf="organizations">
-    <super-admin-grid [arrayToDisplay]="organizations" 
-                      [headers]="['Назва Організації', 'Дія']"
-                      (banStatusChange)="changeOrganizationBanStatus($event)">
+﻿<div class="bg-color">
+    <div *ngIf="organizations">
+        <super-admin-grid [arrayToDisplay]="organizations" 
+                          [headers]="['Назва Організації', 'Дія']"
+                          (banStatusChange)="changeOrganizationBanStatus($event)">
 
-    </super-admin-grid>
-</div>
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-sm-2 castome-paging">
-            На Сторінці :
+        </super-admin-grid>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-2 castome-paging">
+                На Сторінці :
+            </div>
+            <div class="text-left col-sm-2 castome-paging">
+                <select-item [items]="[4, 5, 6, 7, 8, 9, 10]"
+                             (onSelect)="itemsPerPageChange($event)">
+                </select-item>
+            </div>
+            <div class="text-center" *ngIf="totalItems && itemPerPage">
+                <pagination-pages [offset]="offset"
+                                  [limit]="itemPerPage"
+                                  [size]="totalItems"
+                                  [currentPage]="currentPage"
+                                  (pageChange)="onPageChange($event)">
+                </pagination-pages>
+            </div>  
         </div>
-        <div class="text-left col-sm-2 castome-paging">
-            <select-item [items]="[4, 5, 6, 7, 8, 9, 10]"
-                         (onSelect)="itemsPerPageChange($event)">
-            </select-item>
-        </div>
-        <div class="text-center" *ngIf="totalItems && itemPerPage">
-            <pagination-pages [offset]="offset"
-                              [limit]="itemPerPage"
-                              [size]="totalItems"
-                              [currentPage]="currentPage"
-                              (pageChange)="onPageChange($event)">
-            </pagination-pages>
-        </div>  
     </div>
 </div>

@@ -1,27 +1,29 @@
 ﻿<!--<spinner [showSpinner]="showUsersSpinner"></spinner>-->
-<div *ngIf="users">
-    <super-admin-grid [arrayToDisplay]="users"
-                      [headers]="['Логін Користувача', 'Дія']"
-                      (banStatusChange)="changeUserBanStatus($event)">
-    </super-admin-grid>
-</div>
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-sm-2 castome-paging">
-            На Сторінці :
-        </div>
-        <div class="text-left col-sm-2 castome-paging">
-            <select-item [items]="[4, 5, 6, 7, 8, 9, 10]"
-                         (onSelect)="itemsPerPageChange($event)">
-            </select-item>
-        </div>
-        <div *ngIf="totalItems && itemPerPage" class="text-center">
-            <pagination-pages [offset]="offset"
-                              [limit]="itemPerPage"
-                              [size]="totalItems"
-                              [currentPage]="currentPage"
-                              (pageChange)="onPageChange($event)">
-            </pagination-pages>
+<div class="bg-color">
+    <div *ngIf="users">
+        <super-admin-grid [arrayToDisplay]="users"
+                          [headers]="['Логін Користувача', 'Дія']"
+                          (banStatusChange)="changeUserBanStatus($event)">
+        </super-admin-grid>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-2 castome-paging">
+                На Сторінці :
+            </div>
+            <div class="text-left col-sm-2 castome-paging">
+                <select-item [items]="[4, 5, 6, 7, 8, 9, 10]"
+                             (onSelect)="itemsPerPageChange($event)">
+                </select-item>
+            </div>
+            <div *ngIf="totalItems && itemPerPage" class="text-center">
+                <pagination-pages [offset]="offset"
+                                  [limit]="itemPerPage"
+                                  [size]="totalItems"
+                                  [currentPage]="currentPage"
+                                  (pageChange)="onPageChange($event)">
+                </pagination-pages>
+            </div>
         </div>
     </div>
 </div>

@@ -86,6 +86,10 @@ export class SidebarComponent /*implements OnInit*/ {
         this._router.navigate(['organization/request/response/' + this.user.orgId.toString()]);
     }
 
+    public redirectToPage(url : string): void {
+        this._router.navigate([url]);
+    }
+
     /**
      * Redirect to 'all requests page' in organization management page
      * @param idOrganization

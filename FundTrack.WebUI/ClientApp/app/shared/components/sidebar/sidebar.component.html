@@ -37,6 +37,18 @@
                     <li [routerLinkActive]="['link-active']"><a [routerLink]="['offer-management/add']">Запропонувати річ</a></li>
                 </ul>
             </li>
+            <li *ngIf="this.user && this.user.role=='superadmin'">
+                <a (click)="redirectToPage('superadmin/complaints')">Скарги</a>
+            </li>
+            <li *ngIf="this.user && this.user.role=='superadmin'">
+                <a (click)="redirectToPage('superadmin/register-organization')">Додати Організацію</a>
+            </li>
+            <li *ngIf="this.user && this.user.role=='superadmin'">
+                <a (click)="redirectToPage('superadmin/users')">Користувачі</a>
+            </li>
+            <li *ngIf="this.user && this.user.role=='superadmin'">
+                <a (click)="redirectToPage('superadmin/organizations')">Організації</a>
+            </li>
             <li><a href="#">Звіти</a></li>
             <li><a href="#">Налаштування</a></li>
         </ul>

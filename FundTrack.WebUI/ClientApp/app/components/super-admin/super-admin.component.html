@@ -1,42 +1,5 @@
-﻿<div class="row">    
-    <div class="side-menu">
-        <nav class="navbar navbar-default" role="navigation">           
-            <div class="side-menu-container">
-                <ul class="nav navbar-nav">
-                    <li [routerLinkActive]="['link-active']">
-                        <a [routerLink]="['/superadmin']">
-                            <span class="glyphicon glyphicon-user"></span>
-                                Super Admin
-                        </a>
-                    </li>
-                    <li [routerLinkActive]="['link-active']">
-                        <a [routerLink]="['complaints']">
-                            <span class="glyphicon glyphicon-envelope"></span> 
-                            Скарги
-                        </a>
-                    </li>
-                    <li [routerLinkActive]="['link-active']">
-                        <a [routerLink] ="['register-organization']">
-                            <span class="glyphicon glyphicon-plus"></span> 
-                            Додати Організацію
-                        </a>
-                    </li>
-                    <li [routerLinkActive]="['link-active']">
-                        <a [routerLink]="['organizations']">
-                            <span class="glyphicon glyphicon-th-list"></span> 
-                            Організації
-                        </a>
-                    </li>                 
-                    <li [routerLinkActive]="['link-active']">
-                        <a [routerLink]="['users']"><span class="glyphicon glyphicon-th-list"></span> 
-                            Користувачі
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </nav> 
-    </div>
-    <div class="side-body">      
+﻿<div class="row">       
+    <div>      
         <router-outlet></router-outlet>
     </div>
 </div>
