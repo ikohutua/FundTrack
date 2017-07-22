@@ -1,0 +1,23 @@
+<div class="row">
+    <div *ngIf="_event" class='col-sm-10 col-sm-offset-1'>
+        <div class="well">
+            <h2>{{_event.createDate|date:'d.M.y - H:m'}}</h2>
+            <div class="row">
+                <div *ngIf="_images" class="col-md-2 col-md-offset-0">
+                    <gallery [datasource]="_images"></gallery>
+                </div>
+                <div>
+                    <img class="img img-thumbnail" [src]="_images[0] ? _images[0] : '/images/NotAvailableImage7x3.jpg'" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="text">
+                    <p>{{_event.description}}</p>
+                </div>
+            </div>
+            <div class="row">
+                <button class="btn btn-success pull-right" (click)="redirectToAllEvents()">Повернутись</button>
+            </div>
+        </div>
+    </div>
+</div>
