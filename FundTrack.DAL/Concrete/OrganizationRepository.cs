@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System;
 using Microsoft.EntityFrameworkCore;
+using FundTrack.DAL.Extensions;
 
 namespace FundTrack.DAL.Concrete
 {
@@ -76,9 +77,14 @@ namespace FundTrack.DAL.Concrete
         /// Gets Organizations with their ban status
         /// </summary>
         /// <returns>Organizations with ban status</returns>
-        public IEnumerable<Organization> GetOrganizationsWithBanStatus()
+        public IEnumerable<Organization> GetOrganizationsWithBanStatus(int currentPage = 0, int pageSize = 0)
         {
-            return _context.Organizations.Include(o => o.BannedOrganization);
+            if (currentPage == 0 && pageSize == 0)
+            {
+               return _context.Organizations.Include(o => o.BannedOrganization);
+            }
+
+            return _context.Organizations.Include(o => o.BannedOrganization).GetItemsPerPage(pageSize, currentPage);
         }
 
         /// <summary>

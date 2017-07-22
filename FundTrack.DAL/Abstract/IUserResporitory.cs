@@ -17,7 +17,7 @@ namespace FundTrack.DAL.Abstract
         /// Gets Users with their ban status
         /// </summary>
         /// <returns>Users with ban status</returns>
-        IEnumerable<User> GetUsersWithBanStatus();
+        IEnumerable<User> GetUsersWithBanStatus(int currentPage = 0,int pageSize = 0);
 
         /// <summary>
         /// Gets All Users With Ban Status

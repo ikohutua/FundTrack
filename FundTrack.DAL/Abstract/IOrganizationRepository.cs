@@ -14,7 +14,7 @@ namespace FundTrack.DAL.Abstract
         /// Gets Organization with their ban status
         /// </summary>
         /// <returns>Organization with ban status</returns>
-        IEnumerable<Organization> GetOrganizationsWithBanStatus();
+        IEnumerable<Organization> GetOrganizationsWithBanStatus(int currentPage = 0,int pageSize = 0);
 
         /// <summary>
         /// Unbans organization with concrete id

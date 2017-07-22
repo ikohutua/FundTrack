@@ -34,8 +34,7 @@ namespace FundTrack.BLL.Concrete
         /// <returns>Users for specifice page</returns>
         public IEnumerable<PagingItemsViewModel> GetUsersPerPage(int currentPage, int pageSize)
         {           
-            return GetPageItems(_unitOfWork.UsersRepository.GetUsersWithBanStatus(),
-                                pageSize, currentPage)                               
+            return _unitOfWork.UsersRepository.GetUsersWithBanStatus(currentPage, pageSize)
                                 .Select(i => new PagingItemsViewModel
                                 {
                                     Id = i.Id,
@@ -52,8 +51,7 @@ namespace FundTrack.BLL.Concrete
         /// <returns>Organizations for specifice page</returns>
         public IEnumerable<PagingItemsViewModel> GetOrganizationsPerPage(int currentPage,int pageSize)
         {
-            return GetPageItems(_unitOfWork.OrganizationRepository.GetOrganizationsWithBanStatus(),
-                                pageSize, currentPage)
+            return _unitOfWork.OrganizationRepository.GetOrganizationsWithBanStatus(currentPage, pageSize)
                                 .Select(i => new PagingItemsViewModel
                                 {
                                     Id = i.Id,

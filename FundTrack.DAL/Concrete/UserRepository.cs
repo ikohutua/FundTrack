@@ -1,6 +1,7 @@
 ﻿using FundTrack.DAL.Abstract;
 using FundTrack.DAL.Concrete;
 using FundTrack.DAL.Entities;
+using FundTrack.DAL.Extensions;
 using FundTrack.Infrastructure;
 using FundTrack.Infrastructure.ViewModel;
 using Microsoft.EntityFrameworkCore;
@@ -152,13 +153,21 @@ namespace FundTrack.DAL.Repositories
         /// Gets Users with their ban status
         /// </summary>
         /// <returns>Users with ban status</returns>
-        public IEnumerable<User> GetUsersWithBanStatus()
+        public IEnumerable<User> GetUsersWithBanStatus(int currentPage = 0, int pageSize = 0)
         {
+            if (currentPage == 0 && pageSize == 0)
+            {
+                return context.Users.Include(u => u.BannedUser)
+                                    .Include(u => u.Membership)
+                                    .Include(u => u.Membership.Role)
+                                    .Where(u => u.Membership.Role.Name != UserRoles.SuperAdmin);
+            }
+
             return context.Users.Include(u => u.BannedUser)
                                 .Include(u => u.Membership)
                                 .Include(u => u.Membership.Role)
-                                .Where(u => u.Membership.Role.Name != UserRoles.SuperAdmin);
-
+                                .Where(u => u.Membership.Role.Name != UserRoles.SuperAdmin)
+                                .GetItemsPerPage(pageSize, currentPage);
         }
         
         /// <summary>
