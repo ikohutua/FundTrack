@@ -16,14 +16,14 @@
                         <li class="list-group-item">
                             Активні
                             <div class="material-switch pull-right">
-                                <input id="someSwitchOptionInfo" name="someSwitchOption001" type="checkbox" [(ngModel)]="showActive" />
+                                <input id="someSwitchOptionInfo" name="someSwitchOption001" type="checkbox" [(ngModel)]="showActive" (change)="ToggleActive(this.showActive)" />
                                 <label for="someSwitchOptionInfo" class="label-success"></label>
                             </div>
                         </li>
                         <li class="list-group-item">
                             Неактивні
                             <div class="material-switch pull-right">
-                                <input id="someSwitchOptionWarning" name="someSwitchOption002" type="checkbox" [(ngModel)]="showInactive" />
+                                <input id="someSwitchOptionWarning" name="someSwitchOption002" type="checkbox" [(ngModel)]="showInactive" (change)="ToggleInactive(this.showInactive)" />
                                 <label for="someSwitchOptionWarning" class="label-warning"></label>
                             </div>
                         </li>

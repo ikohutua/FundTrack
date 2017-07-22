@@ -7,6 +7,7 @@ import { OfferItemManagementComponent } from "./components/offer-management/offe
 import { OfferListComponent } from "./components/offer-management/offer-list/offer-list.component";
 import { OfferDetailComponent } from "./components/offer-management/offer-list/offer-detail.component";
 import { SharedModule } from "./shared.module";
+import { OfferFilteringService } from "./services/concrete/offer-management/offer-filtering.service";
 
 
 
@@ -23,6 +24,7 @@ import { SharedModule } from "./shared.module";
         FormsModule,
         SharedModule
         
-    ]
+    ],
+    providers:[OfferFilteringService]
 })
 export class OfferManagementModule { }

@@ -11,6 +11,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FundTrack.BLL.Concrete
 {
+    /// <summary>
+    /// Class that manages all interaction related to offer items and offer item images entities
+    /// </summary>
     public class OfferedItemService : BaseService, IOfferedItemService
     {
         private readonly IUnitOfWork _unitOfWork;
