@@ -6,13 +6,11 @@
                 <h4 class="modal-title deleteModalTitle" id="myModalLabel">Детальна інформація</h4>
             </div>
             <div class="modal-body">
-                <div class="thumbnail">
-                    <img class="img-responsive" src="http://placehold.it/800x300" alt="">
+                <div *ngIf="detailInfoRequest"class="thumbnail">                  
+                    <img *ngIf="detailInfoRequest.images[0]" class="img-responsive" src="{{detailInfoRequest.images[0].imageUrl}}" alt="" />            
                     <div class="caption-full">
-                        <h3>
-                            {{detailInfoRequest.name}}
-                        </h3>
-                        <h4>{{detailInfoRequest.goodsCategory}}</h4>
+                        <h4><strong>Назва: </strong>{{detailInfoRequest.name}}</h4>
+                        <h4><strong>Категорія: </strong>{{detailInfoRequest.goodsCategory}}</h4>
                         <p>{{detailInfoRequest.description}}</p>
                     </div>
                 </div>
@@ -21,4 +19,5 @@
             </div>
         </div>
     </div>
+  </div>
 </div>

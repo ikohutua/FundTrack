@@ -7,12 +7,13 @@ import { RequestManagementViewModel } from "../../view-models/abstract/organizat
     styles: [require('./organization-delete-request.component.css')],
    })
 
-
-export class OrganizationDeleteRequestComponent{
-   
+export class OrganizationDeleteRequestComponent {
     @Input() itemToToDelete: RequestManagementViewModel = new RequestManagementViewModel();
     @Output() onSuccesfullDelete = new EventEmitter<boolean>();
 
+    /**
+     * Event for succesfull delete
+     */
     public deleteConfirmation() {
         this.onSuccesfullDelete.emit();
     }

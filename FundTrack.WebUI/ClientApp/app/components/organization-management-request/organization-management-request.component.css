@@ -121,42 +121,6 @@ item.list-group-item .list-group-image {
     color: #587443;
 }
 
-/* relevant styles */
-.caption-wrap {
-    position: inherit center;
-}
-
-.item-description-layer {
-    position: absolute;
-    top: 0;
-    bottom: 20px;
-    left: 15px;
-    right: 15px;
-    background: rgba(51, 79, 56, 0.8);
-    color: #fff;
-    visibility: hidden;
-    opacity: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    /* transition effect. not necessary */
-    transition: opacity .2s, visibility .2s;
-}
-
-.caption-wrap:hover .item-description-layer {
-    visibility: visible;
-    opacity: 1;
-}
-
-.item-description {
-  transition: .2s;
-  transform: translateY(1em);
-}
-
-.caption-wrap:hover .item-description {
-  transform: translateY(0);
-}
-
 .text-style {
     font-weight: bold;
     color: #ddd;

@@ -17,8 +17,8 @@ import { SpinnerComponent } from "../../shared/components/spinner/spinner.compon
 })
 
 export class OrganizationManageRequestComponent implements OnInit {
-    public uploader: AmazonUploadComponent = new AmazonUploadComponent();
 
+    public uploader: AmazonUploadComponent = new AmazonUploadComponent();
     private _requestedItem: RequestManagementViewModel = new RequestManagementViewModel();
     private _errorMessage: string;
     private _goodsTypes: GoodsTypeViewModel[];
@@ -28,19 +28,18 @@ export class OrganizationManageRequestComponent implements OnInit {
     private _requestedItemId: number;
     private _currentOrgId: number;
     private _currentImageUrl: string[] = [];
-    
+    private _requiredFieldMessage: string = "Обовязкове поле для заповнення";   
     private addingImage: string = "http://www.freeiconspng.com/uploads/add-icon--line-iconset--iconsmind-29.png";
-    //@ViewChild(SpinnerComponent) spinner: SpinnerComponent;
 
     ngOnInit(): void {
-        this._requestedItem.images = [];
-        this.fillGoodtypes();
         this._route.params.subscribe(params => {
             this._currentOrgId = +params["idOrganization"];
             this._requestedItemId = +params["idRequest"];
         });
-      
-        if (this._requestedItemId > 0) {
+        this._requestedItem.images = [];
+        this.fillGoodtypes();
+        
+        if (this._requestedItemId) {
             this.getByIdRequestedItem(this._requestedItemId);          
         }       
     }
@@ -66,6 +65,9 @@ export class OrganizationManageRequestComponent implements OnInit {
             })
     }
 
+    /**
+     * Checks if type selected
+     */
     private isTypeSelected() {
         if (this._selecteType != null && this._selecteType.id != undefined) {
             return true;
@@ -73,10 +75,12 @@ export class OrganizationManageRequestComponent implements OnInit {
         return false;
     }
 
+    /**
+     * Checks if category selected
+     */
     private isCategorySelected() {
-        console.log(this._requestedItem.goodsCategoryId);
-        if (this._requestedItem.goodsCategoryId != undefined && !Number.isNaN(Number(this._requestedItem.goodsCategoryId))) {
-
+        if (this._requestedItem.goodsCategoryId != undefined &&
+            !Number.isNaN(Number(this._requestedItem.goodsCategoryId))) {
             return true;
         }
         return false;
@@ -87,6 +91,7 @@ export class OrganizationManageRequestComponent implements OnInit {
      */
     private addRequestedItem() {
         this._requestedItem.goodsTypeId = this._selecteType.id;
+        this._requestedItem.organizationId = 1;
         this._service.addRequestedItem(this._requestedItem)
             .subscribe((c) => {
                 if (c.errorMessage != "") {
@@ -173,7 +178,7 @@ export class OrganizationManageRequestComponent implements OnInit {
     }
 
     /**
-     * Set goodType by if for dropdown
+     * Set goodType by id for dropdown
      * @param goodTypeId
      */
     private setGoodsType(goodTypeId: number) {
@@ -205,11 +210,9 @@ export class OrganizationManageRequestComponent implements OnInit {
                     requestedItemImage.requestedItemId = 0;
                     requestedItemImage.imageUrl = data.Location;
          
-
                     if (that._requestedItem.images == null) {
                         that._requestedItem.images = [];
                     }
-
                     that._requestedItem.images.push(requestedItemImage);
                 })
             }

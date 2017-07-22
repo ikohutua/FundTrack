@@ -8,5 +8,6 @@ import { RequestManagementViewModel } from "../../view-models/abstract/organizat
 })
 
 export class DetailInfoRequestedItemComponent{
+
     @Input() detailInfoRequest: RequestManagementViewModel = new RequestManagementViewModel();
 }

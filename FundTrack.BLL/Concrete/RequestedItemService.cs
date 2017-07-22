@@ -35,7 +35,7 @@ namespace FundTrack.BLL.Concrete
         /// <returns>Requested item view model</returns>
         public RequestedItemViewModel CreateRequestedItem(RequestedItemViewModel requestedItemViewModel)
         {
-            const string InitialStatusName = "Новий";
+            const string InitialStatusName = StuffStatus.New;
             try
             {
                 if (requestedItemViewModel == null)
@@ -50,22 +50,11 @@ namespace FundTrack.BLL.Concrete
                     throw new BusinessLogicException($"Статус {InitialStatusName} не знайдено");
                 }
 
-                RequestedItem requestedItem = new RequestedItem
-                {
-                    Name = requestedItemViewModel.Name,
-                    OrganizationId = 1,
-                    StatusId = status.Id,
-                    Description = requestedItemViewModel.Description,
-                    GoodsCategoryId = requestedItemViewModel.GoodsCategoryId
-                };
-
+                RequestedItem requestedItem = this.convertRequestedItem(requestedItemViewModel);
                 requestedItem = this._unitOfWork.RequestedItemRepository.Create(requestedItem);
-
                 var requestedImagesList = this.ConvertViewModelImageList(requestedItemViewModel.Images,
                     requestedItem.Id);
-
                 this._unitOfWork.RequestedItemImageRepository.SaveListOfImages(requestedImagesList);
-
                 this._unitOfWork.SaveChanges();
 
                 return requestedItemViewModel;
@@ -110,27 +99,13 @@ namespace FundTrack.BLL.Concrete
                     throw new BusinessLogicException($"Потреба з ідентифікатором {id} не знайдена");
                 }
 
-                //IEnumerable<RequestedItemImage> requestedItemImageList = this._unitOfWork.RequestedItemImageRepository
-                //                                .GetImagesByRequestedItemId(requestedItem.Id);
-
                 IEnumerable<RequestedImageViewModel> imagesList = this.ConvertRequestItemImageModelList(requestedItem.RequestedItemImages,
                                                                   requestedItem.Id);
 
                 RequestedItemViewModel itemViewModel = this.ConvertToRequestedItemViewModel(requestedItem, imagesList);
 
                 return itemViewModel;
-                //return new RequestedItemViewModel
-                //{
-                //    Id = requestedItem.Id,
-                //    Name = requestedItem.Name,
-                //    Description = requestedItem.Description,
-                //    Status = requestedItem.Status.StatusName,
-                //    GoodsCategoryId = requestedItem.GoodsCategoryId,
-                //    OrganizationId = requestedItem.OrganizationId,
-                //    GoodsCategory = requestedItem.GoodsCategory.Name,
-                //    GoodsTypeId = requestedItem.GoodsCategory.GoodsTypeId,
-                //    Images = imagesList
-                //};
+                
             }
             catch (Exception ex)
             {
@@ -150,16 +125,8 @@ namespace FundTrack.BLL.Concrete
                 List<RequestedItemViewModel> requestedItems = this._unitOfWork.RequestedItemRepository
                     .GetOrganizationRequestedItems(organizationId)
                     .Select(item =>
-                     new RequestedItemViewModel
-                     {
-                         Id = item.Id,
-                         Name = item.Name,
-                         Description = item.Description,
-                         Status = item.Status?.StatusName,
-                         GoodsCategory = item.GoodsCategory?.Name,
-                         Images = this.ConvertRequestItemImageModelList(item.RequestedItemImages, item.Id)
-                     })
-                    .ToList();
+                     this.ConvertToRequestedItemViewModel(item, this.ConvertRequestItemImageModelList(item.RequestedItemImages, item.Id)))
+                     .ToList();
 
                 return requestedItems;
             }
@@ -182,15 +149,7 @@ namespace FundTrack.BLL.Concrete
 
             try
             {
-                RequestedItem requestedItem = new RequestedItem
-                {
-                    Id = requestedItemViewModel.Id,
-                    Name = requestedItemViewModel.Name,
-                    Description = requestedItemViewModel.Description,
-                    GoodsCategoryId = requestedItemViewModel.GoodsCategoryId,
-                    OrganizationId = requestedItemViewModel.OrganizationId,
-                    StatusId = 1
-                };
+                RequestedItem requestedItem = this.convertRequestedItem(requestedItemViewModel);
 
                 this._unitOfWork.RequestedItemRepository.Update(requestedItem);
                 this._unitOfWork.RequestedItemImageRepository.SaveListOfImages(imagesList);
@@ -574,6 +533,24 @@ namespace FundTrack.BLL.Concrete
             {
                 throw new BusinessLogicException(ex.Message);
             }
+        }
+
+        /// <summary>
+        /// Converts requested item
+        /// </summary>
+        /// <param name="requestedItemViewModel"></param>
+        /// <returns>Requested item view model</returns>
+        private RequestedItem convertRequestedItem(RequestedItemViewModel requestedItemViewModel)
+        {
+            return new RequestedItem
+            {
+                Id = requestedItemViewModel.Id,
+                Name = requestedItemViewModel.Name,
+                Description = requestedItemViewModel.Description,
+                StatusId = 1,
+                OrganizationId = requestedItemViewModel.OrganizationId,
+                GoodsCategoryId = requestedItemViewModel.GoodsCategoryId
+            };
         }
     }
 }

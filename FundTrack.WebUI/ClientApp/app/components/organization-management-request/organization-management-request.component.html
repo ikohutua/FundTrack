@@ -6,33 +6,25 @@
                 <div class="item-header">
                     <h4 class="header-text">{{requestedItem.name}}</h4>
                     <div class="action-icons">
-                        <a data-toggle="modal" data-target="#detailInfo"><span class="glyphicon glyphicon-info-sign"></span></a>                       
+                        <a (click)='setCurrentRequestedItem(requestedItem)' data-toggle="modal" data-target="#detailInfo"><span class="glyphicon glyphicon-info-sign"></span></a>                       
                         <a (click)="redirectToManageRequestPage(requestedItem.id)"><span class="glyphicon glyphicon-pencil"></span></a>
                         <a (click)='setCurrentRequestedItem(requestedItem)' data-toggle="modal" data-target="#deleteRequest"><span class="glyphicon glyphicon-trash"></span></a>
                     </div>                    
                 </div>
                 <div class="photo">
                     <img *ngIf="requestedItem.images[0]" class="center-block group list-group-image img-responsive main-image" src="{{requestedItem.images[0].imageUrl}}" alt="" />            
-                </div>
-                <div class="caption-wrap">
+                </div>            
                     <div class="caption">
                         <p class="group inner list-group-item-text"><span class="text-style">Категорія: </span>{{requestedItem.goodsCategory}}</p>
                         <p class="group inner list-group-item-text"><span class="text-style">Опис: </span>{{requestedItem.description|truncate : 25}}</p>
-                        <div class="item-description-layer">
-                            <div class="item-description"><p>{{requestedItem.description}}</p></div>
-                        </div>
-                    </div>                    
-                </div>
-                <div class="row">
-                    <delete-request [itemToToDelete]='currentRequestedItem' (onSuccesfullDelete)="deleteRequestedItem()"></delete-request>
-                </div>
-                <div class="row">
-                    <detail-info [detailInfoRequest]="requestedItem"></detail-info>
-                </div>
+                    </div>                              
+                <delete-request [itemToToDelete]='currentRequestedItem' (onSuccesfullDelete)="deleteRequestedItem()"></delete-request>     
+                <detail-info [detailInfoRequest]='currentRequestedItem'></detail-info>
             </div>
         </div>
     </div>
 </div>
+
 <div *ngIf="_allRequestedItems">
     <div class="center-block pagination-dropdown">   
         <span id="for-select-item">Показувати по:</span>

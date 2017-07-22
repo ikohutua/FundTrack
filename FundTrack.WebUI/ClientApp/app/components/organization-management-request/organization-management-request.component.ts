@@ -34,6 +34,10 @@ export class OrganizationManagementRequestComponent implements OnInit {
         });      
     }
 
+    /**
+     * Initialize new instance of OrganizationManagementRequestComponent
+     * @param _service
+     */
     constructor(private _service: OrganizationManagementRequestService,
                 private _route: ActivatedRoute,
                 private _router: Router)
@@ -59,6 +63,7 @@ export class OrganizationManagementRequestComponent implements OnInit {
      */
     private setCurrentRequestedItem(requestedItem: RequestManagementViewModel) {
         this.currentRequestedItem = requestedItem;
+        console.log(this.currentRequestedItem);
     }
 
     /**
@@ -84,7 +89,6 @@ export class OrganizationManagementRequestComponent implements OnInit {
      * @param page
      */
     public onPageChange(page: any): void {
-        console.log(this.spinner);
         this._service.getRequestedItemsPerPage(this._organizationId, page, this._itemPerPage, this.spinner)
             .subscribe(requests => {
                 this._allRequestedItems = requests,
@@ -115,7 +119,6 @@ export class OrganizationManagementRequestComponent implements OnInit {
      * @param pageSize
      */
     private getRequestedItemsPerPage(organizationId: number, currentPage: number, pageSize: number) {
-        console.log(this.spinner);
         this._service.getRequestedItemsPerPage(organizationId, currentPage, pageSize, this.spinner)
             .subscribe(requests => {
                 this._allRequestedItems = requests;
@@ -127,7 +130,6 @@ export class OrganizationManagementRequestComponent implements OnInit {
     * @param amount
     */
     private itemsPerPageChange(amount: number): void {
-        console.log(this.spinner);
         this._service.getRequestedItemsPerPage(this._organizationId, 1, amount, this.spinner).subscribe(
             requests => {
                 this._offset = 0;
