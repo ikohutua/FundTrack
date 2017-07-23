@@ -38,7 +38,7 @@ namespace FundTrack_WebUI
             // Db Connection
             // For local connection, go to appsettings.json and write your local connection string
             // Available connection types : 'local','azure-main','azure-test', 'ss'
-            string connectionType = "ss";
+            string connectionType = "azure-main";
             services.AddDbContext<FundTrackContext>(options => options.UseSqlServer(Configuration.GetConnectionString(connectionType)));
 
             // Add framework services.

@@ -52,6 +52,7 @@ namespace FundTrack.DAL.Entities
         /// The requested items.
         /// </value>
         public virtual ICollection<RequestedItem> RequestedItems { get; set; }
+
         public static implicit operator GoodsCategoryViewModel(GoodsCategory category)
         {
             return new GoodsCategoryViewModel

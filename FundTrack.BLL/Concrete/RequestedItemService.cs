@@ -277,7 +277,8 @@ namespace FundTrack.BLL.Concrete
                  Organization = c.Organization.Name,
                  Status = c.Status.StatusName,
                  Name = c.Name,
-                 Description = c.Description
+                 Description = c.Description,
+                 MainImageUrl = c.RequestedItemImages.FirstOrDefault().ImageUrl
              }).OrderBy(e => e.GoodsCategory);
 
             return events;
@@ -292,7 +293,7 @@ namespace FundTrack.BLL.Concrete
             var _showRequstedItems = filter.filterOptions != null ? this._unitOfWork.RequestedItemRepository.FilterRequestedItem(filter)
                 : this._unitOfWork.RequestedItemRepository.ReadForPagination(filter.ItemsPerPage, filter.CurrentPage);
 
-            return _showRequstedItems.Select(c => new ShowAllRequestedItemModel()
+            var events = _showRequstedItems.Select(c => new ShowAllRequestedItemModel()
             {
                 Id = c.Id,
                 GoodsCategory = c.GoodsCategory.Name,
@@ -301,9 +302,12 @@ namespace FundTrack.BLL.Concrete
                 Organization = c.Organization.Name,
                 Status = c.Status.StatusName,
                 Name = c.Name,
-                Description = c.Description
+                Description = c.Description,
+                MainImageUrl = c.RequestedItemImages.FirstOrDefault().ImageUrl
             })
             .OrderBy(e => e.GoodsCategory);
+            return events;
+
         }
 
         /// <summary>

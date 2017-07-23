@@ -41,6 +41,5 @@ namespace FundTrack.DAL.Entities
         /// Event navigation property
         /// </summary>
         public virtual OfferedItem OfferedItem { get; set; }
-
     }
 }

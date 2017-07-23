@@ -91,6 +91,7 @@ namespace FundTrack.DAL.Entities
         /// UserResponse navigation property
         /// </summary>
         public virtual UserResponse UserResponse { get; set; }
+
         public static implicit operator OfferedItem(OfferedItemViewModel model)
         {
             return new OfferedItem

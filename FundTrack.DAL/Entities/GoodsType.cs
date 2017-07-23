@@ -28,6 +28,7 @@ namespace FundTrack.DAL.Entities
         /// The goods categories.
         /// </value>
         public virtual ICollection<GoodsCategory> GoodsCategories { get; set; }
+
         public static implicit operator GoodsTypeViewModel(GoodsType type)
         {
             return new GoodsTypeViewModel

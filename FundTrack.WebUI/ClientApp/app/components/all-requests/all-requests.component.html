@@ -51,7 +51,7 @@
             <div class="caption fundtrack-style"  style="margin-bottom:5px">
                 <h4 style="display:inline;">{{item.organization}}</h4>
             </div>
-            <img src="http://placehold.it/400x250/000/fff" alt="" style="height:250px !important">
+            <img [src]="item.mainImageUrl  ? item.mainImageUrl  : '/images/NotAvailableImage5x3.jpg'" alt="" style="height:250px !important"/>
             <div class="caption">
                 <h3>{{item.name}}</h3>
                 <p style="height:200px !important">{{item.description|truncate : 300}}</p>

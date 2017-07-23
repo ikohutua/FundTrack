@@ -1,6 +1,4 @@
-﻿using FundTrack.Infrastructure.ViewModel;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace FundTrack.DAL.Entities
 {

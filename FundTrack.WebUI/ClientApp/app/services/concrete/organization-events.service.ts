@@ -36,7 +36,6 @@ export class OrganizationEventService extends BaseService<IEventModel>{
     public getCollectionById(id: number, additionString: string): Observable<IEventModel[]> {
         return this.http.get(additionString + '/' + id.toString())
             .map((response: Response) => <IEventModel[]>response.json())
-            //.do(data => console.log('ALL ' + JSON.stringify(data)))
             .catch(this.handleErrorHere);
     }
 

@@ -28,11 +28,3 @@ export class EventDetailService extends BaseService<IEventDetailModel>{
         return Observable.throw(error.json().error || 'Server error');
     }
 }
-
-    //public getById(id: number, additionString: string): Observable<T> {
-    //    return this._http.get(additionString + '/' + id.toString())
-    //        .map((response: Response) => <T>response.json())
-    //        //.do(data => console.log('ALL ' + JSON.stringify(data)))
-    //        .catch(this.handleError);
-    //}
-

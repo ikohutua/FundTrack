@@ -12,7 +12,7 @@
         </div>
         <div class="panel-body panel-padding">
             <div class=" pull-left div-panel-margen">
-                <img src={{event.imageUrl}}/>
+                <img [src]="event.imageUrl  ? event.imageUrl  : '/images/NotAvailableImage5x3.jpg'"/>
             </div>
             <div class="div-strings">
                 {{event.description}}

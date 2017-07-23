@@ -67,5 +67,13 @@ namespace FundTrack.Infrastructure.ViewModel.RequestedItemModel
         /// The description.
         /// </value>
         public string Description { get; set; }
+
+        /// <summary>
+        /// Gets or sets the main image URL.
+        /// </summary>
+        /// <value>
+        /// The main image URL.
+        /// </value>
+        public string MainImageUrl { get; set; }
     }
 }

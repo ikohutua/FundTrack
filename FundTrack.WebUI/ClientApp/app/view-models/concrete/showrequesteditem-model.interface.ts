@@ -9,4 +9,5 @@ export class ShowRequestedItem implements IShowRequestedItem {
     status: string;
     name: string;
     description: number;
+    mainImageUrl: string;
 }

@@ -48,7 +48,7 @@ namespace FundTrack.BLL.Concrete
                  Description = c.Description,
                  CreateDate = c.CreateDate,
                  ImageUrl = c.EventImages.Single(r => r.IsMain == true).ImageUrl
-             }).OrderBy(e => e.CreateDate);
+             }).OrderByDescending(e => e.CreateDate);
 
             return GetPageItems(events, countOfEventsToLoad, koefToLoadEvent);
         }
@@ -80,7 +80,7 @@ public IEnumerable<EventViewModel> GetAllEvents()
                  Description = c.Description,
                  CreateDate = c.CreateDate,
                  ImageUrl = c.EventImages.Single(r => r.IsMain == true).ImageUrl
-             }).OrderBy(e => e.CreateDate);
+             }).OrderByDescending(e => e.CreateDate);
 
             return events;
         }
@@ -113,7 +113,7 @@ public IEnumerable<EventViewModel> GetAllEventsById(int id)
                  Description = c.Description,
                  CreateDate = c.CreateDate,
                  ImageUrl = c.EventImages.Single(r => r.IsMain == true).ImageUrl
-             }).OrderBy(e => e.CreateDate);
+             }).OrderByDescending(e => e.CreateDate);
 
             return events as IEnumerable<EventViewModel>;
         }
