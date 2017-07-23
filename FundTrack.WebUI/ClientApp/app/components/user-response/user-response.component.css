@@ -124,5 +124,6 @@ h2 {
 }
 
 .pagination-dropdown {
-    color:white;
+    color: black;
+    width: 8%;
 }

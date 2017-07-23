@@ -4,7 +4,7 @@
     text-align: center;
     font-size: 1.8em;
     font-family: roboto;
-    color: white;
+    color:black;
 }
 
 .loginmodal {
@@ -29,7 +29,7 @@
 
 .loginmodal-container a {
     text-decoration: none;
-    color: white;
+    color: #314720;
     font-weight: 400;
     text-align: center;
     display: inline-block;
