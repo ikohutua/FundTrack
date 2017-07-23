@@ -107,13 +107,6 @@ namespace FundTrack.BLL.Abstract
         RequestedItemPaginationInitViewModel GetFilterRequestedItemPaginationData(FilterRequstedViewModel filters);
 
         /// <summary>
-        /// Converts requested item to requested item view model
-        /// </summary>
-        /// <param name="requestedItem">Requested item model</param>
-        /// <returns>Requested item view model</returns>
-        RequestedItemViewModel ConvertToRequestedItemViewModel(RequestedItem requestedItem, IEnumerable<RequestedImageViewModel> imagesList);
-
-        /// <summary>
         /// Gets all organizations for filtering of RequestedItem 
         /// </summary>
         /// <returns>Organizations data</returns>

@@ -16,14 +16,14 @@ export class AmazonUploadComponent {
  * @param fileName: file name including its extension
  */
     public UploadImageToAmazon(file: any, fileName: string): any {
-        //let AWSService = window.AWS;
-        //AWSService.config.accessKeyId = this._amazonKeyId;
-        //AWSService.config.secretAccessKey = this._amazonKeySecret;
-        //var upload = new AWSService.S3.ManagedUpload({
-        //    params: { Bucket: this._amazonBucket, Key: fileName, Body: file }
-        //});
-        //var promise = upload.promise();
-        //return promise;
+        let AWSService = window.AWS;
+        AWSService.config.accessKeyId = this._amazonKeyId;
+        AWSService.config.secretAccessKey = this._amazonKeySecret;
+        var upload = new AWSService.S3.ManagedUpload({
+            params: { Bucket: this._amazonBucket, Key: fileName, Body: file }
+        });
+        var promise = upload.promise();
+        return promise;
     }
 }
 

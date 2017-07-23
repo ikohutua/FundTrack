@@ -74,8 +74,10 @@ namespace FundTrack.DAL.Concrete
             var requestedItems = this._dbContext.RequestedItems
                 .Include(g => g.GoodsCategory)
                 .Include(g => g.Status)
-                .Include(g => g.RequestedItemImages)
+                .Include(g => g.RequestedItemImages)                
+                .OrderByDescending(g => g.Id)
                 .Where(r => r.OrganizationId == organizationId);
+                
 
             return requestedItems;
         }
@@ -86,7 +88,9 @@ namespace FundTrack.DAL.Concrete
         /// <returns>List of requested items</returns>
         public IEnumerable<RequestedItem> Read()
         {
-            return this._dbContext.RequestedItems.Include(x => x.RequestedItemImages);
+            return this._dbContext.RequestedItems
+                .Include(x => x.RequestedItemImages)
+                .OrderByDescending(x => x.Id);
         }
 
         /// <summary>
@@ -172,6 +176,7 @@ namespace FundTrack.DAL.Concrete
             var resultList = this._dbContext.RequestedItems
                 .Include(r => r.RequestedItemImages)
                 .Include(r => r.GoodsCategory)
+                .OrderByDescending(r => r.Id)
                 .Where(r => r.OrganizationId == organizationId)
                 .Skip((currentPage - 1) * pageSize)
                 .Take(pageSize);
