@@ -9,6 +9,7 @@ import { Subscription } from "rxjs/Subscription";
 import { ViewChild } from '@angular/core';
 import * as keys from '../../shared/key.storage';
 import { StorageService } from "../../shared/item-storage-service";
+import { SpinnerComponent } from "../../shared/components/spinner/spinner.component";
 
 @Component({
     template: require('./request-detail.component.html'),
@@ -46,6 +47,7 @@ export class RequestDetailComponent implements OnInit, OnDestroy {
             let id = +params['id'];
             this.getRequestedDetail(id);
         });
+        this._storage.showDropDown = false;
     }
 
     /**
@@ -86,6 +88,7 @@ export class RequestDetailComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy() {
+        this._storage.showDropDown = true;
         this._subscription.unsubscribe();
     }
 

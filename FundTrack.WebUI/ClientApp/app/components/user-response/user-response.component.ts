@@ -1,4 +1,4 @@
-﻿import { Component, OnInit, Input } from '@angular/core';
+﻿import { Component, OnInit, Input,OnDestroy } from '@angular/core';
 import { UserResponseService } from '../../services/concrete/organization-management/user-responses.service';
 import { ShowRequestedItemService } from '../../services/concrete/showrequesteditem.service';
 import { ActivatedRoute, Router } from "@angular/router";
@@ -8,6 +8,7 @@ import { ModalComponent } from '../../shared/components/modal/modal-component';
 import { ViewChild } from '@angular/core';
 import { StorageService } from "../../shared/item-storage-service";
 import { RequestedItemInitViewModel } from "../../view-models/abstract/requesteditem-initpaginationdata-view-model";
+import { SpinnerComponent } from "../../shared/components/spinner/spinner.component";
 
 @Component({
     template: require('./user-response.component.html'),
@@ -15,7 +16,7 @@ import { RequestedItemInitViewModel } from "../../view-models/abstract/requested
     providers: [UserResponseService, ShowRequestedItemService]
 })
 
-export class UserResponseComponent implements OnInit {
+export class UserResponseComponent implements OnInit,OnDestroy {
     private _userResponses: UserResponseOnRequestsViewModel[] = new Array<UserResponseOnRequestsViewModel>();
     private _statuses: GoodsStatusViewModel[] = new Array<GoodsStatusViewModel>();
     private isDeleteResponse: boolean = false;
@@ -31,6 +32,7 @@ export class UserResponseComponent implements OnInit {
     private newStatusName: string;
     private organizationId: number;
 
+    @ViewChild(SpinnerComponent) spinner: SpinnerComponent;
     @ViewChild(ModalComponent)
     public modalWindow: ModalComponent
 
@@ -41,6 +43,7 @@ export class UserResponseComponent implements OnInit {
         private _route: ActivatedRoute) { }
 
     ngOnInit() {
+        this._storage.showDropDown = false;
         this._route.params.subscribe(params => {
             this.organizationId = +params["idOrganization"];
         });
@@ -105,7 +108,7 @@ export class UserResponseComponent implements OnInit {
      * @param page
      */
     public onPageChange(page): void {
-        this._userResponseService.getUserResponseOnPage(this.organizationId, this.itemsPerPage, page).subscribe(userResponses => {
+        this._userResponseService.getUserResponseOnPage(this.organizationId, this.itemsPerPage, page, this.spinner).subscribe(userResponses => {
             this._userResponses = userResponses;
             this.offset = (page - 1) * this.itemsPerPage;
         });
@@ -121,7 +124,7 @@ export class UserResponseComponent implements OnInit {
     }
 
     private getUserResponsePerPage(page: number) {
-        this._userResponseService.getUserResponseOnPage(this.organizationId, this.itemsPerPage, page).subscribe(userResponses => {
+        this._userResponseService.getUserResponseOnPage(this.organizationId, this.itemsPerPage, page, this.spinner).subscribe(userResponses => {
             this.offset = 0;
             this._userResponses = userResponses;
         });
@@ -134,6 +137,10 @@ export class UserResponseComponent implements OnInit {
         this._userResponseService.getUserResponseWithNewStatus(this.organizationId)
             .subscribe(count => this._storage.emitNavChangeEvent(count));
         this.closeModal();
+    }
+
+    ngOnDestroy() {
+        this._storage.showDropDown = true;
     }
 
 }

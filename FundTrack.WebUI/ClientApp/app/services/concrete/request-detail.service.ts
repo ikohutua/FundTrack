@@ -7,17 +7,20 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/catch';
+import { BaseSpinnerService } from "../abstract/base-spinner-service";
+import { SpinnerComponent } from "../../shared/components/spinner/spinner.component";
 
 @Injectable()
 export class RequestDetailService {
 
     public constructor(private _http: Http) {
     }
+
     /**
      * Send request to controller return request whuch have this id
      * @param id
      */
-    public getRequestDetail(id: number): Observable<RequestedItemDetailViewModel> {
+    public getRequestDetail(id: number, spinner?: SpinnerComponent): Observable<RequestedItemDetailViewModel> {
         let requestDetailUrl = 'api/RequestedItem/GetRequestDetail';
         return this._http.get(requestDetailUrl + '/' + id.toString())
             .map((response: Response) => <RequestedItemDetailViewModel>response.json())

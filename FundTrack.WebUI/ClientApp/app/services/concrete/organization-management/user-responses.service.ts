@@ -8,21 +8,23 @@ import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/catch';
 import { RequestedItemInitViewModel } from "../../../view-models/abstract/requesteditem-initpaginationdata-view-model";
 import * as key from '../../../shared/key.storage';
+import { BaseSpinnerService } from "../../abstract/base-spinner-service";
+import { SpinnerComponent } from "../../../shared/components/spinner/spinner.component";
 
 @Injectable()
-export class UserResponseService {
+export class UserResponseService extends BaseSpinnerService< UserResponseOnRequestsViewModel > {
 
-    public constructor(private _http: Http) { }
+    public constructor(private _http: Http) {
+        super(_http);
+    }
 
     /**
      * get user Responses by one organization
      * @param organizationId
      */
-    public getUserResponsesByOrganization(organizationId: number): Observable<UserResponseOnRequestsViewModel[]> {
+    public getUserResponsesByOrganization(organizationId: number, spinner?: SpinnerComponent): Observable<UserResponseOnRequestsViewModel[]> {
         let userResponseUrl = 'api/UserResponse/GetUserResponse';
-        return this._http.get(userResponseUrl + '/' + organizationId, this.getRequestOptions())
-            .map((response: Response) => <UserResponseOnRequestsViewModel[]>response.json())
-            .catch(this.handleError)
+        return super.getCollection(userResponseUrl + '/' + organizationId, this.getRequestOptions(), spinner);
     }
 
     /**
@@ -57,11 +59,9 @@ export class UserResponseService {
      * @param itemsPerPage
      * @param currentPage
      */
-    public getUserResponseOnPage(organizationId: number, itemsPerPage: number, currentPage: number): Observable<UserResponseOnRequestsViewModel[]> {
-        let _urlGetUserResponseToShowPerPage = "api/UserResponse/GetUserResponseToShowPerPage";
-        return this._http.get(_urlGetUserResponseToShowPerPage + '/' + organizationId + '/' + currentPage + '/' + itemsPerPage, this.getRequestOptions)
-            .map((response: Response) => response.json() as UserResponseOnRequestsViewModel[])
-            .catch(this.handleError);
+    public getUserResponseOnPage(organizationId: number, itemsPerPage: number, currentPage: number, spinner?: SpinnerComponent): Observable<UserResponseOnRequestsViewModel[]> {
+        let _urlGetUserResponseToShowPerPage = "api/UserResponse/GetUserResponseToShowPerPage" + '/' + organizationId + '/' + currentPage + '/' + itemsPerPage;
+        return super.getCollection(_urlGetUserResponseToShowPerPage, this.getRequestOptions(), spinner);
     }
 
     /**
