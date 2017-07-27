@@ -47,6 +47,7 @@ namespace FundTrack.WebUI.Controllers
         /// </summary>
         /// <param name="id">id of the user</param>
         /// <returns>All offer item view models of a user, whose id matches with entered</returns>
+        
         [HttpGet("[action]/{id}")]
         public JsonResult GetUserOfferById(int id)
         {
