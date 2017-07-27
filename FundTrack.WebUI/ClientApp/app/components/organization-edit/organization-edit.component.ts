@@ -23,7 +23,7 @@ import * as key from '../../shared/key.storage';
     providers: [OrganizationGetGeneralInfoService, EditOrganizationService]
 })
 export class OrganizationEditComponent implements OnInit, OnDestroy, AfterViewInit {
-    googleMax: number = 5;
+    googleQuote: number = 5;
     minimumAddresses: number = 1;
     disableDelete: boolean = false;
     organizationId: number;
@@ -55,7 +55,7 @@ export class OrganizationEditComponent implements OnInit, OnDestroy, AfterViewIn
 
     
 
-    addressArray: Array<AddressViewModel> = new Array(this.googleMax);
+    addressArray: Array<AddressViewModel> = new Array(this.googleQuote);
     moderatorArray: ModeratorViewModel[];
     possibleModerators: AddModeratorViewModel[];
     isAnyModerators: boolean = false;
