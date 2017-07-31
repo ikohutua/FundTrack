@@ -18,7 +18,6 @@ namespace FundTrack.DAL.Concrete
         private readonly IRepository<Address> _addressRepository;
         private readonly IRepository<OrgAddress> _orgAddressRepository;
         private readonly IRepository<BankAccount> _bankAccountRepository;
-        private readonly IRepository<OrgAccount> _orgAccountRepository;
         private readonly IRepository<Role> _roleRepository;
         private readonly IRequestedItemRepository _requestedItemRepository;
         private readonly IRepository<EventImage> _eventImageRepository;
@@ -28,6 +27,8 @@ namespace FundTrack.DAL.Concrete
         private readonly IRequestedItemImageRepository _requestedItemImageRepository;
         private readonly IGoodsTypeRepository _goodsTypeRepository;
         private readonly IOfferImagesRepository _offeredItemImageRepository;
+        private readonly IOrganizationAccountRepository _organizationAccountRepository;
+        private readonly IRepository<Currency> _currencyRepository;
 
         private FundTrackContext _context;
 
@@ -46,7 +47,6 @@ namespace FundTrack.DAL.Concrete
               IRepository<OrgAddress> orgAddressRepository,
               IRepository<BankAccount> bankAccountRepository,
               IRequestedItemRepository requestedItemRepository,
-              IRepository<OrgAccount> orgAccountRepository,
               IRepository<Role> roleRepository,
               IRepository<EventImage> eventImageRepositoryParam,
               IRepository<OfferedItem> offeredItemRepository,
@@ -55,7 +55,9 @@ namespace FundTrack.DAL.Concrete
               IGoodsCategoryRepository goodsCategoryRepository,
               IRequestedItemImageRepository requestedItemImageRepository,
               IGoodsTypeRepository goodsTypeRepository,
-              IOfferImagesRepository offeredItemImageRepository
+              IOfferImagesRepository offeredItemImageRepository,
+              IOrganizationAccountRepository organizationAccountRepository,
+              IRepository<Currency> currencyRepository
               )
         {
             this._context = contextParam;
@@ -67,7 +69,6 @@ namespace FundTrack.DAL.Concrete
             _addressRepository = addressRepository;
             _orgAddressRepository = orgAddressRepository;
             _bankAccountRepository = bankAccountRepository;
-            _orgAccountRepository = orgAccountRepository;
             _roleRepository = roleRepository;
             _eventImageRepository = eventImageRepositoryParam;
             _offeredItemRepository = offeredItemRepository;
@@ -78,6 +79,8 @@ namespace FundTrack.DAL.Concrete
             _requestedItemImageRepository = requestedItemImageRepository;
             _goodsTypeRepository = goodsTypeRepository;
             _offeredItemImageRepository = offeredItemImageRepository;
+            _organizationAccountRepository = organizationAccountRepository;
+            _currencyRepository = currencyRepository;
         }
 
         /// <summary>
@@ -190,20 +193,6 @@ namespace FundTrack.DAL.Concrete
         }
 
         /// <summary>
-        /// Gets organization account repository.
-        /// </summary>
-        /// <value>
-        /// Organization account repository.
-        /// </value>
-        public IRepository<OrgAccount> OrganizationAccountRepository
-        {
-            get
-            {
-                return _orgAccountRepository;
-            }
-        }
-
-        /// <summary>
         /// Gets the membership repository.
         /// </summary>
         /// <value>
@@ -311,6 +300,22 @@ namespace FundTrack.DAL.Concrete
             get
             {
                 return this._offeredItemImageRepository;
+            }
+        }
+
+        public IOrganizationAccountRepository OrganizationAccountRepository
+        {
+            get
+            {
+                return this._organizationAccountRepository;
+            }
+        }
+
+        public IRepository<Currency> CurrencyRepositry
+        {
+            get
+            {
+                return this._currencyRepository;
             }
         }
 

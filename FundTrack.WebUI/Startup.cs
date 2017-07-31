@@ -56,7 +56,6 @@ namespace FundTrack_WebUI
             services.AddScoped<IRepository<Address>, AddressRepository>();
             services.AddScoped<IRepository<OrgAddress>, OrgAddressRepository>();
             services.AddScoped<IRepository<BankAccount>, BankAccountRepository>();
-            services.AddScoped<IRepository<OrgAccount>, OrgAccountRepository>();
             services.AddScoped<IRepository<Role>, RoleRepository>();
             services.AddScoped<IRepository<EventImage>, EventImageRepository>();
             services.AddScoped<IRequestedItemRepository, RequestedItemRepository>();
@@ -67,6 +66,8 @@ namespace FundTrack_WebUI
             services.AddScoped<IRequestedItemImageRepository, RequestedItemImageRepository>();
             services.AddScoped<IGoodsTypeRepository, GoodsTypeRepository>();
             services.AddScoped<IOfferImagesRepository, OfferImagesRepository>();
+            services.AddScoped<IOrganizationAccountRepository, OrganizationAccountRepository>();
+            services.AddScoped<IRepository<Currency>, CurrencyRepository>();
 
             //dependency injection BLL
             services.AddScoped<IOrganizationsForFilteringService, OrganizationsForFilteringService>();
@@ -84,6 +85,7 @@ namespace FundTrack_WebUI
             services.AddScoped<IOrganizationProfileService, OrganizationProfileService>();
             services.AddScoped<IModeratorService, ModeratorService>();
             services.AddScoped<IUserResponseService, UserResponseService>();
+            services.AddScoped<IOrganizationAccountService, OrganizationAccountService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

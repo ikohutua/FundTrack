@@ -58,11 +58,6 @@ namespace FundTrack.DAL.Abstract
         IRepository<Address> AddressRepository { get; }
 
         /// <summary>
-        /// Gets OrganizationAccount repository
-        /// </summary>
-        IRepository<OrgAccount> OrganizationAccountRepository { get; }
-
-        /// <summary>
         /// Gets bank account repository
         /// </summary>
         IRepository<BankAccount> BankAccountRepository { get; }
@@ -118,6 +113,8 @@ namespace FundTrack.DAL.Abstract
         /// Gets the repo
         /// </summary>
         IOfferImagesRepository OfferImagesRepository { get; }
+        IOrganizationAccountRepository OrganizationAccountRepository { get; }
+        IRepository<Currency> CurrencyRepositry { get; }
 
         /// <summary>
         /// Saves all changes made in this context to the database.

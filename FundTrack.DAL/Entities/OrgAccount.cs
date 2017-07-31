@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using FundTrack.Infrastructure.ViewModel;
+using System.Collections.Generic;
 
 namespace FundTrack.DAL.Entities
 {
@@ -76,5 +77,35 @@ namespace FundTrack.DAL.Entities
         /// Gets or Sets FinOpTo navigation property
         /// </summary>
         public virtual ICollection<FinOp> FinOpsTo { get; set; }
+        #region Operators
+        public static implicit operator OrgAccount (OrgAccountViewModel model)
+        {
+            return new OrgAccount
+            {
+                Id = model.Id,
+                OrgId = model.OrgId,
+                BankAccId = model.BankAccId,
+                CurrencyId = model.CurrencyId,
+                OrgAccountName = model.OrgAccountName,
+                AccountType = model.AccountType,
+                Description=model.Description,
+                CurrentBalance=model.CurrentBalance,
+            };
+        }
+        public static implicit operator OrgAccountViewModel (OrgAccount item)
+        {
+            return new OrgAccountViewModel
+            {
+                Id=item.Id,
+                OrgId=item.OrgId,
+                BankAccId=item.BankAccId,
+                CurrencyId=item.CurrencyId,
+                OrgAccountName=item.OrgAccountName,
+                AccountType=item.AccountType,
+                Description=item.Description,
+                CurrentBalance=item.CurrentBalance,
+            };
+        }
+        #endregion
     }
 }

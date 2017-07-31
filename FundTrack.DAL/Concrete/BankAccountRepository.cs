@@ -2,6 +2,7 @@
 using FundTrack.DAL.Entities;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 
 namespace FundTrack.DAL.Concrete
 {
@@ -50,6 +51,13 @@ namespace FundTrack.DAL.Concrete
         /// <returns></returns>
         public BankAccount Get(int id)
         {
+            return _context.BankAccounts.FirstOrDefault(e => e.Id == id);
+        }
+
+        public BankAccount Get(int? bankAccId)
+        {
+            int? id = 0;
+            id = bankAccId;
             return _context.BankAccounts.FirstOrDefault(e => e.Id == id);
         }
 
