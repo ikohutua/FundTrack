@@ -2,23 +2,32 @@
     <div class="panel-heading heading">
         <h3>{{pageTitle}}</h3>
     </div>
-    <div class="panel-body">
+    <div class="panel-default">
         <div>
-            <table class="table center"
+            <table class="table center table-striped table-bordered table-hover"
                    *ngIf="accounts && accounts.length">
                 <thead>
                     <tr>
-                        <th>Номер Рахунку</th>
-                        <th>BankName</th>
+                        <th>Назва рахунку</th>
+                        <th>Номер</th>
+                        <th>Банк</th>
+                        <th>Валюта</th>
+                        <th>Тип</th>
+                        <th>Поточний баланс</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let account of accounts">
-                        <td>{{account.currentBalance}}</td>
+                        <td>{{account.orgAccountName}}</td>
                         <td>{{account.accNumber}}</td>
+                        <td>{{account.bankName}}</td>
+                        <td>{{account.currency}}</td>
+                        <td>{{account.accountType}}</td>
+                        <td>{{account.currentBalance | currency: account.currencyShortName: true}}</td>
                     </tr>
                 </tbody>
             </table>
+                <button type="button" style="margin:0 0 5px 10px" class="btn btn-default">Додати рахунок</button>
         </div>
     </div>
 </div>

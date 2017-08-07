@@ -29,6 +29,9 @@
                     </li>
                 </ul>
             </li>
+            <li *ngIf="this.user && this.user.role=='admin'" class="dropdown">
+                <li [routerLinkActive]="['link-active']"><a [routerLink]="['finance/orgaccounts']">Рахунки організації</a>
+            </li>
             <li *ngIf="this.user && this.user.role!=null" class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown">Запропонувати речі <span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">

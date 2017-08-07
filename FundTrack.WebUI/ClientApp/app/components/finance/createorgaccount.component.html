@@ -1,0 +1,93 @@
+﻿<form class="form-horizontal">
+    <fieldset>
+
+        <!-- Form Name -->
+        <legend>Додати рахунок</legend>
+
+        <!-- Text input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="accountName">Назва рахунку</label>
+            <div class="col-md-4">
+                <input id="accountName" name="accountName" type="text" placeholder="Назва рахунку" class="form-control input-md" required="">
+
+            </div>
+        </div>
+
+        <!-- Text input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="textinput">Номер рахунку</label>
+            <div class="col-md-4">
+                <input id="textinput" name="textinput" type="text" placeholder="12-14 цифр" class="form-control input-md" required="">
+
+            </div>
+        </div>
+
+        <!-- Text input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="accountMFO">МФО</label>
+            <div class="col-md-4">
+                <input id="accountMFO" name="accountMFO" type="text" placeholder="МФО" class="form-control input-md" required="">
+
+            </div>
+        </div>
+
+        <!-- Text input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="accountEDRPOU">ЄДРПОУ</label>
+            <div class="col-md-4">
+                <input id="accountEDRPOU" name="accountEDRPOU" type="text" placeholder="ЄДРПОУ" class="form-control input-md" required="">
+
+            </div>
+        </div>
+
+        <!-- Text input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="accountBankName">Назва банку</label>
+            <div class="col-md-4">
+                <input id="accountBankName" name="accountBankName" type="text" placeholder="Назва банку" class="form-control input-md" required="">
+
+            </div>
+        </div>
+
+        <!-- Text input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="accountDescription">Опис рахунку</label>
+            <div class="col-md-4">
+                <input id="accountDescription" name="accountDescription" type="text" placeholder="Короткий опис" class="form-control input-md">
+
+            </div>
+        </div>
+
+        <!-- Select Basic -->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="currency">Валюта</label>
+            <div class="col-md-4">
+                <select id="currency" name="currency" class="form-control">
+                    <option value="1">Долар США</option>
+                    <option value="2">Євро</option>
+                    <option value="3">Гривня</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Multiple Radios -->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="accountAllowPayments">Підтримка онлайн платежів</label>
+            <div class="col-md-4">
+                <div class="radio">
+                    <label for="accountAllowPayments-0">
+                        <input type="radio" name="accountAllowPayments" id="accountAllowPayments-0" value="1" checked="checked">
+                        Ввімкнена
+                    </label>
+                </div>
+                <div class="radio">
+                    <label for="accountAllowPayments-1">
+                        <input type="radio" name="accountAllowPayments" id="accountAllowPayments-1" value="0">
+                        Вимкнена
+                    </label>
+                </div>
+            </div>
+        </div>
+
+    </fieldset>
+</form>

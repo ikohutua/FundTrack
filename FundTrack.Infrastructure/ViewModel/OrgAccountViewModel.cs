@@ -12,6 +12,7 @@ namespace FundTrack.Infrastructure.ViewModel
         public int OrgId { get; set; }
         public int? BankAccId { get; set; }
         public string Currency { get; set; }
+        public string CurrencyShortName { get; set; }
         public string OrgAccountName { get; set; }
         public string AccountType { get; set; }
         public string Description { get; set; }

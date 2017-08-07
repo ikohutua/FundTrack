@@ -3,6 +3,7 @@
     orgId: number;
     bankAccId: number;
     currency: string;
+    currencyShortName: string;
     orgAccountName: string;
     accountType: string;
     description: string;

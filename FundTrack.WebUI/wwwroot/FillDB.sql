@@ -296,6 +296,13 @@ VALUES
 (N'Інше')
 GO
 
+INSERT INTO dbo.Currencies
+VALUES
+(N'Долар США','USD'),
+(N'Євро','EUR'),
+(N'Гривня','UAH')
+GO
+
 INSERT INTO dbo.GoodsCategories
 VALUES
 (1,N'Валянки'),

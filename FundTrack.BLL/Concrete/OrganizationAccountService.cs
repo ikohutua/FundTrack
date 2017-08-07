@@ -105,6 +105,7 @@ namespace FundTrack.BLL.Concrete
             model.EDRPOU = item.BankAccount.EDRPOU;
             model.MFO = item.BankAccount.MFO;
             model.Currency = item.Currency.FullName;
+            model.CurrencyShortName = item.Currency.ShortName;
             model.BankName = item.BankAccount.BankName;
             model.AccNumber = item.BankAccount.AccNumber;
             return model;
