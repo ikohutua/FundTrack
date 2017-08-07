@@ -1,0 +1,24 @@
+﻿<div class="panel panel-primary ">
+    <div class="panel-heading heading">
+        <h3>{{pageTitle}}</h3>
+    </div>
+    <div class="panel-body">
+        <div>
+            <table class="table center"
+                   *ngIf="accounts && accounts.length">
+                <thead>
+                    <tr>
+                        <th>Номер Рахунку</th>
+                        <th>BankName</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let account of accounts">
+                        <td>{{account.currentBalance}}</td>
+                        <td>{{account.accNumber}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

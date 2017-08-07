@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FundTrack.DAL.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace FundTrack.DAL.Concrete
 {
@@ -47,9 +48,15 @@ namespace FundTrack.DAL.Concrete
             return this._context.OrgAccounts.FirstOrDefault(i => i.Id == orgAccountId);
         }
 
-        public IQueryable<OrgAccount> ReadAllOrgAccounts(int organizationId)
+        public IEnumerable<OrgAccount> ReadAllOrgAccounts(int organizationId)
         {
-            return this._context.OrgAccounts.Where(i => i.OrgId == organizationId);
+            return this._context.OrgAccounts
+                .Include(a => a.BankAccount)
+                .Include(a => a.Balances)
+                .Include(a => a.Currency)
+                .Include(a => a.FinOpsFrom)
+                .Include(a => a.FinOpsTo)
+                .Where(a => a.OrgId == organizationId);
         }
     }
 }

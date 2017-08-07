@@ -57,7 +57,8 @@ namespace FundTrack.BLL.Concrete
                 var accountsModels = new List<OrgAccountViewModel>();
                 foreach (var item in accounts)
                 {
-                    accountsModels.Add(item);
+                   var updatedItem= this.InitializeOrgAccountViewModel(item);
+                    accountsModels.Add(updatedItem);
                 }
                 return accountsModels;
             }
@@ -97,6 +98,16 @@ namespace FundTrack.BLL.Concrete
                 string message = string.Format("Неможливо оновити рахунок організації. Помилка: {0}", e.Message);
                 throw new BusinessLogicException(message, e);
             }
+        }
+        public OrgAccountViewModel InitializeOrgAccountViewModel(OrgAccount item)
+        {
+            OrgAccountViewModel model = item;
+            model.EDRPOU = item.BankAccount.EDRPOU;
+            model.MFO = item.BankAccount.MFO;
+            model.Currency = item.Currency.FullName;
+            model.BankName = item.BankAccount.BankName;
+            model.AccNumber = item.BankAccount.AccNumber;
+            return model;
         }
     }
 }

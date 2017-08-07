@@ -20,5 +20,9 @@ namespace FundTrack.Infrastructure.ViewModel
         public int CurrencyId { get; set; }
         public List<string> FinOpsFrom { get; set; }
         public List<string> FinOpsTo { get; set; }
+        public string AccNumber { get; set; }
+        public string MFO { get; set; }
+        public string EDRPOU { get; set; }
+        public string BankName { get; set; }
     }
 }

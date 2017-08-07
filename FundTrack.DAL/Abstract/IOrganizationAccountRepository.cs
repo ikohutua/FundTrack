@@ -13,6 +13,6 @@ namespace FundTrack.DAL.Abstract
         void Delete(int orgAccountId);
         OrgAccount Edit(OrgAccount item);
         OrgAccount Read(int orgAccountId);
-        IQueryable<OrgAccount> ReadAllOrgAccounts(int organizationId);
+        IEnumerable<OrgAccount> ReadAllOrgAccounts(int organizationId);
     }
 }
