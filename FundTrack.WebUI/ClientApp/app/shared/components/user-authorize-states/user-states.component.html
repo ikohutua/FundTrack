@@ -7,8 +7,6 @@
     <ul class="dropdown-menu dropdowncolor">
         <li><a [routerLink]="['/userprofile']">Мій профіль</a></li>
         <li *ngIf="isAdmin"><a [routerLink]="['/superadmin']">Панель адміністратора</a></li>
-        <li *ngIf="isAdminOfOrganization"><a [routerLink]="['organization-management', idOfOrganization]">Моя організація</a></li>
-        <li *ngIf="isModeratorOfOrganization"><a [routerLink]="['organization-management', idOfOrganization]">Моя організація</a></li>
         <li><a [routerLink]="['/']" (click)="exit()">Вийти</a></li>
     </ul>
 </div>

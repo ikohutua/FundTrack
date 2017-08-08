@@ -12,15 +12,11 @@ import { StorageService } from '../../item-storage-service';
     providers: [UserService]
 })
 
-export class UserStatesComponent implements AfterContentChecked, DoCheck {
+export class UserStatesComponent implements AfterContentChecked {
 
     public user: AuthorizeUserModel;
     public name: string = '';
     private isAdmin: boolean = false;
-    private isAdminOfOrganization: boolean = false;
-    private isAdminOfOrganizationForCheck: boolean = false;
-    private isModeratorOfOrganization: boolean = false;
-    private isModeratorOfOrganizationForCheck: boolean = false;
     private idOfOrganization: number;
     public constructor(private _authorizationService: UserService, private _storage: StorageService) { }
 
@@ -30,8 +26,6 @@ export class UserStatesComponent implements AfterContentChecked, DoCheck {
     public exit(): void {
         this.name = null;
         this.isAdmin = false;
-        this.isAdminOfOrganization = false;
-        this.isAdminOfOrganizationForCheck = false;
         this._authorizationService.logOff();
         this._storage.emitAuthorizeUserEvent(null, 0);
         this._storage.bannedDescription = '';
@@ -48,34 +42,9 @@ export class UserStatesComponent implements AfterContentChecked, DoCheck {
                 if (this.user.role == 'superadmin') {
                     this.isAdmin = true;
                 }
-                else if (this.user.role == 'admin') {
-                    this.isAdminOfOrganizationForCheck = true;
-                }
-                else if (this.user.role = 'moderator') {
-                    this.isModeratorOfOrganizationForCheck = true;
-                }
             }
             return true;
         }
         return false;
-    }
-
-    ngDoCheck() {
-        if (this.isAdminOfOrganization !== this.isAdminOfOrganizationForCheck) {
-            this.isAdminOfOrganization = true;
-            this.getIdOfOrganization();
-        }
-        else if (this.isModeratorOfOrganization !== this.isModeratorOfOrganizationForCheck)
-        {
-            this.isModeratorOfOrganization = true;
-            this.getIdOfOrganization();
-        }
-    }
-
-    private getIdOfOrganization(): void {
-        this._authorizationService.getOrganizationId(this.user.login).subscribe(orgIdViewModel => {
-            this.idOfOrganization = orgIdViewModel.organizationId;
-            this._storage.bannedDescription = orgIdViewModel.bannedDescription;
-        });
     }
 }
