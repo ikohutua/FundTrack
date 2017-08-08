@@ -21,7 +21,10 @@ namespace FundTrack.DAL.Entities
         /// Gets or Sets AccNumber of BankAccount
         /// </summary>
         public string AccNumber { get; set; }
-
+        /// <summary>
+        /// Gets or sets card number property
+        /// </summary>
+        public int CardNumber { get; set; }
         /// <summary>
         /// Gets or Sets MFO of BankAccount
         /// </summary>
@@ -36,6 +39,14 @@ namespace FundTrack.DAL.Entities
         /// Gets or Sets Name of the Bank
         /// </summary>
         public string BankName { get; set; }
+        /// <summary>
+        /// Gets or sets id of the merchant of the payment system
+        /// </summary>
+        public int MerchantId { get; set; }
+        /// <summary>
+        /// Gets or sets password of the merchant of the payment system
+        /// </summary>
+        public string MerchantPassword { get; set; }
 
         /// <summary>
         /// Gets or Sets Organization navigation property

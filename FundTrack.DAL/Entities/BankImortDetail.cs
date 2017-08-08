@@ -83,6 +83,10 @@ namespace FundTrack.DAL.Entities
         /// The description.
         /// </value>
         public string Description { get; set; }
+        /// <summary>
+        /// Gets or Sets AppCode property
+        /// </summary>
+        public int AppCode { get; set; }
 
         /// <summary>
         /// Gets or sets the bank import.

@@ -371,6 +371,7 @@ namespace FundTrack.DAL.Concrete
                 entity.Property(e => e.EDRPOU).IsRequired().HasMaxLength(10);
 
                 entity.Property(e => e.BankName).IsRequired().HasMaxLength(50);
+                entity.Property(e => e.CardNumber).HasMaxLength(16);
 
                 entity.HasOne(ba => ba.Organization)
                       .WithMany(o => o.BankAccounts)
@@ -452,6 +453,8 @@ namespace FundTrack.DAL.Concrete
                       .WithMany(u => u.FinOps)
                       .HasForeignKey(fo => fo.UserId)
                       .HasConstraintName("FK_FinOp_User");
+                entity.HasOne(fo => fo.Donation)
+                .WithOne();
             });
 
             modelBuilder.Entity<Tag>(entity =>
@@ -619,6 +622,7 @@ namespace FundTrack.DAL.Concrete
                 entity.Property(bid => bid.Terminal).IsRequired();
 
                 entity.Property(bid => bid.Description).IsRequired();
+                entity.Property(bid => bid.AppCode).HasMaxLength(8);
 
                 entity.HasOne(bid => bid.BankImport)
                        .WithMany(bi => bi.BankImportDetails)
@@ -756,6 +760,20 @@ namespace FundTrack.DAL.Concrete
                        .HasConstraintName("FK_OrganizationResponse_Organization");
             });
 
+            modelBuilder.Entity<Donation>(entity =>
+            {
+                entity.HasKey(e => e.Id).HasName("PK_DonationId");
+                entity.HasOne(e => e.Currency)
+                .WithOne();
+                entity.Property(e => e.Amount).IsRequired();
+                entity.Property(e => e.Description).IsRequired();
+                entity.HasOne(e => e.User)
+                .WithOne();
+                entity.HasOne(e => e.Target)
+                .WithOne();
+                entity.HasOne(e => e.BankAccount)
+                .WithOne();
+            });
         }
     }
 }
