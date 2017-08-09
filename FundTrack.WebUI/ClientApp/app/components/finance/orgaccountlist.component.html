@@ -1,4 +1,5 @@
 ﻿<div class="panel panel-primary ">
+    <spinner [showSpinner]="showSpinner"></spinner>
     <div class="panel-heading heading">
         <h3>{{pageTitle}}</h3>
     </div>
@@ -27,7 +28,7 @@
                     </tr>
                 </tbody>
             </table>
-                <button type="button" style="margin:0 0 5px 10px" class="btn btn-default">Додати рахунок</button>
+                <button type="button"  (click)="navigateToCreatePage()" style="margin:0 0 5px 10px" class="btn btn-default">Додати рахунок</button>
         </div>
     </div>
 </div>

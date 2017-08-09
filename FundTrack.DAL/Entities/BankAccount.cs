@@ -24,7 +24,7 @@ namespace FundTrack.DAL.Entities
         /// <summary>
         /// Gets or sets card number property
         /// </summary>
-        public int CardNumber { get; set; }
+        public string CardNumber { get; set; }
         /// <summary>
         /// Gets or Sets MFO of BankAccount
         /// </summary>

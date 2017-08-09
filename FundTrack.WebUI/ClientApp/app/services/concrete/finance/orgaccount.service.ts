@@ -8,7 +8,6 @@ import { OrgAccountViewModel } from "../../../view-models/concrete/finance/orgac
 import * as key from '../../../shared/key.storage';
 import { AuthorizeUserModel } from "../../../view-models/concrete/authorized-user-info-view.model";
 import { isBrowser } from "angular2-universal";
-
 /**
  * Service for super admin actions
  */

@@ -59,7 +59,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "4c4072eb5a72e6b78034"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "6babf5f4a90a6f4d1aa1"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -787,7 +787,7 @@ module.exports = (__webpack_require__(4))(13);
 /* 4 */
 /***/ (function(module, exports) {
 
-module.exports = vendor_38c9b5373cb392331af8;
+module.exports = vendor_59e348384b03c3958476;
 
 /***/ }),
 /* 5 */
@@ -13298,19 +13298,27 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
+var router_1 = __webpack_require__(2);
 var orgaccount_service_1 = __webpack_require__(64);
 var OrgAccountListComponent = (function () {
-    function OrgAccountListComponent(_accountService) {
+    function OrgAccountListComponent(_accountService, router) {
         this._accountService = _accountService;
+        this.router = router;
         this.accounts = new Array();
+        this.showSpinner = false;
         this.pageTitle = 'Рахунки організації';
     }
     OrgAccountListComponent.prototype.ngOnInit = function () {
         var _this = this;
+        this.showSpinner = true;
         this._accountService.getAllAccountsOfOrganization().
             subscribe(function (r) {
             _this.accounts = r;
+            _this.showSpinner = false;
         });
+    };
+    OrgAccountListComponent.prototype.navigateToCreatePage = function () {
+        this.router.navigate(['/finance/createaccount']);
     };
     return OrgAccountListComponent;
 }());
@@ -13320,7 +13328,8 @@ OrgAccountListComponent = __decorate([
         template: __webpack_require__(261),
         styles: [__webpack_require__(325)]
     }),
-    __metadata("design:paramtypes", [orgaccount_service_1.OrgAccountService])
+    __metadata("design:paramtypes", [orgaccount_service_1.OrgAccountService,
+        router_1.Router])
 ], OrgAccountListComponent);
 exports.OrgAccountListComponent = OrgAccountListComponent;
 
@@ -21085,10 +21094,6 @@ var UserStatesComponent = (function () {
         this._storage = _storage;
         this.name = '';
         this.isAdmin = false;
-        this.isAdminOfOrganization = false;
-        this.isAdminOfOrganizationForCheck = false;
-        this.isModeratorOfOrganization = false;
-        this.isModeratorOfOrganizationForCheck = false;
     }
     /**
      * close the session current user
@@ -21096,8 +21101,6 @@ var UserStatesComponent = (function () {
     UserStatesComponent.prototype.exit = function () {
         this.name = null;
         this.isAdmin = false;
-        this.isAdminOfOrganization = false;
-        this.isAdminOfOrganizationForCheck = false;
         this._authorizationService.logOff();
         this._storage.emitAuthorizeUserEvent(null, 0);
         this._storage.bannedDescription = '';
@@ -21113,33 +21116,10 @@ var UserStatesComponent = (function () {
                 if (this.user.role == 'superadmin') {
                     this.isAdmin = true;
                 }
-                else if (this.user.role == 'admin') {
-                    this.isAdminOfOrganizationForCheck = true;
-                }
-                else if (this.user.role = 'moderator') {
-                    this.isModeratorOfOrganizationForCheck = true;
-                }
             }
             return true;
         }
         return false;
-    };
-    UserStatesComponent.prototype.ngDoCheck = function () {
-        if (this.isAdminOfOrganization !== this.isAdminOfOrganizationForCheck) {
-            this.isAdminOfOrganization = true;
-            this.getIdOfOrganization();
-        }
-        else if (this.isModeratorOfOrganization !== this.isModeratorOfOrganizationForCheck) {
-            this.isModeratorOfOrganization = true;
-            this.getIdOfOrganization();
-        }
-    };
-    UserStatesComponent.prototype.getIdOfOrganization = function () {
-        var _this = this;
-        this._authorizationService.getOrganizationId(this.user.login).subscribe(function (orgIdViewModel) {
-            _this.idOfOrganization = orgIdViewModel.organizationId;
-            _this._storage.bannedDescription = orgIdViewModel.bannedDescription;
-        });
     };
     return UserStatesComponent;
 }());
@@ -145555,13 +145535,13 @@ module.exports = "<div class=\"col-lg-12\" *ngIf=\"_eventDetail\">\r\n    <div c
 /* 260 */
 /***/ (function(module, exports) {
 
-module.exports = "<form class=\"form-horizontal\">\r\n    <fieldset>\r\n\r\n        <!-- Form Name -->\r\n        <legend>Додати рахунок</legend>\r\n\r\n        <!-- Text input-->\r\n        <div class=\"form-group\">\r\n            <label class=\"col-md-4 control-label\" for=\"accountName\">Назва рахунку</label>\r\n            <div class=\"col-md-4\">\r\n                <input id=\"accountName\" name=\"accountName\" type=\"text\" placeholder=\"Назва рахунку\" class=\"form-control input-md\" required=\"\">\r\n\r\n            </div>\r\n        </div>\r\n\r\n        <!-- Text input-->\r\n        <div class=\"form-group\">\r\n            <label class=\"col-md-4 control-label\" for=\"textinput\">Номер рахунку</label>\r\n            <div class=\"col-md-4\">\r\n                <input id=\"textinput\" name=\"textinput\" type=\"text\" placeholder=\"12-14 цифр\" class=\"form-control input-md\" required=\"\">\r\n\r\n            </div>\r\n        </div>\r\n\r\n        <!-- Text input-->\r\n        <div class=\"form-group\">\r\n            <label class=\"col-md-4 control-label\" for=\"accountMFO\">МФО</label>\r\n            <div class=\"col-md-4\">\r\n                <input id=\"accountMFO\" name=\"accountMFO\" type=\"text\" placeholder=\"МФО\" class=\"form-control input-md\" required=\"\">\r\n\r\n            </div>\r\n        </div>\r\n\r\n        <!-- Text input-->\r\n        <div class=\"form-group\">\r\n            <label class=\"col-md-4 control-label\" for=\"accountEDRPOU\">ЄДРПОУ</label>\r\n            <div class=\"col-md-4\">\r\n                <input id=\"accountEDRPOU\" name=\"accountEDRPOU\" type=\"text\" placeholder=\"ЄДРПОУ\" class=\"form-control input-md\" required=\"\">\r\n\r\n            </div>\r\n        </div>\r\n\r\n        <!-- Text input-->\r\n        <div class=\"form-group\">\r\n            <label class=\"col-md-4 control-label\" for=\"accountBankName\">Назва банку</label>\r\n            <div class=\"col-md-4\">\r\n                <input id=\"accountBankName\" name=\"accountBankName\" type=\"text\" placeholder=\"Назва банку\" class=\"form-control input-md\" required=\"\">\r\n\r\n            </div>\r\n        </div>\r\n\r\n        <!-- Text input-->\r\n        <div class=\"form-group\">\r\n            <label class=\"col-md-4 control-label\" for=\"accountDescription\">Опис рахунку</label>\r\n            <div class=\"col-md-4\">\r\n                <input id=\"accountDescription\" name=\"accountDescription\" type=\"text\" placeholder=\"Короткий опис\" class=\"form-control input-md\">\r\n\r\n            </div>\r\n        </div>\r\n\r\n        <!-- Select Basic -->\r\n        <div class=\"form-group\">\r\n            <label class=\"col-md-4 control-label\" for=\"currency\">Валюта</label>\r\n            <div class=\"col-md-4\">\r\n                <select id=\"currency\" name=\"currency\" class=\"form-control\">\r\n                    <option value=\"1\">Долар США</option>\r\n                    <option value=\"2\">Євро</option>\r\n                    <option value=\"3\">Гривня</option>\r\n                </select>\r\n            </div>\r\n        </div>\r\n\r\n        <!-- Multiple Radios -->\r\n        <div class=\"form-group\">\r\n            <label class=\"col-md-4 control-label\" for=\"accountAllowPayments\">Підтримка онлайн платежів</label>\r\n            <div class=\"col-md-4\">\r\n                <div class=\"radio\">\r\n                    <label for=\"accountAllowPayments-0\">\r\n                        <input type=\"radio\" name=\"accountAllowPayments\" id=\"accountAllowPayments-0\" value=\"1\" checked=\"checked\">\r\n                        Ввімкнена\r\n                    </label>\r\n                </div>\r\n                <div class=\"radio\">\r\n                    <label for=\"accountAllowPayments-1\">\r\n                        <input type=\"radio\" name=\"accountAllowPayments\" id=\"accountAllowPayments-1\" value=\"0\">\r\n                        Вимкнена\r\n                    </label>\r\n                </div>\r\n            </div>\r\n        </div>\r\n\r\n    </fieldset>\r\n</form>\r\n";
+module.exports = "<form class=\"form-horizontal\">\r\n    <fieldset>\r\n\r\n        <!-- Form Name -->\r\n        <legend>Додати рахунок</legend>\r\n\r\n        <!-- Text input-->\r\n        <div class=\"form-group\">\r\n            <label class=\"col-md-4 control-label\" for=\"accountName\">Назва рахунку</label>\r\n            <div class=\"col-md-4\">\r\n                <input id=\"accountName\" name=\"accountName\" type=\"text\" placeholder=\"Назва рахунку\" class=\"form-control input-md\" required=\"\">\r\n\r\n            </div>\r\n        </div>\r\n\r\n        <!-- Text input-->\r\n        <div class=\"form-group\">\r\n            <label class=\"col-md-4 control-label\" for=\"accountNumber\">Номер рахунку</label>\r\n            <div class=\"col-md-4\">\r\n                <input id=\"accountNumber\" name=\"accountNumber\" type=\"text\" placeholder=\"12-14 цифр\" class=\"form-control input-md\" required=\"\">\r\n\r\n            </div>\r\n        </div>\r\n\r\n        <!-- Text input-->\r\n        <div class=\"form-group\">\r\n            <label class=\"col-md-4 control-label\" for=\"accountMFO\">МФО</label>\r\n            <div class=\"col-md-4\">\r\n                <input id=\"accountMFO\" name=\"accountMFO\" type=\"text\" placeholder=\"МФО\" class=\"form-control input-md\" required=\"\">\r\n\r\n            </div>\r\n        </div>\r\n\r\n        <!-- Text input-->\r\n        <div class=\"form-group\">\r\n            <label class=\"col-md-4 control-label\" for=\"accountEDRPOU\">ЄДРПОУ</label>\r\n            <div class=\"col-md-4\">\r\n                <input id=\"accountEDRPOU\" name=\"accountEDRPOU\" type=\"text\" placeholder=\"ЄДРПОУ\" class=\"form-control input-md\" required=\"\">\r\n\r\n            </div>\r\n        </div>\r\n\r\n        <!-- Text input-->\r\n        <div class=\"form-group\">\r\n            <label class=\"col-md-4 control-label\" for=\"accountBankName\">Назва банку</label>\r\n            <div class=\"col-md-4\">\r\n                <input id=\"accountBankName\" name=\"accountBankName\" type=\"text\" placeholder=\"Назва банку\" class=\"form-control input-md\" required=\"\">\r\n\r\n            </div>\r\n        </div>\r\n\r\n        <!-- Text input-->\r\n        <div class=\"form-group\">\r\n            <label class=\"col-md-4 control-label\" for=\"accountDescription\">Опис рахунку</label>\r\n            <div class=\"col-md-4\">\r\n                <input id=\"accountDescription\" name=\"accountDescription\" type=\"text\" placeholder=\"Короткий опис\" class=\"form-control input-md\">\r\n\r\n            </div>\r\n        </div>\r\n\r\n        <!-- Select Basic -->\r\n        <div class=\"form-group\">\r\n            <label class=\"col-md-4 control-label\" for=\"currency\">Валюта</label>\r\n            <div class=\"col-md-4\">\r\n                <select id=\"currency\" name=\"currency\" class=\"form-control\">\r\n                    <option value=\"1\">Долар США</option>\r\n                    <option value=\"2\">Євро</option>\r\n                    <option value=\"3\">Гривня</option>\r\n                </select>\r\n            </div>\r\n        </div>\r\n\r\n        <!-- Multiple Radios -->\r\n        <div class=\"form-group\">\r\n            <label class=\"col-md-4 control-label\" for=\"accountAllowPayments\">Підтримка онлайн платежів</label>\r\n            <div class=\"col-md-4\">\r\n                <div class=\"radio\">\r\n                    <label for=\"accountAllowPayments-0\">\r\n                        <input type=\"radio\" name=\"accountAllowPayments\" id=\"accountAllowPayments-0\" value=\"1\" checked=\"checked\">\r\n                        Ввімкнена\r\n                    </label>\r\n                </div>\r\n                <div class=\"radio\">\r\n                    <label for=\"accountAllowPayments-1\">\r\n                        <input type=\"radio\" name=\"accountAllowPayments\" id=\"accountAllowPayments-1\" value=\"0\">\r\n                        Вимкнена\r\n                    </label>\r\n                </div>\r\n            </div>\r\n        </div>\r\n\r\n    </fieldset>\r\n</form>\r\n";
 
 /***/ }),
 /* 261 */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"panel panel-primary \">\r\n    <div class=\"panel-heading heading\">\r\n        <h3>{{pageTitle}}</h3>\r\n    </div>\r\n    <div class=\"panel-default\">\r\n        <div>\r\n            <table class=\"table center table-striped table-bordered table-hover\"\r\n                   *ngIf=\"accounts && accounts.length\">\r\n                <thead>\r\n                    <tr>\r\n                        <th>Назва рахунку</th>\r\n                        <th>Номер</th>\r\n                        <th>Банк</th>\r\n                        <th>Валюта</th>\r\n                        <th>Тип</th>\r\n                        <th>Поточний баланс</th>\r\n                    </tr>\r\n                </thead>\r\n                <tbody>\r\n                    <tr *ngFor=\"let account of accounts\">\r\n                        <td>{{account.orgAccountName}}</td>\r\n                        <td>{{account.accNumber}}</td>\r\n                        <td>{{account.bankName}}</td>\r\n                        <td>{{account.currency}}</td>\r\n                        <td>{{account.accountType}}</td>\r\n                        <td>{{account.currentBalance | currency: account.currencyShortName: true}}</td>\r\n                    </tr>\r\n                </tbody>\r\n            </table>\r\n                <button type=\"button\" style=\"margin:0 0 5px 10px\" class=\"btn btn-default\">Додати рахунок</button>\r\n        </div>\r\n    </div>\r\n</div>\r\n";
+module.exports = "<div class=\"panel panel-primary \">\r\n    <spinner [showSpinner]=\"showSpinner\"></spinner>\r\n    <div class=\"panel-heading heading\">\r\n        <h3>{{pageTitle}}</h3>\r\n    </div>\r\n    <div class=\"panel-default\">\r\n        <div>\r\n            <table class=\"table center table-striped table-bordered table-hover\"\r\n                   *ngIf=\"accounts && accounts.length\">\r\n                <thead>\r\n                    <tr>\r\n                        <th>Назва рахунку</th>\r\n                        <th>Номер</th>\r\n                        <th>Банк</th>\r\n                        <th>Валюта</th>\r\n                        <th>Тип</th>\r\n                        <th>Поточний баланс</th>\r\n                    </tr>\r\n                </thead>\r\n                <tbody>\r\n                    <tr *ngFor=\"let account of accounts\">\r\n                        <td>{{account.orgAccountName}}</td>\r\n                        <td>{{account.accNumber}}</td>\r\n                        <td>{{account.bankName}}</td>\r\n                        <td>{{account.currency}}</td>\r\n                        <td>{{account.accountType}}</td>\r\n                        <td>{{account.currentBalance | currency: account.currencyShortName: true}}</td>\r\n                    </tr>\r\n                </tbody>\r\n            </table>\r\n                <button type=\"button\"  (click)=\"navigateToCreatePage()\" style=\"margin:0 0 5px 10px\" class=\"btn btn-default\">Додати рахунок</button>\r\n        </div>\r\n    </div>\r\n</div>\r\n";
 
 /***/ }),
 /* 262 */
@@ -145795,7 +145775,7 @@ module.exports = "<div class=\"form-group\">\r\n    <select class=\"form-control
 /* 300 */
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"wrapper\" [class.toggled]=\"!sideBarIsClosed\">\r\n    <div class=\"overlay\"></div>\r\n    <nav class=\"navbar navbar-inverse navbar-fixed-top\" id=\"sidebar-wrapper\" role=\"navigation\">\r\n        <ul class=\"nav sidebar-nav\">\r\n            <li class=\"sidebar-brand\">Привіт!</li>\r\n            <li><a href=\"#\">Головна</a></li>\r\n            <li *ngIf=\"this.user && this.user.role=='admin'\" class=\"dropdown\">\r\n                <a class=\"dropdown-toggle\" data-toggle=\"dropdown\">Події <span class=\"caret\"></span></a>\r\n                <ul class=\"dropdown-menu\" role=\"menu\">\r\n                    <li class=\"dropdown-header\">Події</li>\r\n                    <li><a (click)=\"redirectToAllEvents()\">Всі Події</a></li>\r\n                    <li><a (click)=\"redirectToAddEventPage()\">Створити</a></li>\r\n                </ul>\r\n            </li>\r\n            <li><a (click)=\"redirectToShowAllRequests()\">Список потреб</a></li>\r\n            <li *ngIf=\"this.user && this.user.role=='admin'\" class=\"dropdown\">\r\n                <a class=\"dropdown-toggle\" data-toggle=\"dropdown\">Потреби <span class=\"caret\"></span></a>\r\n                <ul class=\"dropdown-menu\" role=\"menu\">\r\n                    <li class=\"dropdown-header\">Потреби</li>\r\n                    <li><a (click)=\"redirectToAllRequests(1)\">Всі Потреби</a></li>\r\n                    <li><a (click)=\"redirectToManageRequestPage(1)\">Створити</a></li>\r\n                    <li>\r\n                        <a (click)=\"redirectToAllResponsesPage()\">\r\n                            Відгуки\r\n                            <span class=\"alert\">\r\n                                <strong>+{{newUserResponse}}</strong>\r\n                            </span>\r\n                        </a>\r\n                    </li>\r\n                </ul>\r\n            </li>\r\n            <li *ngIf=\"this.user && this.user.role=='admin'\" class=\"dropdown\">\r\n                <li [routerLinkActive]=\"['link-active']\"><a [routerLink]=\"['finance/orgaccounts']\">Рахунки організації</a>\r\n            </li>\r\n            <li *ngIf=\"this.user && this.user.role!=null\" class=\"dropdown\">\r\n                <a class=\"dropdown-toggle\" data-toggle=\"dropdown\">Запропонувати речі <span class=\"caret\"></span></a>\r\n                <ul class=\"dropdown-menu\" role=\"menu\">\r\n                    <li class=\"dropdown-header\">Мої речі</li>\r\n                    <li [routerLinkActive]=\"['link-active']\"><a [routerLink]=\"['offer-management/mylist']\">Мої пропозиції</a></li>\r\n                    <li [routerLinkActive]=\"['link-active']\"><a [routerLink]=\"['offer-management/add']\">Запропонувати річ</a></li>\r\n                </ul>\r\n            </li>\r\n            <li *ngIf=\"this.user && this.user.role=='superadmin'\">\r\n                <a (click)=\"redirectToPage('superadmin/complaints')\">Скарги</a>\r\n            </li>\r\n            <li *ngIf=\"this.user && this.user.role=='superadmin'\">\r\n                <a (click)=\"redirectToPage('superadmin/register-organization')\">Додати Організацію</a>\r\n            </li>\r\n            <li *ngIf=\"this.user && this.user.role=='superadmin'\">\r\n                <a (click)=\"redirectToPage('superadmin/users')\">Користувачі</a>\r\n            </li>\r\n            <li *ngIf=\"this.user && this.user.role=='superadmin'\">\r\n                <a (click)=\"redirectToPage('superadmin/organizations')\">Організації</a>\r\n            </li>\r\n            <li><a href=\"#\">Звіти</a></li>\r\n            <li *ngIf=\"this.user && (this.user.role=='admin' || this.user.role=='moderator')\">\r\n                <a (click)=\"redirectToEditOrganizationPage()\">Налаштування</a>\r\n            </li>\r\n        </ul>\r\n    </nav>\r\n    <button *ngIf=\"!sideBarIsClosed\" type=\"button\" class=\"hamburger is-open\" (click)=\"showSideBar()\" data-toggle=\"offcanvas\">\r\n        <span class=\"hamb-top\"></span>\r\n        <span class=\"hamb-middle\"></span>\r\n        <span class=\"hamb-bottom\"></span>\r\n    </button>\r\n    <button *ngIf=\"sideBarIsClosed\" type=\"button\" class=\"hamburger is-closed\" (click)=\"showSideBar()\" data-toggle=\"offcanvas\">\r\n        <span class=\"hamb-top\"></span>\r\n        <span class=\"hamb-middle\"></span>\r\n        <span class=\"hamb-bottom\"></span>\r\n    </button>\r\n</div>\r\n";
+module.exports = "<div id=\"wrapper\" [class.toggled]=\"!sideBarIsClosed\">\r\n    <div class=\"overlay\"></div>\r\n    <nav class=\"navbar navbar-inverse navbar-fixed-top\" id=\"sidebar-wrapper\" role=\"navigation\">\r\n        <ul class=\"nav sidebar-nav\">\r\n            <li class=\"sidebar-brand\">Привіт!</li>\r\n            <li><a href=\"#\">Головна</a></li>\r\n            <li *ngIf=\"this.user && this.user.role=='admin'\" class=\"dropdown\">\r\n                <a class=\"dropdown-toggle\" data-toggle=\"dropdown\">Події <span class=\"caret\"></span></a>\r\n                <ul class=\"dropdown-menu\" role=\"menu\">\r\n                    <li class=\"dropdown-header\">Події</li>\r\n                    <li><a (click)=\"redirectToAllEvents()\">Всі Події</a></li>\r\n                    <li><a (click)=\"redirectToAddEventPage()\">Створити</a></li>\r\n                </ul>\r\n            </li>\r\n            <li><a (click)=\"redirectToShowAllRequests()\">Список потреб</a></li>\r\n            <li *ngIf=\"this.user && this.user.role=='admin'\" class=\"dropdown\">\r\n                <a class=\"dropdown-toggle\" data-toggle=\"dropdown\">Потреби <span class=\"caret\"></span></a>\r\n                <ul class=\"dropdown-menu\" role=\"menu\">\r\n                    <li class=\"dropdown-header\">Потреби</li>\r\n                    <li><a (click)=\"redirectToAllRequests(1)\">Всі Потреби</a></li>\r\n                    <li><a (click)=\"redirectToManageRequestPage(1)\">Створити</a></li>\r\n                    <li>\r\n                        <a (click)=\"redirectToAllResponsesPage()\">\r\n                            Відгуки\r\n                            <span class=\"alert\">\r\n                                <strong>+{{newUserResponse}}</strong>\r\n                            </span>\r\n                        </a>\r\n                    </li>\r\n                </ul>\r\n            </li>\r\n            <li *ngIf=\"this.user && this.user.role=='admin'\" class=\"dropdown\" [routerLinkActive]=\"['link-active']\">\r\n                <a [routerLink]=\"['finance/orgaccounts']\">Рахунки організації</a>\r\n            </li>\r\n            <li *ngIf=\"this.user && this.user.role!=null\" class=\"dropdown\">\r\n                <a class=\"dropdown-toggle\" data-toggle=\"dropdown\">Запропонувати речі <span class=\"caret\"></span></a>\r\n                <ul class=\"dropdown-menu\" role=\"menu\">\r\n                    <li class=\"dropdown-header\">Мої речі</li>\r\n                    <li [routerLinkActive]=\"['link-active']\"><a [routerLink]=\"['offer-management/mylist']\">Мої пропозиції</a></li>\r\n                    <li [routerLinkActive]=\"['link-active']\"><a [routerLink]=\"['offer-management/add']\">Запропонувати річ</a></li>\r\n                </ul>\r\n            </li>\r\n            <li *ngIf=\"this.user && this.user.role=='superadmin'\">\r\n                <a (click)=\"redirectToPage('superadmin/complaints')\">Скарги</a>\r\n            </li>\r\n            <li *ngIf=\"this.user && this.user.role=='superadmin'\">\r\n                <a (click)=\"redirectToPage('superadmin/register-organization')\">Додати Організацію</a>\r\n            </li>\r\n            <li *ngIf=\"this.user && this.user.role=='superadmin'\">\r\n                <a (click)=\"redirectToPage('superadmin/users')\">Користувачі</a>\r\n            </li>\r\n            <li *ngIf=\"this.user && this.user.role=='superadmin'\">\r\n                <a (click)=\"redirectToPage('superadmin/organizations')\">Організації</a>\r\n            </li>\r\n            <li><a href=\"#\">Звіти</a></li>\r\n            <li *ngIf=\"this.user && (this.user.role=='admin' || this.user.role=='moderator')\">\r\n                <a (click)=\"redirectToEditOrganizationPage()\">Налаштування</a>\r\n            </li>\r\n        </ul>\r\n    </nav>\r\n    <button *ngIf=\"!sideBarIsClosed\" type=\"button\" class=\"hamburger is-open\" (click)=\"showSideBar()\" data-toggle=\"offcanvas\">\r\n        <span class=\"hamb-top\"></span>\r\n        <span class=\"hamb-middle\"></span>\r\n        <span class=\"hamb-bottom\"></span>\r\n    </button>\r\n    <button *ngIf=\"sideBarIsClosed\" type=\"button\" class=\"hamburger is-closed\" (click)=\"showSideBar()\" data-toggle=\"offcanvas\">\r\n        <span class=\"hamb-top\"></span>\r\n        <span class=\"hamb-middle\"></span>\r\n        <span class=\"hamb-bottom\"></span>\r\n    </button>\r\n</div>\r\n";
 
 /***/ }),
 /* 301 */
@@ -145807,7 +145787,7 @@ module.exports = "<div *ngIf=\"showSpinner\" class=\"loader\"></div>";
 /* 302 */
 /***/ (function(module, exports) {
 
-module.exports = "<!-- Single button -->\r\n<div *ngIf=\"name\" class=\"btn-group\" >\r\n    <button type=\"button\" class=\"btn btn-default dropdown-toggle\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n        Привіт,{{name}}<span class=\"caret\"></span>\r\n        <span *ngIf=\"isAdmin\"><b>{{user.role}}</b></span>\r\n    </button>\r\n    <ul class=\"dropdown-menu dropdowncolor\">\r\n        <li><a [routerLink]=\"['/userprofile']\">Мій профіль</a></li>\r\n        <li *ngIf=\"isAdmin\"><a [routerLink]=\"['/superadmin']\">Панель адміністратора</a></li>\r\n        <li *ngIf=\"isAdminOfOrganization\"><a [routerLink]=\"['organization-management', idOfOrganization]\">Моя організація</a></li>\r\n        <li *ngIf=\"isModeratorOfOrganization\"><a [routerLink]=\"['organization-management', idOfOrganization]\">Моя організація</a></li>\r\n        <li><a [routerLink]=\"['/']\" (click)=\"exit()\">Вийти</a></li>\r\n    </ul>\r\n</div>\r\n<div *ngIf=\"!name\">\r\n    <ul class=\"nav nav-pills\">\r\n        <li role=\"presentation\"><a [routerLink]=\"['/login']\"><font size='4'>Увійти</font></a></li>\r\n        <li role=\"presentation\"><a [routerLink]=\"['/registration']\"><font size='4'>Зареєструватися</font></a></li>\r\n    </ul>\r\n</div>\r\n";
+module.exports = "<!-- Single button -->\r\n<div *ngIf=\"name\" class=\"btn-group\" >\r\n    <button type=\"button\" class=\"btn btn-default dropdown-toggle\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">\r\n        Привіт,{{name}}<span class=\"caret\"></span>\r\n        <span *ngIf=\"isAdmin\"><b>{{user.role}}</b></span>\r\n    </button>\r\n    <ul class=\"dropdown-menu dropdowncolor\">\r\n        <li><a [routerLink]=\"['/userprofile']\">Мій профіль</a></li>\r\n        <li *ngIf=\"isAdmin\"><a [routerLink]=\"['/superadmin']\">Панель адміністратора</a></li>\r\n        <li><a [routerLink]=\"['/']\" (click)=\"exit()\">Вийти</a></li>\r\n    </ul>\r\n</div>\r\n<div *ngIf=\"!name\">\r\n    <ul class=\"nav nav-pills\">\r\n        <li role=\"presentation\"><a [routerLink]=\"['/login']\"><font size='4'>Увійти</font></a></li>\r\n        <li role=\"presentation\"><a [routerLink]=\"['/registration']\"><font size='4'>Зареєструватися</font></a></li>\r\n    </ul>\r\n</div>\r\n";
 
 /***/ }),
 /* 303 */

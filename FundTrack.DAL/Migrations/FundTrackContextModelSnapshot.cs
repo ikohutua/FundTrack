@@ -77,7 +77,7 @@ namespace FundTrack.DAL.Migrations
                         .IsRequired()
                         .HasMaxLength(50);
 
-                    b.Property<int>("CardNumber")
+                    b.Property<string>("CardNumber")
                         .HasMaxLength(16);
 
                     b.Property<string>("EDRPOU")
