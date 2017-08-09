@@ -44,6 +44,7 @@
     "html-loader": "^0.4.4",
     "isomorphic-fetch": "^2.2.1",
     "jquery": "^2.2.4",
+    "js-sha1": "^0.4.1",
     "json-loader": "^0.5.4",
     "ng2-facebook-sdk": "^2.3.1",
     "ng2-modal": "0.0.25",

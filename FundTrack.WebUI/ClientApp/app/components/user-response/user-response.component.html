@@ -1,5 +1,5 @@
 ﻿<spinner></spinner>
-<div>
+<div *ngIf="_userResponses">
     <div class="col-md-12 fundtrack-style" style="font-size:large; border-radius:5px; text-align:center; padding:10px;">
         Відгуки
         </div>
@@ -43,25 +43,6 @@
             </table>
         </div>
     </div>
-
-<!--<div class="row">
-    <div class="col-md-12" *ngIf="totalItems && itemsPerPage">
-        <pagination-pages [offset]="offset"
-                          [limit]="itemsPerPage"
-                          [size]="totalItems"
-                          [currentPage]="currentPage"
-                          (pageChange)="onPageChange($event)">
-                          class="col-md-6">
-        </pagination-pages>
-        <div class="pagination-dropdown col-md-offset-4 col-md-1">
-            На сторінці:
-            <select-item [items]="[6, 8, 10,12,14,16]"
-                         (onSelect)="itemsPerPageChange($event)">
-            </select-item>
-        </div>
-    </div>
-</div>-->
-
 
 <div class="center-block pagination-dropdown">
     <span id="for-select-item">Показувати по:</span>

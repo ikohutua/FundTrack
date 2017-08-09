@@ -13,6 +13,8 @@ import { StorageService } from './shared/item-storage-service';
 import { OfferManagementModule } from './offer-management.module';
 //import { SignalRModule, SignalRConfiguration } from 'ng2-signalr';
 import { SpinnerComponent } from "./shared/components/spinner/spinner.component";
+import { BankImportModule } from "./bank-import.module";
+
 import { FinanceModule } from "./finance.module";
 
 //function createConfig(): SignalRConfiguration {
@@ -35,6 +37,7 @@ import { FinanceModule } from "./finance.module";
         AuthorizationModule,
         SuperAdminModule,
         AppRoutingModule, 
+        BankImportModule,
         MapModule,
         Angular2FontawesomeModule,
         OrganizationManagementModule,

@@ -15,6 +15,7 @@ using FundTrack.DAL.Entities;
 using FundTrack.BLL.DomainServices;
 using FundTrack.DAL.Repositories;
 using FundTrack.Infrastructure.ViewModel.EventViewModel;
+using FundTrack.WebUI.Formatter;
 
 namespace FundTrack_WebUI
 {
@@ -41,9 +42,17 @@ namespace FundTrack_WebUI
             string connectionType = "azure-main";
             services.AddDbContext<FundTrackContext>(options => options.UseSqlServer(Configuration.GetConnectionString(connectionType)));
 
+            services.AddCors(options => options.AddPolicy("AllowAll", p => p.AllowAnyOrigin()
+                                                       .AllowAnyMethod()
+                                                        .AllowAnyHeader()));
+
+
             // Add framework services.
-            services.AddMvc();
-           
+            services.AddMvc(options =>
+            {
+                options.InputFormatters.Add(new JsonInputFormatter());
+            });
+
             // for iis deploy : https://stackoverflow.com/questions/12731320/web-config-cannot-read-configuration-file-due-to-insufficient-permissions
 
             //dependency injection DAL
@@ -66,6 +75,8 @@ namespace FundTrack_WebUI
             services.AddScoped<IRequestedItemImageRepository, RequestedItemImageRepository>();
             services.AddScoped<IGoodsTypeRepository, GoodsTypeRepository>();
             services.AddScoped<IOfferImagesRepository, OfferImagesRepository>();
+            services.AddScoped<IBankImportRepository, BankImportRepository>();
+            services.AddScoped<IBankImportDetailRepository, BankImportDetailRepository>();
             services.AddScoped<IOrganizationAccountRepository, OrganizationAccountRepository>();
             services.AddScoped<IRepository<Currency>, CurrencyRepository>();
 
@@ -85,6 +96,7 @@ namespace FundTrack_WebUI
             services.AddScoped<IOrganizationProfileService, OrganizationProfileService>();
             services.AddScoped<IModeratorService, ModeratorService>();
             services.AddScoped<IUserResponseService, UserResponseService>();
+            services.AddScoped<IBankImportService, BankImportService>();
             services.AddScoped<IOrganizationAccountService, OrganizationAccountService>();
         }
 
@@ -135,7 +147,8 @@ namespace FundTrack_WebUI
             }
 
             app.UseWebSockets();
-           
+            app.UseCors("AllowAll");
+
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

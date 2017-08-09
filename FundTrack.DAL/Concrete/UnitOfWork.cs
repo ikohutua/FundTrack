@@ -27,6 +27,8 @@ namespace FundTrack.DAL.Concrete
         private readonly IRequestedItemImageRepository _requestedItemImageRepository;
         private readonly IGoodsTypeRepository _goodsTypeRepository;
         private readonly IOfferImagesRepository _offeredItemImageRepository;
+        private readonly IBankImportRepository _bankImportRepository;
+        private readonly IBankImportDetailRepository _bankImportDetailRepository;
         private readonly IOrganizationAccountRepository _organizationAccountRepository;
         private readonly IRepository<Currency> _currencyRepository;
 
@@ -56,6 +58,8 @@ namespace FundTrack.DAL.Concrete
               IRequestedItemImageRepository requestedItemImageRepository,
               IGoodsTypeRepository goodsTypeRepository,
               IOfferImagesRepository offeredItemImageRepository,
+              IBankImportRepository bankImportRepository,
+              IBankImportDetailRepository bankImportDetailRepository,
               IOrganizationAccountRepository organizationAccountRepository,
               IRepository<Currency> currencyRepository
               )
@@ -79,6 +83,8 @@ namespace FundTrack.DAL.Concrete
             _requestedItemImageRepository = requestedItemImageRepository;
             _goodsTypeRepository = goodsTypeRepository;
             _offeredItemImageRepository = offeredItemImageRepository;
+            _bankImportRepository = bankImportRepository;
+            _bankImportDetailRepository = bankImportDetailRepository;
             _organizationAccountRepository = organizationAccountRepository;
             _currencyRepository = currencyRepository;
         }
@@ -268,6 +274,9 @@ namespace FundTrack.DAL.Concrete
                 return this._userResponseRepository;
             }
         }
+        /// <summary>
+        /// Gets the repo
+        /// </summary>
         public IGoodsTypeRepository GoodsTypeRepository
         {
             get { return this._goodsTypeRepository; }
@@ -295,6 +304,9 @@ namespace FundTrack.DAL.Concrete
             }
         }
 
+        /// <summary>
+        /// Gets the repo
+        /// </summary>
         public IOfferImagesRepository OfferImagesRepository
         {
             get
@@ -316,6 +328,34 @@ namespace FundTrack.DAL.Concrete
             get
             {
                 return this._currencyRepository;
+            }
+        }
+
+        /// <summary>
+        /// Gets the bank import repository.
+        /// </summary>
+        /// <value>
+        /// The bank import repository.
+        /// </value>
+        public IBankImportRepository BankImportRepository
+        {
+            get
+            {
+                return this._bankImportRepository;
+            }
+        }
+
+        /// <summary>
+        /// Gets the bank import detail repository.
+        /// </summary>
+        /// <value>
+        /// The bank import detail repository.
+        /// </value>
+        public IBankImportDetailRepository BankImportDetailRepository
+        {
+            get
+            {
+                return this._bankImportDetailRepository;
             }
         }
 

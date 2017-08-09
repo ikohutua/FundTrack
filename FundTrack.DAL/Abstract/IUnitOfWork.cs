@@ -94,7 +94,23 @@ namespace FundTrack.DAL.Abstract
         /// Gets the repo
         /// </summary>
         IStatusRepository StatusRepository { get; }
-       
+
+        /// <summary>
+        /// Gets the bank import repository.
+        /// </summary>
+        /// <value>
+        /// The bank import repository.
+        /// </value>
+        IBankImportRepository BankImportRepository { get; }
+
+        /// <summary>
+        /// Gets the bank import detail repository.
+        /// </summary>
+        /// <value>
+        /// The bank import detail repository.
+        /// </value>
+        IBankImportDetailRepository BankImportDetailRepository { get; }
+
         /// <summary>
         /// Gets the repo
         /// </summary>
@@ -104,6 +120,8 @@ namespace FundTrack.DAL.Abstract
         /// Gets requested item image repository
         /// </summary>
         IRequestedItemImageRepository RequestedItemImageRepository { get; }
+
+
 
         /// <summary>
         /// Gets the repo
@@ -115,6 +133,8 @@ namespace FundTrack.DAL.Abstract
         IOfferImagesRepository OfferImagesRepository { get; }
         IOrganizationAccountRepository OrganizationAccountRepository { get; }
         IRepository<Currency> CurrencyRepositry { get; }
+
+
 
         /// <summary>
         /// Saves all changes made in this context to the database.

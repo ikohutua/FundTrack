@@ -58,7 +58,7 @@ export class UserService {
     public logIn(user: LoginViewModel): Observable<AuthorizedUserInfoViewModel> {
         let urlLog = "LogIn";
         return this._http.post(this._authorizationUrl + urlLog, JSON.stringify(user), this.getRequestOptions())
-            .map((response: Response) => response.json() as AuthorizedUserInfoViewModel, )
+            .map((response: Response) => response.json() as AuthorizedUserInfoViewModel)
             .catch(this.handleError);
     }
 

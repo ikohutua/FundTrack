@@ -1,0 +1,54 @@
+﻿<button id="submit" class="btn btn-success" (click)="onActionClick()">Отримати виписки</button>
+<app-modal>
+    <div class="app-modal-header">
+        <button type="button" class="close" aria-hidden="true" (click)="closeModal()">&times;</button>
+        <h4 class="modal-title">Заповніть дані: </h4>
+    </div>
+    <div class="app-modal-body">
+        <div>
+            <label class="control-label">Номер картки:</label>
+            <input class="col-md-12" type="text"
+                   #id="ngModel"
+                   pattern="[+0-9]*"
+                   required
+                   [(ngModel)]="dataForPrivat.card" />
+        </div>
+        <div>
+            <label class="control-label">ID мерчанта:</label>
+            <input class="col-md-12" type="text"
+                   #id="ngModel"
+                   pattern="[+0-9]*"
+                   required
+                   [(ngModel)]="dataForPrivat.idMerchant" />
+        </div>
+        <div>
+            <label class="control-label">Пароль мерчанта:</label>
+            <input class="col-md-12" type="text"
+                   #password="ngModel"
+                   required
+                   [(ngModel)]="dataForPrivat.password" />
+        </div>
+        <div>
+            <label class="control-label">Дата "з":</label>
+            <input class="col-md-12" type="text"
+                   #dataFrom="ngModel"
+                   required
+                   [(ngModel)]="dataForPrivat.dataFrom" />
+        </div>
+        <div>
+            <label class="control-label">Дата "по":</label>
+            <input class="col-md-12" type="text"
+                   #dataTo="ngModel"
+                   required
+                   [(ngModel)]="dataForPrivat.dataTo" />
+        </div>
+    </div>
+    <div class="app-modal-footer">
+        <button type="button" class="btn btn-default" (click)="closeModal()">Закрити</button>
+        <button (click)="getExtracts()"
+                class="btn btn-success"
+                data-dismiss="modal">
+            Надіслати
+        </button>
+    </div>
+</app-modal>

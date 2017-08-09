@@ -6,7 +6,7 @@
         <a [routerLink]="['/home/allrequests']" class="pull-right">Перейти до всіх запитів</a>
     </div>
     <section>
-        <div class="input-list style-4 clearfix">
+        <div class="input-list style-4">
             <div *ngIf="requestDetail.imagesUrl" class="col-md-2 col-md-offset-0">
                 <gallery [datasource]="requestDetail.imagesUrl"> </gallery>
             </div>
