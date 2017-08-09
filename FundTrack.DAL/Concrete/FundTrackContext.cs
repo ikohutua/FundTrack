@@ -607,7 +607,7 @@ namespace FundTrack.DAL.Concrete
             {
                 entity.HasKey(bid => bid.Id).HasName("PK_BankImportDetail");
 
-                entity.Property(bid => bid.Card).IsRequired();
+                entity.Property(bid => bid.Card).IsRequired().HasMaxLength(16);
 
                 entity.Property(bid => bid.Trandate).IsRequired().HasColumnType("datetime");
 

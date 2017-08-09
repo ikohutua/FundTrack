@@ -26,7 +26,7 @@ namespace FundTrack.DAL.Entities
         /// <value>
         /// The card.
         /// </value>
-        public int Card { get; set; }
+        public string Card { get; set; }
 
         /// <summary>
         /// Gets or sets the trandate.

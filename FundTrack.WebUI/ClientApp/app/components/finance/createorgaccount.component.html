@@ -1,93 +1,77 @@
-﻿<form class="form-horizontal">
-    <fieldset>
+﻿<div class="well container-fluid">
+    <form class="form-horizontal">
+        <fieldset>
 
-        <!-- Form Name -->
-        <legend>Додати рахунок</legend>
+            <!-- Form Name -->
+            <legend>Додати рахунок</legend>
 
-        <!-- Text input-->
-        <div class="form-group">
-            <label class="col-md-4 control-label" for="accountName">Назва рахунку</label>
-            <div class="col-md-4">
-                <input id="accountName" name="accountName" type="text" placeholder="Назва рахунку" class="form-control input-md" required="">
-
-            </div>
-        </div>
-
-        <!-- Text input-->
-        <div class="form-group">
-            <label class="col-md-4 control-label" for="accountNumber">Номер рахунку</label>
-            <div class="col-md-4">
-                <input id="accountNumber" name="accountNumber" type="text" placeholder="12-14 цифр" class="form-control input-md" required="">
-
-            </div>
-        </div>
-
-        <!-- Text input-->
-        <div class="form-group">
-            <label class="col-md-4 control-label" for="accountMFO">МФО</label>
-            <div class="col-md-4">
-                <input id="accountMFO" name="accountMFO" type="text" placeholder="МФО" class="form-control input-md" required="">
-
-            </div>
-        </div>
-
-        <!-- Text input-->
-        <div class="form-group">
-            <label class="col-md-4 control-label" for="accountEDRPOU">ЄДРПОУ</label>
-            <div class="col-md-4">
-                <input id="accountEDRPOU" name="accountEDRPOU" type="text" placeholder="ЄДРПОУ" class="form-control input-md" required="">
-
-            </div>
-        </div>
-
-        <!-- Text input-->
-        <div class="form-group">
-            <label class="col-md-4 control-label" for="accountBankName">Назва банку</label>
-            <div class="col-md-4">
-                <input id="accountBankName" name="accountBankName" type="text" placeholder="Назва банку" class="form-control input-md" required="">
-
-            </div>
-        </div>
-
-        <!-- Text input-->
-        <div class="form-group">
-            <label class="col-md-4 control-label" for="accountDescription">Опис рахунку</label>
-            <div class="col-md-4">
-                <input id="accountDescription" name="accountDescription" type="text" placeholder="Короткий опис" class="form-control input-md">
-
-            </div>
-        </div>
-
-        <!-- Select Basic -->
-        <div class="form-group">
-            <label class="col-md-4 control-label" for="currency">Валюта</label>
-            <div class="col-md-4">
-                <select id="currency" name="currency" class="form-control">
-                    <option value="1">Долар США</option>
-                    <option value="2">Євро</option>
-                    <option value="3">Гривня</option>
-                </select>
-            </div>
-        </div>
-
-        <!-- Multiple Radios -->
-        <div class="form-group">
-            <label class="col-md-4 control-label" for="accountAllowPayments">Підтримка онлайн платежів</label>
-            <div class="col-md-4">
-                <div class="radio">
-                    <label for="accountAllowPayments-0">
-                        <input type="radio" name="accountAllowPayments" id="accountAllowPayments-0" value="1" checked="checked">
-                        Ввімкнена
-                    </label>
-                </div>
-                <div class="radio">
-                    <label for="accountAllowPayments-1">
-                        <input type="radio" name="accountAllowPayments" id="accountAllowPayments-1" value="0">
-                        Вимкнена
-                    </label>
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="accountName">Назва рахунку</label>
+                <div class="col-md-4">
+                    <input id="accountName" name="accountName" type="text" placeholder="Назва рахунку" class="form-control input-md" [(ngModel)]="account.orgAccountName" required="">
                 </div>
             </div>
-        </div>
 
-    </fieldset>
-</form>
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="accountNumber">Номер рахунку</label>
+                <div class="col-md-4">
+                    <input id="accountNumber" name="accountNumber" type="text" placeholder="12-14 цифр" class="form-control input-md" [(ngModel)]="account.accNumber" required="">
+
+                </div>
+            </div>
+
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="accountMFO">МФО</label>
+                <div class="col-md-4">
+                    <input id="accountMFO" name="accountMFO" type="text" placeholder="МФО" class="form-control input-md" [(ngModel)]="account.mfo" required="">
+
+                </div>
+            </div>
+
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="accountEDRPOU">ЄДРПОУ</label>
+                <div class="col-md-4">
+                    <input id="accountEDRPOU" name="accountEDRPOU" type="text" placeholder="ЄДРПОУ" class="form-control input-md" [(ngModel)]="account.edrpou" required="">
+
+                </div>
+            </div>
+
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="accountBankName">Назва банку</label>
+                <div class="col-md-4">
+                    <input id="accountBankName" name="accountBankName" type="text" placeholder="Назва банку" class="form-control input-md" [(ngModel)]="account.bankName" required="">
+
+                </div>
+            </div>
+
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="accountDescription">Опис рахунку</label>
+                <div class="col-md-4">
+                    <input id="accountDescription" name="accountDescription" type="text" placeholder="Короткий опис" class="form-control input-md" [(ngModel)]="account.description">
+
+                </div>
+            </div>
+
+            <!-- Select Basic -->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="currency">Валюта</label>
+                <div class="col-md-4">
+                    <select id="currency" name="currency" class="form-control" [(ngModel)]="account.currency">
+                        <option value="1">Долар США</option>
+                        <option value="2">Євро</option>
+                        <option value="3">Гривня</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-12 col-md-push-7">
+                <button style="padding-left:1em;" class="btn btn-default">Зберегти</button>
+            </div>
+        </fieldset>
+    </form>
+</div>

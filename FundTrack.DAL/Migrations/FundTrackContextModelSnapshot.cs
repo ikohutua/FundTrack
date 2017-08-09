@@ -137,7 +137,9 @@ namespace FundTrack.DAL.Migrations
 
                     b.Property<int>("BankImportId");
 
-                    b.Property<int>("Card");
+                    b.Property<string>("Card")
+                        .IsRequired()
+                        .HasMaxLength(16);
 
                     b.Property<string>("CardAmount")
                         .IsRequired();
