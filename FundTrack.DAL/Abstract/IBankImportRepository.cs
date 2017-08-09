@@ -7,6 +7,7 @@ namespace FundTrack.DAL.Abstract
 {
     public interface IBankImportRepository
     {
-       BankImport Create(BankImport bankImport);
+        BankImport Create(BankImport bankImport);
+        BankImport GetBankImport(int idMerchant, decimal debet, decimal credit);
     }
 }

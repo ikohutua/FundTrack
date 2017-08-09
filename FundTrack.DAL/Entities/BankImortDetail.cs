@@ -13,14 +13,6 @@ namespace FundTrack.DAL.Entities
         public int Id { get; set; }
 
         /// <summary>
-        /// Gets or sets the bank import identifier.
-        /// </summary>
-        /// <value>
-        /// The bank import identifier.
-        /// </value>
-        public int BankImportId { get; set; }
-
-        /// <summary>
         /// Gets or sets the card.
         /// </summary>
         /// <value>
@@ -35,14 +27,6 @@ namespace FundTrack.DAL.Entities
         /// The trandate.
         /// </value>
         public DateTime Trandate { get; set; }
-
-        /// <summary>
-        /// Gets or sets the trantime.
-        /// </summary>
-        /// <value>
-        /// The trantime.
-        /// </value>
-        public DateTime Trantime { get; set; }
 
         /// <summary>
         /// Gets or sets the amount.
@@ -86,15 +70,9 @@ namespace FundTrack.DAL.Entities
         /// <summary>
         /// Gets or Sets AppCode property
         /// </summary>
-        public int AppCode { get; set; }
+        public int? AppCode { get; set; }
 
-        /// <summary>
-        /// Gets or sets the bank import.
-        /// </summary>
-        /// <value>
-        /// The bank import.
-        /// </value>
-        public virtual BankImport BankImport { get; set; }
+        public bool IsLooked { get; set; }
     }
 }
 

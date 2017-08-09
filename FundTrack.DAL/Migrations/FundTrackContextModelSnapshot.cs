@@ -132,10 +132,8 @@ namespace FundTrack.DAL.Migrations
                     b.Property<string>("Amount")
                         .IsRequired();
 
-                    b.Property<int>("AppCode")
+                    b.Property<int?>("AppCode")
                         .HasMaxLength(8);
-
-                    b.Property<int>("BankImportId");
 
                     b.Property<string>("Card")
                         .IsRequired()
@@ -147,6 +145,8 @@ namespace FundTrack.DAL.Migrations
                     b.Property<string>("Description")
                         .IsRequired();
 
+                    b.Property<bool>("IsLooked");
+
                     b.Property<string>("Rest")
                         .IsRequired();
 
@@ -156,13 +156,8 @@ namespace FundTrack.DAL.Migrations
                     b.Property<DateTime>("Trandate")
                         .HasColumnType("datetime");
 
-                    b.Property<DateTime>("Trantime")
-                        .HasColumnType("datetime");
-
                     b.HasKey("Id")
                         .HasName("PK_BankImportDetail");
-
-                    b.HasIndex("BankImportId");
 
                     b.ToTable("BankImportDetails");
                 });
@@ -901,15 +896,6 @@ namespace FundTrack.DAL.Migrations
                         .WithMany("BankAccounts")
                         .HasForeignKey("OrgId")
                         .HasConstraintName("FK_BankAccount_Organization")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("FundTrack.DAL.Entities.BankImportDetail", b =>
-                {
-                    b.HasOne("FundTrack.DAL.Entities.BankImport", "BankImport")
-                        .WithMany("BankImportDetails")
-                        .HasForeignKey("BankImportId")
-                        .HasConstraintName("FK_BankImportDetails_BankImport")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

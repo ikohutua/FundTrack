@@ -2,6 +2,7 @@
 using FundTrack.DAL.Entities;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace FundTrack.DAL.Concrete
@@ -23,6 +24,12 @@ namespace FundTrack.DAL.Concrete
         {
             this._context.BankImportDetails.Add(bankImport);
             return bankImport;
+        }
+
+        public BankImportDetail GetBankImportDetail(int appcode)
+        {
+            return this._context.BankImportDetails
+                                .FirstOrDefault(bid => bid.AppCode == appcode);
         }
     }
 }

@@ -1,7 +1,6 @@
 ﻿export class ImportDetailPrivatViewModel {
     public card: string;
-    public trandate: string;
-    public trantime: string;
+    public trandate: Date;
     public amount: string;
     public appCode: string;
     public cardAmount: string;
@@ -11,8 +10,5 @@
 }
 
 export class ImportPrivatViewModel {
-    public idMerchant: number;
-    public credit: string;
-    public debet: string;
     public importsDetail: ImportDetailPrivatViewModel[];
 }

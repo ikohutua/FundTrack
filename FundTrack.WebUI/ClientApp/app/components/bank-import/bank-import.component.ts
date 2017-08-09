@@ -1,4 +1,4 @@
-﻿import { Component, Input, ViewChild } from "@angular/core";
+﻿import { Component, Input, ViewChild, Output } from "@angular/core";
 import { PrivatSessionViewModel } from "../../view-models/concrete/privat-session-view.model";
 import { DataRequestPrivatViewModel } from "../../view-models/concrete/data-request-privat-view.model";
 import { ModalComponent } from "../../shared/components/modal/modal-component";
@@ -19,6 +19,8 @@ export class BankImportComponent {
     public modalWindow: ModalComponent;
     public importData: ImportPrivatViewModel = new ImportPrivatViewModel();
 
+    _dataForFinOp: ImportPrivatViewModel = new ImportPrivatViewModel();
+
     public constructor(private _service: BankImportService) { }
 
     public getExtracts() {
@@ -28,7 +30,6 @@ export class BankImportComponent {
                 console.log(this.importData);
                 this._service.registerBankExtracts(this.importData)
                     .subscribe(response => {
-                        console.log("OK");
                         console.log(response);
                     });
             });

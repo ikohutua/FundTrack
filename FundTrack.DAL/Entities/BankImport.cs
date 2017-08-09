@@ -43,14 +43,6 @@ namespace FundTrack.DAL.Entities
         /// The debet.
         /// </value>
         public decimal Debet { get; set; }
-
-        /// <summary>
-        /// Gets or sets the bank import details.
-        /// </summary>
-        /// <value>
-        /// The bank import details.
-        /// </value>
-        public virtual ICollection<BankImportDetail>  BankImportDetails { get; set; }
     }
 }
 

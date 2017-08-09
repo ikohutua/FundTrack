@@ -611,7 +611,7 @@ namespace FundTrack.DAL.Concrete
 
                 entity.Property(bid => bid.Trandate).IsRequired().HasColumnType("datetime");
 
-                entity.Property(bid => bid.Trantime).IsRequired().HasColumnType("datetime");
+                entity.Property(bid => bid.IsLooked).IsRequired();
 
                 entity.Property(bid => bid.Amount).IsRequired();
 
@@ -624,10 +624,10 @@ namespace FundTrack.DAL.Concrete
                 entity.Property(bid => bid.Description).IsRequired();
                 entity.Property(bid => bid.AppCode).HasMaxLength(8);
 
-                entity.HasOne(bid => bid.BankImport)
-                       .WithMany(bi => bi.BankImportDetails)
-                       .HasForeignKey(bid => bid.BankImportId)
-                       .HasConstraintName("FK_BankImportDetails_BankImport");
+                //entity.HasOne(bid => bid.BankImport)
+                //       .WithMany(bi => bi.BankImportDetails)
+                //       .HasForeignKey(bid => bid.BankImportId)
+                //       .HasConstraintName("FK_BankImportDetails_BankImport");
             });
 
             modelBuilder.Entity<PasswordReset>(entity =>

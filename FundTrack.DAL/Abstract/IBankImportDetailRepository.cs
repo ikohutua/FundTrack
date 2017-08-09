@@ -13,5 +13,8 @@ namespace FundTrack.DAL.Abstract
         /// <param name="bankImport">The bank import.</param>
         /// <returns></returns>
         BankImportDetail Create(BankImportDetail bankImport);
+
+        BankImportDetail GetBankImportDetail(int appcode);
+        
     }
 }

@@ -30,36 +30,34 @@ namespace FundTrack.BLL.Concrete
         {
             try
             {
-                var bankImport = new BankImport
-                {
-                    IdMerchant = privatViewModel.idMerchant,
-                    Credit = decimal.Parse(privatViewModel.credit),
-                    Debet =decimal.Parse(privatViewModel.debet)
-                };
-                var createdBankImport = this._unitOfWork.BankImportRepository.Create(bankImport);
                 for (int i = 0; i < privatViewModel.importsDetail.Length; ++i)
                 {
-                    var bankImportDetail = new BankImportDetail
+                    int appcode = 0;
+                    int.TryParse(privatViewModel.importsDetail[i].appCode, out appcode);
+                    if (this._unitOfWork.BankImportDetailRepository.GetBankImportDetail(appcode) == null)
                     {
-                        BankImportId = 1,
-                        //Card = int.Parse(privatViewModel.importsDetail[i].card),
-                        //Trandate = privatViewModel.importsDetail[i].trandate,
-                        //Trantime =privatViewModel.importsDetail[i].trantime as DateTime,
-                        Amount = privatViewModel.importsDetail[i].amount,
-                        CardAmount = privatViewModel.importsDetail[i].cardAmount,
-                        Rest = privatViewModel.importsDetail[i].rest,
-                        Terminal = privatViewModel.importsDetail[i].terminal,
-                        Description = privatViewModel.importsDetail[i].description
-                    };
-                    this._unitOfWork.BankImportDetailRepository.Create(bankImportDetail);
+                        var bankImportDetail = new BankImportDetail
+                        {
+                            Card = privatViewModel.importsDetail[i].card,
+                            Trandate = privatViewModel.importsDetail[i].trandate,
+                            AppCode = appcode,
+                            Amount = privatViewModel.importsDetail[i].amount,
+                            CardAmount = privatViewModel.importsDetail[i].cardAmount,
+                            Rest = privatViewModel.importsDetail[i].rest,
+                            Terminal = privatViewModel.importsDetail[i].terminal,
+                            Description = privatViewModel.importsDetail[i].description,
+                            IsLooked=false
+                        };
+                        this._unitOfWork.BankImportDetailRepository.Create(bankImportDetail);
+                    }
                 }
                 this._unitOfWork.SaveChanges();
+                return privatViewModel;
             }
             catch (Exception ex)
             {
                 throw new BusinessLogicException(ex.Message, ex);
             }
-            return null;
         }
 
     }
