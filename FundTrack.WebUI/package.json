@@ -49,6 +49,7 @@
     "ng2-facebook-sdk": "^2.3.1",
     "ng2-modal": "0.0.25",
     "ng2-signalr": "^2.1.0",
+    "ng2-validation": "^4.2.0",
     "ngx-facebook": "^2.4.0",
     "preboot": "^4.5.2",
     "raw-loader": "^0.5.1",

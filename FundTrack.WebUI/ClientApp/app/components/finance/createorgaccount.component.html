@@ -1,5 +1,5 @@
 ﻿<div class="well container-fluid">
-    <form class="form-horizontal">
+    <form class="form-horizontal" [formGroup]="accountForm" novalidate>
         <fieldset>
 
             <!-- Form Name -->
@@ -9,7 +9,7 @@
             <div class="form-group">
                 <label class="col-md-4 control-label" for="accountName">Назва рахунку</label>
                 <div class="col-md-4">
-                    <input id="accountName" name="accountName" type="text" placeholder="Назва рахунку" class="form-control input-md" [(ngModel)]="account.orgAccountName" required="">
+                    <input id="accountName" name="accountName" formControlName="accountName" type="text" placeholder="Назва рахунку" class="form-control input-md" [(ngModel)]="account.orgAccountName" required="">
                 </div>
             </div>
 
@@ -17,7 +17,7 @@
             <div class="form-group">
                 <label class="col-md-4 control-label" for="accountNumber">Номер рахунку</label>
                 <div class="col-md-4">
-                    <input id="accountNumber" name="accountNumber" type="text" placeholder="12-14 цифр" class="form-control input-md" [(ngModel)]="account.accNumber" required="">
+                    <input id="accountNumber" name="accountNumber" formControlName="accountNumber" type="text" placeholder="12-14 цифр" class="form-control input-md" [(ngModel)]="account.accNumber" required="">
 
                 </div>
             </div>
@@ -26,7 +26,7 @@
             <div class="form-group">
                 <label class="col-md-4 control-label" for="accountMFO">МФО</label>
                 <div class="col-md-4">
-                    <input id="accountMFO" name="accountMFO" type="text" placeholder="МФО" class="form-control input-md" [(ngModel)]="account.mfo" required="">
+                    <input id="accountMFO" name="accountMFO" formControlName="accountMfo" type="text" placeholder="МФО" class="form-control input-md" [(ngModel)]="account.mfo" required="">
 
                 </div>
             </div>
@@ -35,7 +35,7 @@
             <div class="form-group">
                 <label class="col-md-4 control-label" for="accountEDRPOU">ЄДРПОУ</label>
                 <div class="col-md-4">
-                    <input id="accountEDRPOU" name="accountEDRPOU" type="text" placeholder="ЄДРПОУ" class="form-control input-md" [(ngModel)]="account.edrpou" required="">
+                    <input id="accountEDRPOU" name="accountEDRPOU" formControlName="accountEdrpou" type="text" placeholder="ЄДРПОУ" class="form-control input-md" [(ngModel)]="account.edrpou" required="">
 
                 </div>
             </div>
@@ -44,7 +44,7 @@
             <div class="form-group">
                 <label class="col-md-4 control-label" for="accountBankName">Назва банку</label>
                 <div class="col-md-4">
-                    <input id="accountBankName" name="accountBankName" type="text" placeholder="Назва банку" class="form-control input-md" [(ngModel)]="account.bankName" required="">
+                    <input id="accountBankName" name="accountBankName" formControlName="accountBankName" type="text" placeholder="Назва банку" class="form-control input-md" [(ngModel)]="account.bankName" required="">
 
                 </div>
             </div>
@@ -53,7 +53,7 @@
             <div class="form-group">
                 <label class="col-md-4 control-label" for="accountDescription">Опис рахунку</label>
                 <div class="col-md-4">
-                    <input id="accountDescription" name="accountDescription" type="text" placeholder="Короткий опис" class="form-control input-md" [(ngModel)]="account.description">
+                    <input id="accountDescription" name="accountDescription" formControlName="accountDescription" type="text" placeholder="Короткий опис" class="form-control input-md" [(ngModel)]="account.description">
 
                 </div>
             </div>
@@ -62,7 +62,7 @@
             <div class="form-group">
                 <label class="col-md-4 control-label" for="currency">Валюта</label>
                 <div class="col-md-4">
-                    <select id="currency" name="currency" class="form-control" [(ngModel)]="account.currency">
+                    <select id="currency" name="currency" class="form-control" formControlName="accountCurrency"  [(ngModel)]="account.currency">
                         <option value="1">Долар США</option>
                         <option value="2">Євро</option>
                         <option value="3">Гривня</option>
@@ -72,6 +72,9 @@
             <div class="col-md-12 col-md-push-7">
                 <button style="padding-left:1em;" class="btn btn-default">Зберегти</button>
             </div>
+            <label>Form value: {{accountForm.value | json}}</label>
+            <br />
+            <label>Form status: {{accountForm.status | json}}</label>
         </fieldset>
     </form>
 </div>

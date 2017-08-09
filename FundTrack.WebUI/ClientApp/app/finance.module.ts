@@ -5,6 +5,8 @@ import { FinanceRoutingModule } from "./routes/finance-routing.module";
 import { OrgAccountListComponent } from "./components/finance/orgaccountlist.component";
 import { OrgAccountService } from "./services/concrete/finance/orgaccount.service";
 import { CreateOrgAccountComponent } from "./components/finance/createorgaccount.component";
+import { BrowserModule } from '@angular/platform-browser';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
     declarations: [
@@ -14,7 +16,9 @@ import { CreateOrgAccountComponent } from "./components/finance/createorgaccount
     imports: [
         CommonModule,
         SharedModule,
-        FinanceRoutingModule
+        FinanceRoutingModule,
+        BrowserModule,
+        ReactiveFormsModule 
     ],
     providers: [
         OrgAccountService

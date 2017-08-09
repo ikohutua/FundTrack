@@ -12,7 +12,7 @@ import { UserResponseService } from "../../../services/concrete/organization-man
     styleUrls: ['./sidebar.component.css'],
     providers: [UserResponseService]
 })
-export class SidebarComponent /*implements OnInit*/ {
+export class SidebarComponent implements OnInit {
     private user: AuthorizeUserModel;
     //flag that verifies if user is logged in
     private userRole: string = null;
@@ -29,6 +29,7 @@ export class SidebarComponent /*implements OnInit*/ {
     ngOnInit(): void {
         if (isBrowser) {
             if (localStorage.getItem(key.keyToken)) {
+                debugger;
                 this.user = JSON.parse(localStorage.getItem(key.keyModel)) as AuthorizeUserModel;
                 this._userResponseService.getUserResponseWithNewStatus(this.user.orgId)
                     .subscribe(count => {

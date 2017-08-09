@@ -14,7 +14,7 @@ import { OfferManagementModule } from './offer-management.module';
 //import { SignalRModule, SignalRConfiguration } from 'ng2-signalr';
 import { SpinnerComponent } from "./shared/components/spinner/spinner.component";
 import { BankImportModule } from "./bank-import.module";
-
+import { ReactiveFormsModule } from '@angular/forms';
 import { FinanceModule } from "./finance.module";
 
 //function createConfig(): SignalRConfiguration {
@@ -42,7 +42,8 @@ import { FinanceModule } from "./finance.module";
         Angular2FontawesomeModule,
         OrganizationManagementModule,
         OfferManagementModule,
-        FinanceModule
+        FinanceModule,
+        ReactiveFormsModule
         //,
         //SignalRModule.forRoot(createConfig)
     ],
