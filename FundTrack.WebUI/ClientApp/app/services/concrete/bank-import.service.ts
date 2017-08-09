@@ -9,15 +9,16 @@ import * as sha1 from 'js-sha1';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/catch';
-import { ImportPrivatViewModel, ImportDetailPrivatViewModel } from "../../view-models/concrete/import-privat-view.model";
+import { ImportDetailPrivatViewModel } from "../../view-models/concrete/import-privat-view.model";
 import { DataRequestPrivatViewModel } from "../../view-models/concrete/data-request-privat-view.model";
+import { BankImportSearchViewModel } from "../../view-models/concrete/finance/bank-import-search-view.model";
 
 @Injectable()
 export class BankImportService {
 
     public constructor(private _http: Http) { }
 
-    public getUserExtracts(dataForRequest: DataRequestPrivatViewModel): Observable<ImportPrivatViewModel> {
+    public getUserExtracts(dataForRequest: DataRequestPrivatViewModel): Observable<ImportDetailPrivatViewModel[]> {
 
         let data = `<oper>cmt</oper>
                         <wait>0</wait>
@@ -43,10 +44,9 @@ export class BankImportService {
 
         return this._http.post("https://api.privatbank.ua/p24api/rest_fiz", body)
             .map((response: Response) => {
-                let res: ImportPrivatViewModel = new ImportPrivatViewModel();
+                let importsDetail = Array<ImportDetailPrivatViewModel>();
                 xml2js.parseString(response.text(), function (err, result) {
                     console.log(result);
-                    res.importsDetail = Array<ImportDetailPrivatViewModel>();
                     for (let i = 0; i < result.response.data[0].info[0].statements[0].statement.length; ++i) {
                         let temp: ImportDetailPrivatViewModel = new ImportDetailPrivatViewModel();
                         let dates = result.response.data[0].info[0].statements[0].statement[i].$.trandate.split('-');
@@ -59,18 +59,27 @@ export class BankImportService {
                         temp.description = result.response.data[0].info[0].statements[0].statement[i].$.description as string;
                         temp.appCode = result.response.data[0].info[0].statements[0].statement[i].$.appcode as string;
                         temp.trandate = new Date(+dates[0], (+dates[1]) - 1, +dates[2], (+times[0]) + 3, +times[1], +times[2]);
-                        res.importsDetail.push(temp);
+                        temp.isLooked = false;
+                        temp.id = 0;
+                        importsDetail.push(temp);
                     }
                 });
-                return res;
+                return importsDetail;
             })
             .catch(this.handleError)
     }
 
-    public registerBankExtracts(bankImport: ImportPrivatViewModel): Observable<ImportPrivatViewModel> {
+    public registerBankExtracts(bankImport: ImportDetailPrivatViewModel[]): Observable<ImportDetailPrivatViewModel[]> {
         let url = 'api/BankImport/RegisterNewExtracts';
         return this._http.post(url, bankImport, this.getRequestOptions())
-            .map((response: Response) => <ImportPrivatViewModel>response.json())
+            .map((response: Response) => <ImportDetailPrivatViewModel[]>response.json())
+            .catch(this.handleError);
+    }
+
+    public getRawExtracts(bankSearchModel: BankImportSearchViewModel): Observable<ImportDetailPrivatViewModel[]> {
+        let url = "api/BankImport/SearchRawExtractsOnPeriod";
+        return this._http.post(url, bankSearchModel, this.getRequestOptions())
+            .map((response: Response) => <ImportDetailPrivatViewModel[]>response.json())
             .catch(this.handleError);
     }
 

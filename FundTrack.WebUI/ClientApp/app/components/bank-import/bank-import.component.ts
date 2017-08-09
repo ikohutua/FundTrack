@@ -3,7 +3,8 @@ import { PrivatSessionViewModel } from "../../view-models/concrete/privat-sessio
 import { DataRequestPrivatViewModel } from "../../view-models/concrete/data-request-privat-view.model";
 import { ModalComponent } from "../../shared/components/modal/modal-component";
 import { BankImportService } from "../../services/concrete/bank-import.service";
-import { ImportPrivatViewModel } from "../../view-models/concrete/import-privat-view.model";
+import { ImportDetailPrivatViewModel } from "../../view-models/concrete/import-privat-view.model";
+import { BankImportSearchViewModel } from "../../view-models/concrete/finance/bank-import-search-view.model";
 
 @Component({
     template: require('./bank-import.component.html'),
@@ -17,9 +18,10 @@ export class BankImportComponent {
     @ViewChild(ModalComponent)
 
     public modalWindow: ModalComponent;
-    public importData: ImportPrivatViewModel = new ImportPrivatViewModel();
 
-    _dataForFinOp: ImportPrivatViewModel = new ImportPrivatViewModel();
+    private importData: ImportDetailPrivatViewModel[] = new Array<ImportDetailPrivatViewModel>();
+    private _dataForFinOp: ImportDetailPrivatViewModel[] = new Array<ImportDetailPrivatViewModel>();
+    private _bankSearchModel: BankImportSearchViewModel = new BankImportSearchViewModel();
 
     public constructor(private _service: BankImportService) { }
 
@@ -30,7 +32,16 @@ export class BankImportComponent {
                 console.log(this.importData);
                 this._service.registerBankExtracts(this.importData)
                     .subscribe(response => {
-                        console.log(response);
+                        let dataFrom = this.dataForPrivat.dataFrom.toString().split('.');
+                        let dataTo = this.dataForPrivat.dataTo.toString().split('.');
+                        this._bankSearchModel.dataFrom = new Date(+dataFrom[2], ((+dataFrom[1])-1), +dataFrom[0],3,0,0);
+                        this._bankSearchModel.dataTo = new Date(+dataTo[2], ((+dataTo[1])-1), (+dataTo[0])+1,2,59,59);
+                        this._bankSearchModel.card = this.dataForPrivat.card;
+                        this._service.getRawExtracts(this._bankSearchModel)
+                            .subscribe(response => {
+                                console.log(response);
+                                this._dataForFinOp = response;
+                            })
                     });
             });
     }

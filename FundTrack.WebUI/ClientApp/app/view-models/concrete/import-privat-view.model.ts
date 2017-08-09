@@ -1,4 +1,5 @@
 ﻿export class ImportDetailPrivatViewModel {
+    public id: number;
     public card: string;
     public trandate: Date;
     public amount: string;
@@ -7,8 +8,5 @@
     public rest: string;
     public terminal: string;
     public description: string;
-}
-
-export class ImportPrivatViewModel {
-    public importsDetail: ImportDetailPrivatViewModel[];
+    public isLooked: boolean;
 }

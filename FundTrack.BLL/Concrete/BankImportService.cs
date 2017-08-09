@@ -2,8 +2,10 @@
 using FundTrack.DAL.Abstract;
 using FundTrack.DAL.Entities;
 using FundTrack.Infrastructure.ViewModel;
+using FundTrack.Infrastructure.ViewModel.FinanceViewModels;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace FundTrack.BLL.Concrete
@@ -26,37 +28,63 @@ namespace FundTrack.BLL.Concrete
         /// </summary>
         /// <param name="privatViewModel">The privat view model.</param>
         /// <returns></returns>
-        public ImportPrivatViewModel RegisterBankExtracts(ImportPrivatViewModel privatViewModel)
+        public IEnumerable<ImportDetailPrivatViewModel> RegisterBankExtracts(ImportDetailPrivatViewModel[] importsDetail)
         {
             try
             {
-                for (int i = 0; i < privatViewModel.importsDetail.Length; ++i)
+                for (int i = 0; i < importsDetail.Length; ++i)
                 {
                     int appcode = 0;
-                    int.TryParse(privatViewModel.importsDetail[i].appCode, out appcode);
+                    int.TryParse(importsDetail[i].appCode, out appcode);
                     if (this._unitOfWork.BankImportDetailRepository.GetBankImportDetail(appcode) == null)
                     {
                         var bankImportDetail = new BankImportDetail
                         {
-                            Card = privatViewModel.importsDetail[i].card,
-                            Trandate = privatViewModel.importsDetail[i].trandate,
+                            Card = importsDetail[i].card,
+                            Trandate = importsDetail[i].trandate,
                             AppCode = appcode,
-                            Amount = privatViewModel.importsDetail[i].amount,
-                            CardAmount = privatViewModel.importsDetail[i].cardAmount,
-                            Rest = privatViewModel.importsDetail[i].rest,
-                            Terminal = privatViewModel.importsDetail[i].terminal,
-                            Description = privatViewModel.importsDetail[i].description,
-                            IsLooked=false
+                            Amount = importsDetail[i].amount,
+                            CardAmount = importsDetail[i].cardAmount,
+                            Rest = importsDetail[i].rest,
+                            Terminal = importsDetail[i].terminal,
+                            Description = importsDetail[i].description,
+                            IsLooked = importsDetail[i].isLooked
                         };
                         this._unitOfWork.BankImportDetailRepository.Create(bankImportDetail);
                     }
                 }
                 this._unitOfWork.SaveChanges();
-                return privatViewModel;
+                return importsDetail;
             }
             catch (Exception ex)
             {
                 throw new BusinessLogicException(ex.Message, ex);
+            }
+        }
+
+        public IEnumerable<ImportDetailPrivatViewModel> GetRawExtracts(BankImportSearchViewModel bankSearchModel)
+        {
+            try
+            {
+                return this._unitOfWork.BankImportDetailRepository.GetBankImportsDetail()
+                                                           .Select(item => new ImportDetailPrivatViewModel
+                                                           {
+                                                               id = item.Id,
+                                                               isLooked = item.IsLooked,
+                                                               trandate = item.Trandate,
+                                                               appCode = item.AppCode.ToString(),
+                                                               amount = item.Amount,
+                                                               rest = item.Rest,
+                                                               cardAmount = item.CardAmount,
+                                                               description = item.Description,
+                                                               terminal = item.Terminal,
+                                                               card = item.Card
+                                                           })
+                                                          .Where(bid => (bid.trandate >= bankSearchModel.DataFrom && bid.trandate <= bankSearchModel.DataTo && bid.card == bankSearchModel.Card));
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
             }
         }
 

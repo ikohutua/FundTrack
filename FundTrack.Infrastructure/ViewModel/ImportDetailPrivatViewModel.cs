@@ -4,6 +4,7 @@ namespace FundTrack.Infrastructure.ViewModel
 {
     public class ImportDetailPrivatViewModel
     {
+        public int id { get; set; }
         public string card { get; set; }
         public DateTime trandate { get; set; }
         public string amount { get; set; }
@@ -12,5 +13,6 @@ namespace FundTrack.Infrastructure.ViewModel
         public string rest { get; set; }
         public string terminal { get; set; }
         public string description { get; set; }
+        public bool isLooked { get; set; }
     }
 }

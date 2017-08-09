@@ -1,7 +1,8 @@
 ﻿using FundTrack.BLL.Abstract;
 using FundTrack.Infrastructure.ViewModel;
+using FundTrack.Infrastructure.ViewModel.FinanceViewModels;
 using Microsoft.AspNetCore.Mvc;
-
+using System.Collections.Generic;
 
 namespace FundTrack.WebUI.Controllers
 {
@@ -32,9 +33,15 @@ namespace FundTrack.WebUI.Controllers
         /// <param name="bankImport">The bank import.</param>
         /// <returns></returns>
         [HttpPost("RegisterNewExtracts")]
-        public ImportPrivatViewModel RegisterBankExtracts([FromBody]ImportPrivatViewModel bankModel)
+        public IEnumerable<ImportDetailPrivatViewModel> RegisterBankExtracts([FromBody]ImportDetailPrivatViewModel[] bankModel)
         {
             return this._service.RegisterBankExtracts(bankModel);
+        }
+
+        [HttpPost("SearchRawExtractsOnPeriod")]
+        public IEnumerable<ImportDetailPrivatViewModel> GetRawExtracts([FromBody] BankImportSearchViewModel bankSearchModel)
+        {
+            return this._service.GetRawExtracts(bankSearchModel);
         }
     }
 }

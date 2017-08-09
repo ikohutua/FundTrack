@@ -31,5 +31,10 @@ namespace FundTrack.DAL.Concrete
             return this._context.BankImportDetails
                                 .FirstOrDefault(bid => bid.AppCode == appcode);
         }
+
+        public IEnumerable<BankImportDetail> GetBankImportsDetail()
+        {
+            return this._context.BankImportDetails;
+        }
     }
 }
