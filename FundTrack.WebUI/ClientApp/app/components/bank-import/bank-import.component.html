@@ -5,43 +5,48 @@
         <h4 class="modal-title">Заповніть дані: </h4>
     </div>
     <div class="app-modal-body">
-        <div>
-            <label class="control-label">Номер картки:</label>
-            <input class="col-md-12" type="text"
-                   #id="ngModel"
-                   pattern="[+0-9]*"
-                   required
-                   [(ngModel)]="dataForPrivat.card" />
+        <div class="collapse" id="collapseExample">
+            <div>
+                <label class="control-label">Номер картки:</label>
+                <input class="col-md-12" type="text"
+                       #id="ngModel"
+                       pattern="[+0-9]*"
+                       required
+                       [(ngModel)]="dataForPrivat.card" />
+            </div>
+            <div>
+                <label class="control-label">ID мерчанта:</label>
+                <input class="col-md-12" type="text"
+                       #id="ngModel"
+                       pattern="[+0-9]*"
+                       required
+                       [(ngModel)]="dataForPrivat.idMerchant" />
+            </div>
+            <div>
+                <label class="control-label">Пароль мерчанта:</label>
+                <input class="col-md-12" type="password"
+                       #password="ngModel"
+                       required
+                       [(ngModel)]="dataForPrivat.password" />
+            </div>
+            <div>
+                <label class="control-label">Дата "з":</label>
+                <input class="col-md-12" type="date"
+                       #dataFrom="ngModel"
+                       required
+                       [(ngModel)]="dataPrivatFrom" />
+            </div>
+            <div>
+                <label class="control-label">Дата "по":</label>
+                <input class="col-md-12" type="date"
+                       #dataTo="ngModel"
+                       required
+                       [(ngModel)]="dataPrivatTo" />
+            </div>
         </div>
-        <div>
-            <label class="control-label">ID мерчанта:</label>
-            <input class="col-md-12" type="text"
-                   #id="ngModel"
-                   pattern="[+0-9]*"
-                   required
-                   [(ngModel)]="dataForPrivat.idMerchant" />
-        </div>
-        <div>
-            <label class="control-label">Пароль мерчанта:</label>
-            <input class="col-md-12" type="password"
-                   #password="ngModel"
-                   required
-                   [(ngModel)]="dataForPrivat.password" />
-        </div>
-        <div>
-            <label class="control-label">Дата "з":</label>
-            <input class="col-md-12" type="date"
-                   #dataFrom="ngModel"
-                   required
-                   [(ngModel)]="dataPrivatFrom" />
-        </div>
-        <div>
-            <label class="control-label">Дата "по":</label>
-            <input class="col-md-12" type="date"
-                   #dataTo="ngModel"
-                   required
-                   [(ngModel)]="dataPrivatTo" />
-        </div>
+        <button (click)="getExtracts()" class="btn btn-success pull-right margin" data-toggle="collapse" data-target="#collapseExample" aria-expanded="true" aria-controls="collapseExample" data-dismiss="modal">
+            OK
+        </button>
         <div *ngIf="_dataForFinOp.length!=0">
             <table class="table-bordered table">
                 <thead>
@@ -56,7 +61,7 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let dataFinOp of _dataForFinOp">
-                        <td><input type="checkbox" [checked]="dataFinOp.tempState"  [disabled]="dataFinOp.isLooked" (change)="dataFinOp.tempState= !dataFinOp.tempState" /></td>
+                        <td><input type="checkbox" [checked]="dataFinOp.tempState" [disabled]="dataFinOp.isLooked" (change)="dataFinOp.tempState= !dataFinOp.tempState" /></td>
                         <td> {{dataFinOp.trandate}}</td>
                         <td> {{dataFinOp.appCode}}</td>
                         <td> {{dataFinOp.cardAmount}}</td>
@@ -65,9 +70,9 @@
                     </tr>
                 </tbody>
             </table>
+            <button class="btn btn-success pull-right" data-dismiss="modal">
+                Обробити
+            </button>
         </div>
-        <button (click)="getExtracts()" class="btn btn-success" data-dismiss="modal">
-            Надіслати
-        </button>
     </div>
 </app-modal>
