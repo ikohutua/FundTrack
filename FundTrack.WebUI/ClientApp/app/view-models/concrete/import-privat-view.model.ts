@@ -11,3 +11,8 @@
     public isLooked: boolean;
     public tempState: boolean;
 }
+
+export class ImportPrivatViewModel {
+    public importsDetail: ImportDetailPrivatViewModel[] = new Array<ImportDetailPrivatViewModel>();
+    public error: string;
+}

@@ -32,29 +32,41 @@ namespace FundTrack.BLL.Concrete
         {
             try
             {
-                for (int i = 0; i < importsDetail.Length; ++i)
+                if (importsDetail != null)
                 {
-                    int appcode = 0;
-                    int.TryParse(importsDetail[i].appCode, out appcode);
-                    if (this._unitOfWork.BankImportDetailRepository.GetBankImportDetail(appcode) == null)
+                    for (int i = 0; i < importsDetail.Length; ++i)
                     {
-                        var bankImportDetail = new BankImportDetail
+                        int appcode = 0;
+                        int.TryParse(importsDetail[i].appCode, out appcode);
+                        if (this._unitOfWork.BankImportDetailRepository.GetBankImportDetail(appcode) == null)
                         {
-                            Card = importsDetail[i].card,
-                            Trandate = importsDetail[i].trandate,
-                            AppCode = appcode,
-                            Amount = importsDetail[i].amount,
-                            CardAmount = importsDetail[i].cardAmount,
-                            Rest = importsDetail[i].rest,
-                            Terminal = importsDetail[i].terminal,
-                            Description = importsDetail[i].description,
-                            IsLooked = importsDetail[i].isLooked
-                        };
-                        this._unitOfWork.BankImportDetailRepository.Create(bankImportDetail);
+                            var bankImportDetail = new BankImportDetail
+                            {
+                                Card = importsDetail[i].card,
+                                Trandate = importsDetail[i].trandate,
+                                AppCode = appcode,
+                                Amount = importsDetail[i].amount,
+                                CardAmount = importsDetail[i].cardAmount,
+                                Rest = importsDetail[i].rest,
+                                Terminal = importsDetail[i].terminal,
+                                Description = importsDetail[i].description,
+                                IsLooked = importsDetail[i].isLooked
+                            };
+
+                            if (bankImportDetail != null)
+                            {
+                                this._unitOfWork.BankImportDetailRepository.Create(bankImportDetail);
+                            }
+                        }
                     }
+                    this._unitOfWork.SaveChanges();
+                    return importsDetail;
                 }
-                this._unitOfWork.SaveChanges();
-                return importsDetail;
+                else
+                {
+                    var rawExtract = new ImportDetailPrivatViewModel();
+                    return (IEnumerable<ImportDetailPrivatViewModel>)rawExtract;
+                }
             }
             catch (Exception ex)
             {
@@ -66,7 +78,7 @@ namespace FundTrack.BLL.Concrete
         {
             try
             {
-                return this._unitOfWork.BankImportDetailRepository.GetBankImportsDetail()
+                var rawExtracts = this._unitOfWork.BankImportDetailRepository.GetBankImportsDetail()
                                                            .Select(item => new ImportDetailPrivatViewModel
                                                            {
                                                                id = item.Id,
@@ -79,13 +91,22 @@ namespace FundTrack.BLL.Concrete
                                                                description = item.Description,
                                                                terminal = item.Terminal,
                                                                card = item.Card,
-                                                               tempState= item.IsLooked
+                                                               tempState = item.IsLooked
                                                            })
                                                           .Where(bid => (bid.trandate >= bankSearchModel.DataFrom && bid.trandate <= bankSearchModel.DataTo && bid.card == bankSearchModel.Card));
+                if (rawExtracts != null)
+                {
+                    return rawExtracts;
+                }
+                else
+                {
+                    var rawExtract = new ImportDetailPrivatViewModel();
+                    return (IEnumerable<ImportDetailPrivatViewModel>)rawExtract;
+                }
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message);
+                throw new BusinessLogicException(ex.Message, ex);
             }
         }
 

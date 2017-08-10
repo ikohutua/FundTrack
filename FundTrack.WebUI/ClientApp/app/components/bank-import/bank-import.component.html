@@ -5,7 +5,7 @@
         <h4 class="modal-title">Заповніть дані: </h4>
     </div>
     <div class="app-modal-body">
-        <div class="collapse" id="collapseExample">
+        <div class="collapse in" id="collapseExample">
             <div>
                 <label class="control-label">Номер картки:</label>
                 <input class="col-md-12" type="text"
@@ -43,11 +43,12 @@
                        required
                        [(ngModel)]="dataPrivatTo" />
             </div>
-        </div>
-        <button (click)="getExtracts()" class="btn btn-success pull-right margin" data-toggle="collapse" data-target="#collapseExample" aria-expanded="true" aria-controls="collapseExample" data-dismiss="modal">
-            OK
-        </button>
-        <div *ngIf="_dataForFinOp.length!=0">
+            <button (click)="getExtracts()" class="btn btn-success pull-right margin" data-dismiss="modal">
+                OK
+            </button>
+        </div>      
+        <div *ngIf="_dataForFinOp.length!=0 && !importData.error">
+            <button class="margin btn btn-default col-md-offset-10" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" toggle="true"><i class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></i></button>
             <table class="table-bordered table">
                 <thead>
                     <tr>
@@ -70,9 +71,12 @@
                     </tr>
                 </tbody>
             </table>
-            <button class="btn btn-success pull-right" data-dismiss="modal">
+            <button class="btn btn-success pull-right top-button" data-dismiss="modal">
                 Обробити
             </button>
         </div>
+         <div *ngIf="importData.error">
+             {{importData.error}}
+             </div>
     </div>
 </app-modal>
