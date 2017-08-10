@@ -2,6 +2,6 @@
     public idMerchant: number;
     public password: string;
     public card: string;
-    public dataFrom: Date;
-    public dataTo: Date;
+    public dataFrom: string;
+    public dataTo: string;
 }

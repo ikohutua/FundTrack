@@ -14,5 +14,6 @@ namespace FundTrack.Infrastructure.ViewModel
         public string terminal { get; set; }
         public string description { get; set; }
         public bool isLooked { get; set; }
+        public bool tempState { get; set; }
     }
 }

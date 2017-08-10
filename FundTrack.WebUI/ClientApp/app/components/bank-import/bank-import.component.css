@@ -1,1 +1,13 @@
-﻿
+﻿.scrollable-menu {
+    height: auto !important;
+    max-height: 350px !important;
+    overflow-x: hidden !important;
+}
+
+.table {
+    display: inline-block;
+    height: auto !important;
+    max-height: 300px !important;
+    margin-top:2%;
+    overflow-x: hidden !important;
+}

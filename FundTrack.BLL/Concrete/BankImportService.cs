@@ -78,7 +78,8 @@ namespace FundTrack.BLL.Concrete
                                                                cardAmount = item.CardAmount,
                                                                description = item.Description,
                                                                terminal = item.Terminal,
-                                                               card = item.Card
+                                                               card = item.Card,
+                                                               tempState= item.IsLooked
                                                            })
                                                           .Where(bid => (bid.trandate >= bankSearchModel.DataFrom && bid.trandate <= bankSearchModel.DataTo && bid.card == bankSearchModel.Card));
             }

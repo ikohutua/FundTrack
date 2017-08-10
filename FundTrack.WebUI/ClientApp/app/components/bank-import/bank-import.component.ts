@@ -22,20 +22,26 @@ export class BankImportComponent {
     private importData: ImportDetailPrivatViewModel[] = new Array<ImportDetailPrivatViewModel>();
     private _dataForFinOp: ImportDetailPrivatViewModel[] = new Array<ImportDetailPrivatViewModel>();
     private _bankSearchModel: BankImportSearchViewModel = new BankImportSearchViewModel();
+    @Input() dataPrivatFrom: string;
+    @Input() dataPrivatTo: string;
 
     public constructor(private _service: BankImportService) { }
 
     public getExtracts() {
+        let datesFrom = this.dataPrivatFrom.split('-');
+        let datesTo = this.dataPrivatTo.split('-');
+        this.dataForPrivat.dataFrom = datesFrom.reverse().join('.');
+        this.dataForPrivat.dataTo = datesTo.reverse().join('.');
         this._service.getUserExtracts(this.dataForPrivat)
             .subscribe(response => {
                 this.importData = response;
                 console.log(this.importData);
                 this._service.registerBankExtracts(this.importData)
                     .subscribe(response => {
-                        let dataFrom = this.dataForPrivat.dataFrom.toString().split('.');
-                        let dataTo = this.dataForPrivat.dataTo.toString().split('.');
-                        this._bankSearchModel.dataFrom = new Date(+dataFrom[2], ((+dataFrom[1])-1), +dataFrom[0],3,0,0);
-                        this._bankSearchModel.dataTo = new Date(+dataTo[2], ((+dataTo[1])-1), (+dataTo[0])+1,2,59,59);
+                        let dataFrom = this.dataForPrivat.dataFrom.split('.');
+                        let dataTo = this.dataForPrivat.dataTo.split('.');
+                        this._bankSearchModel.dataFrom = new Date(+dataFrom[2], ((+dataFrom[1]) - 1), +dataFrom[0], 3, 0, 0);
+                        this._bankSearchModel.dataTo = new Date(+dataTo[2], ((+dataTo[1]) - 1), (+dataTo[0]) + 1, 2, 59, 59);
                         this._bankSearchModel.card = this.dataForPrivat.card;
                         this._service.getRawExtracts(this._bankSearchModel)
                             .subscribe(response => {

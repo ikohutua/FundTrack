@@ -23,54 +23,50 @@
         </div>
         <div>
             <label class="control-label">Пароль мерчанта:</label>
-            <input class="col-md-12" type="text"
+            <input class="col-md-12" type="password"
                    #password="ngModel"
                    required
                    [(ngModel)]="dataForPrivat.password" />
         </div>
         <div>
             <label class="control-label">Дата "з":</label>
-            <input class="col-md-12" type="text"
+            <input class="col-md-12" type="date"
                    #dataFrom="ngModel"
                    required
-                   [(ngModel)]="dataForPrivat.dataFrom" />
+                   [(ngModel)]="dataPrivatFrom" />
         </div>
         <div>
             <label class="control-label">Дата "по":</label>
-            <input class="col-md-12" type="text"
+            <input class="col-md-12" type="date"
                    #dataTo="ngModel"
                    required
-                   [(ngModel)]="dataForPrivat.dataTo" />
+                   [(ngModel)]="dataPrivatTo" />
         </div>
         <div *ngIf="_dataForFinOp.length!=0">
             <table class="table-bordered table">
                 <thead>
                     <tr>
-                        <th> Номер картки</th>
-                        <th> Дата  </th>
-                        <th> Код </th>
-                        <th> Сума </th>
-                        <th> Залишок </th>
-                        <th> Опис </th>
+                        <th>Стан</th>
+                        <th>Дата</th>
+                        <th>Код</th>
+                        <th>Сума</th>
+                        <th>Залишок</th>
+                        <th>Опис</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let dataFinOp of_dataForFinOp">
-                        <td> {{dataFinOp.card}} </td>
+                    <tr *ngFor="let dataFinOp of _dataForFinOp">
+                        <td><input type="checkbox" [checked]="dataFinOp.tempState"  [disabled]="dataFinOp.isLooked" (change)="dataFinOp.tempState= !dataFinOp.tempState" /></td>
                         <td> {{dataFinOp.trandate}}</td>
                         <td> {{dataFinOp.appCode}}</td>
                         <td> {{dataFinOp.cardAmount}}</td>
+                        <td> {{dataFinOp.rest}}</td>
                         <td> {{dataFinOp.description}}</td>
                     </tr>
                 </tbody>
             </table>
         </div>
-    </div>
-    <div class="app-modal-footer">
-        <button type="button" class="btn btn-default" (click)="closeModal()">Закрити</button>
-        <button (click)="getExtracts()"
-                class="btn btn-success"
-                data-dismiss="modal">
+        <button (click)="getExtracts()" class="btn btn-success" data-dismiss="modal">
             Надіслати
         </button>
     </div>

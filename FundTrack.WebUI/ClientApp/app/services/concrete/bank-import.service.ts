@@ -5,7 +5,7 @@ import { PrivatSessionViewModel } from "../../view-models/concrete/privat-sessio
 import { Response } from '@angular/http';
 import { Md5 } from 'ts-md5/dist/md5';
 import * as xml2js from 'xml2js';
-import * as sha1 from 'js-sha1';
+import sha1 = require('sha1');
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/catch';
@@ -30,7 +30,7 @@ export class BankImportService {
                           <prop name="card" value="${dataForRequest.card}" />
                         </payment>`;
 
-        let sign = sha1(Md5.hashStr(data + dataForRequest.password));
+        let sign = <string>sha1(<string>Md5.hashStr(data + dataForRequest.password));
 
         let body = `<?xml version="1.0" encoding="UTF-8"?>
                     <request version="1.0">
