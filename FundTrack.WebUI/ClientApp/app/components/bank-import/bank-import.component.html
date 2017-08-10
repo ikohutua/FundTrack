@@ -42,6 +42,29 @@
                    required
                    [(ngModel)]="dataForPrivat.dataTo" />
         </div>
+        <div *ngIf="_dataForFinOp.length!=0">
+            <table class="table-bordered table">
+                <thead>
+                    <tr>
+                        <th> Номер картки</th>
+                        <th> Дата  </th>
+                        <th> Код </th>
+                        <th> Сума </th>
+                        <th> Залишок </th>
+                        <th> Опис </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let dataFinOp of_dataForFinOp">
+                        <td> {{dataFinOp.card}} </td>
+                        <td> {{dataFinOp.trandate}}</td>
+                        <td> {{dataFinOp.appCode}}</td>
+                        <td> {{dataFinOp.cardAmount}}</td>
+                        <td> {{dataFinOp.description}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
     <div class="app-modal-footer">
         <button type="button" class="btn btn-default" (click)="closeModal()">Закрити</button>
