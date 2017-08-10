@@ -13,6 +13,7 @@ import { ImportDetailPrivatViewModel } from "../../view-models/concrete/import-p
 import { DataRequestPrivatViewModel } from "../../view-models/concrete/data-request-privat-view.model";
 import { BankImportSearchViewModel } from "../../view-models/concrete/finance/bank-import-search-view.model";
 
+
 @Injectable()
 export class BankImportService {
 

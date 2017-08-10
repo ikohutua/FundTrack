@@ -12,7 +12,11 @@
                     <input id="accountName" name="accountName" formControlName="accountName" type="text" placeholder="Назва рахунку" class="form-control input-md" [(ngModel)]="account.orgAccountName" required="">
                 </div>
             </div>
-
+            <div>
+                <span *ngIf="formErrors.accountName" class="has-error help-block">
+                    {{ formErrors.accountName }}
+                </span>
+            </div>
             <!-- Text input-->
             <div class="form-group">
                 <label class="col-md-4 control-label" for="accountNumber">Номер рахунку</label>
@@ -21,34 +25,47 @@
 
                 </div>
             </div>
-
+            <div>
+                <span *ngIf="formErrors.accountNumber" class="has-error help-block">
+                    {{ formErrors.accountNumber }}
+                </span>
+            </div>
             <!-- Text input-->
             <div class="form-group">
                 <label class="col-md-4 control-label" for="accountMFO">МФО</label>
                 <div class="col-md-4">
                     <input id="accountMFO" name="accountMFO" formControlName="accountMfo" type="text" placeholder="МФО" class="form-control input-md" [(ngModel)]="account.mfo" required="">
-
                 </div>
             </div>
-
+            <div>
+                <span *ngIf="formErrors.accountMfo" class="has-error help-block">
+                    {{ formErrors.accountMfo }}
+                </span>
+            </div>
             <!-- Text input-->
             <div class="form-group">
                 <label class="col-md-4 control-label" for="accountEDRPOU">ЄДРПОУ</label>
                 <div class="col-md-4">
                     <input id="accountEDRPOU" name="accountEDRPOU" formControlName="accountEdrpou" type="text" placeholder="ЄДРПОУ" class="form-control input-md" [(ngModel)]="account.edrpou" required="">
-
                 </div>
             </div>
-
+            <div>
+                <span *ngIf="formErrors.accountEdrpou" class="has-error help-block">
+                    {{ formErrors.accountEdrpou }}
+                </span>
+            </div>
             <!-- Text input-->
             <div class="form-group">
                 <label class="col-md-4 control-label" for="accountBankName">Назва банку</label>
                 <div class="col-md-4">
                     <input id="accountBankName" name="accountBankName" formControlName="accountBankName" type="text" placeholder="Назва банку" class="form-control input-md" [(ngModel)]="account.bankName" required="">
-
                 </div>
             </div>
-
+            <div>
+                <span *ngIf="formErrors.accountBankName" class="has-error help-block">
+                    {{ formErrors.accountBankName }}
+                </span>
+            </div>
             <!-- Text input-->
             <div class="form-group">
                 <label class="col-md-4 control-label" for="accountDescription">Опис рахунку</label>
@@ -57,24 +74,35 @@
 
                 </div>
             </div>
-
+            <div>
+                <span *ngIf="formErrors.accountDescription" class="has-error help-block">
+                    {{ formErrors.accountDescription }}
+                </span>
+            </div>
             <!-- Select Basic -->
             <div class="form-group">
                 <label class="col-md-4 control-label" for="currency">Валюта</label>
                 <div class="col-md-4">
-                    <select id="currency" name="currency" class="form-control" formControlName="accountCurrency"  [(ngModel)]="account.currency">
+                    <select id="currency" name="currency" class="form-control" formControlName="accountCurrency" [(ngModel)]="account.currency">
                         <option value="1">Долар США</option>
                         <option value="2">Євро</option>
-                        <option value="3">Гривня</option>
+                        <option selected value="3">Гривня</option>
                     </select>
                 </div>
             </div>
+            <div>
+                <span *ngIf="formErrors.accountCurrency" class="has-error help-block">
+                    {{ formErrors.accountCurrency }}
+                </span>
+            </div>
             <div class="col-md-12 col-md-push-7">
-                <button style="padding-left:1em;" class="btn btn-default">Зберегти</button>
+                <button class="btn btn-default" (click)="saveAccount()">Зберегти</button>
             </div>
             <label>Form value: {{accountForm.value | json}}</label>
             <br />
             <label>Form status: {{accountForm.status | json}}</label>
+            <br />
+            <label> AccountName: {{account | json}}</label>
         </fieldset>
     </form>
 </div>

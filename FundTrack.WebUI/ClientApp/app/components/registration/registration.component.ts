@@ -197,7 +197,7 @@ export class RegistrationComponent {
             if (control && control.dirty && !control.valid) {
                 let message = this.validationMessages[field];
                 for (let key in control.errors) {
-                    this.formErrors[field] += message[key.toLowerCase()] + "";
+                    this.formErrors[field] += message[key.toLowerCase()] + " ";
                 }
             }
         }

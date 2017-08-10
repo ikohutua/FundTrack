@@ -16,6 +16,7 @@ import { SpinnerComponent } from "./shared/components/spinner/spinner.component"
 import { BankImportModule } from "./bank-import.module";
 import { ReactiveFormsModule } from '@angular/forms';
 import { FinanceModule } from "./finance.module";
+import { ValidatorsService } from "./services/concrete/validators/validator.service";
 
 //function createConfig(): SignalRConfiguration {
 //    let signalrConfiguration = new SignalRConfiguration();
@@ -47,6 +48,6 @@ import { FinanceModule } from "./finance.module";
         //,
         //SignalRModule.forRoot(createConfig)
     ],
-    providers: [StorageService]
+    providers: [StorageService, ValidatorsService]
 })
 export class AppModule { }

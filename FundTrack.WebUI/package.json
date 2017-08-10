@@ -57,6 +57,7 @@
     "signalr": "^2.2.2",
     "style-loader": "^0.13.1",
     "to-string-loader": "^1.1.5",
+    "ts-md5": "^1.2.2",
     "typescript": "2.3.4",
     "url-loader": "^0.5.7",
     "webpack": "^2.2.0",

@@ -29,7 +29,6 @@ export class SidebarComponent implements OnInit {
     ngOnInit(): void {
         if (isBrowser) {
             if (localStorage.getItem(key.keyToken)) {
-                debugger;
                 this.user = JSON.parse(localStorage.getItem(key.keyModel)) as AuthorizeUserModel;
                 this._userResponseService.getUserResponseWithNewStatus(this.user.orgId)
                     .subscribe(count => {
