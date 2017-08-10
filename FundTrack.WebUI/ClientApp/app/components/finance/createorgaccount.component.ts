@@ -113,7 +113,6 @@ export class CreateOrgAccountComponent {
             if (control && control.dirty && !control.valid) {
                 let message = this.validationMessages[field];
                 for (let key in control.errors) {
-                    debugger;
                     this.formErrors[field] = message[key.toLowerCase()];
                 }
             }
