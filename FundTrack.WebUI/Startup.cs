@@ -42,9 +42,22 @@ namespace FundTrack_WebUI
             string connectionType = "azure-main";
             services.AddDbContext<FundTrackContext>(options => options.UseSqlServer(Configuration.GetConnectionString(connectionType)));
 
-            services.AddCors(options => options.AddPolicy("AllowAll", p => p.AllowAnyOrigin()
-                                                       .AllowAnyMethod()
-                                                        .AllowAnyHeader()));
+            services.AddCors(
+     options => options.AddPolicy("AllowCors",
+         builder => {
+             builder
+                 //.WithOrigins("http://localhost:4456") //AllowSpecificOrigins;  
+                 //.WithOrigins("http://localhost:4456", "http://localhost:4457") //AllowMultipleOrigins;  
+                 .AllowAnyOrigin() //AllowAllOrigins;  
+                                   //.WithMethods("GET") //AllowSpecificMethods;  
+                                   //.WithMethods("GET", "PUT") //AllowSpecificMethods;  
+                                   //.WithMethods("GET", "PUT", "POST") //AllowSpecificMethods;  
+                 .WithMethods("GET", "PUT", "POST", "DELETE") //AllowSpecificMethods;  
+                                                              //.AllowAnyMethod() //AllowAllMethods;  
+                                                              //.WithHeaders("Accept", "Content-type", "Origin", "X-Custom-Header"); //AllowSpecificHeaders;  
+                 .AllowAnyHeader(); //AllowAllHeaders;  
+        })
+ );
 
 
             // Add framework services.
@@ -147,7 +160,7 @@ namespace FundTrack_WebUI
             }
 
             app.UseWebSockets();
-            app.UseCors("AllowAll");
+
 
             app.UseMvc(routes =>
             {
@@ -160,6 +173,8 @@ namespace FundTrack_WebUI
                     name: "spa-fallback",
                     defaults: new { controller = "Home", action = "Index" });
             });
+
+            app.UseCors("AllowCors");
         }
     }
 }

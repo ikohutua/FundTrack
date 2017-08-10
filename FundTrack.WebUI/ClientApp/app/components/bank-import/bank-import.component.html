@@ -6,47 +6,68 @@
     </div>
     <div class="app-modal-body">
         <div class="collapse in" id="collapseExample">
-            <div>
-                <label class="control-label">Номер картки:</label>
-                <input class="col-md-12" type="text"
-                       #id="ngModel"
-                       pattern="[+0-9]*"
-                       required
-                       [(ngModel)]="dataForPrivat.card" />
-            </div>
-            <div>
-                <label class="control-label">ID мерчанта:</label>
-                <input class="col-md-12" type="text"
-                       #id="ngModel"
-                       pattern="[+0-9]*"
-                       required
-                       [(ngModel)]="dataForPrivat.idMerchant" />
-            </div>
-            <div>
-                <label class="control-label">Пароль мерчанта:</label>
-                <input class="col-md-12" type="password"
-                       #password="ngModel"
-                       required
-                       [(ngModel)]="dataForPrivat.password" />
-            </div>
-            <div>
-                <label class="control-label">Дата "з":</label>
-                <input class="col-md-12" type="date"
-                       #dataFrom="ngModel"
-                       required
-                       [(ngModel)]="dataPrivatFrom" />
-            </div>
-            <div>
-                <label class="control-label">Дата "по":</label>
-                <input class="col-md-12" type="date"
-                       #dataTo="ngModel"
-                       required
-                       [(ngModel)]="dataPrivatTo" />
-            </div>
-            <button (click)="getExtracts()" class="btn btn-success pull-right margin" data-dismiss="modal">
+            <form class="form-horizontal" [formGroup]="bankImportForm" id="bankImportForm" novalidate>
+                <div class="form-group">
+                    <label class="control-label">Номер картки:</label>
+                    <input class="form-control"
+                           type="text"
+                           placeholder="Номер картки"
+                           name="cardNumber"
+                           formControlName="cardNumber"
+                           [(ngModel)]="dataForPrivat.card"
+                           required="" />
+                    <span *ngIf="formErrors.cardNumber" class="has-error help-block error-message">
+                        {{ formErrors.cardNumber }}
+                    </span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">ID мерчанта:</label>
+                    <input class="form-control"
+                           type="text"
+                           placeholder="ID мерчанта"
+                           formControlName="idMerchant"
+                           required=""
+                           [(ngModel)]="dataForPrivat.idMerchant" />
+                    <span *ngIf="formErrors.idMerchant" class="has-error help-block error-message">
+                        {{ formErrors.idMerchant }}
+                    </span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Пароль мерчанта:</label>
+                    <input class="form-control"
+                           type="password"
+                           formControlName="password"
+                           placeholder="Пароль мерчанта"
+                           required=""
+                           [(ngModel)]="dataForPrivat.password" />
+                    <span *ngIf="formErrors.password" class="has-error help-block error-message">
+                        {{ formErrors.password}}
+                    </span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Дата "з":</label>
+                    <input class="form-control" type="date"
+                           placeholder="З"
+                           formControlName="dataFrom"
+                           required=""
+                           [(ngModel)]="dataPrivatFrom" />
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Дата "по":</label>
+                    <input class="form-control" type="date"
+                           placeholder="По"
+                           formControlName="dataTo"
+                           required=""
+                           [(ngModel)]="dataPrivatTo" />
+                </div>
+            </form>
+            <button (click)="getExtracts()"
+                    class="btn btn-success pull-right margin"
+                    data-dismiss="modal"
+                    [disabled]="bankImportForm.invalid">
                 OK
             </button>
-        </div>      
+        </div>
         <div *ngIf="_dataForFinOp.length!=0 && !importData.error">
             <button class="margin btn btn-default col-md-offset-10" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" toggle="true"><i class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></i></button>
             <table class="table-bordered table">
@@ -75,8 +96,8 @@
                 Обробити
             </button>
         </div>
-         <div *ngIf="importData.error">
-             {{importData.error}}
-             </div>
+        <div *ngIf="importData.error" class="error-message">
+            {{importData.error}}
+        </div>
     </div>
 </app-modal>

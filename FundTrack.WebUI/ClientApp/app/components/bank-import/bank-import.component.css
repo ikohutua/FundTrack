@@ -7,15 +7,29 @@
 .table {
     display: inline-block;
     height: auto !important;
-    max-height: 300px !important;
-    margin-top:2%;
+    max-height: 200px !important;
+    margin-top: 2%;
+    margin-left:1%;
+    margin-right:2%;
     overflow-x: hidden !important;
 }
 
-.margin{
-    margin-top:1%;
+.margin {
+    margin-top: 1%;
 }
 
 .top-button {
-    margin-top:-20px;
+    margin-top: -20px;
+}
+
+.error-message {
+    margin-top: 2%;
+    color: red;
+    line-height: 20px;
+}
+
+.form-group {
+    margin-left: 1%;
+    margin-right:1%;
+    margin-top: -10px;
 }

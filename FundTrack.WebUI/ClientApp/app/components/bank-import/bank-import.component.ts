@@ -5,6 +5,8 @@ import { ModalComponent } from "../../shared/components/modal/modal-component";
 import { BankImportService } from "../../services/concrete/bank-import.service";
 import { ImportDetailPrivatViewModel, ImportPrivatViewModel } from "../../view-models/concrete/import-privat-view.model";
 import { BankImportSearchViewModel } from "../../view-models/concrete/finance/bank-import-search-view.model";
+import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { ValidatorsService } from "../../services/concrete/validators/validator.service";
 
 @Component({
     template: require('./bank-import.component.html'),
@@ -13,7 +15,9 @@ import { BankImportSearchViewModel } from "../../view-models/concrete/finance/ba
 })
 
 export class BankImportComponent {
-    @Input() dataForPrivat: DataRequestPrivatViewModel = new DataRequestPrivatViewModel();
+    public bankImportForm: FormGroup;
+
+    private dataForPrivat: DataRequestPrivatViewModel = new DataRequestPrivatViewModel();
 
     @ViewChild(ModalComponent)
 
@@ -25,7 +29,88 @@ export class BankImportComponent {
     @Input() dataPrivatFrom: string;
     @Input() dataPrivatTo: string;
 
-    public constructor(private _service: BankImportService) { }
+    public constructor(private _service: BankImportService,
+        private _fb: FormBuilder,
+        private _validatorsService: ValidatorsService) {
+        this.createForm();
+    }
+
+    private createForm(): void {
+        this.bankImportForm = this._fb.group({
+            cardNumber: [this.dataForPrivat.card, [Validators.required, Validators.maxLength(16), Validators.minLength(16), this._validatorsService.isInteger]],
+            idMerchant: [this.dataForPrivat.idMerchant, [Validators.required, Validators.minLength(6), this._validatorsService.isInteger]],
+            password: [this.dataForPrivat.password, Validators.required],
+            dataTo: [this.dataForPrivat.dataTo, Validators.required],
+            dataFrom: [this.dataForPrivat.dataFrom, Validators.required]
+        });
+        this.bankImportForm.valueChanges
+            .subscribe(a => this.onValueChange(a));
+
+        this.onValueChange();
+    }
+
+    /*
+Errors to be displayed on the UI
+*/
+    private formErrors = {
+        cardNumber: "",
+        idMerchant: "",
+        password: "",
+        dataTo: "",
+        dataFrom:""
+    };
+
+    /*
+    Error messages
+    */
+    private requiredMessage = "Поле є обов'язковим для заповнення";
+    private numberMessage = "Поле повинно містити тільки цифри";
+    private lengthMessage = "Недопустима кількість символів";
+    private cardMessage = "Номер картки повинен складатися з 16 цифр";
+
+    private validationMessages = {
+        cardNumber: {
+            required: this.requiredMessage,
+            notnumeric: this.numberMessage,
+            maxlength: this.cardMessage,
+            minlength: this.cardMessage,
+        },
+        idMerchant: {
+            required: this.requiredMessage,
+            notnumeric: this.numberMessage,
+            minlength: this.lengthMessage,
+        },
+        password: {
+            required: this.requiredMessage,
+        },
+        dataTo: {
+            required: this.requiredMessage,
+        },
+        dataFrom: {
+            required: this.requiredMessage,
+        }
+    }
+
+    /**
+     * Subscriber on value changes
+     * @param data
+     */
+    private onValueChange(data?: any) {
+        if (!this.bankImportForm) return;
+        let form = this.bankImportForm;
+
+        for (let field in this.formErrors) {
+            this.formErrors[field] = "";
+            let control = form.get(field);
+
+            if (control && control.dirty && !control.valid) {
+                let message = this.validationMessages[field];
+                for (let key in control.errors) {
+                    this.formErrors[field] = message[key.toLowerCase()];
+                }
+            }
+        }
+    }
 
     public getExtracts() {
         let datesFrom = this.dataPrivatFrom.split('-');
@@ -36,6 +121,7 @@ export class BankImportComponent {
             .subscribe(response => {
                 this.importData = response;
                 console.log(this.importData);
+                console.log("bla");
                     if(!this.importData.error) {
                     this._service.registerBankExtracts(this.importData.importsDetail)
                         .subscribe(response => {

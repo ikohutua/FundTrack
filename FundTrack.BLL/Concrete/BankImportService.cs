@@ -64,8 +64,8 @@ namespace FundTrack.BLL.Concrete
                 }
                 else
                 {
-                    var rawExtract = new ImportDetailPrivatViewModel();
-                    return (IEnumerable<ImportDetailPrivatViewModel>)rawExtract;
+                    var message = "Список виписок порожній.";
+                    throw new BusinessLogicException(message);
                 }
             }
             catch (Exception ex)
@@ -100,8 +100,8 @@ namespace FundTrack.BLL.Concrete
                 }
                 else
                 {
-                    var rawExtract = new ImportDetailPrivatViewModel();
-                    return (IEnumerable<ImportDetailPrivatViewModel>)rawExtract;
+                    var message = "Немає виписок за даний період.";
+                    throw new BusinessLogicException(message);
                 }
             }
             catch (Exception ex)

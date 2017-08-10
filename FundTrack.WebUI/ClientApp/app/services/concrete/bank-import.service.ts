@@ -13,7 +13,6 @@ import { ImportDetailPrivatViewModel, ImportPrivatViewModel } from "../../view-m
 import { DataRequestPrivatViewModel } from "../../view-models/concrete/data-request-privat-view.model";
 import { BankImportSearchViewModel } from "../../view-models/concrete/finance/bank-import-search-view.model";
 
-
 @Injectable()
 export class BankImportService {
 
@@ -48,6 +47,7 @@ export class BankImportService {
                 let imports = new ImportPrivatViewModel();
                 xml2js.parseString(response.text(), function (err, result) {
                     console.log(result);
+                    if (result.response.data[0].hasOwnProperty('error') == false) {
                         for (let i = 0; i < result.response.data[0].info[0].statements[0].statement.length; ++i) {
                             let temp: ImportDetailPrivatViewModel = new ImportDetailPrivatViewModel();
                             let dates = result.response.data[0].info[0].statements[0].statement[i].$.trandate.split('-');
@@ -62,7 +62,11 @@ export class BankImportService {
                             temp.trandate = new Date(+dates[0], (+dates[1]) - 1, +dates[2], (+times[0]) + 3, +times[1], +times[2]);
                             temp.isLooked = false;
                             temp.id = 0;
-                            imports.importsDetail.push(temp);                     
+                            imports.importsDetail.push(temp);
+                        }
+                    }
+                    else {
+                        imports.error =result.response.data[0].error[0].$.message as string
                     }
                 });
                 return imports;
