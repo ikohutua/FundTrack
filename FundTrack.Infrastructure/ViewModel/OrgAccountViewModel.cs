@@ -25,5 +25,6 @@ namespace FundTrack.Infrastructure.ViewModel
         public string MFO { get; set; }
         public string EDRPOU { get; set; }
         public string BankName { get; set; }
+        public string Error { get; set; }
     }
 }

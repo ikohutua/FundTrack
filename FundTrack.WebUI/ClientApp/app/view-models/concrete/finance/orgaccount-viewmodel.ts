@@ -12,4 +12,5 @@
     mfo: string;
     edrpou: string;
     bankName: string;
+    error: string;
 }

@@ -1,5 +1,5 @@
 ﻿<div class="well container-fluid">
-    <form class="form-horizontal" [formGroup]="accountForm" novalidate>
+    <form class="form-horizontal" [formGroup]="smallAccountForm" novalidate>
         <fieldset>
 
             <!-- Form Name -->
@@ -10,18 +10,32 @@
                 <label class="col-md-4 control-label" for="accountName">Назва рахунку</label>
                 <div class="col-md-4">
                     <input id="accountName" name="accountName" formControlName="accountName" type="text" placeholder="Назва рахунку" class="form-control input-md" [(ngModel)]="account.orgAccountName" required="">
-                    <span *ngIf="formErrors.accountName" class="has-error help-block isinvalid">
-                        {{ formErrors.accountName }}
+                    <span *ngIf="smallFormErrors.accountName" class="has-error help-block isinvalid">
+                        {{ smallFormErrors.accountName }}
                     </span>
                 </div>
             </div>
             <div class="form-group">
                 <label class="col-md-4 control-label" for="currentBalance">Початковий баланс</label>
                 <div class="col-md-4">
-                    <input id="currentBalance" name="currentBalance"  type="text" placeholder="Поточний баланс на рахунку" class="form-control input-md" [(ngModel)]="account.currentBalance" required="" [ngModelOptions]="{standalone: true}">
-                    <!--<span *ngIf="formErrors.accountName" class="has-error help-block isinvalid">
-                        {{ formErrors.accountName }}
-                    </span>-->
+                    <input id="currentBalance" name="currentBalance" type="text" placeholder="Поточний баланс на рахунку" formControlName="currentBalance" class="form-control input-md" [(ngModel)]="account.currentBalance" required="">
+                    <span *ngIf="smallFormErrors.currentBalance" class="has-error help-block isinvalid">
+                        {{ smallFormErrors.currentBalance }}
+                    </span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="currency">Валюта</label>
+                <div class="col-md-4">
+                    <select id="currency" name="currency" class="form-control" formControlName="accountCurrency" [(ngModel)]="account.currency">
+                        <option [ngValue]="undefined" selected>Виберіть валюту</option>
+                        <option value="1">Долар США</option>
+                        <option value="2">Євро</option>
+                        <option value="3">Гривня</option>
+                    </select>
+                    <span *ngIf="smallFormErrors.accountCurrency" class="has-error help-block isinvalid">
+                        {{ smallFormErrors.accountCurrency }}
+                    </span>
                 </div>
             </div>
             <div class="form-group">
@@ -31,76 +45,68 @@
                     <input type="radio" name="gender" value="bank" [(ngModel)]="account.accountType" [ngModelOptions]="{standalone: true}"> Банківський<br>
                 </div>
             </div>
+        </fieldset>
+    </form>
+    
+    <form class="form-horizontal" [formGroup]="accountForm" novalidate>
+        <fieldset>
             <div *ngIf="account.accountType=='bank'">
-            <!-- Text input-->
-            <div class="form-group">
-                <label class="col-md-4 control-label" for="accountNumber">Номер рахунку</label>
-                <div class="col-md-4">
-                    <input id="accountNumber" name="accountNumber" formControlName="accountNumber" type="text" placeholder="12-14 цифр" class="form-control input-md" [(ngModel)]="account.accNumber" required="">
-                    <span *ngIf="formErrors.accountNumber" class="has-error help-block isinvalid">
-                        {{ formErrors.accountNumber }}
-                    </span>
-                </div>
-            </div>
-            <!-- Text input-->
-            <div class="form-group">
-                <label class="col-md-4 control-label" for="accountMFO">МФО</label>
-                <div class="col-md-4">
-                    <input id="accountMFO" name="accountMFO" formControlName="accountMfo" type="text" placeholder="МФО" class="form-control input-md" [(ngModel)]="account.mfo" required="">
-                    <span *ngIf="formErrors.accountMfo" class="has-error help-block isinvalid">
-                        {{ formErrors.accountMfo }}
-                    </span>
-                </div>
-            </div>
-            <!-- Text input-->
-            <div class="form-group">
-                <label class="col-md-4 control-label" for="accountEDRPOU">ЄДРПОУ</label>
-                <div class="col-md-4">
-                    <input id="accountEDRPOU" name="accountEDRPOU" formControlName="accountEdrpou" type="text" placeholder="ЄДРПОУ" class="form-control input-md" [(ngModel)]="account.edrpou" required="">
-                    <span *ngIf="formErrors.accountEdrpou" class="has-error help-block isinvalid">
-                        {{ formErrors.accountEdrpou }}
-                    </span>
-                </div>
-            </div>
-            <!-- Text input-->
-            <div class="form-group">
-                <label class="col-md-4 control-label" for="accountBankName">Назва банку</label>
-                <div class="col-md-4">
-                    <input id="accountBankName" name="accountBankName" formControlName="accountBankName" type="text" placeholder="Назва банку" class="form-control input-md" [(ngModel)]="account.bankName" required="">
-                    <span *ngIf="formErrors.accountBankName" class="has-error help-block isinvalid">
-                        {{ formErrors.accountBankName }}
-                    </span>
-                </div>
-                
-            </div>
-            <!-- Text input-->
-            <div class="form-group">
-                <label class="col-md-4 control-label" for="accountDescription">Опис рахунку</label>
-                <div class="col-md-4">
-                    <input id="accountDescription" name="accountDescription" formControlName="accountDescription" type="text" placeholder="Короткий опис" class="form-control input-md" [(ngModel)]="account.description">
-                    <span *ngIf="formErrors.accountDescription" class="has-error help-block isinvalid">
-                        {{ formErrors.accountDescription }}
-                    </span>
-                </div>
-            </div>
-            <!-- Select Basic -->
+                <!-- Text input-->
                 <div class="form-group">
-                    <label class="col-md-4 control-label" for="currency">Валюта</label>
+                    <label class="col-md-4 control-label" for="accountNumber">Номер рахунку</label>
                     <div class="col-md-4">
-                        <select id="currency" name="currency" class="form-control" formControlName="accountCurrency" [(ngModel)]="account.currency">
-                            <option [ngValue]="undefined" selected>Виберіть валюту</option>
-                            <option value="1">Долар США</option>
-                            <option value="2">Євро</option>
-                            <option value="3">Гривня</option>
-                        </select>
-                        <span *ngIf="formErrors.accountCurrency" class="has-error help-block isinvalid">
-                            {{ formErrors.accountCurrency }}
+                        <input id="accountNumber" name="accountNumber" formControlName="accountNumber" type="text" placeholder="12-14 цифр" class="form-control input-md" [(ngModel)]="account.accNumber" required="">
+                        <span *ngIf="formErrors.accountNumber" class="has-error help-block isinvalid">
+                            {{ formErrors.accountNumber }}
                         </span>
                     </div>
                 </div>
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="accountMFO">МФО</label>
+                    <div class="col-md-4">
+                        <input id="accountMFO" name="accountMFO" formControlName="accountMfo" type="text" placeholder="МФО" class="form-control input-md" [(ngModel)]="account.mfo" required="">
+                        <span *ngIf="formErrors.accountMfo" class="has-error help-block isinvalid">
+                            {{ formErrors.accountMfo }}
+                        </span>
+                    </div>
+                </div>
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="accountEDRPOU">ЄДРПОУ</label>
+                    <div class="col-md-4">
+                        <input id="accountEDRPOU" name="accountEDRPOU" formControlName="accountEdrpou" type="text" placeholder="ЄДРПОУ" class="form-control input-md" [(ngModel)]="account.edrpou" required="">
+                        <span *ngIf="formErrors.accountEdrpou" class="has-error help-block isinvalid">
+                            {{ formErrors.accountEdrpou }}
+                        </span>
+                    </div>
+                </div>
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="accountBankName">Назва банку</label>
+                    <div class="col-md-4">
+                        <input id="accountBankName" name="accountBankName" formControlName="accountBankName" type="text" placeholder="Назва банку" class="form-control input-md" [(ngModel)]="account.bankName" required="">
+                        <span *ngIf="formErrors.accountBankName" class="has-error help-block isinvalid">
+                            {{ formErrors.accountBankName }}
+                        </span>
+                    </div>
+
+                </div>
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="accountDescription">Опис рахунку</label>
+                    <div class="col-md-4">
+                        <input id="accountDescription" name="accountDescription" formControlName="accountDescription" type="text" placeholder="Короткий опис" class="form-control input-md" [(ngModel)]="account.description">
+                        <span *ngIf="formErrors.accountDescription" class="has-error help-block isinvalid">
+                            {{ formErrors.accountDescription }}
+                        </span>
+                    </div>
+                </div>
+                <!-- Select Basic -->
+
             </div>
-            <div class="col-md-1 col-md-push-7">
-                <button class="btn btn-default" (click)="saveAccount()">Зберегти</button>
+            <div class="col-md-1 col-md-offset-7">
+                <button class="btn btn-default pull-right" (click)="saveAccount()" [disabled]="checkFormValidity()">Створити рахунок</button>
             </div>
             <label>Form value: {{accountForm.value | json}}</label>
             <br />

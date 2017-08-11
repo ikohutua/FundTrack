@@ -110,5 +110,9 @@ namespace FundTrack.BLL.Concrete
             model.AccNumber = item.BankAccount.AccNumber;
             return model;
         }
+        public OrgAccountViewModel CreateCashAccount(OrgAccountViewModel model)
+        {
+            return new OrgAccountViewModel();
+        }
     }
 }

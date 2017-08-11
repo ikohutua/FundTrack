@@ -16,40 +16,55 @@ import { ValidatorsService } from "../../services/concrete/validators/validator.
 export class CreateOrgAccountComponent {
     private account: OrgAccountViewModel = new OrgAccountViewModel();
     private pageTitle: string = 'Створення рахунку організації';
+    private decimalValidationRegex: string = "^[0-9]{1,7}(\.[0-9]{1,2})?$";
     accountForm: FormGroup;
+    smallAccountForm: FormGroup;
 
     constructor(private _accountService: OrgAccountService,
         private _fb: FormBuilder,
         private _validatorsService: ValidatorsService
     ) {
         this.createForm();
+        this.createSmallForm();
         this.account.accountType = 'cash';
     }
     private createForm(): void {
         this.accountForm = this._fb.group({
-            accountName: [this.account.orgAccountName, [Validators.required, Validators.maxLength(100)]],
             accountNumber: [this.account.accNumber, [Validators.required, Validators.maxLength(20), this._validatorsService.isInteger]],
             accountMfo: [this.account.mfo, [Validators.required, Validators.minLength(6), Validators.maxLength(6), this._validatorsService.isInteger]],
             accountEdrpou: [this.account.edrpou, [Validators.required, Validators.minLength(8), Validators.maxLength(8), this._validatorsService.isInteger]],
             accountBankName: [this.account.bankName, [Validators.required, Validators.maxLength(50)]],
             accountDescription: [this.account.description, [Validators.required, Validators.maxLength(200)]],
-            accountCurrency: [this.account.currency, Validators.required]
         });
         this.accountForm.valueChanges
             .subscribe(a => this.onValueChange(a));
 
         this.onValueChange();
     }
+    private createSmallForm(): void {
+        this.smallAccountForm = this._fb.group({
+            accountName: [this.account.orgAccountName, [Validators.required, Validators.maxLength(100)]],
+            currentBalance: [this.account.currentBalance, Validators.pattern(this.decimalValidationRegex)],
+            accountCurrency: [this.account.currency, Validators.required]
+        });
+        this.smallAccountForm.valueChanges
+            .subscribe(a => this.onValueChangeSmallForm(a));
+
+        this.onValueChangeSmallForm();
+    }
     /*
     Errors to be displayed on the UI
     */
     private formErrors = {
-        accountName: "",
         accountNumber: "",
         accountMfo: "",
         accountEdrpou: "",
         accountBankName: "",
-        accountDescription: "",
+        accountDescription: ""
+    }
+    private smallFormErrors = {
+        accountName: "",
+        currentBalance: "",
         accountCurrency: ""
     }
     /*
@@ -64,6 +79,7 @@ export class CreateOrgAccountComponent {
     private banknamelength = "Ім'я банку не може перевищувати 50 символів";
     private descriptionlength = "Опис рахунку не може перевищувати 200 символів";
     private currencyselection = "Необхідно вибрати валюту";
+    private wrongBalanceMessage = "Баланс повинен бути у форматі цілого числа або числа з плаваючою комою і 2 знаками після коми";
 
     private validationMessages = {
         accountName: {
@@ -97,6 +113,9 @@ export class CreateOrgAccountComponent {
         },
         accountCurrency: {
             required: this.currencyselection
+        },
+        currentBalance: {
+            pattern: this.wrongBalanceMessage
         }
     }
     /**
@@ -117,6 +136,35 @@ export class CreateOrgAccountComponent {
                     this.formErrors[field] = message[key.toLowerCase()];
                 }
             }
+        }
+    }
+
+    private onValueChangeSmallForm(data?: any) {
+        if (!this.smallAccountForm) return;
+        let form = this.smallAccountForm;
+
+        for (let field in this.smallFormErrors) {
+            this.smallFormErrors[field] = "";
+            let control = form.get(field);
+
+            if (control && control.dirty && !control.valid) {
+                let message = this.validationMessages[field];
+                for (let key in control.errors) {
+                    this.smallFormErrors[field] = message[key.toLowerCase()];
+                }
+            }
+        }
+    }
+    private checkFormValidity(): boolean {
+        if (this.account.accountType == 'cash' && !this.smallAccountForm.invalid) {
+            return false;
+        }
+        else if (this.account.accountType == 'bank' && !this.smallAccountForm.invalid && !this.accountForm.invalid)
+        {
+            return false;
+        }
+        else {
+            return true;
         }
     }
 }
