@@ -88,7 +88,7 @@ namespace FundTrack.DAL.Migrations
                         .IsRequired()
                         .HasMaxLength(6);
 
-                    b.Property<int>("MerchantId");
+                    b.Property<int?>("MerchantId");
 
                     b.Property<string>("MerchantPassword");
 
@@ -266,7 +266,7 @@ namespace FundTrack.DAL.Migrations
 
                     b.Property<int>("TargetId");
 
-                    b.Property<int>("UserId");
+                    b.Property<int?>("UserId");
 
                     b.HasKey("Id")
                         .HasName("PK_DonationId");
@@ -951,8 +951,7 @@ namespace FundTrack.DAL.Migrations
 
                     b.HasOne("FundTrack.DAL.Entities.User", "User")
                         .WithOne()
-                        .HasForeignKey("FundTrack.DAL.Entities.Donation", "UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("FundTrack.DAL.Entities.Donation", "UserId");
                 });
 
             modelBuilder.Entity("FundTrack.DAL.Entities.Event", b =>

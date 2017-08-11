@@ -23,6 +23,7 @@ export class CreateOrgAccountComponent {
         private _validatorsService: ValidatorsService
     ) {
         this.createForm();
+        this.account.accountType = 'cash';
     }
     private createForm(): void {
         this.accountForm = this._fb.group({

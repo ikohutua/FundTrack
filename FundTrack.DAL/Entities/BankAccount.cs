@@ -42,7 +42,7 @@ namespace FundTrack.DAL.Entities
         /// <summary>
         /// Gets or sets id of the merchant of the payment system
         /// </summary>
-        public int MerchantId { get; set; }
+        public int? MerchantId { get; set; }
         /// <summary>
         /// Gets or sets password of the merchant of the payment system
         /// </summary>

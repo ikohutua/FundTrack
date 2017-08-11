@@ -15,6 +15,23 @@
                     </span>
                 </div>
             </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="currentBalance">Початковий баланс</label>
+                <div class="col-md-4">
+                    <input id="currentBalance" name="currentBalance"  type="text" placeholder="Поточний баланс на рахунку" class="form-control input-md" [(ngModel)]="account.currentBalance" required="" [ngModelOptions]="{standalone: true}">
+                    <!--<span *ngIf="formErrors.accountName" class="has-error help-block isinvalid">
+                        {{ formErrors.accountName }}
+                    </span>-->
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="accountName">Виберіть тип рахунку</label>
+                <div class="col-md-4">
+                    <input type="radio" name="gender" value="cash" checked [(ngModel)]="account.accountType" [ngModelOptions]="{standalone: true}"> Готівковий<br>
+                    <input type="radio" name="gender" value="bank" [(ngModel)]="account.accountType" [ngModelOptions]="{standalone: true}"> Банківський<br>
+                </div>
+            </div>
+            <div *ngIf="account.accountType=='bank'">
             <!-- Text input-->
             <div class="form-group">
                 <label class="col-md-4 control-label" for="accountNumber">Номер рахунку</label>
@@ -67,17 +84,19 @@
                 </div>
             </div>
             <!-- Select Basic -->
-            <div class="form-group">
-                <label class="col-md-4 control-label" for="currency">Валюта</label>
-                <div class="col-md-4">
-                    <select  id="currency" name="currency" class="form-control" formControlName="accountCurrency" [(ngModel)]="account.currency">
-                        <option value="1">Долар США</option>
-                        <option value="2">Євро</option>
-                        <option value="3">Гривня</option>
-                    </select>
-                    <span *ngIf="formErrors.accountCurrency" class="has-error help-block isinvalid">
-                        {{ formErrors.accountCurrency }}
-                    </span>
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="currency">Валюта</label>
+                    <div class="col-md-4">
+                        <select id="currency" name="currency" class="form-control" formControlName="accountCurrency" [(ngModel)]="account.currency">
+                            <option [ngValue]="undefined" selected>Виберіть валюту</option>
+                            <option value="1">Долар США</option>
+                            <option value="2">Євро</option>
+                            <option value="3">Гривня</option>
+                        </select>
+                        <span *ngIf="formErrors.accountCurrency" class="has-error help-block isinvalid">
+                            {{ formErrors.accountCurrency }}
+                        </span>
+                    </div>
                 </div>
             </div>
             <div class="col-md-1 col-md-push-7">
