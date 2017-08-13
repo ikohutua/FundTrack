@@ -5,6 +5,7 @@
             <!-- Form Name -->
             <legend>Додати рахунок</legend>
 
+            <button class="btn btn-success" (click)="navigateBack()"><span class="glyphicon glyphicon-arrow-left"></span> Назад</button>
             <!-- Text input-->
             <div class="form-group">
                 <label class="col-md-4 control-label" for="accountName">Назва рахунку</label>
@@ -103,16 +104,18 @@
                     </div>
                 </div>
                 <!-- Select Basic -->
-
             </div>
             <div class="col-md-1 col-md-offset-7">
-                <button class="btn btn-default pull-right" (click)="saveAccount()" [disabled]="checkFormValidity()">Створити рахунок</button>
+                <button class="btn btn-default pull-right" (click)="createAccount(account)" [disabled]="checkFormValidity()">Створити рахунок</button>
             </div>
-            <label>Form value: {{accountForm.value | json}}</label>
+            <!--<label>Form value: {{accountForm.value | json}}</label>
             <br />
             <label>Form status: {{accountForm.status | json}}</label>
             <br />
-            <label> AccountName: {{account | json}}</label>
+            <label> AccountName: {{account | json}}</label>-->
         </fieldset>
     </form>
+    <div class="col-md-offset-4">
+        <span style="color:red;padding-left:2.1em;">{{this.account.error}}</span>
+    </div>
 </div>

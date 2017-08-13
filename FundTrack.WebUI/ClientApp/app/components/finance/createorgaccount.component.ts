@@ -1,4 +1,6 @@
 ﻿import { Component } from "@angular/core";
+import * as key from '../../shared/key.storage';
+import { isBrowser } from "angular2-universal";
 import { Router } from "@angular/router";
 import { OrgAccountService } from "../../services/concrete/finance/orgaccount.service";
 import { OrgAccountViewModel } from "../../view-models/concrete/finance/orgaccount-viewmodel";
@@ -7,6 +9,8 @@ import { CurrencyPipe } from '@angular/common';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CustomValidators } from 'ng2-validation';
 import { ValidatorsService } from "../../services/concrete/validators/validator.service";
+import { AuthorizeUserModel } from "../../view-models/concrete/authorized-user-info-view.model";
+import { Location } from '@angular/common';
 
 @Component({
     selector: 'createorgaccount',
@@ -14,6 +18,7 @@ import { ValidatorsService } from "../../services/concrete/validators/validator.
     styleUrls: ['./createorgaccount.component.css']
 })
 export class CreateOrgAccountComponent {
+    private user: AuthorizeUserModel;
     private account: OrgAccountViewModel = new OrgAccountViewModel();
     private pageTitle: string = 'Створення рахунку організації';
     private decimalValidationRegex: string = "^[0-9]{1,7}(\.[0-9]{1,2})?$";
@@ -22,7 +27,8 @@ export class CreateOrgAccountComponent {
 
     constructor(private _accountService: OrgAccountService,
         private _fb: FormBuilder,
-        private _validatorsService: ValidatorsService
+        private _validatorsService: ValidatorsService,
+        private _location: Location
     ) {
         this.createForm();
         this.createSmallForm();
@@ -159,12 +165,32 @@ export class CreateOrgAccountComponent {
         if (this.account.accountType == 'cash' && !this.smallAccountForm.invalid) {
             return false;
         }
-        else if (this.account.accountType == 'bank' && !this.smallAccountForm.invalid && !this.accountForm.invalid)
-        {
+        else if (this.account.accountType == 'bank' && !this.smallAccountForm.invalid && !this.accountForm.invalid) {
             return false;
         }
         else {
             return true;
         }
+    }
+    private createAccount(account: OrgAccountViewModel) {
+        if (isBrowser) {
+                this.user = JSON.parse(localStorage.getItem(key.keyModel)) as AuthorizeUserModel;
+        }
+        else {
+            return;
+        }
+        this.account.orgId = this.user.orgId;
+        this._accountService.createOrgAccount(this.account)
+            .subscribe(a => {
+                if (a.error == "" || a.error == null) {
+                    alert("Account has been created");
+                }
+                else {
+                    this.account.error = a.error;
+                }
+            })
+    }
+    private navigateBack(): void {
+        this._location.back();
     }
 }

@@ -19,19 +19,19 @@ namespace FundTrack.BLL.Concrete
         }
         public OrgAccountViewModel CreateOrganizationAccount(OrgAccountViewModel model)
         {
-            try
+            if (model.AccountType == "cash")
             {
-                OrgAccount orgAccount = (OrgAccount)model;
-                orgAccount.Organization = this._unitOfWork.OrganizationRepository.Get(model.OrganizationId);
-                orgAccount.BankAccount = this._unitOfWork.BankAccountRepository.Get((int)model.BankAccId);
-                orgAccount.Currency = this._unitOfWork.CurrencyRepositry.Get(model.CurrencyId);
-                this._unitOfWork.SaveChanges();
-                return (OrgAccountViewModel)orgAccount;
+                var item = this.CreateCashAccount(model);
+                return item;
             }
-            catch (Exception e)
+            else if (model.AccountType == "bank")
             {
-                string message = string.Format("Рахунок організації не створено. Помилка: {0}", e.Message);
-                throw new BusinessLogicException(message, e);
+                var item = this.CreateBankAccount(model);
+                return item;
+            }
+            else
+            {
+                throw new BusinessLogicException("Неможливо створити рахунок невизначеного типу");
             }
         }
 
@@ -53,12 +53,20 @@ namespace FundTrack.BLL.Concrete
         {
             try
             {
-                var accounts= this._unitOfWork.OrganizationAccountRepository.ReadAllOrgAccounts(organizationId);
+                var accounts = this._unitOfWork.OrganizationAccountRepository.ReadAllOrgAccounts(organizationId);
                 var accountsModels = new List<OrgAccountViewModel>();
                 foreach (var item in accounts)
                 {
-                   var updatedItem= this.InitializeOrgAccountViewModel(item);
-                    accountsModels.Add(updatedItem);
+                    if (item.AccountType == "Готівка")
+                    {
+                        var account = this.InitializeCashOrgAccountViewModel(item);
+                        accountsModels.Add(account);
+                    }
+                    else if (item.AccountType == "Банк")
+                    {
+                        var account = this.InitializeOrgAccountViewModel(item);
+                        accountsModels.Add(account);
+                    }
                 }
                 return accountsModels;
             }
@@ -84,20 +92,7 @@ namespace FundTrack.BLL.Concrete
 
         public OrgAccountViewModel UpdateOrganizationAccount(OrgAccountViewModel model)
         {
-            try
-            {
-                var orgAccount= this._unitOfWork.OrganizationAccountRepository.Edit(model);
-                orgAccount.Organization = this._unitOfWork.OrganizationRepository.Get(model.OrganizationId);
-                orgAccount.BankAccount = this._unitOfWork.BankAccountRepository.Get((int)model.BankAccId);
-                orgAccount.Currency = this._unitOfWork.CurrencyRepositry.Get(model.CurrencyId);
-                this._unitOfWork.SaveChanges();
-                return orgAccount;
-            }
-            catch (Exception e)
-            {
-                string message = string.Format("Неможливо оновити рахунок організації. Помилка: {0}", e.Message);
-                throw new BusinessLogicException(message, e);
-            }
+            throw new NotImplementedException();
         }
         public OrgAccountViewModel InitializeOrgAccountViewModel(OrgAccount item)
         {
@@ -110,9 +105,110 @@ namespace FundTrack.BLL.Concrete
             model.AccNumber = item.BankAccount.AccNumber;
             return model;
         }
+        public OrgAccountViewModel InitializeCashOrgAccountViewModel(OrgAccount item)
+        {
+            OrgAccountViewModel model = new OrgAccountViewModel();
+            model.OrgAccountName = item.OrgAccountName;
+            model.OrgId = item.OrgId;
+            model.Currency = item.Currency.FullName;
+            model.CurrencyShortName = item.Currency.ShortName;
+            model.CurrentBalance = item.CurrentBalance;
+            model.AccountType = "Готівка";
+            return model;
+        }
         public OrgAccountViewModel CreateCashAccount(OrgAccountViewModel model)
         {
-            return new OrgAccountViewModel();
+            var account = new OrgAccount();
+            try
+            {
+                var message= this.ValidateOrgAccount(model);
+                if (message!=String.Empty)
+                {
+                    return new OrgAccountViewModel
+                    {
+                        Error = message
+                    };
+                }
+                account.AccountType = "Готівка";
+                Int32.TryParse(model.Currency, out var currencyId);
+                account.Currency = this._unitOfWork.CurrencyRepositry.Get(currencyId);
+                account.CurrentBalance = model.CurrentBalance;
+                account.OrgAccountName = model.OrgAccountName;
+                account.Organization = this._unitOfWork.OrganizationRepository.Get(model.OrgId);
+                this._unitOfWork.OrganizationAccountRepository.Create(account);
+                this._unitOfWork.SaveChanges();
+                return (OrgAccountViewModel)account;
+
+            }
+            catch (Exception e)
+            {
+                string message = string.Format("Неможливо створити рахунок організації. Помилка: {0}", e.Message);
+                throw new BusinessLogicException(message, e);
+            }
+        }
+        public OrgAccountViewModel CreateBankAccount (OrgAccountViewModel model)
+        {
+            var account = new OrgAccount();
+            var bankAccount = new BankAccount();
+            try
+            {
+                var message = this.ValidateOrgAccount(model);
+                if (message != String.Empty)
+                {
+                    return new OrgAccountViewModel
+                    {
+                        Error = message
+                    };
+                }
+                account.AccountType = "Банк";
+                Int32.TryParse(model.Currency, out var currencyId);
+                account.Currency = this._unitOfWork.CurrencyRepositry.Get(currencyId);
+                account.CurrentBalance = model.CurrentBalance;
+                account.OrgAccountName = model.OrgAccountName;
+                account.Organization = this._unitOfWork.OrganizationRepository.Get(model.OrgId);
+                bankAccount.AccNumber = model.AccNumber;
+                bankAccount.BankName = model.BankName;
+                bankAccount.EDRPOU = model.EDRPOU;
+                bankAccount.MFO = model.MFO;
+                bankAccount.Organization = this._unitOfWork.OrganizationRepository.Get(model.OrgId);
+                bankAccount.OrgId = model.OrgId;
+                this._unitOfWork.BankAccountRepository.Create(bankAccount);
+                account.BankAccId = bankAccount.Id;
+                account.BankAccount = bankAccount;
+                account.Description = model.Description;
+                this._unitOfWork.OrganizationAccountRepository.Create(account);
+                this._unitOfWork.SaveChanges();
+                return (OrgAccountViewModel)account;
+
+            }
+            catch (Exception e)
+            {
+                string message = string.Format("Неможливо створити рахунок організації. Помилка: {0}", e.Message);
+                throw new BusinessLogicException(message, e);
+            }
+        }
+        public string ValidateOrgAccount (OrgAccountViewModel model)
+        {
+            ///Checks if account with such name already exists within organization
+            foreach (var item in this._unitOfWork.OrganizationAccountRepository.ReadAllOrgAccounts(model.OrgId))
+            {
+                if (item.OrgAccountName == model.OrgAccountName)
+                {
+                    return "Рахунок організації з таким іменем уже існує";
+                }
+            }
+            if (model.AccountType=="bank")
+            {
+                ///Checks if account with such bank number already exists within all organizations
+                foreach (var item in this._unitOfWork.OrganizationAccountRepository.GetAllOrgAccounts().Where(a=>a.AccountType=="Банк"))
+                {
+                    if (item.BankAccount.AccNumber == model.AccNumber)
+                    {
+                        return "Рахунок з таким номером уже зареєстрований";
+                    }
+                }
+            }
+            return String.Empty;
         }
     }
 }

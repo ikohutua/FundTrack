@@ -43,6 +43,11 @@ namespace FundTrack.DAL.Concrete
             return updatedItem.Entity;
         }
 
+        public IEnumerable<OrgAccount> GetAllOrgAccounts()
+        {
+            return this._context.OrgAccounts.Include(a=>a.BankAccount).Include(a=>a.FinOpsFrom).Include(a=>a.FinOpsTo);
+        }
+
         public OrgAccount Read(int orgAccountId)
         {
             return this._context.OrgAccounts.FirstOrDefault(i => i.Id == orgAccountId);

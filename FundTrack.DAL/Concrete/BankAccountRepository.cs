@@ -29,8 +29,8 @@ namespace FundTrack.DAL.Concrete
         /// <returns></returns>
         public BankAccount Create(BankAccount item)
         {
-            _context.BankAccounts.Add(item);
-            return item;
+            var bankAccount = _context.BankAccounts.Add(item);
+            return bankAccount.Entity;
         }
 
         /// <summary>

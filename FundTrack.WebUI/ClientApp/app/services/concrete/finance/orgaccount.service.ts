@@ -16,6 +16,7 @@ export class OrgAccountService {
     private user: AuthorizeUserModel = new AuthorizeUserModel();
     // urls to server
     private _readAllUrl: string = 'api/orgaccount/readall';
+    private _createUrl: string = 'api/orgaccount/create';
     
     constructor(private _http: Http) {
     }
@@ -33,6 +34,15 @@ export class OrgAccountService {
             return this._http.post(this._readAllUrl, body, this.getRequestOptions())
                 .map((response: Response) => <OrgAccountViewModel[]>response.json())
                 .do(data => console.log('Item' + JSON.stringify(data)))
+                .catch(this.handleError);
+        }
+    }
+    public createOrgAccount(model: OrgAccountViewModel): Observable<OrgAccountViewModel> {
+        if (this.checkAuthorization())
+        {
+            return this._http.post(this._createUrl, model, this.getRequestOptions())
+                .map((response: Response) => <OrgAccountViewModel>response.json())
+                .do(data => console.log('Account data:' + JSON.stringify(data)))
                 .catch(this.handleError);
         }
     }
