@@ -78,22 +78,8 @@ namespace FundTrack.BLL.Concrete
         {
             try
             {
-                var rawExtracts = this._unitOfWork.BankImportDetailRepository.GetBankImportsDetail()
-                                                           .Select(item => new ImportDetailPrivatViewModel
-                                                           {
-                                                               id = item.Id,
-                                                               isLooked = item.IsLooked,
-                                                               trandate = item.Trandate,
-                                                               appCode = item.AppCode.ToString(),
-                                                               amount = item.Amount,
-                                                               rest = item.Rest,
-                                                               cardAmount = item.CardAmount,
-                                                               description = item.Description,
-                                                               terminal = item.Terminal,
-                                                               card = item.Card,
-                                                               tempState = item.IsLooked
-                                                           })
-                                                          .Where(bid => (bid.trandate >= bankSearchModel.DataFrom && bid.trandate <= bankSearchModel.DataTo && bid.card == bankSearchModel.Card));
+                var rawExtracts = this.ConvertFromEntityToModel(bankSearchModel.Card)
+                                      .Where(bid => (bid.trandate >= bankSearchModel.DataFrom && bid.trandate <= bankSearchModel.DataTo));
                 if (rawExtracts != null)
                 {
                     return rawExtracts;
@@ -107,6 +93,46 @@ namespace FundTrack.BLL.Concrete
             catch (Exception ex)
             {
                 throw new BusinessLogicException(ex.Message, ex);
+            }
+        }
+
+        public IEnumerable<ImportDetailPrivatViewModel> GetAllExtracts(string card)
+        {
+            try
+            {
+                return this.ConvertFromEntityToModel(card);
+            }
+            catch (Exception ex)
+            {
+                throw new BusinessLogicException(ex.Message, ex);
+            }
+        }
+
+        private IEnumerable<ImportDetailPrivatViewModel> ConvertFromEntityToModel(string card)
+        {
+            try
+            {
+                return this._unitOfWork.BankImportDetailRepository.GetBankImportsDetail()
+                                                                  .Select(item => new ImportDetailPrivatViewModel
+                                                                  {
+                                                                      id = item.Id,
+                                                                      isLooked = item.IsLooked,
+                                                                      trandate = item.Trandate,
+                                                                      appCode = item.AppCode.ToString(),
+                                                                      amount = item.Amount,
+                                                                      rest = item.Rest,
+                                                                      cardAmount = item.CardAmount,
+                                                                      description = item.Description,
+                                                                      terminal = item.Terminal,
+                                                                      card = item.Card,
+                                                                      tempState = item.IsLooked
+                                                                  })
+                                                                  .Where(bid => bid.card == card);
+            }
+            catch (Exception ex)
+            {
+                var message = "Немає виписок.";
+                throw new BusinessLogicException(message, ex);
             }
         }
 

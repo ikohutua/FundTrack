@@ -13,7 +13,6 @@ import { StorageService } from './shared/item-storage-service';
 import { OfferManagementModule } from './offer-management.module';
 //import { SignalRModule, SignalRConfiguration } from 'ng2-signalr';
 import { SpinnerComponent } from "./shared/components/spinner/spinner.component";
-import { BankImportModule } from "./bank-import.module";
 import { ReactiveFormsModule } from '@angular/forms';
 import { FinanceModule } from "./finance.module";
 import { ValidatorsService } from "./services/concrete/validators/validator.service";
@@ -38,7 +37,6 @@ import { ValidatorsService } from "./services/concrete/validators/validator.serv
         AuthorizationModule,
         SuperAdminModule,
         AppRoutingModule, 
-        BankImportModule,
         MapModule,
         Angular2FontawesomeModule,
         OrganizationManagementModule,

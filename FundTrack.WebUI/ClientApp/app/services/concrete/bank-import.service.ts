@@ -88,6 +88,13 @@ export class BankImportService {
             .catch(this.handleError);
     }
 
+    public getAllExtracts(card: string): Observable<ImportDetailPrivatViewModel[]> {
+        let url = 'api/BankImport/GetAllExtracts';
+        return this._http.get(url + '/' + card, this.getRequestOptions())
+            .map((response: Response) => <ImportDetailPrivatViewModel[]>response.json())
+            .catch(this.handleError);
+    }
+
     /**
     * Create RequestOptions
     */

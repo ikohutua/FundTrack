@@ -43,5 +43,11 @@ namespace FundTrack.WebUI.Controllers
         {
             return this._service.GetRawExtracts(bankSearchModel);
         }
+
+        [HttpGet("GetAllExtracts/{card}")]
+        public IEnumerable<ImportDetailPrivatViewModel> GetAllExtracts(string card)
+        {
+            return this._service.GetAllExtracts(card);
+        }
     }
 }
