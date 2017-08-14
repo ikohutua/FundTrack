@@ -17,6 +17,7 @@ export class OrgAccountService {
     // urls to server
     private _readAllUrl: string = 'api/orgaccount/readall';
     private _createUrl: string = 'api/orgaccount/create';
+    private _getAccountUrl: string = 'api/orgaccount/get';
     
     constructor(private _http: Http) {
     }
@@ -43,6 +44,14 @@ export class OrgAccountService {
             return this._http.post(this._createUrl, model, this.getRequestOptions())
                 .map((response: Response) => <OrgAccountViewModel>response.json())
                 .do(data => console.log('Account data:' + JSON.stringify(data)))
+                .catch(this.handleError);
+        }
+    }
+    public getOrganizationAccountById(accountId: number): Observable<OrgAccountViewModel> {
+        if (this.checkAuthorization()) {
+            return this._http.get(this._getAccountUrl + '/' + accountId.toString(), this.getRequestOptions())
+                .map((r: Response) => <OrgAccountViewModel>r.json())
+                .do(data => console.log('Item' + JSON.stringify(data)))
                 .catch(this.handleError);
         }
     }

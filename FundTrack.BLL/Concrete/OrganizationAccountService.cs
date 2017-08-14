@@ -57,16 +57,8 @@ namespace FundTrack.BLL.Concrete
                 var accountsModels = new List<OrgAccountViewModel>();
                 foreach (var item in accounts)
                 {
-                    if (item.AccountType == "Готівка")
-                    {
-                        var account = this.InitializeCashOrgAccountViewModel(item);
-                        accountsModels.Add(account);
-                    }
-                    else if (item.AccountType == "Банк")
-                    {
-                        var account = this.InitializeOrgAccountViewModel(item);
-                        accountsModels.Add(account);
-                    }
+                    var account = this.InitializeOrgAccountViewModel(item);
+                    accountsModels.Add(account);
                 }
                 return accountsModels;
             }
@@ -81,7 +73,9 @@ namespace FundTrack.BLL.Concrete
         {
             try
             {
-                return this._unitOfWork.OrganizationAccountRepository.Read(organizationAccountId);
+                var account = this._unitOfWork.OrganizationAccountRepository.Read(organizationAccountId);
+                OrgAccountViewModel model = this.InitializeOrgAccountViewModel(account);
+                return model;
             }
             catch (Exception e)
             {
@@ -94,35 +88,49 @@ namespace FundTrack.BLL.Concrete
         {
             throw new NotImplementedException();
         }
+
+        public OrgAccountViewModel InitializeCommonProperties(OrgAccount item)
+        {
+            return new OrgAccountViewModel
+            {
+                Id = item.Id,
+                OrgAccountName = item.OrgAccountName,
+                OrgId = item.OrgId,
+                Currency = item.Currency.FullName,
+                CurrencyShortName = item.Currency.ShortName,
+                CurrentBalance = item.CurrentBalance
+            };
+        }
         public OrgAccountViewModel InitializeOrgAccountViewModel(OrgAccount item)
         {
-            OrgAccountViewModel model = item;
-            model.EDRPOU = item.BankAccount.EDRPOU;
-            model.MFO = item.BankAccount.MFO;
-            model.Currency = item.Currency.FullName;
-            model.CurrencyShortName = item.Currency.ShortName;
-            model.BankName = item.BankAccount.BankName;
-            model.AccNumber = item.BankAccount.AccNumber;
-            return model;
-        }
-        public OrgAccountViewModel InitializeCashOrgAccountViewModel(OrgAccount item)
-        {
-            OrgAccountViewModel model = new OrgAccountViewModel();
-            model.OrgAccountName = item.OrgAccountName;
-            model.OrgId = item.OrgId;
-            model.Currency = item.Currency.FullName;
-            model.CurrencyShortName = item.Currency.ShortName;
-            model.CurrentBalance = item.CurrentBalance;
-            model.AccountType = "Готівка";
-            return model;
+            var account = new OrgAccountViewModel();
+            switch (item.AccountType)
+            {
+                case "Готівка":
+                    account = this.InitializeCommonProperties(item);
+                    account.AccountType = "Готівка";
+                    break;
+                case "Банк":
+                    account = this.InitializeCommonProperties(item);
+                    account.AccountType = "Банк";
+                    account.BankName = item.BankAccount.BankName;
+                    account.AccNumber = item.BankAccount.AccNumber;
+                    account.EDRPOU = item.BankAccount.EDRPOU;
+                    account.MFO = item.BankAccount.MFO;
+                    account.Description = item.Description;
+                    break;
+                default:
+                    break;
+            }
+            return account;
         }
         public OrgAccountViewModel CreateCashAccount(OrgAccountViewModel model)
         {
             var account = new OrgAccount();
             try
             {
-                var message= this.ValidateOrgAccount(model);
-                if (message!=String.Empty)
+                var message = this.ValidateOrgAccount(model);
+                if (message != String.Empty)
                 {
                     return new OrgAccountViewModel
                     {
@@ -146,7 +154,7 @@ namespace FundTrack.BLL.Concrete
                 throw new BusinessLogicException(message, e);
             }
         }
-        public OrgAccountViewModel CreateBankAccount (OrgAccountViewModel model)
+        public OrgAccountViewModel CreateBankAccount(OrgAccountViewModel model)
         {
             var account = new OrgAccount();
             var bankAccount = new BankAccount();
@@ -187,7 +195,7 @@ namespace FundTrack.BLL.Concrete
                 throw new BusinessLogicException(message, e);
             }
         }
-        public string ValidateOrgAccount (OrgAccountViewModel model)
+        public string ValidateOrgAccount(OrgAccountViewModel model)
         {
             ///Checks if account with such name already exists within organization
             foreach (var item in this._unitOfWork.OrganizationAccountRepository.ReadAllOrgAccounts(model.OrgId))
@@ -197,10 +205,10 @@ namespace FundTrack.BLL.Concrete
                     return "Рахунок організації з таким іменем уже існує";
                 }
             }
-            if (model.AccountType=="bank")
+            if (model.AccountType == "bank")
             {
                 ///Checks if account with such bank number already exists within all organizations
-                foreach (var item in this._unitOfWork.OrganizationAccountRepository.GetAllOrgAccounts().Where(a=>a.AccountType=="Банк"))
+                foreach (var item in this._unitOfWork.OrganizationAccountRepository.GetAllOrgAccounts().Where(a => a.AccountType == "Банк"))
                 {
                     if (item.BankAccount.AccNumber == model.AccNumber)
                     {

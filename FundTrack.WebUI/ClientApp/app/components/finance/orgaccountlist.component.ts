@@ -11,11 +11,14 @@ import { CurrencyPipe } from '@angular/common';
     templateUrl: './orgaccountlist.component.html',
     styleUrls: ['./orgaccountlist.component.css']
 })
-export class OrgAccountListComponent implements OnInit{
+export class OrgAccountListComponent implements OnInit {
+
     private accounts: OrgAccountViewModel[] = new Array<OrgAccountViewModel>();
     private showSpinner: boolean = false;
+    isDataAvailable: boolean = false;
+    public selectAccountId: number = 21;
+    private selectedAccount: OrgAccountViewModel;
     private pageTitle: string = 'Рахунки організації';
-
     constructor(private _accountService: OrgAccountService,
     private router: Router) {
     }
@@ -24,10 +27,19 @@ export class OrgAccountListComponent implements OnInit{
         this._accountService.getAllAccountsOfOrganization().
             subscribe(r => {
                 this.accounts = r;
+                this.isDataAvailable = true;
+                this.setActiveAccount(this.accounts[0]);
                 this.showSpinner = false;
     });
     }
     navigateToCreatePage() {
         this.router.navigate(['/finance/createaccount']);
+    }
+    private increase() {
+        this.selectAccountId++;
+    }
+    private setActiveAccount(account: OrgAccountViewModel): void {
+        this.selectAccountId = account.id;
+        this.selectedAccount = account;
     }
 }

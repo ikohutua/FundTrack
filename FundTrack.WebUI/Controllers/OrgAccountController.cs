@@ -18,13 +18,13 @@ namespace FundTrack.WebUI.Controllers
         {
             this._orgAccountService = orgAccountService;
         }
-
+        [Authorize(Roles = "admin, moderator")]
         [HttpGet("[action]/{id}")]
         public JsonResult Get(int id)
         {
             return Json(this._orgAccountService.GetOrganizationAccountById(id));
         }
-        [Authorize(Roles ="admin")]
+        [Authorize(Roles ="admin, moderator")]
         [HttpPost("[action]")]
         public JsonResult ReadAll([FromBody] UserInfoViewModel model)
         {
@@ -34,7 +34,7 @@ namespace FundTrack.WebUI.Controllers
         [HttpPost("[action]")]
         public JsonResult Create([FromBody]OrgAccountViewModel model)
         {
-           var item= this._orgAccountService.CreateOrganizationAccount(model);
+            var item= this._orgAccountService.CreateOrganizationAccount(model);
             return Json(item);
         }
         [HttpPut("[action]")]
@@ -42,7 +42,7 @@ namespace FundTrack.WebUI.Controllers
         {
             return Json(this._orgAccountService.UpdateOrganizationAccount(model));
         }
-        [Authorize]
+        [Authorize(Roles = "admin")]
         [HttpDelete("[action]/{id}")]
         public StatusCodeResult Delete(int id)
         {

@@ -7,13 +7,19 @@ import { OrgAccountService } from "./services/concrete/finance/orgaccount.servic
 import { CreateOrgAccountComponent } from "./components/finance/createorgaccount.component";
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
-import { BankImportComponent } from "./components/finance/bank-import.component";
+import { OrgAccountDetailComponent } from "./components/finance/orgaccountdetail.component";
+import { OrgAccountPaymentComponent } from "./components/finance/orgaccountpayment.component";
+import { OrgAccountOperationComponent } from "./components/finance/orgaccountoperation.component";
+//import { BankImportComponent } from "./components/finance/bank-import.component";
 
 @NgModule({
     declarations: [
         OrgAccountListComponent, 
         CreateOrgAccountComponent,
-        BankImportComponent
+        OrgAccountDetailComponent,
+        OrgAccountPaymentComponent,
+        OrgAccountOperationComponent
+        //BankImportComponent
     ],
     imports: [
         CommonModule,

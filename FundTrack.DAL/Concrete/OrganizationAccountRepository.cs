@@ -50,7 +50,13 @@ namespace FundTrack.DAL.Concrete
 
         public OrgAccount Read(int orgAccountId)
         {
-            return this._context.OrgAccounts.FirstOrDefault(i => i.Id == orgAccountId);
+            return this._context.OrgAccounts
+                .Include(a => a.BankAccount)
+                .Include(a => a.Balances)
+                .Include(a => a.Currency)
+                .Include(a => a.FinOpsFrom)
+                .Include(a => a.FinOpsTo)
+                .FirstOrDefault(i => i.Id == orgAccountId);
         }
 
         public IEnumerable<OrgAccount> ReadAllOrgAccounts(int organizationId)
