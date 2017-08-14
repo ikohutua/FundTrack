@@ -21,7 +21,7 @@ export class CreateOrgAccountComponent {
     private user: AuthorizeUserModel;
     private account: OrgAccountViewModel = new OrgAccountViewModel();
     private pageTitle: string = 'Створення рахунку організації';
-    private decimalValidationRegex: string = "^[0-9]{1,7}(\.[0-9]{1,2})?$";
+    private decimalValidationRegex: string = "^[0-9]{1,7}([.][0-9]{1,2})?$";
     accountForm: FormGroup;
     smallAccountForm: FormGroup;
 
@@ -45,7 +45,7 @@ export class CreateOrgAccountComponent {
         this.accountForm.valueChanges
             .subscribe(a => this.onValueChange(a));
 
-        this.onValueChange();
+        //this.onValueChange();
     }
     private createSmallForm(): void {
         this.smallAccountForm = this._fb.group({
@@ -56,7 +56,7 @@ export class CreateOrgAccountComponent {
         this.smallAccountForm.valueChanges
             .subscribe(a => this.onValueChangeSmallForm(a));
 
-        this.onValueChangeSmallForm();
+        //this.onValueChangeSmallForm();
     }
     /*
     Errors to be displayed on the UI
@@ -85,7 +85,7 @@ export class CreateOrgAccountComponent {
     private banknamelength = "Ім'я банку не може перевищувати 50 символів";
     private descriptionlength = "Опис рахунку не може перевищувати 200 символів";
     private currencyselection = "Необхідно вибрати валюту";
-    private wrongBalanceMessage = "Баланс повинен бути у форматі цілого числа або числа з плаваючою комою і 2 знаками після коми";
+    private wrongBalanceMessage = "Баланс повинен бути у форматі 1 або 1.23";
 
     private validationMessages = {
         accountName: {

@@ -1,1 +1,67 @@
-﻿
+﻿.mb20 {
+    margin-bottom: 20px;
+}
+
+.img-responsive {
+    width: 100%;
+    height: auto !important;
+}
+
+    .img-center, .img-responsive.img-center {
+        margin: 0 auto !important;
+    }
+
+.col-xs-15, .col-sm-15, .col-md-15, .col-lg-15 {
+    position: relative;
+    min-height: 1px;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.col-xs-15 {
+    width: 20%;
+    float: left;
+}
+
+@media (min-width: 768px) {
+    .col-sm-15 {
+        width: 20%;
+        float: left;
+    }
+}
+
+@media (min-width: 992px) {
+    .col-md-15 {
+        width: 20%;
+        float: left;
+    }
+}
+
+@media (min-width: 1200px) {
+    .col-lg-15 {
+        width: 20%;
+        float: left;
+    }
+}
+.account-type {
+    background: #DBDBDB url("https://privat24.privatbank.ua/p24/img/menu_arrow.png") top right no-repeat;
+}
+.menu-left {
+    float: left;
+    width: 280px;
+}
+
+.account {
+    zoom: 1;
+    border-bottom: 2px solid #e1e1e1;
+    font-size: 16px;
+    line-height: 20px;
+    color: #363636;
+    padding: 9px 0 9px 4px;
+    /*text-align: left;*/
+    cursor: pointer;
+    clear: both;
+}
+.amount{
+    text-align: right;
+}

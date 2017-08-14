@@ -1,4 +1,33 @@
-﻿<div class="panel panel-primary ">
+﻿<div class="row">
+    <div class="col-md-3">
+        <div class="row">
+            <h3 class="account-type">Доступні рахунки</h3>
+        </div>
+        <div  *ngFor="let account of accounts" class="account row">
+            <div class="col-md-6">
+                {{account.orgAccountName}}
+            </div>
+            <div class="col-md-1 amount col-md-offset-3">
+                <strong>{{account.currentBalance | currency: account.currencyShortName: true}}</strong>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8 mb20">
+        <div class="row">
+            <div class="col-md-6 mb20"><img class="img-responsive img-center" src="http://lorempixel.com/300/180/cats/3" alt=""></div>
+            <div class="col-md-6 mb20"><img class="img-responsive img-center" src="http://lorempixel.com/300/180/cats/4" alt=""></div>
+        </div>
+        <img class="img-responsive img-center" src="http://lorempixel.com/300/100/cats/2" alt="">
+        <br>
+    </div>
+</div>
+
+
+
+
+
+
+<!--<div class="panel panel-primary ">
     <spinner [showSpinner]="showSpinner"></spinner>
     <div class="panel-heading heading">
         <h3>{{pageTitle}}</h3>
@@ -31,4 +60,4 @@
                 <button type="button"  (click)="navigateToCreatePage()" style="margin:0 0 5px 10px" class="btn btn-default">Додати рахунок</button>
         </div>
     </div>
-</div>
+</div>-->
