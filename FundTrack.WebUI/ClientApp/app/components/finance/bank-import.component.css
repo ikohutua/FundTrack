@@ -1,0 +1,82 @@
+﻿.scrollable-menu {
+    height: auto !important;
+    max-height: 350px !important;
+    overflow-x: hidden !important;
+}
+
+.table {
+    display:block;
+    margin-left: 1%;
+    margin-right: 2%;
+    height: auto !important;
+    max-height: 570px !important;
+    overflow-x: hidden !important;
+    overflow-y:auto;
+}
+
+.margin {
+    margin-top: 1%;
+}
+
+.top-button {
+    margin-top: -20px;
+}
+
+.error-message {
+    margin-top: 2%;
+    color: red;
+    line-height: 20px;
+}
+
+.form-group {
+    margin-left: 1%;
+    margin-right: 1%;
+    margin-top: -10px;
+}
+
+.grid-divider {
+    position: relative;
+    padding: 0;
+}
+
+    .grid-divider > [class*='col-'] {
+        position: static;
+    }
+
+        .grid-divider > [class*='col-']:nth-child(n+2):before {
+            content: "";
+            border-left: 1px solid #DDD;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+        }
+
+.col-padding {
+    padding: 0 15px;
+}
+
+.container {
+    background-color:darkseagreen;
+    margin-left:3%;
+    margin-right:3%;
+}
+.btn-fundtrack-style {
+    background-color: #314720;
+    border-color: white;
+    border-width: 2px;
+    color: white;
+    margin-right: 1%
+}
+
+.well-container {
+    background-color: #314720;
+}
+
+.back {
+    background-image:url("https://privat24.privatbank.ua/p24/img/concrete_wall_3.png");
+    box-shadow: 0 4px 8px 0
+    rgba(0,0,0,0.2),
+        0 6px 20px 0
+    rgba(0,0,0,0.19);
+    margin-top:-10px;
+}

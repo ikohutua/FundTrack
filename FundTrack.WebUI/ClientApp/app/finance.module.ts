@@ -10,7 +10,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { OrgAccountDetailComponent } from "./components/finance/orgaccountdetail.component";
 import { OrgAccountPaymentComponent } from "./components/finance/orgaccountpayment.component";
 import { OrgAccountOperationComponent } from "./components/finance/orgaccountoperation.component";
-//import { BankImportComponent } from "./components/finance/bank-import.component";
+import { BankImportComponent } from "./components/finance/bank-import.component";
 
 @NgModule({
     declarations: [
@@ -18,8 +18,8 @@ import { OrgAccountOperationComponent } from "./components/finance/orgaccountope
         CreateOrgAccountComponent,
         OrgAccountDetailComponent,
         OrgAccountPaymentComponent,
-        OrgAccountOperationComponent
-        //BankImportComponent
+        OrgAccountOperationComponent,
+        BankImportComponent
     ],
     imports: [
         CommonModule,
