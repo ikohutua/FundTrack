@@ -16,7 +16,7 @@ export class OrgAccountListComponent implements OnInit {
     private accounts: OrgAccountViewModel[] = new Array<OrgAccountViewModel>();
     private showSpinner: boolean = false;
     isDataAvailable: boolean = false;
-    public selectAccountId: number = 21;
+    public selectAccountId: number = 1;
     private selectedAccount: OrgAccountViewModel;
     private pageTitle: string = 'Рахунки організації';
     constructor(private _accountService: OrgAccountService,
@@ -35,11 +35,12 @@ export class OrgAccountListComponent implements OnInit {
     navigateToCreatePage() {
         this.router.navigate(['/finance/createaccount']);
     }
-    private increase() {
-        this.selectAccountId++;
-    }
     private setActiveAccount(account: OrgAccountViewModel): void {
         this.selectAccountId = account.id;
         this.selectedAccount = account;
+    }
+    private onDelete(accountNumber: number) {
+        this.accounts.splice(this.accounts.findIndex(o => o.id == accountNumber), 1);
+        this.setActiveAccount(this.accounts[0]);
     }
 }

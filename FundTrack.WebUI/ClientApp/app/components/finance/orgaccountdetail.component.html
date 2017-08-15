@@ -1,8 +1,41 @@
-﻿<div class="accountdetail maindiv">
-    <p class="leftside uptop date">{{currentDate | date: 'dd/MM/yyyy'}}</p>
-    <p class="leftside ">{{account.orgAccountName}}</p>
-    <p class="leftside ">Поточний баланс: <span class="accountname" style="text-align:right">{{account.currentBalance | currency: account.currencyShortName: true}}</span></p>
-    <p class="leftside ">Тип рахунку: <span class="accountname">{{account.accountType}}</span> </p>
+﻿<div class="accountdetail maindiv col-md-12">
+    <div class="col-md-5">
+        <p class="leftside uptop date">{{currentDate | date: 'dd/MM/yyyy'}}</p>
+        <p class="leftside "><span style="font-weight: bold; font-size:24px; font-family:Calibri">{{account.orgAccountName}}</span></p>
+        <p class="leftside ">Поточний баланс: <span class="accountname" style="text-align:right">{{account.currentBalance | currency: account.currencyShortName: true}}</span></p>
+        <p class="leftside ">Тип рахунку: <span class="accountname">{{account.accountType}}</span> </p>
+    </div>
+    <div style="margin-top:20px;" *ngIf="account.accountType=='Банк'" class="col-md-5">
+        <p class="leftside ">Номер рахунку: <span class="accountname">{{account.accNumber}}</span></p>
+        <p class="leftside">Назва банку: <span class="accountname">{{account.bankName}}</span></p>
+        <p class="leftside">МФО: <span class="accountname">{{account.mfo}}</span></p>
+        <p class="leftside">ЄДРПОУ: <span class="accountname">{{account.edrpou}}</span></p>
+        <p class="leftside">Опис рахунку: <i>{{account.description}}</i></p>
+    </div>
+    <div class="col-md-2 pull-right">
+        <button (click)="preDeleteAccount()" title="Видалити рахунок" style="margin-top:20px" class="btn btn-danger"><span style="font-size:18px;" class="glyphicon glyphicon-remove-sign"></span></button>
+    </div>
 </div>
+
+<app-modal>
+    <div class="app-modal-header">
+        <h3>Видалення рахунку</h3>
+    </div>
+    <div class="app-modal-body">
+        <span style="color:red; font-size: 16px;">Увага! Видалення рахунку призведе до видалення всієї історії платежів, пов'язаних з цим рахунком. Цю дію неможливо відмінити.</span>
+        <br />
+        <hr />
+        <span>Для продовження - введіть пароль адміністратора організації:</span>
+        <br />
+        <input placeholder="Пароль адміністратора" class="form-control input-md" id="password" #password="ngModel" name="password" required type="password" [(ngModel)]="deleteModel.administratorPassword"/>
+    </div>
+    <div class="app-modal-footer">
+        <span style="color: red; font-weight: bold; text-align: left;">{{deleteModel.error}}</span>
+        <br />
+        <button class="btn btn-default" (click)="cancelAccountDeleting()">Скасувати</button>
+        <button class="btn btn-danger" [disabled]="password.invalid" (click)="deleteAccount()">Видалити</button>
+        <div id="snackbar">Рахунок видалено</div>
+    </div>
+</app-modal>
 
 

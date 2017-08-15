@@ -1,5 +1,6 @@
 ﻿using FundTrack.DAL.Entities;
 using FundTrack.Infrastructure.ViewModel;
+using FundTrack.Infrastructure.ViewModel.FinanceViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,7 @@ namespace FundTrack.BLL.Abstract
         OrgAccountViewModel GetOrganizationAccountById(int organizationAccountId);
         IEnumerable<OrgAccountViewModel> GetAccountsByOrganizationId(int organizationId);
         OrgAccountViewModel UpdateOrganizationAccount(OrgAccountViewModel model);
-        void DeleteOrganizationAccount(int organizationAccountId);
+        DeleteOrgAccountViewModel DeleteOrganizationAccount(DeleteOrgAccountViewModel model);
         OrgAccountViewModel CreateOrganizationAccount(OrgAccountViewModel model);
 
 

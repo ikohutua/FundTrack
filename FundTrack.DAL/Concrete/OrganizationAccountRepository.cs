@@ -30,11 +30,17 @@ namespace FundTrack.DAL.Concrete
 
         public void Delete(int orgAccountId)
         {
-            var orgAccount = this._context.OrgAccounts.FirstOrDefault(i => i.Id == orgAccountId);
+            var orgAccount = this._context.OrgAccounts
+                .Include(a=>a.BankAccount)
+                .Include(a=>a.FinOpsFrom)
+                .Include(a=>a.FinOpsTo)
+                .Include(a=>a.Balances)
+                .FirstOrDefault(i => i.Id == orgAccountId);
             if (orgAccount!=null)
             {
                 this._context.OrgAccounts.Remove(orgAccount); 
             }
+            
         }
 
         public OrgAccount Edit(OrgAccount item)

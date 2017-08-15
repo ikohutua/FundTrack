@@ -8,6 +8,7 @@ import { OrgAccountViewModel } from "../../../view-models/concrete/finance/orgac
 import * as key from '../../../shared/key.storage';
 import { AuthorizeUserModel } from "../../../view-models/concrete/authorized-user-info-view.model";
 import { isBrowser } from "angular2-universal";
+import { DeleteOrgAccountViewModel } from "../../../view-models/concrete/finance/deleteorgaccount-view.model";
 /**
  * Service for super admin actions
  */
@@ -18,11 +19,10 @@ export class OrgAccountService {
     private _readAllUrl: string = 'api/orgaccount/readall';
     private _createUrl: string = 'api/orgaccount/create';
     private _getAccountUrl: string = 'api/orgaccount/get';
+    private _deleteAccountUrl: string = 'api/orgaccount/delete';
     
     constructor(private _http: Http) {
     }
-   
-
     /**
      * Gets organizations to display on page from server
      * @param currentPage
@@ -55,12 +55,13 @@ export class OrgAccountService {
                 .catch(this.handleError);
         }
     }
-    //public getUserOffers(userId: number): Observable<OfferViewModel[]> {
-    //    return this._http.get(this._getOfferUrl + '/' + userId, this.getRequestOptions())
-    //        .map((response: Response) => <OfferViewModel[]>response.json())
-    //        .do(data => console.log('Item: ' + JSON.stringify(data)))
-    //        .catch(this.handleError);
-    //}
+    public deleteOrganizationAccountById(model: DeleteOrgAccountViewModel): Observable<DeleteOrgAccountViewModel> {
+        if (this.checkAuthorization()) {
+            return this._http.post(this._deleteAccountUrl, model, this.getRequestOptions())
+                .map((r: Response) => <DeleteOrgAccountViewModel>r.json())
+                .catch(this.handleError);
+        }
+    }
   
     private getRequestOptions() {
         let headers = new Headers({ 'Content-Type': 'application/json' });

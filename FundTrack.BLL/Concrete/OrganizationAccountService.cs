@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using FundTrack.DAL.Entities;
 using FundTrack.Infrastructure.ViewModel;
 using FundTrack.DAL.Abstract;
+using FundTrack.Infrastructure.ViewModel.FinanceViewModels;
+using FundTrack.Infrastructure;
 
 namespace FundTrack.BLL.Concrete
 {
@@ -35,17 +37,49 @@ namespace FundTrack.BLL.Concrete
             }
         }
 
-        public void DeleteOrganizationAccount(int organizationAccountId)
+        public DeleteOrgAccountViewModel DeleteOrganizationAccount(DeleteOrgAccountViewModel model)
         {
+
             try
             {
-                this._unitOfWork.OrganizationAccountRepository.Delete(organizationAccountId);
-                this._unitOfWork.SaveChanges();
+                var userRole = this._unitOfWork.MembershipRepository.GetRole(model.UserId);
+                User user = this._unitOfWork.UsersRepository.Get(model.UserId);
+                if (user.Password == PasswordHashManager.GetPasswordHash(model.AdministratorPassword))
+                {
+                    if (this._unitOfWork.MembershipRepository.GetOrganizationId(model.UserId) == model.OrganizationId && userRole == "admin")
+                    {
+                        var orgAccount = this._unitOfWork.OrganizationAccountRepository.Read(model.OrgAccountId);
+                        this._unitOfWork.OrganizationAccountRepository.Delete(model.OrgAccountId);
+                        if (orgAccount.AccountType=="Банк")
+                        {
+                            var bankAccount = this._unitOfWork.BankAccountRepository.Get(orgAccount.BankAccount.Id);
+                            this._unitOfWork.BankAccountRepository.Delete(bankAccount.Id);
+                        }
+                        this._unitOfWork.SaveChanges();
+                        return new DeleteOrgAccountViewModel();
+                    }
+                    else
+                    {
+                        return new DeleteOrgAccountViewModel
+                        {
+                            Error = "Ви не адміністратор цієї організації"
+                        };
+                    }
+                }
+                else
+                {
+                    return new DeleteOrgAccountViewModel
+                    {
+                        Error = "Невірний пароль адміністратора організації"
+                    };
+                }
             }
             catch (Exception e)
             {
-                string message = string.Format("Рахунок організації не видалено. Помилка: {0}", e.Message);
-                throw new BusinessLogicException(message, e);
+                return new DeleteOrgAccountViewModel
+                {
+                    Error = e.Message
+                };
             }
         }
 

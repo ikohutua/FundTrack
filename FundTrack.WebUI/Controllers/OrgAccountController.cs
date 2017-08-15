@@ -1,5 +1,6 @@
 ﻿using FundTrack.BLL.Abstract;
 using FundTrack.Infrastructure.ViewModel;
+using FundTrack.Infrastructure.ViewModel.FinanceViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -43,11 +44,10 @@ namespace FundTrack.WebUI.Controllers
             return Json(this._orgAccountService.UpdateOrganizationAccount(model));
         }
         [Authorize(Roles = "admin")]
-        [HttpDelete("[action]/{id}")]
-        public StatusCodeResult Delete(int id)
+        [HttpPost("[action]")]
+        public DeleteOrgAccountViewModel Delete([FromBody]DeleteOrgAccountViewModel model)
         {
-            this._orgAccountService.DeleteOrganizationAccount(id);
-            return StatusCode(200);
+            return this._orgAccountService.DeleteOrganizationAccount(model);
         }
     }
 }
