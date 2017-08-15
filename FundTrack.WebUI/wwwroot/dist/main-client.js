@@ -59,7 +59,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "5a922104e294834bde13"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "098f2d714e4e6ba19108"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
@@ -19467,21 +19467,47 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
+var orgaccount_service_1 = __webpack_require__(43);
+var orgaccount_viewmodel_1 = __webpack_require__(131);
 var OrgAccountDetailComponent = (function () {
-    function OrgAccountDetailComponent() {
+    function OrgAccountDetailComponent(_service) {
+        this._service = _service;
+        this.currentDate = new Date().toJSON().slice(0, 10).replace(/-/g, '/');
+        this.account = new orgaccount_viewmodel_1.OrgAccountViewModel();
     }
+    OrgAccountDetailComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this._service.getOrganizationAccountById(this.accountId)
+            .subscribe(function (a) {
+            _this.account = a;
+        });
+    };
+    OrgAccountDetailComponent.prototype.ngOnChanges = function (changes) {
+        var _this = this;
+        if (changes['accountId'] && changes['accountId'] != changes['accountId'].currentValue) {
+            this._service.getOrganizationAccountById(this.accountId)
+                .subscribe(function (a) {
+                _this.account = a;
+            });
+        }
+    };
     return OrgAccountDetailComponent;
 }());
 __decorate([
     core_1.Input('orgId'),
     __metadata("design:type", Number)
 ], OrgAccountDetailComponent.prototype, "orgId", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Number)
+], OrgAccountDetailComponent.prototype, "accountId", void 0);
 OrgAccountDetailComponent = __decorate([
     core_1.Component({
         selector: 'orgaccountdetail',
         template: __webpack_require__(269),
         styles: [__webpack_require__(336)]
-    })
+    }),
+    __metadata("design:paramtypes", [orgaccount_service_1.OrgAccountService])
 ], OrgAccountDetailComponent);
 exports.OrgAccountDetailComponent = OrgAccountDetailComponent;
 
@@ -19503,46 +19529,21 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = __webpack_require__(0);
-var orgaccount_service_1 = __webpack_require__(43);
-var orgaccount_viewmodel_1 = __webpack_require__(131);
 var OrgAccountOperationComponent = (function () {
-    function OrgAccountOperationComponent(_service) {
-        this._service = _service;
-        this.account = new orgaccount_viewmodel_1.OrgAccountViewModel();
+    function OrgAccountOperationComponent() {
     }
-    OrgAccountOperationComponent.prototype.ngOnInit = function () {
-        var _this = this;
-        this._service.getOrganizationAccountById(this.accountId)
-            .subscribe(function (a) {
-            _this.account = a;
-        });
-    };
-    OrgAccountOperationComponent.prototype.ngOnChanges = function (changes) {
-        var _this = this;
-        if (changes['accountId'] && changes['accountId'] != changes['accountId'].currentValue) {
-            this._service.getOrganizationAccountById(this.accountId)
-                .subscribe(function (a) {
-                _this.account = a;
-            });
-        }
-    };
     return OrgAccountOperationComponent;
 }());
 __decorate([
     core_1.Input('orgId'),
     __metadata("design:type", Number)
 ], OrgAccountOperationComponent.prototype, "orgId", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Number)
-], OrgAccountOperationComponent.prototype, "accountId", void 0);
 OrgAccountOperationComponent = __decorate([
     core_1.Component({
         selector: 'orgaccountoperation',
         template: __webpack_require__(271),
         styles: [__webpack_require__(338)]
-    }),
-    __metadata("design:paramtypes", [orgaccount_service_1.OrgAccountService])
+    })
 ], OrgAccountOperationComponent);
 exports.OrgAccountOperationComponent = OrgAccountOperationComponent;
 
@@ -145139,7 +145140,7 @@ exports = module.exports = __webpack_require__(1)();
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, ".uptop {\r\n    padding: 20px 0px 0px 0px;\r\n}\r\n.accountdetail {\r\n    margin-top: 20px;\r\n    background-image: url(\"https://privat24.privatbank.ua/p24/img/concrete_wall_3.png\");\r\n    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);\r\n    display: block;\r\n}\r\n.maindiv {\r\n   \r\n}\r\n\r\n.leftside{\r\n    padding-left: 10px;\r\n}\r\n.date {\r\n    color: #646464;\r\n    font-size: 12px;\r\n    font-weight: bold;\r\n    line-height: 18px;\r\n    clear: none;\r\n}\r\n.accountname {\r\n    color: #5b9b21;\r\n    font-size: 18px;\r\n    font-weight: bold;\r\n    line-height: 20px;\r\n    clear: none;\r\n}", ""]);
 
 // exports
 
@@ -145153,7 +145154,7 @@ exports = module.exports = __webpack_require__(1)();
 
 
 // module
-exports.push([module.i, ".mb20 {\r\n    margin-bottom: 20px;\r\n}\r\n\r\n.img-responsive {\r\n    width: 100%;\r\n    height: auto !important;\r\n}\r\n\r\n    .img-center, .img-responsive.img-center {\r\n        margin: 0 auto !important;\r\n    }\r\n\r\n.col-xs-15, .col-sm-15, .col-md-15, .col-lg-15 {\r\n    position: relative;\r\n    min-height: 1px;\r\n    padding-right: 10px;\r\n    padding-left: 10px;\r\n}\r\n\r\n.col-xs-15 {\r\n    width: 20%;\r\n    float: left;\r\n}\r\n\r\n@media (min-width: 768px) {\r\n    .col-sm-15 {\r\n        width: 20%;\r\n        float: left;\r\n    }\r\n}\r\n\r\n@media (min-width: 992px) {\r\n    .col-md-15 {\r\n        width: 20%;\r\n        float: left;\r\n    }\r\n}\r\n\r\n@media (min-width: 1200px) {\r\n    .col-lg-15 {\r\n        width: 20%;\r\n        float: left;\r\n    }\r\n}\r\n.account-type {\r\n    background: #DBDBDB url(\"https://privat24.privatbank.ua/p24/img/menu_arrow.png\") top right no-repeat;\r\n}\r\n.menu-left {\r\n    float: left;\r\n    width: 280px;\r\n}\r\n\r\n.account {\r\n    zoom: 1;\r\n    border-bottom: 2px solid #e1e1e1;\r\n    font-size: 16px;\r\n    line-height: 20px;\r\n    color: #363636;\r\n    padding: 9px 0 9px 4px;\r\n    /*text-align: left;*/\r\n    cursor: pointer;\r\n    clear: both;\r\n}\r\n.amount{\r\n    text-align: right;\r\n}\r\n.selected{\r\n    background-color: gray;\r\n}", ""]);
+exports.push([module.i, ".mb20 {\r\n    margin-bottom: 20px;\r\n}\r\n\r\n.img-responsive {\r\n    width: 100%;\r\n    height: auto !important;\r\n}\r\n\r\n    .img-center, .img-responsive.img-center {\r\n        margin: 0 auto !important;\r\n    }\r\n\r\n.col-xs-15, .col-sm-15, .col-md-15, .col-lg-15 {\r\n    position: relative;\r\n    min-height: 1px;\r\n    padding-right: 10px;\r\n    padding-left: 10px;\r\n}\r\n\r\n.col-xs-15 {\r\n    width: 20%;\r\n    float: left;\r\n}\r\n\r\n@media (min-width: 768px) {\r\n    .col-sm-15 {\r\n        width: 20%;\r\n        float: left;\r\n    }\r\n}\r\n\r\n@media (min-width: 992px) {\r\n    .col-md-15 {\r\n        width: 20%;\r\n        float: left;\r\n    }\r\n}\r\n\r\n@media (min-width: 1200px) {\r\n    .col-lg-15 {\r\n        width: 20%;\r\n        float: left;\r\n    }\r\n}\r\n.account-type {\r\n    background: #DBDBDB url(\"https://privat24.privatbank.ua/p24/img/menu_arrow.png\") top right no-repeat;\r\n}\r\n.menu-left {\r\n    float: left;\r\n    width: 280px;\r\n}\r\n\r\n.account {\r\n    zoom: 1;\r\n    border-bottom: 2px solid #e1e1e1;\r\n    font-size: 16px;\r\n    line-height: 20px;\r\n    color: #363636;\r\n    padding: 9px 0 9px 4px;\r\n    /*text-align: left;*/\r\n    cursor: pointer;\r\n    clear: both;\r\n    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);\r\n}\r\n.amount{\r\n    text-align: right;\r\n}\r\n.selected {\r\n    background-color: gainsboro;\r\n}\r\n.grow {\r\n    transition: all .2s ease-in-out;\r\n}\r\n.grow:hover {\r\n        transform: scale(1.1);\r\n    }", ""]);
 
 // exports
 
@@ -145978,19 +145979,19 @@ module.exports = "<div class=\"well container-fluid\">\r\n    <form class=\"form
 /* 269 */
 /***/ (function(module, exports) {
 
-module.exports = "<h2> ORG ACCOUNT DETAIL COMPONENT</h2>\r\n<h2>orgId is: {{orgId}}</h2>";
+module.exports = "<div class=\"accountdetail maindiv\">\r\n    <p class=\"leftside uptop date\">{{currentDate | date: 'dd/MM/yyyy'}}</p>\r\n    <p class=\"leftside \">{{account.orgAccountName}}</p>\r\n    <p class=\"leftside \">Поточний баланс: <span class=\"accountname\" style=\"text-align:right\">{{account.currentBalance | currency: account.currencyShortName: true}}</span></p>\r\n    <p class=\"leftside \">Тип рахунку: <span class=\"accountname\">{{account.accountType}}</span> </p>\r\n</div>\r\n\r\n\r\n";
 
 /***/ }),
 /* 270 */
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngIf=\"isDataAvailable\">\r\n    <div class=\"row\">\r\n        <spinner [showSpinner]=\"showSpinner\"></spinner>\r\n        <div class=\"col-md-3\">\r\n            <div class=\"row\">\r\n                <h3 class=\"account-type\">Доступні рахунки</h3>\r\n            </div>\r\n            <div *ngFor=\"let account of accounts\" class=\"account row\"\r\n                 (click)=\"setActiveAccount(account)\"\r\n                 [class.selected]=\"account === selectedAccount\">\r\n                <div class=\"col-md-6\">\r\n                    {{account.orgAccountName}}\r\n                </div>\r\n                <div class=\"col-md-1 amount col-md-offset-3\">\r\n                    <strong>{{account.currentBalance | currency: account.currencyShortName: true}}</strong>\r\n                </div>\r\n            </div>\r\n            <button style=\"margin:10px 10px 10px 0px;\" type=\"button\" (click)=\"navigateToCreatePage()\" class=\"btn btn-default\">Додати рахунок</button>\r\n        </div>\r\n        <div class=\"col-md-8 mb20\">\r\n            <div class=\"row\">\r\n                <div class=\"col-md-6 mb20\">\r\n                    <orgaccountdetail></orgaccountdetail>\r\n                </div>\r\n                <div class=\"col-md-6 mb20\">\r\n                    <orgaccountpayment></orgaccountpayment>\r\n                </div>\r\n            </div>\r\n            <orgaccountoperation [accountId]=\"selectAccountId\"></orgaccountoperation>\r\n            <br>\r\n        </div>\r\n    </div>\r\n</div>\r\n\r\n\r\n\r\n\r\n\r\n<!--<div class=\"panel panel-primary \">\r\n    <spinner [showSpinner]=\"showSpinner\"></spinner>\r\n    <div class=\"panel-heading heading\">\r\n        <h3>{{pageTitle}}</h3>\r\n    </div>\r\n    <div class=\"panel-default\">\r\n        <div>\r\n            <table class=\"table center table-striped table-bordered table-hover\"\r\n                   *ngIf=\"accounts && accounts.length\">\r\n                <thead>\r\n                    <tr>\r\n                        <th>Назва рахунку</th>\r\n                        <th>Номер</th>\r\n                        <th>Банк</th>\r\n                        <th>Валюта</th>\r\n                        <th>Тип</th>\r\n                        <th>Поточний баланс</th>\r\n                    </tr>\r\n                </thead>\r\n                <tbody>\r\n                    <tr *ngFor=\"let account of accounts\">\r\n                        <td>{{account.orgAccountName}}</td>\r\n                        <td>{{account.accNumber}}</td>\r\n                        <td>{{account.bankName}}</td>\r\n                        <td>{{account.currency}}</td>\r\n                        <td>{{account.accountType}}</td>\r\n                        <td>{{account.currentBalance | currency: account.currencyShortName: true}}</td>\r\n                    </tr>\r\n                </tbody>\r\n            </table>\r\n                <button type=\"button\"  (click)=\"navigateToCreatePage()\" style=\"margin:0 0 5px 10px\" class=\"btn btn-default\">Додати рахунок</button>\r\n        </div>\r\n    </div>\r\n</div>-->\r\n";
+module.exports = "<div *ngIf=\"isDataAvailable\">\r\n    <div class=\"row\">\r\n        <spinner [showSpinner]=\"showSpinner\"></spinner>\r\n        <div class=\"col-md-3\">\r\n            <div class=\"row\">\r\n                <h3 class=\"account-type\">Доступні рахунки</h3>\r\n            </div>\r\n            <div *ngFor=\"let account of accounts\" class=\"account row grow\"\r\n                 (click)=\"setActiveAccount(account)\"\r\n                 [class.selected]=\"account === selectedAccount\">\r\n                <div class=\"col-md-6\">\r\n                    {{account.orgAccountName}}\r\n                </div>\r\n                <div class=\"col-md-1 amount col-md-offset-2\">\r\n                    <strong>{{account.currentBalance | currency: account.currencyShortName: true}}</strong>\r\n                </div>\r\n            </div>\r\n            <button style=\"margin:10px 10px 10px 0px;\" type=\"button\" (click)=\"navigateToCreatePage()\" class=\"btn btn-default\">Додати рахунок</button>\r\n        </div>\r\n        <div class=\"col-md-8 mb20\">\r\n            <div class=\"row\">\r\n                <div class=\"col-md-6 mb20\">\r\n                    <orgaccountdetail [accountId]=\"selectAccountId\"></orgaccountdetail>\r\n                </div>\r\n                <div class=\"col-md-6 mb20\">\r\n                    <orgaccountpayment></orgaccountpayment>\r\n                </div>\r\n            </div>\r\n            <orgaccountoperation></orgaccountoperation>\r\n            <br>\r\n        </div>\r\n    </div>\r\n</div>\r\n\r\n\r\n\r\n\r\n\r\n<!--<div class=\"panel panel-primary \">\r\n    <spinner [showSpinner]=\"showSpinner\"></spinner>\r\n    <div class=\"panel-heading heading\">\r\n        <h3>{{pageTitle}}</h3>\r\n    </div>\r\n    <div class=\"panel-default\">\r\n        <div>\r\n            <table class=\"table center table-striped table-bordered table-hover\"\r\n                   *ngIf=\"accounts && accounts.length\">\r\n                <thead>\r\n                    <tr>\r\n                        <th>Назва рахунку</th>\r\n                        <th>Номер</th>\r\n                        <th>Банк</th>\r\n                        <th>Валюта</th>\r\n                        <th>Тип</th>\r\n                        <th>Поточний баланс</th>\r\n                    </tr>\r\n                </thead>\r\n                <tbody>\r\n                    <tr *ngFor=\"let account of accounts\">\r\n                        <td>{{account.orgAccountName}}</td>\r\n                        <td>{{account.accNumber}}</td>\r\n                        <td>{{account.bankName}}</td>\r\n                        <td>{{account.currency}}</td>\r\n                        <td>{{account.accountType}}</td>\r\n                        <td>{{account.currentBalance | currency: account.currencyShortName: true}}</td>\r\n                    </tr>\r\n                </tbody>\r\n            </table>\r\n                <button type=\"button\"  (click)=\"navigateToCreatePage()\" style=\"margin:0 0 5px 10px\" class=\"btn btn-default\">Додати рахунок</button>\r\n        </div>\r\n    </div>\r\n</div>-->\r\n";
 
 /***/ }),
 /* 271 */
 /***/ (function(module, exports) {
 
-module.exports = "Account name is: {{account.orgAccountName}}";
+module.exports = "<h2> ORG ACCOUNT DETAIL COMPONENT</h2>\r\n<h2>orgId is: {{orgId}}</h2>";
 
 /***/ }),
 /* 272 */

@@ -1,1 +1,30 @@
-﻿
+﻿.uptop {
+    padding: 20px 0px 0px 0px;
+}
+.accountdetail {
+    margin-top: 20px;
+    background-image: url("https://privat24.privatbank.ua/p24/img/concrete_wall_3.png");
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    display: block;
+}
+.maindiv {
+   
+}
+
+.leftside{
+    padding-left: 10px;
+}
+.date {
+    color: #646464;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 18px;
+    clear: none;
+}
+.accountname {
+    color: #5b9b21;
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 20px;
+    clear: none;
+}

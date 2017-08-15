@@ -1,2 +1,8 @@
-﻿<h2> ORG ACCOUNT DETAIL COMPONENT</h2>
-<h2>orgId is: {{orgId}}</h2>
+﻿<div class="accountdetail maindiv">
+    <p class="leftside uptop date">{{currentDate | date: 'dd/MM/yyyy'}}</p>
+    <p class="leftside ">{{account.orgAccountName}}</p>
+    <p class="leftside ">Поточний баланс: <span class="accountname" style="text-align:right">{{account.currentBalance | currency: account.currencyShortName: true}}</span></p>
+    <p class="leftside ">Тип рахунку: <span class="accountname">{{account.accountType}}</span> </p>
+</div>
+
+
