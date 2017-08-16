@@ -152,6 +152,7 @@ namespace FundTrack.BLL.Concrete
                     account.EDRPOU = item.BankAccount.EDRPOU;
                     account.MFO = item.BankAccount.MFO;
                     account.Description = item.Description;
+                    account.CardNumber = item.BankAccount.CardNumber;
                     break;
                 default:
                     break;

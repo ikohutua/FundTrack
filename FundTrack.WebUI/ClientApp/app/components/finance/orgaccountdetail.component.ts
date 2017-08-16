@@ -17,25 +17,37 @@ import { AuthorizeUserModel } from "../../view-models/concrete/authorized-user-i
 })
 export class OrgAccountDetailComponent implements OnInit, OnChanges {
 
+    //modal component with delete account controls
     @ViewChild(ModalComponent)
-    //Modal component that contains password changes controls
     public modal: ModalComponent;
+    //Event emitter to send notifications to parent component
     @Output() onDelete = new EventEmitter<number>();
+    //Input property getting organizationId
     @Input('orgId') orgId: number;
+    //Input property getting accountId
     @Input() accountId: number;
+    //Id of the deleted account
     private deletedAccountId: number = 0;
+    //Property indicating if current account has card number assigned
+    private hasCardNumber: boolean = false;
+    //Property, containing data about logged in user
     private user: AuthorizeUserModel = new AuthorizeUserModel();
+    //Property, containing today's date
     private currentDate = new Date().toJSON().slice(0, 10).replace(/-/g, '/');
+    //Property, containing current organization account
     private account: OrgAccountViewModel = new OrgAccountViewModel();
+    //Property, containing model, used for account deleting
     private deleteModel: DeleteOrgAccountViewModel = new DeleteOrgAccountViewModel();
+
     constructor(private _service: OrgAccountService)
     {
-
     }
+   
     ngOnInit(): void {
         this._service.getOrganizationAccountById(this.accountId)
             .subscribe(a => {
                 this.account = a;
+                this.hasCardNumber = this.CheckForCardPresence(this.account);
             });
         if (isBrowser) {
             if (localStorage.getItem(key.keyToken)) {
@@ -43,21 +55,37 @@ export class OrgAccountDetailComponent implements OnInit, OnChanges {
             }
         };
     }
+    /*
+    Checks for value changes and assignes new account in the component
+    */
     ngOnChanges(changes: { [propKey: string]: SimpleChange }) {
         if (changes['accountId'] && changes['accountId'] != changes['accountId'].currentValue) {
             this._service.getOrganizationAccountById(this.accountId)
                 .subscribe(a => {
                     this.account = a;
+                    this.hasCardNumber = this.CheckForCardPresence(this.account);
                 });
         }
     }
+
+    /*
+    Opens modal window
+    */
     private preDeleteAccount(): void {
         this.modal.show();
     }
+
+    /*
+    Cleans input and closes modal window
+    */
     private cancelAccountDeleting(): void {
         this.deleteModel.administratorPassword = '';
         this.modal.hide();
     }
+
+    /*
+    Deletes organization account
+    */
     private deleteAccount(): void {
         this.deleteModel.error = '';
         this.deleteModel.orgAccountId = this.account.id;
@@ -76,9 +104,25 @@ export class OrgAccountDetailComponent implements OnInit, OnChanges {
                 }
             })
     }
+
+    /*
+    Displays successful account deleting toast
+    */
     public showToast() {
     var x = document.getElementById("snackbar")
     x.className = "show";
     setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
-}
+    }
+
+    /*
+    Verifies if org account has linked cardnumber
+    */
+    public CheckForCardPresence(account: OrgAccountViewModel): boolean {
+        if (account.cardNumber === '' || account.cardNumber===null) {
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
 }

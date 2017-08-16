@@ -13,15 +13,26 @@ import { CurrencyPipe } from '@angular/common';
 })
 export class OrgAccountListComponent implements OnInit {
 
+    //Property that keeps an array of organization account
     private accounts: OrgAccountViewModel[] = new Array<OrgAccountViewModel>();
+    //Property that indicates spinner display status
     private showSpinner: boolean = false;
+    //
     isDataAvailable: boolean = false;
+    //Property that indicates currently selected account
     public selectAccountId: number = 1;
+    //Property that keeps data of the selected account
     private selectedAccount: OrgAccountViewModel;
+    //Property that keeps title for the page
     private pageTitle: string = 'Рахунки організації';
+
     constructor(private _accountService: OrgAccountService,
     private router: Router) {
     }
+
+     /*
+    Executes when component is initialized
+    */
     ngOnInit(): void {
         this.showSpinner = true;
         this._accountService.getAllAccountsOfOrganization().
@@ -32,13 +43,22 @@ export class OrgAccountListComponent implements OnInit {
                 this.showSpinner = false;
     });
     }
+    /*
+    Navigates to create account page
+    */
     navigateToCreatePage() {
         this.router.navigate(['/finance/createaccount']);
     }
+    /*
+    Sets active account
+    */
     private setActiveAccount(account: OrgAccountViewModel): void {
         this.selectAccountId = account.id;
         this.selectedAccount = account;
     }
+    /*
+    After account has been deleted - sets first account in the list as active and removes deleted account from the array
+    */
     private onDelete(accountNumber: number) {
         this.accounts.splice(this.accounts.findIndex(o => o.id == accountNumber), 1);
         this.setActiveAccount(this.accounts[0]);

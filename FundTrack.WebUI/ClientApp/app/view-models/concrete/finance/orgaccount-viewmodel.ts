@@ -2,6 +2,7 @@
     id: number;
     orgId: number;
     bankAccId: number;
+    cardNumber: string;
     currency: string;
     currencyShortName: string;
     orgAccountName: string;

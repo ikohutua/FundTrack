@@ -1,7 +1,7 @@
 ﻿import { Component } from "@angular/core";
 import * as key from '../../shared/key.storage';
 import { isBrowser } from "angular2-universal";
-import { Router } from "@angular/router";
+import { Router, Route } from "@angular/router";
 import { OrgAccountService } from "../../services/concrete/finance/orgaccount.service";
 import { OrgAccountViewModel } from "../../view-models/concrete/finance/orgaccount-viewmodel";
 import { DecimalPipe } from '@angular/common';
@@ -18,22 +18,33 @@ import { Location } from '@angular/common';
     styleUrls: ['./createorgaccount.component.css']
 })
 export class CreateOrgAccountComponent {
+    //Property, that keeps data about logged in user
     private user: AuthorizeUserModel;
+    //Property, that keeps account data
     private account: OrgAccountViewModel = new OrgAccountViewModel();
+    //Property that keeps page title value
     private pageTitle: string = 'Створення рахунку організації';
+    //Property that keeps regex that allows only integer and decimal numbers with a point
     private decimalValidationRegex: string = "^[0-9]{1,7}([.][0-9]{1,2})?$";
-    accountForm: FormGroup;
-    smallAccountForm: FormGroup;
+    //Property that keeps accountForm object;
+    private accountForm: FormGroup;
+    //Property that keeps smallAccountForm object;
+    private smallAccountForm: FormGroup;
 
     constructor(private _accountService: OrgAccountService,
         private _fb: FormBuilder,
         private _validatorsService: ValidatorsService,
-        private _location: Location
+        private _location: Location,
+        private _router: Router
     ) {
         this.createForm();
         this.createSmallForm();
         this.account.accountType = 'cash';
     }
+
+    /*
+    Creates main form and assigns validators to specified form controls
+    */
     private createForm(): void {
         this.accountForm = this._fb.group({
             accountNumber: [this.account.accNumber, [Validators.required, Validators.maxLength(20), this._validatorsService.isInteger]],
@@ -47,6 +58,10 @@ export class CreateOrgAccountComponent {
 
         //this.onValueChange();
     }
+
+     /*
+    Creates small form and assigns validators to specified form controls
+    */
     private createSmallForm(): void {
         this.smallAccountForm = this._fb.group({
             accountName: [this.account.orgAccountName, [Validators.required, Validators.maxLength(100)]],
@@ -58,6 +73,7 @@ export class CreateOrgAccountComponent {
 
         //this.onValueChangeSmallForm();
     }
+
     /*
     Errors to be displayed on the UI
     */
@@ -87,6 +103,9 @@ export class CreateOrgAccountComponent {
     private currencyselection = "Необхідно вибрати валюту";
     private wrongBalanceMessage = "Баланс повинен бути у форматі 1 або 1.23";
 
+    /*
+    Assigning error messages to certain validations
+    */
     private validationMessages = {
         accountName: {
             required: this.requiredMessage,
@@ -124,6 +143,7 @@ export class CreateOrgAccountComponent {
             pattern: this.wrongBalanceMessage
         }
     }
+
     /**
      * Subscriber on value changes
      * @param data
@@ -145,6 +165,10 @@ export class CreateOrgAccountComponent {
         }
     }
 
+    /**
+     * Subscriber on value changes
+     * @param data
+     */
     private onValueChangeSmallForm(data?: any) {
         if (!this.smallAccountForm) return;
         let form = this.smallAccountForm;
@@ -161,6 +185,10 @@ export class CreateOrgAccountComponent {
             }
         }
     }
+
+    /*
+    Verifies if form status is valid
+    */
     private checkFormValidity(): boolean {
         if (this.account.accountType == 'cash' && !this.smallAccountForm.invalid) {
             return false;
@@ -172,9 +200,13 @@ export class CreateOrgAccountComponent {
             return true;
         }
     }
+
+    /*
+    Creates new organization account
+    */
     private createAccount(account: OrgAccountViewModel) {
         if (isBrowser) {
-                this.user = JSON.parse(localStorage.getItem(key.keyModel)) as AuthorizeUserModel;
+            this.user = JSON.parse(localStorage.getItem(key.keyModel)) as AuthorizeUserModel;
         }
         else {
             return;
@@ -183,14 +215,31 @@ export class CreateOrgAccountComponent {
         this._accountService.createOrgAccount(this.account)
             .subscribe(a => {
                 if (a.error == "" || a.error == null) {
-                    alert("Account has been created");
+                    this.showToast();
+                    setTimeout(() => {
+                        this._router.navigate(['finance/orgaccounts']);
+                    }, 2000);
+                    
                 }
                 else {
                     this.account.error = a.error;
                 }
             })
     }
+
+    /*
+    Navigates back to the previous page
+    */
     private navigateBack(): void {
         this._location.back();
+    }
+
+    /*
+    Displays toast, that pops up when account is successfuly created
+    */
+    public showToast() {
+        var x = document.getElementById("snackbar")
+        x.className = "show";
+        setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
     }
 }

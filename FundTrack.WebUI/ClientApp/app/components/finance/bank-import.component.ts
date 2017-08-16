@@ -56,8 +56,8 @@ export class BankImportComponent implements OnInit {
     }
 
     /*
-Errors to be displayed on the UI
-*/
+    Errors to be displayed on the UI
+    */
     private formErrors = {
         cardNumber: "",
         idMerchant: "",
