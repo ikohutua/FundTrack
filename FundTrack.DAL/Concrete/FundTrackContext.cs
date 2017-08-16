@@ -221,6 +221,11 @@ namespace FundTrack.DAL.Concrete
         public DbSet<OrganizationResponse> OrganizationResponses { get; set; }
 
         /// <summary>
+        /// Gets or Sets Donation
+        /// </summary>
+        public DbSet<Donation> Donations { get; set; }
+
+        /// <summary>
         /// Configures model creation
         /// </summary>
         /// <param name="modelBuilder">modelBuilder to configure Model Creation</param>
@@ -763,16 +768,30 @@ namespace FundTrack.DAL.Concrete
             modelBuilder.Entity<Donation>(entity =>
             {
                 entity.HasKey(e => e.Id).HasName("PK_DonationId");
+
                 entity.HasOne(e => e.Currency)
-                .WithOne();
+                .WithMany(c => c.Donates)
+                .HasForeignKey(e => e.CurrencyId)
+                .HasConstraintName("FK_Donation_Currency");
+
                 entity.Property(e => e.Amount).IsRequired();
+
                 entity.Property(e => e.Description).IsRequired();
+
                 entity.HasOne(e => e.User)
-                .WithOne();
+                .WithMany(u => u.UserDonations)
+                .HasForeignKey(e => e.UserId)
+                .HasConstraintName("FK_Donation_User");
+
                 entity.HasOne(e => e.Target)
-                .WithOne();
+                .WithMany(t => t.Donates).
+                HasForeignKey(e => e.TargetId).
+                HasConstraintName("FK_Donation_Target");
+
                 entity.HasOne(e => e.BankAccount)
-                .WithOne();
+                .WithMany(b => b.Donations)
+                .HasForeignKey(e => e.BankAccountId)
+                .HasConstraintName("FK_Donation_BankAccount");
             });
         }
     }

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace FundTrack.DAL.Entities
 {
@@ -21,5 +22,7 @@ namespace FundTrack.DAL.Entities
         /// Gets or Sets FinOp navigation property
         /// </summary>
         public virtual FinOp FinOp { get; set; }
+
+        public virtual ICollection<Donation> Donates { get; set; }
     }
 }

@@ -75,5 +75,14 @@ namespace FundTrack.DAL.Concrete
                 .Include(a => a.FinOpsTo)
                 .Where(a => a.OrgId == organizationId);
         }
+
+        public IEnumerable<OrgAccount> ReadOrgAccountsForDonations(int organizationId)
+        {
+            return this._context.OrgAccounts
+                .Include(a => a.BankAccount)
+                .Include(a => a.Currency)
+                .Where(a => a.OrgId == organizationId)
+                .Where(a => a.BankAccount.MerchantPassword != null);
+        }
     }
 }

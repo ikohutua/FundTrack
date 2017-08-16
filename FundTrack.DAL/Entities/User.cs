@@ -103,6 +103,8 @@ namespace FundTrack.DAL.Entities
         /// </summary>
         public virtual ICollection<UserResponse> UserResponses { get; set; }
 
+        public virtual ICollection<Donation> UserDonations { get; set; }
+
         /// <summary>
         /// Convert User model to RegistartionViewModel
         /// </summary>

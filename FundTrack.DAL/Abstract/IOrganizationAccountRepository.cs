@@ -15,5 +15,6 @@ namespace FundTrack.DAL.Abstract
         OrgAccount Read(int orgAccountId);
         IEnumerable<OrgAccount> ReadAllOrgAccounts(int organizationId);
         IEnumerable<OrgAccount> GetAllOrgAccounts();
+        IEnumerable<OrgAccount> ReadOrgAccountsForDonations(int organizationId);
     }
 }

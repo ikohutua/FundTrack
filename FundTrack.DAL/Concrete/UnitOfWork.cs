@@ -31,6 +31,8 @@ namespace FundTrack.DAL.Concrete
         private readonly IBankImportDetailRepository _bankImportDetailRepository;
         private readonly IOrganizationAccountRepository _organizationAccountRepository;
         private readonly IRepository<Currency> _currencyRepository;
+        private readonly ITargetRepository _targetRepository;
+        private readonly IDonationRepository _donationRepository;
 
         private FundTrackContext _context;
 
@@ -61,7 +63,9 @@ namespace FundTrack.DAL.Concrete
               IBankImportRepository bankImportRepository,
               IBankImportDetailRepository bankImportDetailRepository,
               IOrganizationAccountRepository organizationAccountRepository,
-              IRepository<Currency> currencyRepository
+              IRepository<Currency> currencyRepository, 
+              ITargetRepository targetRepository, 
+              IDonationRepository donationRepository
               )
         {
             this._context = contextParam;
@@ -87,6 +91,8 @@ namespace FundTrack.DAL.Concrete
             _bankImportDetailRepository = bankImportDetailRepository;
             _organizationAccountRepository = organizationAccountRepository;
             _currencyRepository = currencyRepository;
+            _targetRepository = targetRepository;
+            _donationRepository = donationRepository;
         }
 
         /// <summary>
@@ -356,6 +362,28 @@ namespace FundTrack.DAL.Concrete
             get
             {
                 return this._bankImportDetailRepository;
+            }
+        }
+
+        /// <summary>
+        /// Returs Target Repository
+        /// </summary>
+        public ITargetRepository TargetRepository
+        {
+            get
+            {
+                return this._targetRepository;
+            }
+        }
+
+        /// <summary>
+        /// Returns Donation Repository
+        /// </summary>
+        public IDonationRepository DonationRepository
+        {
+            get
+            {
+                return _donationRepository;
             }
         }
 

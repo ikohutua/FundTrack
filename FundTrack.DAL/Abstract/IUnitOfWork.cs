@@ -133,6 +133,8 @@ namespace FundTrack.DAL.Abstract
         IOfferImagesRepository OfferImagesRepository { get; }
         IOrganizationAccountRepository OrganizationAccountRepository { get; }
         IRepository<Currency> CurrencyRepositry { get; }
+        ITargetRepository TargetRepository { get; }
+        IDonationRepository DonationRepository { get; }
 
 
 

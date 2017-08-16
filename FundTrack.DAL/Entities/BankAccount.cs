@@ -57,5 +57,7 @@ namespace FundTrack.DAL.Entities
         /// Gets or Sets OrgAccount navigation property
         /// </summary>
         public virtual ICollection<OrgAccount> OrgAccounts { get; set; }
+
+        public virtual ICollection<Donation> Donations { get; set; }
     }
 }
