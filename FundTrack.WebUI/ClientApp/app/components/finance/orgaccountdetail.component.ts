@@ -48,6 +48,12 @@ export class OrgAccountDetailComponent implements OnInit, OnChanges {
             .subscribe(a => {
                 this.account = a;
                 this.hasCardNumber = this.CheckForCardPresence(this.account);
+                if (this.hasCardNumber) {
+                    sessionStorage.setItem(key.keyCardNumber, this.account.cardNumber);
+                }
+                else {
+                    sessionStorage.removeItem(key.keyCardNumber);
+                }
             });
         if (isBrowser) {
             if (localStorage.getItem(key.keyToken)) {
@@ -64,6 +70,12 @@ export class OrgAccountDetailComponent implements OnInit, OnChanges {
                 .subscribe(a => {
                     this.account = a;
                     this.hasCardNumber = this.CheckForCardPresence(this.account);
+                    if (this.hasCardNumber) {
+                        sessionStorage.setItem(key.keyCardNumber, this.account.cardNumber);
+                    }
+                    else {
+                        sessionStorage.removeItem(key.keyCardNumber);
+                    }
                 });
         }
     }
