@@ -3,11 +3,6 @@ using FundTrack.Infrastructure.ViewModel;
 using FundTrack.Infrastructure.ViewModel.FinanceViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FundTrack.WebUI.Controllers
 {
