@@ -17,8 +17,6 @@ export class OrgAccountListComponent implements OnInit {
     private accounts: OrgAccountViewModel[] = new Array<OrgAccountViewModel>();
     //Property that indicates spinner display status
     private showSpinner: boolean = false;
-    //
-    isDataAvailable: boolean = false;
     //Property that indicates currently selected account
     public selectAccountId: number = 1;
     //Property that keeps data of the selected account
@@ -38,7 +36,6 @@ export class OrgAccountListComponent implements OnInit {
         this._accountService.getAllAccountsOfOrganization().
             subscribe(r => {
                 this.accounts = r;
-                this.isDataAvailable = true;
                 this.setActiveAccount(this.accounts[0]);
                 this.showSpinner = false;
     });
@@ -48,6 +45,13 @@ export class OrgAccountListComponent implements OnInit {
     */
     navigateToCreatePage() {
         this.router.navigate(['/finance/createaccount']);
+    }
+
+    /*
+    Navigates to bank import page
+    */
+    navigateToBankImportPage() {
+        this.router.navigate(['/finance/bank-import']);
     }
     /*
     Sets active account
@@ -62,5 +66,14 @@ export class OrgAccountListComponent implements OnInit {
     private onDelete(accountNumber: number) {
         this.accounts.splice(this.accounts.findIndex(o => o.id == accountNumber), 1);
         this.setActiveAccount(this.accounts[0]);
+    }
+
+    private checkIfAccountHasCard(account: OrgAccountViewModel): boolean {
+        if (account.cardNumber == '' || account.cardNumber==null) {
+            return false;
+        }
+        else {
+            return true;
+        }
     }
 }

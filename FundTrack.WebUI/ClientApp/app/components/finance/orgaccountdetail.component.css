@@ -8,7 +8,7 @@
     display: block;
 }
 .maindiv {
-   
+    min-height: 200px;
 }
 
 .leftside{

@@ -14,9 +14,11 @@ import { CurrencyPipe } from '@angular/common';
 export class OrgAccountOperationComponent implements OnChanges {
     @Input('orgId') orgId: number;
     @Input() accountId: number;
+    private currentDate = new Date().toJSON().slice(0, 10).replace(/-/g, '/');
+    private operations = ['Payment', 'Withdrawn', 'Income', 'etc.'];
 
     constructor(private _router: Router) {
-
+      
     }
     private navigateToImportsPage(): void {
         this._router.navigate(['/finance/bank-import']);

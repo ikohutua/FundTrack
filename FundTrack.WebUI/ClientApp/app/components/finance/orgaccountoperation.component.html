@@ -1,2 +1,22 @@
-﻿<h2> Operation component is under construction</h2>
-<button class="btn btn-default" (click)="navigateToImportsPage()">Імпортувати дані</button>
+﻿<div class="container maindiv">
+    <h2>Фінансові операції по рахунку</h2>
+    <table class="table table-hover table-responsive">
+        <thead>
+            <tr>
+                <th>Дата і час операції</th>
+                <th>Опис операції</th>
+                <th>Сума</th>
+                <th>Залишок</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let operation of operations">
+                <td>{{currentDate | date: 'dd/MM/yyyy'}}</td>
+                <td>Some kind of operation</td>
+                <td>1$</td>
+                <td>100 500$</td>
+            </tr>
+        </tbody>
+    </table>
+    <a class="btn">Переглянути всі операції по рахунку</a>
+</div>

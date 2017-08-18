@@ -25,7 +25,7 @@ export class OrgAccountDetailComponent implements OnInit, OnChanges {
     //Input property getting organizationId
     @Input('orgId') orgId: number;
     //Input property getting accountId
-    @Input() accountId: number;
+    @Input() accountId: number = 0;
     //Id of the deleted account
     private deletedAccountId: number = 0;
     //Property indicating if current account has card number assigned
@@ -44,17 +44,6 @@ export class OrgAccountDetailComponent implements OnInit, OnChanges {
     }
    
     ngOnInit(): void {
-        this._service.getOrganizationAccountById(this.accountId)
-            .subscribe(a => {
-                this.account = a;
-                this.hasCardNumber = this.CheckForCardPresence(this.account);
-                if (this.hasCardNumber) {
-                    sessionStorage.setItem(key.keyCardNumber, this.account.cardNumber);
-                }
-                else {
-                    sessionStorage.removeItem(key.keyCardNumber);
-                }
-            });
         if (isBrowser) {
             if (localStorage.getItem(key.keyToken)) {
                 this.user = JSON.parse(localStorage.getItem(key.keyModel)) as AuthorizeUserModel;
@@ -66,17 +55,19 @@ export class OrgAccountDetailComponent implements OnInit, OnChanges {
     */
     ngOnChanges(changes: { [propKey: string]: SimpleChange }) {
         if (changes['accountId'] && changes['accountId'] != changes['accountId'].currentValue) {
-            this._service.getOrganizationAccountById(this.accountId)
-                .subscribe(a => {
-                    this.account = a;
-                    this.hasCardNumber = this.CheckForCardPresence(this.account);
-                    if (this.hasCardNumber) {
-                        sessionStorage.setItem(key.keyCardNumber, this.account.cardNumber);
-                    }
-                    else {
-                        sessionStorage.removeItem(key.keyCardNumber);
-                    }
-                });
+            if (this.accountId!=1) {
+                this._service.getOrganizationAccountById(this.accountId)
+                    .subscribe(a => {
+                        this.account = a;
+                        this.hasCardNumber = this.CheckForCardPresence(this.account);
+                        if (this.hasCardNumber) {
+                            sessionStorage.setItem(key.keyCardNumber, this.account.cardNumber);
+                        }
+                        else {
+                            sessionStorage.removeItem(key.keyCardNumber);
+                        }
+                    });
+            }
         }
     }
 

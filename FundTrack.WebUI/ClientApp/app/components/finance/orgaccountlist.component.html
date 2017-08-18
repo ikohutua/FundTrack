@@ -1,4 +1,10 @@
-﻿<div *ngIf="isDataAvailable">
+﻿<div>
+    <div class="row">
+        <ul>
+            <li><a title="Додати новий рахунок організації" (click)="navigateToCreatePage()">Додати рахунок</a></li>
+            <li><a title="Імпорт даних для вибраного рахунку зі списку" (click)="navigateToBankImportPage()">Імпортувати дані з банку</a></li>
+        </ul>
+    </div>
     <div class="row">
         <spinner [showSpinner]="showSpinner"></spinner>
         <div class="col-md-3">
@@ -15,7 +21,6 @@
                     <strong>{{account.currentBalance | currency: account.currencyShortName: true}}</strong>
                 </div>
             </div>
-            <button style="margin:10px 10px 10px 0px;" type="button" (click)="navigateToCreatePage()" class="btn btn-default">Додати рахунок</button>
         </div>
         <div class="col-md-8 mb20">
             <div class="row">
