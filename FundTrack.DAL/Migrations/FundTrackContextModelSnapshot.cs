@@ -84,6 +84,8 @@ namespace FundTrack.DAL.Migrations
                         .IsRequired()
                         .HasMaxLength(10);
 
+                    b.Property<bool?>("IsDonationEnabled");
+
                     b.Property<string>("MFO")
                         .IsRequired()
                         .HasMaxLength(6);
@@ -391,8 +393,7 @@ namespace FundTrack.DAL.Migrations
                     b.HasIndex("DonationId")
                         .IsUnique();
 
-                    b.HasIndex("TargetId")
-                        .IsUnique();
+                    b.HasIndex("TargetId");
 
                     b.HasIndex("UserId");
 
@@ -1004,8 +1005,8 @@ namespace FundTrack.DAL.Migrations
                         .HasForeignKey("FundTrack.DAL.Entities.FinOp", "DonationId");
 
                     b.HasOne("FundTrack.DAL.Entities.Target", "Target")
-                        .WithOne("FinOp")
-                        .HasForeignKey("FundTrack.DAL.Entities.FinOp", "TargetId")
+                        .WithMany("FinOp")
+                        .HasForeignKey("TargetId")
                         .HasConstraintName("FK_FinOp_Target")
                         .OnDelete(DeleteBehavior.Cascade);
 

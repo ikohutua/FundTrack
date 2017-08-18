@@ -21,7 +21,7 @@ namespace FundTrack.DAL.Entities
         /// <summary>
         /// Gets or Sets FinOp navigation property
         /// </summary>
-        public virtual FinOp FinOp { get; set; }
+        public virtual ICollection<FinOp> FinOp { get; set; }
 
         public virtual ICollection<Donation> Donates { get; set; }
     }

@@ -20,13 +20,11 @@
         <div class="col-md-8 mb20">
             <div class="row">
                 <div class="col-md-6 mb20">
-                    <orgaccountdetail
-                     [accountId]="selectAccountId"
-                     (onDelete)="onDelete($event)"                 
-                     ></orgaccountdetail>
+                    <orgaccountdetail [accountId]="selectAccountId"
+                                      (onDelete)="onDelete($event)"></orgaccountdetail>
                 </div>
                 <div class="col-md-6 mb20">
-                    <orgaccountpayment></orgaccountpayment>
+                    <orgaccountpayment [accountId]="selectAccountId"></orgaccountpayment>
                 </div>
             </div>
             <orgaccountoperation></orgaccountoperation>
@@ -34,42 +32,3 @@
         </div>
     </div>
 </div>
-
-
-
-
-
-<!--<div class="panel panel-primary ">
-    <spinner [showSpinner]="showSpinner"></spinner>
-    <div class="panel-heading heading">
-        <h3>{{pageTitle}}</h3>
-    </div>
-    <div class="panel-default">
-        <div>
-            <table class="table center table-striped table-bordered table-hover"
-                   *ngIf="accounts && accounts.length">
-                <thead>
-                    <tr>
-                        <th>Назва рахунку</th>
-                        <th>Номер</th>
-                        <th>Банк</th>
-                        <th>Валюта</th>
-                        <th>Тип</th>
-                        <th>Поточний баланс</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let account of accounts">
-                        <td>{{account.orgAccountName}}</td>
-                        <td>{{account.accNumber}}</td>
-                        <td>{{account.bankName}}</td>
-                        <td>{{account.currency}}</td>
-                        <td>{{account.accountType}}</td>
-                        <td>{{account.currentBalance | currency: account.currencyShortName: true}}</td>
-                    </tr>
-                </tbody>
-            </table>
-                <button type="button"  (click)="navigateToCreatePage()" style="margin:0 0 5px 10px" class="btn btn-default">Додати рахунок</button>
-        </div>
-    </div>
-</div>-->

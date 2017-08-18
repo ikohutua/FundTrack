@@ -47,6 +47,10 @@ namespace FundTrack.DAL.Entities
         /// Gets or sets password of the merchant of the payment system
         /// </summary>
         public string MerchantPassword { get; set; }
+        /// <summary>
+        /// Gets or sets bit that determines if donation to account is enabled
+        /// </summary>
+        public bool? IsDonationEnabled { get; set; }
 
         /// <summary>
         /// Gets or Sets Organization navigation property

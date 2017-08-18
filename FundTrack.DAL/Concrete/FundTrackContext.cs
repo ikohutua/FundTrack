@@ -440,8 +440,8 @@ namespace FundTrack.DAL.Concrete
                 entity.Property(e => e.FinOpDate).HasColumnType("datetime");
 
                 entity.HasOne(fo => fo.Target)
-                      .WithOne(t => t.FinOp)
-                      .HasForeignKey<FinOp>(fo => fo.TargetId)
+                      .WithMany(t => t.FinOp)
+                      .HasForeignKey(fo => fo.TargetId)
                       .HasConstraintName("FK_FinOp_Target");
 
                 entity.HasOne(fo => fo.OrgAccountFrom)
