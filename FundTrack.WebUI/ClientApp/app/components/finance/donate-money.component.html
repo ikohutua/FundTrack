@@ -1,67 +1,85 @@
-﻿<div>   
+﻿<div class="background col-md-offset-1 col-md-10">   
     <div class="row">
-        <div class="col-md-offset-2 col-md-4">
-            <p>
+        
+        <div class="col-md-offset-1 col-md-4 line-top">
+            <p class="styledParagraph">
                 Напевно, багатьом людям траплялися публікації про те, як рятували солдатам життя бронежилети, як допомагали їм каски, як зручно
-                воювати в надійному та практичному взутті. Якби прості люди спільними зусиллями не жертвували кошти на усі ці критично важливі для армії речі, ситуація була би значно гіршою.
-                Для тих, хто бажає зробити пожертву для української армії, на нашому сайті є можливість це здійснити.
-                А звітність допоможе перевірити рух коштів, які ви вносите.
+                воювати в надійному та практичному взутті.                 
             </p>
-            <p> Допомогти може кожен!</p>
+            <p class="styledParagraph">Якби прості люди спільними зусиллями не жертвували кошти на усі ці критично важливі для армії речі, ситуація була би значно гіршою.
+                Для тих, хто бажає зробити пожертву для української армії, на нашому сайті є можливість це здійснити. </p>
+            <p class="styledParagraph"> А звітність допоможе перевірити рух коштів, які ви вносите. </p>
+            <p class="paragraph"> Допомогти може кожен!</p>
         </div>
-        <div class="col-md-offset-1 col-md-4">
-            <form [formGroup]="donateForm">               
-                <label> Виберіть організацію </label>
-                <dropdown-org class="line-left"> </dropdown-org>            
-                <div *ngIf="hasAccountForDonate">
+
+        <div class="col-md-offset-1 col-md-4 line-top">
+            <form [formGroup]="donateForm">       
+               
+                <div class="indent">
+                    <label> Виберіть організацію </label>
+                    <dropdown-org class="line-left"> </dropdown-org>
+                </div>
+                
+                <div *ngIf="hasAccountForDonate" class="indent">
                     <label> Виберіть рахунок</label>
-                    <select class="input-control" formControlName="accountForDonation" [(ngModel)]="accountForDonation" (ngModelChange)="onSelectChange($event)">
+                    <select class="form-control" formControlName="accountForDonation" [(ngModel)]="accountForDonation" (ngModelChange)="onSelectChange($event)">
                         <option class="form-control" *ngFor="let accountForDonation of donateAccounts" [ngValue]="accountForDonation"> {{accountForDonation.name}} </option>
                     </select>
-                    <p *ngIf="accountForDonation.description">
+                    <p *ngIf="accountForDonation.description" class="message">
                         <strong> Опис рахунку: </strong> {{accountForDonation.description}}
                     </p>
                     <div *ngIf="formErrors.accountForDonation">
                         {{formErrors.accountForDonation}}
+                    </div>         
+                </div>
+
+                <div *ngIf="this.organizationId && !this.hasAccountForDonate">
+                    <p class="message"> {{messages.notEnabledDonationFunction}}</p>
+                </div>
+
+                <div class="indent">
+                    <label> Сума </label>
+                    <input [readonly]="!this.hasAccountForDonate" class="form-control" [ngClass]="{'disabled':!hasAccountForDonate}" type="text" formControlName="amount" />
+                    <div *ngIf="formErrors.amount" class="danger">
+                        <p class="message">{{formErrors.amount}} </p>
                     </div>
                 </div>
-                <label> Сума </label>
-                <input class="input-control" type="text" formControlName="amount" />
-                <select class="input-control" formControlName="currency" *ngIf="currencies" [(ngModel)]="currency" (ngModelChange)="currencyChange($event)">
-                    <option *ngFor="let currency of currencies" [ngValue]="currency">{{currency.currencyShortName}} </option>
-                </select><br />
-                <div *ngIf="formErrors.amount">
-                    {{formErrors.amount}}
+
+                <div class="indent">
+                    <label> Валюта </label>
+                    <select  class="form-control" [ngClass]="{'disabled':!hasAccountForDonate}" formControlName="currency" *ngIf="currencies" [(ngModel)]="currency" (ngModelChange)="currencyChange($event)">
+                        <option [disabled]="!this.hasAccountForDonate" *ngFor="let currency of currencies" [ngValue]="currency">{{currency.currencyShortName}} </option>
+                    </select><br />
+                    <div *ngIf="formErrors.currency">
+                        <p class="message"> {{formErrors.currency}} </p> 
+                    </div>
                 </div>
-                <div *ngIf="formErrors.currency">
-                    {{formErrors.currency}}
-                </div>            
-                <label> Призначення </label>
-                <select class="input-control" formControlName="target" *ngIf="targets" [(ngModel)]="target" (ngModelChange)="targetChange($event)">
-                    <option *ngFor="let target of targets" [ngValue]="target"> {{target.name}} </option>
-                </select><br />
-                <div *ngIf="formErrors.target">
-                    {{formErrors.target}}
+
+                <div class="indent">
+                    <label> Призначення </label>
+                    <select class="form-control" [ngClass]="{'disabled':!hasAccountForDonate}" formControlName="target" *ngIf="targets" [(ngModel)]="target" (ngModelChange)="targetChange($event)">
+                        <option [disabled]="!this.hasAccountForDonate" *ngFor="let target of targets" [ngValue]="target"> {{target.name}} </option>
+                    </select><br />
+                    <div *ngIf="formErrors.target">
+                        <p class=" message"> {{formErrors.target}} </p>
+                    </div>
                 </div>
-                <label> Опис </label> <br />
-                <textarea class="input-control" formControlName="description" rows="5" cols="40">
+
+                <div class="indent">
+                    <textarea [readonly]="!this.hasAccountForDonate" class="form-control" [ngClass]="{'disabled':!hasAccountForDonate}" formControlName="description" rows="5" cols="38" placeholder="Коментар">
             
-                </textarea><br />
-
-                <div hidden>
-                    <input type="email">
-                    <p> Введіть email, якщо хочете отримати інформацію про платіж на пошту</p>
+                    </textarea><br />
                 </div>
 
-                <button type="submit" class="btn btn-primary right" (click)="sendDonateRequest()"> Send </button>
+                <div class="indent">
+                    <button type="submit" class="btn btn-primary right" (click)="sendDonateRequest()" [disabled]="!hasAccountForDonate"> Пожертвувати </button>
+                </div>
+
+               
             </form>
         </div>
     </div>
 </div>
-
-
-
-
 
 <app-modal #gratitude>
     <div class="app-modal-body">
@@ -72,3 +90,8 @@
         <button (click)="modal.hide()" class="btn btn-primary"> Закрити</button>
     </div>
 </app-modal>
+
+<!--<div hidden>
+    <input type="email">
+    <p> Введіть email, якщо хочете отримати інформацію про платіж на пошту</p>
+</div>-->

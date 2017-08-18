@@ -13,7 +13,7 @@ import { CurrencyPipe } from '@angular/common';
 })
 export class OrgAccountPaymentComponent implements OnChanges {
     @Input('orgId') orgId: number;
-    @Input() accountId: number;
+    @Input('accountId') accountId: number;
 
     /*
     Checks for value changes and assignes new account in the component

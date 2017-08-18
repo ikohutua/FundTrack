@@ -116,6 +116,17 @@ app.container-fluid {
     margin-left: 3px;
 }
 
+.help-button {
+   
+}
+
+.help-button img{
+    width: 20%;
+}
+.help-button a{
+    
+}
+
 /*-------------------------------*/
 /*           For sidebar         */
 /*-------------------------------*/

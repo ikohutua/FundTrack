@@ -17,10 +17,12 @@
                 </ul>
                 <form class="navbar-form navbar-left" *ngIf="_service.showDropDown">
                     <dropdown-org></dropdown-org>
+                </form>               
+                
+                <form class="navbar-form navbar-left help-button">
+                     <a [routerLink]="['finance/donate']"> <img src="http://www.youthranch.org/images/uploads/assets/icon-hands.png" /> </a>
                 </form>
-                <form class="navbar-form navbar-left">
-                    <a [routerLink]="['finance/donate']"> Допомогти </a>
-                </form>
+
                 <form class="nav navbar-nav navbar-right">
                     <user-states></user-states>
                 </form>

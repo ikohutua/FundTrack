@@ -162,7 +162,6 @@ export class MakeDonationComponent implements OnInit, DoCheck{
     }
 
     sendDonateRequest(): void {
-        debugger;
         if (this.fondyPayModel.merchant_id == undefined) {
 
         }
@@ -286,7 +285,7 @@ export class MakeDonationComponent implements OnInit, DoCheck{
         if (value.includes(',')) {
             value = value.replace(',', '.');
         }
-        return Math.round((parseFloat(value) * 100));
+        return Math.round((parseFloat(value) * multiplier));
     }
 
     showErrorMessages(): void {
