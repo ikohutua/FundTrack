@@ -19,12 +19,12 @@ import { AuthorizeUserModel } from "../../view-models/concrete/authorized-user-i
     selector: 'bank-import',
     template: require('./bank-import.component.html'),
     styles: [require('./bank-import.component.css')],
-    providers: [BankImportService,FinOpService]
+    providers: [BankImportService, FinOpService]
 })
 
 export class BankImportComponent implements OnInit {
     public bankImportForm: FormGroup;
-    public card: string = "5168742201982208";
+    public card: string;
 
     private dataForPrivat: DataRequestPrivatViewModel = new DataRequestPrivatViewModel();
 
@@ -48,6 +48,7 @@ export class BankImportComponent implements OnInit {
 
     private user: AuthorizeUserModel = new AuthorizeUserModel();
     private index: number;
+    private count: number;
 
     public constructor(private _service: BankImportService,
         private _finOpService: FinOpService,
@@ -66,21 +67,33 @@ export class BankImportComponent implements OnInit {
         });
         this.bankImportForm.valueChanges
             .subscribe(a => this.onValueChange(a));
-
         this.onValueChange();
     }
 
     ngOnInit() {
         if (isBrowser) {
-            if (localStorage.getItem(key.keyToken)) {
-                this.user = JSON.parse(localStorage.getItem(key.keyModel)) as AuthorizeUserModel;
-                this._service.getAllExtracts(this.card)
-                    .subscribe(response => this._dataForFinOp = response);
-                this._finOpService.getTargets()
-                    .subscribe(response => this.targets = response);
-                this._finOpService.getOrgAccountForFinOp(this.user.orgId, this.card)
-                    .subscribe(response => this.currentOrgAccount = response);
+            if (sessionStorage.getItem(key.keyCardNumber)) {
+                this.card = sessionStorage.getItem(key.keyCardNumber);
+                this._service.getCountExtractsOnCard(this.card)
+                    .subscribe(response => {
+                        this.count = response;
+                            if (localStorage.getItem(key.keyToken)) {
+                                this.user = JSON.parse(localStorage.getItem(key.keyModel)) as AuthorizeUserModel;
+                                this._finOpService.getTargets()
+                                    .subscribe(response => this.targets = response);
+                                this.getAllExtracts();
+                                this._finOpService.getOrgAccountForFinOp(this.user.orgId, this.card)
+                                    .subscribe(response => this.currentOrgAccount = response);
+                            }
+                    });
             }
+        }
+    }
+
+    public getAllExtracts() {
+        if (this.count != 0) {
+            this._service.getAllExtracts(this.card)
+                .subscribe(response => this._dataForFinOp = response);
         }
     }
 
@@ -160,14 +173,12 @@ export class BankImportComponent implements OnInit {
                         .subscribe(response => {
                         });
                 }
+                this.closeModal();
+                this.getAllExtracts();
             });
     }
 
     public searchBankImport() {
-        //let dataFrom = this.dataForPrivat.dataFrom.split('.');
-        //let dataTo = this.dataForPrivat.dataTo.split('.');
-        //this._bankSearchModel.dataFrom = new Date(+dataFrom[2], ((+dataFrom[1]) - 1), +dataFrom[0], 3, 0, 0);
-        //this._bankSearchModel.dataTo = new Date(+dataTo[2], ((+dataTo[1]) - 1), (+dataTo[0]) + 1, 2, 59, 59);
         this._bankSearchModel.card = this.card;
         if (!this._bankSearchModel.state) {
             this._bankSearchModel.state == null;
@@ -182,10 +193,11 @@ export class BankImportComponent implements OnInit {
         this._newFinOp.description = bankImport.description;
         this._newFinOp.bankImportId = bankImport.id;
         this._newFinOp.amount = +bankImport.cardAmount.split(' ')[0];
+        this._newFinOp.absoluteAmount = Math.abs(this._newFinOp.amount);
         this._newFinOp.accToName = this.currentOrgAccount.orgAccountName;
         this._newFinOp.orgId = this.user.orgId;
         this.index = this._dataForFinOp.findIndex(element => element.id == bankImport.id);
-        this.currentOrgAccountNumber = this.currentOrgAccount.orgAccountName + ' ( ' + this.currentOrgAccount.orgAccountNumber + ' )';
+        this.currentOrgAccountNumber = this.currentOrgAccount.orgAccountName + ': ' + this.currentOrgAccount.orgAccountNumber;
         this.openFinOpModal();
     }
 
@@ -207,6 +219,7 @@ export class BankImportComponent implements OnInit {
      * Open modal window
      */
     public onActionClick(): void {
+        this.dataForPrivat.card = this.card;
         this.newBankImportModalWindow.show();
     }
 

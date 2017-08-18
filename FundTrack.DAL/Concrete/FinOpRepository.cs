@@ -1,7 +1,9 @@
 ﻿using FundTrack.DAL.Abstract;
 using FundTrack.DAL.Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace FundTrack.DAL.Concrete
@@ -28,6 +30,19 @@ namespace FundTrack.DAL.Concrete
         {
             var createdFinOp=this._context.FinOps.Add(finOp);
             return createdFinOp.Entity;
+        }
+
+        public FinOp Update(FinOp finOp)
+        {
+           this._context.FinOps.Update(finOp);
+            return finOp;
+        }
+
+        public FinOp GetById(int id)
+        {
+           return this._context.FinOps
+                .Include(fo=>fo.OrgAccountTo)
+                .FirstOrDefault(fo => fo.Id == id);
         }
     }
 }

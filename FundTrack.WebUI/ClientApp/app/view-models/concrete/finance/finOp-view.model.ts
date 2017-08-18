@@ -5,6 +5,7 @@
     public accFromName: string;
     public accToName: string;
     public amount: number;
+    public absoluteAmount: number;
     public description: string;
     public orgId: number;
 }

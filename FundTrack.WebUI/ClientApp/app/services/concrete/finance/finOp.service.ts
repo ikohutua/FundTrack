@@ -26,15 +26,6 @@ export class FinOpService {
         }
     }
 
-    public getOrgAccountsForFinOp(orgId: number): Observable<OrgAccountSelectViewModel[]> {
-        if (this.checkAuthorization()) {
-            let url = 'api/OrgAccount/GetOrgAccountsForFinOp';
-            return this._http.get(url + '/' + orgId, this.getRequestOptions())
-                .map((response: Response) => <OrgAccountSelectViewModel[]>response.json())
-                .catch(this.handleError);
-        }
-    }
-
     public getOrgAccountForFinOp(orgId: number, cardNumber: string): Observable<OrgAccountSelectViewModel> {
         if (this.checkAuthorization()) {
             let url = 'api/OrgAccount/GetOrgAccountForFinOp';

@@ -159,40 +159,48 @@ namespace FundTrack.BLL.DomainServices
         /// <exception cref="System.Exception">Неправильний логін чи пароль.</exception>
         public UserInfoViewModel InitializeUserInfoViewModel(User user)
         {
-            if (user != null)
+            try
             {
-                var bannedUser = this._unitOfWork.UsersRepository.GetAllUsersWithBanStatus()
-                                                    .FirstOrDefault(u => u.Id == user.Id)
-                                                    .BannedUser;
-                if (bannedUser != null)
+
+                if (user != null)
                 {
-                    throw new BusinessLogicException(ErrorMessages.UserIsBaned +
-                                                        bannedUser.Description);
+                    var bannedUser = this._unitOfWork.UsersRepository.GetAllUsersWithBanStatus()
+                                                        .FirstOrDefault(u => u.Id == user.Id)
+                                                        .BannedUser;
+                    if (bannedUser != null)
+                    {
+                        throw new BusinessLogicException(ErrorMessages.UserIsBaned +
+                                                            bannedUser.Description);
+                    }
+                    else
+                    {
+                        var userInfoView = new UserInfoViewModel
+                        {
+                            id = user.Id,
+                            login = user.Login,
+                            firstName = user.FirstName,
+                            lastName = user.LastName,
+                            email = user.Email,
+                            photoUrl = user.PhotoUrl
+                        };
+
+                        if (!this._unitOfWork.MembershipRepository.IsUserHasRole(user.Id))
+                        {
+                            this.CreateUserRole(userInfoView.login);
+                        }
+                        userInfoView.role = this._unitOfWork.MembershipRepository.GetRole(user.Id);
+                        userInfoView.orgId = this._unitOfWork.MembershipRepository.GetOrganizationId(user.Id);
+                        return userInfoView;
+                    }
                 }
                 else
                 {
-                    var userInfoView = new UserInfoViewModel
-                    {
-                        id = user.Id,
-                        login = user.Login,
-                        firstName = user.FirstName,
-                        lastName = user.LastName,
-                        email = user.Email,
-                        photoUrl = user.PhotoUrl
-                    };
-
-                    if (!this._unitOfWork.MembershipRepository.IsUserHasRole(user.Id))
-                    {
-                        this.CreateUserRole(userInfoView.login);
-                    }
-                    userInfoView.role = this._unitOfWork.MembershipRepository.GetRole(user.Id);
-                    userInfoView.orgId = this._unitOfWork.MembershipRepository.GetOrganizationId(user.Id);
-                    return userInfoView;
+                    throw new BusinessLogicException(ErrorMessages.IncorrectCredentials);
                 }
             }
-            else
+            catch (Exception ex)
             {
-                throw new BusinessLogicException(ErrorMessages.IncorrectCredentials);
+                throw new BusinessLogicException(ex.Message, ex);
             }
         }
 

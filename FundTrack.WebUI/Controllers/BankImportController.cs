@@ -53,5 +53,12 @@ namespace FundTrack.WebUI.Controllers
         {
             return this._service.GetAllExtracts(card);
         }
+
+        [HttpGet("GetCountExtracts/{card}")]
+        [Authorize(Roles = "admin, moderator")]
+        public int GetCountExtracts(string card)
+        {
+            return this._service.GetCountExtracts(card);
+        }
     }
 }

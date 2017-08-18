@@ -17,5 +17,7 @@ namespace FundTrack.BLL.Abstract
         IEnumerable<ImportDetailPrivatViewModel> GetRawExtracts(BankImportSearchViewModel bankSearchModel);
 
         IEnumerable<ImportDetailPrivatViewModel> GetAllExtracts(string card);
+
+        int GetCountExtracts(string card);
     }
 }

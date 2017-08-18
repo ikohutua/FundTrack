@@ -36,7 +36,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-8">
+    <div class="col-md-8" *ngIf="_dataForFinOp" >
         <div class="row grid-divider">
             <table class="table table-list-search back" style="margin-left:4%">
                 <thead>
@@ -78,9 +78,10 @@
                 <div class="form-group">
                     <label class="control-label">Номер картки:</label>
                     <input class="form-control"
+                           disabled
                            type="text"
                            placeholder="Номер картки"
-                           name="cardNumber"
+                           name="cardNumber"    
                            formControlName="cardNumber"
                            [(ngModel)]="dataForPrivat.card"
                            required="" />
@@ -156,15 +157,6 @@
     </div>
     <div class="app-modal-body">
         <div class="form-group">
-            <label class="control-label">Сума:</label>
-            <input class="form-control"
-                   type="text"   
-                   [disabled]="true"
-                   placeholder="Сума"
-                   required=""
-                   [(ngModel)]="_newFinOp.amount" />
-        </div>
-        <div class="form-group">
             <label class="control-label">Рахунок:</label>
             <input class="form-control"
                    type="text"
@@ -173,6 +165,24 @@
                    required=""
                    [(ngModel)]="currentOrgAccountNumber" />
         </div>
+        <div class="form-group">
+            <label class="control-label">Сума:</label>
+            <input class="form-control"
+                   type="text"
+                   [disabled]="true"
+                   placeholder="Сума"
+                   required=""
+                   [(ngModel)]="_newFinOp.absoluteAmount"/>
+        </div>
+        <br>
+        <div class="form-group">
+            <label class="control-label" for="accountName">Рух коштів:</label>
+            <div>
+                <input type="radio" name="gender" value="true" [checked]="_newFinOp.amount>0" disabled > Прихід<br>
+                <input type="radio" name="gender" value="false" [checked]="_newFinOp.amount<0" disabled> Розхід<br>
+            </div>
+        </div>
+        <br>
         <div class="form-group">
             <label class="control-label">Опис:</label>
             <textarea class="form-control"
@@ -184,7 +194,7 @@
         </div>
         <div>
             <label class="control-label">Виберіть призначення платежу:</label>
-            <select class="form-control" [(ngModel)]="_newFinOp.targetName">
+            <select class="form-control" [(ngModel)]="_newFinOp.targetName" required="" id="target">
                 <option [ngValue]="undefined" selected>Призначення платежу</option>
                 <option value={{item.name}} *ngFor="let item of targets">{{item.name}}</option>
             </select>
@@ -193,6 +203,7 @@
     <div class="app-modal-footer">
         <button class="btn btn-fundtrack-style pull-right"
                 (click)="saveFinOp()"
+                [disabled]="!_newFinOp.targetName"
                 data-dismiss="modal">
             OK
         </button>

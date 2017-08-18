@@ -13,5 +13,9 @@ namespace FundTrack.DAL.Abstract
         /// <param name="finOp">The fin op.</param>
         /// <returns></returns>
         FinOp Create(FinOp finOp);
+
+        FinOp Update(FinOp finOp);
+
+        FinOp GetById(int id);
     }
 }

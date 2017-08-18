@@ -107,6 +107,18 @@ namespace FundTrack.BLL.Concrete
             }
         }
 
+        public int GetCountExtracts(String card)
+        {
+            try
+            {
+                return this._unitOfWork.BankImportDetailRepository.GetBankImportDetailsOneCard(card).Count();
+            }
+            catch (Exception ex)
+            {
+                throw new BusinessLogicException(ex.Message, ex);
+            }
+        }
+
         private IEnumerable<ImportDetailPrivatViewModel> ConvertFromEntityToModel(IEnumerable<BankImportDetail> bankImportDetails)
         {
             try
@@ -132,6 +144,5 @@ namespace FundTrack.BLL.Concrete
                 throw new BusinessLogicException(message, ex);
             }
         }
-
     }
 }

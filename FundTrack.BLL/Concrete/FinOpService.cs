@@ -58,14 +58,22 @@ namespace FundTrack.BLL.Concrete
                 {
                     AccToId = this._unitOfWork.OrganizationAccountRepository.GetOrgAccountByName(finOpModel.OrgId, finOpModel.AccToName).Id,
                     TargetId = this._unitOfWork.TargetRepository.GetTargetByName(finOpModel.TargetName).Id,
-                    Amount=decimal.Parse(finOpModel.Amount),
-                    Description=finOpModel.Description,
-                    FinOpDate=DateTime.Now
+                    Amount = finOpModel.Amount,
+                    Description = finOpModel.Description,
+                    FinOpDate = DateTime.Now
                 };
-                this._unitOfWork.FinOpRepository.Create(finOp);
+
+                var finOpEntity = this._unitOfWork.FinOpRepository.Create(finOp);
+                this._unitOfWork.SaveChanges();
+
+                var createdFinOp = this._unitOfWork.FinOpRepository.GetById(finOpEntity.Id);
+                createdFinOp.OrgAccountTo.CurrentBalance += finOpModel.Amount;
+                this._unitOfWork.FinOpRepository.Update(createdFinOp);
+
                 var bankImportDetail = this._unitOfWork.BankImportDetailRepository.GetById(finOpModel.BankImportId);
                 bankImportDetail.IsLooked = true;
                 this._unitOfWork.BankImportDetailRepository.ChangeBankImportState(bankImportDetail);
+
                 this._unitOfWork.SaveChanges();
                 return finOpModel;
             }
