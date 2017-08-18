@@ -13,4 +13,12 @@ import { CurrencyPipe } from '@angular/common';
 })
 export class OrgAccountOperationComponent {
     @Input('orgId') orgId: number;
+
+    constructor(private _router: Router) {
+
+    }
+    private navigateToImportsPage(): void {
+        this._router.navigate(['/finance/bank-import']);
+    }
+
 }
