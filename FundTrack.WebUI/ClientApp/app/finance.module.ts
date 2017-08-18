@@ -12,7 +12,6 @@ import { OrgAccountPaymentComponent } from "./components/finance/orgaccountpayme
 import { OrgAccountOperationComponent } from "./components/finance/orgaccountoperation.component";
 import { BankImportComponent } from "./components/finance/bank-import.component";
 import { MakeDonationComponent } from "./components/finance/donate-money.component";
-import { SelectModule } from 'ng2-select';
 
 @NgModule({
     declarations: [
@@ -30,7 +29,6 @@ import { SelectModule } from 'ng2-select';
         FinanceRoutingModule,
         BrowserModule,
         ReactiveFormsModule , 
-        SelectModule,
         FormsModule
     ],
     providers: [

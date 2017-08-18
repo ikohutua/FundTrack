@@ -2,7 +2,6 @@
 import { RequestFondyViewModel } from "../../view-models/concrete/finance/donate/fondy.view-model";
 import { CheckPaymentStautsViewModel } from "../../view-models/concrete/finance/donate/check-payment-status.view-model";
 import { DonateService } from "../../services/concrete/finance/donate-money.service";
-import { SelectModule } from 'ng2-select';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { isBrowser } from "angular2-universal";
 import * as key from '../../shared/key.storage';
