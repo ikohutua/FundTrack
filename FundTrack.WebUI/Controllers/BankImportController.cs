@@ -40,6 +40,11 @@ namespace FundTrack.WebUI.Controllers
             return this._service.RegisterBankExtracts(bankModel);
         }
 
+        /// <summary>
+        /// Gets the  extracts which satisfy filters.
+        /// </summary>
+        /// <param name="bankSearchModel">The bank search model.</param>
+        /// <returns></returns>
         [HttpPost("SearchRawExtractsOnPeriod")]
         [Authorize(Roles = "admin, moderator")]
         public IEnumerable<ImportDetailPrivatViewModel> GetRawExtracts([FromBody] BankImportSearchViewModel bankSearchModel)
@@ -47,6 +52,11 @@ namespace FundTrack.WebUI.Controllers
             return this._service.GetRawExtracts(bankSearchModel);
         }
 
+        /// <summary>
+        /// Gets all extracts in one orgaccount.
+        /// </summary>
+        /// <param name="card">The card.</param>
+        /// <returns></returns>
         [HttpGet("GetAllExtracts/{card}")]
         [Authorize(Roles = "admin, moderator")]
         public IEnumerable<ImportDetailPrivatViewModel> GetAllExtracts(string card)
@@ -54,6 +64,11 @@ namespace FundTrack.WebUI.Controllers
             return this._service.GetAllExtracts(card);
         }
 
+        /// <summary>
+        /// Gets the count extracts in one orgaccount.
+        /// </summary>
+        /// <param name="card">The card.</param>
+        /// <returns></returns>
         [HttpGet("GetCountExtracts/{card}")]
         [Authorize(Roles = "admin, moderator")]
         public int GetCountExtracts(string card)

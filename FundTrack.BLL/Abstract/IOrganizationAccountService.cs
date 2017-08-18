@@ -17,7 +17,12 @@ namespace FundTrack.BLL.Abstract
         DeleteOrgAccountViewModel DeleteOrganizationAccount(DeleteOrgAccountViewModel model);
         OrgAccountViewModel CreateOrganizationAccount(OrgAccountViewModel model);
 
-        IEnumerable<OrgAccountSelectViewModel> GetAccountsForSelectByOrganizationId(int organizationId);
+        /// <summary>
+        /// Gets the account for select.
+        /// </summary>
+        /// <param name="organizationId">The organization identifier.</param>
+        /// <param name="card">The card.</param>
+        /// <returns></returns>
         OrgAccountSelectViewModel GetAccountForSelect(int organizationId, string card);
     }
 }

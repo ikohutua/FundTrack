@@ -11,13 +11,20 @@ import { isBrowser } from "angular2-universal";
 import { TargetViewModel } from "../../../view-models/concrete/finance/target-view.model";
 import { OrgAccountSelectViewModel } from "../../../view-models/concrete/finance/org-accounts-select-view.model";
 import { FinOpViewModel } from "../../../view-models/concrete/finance/finOp-view.model";
+import { SpinnerComponent } from "../../../shared/components/spinner/spinner.component";
+import { BaseSpinnerService } from "../../abstract/base-spinner-service";
 
 @Injectable()
-export class FinOpService {
+export class FinOpService extends BaseSpinnerService< FinOpViewModel > {
 
-    public constructor(private _http: Http) { }
+    public constructor(private _http: Http) {
+        super(_http)
+    }
 
-    public getTargets(): Observable<TargetViewModel[]> {
+    /**
+     * method for get all targets, when convert bankImport to finOp
+     */
+    public getTargets(spinner?: SpinnerComponent): Observable<TargetViewModel[]> {
         if (this.checkAuthorization()) {
             let url = "api/FinOp/GetTargets";
             return this._http.get(url, this.getRequestOptions())
@@ -25,8 +32,12 @@ export class FinOpService {
                 .catch(this.handleError);
         }
     }
-
-    public getOrgAccountForFinOp(orgId: number, cardNumber: string): Observable<OrgAccountSelectViewModel> {
+    /**
+     * get orgaccounts by card number this accounts
+     * @param orgId
+     * @param cardNumber
+     */
+    public getOrgAccountForFinOp(orgId: number, cardNumber: string, spinner?: SpinnerComponent): Observable<OrgAccountSelectViewModel> {
         if (this.checkAuthorization()) {
             let url = 'api/OrgAccount/GetOrgAccountForFinOp';
             return this._http.get(url + '/' + orgId + '/' + cardNumber, this.getRequestOptions())
@@ -35,12 +46,14 @@ export class FinOpService {
         }
     }
 
-    public createFinOp(finOp: FinOpViewModel): Observable<FinOpViewModel> {
+    /**
+     * create new finOp
+     * @param finOp
+     */
+    public createFinOp(finOp: FinOpViewModel, spinner?: SpinnerComponent): Observable<FinOpViewModel> {
         if (this.checkAuthorization()) {
             let url = 'api/FinOp/CreateFinOp';
-            return this._http.post(url, finOp, this.getRequestOptions())
-                .map((response: Response) => <FinOpViewModel>response.json())
-                .catch(this.handleError);
+            return super.create(url, finOp, this.getRequestOptions())
         }
     }
 

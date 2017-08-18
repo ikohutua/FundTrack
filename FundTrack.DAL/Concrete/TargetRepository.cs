@@ -9,16 +9,29 @@ namespace FundTrack.DAL.Concrete
     {
         private readonly FundTrackContext _context;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TargetRepository"/> class.
+        /// </summary>
+        /// <param name="context">The context.</param>
         public TargetRepository(FundTrackContext context)
         {
             _context = context;
         }
 
+        /// <summary>
+        /// Get all targets.
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<Target> Read()
         {
             return _context.Targets;
         }
 
+        /// <summary>
+        /// Gets the target by name.
+        /// </summary>
+        /// <param name="name">The name.</param>
+        /// <returns></returns>
         public Target GetTargetByName(string name)
         {
             return _context.Targets

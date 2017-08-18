@@ -9,7 +9,6 @@
     public terminal: string;
     public description: string;
     public isLooked: boolean;
-    public tempState: boolean;
 }
 
 export class ImportPrivatViewModel {

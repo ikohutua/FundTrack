@@ -49,18 +49,6 @@ namespace FundTrack.WebUI.Controllers
         /// Gets the org accounts for fin op.
         /// </summary>
         /// <param name="orgId">The org identifier.</param>
-        /// <returns></returns>
-        [HttpGet("GetOrgAccountsForFinOp/{orgId}")]
-        [Authorize(Roles = "admin, moderator")]
-        public JsonResult GetOrgAccountsForFinOp(int orgId)
-        {
-            return Json(this._orgAccountService.GetAccountsForSelectByOrganizationId(orgId));
-        }
-
-        /// <summary>
-        /// Gets the org accounts for fin op.
-        /// </summary>
-        /// <param name="orgId">The org identifier.</param>
         /// <param name="cardNumber">The card number.</param>
         /// <returns></returns>
         [HttpGet("GetOrgAccountForFinOp/{orgId}/{cardNumber}")]

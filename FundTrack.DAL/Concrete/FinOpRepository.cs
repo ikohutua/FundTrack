@@ -32,12 +32,22 @@ namespace FundTrack.DAL.Concrete
             return createdFinOp.Entity;
         }
 
+        /// <summary>
+        /// Updates the specified fin op.
+        /// </summary>
+        /// <param name="finOp">The fin op.</param>
+        /// <returns></returns>
         public FinOp Update(FinOp finOp)
         {
            this._context.FinOps.Update(finOp);
             return finOp;
         }
 
+        /// <summary>
+        /// Gets finOp the by identifier.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         public FinOp GetById(int id)
         {
            return this._context.FinOps

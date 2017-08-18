@@ -10,6 +10,10 @@ using System.Text;
 
 namespace FundTrack.BLL.Concrete
 {
+    /// <summary>
+    /// BankImportService
+    /// </summary>
+    /// <seealso cref="FundTrack.BLL.Abstract.IBankImportService" />
     public class BankImportService : IBankImportService
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -74,6 +78,13 @@ namespace FundTrack.BLL.Concrete
             }
         }
 
+        /// <summary>
+        /// Gets the  extracts with filter options.
+        /// </summary>
+        /// <param name="bankSearchModel">The bank search model.</param>
+        /// <returns></returns>
+        /// <exception cref="BusinessLogicException">
+        /// </exception>
         public IEnumerable<ImportDetailPrivatViewModel> GetRawExtracts(BankImportSearchViewModel bankSearchModel)
         {
             try
@@ -95,6 +106,12 @@ namespace FundTrack.BLL.Concrete
             }
         }
 
+        /// <summary>
+        /// Gets all extracts in one org accounts
+        /// </summary>
+        /// <param name="card">The card.</param>
+        /// <returns></returns>
+        /// <exception cref="BusinessLogicException"></exception>
         public IEnumerable<ImportDetailPrivatViewModel> GetAllExtracts(string card)
         {
             try
@@ -107,6 +124,12 @@ namespace FundTrack.BLL.Concrete
             }
         }
 
+        /// <summary>
+        /// Gets the count extracts in one org accounts
+        /// </summary>
+        /// <param name="card">The card.</param>
+        /// <returns></returns>
+        /// <exception cref="BusinessLogicException"></exception>
         public int GetCountExtracts(String card)
         {
             try
@@ -119,6 +142,12 @@ namespace FundTrack.BLL.Concrete
             }
         }
 
+        /// <summary>
+        /// Converts from bankImportentity to ImportDetailPrivalViewModel.
+        /// </summary>
+        /// <param name="bankImportDetails">The bank import details.</param>
+        /// <returns></returns>
+        /// <exception cref="BusinessLogicException"></exception>
         private IEnumerable<ImportDetailPrivatViewModel> ConvertFromEntityToModel(IEnumerable<BankImportDetail> bankImportDetails)
         {
             try
@@ -134,8 +163,7 @@ namespace FundTrack.BLL.Concrete
                     cardAmount = item.CardAmount,
                     description = item.Description,
                     terminal = item.Terminal,
-                    card = item.Card,
-                    tempState = item.IsLooked
+                    card = item.Card
                 });
             }
             catch (Exception ex)

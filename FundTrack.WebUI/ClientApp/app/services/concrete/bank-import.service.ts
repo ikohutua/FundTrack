@@ -14,12 +14,20 @@ import { DataRequestPrivatViewModel } from "../../view-models/concrete/data-requ
 import { BankImportSearchViewModel } from "../../view-models/concrete/finance/bank-import-search-view.model";
 import * as key from '../../shared/key.storage';
 import { isBrowser } from "angular2-universal";
+import { BaseSpinnerService } from "../abstract/base-spinner-service";
+import { SpinnerComponent } from "../../shared/components/spinner/spinner.component";
 
 @Injectable()
-export class BankImportService {
+export class BankImportService extends BaseSpinnerService<ImportDetailPrivatViewModel >{
 
-    public constructor(private _http: Http) { }
+    public constructor(private _http: Http) {
+        super(_http);
+    }
 
+    /**
+     * method for get bank import from privat24 using api
+     * @param dataForRequest
+     */
     public getUserExtracts(dataForRequest: DataRequestPrivatViewModel): Observable<ImportPrivatViewModel> {
 
         if (this.checkAuthorization()) {
@@ -49,7 +57,6 @@ export class BankImportService {
                 .map((response: Response) => {
                     let imports = new ImportPrivatViewModel();
                     xml2js.parseString(response.text(), function (err, result) {
-                        console.log(result);
                         if (result.response.data[0].hasOwnProperty('error') == false) {
                             for (let i = 0; i < result.response.data[0].info[0].statements[0].statement.length; ++i) {
                                 let temp: ImportDetailPrivatViewModel = new ImportDetailPrivatViewModel();
@@ -78,6 +85,10 @@ export class BankImportService {
         }
     }
 
+    /**
+     * method for register bank importss in db
+     * @param bankImport
+     */
     public registerBankExtracts(bankImport: ImportDetailPrivatViewModel[]): Observable<ImportDetailPrivatViewModel[]> {
         if (this.checkAuthorization()) {
             let url = 'api/BankImport/RegisterNewExtracts';
@@ -87,6 +98,10 @@ export class BankImportService {
         }
     }
 
+    /**
+     * method for get bankImports which satisfy filters
+     * @param bankSearchModel
+     */
     public getRawExtracts(bankSearchModel: BankImportSearchViewModel): Observable<ImportDetailPrivatViewModel[]> {
         if (this.checkAuthorization()) {
             let url = "api/BankImport/SearchRawExtractsOnPeriod";
@@ -96,15 +111,21 @@ export class BankImportService {
         }
     }
 
-    public getAllExtracts(card: string): Observable<ImportDetailPrivatViewModel[]> {
+    /**
+     * method for get all bank imports fin one org accounts
+     * @param card
+     */
+    public getAllExtracts(card: string, spinner?: SpinnerComponent): Observable<ImportDetailPrivatViewModel[]> {
         if (this.checkAuthorization()) {
-            let url = 'api/BankImport/GetAllExtracts';
-            return this._http.get(url + '/' + card, this.getRequestOptions())
-                .map((response: Response) => <ImportDetailPrivatViewModel[]>response.json())
-                .catch(this.handleError);
+            let url = 'api/BankImport/GetAllExtracts/' + card;
+            return super.getCollection(url, this.getRequestOptions(), spinner)
         }
     }
 
+     /**
+     * method for get the count all bank imports fin one org accounts
+     * @param card
+     */
     public getCountExtractsOnCard(card: string): Observable<number> {
         if (this.checkAuthorization()) {
             let url = 'api/BankImport/GetCountExtracts';

@@ -21,23 +21,42 @@ namespace FundTrack.DAL.Concrete
             this._context = context;
         }
 
+        /// <summary>
+        /// Creates the specified bank import.
+        /// </summary>
+        /// <param name="bankImport">The bank import.</param>
+        /// <returns></returns>
         public BankImportDetail Create(BankImportDetail bankImport)
         {
             this._context.BankImportDetails.Add(bankImport);
             return bankImport;
         }
 
+        /// <summary>
+        /// Gets the bank import detail by appcode .
+        /// </summary>
+        /// <param name="appcode">The appcode.</param>
+        /// <returns></returns>
         public BankImportDetail GetBankImportDetail(int appcode)
         {
             return this._context.BankImportDetails
                                 .FirstOrDefault(bid => bid.AppCode == appcode);
         }
 
+        /// <summary>
+        /// Gets the bank imports detail.
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<BankImportDetail> GetBankImportsDetail()
         {
             return this._context.BankImportDetails;
         }
 
+        /// <summary>
+        /// Filters the bank import detail.
+        /// </summary>
+        /// <param name="bankImportSearch">The bank import search.</param>
+        /// <returns></returns>
         public IEnumerable<BankImportDetail> FilterBankImportDetail(BankImportSearchViewModel bankImportSearch)
         {
             return this._context.BankImportDetails
@@ -47,6 +66,11 @@ namespace FundTrack.DAL.Concrete
                 .Where(bid => bid.IsLooked == (bankImportSearch.State.HasValue ? bankImportSearch.State : bid.IsLooked));
         }
 
+        /// <summary>
+        /// Gets the bank import details in one card.
+        /// </summary>
+        /// <param name="card">The card.</param>
+        /// <returns></returns>
         public IEnumerable<BankImportDetail> GetBankImportDetailsOneCard(string card)
         {
             return this._context.BankImportDetails
@@ -54,7 +78,7 @@ namespace FundTrack.DAL.Concrete
         }
 
         /// <summary>
-        /// Gets the by identifier.
+        /// Gets the bankImportDetail by identifier.
         /// </summary>
         /// <param name="bankImportDetailId">The bank import detail identifier.</param>
         /// <returns></returns>

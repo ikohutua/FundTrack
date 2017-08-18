@@ -103,24 +103,6 @@ namespace FundTrack.BLL.Concrete
             }
         }
 
-        public IEnumerable<OrgAccountSelectViewModel> GetAccountsForSelectByOrganizationId(int organizationId)
-        {
-            try
-            {
-                return this._unitOfWork.OrganizationAccountRepository.ReadAllOrgAccounts(organizationId)
-                                                                     .Select(item => new OrgAccountSelectViewModel
-                                                                     {
-                                                                         Id = item.Id,
-                                                                         OrgAccountName = item.OrgAccountName
-                                                                     });
-            }
-            catch (Exception ex)
-            {
-                string message = string.Format("Неможливо отримати рахунки організації. Помилка: {0}", ex.Message);
-                throw new BusinessLogicException(message, ex);
-            }
-        }
-
         public OrgAccountViewModel GetOrganizationAccountById(int organizationAccountId)
         {
             try
@@ -272,6 +254,13 @@ namespace FundTrack.BLL.Concrete
             return String.Empty;
         }
 
+        /// <summary>
+        /// Gets the account for select.
+        /// </summary>
+        /// <param name="organizationId">The organization identifier.</param>
+        /// <param name="card">The card.</param>
+        /// <returns></returns>
+        /// <exception cref="BusinessLogicException"></exception>
         public OrgAccountSelectViewModel GetAccountForSelect(int organizationId, string card)
         {
             try

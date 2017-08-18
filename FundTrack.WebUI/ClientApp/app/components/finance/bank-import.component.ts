@@ -14,6 +14,7 @@ import { TargetViewModel } from "../../view-models/concrete/finance/target-view.
 import { OrgAccountSelectViewModel } from "../../view-models/concrete/finance/org-accounts-select-view.model";
 import * as key from '../../shared/key.storage'
 import { AuthorizeUserModel } from "../../view-models/concrete/authorized-user-info-view.model";
+import { SpinnerComponent } from "../../shared/components/spinner/spinner.component";
 
 @Component({
     selector: 'bank-import',
@@ -23,33 +24,47 @@ import { AuthorizeUserModel } from "../../view-models/concrete/authorized-user-i
 })
 
 export class BankImportComponent implements OnInit {
+    //form for reactive validation
     public bankImportForm: FormGroup;
+    //card which belong to select org account
     public card: string;
-
+    //data which sent in request to privat24
     private dataForPrivat: DataRequestPrivatViewModel = new DataRequestPrivatViewModel();
 
+    //modal window to get bankImports
     @ViewChild("newBankImport")
     public newBankImportModalWindow: ModalComponent;
-
+    //modal window to create finOp
     @ViewChild("finOp")
     public finOpModalWindow: ModalComponent;
+    @ViewChild(SpinnerComponent) spinner: SpinnerComponent;
 
+    //model which contain data to create new finOp
     private _newFinOp: FinOpViewModel = new FinOpViewModel();
-
+    //data which was received from privat24
     private importData: ImportPrivatViewModel = new ImportPrivatViewModel();
+    //array which contain register bank imports in db
     private _dataForFinOp: ImportDetailPrivatViewModel[] = new Array<ImportDetailPrivatViewModel>();
+    //model for filtering bank imports
     private _bankSearchModel: BankImportSearchViewModel = new BankImportSearchViewModel();
+    //strings for contain date
     @Input() dataPrivatFrom: string;
     @Input() dataPrivatTo: string;
 
+    //array which contains targets to create new finOp
     private targets: TargetViewModel[] = new Array<TargetViewModel>();
+    //model which contain select orgaccount(name,number,id)
     private currentOrgAccount: OrgAccountSelectViewModel = new OrgAccountSelectViewModel();
     private currentOrgAccountNumber: string;
 
+    //current user in system
     private user: AuthorizeUserModel = new AuthorizeUserModel();
+    //index selected bank import in table
     private index: number;
+    //count bank imports in selected orgAccounts
     private count: number;
 
+    //constructor
     public constructor(private _service: BankImportService,
         private _finOpService: FinOpService,
         private _fb: FormBuilder,
@@ -81,14 +96,18 @@ export class BankImportComponent implements OnInit {
                             this.user = JSON.parse(localStorage.getItem(key.keyModel)) as AuthorizeUserModel;
                             this._finOpService.getTargets()
                                 .subscribe(response => this.targets = response);
-                            this._service.getAllExtracts(this.card)
-                                .subscribe(response => this._dataForFinOp = response);
                             this._finOpService.getOrgAccountForFinOp(this.user.orgId, this.card)
                                 .subscribe(response => this.currentOrgAccount = response);
+                            this.getAllExtracts();
                         }
                     });
             }
         }
+    }
+
+    private getAllExtracts() {
+        this._service.getAllExtracts(this.card, this.spinner)
+            .subscribe(response => this._dataForFinOp = response);
     }
 
     /*
@@ -154,24 +173,30 @@ export class BankImportComponent implements OnInit {
         }
     }
 
+    /**
+     * get bankImports from privat24
+     */
     public getExtracts() {
-        let datesFrom = this.dataPrivatFrom.split('-');
-        let datesTo = this.dataPrivatTo.split('-');
-        this.dataForPrivat.dataFrom = datesFrom.reverse().join('.');
-        this.dataForPrivat.dataTo = datesTo.reverse().join('.');
+        this.dataForPrivat.dataTo = this.dataPrivatTo.split('-').reverse().join('.');
+        this.dataForPrivat.dataFrom = this.dataPrivatFrom.split('-').reverse().join('.');
         this._service.getUserExtracts(this.dataForPrivat)
             .subscribe(response => {
                 this.importData = response;
                 if (!this.importData.error) {
                     this._service.registerBankExtracts(this.importData.importsDetail)
                         .subscribe(response => {
+                            this.showToast();
+                            setTimeout(() => {
+                                this.getAllExtracts();
+                                this.closeModal();
+                            }, 2500);
                         });
                 }
-                this.closeModal();
-                this.ngOnInit();
+
             });
     }
 
+    //filter bank Imports
     public searchBankImport() {
         this._bankSearchModel.card = this.card;
         if (!this._bankSearchModel.state) {
@@ -183,6 +208,7 @@ export class BankImportComponent implements OnInit {
             })
     }
 
+    //initialize data for new finOp
     public createFinOp(bankImport: ImportDetailPrivatViewModel) {
         this._newFinOp.description = bankImport.description;
         this._newFinOp.bankImportId = bankImport.id;
@@ -195,34 +221,54 @@ export class BankImportComponent implements OnInit {
         this.openFinOpModal();
     }
 
+    //save new initialize finOp
     public saveFinOp() {
-        this._finOpService.createFinOp(this._newFinOp)
-            .subscribe(response => console.log(response));
-        this.closeFinOpModal();
-        this._dataForFinOp[this.index].isLooked = true;
+        this._finOpService.createFinOp(this._newFinOp, this.spinner)
+            .subscribe(response => {
+                this.showToast();
+                setTimeout(() => {
+                    this.closeFinOpModal();
+                    this._dataForFinOp[this.index].isLooked = true;
+                }, 2500);
+            });
     }
 
     /**
-    * Closes modal window
+    * Closes bankImports modal window
     */
     public closeModal(): void {
         this.newBankImportModalWindow.hide();
     }
 
     /**
-     * Open modal window
+     * Open bankImports modal window
      */
     public onActionClick(): void {
         this.dataForPrivat.card = this.card;
         this.newBankImportModalWindow.show();
     }
 
+    /**
+     * close finOp modal window
+     */
     public closeFinOpModal(): void {
         this.finOpModalWindow.hide();
         this._newFinOp = new FinOpViewModel();
     }
 
+    /**
+     * open finOp modal window
+     */
     public openFinOpModal(): void {
         this.finOpModalWindow.show();
+    }
+
+    /*
+    Displays toast, that pops up when account is successfuly created
+    */
+    public showToast() {
+        var x = document.getElementById("snackbar")
+        x.className = "show";
+        setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
     }
 }

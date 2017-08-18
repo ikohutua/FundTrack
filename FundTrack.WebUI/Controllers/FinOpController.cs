@@ -39,6 +39,11 @@ namespace FundTrack.WebUI.Controllers
             return this._service.GetTargets();
         }
 
+        /// <summary>
+        /// Creates the fin op.
+        /// </summary>
+        /// <param name="finOpModel">The fin op model.</param>
+        /// <returns></returns>
         [HttpPost("CreateFinOp")]
         [Authorize(Roles = "admin, moderator")]
         public FinOpViewModel CreateFinOp([FromBody] FinOpViewModel finOpModel)
