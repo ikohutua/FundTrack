@@ -1,0 +1,74 @@
+﻿<div>   
+    <div class="row">
+        <div class="col-md-offset-2 col-md-4">
+            <p>
+                Напевно, багатьом людям траплялися публікації про те, як рятували солдатам життя бронежилети, як допомагали їм каски, як зручно
+                воювати в надійному та практичному взутті. Якби прості люди спільними зусиллями не жертвували кошти на усі ці критично важливі для армії речі, ситуація була би значно гіршою.
+                Для тих, хто бажає зробити пожертву для української армії, на нашому сайті є можливість це здійснити.
+                А звітність допоможе перевірити рух коштів, які ви вносите.
+            </p>
+            <p> Допомогти може кожен!</p>
+        </div>
+        <div class="col-md-offset-1 col-md-4">
+            <form [formGroup]="donateForm">               
+                <label> Виберіть організацію </label>
+                <dropdown-org class="line-left"> </dropdown-org>            
+                <div *ngIf="hasAccountForDonate">
+                    <label> Виберіть рахунок</label>
+                    <select class="input-control" formControlName="accountForDonation" [(ngModel)]="accountForDonation" (ngModelChange)="onSelectChange($event)">
+                        <option class="form-control" *ngFor="let accountForDonation of donateAccounts" [ngValue]="accountForDonation"> {{accountForDonation.name}} </option>
+                    </select>
+                    <p *ngIf="accountForDonation.description">
+                        <strong> Опис рахунку: </strong> {{accountForDonation.description}}
+                    </p>
+                    <div *ngIf="formErrors.accountForDonation">
+                        {{formErrors.accountForDonation}}
+                    </div>
+                </div>
+                <label> Сума </label>
+                <input class="input-control" type="text" formControlName="amount" />
+                <select class="input-control" formControlName="currency" *ngIf="currencies" [(ngModel)]="currency" (ngModelChange)="currencyChange($event)">
+                    <option *ngFor="let currency of currencies" [ngValue]="currency">{{currency.currencyShortName}} </option>
+                </select><br />
+                <div *ngIf="formErrors.amount">
+                    {{formErrors.amount}}
+                </div>
+                <div *ngIf="formErrors.currency">
+                    {{formErrors.currency}}
+                </div>            
+                <label> Призначення </label>
+                <select class="input-control" formControlName="target" *ngIf="targets" [(ngModel)]="target" (ngModelChange)="targetChange($event)">
+                    <option *ngFor="let target of targets" [ngValue]="target"> {{target.name}} </option>
+                </select><br />
+                <div *ngIf="formErrors.target">
+                    {{formErrors.target}}
+                </div>
+                <label> Опис </label> <br />
+                <textarea class="input-control" formControlName="description" rows="5" cols="40">
+            
+                </textarea><br />
+
+                <div hidden>
+                    <input type="email">
+                    <p> Введіть email, якщо хочете отримати інформацію про платіж на пошту</p>
+                </div>
+
+                <button type="submit" class="btn btn-primary right" (click)="sendDonateRequest()"> Send </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<app-modal #gratitude>
+    <div class="app-modal-body">
+        <p> {{message}}</p>
+        <p> Дякуємо! :) </p>
+    </div>
+    <div class="app-modal-footer">
+        <button (click)="modal.hide()" class="btn btn-primary"> Закрити</button>
+    </div>
+</app-modal>

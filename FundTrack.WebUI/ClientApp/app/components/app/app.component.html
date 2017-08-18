@@ -18,6 +18,9 @@
                 <form class="navbar-form navbar-left" *ngIf="_service.showDropDown">
                     <dropdown-org></dropdown-org>
                 </form>
+                <form class="navbar-form navbar-left">
+                    <a [routerLink]="['finance/donate']"> Допомогти </a>
+                </form>
                 <form class="nav navbar-nav navbar-right">
                     <user-states></user-states>
                 </form>
