@@ -77,23 +77,17 @@ export class BankImportComponent implements OnInit {
                 this._service.getCountExtractsOnCard(this.card)
                     .subscribe(response => {
                         this.count = response;
-                            if (localStorage.getItem(key.keyToken)) {
-                                this.user = JSON.parse(localStorage.getItem(key.keyModel)) as AuthorizeUserModel;
-                                this._finOpService.getTargets()
-                                    .subscribe(response => this.targets = response);
-                                this.getAllExtracts();
-                                this._finOpService.getOrgAccountForFinOp(this.user.orgId, this.card)
-                                    .subscribe(response => this.currentOrgAccount = response);
-                            }
+                        if (localStorage.getItem(key.keyToken)) {
+                            this.user = JSON.parse(localStorage.getItem(key.keyModel)) as AuthorizeUserModel;
+                            this._finOpService.getTargets()
+                                .subscribe(response => this.targets = response);
+                            this._service.getAllExtracts(this.card)
+                                .subscribe(response => this._dataForFinOp = response);
+                            this._finOpService.getOrgAccountForFinOp(this.user.orgId, this.card)
+                                .subscribe(response => this.currentOrgAccount = response);
+                        }
                     });
             }
-        }
-    }
-
-    public getAllExtracts() {
-        if (this.count != 0) {
-            this._service.getAllExtracts(this.card)
-                .subscribe(response => this._dataForFinOp = response);
         }
     }
 
@@ -174,7 +168,7 @@ export class BankImportComponent implements OnInit {
                         });
                 }
                 this.closeModal();
-                this.getAllExtracts();
+                this.ngOnInit();
             });
     }
 
