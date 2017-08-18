@@ -1,76 +1,73 @@
-﻿<div class="col-md-10 col-md-offset-1 fundtrack-style fundtrack-style-border" style="font-size:large;text-align:center; padding:10px;">
-    Виписки з банку<br />
-</div>
-<div class="col-md-12">
-    <div class="col-md-2 col-md-offset-0 back">
-        <div class="form-group" style="float:left !important;">
-            <label class="control-label" style="margin-top:10px;">Дата "з":</label>
-            <input class="form-control" type="date"
-                   placeholder="По"
-                   required=""
-                   [(ngModel)]="dataPrivatFrom" />
-        </div>
-        <div class="form-group" style="float:left !important;">
-            <label class="control-label">Дата "по":</label>
-            <input class="form-control" type="date"
-                   placeholder="По"
-                   required=""
-                   [(ngModel)]="dataPrivatTo" />
-        </div>
-        <div class="form-group" style="float:left !important;">
-            <div>
-                <label class="control-label">Виберіть стан:</label>
-                <select id="categoryType" class="form-control">
-                    <option value="" disabled selected style="display: none;">Виберіть стан</option>
-                    <option value="">Усі</option>
-                    <option value=true>Оброблені</option>
-                    <option value=false>Необроблені</option>
-                </select>
+﻿<div class="col-md-12">
+    <div class="col-md-2 col-md-offset-0 container back table-responsive">
+        <button type="button" class="btn btn-default btn-lg btn-block" style="margin-top:10%; border-color:#314720;color:#314720" (click)="onActionClick()">
+            <strong>Нові виписки</strong>
+        </button>
+        <br>
+        <button type="button" class="btn btn-default btn-lg btn-block" style="margin-bottom:10%; border-color:#314720;color:#314720" data-toggle="collapse" data-target="#demo">
+            <strong>Фільтри</strong>
+        </button>
+
+        <div id="demo" class="collapse">
+            <div class="form-group" style="float:left !important;">
+                <label class="control-label" style="margin-top:10%;">Дата "з":</label>
+                <input class="form-control" type="date"
+                       placeholder="По"
+                       [(ngModel)]="_bankSearchModel.dataFrom" />
             </div>
-            <br />
-            <button id="filteredbutton" name="cancelbutton" class="btn btn-fundtrack-style">Шукати</button>
+            <div class="form-group" style="float:left !important;">
+                <label class="control-label">Дата "по":</label>
+                <input class="form-control" type="date"
+                       placeholder="По"
+                       [(ngModel)]="_bankSearchModel.dataTo" />
+            </div>
+            <div class="form-group" style="float:left !important;">
+                <div>
+                    <label class="control-label">Виберіть стан:</label>
+                    <select id="categoryType" class="form-control" [(ngModel)]="_bankSearchModel.state">
+                        <option disabled selected style="display: none;">Виберіть стан</option>
+                        <option value="">Всі виписки</option>
+                        <option value=true>Оброблені</option>
+                        <option value=false>Необроблені</option>
+                    </select>
+                </div>
+                <br />
+                <button class="btn btn-fundtrack-style" (click)="searchBankImport()">Шукати</button>
+            </div>
         </div>
     </div>
     <div class="col-md-8">
         <div class="row grid-divider">
-            <div class="col-md-6">
-                <div class="col-padding">
-                    <table class="table table-list-search back">
-                        <thead>
-                            <tr>
-                                <th>Стан</th>
-                                <th>Дата</th>
-                                <th>Код</th>
-                                <th>Сума</th>
-                                <th>Залишок</th>
-                                <th>Опис</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let dataFinOp of _dataForFinOp">
-                                <td><input type="checkbox" [checked]="dataFinOp.tempState" [disabled]="dataFinOp.isLooked" (change)="dataFinOp.tempState= !dataFinOp.tempState" /></td>
-                                <td> {{dataFinOp.trandate}}</td>
-                                <td> {{dataFinOp.appCode}}</td>
-                                <td> {{dataFinOp.cardAmount}}</td>
-                                <td> {{dataFinOp.rest}}</td>
-                                <td> {{dataFinOp.description}}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <div class="form-inline back">
-                        <button id="submit" class="btn btn-fundtrack-style pull-right" (click)="onActionClick()">Нові виписки</button>
-                        <button id="submit" class="btn btn-fundtrack-style pull-right">Обробити</button>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="col-padding">
-                </div>
-            </div>
+            <table class="table table-list-search back" style="margin-left:4%">
+                <thead>
+                    <tr>
+                        <th>Дата</th>
+                        <th>Код</th>
+                        <th>Сума</th>
+                        <th>Залишок</th>
+                        <th>Стан</th>
+                        <th>Опис</th>
+                        <th>Обробити</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let dataFinOp of _dataForFinOp"
+                        [ngClass]="{'activated':dataFinOp.isLooked==true,'deactivated':dataFinOp.isLooked==false}">
+                        <td> {{dataFinOp.trandate}}</td>
+                        <td> {{dataFinOp.appCode}}</td>
+                        <td> {{dataFinOp.cardAmount}}</td>
+                        <td> {{dataFinOp.rest}}</td>
+                        <td class='deactivated-state' *ngIf="!dataFinOp.isLooked">Необроблена</td>
+                        <td *ngIf="dataFinOp.isLooked">Оброблена</td>
+                        <td> {{dataFinOp.description}}</td>
+                        <td><button id="submit" class="btn btn-fundtrack-style pull-right" [disabled]="dataFinOp.isLooked" (click)="createFinOp(dataFinOp)">Обробити</button></td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
-<app-modal>
+<app-modal #newBankImport>
     <div class="app-modal-header">
         <button type="button" class="close" aria-hidden="true" (click)="closeModal()">&times;</button>
         <h4 class="modal-title">Заповніть дані: </h4>
@@ -145,6 +142,61 @@
             OK
         </button>
         <button (click)="closeModal()"
+                class="btn btn-default pull-right"
+                data-dismiss="modal">
+            Скасувати
+        </button>
+    </div>
+</app-modal>
+
+<app-modal #finOp>
+    <div class="app-modal-header">
+        <button type="button" class="close" aria-hidden="true" (click)="closeFinOpModal()">&times;</button>
+        <h4 class="modal-title">Заповніть дані для фінансової операції: </h4>
+    </div>
+    <div class="app-modal-body">
+        <div class="form-group">
+            <label class="control-label">Сума:</label>
+            <input class="form-control"
+                   type="text"   
+                   [disabled]="true"
+                   placeholder="Сума"
+                   required=""
+                   [(ngModel)]="_newFinOp.amount" />
+        </div>
+        <div class="form-group">
+            <label class="control-label">Рахунок:</label>
+            <input class="form-control"
+                   type="text"
+                   [disabled]="true"
+                   placeholder="Рахунок"
+                   required=""
+                   [(ngModel)]="currentOrgAccountNumber" />
+        </div>
+        <div class="form-group">
+            <label class="control-label">Опис:</label>
+            <textarea class="form-control"
+                      type="text"
+                      placeholder="Опис"
+                      required=""
+                      [(ngModel)]="_newFinOp.description">
+</textarea>
+        </div>
+        <div>
+            <label class="control-label">Виберіть призначення платежу:</label>
+            <select class="form-control" [(ngModel)]="_newFinOp.targetName">
+                <option [ngValue]="undefined" selected>Призначення платежу</option>
+                <option value={{item.name}} *ngFor="let item of targets">{{item.name}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="app-modal-footer">
+        <button class="btn btn-fundtrack-style pull-right"
+                (click)="saveFinOp()"
+                data-dismiss="modal">
+            OK
+        </button>
+        <button (click)="closeFinOpModal()"
                 class="btn btn-default pull-right"
                 data-dismiss="modal">
             Скасувати

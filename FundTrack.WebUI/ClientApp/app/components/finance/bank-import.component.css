@@ -5,12 +5,13 @@
 }
 
 .table {
-    display:block;
+    display:inline-block;
     margin-left: 1%;
     margin-right: 2%;
-    height: auto !important;
-    max-height: 570px !important;
-    overflow-x: hidden !important;
+    max-height: 600px !important;
+    height:auto;
+    overflow-x: auto;
+    width:100% !important;
     overflow-y:auto;
 }
 
@@ -79,4 +80,17 @@
         0 6px 20px 0
     rgba(0,0,0,0.19);
     margin-top:-10px;
+}
+
+.deactivated {
+    color: black;
+}
+
+.activated{
+    color:black;
+    opacity:0.5;
+}
+
+.deactivated-state {
+    color: #5b9b21;
 }

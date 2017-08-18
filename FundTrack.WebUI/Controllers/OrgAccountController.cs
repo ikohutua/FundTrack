@@ -44,5 +44,31 @@ namespace FundTrack.WebUI.Controllers
         {
             return this._orgAccountService.DeleteOrganizationAccount(model);
         }
+
+        /// <summary>
+        /// Gets the org accounts for fin op.
+        /// </summary>
+        /// <param name="orgId">The org identifier.</param>
+        /// <returns></returns>
+        [HttpGet("GetOrgAccountsForFinOp/{orgId}")]
+        [Authorize(Roles = "admin, moderator")]
+        public JsonResult GetOrgAccountsForFinOp(int orgId)
+        {
+            return Json(this._orgAccountService.GetAccountsForSelectByOrganizationId(orgId));
+        }
+
+        /// <summary>
+        /// Gets the org accounts for fin op.
+        /// </summary>
+        /// <param name="orgId">The org identifier.</param>
+        /// <param name="cardNumber">The card number.</param>
+        /// <returns></returns>
+        [HttpGet("GetOrgAccountForFinOp/{orgId}/{cardNumber}")]
+        [Authorize(Roles = "admin, moderator")]
+        public JsonResult GetOrgAccountsForFinOp(int orgId,string cardNumber)
+        {
+            return Json(this._orgAccountService.GetAccountForSelect(orgId,cardNumber));
+        }
+
     }
 }

@@ -12,6 +12,7 @@ import 'rxjs/add/operator/catch';
 import { ImportDetailPrivatViewModel, ImportPrivatViewModel } from "../../view-models/concrete/import-privat-view.model";
 import { DataRequestPrivatViewModel } from "../../view-models/concrete/data-request-privat-view.model";
 import { BankImportSearchViewModel } from "../../view-models/concrete/finance/bank-import-search-view.model";
+import * as key from '../../shared/key.storage';
 
 @Injectable()
 export class BankImportService {
@@ -100,6 +101,7 @@ export class BankImportService {
     */
     private getRequestOptions() {
         let headers = new Headers({ 'Content-Type': 'application/json' });
+        headers.append("Authorization", "Bearer " + localStorage.getItem(key.keyToken));
         let options = new RequestOptions({ headers: headers });
         return options;
     }

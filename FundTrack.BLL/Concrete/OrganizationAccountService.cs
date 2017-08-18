@@ -50,7 +50,7 @@ namespace FundTrack.BLL.Concrete
                     {
                         var orgAccount = this._unitOfWork.OrganizationAccountRepository.Read(model.OrgAccountId);
                         this._unitOfWork.OrganizationAccountRepository.Delete(model.OrgAccountId);
-                        if (orgAccount.AccountType=="Банк")
+                        if (orgAccount.AccountType == "Банк")
                         {
                             var bankAccount = this._unitOfWork.BankAccountRepository.Get(orgAccount.BankAccount.Id);
                             this._unitOfWork.BankAccountRepository.Delete(bankAccount.Id);
@@ -100,6 +100,24 @@ namespace FundTrack.BLL.Concrete
             {
                 string message = string.Format("Неможливо отримати рахунки організації. Помилка: {0}", e.Message);
                 throw new BusinessLogicException(message, e);
+            }
+        }
+
+        public IEnumerable<OrgAccountSelectViewModel> GetAccountsForSelectByOrganizationId(int organizationId)
+        {
+            try
+            {
+                return this._unitOfWork.OrganizationAccountRepository.ReadAllOrgAccounts(organizationId)
+                                                                     .Select(item => new OrgAccountSelectViewModel
+                                                                     {
+                                                                         Id = item.Id,
+                                                                         OrgAccountName = item.OrgAccountName
+                                                                     });
+            }
+            catch (Exception ex)
+            {
+                string message = string.Format("Неможливо отримати рахунки організації. Помилка: {0}", ex.Message);
+                throw new BusinessLogicException(message, ex);
             }
         }
 
@@ -252,6 +270,25 @@ namespace FundTrack.BLL.Concrete
                 }
             }
             return String.Empty;
+        }
+
+        public OrgAccountSelectViewModel GetAccountForSelect(int organizationId, string card)
+        {
+            try
+            {
+                var orgAccount = this._unitOfWork.OrganizationAccountRepository.GetOrgAccountByCardNumber(organizationId, card);
+                return new OrgAccountSelectViewModel
+                {
+                    Id = orgAccount.Id,
+                    OrgAccountName = orgAccount.OrgAccountName,
+                    OrgAccountNumber=orgAccount.BankAccount.AccNumber
+                };
+            }
+            catch (Exception ex)
+            {
+                string message = string.Format("Неможливо отримати рахунок організації. Помилка: {0}", ex.Message);
+                throw new BusinessLogicException(message, ex);
+            }
         }
     }
 }

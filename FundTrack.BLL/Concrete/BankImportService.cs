@@ -78,8 +78,7 @@ namespace FundTrack.BLL.Concrete
         {
             try
             {
-                var rawExtracts = this.ConvertFromEntityToModel(bankSearchModel.Card)
-                                      .Where(bid => (bid.trandate >= bankSearchModel.DataFrom && bid.trandate <= bankSearchModel.DataTo));
+                var rawExtracts = this.ConvertFromEntityToModel(this._unitOfWork.BankImportDetailRepository.FilterBankImportDetail(bankSearchModel));
                 if (rawExtracts != null)
                 {
                     return rawExtracts;
@@ -100,7 +99,7 @@ namespace FundTrack.BLL.Concrete
         {
             try
             {
-                return this.ConvertFromEntityToModel(card);
+                return this.ConvertFromEntityToModel(this._unitOfWork.BankImportDetailRepository.GetBankImportDetailsOneCard(card));
             }
             catch (Exception ex)
             {
@@ -108,26 +107,24 @@ namespace FundTrack.BLL.Concrete
             }
         }
 
-        private IEnumerable<ImportDetailPrivatViewModel> ConvertFromEntityToModel(string card)
+        private IEnumerable<ImportDetailPrivatViewModel> ConvertFromEntityToModel(IEnumerable<BankImportDetail> bankImportDetails)
         {
             try
             {
-                return this._unitOfWork.BankImportDetailRepository.GetBankImportsDetail()
-                                                                  .Select(item => new ImportDetailPrivatViewModel
-                                                                  {
-                                                                      id = item.Id,
-                                                                      isLooked = item.IsLooked,
-                                                                      trandate = item.Trandate,
-                                                                      appCode = item.AppCode.ToString(),
-                                                                      amount = item.Amount,
-                                                                      rest = item.Rest,
-                                                                      cardAmount = item.CardAmount,
-                                                                      description = item.Description,
-                                                                      terminal = item.Terminal,
-                                                                      card = item.Card,
-                                                                      tempState = item.IsLooked
-                                                                  })
-                                                                  .Where(bid => bid.card == card);
+                return bankImportDetails.Select(item => new ImportDetailPrivatViewModel
+                {
+                    id = item.Id,
+                    isLooked = item.IsLooked,
+                    trandate = item.Trandate,
+                    appCode = item.AppCode.ToString(),
+                    amount = item.Amount,
+                    rest = item.Rest,
+                    cardAmount = item.CardAmount,
+                    description = item.Description,
+                    terminal = item.Terminal,
+                    card = item.Card,
+                    tempState = item.IsLooked
+                });
             }
             catch (Exception ex)
             {

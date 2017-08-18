@@ -96,14 +96,6 @@ namespace FundTrack.DAL.Abstract
         IStatusRepository StatusRepository { get; }
 
         /// <summary>
-        /// Gets the bank import repository.
-        /// </summary>
-        /// <value>
-        /// The bank import repository.
-        /// </value>
-        IBankImportRepository BankImportRepository { get; }
-
-        /// <summary>
         /// Gets the bank import detail repository.
         /// </summary>
         /// <value>
@@ -136,7 +128,13 @@ namespace FundTrack.DAL.Abstract
         ITargetRepository TargetRepository { get; }
         IDonationRepository DonationRepository { get; }
 
-
+        /// <summary>
+        /// Gets the fin op repository.
+        /// </summary>
+        /// <value>
+        /// The fin op repository.
+        /// </value>
+        IFinOpRepository FinOpRepository { get; }
 
         /// <summary>
         /// Saves all changes made in this context to the database.

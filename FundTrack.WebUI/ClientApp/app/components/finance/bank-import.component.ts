@@ -7,11 +7,19 @@ import { ImportDetailPrivatViewModel, ImportPrivatViewModel } from "../../view-m
 import { BankImportSearchViewModel } from "../../view-models/concrete/finance/bank-import-search-view.model";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { ValidatorsService } from "../../services/concrete/validators/validator.service";
+import { FinOpViewModel } from "../../view-models/concrete/finance/finOp-view.model";
+import { isBrowser } from "angular2-universal";
+import { FinOpService } from "../../services/concrete/finance/finOp.service";
+import { TargetViewModel } from "../../view-models/concrete/finance/target-view.model";
+import { OrgAccountSelectViewModel } from "../../view-models/concrete/finance/org-accounts-select-view.model";
+import * as key from '../../shared/key.storage'
+import { AuthorizeUserModel } from "../../view-models/concrete/authorized-user-info-view.model";
 
 @Component({
+    selector: 'bank-import',
     template: require('./bank-import.component.html'),
     styles: [require('./bank-import.component.css')],
-    providers: [BankImportService]
+    providers: [BankImportService,FinOpService]
 })
 
 export class BankImportComponent implements OnInit {
@@ -20,9 +28,13 @@ export class BankImportComponent implements OnInit {
 
     private dataForPrivat: DataRequestPrivatViewModel = new DataRequestPrivatViewModel();
 
-    @ViewChild(ModalComponent)
+    @ViewChild("newBankImport")
+    public newBankImportModalWindow: ModalComponent;
 
-    public modalWindow: ModalComponent;
+    @ViewChild("finOp")
+    public finOpModalWindow: ModalComponent;
+
+    private _newFinOp: FinOpViewModel = new FinOpViewModel();
 
     private importData: ImportPrivatViewModel = new ImportPrivatViewModel();
     private _dataForFinOp: ImportDetailPrivatViewModel[] = new Array<ImportDetailPrivatViewModel>();
@@ -30,7 +42,15 @@ export class BankImportComponent implements OnInit {
     @Input() dataPrivatFrom: string;
     @Input() dataPrivatTo: string;
 
+    private targets: TargetViewModel[] = new Array<TargetViewModel>();
+    private currentOrgAccount: OrgAccountSelectViewModel = new OrgAccountSelectViewModel();
+    private currentOrgAccountNumber: string;
+
+    private user: AuthorizeUserModel = new AuthorizeUserModel();
+    private index: number;
+
     public constructor(private _service: BankImportService,
+        private _finOpService: FinOpService,
         private _fb: FormBuilder,
         private _validatorsService: ValidatorsService) {
         this.createForm();
@@ -51,8 +71,17 @@ export class BankImportComponent implements OnInit {
     }
 
     ngOnInit() {
-        this._service.getAllExtracts(this.card)
-            .subscribe(response => this._dataForFinOp = response);
+        if (isBrowser) {
+            if (localStorage.getItem(key.keyToken)) {
+                this.user = JSON.parse(localStorage.getItem(key.keyModel)) as AuthorizeUserModel;
+                this._service.getAllExtracts(this.card)
+                    .subscribe(response => this._dataForFinOp = response);
+                this._finOpService.getTargets()
+                    .subscribe(response => this.targets = response);
+                this._finOpService.getOrgAccountForFinOp(this.user.orgId, this.card)
+                    .subscribe(response => this.currentOrgAccount = response);
+            }
+        }
     }
 
     /*
@@ -126,36 +155,67 @@ export class BankImportComponent implements OnInit {
         this._service.getUserExtracts(this.dataForPrivat)
             .subscribe(response => {
                 this.importData = response;
-                console.log(this.importData);
                 if (!this.importData.error) {
                     this._service.registerBankExtracts(this.importData.importsDetail)
                         .subscribe(response => {
-                            let dataFrom = this.dataForPrivat.dataFrom.split('.');
-                            let dataTo = this.dataForPrivat.dataTo.split('.');
-                            this._bankSearchModel.dataFrom = new Date(+dataFrom[2], ((+dataFrom[1]) - 1), +dataFrom[0], 3, 0, 0);
-                            this._bankSearchModel.dataTo = new Date(+dataTo[2], ((+dataTo[1]) - 1), (+dataTo[0]) + 1, 2, 59, 59);
-                            this._bankSearchModel.card = this.dataForPrivat.card;
-                            this._service.getRawExtracts(this._bankSearchModel)
-                                .subscribe(response => {
-                                    console.log(response);
-                                    this._dataForFinOp = response;
-                                })
                         });
                 }
             });
+    }
+
+    public searchBankImport() {
+        //let dataFrom = this.dataForPrivat.dataFrom.split('.');
+        //let dataTo = this.dataForPrivat.dataTo.split('.');
+        //this._bankSearchModel.dataFrom = new Date(+dataFrom[2], ((+dataFrom[1]) - 1), +dataFrom[0], 3, 0, 0);
+        //this._bankSearchModel.dataTo = new Date(+dataTo[2], ((+dataTo[1]) - 1), (+dataTo[0]) + 1, 2, 59, 59);
+        this._bankSearchModel.card = this.card;
+        if (!this._bankSearchModel.state) {
+            this._bankSearchModel.state == null;
+        }
+        this._service.getRawExtracts(this._bankSearchModel)
+            .subscribe(response => {
+                this._dataForFinOp = response;
+            })
+    }
+
+    public createFinOp(bankImport: ImportDetailPrivatViewModel) {
+        this._newFinOp.description = bankImport.description;
+        this._newFinOp.bankImportId = bankImport.id;
+        this._newFinOp.amount = +bankImport.cardAmount.split(' ')[0];
+        this._newFinOp.accToName = this.currentOrgAccount.orgAccountName;
+        this._newFinOp.orgId = this.user.orgId;
+        this.index = this._dataForFinOp.findIndex(element => element.id == bankImport.id);
+        this.currentOrgAccountNumber = this.currentOrgAccount.orgAccountName + ' ( ' + this.currentOrgAccount.orgAccountNumber + ' )';
+        this.openFinOpModal();
+    }
+
+    public saveFinOp() {
+        this._finOpService.createFinOp(this._newFinOp)
+            .subscribe(response => console.log(response));
+        this.closeFinOpModal();
+        this._dataForFinOp[this.index].isLooked = true;
     }
 
     /**
     * Closes modal window
     */
     public closeModal(): void {
-        this.modalWindow.hide();
+        this.newBankImportModalWindow.hide();
     }
 
     /**
      * Open modal window
      */
     public onActionClick(): void {
-        this.modalWindow.show();
+        this.newBankImportModalWindow.show();
+    }
+
+    public closeFinOpModal(): void {
+        this.finOpModalWindow.hide();
+        this._newFinOp = new FinOpViewModel();
+    }
+
+    public openFinOpModal(): void {
+        this.finOpModalWindow.show();
     }
 }
