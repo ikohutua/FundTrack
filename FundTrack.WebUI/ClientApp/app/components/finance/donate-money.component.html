@@ -83,8 +83,8 @@
 
 <app-modal #gratitude>
     <div class="app-modal-body">
-        <p> {{message}}</p>
-        <p> Дякуємо! :) </p>
+        <p class="styledParagraph"> {{message}}</p>        
+        <p class="styledParagraph"> {{messages.thank}} </p>       
     </div>
     <div class="app-modal-footer">
         <button (click)="modal.hide()" class="btn btn-primary"> Закрити</button>

@@ -1,4 +1,4 @@
-﻿import { Component, OnInit, Input, DoCheck, OnChanges, ViewChild, AfterViewInit } from "@angular/core";
+﻿import { Component, OnInit, Input, DoCheck, OnChanges, ViewChild, OnDestroy } from "@angular/core";
 import { RequestFondyViewModel } from "../../view-models/concrete/finance/donate/fondy.view-model";
 import { CheckPaymentStautsViewModel } from "../../view-models/concrete/finance/donate/check-payment-status.view-model";
 import { DonateService } from "../../services/concrete/finance/donate-money.service";
@@ -17,8 +17,7 @@ import { MerchantDataViewModel } from "../../view-models/concrete/finance/donate
 import { AuthorizeUserModel } from "../../view-models/concrete/authorized-user-info-view.model";
 import { DonateViewModel } from "../../view-models/concrete/finance/donate/donate.view-model";
 import { DonateMessages } from "../../shared/messages/donate-page.messages";
-
-
+import { StorageService } from "../../shared/item-storage-service";
 
 
 @Component({
@@ -27,7 +26,7 @@ import { DonateMessages } from "../../shared/messages/donate-page.messages";
     styleUrls: ['./donate-money.component.css'],
     providers: [DonateService, OrganizationGetGeneralInfoService]
 })
-export class MakeDonationComponent implements OnInit, DoCheck{
+export class MakeDonationComponent implements OnInit, DoCheck, OnDestroy{
 
     fondyPayModel: RequestFondyViewModel = new RequestFondyViewModel();
     checkPaymentModel: CheckPaymentStautsViewModel = new CheckPaymentStautsViewModel();
@@ -81,12 +80,14 @@ export class MakeDonationComponent implements OnInit, DoCheck{
     }
 
     constructor(private _donateService: DonateService, private _fb: FormBuilder,
-        private _getInfoService: OrganizationGetGeneralInfoService) {
+        private _storageService: StorageService) {
 
     }
 
 
     ngOnInit() {
+
+        this._storageService.showDropDown = false;
 
         if (localStorage.getItem("order_id")) {
             this.paymentInfo = JSON.parse(localStorage.getItem("merchantData"));
@@ -128,10 +129,6 @@ export class MakeDonationComponent implements OnInit, DoCheck{
         )        
     }
 
-    ngAfterViewInit() {
-        
-    }
-
     ngDoCheck() {
         if (sessionStorage.getItem('id')) {
             this.organizationId = parseInt(sessionStorage.getItem('id'));
@@ -140,6 +137,10 @@ export class MakeDonationComponent implements OnInit, DoCheck{
             sessionStorage.removeItem('id');
             this.hasAccountForDonate = false;
         }
+    }
+
+    ngOnDestroy(): void {
+        this._storageService.showDropDown = true;
     }
 
     createSignature(parameters: RequestFondyViewModel): string {

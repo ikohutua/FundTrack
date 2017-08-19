@@ -116,16 +116,15 @@ app.container-fluid {
     margin-left: 3px;
 }
 
-.help-button {
-   
+.help-button img{
+    width: 5%;
 }
 
-.help-button img{
-    width: 20%;
+.right{
+    float: right;
+    margin-top: -35px;
 }
-.help-button a{
-    
-}
+
 
 /*-------------------------------*/
 /*           For sidebar         */
