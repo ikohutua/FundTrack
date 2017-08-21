@@ -3,6 +3,7 @@
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     display: block;
     margin-left: 10px;
+    width:91.5%;
 }
 td {
     font-size: 24px;
@@ -29,4 +30,13 @@ td {
     text-align: right;
     color: #5b9b21;
     font-weight: bold;
+}
+
+.table {
+    display: inline-block;
+    max-height: 400px !important;
+    height: auto;
+    overflow-x: auto;
+    width: 100%;
+    overflow-y: auto;
 }

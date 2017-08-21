@@ -54,7 +54,7 @@
                 <tbody>
                     <tr *ngFor="let dataFinOp of _dataForFinOp"
                         [ngClass]="{'activated':dataFinOp.isLooked==true,'deactivated':dataFinOp.isLooked==false}">
-                        <td> {{dataFinOp.trandate}}</td>
+                        <td> {{dataFinOp.trandate | date: 'dd/MM/yyyy hh:mm'}}</td>
                         <td> {{dataFinOp.appCode}}</td>
                         <td> {{dataFinOp.cardAmount}}</td>
                         <td> {{dataFinOp.rest}}</td>

@@ -93,6 +93,7 @@ namespace FundTrack.BLL.Concrete
             try
             {
                 var finOps= this._unitOfWork.FinOpRepository.GetFinOpByOrgAccount(orgAccountId)
+
                                                         .Select(f => new FinOpListViewModel
                                                         {
                                                             Date = f.FinOpDate,
@@ -105,10 +106,10 @@ namespace FundTrack.BLL.Concrete
             }
             catch (Exception ex)
             {
-                return (IEnumerable<FinOpListViewModel>)new FinOpListViewModel
+                return new FinOpListViewModel
                 {
                     Error = "Список фінансових операцій порожній."
-                };
+                } as IEnumerable<FinOpListViewModel>;
             }
         }
     }
