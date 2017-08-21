@@ -127,8 +127,9 @@ export class AuthorizationComponent {
             localStorage.setItem(keys.keyModel, JSON.stringify(this.userAuthorizedInfo.userModel));
             this._userResponseService.getUserResponseWithNewStatus(this.userAuthorizedInfo.userModel.orgId)
                 .subscribe(count => {
-                    this._storage.emitAuthorizeUserEvent(this.userAuthorizedInfo.userModel, count);
-                    sessionStorage.setItem("NewResponse", count.toString());
+                    this._storage.emitAuthorizeUserEvent(this.userAuthorizedInfo.userModel);
+                    this._storage.emitNavChangeEvent(count)
+                    sessionStorage.setItem(keys.keyNewResponse, count.toString());
                 });
             this._router.navigate(['/']);
         }

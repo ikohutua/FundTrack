@@ -8,6 +8,7 @@ import { FormControl, FormGroup, AbstractControl, Validators, FormBuilder, React
 import { matchingPasswords } from './match-password.validator';
 import { ValidationViewModel } from "../../view-models/concrete/validation-view.model";
 import 'rxjs/add/operator/catch';
+import { StorageService } from "../../shared/item-storage-service";
 
 
 @Component({
@@ -40,6 +41,7 @@ export class RegistrationComponent {
 
     constructor(private _router: Router,
                 private _userService: UserService,
+                private _storage: StorageService,
                 private _formBuilder: FormBuilder)
     {
         this.buldForm();
@@ -67,6 +69,7 @@ export class RegistrationComponent {
             }
             else {
                 localStorage.setItem(keys.keyModel, JSON.stringify(this.autType.userModel));
+                this._storage.emitAuthorizeUserEvent(this.autType.userModel); 
                 this._router.navigate(['/']);              
             }
             }, error => {

@@ -24,9 +24,8 @@ export class StorageService {
         return this.navchange;
     }
 
-    emitAuthorizeUserEvent(user, count) {
+    emitAuthorizeUserEvent(user) {
         this.authorizeUser.emit(user);
-        this.navchange.emit(count);
     }
 
     getAuthorizeUserEmitter() {

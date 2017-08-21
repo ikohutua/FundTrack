@@ -27,7 +27,7 @@ export class UserStatesComponent implements AfterContentChecked {
         this.name = null;
         this.isAdmin = false;
         this._authorizationService.logOff();
-        this._storage.emitAuthorizeUserEvent(null, 0);
+        this._storage.emitAuthorizeUserEvent(null);
         this._storage.bannedDescription = '';
     }
 
