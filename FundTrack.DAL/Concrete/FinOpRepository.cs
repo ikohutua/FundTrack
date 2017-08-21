@@ -54,5 +54,22 @@ namespace FundTrack.DAL.Concrete
                 .Include(fo=>fo.OrgAccountTo)
                 .FirstOrDefault(fo => fo.Id == id);
         }
+
+        /// <summary>
+        /// Reads this instance.
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<FinOp> Read()
+        {
+            return this._context.FinOps;
+        }
+
+        public IEnumerable<FinOp> GetFinOpByOrgAccount(int orgAccountId)
+        {
+            return this._context.FinOps
+                .Include(a => a.OrgAccountFrom)
+                .Include(a => a.OrgAccountTo)
+                .Where(a => orgAccountId == (a.OrgAccountTo != null ? a.OrgAccountTo.Id : a.OrgAccountFrom.Id));
+        }
     }
 }

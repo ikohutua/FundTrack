@@ -20,5 +20,12 @@ namespace FundTrack.BLL.Abstract
         /// <param name="finOpModel">The fin op model.</param>
         /// <returns></returns>
         FinOpViewModel CreateFinOp(FinOpViewModel finOpModel);
+
+        /// <summary>
+        /// Gets the fin ops by org account.
+        /// </summary>
+        /// <param name="orgAccountId">The org account identifier.</param>
+        /// <returns></returns>
+        IEnumerable<FinOpListViewModel> GetFinOpsByOrgAccount(int orgAccountId);
     }
 }

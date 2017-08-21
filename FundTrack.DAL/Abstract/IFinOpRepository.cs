@@ -5,6 +5,9 @@ using System.Text;
 
 namespace FundTrack.DAL.Abstract
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public interface IFinOpRepository
     {
         /// <summary>
@@ -27,5 +30,18 @@ namespace FundTrack.DAL.Abstract
         /// <param name="id">The identifier.</param>
         /// <returns></returns>
         FinOp GetById(int id);
+
+        /// <summary>
+        /// Reads this instance.
+        /// </summary>
+        /// <returns></returns>
+        IEnumerable<FinOp> Read();
+
+        /// <summary>
+        /// Gets the fin op by org account.
+        /// </summary>
+        /// <param name="orgAccountId">The org account identifier.</param>
+        /// <returns></returns>
+        IEnumerable<FinOp> GetFinOpByOrgAccount(int orgAccountId); 
     }
 }

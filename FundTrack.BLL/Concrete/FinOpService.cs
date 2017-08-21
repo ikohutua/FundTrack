@@ -82,6 +82,29 @@ namespace FundTrack.BLL.Concrete
                 throw new BusinessLogicException(ex.Message, ex);
             }
         }
+
+        public IEnumerable<FinOpListViewModel> GetFinOpsByOrgAccount(int orgAccountId)
+        {
+            try
+            {
+                return this._unitOfWork.FinOpRepository.GetFinOpByOrgAccount(orgAccountId)
+                                                        .Select(f => new FinOpListViewModel
+                                                        {
+                                                            Date = f.FinOpDate,
+                                                            Description = f.Description,
+                                                            Amount = f.Amount,
+                                                            CurrencyShortName = f.OrgAccountFrom != null ? f.OrgAccountFrom.Currency.ShortName : f.OrgAccountTo.Currency.ShortName,
+                                                            CurrencyFullName = f.OrgAccountFrom != null ? f.OrgAccountFrom.Currency.FullName : f.OrgAccountTo.Currency.FullName
+                                                        });
+            }
+            catch (Exception ex)
+            {
+                return (IEnumerable<FinOpListViewModel>)new FinOpListViewModel
+                {
+                    Error = "Список фінансових операцій порожній."
+                };
+            }
+        }
     }
 }
 

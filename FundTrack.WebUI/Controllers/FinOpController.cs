@@ -50,5 +50,17 @@ namespace FundTrack.WebUI.Controllers
         {
             return this._service.CreateFinOp(finOpModel);
         }
+
+        /// <summary>
+        /// Gets the fin ops by org acc identifier.
+        /// </summary>
+        /// <param name="orgAccountId">The org account identifier.</param>
+        /// <returns></returns>
+        [HttpGet("GetFinOpsByOrgAccId/{orgAccountId}")]
+        [Authorize(Roles = "admin, moderator")]
+        public IEnumerable<FinOpListViewModel> GetFinOpsByOrgAccId(int orgAccountId)
+        {
+            return this._service.GetFinOpsByOrgAccount(orgAccountId);
+        }
     }
 }
