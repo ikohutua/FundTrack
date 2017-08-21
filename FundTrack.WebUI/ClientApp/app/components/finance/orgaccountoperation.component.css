@@ -24,3 +24,9 @@ td {
     background-color: #4CAF50;
     margin-bottom: 10px;
 }
+
+.money {
+    text-align: right;
+    color: #5b9b21;
+    font-weight: bold;
+}

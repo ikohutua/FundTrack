@@ -83,19 +83,25 @@ namespace FundTrack.BLL.Concrete
             }
         }
 
+        /// <summary>
+        /// Gets the fin ops by org account.
+        /// </summary>
+        /// <param name="orgAccountId">The org account identifier.</param>
+        /// <returns></returns>
         public IEnumerable<FinOpListViewModel> GetFinOpsByOrgAccount(int orgAccountId)
         {
             try
             {
-                return this._unitOfWork.FinOpRepository.GetFinOpByOrgAccount(orgAccountId)
+                var finOps= this._unitOfWork.FinOpRepository.GetFinOpByOrgAccount(orgAccountId)
                                                         .Select(f => new FinOpListViewModel
                                                         {
                                                             Date = f.FinOpDate,
                                                             Description = f.Description,
                                                             Amount = f.Amount,
-                                                            CurrencyShortName = f.OrgAccountFrom != null ? f.OrgAccountFrom.Currency.ShortName : f.OrgAccountTo.Currency.ShortName,
-                                                            CurrencyFullName = f.OrgAccountFrom != null ? f.OrgAccountFrom.Currency.FullName : f.OrgAccountTo.Currency.FullName
+                                                            CurrencyShortName =  f.AccToId.HasValue?f.OrgAccountTo.Currency.ShortName: f.OrgAccountFrom.Currency.ShortName,
+                                                            CurrencyFullName = f.AccToId.HasValue ? f.OrgAccountTo.Currency.FullName : f.OrgAccountFrom.Currency.FullName
                                                         });
+                return finOps;
             }
             catch (Exception ex)
             {

@@ -64,12 +64,13 @@ namespace FundTrack.DAL.Concrete
             return this._context.FinOps;
         }
 
-        public IEnumerable<FinOp> GetFinOpByOrgAccount(int orgAccountId)
+        public IQueryable<FinOp> GetFinOpByOrgAccount(int orgAccountId)
         {
-            return this._context.FinOps
-                .Include(a => a.OrgAccountFrom)
+            var finOps= this._context.FinOps
                 .Include(a => a.OrgAccountTo)
-                .Where(a => orgAccountId == (a.OrgAccountTo != null ? a.OrgAccountTo.Id : a.OrgAccountFrom.Id));
+                .Include(a=>a.OrgAccountTo.Currency)
+                .Where(a => a.AccToId.HasValue? a.AccToId==orgAccountId:a.AccFromId==orgAccountId);
+            return finOps;
         }
     }
 }

@@ -6,15 +6,13 @@
                 <th>Дата і час операції</th>
                 <th>Опис операції</th>
                 <th>Сума</th>
-                <th>Залишок</th>
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let operation of operations">
-                <td>{{currentDate | date: 'dd/MM/yyyy'}}</td>
-                <td>Some kind of operation</td>
-                <td>1$</td>
-                <td>100 500$</td>
+            <tr *ngFor="let finOp of finOps">
+                <td>{{finOp.date | date: 'dd/MM/yyyy hh:mm'}}</td>
+                <td>{{finOp.description}}</td>
+                <td class="money">{{finOp.amount + ' ' + finOp.currencyShortName}}</td>
             </tr>
         </tbody>
     </table>

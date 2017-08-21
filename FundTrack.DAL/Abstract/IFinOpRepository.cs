@@ -1,6 +1,7 @@
 ﻿using FundTrack.DAL.Entities;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace FundTrack.DAL.Abstract
@@ -42,6 +43,6 @@ namespace FundTrack.DAL.Abstract
         /// </summary>
         /// <param name="orgAccountId">The org account identifier.</param>
         /// <returns></returns>
-        IEnumerable<FinOp> GetFinOpByOrgAccount(int orgAccountId); 
+        IQueryable<FinOp> GetFinOpByOrgAccount(int orgAccountId); 
     }
 }
