@@ -20,5 +20,7 @@ namespace FundTrack.DAL.Abstract
         OrgAccount GetOrgAccountByCardNumber(int orgId, string card);
 
         OrgAccount GetOrgAccountByName(int orgId, string orgAccountName);
+
+        OrgAccount GetOrgAccountById(int orgAccountId);
     }
 }

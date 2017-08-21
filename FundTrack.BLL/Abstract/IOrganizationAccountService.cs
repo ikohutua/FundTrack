@@ -24,5 +24,25 @@ namespace FundTrack.BLL.Abstract
         /// <param name="card">The card.</param>
         /// <returns></returns>
         OrgAccountSelectViewModel GetAccountForSelect(int organizationId, string card);
+
+        /// <summary>
+        /// Checks if donation function is enabled
+        /// </summary>
+        /// <param name="bankAccountId"></param>
+        /// <returns></returns>
+        bool IsDonationConnected(int orgAccountId);
+
+        bool IsDonationEnabled(int orgAccountId);
+
+        BankAccountDonateViewModel GetDonateCredentials(int orgAccountId);
+
+        bool ToggleDonateFunction(int orgAccountId);
+
+        BankAccountDonateViewModel ConnectDonateFunction(BankAccountDonateViewModel info);
+
+        int GetBankAccountIdByOrgAccountId(int orgAccountId);
+
+        BankAccountDonateViewModel DisableDonateFunction(int bankAccountId);
+
     }
 }

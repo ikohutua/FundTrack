@@ -9,6 +9,7 @@ import * as key from '../../../shared/key.storage';
 import { AuthorizeUserModel } from "../../../view-models/concrete/authorized-user-info-view.model";
 import { isBrowser } from "angular2-universal";
 import { DeleteOrgAccountViewModel } from "../../../view-models/concrete/finance/deleteorgaccount-view.model";
+import { DonateCredentialsViewModel } from "../../../view-models/concrete/finance/donate-credentials.view-model";
 /**
  * Service for super admin actions
  */
@@ -61,6 +62,50 @@ export class OrgAccountService {
                 .map((r: Response) => <DeleteOrgAccountViewModel>r.json())
                 .catch(this.handleError);
         }
+    }
+
+    public checkDonateStatus(bankAccountId: number): Observable<boolean> {
+        if (this.checkAuthorization()) {
+            return this._http.get('api/OrgAccount/GetDonationStatus/' + bankAccountId.toString())
+                .map((response: Response) => <boolean>response.json())
+                .catch(this.handleError);
+        }
+    }
+
+    public checkDonateEnable(orgAccountId: number): Observable<boolean> {
+        return this._http.get('api/OrgAccount/CheckDonateFunction/' + orgAccountId.toString())
+            .map((response: Response) => <boolean>response.json())
+            .catch(this.handleError);
+    }
+
+    public getDonateCredentials(orgAccountId: number): Observable<DonateCredentialsViewModel> {
+        return this._http.get('api/OrgAccount/GetDonateCredentials/' + orgAccountId.toString())
+            .map((response: Response) => <DonateCredentialsViewModel>response.json())
+            .catch(this.handleError);
+    }
+
+    public toggleDonate(orgAccountId: number): Observable<boolean> {
+        return this._http.put('api/OrgAccount/ToggleDonateFunction', orgAccountId, this.getRequestOptions())
+            .map((response: Response) => <boolean>response.json())
+            .catch((error: Response) => this.handleError(error));
+    }
+
+    public getBankAccId(orgAccountId: number): Observable<number> {
+        return this._http.get('api/OrgAccount/GetBankAccountId/' + orgAccountId.toString())
+            .map((r: Response) => <number>r.json())
+            .catch(this.handleError);
+    }
+
+    public connectDonation(info: DonateCredentialsViewModel): Observable<DonateCredentialsViewModel> {
+        return this._http.post('api/OrgAccount/ConnectDonation', info, this.getRequestOptions())
+            .map((res: Response) => <DonateCredentialsViewModel>res.json())
+            .catch((error: Response) => this.handleError(error));
+    }
+
+    public disableDonation(bankAccountId: number): Observable<DonateCredentialsViewModel> {
+        return this._http.put('api/OrgAccount/DisableDonateFunction', bankAccountId, this.getRequestOptions())
+            .map((res: Response) => <DonateCredentialsViewModel>res.json())
+            .catch((error: Response) => this.handleError(error));
     }
   
     private getRequestOptions() {

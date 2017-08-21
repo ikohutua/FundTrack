@@ -58,5 +58,46 @@ namespace FundTrack.WebUI.Controllers
             return Json(this._orgAccountService.GetAccountForSelect(orgId,cardNumber));
         }
 
+        [HttpGet("GetDonationStatus/{orgAccountId}")]        
+        public JsonResult GetDonationStatus(int orgAccountId)
+        {
+            return Json(_orgAccountService.IsDonationConnected(orgAccountId));
+        }
+
+        [HttpGet("CheckDonateFunction/{orgAccountId}")]
+        public JsonResult CheckDonateFunction(int orgAccountId)
+        {
+            return Json(_orgAccountService.IsDonationEnabled(orgAccountId));
+        }
+
+        [HttpGet("GetDonateCredentials/{orgAccountId}")]
+        public JsonResult GetDonateCredentials(int orgAccountId)
+        {
+            return Json(_orgAccountService.GetDonateCredentials(orgAccountId));
+        }
+
+        [HttpPut("[action]")]
+        public JsonResult ToggleDonateFunction([FromBody]int orgAccountId)
+        {
+             return Json(_orgAccountService.ToggleDonateFunction(orgAccountId));
+        }
+
+        [HttpGet("GetBankAccountId/{orgAccountId}")]
+        public int GetBankAccountId(int orgAccountId)
+        {
+            return _orgAccountService.GetBankAccountIdByOrgAccountId(orgAccountId);
+        }
+
+        [HttpPost("[action]")]
+        public BankAccountDonateViewModel ConnectDonation([FromBody]BankAccountDonateViewModel item)
+        {
+            return _orgAccountService.ConnectDonateFunction(item);
+        }
+
+        [HttpPut("DisableDonateFunction")]
+        public BankAccountDonateViewModel DisableDonateFunction([FromBody]int bankAccountId)
+        {
+            return _orgAccountService.DisableDonateFunction(bankAccountId);
+        }
     }
 }

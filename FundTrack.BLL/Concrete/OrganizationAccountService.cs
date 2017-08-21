@@ -279,5 +279,152 @@ namespace FundTrack.BLL.Concrete
                 throw new BusinessLogicException(message, ex);
             }
         }
+
+        /// <summary>
+        /// Checks if donation function is enabled
+        /// </summary>
+        /// <param name="bankAccountId"></param>
+        /// <returns></returns>
+        public bool IsDonationConnected(int orgAccountId)
+        {
+            var orgAccount = _unitOfWork.OrganizationAccountRepository.GetOrgAccountById(orgAccountId);
+
+            try
+            {               
+                if(orgAccount.BankAccount.MerchantId != null)
+                return true;
+                else return false;              
+            }
+
+            catch (Exception)
+            {
+                return false;
+            }            
+        }
+
+        public bool IsDonationEnabled(int orgAccountId)
+        {
+            var orgAccount = _unitOfWork.OrganizationAccountRepository.GetOrgAccountById(orgAccountId);
+
+            try
+            {
+                if (orgAccount.BankAccount.IsDonationEnabled!= null && (bool)orgAccount.BankAccount.IsDonationEnabled)
+                    return true;
+                else return false;
+            }
+
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        public BankAccountDonateViewModel GetDonateCredentials(int orgAccountId)
+        {
+            var orgAccount = _unitOfWork.OrganizationAccountRepository.GetOrgAccountById(orgAccountId);           
+
+            try
+            {
+                var result = new BankAccountDonateViewModel() {
+                    BankAccountId = orgAccount.BankAccount.Id,
+                    MerchantId = (int)orgAccount.BankAccount.MerchantId,
+                    MerchantPassword = orgAccount.BankAccount.MerchantPassword
+                };
+                return result;
+            }
+
+            catch (Exception ex)
+            {
+                string message = string.Format("Неможливо отримати інформацію для рахунку. Помилка: {0}", ex.Message);
+                throw new BusinessLogicException(message, ex);
+            }
+        }
+
+        public bool ToggleDonateFunction(int orgAccountId)
+        {
+            var orgAccount = _unitOfWork.OrganizationAccountRepository.GetOrgAccountById(orgAccountId);
+
+            try
+            {
+                var bankAccount = _unitOfWork.BankAccountRepository.Get((int)orgAccount.BankAccId);
+
+                bankAccount.IsDonationEnabled = !bankAccount.IsDonationEnabled;
+
+                _unitOfWork.BankAccountRepository.Update(bankAccount);
+
+                _unitOfWork.SaveChanges();
+
+                return (bool)bankAccount.IsDonationEnabled;
+            }
+
+            catch (Exception ex)
+            {
+                string message = string.Format("Неможливо змінити інформацію для рахунку. Помилка: {0}", ex.Message);
+                throw new BusinessLogicException(message, ex);
+            }           
+        }
+
+        public BankAccountDonateViewModel ConnectDonateFunction(BankAccountDonateViewModel info)
+        {
+            var bankAccount = _unitOfWork.BankAccountRepository.Get(info.BankAccountId);
+
+            if(bankAccount != null)
+            {
+                bankAccount.MerchantId = (int)info.MerchantId;
+                bankAccount.MerchantPassword = info.MerchantPassword;
+                bankAccount.IsDonationEnabled = true;
+
+                _unitOfWork.BankAccountRepository.Update(bankAccount);
+
+                _unitOfWork.SaveChanges();
+
+                return info;
+            }
+            else
+            {
+                return info;
+            }
+        }
+
+        public int GetBankAccountIdByOrgAccountId(int orgAccountId)
+        {
+            var orgAccount = _unitOfWork.OrganizationAccountRepository.GetOrgAccountById(orgAccountId);
+
+            if (orgAccount != null)
+            {
+                return (int)orgAccount.BankAccId;
+            }
+
+            else return 0;           
+        }
+
+        public BankAccountDonateViewModel DisableDonateFunction(int bankAccountId)
+        {
+            var bankAccount = _unitOfWork.BankAccountRepository.Get(bankAccountId);
+
+            if (bankAccount != null)
+            {
+                bankAccount.MerchantId = null;
+                bankAccount.MerchantPassword = null;
+                bankAccount.IsDonationEnabled = false;
+
+                _unitOfWork.BankAccountRepository.Update(bankAccount);
+
+                _unitOfWork.SaveChanges();
+
+                var result = new BankAccountDonateViewModel
+                {
+                    BankAccountId = bankAccountId,
+                    MerchantId = null,
+                    MerchantPassword = null
+                };
+
+                return result;
+            }
+            else
+            {
+                return null;
+            }
+        }
     }
 }

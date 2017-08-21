@@ -1,4 +1,4 @@
-﻿<div class="back">
+﻿<div class="back col-md-11">
     <h2> Форма реєстрації організації</h2>
     <form #form="ngForm">
         <h4> Загальні відомості </h4>
@@ -64,21 +64,6 @@
             </div>
         </div>
         <h4> Місцезнаходження</h4>
-        <!--
-        <button (click)="openModal()"> Вибрати локацію</button>
-       
-         <app-modal>
-            <div class="app-modal-header">
-                <h3>Додати місцезнаходження</h3>
-            </div>
-            <div class="app-modal-body">
-                <map-component> </map-component>
-            </div>
-            <div class="app-modal-footer">
-                <button type="button" class="btn btn-default" (click)="modal.hide()">Закрити</button>
-            </div>
-        </app-modal> 
-        -->
         <div class="form-group" [class.has-error]="city.invalid&&city.touched">
             <label class="control-label"> Місто </label>
             <div class="inner-addon left-addon">
@@ -121,8 +106,9 @@
                     Будинок обов'язковий
                 </div>
             </div>
+        </div>   
+        <div class="col-md-offset-10 col-md-1">
+            <button (click)="registerOrganization()" class="btn btn-primary" type="submit" [disabled]="form.invalid"> Зареєструвати </button>
         </div>
-           
-        <button (click)="registerOrganization()" class="btn btn-primary" type="submit" [disabled]="form.invalid"> Зареєструвати </button>
     </form>
 </div>

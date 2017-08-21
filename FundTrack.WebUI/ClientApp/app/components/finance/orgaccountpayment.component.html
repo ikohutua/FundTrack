@@ -1,9 +1,66 @@
-﻿<div class="accountdetail maindiv col-md-12 container-fluid">
-    <div style="padding-top:10px;" class="col-md-5">
-        <button type="button"style="min-height:150px; text-align: center;"  class="btn btn-success">Увімкнути прийом платежів для цього рахунку</button>
+﻿<div *ngIf="!isDonationConnected" class="accountdetail maindiv col-md-12 container-fluid">    
+    <div *ngIf="errorMessage"> 
+        {{errorMessage}}
     </div>
-    <div class="col-md-5">
-    </div>
-    <div class="col-md-2">
+    <div *ngIf="!errorMessage">
+        <p> Для отримання пожертв через наш сайт, зареєструйте банківську карточку в системі <a href="https://fondy.ua">Fondy</a>.</p>
+        <p> Після реєстрації введіть отримані дані у відповідні поля нижче.</p>
+        <form #form="ngForm">
+            <label>Merchant Id</label>
+            <br/>
+            <input class="form-control" type="text" required [(ngModel)]="connectDonateCredential.merchantId" name="merchantId" #merchantId="ngModel" pattern="[0-9]*"/>
+            <br />
+            <div *ngIf="merchantId.errors && (merchantId.dirty || merchantId.touched)"
+                 class="alert alert-danger">
+                <div [hidden]="!merchantId.errors.required">
+                    Поле є обов'язковим. 
+                </div>
+                <div [hidden]="!merchantId.errors.pattern">
+                    Введено недозволений символ
+                </div>
+            </div>
+            <label>Merchant Password</label>
+            <br />
+            <input class="form-control" type="text" required [(ngModel)]="connectDonateCredential.merchantPassword" name="merchantPassword" #merchantPassword="ngModel"/>
+            <br />
+            <div *ngIf="merchantPassword.errors && (merchantPassword.dirty || merchantPassword.touched)"
+                 class="alert alert-danger">
+                <div [hidden]="!merchantPassword.errors.required">
+                    Поле є обов'язковим.
+                </div>
+            </div>
+            <button type="submit" (click)="connectDonation()" class="btn btn-primary right" [disabled]="form.invalid"> Підключити </button>
+        </form>
     </div>
 </div>
+
+<div *ngIf="isDonationConnected" class="accountdetail maindiv col-md-12 container-fluid">
+    <p class="custom-bold"> Прийом платежів на цей рахунок підключено. </p>
+    <div class="row">
+        <button (click)="disableModal.show()" class="btn btn-danger right"> Відключити </button>
+        <label class="switch right">
+            <input type="checkbox" [(ngModel)]="isDonationEnabled" name="donateEnable" (change)="toggleDonate(this.isDonationEnabled)">
+            <span class="slider round"></span>
+        </label>
+    </div>
+    <p> <strong> Merchant Id: </strong> <span class="green-font">{{donateCredentials.merchantId}} </span></p>
+    <p> <strong> Merchant Password: </strong> <span class="green-font">{{donateCredentials.merchantPassword}}</span></p>
+    <br />
+    <div class="row">
+        <p *ngIf="isDonationEnabled"> *Функція прийняття платежів активована. </p>
+        <p *ngIf="!isDonationEnabled"> *Функція прийняття платежів деактивована. </p>
+    </div>
+</div>
+
+<app-modal #disable>
+    <div class="app-modal-header">
+        <h4> Підтвердження </h4>
+    </div>
+    <div class="app-modal-body">
+       <p> Ви впевнені, що хочете відключити можливіть прийому платежів? Для повторного включення, потрібно буде ще раз ввести Merchant Id та Merchant Password.</p>
+    </div>
+    <div class="app-modal-footer">
+        <button class="btn btn-danger" (click)="disableDonation()"> Підтвердити </button>
+        <button type="button" class="btn btn-primary" (click)="disableModal.hide()">Закрити</button>
+    </div>
+</app-modal>

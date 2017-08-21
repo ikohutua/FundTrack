@@ -117,7 +117,7 @@ export class MakeDonationComponent implements OnInit, DoCheck, OnDestroy{
         this._donateService.getTargets().subscribe((result) => { this.targets = result; console.log(this.targets) });
         this._donateService.getCurrencies().subscribe((result) => { this.currencies = result, console.log(this.currencies) });
         this.fondyPayModel.server_callback_url = "http://localhost:51116/finance/donate";
-        this.fondyPayModel.response_url = "http://localhost:51116/finance/donate";
+        this.fondyPayModel.response_url = "http://fundtrack3.azurewebsites.net/finance/donate";
  
 
         this.donateForm.valueChanges.subscribe(() => {

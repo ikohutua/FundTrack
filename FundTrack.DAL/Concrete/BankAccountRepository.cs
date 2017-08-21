@@ -78,8 +78,8 @@ namespace FundTrack.DAL.Concrete
         /// <param name="item">Bank account to update.</param>
         public BankAccount Update(BankAccount item)
         {
-            _context.Update(item);
-            return item;
+            var updated = _context.BankAccounts.Update(item);
+            return updated.Entity;
         }
     }
 }

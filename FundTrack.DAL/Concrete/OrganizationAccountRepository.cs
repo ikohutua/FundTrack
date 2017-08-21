@@ -82,7 +82,7 @@ namespace FundTrack.DAL.Concrete
                 .Include(a => a.BankAccount)
                 .Include(a => a.Currency)
                 .Where(a => a.OrgId == organizationId)
-                .Where(a => a.BankAccount.MerchantPassword != null);
+                .Where(a => a.BankAccount.IsDonationEnabled!= null && a.BankAccount.IsDonationEnabled == true);
         }
 
         public OrgAccount GetOrgAccountByCardNumber(int orgId, string card)
@@ -96,6 +96,13 @@ namespace FundTrack.DAL.Concrete
         {
             return this._context.OrgAccounts
                        .FirstOrDefault(a => a.OrgId == orgId && a.OrgAccountName == orgAccountName);
+        }
+
+        public OrgAccount GetOrgAccountById(int orgAccountId)
+        {
+            return _context.OrgAccounts
+                .Include(a => a.BankAccount)
+                .FirstOrDefault(a => a.Id == orgAccountId);
         }
     }
 }
