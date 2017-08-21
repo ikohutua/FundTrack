@@ -110,7 +110,7 @@ namespace FundTrack.DAL.Concrete
 
         public int GetOrganizationId(int userId)
         {
-            return this.context.Membershipes
+            return (int)this.context.Membershipes
                               .FirstOrDefault(m => m.UserId == userId)
                               .OrgId;
         }

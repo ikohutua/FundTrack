@@ -13,9 +13,12 @@ import { OrgAccountSelectViewModel } from "../../../view-models/concrete/finance
 import { FinOpViewModel } from "../../../view-models/concrete/finance/finOp-view.model";
 import { SpinnerComponent } from "../../../shared/components/spinner/spinner.component";
 import { BaseSpinnerService } from "../../abstract/base-spinner-service";
+import { FinOpListViewModel } from "../../../view-models/concrete/finance/finop-list-viewmodel";
 
 @Injectable()
 export class FinOpService extends BaseSpinnerService< FinOpViewModel > {
+
+    private getFinOpsUrl: string = 'api/finop/getFinOpsByOrgAccId';
 
     public constructor(private _http: Http) {
         super(_http)
@@ -57,6 +60,17 @@ export class FinOpService extends BaseSpinnerService< FinOpViewModel > {
         }
     }
 
+    /**
+
+    **/
+    public getFinOpsByOrgAccountId(orgAccountId: number): Observable<FinOpListViewModel[]> {
+        if (this.checkAuthorization()) {
+            return this._http.get(this.getFinOpsUrl + '/' + orgAccountId, this.getRequestOptions())
+                .map((response: Response) => <FinOpListViewModel[]>response.json())
+                .do(data => console.log('Item' + JSON.stringify(data)))
+                .catch(this.handleError);
+        }
+    }
     /**
     * Create RequestOptions
     */

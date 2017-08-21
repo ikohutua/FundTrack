@@ -12,6 +12,7 @@ import { OrgAccountPaymentComponent } from "./components/finance/orgaccountpayme
 import { OrgAccountOperationComponent } from "./components/finance/orgaccountoperation.component";
 import { BankImportComponent } from "./components/finance/bank-import.component";
 import { MakeDonationComponent } from "./components/finance/donate-money.component";
+import { FinOpService } from "./services/concrete/finance/finOp.service";
 
 @NgModule({
     declarations: [
@@ -32,7 +33,8 @@ import { MakeDonationComponent } from "./components/finance/donate-money.compone
         FormsModule
     ],
     providers: [
-        OrgAccountService
+        OrgAccountService,
+        FinOpService
     ]
 })
 export class FinanceModule { }

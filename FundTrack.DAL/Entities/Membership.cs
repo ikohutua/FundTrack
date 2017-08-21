@@ -23,7 +23,7 @@
         /// <summary>
         /// Gets or Sets Id of Organization
         /// </summary>
-        public int OrgId { get; set; }
+        public int? OrgId { get; set; }
 
         /// <summary>
         /// Gets or Sets User navigation property

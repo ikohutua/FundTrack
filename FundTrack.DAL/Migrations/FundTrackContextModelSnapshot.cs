@@ -439,7 +439,7 @@ namespace FundTrack.DAL.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("OrgId");
+                    b.Property<int?>("OrgId");
 
                     b.Property<int>("RoleId");
 
@@ -1030,8 +1030,7 @@ namespace FundTrack.DAL.Migrations
                     b.HasOne("FundTrack.DAL.Entities.Organization", "Organization")
                         .WithMany("Memberships")
                         .HasForeignKey("OrgId")
-                        .HasConstraintName("FK_Membership_Organization")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasConstraintName("FK_Membership_Organization");
 
                     b.HasOne("FundTrack.DAL.Entities.Role", "Role")
                         .WithMany("Memberships")

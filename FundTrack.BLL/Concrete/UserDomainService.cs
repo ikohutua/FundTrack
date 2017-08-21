@@ -352,7 +352,7 @@ namespace FundTrack.BLL.DomainServices
                     if (userRole == "admin" || userRole == "moderator")
                     {
 
-                        int organizationId = membership.OrgId;
+                        int organizationId = (int)membership.OrgId;
                         return new OrganizationIdViewModel
                         {
                             OrganizationId = organizationId,
