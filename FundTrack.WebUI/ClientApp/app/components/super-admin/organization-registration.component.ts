@@ -17,35 +17,42 @@ import { ModalComponent } from '../../shared/components/modal/modal-component';
  *Class to register new organization
 */
 export class OrganizationRegistrationComponent implements OnInit {
-    @ViewChild(ModalComponent)
+    @ViewChild('success')
     /**
-    Modal component that contains address input controls
+    Modal component that contains 
     **/
     public modal: ModalComponent;
     userError: string;
     nameError: string;
     address: string;
     addresses: string[];
-    zoom: number = 30;
     organization: OrganizationRegistrationViewModel = new OrganizationRegistrationViewModel();
+    orgName: string;
     constructor(private _registerService: OrganizationRegistrationService, private _map: MapComponent) {
         
     }
 
     ngOnInit() {
-        this._map.zoom = this.zoom;
+       
     }
 
     /**
      * Registers new organization
      */
     registerOrganization() {
-        this.userError = " ";
-        this.nameError = " ";
+        //this.userError = " ";
+        //this.nameError = " ";
         this.organization.country = "Україна";
         console.log(this.organization);
         this._registerService.registerOrganization(this.organization)
-            .subscribe(org => { this.userError = org.userError; this.nameError = org.nameError });
+            .subscribe(org => {
+                this.userError = org.userError;
+                this.nameError = org.nameError;
+                if (this.userError == null && this.nameError == null) {
+                    this.orgName = org.name;
+                    this.modal.show();
+                }
+            });
     }
 
     getAddresses() {

@@ -1,4 +1,5 @@
-﻿<div class="back col-md-11">
+﻿<spinner></spinner>
+<div class="back col-md-offset-1 col-md-10">
     <h2> Форма реєстрації організації</h2>
     <form #form="ngForm">
         <h4> Загальні відомості </h4>
@@ -112,3 +113,15 @@
         </div>
     </form>
 </div>
+
+<app-modal #success>
+    <div class="app-modal-header">
+        <h4> Успішне завершення операції </h4>
+    </div>
+    <div class="app-modal-body">
+        <p>Організацію "{{orgName}}" зареєстровано на сайті. </p>
+    </div>
+    <div class="app-modal-footer">
+        <button type="button" class="btn btn-primary" (click)="modal.hide()">Закрити</button>
+    </div>
+</app-modal>

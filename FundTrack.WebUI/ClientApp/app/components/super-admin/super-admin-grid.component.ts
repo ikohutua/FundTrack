@@ -23,7 +23,7 @@ export class SuperAdminGrid {
 
     // title on button
     private _banTitle: string = 'Забанити';
-    private _unBanTitle: string = 'Відбанити'
+    private _unBanTitle: string = 'Розбанити'
 
     /**
     * Id of selected Item
