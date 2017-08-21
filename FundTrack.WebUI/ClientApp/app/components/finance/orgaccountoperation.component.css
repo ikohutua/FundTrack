@@ -27,9 +27,10 @@ td {
 }
 
 .money {
-    text-align: right;
+    text-align: center;
     color: #5b9b21;
     font-weight: bold;
+    width:20%;
 }
 
 .table {

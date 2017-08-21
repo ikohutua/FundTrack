@@ -35,20 +35,22 @@
 </div>
 
 <div *ngIf="isDonationConnected" class="accountdetail maindiv col-md-12 container-fluid">
-    <p class="custom-bold"> Прийом платежів на цей рахунок підключено. </p>
+    <p class="custom-bold"> Прийом платежів на цей рахунок підключено</p>
     <div class="row">
         <button (click)="disableModal.show()" class="btn btn-danger right"> Відключити </button>
-        <label class="switch right">
-            <input type="checkbox" [(ngModel)]="isDonationEnabled" name="donateEnable" (change)="toggleDonate(this.isDonationEnabled)">
+        <label class="switch">
+            <input type="checkbox" class="pull-left" [(ngModel)]="isDonationEnabled" name="donateEnable" (change)="toggleDonate(this.isDonationEnabled)">
             <span class="slider round"></span>
         </label>
     </div>
-    <p> <strong> Merchant Id: </strong> <span class="green-font">{{donateCredentials.merchantId}} </span></p>
-    <p> <strong> Merchant Password: </strong> <span class="green-font">{{donateCredentials.merchantPassword}}</span></p>
-    <br />
     <div class="row">
-        <p *ngIf="isDonationEnabled"> *Функція прийняття платежів активована. </p>
-        <p *ngIf="!isDonationEnabled"> *Функція прийняття платежів деактивована. </p>
+        <p> <strong> Merchant Id: </strong> <span class="green-font">{{donateCredentials.merchantId}} </span></p>
+        <p> <strong> Merchant Password: </strong> <span class="green-font">{{donateCredentials.merchantPassword}}</span></p>
+        <br />
+    </div>
+    <div class="row">
+        <p *ngIf="isDonationEnabled"> *Функція прийняття платежів <b>активована.</b> </p>
+        <p *ngIf="!isDonationEnabled"> *Функція прийняття платежів <b>деактивована.</b> </p>
     </div>
 </div>
 
