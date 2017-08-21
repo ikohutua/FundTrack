@@ -8,7 +8,7 @@ using System.Text;
 
 namespace FundTrack.DAL.Concrete
 {
-    public class FinOpRepository:IFinOpRepository
+    public class FinOpRepository : IFinOpRepository
     {
         private readonly FundTrackContext _context;
 
@@ -28,7 +28,7 @@ namespace FundTrack.DAL.Concrete
         /// <returns></returns>
         public FinOp Create(FinOp finOp)
         {
-            var createdFinOp=this._context.FinOps.Add(finOp);
+            var createdFinOp = this._context.FinOps.Add(finOp);
             return createdFinOp.Entity;
         }
 
@@ -39,7 +39,7 @@ namespace FundTrack.DAL.Concrete
         /// <returns></returns>
         public FinOp Update(FinOp finOp)
         {
-           this._context.FinOps.Update(finOp);
+            this._context.FinOps.Update(finOp);
             return finOp;
         }
 
@@ -50,9 +50,9 @@ namespace FundTrack.DAL.Concrete
         /// <returns></returns>
         public FinOp GetById(int id)
         {
-           return this._context.FinOps
-                .Include(fo=>fo.OrgAccountTo)
-                .FirstOrDefault(fo => fo.Id == id);
+            return this._context.FinOps
+                 .Include(fo => fo.OrgAccountTo)
+                 .FirstOrDefault(fo => fo.Id == id);
         }
 
         /// <summary>
@@ -64,12 +64,17 @@ namespace FundTrack.DAL.Concrete
             return this._context.FinOps;
         }
 
+        /// <summary>
+        /// Gets the fin op by org account.
+        /// </summary>
+        /// <param name="orgAccountId">The org account identifier.</param>
+        /// <returns></returns>
         public IQueryable<FinOp> GetFinOpByOrgAccount(int orgAccountId)
         {
-            var finOps= this._context.FinOps
+            var finOps = this._context.FinOps
                 .Include(a => a.OrgAccountTo)
-                .Include(a=>a.OrgAccountTo.Currency)
-                .Where(a => a.AccToId.HasValue? a.AccToId==orgAccountId:a.AccFromId==orgAccountId);
+                .Include(a => a.OrgAccountFrom)
+                .Where(a => a.AccToId.HasValue ? a.AccToId == orgAccountId : a.AccFromId == orgAccountId);
             return finOps;
         }
     }

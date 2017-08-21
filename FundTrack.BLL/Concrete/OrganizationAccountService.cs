@@ -390,7 +390,7 @@ namespace FundTrack.BLL.Concrete
         {
             var orgAccount = _unitOfWork.OrganizationAccountRepository.GetOrgAccountById(orgAccountId);
 
-            if (orgAccount != null)
+            if (orgAccount!=null && orgAccount.BankAccId.HasValue)
             {
                 return (int)orgAccount.BankAccId;
             }
