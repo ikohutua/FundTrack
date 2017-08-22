@@ -183,7 +183,15 @@ namespace FundTrack.BLL.DomainServices
                             photoUrl = user.PhotoUrl
                         };
                         userInfoView.role = this._unitOfWork.MembershipRepository.GetRole(user.Id);
-                        userInfoView.orgId = this._unitOfWork.MembershipRepository.GetOrganizationId(user.Id);
+                        try
+                        {
+                            userInfoView.orgId = this._unitOfWork.MembershipRepository.GetOrganizationId(user.Id);
+                        }
+                        catch (Exception)
+                        {
+                            userInfoView.orgId = 0;
+                            return userInfoView;
+                        }
                         return userInfoView;
                     }
                 }
