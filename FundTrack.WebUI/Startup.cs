@@ -17,7 +17,7 @@ using FundTrack.DAL.Repositories;
 using FundTrack.Infrastructure.ViewModel.EventViewModel;
 using FundTrack.WebUI.Formatter;
 
-namespace FundTrack_WebUI
+namespace FundTrack.WebUI
 {
     public class Startup
     {

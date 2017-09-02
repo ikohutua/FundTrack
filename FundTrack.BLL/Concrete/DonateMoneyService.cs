@@ -4,7 +4,6 @@ using FundTrack.DAL.Entities;
 using FundTrack.Infrastructure.ViewModel.FinanceViewModels.DonateViewModels;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace FundTrack.BLL.Concrete
 {
@@ -53,16 +52,17 @@ namespace FundTrack.BLL.Concrete
             return Guid.NewGuid().ToString();
         }
 
-        public IEnumerable<TargetViewModel> GetTargets()
+        public IEnumerable<TargetViewModel> GetTargets(int id)
         {
-            var targets = _unitOfWork.TargetRepository.Read();
+            var targets = _unitOfWork.TargetRepository.GetTargetsByOrganizationId(id);
             var result = new List<TargetViewModel>();
             foreach(var target in targets)
             {
                 result.Add(new TargetViewModel
                 {
                     TargetId = target.Id,
-                    Name = target.TargetName
+                    Name = target.TargetName,
+                    OrganizationId = target.OrganizationId
                 });
             }
             return result;

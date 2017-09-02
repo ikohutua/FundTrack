@@ -85,7 +85,7 @@ namespace FundTrack.WebUI.Controllers
         [HttpGet("GetTargets")]
         public IEnumerable<TargetViewModel> GetTargets()
         {
-            return _donateMoneyService.GetTargets();
+            return _donateMoneyService.GetTargets(1);
         }
 
         [HttpGet("GetCurrencies")]

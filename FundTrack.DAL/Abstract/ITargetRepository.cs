@@ -17,5 +17,7 @@ namespace FundTrack.DAL.Abstract
         /// <param name="name">The name.</param>
         /// <returns></returns>
         Target GetTargetByName(string name);
+
+        IEnumerable<Target> GetTargetsByOrganizationId(int id);
     }
 }

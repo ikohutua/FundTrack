@@ -71,5 +71,7 @@ namespace FundTrack.DAL.Entities
         /// Gets or Sets Event navigation property
         /// </summary>
         public virtual ICollection<OrganizationResponse> OrganizationResponses { get; set; }
+
+        public virtual ICollection<Target> Targets { get; set; }
     }
 }

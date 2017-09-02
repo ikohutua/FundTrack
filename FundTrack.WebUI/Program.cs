@@ -1,7 +1,7 @@
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
 
-namespace FundTrack_WebUI
+namespace FundTrack.WebUI
 {
     public class Program
     {

@@ -18,11 +18,15 @@ namespace FundTrack.DAL.Entities
         /// </summary>
         public string TargetName { get; set; }
 
+        public int OrganizationId { get; set; }
+
         /// <summary>
         /// Gets or Sets FinOp navigation property
         /// </summary>
         public virtual ICollection<FinOp> FinOp { get; set; }
 
         public virtual ICollection<Donation> Donates { get; set; }
+
+        public  virtual Organization Organizations { get; set; }
     }
 }

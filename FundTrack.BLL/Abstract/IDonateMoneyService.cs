@@ -9,7 +9,7 @@ namespace FundTrack.BLL.Abstract
     {
         OrganizationDonateAccountsViewModel GetAccountForDonation(int organizationId);
         string GetOrderId();
-        IEnumerable<TargetViewModel> GetTargets();
+        IEnumerable<TargetViewModel> GetTargets(int id);
         IEnumerable<CurrencyViewModel> GetCurrencies();
         DonateViewModel AddDonation(DonateViewModel item);
     }

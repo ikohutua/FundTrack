@@ -2,6 +2,7 @@
 using FundTrack.DAL.Entities;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace FundTrack.DAL.Concrete
 {
@@ -36,6 +37,11 @@ namespace FundTrack.DAL.Concrete
         {
             return _context.Targets
                            .FirstOrDefault(t => t.TargetName == name);
+        }
+
+        public IEnumerable<Target> GetTargetsByOrganizationId(int id)
+        {
+            return _context.Targets.Where(t => t.OrganizationId == id);
         }
     }
 }

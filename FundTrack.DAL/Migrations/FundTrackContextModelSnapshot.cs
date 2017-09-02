@@ -783,12 +783,16 @@ namespace FundTrack.DAL.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<int>("OrganizationId");
+
                     b.Property<string>("TargetName")
                         .IsRequired()
                         .HasMaxLength(50);
 
                     b.HasKey("Id")
                         .HasName("PK_Target");
+
+                    b.HasIndex("OrganizationId");
 
                     b.ToTable("Targets");
                 });
@@ -1198,6 +1202,14 @@ namespace FundTrack.DAL.Migrations
                         .WithMany("TagFinOps")
                         .HasForeignKey("TagId")
                         .HasConstraintName("FK_TagFinOp_Tag")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("FundTrack.DAL.Entities.Target", b =>
+                {
+                    b.HasOne("FundTrack.DAL.Entities.Organization", "Organizations")
+                        .WithMany("Targets")
+                        .HasForeignKey("OrganizationId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
