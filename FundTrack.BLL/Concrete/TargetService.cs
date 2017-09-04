@@ -3,7 +3,7 @@ using System.Linq;
 using FundTrack.BLL.Abstract;
 using FundTrack.DAL.Abstract;
 using FundTrack.DAL.Entities;
-using FundTrack.Infrastructure.ViewModel.EditOrganizationViewModels;
+using FundTrack.Infrastructure.ViewModel.FinanceViewModels.DonateViewModels;
 
 namespace FundTrack.BLL.Concrete
 {
@@ -16,66 +16,97 @@ namespace FundTrack.BLL.Concrete
         }
         public TargetViewModel GetTargetById(int id)
         {
-            var target = _unitOfWork.TargetRepository.GetTargetById(id);
-            return target != null ? ConvertToTargetViewModel(target) : null;
+            try
+            {
+                var target = _unitOfWork.TargetRepository.GetTargetById(id);
+                return ConvertTargetToViewModel(target);
+            }
+            catch (System.Exception ex)
+            {
+                throw new BusinessLogicException(ex.Message, ex);
+            }
         }
 
         public IEnumerable<TargetViewModel> GetTargetsByOrganizationId(int id)
         {
-            var targets = _unitOfWork.TargetRepository.GetTargetsByOrganizationId(id);
-            return ConvertTargetsToTargetViewModel(targets);
+            try
+            {
+                var targets = _unitOfWork.TargetRepository.GetTargetsByOrganizationId(id);
+                return ConvertTargetsToTargetViewModel(targets);
+            }
+            catch (System.Exception ex)
+            {
+                throw new BusinessLogicException(ex.Message, ex);
+            }
         }
 
         private IEnumerable<TargetViewModel> ConvertTargetsToTargetViewModel(IEnumerable<Target> targets)
         {
-            return targets.Select(ConvertToTargetViewModel);
+            return targets.Select(ConvertTargetToViewModel);
         }
 
-        private TargetViewModel ConvertToTargetViewModel(Target target)
+        private TargetViewModel ConvertTargetToViewModel(Target target)
         {
             return new TargetViewModel()
             {
-                Id = target.Id,
-                TargetName = target.TargetName,
+                TargetId = target.Id,
+                Name = target.TargetName,
                 OrganizationId = target.OrganizationId
             };
         }
 
         public TargetViewModel EditTarget(TargetViewModel item)
         {
-            var targetToUpdate = new Target()
+            try
             {
-                Id = item.Id,
-                TargetName = item.TargetName,
-                OrganizationId = item.OrganizationId
-            };
-            var result = _unitOfWork.TargetRepository.Update(targetToUpdate);
-            _unitOfWork.SaveChanges();
+                var targetToUpdate = new Target()
+                {
+                    Id = item.TargetId,
+                    TargetName = item.Name,
+                    OrganizationId = item.OrganizationId
+                };
+                var result = _unitOfWork.TargetRepository.Update(targetToUpdate);
+                _unitOfWork.SaveChanges();
 
-            return ConvertToTargetViewModel(result);
+                return ConvertTargetToViewModel(result);
+            }
+            catch (System.Exception ex)
+            {
+                throw new BusinessLogicException(ex.Message, ex);
+            }
         }
 
-        public TargetViewModel AddTarget(TargetViewModel addTarget)
+        public TargetViewModel CreateTarget(TargetViewModel addTarget)
         {
-            var adTarg = new Target()
+            try
             {
-                TargetName = addTarget.TargetName,
-                OrganizationId = addTarget.OrganizationId
-            };
+                var addTarg = new Target()
+                {
+                    TargetName = addTarget.Name,
+                    OrganizationId = addTarget.OrganizationId
+                };
 
-            var result = _unitOfWork.TargetRepository.Create(adTarg);
-            _unitOfWork.SaveChanges();
+                var result = _unitOfWork.TargetRepository.Create(addTarg);
+                _unitOfWork.SaveChanges();
 
-            addTarget.Id = result.Id;
-            return addTarget;
+                return ConvertTargetToViewModel(result);
+            }
+            catch (System.Exception ex)
+            {
+                throw new BusinessLogicException(ex.Message, ex);
+            }
+
         }
 
         public void DeleteTarget(int id)
         {
-            var target = _unitOfWork.TargetRepository.GetTargetById(id);
-            if (target != null)
+            try
             {
-                _unitOfWork.TargetRepository.Delete(target.Id);
+                _unitOfWork.TargetRepository.Delete(id);
+            }
+            catch (System.Exception ex)
+            {
+                throw new BusinessLogicException(ex.Message, ex);
             }
         }
     }

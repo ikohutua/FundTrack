@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using FundTrack.Infrastructure.ViewModel.EditOrganizationViewModels;
+using FundTrack.Infrastructure.ViewModel.FinanceViewModels.DonateViewModels;
 
 namespace FundTrack.BLL.Abstract
 {
@@ -10,7 +10,7 @@ namespace FundTrack.BLL.Abstract
 
         TargetViewModel EditTarget(TargetViewModel item);
 
-        TargetViewModel AddTarget(TargetViewModel addresses);
+        TargetViewModel CreateTarget(TargetViewModel addresses);
 
         void DeleteTarget(int id);
 

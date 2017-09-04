@@ -1,5 +1,7 @@
 ﻿using FundTrack.DAL.Abstract;
 using FundTrack.DAL.Entities;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -60,19 +62,24 @@ namespace FundTrack.DAL.Concrete
         {
             var itemToUpdate = _context.Targets.FirstOrDefault(i => i.Id == item.Id);
 
-            if (itemToUpdate == null) return item;
-            itemToUpdate.Id = item.Id;
-            itemToUpdate.TargetName = item.TargetName;
-            itemToUpdate.OrganizationId = item.OrganizationId;
+            if (itemToUpdate == null)
+                throw new DataAccessException("Can't update item");
 
+             itemToUpdate.TargetName = item.TargetName;
+             itemToUpdate.OrganizationId = item.OrganizationId;
+
+            _context.Update(itemToUpdate);
             return itemToUpdate;
         }
 
         public void Delete(int id)
         {
             var target = _context.Targets.FirstOrDefault(c => c.Id == id);
-            if (target != null)
-                _context.Targets.Remove(target);
+
+            if (target == null)
+                throw new DataAccessException("Can't delete item. Invalid id.");
+
+            _context.Targets.Remove(target);
         }
     }
 }

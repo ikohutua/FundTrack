@@ -1,11 +1,11 @@
 using System.Collections.Generic;
 using FundTrack.BLL.Abstract;
-using FundTrack.Infrastructure.ViewModel.EditOrganizationViewModels;
 using Microsoft.AspNetCore.Mvc;
-
+using FundTrack.Infrastructure.ViewModel.FinanceViewModels.DonateViewModels;
 
 namespace FundTrack.WebUI.Controllers
 {
+    [Route("api/Target")]
     public class TargetController : Controller
     {
         private readonly ITargetService _targetService;
@@ -27,10 +27,10 @@ namespace FundTrack.WebUI.Controllers
             return _targetService.GetTargetsByOrganizationId(id);
         }
 
-        [HttpPost("AddTarget")]
+        [HttpPost("CreateTarget")]
         public TargetViewModel AddTarget([FromBody] TargetViewModel target)
         {
-            return _targetService.AddTarget(target);
+            return _targetService.CreateTarget(target);
         }
 
         [HttpDelete("DeleteTarget/{id}")]
