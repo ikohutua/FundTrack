@@ -72,6 +72,9 @@ namespace FundTrack.DAL.Entities
         /// </summary>
         public virtual ICollection<OrganizationResponse> OrganizationResponses { get; set; }
 
+        /// <summary>
+        /// Gets or Sets Target navigation property
+        /// </summary>
         public virtual ICollection<Target> Targets { get; set; }
     }
 }

@@ -11,7 +11,7 @@ namespace FundTrack.DAL.Migrations
             migrationBuilder.AddColumn<int>(
                 name: "OrganizationId",
                 table: "Targets",
-                nullable: true,
+                nullable: false,
                 defaultValue: 0);
 
             migrationBuilder.CreateIndex(

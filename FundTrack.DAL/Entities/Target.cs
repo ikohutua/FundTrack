@@ -27,6 +27,8 @@ namespace FundTrack.DAL.Entities
 
         public virtual ICollection<Donation> Donates { get; set; }
 
+        public virtual ICollection<OrgAccount> OrgAccounts { get; set; }
+
         public  virtual Organization Organizations { get; set; }
     }
 }

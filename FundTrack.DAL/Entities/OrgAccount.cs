@@ -48,6 +48,8 @@ namespace FundTrack.DAL.Entities
         /// </summary>
         public decimal CurrentBalance { get; set; }
 
+        public int TargetId { get; set; }
+
         /// <summary>
         /// Gets or Sets Organization navigation property
         /// </summary>
@@ -62,6 +64,11 @@ namespace FundTrack.DAL.Entities
         /// Gets or Sets Currency navigation property
         /// </summary>
         public virtual Currency Currency { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Target navigation property
+        /// </summary>
+        public virtual Target Target { get; set; }
 
         /// <summary>
         /// Gets or Sets Balance navigation property
