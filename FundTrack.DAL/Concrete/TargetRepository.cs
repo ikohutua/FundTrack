@@ -2,7 +2,6 @@
 using FundTrack.DAL.Entities;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.EntityFrameworkCore;
 
 namespace FundTrack.DAL.Concrete
 {
@@ -28,6 +27,7 @@ namespace FundTrack.DAL.Concrete
             return _context.Targets;
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// Gets the target by name.
         /// </summary>
@@ -42,6 +42,37 @@ namespace FundTrack.DAL.Concrete
         public IEnumerable<Target> GetTargetsByOrganizationId(int id)
         {
             return _context.Targets.Where(t => t.OrganizationId == id);
+        }
+
+        public Target GetTargetById(int id)
+        {
+            return _context.Targets
+                .FirstOrDefault(t => t.Id == id);
+        }
+
+        public Target Create(Target item)
+        {
+            var added = _context.Targets.Add(item);
+            return added.Entity;
+        }
+
+        public Target Update(Target item)
+        {
+            var itemToUpdate = _context.Targets.FirstOrDefault(i => i.Id == item.Id);
+
+            if (itemToUpdate == null) return item;
+            itemToUpdate.Id = item.Id;
+            itemToUpdate.TargetName = item.TargetName;
+            itemToUpdate.OrganizationId = item.OrganizationId;
+
+            return itemToUpdate;
+        }
+
+        public void Delete(int id)
+        {
+            var target = _context.Targets.FirstOrDefault(c => c.Id == id);
+            if (target != null)
+                _context.Targets.Remove(target);
         }
     }
 }
