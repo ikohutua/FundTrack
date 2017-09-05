@@ -48,7 +48,7 @@ namespace FundTrack.DAL.Entities
         /// </summary>
         public decimal CurrentBalance { get; set; }
 
-        public int TargetId { get; set; }
+        public int? TargetId { get; set; }
 
         /// <summary>
         /// Gets or Sets Organization navigation property

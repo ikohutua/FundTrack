@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace FundTrack.Infrastructure.ViewModel
 {
@@ -27,5 +23,6 @@ namespace FundTrack.Infrastructure.ViewModel
         public string EDRPOU { get; set; }
         public string BankName { get; set; }
         public string Error { get; set; }
+        public int TargetId { get; set; }
     }
 }

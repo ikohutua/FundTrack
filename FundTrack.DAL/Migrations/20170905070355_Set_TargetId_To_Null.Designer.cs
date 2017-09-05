@@ -8,9 +8,10 @@ using FundTrack.DAL.Concrete;
 namespace FundTrack.DAL.Migrations
 {
     [DbContext(typeof(FundTrackContext))]
-    partial class FundTrackContextModelSnapshot : ModelSnapshot
+    [Migration("20170905070355_Set_TargetId_To_Null")]
+    partial class Set_TargetId_To_Null
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.2")
