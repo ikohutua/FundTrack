@@ -4,6 +4,7 @@ using FundTrack.BLL.Abstract;
 using FundTrack.DAL.Abstract;
 using FundTrack.DAL.Entities;
 using FundTrack.Infrastructure.ViewModel.FinanceViewModels.DonateViewModels;
+using FundTrack.Infrastructure;
 
 namespace FundTrack.BLL.Concrete
 {
@@ -55,16 +56,27 @@ namespace FundTrack.BLL.Concrete
             };
         }
 
+        private Target ConvertViewModelToTarget(TargetViewModel targetVm)
+        {
+            return new Target()
+            {
+                Id = targetVm.TargetId,
+                TargetName = targetVm.Name,
+                OrganizationId = targetVm.OrganizationId
+            };
+        }
+
         public TargetViewModel EditTarget(TargetViewModel item)
         {
+            if (item.Name.Length == 0)
+            {
+                throw new BusinessLogicException(ErrorMessages.RequiredFieldMessage);
+            }
+
             try
             {
-                var targetToUpdate = new Target()
-                {
-                    Id = item.TargetId,
-                    TargetName = item.Name,
-                    OrganizationId = item.OrganizationId
-                };
+                var targetToUpdate = ConvertViewModelToTarget(item);
+
                 var result = _unitOfWork.TargetRepository.Update(targetToUpdate);
                 _unitOfWork.SaveChanges();
 
@@ -78,13 +90,14 @@ namespace FundTrack.BLL.Concrete
 
         public TargetViewModel CreateTarget(TargetViewModel addTarget)
         {
+            if (addTarget.Name.Length == 0)
+            {
+                throw new BusinessLogicException(ErrorMessages.RequiredFieldMessage);
+            }
+
             try
             {
-                var addTarg = new Target()
-                {
-                    TargetName = addTarget.Name,
-                    OrganizationId = addTarget.OrganizationId
-                };
+                var addTarg = ConvertViewModelToTarget(addTarget);
 
                 var result = _unitOfWork.TargetRepository.Create(addTarg);
                 _unitOfWork.SaveChanges();
@@ -103,6 +116,7 @@ namespace FundTrack.BLL.Concrete
             try
             {
                 _unitOfWork.TargetRepository.Delete(id);
+                _unitOfWork.SaveChanges();
             }
             catch (System.Exception ex)
             {

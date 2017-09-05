@@ -1,5 +1,6 @@
 ﻿using FundTrack.DAL.Abstract;
 using FundTrack.DAL.Entities;
+using FundTrack.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -41,6 +42,11 @@ namespace FundTrack.DAL.Concrete
                            .FirstOrDefault(t => t.TargetName == name);
         }
 
+        /// <summary>
+        /// Get all targets by organization id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public IEnumerable<Target> GetTargetsByOrganizationId(int id)
         {
             return _context.Targets.Where(t => t.OrganizationId == id);
@@ -63,7 +69,7 @@ namespace FundTrack.DAL.Concrete
             var itemToUpdate = _context.Targets.FirstOrDefault(i => i.Id == item.Id);
 
             if (itemToUpdate == null)
-                throw new DataAccessException("Can't update item");
+                throw new DataAccessException(ErrorMessages.UpdateData);
 
              itemToUpdate.TargetName = item.TargetName;
              itemToUpdate.OrganizationId = item.OrganizationId;
@@ -77,7 +83,12 @@ namespace FundTrack.DAL.Concrete
             var target = _context.Targets.FirstOrDefault(c => c.Id == id);
 
             if (target == null)
-                throw new DataAccessException("Can't delete item. Invalid id.");
+                throw new DataAccessException(ErrorMessages.DeleteData);
+
+            //does target is bonded to Organization Accounts
+            int dependenciesCount = _context.OrgAccounts.Where(oa => oa.TargetId == id).Count();
+            if(dependenciesCount>0)
+                throw new DataAccessException(ErrorMessages.DeleteDependentTarget);
 
             _context.Targets.Remove(target);
         }

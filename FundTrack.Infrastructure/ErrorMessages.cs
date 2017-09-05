@@ -21,5 +21,9 @@
         public const string MissedEnterData = "Введіть пароль і логін.";
         public const string InvalidUserRole = "InvalidUserRole";
         public const string InvalidUser = "InvalidUser";
+        public const string UpdateData = "Неможливо змінити дані";
+        public const string DeleteData = "Неможливо видалити дані";
+        public const string DeleteDependentTarget = "Неможливо видалити зв'язане з рахунком призначення";
+
     }
 }
