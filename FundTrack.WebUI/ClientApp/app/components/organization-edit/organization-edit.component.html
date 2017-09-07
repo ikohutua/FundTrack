@@ -1,73 +1,84 @@
 ﻿<div>
-    <!--<div class="emptyDiv">
-
-    </div>-->
     <div *ngIf="organization" class="background">
+        <h2>Призначення рахунків</h2>
+        <div *ngFor="let target of targetArray" class="addressDiv">
+
+            <div class="col-sm-10">
+                <p> {{target.name}} </p>
+            </div>
+            <div class="col-sm-2">
+                <button class="btn btn-link right" title="Видалити" (click)="openModalForSubmitDeleteTarget(target)">
+                    <span class="glyphicon glyphicon-remove"></span>
+                </button>
+                <button (click)="openModalForEditTarget(target)" class="btn right" title="Редагувати">
+                    <span class="glyphicon glyphicon-pencil"> </span>
+                </button>
+            </div>
+        </div>
+        <button class="btn btn-primary right" (click)="openModalForAddTarget()">Додати </button>
         <form>
             <h2> Опис організації</h2>
-                <textarea class="form-control" [(ngModel)]="organization.description" name="description" rows="7" cols="100"> {{organization.description}}</textarea>
+            <textarea class="form-control" [(ngModel)]="organization.description" name="description" rows="7" cols="100"> {{organization.description}}</textarea>
             <div>
                 <button type="submit" class="btn btn-primary right" (click)="editDescriptionOfOrganization()">Редагувати</button>
             </div>
         </form>
-            <div>    
-                <h2> Представники </h2>
-                <div>
-                    <table class="table-bordered table">
-                        <thead>
-                            <tr>
-                                <th> Ім'я </th>
-                                <th> Прізвище </th>
-                                <th> Логін </th>
-                                <th> Email </th>
-                                <th *ngIf="isAdmin">  </th>
-                            </tr>
-                        </thead>
-                        <tbody *ngIf="isAnyModerators">
-                            <tr *ngFor="let moderator of moderatorArray">
-                                <td> {{moderator.firstName}} </td>
-                                <td> {{moderator.lastName}}</td>
-                                <td> {{moderator.login}}</td>
-                                <td> {{moderator.email}}</td>
-                                <td *ngIf="isAdmin"> <button class="btn-link" (click)="deactivateModerator(moderator)"> Видалити </button> </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <button *ngIf="isAdmin" class="btn btn-primary right" (click)="openModal(modal)"> Додати </button>
+        <div>
+            <h2> Представники</h2>
+            <div>
+                <table class="table-bordered table">
+                    <thead>
+                        <tr>
+                            <th> Ім'я </th>
+                            <th> Прізвище </th>
+                            <th> Логін </th>
+                            <th> Email </th>
+                            <th *ngIf="isAdmin">  </th>
+                        </tr>
+                    </thead>
+                    <tbody *ngIf="isAnyModerators">
+                        <tr *ngFor="let moderator of moderatorArray">
+                            <td> {{moderator.firstName}} </td>
+                            <td> {{moderator.lastName}}</td>
+                            <td> {{moderator.login}}</td>
+                            <td> {{moderator.email}}</td>
+                            <td *ngIf="isAdmin"> <button class="btn-link" (click)="deactivateModerator(moderator)"> Видалити </button> </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-            <div *ngIf="orgAddress.addresses">
-                <h2> Список адрес </h2>
-                <div *ngFor="let address of orgAddress.addresses" class="addressDiv">
-                    <div class="col-md-10">
-                        <p> {{address.street}}, {{address.house}}, {{address.city}}, {{address.country}} </p>
-                    </div>
-                    <div class="col-md-1">
-                        <button (click)="openModalWithMap(mapModal, address)" class="btn right">
-                            <span class="glyphicon glyphicon-pencil"> </span>
-                        </button>
-                    </div>
-                        <div class="col-md-1">
-                            <button (click)="deleteAddress(address)" class="btn btn-link" [disabled]="disableDelete">
-                                <span class="glyphicon glyphicon-remove"></span>
-                            </button>
-                        </div>                    
+            <button *ngIf="isAdmin" class="btn btn-primary right" (click)="openModal(modal)"> Додати </button>
+        </div>
+        <div *ngIf="orgAddress.addresses">
+            <h2> Список адрес </h2>
+            <div *ngFor="let address of orgAddress.addresses" class="addressDiv">
+                <div class="col-md-10">
+                    <p> {{address.street}}, {{address.house}}, {{address.city}}, {{address.country}} </p>
                 </div>
-                <button (click)="addAddressModal.show()" class="right"> 
-                    <span class="glyphicon glyphicon-plus"></span>
-                </button>
-                <div class="row"> 
-                    <map-component 
-                                    [zoom]="5"
-                                    [allowManyMarkers]="true" 
-                                    [showAutocomplete]="false" 
-                                    > </map-component>                    
+                <div class="col-md-1">
+                    <button (click)="openModalWithMap(mapModal, address)" class="btn right">
+                        <span class="glyphicon glyphicon-pencil"> </span>
+                    </button>
+                </div>
+                <div class="col-md-1">
+                    <button (click)="deleteAddress(address)" class="btn btn-link" [disabled]="disableDelete">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
                 </div>
             </div>
+            <button (click)="addAddressModal.show()" class="right">
+                <span class="glyphicon glyphicon-plus"></span>
+            </button>
+            <div class="row">
+                <map-component [zoom]="5"
+                               [allowManyMarkers]="true"
+                               [showAutocomplete]="false"></map-component>
+            </div>
+        </div>
     </div>
 </div>
 
- <app-modal #moderator>
+<app-modal #moderator>
     <div class="app-modal-header">
         <h4> Додати модератора </h4>
     </div>
@@ -78,34 +89,65 @@
         </select>
     </div>
     <div class="app-modal-footer">
-        <button class="btn btn-primary"  (click)="addModerator()"> Додати </button>
+        <button class="btn btn-primary" (click)="addModerator()"> Додати </button>
         <button type="button" class="btn btn-primary" (click)="closeModal(modal)">Закрити</button>
     </div>
 </app-modal>
 
+<app-modal #targetModal>
+    <div class="app-modal-header">
+        <h4> Додати призначення </h4>
+    </div>
+    <div class="app-modal-body">
+        <h3>Введіть новий тип призначення:</h3>
+        <input class="form-control" type="text" [(ngModel)]="editableTarget.name" required #targetState="ngModel" />
+        <div [hidden]="targetState.valid || targetState.pristine" class="alert alert-danger">Поле для призначення неможе бути пустим!</div>
+    </div>
+    <div class="app-modal-footer">
+        <span [hidden]="!isNewTarget">
+            <button class="btn btn-primary" (click)="addTarget()" [disabled]="targetState.invalid">Додати </button>
+        </span>
+        <span [hidden]="isNewTarget">
+            <button class="btn btn-primary" (click)="editTarget()" [disabled]="targetState.invalid">Редагувати</button>
+        </span>
+        <button type="button" class="btn btn-primary" (click)="closeModal(targetModal)">Закрити</button>
+    </div>
+</app-modal>
+
+<app-modal #submitModal>
+    <div class="app-modal-header modal-sm">
+        <h3>Підтвердження видалення</h3>
+    </div>
+    <div class="app-modal-body">
+        <h4>Ви впевнені що хочете видалити призначення?</h4>
+    </div>
+    <div class="app-modal-footer">
+        <button class="btn btn-primary" (click)="deleteTarget()">Так</button>
+        <button class="btn btn-primary" (click)="closeModal(submitModal)">Ні</button>
+    </div>
+</app-modal>
 
 <app-modal #mapModal (onModalOpen)="modalOpens($event)">
     <div class="app-modal-header">
         <h2> Редагувати адресу </h2>
     </div>
-    <div class="app-modal-body" >
+    <div class="app-modal-body">
         <div class="row">
             <input class="form-modal" type="text" name="cityTest" [(ngModel)]="addressToEdit.city" />
             <input class="form-modal" type="text" name="streetTest" [(ngModel)]="addressToEdit.street" />
             <input class="form-modal" type="text" name="houseTest" [(ngModel)]="addressToEdit.house" />
         </div>
-            <div class="row">
-                <map-component
-                               [zoom]="19"
-                               [allowManyMarkers]="false"
-                               [idAddress]="addressToEdit.id"
-                               [city]="addressToEdit.city"
-                               [street]="addressToEdit.street"
-                               [house]="addressToEdit.house"
-                               [showAutocomplete]="false"
-                               (onCangeAddress)="showAddress($event)">
-                </map-component>
-            </div>
+        <div class="row">
+            <map-component [zoom]="19"
+                           [allowManyMarkers]="false"
+                           [idAddress]="addressToEdit.id"
+                           [city]="addressToEdit.city"
+                           [street]="addressToEdit.street"
+                           [house]="addressToEdit.house"
+                           [showAutocomplete]="false"
+                           (onCangeAddress)="showAddress($event)">
+            </map-component>
+        </div>
     </div>
     <div class="app-modal-footer">
         <button type="button" class="btn btn-primary" (click)="updateAddress(addressToEdit)">Зберегти</button>
@@ -138,7 +180,7 @@
             <label class="control-label"> Вулиця </label>
             <div class="inner-addon left-addon">
                 <i class="glyphicon glyphicon-home"></i>
-                <input class="form-control" type="text" name="street" placeholder="Введіть вулицю" [(ngModel)]="newAddress.street" #street="ngModel" required/><br />
+                <input class="form-control" type="text" name="street" placeholder="Введіть вулицю" [(ngModel)]="newAddress.street" #street="ngModel" required /><br />
             </div>
             <div *ngIf="street.errors && (street.dirty || street.touched)"
                  class="alert alert-danger">
@@ -151,7 +193,7 @@
             <label class="control-label"> Будинок </label>
             <div class="inner-addon left-addon">
                 <i class="glyphicon glyphicon-home"></i>
-                <input class="form-control" type="text" name="house" placeholder="Введіть будинок" [(ngModel)]="newAddress.house" #house="ngModel" required/><br />
+                <input class="form-control" type="text" name="house" placeholder="Введіть будинок" [(ngModel)]="newAddress.house" #house="ngModel" required /><br />
             </div>
         </div>
         <div *ngIf="house.errors && (house.dirty || house.touched)"
@@ -166,3 +208,5 @@
         <button type="button" class="btn btn-primary" (click)="addAddressModal.hide()">Закрити</button>
     </div>
 </app-modal>
+
+<div id="snackbar">Неможливо видалити зв'язане з рахунком призначення</div>

@@ -10,7 +10,7 @@ import { ValidatorsService } from "../../services/concrete/validators/validator.
 import { FinOpViewModel } from "../../view-models/concrete/finance/finOp-view.model";
 import { isBrowser } from "angular2-universal";
 import { FinOpService } from "../../services/concrete/finance/finOp.service";
-import { TargetViewModel } from "../../view-models/concrete/finance/target-view.model";
+import { TargetViewModel } from "../../view-models/concrete/finance/donate/target.view-model";
 import { OrgAccountSelectViewModel } from "../../view-models/concrete/finance/org-accounts-select-view.model";
 import * as key from '../../shared/key.storage'
 import { AuthorizeUserModel } from "../../view-models/concrete/authorized-user-info-view.model";

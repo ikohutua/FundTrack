@@ -15,7 +15,6 @@
     z-index: 1;
     opacity: 0.9;
     padding: 0 25px;
-   
 }
 
 .table {
@@ -45,15 +44,15 @@ tbody > tr:nth-child(2n) {
     color: white;
 }
 
-tbody > tr:nth-child(2n) .btn-link:hover {
-    color: #989826;
-}
+    tbody > tr:nth-child(2n) .btn-link:hover {
+        color: #989826;
+    }
 
-textarea{
+textarea {
     border-radius: 7px;
 }
 
-.right{
+.right {
     float: right;
 }
 
@@ -63,9 +62,9 @@ textarea{
     border-color: #233915;
 }
 
-.btn-primary:hover {    
- background-color: #233915;
-}
+    .btn-primary:hover {
+        background-color: #233915;
+    }
 
 .addressDiv {
     background-color: #a2a886;
@@ -78,7 +77,7 @@ textarea{
     border-radius: 7px;
 }
 
-.divFoot{
+.divFoot {
     height: 400px;
 }
 
@@ -113,12 +112,12 @@ h2 {
     position: relative;
 }
 
-    /* style icon */
-    .inner-addon .glyphicon {
-        position: absolute;
-        padding: 10px;
-        pointer-events: none;
-    }
+/* style icon */
+.inner-addon .glyphicon {
+    position: absolute;
+    padding: 10px;
+    pointer-events: none;
+}
 
 /* align icon */
 .left-addon .glyphicon {
@@ -154,4 +153,75 @@ h2 {
     -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
     -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
     transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+
+#snackbar {
+    visibility: hidden; /* Hidden by default. Visible on click */
+    min-width: 250px; /* Set a default minimum width */
+    margin-left: -125px; /* Divide value of min-width by 2 */
+    background-color: #333; /* Black background color */
+    color: #fff; /* White text color */
+    text-align: center; /* Centered text */
+    border-radius: 2px; /* Rounded borders */
+    padding: 16px; /* Padding */
+    position: fixed; /* Sit on top of the screen */
+    z-index: 999999; /* Add a z-index if needed */
+    left: 50%; /* Center the snackbar */
+    top: 250px; /* 30px from the bottom */
+}
+
+/* Show the snackbar when clicking on a button (class added with JavaScript) */
+#snackbar.show {
+    visibility: visible; /* Show the snackbar */
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+/* Animations to fade the snackbar in and out */
+@-webkit-keyframes fadein {
+    from {
+        top: 0;
+        opacity: 0;
+    }
+
+    to {
+        top: 250px;
+        opacity: 1;
+    }
+}
+
+@keyframes fadein {
+    from {
+        top: 0;
+        opacity: 0;
+    }
+
+    to {
+        top: 250px;
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes fadeout {
+    from {
+        top: 250px;
+        opacity: 1;
+    }
+
+    to {
+        top: 0;
+        opacity: 0;
+    }
+}
+
+@keyframes fadeout {
+    from {
+        top: 250px;
+        opacity: 1;
+    }
+
+    to {
+        top: 0;
+        opacity: 0;
+    }
 }

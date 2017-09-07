@@ -14,6 +14,8 @@ import { ModeratorViewModel } from '../../view-models/concrete/edit-organization
 import { AddModeratorViewModel } from "../../view-models/concrete/edit-organization/add-moderator-view.model";
 import { isBrowser } from "angular2-universal";
 import { AuthorizeUserModel } from "../../view-models/concrete/authorized-user-info-view.model";
+import { TargetViewModel } from "../../view-models/concrete/finance/donate/target.view-model";
+
 import * as key from '../../shared/key.storage';
 
 @Component({
@@ -34,7 +36,17 @@ export class OrganizationEditComponent implements OnInit, OnDestroy, AfterViewIn
     newAddress: AddressViewModel = new AddressViewModel();
     private user: AuthorizeUserModel = new AuthorizeUserModel();
     isAdmin: boolean = false;
-    
+    targetArray: TargetViewModel[];
+    editableTarget: TargetViewModel;
+    isNewTarget: boolean;
+
+    //modal window to add new target
+    @ViewChild("targetModal")
+    public targetModal: ModalComponent;
+
+    @ViewChild("submitModal")
+    public submitModal: ModalComponent;
+
     //modal window to add moderator
     @ViewChild("moderator")
     public modal: ModalComponent;
@@ -68,8 +80,10 @@ export class OrganizationEditComponent implements OnInit, OnDestroy, AfterViewIn
     }
 
     ngOnInit() {
+        this.editableTarget = new TargetViewModel();
         this.sub = this._actRouter.params.subscribe(params => {
-                this.organizationId = +params["id"];
+            this.organizationId = +params["id"];
+            this.getTargetsByOrganizationId();
                 this.getInformationOfOrganization(this.organizationId);
                 this.getAddresses(this.organizationId);
                 this.getModerators(this.organizationId);
@@ -85,7 +99,6 @@ export class OrganizationEditComponent implements OnInit, OnDestroy, AfterViewIn
     }
 
     ngAfterViewInit() {
-
         this.Maps.changes.subscribe((maps: QueryList<MapComponent>) => {
             this.map = maps.first;
             this.mapInModal = maps.last;
@@ -114,7 +127,7 @@ export class OrganizationEditComponent implements OnInit, OnDestroy, AfterViewIn
     editDescriptionOfOrganization(): void {
         this._editService.editDescription(this.organization).subscribe
             (model => {
-                console.log(this.organization);
+             
                 this.organization = model;
             })
     }
@@ -138,7 +151,7 @@ export class OrganizationEditComponent implements OnInit, OnDestroy, AfterViewIn
     getModerators(id: number): void {
         this._editService.getModerators(id).subscribe
             (model => {
-                console.log(model);
+              
                 this.moderatorArray = model;
                 if (this.moderatorArray.length > 0) {
                     this.isAnyModerators = true;
@@ -152,7 +165,7 @@ export class OrganizationEditComponent implements OnInit, OnDestroy, AfterViewIn
      */
     setMap(map: MapComponent): void {
         this.map.setAllMarkersOnTheMap(this.orgAddress.addresses);
-        console.log(this.orgAddress.addresses);
+      
     }
 
     /**
@@ -162,7 +175,7 @@ export class OrganizationEditComponent implements OnInit, OnDestroy, AfterViewIn
         this.newModerator.orgId = this.organizationId;
         this._editService.addModerator(this.newModerator).
             subscribe(model => {
-                console.log(model);
+            
                 this.getModerators(this.organizationId);
                 this.isAnyModerators = true;
                 this.getPossibleModerators(this.organizationId);
@@ -194,7 +207,7 @@ export class OrganizationEditComponent implements OnInit, OnDestroy, AfterViewIn
         this._editService.getAvailableUsers(id)
             .subscribe(users => {
                 this.possibleModerators = users;
-                console.log(this.possibleModerators);
+             
             });
     }
 
@@ -290,5 +303,67 @@ export class OrganizationEditComponent implements OnInit, OnDestroy, AfterViewIn
     //closes modal
     closeModal(modal: ModalComponent): void {
         modal.hide();
+    }
+
+    public addTarget() {
+        this.editableTarget.organizationId = this.organizationId;
+        this._editService.addTarget(this.editableTarget).subscribe(model => {
+            this.targetArray.push(model);
+        });
+        this.closeModal(this.targetModal);
+    }
+
+    openModalForEditTarget(target: TargetViewModel) {
+        this.isNewTarget = false;
+        this.editableTarget = Object.assign({}, target);
+        this.openModal(this.targetModal);
+    }
+
+    openModalForAddTarget() {
+        this.editableTarget = new TargetViewModel();
+        this.isNewTarget = true;
+        this.openModal(this.targetModal);
+    }
+
+     
+    editTarget() {
+        this.editableTarget.organizationId = this.organizationId;
+        this._editService.editTarget(this.editableTarget)
+            .subscribe(model => {
+                this.getTargetsByOrganizationId();
+        });
+        this.closeModal(this.targetModal);
+    }
+
+     /**
+     * get all targets from server
+     */
+    getTargetsByOrganizationId() {  
+        this._editService.getTargetsByOrganizationId(this.organizationId).subscribe(model => {
+            this.targetArray = model;       
+        });
+    }
+
+    deleteTarget() {
+        this._editService.deleteTarget(this.editableTarget.targetId).subscribe((model) => {
+            this.getTargetsByOrganizationId();
+        }, error => {
+            this.showToast();
+            });
+        this.closeModal(this.submitModal);
+    }
+
+    openModalForSubmitDeleteTarget(target: TargetViewModel) {
+        this.editableTarget = target;
+        this.openModal(this.submitModal);
+    }
+
+    /*
+  Displays  deleting error toast
+  */
+    public showToast() {
+        var x = document.getElementById("snackbar")
+        x.className = "show";
+        setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
     }
 }
