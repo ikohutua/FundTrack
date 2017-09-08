@@ -573,6 +573,8 @@ namespace FundTrack.DAL.Migrations
 
                     b.Property<string>("Description");
 
+                    b.Property<string>("LogoUrl");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(100);
@@ -637,7 +639,6 @@ namespace FundTrack.DAL.Migrations
                         .HasMaxLength(15);
 
                     b.Property<string>("PhoneType")
-                        .IsRequired()
                         .HasMaxLength(20);
 
                     b.Property<int>("UserId");

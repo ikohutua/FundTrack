@@ -23,6 +23,11 @@ namespace FundTrack.DAL.Entities
         public string Description { get; set; }
 
         /// <summary>
+        /// Gets or Sets Url to image with logo
+        /// </summary>
+        public string LogoUrl { get; set; }
+
+        /// <summary>
         /// Gets or Sets Navigation property Banned organization
         /// </summary>
         public virtual BannedOrganization BannedOrganization { get; set; }

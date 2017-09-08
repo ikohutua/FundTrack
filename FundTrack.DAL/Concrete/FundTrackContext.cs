@@ -254,7 +254,7 @@ namespace FundTrack.DAL.Concrete
 
                 entity.Property(e => e.Number).IsRequired().HasMaxLength(15);
 
-                entity.Property(e => e.PhoneType).IsRequired().HasMaxLength(20);
+                entity.Property(e => e.PhoneType).HasMaxLength(20);
 
                 entity.HasOne(p => p.User)
                       .WithMany(u => u.Phones)
