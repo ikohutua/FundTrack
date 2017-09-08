@@ -61,7 +61,10 @@ namespace FundTrack.DAL.Concrete
         /// <returns></returns>
         public IEnumerable<FinOp> Read()
         {
-            return this._context.FinOps;
+            return this._context.FinOps.Include(f => f.OrgAccountTo)
+                .ThenInclude(a => a.Organization)
+                .Include(f => f.Donation)
+                .Include(f => f.Target);
         }
 
         /// <summary>

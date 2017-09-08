@@ -116,6 +116,7 @@ namespace FundTrack.WebUI
             services.AddScoped<IDonateMoneyService, DonateMoneyService>();
             services.AddScoped<IFinOpService, FinOpService>();
             services.AddScoped<ITargetService, TargetService>();
+            services.AddScoped<IReportService, ReportService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
