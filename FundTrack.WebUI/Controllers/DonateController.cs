@@ -93,7 +93,11 @@ namespace FundTrack.WebUI.Controllers
         {
             return _donateMoneyService.GetCurrencies();
         }
-
+        /// <summary>
+        /// Adds a donation
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
         [HttpPost("AddDonation")]
         public DonateViewModel AddDonation ([FromBody]DonateViewModel item)
         {
