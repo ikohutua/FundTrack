@@ -2,7 +2,7 @@
     <h2>Фінансові операції по рахунку</h2>
     <table class="table table-hover table-responsive">
         <thead>
-            <tr >
+            <tr>
                 <th style="text-align:center;">Дата і час операції</th>
                 <th style="text-align:center;">Опис операції</th>
                 <th style="text-align:center;">Сума</th>
@@ -17,4 +17,266 @@
         </tbody>
     </table>
     <a class="btn">Переглянути всі операції по рахунку</a>
+
+    <a class="btn" (click)="openModal(newMoneyIncomeWindow)">Добавити прихід</a>
+    <a class="btn" (click)="openModal(newMoneySpendingWindow)">Добавити витрату</a>
+    <a class="btn" (click)="openModal(newMoneyTransferWindow)">Переказ коштів</a>
 </div>
+<app-modal #newMoneyIncome>
+    <div class="app-modal-header">
+        <button type="button" class="close" aria-hidden="true" (click)="closeModal(newMoneyIncomeWindow, moneyIncomeForm)">&times;</button>
+        <h4 class="modal-title">Заповніть дані: </h4>
+    </div>
+    <div class="app-modal-body">
+        <div class="collapse in" id="collapseExample">
+            <form class="form-horizontal" [formGroup]="moneyIncomeForm" id="moneyOperation" novalidate>
+                <div class="form-group">
+                    <label class="control-label">Назва рахунку</label>
+                    <input class="form-control"
+                           disabled
+                           type="text"
+                           placeholder={{currentAccount.orgAccountName}}
+                           name="cardFrom"/>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Сума</label>
+                    <input class="form-control"
+                           type="text"
+                           placeholder="Сума"
+                           name="sum"
+                           formControlName="sum"
+                           [(ngModel)]="moneyOperationModel.sum"
+                           required="" />
+                    <span *ngIf="formIncomeErrors.sum" class="has-error help-block error-message">
+                        {{ formIncomeErrors.sum }}
+                    </span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Валюта</label>
+                    <input class="form-control"
+                           disabled
+                           type="text"
+                           placeholder={{currentAccount.currency}}
+                           name="currency"/>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Опис</label>
+                    <textarea class="form-control"
+                              placeholder="Опис"
+                              name="description"
+                              maxlength="500"
+                              formControlName="description"
+                              [(ngModel)]="moneyOperationModel.description"
+                              required=""></textarea>
+                    <span *ngIf="formIncomeErrors.description" class="has-error help-block error-message">
+                        {{ formIncomeErrors.description }}
+                    </span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Призначення</label>
+                    <select [(ngModel)]="moneyOperationModel.target" formControlName="target" id="categoryType" class="form-control">
+                        <option></option>
+                        <option *ngFor="let target of targets">
+                            {{target.name}}
+                        </option>
+                    </select>
+                    <span *ngIf="formIncomeErrors.target" class="has-error help-block error-message">
+                        {{ formIncomeErrors.target }}
+                    </span>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="app-modal-footer">
+        <button (click)="makeIncome()"
+                class="btn btn-fundtrack-style pull-right"
+                data-dismiss="modal"
+                [disabled]="moneyIncomeForm.invalid">
+            Додати прихід
+        </button>
+        <button (click)="cleanForm()"
+                class="btn btn-fundtrack-style pull-right"
+                data-dismiss="modal">
+            Очистити
+        </button>
+        <button (click)="closeModal(newMoneyIncomeWindow, moneyIncomeForm)"
+                class="btn btn-default pull-right"
+                data-dismiss="modal">
+            Скасувати
+        </button>
+    </div>
+</app-modal>
+
+<app-modal #newMoneySpending>
+    <div class="app-modal-header">
+        <button type="button" class="close" aria-hidden="true" (click)="closeModal(newMoneySpendingWindow, moneySpendingForm)">&times;</button>
+        <h4 class="modal-title">Заповніть дані: </h4>
+    </div>
+    <div class="app-modal-body">
+        <div class="collapse in" id="collapseExample">
+            <form class="form-horizontal" [formGroup]="moneySpendingForm" id="moneySpending" novalidate>
+                <div class="form-group">
+                    <label class="control-label">Назва рахунку</label>
+                    <input class="form-control"
+                           disabled
+                           type="text"
+                           placeholder={{currentAccount.orgAccountName}}
+                           name="cardFrom"/>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Сума</label>
+                    <input class="form-control"
+                           type="text"
+                           placeholder="Сума"
+                           formControlName="sum"
+                           [(ngModel)]="moneyOperationModel.sum"
+                           required="" />
+                    <span *ngIf="formSpendingErrors.sum" class="has-error help-block error-message">
+                        {{ formSpendingErrors.sum }}
+                    </span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Валюта</label>
+                    <input class="form-control"
+                           disabled
+                           type="text"
+                           placeholder={{currentAccount.currency}}
+                           name="currency"/>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Опис</label>
+                    <textarea class="form-control"
+                              placeholder="Опис"
+                              name="description"
+                              maxlength="500"
+                              formControlName="description"
+                              [(ngModel)]="moneyOperationModel.description"
+                              required=""></textarea>
+                    <span *ngIf="formSpendingErrors.description" class="has-error help-block error-message">
+                        {{ formSpendingErrors.description }}
+                    </span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Призначення</label>
+                    <select [(ngModel)]="moneyOperationModel.target" formControlName="target" id="categoryType" class="form-control">
+                        <option></option>
+                        <option *ngFor="let target of targets">
+                            {{target.name}}
+                        </option>
+                    </select>
+                    <span *ngIf="formSpendingErrors.target" class="has-error help-block error-message">
+                        {{ formSpendingErrors.target }}
+                    </span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Фото:</label>
+                    <div class="img-container">
+                        <img src="https://s3.eu-central-1.amazonaws.com/fundtrack/default-placeholder.png" class="avatar img-responsive img-thumbnail itemimage" style="border:none" alt="avatar" width="126">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="app-modal-footer">
+        <button (click)="makeSpending()"
+                class="btn btn-fundtrack-style pull-right"
+                data-dismiss="modal"
+                [disabled]="moneySpendingForm.invalid">
+            Додати прихід
+        </button>
+        <button (click)="cleanForm()"
+                class="btn btn-fundtrack-style pull-right"
+                data-dismiss="modal">
+            Очистити
+        </button>
+        <button (click)="closeModal(newMoneySpendingWindow, moneySpendingForm)"
+                class="btn btn-default pull-right"
+                data-dismiss="modal">
+            Скасувати
+        </button>
+    </div>
+</app-modal>
+
+<app-modal #newMoneyTransfer>
+    <div class="app-modal-header">
+        <button type="button" class="close" aria-hidden="true" (click)="closeModal(newMoneyTransferWindow, moneyTransferForm)">&times;</button>
+        <h4 class="modal-title">Заповніть дані: </h4>
+    </div>
+    <div class="app-modal-body">
+        <div class="collapse in" id="collapseExample">
+            <form class="form-horizontal" [formGroup]="moneyTransferForm" id="moneyTransfer" novalidate>
+                <div class="form-group">
+                    <label class="control-label">Назва рахунку</label>
+                    <input class="form-control"
+                           disabled
+                           type="text"
+                           placeholder={{currentAccount.orgAccountName}}
+                           name="cardFrom"/>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Назва рахунку одержувачв:</label>
+                    <select [(ngModel)]="moneyOperationModel.cardTo" formControlName="cardTo" id="categoryType" class="form-control">
+                        <option></option>
+                        <option *ngFor="let account of accounts">
+                            {{account.orgAccountName}}
+                        </option>
+                    </select>
+                    <span *ngIf="formTransferErrors.cardTo" class="has-error help-block error-message">
+                        {{ formTransferErrors.cardTo }}
+                    </span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Сума</label>
+                    <input class="form-control"
+                           type="text"
+                           placeholder="Сума"
+                           formControlName="sum"
+                           [(ngModel)]="moneyOperationModel.sum"
+                           required="" />
+                    <span *ngIf="formTransferErrors.sum" class="has-error help-block error-message">
+                        {{ formTransferErrors.sum }}
+                    </span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Валюта</label>
+                    <input class="form-control"
+                           disabled
+                           type="text"
+                           placeholder={{currentAccount.currency}}
+                           name="currency"/>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Опис</label>
+                    <textarea class="form-control"
+                              placeholder="Опис"
+                              name="description"
+                              maxlength="500"
+                              formControlName="description"
+                              [(ngModel)]="moneyOperationModel.description"
+                              required=""></textarea>
+                    <span *ngIf="formTransferErrors.description" class="has-error help-block error-message">
+                        {{ formTransferErrors.description }}
+                    </span>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="app-modal-footer">
+        <button (click)="makeTransfer()"
+                class="btn btn-fundtrack-style pull-right"
+                data-dismiss="modal"
+                [disabled]="moneyTransferForm.invalid">
+            Додати прихід
+        </button>
+        <button (click)="cleanForm()"
+                class="btn btn-fundtrack-style pull-right"
+                data-dismiss="modal">
+            Очистити
+        </button>
+        <button (click)="closeModal(newMoneyTransferWindow, moneyTransferForm)"
+                class="btn btn-default pull-right"
+                data-dismiss="modal">
+            Скасувати
+        </button>
+    </div>
+</app-modal>
