@@ -1,0 +1,18 @@
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto&subset=cyrillic">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+<div>
+    <div class="uploader" ondragover="return false;" [class.loaded]="loaded" [style.outlineColor]="outlineColorStyle"
+         (dragenter)="handleDragEnter()" (dragleave)="handleDragLeave()" (drop)="handleDrop($event)">
+        <div>
+            <label>
+                <i class="icon icon-upload" [style.color]="colorStyle">
+                </i>
+                <input id="uploadBtn" type="file" name="file" accept="image/*" (change)="handleInputChange($event)" />
+            </label>
+        </div>
+    </div>
+    <div class="image-list" *ngIf="images.length">
+        <image-item *ngFor="let image of images" [image]="image" (delete)="delete($event)"></image-item>
+    </div>
+</div>

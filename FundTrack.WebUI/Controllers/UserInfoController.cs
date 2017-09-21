@@ -21,13 +21,13 @@ namespace FundTrack.WebUI.Controllers
         {
             var userInfo = new UserInfoViewModel()
             {
-                id = 5,
-                login = "smokingpenguin",
-                firstName = "John",
-                lastName = "Smith",
-                email = "agentsmith@matrix.com",
-                address = "Lviv, Pasternaka st. 5",
-                photoUrl = "https://vignette1.wikia.nocookie.net/matrix/images/4/4d/Agent-smith-the-matrix-movie-hd-wallpaper-2880x1800-4710.png/revision/latest/scale-to-width-down/250?cb=20140504013834"
+                Id = 5,
+                Login = "smokingpenguin",
+                FirstName = "John",
+                LastName = "Smith",
+                Email = "agentsmith@matrix.com",
+                Address = "Lviv, Pasternaka st. 5",
+                PhotoUrl = "https://vignette1.wikia.nocookie.net/matrix/images/4/4d/Agent-smith-the-matrix-movie-hd-wallpaper-2880x1800-4710.png/revision/latest/scale-to-width-down/250?cb=20140504013834"
             };
 
             return Json(userInfo);

@@ -16,8 +16,8 @@
     border: none;
     border-bottom: solid 2px #c9c9c9;
     transition: border 0.3s;
-    margin-left:14px;
-    margin-right:20px;
+    margin-left: 14px;
+    margin-right: 20px;
     width: 96%;
 }
 
@@ -36,17 +36,20 @@ textarea {
     font-size: 16px;
     resize: none;
 }
+
 .titlefield {
     margin: 0,10px,0,0;
     padding: 3px,4px,5px,6px;
 }
 
-.itemimage:hover{
-    opacity:0.7;
+.itemimage:hover {
+    opacity: 0.7;
 }
-.has-error{
+
+.has-error {
     color: red;
 }
+
 .mainimage {
     padding: 5px;
     border: 5px solid #021a40;
@@ -58,10 +61,11 @@ textarea {
     border-radius: 4px;
     padding: 5px;
 }
+
 .img-container {
     position: relative;
-    display: inline-block; 
-    overflow: hidden; 
+    display: inline-block;
+    overflow: hidden;
     margin-right: 7px;
     cursor: pointer;
 }
@@ -69,6 +73,7 @@ textarea {
     .img-container:hover img {
         opacity: 0.5 !important;
     }
+
     .img-container a span {
         color: red;
         font-size: 25px;
@@ -78,6 +83,7 @@ textarea {
         right: 0;
         transform: translateY(-50%);
     }
+
 .makemain {
     position: absolute;
     top: 110px;

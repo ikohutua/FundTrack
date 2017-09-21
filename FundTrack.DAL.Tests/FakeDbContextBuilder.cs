@@ -42,5 +42,15 @@ namespace FundTrack.DAL.Tests
         /// Sets the event images.
         /// </summary>
         public abstract void SetEventImages();
+
+        /// <summary>
+        /// Sets the event images.
+        /// </summary>
+        public abstract void SetPhones();
+        /// <summary>
+        /// Sets the targets.
+        /// </summary>
+        public abstract void SetTargets();
+
     }
 }

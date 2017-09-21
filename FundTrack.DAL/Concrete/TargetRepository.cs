@@ -1,8 +1,6 @@
 ﻿using FundTrack.DAL.Abstract;
 using FundTrack.DAL.Entities;
 using FundTrack.Infrastructure;
-using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -43,7 +41,7 @@ namespace FundTrack.DAL.Concrete
         }
 
         /// <summary>
-        /// Get all targets by organization id
+        /// Get all parent targets by organization id
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -69,10 +67,10 @@ namespace FundTrack.DAL.Concrete
             var itemToUpdate = _context.Targets.FirstOrDefault(i => i.Id == item.Id);
 
             if (itemToUpdate == null)
-                throw new DataAccessException(ErrorMessages.UpdateData);
+                throw new DataAccessException(ErrorMessages.UpdateDataError);
 
-             itemToUpdate.TargetName = item.TargetName;
-             itemToUpdate.OrganizationId = item.OrganizationId;
+            itemToUpdate.TargetName = item.TargetName;
+            itemToUpdate.OrganizationId = item.OrganizationId;
 
             _context.Update(itemToUpdate);
             return itemToUpdate;
@@ -83,11 +81,14 @@ namespace FundTrack.DAL.Concrete
             var target = _context.Targets.FirstOrDefault(c => c.Id == id);
 
             if (target == null)
-                throw new DataAccessException(ErrorMessages.DeleteData);
+                throw new DataAccessException(ErrorMessages.DeleteDataError);
 
-            //does target is bonded to Organization Accounts
-            int dependenciesCount = _context.OrgAccounts.Where(oa => oa.TargetId == id).Count();
-            if(dependenciesCount>0)
+            //does target is bonded to Organization Accounts, Finance Operations, Donations
+            int dependenciesOrgAccCount = _context.OrgAccounts.Where(oa => oa.TargetId == id).Count();
+            int dependenciesFinOpCount = _context.FinOps.Where(fo => fo.TargetId == id).Count();
+            int dependenciesDonatesCount = _context.Donations.Where(d => d.TargetId == id).Count();
+           
+            if (dependenciesOrgAccCount > 0 || dependenciesFinOpCount > 0 || dependenciesDonatesCount > 0)
                 throw new DataAccessException(ErrorMessages.DeleteDependentTarget);
 
             _context.Targets.Remove(target);

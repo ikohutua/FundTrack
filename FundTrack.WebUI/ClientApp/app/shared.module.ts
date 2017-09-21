@@ -13,8 +13,12 @@ import { SelectComponent } from './shared/components/select/select.component';
 import { SpinnerComponent } from './shared/components/spinner/spinner.component';
 import { SidebarComponent } from "./shared/components/sidebar/sidebar.component";
 import { GalleryComponent } from './shared/components/gallery/gallery.component';
+
 import { TruncatePipe } from "./shared/pipes/truncate.pipe";
 //import { ChatBoxComponent } from './shared/components/chat-box/chat-box.component';
+import { ImageItemComponent } from "./shared/components/upload-image/image-item.component/image-item.component";
+import { ImageListComponent } from "./shared/components/upload-image/image-list.component/image-list.component";
+
 
 @NgModule({
     declarations: [
@@ -29,7 +33,9 @@ import { TruncatePipe } from "./shared/pipes/truncate.pipe";
         SelectComponent,
         SpinnerComponent,
         SidebarComponent,
-        GalleryComponent
+        GalleryComponent,
+        ImageItemComponent,
+        ImageListComponent
     ],
     imports: [
         CommonModule,
@@ -52,7 +58,9 @@ import { TruncatePipe } from "./shared/pipes/truncate.pipe";
         SpinnerComponent,
         SidebarComponent,
         GalleryComponent,
-        TruncatePipe
+        TruncatePipe,
+        ImageItemComponent,
+        ImageListComponent
     ]
 })
 export class SharedModule { }

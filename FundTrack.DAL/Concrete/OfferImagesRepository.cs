@@ -23,6 +23,12 @@ namespace FundTrack.DAL.Concrete
             return item;
         }
 
+        public IEnumerable<OfferedItemImage> CreateMany(IEnumerable<OfferedItemImage> collection)
+        {
+            this._context.AddRange(collection);
+            return collection;
+        }
+
         public void Delete(int id)
         {
             OfferedItemImage offeredItemImage = _context.OfferedItemImages.FirstOrDefault(a => a.Id == id);

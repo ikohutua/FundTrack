@@ -17,9 +17,11 @@ namespace FundTrack.BLL.Concrete
     public class OfferedItemService : BaseService, IOfferedItemService
     {
         private readonly IUnitOfWork _unitOfWork;
-        public OfferedItemService(IUnitOfWork unitOfWork)
+        private readonly IImageManagementService _imgService;
+        public OfferedItemService(IUnitOfWork unitOfWork, IImageManagementService imgService)
         {
             _unitOfWork = unitOfWork;
+            _imgService = imgService;
         }
         /// <summary>
         /// Creates new Offer Item
@@ -41,11 +43,15 @@ namespace FundTrack.BLL.Concrete
                     this.SetNewPictures(model, createdItem);
                     this._unitOfWork.SaveChanges();
                 }
+
+                //TODO: uncomment
+                //SetImagesUrl(model.Image);
+
                 return model;
             }
             catch (Exception ex)
             {
-                throw new BusinessLogicException(ex.Message);
+                throw new BusinessLogicException("Creating offered item error. " + ex.Message);
             }
         }
         /// <summary>
@@ -67,6 +73,10 @@ namespace FundTrack.BLL.Concrete
                     this.SetOfferedItemPictures(model.Image, item);
                     this._unitOfWork.SaveChanges();
                 }
+
+                //TODO: uncomment
+                //SetImagesUrl(model.Image);
+
                 return model;
             }
             catch (Exception ex)
@@ -75,6 +85,18 @@ namespace FundTrack.BLL.Concrete
             }
         }
         /// <summary>
+        /// Get full image URL
+        /// </summary>
+        /// <param name="images"></param>
+        private void SetImagesUrl(OfferedItemImageViewModel[] images)
+        {
+            foreach (var item in images)
+            {
+                item.ImageUrl = _imgService.GetImageUrl(item.ImageUrl);
+            }
+        }
+
+        /// <summary>
         /// Deletes offered item by its id
         /// </summary>
         /// <param name="id">id of the offer item entity</param>
@@ -82,14 +104,22 @@ namespace FundTrack.BLL.Concrete
         {
             try
             {
+                var item = _unitOfWork.OfferedItemRepository.Get(id);
+                var images = item.OfferedItemImages?.Select(i => i.ImageUrl);
+
                 this._unitOfWork.OfferedItemRepository.Delete(id);
+
+                if (images!=null)
+                {
+                    _imgService.DeleteRangeOfImages(images);
+                }
                 this._unitOfWork.SaveChanges();
             }
             catch (Exception ex)
             {
-                throw new BusinessLogicException(ex.Message);
+                throw new BusinessLogicException("Can't delete offered item. " + ex.Message);
             }
-           
+
         }
         /// <summary>
         /// Gets all offered item view models
@@ -184,6 +214,7 @@ namespace FundTrack.BLL.Concrete
             model.Image = this._unitOfWork.OfferImagesRepository.Read().Where(a => a.OfferedItemId == model.Id)
                 .Select(a => new OfferedItemImageViewModel
                 {
+                    //TODO: замінити на ImageName = _imgService.GetImageUrl(a.ImageUrl),
                     ImageUrl = a.ImageUrl,
                     IsMain = a.IsMain,
                     OfferedItemId = model.Id,
@@ -201,19 +232,30 @@ namespace FundTrack.BLL.Concrete
         /// <returns>List of offered item images</returns>
         public OfferedItemImageViewModel[] SetNewPictures(OfferedItemViewModel model, OfferedItem item)
         {
+            int i = 0;
+            Dictionary<OfferedItemImage, Task<string>> d = new Dictionary<OfferedItemImage, Task<string>>();
             foreach (var thing in model.Image)
             {
                 var newImage = new OfferedItemImage
                 {
-                    ImageUrl = thing.ImageUrl,
                     IsMain = thing.IsMain,
                     OfferedItemId = item.Id
                 };
-                this._unitOfWork.OfferImagesRepository.Create(newImage);
+                var t = _imgService.UploadImage(Convert.FromBase64String(model.Base64Images[i++]));
+
+                d.Add(newImage, t);
             }
+            Task.WhenAll(d.Values);
+
+            foreach (var element in d)
+            {
+                element.Key.ImageUrl = element.Value.Result;
+            }
+
+            this._unitOfWork.OfferImagesRepository.CreateMany(d.Keys.ToList());
             return model.Image;
         }
-        
+
         /// <summary>
         /// Gets offered item images of the specified item by it's id
         /// </summary>
@@ -283,6 +325,7 @@ namespace FundTrack.BLL.Concrete
                         Id = image.Id,
                         IsMain = image.IsMain,
                         OfferedItemId = image.OfferedItemId,
+                        //TODO: замінити на ImageUrl = _imgService.GetImageUrl(image.ImageUrl)
                         ImageUrl = image.ImageUrl
                     });
             return images;
@@ -310,7 +353,7 @@ namespace FundTrack.BLL.Concrete
             try
             {
                 var item = this._unitOfWork.OfferedItemRepository.Get(model.OfferItemId);
-                if (item.UserId==model.UserId)
+                if (item.UserId == model.UserId)
                 {
                     item.Status = this._unitOfWork.StatusRepository.GetStatusByName(model.OfferItemStatus);
                     this._unitOfWork.SaveChanges();
@@ -320,7 +363,7 @@ namespace FundTrack.BLL.Concrete
                 {
                     return new OfferItemChangeStatusViewModel { ErrorMessage = "Недостатньо прав" };
                 }
-                
+
             }
             catch (Exception e)
             {
@@ -329,7 +372,7 @@ namespace FundTrack.BLL.Concrete
                     ErrorMessage = e.Message
                 };
             }
-           
+
         }
     }
 }

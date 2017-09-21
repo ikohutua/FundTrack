@@ -32,7 +32,7 @@ namespace FundTrack.BLL.Concrete
 
                 return _unitOfWork.FinOpRepository.Read().ToList()
                     .Where(finOps =>
-                        (finOps.Amount > 0)
+                        (finOps.OrgAccountTo != null)
                         && (finOps.OrgAccountTo.OrgId == orgId)
                         && (finOps.FinOpDate > dateFrom)
                         && (finOps.FinOpDate < dateTo))
@@ -67,12 +67,13 @@ namespace FundTrack.BLL.Concrete
 
                 return _unitOfWork.FinOpRepository.Read().ToList()
                     .Where(finOps =>
-                        finOps.Amount < 0
-                        && finOps.OrgAccountTo.OrgId == orgId
+                        finOps.OrgAccountFrom != null
+                        && finOps.OrgAccountFrom.OrgId == orgId
                         && finOps.FinOpDate > dateFrom
                         && finOps.FinOpDate < dateTo)
                     .Select(finOps => new ReportOutcomeViewModel
                     {
+                        Id=finOps.Id,
                         Description = finOps.Description,
                         Target = finOps.Target.TargetName,
                         MoneyAmount = finOps.Amount,
@@ -82,6 +83,21 @@ namespace FundTrack.BLL.Concrete
             catch (Exception ex)
             {
                 throw new BusinessLogicException(ex.Message, ex);
+            }
+        }
+
+        public IEnumerable<String> GetImagesById(int finOpId)
+        {
+            try
+            {
+                return _unitOfWork.FinOpImages.Read().ToList()
+                    .Where(finOpImg =>                
+                        finOpImg.FinOpId == finOpId)
+                    .Select(finOpImages =>finOpImages.ImageUrl).ToList();
+            }
+            catch (Exception ex)
+            {
+                throw new BusinessLogicException("Error while getting image path list from FinOPImages entities by finOpId.", ex);
             }
         }
     }

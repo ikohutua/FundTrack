@@ -17,6 +17,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FinanceModule } from "./finance.module";
 import { ValidatorsService } from "./services/concrete/validators/validator.service";
 
+
 //function createConfig(): SignalRConfiguration {
 //    let signalrConfiguration = new SignalRConfiguration();
 //    signalrConfiguration.hubName = 'SuperAdminChatHub';
@@ -43,6 +44,7 @@ import { ValidatorsService } from "./services/concrete/validators/validator.serv
         OfferManagementModule,
         FinanceModule,
         ReactiveFormsModule
+        
         //,
         //SignalRModule.forRoot(createConfig)
     ],

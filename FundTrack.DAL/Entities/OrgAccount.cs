@@ -48,6 +48,9 @@ namespace FundTrack.DAL.Entities
         /// </summary>
         public decimal CurrentBalance { get; set; }
 
+        /// <summary>
+        /// Gets or Sets TargetId navigation property
+        /// </summary>
         public int? TargetId { get; set; }
 
         /// <summary>
@@ -97,6 +100,7 @@ namespace FundTrack.DAL.Entities
                 AccountType = model.AccountType,
                 Description=model.Description,
                 CurrentBalance=model.CurrentBalance,
+                TargetId = model.TargetId
             };
         }
         public static implicit operator OrgAccountViewModel (OrgAccount item)
@@ -111,6 +115,7 @@ namespace FundTrack.DAL.Entities
                 AccountType=item.AccountType,
                 Description=item.Description,
                 CurrentBalance=item.CurrentBalance,
+                TargetId = item.TargetId
             };
         }
         #endregion

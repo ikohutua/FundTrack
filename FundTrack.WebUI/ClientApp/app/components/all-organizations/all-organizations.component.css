@@ -1,0 +1,38 @@
+﻿.panel-padding {
+    padding-right: 25px;
+}
+
+.panel > .panel-heading {
+    background-color: #314720;
+    border-color: #314720;
+    color:white;
+}
+
+.panel {
+    border-color: #314720;
+}
+
+.panel-size {
+    height: 230px;
+}
+
+.div-strings {
+    height: 140px;
+    overflow: hidden;
+}
+
+.div-panel-margen {
+    margin-right: 20px;
+}
+
+img {
+    max-width:180px;
+    max-height: 135px;
+}
+
+a.linkBack {
+    color: #314720;
+    text-decoration-line: underline;
+    font:bold !important;
+    font-weight:400 !important;
+}

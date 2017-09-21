@@ -25,5 +25,10 @@ namespace FundTrack.Infrastructure.ViewModel
         /// Indicates if that Organization is banned
         /// </summary>
         public bool IsBanned { get; set; }
+
+        /// <summary>
+        /// Link to logo image
+        /// </summary>
+        public string LogoUrl { get; set; }
     }
 }

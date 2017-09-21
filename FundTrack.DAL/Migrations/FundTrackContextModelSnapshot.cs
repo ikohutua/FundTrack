@@ -379,7 +379,7 @@ namespace FundTrack.DAL.Migrations
                     b.Property<DateTime>("FinOpDate")
                         .HasColumnType("datetime");
 
-                    b.Property<int>("TargetId");
+                    b.Property<int?>("TargetId");
 
                     b.Property<int?>("UserId");
 
@@ -398,6 +398,22 @@ namespace FundTrack.DAL.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("FinOps");
+                });
+
+            modelBuilder.Entity("FundTrack.DAL.Entities.FinOpImage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("FinOpId");
+
+                    b.Property<string>("ImageUrl");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FinOpId");
+
+                    b.ToTable("FinOpImages");
                 });
 
             modelBuilder.Entity("FundTrack.DAL.Entities.GoodsCategory", b =>
@@ -790,6 +806,8 @@ namespace FundTrack.DAL.Migrations
 
                     b.Property<int>("OrganizationId");
 
+                    b.Property<int?>("ParentTargetId");
+
                     b.Property<string>("TargetName")
                         .IsRequired()
                         .HasMaxLength(50);
@@ -798,6 +816,8 @@ namespace FundTrack.DAL.Migrations
                         .HasName("PK_Target");
 
                     b.HasIndex("OrganizationId");
+
+                    b.HasIndex("ParentTargetId");
 
                     b.ToTable("Targets");
                 });
@@ -1016,13 +1036,20 @@ namespace FundTrack.DAL.Migrations
                     b.HasOne("FundTrack.DAL.Entities.Target", "Target")
                         .WithMany("FinOp")
                         .HasForeignKey("TargetId")
-                        .HasConstraintName("FK_FinOp_Target")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasConstraintName("FK_FinOp_Target");
 
                     b.HasOne("FundTrack.DAL.Entities.User", "User")
                         .WithMany("FinOps")
                         .HasForeignKey("UserId")
                         .HasConstraintName("FK_FinOp_User");
+                });
+
+            modelBuilder.Entity("FundTrack.DAL.Entities.FinOpImage", b =>
+                {
+                    b.HasOne("FundTrack.DAL.Entities.FinOp", "FinOp")
+                        .WithMany("FinOpImage")
+                        .HasForeignKey("FinOpId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("FundTrack.DAL.Entities.GoodsCategory", b =>
@@ -1102,7 +1129,7 @@ namespace FundTrack.DAL.Migrations
                         .HasConstraintName("FK_OrgAccount_Organization")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("FundTrack.DAL.Entities.Target", "Target")
+                    b.HasOne("FundTrack.DAL.Entities.Target")
                         .WithMany("OrgAccounts")
                         .HasForeignKey("TargetId");
                 });
@@ -1220,6 +1247,10 @@ namespace FundTrack.DAL.Migrations
                         .WithMany("Targets")
                         .HasForeignKey("OrganizationId")
                         .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("FundTrack.DAL.Entities.Target", "ParentTarget")
+                        .WithMany()
+                        .HasForeignKey("ParentTargetId");
                 });
 
             modelBuilder.Entity("FundTrack.DAL.Entities.UserAddress", b =>

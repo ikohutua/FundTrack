@@ -15,7 +15,6 @@ import { AddModeratorViewModel } from "../../view-models/concrete/edit-organizat
 import { isBrowser } from "angular2-universal";
 import { AuthorizeUserModel } from "../../view-models/concrete/authorized-user-info-view.model";
 import { TargetViewModel } from "../../view-models/concrete/finance/donate/target.view-model";
-
 import * as key from '../../shared/key.storage';
 
 @Component({
@@ -38,7 +37,10 @@ export class OrganizationEditComponent implements OnInit, OnDestroy, AfterViewIn
     isAdmin: boolean = false;
     targetArray: TargetViewModel[];
     editableTarget: TargetViewModel;
-    isNewTarget: boolean;
+    // flags of modal component buttons
+    isSubTargetSelected: boolean;
+    isTargetForEditing: boolean;
+    isTargetForAdding: boolean;
 
     //modal window to add new target
     @ViewChild("targetModal")
@@ -61,7 +63,7 @@ export class OrganizationEditComponent implements OnInit, OnDestroy, AfterViewIn
 
     //maps 
     @ViewChildren(MapComponent)
-    public Maps: QueryList<MapComponent>
+    public Maps: QueryList<MapComponent>;
     private map: MapComponent;
     private mapInModal: MapComponent;
 
@@ -232,8 +234,9 @@ export class OrganizationEditComponent implements OnInit, OnDestroy, AfterViewIn
     {
         if (addressArray.length == this.minimumAddresses) {
             return true;
+        } else {
+            return false;
         }
-        else return false;
     }
 
     /**
@@ -302,10 +305,14 @@ export class OrganizationEditComponent implements OnInit, OnDestroy, AfterViewIn
 
     //closes modal
     closeModal(modal: ModalComponent): void {
+        this.isSubTargetSelected = false;
+        this.isTargetForAdding = false;
+        this.isTargetForEditing = false;
         modal.hide();
     }
 
     public addTarget() {
+        this.isTargetForAdding = false;
         this.editableTarget.organizationId = this.organizationId;
         this._editService.addTarget(this.editableTarget).subscribe(model => {
             this.targetArray.push(model);
@@ -313,20 +320,38 @@ export class OrganizationEditComponent implements OnInit, OnDestroy, AfterViewIn
         this.closeModal(this.targetModal);
     }
 
+    public addSubTarget() {
+        this.isSubTargetSelected = false;
+        this._editService.addTarget(this.editableTarget).subscribe(model => {
+            this.targetArray.push(model);
+        });
+        this.closeModal(this.targetModal);
+    }
+
     openModalForEditTarget(target: TargetViewModel) {
-        this.isNewTarget = false;
+        this.isTargetForEditing = true;
         this.editableTarget = Object.assign({}, target);
         this.openModal(this.targetModal);
     }
 
     openModalForAddTarget() {
+        debugger;
+        this.isTargetForAdding = true;
         this.editableTarget = new TargetViewModel();
-        this.isNewTarget = true;
+        this.openModal(this.targetModal);
+    }
+
+    openModalForAddingSubTarget(target: TargetViewModel) {
+        this.isSubTargetSelected = true;
+        this.editableTarget = new TargetViewModel();
+        this.editableTarget.organizationId = target.organizationId;
+        this.editableTarget.parentTargetId = target.targetId;
         this.openModal(this.targetModal);
     }
 
      
     editTarget() {
+        this.isTargetForEditing = false;
         this.editableTarget.organizationId = this.organizationId;
         this._editService.editTarget(this.editableTarget)
             .subscribe(model => {
@@ -340,11 +365,12 @@ export class OrganizationEditComponent implements OnInit, OnDestroy, AfterViewIn
      */
     getTargetsByOrganizationId() {  
         this._editService.getTargetsByOrganizationId(this.organizationId).subscribe(model => {
-            this.targetArray = model;       
+            this.targetArray = model;
         });
     }
 
     deleteTarget() {
+
         this._editService.deleteTarget(this.editableTarget.targetId).subscribe((model) => {
             this.getTargetsByOrganizationId();
         }, error => {
@@ -362,8 +388,26 @@ export class OrganizationEditComponent implements OnInit, OnDestroy, AfterViewIn
   Displays  deleting error toast
   */
     public showToast() {
-        var x = document.getElementById("snackbar")
+        var x = document.getElementById("snackbar");
         x.className = "show";
         setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
+    }
+
+    private ifTargetIsParent(target : TargetViewModel): boolean {
+        if (target.parentTargetId == undefined) {
+            return true;
+        }
+        if (target.parentTargetId != undefined) {
+            return false;
+        }
+    }
+
+    private ifFirstTargetIsParentForSecondTarget(firstTarget : TargetViewModel, secondTarget : TargetViewModel) : boolean {
+        if (firstTarget.targetId === secondTarget.parentTargetId) {
+            return true;
+        }
+        if (firstTarget.targetId !== secondTarget.parentTargetId) {
+            return false;
+        }
     }
 }

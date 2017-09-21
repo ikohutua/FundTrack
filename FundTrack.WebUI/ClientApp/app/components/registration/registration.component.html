@@ -59,6 +59,22 @@
             </span>
         </div>
 
+        <div class="form-group" [class.has-error]="formErrors.phone"
+             [class.has-success]="!formErrors.phone && registrationForm.get('phone').valid">
+            <label class="control-label" for="phone">Телефон</label>
+            <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-phone" aria-hidden="true"></i></span>
+                <input placeholder="380XXXXXXXXX" class="form-control input-md" type="text"
+                       formControlName="phone" [(ngModel)]="registrationViewModel.phone" />
+            </div>
+            <span *ngIf="formErrors.phone" class="has-error help-block fixedError">
+                {{ formErrors.phone }}
+            </span>
+            <span *ngIf="errorMessage">
+                <span class="has-error help-block fixedError">{{errorMessage}}</span>
+            </span>
+        </div>
+
         <div class="form-group" [class.has-error]="formErrors.password"
              [class.has-success]="!formErrors.password && registrationForm.get('password').valid">
             <label class="control-label" for="password">Пароль</label>
@@ -92,4 +108,4 @@
             <button id="submit" class="btn btn-success pull-right" [disabled]="registrationForm.invalid" (click)="register()">Зареєструватись</button>
         </div>
     </form>
-    </div>
+</div>

@@ -24,7 +24,7 @@ namespace FundTrack.BLL.Concrete
             }
             catch (System.Exception ex)
             {
-                throw new BusinessLogicException(ex.Message, ex);
+                throw new BusinessLogicException(ErrorMessages.CantFindItem, ex);
             }
         }
 
@@ -37,13 +37,13 @@ namespace FundTrack.BLL.Concrete
             }
             catch (System.Exception ex)
             {
-                throw new BusinessLogicException(ex.Message, ex);
+                throw new BusinessLogicException(ErrorMessages.CantFindItem, ex);
             }
         }
 
         private IEnumerable<TargetViewModel> ConvertTargetsToTargetViewModel(IEnumerable<Target> targets)
         {
-            return targets.Select(ConvertTargetToViewModel);
+            return targets.Select(ConvertTargetToViewModel).ToList();
         }
 
         private TargetViewModel ConvertTargetToViewModel(Target target)
@@ -52,7 +52,8 @@ namespace FundTrack.BLL.Concrete
             {
                 TargetId = target.Id,
                 Name = target.TargetName,
-                OrganizationId = target.OrganizationId
+                OrganizationId = target.OrganizationId,
+                ParentTargetId = target.ParentTargetId
             };
         }
 
@@ -62,7 +63,8 @@ namespace FundTrack.BLL.Concrete
             {
                 Id = targetVm.TargetId,
                 TargetName = targetVm.Name,
-                OrganizationId = targetVm.OrganizationId
+                OrganizationId = targetVm.OrganizationId,
+                ParentTargetId = targetVm.ParentTargetId
             };
         }
 
@@ -70,7 +72,7 @@ namespace FundTrack.BLL.Concrete
         {
             if (item.Name.Length == 0)
             {
-                throw new BusinessLogicException(ErrorMessages.RequiredFieldMessage);
+                throw new System.ArgumentException(ErrorMessages.RequiredFieldMessage);
             }
 
             try
@@ -84,7 +86,7 @@ namespace FundTrack.BLL.Concrete
             }
             catch (System.Exception ex)
             {
-                throw new BusinessLogicException(ex.Message, ex);
+                throw new BusinessLogicException(ErrorMessages.UpdateDataError, ex);
             }
         }
 
@@ -92,7 +94,7 @@ namespace FundTrack.BLL.Concrete
         {
             if (addTarget.Name.Length == 0)
             {
-                throw new BusinessLogicException(ErrorMessages.RequiredFieldMessage);
+                throw new System.ArgumentException(ErrorMessages.RequiredFieldMessage);
             }
 
             try
@@ -106,9 +108,8 @@ namespace FundTrack.BLL.Concrete
             }
             catch (System.Exception ex)
             {
-                throw new BusinessLogicException(ex.Message, ex);
+                throw new BusinessLogicException(ErrorMessages.CantCreatedItem, ex);
             }
-
         }
 
         public void DeleteTarget(int id)
@@ -117,6 +118,29 @@ namespace FundTrack.BLL.Concrete
             {
                 _unitOfWork.TargetRepository.Delete(id);
                 _unitOfWork.SaveChanges();
+            }
+            catch (System.Exception ex)
+            {
+                throw new BusinessLogicException(ErrorMessages.DeleteDataError, ex);
+            }
+        }
+
+        public IEnumerable<TargetViewModel> GetTargets(int orgId, int parentTargetId = 0)
+        {
+            try
+            {
+                IEnumerable<Target> targets;
+                if (parentTargetId == 0)
+                {
+                    targets = _unitOfWork.TargetRepository.GetTargetsByOrganizationId(orgId)
+                        .Where(t => t.ParentTargetId == null);
+                }
+                else
+                {
+                    targets = _unitOfWork.TargetRepository.GetTargetsByOrganizationId(orgId)
+                        .Where(t => t.ParentTargetId == parentTargetId);
+                }
+                return ConvertTargetsToTargetViewModel(targets);
             }
             catch (System.Exception ex)
             {

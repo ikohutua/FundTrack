@@ -58,8 +58,9 @@ textarea {
 
 .btn-primary {
     color: #fff;
-    background-color: #627F49;
-    border-color: #233915;
+    background-color: #a2a886;
+    border-color: #a2a886;
+    margin: 5px 0;
 }
 
     .btn-primary:hover {
@@ -75,6 +76,22 @@ textarea {
     align-items: center;
     margin: 5px 0;
     border-radius: 7px;
+}
+
+.subTargetDiv {
+    background-color: #a2a886;
+    padding: 5px;
+    width: 90%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin: 5px 0;
+    margin-left: 10%;
+    border-radius: 7px;
+}
+
+.spaceBetweenTargetsDiv {
+    margin: 100px 0;
 }
 
 .divFoot {

@@ -13,6 +13,8 @@ import { GoodsCategoryViewModel } from "../../view-models/concrete/goods-categor
 import { GoodsStatusViewModel } from "../../view-models/concrete/goods-status-model";
 import { IOrganizationForFiltering } from "../../view-models/abstract/organization-for-filtering.interface";
 import { FilterRequstedViewModel } from '../../view-models/concrete/filter-requests-view.model';
+import { IncomeReportDataViewModel } from "../../view-models/concrete/income-report-data-view-model";
+import { OutcomeReportDataViewModel } from "../../view-models/concrete/outcome-report-data-view-model";
 
 @Injectable()
 export class ShowRequestedItemService extends BaseService<IShowRequestedItem>{
@@ -23,6 +25,9 @@ export class ShowRequestedItemService extends BaseService<IShowRequestedItem>{
     private _urlGetTypes: string = 'api/RequestedItem/GetTypes';
     private _urlGetStatuses: string = 'api/RequestedItem/GetStatuses';
     private _urlFilterRequestedItem: string = 'api/RequestedItem/GetFilterRequestedItemPaginationData';
+    private _urlGetIncomeReportData: string = 'api/reports/IncomeReport';
+    private _urlGetOutcomeReportData: string = 'api/reports/OutcomeReport';
+    private _urlGetFinOpImagesById: string = 'api/reports/FinOpImages';
 
     /**
  * @constructor
@@ -66,6 +71,18 @@ export class ShowRequestedItemService extends BaseService<IShowRequestedItem>{
         return this.http.post(this._urlFilterRequestedItem, JSON.stringify(filters), this.getRequestOptions())
             .map((response: Response) => response.json() as ShowRequestedItem[])
             .catch(this.handleErrorHere);
+    }
+
+    public getIncomeReportData(organizationId: number, startDate: string, endDate: string): Observable<IncomeReportDataViewModel[]> {
+        return this.getCollections<IncomeReportDataViewModel>(this._urlGetIncomeReportData + '?orgId='+organizationId+'&datefrom='+startDate+'&dateto='+endDate);
+    }
+
+    public getOutcomeReportData(organizationId: number, startDate: string, endDate: string): Observable<OutcomeReportDataViewModel[]> {
+        return this.getCollections<OutcomeReportDataViewModel>(this._urlGetOutcomeReportData + '?orgId=' + organizationId + '&datefrom=' + startDate + '&dateto=' + endDate);
+    }
+
+    public getFinOpImages(finOpId: number): Observable<string[]> {
+        return this.getCollections<string>(this._urlGetFinOpImagesById + '?finopid=' + finOpId);
     }
 
     public getOrgaizations(): Observable<IOrganizationForFiltering[]> {

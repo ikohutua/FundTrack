@@ -43,7 +43,7 @@ namespace FundTrack.WebUI.Controllers
             try
             {
                 var userInfo = this._userDomainService.LoginFacebook(loginFacebookViewModel);
-                var userInfoModel = _userDomainService.GetUserInfoViewModel(userInfo.login);
+                var userInfoModel = _userDomainService.GetUserInfoViewModel(userInfo.Login);
                 return JsonConvert.SerializeObject(this._getAuthorizationType(userInfoModel),
                                                        new JsonSerializerSettings { Formatting = Formatting.Indented });
             }
@@ -54,22 +54,21 @@ namespace FundTrack.WebUI.Controllers
         }
 
         /// <summary>
-        ///  Authorize user in system , return the type which contain UserInfoViewModel
+        ///  Authorize user in system , return the type which contain r
         /// </summary>
         /// <param name="user">user credentials</param>
         /// <returns>authorization type with token and user model</returns>
         [HttpPost("LogIn")]
-        public string LogIn([FromBody]LoginViewModel user)
+        public JsonResult LogIn([FromBody]LoginViewModel user)
         {
             try
             {
                 var userInfoModel = _userDomainService.GetUserInfoViewModel(user.Login, user.Password);
-                return JsonConvert.SerializeObject(this._getAuthorizationType(userInfoModel),
-                                                   new JsonSerializerSettings { Formatting = Formatting.Indented });
+                return Json(this._getAuthorizationType(userInfoModel));
             }
             catch (Exception ex)
             {
-                return this._getAuthorizationTypeError(ex.Message);
+                return Json(this._getAuthorizationTypeError(ex.Message));
             }
         }
 
@@ -78,7 +77,7 @@ namespace FundTrack.WebUI.Controllers
         /// </summary>
         /// <param name="model">View model received from frontend</param>
         /// <returns>stringified View model</returns>
-        [Authorize]
+
         [HttpPut("editprofile")]
         public JsonResult EditProfile([FromBody] UserInfoViewModel model)
         {
@@ -91,7 +90,7 @@ namespace FundTrack.WebUI.Controllers
         /// </summary>
         /// <param name="changePasswordViewModel"></param>
         /// <returns>returns change password view model, that is empty if change password succeded</returns>
-        [Authorize]
+        
         [HttpPost("changepassword")]
         public JsonResult ChangePassword([FromBody]ChangePasswordViewModel changePasswordViewModel)
         {

@@ -14,5 +14,6 @@ namespace FundTrack.BLL.Abstract
 
         void DeleteTarget(int id);
 
+        IEnumerable<TargetViewModel> GetTargets(int orgId, int parentId = 0);
     }
 }

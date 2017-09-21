@@ -21,9 +21,13 @@
         public const string MissedEnterData = "Введіть пароль і логін.";
         public const string InvalidUserRole = "InvalidUserRole";
         public const string InvalidUser = "InvalidUser";
-        public const string UpdateData = "Неможливо змінити дані";
-        public const string DeleteData = "Неможливо видалити дані";
+        public const string UpdateDataError = "Неможливо змінити дані";
+        public const string DeleteDataError = "Неможливо видалити дані";
         public const string DeleteDependentTarget = "Неможливо видалити зв'язане з рахунком призначення";
+        public const string CantFindItem = "Неможливо знайти об'єкт";
+        public const string CantCreatedItem = "Неможливо створити об'єкт";
 
+        public const string PatternPhoneMessage = "Невірний формат телефону";
+        public const string MoneyFinOpLimit = "Сума повинна бути більшою 0 і меншою 1000000";
     }
 }

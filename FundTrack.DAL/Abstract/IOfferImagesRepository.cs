@@ -15,6 +15,12 @@ namespace FundTrack.DAL.Abstract
         /// <param name="item">Offered item image entity</param>
         /// <returns></returns>
         new OfferedItemImage Create(OfferedItemImage item);
+        /// <summary>
+        /// Creates many offered item images together
+        /// </summary>
+        /// <param name="collection"></param>
+        /// <returns></returns>
+        IEnumerable<OfferedItemImage> CreateMany(IEnumerable<OfferedItemImage> collection);
 
         /// <summary>
         /// Deletes Offered Item Image entity by its id

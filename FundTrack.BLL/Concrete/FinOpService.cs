@@ -7,6 +7,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Org.BouncyCastle.Bcpg;
+using FundTrack.Infrastructure;
 
 namespace FundTrack.BLL.Concrete
 {
@@ -28,15 +30,16 @@ namespace FundTrack.BLL.Concrete
         /// </summary>
         /// <returns></returns>
         /// <exception cref="BusinessLogicException"></exception>
-        public IEnumerable<TargetViewModel> GetTargets()
+        public IEnumerable<TargetViewModel> GetTargets(int id)
         {
             try
             {
-                return this._unitOfWork.TargetRepository.Read()
+                return _unitOfWork.TargetRepository.GetTargetsByOrganizationId(id)
                                        .Select(item => new TargetViewModel
                                        {
                                            TargetId = item.Id,
-                                           Name = item.TargetName
+                                           Name = item.TargetName,
+                                           OrganizationId = item.OrganizationId
                                        });
             }
             catch (Exception ex)
@@ -50,31 +53,32 @@ namespace FundTrack.BLL.Concrete
         /// </summary>
         /// <param name="finOpModel">The fin op model.</param>
         /// <returns></returns>
-        public FinOpViewModel CreateFinOp(FinOpViewModel finOpModel)
+        public FinOpFromBankViewModel CreateFinOp(FinOpFromBankViewModel finOpModel)
         {
             try
             {
                 var finOp = new FinOp
                 {
-                    AccToId = this._unitOfWork.OrganizationAccountRepository.GetOrgAccountByName(finOpModel.OrgId, finOpModel.AccToName).Id,
-                    TargetId = this._unitOfWork.TargetRepository.GetTargetByName(finOpModel.TargetName).Id,
+                    AccFromId = _unitOfWork.OrganizationAccountRepository.GetOrgAccountByName(finOpModel.OrgId, finOpModel.AccFromName).Id,
+                    AccToId = _unitOfWork.OrganizationAccountRepository.GetOrgAccountByName(finOpModel.OrgId, finOpModel.AccToName).Id,
+                    TargetId = _unitOfWork.TargetRepository.GetTargetByName(finOpModel.TargetName).Id,
                     Amount = finOpModel.Amount,
                     Description = finOpModel.Description,
                     FinOpDate = DateTime.Now
                 };
 
-                var finOpEntity = this._unitOfWork.FinOpRepository.Create(finOp);
-                this._unitOfWork.SaveChanges();
+                var finOpEntity = _unitOfWork.FinOpRepository.Create(finOp);
+                _unitOfWork.SaveChanges();
 
-                var createdFinOp = this._unitOfWork.FinOpRepository.GetById(finOpEntity.Id);
+                var createdFinOp = _unitOfWork.FinOpRepository.GetById(finOpEntity.Id);
                 createdFinOp.OrgAccountTo.CurrentBalance += finOpModel.Amount;
-                this._unitOfWork.FinOpRepository.Update(createdFinOp);
+                _unitOfWork.FinOpRepository.Update(createdFinOp);
 
-                var bankImportDetail = this._unitOfWork.BankImportDetailRepository.GetById(finOpModel.BankImportId);
+                var bankImportDetail = _unitOfWork.BankImportDetailRepository.GetById(finOpModel.BankImportId);
                 bankImportDetail.IsLooked = true;
-                this._unitOfWork.BankImportDetailRepository.ChangeBankImportState(bankImportDetail);
+                _unitOfWork.BankImportDetailRepository.ChangeBankImportState(bankImportDetail);
 
-                this._unitOfWork.SaveChanges();
+                _unitOfWork.SaveChanges();
                 return finOpModel;
             }
             catch (Exception ex)
@@ -83,6 +87,101 @@ namespace FundTrack.BLL.Concrete
             }
         }
 
+        private void FinOpInputDataValidation(FinOpViewModel finOpModel)
+        {
+            if (finOpModel.Amount <= 0 || finOpModel.Amount > 1000000)
+            {
+                throw new ArgumentException(ErrorMessages.MoneyFinOpLimit);
+            }
+        }
+        public FinOpViewModel CreateIncome(FinOpViewModel finOpModel)
+        {
+            FinOpInputDataValidation(finOpModel);
+            try
+            {
+                var orgAcc = _unitOfWork.OrganizationAccountRepository.GetOrgAccountByName(finOpModel.OrgId, finOpModel.AccNameTo);
+                var finOp = new FinOp
+                {
+                    Amount = finOpModel.Amount,
+                    AccToId = orgAcc.Id,
+                    Description = finOpModel.Description,
+                    TargetId = finOpModel.TargetId,
+                    FinOpDate = DateTime.Now,
+                };
+                _unitOfWork.FinOpRepository.Create(finOp);
+                orgAcc.CurrentBalance += finOpModel.Amount;
+                _unitOfWork.OrganizationAccountRepository.Edit(orgAcc);
+                _unitOfWork.SaveChanges();
+                return finOpModel;
+            }
+            catch (Exception ex)
+            {
+                throw new BusinessLogicException("Щось пішло не так....О_о", ex);
+            }
+        }
+
+        public FinOpViewModel CreateSpending(FinOpViewModel finOpModel)
+        {
+            FinOpInputDataValidation(finOpModel);
+            try
+            {
+                var orgAcc = _unitOfWork.OrganizationAccountRepository.GetOrgAccountByName(finOpModel.OrgId, finOpModel.AccNameFrom);
+                if (finOpModel.Amount > orgAcc.CurrentBalance)
+                {
+                    throw new ArgumentException("Витрати не можуть перебільшувати баланс рахунку");
+                }
+                var finOp = new FinOp
+                {
+                    Amount = finOpModel.Amount,
+                    AccFromId = orgAcc.Id,
+                    Description = finOpModel.Description,
+                    TargetId = finOpModel.TargetId,
+                    FinOpDate = DateTime.Now,
+                };
+                _unitOfWork.FinOpRepository.Create(finOp);
+                orgAcc.CurrentBalance -= finOpModel.Amount;
+                _unitOfWork.OrganizationAccountRepository.Edit(orgAcc);
+                _unitOfWork.SaveChanges();
+                return finOpModel;
+            }
+            catch (Exception ex)
+            {
+                throw new BusinessLogicException("Щось пішло не так....О_о", ex);
+            }
+        }
+
+        public FinOpViewModel CreateTransfer(FinOpViewModel finOpModel)
+        {
+            FinOpInputDataValidation(finOpModel);
+            try
+            {
+                var orgAccFrom = _unitOfWork.OrganizationAccountRepository.GetOrgAccountByName(finOpModel.OrgId, finOpModel.AccNameFrom);
+                var orgAccTo = _unitOfWork.OrganizationAccountRepository.GetOrgAccountByName(finOpModel.OrgId, finOpModel.AccNameTo);
+                if (finOpModel.Amount > orgAccFrom.CurrentBalance)
+                {
+                    throw new ArgumentException("Витрати не можуть перебільшувати баланс рахунку");
+                }
+                var finOp = new FinOp
+                {
+                    Amount = finOpModel.Amount,
+                    AccToId = orgAccTo.Id,
+                    AccFromId = orgAccFrom.Id,
+                    Description = finOpModel.Description,
+                    FinOpDate = DateTime.Now,
+                };
+                _unitOfWork.FinOpRepository.Create(finOp);
+                orgAccFrom.CurrentBalance -= finOpModel.Amount;
+                _unitOfWork.OrganizationAccountRepository.Edit(orgAccFrom);
+                orgAccTo.CurrentBalance += finOpModel.Amount;
+                _unitOfWork.OrganizationAccountRepository.Edit(orgAccTo);
+                _unitOfWork.SaveChanges();
+                return finOpModel;
+            }
+            catch (Exception ex)
+            {
+                throw new BusinessLogicException("Щось пішло не так....О_о", ex);
+            }
+        }
         /// <summary>
         /// Gets the fin ops by org account.
         /// </summary>
@@ -92,16 +191,15 @@ namespace FundTrack.BLL.Concrete
         {
             try
             {
-                var finOps= this._unitOfWork.FinOpRepository.GetFinOpByOrgAccount(orgAccountId)
-
-                                                        .Select(f => new FinOpListViewModel
-                                                        {
-                                                            Date = f.FinOpDate,
-                                                            Description = f.Description,
-                                                            Amount = f.Amount,
-                                                            CurrencyShortName =  f.AccToId.HasValue?f.OrgAccountTo.Currency.ShortName: f.OrgAccountFrom.Currency.ShortName,
-                                                            CurrencyFullName = f.AccToId.HasValue ? f.OrgAccountTo.Currency.FullName : f.OrgAccountFrom.Currency.FullName
-                                                        });
+                var finOps = _unitOfWork.FinOpRepository.GetFinOpByOrgAccount(orgAccountId)
+                    .Select(f => new FinOpListViewModel
+                    {
+                        Date = f.FinOpDate,
+                        Description = f.Description,
+                        Amount = f.Amount,
+                        CurrencyShortName = f.AccToId.HasValue ? f.OrgAccountTo.Currency.ShortName : f.OrgAccountFrom.Currency.ShortName,
+                        CurrencyFullName = f.AccToId.HasValue ? f.OrgAccountTo.Currency.FullName : f.OrgAccountFrom.Currency.FullName
+                    });
                 return finOps;
             }
             catch (Exception ex)
@@ -112,6 +210,7 @@ namespace FundTrack.BLL.Concrete
                 } as IEnumerable<FinOpListViewModel>;
             }
         }
+
     }
 }
 

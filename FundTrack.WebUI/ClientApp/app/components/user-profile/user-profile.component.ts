@@ -14,6 +14,7 @@ import { UserService } from '../../services/concrete/user.service';
 import { Router } from "@angular/router";
 import { matchingPasswords } from '../registration/match-password.validator';
 import { AmazonUploadComponent } from '../../shared/components/amazonUploader/amazon-upload.component';
+import { UserProfileConstantsClass } from "./user-profile.constants";
 
 
 @Component({
@@ -36,6 +37,9 @@ export class UserProfileComponent implements OnInit {
     private passwordEdit: boolean = true;
     private passwordContainer: ChangePasswordViewModel = new ChangePasswordViewModel();
 
+    //Regex pattern
+    private phoneRegexPattern: string = "^[3]+[8]+[0]+[0-9]{9}$";
+
     /**
     Reactive forms that are bound to input elements in UI
     **/
@@ -54,46 +58,48 @@ export class UserProfileComponent implements OnInit {
         "newPassword": "",
         "newPasswordConfirmation": "",
         "oldPassword": "",
-        "mismatchingPasswords": ""
+        "mismatchingPasswords": "",
+        "phone": ""
     };
 
     /**
     Object that contains error messages
     **/
     public validationMessages = {
-        "firstName": {
-            "required": "Поле є обов'язковим",
-            "minlength": "Значення не може бути коротшим 2х символів",
-            "maxlength": "Значення не може бути довшим 20 символів"
+        firstName: {
+            required: UserProfileConstantsClass.requiredMessage,
+            minlength: UserProfileConstantsClass.minlengthMessage,
+            maxlength: UserProfileConstantsClass.maxlengthMessage
         },
-        "lastName": {
-            "required": "Поле є обов'язковим",
-            "minlength": "Значення не може бути коротшим 2х символів",
-            "maxlength": "Значення не може бути довшим 20 символів"
+        lastName: {
+            required: UserProfileConstantsClass.requiredMessage,
+            minlength: UserProfileConstantsClass.minlengthMessage,
+            maxlength: UserProfileConstantsClass.maxlengthMessage
         },
-        "email": {
-            "required": "Поле є обов'язковим",
-            "pattern": "Формат email адреси не вірний"
+        email: {
+            required: UserProfileConstantsClass.requiredMessage,
+            pattern: UserProfileConstantsClass.emailFormatMessage
         },
-        "login": {
-            "required": "Поле є обов'язковим",
-            "minlength": "Значення не може бути коротшим 3х символів",
-            "maxlength": "Значення не може бути довшим 20 символів"
+        login: {
+            required: UserProfileConstantsClass.requiredMessage,
+            minlength: UserProfileConstantsClass.minlengthMessage,
+            maxlength: UserProfileConstantsClass.maxlengthMessage
         },
-        "address": {
-            "required": "Поле є обов'язковим"
+        oldPassword: {
+            required: UserProfileConstantsClass.requiredMessage
         },
-        "oldPassword": {
-            "required": "Поле є обов'язковим"
+        newPassword: {
+            required: UserProfileConstantsClass.requiredMessage,
+            minlength: UserProfileConstantsClass.minlengthMessage
         },
-        "newPassword": {
-            "required": "Поле є обов'язковим",
-            "minlength": "Мінімальна довжина паролю становить 7 символів"
+        newPasswordConfirmation: {
+            required: UserProfileConstantsClass.requiredMessage,
+            minlength: UserProfileConstantsClass.minlengthMessage,
+            mismatchingPasswords: UserProfileConstantsClass.mismatchingPasswordsMessage
         },
-        "newPasswordConfirmation": {
-            "required": "Поле є обов'язковим",
-            "minlength": "Мінімальна довжина паролю становить 7 символів",
-            "mismatchingPasswords": "Паролі не співпадають"
+        phone: {
+            required: UserProfileConstantsClass.requiredMessage,
+            pattern: UserProfileConstantsClass.phoneFormatMessage
         }
     }
     /**
@@ -172,10 +178,12 @@ export class UserProfileComponent implements OnInit {
                 Validators.required,
                 Validators.minLength(3),
                 Validators.maxLength(20)
-            ]
-            ],
+            ]],
             "address": [this.user.address, [
-                Validators.required
+            ]],
+            "phone": [this.user.phone, [
+                Validators.required,
+                Validators.pattern(this.phoneRegexPattern)
             ]]
         });
 

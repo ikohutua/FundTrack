@@ -3,6 +3,7 @@
     orgId: number;
     bankAccId: number;
     cardNumber: string;
+    currencyId: number;
     currency: string;
     currencyShortName: string;
     orgAccountName: string;
@@ -14,4 +15,5 @@
     edrpou: string;
     bankName: string;
     error: string;
+    targetId : number;
 }

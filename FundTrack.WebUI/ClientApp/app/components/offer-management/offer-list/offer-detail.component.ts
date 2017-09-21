@@ -12,6 +12,8 @@ import * as key from '../../../shared/key.storage';
 import { AuthorizeUserModel } from "../../../view-models/concrete/authorized-user-info-view.model";
 import { isBrowser } from "angular2-universal";
 import { Observable } from "rxjs/Observable";
+import { Image } from "../../../view-models/concrete/image.model";
+
 
 
 @Component({
@@ -30,7 +32,13 @@ export class OfferDetailComponent implements OnInit {
     private _goodsTypes = new Array<GoodsTypeShortViewModel>();
     private _selectedType = new GoodsTypeShortViewModel();
     private _images = new Array<OfferedItemImageViewModel>();
+    images: Image[] = [];
+    maxImgCount: number = 5;
+    maxImgSize: number = 4000000;
 
+    onImageChange(imgArr: Image[]) {
+        this.images = imgArr;
+    }
     private _errorMessage: string = "";
     constructor(private _router: Router,
         private _goodsService: GoodsService,
@@ -96,6 +104,13 @@ export class OfferDetailComponent implements OnInit {
     private submit(offerItem: OfferViewModel): void {
         this.showUserRegistrationSpinner = true;
         this.offerItem.image = this._images;
+
+        var arr: string[] = [];
+        for (var i = 0; i < this.images.length; i++) {
+            arr[i] = this.images[i].base64Data;
+        }
+        this.offerItem.base64Images = arr;
+
         if (this.offerItem.id == null) {
             this._offerService.createOffer(this.offerItem)
                 .subscribe(data => {
@@ -111,41 +126,8 @@ export class OfferDetailComponent implements OnInit {
                 })
         }
     }
-    private saveFileInAws(fileInput: any): any {
-        debugger;
-        var that = this;
-        var maxFileSize = 4000000;
-        let file = fileInput.target.files[0];
-        let uploadedFileName = this.offerItem.userId + Date.now().toLocaleString() + '.' + this.getFileExtension(file.name);
-        if (file.size != null && file.size < maxFileSize) {
-            this.uploader.UploadImageToAmazon(file, uploadedFileName).then(function (data) {
-                if (!data.Location) {
-                    that.saveFileInAws(fileInput);
-                }
-                else {
-                    let offeredItemImage = new OfferedItemImageViewModel();
-                    offeredItemImage.offeredItemId = 0;
-                    offeredItemImage.imageUrl = data.Location;
-                    if (!that._images || that._images.length==0) {
-                        that._images = new Array<OfferedItemImageViewModel>();
-                        offeredItemImage.isMain = true;
-                    }
-                    that._images.push(offeredItemImage);
-                }
-                
-            });
-        }
-        else {
-            alert('Розмір файлу не може перевищувати ' + Math.ceil(maxFileSize / 1000000) + 'МБ');
-        }
-    }
 
-    private deleteCurrentImage(image: OfferedItemImageViewModel) {
-        this.offerItem.image.splice(this.offerItem.image.findIndex(a => a.imageUrl == image.imageUrl), 1);
-        if (image.isMain == true) {
-            this.offerItem.image[0].isMain = true;
-        }
-    }
+
     private setCurrentImageAsMain(image: OfferedItemImageViewModel) {
         if (this.offerItem.image) {
             for (var i = 0; i < this.offerItem.image.length; i++) {

@@ -2,6 +2,7 @@
 import { RouterModule } from "@angular/router";
 import { HomeComponent } from "../components/home/home.component";
 import { AboutComponent } from "../components/about/about.component";
+import { ReportComponent } from "../components/report/report.component";
 import { AllEventsComponent } from "../components/all-events/all-events.component";
 import { EventDetailComponent } from "../components/event-detail/event-detail.component";
 import { AllRequestsComponent } from "../components/all-requests/all-requests.component";
@@ -25,7 +26,9 @@ import { RequestDetailComponent } from "../components/request-detail/request-det
                     { path: 'eventdetail/:id', component: EventDetailComponent },
                     { path: 'allrequests', component: AllRequestsComponent },
                     { path: 'allrequests/:id', component: AllRequestsComponent },
-                    { path: 'requestdetail/:id', component: RequestDetailComponent }
+                    { path: 'requestdetail/:id', component: RequestDetailComponent },
+                    { path: 'report', component: ReportComponent },
+                    //{ path: '**', component: ReportComponent }//now not use, later can be replace to 404 page
                 ]
             },
             { path: 'about', component: AboutComponent },

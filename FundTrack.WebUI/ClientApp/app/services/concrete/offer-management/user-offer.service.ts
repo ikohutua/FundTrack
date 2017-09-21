@@ -45,6 +45,10 @@ export class UserOfferService{
         let headers = new Headers({ 'Content-Type': 'application/json' });
         headers.append("Authorization", "Bearer " + localStorage.getItem(key.keyToken));
         let options = new RequestOptions({ headers: headers });
+
+        //let input = new FormData();
+        //input.append("file", fileToUpload);
+
         return this._http.post(this._createOfferUrl, body, options)
             .map((response: Response) => <OfferViewModel>response.json())
             .do(data => console.log('ALL ' + JSON.stringify(data)))

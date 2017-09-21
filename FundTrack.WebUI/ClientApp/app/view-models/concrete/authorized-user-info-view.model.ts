@@ -14,6 +14,7 @@ export class AuthorizeUserModel {
     public photoUrl: string;
     public role: string;
     public orgId: number;
+    public phone: string;
 }
 
 export class AuthorizedUserInfoViewModel {

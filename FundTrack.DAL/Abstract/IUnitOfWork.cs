@@ -137,9 +137,19 @@ namespace FundTrack.DAL.Abstract
         IFinOpRepository FinOpRepository { get; }
 
         /// <summary>
+        /// Gets the phone repository.
+        /// </summary>
+        /// <value>
+        /// The phone repository.
+        /// </value>
+        IPhoneRepository PhoneRepository { get; }
+
+        /// <summary>
         /// Saves all changes made in this context to the database.
         /// </summary>
         /// 
         void SaveChanges();
+
+        IRepository<FinOpImage> FinOpImages { get;  }
     }
 }

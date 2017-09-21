@@ -20,6 +20,8 @@ namespace FundTrack.DAL.Entities
 
         public int OrganizationId { get; set; }
 
+        public int? ParentTargetId { get; set; }
+
         /// <summary>
         /// Gets or Sets FinOp navigation property
         /// </summary>
@@ -30,5 +32,7 @@ namespace FundTrack.DAL.Entities
         public virtual ICollection<OrgAccount> OrgAccounts { get; set; }
 
         public  virtual Organization Organizations { get; set; }
+
+        public virtual Target ParentTarget { get; set; }
     }
 }

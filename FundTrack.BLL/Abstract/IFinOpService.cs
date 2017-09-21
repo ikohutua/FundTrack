@@ -1,4 +1,5 @@
-﻿using FundTrack.Infrastructure.ViewModel.FinanceViewModels;
+﻿using FundTrack.DAL.Entities;
+using FundTrack.Infrastructure.ViewModel.FinanceViewModels;
 using FundTrack.Infrastructure.ViewModel.FinanceViewModels.DonateViewModels;
 using System;
 using System.Collections.Generic;
@@ -12,14 +13,20 @@ namespace FundTrack.BLL.Abstract
         /// Gets the targets with name and id .
         /// </summary>
         /// <returns></returns>
-        IEnumerable<TargetViewModel> GetTargets();
+        IEnumerable<TargetViewModel> GetTargets(int id);
 
         /// <summary>
         /// Creates the fin op.
         /// </summary>
         /// <param name="finOpModel">The fin op model.</param>
         /// <returns></returns>
-        FinOpViewModel CreateFinOp(FinOpViewModel finOpModel);
+        FinOpFromBankViewModel CreateFinOp(FinOpFromBankViewModel finOpModel);
+
+        FinOpViewModel CreateIncome(FinOpViewModel finOpModel);
+
+        FinOpViewModel CreateSpending(FinOpViewModel finOpModel);
+
+        FinOpViewModel CreateTransfer(FinOpViewModel finOpModel);
 
         /// <summary>
         /// Gets the fin ops by org account.

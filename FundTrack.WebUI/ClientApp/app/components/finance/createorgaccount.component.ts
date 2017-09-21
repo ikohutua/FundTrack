@@ -11,6 +11,8 @@ import { CustomValidators } from 'ng2-validation';
 import { ValidatorsService } from "../../services/concrete/validators/validator.service";
 import { AuthorizeUserModel } from "../../view-models/concrete/authorized-user-info-view.model";
 import { Location } from '@angular/common';
+import Targetviewmodel1 = require("../../view-models/concrete/finance/donate/target.view-model");
+import TargetViewModel = Targetviewmodel1.TargetViewModel;
 
 @Component({
     selector: 'createorgaccount',
@@ -30,6 +32,8 @@ export class CreateOrgAccountComponent {
     private accountForm: FormGroup;
     //Property that keeps smallAccountForm object;
     private smallAccountForm: FormGroup;
+    // Property that keeps all targets of current organization
+    private targets: TargetViewModel[] = new Array<TargetViewModel>();
 
     constructor(private _accountService: OrgAccountService,
         private _fb: FormBuilder,
@@ -40,6 +44,25 @@ export class CreateOrgAccountComponent {
         this.createForm();
         this.createSmallForm();
         this.account.accountType = 'cash';
+    }
+
+    ngOnInit(): void {
+        if (isBrowser) {
+            if (localStorage.getItem(key.keyToken)) {
+                this.user = JSON.parse(localStorage.getItem(key.keyModel)) as AuthorizeUserModel;
+            }
+        };
+        this._accountService.getAllBaseTargetsOfOrganization(this.user.orgId).subscribe((result) => {
+            this.targets.push({
+                targetId: undefined,
+                name: "Не вказано",
+                organizationId: undefined,
+                parentTargetId: undefined
+            });
+            for (var target of result) {
+                this.targets.push(target);
+            }
+        });
     }
 
     /*
@@ -55,8 +78,6 @@ export class CreateOrgAccountComponent {
         });
         this.accountForm.valueChanges
             .subscribe(a => this.onValueChange(a));
-
-        //this.onValueChange();
     }
 
      /*
@@ -66,7 +87,8 @@ export class CreateOrgAccountComponent {
         this.smallAccountForm = this._fb.group({
             accountName: [this.account.orgAccountName, [Validators.required, Validators.maxLength(100)]],
             currentBalance: [this.account.currentBalance, Validators.pattern(this.decimalValidationRegex)],
-            accountCurrency: [this.account.currency, Validators.required]
+            accountCurrency: [this.account.currency, Validators.required],
+            accountTarget: [this.account.targetId]
         });
         this.smallAccountForm.valueChanges
             .subscribe(a => this.onValueChangeSmallForm(a));
@@ -242,4 +264,9 @@ export class CreateOrgAccountComponent {
         x.className = "show";
         setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
     }
+
+    private onChangeParentTarget($event): void {
+        this.account.targetId = $event;
+    }
+
 }

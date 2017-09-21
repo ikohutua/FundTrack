@@ -9,7 +9,7 @@ export class OfferViewModel {
     goodsTypeId: number;
     id: number;
     image = new Array<OfferedItemImageViewModel>();
-    imageUrl = new Array<string>();
+    base64Images = new Array<string>();
     mainImage = new OfferedItemImageViewModel();
     name: string;
     statusName: string;

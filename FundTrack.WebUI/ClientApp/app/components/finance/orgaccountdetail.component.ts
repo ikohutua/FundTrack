@@ -1,14 +1,13 @@
 ﻿import { Component, OnInit, Input, OnChanges, SimpleChange, ViewChild, Output, EventEmitter } from "@angular/core";
-import { Router } from "@angular/router";
 import { OrgAccountService } from "../../services/concrete/finance/orgaccount.service";
 import { OrgAccountViewModel } from "../../view-models/concrete/finance/orgaccount-viewmodel";
 import { DeleteOrgAccountViewModel } from "../../view-models/concrete/finance/deleteorgaccount-view.model";
-import { DecimalPipe } from '@angular/common';
-import { CurrencyPipe } from '@angular/common';
 import { ModalComponent } from "../../shared/components/modal/modal-component";
 import * as key from '../../shared/key.storage';
 import { isBrowser } from "angular2-universal";
 import { AuthorizeUserModel } from "../../view-models/concrete/authorized-user-info-view.model";
+import Targetviewmodel = require("../../view-models/concrete/finance/donate/target.view-model");
+import TargetViewModel = Targetviewmodel.TargetViewModel;
 
 @Component({
     selector: 'orgaccountdetail',
@@ -29,7 +28,7 @@ export class OrgAccountDetailComponent implements OnInit, OnChanges {
     //Id of the deleted account
     private deletedAccountId: number = 0;
     //Property indicating if current account has card number assigned
-    private hasCardNumber: boolean = false;
+    private hasCardNumber: boolean = false; 
     //Property, containing data about logged in user
     private user: AuthorizeUserModel = new AuthorizeUserModel();
     //Property, containing today's date
@@ -38,9 +37,11 @@ export class OrgAccountDetailComponent implements OnInit, OnChanges {
     private account: OrgAccountViewModel = new OrgAccountViewModel();
     //Property, containing model, used for account deleting
     private deleteModel: DeleteOrgAccountViewModel = new DeleteOrgAccountViewModel();
+    // Property that keeps all targets of current organization
+    private targets: TargetViewModel[] = new Array<TargetViewModel>();
 
     constructor(private _service: OrgAccountService)
-    {
+    {   
     }
    
     ngOnInit(): void {
@@ -49,6 +50,18 @@ export class OrgAccountDetailComponent implements OnInit, OnChanges {
                 this.user = JSON.parse(localStorage.getItem(key.keyModel)) as AuthorizeUserModel;
             }
         };
+        this._service.getAllBaseTargetsOfOrganization(this.user.orgId).subscribe((result) => {
+            this.targets.push({
+                targetId: undefined,
+                name: "Не вказано",
+                organizationId: undefined,
+                parentTargetId: undefined
+            });
+            for (var target of result) {
+                this.targets.push(target);
+            }
+        });
+        
     }
     /*
     Checks for value changes and assignes new account in the component
@@ -127,5 +140,13 @@ export class OrgAccountDetailComponent implements OnInit, OnChanges {
         else {
             return true;
         }
+    }
+
+    /*
+    Update target of current account with selected value
+    */
+    private onChangeTarget($event): void {
+        this.account.targetId = $event;
+        this._service.updateOrganizationAccount(this.account).subscribe();
     }
 }

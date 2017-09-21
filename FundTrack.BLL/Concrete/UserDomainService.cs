@@ -109,8 +109,11 @@ namespace FundTrack.BLL.DomainServices
                 User userToAdd = registrationViewModel;
                 userToAdd.Password = PasswordHashManager.GetPasswordHash(registrationViewModel.Password);
                 User addedUser = this._unitOfWork.UsersRepository.Create(userToAdd);
+                Phone newUserPhoneNumber = new Phone { Number = registrationViewModel.Phone, UserId = addedUser.Id };
+                Phone addedUserPhoneNumber = _unitOfWork.PhoneRepository.Add(newUserPhoneNumber);
                 this._unitOfWork.SaveChanges();
                 this.CreateUserRole(addedUser.Login);
+                addedUser.Phones.Add(addedUserPhoneNumber);
                 return addedUser;
             }
             catch (Exception ex)
@@ -175,21 +178,26 @@ namespace FundTrack.BLL.DomainServices
                     {
                         var userInfoView = new UserInfoViewModel
                         {
-                            id = user.Id,
-                            login = user.Login,
-                            firstName = user.FirstName,
-                            lastName = user.LastName,
-                            email = user.Email,
-                            photoUrl = user.PhotoUrl
+                            Id = user.Id,
+                            Login = user.Login,
+                            FirstName = user.FirstName,
+                            LastName = user.LastName,
+                            Email = user.Email,
+                            PhotoUrl = user.PhotoUrl
                         };
-                        userInfoView.role = this._unitOfWork.MembershipRepository.GetRole(user.Id);
+                        userInfoView.Role = _unitOfWork.MembershipRepository.GetRole(user.Id);
+                        Phone userPhone = _unitOfWork.PhoneRepository.GetPhoneByUserId(user.Id);
+                        if (userPhone != null)
+                        {
+                            userInfoView.Phone = userPhone.Number;
+                        }
                         try
                         {
-                            userInfoView.orgId = this._unitOfWork.MembershipRepository.GetOrganizationId(user.Id);
+                            userInfoView.OrgId = this._unitOfWork.MembershipRepository.GetOrganizationId(user.Id);
                         }
                         catch (Exception)
                         {
-                            userInfoView.orgId = 0;
+                            userInfoView.OrgId = 0;
                             return userInfoView;
                         }
                         return userInfoView;
@@ -248,14 +256,31 @@ namespace FundTrack.BLL.DomainServices
         public UserInfoViewModel UpdateUser(UserInfoViewModel userModel)
         {
             var user = new User();
-            user = this._unitOfWork.UsersRepository.Get(userModel.id);
-            user.Email = userModel.email;
-            user.FirstName = userModel.firstName;
-            user.LastName = userModel.lastName;
-            user.PhotoUrl = userModel.photoUrl;
+            user = this._unitOfWork.UsersRepository.Get(userModel.Id);
+            user.Email = userModel.Email;
+            user.FirstName = userModel.FirstName;
+            user.LastName = userModel.LastName;
+            user.PhotoUrl = userModel.PhotoUrl;
             this._unitOfWork.UsersRepository.Update(user);
+            Phone userPhone = null;
+            if (String.IsNullOrEmpty(userModel.Phone) == false)
+            {
+                userPhone = _unitOfWork.PhoneRepository.GetPhoneByUserId(userModel.Id);                
+            }
+            if (userPhone == null)
+            {
+                userPhone = new Phone();
+                userPhone.Number = userModel.Phone;
+                userPhone.UserId = userModel.Id;
+                _unitOfWork.PhoneRepository.Add(userPhone);
+            }
+           else
+            {
+                userPhone.Number = userModel.Phone;
+                _unitOfWork.PhoneRepository.Update(userPhone);
+            }
             this._unitOfWork.SaveChanges();
-            return this.InitializeUserInfoViewModel(this._unitOfWork.UsersRepository.Get(userModel.id));
+            return this.InitializeUserInfoViewModel(this._unitOfWork.UsersRepository.Get(userModel.Id));
         }
 
         /// <summary>

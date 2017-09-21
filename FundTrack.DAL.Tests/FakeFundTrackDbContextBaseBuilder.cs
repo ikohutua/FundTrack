@@ -7,7 +7,7 @@ namespace FundTrack.DAL.Tests
     /// <summary>
     /// Class for creating fake data base context for testing
     /// </summary>
-    public sealed class FakeFundTrackDbContextBaseBuilder: FakeDbContextBuilder
+    public sealed class FakeFundTrackDbContextBaseBuilder : FakeDbContextBuilder
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="FakeFundTrackDbContextBaseBuilder"/> class.
@@ -46,6 +46,26 @@ namespace FundTrack.DAL.Tests
             context.Organizations.Add(new Entities.Organization { Id = 1, Name = "Name 1", Description = "Description 1", });
             context.Organizations.Add(new Entities.Organization { Id = 2, Name = "Name 2", Description = "Description 2", });
             context.Organizations.Add(new Entities.Organization { Id = 3, Name = "Name 3", Description = "Description 3", });
+            context.SaveChanges();
+        }
+
+
+        /// <summary>
+        /// Sets the phones.
+        /// </summary>
+        public override void SetPhones()
+        {
+            context.Phones.Add(new Entities.Phone { Id = 1, Number = "0993108753", UserId = 1 });
+            context.Phones.Add(new Entities.Phone { Id = 2, Number = "0993108754", UserId = 2 });
+            context.Phones.Add(new Entities.Phone { Id = 3, Number = "0993108755", UserId = 3 });
+            context.SaveChanges();
+        }
+
+        public override void SetTargets()
+        {
+            context.Targets.Add(new Entities.Target { Id = 1, TargetName = "Медикаменти", OrganizationId = 1 });
+            context.Targets.Add(new Entities.Target { Id = 2, TargetName = "Харчі", OrganizationId = 1 });
+            context.Targets.Add(new Entities.Target { Id = 3, TargetName = "Одяг", OrganizationId = 2 });
             context.SaveChanges();
         }
     }

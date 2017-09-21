@@ -1,10 +1,13 @@
 ﻿using FundTrack.BLL.Abstract;
+using FundTrack.DAL.Entities;
 using FundTrack.Infrastructure.ViewModel;
 using FundTrack.Infrastructure.ViewModel.FinanceViewModels;
 using FundTrack.Infrastructure.ViewModel.FinanceViewModels.DonateViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Net;
+using System.Net.Http;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -34,9 +37,9 @@ namespace FundTrack.WebUI.Controllers
         /// <returns></returns>
         [HttpGet("GetTargets")]
         [Authorize(Roles = "admin, moderator")]
-        public IEnumerable<TargetViewModel> GetTargets()
+        public IEnumerable<TargetViewModel> GetTargets(int id)
         {
-            return this._service.GetTargets();
+            return this._service.GetTargets(id);
         }
 
         /// <summary>
@@ -46,7 +49,7 @@ namespace FundTrack.WebUI.Controllers
         /// <returns></returns>
         [HttpPost("CreateFinOp")]
         [Authorize(Roles = "admin, moderator")]
-        public FinOpViewModel CreateFinOp([FromBody] FinOpViewModel finOpModel)
+        public FinOpFromBankViewModel CreateFinOp([FromBody] FinOpFromBankViewModel finOpModel)
         {
             return this._service.CreateFinOp(finOpModel);
         }
@@ -62,5 +65,27 @@ namespace FundTrack.WebUI.Controllers
         {
             return this._service.GetFinOpsByOrgAccount(orgAccountId);
         }
+
+        [HttpPost("Income")]
+        [Authorize(Roles = "admin, moderator")]
+        public FinOpViewModel Income([FromBody] FinOpViewModel incomeModel)
+        {
+            return this._service.CreateIncome(incomeModel);
+        }
+
+        [HttpPost("Spending")]
+        [Authorize(Roles = "admin, moderator")]
+        public FinOpViewModel Spending([FromBody] FinOpViewModel spendingModel)
+        {
+            return this._service.CreateSpending(spendingModel);
+        }
+
+        [HttpPost("Transfer")]
+        [Authorize(Roles = "admin, moderator")]
+        public FinOpViewModel Transfer([FromBody] FinOpViewModel transferModel)
+        {
+            return this._service.CreateTransfer(transferModel);
+        }
+
     }
 }

@@ -20,6 +20,7 @@ import { DetailInfoRequestedItemComponent } from "./components/organization-mana
 import { OrganizationManagementEventDetailComponent } from "./components/organization-management-events/organization-management-event-detail.component";
 import { OrganizationEditComponent } from "./components/organization-edit/organization-edit.component";
 import { MapModule } from './map.module';
+import { AllOrganizationsComponent } from "./components/all-organizations/all-organizations.component";
 
 @NgModule({
     declarations: [
@@ -37,7 +38,8 @@ import { MapModule } from './map.module';
         //SpinnerComponent    
         //GalleryComponent
         OrganizationManagementEventDeleteComponent, 
-        OrganizationEditComponent
+        OrganizationEditComponent,
+        AllOrganizationsComponent
     ],
     imports: [
         FormsModule,

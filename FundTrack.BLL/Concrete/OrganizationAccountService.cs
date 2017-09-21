@@ -120,7 +120,17 @@ namespace FundTrack.BLL.Concrete
 
         public OrgAccountViewModel UpdateOrganizationAccount(OrgAccountViewModel model)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var result = _unitOfWork.OrganizationAccountRepository.Edit(model);
+                _unitOfWork.SaveChanges();
+                return result;
+            }
+            catch (Exception e)
+            {
+                string message = string.Format("Неможливо оновити рахунок організації. Помилка: {0}", e.Message);
+                throw new BusinessLogicException(message, e);
+            }
         }
 
         public OrgAccountViewModel InitializeCommonProperties(OrgAccount item)
@@ -131,8 +141,10 @@ namespace FundTrack.BLL.Concrete
                 OrgAccountName = item.OrgAccountName,
                 OrgId = item.OrgId,
                 Currency = item.Currency.FullName,
+                CurrencyId = item.CurrencyId,
                 CurrencyShortName = item.Currency.ShortName,
-                CurrentBalance = item.CurrentBalance
+                CurrentBalance = item.CurrentBalance,
+                TargetId = item.TargetId
             };
         }
         public OrgAccountViewModel InitializeOrgAccountViewModel(OrgAccount item)
@@ -153,6 +165,7 @@ namespace FundTrack.BLL.Concrete
                     account.MFO = item.BankAccount.MFO;
                     account.Description = item.Description;
                     account.CardNumber = item.BankAccount.CardNumber;
+                    account.BankAccId = item.BankAccId;
                     break;
                 default:
                     break;
@@ -178,6 +191,7 @@ namespace FundTrack.BLL.Concrete
                 account.CurrentBalance = model.CurrentBalance;
                 account.OrgAccountName = model.OrgAccountName;
                 account.Organization = this._unitOfWork.OrganizationRepository.Get(model.OrgId);
+                account.TargetId = model.TargetId;
                 this._unitOfWork.OrganizationAccountRepository.Create(account);
                 this._unitOfWork.SaveChanges();
                 return (OrgAccountViewModel)account;
@@ -209,6 +223,7 @@ namespace FundTrack.BLL.Concrete
                 account.CurrentBalance = model.CurrentBalance;
                 account.OrgAccountName = model.OrgAccountName;
                 account.Organization = this._unitOfWork.OrganizationRepository.Get(model.OrgId);
+                account.TargetId = model.TargetId;
                 bankAccount.AccNumber = model.AccNumber;
                 bankAccount.BankName = model.BankName;
                 bankAccount.EDRPOU = model.EDRPOU;

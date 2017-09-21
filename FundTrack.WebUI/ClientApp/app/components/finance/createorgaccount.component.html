@@ -17,6 +17,16 @@
                 </div>
             </div>
             <div class="form-group">
+                <label class="col-md-4 control-label"> Призначення </label>
+                <div class="col-md-4">
+                    <select class="form-control" name="target" formControlName="accountTarget" (ngModelChange)="onChangeParentTarget($event)">
+                        <option *ngFor="let target of targets" value="{{target.targetId}}" [selected]="target.targetId==undefined">
+                            {{target.name}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
                 <label class="col-md-4 control-label" for="currentBalance">Початковий баланс</label>
                 <div class="col-md-4">
                     <input id="currentBalance" name="currentBalance" type="text" placeholder="Поточний баланс на рахунку" formControlName="currentBalance" class="form-control input-md" [(ngModel)]="account.currentBalance" required="">

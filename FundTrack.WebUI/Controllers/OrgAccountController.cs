@@ -24,7 +24,7 @@ namespace FundTrack.WebUI.Controllers
         [HttpPost("[action]")]
         public JsonResult ReadAll([FromBody] UserInfoViewModel model)
         {
-            return Json(this._orgAccountService.GetAccountsByOrganizationId(model.orgId));
+            return Json(this._orgAccountService.GetAccountsByOrganizationId(model.OrgId));
         }
         [Authorize(Roles = "admin")]
         [HttpPost("[action]")]
@@ -98,6 +98,12 @@ namespace FundTrack.WebUI.Controllers
         public BankAccountDonateViewModel DisableDonateFunction([FromBody]int bankAccountId)
         {
             return _orgAccountService.DisableDonateFunction(bankAccountId);
+        }
+
+        [HttpPut("UpdateOrganizationAccount")]
+        public OrgAccountViewModel UpdateOrganizationAccount([FromBody] OrgAccountViewModel account)
+        {
+            return _orgAccountService.UpdateOrganizationAccount(account);
         }
     }
 }

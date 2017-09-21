@@ -11,12 +11,12 @@ namespace FundTrack.DAL.Entities
         /// <summary>
         /// Gets or Sets Id of FinOp
         /// </summary>
-        public int Id { get; set; }
+        public int Id { get; set; } 
 
         /// <summary>
         /// Gets or Sets Id of Target
         /// </summary>
-        public int TargetId { get; set; }
+        public int? TargetId { get; set; }
 
         /// <summary>
         /// Gets or Sets Id of Account that made the FinOp
@@ -74,5 +74,11 @@ namespace FundTrack.DAL.Entities
         /// </summary>
         public virtual ICollection<TagFinOp> TagFinOps { get; set; }
         public virtual Donation Donation { get; set; }
+
+       
+        /// <summary>
+        /// Gets or Sets table for binding
+        /// </summary>
+        public virtual ICollection<FinOpImage> FinOpImage { get; set; }
     }
 }

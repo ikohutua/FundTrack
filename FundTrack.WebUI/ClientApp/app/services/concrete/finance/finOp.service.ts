@@ -14,13 +14,15 @@ import { FinOpViewModel } from "../../../view-models/concrete/finance/finOp-view
 import { SpinnerComponent } from "../../../shared/components/spinner/spinner.component";
 import { BaseSpinnerService } from "../../abstract/base-spinner-service";
 import { FinOpListViewModel } from "../../../view-models/concrete/finance/finop-list-viewmodel";
+import Moneyoperationviewmodel = require("../../../view-models/concrete/finance/money-operation-view-model");
+import MoneyOperationViewModel = Moneyoperationviewmodel.MoneyOperationViewModel;
 
 @Injectable()
-export class FinOpService extends BaseSpinnerService< FinOpViewModel > {
+export class FinOpService extends BaseSpinnerService<FinOpViewModel> {
 
     private getFinOpsUrl: string = 'api/finop/getFinOpsByOrgAccId';
 
-    public constructor(private _http: Http) {
+    /*public*/ constructor(private _http: Http) {
         super(_http)
     }
 
@@ -34,6 +36,32 @@ export class FinOpService extends BaseSpinnerService< FinOpViewModel > {
                 .map((response: Response) => <TargetViewModel[]>response.json())
                 .catch(this.handleError);
         }
+    }
+    public createIncome(moneyIncome: MoneyOperationViewModel): Observable<MoneyOperationViewModel> {
+        let url = "api/finop/income";
+        let body = moneyIncome;
+        console.log(moneyIncome);
+        return this._http.post(url, body, this.getRequestOptions())
+            .map((response: Response) => <MoneyOperationViewModel>response.json())
+            .catch(this.handleError);
+    }
+
+    public createSpending(moneySpending: MoneyOperationViewModel) {
+        let url = "api/finop/spending";
+        let body = moneySpending;
+        console.log(moneySpending);
+        //return this._http.post(url, body, this.getRequestOptions())
+        //    .map((response: Response) => <MoneyOperationViewModel>response.json())
+        //    .catch(this.handleError)
+    }
+
+    public createTransfer(moneyTransfer: MoneyOperationViewModel): Observable<MoneyOperationViewModel> {
+        let url = "api/finop/transfer";
+        let body = moneyTransfer;
+        console.log(moneyTransfer);
+        return this._http.post(url, body, this.getRequestOptions())
+            .map((response: Response) => <MoneyOperationViewModel>response.json())
+            .catch(this.handleError);
     }
     /**
      * get orgaccounts by card number this accounts
@@ -61,7 +89,6 @@ export class FinOpService extends BaseSpinnerService< FinOpViewModel > {
     }
 
     /**
-
     **/
     public getFinOpsByOrgAccountId(orgAccountId: number): Observable<FinOpListViewModel[]> {
         if (this.checkAuthorization()) {

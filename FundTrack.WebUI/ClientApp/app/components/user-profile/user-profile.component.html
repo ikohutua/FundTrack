@@ -21,7 +21,7 @@
                     <label class="control-label" for="login">Логін</label>
                     <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-user" aria-hidden="true"></i></span>
-                        <input type="text" disabled class="form-control" name="user.login" formControlName="login" [(ngModel)]="user.login" />
+                        <input type="text" class="form-control" readonly name="user.login" formControlName="login" [(ngModel)]="user.login" />
                     </div>
                 </div>
                 <div class="form-group" [class.has-error]="formErrors.firstName" [class.has-success]="!formErrors.firstName && userForm.get('firstName').valid">
@@ -64,6 +64,16 @@
                     </div>
                     <span *ngIf="formErrors.email" class="has-error help-block fixedError">
                         {{ formErrors.email }}
+                    </span>
+                </div>
+                <div class="form-group" [class.has-error]="formErrors.phone" [class.has-success]="!formErrors.phone && userForm.get('phone').valid">
+                    <label class="control-label" for="email">Телефон</label>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-phone" ></i></span>
+                        <input class="form-control input-md" type="text" formControlName="phone" [(ngModel)]="user.phone" />
+                    </div>
+                    <span *ngIf="formErrors.phone" class="has-error help-block fixedError">
+                        {{ formErrors.phone }}
                     </span>
                 </div>
                 <div class="form-group">

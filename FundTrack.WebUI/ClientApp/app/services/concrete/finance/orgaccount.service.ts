@@ -10,6 +10,9 @@ import { AuthorizeUserModel } from "../../../view-models/concrete/authorized-use
 import { isBrowser } from "angular2-universal";
 import { DeleteOrgAccountViewModel } from "../../../view-models/concrete/finance/deleteorgaccount-view.model";
 import { DonateCredentialsViewModel } from "../../../view-models/concrete/finance/donate-credentials.view-model";
+import Targetviewmodel = require("../../../view-models/concrete/finance/donate/target.view-model");
+import TargetViewModel = Targetviewmodel.TargetViewModel;
+
 /**
  * Service for super admin actions
  */
@@ -30,8 +33,7 @@ export class OrgAccountService {
      * @param itemsPerPage
      */
     public getAllAccountsOfOrganization(): Observable<OrgAccountViewModel[]> {
-        if (this.checkAuthorization())
-        {
+        if (this.checkAuthorization()) {
             let body = this.user;
             return this._http.post(this._readAllUrl, body, this.getRequestOptions())
                 .map((response: Response) => <OrgAccountViewModel[]>response.json())
@@ -40,8 +42,7 @@ export class OrgAccountService {
         }
     }
     public createOrgAccount(model: OrgAccountViewModel): Observable<OrgAccountViewModel> {
-        if (this.checkAuthorization())
-        {
+        if (this.checkAuthorization()) {
             return this._http.post(this._createUrl, model, this.getRequestOptions())
                 .map((response: Response) => <OrgAccountViewModel>response.json())
                 .do(data => console.log('Account data:' + JSON.stringify(data)))
@@ -128,4 +129,23 @@ export class OrgAccountService {
             return false;
         };
     }
+
+    public getAllBaseTargetsOfOrganization(orgId: number): Observable<TargetViewModel[]> {
+        return this._http.get('api/Target/' + orgId.toString())
+            .map((response: Response) => { return response.json() as TargetViewModel[] })
+            .catch((error: Response) => this.handleError(error));
+    }
+
+    public updateOrganizationAccount(account: OrgAccountViewModel): Observable<OrgAccountViewModel> {
+        return this._http.put('api/OrgAccount/UpdateOrganizationAccount', account, this.getRequestOptions())
+            .map((res: Response) => <OrgAccountViewModel>res.json())
+            .catch((error: Response) => this.handleError(error));
+    }
+
+    public getTargetById(targetId: number): Observable<TargetViewModel> {
+        return this._http.get('api/Target/GetTarget/' + targetId.toString())
+            .map((response: Response) => { return response.json() as TargetViewModel})
+            .catch((error: Response) => this.handleError(error));
+    }
+
 }

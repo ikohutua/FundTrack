@@ -44,5 +44,17 @@ namespace FundTrack.WebUI.Controllers
         {
             return _targetService.EditTarget(target);
         }
+
+        [HttpGet("{orgId}/{parentId}")]
+        public IEnumerable<TargetViewModel> GetTargets(int orgId, int parentId)
+        {
+            return _targetService.GetTargets(orgId, parentId);
+        }
+
+        [HttpGet("{orgId}")]
+        public IEnumerable<TargetViewModel> GetParentTargets(int orgId)
+        {
+            return _targetService.GetTargets(orgId);
+        }
     }
 }

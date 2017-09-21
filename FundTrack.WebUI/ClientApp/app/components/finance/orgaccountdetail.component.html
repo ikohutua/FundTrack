@@ -4,6 +4,16 @@
         <p class="leftside "><span style="font-weight: bold; font-size:24px; font-family:Calibri">{{account.orgAccountName}}</span></p>
         <p class="leftside ">Поточний баланс: <span class="accountname" style="text-align:right">{{account.currentBalance | currency: account.currencyShortName: true}}</span></p>
         <p class="leftside ">Тип рахунку: <span class="accountname">{{account.accountType}}</span> </p>
+        <div class="form-group">
+            <p class="leftside ">Призначення</p>
+            <div class="col-md-4">
+                <select class="form-control" #targetSelect name="target" style="min-width: 145px; margin-bottom: 20px"  (ngModelChange)="onChangeTarget($event)" ngModel>
+                    <option *ngFor="let target of targets" value="{{target.targetId}}" [selected]="target.targetId==account.targetId">
+                        {{target.name}}
+                    </option>
+                </select>
+            </div>
+        </div>
     </div>
     <div style="margin-top:20px;" *ngIf="account.accountType=='Банк'" class="col-md-5">
         <p class="leftside ">Номер рахунку: <span class="accountname">{{account.accNumber}}</span></p>

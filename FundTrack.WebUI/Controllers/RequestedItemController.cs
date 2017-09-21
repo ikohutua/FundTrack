@@ -40,6 +40,7 @@ namespace FundTrack.WebUI.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    var a = HttpContext.Items;
                     return this._requestedItemService.CreateRequestedItem(requestedItemViewModel);                 
                 }
                 else
@@ -131,7 +132,7 @@ namespace FundTrack.WebUI.Controllers
             }
             catch(Exception ex)
             {
-                return null;
+                throw ex;
             }
         }
 

@@ -37,7 +37,5 @@ namespace FundTrack.DAL.Abstract
         Target Update(Target item);
 
         void Delete(int id);
-
-
     }
 }

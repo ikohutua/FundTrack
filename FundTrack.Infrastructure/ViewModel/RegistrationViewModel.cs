@@ -43,5 +43,13 @@ namespace FundTrack.Infrastructure.ViewModel
         [RegularExpression(RegexValidationMessages.EmailRegexValidationMessage,
                           ErrorMessage = ErrorMessages.PatternEmailMessage)]
         public string Email { get; set; }
+
+        /// <summary>
+        /// Gets or sets user phone number
+        /// </summary>
+        [Required(ErrorMessage = ErrorMessages.RequiredFieldMessage)]
+        [RegularExpression(RegexValidationMessages.PhoneRegexValidationMessage,
+                       ErrorMessage = ErrorMessages.PatternPhoneMessage)]
+        public string Phone { get; set; }
     }
 }

@@ -3,4 +3,5 @@
     name: string; 
     description: string;
     isBanned: boolean;
+    logoUrl: string;
 }

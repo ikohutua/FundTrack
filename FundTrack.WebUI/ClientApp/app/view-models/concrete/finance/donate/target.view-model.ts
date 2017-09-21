@@ -2,4 +2,5 @@
     targetId: number;
     name: string;
     organizationId: number;
+    parentTargetId: number;
 }

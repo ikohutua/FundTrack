@@ -122,7 +122,7 @@ export class MakeDonationComponent implements OnInit, DoCheck, OnDestroy{
 
         this.donateForm.valueChanges.subscribe(() => {
             this.showErrorMessages();
-                this.fondyPayModel.amount = this.getAppropriateAmount(this.donateForm.controls.amount.value);
+               this.fondyPayModel.amount = this.getAppropriateAmount(this.donateForm.controls.amount.value);
                 this.fondyPayModel.order_desc = this.donateForm.controls.description.value;
                 this.fondyPayModel.signature = this.createSignature(this.fondyPayModel);
             }

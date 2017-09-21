@@ -21,6 +21,7 @@
     <PackageReference Include="Microsoft.AspNetCore.SpaServices" Version="1.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="1.1.2" />
     <PackageReference Include="Microsoft.AspNetCore.WebSockets" Version="1.0.2" />
+    <PackageReference Include="Microsoft.Azure.Storage.DataMovement" Version="0.6.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="1.1.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="1.1.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="1.1.2" />
@@ -30,12 +31,14 @@
     <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="5.1.4" />
     <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink" Version="1.1.2" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="1.1.1" />
+    <PackageReference Include="WindowsAzure.Storage" Version="8.4.0" />
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="1.0.1" />
   </ItemGroup>
   <ItemGroup>
     <!-- Files not to show in IDE -->
     <None Remove="node_modules.zip" />
     <None Remove="yarn.lock" />
+    <Compile Remove="ClientApp\app\components\upload-image\**" />
     <Compile Remove="ClientApp\app\shared\components\localStorage\**" />
     <Compile Remove="ClientApp\app\shared\components\temporary\**" />
     <Compile Remove="ClientApp\app\shared\components\validators\**" />
@@ -43,10 +46,12 @@
 
     <!-- Files not to publish (note that the 'dist' subfolders are re-added below) -->
     <Content Remove="ClientApp\**" />
+    <EmbeddedResource Remove="ClientApp\app\components\upload-image\**" />
     <EmbeddedResource Remove="ClientApp\app\shared\components\localStorage\**" />
     <EmbeddedResource Remove="ClientApp\app\shared\components\temporary\**" />
     <EmbeddedResource Remove="ClientApp\app\shared\components\validators\**" />
     <EmbeddedResource Remove="ClientApp\Images\**" />
+    <None Remove="ClientApp\app\components\upload-image\**" />
     <None Remove="ClientApp\app\shared\components\localStorage\**" />
     <None Remove="ClientApp\app\shared\components\temporary\**" />
     <None Remove="ClientApp\app\shared\components\validators\**" />
@@ -60,6 +65,8 @@
     <ProjectReference Include="..\FundTrack.Infrastructure\FundTrack.Infrastructure.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="ClientApp\app\shared\components\upload-image\" />
+    <Folder Include="Middlewares\" />
     <Folder Include="wwwroot\images\" />
   </ItemGroup>
   <Target Name="RunWebpack" AfterTargets="ComputeFilesToPublish">

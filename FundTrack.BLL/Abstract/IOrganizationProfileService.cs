@@ -49,5 +49,12 @@ namespace FundTrack.BLL.Abstract
         /// </summary>
         /// <param name="id">Id of address to delete</param>
         void DeleteAddress(int id);
+
+        /// <summary>
+        /// Get list of all organizations
+        /// </summary>
+        IEnumerable<OrganizationViewModel> GetAllOrganizations();
+       
+       
     }
 }

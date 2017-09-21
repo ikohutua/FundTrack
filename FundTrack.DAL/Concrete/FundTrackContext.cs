@@ -221,6 +221,12 @@ namespace FundTrack.DAL.Concrete
         public DbSet<OrganizationResponse> OrganizationResponses { get; set; }
 
         /// <summary>
+        /// Gets or Setsc FinOpImages
+        /// </summary>
+        public DbSet<FinOpImage> FinOpImages { get; set; }
+
+
+        /// <summary>
         /// Gets or Sets Donation
         /// </summary>
         public DbSet<Donation> Donations { get; set; }

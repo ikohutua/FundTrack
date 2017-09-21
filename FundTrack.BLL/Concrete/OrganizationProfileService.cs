@@ -146,5 +146,27 @@ namespace FundTrack.BLL.Concrete
             _unitOfWork.AddressRepository.Delete(addressToDelete.Id);
             _unitOfWork.SaveChanges();                      
         }
+
+        private IEnumerable<OrganizationViewModel> convertOrganizationsToOrganizationViewModel(IEnumerable<Organization> organizations)
+        {
+            return organizations.Select(x => convertOrganizationToOrganizationViewModel(x));
+        }
+
+        private OrganizationViewModel convertOrganizationToOrganizationViewModel(Organization organization)
+        {
+            return new OrganizationViewModel
+            {
+                Description = organization.Description,
+                LogoUrl = organization.LogoUrl,
+                Name = organization.Name,
+                Id = organization.Id
+            };
+        }
+
+        public IEnumerable<OrganizationViewModel> GetAllOrganizations()
+        {
+            var allOrganizations = _unitOfWork.OrganizationRepository.Read();
+            return convertOrganizationsToOrganizationViewModel(allOrganizations);
+        }
     }
 }

@@ -33,6 +33,8 @@ namespace FundTrack.DAL.Concrete
         private readonly ITargetRepository _targetRepository;
         private readonly IDonationRepository _donationRepository;
         private readonly IFinOpRepository _finOpRepository;
+        private readonly IPhoneRepository _phoneRepository;
+        private readonly IRepository<FinOpImage> _finOpImagesRepository;
 
         private FundTrackContext _context;
 
@@ -65,7 +67,9 @@ namespace FundTrack.DAL.Concrete
               IRepository<Currency> currencyRepository, 
               ITargetRepository targetRepository, 
               IDonationRepository donationRepository,
-              IFinOpRepository finOpRepository
+              IFinOpRepository finOpRepository,
+              IPhoneRepository phoneRepository,
+              IRepository<FinOpImage> finOpImagesRepository
               )
         {
             this._context = contextParam;
@@ -93,6 +97,8 @@ namespace FundTrack.DAL.Concrete
             _targetRepository = targetRepository;
             _donationRepository = donationRepository;
             _finOpRepository = finOpRepository;
+            this._phoneRepository = phoneRepository;
+            _finOpImagesRepository = finOpImagesRepository;
         }
 
         /// <summary>
@@ -384,6 +390,34 @@ namespace FundTrack.DAL.Concrete
             get
             {
                 return _finOpRepository;
+            }
+        }
+
+        /// <summary>
+        /// Gets the phone repository.
+        /// </summary>
+        /// <value>
+        /// The phone repository.
+        /// </value>
+        public IPhoneRepository PhoneRepository
+        {
+            get
+            {
+                return _phoneRepository;
+            }
+        }
+
+        /// <summary>
+        /// Gets finop images.
+        /// </summary>
+        /// <value>
+        /// The finOpImage repository.
+        /// </value>
+        public IRepository<FinOpImage> FinOpImages
+        {
+            get
+            {
+                return _finOpImagesRepository;
             }
         }
 

@@ -8,5 +8,6 @@ namespace FundTrack.BLL.Abstract
     {
         IEnumerable<ReportIncomeViewModel> GetIncomeReports(int orgId, DateTime? dateFrom, DateTime? dateTo);
         IEnumerable<ReportOutcomeViewModel> GetOutcomeReports(int orgId, DateTime? dateFrom, DateTime? dateTo);
+        IEnumerable<String> GetImagesById(int finOpId);
     }
 }

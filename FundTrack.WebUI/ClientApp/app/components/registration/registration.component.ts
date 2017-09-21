@@ -34,10 +34,13 @@ export class RegistrationComponent {
     private patternLoginMessage = "Невірний формат login";
     private patternEmailMessage = "Невірний формат email адреса";
     private mismatchedPassword = "Паролі не співпадають";
+    private patternPhoneMessage = "Допустимий формат: 380XXXXXXXXX";
+
 
     //Regex patterns
     private loginRegexPattern: string = "^[a-zA-Z](.[a-zA-Z0-9_-]*)$";
     private emailRegexPattern: string = "^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$";
+    private phoneRegexPattern: string = "^[3]+[8]+[0]+[0-9]{9}$";
 
     constructor(private _router: Router,
                 private _userService: UserService,
@@ -114,7 +117,8 @@ export class RegistrationComponent {
         email: "",
         password: "",
         confirmPassword: "",
-        mismatchingPasswords: ""
+        mismatchingPasswords: "",
+        phone: ""
     };
 
     //Object with error messages
@@ -143,6 +147,10 @@ export class RegistrationComponent {
             required: this.requiredMessage,
             minlength: this.minLengthMessage,
             mismatchingpasswords: this.mismatchedPassword 
+        },
+        phone: {
+            required: this.requiredMessage,
+            pattern: this.patternPhoneMessage
         }
     };
 
@@ -174,6 +182,10 @@ export class RegistrationComponent {
             confirmPassword: [this.registrationViewModel.passwordConfrim, [
                 Validators.required,
                 Validators.minLength(7)
+            ]],
+            phone: [this.registrationViewModel.phone, [
+                Validators.required,
+                Validators.pattern(this.phoneRegexPattern)
             ]]
         },
             { validator: matchingPasswords('password', 'confirmPassword') });

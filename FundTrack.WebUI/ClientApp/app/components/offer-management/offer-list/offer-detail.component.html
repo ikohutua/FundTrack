@@ -59,40 +59,10 @@
             </div>
             <div class="col-xs-12" style="height:20px;"></div>
             <div class="col-md-12">
-                <div class="img-container">
-                    <img src='https://s3.eu-central-1.amazonaws.com/fundtrack/default-placeholder.png' (click)="imageInput1.click()" class="avatar img-responsive img-thumbnail itemimage" style="border:none" alt="avatar" width="126">
-                    <input type="file" (change)="saveFileInAws($event)" #imageInput1 accept=".png,.jpg" class="text-center center-block well well-sm hidden">
-                </div>
-                <div *ngFor="let image of _images" style="display:inline-block">
-                    <div class="img-container">
-                        <img src="{{image.imageUrl}}" [ngClass]="{'mainimage': image.isMain==true}" class="avatar img-responsive img-thumbnail itemimage" style="border:none" alt="avatar" width="126">
-                        <a title="Видалити малюнок" (click)="deleteCurrentImage(image)"><span class="glyphicon glyphicon-remove"></span></a>
-                        <a title="Зробити головним" class="makemain" (click)="setCurrentImageAsMain(image)"><span class="glyphicon glyphicon-edit" style="color:blue"></span></a>
-                        <!--<div>
-                            <a><span id="setmain" class="glyphicon glyphicon-pencil"></span></a>
-                        </div>-->
-                        <!--<div style="position:absolute; z-index:9999999">
-                            <a (click)="deleteCurrentImage(image)"><span class="glyphicon glyphicon-remove"></span></a>
-                        </div>-->
-                    </div>
+                <div>
+                    <image-list [images]="images" [maxCount] ="maxImgCount" [maxSize]="maxImgSize" (getImageChange)="onImageChange($event)"></image-list>
                 </div>
             </div>
-            <!--<div class="col-md-12" style="margin:10px 10px 10px 10px">
-                <h4>Контактні дані</h4>
-                <hr />
-                <div class="col-md-4">
-                    <label style="padding-left:12px" for="contactName"><span style="font-size:medium;">Контактна особа</span></label>
-                    <input id="contacts" class="contacts" type="text" name="contactName" [(ngModel)]="this.offerItem.contactName" />
-                </div>
-                <div class="col-md-4">
-                    <label style="padding-left:12px" for="location"><span style="font-size:medium;">Місцезнаходження</span></label>
-                    <input id="location" class="contacts" type="text" name="location" [(ngModel)]="this.offerItem.contactAddress" />
-                </div>
-                <div class="col-md-4">
-                    <label style="padding-left:12px" for="phone"><span style="font-size:medium;">Телефон</span></label>
-                    <input id="phone" class="contacts" type="text" name="phone" [(ngModel)]="this.offerItem.contactPhone" />
-                </div>
-            </div>-->
             <div class="col-md-12">
                 <button [disabled]="name.invalid || description.invalid || type.invalid || category.invalid" style="padding:5px 10px 5px 10px" type="submit" class="btn btn-success btn-lg pull-right" (click)="submit()">Зберегти і повернутись</button>
             </div>

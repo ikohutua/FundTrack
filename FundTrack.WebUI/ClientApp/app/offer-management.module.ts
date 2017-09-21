@@ -8,22 +8,25 @@ import { OfferListComponent } from "./components/offer-management/offer-list/off
 import { OfferDetailComponent } from "./components/offer-management/offer-list/offer-detail.component";
 import { SharedModule } from "./shared.module";
 import { OfferFilteringService } from "./services/concrete/offer-management/offer-filtering.service";
-
+import { ImageUploadModule } from "./image-upload.module";
+//import { ImageItemComponent } from "./shared/components/upload-image/image-item.component/image-item.component";
+//import { ImageListComponent } from "./shared/components/upload-image/image-list.component/image-list.component";
 
 
 @NgModule({
     declarations: [
         OfferItemManagementComponent,
         OfferListComponent,
-        OfferDetailComponent
+        OfferDetailComponent,
+        //ImageItemComponent,
+        //ImageListComponent
     ],
     imports: [
         CommonModule,
         OfferManagementRoutingModule,
         OrganizationManagementModule,
         FormsModule,
-        SharedModule
-        
+        SharedModule        
     ],
     providers:[OfferFilteringService]
 })

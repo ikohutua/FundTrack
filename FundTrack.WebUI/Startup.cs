@@ -16,6 +16,8 @@ using FundTrack.BLL.DomainServices;
 using FundTrack.DAL.Repositories;
 using FundTrack.Infrastructure.ViewModel.EventViewModel;
 using FundTrack.WebUI.Formatter;
+using Microsoft.AspNetCore.Http;
+using FundTrack.WebUI.Middlewares;
 
 namespace FundTrack.WebUI
 {
@@ -94,6 +96,8 @@ namespace FundTrack.WebUI
             services.AddScoped<ITargetRepository, TargetRepository>();
             services.AddScoped<IDonationRepository, DonationRepository>();
             services.AddScoped<IFinOpRepository, FinOpRepository>();
+            services.AddScoped<IPhoneRepository, PhoneRepository>();
+            services.AddScoped<IRepository<FinOpImage>, EFGenericRepository<FinOpImage>>();
 
             //dependency injection BLL
             services.AddScoped<IOrganizationsForFilteringService, OrganizationsForFilteringService>();
@@ -117,12 +121,17 @@ namespace FundTrack.WebUI
             services.AddScoped<IFinOpService, FinOpService>();
             services.AddScoped<ITargetService, TargetService>();
             services.AddScoped<IReportService, ReportService>();
+            services.AddScoped<IImageManagementService, AzureImageManagementService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
+            app.UseGlobalErrorHandling();
+
             app.UseStaticFiles();
+          
+      
 
             app.UseJwtBearerAuthentication(new JwtBearerOptions
             {
@@ -148,22 +157,11 @@ namespace FundTrack.WebUI
 
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
-            app.UseExceptionHandler("/Error");
-            app.UseStatusCodePagesWithReExecute("/Error/Index", "?statusCode={0}");
 
-
-            if (env.IsDevelopment())
+            app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions
             {
-                app.UseDeveloperExceptionPage();
-                app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions
-                {
-                    HotModuleReplacement = true
-                });
-            }
-            else
-            {
-                app.UseExceptionHandler("/error");
-            }
+                HotModuleReplacement = true
+            });
 
             app.UseWebSockets();
 

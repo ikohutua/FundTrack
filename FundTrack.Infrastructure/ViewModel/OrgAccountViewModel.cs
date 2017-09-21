@@ -23,6 +23,6 @@ namespace FundTrack.Infrastructure.ViewModel
         public string EDRPOU { get; set; }
         public string BankName { get; set; }
         public string Error { get; set; }
-        public int TargetId { get; set; }
+        public int? TargetId { get; set; }
     }
 }

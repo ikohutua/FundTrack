@@ -10,6 +10,7 @@ import { CommonModule } from "@angular/common";
 import { HomeRoutingModule } from "./routes/home-routing.module";
 import { MapModule } from "./map.module";
 import { SharedModule } from "./shared.module";
+import { ReportComponent } from "./components/report/report.component";
 
 @NgModule({
     declarations: [
@@ -19,7 +20,8 @@ import { SharedModule } from "./shared.module";
         EventDetailComponent,
         AllRequestsComponent,
         RequestDetailComponent,
-        GalleryEventDetailComponent
+        GalleryEventDetailComponent,
+        ReportComponent
     ],
     imports: [
         CommonModule,

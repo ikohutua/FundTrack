@@ -5,5 +5,6 @@
     public login: string;
     public email: string;
     public password: string;
-    public passwordConfrim: string;   
+    public passwordConfrim: string;
+    public phone: string;
 }

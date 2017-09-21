@@ -52,7 +52,8 @@
             <li *ngIf="this.user && this.user.role=='superadmin'">
                 <a (click)="redirectToPage('superadmin/organizations')">Організації</a>
             </li>
-            <li><a href="#">Звіти</a></li>
+            <li *ngIf="!(this.user && this.user.role == 'superadmin')"><a (click)="redirectToPage(allOrganizationsComponentUrl)">Організації</a></li>
+            <li><a (click)="redirectToReportsPage()">Звіти</a></li>
             <li *ngIf="this.user && (this.user.role=='admin' || this.user.role=='moderator')">
                 <a (click)="redirectToEditOrganizationPage()">Налаштування</a>
             </li>

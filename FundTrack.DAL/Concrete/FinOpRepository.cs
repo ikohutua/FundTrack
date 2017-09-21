@@ -39,6 +39,7 @@ namespace FundTrack.DAL.Concrete
         /// <returns></returns>
         public FinOp Update(FinOp finOp)
         {
+            //_context.Entry(finOp).State = EntityState.Modified;
             this._context.FinOps.Update(finOp);
             return finOp;
         }
@@ -51,7 +52,7 @@ namespace FundTrack.DAL.Concrete
         public FinOp GetById(int id)
         {
             return this._context.FinOps
-                 .Include(fo => fo.OrgAccountTo)
+                 .Include(fo => fo.OrgAccountTo).Include(fo=>fo.Target)
                  .FirstOrDefault(fo => fo.Id == id);
         }
 

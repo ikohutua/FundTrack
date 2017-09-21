@@ -9,7 +9,6 @@ export class TruncatePipe implements PipeTransform {
      * Cutting string
      * @param value
      * @param length
-     * @param trail
      * @returns Cutted string
      */
     transform(value: string, length: number): string {

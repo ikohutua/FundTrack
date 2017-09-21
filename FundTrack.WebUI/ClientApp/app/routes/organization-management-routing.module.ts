@@ -13,6 +13,7 @@ import { DetailInfoRequestedItemComponent } from "../components/organization-man
 import { OrganizationManagementEventDetailComponent } from "../components/organization-management-events/organization-management-event-detail.component";
 import { AdminRouteGuard } from "../services/concrete/security/admin-route-guard";
 import { OrganizationEditComponent } from '../components/organization-edit/organization-edit.component';
+import { AllOrganizationsComponent } from '../components/all-organizations/all-organizations.component';
 
 @NgModule({
     providers: [AdminRouteGuard],
@@ -70,7 +71,12 @@ import { OrganizationEditComponent } from '../components/organization-edit/organ
         }, 
         { 
             path: 'organization/edit/:id',
-            component: OrganizationEditComponent}
+            component: OrganizationEditComponent
+        },
+        {
+            path: 'organization/allOrganizations',
+            component: AllOrganizationsComponent
+        }
     ])],
     exports: [RouterModule]
 })
