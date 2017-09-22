@@ -29,9 +29,13 @@ import { Image } from "../../view-models/concrete/image.model";
 export class OrgAccountOperationComponent implements OnChanges {
 
     private accounts: OrgAccountViewModel[] = new Array<OrgAccountViewModel>();
+    private accountsTo: OrgAccountViewModel[] = new Array<OrgAccountViewModel>();
     private currencies: CurrencyViewModel[] = new Array<CurrencyViewModel>();
     private targets: TargetViewModel[] = new Array<TargetViewModel>();
     private currentAccount: OrgAccountViewModel = new OrgAccountViewModel();
+    private finOps: FinOpListViewModel[] = new Array<FinOpListViewModel>();
+    private currentDate = new Date().toJSON().slice(0, 10);
+    private operations = ['Payment', 'Withdrawn', 'Income', 'etc.'];
 
     @Input('orgId') orgId: number;
     @Input() accountId: number;
@@ -56,9 +60,6 @@ export class OrgAccountOperationComponent implements OnChanges {
     private moneySpending: MoneyOperationViewModel = new MoneyOperationViewModel();
     private moneyTransfer: MoneyOperationViewModel = new MoneyOperationViewModel();
     //-------------------------------------------------------------------------------
-    private finOps: FinOpListViewModel[] = new Array<FinOpListViewModel>();
-    private currentDate = new Date().toJSON().slice(0, 10).replace(/-/g, '/');
-    private operations = ['Payment', 'Withdrawn', 'Income', 'etc.'];
 
     images: Image[] = [];
 
@@ -68,10 +69,9 @@ export class OrgAccountOperationComponent implements OnChanges {
         private validatorsService: ValidatorsService,
         private accountService: OrgAccountService,
         private donateService: DonateService) {
-        //this.createForm();
-        this.createIncomeForm();
-        this.createSpendingForm();
-        this.createTransferForm();
+            this.createIncomeForm();
+            this.createSpendingForm();
+            this.createTransferForm();
     }
     private navigateToImportsPage(): void {
         this._router.navigate(['/finance/bank-import']);
@@ -85,6 +85,7 @@ export class OrgAccountOperationComponent implements OnChanges {
     Checks for value changes and assignes new account in the component
     */
     ngOnChanges(changes: { [propKey: string]: SimpleChange }) {
+        console.log("Changes");
         if (changes['accountId'] && changes['accountId'] != changes['accountId'].currentValue) {
             //code to execute when property changes
             if (this.accountId != 1) {
@@ -97,6 +98,7 @@ export class OrgAccountOperationComponent implements OnChanges {
         this.accountService.getOrganizationAccountById(this.accountId)
             .subscribe(currAcc => {
                 this.currentAccount = currAcc;                                      //get current organization account
+                this.getAccontsForTransfer();
             })
 
     }
@@ -116,7 +118,18 @@ export class OrgAccountOperationComponent implements OnChanges {
             .subscribe(targ => {
                 this.targets = targ;
             });
+    }
 
+    private getAccontsForTransfer() {
+        if (this.currentAccount.targetId == null) {
+            this.accountsTo = this.accounts.filter(acc => acc.orgAccountName != this.currentAccount.orgAccountName);
+        }
+        else {
+            this.accountsTo = this.accounts.filter(acc =>
+                acc.targetId == this.currentAccount.targetId &&
+                acc.orgAccountName != this.currentAccount.orgAccountName);
+            console.log(this.accountsTo);
+        }
     }
 
     private convertDate(date: Date): string {
@@ -127,14 +140,19 @@ export class OrgAccountOperationComponent implements OnChanges {
         return date.toLocaleString("uk-UK", options);
     }
 
+    public getCurrentDate() {
+        console.log(this.currentDate);
+    }
+
     public setDate(date: Date): void {
+        console.log(date);
         this.moneyOperationModel.date = date;
     }
 
     private createIncomeForm() {
         this.moneyIncomeForm = this.fb.group({
-            cardTo: [
-                this.moneyOperationModel.cardTo
+            cardToId: [
+                this.moneyOperationModel.cardToId
             ],
             sum: [
                 this.moneyOperationModel.sum, [Validators.required,
@@ -160,8 +178,8 @@ export class OrgAccountOperationComponent implements OnChanges {
 
     private createSpendingForm() {
         this.moneySpendingForm = this.fb.group({
-            cardFrom: [
-                this.moneyOperationModel.cardFrom
+            cardFromId: [
+                this.moneyOperationModel.cardFromId
             ],
             sum: [
                 this.moneyOperationModel.sum, [Validators.required,
@@ -174,7 +192,7 @@ export class OrgAccountOperationComponent implements OnChanges {
                 this.moneyOperationModel.targetId, [Validators.required]
             ],
             description: [
-                this.moneyOperationModel.description
+                this.moneyOperationModel.description, [Validators.maxLength(500)]
             ],
             date: [
                 this.moneyOperationModel.date, [Validators.required]
@@ -187,11 +205,11 @@ export class OrgAccountOperationComponent implements OnChanges {
 
     private createTransferForm() {
         this.moneyTransferForm = this.fb.group({
-            cardFrom: [
-                this.moneyOperationModel.cardFrom
+            cardFromId: [
+                this.moneyOperationModel.cardFromId
             ],
-            cardTo: [
-                this.moneyOperationModel.cardTo, [Validators.required
+            cardToId: [
+                this.moneyOperationModel.cardToId, [Validators.required
                 ]
             ],
             sum: [
@@ -202,7 +220,7 @@ export class OrgAccountOperationComponent implements OnChanges {
                 ]
             ],
             description: [
-                this.moneyOperationModel.description
+                this.moneyOperationModel.description, [Validators.maxLength(500)]
             ],
             date: [
                 this.moneyOperationModel.date, [Validators.required]
@@ -215,47 +233,27 @@ export class OrgAccountOperationComponent implements OnChanges {
 
     private formIncomeErrors = {
         sum: "",
-        targetId: "",
-        date: "",
         description: ""
     };
 
     private formSpendingErrors = {
         sum: "",
-        targetId: "",
-        date: "",
         description: ""
     };
 
     private formTransferErrors = {
         sum: "",
-        cardTo: "",
-        date: "",
         description: ""
     };
 
-    private requiredMessage = "Поле є обов'язковим для заповнення";
     private invalidSumMessage = "Поле ‘Сума’ може містити лише цілі числа в межах від 5 до 15000 грн";
     private maxLengthDescription = "Поле ‘Опис’ може містити не більше 500 символів";
 
     private validationMessages = {
         sum: {
-            required: this.requiredMessage,
             notnumber: this.invalidSumMessage,
             notminvalue: this.invalidSumMessage,
             notmaxvalue: this.invalidSumMessage
-        },
-        cardFrom: {
-            required: this.requiredMessage
-        },
-        cardTo: {
-            required: this.requiredMessage
-        },
-        targetId: {
-            required: this.requiredMessage
-        },
-        date: {
-            required: this.requiredMessage
         },
         description: {
             maxlength: this.maxLengthDescription
@@ -282,12 +280,8 @@ export class OrgAccountOperationComponent implements OnChanges {
         }
     }
 
-    private cleanForm() {
-        //this.moneyOperationModel = new MoneyOperationViewModel();
-    }
-
     private openModal(modal: ModalComponent) {
-        this.cleanForm();
+        this.getCurrentDate();
         modal.show();
     }
 
@@ -298,32 +292,27 @@ export class OrgAccountOperationComponent implements OnChanges {
 
     private makeIncome() {
         this.completeModel();
-        this.moneyOperationModel.cardTo = this.currentAccount.orgAccountName;
-        this.finOpService.createIncome(this.moneyOperationModel).subscribe(a => {
-            this.moneyIncome = a;
-        });
+        this.moneyOperationModel.cardToId = this.currentAccount.id;
+        this.finOpService.createIncome(this.moneyOperationModel);
         this.closeModal(this.newMoneyIncomeWindow, this.moneyIncomeForm);
     }
 
     private makeSpending() {
         this.completeModel();
-        this.moneyOperationModel.cardFrom = this.currentAccount.orgAccountName;
+        this.moneyOperationModel.cardFromId = this.currentAccount.id;
         this.finOpService.createSpending(this.moneyOperationModel);
         this.closeModal(this.newMoneySpendingWindow, this.moneySpendingForm);
     }
 
     private makeTransfer() {
         this.completeModel();
-        this.moneyOperationModel.cardFrom = this.currentAccount.orgAccountName;
-        this.finOpService.createTransfer(this.moneyOperationModel).subscribe(a => {
-            this.moneyTransfer = a;
-        });;
+        this.moneyOperationModel.cardFromId = this.currentAccount.id;
+        this.finOpService.createTransfer(this.moneyOperationModel)
         this.closeModal(this.newMoneyTransferWindow, this.moneyTransferForm);
     }
 
     private completeModel() {
         this.moneyOperationModel.orgId = this.accounts[0].orgId;
-        this.moneyOperationModel.currency = this.currentAccount.currency;
 
         var arr: string[] = [];
         for (var i = 0; i < this.images.length; i++) {
