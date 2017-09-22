@@ -31,6 +31,10 @@ import { PartnerRouteGuard } from "../services/concrete/security/partner-route-g
                 {
                     path: 'donate',
                     component: MakeDonationComponent
+                },
+                {
+                    path: 'donate/:id',
+                    component: MakeDonationComponent
                 }
             ]
             

@@ -14,6 +14,8 @@ import { OrganizationManagementEventDetailComponent } from "../components/organi
 import { AdminRouteGuard } from "../services/concrete/security/admin-route-guard";
 import { OrganizationEditComponent } from '../components/organization-edit/organization-edit.component';
 import { AllOrganizationsComponent } from '../components/all-organizations/all-organizations.component';
+import { OrganizationDetailComponent } from "../components/organization-detail/organization-detail.component";
+import { TargetManagementComponent } from '../components/organization-edit/target-management.component';
 
 @NgModule({
     providers: [AdminRouteGuard],
@@ -76,6 +78,14 @@ import { AllOrganizationsComponent } from '../components/all-organizations/all-o
         {
             path: 'organization/allOrganizations',
             component: AllOrganizationsComponent
+        },
+        {
+            path: 'organization/organizationDetail/:id',
+            component: OrganizationDetailComponent
+        },
+        {
+            path: 'organization/targets/:id',
+            component: TargetManagementComponent
         }
     ])],
     exports: [RouterModule]

@@ -34,6 +34,12 @@ export class CreateOrgAccountComponent {
     private smallAccountForm: FormGroup;
     // Property that keeps all targets of current organization
     private targets: TargetViewModel[] = new Array<TargetViewModel>();
+    private defaultTarget: TargetViewModel = {
+        targetId: undefined,
+        name: "Не вказано",
+        organizationId: undefined,
+        parentTargetId:undefined
+    }
 
     constructor(private _accountService: OrgAccountService,
         private _fb: FormBuilder,
@@ -53,12 +59,7 @@ export class CreateOrgAccountComponent {
             }
         };
         this._accountService.getAllBaseTargetsOfOrganization(this.user.orgId).subscribe((result) => {
-            this.targets.push({
-                targetId: undefined,
-                name: "Не вказано",
-                organizationId: undefined,
-                parentTargetId: undefined
-            });
+            this.targets.push(this.defaultTarget);
             for (var target of result) {
                 this.targets.push(target);
             }
@@ -70,11 +71,7 @@ export class CreateOrgAccountComponent {
     */
     private createForm(): void {
         this.accountForm = this._fb.group({
-            accountNumber: [this.account.accNumber, [Validators.required, Validators.maxLength(20), this._validatorsService.isInteger]],
-            accountMfo: [this.account.mfo, [Validators.required, Validators.minLength(6), Validators.maxLength(6), this._validatorsService.isInteger]],
-            accountEdrpou: [this.account.edrpou, [Validators.required, Validators.minLength(8), Validators.maxLength(8), this._validatorsService.isInteger]],
-            accountBankName: [this.account.bankName, [Validators.required, Validators.maxLength(50)]],
-            accountDescription: [this.account.description, [Validators.required, Validators.maxLength(200)]],
+            cardNumber: [this.account.cardNumber, [Validators.required, Validators.maxLength(16), this._validatorsService.isInteger, Validators.minLength(16)]]
         });
         this.accountForm.valueChanges
             .subscribe(a => this.onValueChange(a));
@@ -88,19 +85,18 @@ export class CreateOrgAccountComponent {
             accountName: [this.account.orgAccountName, [Validators.required, Validators.maxLength(100)]],
             currentBalance: [this.account.currentBalance, Validators.pattern(this.decimalValidationRegex)],
             accountCurrency: [this.account.currency, Validators.required],
-            accountTarget: [this.account.targetId]
+            accountTarget: [this.account.targetId],
+            accountDescription: [this.account.description, [Validators.required, Validators.maxLength(200)]]
         });
         this.smallAccountForm.valueChanges
             .subscribe(a => this.onValueChangeSmallForm(a));
-
-        //this.onValueChangeSmallForm();
     }
 
     /*
     Errors to be displayed on the UI
     */
     private formErrors = {
-        accountNumber: "",
+        cardNumber: "",
         accountMfo: "",
         accountEdrpou: "",
         accountBankName: "",
@@ -133,10 +129,11 @@ export class CreateOrgAccountComponent {
             required: this.requiredMessage,
             maxlength: this.accountNameWrongLength
         },
-        accountNumber: {
+        cardNumber: {
             required: this.requiredMessage,
             notnumeric: this.numberMessage,
-            maxlength: this.LengthMessage
+            maxlength: this.LengthMessage,
+            minlength: this.LengthMessage
         },
         accountMfo: {
             required: this.requiredMessage,
@@ -246,7 +243,7 @@ export class CreateOrgAccountComponent {
                 else {
                     this.account.error = a.error;
                 }
-            })
+            });
     }
 
     /*
@@ -260,13 +257,12 @@ export class CreateOrgAccountComponent {
     Displays toast, that pops up when account is successfuly created
     */
     public showToast() {
-        var x = document.getElementById("snackbar")
+        var x = document.getElementById("snackbar");
         x.className = "show";
         setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
     }
 
-    private onChangeParentTarget($event): void {
+    private onChangeTarget($event): void {
         this.account.targetId = $event;
     }
-
 }

@@ -73,7 +73,9 @@ namespace FundTrack.DAL.Concrete
                 .Include(a => a.Currency)
                 .Include(a => a.FinOpsFrom)
                 .Include(a => a.FinOpsTo)
-                .Where(a => a.OrgId == organizationId);
+                .Include(a => a.Target)
+                .Where(a => a.OrgId == organizationId)
+                .ToList();
         }
 
         public IEnumerable<OrgAccount> ReadOrgAccountsForDonations(int organizationId)

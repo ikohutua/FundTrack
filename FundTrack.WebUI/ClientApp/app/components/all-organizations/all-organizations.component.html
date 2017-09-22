@@ -3,7 +3,7 @@
         <div class="panel panel-primary panel-size">
             <div class="panel-heading">
                 <div class="panel-title pull-left lead">
-                    <a [routerLink]="['']">{{organization.name}}</a>
+                    <a class="linkCursor" (click) ="redirectToOrganizationDetailPage(organization.id)">{{organization.name}}</a>
                 </div>
                 <div class="clearfix"></div>
             </div>
@@ -15,7 +15,7 @@
                     {{organization.description}}
                 </div>
                 <div class="pull-right">
-                    <a href="#" class="linkBack">Детальніше</a>
+                    <a (click) ="redirectToOrganizationDetailPage(organization.id)" class="linkBack linkCursor">Детальніше</a>
                 </div>
             </div>
         </div>

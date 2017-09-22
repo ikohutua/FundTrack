@@ -158,10 +158,15 @@ namespace FundTrack.WebUI
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
-            app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions
+            if (env.IsDevelopment())
             {
-                HotModuleReplacement = true
-            });
+                //app.UseDeveloperExceptionPage();
+                app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions
+                {
+                    HotModuleReplacement = true
+                });
+            }
+           
 
             app.UseWebSockets();
 

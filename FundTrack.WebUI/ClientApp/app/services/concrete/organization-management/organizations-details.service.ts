@@ -4,6 +4,7 @@ import { Observable } from "rxjs/Observable";
 import { OrganizationGeneralViewModel } from "../../../view-models/concrete/organization-general-view.model";
 import { GlobalUrlService } from "../global-url.service";
 import { RequestOptionsService } from "../request-options.service";
+import { OrganizationDetailViewModel } from "../../../view-models/concrete/organization-detail-view.model";
 
 
 @Injectable()
@@ -21,5 +22,9 @@ export class OrganizationsDetailsService {
             .map((res: Response) => <OrganizationGeneralViewModel[]>res.json());
     }
 
+    public getOrganizationDetail(orgId: number): Observable<OrganizationDetailViewModel> {
+        return this._http.get(GlobalUrlService.getOrganizationDetailUrl + orgId, RequestOptionsService.getRequestOptions())
+            .map((res: Response) => <OrganizationDetailViewModel>res.json());
+}
    
 }

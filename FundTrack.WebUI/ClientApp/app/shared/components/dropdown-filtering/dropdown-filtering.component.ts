@@ -1,4 +1,4 @@
-﻿import { Component, OnInit, EventEmitter, Output, AfterContentChecked } from "@angular/core";
+﻿import { Component, OnInit, EventEmitter, Output, AfterContentChecked, Input } from "@angular/core";
 import { IOrganizationForFiltering } from "../../../view-models/abstract/organization-for-filtering.interface";
 import { OrganizationDropdownService } from "../../../services/concrete/organization-dropdown.service";
 import { isBrowser } from 'angular2-universal';
@@ -16,15 +16,16 @@ export class DropdownOrganizationsComponent implements OnInit{
     public activateRoute: string;
     private _errorMessage: string;
     private _organizations: IOrganizationForFiltering[];
-    private _selectedOrganizationName: string;
+    private _selectedOrganizationName: string = "Список організацій";
     private _selectedOrganizationId: number;
+
+    @Input() defaultOrgId?: number;
 
     /**
     * calls getOrganizationsList()
     */
     ngOnInit(): void {
         this.getOrganizationsList();
-        this._selectedOrganizationName = "Список організацій";
     }
 
     /**
@@ -38,7 +39,13 @@ export class DropdownOrganizationsComponent implements OnInit{
      */
     getOrganizationsList(): void {
         this._service.getCollection()
-            .subscribe(organizations => this._organizations = organizations,
+            .subscribe(organizations => {
+                this._organizations = organizations;
+                if (this.defaultOrgId) {
+                    let selectedOrg = this._organizations.find(x => x.id == this.defaultOrgId)
+                    this._selectedOrganizationName = selectedOrg.name;
+                }
+            },
             error => this._errorMessage = <any>error);
     }
 

@@ -5,6 +5,9 @@ using System.Linq;
 using FundTrack.DAL.Entities;
 using FundTrack.Infrastructure.ViewModel.EditOrganizationViewModels;
 using System.Collections.Generic;
+using System;
+using FundTrack.DAL.Concrete;
+using FundTrack.Infrastructure;
 
 namespace FundTrack.BLL.Concrete
 {
@@ -14,7 +17,7 @@ namespace FundTrack.BLL.Concrete
     public class OrganizationProfileService : IOrganizationProfileService
     {
         private readonly IUnitOfWork _unitOfWork;
-        
+
         /// <summary>
         /// Creates new instance of OrganizationProfileService
         /// </summary>
@@ -37,7 +40,8 @@ namespace FundTrack.BLL.Concrete
                 Id = organization.Id,
                 Name = organization.Name,
                 Description = organization.Description,
-                IsBanned = false
+                IsBanned = false,
+                LogoUrl = organization.LogoUrl
             };
             return result;
         }
@@ -65,7 +69,7 @@ namespace FundTrack.BLL.Concrete
         {
             var addressOrg = _unitOfWork.OrganizationAddressRepository.Read().Where(a => a.OrgId == id);
             List<Address> addresses = new List<Address>();
-            foreach(var orgAddress in addressOrg)
+            foreach (var orgAddress in addressOrg)
             {
                 addresses.Add(_unitOfWork.AddressRepository.Read().FirstOrDefault(a => a.Id == orgAddress.AddressId));
             }
@@ -141,10 +145,10 @@ namespace FundTrack.BLL.Concrete
         /// </summary>
         /// <param name="id">Id of address to delete</param>
         public void DeleteAddress(int id)
-        {           
+        {
             var addressToDelete = _unitOfWork.AddressRepository.Get(id);
             _unitOfWork.AddressRepository.Delete(addressToDelete.Id);
-            _unitOfWork.SaveChanges();                      
+            _unitOfWork.SaveChanges();
         }
 
         private IEnumerable<OrganizationViewModel> convertOrganizationsToOrganizationViewModel(IEnumerable<Organization> organizations)
@@ -168,5 +172,93 @@ namespace FundTrack.BLL.Concrete
             var allOrganizations = _unitOfWork.OrganizationRepository.Read();
             return convertOrganizationsToOrganizationViewModel(allOrganizations);
         }
+
+        /// <summary>
+        /// Get all detail about organization
+        /// </summary>
+        /// <param name="id">Id of organization</param>
+        public OrganizationDetailViewModel GetOrganizationDetail(int id)
+        {
+            OrganizationDetailViewModel organizationDetail = new OrganizationDetailViewModel();
+
+            try
+            {
+                OrganizationViewModel organization = GetOrganizationById(id);
+                int orgAdminId = _unitOfWork.MembershipRepository.GetOrganizationAdminId(organization.Id);
+                organizationDetail.Organization = organization;
+                // if found admin of organization
+                if (orgAdminId != -1)
+                {
+                    addAdminInfoToOrgDetailModel(organizationDetail, orgAdminId);
+                }
+            }
+            catch (NullReferenceException)
+            {
+                throw new DataAccessException(ErrorMessages.CantFindDataById);
+            }        
+
+            addAccountsInfoToOrgDetailModel(organizationDetail);
+
+            return organizationDetail;
+        }
+
+        private IEnumerable<OrgAccountDetailViewModel> convertListOrgAccountToListOrgAccountDetailViewModel(IEnumerable<OrgAccount> accounts)
+        {
+            return accounts
+                .Select(x => convertOrgAccountToOrgAccountDetailViewModel(x))
+                .ToList();
+        }
+
+        private OrgAccountDetailViewModel convertOrgAccountToOrgAccountDetailViewModel(OrgAccount account)
+        {
+            OrgAccountDetailViewModel orgAccountDetail = new OrgAccountDetailViewModel
+            {
+                AccountDescription = account.Description,
+                Name = account.OrgAccountName
+            };
+
+            if (account.Target != null)
+            {
+                orgAccountDetail.Target = account.Target.TargetName;
+            }
+
+            if (account.BankAccount != null && account.BankAccount.CardNumber != null)
+            {
+                orgAccountDetail.CardNumber = account.BankAccount.CardNumber;
+            }
+            return orgAccountDetail;
+        }
+
+
+        /// <summary>
+        /// Add to organization detail view model information about admin.
+        /// </summary>
+        /// <param name="organizationDetail">Instance of organization detail for fill.</param>
+        /// <param name="orgAdminId">Admin identifier.</param>
+        private void addAdminInfoToOrgDetailModel(OrganizationDetailViewModel organizationDetail, int orgAdminId)
+        {
+            User orgAdmin = _unitOfWork.UsersRepository.Get(orgAdminId);
+            organizationDetail.AdminFirstName = orgAdmin.FirstName;
+            organizationDetail.AdminLastName = orgAdmin.LastName;
+            if (orgAdmin.Phones.Count != 0)
+            {
+                organizationDetail.AdminPhoneNumber = orgAdmin.Phones.FirstOrDefault().Number;
+            }
+        }
+
+        /// <summary>
+        /// Add to organization detail view model information about accounts.
+        /// </summary>
+        /// <param name="organizationDetail">Instance of organization detail for fill.</param>
+        private void addAccountsInfoToOrgDetailModel(OrganizationDetailViewModel organizationDetail)
+        {
+            int orgId = organizationDetail.Organization.Id;
+            IEnumerable<OrgAccount> allOrgAccounts = _unitOfWork.OrganizationAccountRepository.ReadAllOrgAccounts(orgId);
+            IEnumerable<OrgAccount> filteredAccounts = allOrgAccounts
+                .Where(x => x.BankAccId != null && x.BankAccount.CardNumber != null)
+                .ToList();
+            organizationDetail.OrgAccountsList = convertListOrgAccountToListOrgAccountDetailViewModel(filteredAccounts);
+        }
+
     }
 }

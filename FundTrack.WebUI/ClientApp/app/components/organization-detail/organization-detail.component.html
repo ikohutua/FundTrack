@@ -1,0 +1,97 @@
+﻿<spinner [showSpinner]="showUsersSpinner"></spinner>
+<div *ngIf="!showUsersSpinner" class="background">
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-11">
+            <h2 class="header-text">
+                <strong>{{organizationDetail.organization.name}}</strong>
+            </h2>
+        </div>
+    </div>
+
+    <div class="row top-buffer">
+        <div class="col-md-2">
+            <div class="row">
+                <img class="img-responsive" [src]="organizationDetail.organization.logoUrl" />
+            </div>
+            <div class="row top-buffer">
+                <a (click) ="redirectToOtherPage(requestsComponentUrl + orgId)">Переглянути потреби</a>
+            </div>
+            <div class="row top-buffer">        
+                <a (click) ="redirectToOtherPage(eventsComponentUrl + orgId)">Переглянути події</a>
+            </div>
+            <div class="row top-buffer">
+                <a (click)="redirectToOtherPage(reportsComponentUrl + orgId)">Переглянути звіти</a>
+            </div>
+            <div class="row top-buffer bottom-buffer">
+                <a (click)="redirectToOtherPage(donateComponentUrl + orgId)">Пожертвувати</a>
+            </div>
+        </div>
+        <div class="col-md-1"></div>
+        <div class="col-md-3">
+            <div class="row panel well well-sm">
+                <div class="well-container">
+                    <div class="header-text text-center h5">
+                        <strong>Опис Організації</strong>
+                    </div>
+                    <p class="text-justify">
+                        {{organizationDetail.organization.description}}
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="well well-sm">
+                    <div class="well-container">
+                        <div class="header-text text-center h5"><strong>Контакти</strong></div>
+                        <p *ngIf="organizationDetail.adminPhoneNumber">
+                            {{organizationDetail.adminFirstName + ' ' + organizationDetail.adminLastName + ' ' + organizationDetail.adminPhoneNumber}}
+                        </p>
+                        <p *ngIf="!organizationDetail.adminPhoneNumber">
+                            Контакти не вказано.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-1"></div>
+        <div class="col-md-5">
+            <div class="row">
+                <div class="well well-sm">
+                    <div class="well-container">
+                        <div class="header-text text-center h5">
+                            <strong>
+                                Рахунки
+                            </strong>
+                        </div>
+                        <span *ngIf="!organizationDetail.orgAccountsList.length">
+                            Немає інформації по рахунках.
+                        </span>
+                        <div class="text-justify" *ngFor="let account of organizationDetail.orgAccountsList">
+                            <p>
+                                <strong>Назва рахунку:</strong>
+                                {{account.name}}
+                            </p>
+                            <p>
+                                <strong>Опис:</strong>
+                                <span *ngIf="!account.accountDescription">Опис не вказано.</span>
+                                <span *ngIf="account.accountDescription">{{account.accountDescription}}</span>
+                            </p>
+                            <p>
+                                <strong>Номер картки:</strong>
+                                {{account.cardNumber}}
+                            </p>
+                            <p>
+                                <strong>Призначення:</strong>
+                                <span *ngIf="!account.target">Призначення не вказано.</span>
+                                <span *ngIf="account.target">{{account.target}}</span>
+                            </p>
+                            <br />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bottom-left"><span class="glyphicon glyphicon-triangle-left"></span><a (click) ="redirectToOtherPage(allOrganizationComponentUrl)">Повернутися до списку організацій</a></div>
+</div>  

@@ -5,7 +5,7 @@ import { StorageService } from "../../shared/item-storage-service";
 import { RequestedItemInitViewModel } from "../../view-models/abstract/requesteditem-initpaginationdata-view-model";
 import { IOrganizationForFiltering } from "../../view-models/abstract/organization-for-filtering.interface";
 import { ISearchingDataForRequestedItem } from "../../view-models/abstract/searching-data-for-requesteditems-model";
-import { Router } from "@angular/router";
+import { Router, ActivatedRoute } from "@angular/router";
 import { GoodsCategoryViewModel } from "../../view-models/concrete/goods-category-view.model";
 import { GoodsTypeShortViewModel } from "../../view-models/concrete/goods-type-view.model";
 import { GoodsStatusViewModel } from "../../view-models/concrete/goods-status-model";
@@ -38,18 +38,26 @@ export class AllRequestsComponent implements OnInit, OnDestroy {
     private _filters: FilterRequstedViewModel = new FilterRequstedViewModel();
     private _goodsTypes: GoodsTypeViewModel[] = new Array<GoodsTypeViewModel>();
     private _selecteType: GoodsTypeViewModel = new GoodsTypeViewModel;
+    private _subscriber: any;
+    private _defaultOrgId: number;
 
     private _searchingDataForRequestedItem: ISearchingDataForRequestedItem;
 
     constructor(private _service: ShowRequestedItemService,
         private _storageService: StorageService,
         private _router: Router,
-        private _organizationManagementRequest: OrganizationManagementRequestService) { }
+        private _organizationManagementRequest: OrganizationManagementRequestService,
+        private _route: ActivatedRoute) { }
 
     ngOnInit(): void {
         this._storageService.showDropDown = false;
         this.getDataForSearching();
         this.loadAllRequestedItem();
+        this._subscriber = this._route.params.subscribe(params => {
+            if (!isNaN(+params["id"]) && +params["id"] > 0) {
+                this._defaultOrgId = +params["id"];
+            }           
+        });
     }
 
     loadAllRequestedItem() {
@@ -65,6 +73,7 @@ export class AllRequestsComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy(): void {
+        this._subscriber.unsubscribe;
         this._storageService.showDropDown = true;
     }
 
@@ -87,6 +96,9 @@ export class AllRequestsComponent implements OnInit, OnDestroy {
     getDataForSearching(): void {
         this._service.getOrgaizations().subscribe((organizations: IOrganizationForFiltering[]) => {
             this._organizations = organizations;
+            if (this._defaultOrgId) {
+                this.selectRequestsByOrgId(this._defaultOrgId);
+            }
         });
 
         this._service.getStatuses().subscribe((statuses: GoodsStatusViewModel[]) => {
@@ -107,7 +119,6 @@ export class AllRequestsComponent implements OnInit, OnDestroy {
             this.totalItems = data.totalItemsCount;
             this._service.getRequestedItemOnPage(this.itemsPerPage, this.currentPage, this.setupFilters()).subscribe((requesteditem: ShowRequestedItem[]) => {
                 this._model = requesteditem;
-                console.log(this._model);
             });
         });
     }
@@ -134,6 +145,11 @@ export class AllRequestsComponent implements OnInit, OnDestroy {
     public itemsPerPageChange(amount: number): void {
         this.offset = 0;
         this.itemsPerPage = amount;
+        this.filteredRequestedItems();
+    }
+
+    selectRequestsByOrgId(OrgId: number) {
+        this._organization = this._organizations.find(x => x.id == OrgId).name;
         this.filteredRequestedItems();
     }
 }

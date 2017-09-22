@@ -26,8 +26,9 @@
         public const string DeleteDependentTarget = "Неможливо видалити зв'язане з рахунком призначення";
         public const string CantFindItem = "Неможливо знайти об'єкт";
         public const string CantCreatedItem = "Неможливо створити об'єкт";
-
+        public const string BadRequestMessage = "Bad request error";
         public const string PatternPhoneMessage = "Невірний формат телефону";
         public const string MoneyFinOpLimit = "Сума повинна бути більшою 0 і меншою 1000000";
+        public const string CantFindDataById = "Can't find data with requested id";
     }
 }

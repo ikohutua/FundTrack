@@ -13,6 +13,21 @@
     width: 91.5%;
 }
 
+h2 {
+   float: left;
+}
+
+.main-label {
+    text-align: center;
+    font-size: 22px;
+    font-family: Calibri;
+}
+
+#right-float {
+    float: right;
+    margin: 20px;
+}
+
 td {
     font-size: 18px;
     font-family: Calibri;

@@ -54,7 +54,12 @@ namespace FundTrack.BLL.Abstract
         /// Get list of all organizations
         /// </summary>
         IEnumerable<OrganizationViewModel> GetAllOrganizations();
-       
+
+        /// <summary>
+        /// Get details about organization by id
+        /// </summary>
+        /// <param name="id">Id of organization</param>
+        OrganizationDetailViewModel GetOrganizationDetail(int id);
        
     }
 }

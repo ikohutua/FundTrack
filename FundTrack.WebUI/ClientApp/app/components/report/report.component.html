@@ -12,8 +12,8 @@
                                     <h4 class="muted">Організація</h4>
                                     <p></p>                       
                                         <div >
-                                            <select id="organization" name="selectbasic"  class="input-sm form-control" [(ngModel)]="reportModel.id" >
-                                                <option value={{item.id}} *ngFor="let item of organizations" [selected]="item.id">{{item.name}}</option>
+                                            <select #selectedOrganization name="selectbasic"  class="input-sm form-control"><!-- value="{{target.targetId}}" -->
+                                                <option value="{{item.id}}" *ngFor="let item of organizations" [selected]="item.id == routeOrgIndex">{{item.name}}</option>
                                             </select>
                                         </div>                                    
                                 </div>
@@ -28,7 +28,7 @@
                                     <div class="input-daterange input-group" id="datepicker" >
                                         <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                                         <input type="date" class="input-sm form-control no-spin" #startDate  (input)="setBeginDate(startDate.value)" [value]="reportModel.dateFrom | date:'yyyy-MM-dd'" min="2000-01-01"  />
-                                        <span class="input-group-addon"> - </span>
+                                        <span class="input-group-addon"> - </span>   <!--onkeydown="return false"  -> paste it to input if will be needed block keyDown -->
                                         <input type="date" class="input-sm form-control no-spin" #endDate  (input)="setEndDate(endDate.value)" [value]="reportModel.dateTo | date:'yyyy-MM-dd'" max="{{reportModel.dateTo | date:'yyyy-MM-dd'}}"/>
                                         <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span> 
                                     </div>
@@ -52,13 +52,13 @@
                             </div>
                         </div> 
                    <div class="text-right col-md-12">
-                       <button id="filteredbutton" type="submit" class="btn btn-secondary btn-md pull-right" (click)="generateReport()">Згенерувати звіт</button>
+                       <button id="filteredbutton" type="submit" class="btn btn-secondary btn-md pull-right" (click)="generateReport(selectedOrganization.value)">Згенерувати звіт</button>
                    </div>
                </div>       
     </div>
 
     <div class="panel-body">
-        <div class="text-left col-md-6">
+        <div *ngIf="ifDataExists" class="text-left col-md-6">
             <div *ngIf="accessToFill == 0">
                 Всього витрачено: {{reportOutTotalSum | number : '1.2-2'}} ₴
             </div>
@@ -67,15 +67,14 @@
             </div>
         </div>
         <div class="text-right col-md-6">
-            <div>
+            <div *ngIf="ifDataExists">
                Період з {{reportModel.dateFrom | date:'dd MMM yyyy'}} до {{reportModel.dateTo | date:'dd MMM yyyy'}}
-            </div>
-            
+            </div>       
         </div>
      </div>
 
         <div class="panel-body">
-            <table class="table table-hover table-condensed table-striped">
+            <table *ngIf="ifDataExists" class="table table-hover table-condensed table-striped">
                 <thead>
                 <th *ngFor="let header of reportHeaders">{{header}}</th>
                 </thead>
@@ -125,9 +124,9 @@
         <div class="app-modal-header">
             <h4> Помилка </h4>
         </div>
-        <div class="app-modal-body">
-            <h5> Початкова дата більша або рівна теперішній даті. </h5>
-            <h5> Період не може бути пустий. </h5>
+        <div class="app-modal-body" style="font-size:medium;text-align:center;">
+             Початкова дата більша або рівна теперішній даті.
+             Період не може бути пустий.
         </div>
         <div class="app-modal-footer">        
             <button type="button" class="btn btn-secondary btn-md pull-right" (click)="closeModal(dateExceptionModal)" >Закрити</button>
@@ -138,11 +137,23 @@
         <div class="app-modal-header">
             <h4>Помилка </h4>
         </div>
-        <div class="app-modal-body">
-            <h5> В ході роботи виникла помилка. Деталі: {{errorMessage}}</h5>
+        <div class="app-modal-body" style="font-size:medium;text-align:center;">
+             В ході роботи виникла помилка. Деталі: {{errorMessage}}
         </div>
         <div class="app-modal-footer">
             <button type="button" class="btn btn-secondary btn-md pull-right" (click)="closeModal(exceptionModal)">Закрити</button>
+        </div>
+    </app-modal>
+
+    <app-modal #emptyResultsModal>
+        <div class="app-modal-header">
+            <h4>Помилка </h4>
+        </div>
+        <div class="app-modal-body" style="font-size:medium;text-align:center;">
+            Для обраної організації за вказаним періодном не знайдено жодної інформації
+        </div>
+        <div class="app-modal-footer">
+            <button type="button" class="btn btn-secondary btn-md pull-right" (click)="closeModal(emptyResultsModal)">Закрити</button>
         </div>
     </app-modal>
 

@@ -70,24 +70,20 @@ namespace FundTrack.DAL.Migrations
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("AccNumber")
-                        .IsRequired()
                         .HasMaxLength(20);
 
                     b.Property<string>("BankName")
-                        .IsRequired()
                         .HasMaxLength(50);
 
                     b.Property<string>("CardNumber")
                         .HasMaxLength(16);
 
                     b.Property<string>("EDRPOU")
-                        .IsRequired()
                         .HasMaxLength(10);
 
                     b.Property<bool?>("IsDonationEnabled");
 
                     b.Property<string>("MFO")
-                        .IsRequired()
                         .HasMaxLength(6);
 
                     b.Property<int?>("MerchantId");
@@ -1129,7 +1125,7 @@ namespace FundTrack.DAL.Migrations
                         .HasConstraintName("FK_OrgAccount_Organization")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("FundTrack.DAL.Entities.Target")
+                    b.HasOne("FundTrack.DAL.Entities.Target", "Target")
                         .WithMany("OrgAccounts")
                         .HasForeignKey("TargetId");
                 });

@@ -35,6 +35,7 @@ export class OrgAccountOperationComponent implements OnChanges {
     private currentAccount: OrgAccountViewModel = new OrgAccountViewModel();
     private finOps: FinOpListViewModel[] = new Array<FinOpListViewModel>();
     private currentDate = new Date().toJSON().slice(0, 10);
+    private minDate: string;
     private operations = ['Payment', 'Withdrawn', 'Income', 'etc.'];
 
     @Input('orgId') orgId: number;
@@ -49,11 +50,15 @@ export class OrgAccountOperationComponent implements OnChanges {
 
     @ViewChild("newMoneyTransfer")
     private newMoneyTransferWindow: ModalComponent;
+
+    @ViewChild("newAccountManagment")
+    private newAccountManagmentWindow: ModalComponent;
     //-------------------------------------------------------------------------------
     //Initialize model and form
     private moneyIncomeForm: FormGroup;
     private moneySpendingForm: FormGroup;
     private moneyTransferForm: FormGroup;
+    private accountManagmentForm: FormGroup;
 
     private moneyOperationModel: MoneyOperationViewModel = new MoneyOperationViewModel();
     private moneyIncome: MoneyOperationViewModel = new MoneyOperationViewModel();
@@ -72,6 +77,7 @@ export class OrgAccountOperationComponent implements OnChanges {
             this.createIncomeForm();
             this.createSpendingForm();
             this.createTransferForm();
+            this.createManagmantForm();
     }
     private navigateToImportsPage(): void {
         this._router.navigate(['/finance/bank-import']);
@@ -85,7 +91,6 @@ export class OrgAccountOperationComponent implements OnChanges {
     Checks for value changes and assignes new account in the component
     */
     ngOnChanges(changes: { [propKey: string]: SimpleChange }) {
-        console.log("Changes");
         if (changes['accountId'] && changes['accountId'] != changes['accountId'].currentValue) {
             //code to execute when property changes
             if (this.accountId != 1) {
@@ -101,14 +106,16 @@ export class OrgAccountOperationComponent implements OnChanges {
                 this.getAccontsForTransfer();
             })
 
+
     }
 
     ngOnInit(): void {
         this.accountService.getAllAccountsOfOrganization()
             .subscribe(acc => {
                 this.accounts = acc.filter(a =>
-                    a.accountType == "Готівка"                                      //get all cash accounts
+                    a.accountType === "Готівка"                                      //get all cash accounts
                 );
+                this.getAccontsForTransfer();
             });
         this.donateService.getCurrencies()
             .subscribe(curr => {
@@ -118,17 +125,18 @@ export class OrgAccountOperationComponent implements OnChanges {
             .subscribe(targ => {
                 this.targets = targ;
             });
+
+        this.getMinDate();
     }
 
     private getAccontsForTransfer() {
-        if (this.currentAccount.targetId == null) {
-            this.accountsTo = this.accounts.filter(acc => acc.orgAccountName != this.currentAccount.orgAccountName);
+        if (this.currentAccount.targetId === null) {
+            this.accountsTo = this.accounts.filter(acc => acc.id != this.currentAccount.id);
         }
         else {
             this.accountsTo = this.accounts.filter(acc =>
-                acc.targetId == this.currentAccount.targetId &&
-                acc.orgAccountName != this.currentAccount.orgAccountName);
-            console.log(this.accountsTo);
+                acc.targetId === this.currentAccount.targetId &&
+                acc.id != this.currentAccount.id);
         }
     }
 
@@ -140,8 +148,10 @@ export class OrgAccountOperationComponent implements OnChanges {
         return date.toLocaleString("uk-UK", options);
     }
 
-    public getCurrentDate() {
-        console.log(this.currentDate);
+    public getMinDate() {
+        let date = new Date();
+        date.setDate(date.getDate() - 10);
+        this.minDate = date.toJSON().slice(0, 10);
     }
 
     public setDate(date: Date): void {
@@ -231,6 +241,12 @@ export class OrgAccountOperationComponent implements OnChanges {
         this.onValueChange(this.moneyTransferForm, this.formTransferErrors);
     }
 
+    private createManagmantForm() {
+        this.accountManagmentForm = this.fb.group({
+
+        });
+    }
+
     private formIncomeErrors = {
         sum: "",
         description: ""
@@ -281,7 +297,7 @@ export class OrgAccountOperationComponent implements OnChanges {
     }
 
     private openModal(modal: ModalComponent) {
-        this.getCurrentDate();
+        console.log(this.finOps);
         modal.show();
     }
 
@@ -295,6 +311,9 @@ export class OrgAccountOperationComponent implements OnChanges {
         this.moneyOperationModel.cardToId = this.currentAccount.id;
         this.finOpService.createIncome(this.moneyOperationModel);
         this.closeModal(this.newMoneyIncomeWindow, this.moneyIncomeForm);
+        //.subscribe(a => {
+        //    this.moneyIncome = a;
+        //});
     }
 
     private makeSpending() {

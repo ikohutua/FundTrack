@@ -28,6 +28,7 @@ import { RequestDetailComponent } from "../components/request-detail/request-det
                     { path: 'allrequests/:id', component: AllRequestsComponent },
                     { path: 'requestdetail/:id', component: RequestDetailComponent },
                     { path: 'report', component: ReportComponent },
+                    { path: 'report/:id', component: ReportComponent },
                     //{ path: '**', component: ReportComponent }//now not use, later can be replace to 404 page
                 ]
             },
