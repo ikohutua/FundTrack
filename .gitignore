@@ -303,3 +303,17 @@ __pycache__/
 
 # OpenCover UI analysis results
 OpenCover/
+
+.vs/
+FundTrack.BLL.Tests/bin/
+FundTrack.BLL.Tests/obj/
+FundTrack.BLL/bin/
+FundTrack.BLL/obj/
+FundTrack.DAL.Tests/bin/
+FundTrack.DAL.Tests/obj/
+FundTrack.DAL/bin/
+FundTrack.DAL/obj/
+FundTrack.Infrastructure/bin/
+FundTrack.Infrastructure/obj/
+FundTrack.WebUI.Tests/bin/
+FundTrack.WebUI.Tests/obj/
