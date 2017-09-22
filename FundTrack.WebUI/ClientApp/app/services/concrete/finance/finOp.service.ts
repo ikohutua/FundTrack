@@ -37,13 +37,10 @@ export class FinOpService extends BaseSpinnerService<FinOpViewModel> {
                 .catch(this.handleError);
         }
     }
-    public createIncome(moneyIncome: MoneyOperationViewModel): Observable<MoneyOperationViewModel> {
+    public createIncome(moneyIncome: MoneyOperationViewModel) {
         let url = "api/finop/income";
         let body = moneyIncome;
         console.log(moneyIncome);
-        return this._http.post(url, body, this.getRequestOptions())
-            .map((response: Response) => <MoneyOperationViewModel>response.json())
-            .catch(this.handleError);
     }
 
     public createSpending(moneySpending: MoneyOperationViewModel) {

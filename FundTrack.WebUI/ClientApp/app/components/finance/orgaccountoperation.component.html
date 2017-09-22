@@ -22,11 +22,10 @@
     <a class="btn" (click)="openModal(newMoneySpendingWindow)">Добавити витрату</a>
     <a class="btn" (click)="openModal(newMoneyTransferWindow)">Переказ коштів</a>
 </div>
-
-<app-modal class="scrollable-modal" #newMoneyIncome>
+<app-modal #newMoneyIncome>
     <div class="app-modal-header">
         <button type="button" class="close" aria-hidden="true" (click)="closeModal(newMoneyIncomeWindow, moneyIncomeForm)">&times;</button>
-        <h4 class="modal-title">Заповніть дані: </h4>
+        <h4 class="modal-title">Додати прихід </h4>
     </div>
     <div class="app-modal-body">
         <div class="collapse in" id="collapseExample">
@@ -37,7 +36,7 @@
                            disabled
                            type="text"
                            placeholder={{currentAccount.orgAccountName}}
-                           name="cardTo" />
+                           name="cardToId" />
                 </div>
                 <div class="form-group">
                     <label class="control-label">Сума<sup class="sup-color-red">*</sup></label>
@@ -59,49 +58,39 @@
                               name="description"
                               maxlength="500"
                               formControlName="description"
-                              [(ngModel)]="moneyOperationModel.description"
-                              required=""></textarea>
+                              [(ngModel)]="moneyOperationModel.description"></textarea>
                     <span *ngIf="formIncomeErrors.description" class="has-error help-block error-message">
                         {{ formIncomeErrors.description }}
                     </span>
                 </div>
                 <div class="form-group">
-                    <label class="control-label">Призначення</label>
+                    <label class="control-label">Призначення<sup class="sup-color-red">*</sup></label>
                     <select [(ngModel)]="moneyOperationModel.targetId" formControlName="targetId" id="categoryType" class="form-control">
                         <option></option>
                         <option *ngFor="let target of targets" value="{{target.targetId}}">
                             {{target.name}}
                         </option>
                     </select>
-                    <span *ngIf="formIncomeErrors.targetId" class="has-error help-block error-message">
-                        {{ formIncomeErrors.targetId }}
-                    </span>
                 </div>
                 <div class="form-group">
-                    <label class="control-label">Дата</label>
+                    <label class="control-label">Дата<sup class="sup-color-red">*</sup></label>
                     <input type="date"
                            class="input-sm form-control no-spin"
-                           #startDate (input)="setDate(startDate.value)"
+                           formControlName="date"
+                           #dateIncome (input)="setDate(dateIncome.value)"
                            [value]="moneyOperationModel.date | date:'yyyy-MM-dd'"
                            min="2000-01-01" />
-                    <span *ngIf="formIncomeErrors.date" class="has-error help-block error-message">
-                        {{ formIncomeErrors.date }}
-                    </span>
+
                 </div>
             </form>
         </div>
     </div>
     <div class="app-modal-footer">
         <button (click)="makeIncome()"
-                class="btn btn-fundtrack-style pull-right"
-                data-dismiss="modal">
-                <!--[disabled]="moneyIncomeForm.invalid"-->
-            Додати прихід
-        </button>
-        <button (click)="cleanForm()"
-                class="btn btn-fundtrack-style pull-right"
-                data-dismiss="modal">
-            Очистити
+                class="btn btn-fundtrack-style pull-left"
+                data-dismiss="modal"
+                [disabled]="moneyIncomeForm.invalid">
+            ОК
         </button>
         <button (click)="closeModal(newMoneyIncomeWindow, moneyIncomeForm)"
                 class="btn btn-default pull-right"
@@ -111,10 +100,10 @@
     </div>
 </app-modal>
 
-<app-modal class="scrollable-modal" #newMoneySpending>
+<app-modal #newMoneySpending>
     <div class="app-modal-header">
         <button type="button" class="close" aria-hidden="true" (click)="closeModal(newMoneySpendingWindow, moneySpendingForm)">&times;</button>
-        <h4 class="modal-title">Заповніть дані: </h4>
+        <h4 class="modal-title">Додати розхід </h4>
     </div>
     <div class="app-modal-body">
         <div class="collapse in" id="collapseExample">
@@ -125,16 +114,15 @@
                            disabled
                            type="text"
                            placeholder={{currentAccount.orgAccountName}}
-                           name="cardFrom" />
+                           name="cardFromId" />
                 </div>
                 <div class="form-group">
-                    <label class="control-label">Сума</label>
+                    <label class="control-label">Сума<sup class="sup-color-red">*</sup></label>
                     <input class="form-control"
                            type="text"
                            placeholder="Сума"
                            formControlName="sum"
-                           [(ngModel)]="moneyOperationModel.sum"
-                           required="" />
+                           [(ngModel)]="moneyOperationModel.sum"/>
                     <span *ngIf="formSpendingErrors.sum" class="has-error help-block error-message">
                         {{ formSpendingErrors.sum }}
                     </span>
@@ -146,14 +134,13 @@
                               name="description"
                               maxlength="500"
                               formControlName="description"
-                              [(ngModel)]="moneyOperationModel.description"
-                              required=""></textarea>
+                              [(ngModel)]="moneyOperationModel.description"></textarea>
                     <span *ngIf="formSpendingErrors.description" class="has-error help-block error-message">
                         {{ formSpendingErrors.description }}
                     </span>
                 </div>
                 <div class="form-group">
-                    <label class="control-label">Призначення</label>
+                    <label class="control-label">Призначення<sup class="sup-color-red">*</sup></label>
                     <select [(ngModel)]="moneyOperationModel.targetId" formControlName="targetId" id="categoryType" class="form-control">
                         <option></option>
                         <option *ngFor="let target of targets" value="{{target.targetId}}">
@@ -165,22 +152,21 @@
                     </span>
                 </div>
                 <div class="form-group">
-                    <label class="control-label">Дата</label>
+                    <label class="control-label">Дата<sup class="sup-color-red">*</sup></label>
                     <input type="date"
                            class="input-sm form-control no-spin"
-                           #startDate (input)="setDate(startDate.value)"
+                           formControlName="date"
+                           #dateSpending (input)="setDate(dateSpending.value)"
                            [value]="moneyOperationModel.date | date:'yyyy-MM-dd'"
                            min="2000-01-01" />
-                    <span *ngIf="formSpendingErrors.date" class="has-error help-block error-message">
-                        {{ formSpendingErrors.date }}
-                    </span>
+
                 </div>
                 <div class="form-group">
-                    <label class="control-label">Фото:</label>
-                </div>
-                <div class="col-md-12">
-                    <div>
-                        <image-list [images]="images" (getImageChange)="onImageChange($event)"></image-list>
+                    <label class="control-label">Фото<sup class="sup-color-red">*</sup></label>
+                    <div class="col-md-12">
+                        <div>
+                            <image-list [images]="images" [maxCount]="maxImgCount" [maxSize]="maxImgSize" (getImageChange)="onImageChange($event)"></image-list>
+                        </div>
                     </div>
                 </div>
             </form>
@@ -188,15 +174,10 @@
     </div>
     <div class="app-modal-footer">
         <button (click)="makeSpending()"
-                class="btn btn-fundtrack-style pull-right"
-                data-dismiss="modal">
-                <!--[disabled]="moneySpendingForm.invalid"-->
-            Додати прихід
-        </button>
-        <button (click)="cleanForm()"
-                class="btn btn-fundtrack-style pull-right"
-                data-dismiss="modal">
-            Очистити
+                class="btn btn-fundtrack-style pull-left"
+                data-dismiss="modal"
+                [disabled]="moneySpendingForm.invalid">
+            ОК
         </button>
         <button (click)="closeModal(newMoneySpendingWindow, moneySpendingForm)"
                 class="btn btn-default pull-right"
@@ -206,10 +187,10 @@
     </div>
 </app-modal>
 
-<app-modal class="scrollable-modal" #newMoneyTransfer>
+<app-modal #newMoneyTransfer>
     <div class="app-modal-header">
         <button type="button" class="close" aria-hidden="true" (click)="closeModal(newMoneyTransferWindow, moneyTransferForm)">&times;</button>
-        <h4 class="modal-title">Заповніть дані: </h4>
+        <h4 class="modal-title">Переміщення між рахунками </h4>
     </div>
     <div class="app-modal-body">
         <div class="collapse in" id="collapseExample">
@@ -220,22 +201,22 @@
                            disabled
                            type="text"
                            placeholder={{currentAccount.orgAccountName}}
-                           name="cardFrom" />
+                           name="cardFromId" />
                 </div>
                 <div class="form-group">
-                    <label class="control-label">Назва рахунку одержувачв:</label>
-                    <select [(ngModel)]="moneyOperationModel.cardTo" formControlName="cardTo" id="categoryType" class="form-control">
+                    <label class="control-label">Назва рахунку одержувача<sup class="sup-color-red">*</sup></label>
+                    <select [(ngModel)]="moneyOperationModel.cardToId" formControlName="cardToId" id="categoryType" class="form-control">
                         <option></option>
-                        <option *ngFor="let account of accounts">
+                        <option *ngFor="let account of accountsTo" value="{{account.id}}">
                             {{account.orgAccountName}}
                         </option>
                     </select>
-                    <span *ngIf="formTransferErrors.cardTo" class="has-error help-block error-message">
-                        {{ formTransferErrors.cardTo }}
+                    <span *ngIf="formTransferErrors.cardToId" class="has-error help-block error-message">
+                        {{ formTransferErrors.cardToId }}
                     </span>
                 </div>
                 <div class="form-group">
-                    <label class="control-label">Сума</label>
+                    <label class="control-label">Сума<sup class="sup-color-red">*</sup></label>
                     <input class="form-control"
                            type="text"
                            placeholder="Сума"
@@ -260,30 +241,23 @@
                     </span>
                 </div>
                 <div class="form-group">
-                    <label class="control-label">Дата</label>
+                    <label class="control-label">Дата<sup class="sup-color-red">*</sup></label>
                     <input type="date"
                            class="input-sm form-control no-spin"
-                           #startDate (input)="setDate(startDate.value)"
+                           formControlName="date"
+                           #dateTransfer (input)="setDate(dateTransfer.value)"
                            [value]="moneyOperationModel.date | date:'yyyy-MM-dd'"
                            min="2000-01-01" />
-                    <span *ngIf="formTransferErrors.date" class="has-error help-block error-message">
-                        {{ formTransferErrors.date }}
-                    </span>
                 </div>
             </form>
         </div>
     </div>
     <div class="app-modal-footer">
         <button (click)="makeTransfer()"
-                class="btn btn-fundtrack-style pull-right"
-                data-dismiss="modal">
-                <!--[disabled]="moneyTransferForm.invalid"-->
-            Додати прихід
-        </button>
-        <button (click)="cleanForm()"
-                class="btn btn-fundtrack-style pull-right"
-                data-dismiss="modal">
-            Очистити
+                class="btn btn-fundtrack-style pull-left"
+                data-dismiss="modal"
+                [disabled]="moneyTransferForm.invalid">
+            ОК
         </button>
         <button (click)="closeModal(newMoneyTransferWindow, moneyTransferForm)"
                 class="btn btn-default pull-right"
