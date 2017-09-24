@@ -69,6 +69,7 @@ export class OrgAccountDetailComponent implements OnInit, OnChanges {
     Checks for value changes and assignes new account in the component
     */
     ngOnChanges(changes: { [propKey: string]: SimpleChange }) {
+        //this.accountId = 97;
         if (changes['accountId'] && changes['accountId'] != changes['accountId'].currentValue) {
             if (this.accountId!=1) {
                 this._service.getOrganizationAccountById(this.accountId)

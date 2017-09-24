@@ -15,6 +15,11 @@ export class OrgAccountListComponent implements OnInit {
 
     //Property that keeps an array of organization account
     private accounts: OrgAccountViewModel[] = new Array<OrgAccountViewModel>();
+    //Property that keeps an array of cash organization account
+    private cashAccounts: OrgAccountViewModel[] = new Array<OrgAccountViewModel>();
+    //Property that indicates spinner display status
+    //Property that keeps an array of cash organization account
+    private bankAccounts: OrgAccountViewModel[] = new Array<OrgAccountViewModel>();
     //Property that indicates spinner display status
     private showSpinner: boolean = false;
     //Property that indicates currently selected account
@@ -36,7 +41,11 @@ export class OrgAccountListComponent implements OnInit {
         this._accountService.getAllAccountsOfOrganization().
             subscribe(r => {
                 this.accounts = r;
-                this.setActiveAccount(this.accounts[0]);
+                this.cashAccounts = this.accounts.filter(cash => cash.accountType == "Готівка");
+                this.bankAccounts = this.accounts.filter(bank => bank.accountType == "Банк");
+                console.log(this.cashAccounts);
+                console.log(this.bankAccounts);
+                this.setActiveAccount(this.cashAccounts[0]);
                 this.showSpinner = false;
     });
     }

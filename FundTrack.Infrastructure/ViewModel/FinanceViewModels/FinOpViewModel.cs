@@ -13,22 +13,21 @@ namespace FundTrack.Infrastructure.ViewModel.FinanceViewModels
 
         [Required(ErrorMessage = ErrorMessages.RequiredFieldMessage)]
         [Range(0.01, 100.00, ErrorMessage = ErrorMessages.MoneyFinOpLimit)]
-        public decimal Amount { get; set; }
+        public decimal Sum { get; set; }
 
-        public string AccNameTo { get; set; }
+        public int CardFromId { get; set; }
 
-        public string AccNameFrom { get; set; }
+        public int CardToId { get; set; }
 
         [Required(ErrorMessage = ErrorMessages.RequiredFieldMessage)]
         [MinValue(1)]
         public int OrgId { get; set; }
 
-        public int? TargetId { get; set; }
+        public int TargetId { get; set; }
 
         public int UserId { get; set; }
 
-        public IEnumerable<string> PhotoUrls { get; set; }
+        public IEnumerable<string> Images { get; set; }
 
-        public string Currency { get; set; }
     }
 }
