@@ -91,6 +91,7 @@ export class OrgAccountOperationComponent implements OnChanges {
     Checks for value changes and assignes new account in the component
     */
     ngOnChanges(changes: { [propKey: string]: SimpleChange }) {
+        //this.accountId = 97;
         if (changes['accountId'] && changes['accountId'] != changes['accountId'].currentValue) {
             //code to execute when property changes
             if (this.accountId != 1) {
@@ -309,24 +310,28 @@ export class OrgAccountOperationComponent implements OnChanges {
     private makeIncome() {
         this.completeModel();
         this.moneyOperationModel.cardToId = this.currentAccount.id;
-        this.finOpService.createIncome(this.moneyOperationModel);
+        this.finOpService.createIncome(this.moneyOperationModel).subscribe(a => {
+            this.moneyIncome = a;
+        });
         this.closeModal(this.newMoneyIncomeWindow, this.moneyIncomeForm);
-        //.subscribe(a => {
-        //    this.moneyIncome = a;
-        //});
+        console.log("aaaa");
     }
 
     private makeSpending() {
         this.completeModel();
         this.moneyOperationModel.cardFromId = this.currentAccount.id;
-        this.finOpService.createSpending(this.moneyOperationModel);
+        this.finOpService.createSpending(this.moneyOperationModel).subscribe(a => {
+            this.moneySpending = a;
+        });
         this.closeModal(this.newMoneySpendingWindow, this.moneySpendingForm);
     }
 
     private makeTransfer() {
         this.completeModel();
         this.moneyOperationModel.cardFromId = this.currentAccount.id;
-        this.finOpService.createTransfer(this.moneyOperationModel)
+        this.finOpService.createTransfer(this.moneyOperationModel).subscribe(a => {
+            this.moneyTransfer = a;
+        });
         this.closeModal(this.newMoneyTransferWindow, this.moneyTransferForm);
     }
 
