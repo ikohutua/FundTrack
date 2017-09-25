@@ -190,6 +190,7 @@ namespace FundTrack.BLL.Concrete
             try
             {
                 var finOps = _unitOfWork.FinOpRepository.GetFinOpByOrgAccount(orgAccountId)
+                    .OrderByDescending(f => f.Id)
                     .Select(f => new FinOpListViewModel
                     {
                         Date = f.FinOpDate,
@@ -198,7 +199,7 @@ namespace FundTrack.BLL.Concrete
                         Target = f.Target.TargetName,
                         CurrencyShortName = f.AccToId.HasValue ? f.OrgAccountTo.Currency.ShortName : f.OrgAccountFrom.Currency.ShortName,
                         CurrencyFullName = f.AccToId.HasValue ? f.OrgAccountTo.Currency.FullName : f.OrgAccountFrom.Currency.FullName,
-                        FinOpType= f.FinOpType
+                        FinOpType = f.FinOpType
                     });
                 return finOps;
             }

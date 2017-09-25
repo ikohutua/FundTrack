@@ -34,9 +34,11 @@ export class OrgAccountOperationComponent implements OnChanges {
     private targets: TargetViewModel[] = new Array<TargetViewModel>();
     private currentAccount: OrgAccountViewModel = new OrgAccountViewModel();
     private finOps: FinOpListViewModel[] = new Array<FinOpListViewModel>();
+    private reservedFinOpsArray: FinOpListViewModel[] = new Array<FinOpListViewModel>();
     private currentDate = new Date().toJSON().slice(0, 10);
     private minDate: string;
     private operations = ['Payment', 'Withdrawn', 'Income', 'etc.'];
+    private default: boolean = true;
 
     @Input('orgId') orgId: number;
     @Input() accountId: number;
@@ -98,6 +100,9 @@ export class OrgAccountOperationComponent implements OnChanges {
                 this.finOpService.getFinOpsByOrgAccountId(this.accountId)
                     .subscribe(a => {
                         this.finOps = a;
+                        this.setFinOperations();
+                        this.reservedFinOpsArray = this.finOps;
+                        this.finOps = this.finOps.slice(0, 10);       
                     });
             }
         }
@@ -107,6 +112,7 @@ export class OrgAccountOperationComponent implements OnChanges {
                 this.getAccontsForTransfer();
             })
 
+        this.default = false;
 
     }
 
@@ -139,6 +145,38 @@ export class OrgAccountOperationComponent implements OnChanges {
                 acc.targetId === this.currentAccount.targetId &&
                 acc.id != this.currentAccount.id);
         }
+    }
+
+    private setFinOperations() {
+        for (var i = 0; i < this.finOps.length; i++) {
+
+            if (this.finOps[i].finOpType == 1) {
+                this.finOps[i].finOpName = "Прихід";
+            }
+
+            else if (this.finOps[i].finOpType == 0) {
+                this.finOps[i].finOpName = "Розхід";
+            }
+
+            else {
+                this.finOps[i].finOpName = "Переміщення"
+            }
+        }
+    }
+
+    private viewFinOps() {
+        this.finOps = this.reservedFinOpsArray;
+    }
+
+    private viewFinOpsByOperation(operation: number) {
+        this.finOps = new Array<FinOpListViewModel>();
+        for (var i = 0; i < this.reservedFinOpsArray.length; i++) {
+            if (this.reservedFinOpsArray[i].finOpType == operation) {
+                this.finOps.push(this.reservedFinOpsArray[i]);
+            }
+        }
+        this.finOps = this.finOps.slice(0, 10);    
+        this.default = true;
     }
 
     private convertDate(date: Date): string {
@@ -303,6 +341,7 @@ export class OrgAccountOperationComponent implements OnChanges {
     }
 
     private closeModal(modal: ModalComponent, form: FormGroup) {
+        console.log(this.finOps);
         modal.hide();
         form.reset();
     }
@@ -314,7 +353,6 @@ export class OrgAccountOperationComponent implements OnChanges {
             this.moneyIncome = a;
         });
         this.closeModal(this.newMoneyIncomeWindow, this.moneyIncomeForm);
-        console.log("aaaa");
     }
 
     private makeSpending() {
