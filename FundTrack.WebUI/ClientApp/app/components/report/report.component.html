@@ -29,7 +29,7 @@
                                         <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                                         <input type="date" class="input-sm form-control no-spin" #startDate  (input)="setBeginDate(startDate.value)" [value]="reportModel.dateFrom | date:'yyyy-MM-dd'" min="2000-01-01"  />
                                         <span class="input-group-addon"> - </span>   <!--onkeydown="return false"  -> paste it to input if will be needed block keyDown -->
-                                        <input type="date" class="input-sm form-control no-spin" #endDate  (input)="setEndDate(endDate.value)" [value]="reportModel.dateTo | date:'yyyy-MM-dd'" max="{{reportModel.dateTo | date:'yyyy-MM-dd'}}"/>
+                                        <input type="date" class="input-sm form-control no-spin" #endDate  (input)="setEndDate(endDate.value)" [value]="reportModel.dateTo | date:'yyyy-MM-dd'" max="{{inputMaxDate | date:'yyyy-MM-dd'}}"/>
                                         <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span> 
                                     </div>
                                 </div>

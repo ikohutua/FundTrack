@@ -33,7 +33,8 @@ export class ReportComponent implements OnInit, OnDestroy {
     private selectedImage: any;   
     private index: number = 0;
     private routeOrgIndex: number = 1;
-    private ifDataExists: boolean=false;
+    private ifDataExists: boolean = false;
+    private inputMaxDate: Date = new Date();
     
     @ViewChild("dateExceptionModal")
     private dateExceptionModal: ModalComponent;
