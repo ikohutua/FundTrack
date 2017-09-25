@@ -97,7 +97,7 @@ export class AuthorizationComponent {
         this._authorizationService.logIn(this.loginModel)
             .subscribe(data => {
                 this.subscribeForAuthorization(data);
-            })
+            });
     }
 
     /**
