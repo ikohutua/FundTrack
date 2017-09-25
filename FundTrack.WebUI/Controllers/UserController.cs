@@ -49,7 +49,8 @@ namespace FundTrack.WebUI.Controllers
             }
             catch (Exception ex)
             {
-                return this._getAuthorizationTypeError(ex.Message);
+                return JsonConvert.SerializeObject(this._getAuthorizationTypeError(ex.Message),
+                    new JsonSerializerSettings { Formatting = Formatting.Indented });
             }
         }
 
@@ -139,13 +140,14 @@ namespace FundTrack.WebUI.Controllers
                             FieldName = field
                         });
                     }
-
-                    return this._getAuthorizationTypeError(validationSummary: validationSummary);
+                    return JsonConvert.SerializeObject(this._getAuthorizationTypeError(validationSummary: validationSummary),
+                        new JsonSerializerSettings { Formatting = Formatting.Indented });
                 }
             }
             catch (Exception ex)
             {
-                return this._getAuthorizationTypeError(ex.Message);
+                return JsonConvert.SerializeObject(this._getAuthorizationTypeError(ex.Message),
+                    new JsonSerializerSettings { Formatting = Formatting.Indented });
             }
         }
 
@@ -225,7 +227,7 @@ namespace FundTrack.WebUI.Controllers
         private string GetUri() => $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}";
 
         // gets Authorization Type Errors
-        private string _getAuthorizationTypeError(string errorMessage = "", List<ValidationViewModel> validationSummary = null)
+        private AuthorizationType _getAuthorizationTypeError(string errorMessage = "", List<ValidationViewModel> validationSummary = null)
         {
             var authorizationType = new AuthorizationType
             {
@@ -234,7 +236,7 @@ namespace FundTrack.WebUI.Controllers
                 validationSummary = validationSummary
             };
 
-            return JsonConvert.SerializeObject(authorizationType, new JsonSerializerSettings { Formatting = Formatting.Indented });
+            return authorizationType;
         }
 
         private AuthorizationType _getAuthorizationType(UserInfoViewModel userInfoModel)
