@@ -38,6 +38,7 @@ namespace FundTrack.Infrastructure.ViewModel.FinanceViewModels
         /// </value>
         public string Target { get; set; }
 
+        public int FinOpType { get; set; }
         /// <summary>
         /// Gets or sets the short name of the currency.
         /// </summary>

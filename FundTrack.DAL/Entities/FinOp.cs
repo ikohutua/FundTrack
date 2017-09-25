@@ -44,7 +44,7 @@ namespace FundTrack.DAL.Entities
         /// </summary>
         public string Description { get; set; }
 
-        public int? FinOpType { get; set; }
+        public int FinOpType { get; set; }
 
         /// <summary>
         /// Gets or Sets Date of FinOp
