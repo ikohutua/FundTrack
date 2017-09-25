@@ -27,9 +27,9 @@
                                     <p></p>
                                     <div class="input-daterange input-group" id="datepicker" >
                                         <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                                        <input type="date" class="input-sm form-control no-spin" #startDate  (input)="setBeginDate(startDate.value)" [value]="reportModel.dateFrom | date:'yyyy-MM-dd'" min="2000-01-01"  />
+                                        <input type="date" class="input-sm form-control no-spin" #startDate onkeydown="return false" (input)="setBeginDate(startDate.value)" [value]="reportModel.dateFrom | date:'yyyy-MM-dd'" min="2000-01-01" max="{{inputMaxDate | date:'yyyy-MM-dd'}}" />
                                         <span class="input-group-addon"> - </span>   <!--onkeydown="return false"  -> paste it to input if will be needed block keyDown -->
-                                        <input type="date" class="input-sm form-control no-spin" #endDate  (input)="setEndDate(endDate.value)" [value]="reportModel.dateTo | date:'yyyy-MM-dd'" max="{{inputMaxDate | date:'yyyy-MM-dd'}}"/>
+                                        <input type="date" class="input-sm form-control no-spin" #endDate  onkeydown="return false" (input)="setEndDate(endDate.value)" [value]="reportModel.dateTo | date:'yyyy-MM-dd'" min="2000-01-01" max="{{inputMaxDate | date:'yyyy-MM-dd'}}"/>
                                         <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span> 
                                     </div>
                                 </div>
@@ -120,16 +120,28 @@
         </div>
     </div>
 
-    <app-modal #dateExceptionModal>
+    <app-modal #dateCompareExceptionModal>
         <div class="app-modal-header">
             <h4> Помилка </h4>
         </div>
         <div class="app-modal-body" style="font-size:medium;text-align:center;">
              Початкова дата більша або рівна теперішній даті.
-             Період не може бути пустий.
         </div>
         <div class="app-modal-footer">        
-            <button type="button" class="btn btn-secondary btn-md pull-right" (click)="closeModal(dateExceptionModal)" >Закрити</button>
+            <button type="button" class="btn btn-secondary btn-md pull-right" (click)="closeModal(dateCompareExceptionModal)" >Закрити</button>
+        </div>
+    </app-modal>
+
+
+    <app-modal #dateExceptionModal>
+        <div class="app-modal-header">
+            <h4> Помилка </h4>
+        </div>
+        <div class="app-modal-body" style="font-size:medium;text-align:center;">
+            Період не може бути пустий.
+        </div>
+        <div class="app-modal-footer">
+            <button type="button" class="btn btn-secondary btn-md pull-right" (click)="closeModal(dateExceptionModal)">Закрити</button>
         </div>
     </app-modal>
 
@@ -150,7 +162,7 @@
             <h4>Помилка </h4>
         </div>
         <div class="app-modal-body" style="font-size:medium;text-align:center;">
-            Для обраної організації за вказаним періодном не знайдено жодної інформації
+            Для обраної організації за вказаним періодом не знайдено жодної інформації
         </div>
         <div class="app-modal-footer">
             <button type="button" class="btn btn-secondary btn-md pull-right" (click)="closeModal(emptyResultsModal)">Закрити</button>
