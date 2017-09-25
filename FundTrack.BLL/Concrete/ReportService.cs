@@ -32,7 +32,7 @@ namespace FundTrack.BLL.Concrete
 
                 return _unitOfWork.FinOpRepository.Read().ToList()
                     .Where(finOps =>
-                        (finOps.OrgAccountTo != null)
+                        (finOps.FinOpType==1)
                         && (finOps.OrgAccountTo.OrgId == orgId)
                         && (finOps.FinOpDate > dateFrom)
                         && (finOps.FinOpDate < dateTo))
@@ -40,7 +40,7 @@ namespace FundTrack.BLL.Concrete
                     {
                         From = finOps.Donation?.User.LastName,
                         Description = finOps.Description,
-                        TargetTo = finOps.Target.TargetName,
+                        TargetTo = finOps.Target?.TargetName,
                         MoneyAmount = finOps.Amount,
                         Date = finOps.FinOpDate,
                     }).ToList();
@@ -67,7 +67,7 @@ namespace FundTrack.BLL.Concrete
 
                 return _unitOfWork.FinOpRepository.Read().ToList()
                     .Where(finOps =>
-                        finOps.OrgAccountFrom != null
+                        (finOps.FinOpType == 0)
                         && finOps.OrgAccountFrom.OrgId == orgId
                         && finOps.FinOpDate > dateFrom
                         && finOps.FinOpDate < dateTo)

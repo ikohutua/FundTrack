@@ -375,6 +375,8 @@ namespace FundTrack.DAL.Migrations
                     b.Property<DateTime>("FinOpDate")
                         .HasColumnType("datetime");
 
+                    b.Property<int>("FinOpType");
+
                     b.Property<int?>("TargetId");
 
                     b.Property<int?>("UserId");
