@@ -9,9 +9,22 @@
         <spinner [showSpinner]="showSpinner"></spinner>
         <div class="col-md-3">
             <div class="row">
-                <h3 class="account-type">Доступні рахунки</h3>
+                <h3 class="account-type">Готівкові рахунки</h3>
             </div>
-            <div *ngFor="let account of accounts" class="account row grow"
+            <div *ngFor="let account of cashAccounts" class="account row grow"
+                 (click)="setActiveAccount(account)"
+                 [class.selected]="account === selectedAccount">
+                <div class="col-md-6">
+                    {{account.orgAccountName}}
+                </div>
+                <div class="col-md-1 amount col-md-offset-2">
+                    <strong>{{account.currentBalance | currency: account.currencyShortName: true}}</strong>
+                </div>
+            </div>
+            <div class="row">
+                <h3 class="account-type">Банківські рахунки</h3>
+            </div>
+            <div *ngFor="let account of bankAccounts" class="account row grow"
                  (click)="setActiveAccount(account)"
                  [class.selected]="account === selectedAccount">
                 <div class="col-md-6">

@@ -31,6 +31,15 @@ namespace FundTrack.Infrastructure.ViewModel.FinanceViewModels
         public decimal Amount { get; set; }
 
         /// <summary>
+        /// Gets or sets the target.
+        /// </summary>
+        /// <value>
+        /// The Target.
+        /// </value>
+        public string Target { get; set; }
+
+        public int FinOpType { get; set; }
+        /// <summary>
         /// Gets or sets the short name of the currency.
         /// </summary>
         /// <value>
