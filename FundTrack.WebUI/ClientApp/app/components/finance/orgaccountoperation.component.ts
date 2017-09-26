@@ -45,6 +45,7 @@ export class OrgAccountOperationComponent implements OnChanges {
     private user: AuthorizeUserModel = new AuthorizeUserModel();
     private minDate: string;
     private default: boolean = true;
+    private isCashType: boolean = false;
 
     @Input() orgId: number;
     @Input() accountId: number;
@@ -112,6 +113,7 @@ export class OrgAccountOperationComponent implements OnChanges {
             .subscribe(currAcc => {
                 this.currentAccount = currAcc;                                      //get current organization account
                 this.accountForUpdate = currAcc;
+                this.getType();
                 this.getAccontsForTransfer();
                 console.log("OrganizationId    " + this.orgId);
             });
@@ -202,6 +204,15 @@ export class OrgAccountOperationComponent implements OnChanges {
         let date = new Date();
         date.setDate(date.getDate() - 10);
         this.minDate = date.toJSON().slice(0, 10);
+    }
+
+    public getType() {
+        if (this.currentAccount.accountType === "Готівка") {
+            this.isCashType = true;
+        }
+        else {
+            this.isCashType = false;
+        }
     }
 
     public setDate(date: Date): void {

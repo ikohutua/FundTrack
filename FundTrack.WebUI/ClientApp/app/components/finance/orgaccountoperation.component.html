@@ -1,6 +1,6 @@
 ﻿<div class="container maindiv">
     <h2>Фінансові операції по рахунку</h2>
-    <a id="right-float" class="btn" (click)="openManageModal()">Керування рахунком</a>
+    <a *ngIf="isCashType" id="right-float" class="btn" (click)="openManageModal()">Керування рахунком</a>
     <table class="table table-hover table-responsive">
         <thead>
             <tr>
@@ -34,9 +34,9 @@
     </table>
     <a class="btn" (click)="viewFinOps()">Переглянути всі операції по рахунку</a>
 
-    <a class="btn" (click)="openModal(newMoneyIncomeWindow)">Добавити прихід</a>
-    <a class="btn" (click)="openModal(newMoneySpendingWindow)">Добавити витрату</a>
-    <a class="btn" (click)="openModal(newMoneyTransferWindow)">Переказ коштів</a>
+    <a *ngIf="isCashType" class="btn" (click)="openModal(newMoneyIncomeWindow)">Добавити прихід</a>
+    <a *ngIf="isCashType" class="btn" (click)="openModal(newMoneySpendingWindow)">Добавити витрату</a>
+    <a *ngIf="isCashType" class="btn" (click)="openModal(newMoneyTransferWindow)">Переказ коштів</a>
 </div>
 
 <app-modal #newMoneyIncome>
