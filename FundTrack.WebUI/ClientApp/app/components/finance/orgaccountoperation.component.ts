@@ -1,4 +1,4 @@
-﻿import { Component, OnInit, Input, SimpleChange, OnChanges } from "@angular/core";
+﻿import { ViewChild, Component, OnInit, Input, SimpleChange, OnChanges } from "@angular/core";
 import { Router } from "@angular/router";
 import { OrgAccountService } from "../../services/concrete/finance/orgaccount.service";
 import { OrgAccountViewModel } from "../../view-models/concrete/finance/orgaccount-viewmodel";
@@ -18,6 +18,9 @@ import { Image } from "../../view-models/concrete/image.model";
 import { EditOrganizationService } from "../../services/concrete/organization-management/edit-organization.service";
 import { ModeratorViewModel } from '../../view-models/concrete/edit-organization/moderator-view.model';
 import { AuthorizeUserModel } from "../../view-models/concrete/authorized-user-info-view.model";
+import { DonateService } from "../../services/concrete/finance/donate-money.service";
+import { CurrencyViewModel } from "../../view-models/concrete/finance/donate/currency.view-model";
+import { TargetViewModel } from "../../view-models/concrete/finance/donate/target.view-model";
 
 
 @Component({
@@ -43,7 +46,7 @@ export class OrgAccountOperationComponent implements OnChanges {
     private minDate: string;
     private default: boolean = true;
 
-    @Input('orgId') orgId: number;
+    @Input() orgId: number;
     @Input() accountId: number;
     //------------------------------------------------------------------------------
     //Initialize modal windows
@@ -96,7 +99,7 @@ export class OrgAccountOperationComponent implements OnChanges {
         if (changes['accountId'] && changes['accountId'] != changes['accountId'].currentValue) {
             //code to execute when property changes
             if (this.accountId!=-1) {
-                this._finOpService.getFinOpsByOrgAccountId(this.accountId)
+                this.finOpService.getFinOpsByOrgAccountId(this.accountId)
                     .subscribe(a => {
                         this.finOps = a;
                         this.setFinOperations();
@@ -110,6 +113,7 @@ export class OrgAccountOperationComponent implements OnChanges {
                 this.currentAccount = currAcc;                                      //get current organization account
                 this.accountForUpdate = currAcc;
                 this.getAccontsForTransfer();
+                console.log("OrganizationId    " + this.orgId);
             });
 
         this.default = false;
@@ -117,7 +121,6 @@ export class OrgAccountOperationComponent implements OnChanges {
     }
 
     ngOnInit(): void {
-        console.log("bbbbbb");
         this.accountService.getAllAccountsOfOrganization()
             .subscribe(acc => {
                 this.accounts = acc.filter(a =>
@@ -134,10 +137,11 @@ export class OrgAccountOperationComponent implements OnChanges {
                 this.targets = targ;
             });
 
-        this.editService.getModerators(this.accountId)
-            .subscribe(moder => {
-                this.moderators = moder;
-            });
+        //this.editService.getModerators(this.orgId)
+        //    .subscribe(moder => {
+        //        this.moderators = moder;
+        //        console.log("sssws2s2s2" + moder);
+        //    });
 
         this.user = JSON.parse(localStorage.getItem(key.keyModel)) as AuthorizeUserModel;
 
@@ -347,16 +351,18 @@ export class OrgAccountOperationComponent implements OnChanges {
     }
 
     private openModal(modal: ModalComponent) {
-        console.log(this.moderators);
         modal.show();
     }
 
     private openManageModal() {
-        this.accountOwner = this.moderators.filter(m => m.id === this.currentAccount.userId)[0];
+        //this.accountOwner = this.moderators.filter(m => m.id === this.currentAccount.userId)[0];
+        console.log(this.moderators);
+        console.log(this.accountOwner);
         this.newAccountManagmentWindow.show();
     }
 
     private closeModal(modal: ModalComponent, form: FormGroup) {
+        console.log(this.orgId);
         modal.hide();
         form.reset();
     }

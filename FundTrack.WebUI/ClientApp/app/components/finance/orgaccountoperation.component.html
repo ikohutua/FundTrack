@@ -1,18 +1,13 @@
-﻿<div class="maindiv">
+﻿<div class="container maindiv">
     <h2>Фінансові операції по рахунку</h2>
     <a id="right-float" class="btn" (click)="openManageModal()">Керування рахунком</a>
-    <!--<br />
-    <div>
-        <br />
-        <h4>Баланс:</h4>
-        <h4>{{currentAccount.currentBalance}}</h4>
-    </div>-->
     <table class="table table-hover table-responsive">
         <thead>
-            <tr >
+            <tr>
+                <th style="text-align:center;">№</th>
                 <th style="text-align:center;">Дата і час операції</th>
                 <th style="text-align:center;">
-                    <select #operation (change)="viewFinOpsByOperation(operation.value)" style="text-align:center;" >
+                    <select #operation (change)="viewFinOpsByOperation(operation.value)" style="text-align:center;">
                         <option *ngIf="!default" selected disabled>Тип операції</option>
                         <option value=1>Прихід</option>
                         <option value=0>Розхід</option>
@@ -20,15 +15,20 @@
                     </select>
                 </th>
                 <th style="text-align:center;">Опис операції</th>
+                <th style="text-align:center;">Призначення</th>
                 <th style="text-align:center;">Сума</th>
+                <th style="text-align:center;">Фото</th>
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let finOp of finOps">
+            <tr *ngFor="let finOp of finOps; let i = index">
+                <td>{{i+1}}</td>
                 <td>{{finOp.date | date: 'dd/MM/yyyy hh:mm'}}</td>
                 <td>{{finOp.finOpName}}</td>
                 <td>{{finOp.description}}</td>
-                <td class="money">{{finOp.amount + ' ' + finOp.currencyShortName}}</td>
+                <td>{{finOp.target}}</td>
+                <td class="money">{{finOp.amount}}</td>
+                <td></td>
             </tr>
         </tbody>
     </table>
@@ -140,7 +140,7 @@
                            type="text"
                            placeholder="Сума"
                            formControlName="sum"
-                           [(ngModel)]="moneyOperationModel.sum"/>
+                           [(ngModel)]="moneyOperationModel.sum" />
                     <span *ngIf="formSpendingErrors.sum" class="has-error help-block error-message">
                         {{ formSpendingErrors.sum }}
                     </span>
@@ -267,7 +267,7 @@
                            #dateTransfer (input)="setDate(dateTransfer.value)"
                            [value]="moneyOperationModel.date | date:'yyyy-MM-dd'"
                            min="{{minDate}}"
-                           max="{{currentDate}}"/>
+                           max="{{currentDate}}" />
                 </div>
             </form>
         </div>
