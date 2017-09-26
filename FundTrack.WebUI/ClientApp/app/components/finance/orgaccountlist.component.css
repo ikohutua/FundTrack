@@ -103,7 +103,26 @@ li {
     }
 
         /* Change the link color to #111 (black) on hover */
-        li a:hover {
+        .active:hover {
             background-color: #111;
             cursor: pointer;
         }
+
+.custom-button {
+    text-align: left;
+    margin-bottom: 3%;
+    border-radius: unset;
+}
+
+.account-list {
+    margin-bottom: 5%;
+}
+
+.panel-custom-body{
+
+}
+
+.disabled:hover {
+    background-color: #111;
+    cursor: not-allowed;
+}

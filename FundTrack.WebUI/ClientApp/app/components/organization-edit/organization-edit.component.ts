@@ -35,6 +35,17 @@ export class OrganizationEditComponent implements OnInit, OnDestroy, AfterViewIn
     private user: AuthorizeUserModel = new AuthorizeUserModel();
     isAdmin: boolean = false;
 
+    currentFile: File;
+    isNewLogoAvailable: boolean = false;
+
+    newLogo: string = '';
+    orgLogo: string = "http://cadeuc.com/wp-content/themes/musen/img/no-image.png";
+    maxSize: number = 4000000;
+    newLogoByte64Code: string;
+
+    errorMessage: string;
+    isError: boolean = false;
+
     //modal window to add moderator
     @ViewChild("moderator")
     public modal: ModalComponent;
@@ -290,5 +301,52 @@ export class OrganizationEditComponent implements OnInit, OnDestroy, AfterViewIn
     //closes modal
     closeModal(modal: ModalComponent): void {
         modal.hide();
+    }
+
+    //get image from input
+    handleInputChange(e: any) {
+        this.isError = false;
+        this.currentFile = e.dataTransfer ? e.dataTransfer.files[0] : e.target.files[0];
+
+        var pattern = /image-*/;
+        var reader = new FileReader();
+
+        if (this.currentFile.size > this.maxSize) {
+            this.warning('Завеликий розмір зображення. Допустимо ' + this.maxSize / 1000000 + 'Мб');
+            return;
+        }
+
+        if (!this.currentFile.type.match(pattern)) {
+            this.warning('Невірний формат!');
+            return;
+        }
+        reader.onload = this._handleReaderLoaded.bind(this);
+        reader.readAsDataURL(this.currentFile);
+    }
+
+    _handleReaderLoaded(e: any) {
+        var reader = e.target;
+        this.newLogo = reader.result;
+
+        var commaInd = this.newLogo.indexOf(',');
+        this.newLogoByte64Code = this.newLogo.substring(commaInd + 1);
+
+        this.isNewLogoAvailable = true;
+    }
+
+    warning(message: string) {
+        this.errorMessage = message;
+        this.isError = true;
+    }
+
+    //clear new image and set current organization logo
+    clearImage() {
+        this.isNewLogoAvailable = false;
+        this.isError = false;
+    }
+
+    //set new organization logo
+    saveImage() {
+        this.isError = false;
     }
 }

@@ -30,5 +30,7 @@
         public const string PatternPhoneMessage = "Невірний формат телефону";
         public const string MoneyFinOpLimit = "Сума повинна бути більшою 0 і меншою 1000000";
         public const string CantFindDataById = "Can't find data with requested id";
+        public const string GetOrganizationAccount = "Неможливо отримати рахунок організації";
+        public const string UpdateOrganizationAccount = "Неможливо оновити рахунок організації";
     }
 }

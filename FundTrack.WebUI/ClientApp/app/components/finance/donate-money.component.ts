@@ -18,7 +18,6 @@ import { AuthorizeUserModel } from "../../view-models/concrete/authorized-user-i
 import { DonateViewModel } from "../../view-models/concrete/finance/donate/donate.view-model";
 import { DonateMessages } from "../../shared/messages/donate-page.messages";
 import { StorageService } from "../../shared/item-storage-service";
-import { ActivatedRoute } from "@angular/router";
 
 
 @Component({
@@ -50,9 +49,6 @@ export class MakeDonationComponent implements OnInit, DoCheck, OnDestroy{
     donate: DonateViewModel = new DonateViewModel();
     messages: DonateMessages = new DonateMessages();
     message: string;
-    _subscriber: any;
-    _defaultOrgId: number;
-
     @ViewChild("gratitude")
     public modal: ModalComponent;
 
@@ -84,7 +80,7 @@ export class MakeDonationComponent implements OnInit, DoCheck, OnDestroy{
     }
 
     constructor(private _donateService: DonateService, private _fb: FormBuilder,
-        private _storageService: StorageService, private _route: ActivatedRoute) {
+        private _storageService: StorageService) {
 
     }
 
@@ -130,13 +126,7 @@ export class MakeDonationComponent implements OnInit, DoCheck, OnDestroy{
                 this.fondyPayModel.order_desc = this.donateForm.controls.description.value;
                 this.fondyPayModel.signature = this.createSignature(this.fondyPayModel);
             }
-        )    
-
-        this._subscriber = this._route.params.subscribe(params => {
-            if (!isNaN(+params["id"]) && +params["id"] > 0) {
-                this._defaultOrgId = +params["id"];
-            }
-        });
+        )        
     }
 
     ngDoCheck() {
@@ -151,7 +141,6 @@ export class MakeDonationComponent implements OnInit, DoCheck, OnDestroy{
 
     ngOnDestroy(): void {
         this._storageService.showDropDown = true;
-        this._subscriber.unsubscribe;
     }
 
     createSignature(parameters: RequestFondyViewModel): string {
