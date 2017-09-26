@@ -8,4 +8,5 @@
     public images: string[];
     public orgId: number;
     public userId: number;
+    public finOpType: number;
 }

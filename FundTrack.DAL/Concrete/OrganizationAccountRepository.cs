@@ -62,6 +62,7 @@ namespace FundTrack.DAL.Concrete
                 .Include(a => a.Currency)
                 .Include(a => a.FinOpsFrom)
                 .Include(a => a.FinOpsTo)
+                .Include(a => a.User)
                 .FirstOrDefault(i => i.Id == orgAccountId);
         }
 
@@ -74,6 +75,7 @@ namespace FundTrack.DAL.Concrete
                 .Include(a => a.FinOpsFrom)
                 .Include(a => a.FinOpsTo)
                 .Include(a => a.Target)
+                .Include(a => a.User)
                 .Where(a => a.OrgId == organizationId)
                 .ToList();
         }

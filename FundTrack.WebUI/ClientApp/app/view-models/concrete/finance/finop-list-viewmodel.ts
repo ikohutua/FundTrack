@@ -1,4 +1,6 @@
 ﻿export class FinOpListViewModel {
+    finOpType: number;
+    finOpName: string;
     date: Date;
     description: string;
     amount: number;

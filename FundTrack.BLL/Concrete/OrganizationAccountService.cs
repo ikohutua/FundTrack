@@ -142,7 +142,11 @@ namespace FundTrack.BLL.Concrete
                 CurrencyShortName = item.Currency.ShortName,
                 CurrentBalance = item.CurrentBalance,
                 TargetId = item.TargetId,
-                Description = item.Description
+                Description = item.Description,
+                UserId = item.UserId,
+                FirstName = item.User.FirstName,
+                LastName  = item.User.LastName,
+                CreationDate = item.CreationDate
             };
         }
         public OrgAccountViewModel InitializeOrgAccountViewModel(OrgAccount item)
