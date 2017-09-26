@@ -1,6 +1,13 @@
 ﻿<spinner></spinner>
+<style>
+    .custom-button{
+        margin-top: 10%;
+    }
+</style>
 <div class="col-md-12">
+   
     <div class="col-md-2 col-md-offset-0 container back table-responsive">
+        <button class="btn btn-md btn-block btn-success custom-button" (click)="navigateBack()"><span class="glyphicon glyphicon-arrow-left"></span> <strong>Назад</strong></button>
         <button type="button" class="btn btn-default btn-lg btn-block" style="margin-top:10%; border-color:#314720;color:#314720" (click)="onActionClick()">
             <strong>Нові виписки</strong>
         </button>
@@ -91,7 +98,7 @@
                         {{ formErrors.cardNumber }}
                     </span>
                 </div>
-                <div class="form-group">
+                <!--<div class="form-group">
                     <label class="control-label">ID мерчанта:</label>
                     <input class="form-control"
                            type="text"
@@ -114,7 +121,7 @@
                     <span *ngIf="formErrors.password" class="has-error help-block error-message">
                         {{ formErrors.password}}
                     </span>
-                </div>
+                </div>-->
                 <div class="form-group">
                     <label class="control-label">Дата "з":</label>
                     <input class="form-control" type="date"

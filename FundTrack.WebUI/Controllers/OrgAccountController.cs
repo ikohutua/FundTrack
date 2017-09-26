@@ -105,5 +105,24 @@ namespace FundTrack.WebUI.Controllers
         {
             return _orgAccountService.UpdateOrganizationAccount(account);
         }
+
+
+        [HttpGet("ExtractCredentials/{orgAccountId}")]
+        public JsonResult ExtractCredentials(int orgAccountId)
+        {
+            return Json(_orgAccountService.ExtractCredentials(orgAccountId));
+        }
+
+        [HttpGet("ExtractStatus/{orgAccountId}")]
+        public JsonResult ExtractStatus(int orgAccountId)
+        {
+            return Json(_orgAccountService.IsExtractEnabled(orgAccountId));
+        }
+
+        [HttpPost("[action]")]
+        public BankAccountDonateViewModel ConnectExtracts([FromBody]BankAccountDonateViewModel item)
+        {
+            return _orgAccountService.ConnectExtractsFunction(item);
+        }
     }
 }

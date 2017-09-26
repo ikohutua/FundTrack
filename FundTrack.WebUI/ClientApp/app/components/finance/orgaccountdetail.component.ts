@@ -24,7 +24,7 @@ export class OrgAccountDetailComponent implements OnInit, OnChanges {
     //Input property getting organizationId
     @Input('orgId') orgId: number;
     //Input property getting accountId
-    @Input() accountId: number = 0;
+    @Input() accountId: number = -1;
     //Id of the deleted account
     private deletedAccountId: number = 0;
     //Property indicating if current account has card number assigned
@@ -39,8 +39,6 @@ export class OrgAccountDetailComponent implements OnInit, OnChanges {
     private deleteModel: DeleteOrgAccountViewModel = new DeleteOrgAccountViewModel();
     // Property that keeps all targets of current organization
     private targets: TargetViewModel[] = new Array<TargetViewModel>();
-    //Property indicating if current account has card number description
-    private hasDescription: boolean = false; 
 
     constructor(private _service: OrgAccountService)
     {   
@@ -70,12 +68,11 @@ export class OrgAccountDetailComponent implements OnInit, OnChanges {
     */
     ngOnChanges(changes: { [propKey: string]: SimpleChange }) {
         if (changes['accountId'] && changes['accountId'] != changes['accountId'].currentValue) {
-            if (this.accountId!=1) {
+            if (this.accountId>(-1)) {
                 this._service.getOrganizationAccountById(this.accountId)
                     .subscribe(a => {
                         this.account = a;
-                        this.hasCardNumber = this.checkForCardPresence(this.account);
-                        this.hasDescription = this.checkForDescription(this.account);
+                        this.hasCardNumber = this.CheckForCardPresence(this.account);
                         if (this.hasCardNumber) {
                             sessionStorage.setItem(key.keyCardNumber, this.account.cardNumber);
                         }
@@ -136,10 +133,7 @@ export class OrgAccountDetailComponent implements OnInit, OnChanges {
     /*
     Verifies if org account has linked cardnumber
     */
-    private checkForCardPresence(account: OrgAccountViewModel): boolean {
-        if (account.accountType == 'Готівка' || account.accountType == 'cash') {
-            return false;
-        }
+    public CheckForCardPresence(account: OrgAccountViewModel): boolean {
         if (account.cardNumber === '' || account.cardNumber===null) {
             return false;
         }
@@ -148,14 +142,6 @@ export class OrgAccountDetailComponent implements OnInit, OnChanges {
         }
     }
 
-    private checkForDescription(account: OrgAccountViewModel): boolean {
-        if (account.description === '' || account.description === null) {
-            return false;
-        }
-        else {
-            return true;
-        }
-    }
     /*
     Update target of current account with selected value
     */

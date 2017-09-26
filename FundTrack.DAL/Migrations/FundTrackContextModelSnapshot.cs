@@ -81,7 +81,13 @@ namespace FundTrack.DAL.Migrations
                     b.Property<string>("EDRPOU")
                         .HasMaxLength(10);
 
+                    b.Property<int?>("ExtractMerchantId");
+
+                    b.Property<string>("ExtractMerchantPassword");
+
                     b.Property<bool?>("IsDonationEnabled");
+
+                    b.Property<bool?>("IsExtractEnabled");
 
                     b.Property<string>("MFO")
                         .HasMaxLength(6);
