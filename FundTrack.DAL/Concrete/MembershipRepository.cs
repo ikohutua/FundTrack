@@ -114,5 +114,23 @@ namespace FundTrack.DAL.Concrete
                               .FirstOrDefault(m => m.UserId == userId)
                               .OrgId;
         }
+
+        /// <summary>
+        /// Gets admin of organization id. 
+        /// </summary>
+        /// <param name="organizationdId">The organization identifier.</param>
+        /// <returns>
+        /// Admin id or if admin not found then return -1
+        /// </returns>
+        public int GetOrganizationAdminId(int organizationdId)
+        {
+            // Role id for admin = 2
+            Membership orgAdmin = context.Membershipes
+                                 .Where(x => x.OrgId == organizationdId && x.RoleId == 2)
+                                 .FirstOrDefault();
+            if (orgAdmin == null)
+                return -1;
+            return orgAdmin.UserId;
+        }
     }
 }

@@ -121,10 +121,15 @@ export class SidebarComponent implements OnInit {
     }
 
     public redirectToEditOrganizationPage(): void {
+        this.showSideBar();
         this._router.navigate(['organization/edit/' + this.user.orgId.toString()]);
     }
 
     public redirectToHomePage(): void {
         this._router.navigate(['home/allevents']);
+    }
+
+    public redirectToTargetManagementPage(): void {
+        this._router.navigate(['organization/targets/' + this.user.orgId.toString()]);
     }
 }

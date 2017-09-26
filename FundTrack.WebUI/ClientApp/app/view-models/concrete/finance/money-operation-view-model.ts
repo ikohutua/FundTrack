@@ -1,8 +1,7 @@
 ﻿export class MoneyOperationViewModel {
-    public cardFrom: string;
-    public cardTo: string;
+    public cardFromId: number;
+    public cardToId: number;
     public sum: number;
-    public currency: string;
     public description: string;
     public targetId: number;
     public date: Date;

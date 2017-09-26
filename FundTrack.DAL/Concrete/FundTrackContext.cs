@@ -375,13 +375,13 @@ namespace FundTrack.DAL.Concrete
             {
                 entity.HasKey(e => e.Id).HasName("PK_BankAccount");
 
-                entity.Property(e => e.AccNumber).IsRequired().HasMaxLength(20);
+                entity.Property(e => e.AccNumber).HasMaxLength(20);
 
-                entity.Property(e => e.MFO).IsRequired().HasMaxLength(6);
+                entity.Property(e => e.MFO).HasMaxLength(6);
 
-                entity.Property(e => e.EDRPOU).IsRequired().HasMaxLength(10);
+                entity.Property(e => e.EDRPOU).HasMaxLength(10);
 
-                entity.Property(e => e.BankName).IsRequired().HasMaxLength(50);
+                entity.Property(e => e.BankName).HasMaxLength(50);
                 entity.Property(e => e.CardNumber).HasMaxLength(16);
 
                 entity.HasOne(ba => ba.Organization)

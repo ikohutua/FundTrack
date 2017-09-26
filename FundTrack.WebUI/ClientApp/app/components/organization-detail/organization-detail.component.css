@@ -1,0 +1,32 @@
+﻿a {
+    text-decoration-line: underline;
+    cursor: pointer;
+}
+
+.background {
+    position: relative;
+    z-index: 2;
+    padding: 10px 50px 10px 20px;
+    width: 95%;
+    background-color: #f5f5f5;
+    margin: 0 25px;
+}
+
+img {
+    max-height: 150px;
+    max-width: 150px;
+    margin: 0px auto 20px auto;
+}
+
+.top-buffer {
+    margin-top: 13px;
+    margin-left: 5px;
+}
+
+html, body {
+    height: 100vh;
+}
+
+.bottom-buffer {
+    margin-bottom: 10px;
+}

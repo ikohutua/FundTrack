@@ -54,8 +54,15 @@
             </li>
             <li *ngIf="!(this.user && this.user.role == 'superadmin')"><a (click)="redirectToPage(allOrganizationsComponentUrl)">Організації</a></li>
             <li><a (click)="redirectToReportsPage()">Звіти</a></li>
-            <li *ngIf="this.user && (this.user.role=='admin' || this.user.role=='moderator')">
-                <a (click)="redirectToEditOrganizationPage()">Налаштування</a>
+
+          
+            <li *ngIf="this.user && (this.user.role=='admin' || this.user.role=='moderator')" class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown">Налаштування<span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                    <li class="dropdown-header">Налаштування</li>
+                    <li><a (click)="redirectToEditOrganizationPage()">Налаштування організації</a></li>
+                    <li><a (click)="redirectToTargetManagementPage()">Довідник призначень</a></li>
+                </ul>
             </li>
         </ul>
     </nav>

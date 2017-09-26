@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using FundTrack.BLL.Abstract;
 using FundTrack.Infrastructure.ViewModel;
+using System.Net.Http;
+using System;
+using FundTrack.Infrastructure;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -31,6 +31,21 @@ namespace FundTrack.WebUI.Controllers
         public IEnumerable<OrganizationViewModel> AllOrganizations()
         {
             return organizationProfileService.GetAllOrganizations();
+        }
+
+        /// <summary>
+        /// Gets organization detail by id
+        /// </summary>
+        /// <param name="id">Organization id</param>
+        /// <returns>Requested organization detail view model</returns>
+        [HttpGet("OrganinzationDetailByOrgId/{id}")]
+        public OrganizationDetailViewModel OrganinzationDetailByOrgId(int? id)
+        {
+            if (id == null || id <= 0)
+            {
+                throw new Exception(ErrorMessages.BadRequestMessage);
+            }
+            return organizationProfileService.GetOrganizationDetail((int)id);
         }
 
     }

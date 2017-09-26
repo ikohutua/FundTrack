@@ -36,3 +36,7 @@ a.linkBack {
     font:bold !important;
     font-weight:400 !important;
 }
+
+.linkCursor {
+    cursor: pointer;
+}

@@ -1,47 +1,5 @@
 ﻿<div>
     <div *ngIf="organization" class="background">
-        <h2>Призначення рахунків</h2>
-        <div *ngFor="let target of targetArray">
-            <div *ngIf="ifTargetIsParent(target)">
-                <div class="addressDiv">
-                    <div class="col-sm-10">
-                        <p> {{target.name}} </p>
-                    </div>
-                    <div class="col-sm-2">
-                        <button class="btn btn-link right" title="Видалити" (click)="openModalForSubmitDeleteTarget(target)">
-                            <span class="glyphicon glyphicon-remove"></span>
-                        </button>
-                        <button (click)="openModalForEditTarget(target)" class="btn right" title="Редагувати">
-                            <span class="glyphicon glyphicon-pencil"> </span>
-                        </button>
-                    </div>
-                </div>
-                <div *ngFor="let subTarget of targetArray">
-                    <div *ngIf="ifFirstTargetIsParentForSecondTarget(target, subTarget)">
-                        <div class="subTargetDiv">
-                            <div class="col-sm-10">
-                                <p> {{subTarget.name}} </p>
-                            </div>
-                            <div class="col-sm-2">
-                                <button class="btn btn-link right" title="Видалити" (click)="openModalForSubmitDeleteTarget(subTarget)">
-                                    <span class="glyphicon glyphicon-remove"></span>
-                                </button>
-                                <button (click)="openModalForEditTarget(subTarget)" class="btn right" title="Редагувати">
-                                    <span class="glyphicon glyphicon-pencil"> </span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div clasd="col-sm-2">
-                    <button class="btn btn-primary right" title="Додати підпризначення" (click)="openModalForAddingSubTarget(target)">
-                        <span class="glyphicon glyphicon-plus"></span>
-                    </button>
-                </div>
-                <div class="spaceBetweenTargetsDiv"></div>
-            </div>
-        </div>
-        <button class="btn btn-primary right" (click)="openModalForAddTarget()">Додати </button>
         <form>
             <h2> Опис організації</h2>
             <textarea class="form-control" [(ngModel)]="organization.description" name="description" rows="7" cols="100"> {{organization.description}}</textarea>
@@ -117,42 +75,6 @@
     <div class="app-modal-footer">
         <button class="btn btn-primary" (click)="addModerator()"> Додати </button>
         <button type="button" class="btn btn-primary" (click)="closeModal(modal)">Закрити</button>
-    </div>
-</app-modal>
-
-<app-modal #targetModal>
-    <div class="app-modal-header">
-        <h4> Додати призначення </h4>
-    </div>
-    <div class="app-modal-body">
-        <h3>Введіть новий тип призначення:</h3>
-        <input class="form-control" type="text" [(ngModel)]="editableTarget.name" required #targetState="ngModel" />
-        <div [hidden]="targetState.valid || targetState.pristine" class="alert alert-danger">Поле для призначення неможе бути пустим!</div>
-    </div>
-    <div class="app-modal-footer">
-        <span [hidden]="!isTargetForAdding">
-            <button class="btn btn-primary" (click)="addTarget()" [disabled]="targetState.invalid">Додати </button>
-        </span>
-        <span [hidden]="!isTargetForEditing">
-            <button class="btn btn-primary" (click)="editTarget()" [disabled]="targetState.invalid">Редагувати</button>
-        </span>
-        <span [hidden]="!isSubTargetSelected">
-            <button class="btn btn-primary" (click)="addSubTarget()" [disabled]="targetState.invalid">Додати підпризначення</button>
-        </span>
-        <button type="button" class="btn btn-primary" (click)="closeModal(targetModal)">Закрити</button>
-    </div>
-</app-modal>
-
-<app-modal #submitModal>
-    <div class="app-modal-header modal-sm">
-        <h3>Підтвердження видалення</h3>
-    </div>
-    <div class="app-modal-body">
-        <h4>Ви впевнені що хочете видалити призначення?</h4>
-    </div>
-    <div class="app-modal-footer">
-        <button class="btn btn-primary" (click)="deleteTarget()">Так</button>
-        <button class="btn btn-primary" (click)="closeModal(submitModal)">Ні</button>
     </div>
 </app-modal>
 
@@ -237,5 +159,3 @@
         <button type="button" class="btn btn-primary" (click)="addAddressModal.hide()">Закрити</button>
     </div>
 </app-modal>
-
-<div id="snackbar">Неможливо видалити зв'язане з рахунком призначення</div>

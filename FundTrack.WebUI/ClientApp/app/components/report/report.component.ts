@@ -9,6 +9,7 @@ import { ReportFilterQueryViewModel } from "../../view-models/concrete/report-fi
 import { IncomeReportDataViewModel } from "../../view-models/concrete/income-report-data-view-model";
 import { OutcomeReportDataViewModel } from "../../view-models/concrete/outcome-report-data-view-model";
 import { ITotalSum } from "../../view-models/abstract/total-sum-money-amount-interface";
+import { ActivatedRoute } from "@angular/router";
 
 @Component({
     templateUrl: './report.component.html',
@@ -31,16 +32,22 @@ export class ReportComponent implements OnInit, OnDestroy {
     private reportImages: string[];
     private selectedImage: any;   
     private index: number = 0;
-   
+    private routeOrgIndex: number = 1;
+    private ifDataExists: boolean=false;
+    
     @ViewChild("dateExceptionModal")
-    public dateExceptionModal: ModalComponent;
+    private dateExceptionModal: ModalComponent;
 
     @ViewChild("exceptionModal")
-    public exceptionModal: ModalComponent;
-   
+    private exceptionModal: ModalComponent;
+
+    @ViewChild("emptyResultsModal")
+    private emptyResultsModal: ModalComponent;
+     
     constructor(private storageService: StorageService,
                 private service: ShowRequestedItemService,
-                private datePipe: DatePipe) { }
+                private datePipe: DatePipe,
+                private route: ActivatedRoute) { }
 
     ngOnInit(): void {
         this.storageService.showDropDown = false;
@@ -50,13 +57,28 @@ export class ReportComponent implements OnInit, OnDestroy {
         this.reportModel.dateTo = new Date();
         this.reportModel.reportType = 0;
         this.getOrganizations();
+        this.getIdFromUrl();   
     }
 
     ngOnDestroy(): void {
         this.storageService.showDropDown = true;
     }
 
-    generateReport(): void {
+    getIdFromUrl() {
+        this.route.params.subscribe(params => {
+            this.routeOrgIndex = params['id'];
+            if (this.routeOrgIndex != null) {
+                console.log("CURRENT ORG ID FROM URL == " + this.routeOrgIndex);
+                this.generateReport(this.routeOrgIndex);
+            }
+        }, error => {
+            this.errorMessage = <any>error;
+            this.openModal(this.exceptionModal);
+        });
+    }
+
+    generateReport(orgId): void {
+        this.reportModel.id = orgId;
         console.log("user dateFrom=" + this.datePipe.transform(this.reportModel.dateFrom, 'yyyy-MM-dd') + " and dateTo=" + this.datePipe.transform(this.reportModel.dateTo, 'yyyy-MM-dd'));
         console.log("user orgId=" + this.reportModel.id + " and reportType=" + this.reportModel.reportType);
         if (this.isDateValid()) {
@@ -68,13 +90,20 @@ export class ReportComponent implements OnInit, OnDestroy {
             this.accessToFill = this.reportModel.reportType;           
         }
     }
-    
+
     getReportDataByType(): void {
         if (this.reportModel.reportType == 0) {         
             this.service.getOutcomeReportData(this.reportModel.id, this.datePipe.transform(this.reportModel.dateFrom, 'yyyy-MM-dd'), this.datePipe.transform(this.reportModel.dateTo, 'yyyy-MM-dd')).subscribe((outcomeData: OutcomeReportDataViewModel[]) => {
-                this.outcomeReportData = outcomeData;
-                this.reportOutTotalSum = this.getReportMoneySumByType(this.outcomeReportData);
-                console.log("SUM IS=" + this.getReportMoneySumByType(this.outcomeReportData));
+                if (outcomeData.length != 0) {
+                    this.ifDataExists = true;
+                    this.outcomeReportData = outcomeData;
+                    this.reportOutTotalSum = this.getReportMoneySumByType(this.outcomeReportData);
+                    console.log("SUM IS=" + this.getReportMoneySumByType(this.outcomeReportData));
+                }
+                else {
+                    this.ifDataExists = false;
+                    this.openModal(this.emptyResultsModal);
+                }
             },
                 error => {
                     this.errorMessage = <any>error;
@@ -83,9 +112,16 @@ export class ReportComponent implements OnInit, OnDestroy {
         }
         if (this.reportModel.reportType == 1) {
             this.service.getIncomeReportData(this.reportModel.id, this.datePipe.transform(this.reportModel.dateFrom, 'yyyy-MM-dd'), this.datePipe.transform(this.reportModel.dateTo, 'yyyy-MM-dd')).subscribe((incomeData: IncomeReportDataViewModel[]) => {
-                this.incomeReportData = incomeData;
-                this.reportInTotalSum = this.getReportMoneySumByType(this.incomeReportData);
-                console.log("SUM IS=" + this.getReportMoneySumByType(this.incomeReportData));
+                if (incomeData.length != 0) {
+                    this.ifDataExists = true;
+                    this.incomeReportData = incomeData;
+                    this.reportInTotalSum = this.getReportMoneySumByType(this.incomeReportData);
+                    console.log("SUM IS=" + this.getReportMoneySumByType(this.incomeReportData));
+                }
+                else {
+                    this.openModal(this.emptyResultsModal);
+                    this.ifDataExists = false;
+                }
             },
                 error => {
                     this.errorMessage = <any>error;
@@ -129,7 +165,7 @@ export class ReportComponent implements OnInit, OnDestroy {
  
     getOrganizations(): void {
         this.service.getOrgaizations().subscribe((organizations: IOrganizationForFiltering[]) => {
-            this.organizations = organizations;
+            this.organizations = organizations;    
         },
             error => {
                 this.errorMessage = <any>error;
@@ -167,7 +203,7 @@ export class ReportComponent implements OnInit, OnDestroy {
     public getImagesById(finOpId) {
         this.service.getFinOpImages(finOpId).subscribe((images: string[]) => {
             if (images.length !=0) {
-                this.reportImages = images;
+                this.reportImages = images;              
             }
             else {
                 //"image not found" hardcored default path 

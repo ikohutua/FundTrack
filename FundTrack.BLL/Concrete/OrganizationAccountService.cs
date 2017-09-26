@@ -144,7 +144,8 @@ namespace FundTrack.BLL.Concrete
                 CurrencyId = item.CurrencyId,
                 CurrencyShortName = item.Currency.ShortName,
                 CurrentBalance = item.CurrentBalance,
-                TargetId = item.TargetId
+                TargetId = item.TargetId,
+                Description = item.Description
             };
         }
         public OrgAccountViewModel InitializeOrgAccountViewModel(OrgAccount item)
@@ -163,7 +164,6 @@ namespace FundTrack.BLL.Concrete
                     account.AccNumber = item.BankAccount.AccNumber;
                     account.EDRPOU = item.BankAccount.EDRPOU;
                     account.MFO = item.BankAccount.MFO;
-                    account.Description = item.Description;
                     account.CardNumber = item.BankAccount.CardNumber;
                     account.BankAccId = item.BankAccId;
                     break;
@@ -192,6 +192,7 @@ namespace FundTrack.BLL.Concrete
                 account.OrgAccountName = model.OrgAccountName;
                 account.Organization = this._unitOfWork.OrganizationRepository.Get(model.OrgId);
                 account.TargetId = model.TargetId;
+                account.Description = model.Description;
                 this._unitOfWork.OrganizationAccountRepository.Create(account);
                 this._unitOfWork.SaveChanges();
                 return (OrgAccountViewModel)account;
@@ -230,6 +231,7 @@ namespace FundTrack.BLL.Concrete
                 bankAccount.MFO = model.MFO;
                 bankAccount.Organization = this._unitOfWork.OrganizationRepository.Get(model.OrgId);
                 bankAccount.OrgId = model.OrgId;
+                bankAccount.CardNumber = model.CardNumber;
                 this._unitOfWork.BankAccountRepository.Create(bankAccount);
                 account.BankAccId = bankAccount.Id;
                 account.BankAccount = bankAccount;
@@ -260,7 +262,7 @@ namespace FundTrack.BLL.Concrete
                 ///Checks if account with such bank number already exists within all organizations
                 foreach (var item in this._unitOfWork.OrganizationAccountRepository.GetAllOrgAccounts().Where(a => a.AccountType == "Банк"))
                 {
-                    if (item.BankAccount.AccNumber == model.AccNumber)
+                    if (item.BankAccount.AccNumber != null && item.BankAccount.AccNumber == model.AccNumber)
                     {
                         return "Рахунок з таким номером уже зареєстрований";
                     }

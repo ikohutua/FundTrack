@@ -21,6 +21,8 @@ import { OrganizationManagementEventDetailComponent } from "./components/organiz
 import { OrganizationEditComponent } from "./components/organization-edit/organization-edit.component";
 import { MapModule } from './map.module';
 import { AllOrganizationsComponent } from "./components/all-organizations/all-organizations.component";
+import { OrganizationDetailComponent } from "./components/organization-detail/organization-detail.component";
+import { TargetManagementComponent } from './components/organization-edit/target-management.component';
 
 @NgModule({
     declarations: [
@@ -39,7 +41,9 @@ import { AllOrganizationsComponent } from "./components/all-organizations/all-or
         //GalleryComponent
         OrganizationManagementEventDeleteComponent, 
         OrganizationEditComponent,
-        AllOrganizationsComponent
+        AllOrganizationsComponent,
+        OrganizationDetailComponent,
+        TargetManagementComponent
     ],
     imports: [
         FormsModule,

@@ -46,7 +46,10 @@ namespace FundTrack.DAL.Repositories
         /// <returns>User</returns>
         public User Get(int id)
         {
-            return context.Users.Find(id);
+            return context.Users
+                .Include(a => a.Phones)
+                .Where(x => x.Id == id)
+                .FirstOrDefault();
         }
 
         /// <summary>

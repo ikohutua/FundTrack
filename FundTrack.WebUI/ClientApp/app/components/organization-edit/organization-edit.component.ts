@@ -14,7 +14,6 @@ import { ModeratorViewModel } from '../../view-models/concrete/edit-organization
 import { AddModeratorViewModel } from "../../view-models/concrete/edit-organization/add-moderator-view.model";
 import { isBrowser } from "angular2-universal";
 import { AuthorizeUserModel } from "../../view-models/concrete/authorized-user-info-view.model";
-import { TargetViewModel } from "../../view-models/concrete/finance/donate/target.view-model";
 import * as key from '../../shared/key.storage';
 
 @Component({
@@ -35,19 +34,6 @@ export class OrganizationEditComponent implements OnInit, OnDestroy, AfterViewIn
     newAddress: AddressViewModel = new AddressViewModel();
     private user: AuthorizeUserModel = new AuthorizeUserModel();
     isAdmin: boolean = false;
-    targetArray: TargetViewModel[];
-    editableTarget: TargetViewModel;
-    // flags of modal component buttons
-    isSubTargetSelected: boolean;
-    isTargetForEditing: boolean;
-    isTargetForAdding: boolean;
-
-    //modal window to add new target
-    @ViewChild("targetModal")
-    public targetModal: ModalComponent;
-
-    @ViewChild("submitModal")
-    public submitModal: ModalComponent;
 
     //modal window to add moderator
     @ViewChild("moderator")
@@ -82,10 +68,8 @@ export class OrganizationEditComponent implements OnInit, OnDestroy, AfterViewIn
     }
 
     ngOnInit() {
-        this.editableTarget = new TargetViewModel();
         this.sub = this._actRouter.params.subscribe(params => {
             this.organizationId = +params["id"];
-            this.getTargetsByOrganizationId();
                 this.getInformationOfOrganization(this.organizationId);
                 this.getAddresses(this.organizationId);
                 this.getModerators(this.organizationId);
@@ -305,109 +289,6 @@ export class OrganizationEditComponent implements OnInit, OnDestroy, AfterViewIn
 
     //closes modal
     closeModal(modal: ModalComponent): void {
-        this.isSubTargetSelected = false;
-        this.isTargetForAdding = false;
-        this.isTargetForEditing = false;
         modal.hide();
-    }
-
-    public addTarget() {
-        this.isTargetForAdding = false;
-        this.editableTarget.organizationId = this.organizationId;
-        this._editService.addTarget(this.editableTarget).subscribe(model => {
-            this.targetArray.push(model);
-        });
-        this.closeModal(this.targetModal);
-    }
-
-    public addSubTarget() {
-        this.isSubTargetSelected = false;
-        this._editService.addTarget(this.editableTarget).subscribe(model => {
-            this.targetArray.push(model);
-        });
-        this.closeModal(this.targetModal);
-    }
-
-    openModalForEditTarget(target: TargetViewModel) {
-        this.isTargetForEditing = true;
-        this.editableTarget = Object.assign({}, target);
-        this.openModal(this.targetModal);
-    }
-
-    openModalForAddTarget() {
-        debugger;
-        this.isTargetForAdding = true;
-        this.editableTarget = new TargetViewModel();
-        this.openModal(this.targetModal);
-    }
-
-    openModalForAddingSubTarget(target: TargetViewModel) {
-        this.isSubTargetSelected = true;
-        this.editableTarget = new TargetViewModel();
-        this.editableTarget.organizationId = target.organizationId;
-        this.editableTarget.parentTargetId = target.targetId;
-        this.openModal(this.targetModal);
-    }
-
-     
-    editTarget() {
-        this.isTargetForEditing = false;
-        this.editableTarget.organizationId = this.organizationId;
-        this._editService.editTarget(this.editableTarget)
-            .subscribe(model => {
-                this.getTargetsByOrganizationId();
-        });
-        this.closeModal(this.targetModal);
-    }
-
-     /**
-     * get all targets from server
-     */
-    getTargetsByOrganizationId() {  
-        this._editService.getTargetsByOrganizationId(this.organizationId).subscribe(model => {
-            this.targetArray = model;
-        });
-    }
-
-    deleteTarget() {
-
-        this._editService.deleteTarget(this.editableTarget.targetId).subscribe((model) => {
-            this.getTargetsByOrganizationId();
-        }, error => {
-            this.showToast();
-            });
-        this.closeModal(this.submitModal);
-    }
-
-    openModalForSubmitDeleteTarget(target: TargetViewModel) {
-        this.editableTarget = target;
-        this.openModal(this.submitModal);
-    }
-
-    /*
-  Displays  deleting error toast
-  */
-    public showToast() {
-        var x = document.getElementById("snackbar");
-        x.className = "show";
-        setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
-    }
-
-    private ifTargetIsParent(target : TargetViewModel): boolean {
-        if (target.parentTargetId == undefined) {
-            return true;
-        }
-        if (target.parentTargetId != undefined) {
-            return false;
-        }
-    }
-
-    private ifFirstTargetIsParentForSecondTarget(firstTarget : TargetViewModel, secondTarget : TargetViewModel) : boolean {
-        if (firstTarget.targetId === secondTarget.parentTargetId) {
-            return true;
-        }
-        if (firstTarget.targetId !== secondTarget.parentTargetId) {
-            return false;
-        }
     }
 }

@@ -89,7 +89,7 @@ namespace FundTrack.BLL.Concrete
 
         private void FinOpInputDataValidation(FinOpViewModel finOpModel)
         {
-            if (finOpModel.Sum <= 0 || finOpModel.Sum > 1000000)
+            if (finOpModel.Amount <= 0 || finOpModel.Amount > 1000000)
             {
                 throw new ArgumentException(ErrorMessages.MoneyFinOpLimit);
             }
@@ -99,17 +99,17 @@ namespace FundTrack.BLL.Concrete
             FinOpInputDataValidation(finOpModel);
             try
             {
-                var orgAcc = _unitOfWork.OrganizationAccountRepository.GetOrgAccountByName(finOpModel.OrgId, finOpModel.CardTo);
+                var orgAcc = _unitOfWork.OrganizationAccountRepository.GetOrgAccountByName(finOpModel.OrgId, finOpModel.AccNameTo);
                 var finOp = new FinOp
                 {
-                    Amount = finOpModel.Sum,
+                    Amount = finOpModel.Amount,
                     AccToId = orgAcc.Id,
                     Description = finOpModel.Description,
                     TargetId = finOpModel.TargetId,
                     FinOpDate = DateTime.Now,
                 };
                 _unitOfWork.FinOpRepository.Create(finOp);
-                orgAcc.CurrentBalance += finOpModel.Sum;
+                orgAcc.CurrentBalance += finOpModel.Amount;
                 _unitOfWork.OrganizationAccountRepository.Edit(orgAcc);
                 _unitOfWork.SaveChanges();
                 return finOpModel;
@@ -125,21 +125,21 @@ namespace FundTrack.BLL.Concrete
             FinOpInputDataValidation(finOpModel);
             try
             {
-                var orgAcc = _unitOfWork.OrganizationAccountRepository.GetOrgAccountByName(finOpModel.OrgId, finOpModel.CardFrom);
-                if (finOpModel.Sum > orgAcc.CurrentBalance)
+                var orgAcc = _unitOfWork.OrganizationAccountRepository.GetOrgAccountByName(finOpModel.OrgId, finOpModel.AccNameFrom);
+                if (finOpModel.Amount > orgAcc.CurrentBalance)
                 {
                     throw new ArgumentException("Витрати не можуть перебільшувати баланс рахунку");
                 }
                 var finOp = new FinOp
                 {
-                    Amount = finOpModel.Sum,
+                    Amount = finOpModel.Amount,
                     AccFromId = orgAcc.Id,
                     Description = finOpModel.Description,
                     TargetId = finOpModel.TargetId,
                     FinOpDate = DateTime.Now,
                 };
                 _unitOfWork.FinOpRepository.Create(finOp);
-                orgAcc.CurrentBalance -= finOpModel.Sum;
+                orgAcc.CurrentBalance -= finOpModel.Amount;
                 _unitOfWork.OrganizationAccountRepository.Edit(orgAcc);
                 _unitOfWork.SaveChanges();
                 return finOpModel;
@@ -155,24 +155,24 @@ namespace FundTrack.BLL.Concrete
             FinOpInputDataValidation(finOpModel);
             try
             {
-                var orgAccFrom = _unitOfWork.OrganizationAccountRepository.GetOrgAccountByName(finOpModel.OrgId, finOpModel.CardFrom);
-                var orgAccTo = _unitOfWork.OrganizationAccountRepository.GetOrgAccountByName(finOpModel.OrgId, finOpModel.CardTo);
-                if (finOpModel.Sum > orgAccFrom.CurrentBalance)
+                var orgAccFrom = _unitOfWork.OrganizationAccountRepository.GetOrgAccountByName(finOpModel.OrgId, finOpModel.AccNameFrom);
+                var orgAccTo = _unitOfWork.OrganizationAccountRepository.GetOrgAccountByName(finOpModel.OrgId, finOpModel.AccNameTo);
+                if (finOpModel.Amount > orgAccFrom.CurrentBalance)
                 {
                     throw new ArgumentException("Витрати не можуть перебільшувати баланс рахунку");
                 }
                 var finOp = new FinOp
                 {
-                    Amount = finOpModel.Sum,
+                    Amount = finOpModel.Amount,
                     AccToId = orgAccTo.Id,
                     AccFromId = orgAccFrom.Id,
                     Description = finOpModel.Description,
                     FinOpDate = DateTime.Now,
                 };
                 _unitOfWork.FinOpRepository.Create(finOp);
-                orgAccFrom.CurrentBalance -= finOpModel.Sum;
+                orgAccFrom.CurrentBalance -= finOpModel.Amount;
                 _unitOfWork.OrganizationAccountRepository.Edit(orgAccFrom);
-                orgAccTo.CurrentBalance += finOpModel.Sum;
+                orgAccTo.CurrentBalance += finOpModel.Amount;
                 _unitOfWork.OrganizationAccountRepository.Edit(orgAccTo);
                 _unitOfWork.SaveChanges();
                 return finOpModel;
