@@ -103,7 +103,9 @@ namespace FundTrack.BLL.Concrete
                     AccToId = orgAccTo.Id,
                     Description = finOpModel.Description,
                     TargetId = finOpModel.TargetId,
-                    FinOpDate = DateTime.Now,
+                    FinOpDate = finOpModel.Date,
+                    FinOpType = finOpModel.FinOpType,
+                    UserId = finOpModel.UserId
                 };
                 _unitOfWork.FinOpRepository.Create(finOp);
 
@@ -134,7 +136,9 @@ namespace FundTrack.BLL.Concrete
                     AccFromId = orgAccFrom.Id,
                     Description = finOpModel.Description,
                     TargetId = finOpModel.TargetId,
-                    FinOpDate = DateTime.Now,
+                    FinOpDate = finOpModel.Date,
+                    FinOpType = finOpModel.FinOpType,
+                    UserId = finOpModel.UserId
                 };
                 _unitOfWork.FinOpRepository.Create(finOp);
                 orgAccFrom.CurrentBalance -= finOpModel.Sum;
@@ -165,7 +169,9 @@ namespace FundTrack.BLL.Concrete
                     AccToId = orgAccTo.Id,
                     AccFromId = orgAccFrom.Id,
                     Description = finOpModel.Description,
-                    FinOpDate = DateTime.Now,
+                    FinOpDate = finOpModel.Date,
+                    FinOpType = finOpModel.FinOpType,
+                    UserId = finOpModel.UserId
                 };
                 _unitOfWork.FinOpRepository.Create(finOp);
                 orgAccFrom.CurrentBalance -= finOpModel.Sum;

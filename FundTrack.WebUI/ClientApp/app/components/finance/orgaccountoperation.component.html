@@ -1,6 +1,6 @@
 ﻿<div class="container maindiv">
     <h2>Фінансові операції по рахунку</h2>
-    <a id="right-float" class="btn" (click)="openModal(newAccountManagmentWindow)">Керування рахунком</a>
+    <a id="right-float" class="btn" (click)="openManageModal()">Керування рахунком</a>
     <!--<br />
     <div>
         <br />
@@ -303,22 +303,32 @@
             <form class="form-horizontal" [formGroup]="accountManagmentForm" id="accountManagment" novalidate>
                 <label class="main-label">Інформація про рахунок</label>
                 <div class="form-group">
-                    <label class="control-label">Дата створення рахунку</label>
-                    <label class="control-label">22-09-2017</label>
+                    <label class="control-label">Дата створення рахунку    </label>
+                    <label class="control-label">{{currentAccount.creationDate | date: 'dd/MM/yyyy'}}</label>
                 </div>
                 <div class="form-group">
                     <label class="control-label">Назва рахунку</label>
                     <input class="form-control"
                            type="text"
                            placeholder={{currentAccount.orgAccountName}}
-                           name="card" />
+                           name="account" />
                 </div>
                 <div class="form-group">
                     <label class="control-label">Власник рахунку</label>
                     <input class="form-control"
                            type="text"
-                           placeholder="Іво Бобул"
-                           name="moder" />
+                           disabled
+                           placeholder="{{accountOwner.firstName}} {{accountOwner.lastName}}"
+                           name="owner" />
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Змінити власника</label>
+                    <select id="categoryType" class="form-control">
+                        <option value=null></option>
+                        <option *ngFor="let moderator of moderators" value="{{moderator.id}}">
+                            {{moderator.firstName}} {{moderator.lastName}}
+                        </option>
+                    </select>
                 </div>
                 <div class="form-group">
                     <label class="control-label">Баланс</label>
