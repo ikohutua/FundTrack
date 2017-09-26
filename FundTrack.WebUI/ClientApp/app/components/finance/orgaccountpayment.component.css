@@ -3,11 +3,12 @@
 }
 
 .accountdetail {
-    margin-top: 20px;
+    /*margin-top: 20px;*/
     background-image: url("https://privat24.privatbank.ua/p24/img/concrete_wall_3.png");
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     display: block;
     padding: 15px 10px 15px 20px;
+    width: 100%;
 }
 
 .maindiv {

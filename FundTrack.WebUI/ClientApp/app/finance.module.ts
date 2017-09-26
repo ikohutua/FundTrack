@@ -13,6 +13,7 @@ import { OrgAccountOperationComponent } from "./components/finance/orgaccountope
 import { BankImportComponent } from "./components/finance/bank-import.component";
 import { MakeDonationComponent } from "./components/finance/donate-money.component";
 import { FinOpService } from "./services/concrete/finance/finOp.service";
+import { OrgAccountExtractsComponent } from "./components/finance/org-account-extracts.component";
 
 @NgModule({
     declarations: [
@@ -20,6 +21,7 @@ import { FinOpService } from "./services/concrete/finance/finOp.service";
         CreateOrgAccountComponent,
         OrgAccountDetailComponent,
         OrgAccountPaymentComponent,
+        OrgAccountExtractsComponent,
         OrgAccountOperationComponent,
         BankImportComponent,    
         MakeDonationComponent

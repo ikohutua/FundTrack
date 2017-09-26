@@ -44,5 +44,8 @@ namespace FundTrack.BLL.Abstract
 
         BankAccountDonateViewModel DisableDonateFunction(int bankAccountId);
 
+        BankAccountDonateViewModel ExtractCredentials(int orgAccountId);
+        bool IsExtractEnabled(int orgAccountId);
+        BankAccountDonateViewModel ConnectExtractsFunction(BankAccountDonateViewModel info);
     }
 }
