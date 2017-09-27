@@ -107,6 +107,10 @@ namespace FundTrack.BLL.Concrete
             try
             {
                 var account = this._unitOfWork.OrganizationAccountRepository.Read(organizationAccountId);
+               if (account == null)
+                {
+                    return new OrgAccountViewModel();
+                }
                 OrgAccountViewModel model = this.InitializeOrgAccountViewModel(account);
                 return model;
             }
@@ -132,6 +136,13 @@ namespace FundTrack.BLL.Concrete
 
         public OrgAccountViewModel InitializeCommonProperties(OrgAccount item)
         {
+            string firstName = "", lastName = "";
+            if (item.User !=null)
+            {
+                firstName = item.User.FirstName;
+                lastName = item.User.LastName;
+            }
+          
             return new OrgAccountViewModel
             {
                 Id = item.Id,
@@ -144,8 +155,8 @@ namespace FundTrack.BLL.Concrete
                 TargetId = item.TargetId,
                 Description = item.Description,
                 UserId = item.UserId,
-                FirstName = item.User.FirstName,
-                LastName  = item.User.LastName,
+                FirstName = firstName,
+                LastName  = lastName,
                 CreationDate = item.CreationDate
             };
         }
