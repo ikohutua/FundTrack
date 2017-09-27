@@ -6,6 +6,7 @@ using FundTrack.Infrastructure.ViewModel.FinanceViewModels.DonateViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 
@@ -35,11 +36,11 @@ namespace FundTrack.WebUI.Controllers
         /// Gets the targets.
         /// </summary>
         /// <returns></returns>
-        [HttpGet("GetTargets")]
-        [Authorize(Roles = "admin, moderator")]
+        [HttpGet("GetTargets/{id}")]
+        //[Authorize(Roles = "admin, moderator")]
         public IEnumerable<TargetViewModel> GetTargets(int id)
         {
-            return this._service.GetTargets(id);
+            return this._service.GetTargets(id).ToList();
         }
 
         /// <summary>

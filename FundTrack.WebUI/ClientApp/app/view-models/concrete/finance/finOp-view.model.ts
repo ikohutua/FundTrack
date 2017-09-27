@@ -1,9 +1,9 @@
 ﻿export class FinOpViewModel {
     public id: number;
     public bankImportId: number;
-    public targetName: string;
-    public accFromName: string;
-    public accToName: string;
+    public targetId: number;
+    public accFromId: number;
+    public accToId: number;
     public amount: number;
     public absoluteAmount: number;
     public description: string;

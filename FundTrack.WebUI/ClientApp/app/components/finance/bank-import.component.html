@@ -37,7 +37,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-8" *ngIf="_dataForFinOp" >
+    <div class="col-md-8" *ngIf="_dataForFinOp">
         <div class="row grid-divider">
             <table class="table table-list-search back" style="margin-left:4%">
                 <thead>
@@ -83,7 +83,7 @@
                            disabled
                            type="text"
                            placeholder="Номер картки"
-                           name="cardNumber"    
+                           name="cardNumber"
                            formControlName="cardNumber"
                            [(ngModel)]="dataForPrivat.card"
                            required="" />
@@ -134,7 +134,7 @@
             </form>
         </div>
         <div *ngIf="importData.error" class="error-message">
-           Помилка банку: {{importData.error}}
+            Помилка банку: {{importData.error}}
         </div>
     </div>
     <div class="app-modal-footer">
@@ -174,13 +174,13 @@
                    [disabled]="true"
                    placeholder="Сума"
                    required=""
-                   [(ngModel)]="_newFinOp.absoluteAmount"/>
+                   [(ngModel)]="_newFinOp.absoluteAmount" />
         </div>
         <br>
         <div class="form-group">
             <label class="control-label" for="accountName">Рух коштів:</label>
             <div>
-                <input type="radio" name="gender" value="true" [checked]="_newFinOp.amount>0" disabled > Прихід<br>
+                <input type="radio" name="gender" value="true" [checked]="_newFinOp.amount>0" disabled> Прихід<br>
                 <input type="radio" name="gender" value="false" [checked]="_newFinOp.amount<0" disabled> Розхід<br>
             </div>
         </div>
@@ -196,7 +196,7 @@
         </div>
         <div>
             <label class="control-label">Виберіть призначення платежу:</label>
-            <select class="form-control" [(ngModel)]="_newFinOp.targetName" required="" id="target">
+            <select class="form-control" [(ngModel)]="_newFinOp.targeId" required="" id="target">
                 <option [ngValue]="undefined" selected>Призначення платежу</option>
                 <option value={{item.name}} *ngFor="let item of targets">{{item.name}}</option>
             </select>
