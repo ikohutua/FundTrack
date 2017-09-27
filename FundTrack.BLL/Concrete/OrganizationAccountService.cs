@@ -124,7 +124,9 @@ namespace FundTrack.BLL.Concrete
         {
             try
             {
-                var result = _unitOfWork.OrganizationAccountRepository.Edit(model);
+                var result = _unitOfWork.OrganizationAccountRepository.GetOrgAccountById(model.Id);
+                result.UserId = model.UserId;
+                _unitOfWork.OrganizationAccountRepository.Edit(result);
                 _unitOfWork.SaveChanges();
                 return result;
             }
@@ -205,6 +207,8 @@ namespace FundTrack.BLL.Concrete
                 account.Organization = this._unitOfWork.OrganizationRepository.Get(model.OrgId);
                 account.TargetId = model.TargetId;
                 account.Description = model.Description;
+                account.UserId = model.UserId;
+                account.CreationDate = model.CreationDate;
                 this._unitOfWork.OrganizationAccountRepository.Create(account);
                 this._unitOfWork.SaveChanges();
                 return (OrgAccountViewModel)account;
@@ -247,6 +251,8 @@ namespace FundTrack.BLL.Concrete
                 this._unitOfWork.BankAccountRepository.Create(bankAccount);
                 account.BankAccId = bankAccount.Id;
                 account.BankAccount = bankAccount;
+                account.UserId = model.UserId;
+                account.CreationDate = model.CreationDate;
                 account.Description = model.Description;
                 this._unitOfWork.OrganizationAccountRepository.Create(account);
                 this._unitOfWork.SaveChanges();

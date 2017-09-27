@@ -13,13 +13,14 @@ import * as key from '../../shared/key.storage';
     styleUrls: ['./orgaccountlist.component.css']
 })
 export class OrgAccountListComponent implements OnInit {
-
     //Property that keeps an array of organization account
     private accounts: OrgAccountViewModel[] = new Array<OrgAccountViewModel>();
     //Property that indicates spinner display status
     private showSpinner: boolean = false;
     //Property that indicates currently selected account
     public selectAccountId: number = -1;
+    //Property that indicates currently organization account
+    public orgId: number = -1;
     //Property that keeps data of the selected account
     private selectedAccount: OrgAccountViewModel;
     //Property that keeps title for the page
@@ -32,6 +33,8 @@ export class OrgAccountListComponent implements OnInit {
     isBankAccountAvailable: boolean = false;
     isCashAccountAvailable: boolean = false;
 
+    isDownloaded = false;
+
     ifBankSelectedType: boolean = false;
     isExtractsMerchantEnable: boolean = false;
 
@@ -43,17 +46,24 @@ export class OrgAccountListComponent implements OnInit {
    Executes when component is initialized
    */
     ngOnInit(): void {
+        console.log("OrgList");
         this.showSpinner = true;
+        console.log("First  "+this.selectAccountId);
         this._accountService.getAllAccountsOfOrganization().
             subscribe(r => {
+                console.log("Second  "+this.selectAccountId);
                 this.accounts = r;
+                console.log("Thirth  "+this.selectAccountId);
                 this.filterAccounts();
+                console.log(this.selectAccountId);
                 if (this.isBankAccountAvailable) {
                     this.setActiveAccount(this.bankAccounts[0]);
                 }
                 else if (this.isCashAccountAvailable) {
                     this.setActiveAccount(this.cashAccounts[0]);
                 }
+                console.log(this.selectAccountId);
+                this.isDownloaded = true;
                 this.showSpinner = false;
             });
     }
@@ -107,9 +117,12 @@ export class OrgAccountListComponent implements OnInit {
     */
     private setActiveAccount(account: OrgAccountViewModel): void {
         this.selectAccountId = account.id;
+        this.orgId = account.orgId;
         this.selectedAccount = account;
         this.ifBankSelectedType = account.accountType === "Банк" ? true : false;
-        sessionStorage.setItem(key.keyOrgAccountId, account.id.toString());
+
+        //sessionStorage.setItem(key.keyOrgAccountId, account.id.toString());
+        //sessionStorage.setItem(key.keyOrgId, account.orgId.toString());
     }
     /*
     After account has been deleted - sets first account in the list as active and removes deleted account from the array
