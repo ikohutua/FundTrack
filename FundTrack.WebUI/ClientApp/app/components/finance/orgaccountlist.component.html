@@ -34,7 +34,7 @@
                     <strong>Готівкові рахунки</strong>
                 </button>
             </div>
-            <div id="cashAcc" class="collapse in account-list">
+            <div id="cashAcc" class="collapse  account-list">
                 <div *ngFor="let account of cashAccounts" class="account row grow"
                      (click)="setActiveAccount(account)"
                      [class.selected]="account === selectedAccount">
@@ -54,14 +54,27 @@
                                       (onDelete)="onDelete($event)"></orgaccountdetail>
                 </div>
                 <div class="col-md-5 mb20" style="margin-top: 20px;">
+                   
                     <div class="panel-group" id="accordion">
+                        <div class="panel">
+                            <div class="col-md-12">
+                                <button type="button" class="btn btn-lg btn-block custom-button" data-toggle="collapse" data-parent="#accordion" href="#collapse3">
+                                    <strong>Зафіксувати баланс</strong>
+                                </button>
+                            </div>
+                            <div id="collapse3" class="panel-collapse collapse">
+                                <div class="panel-body panel-custom-body">
+                                   <fixing-balance></fixing-balance>
+                                </div>
+                            </div>
+                        </div>
                         <div class="panel">
                             <div class="col-md-12">
                                 <button type="button" class="btn btn-lg btn-block custom-button" data-toggle="collapse" data-parent="#accordion" href="#collapse1">
                                     <strong> Прийом платежів через Fondy</strong>
                                 </button>
                             </div>
-                            <div id="collapse1" class="panel-collapse collapse in">
+                            <div id="collapse1" class="panel-collapse collapse">
                                 <div class="panel-body panel-custom-body">
                                     <orgaccountpayment [accountId]="selectAccountId"></orgaccountpayment>
                                 </div>

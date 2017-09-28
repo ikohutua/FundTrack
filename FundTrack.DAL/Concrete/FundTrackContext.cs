@@ -371,24 +371,7 @@ namespace FundTrack.DAL.Concrete
                 entity.Property(e => e.FullName).IsRequired().HasMaxLength(30);
             });
 
-            modelBuilder.Entity<BankAccount>(entity =>
-            {
-                entity.HasKey(e => e.Id).HasName("PK_BankAccount");
-
-                entity.Property(e => e.AccNumber).HasMaxLength(20);
-
-                entity.Property(e => e.MFO).HasMaxLength(6);
-
-                entity.Property(e => e.EDRPOU).HasMaxLength(10);
-
-                entity.Property(e => e.BankName).HasMaxLength(50);
-                entity.Property(e => e.CardNumber).HasMaxLength(16);
-
-                entity.HasOne(ba => ba.Organization)
-                      .WithMany(o => o.BankAccounts)
-                      .HasForeignKey(ba => ba.OrgId)
-                      .HasConstraintName("FK_BankAccount_Organization");
-            });
+           
 
             modelBuilder.Entity<OrgAccount>(entity =>
             {
@@ -706,7 +689,7 @@ namespace FundTrack.DAL.Concrete
                       .HasForeignKey(oii => oii.OfferedItemId)
                       .HasConstraintName("FK_OfferedItemImage_OfferedItem");
             });
-
+            BankAccount.Configure(modelBuilder);
             modelBuilder.Entity<RequestedItemImage>(entity =>
             {
                 entity.HasKey(e => e.Id).HasName("PK_<RequestedItemImage");
