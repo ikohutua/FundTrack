@@ -1,5 +1,6 @@
 ﻿using FundTrack.Infrastructure.ViewModel;
 using System;
+using Microsoft.EntityFrameworkCore;
 
 namespace FundTrack.DAL.Entities
 {
@@ -84,5 +85,37 @@ namespace FundTrack.DAL.Entities
         /// The status.
         /// </value>
         public virtual Status Status { get; set; }
+
+        public static void Configure(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<UserResponse>(entity =>
+            {
+                entity.HasKey(e => e.Id).HasName("PK_UserResponse");
+
+                entity.Property(e => e.RequestedItemId).IsRequired();
+
+                entity.Property(e => e.Description).IsRequired();
+
+                entity.HasOne(ur => ur.Status)
+                    .WithMany(s => s.UserResponses)
+                    .HasForeignKey(ur => ur.StatusId)
+                    .HasConstraintName("FK_UserResponse_Status");
+
+                entity.HasOne(ur => ur.RequestedItem)
+                    .WithMany(ri => ri.UserResponses)
+                    .HasForeignKey(ur => ur.RequestedItemId)
+                    .HasConstraintName("FK_UserResponse_RequestedItem");
+
+                entity.HasOne(ur => ur.User)
+                    .WithMany(u => u.UserResponses)
+                    .HasForeignKey(ur => ur.UserId)
+                    .HasConstraintName("FK_UserResponse_User");
+
+                entity.HasOne(e => e.OfferedItem)
+                    .WithOne(e => e.UserResponse)
+                    .HasForeignKey<UserResponse>(e => e.OfferedItemId)
+                    .HasConstraintName("FK_UserResponse_OfferedItem");
+            });
+        }
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace FundTrack.DAL.Entities
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace FundTrack.DAL.Entities
 {
     /// <summary>
     /// Phone entity
@@ -29,5 +31,22 @@
         /// Gets or Sets User navigation property
         /// </summary>
         public virtual User User { get; set; }
+
+        public static void Configure(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Phone>(entity =>
+            {
+                entity.HasKey(e => e.Id).HasName("PK_Phone");
+
+                entity.Property(e => e.Number).IsRequired().HasMaxLength(15);
+
+                entity.Property(e => e.PhoneType).HasMaxLength(20);
+
+                entity.HasOne(p => p.User)
+                    .WithMany(u => u.Phones)
+                    .HasForeignKey(p => p.UserId)
+                    .HasConstraintName("FK_Phone_User");
+            });
+        }
     }
 }
