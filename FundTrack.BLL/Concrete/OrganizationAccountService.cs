@@ -102,11 +102,11 @@ namespace FundTrack.BLL.Concrete
             }
         }
 
-        public OrgAccountViewModel GetOrganizationAccountById(int organizationAccountId)
+        public OrgAccountViewModel GetOrganizationAccountById(int accountId)
         {
             try
             {
-                var account = this._unitOfWork.OrganizationAccountRepository.Read(organizationAccountId);
+                var account = this._unitOfWork.OrganizationAccountRepository.Read(accountId);
                 OrgAccountViewModel model = this.InitializeOrgAccountViewModel(account);
                 return model;
             }
@@ -144,8 +144,8 @@ namespace FundTrack.BLL.Concrete
                 TargetId = item.TargetId,
                 Description = item.Description,
                 UserId = item.UserId,
-                FirstName = item.User.FirstName,
-                LastName  = item.User.LastName,
+                FirstName = item.User?.FirstName,
+                LastName = item.User?.LastName,
                 CreationDate = item.CreationDate
             };
         }

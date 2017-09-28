@@ -21,10 +21,10 @@ namespace FundTrack.WebUI.Controllers
             return Json(this._orgAccountService.GetOrganizationAccountById(id));
         }
         [Authorize(Roles ="admin, moderator")]
-        [HttpPost("[action]")]
-        public JsonResult ReadAll([FromBody] UserInfoViewModel model)
+        [HttpGet("[action]/{orgId}")]
+        public JsonResult ReadAll(int orgId)
         {
-            return Json(this._orgAccountService.GetAccountsByOrganizationId(model.OrgId));
+            return Json(this._orgAccountService.GetAccountsByOrganizationId(orgId));
         }
         [Authorize(Roles = "admin")]
         [HttpPost("[action]")]

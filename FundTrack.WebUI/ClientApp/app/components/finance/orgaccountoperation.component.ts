@@ -107,19 +107,17 @@ export class OrgAccountOperationComponent implements OnChanges {
                         this.reservedFinOpsArray = this.finOps;
                         this.finOps = this.finOps.slice(0, 10);       
                     });
+                this.accountService.getOrganizationAccountById(this.accountId)
+                    .subscribe(currAcc => {
+                        this.currentAccount = currAcc;                                      //get current organization account
+                        this.accountForUpdate = currAcc;
+                        this.getType();
+                        this.getAccontsForTransfer();
+                        console.log("OrganizationId    " + this.orgId);
+                    });
             }
         }
-        this.accountService.getOrganizationAccountById(this.accountId)
-            .subscribe(currAcc => {
-                this.currentAccount = currAcc;                                      //get current organization account
-                this.accountForUpdate = currAcc;
-                this.getType();
-                this.getAccontsForTransfer();
-                console.log("OrganizationId    " + this.orgId);
-            });
-
         this.default = false;
-
     }
 
     ngOnInit(): void {
