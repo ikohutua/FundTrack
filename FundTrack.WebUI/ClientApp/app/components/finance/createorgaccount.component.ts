@@ -38,7 +38,8 @@ export class CreateOrgAccountComponent {
         targetId: undefined,
         name: "Не вказано",
         organizationId: undefined,
-        parentTargetId:undefined
+        parentTargetId: undefined,
+        isDeletable:true
     }
 
     constructor(private _accountService: OrgAccountService,

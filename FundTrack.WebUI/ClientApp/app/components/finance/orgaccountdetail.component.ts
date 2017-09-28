@@ -57,7 +57,8 @@ export class OrgAccountDetailComponent implements OnInit, OnChanges {
                 targetId: undefined,
                 name: "Не вказано",
                 organizationId: undefined,
-                parentTargetId: undefined
+                parentTargetId: undefined,
+                isDeletable:true
             });
             for (var target of result) {
                 this.targets.push(target);

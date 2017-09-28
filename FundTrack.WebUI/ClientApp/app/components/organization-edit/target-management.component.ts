@@ -79,7 +79,6 @@ export class TargetManagementComponent implements OnInit {
     }
 
     openModalForAddTarget() {
-        debugger;
         this.isTargetForAdding = true;
         this.editableTarget = new TargetViewModel();
         this.openModal(this.targetModal);
@@ -105,6 +104,7 @@ export class TargetManagementComponent implements OnInit {
         this.isTargetForAdding = false;
         this.editableTarget.organizationId = this.user.orgId;
         this._editService.addTarget(this.editableTarget).subscribe(model => {
+            model.isDeletable = true;
             this.targetArray.push(model);
         });
         this.closeModal(this.targetModal);
@@ -113,6 +113,8 @@ export class TargetManagementComponent implements OnInit {
     public addSubTarget() {
         this.isSubTargetSelected = false;
         this._editService.addTarget(this.editableTarget).subscribe(model => {
+            model.isDeletable = true;
+            this.targetArray.find(t => t.targetId === model.parentTargetId).isDeletable = false;
             this.targetArray.push(model);
         });
         this.closeModal(this.targetModal);
@@ -135,7 +137,6 @@ export class TargetManagementComponent implements OnInit {
     }
 
     deleteTarget() {
-
         this._editService.deleteTarget(this.editableTarget.targetId).subscribe((model) => {
             this.getTargetsByOrganizationId();
         }, error => {

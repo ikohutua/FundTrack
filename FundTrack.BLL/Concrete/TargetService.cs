@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -45,7 +46,90 @@ namespace FundTrack.BLL.Concrete
 
         private IEnumerable<TargetViewModel> ConvertTargetsToTargetViewModel(IEnumerable<Target> targets)
         {
-            return targets.Select(ConvertTargetToViewModel).ToList();
+            var targetsVm = targets.Select(ConvertTargetToViewModel).ToList();
+            CheckIsDeletableField(targetsVm);
+            return targetsVm;
+        }
+
+        private void CheckIsDeletableField(List<TargetViewModel> targets)
+        {
+            CheckInTargets(targets);
+            CheckInOrgAccounts(targets);
+        }
+
+        private void CheckInTargets(List<TargetViewModel> targets)
+        {
+            foreach (var target in targets)
+            {
+                foreach (var subTarget in targets)
+                {
+                    if (subTarget.ParentTargetId == target.TargetId)
+                    {
+                        target.IsDeletable = false;
+                        break;
+                    }
+                    target.IsDeletable = true;
+                }
+            }
+        }
+
+        private void CheckInOrgAccounts(List<TargetViewModel> targets)
+        {
+            try
+            {
+                var accounts = _unitOfWork.OrganizationAccountRepository.ReadAllOrgAccounts(targets[0].OrganizationId)
+                    .ToList();
+                foreach (var target in targets.FindAll(t => t.ParentTargetId == null))
+                {
+                    if (accounts.Exists(acc => acc.TargetId == target.TargetId))
+                    {
+                        target.IsDeletable = false;
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                throw new BusinessLogicException(ErrorMessages.CantFindDataById, e);
+            }
+        }
+
+        private void CheckInDonations(List<TargetViewModel> targets)
+        {
+            try
+            {
+                var donations = _unitOfWork.DonationRepository.Read().ToList();
+                foreach (var target in targets)
+                {
+                    if (donations.Exists(d => d.TargetId == target.TargetId))
+                    {
+                        target.IsDeletable = false;
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                throw new BusinessLogicException(ErrorMessages.CantFindDataById, e); 
+            }
+        }
+
+        private void CheckInFinOps(List<TargetViewModel> targets)
+        {
+            try
+            {
+                var finOps = _unitOfWork.FinOpRepository.Read().ToList().FindAll(f =>
+                    f.OrgAccountFrom.Id == targets[0].TargetId || f.OrgAccountTo.Id == targets[0].TargetId);
+                foreach (var target in targets)
+                {
+                    if (finOps.Exists(f => f.TargetId == target.TargetId))
+                    {
+                        target.IsDeletable = false;
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                throw new BusinessLogicException(ErrorMessages.CantFindDataById, e); 
+            }
         }
 
         private TargetViewModel ConvertTargetToViewModel(Target target)

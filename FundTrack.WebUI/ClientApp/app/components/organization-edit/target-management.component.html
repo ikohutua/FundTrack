@@ -6,7 +6,7 @@
                     <div class="col-sm-10">
                         <p> {{target.name}} </p>
                     </div>
-                    <div class="col-sm-2">
+                    <div class="col-sm-2" *ngIf="target.isDeletable">
                         <button class="btn btn-link right" title="Видалити" (click)="openModalForSubmitDeleteTarget(target)">
                             <span class="glyphicon glyphicon-remove"></span>
                         </button>
@@ -21,7 +21,7 @@
                             <div class="col-sm-10">
                                 <p> {{subTarget.name}} </p>
                             </div>
-                            <div class="col-sm-2">
+                            <div class="col-sm-2" *ngIf="subTarget.isDeletable">
                                 <button class="btn btn-link right" title="Видалити" (click)="openModalForSubmitDeleteTarget(subTarget)">
                                     <span class="glyphicon glyphicon-remove"></span>
                                 </button>

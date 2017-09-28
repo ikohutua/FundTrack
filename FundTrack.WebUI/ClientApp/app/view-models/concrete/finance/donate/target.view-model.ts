@@ -3,4 +3,5 @@
     name: string;
     organizationId: number;
     parentTargetId: number;
+    isDeletable: boolean;
 }
