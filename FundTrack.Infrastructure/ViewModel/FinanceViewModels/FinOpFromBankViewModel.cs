@@ -28,7 +28,7 @@ namespace FundTrack.Infrastructure.ViewModel.FinanceViewModels
         /// <value>
         /// The name of the target.
         /// </value>
-        public string TargetName { get; set; }
+        public int Targetid { get; set; }
 
         /// <summary>
         /// Gets or sets the name of the acc from.
@@ -36,7 +36,7 @@ namespace FundTrack.Infrastructure.ViewModel.FinanceViewModels
         /// <value>
         /// The name of the acc from.
         /// </value>
-        public string AccFromName { get; set; }
+        public int CardFromId { get; set; }
 
         /// <summary>
         /// Gets or sets the name of the acc to.
@@ -44,7 +44,7 @@ namespace FundTrack.Infrastructure.ViewModel.FinanceViewModels
         /// <value>
         /// The name of the acc to.
         /// </value>
-        public string AccToName { get; set; }
+        public int CardToId { get; set; }
 
         /// <summary>
         /// Gets or sets the amount.

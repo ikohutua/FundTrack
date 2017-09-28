@@ -26,9 +26,9 @@ namespace FundTrack.WebUI.Middlewares
             catch (Exception ex)
             {
                 context.Response.ContentType = "application/json";
+                context.Response.StatusCode = StatusCodes.Status500InternalServerError;
                 var response = new
                 {
-                    StatusCode = 500,
                     Message = ex.Message
                 };
 

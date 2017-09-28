@@ -15,12 +15,15 @@ import { OrgAccountSelectViewModel } from "../../view-models/concrete/finance/or
 import * as key from '../../shared/key.storage'
 import { AuthorizeUserModel } from "../../view-models/concrete/authorized-user-info-view.model";
 import { SpinnerComponent } from "../../shared/components/spinner/spinner.component";
+import { OrgAccountService } from "../../services/concrete/finance/orgaccount.service";
+import { Location } from '@angular/common';
+
 
 @Component({
     selector: 'bank-import',
     template: require('./bank-import.component.html'),
     styles: [require('./bank-import.component.css')],
-    providers: [BankImportService, FinOpService]
+    providers: [BankImportService, FinOpService, OrgAccountService]
 })
 
 export class BankImportComponent implements OnInit {
@@ -28,6 +31,10 @@ export class BankImportComponent implements OnInit {
     public bankImportForm: FormGroup;
     //card which belong to select org account
     public card: string;
+    //id merchant to make request to privar24
+    private idMerchant: number;
+    //password to make request to privar24
+    private password: string;
     //data which sent in request to privat24
     private dataForPrivat: DataRequestPrivatViewModel = new DataRequestPrivatViewModel();
 
@@ -63,20 +70,22 @@ export class BankImportComponent implements OnInit {
     private index: number;
     //count bank imports in selected orgAccounts
     private count: number;
+    private orgaccountId: number;
+
 
     //constructor
     public constructor(private _service: BankImportService,
         private _finOpService: FinOpService,
         private _fb: FormBuilder,
-        private _validatorsService: ValidatorsService) {
+        private _validatorsService: ValidatorsService,
+        private _orgAccountService: OrgAccountService,
+        private _location: Location) {
         this.createForm();
     }
 
     private createForm(): void {
         this.bankImportForm = this._fb.group({
             cardNumber: [this.dataForPrivat.card, [Validators.required, Validators.maxLength(16), Validators.minLength(16), this._validatorsService.isInteger]],
-            idMerchant: [this.dataForPrivat.idMerchant, [Validators.required, Validators.minLength(6), this._validatorsService.isInteger]],
-            password: [this.dataForPrivat.password, Validators.required],
             dataTo: [this.dataForPrivat.dataTo, Validators.required],
             dataFrom: [this.dataForPrivat.dataFrom, Validators.required]
         });
@@ -86,8 +95,10 @@ export class BankImportComponent implements OnInit {
     }
 
     ngOnInit() {
+        console.log("Bank-Import");
         if (isBrowser) {
             if (sessionStorage.getItem(key.keyCardNumber)) {
+                this.orgaccountId = Number(sessionStorage.getItem(key.keyOrgAccountId));
                 this.card = sessionStorage.getItem(key.keyCardNumber);
                 this._service.getCountExtractsOnCard(this.card)
                     .subscribe(response => {
@@ -98,9 +109,17 @@ export class BankImportComponent implements OnInit {
                                 .subscribe(response => this.targets = response);
                             this._finOpService.getOrgAccountForFinOp(this.user.orgId, this.card)
                                 .subscribe(response => this.currentOrgAccount = response);
+
+
                             this.getAllExtracts();
                         }
                     });
+
+                this._orgAccountService.getExtractsCredentials(this.orgaccountId)
+                    .subscribe((res) => {
+                        this.idMerchant = res.merchantId;
+                        this.password = res.merchantPassword;
+                    })
             }
         }
     }
@@ -245,6 +264,8 @@ export class BankImportComponent implements OnInit {
      */
     public onActionClick(): void {
         this.dataForPrivat.card = this.card;
+        this.dataForPrivat.idMerchant = this.idMerchant;
+        this.dataForPrivat.password = this.password;
         this.newBankImportModalWindow.show();
     }
 
@@ -270,5 +291,12 @@ export class BankImportComponent implements OnInit {
         var x = document.getElementById("snackbar")
         x.className = "show";
         setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
+    }
+
+    /*
+    Navigates back to the previous page
+    */
+    private navigateBack(): void {
+        this._location.back();
     }
 }

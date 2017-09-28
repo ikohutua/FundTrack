@@ -1,5 +1,6 @@
 ﻿using FundTrack.Infrastructure.ViewModel;
 using System.Collections.Generic;
+using System;
 
 namespace FundTrack.DAL.Entities
 {
@@ -52,6 +53,21 @@ namespace FundTrack.DAL.Entities
         /// Gets or Sets TargetId navigation property
         /// </summary>
         public int? TargetId { get; set; }
+
+        /// <summary>
+        /// Gets or Sets UserId navigation property
+        /// </summary>
+        public int? UserId { get; set; }
+
+        /// <summary>
+        /// Gets or Sets CreationDate navigation property
+        /// </summary>
+        public DateTime CreationDate { get; set; }
+
+        /// <summary>
+        /// Gets or Sets User navigation property
+        /// </summary>
+        public virtual User User { get; set; }
 
         /// <summary>
         /// Gets or Sets Organization navigation property

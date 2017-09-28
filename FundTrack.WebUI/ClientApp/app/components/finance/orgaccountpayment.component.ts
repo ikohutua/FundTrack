@@ -15,7 +15,7 @@ import { ModalComponent } from '../../shared/components/modal/modal-component';
 })
 export class OrgAccountPaymentComponent implements OnChanges , OnInit{
     @Input('orgId') orgId: number;
-    @Input('accountId') accountId: number;
+    @Input('accountId') accountId: number = -1;
     isDonationConnected: boolean = false;
     isDonationEnabled: boolean = false;
     donateCredentials: DonateCredentialsViewModel = new DonateCredentialsViewModel();
@@ -37,38 +37,41 @@ export class OrgAccountPaymentComponent implements OnChanges , OnInit{
     }
 
     ngOnChanges(changes: { [propKey: string]: SimpleChange }) {
+        console.log("OrgPayment");
         if (changes['accountId'] && changes['accountId'] != changes['accountId'].currentValue) {
-            this.errorMessage = null;
-            this._orgAccountService.getBankAccId(this.accountId)
-                .subscribe((r) => {
-                    this.bankAccountId = r;
-                    console.log(this.bankAccountId);
-                });
-            this._orgAccountService.checkDonateStatus(this.accountId)
-                .subscribe(
-                res => {
-                    this.isDonationConnected = res;
+            if (this.accountId!=(-1)) {
+                this.errorMessage = null;
+                this._orgAccountService.getBankAccId(this.accountId)
+                    .subscribe((r) => {
+                        this.bankAccountId = r;
+                        console.log(this.bankAccountId);
+                    });
+                this._orgAccountService.checkDonateStatus(this.accountId)
+                    .subscribe(
+                    res => {
+                        this.isDonationConnected = res;
 
-                    if (this.isDonationConnected) {
-                        this._orgAccountService.getDonateCredentials(this.accountId)
-                            .subscribe((res) => {
-                                this.donateCredentials = res;
-                                console.log("cred", this.donateCredentials);
-                            })
-                        this._orgAccountService.checkDonateEnable(this.accountId)
-                            .subscribe((res) => {
-                                this.isDonationEnabled = res;
-                            })
+                        if (this.isDonationConnected) {
+                            this._orgAccountService.getDonateCredentials(this.accountId)
+                                .subscribe((res) => {
+                                    this.donateCredentials = res;
+                                    console.log("cred", this.donateCredentials);
+                                })
+                            this._orgAccountService.checkDonateEnable(this.accountId)
+                                .subscribe((res) => {
+                                    this.isDonationEnabled = res;
+                                })
 
-                    }
-                    
-                    console.log(res);
-                    console.log(this.accountId)
-                },
-                error => {
-                    this.isDonationConnected = false;
-                    this.errorMessage = "Некоректний тип рахунку";
-                })
+                        }
+
+                        console.log(res);
+                        console.log(this.accountId)
+                    },
+                    error => {
+                        this.isDonationConnected = false;
+                        this.errorMessage = "Некоректний тип рахунку";
+                    })
+            }
         }
     }
 

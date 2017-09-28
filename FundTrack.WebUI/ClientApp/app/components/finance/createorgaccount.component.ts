@@ -60,7 +60,12 @@ export class CreateOrgAccountComponent {
             }
         };
         this._accountService.getAllBaseTargetsOfOrganization(this.user.orgId).subscribe((result) => {
-            this.targets.push(this.defaultTarget);
+            this.targets.push({
+                targetId: undefined,
+                name: "Не вказано",
+                organizationId: undefined,
+                parentTargetId: undefined
+            });
             for (var target of result) {
                 this.targets.push(target);
             }
@@ -86,11 +91,12 @@ export class CreateOrgAccountComponent {
             accountName: [this.account.orgAccountName, [Validators.required, Validators.maxLength(100)]],
             currentBalance: [this.account.currentBalance, Validators.pattern(this.decimalValidationRegex)],
             accountCurrency: [this.account.currency, Validators.required],
-            accountTarget: [this.account.targetId],
-            accountDescription: [this.account.description, [Validators.required, Validators.maxLength(200)]]
+            accountTarget: [this.account.targetId]
         });
         this.smallAccountForm.valueChanges
             .subscribe(a => this.onValueChangeSmallForm(a));
+
+        //this.onValueChangeSmallForm();
     }
 
     /*
@@ -232,6 +238,8 @@ export class CreateOrgAccountComponent {
             return;
         }
         this.account.orgId = this.user.orgId;
+        this.account.creationDate = new Date();
+        this.account.userId = this.user.id;
         this._accountService.createOrgAccount(this.account)
             .subscribe(a => {
                 if (a.error == "" || a.error == null) {
@@ -244,7 +252,7 @@ export class CreateOrgAccountComponent {
                 else {
                     this.account.error = a.error;
                 }
-            });
+            })
     }
 
     /*
@@ -266,4 +274,5 @@ export class CreateOrgAccountComponent {
     private onChangeTarget($event): void {
         this.account.targetId = $event;
     }
+
 }

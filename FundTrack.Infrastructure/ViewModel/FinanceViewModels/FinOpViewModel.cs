@@ -29,5 +29,9 @@ namespace FundTrack.Infrastructure.ViewModel.FinanceViewModels
 
         public IEnumerable<string> Images { get; set; }
 
+        public int FinOpType { get; set; }
+
+        public DateTime Date { get; set; }
+
     }
 }

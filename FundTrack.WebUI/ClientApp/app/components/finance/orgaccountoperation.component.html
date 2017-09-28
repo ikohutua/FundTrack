@@ -1,16 +1,17 @@
 ﻿<div class="container maindiv">
     <h2>Фінансові операції по рахунку</h2>
-    <a id="right-float" class="btn" (click)="openModal(newAccountManagmentWindow)">Керування рахунком</a>
+    <a *ngIf="isCashType" id="right-float" class="btn" (click)="openManageModal()">Керування рахунком</a>
     <table class="table table-hover table-responsive">
         <thead>
             <tr>
                 <th style="text-align:center;">№</th>
                 <th style="text-align:center;">Дата і час операції</th>
                 <th style="text-align:center;">
-                    <select style="text-align:center;">
-                        <option>Прихід</option>
-                        <option>Розхід</option>
-                        <option>Переміщення між рахунками</option>
+                    <select #operation (change)="viewFinOpsByOperation(operation.value)" style="text-align:center;">
+                        <option *ngIf="!default" selected disabled>Тип операції</option>
+                        <option value=1>Прихід</option>
+                        <option value=0>Розхід</option>
+                        <option value=2>Переміщення між рахунками</option>
                     </select>
                 </th>
                 <th style="text-align:center;">Опис операції</th>
@@ -23,7 +24,7 @@
             <tr *ngFor="let finOp of finOps; let i = index">
                 <td>{{i+1}}</td>
                 <td>{{finOp.date | date: 'dd/MM/yyyy hh:mm'}}</td>
-                <td></td>
+                <td>{{finOp.finOpName}}</td>
                 <td>{{finOp.description}}</td>
                 <td>{{finOp.target}}</td>
                 <td class="money">{{finOp.amount}}</td>
@@ -31,11 +32,11 @@
             </tr>
         </tbody>
     </table>
-    <a class="btn">Переглянути всі операції по рахунку</a>
+    <a class="btn" (click)="viewFinOps()">Переглянути всі операції по рахунку</a>
 
-    <a class="btn" (click)="openModal(newMoneyIncomeWindow)">Добавити прихід</a>
-    <a class="btn" (click)="openModal(newMoneySpendingWindow)">Добавити витрату</a>
-    <a class="btn" (click)="openModal(newMoneyTransferWindow)">Переказ коштів</a>
+    <a *ngIf="isCashType" class="btn" (click)="openModal(newMoneyIncomeWindow)">Добавити прихід</a>
+    <a *ngIf="isCashType" class="btn" (click)="openModal(newMoneySpendingWindow)">Добавити витрату</a>
+    <a *ngIf="isCashType" class="btn" (click)="openModal(newMoneyTransferWindow)">Переказ коштів</a>
 </div>
 
 <app-modal #newMoneyIncome>
@@ -139,7 +140,7 @@
                            type="text"
                            placeholder="Сума"
                            formControlName="sum"
-                           [(ngModel)]="moneyOperationModel.sum"/>
+                           [(ngModel)]="moneyOperationModel.sum" />
                     <span *ngIf="formSpendingErrors.sum" class="has-error help-block error-message">
                         {{ formSpendingErrors.sum }}
                     </span>
@@ -266,7 +267,7 @@
                            #dateTransfer (input)="setDate(dateTransfer.value)"
                            [value]="moneyOperationModel.date | date:'yyyy-MM-dd'"
                            min="{{minDate}}"
-                           max="{{currentDate}}"/>
+                           max="{{currentDate}}" />
                 </div>
             </form>
         </div>
@@ -296,22 +297,32 @@
             <form class="form-horizontal" [formGroup]="accountManagmentForm" id="accountManagment" novalidate>
                 <label class="main-label">Інформація про рахунок</label>
                 <div class="form-group">
-                    <label class="control-label">Дата створення рахунку</label>
-                    <label class="control-label">22-09-2017</label>
+                    <label class="control-label">Дата створення рахунку    </label>
+                    <label class="control-label">{{currentAccount.creationDate | date: 'dd/MM/yyyy'}}</label>
                 </div>
                 <div class="form-group">
                     <label class="control-label">Назва рахунку</label>
                     <input class="form-control"
                            type="text"
                            placeholder={{currentAccount.orgAccountName}}
-                           name="card" />
+                           name="account" />
                 </div>
                 <div class="form-group">
                     <label class="control-label">Власник рахунку</label>
                     <input class="form-control"
                            type="text"
-                           placeholder="Іво Бобул"
-                           name="moder" />
+                           disabled
+                           placeholder="{{currentAccount.firstName}} {{currentAccount.lastName}}"
+                           name="owner" />
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Змінити власника</label>
+                    <select id="categoryType" class="form-control" [(ngModel)]="accountForUpdate.userId" formControlName="userId">
+                        <option value=null></option>
+                        <option *ngFor="let moderator of moderators" value="{{moderator.id}}">
+                            {{moderator.firstName}} {{moderator.lastName}}
+                        </option>
+                    </select>
                 </div>
                 <div class="form-group">
                     <label class="control-label">Баланс</label>
@@ -321,7 +332,7 @@
         </div>
     </div>
     <div class="app-modal-footer">
-        <button (click)="makeIncome()"
+        <button (click)="updateOrgAccount()"
                 class="btn btn-fundtrack-style pull-left"
                 data-dismiss="modal">
             ОК
