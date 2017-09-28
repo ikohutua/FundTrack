@@ -11,5 +11,7 @@ namespace FundTrack.Infrastructure.ViewModel.FinanceViewModels.DonateViewModels
         public int BankAccountId { get; set; }
         public int MerchantId { get; set; }
         public string MerchantPassword { get; set; }
+        public int TargetId { get; set; }
+        public string Target { get; set; }
     }
 }

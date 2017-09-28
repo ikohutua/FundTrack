@@ -9,7 +9,6 @@ import * as key from '../../shared/key.storage';
 import sha1 = require('sha1');
 import { CheckPaymentResponseViewModel } from "../../view-models/concrete/finance/donate/check-payment-response.view-model";
 import { DonateAccountViewModel } from "../../view-models/concrete/finance/donate/donate-account.view-model";
-import { TargetViewModel } from "../../view-models/concrete/finance/donate/target.view-model";
 import { CurrencyViewModel } from "../../view-models/concrete/finance/donate/currency.view-model";
 import { ModalComponent } from "../../shared/components/modal/modal-component";
 import { OrganizationGetGeneralInfoService } from "../../services/concrete/organization-management/organization-get-general-info.service";
@@ -34,7 +33,6 @@ export class MakeDonationComponent implements OnInit, DoCheck, OnDestroy{
     organizationIdForCheck: number = this.organizationId;
     hasAccountForDonate: boolean = false;
     donateAccounts: Array<DonateAccountViewModel> = new Array<DonateAccountViewModel>();
-    targets: Array<TargetViewModel> = new Array<TargetViewModel>();
     currencies: Array<CurrencyViewModel> = new Array<CurrencyViewModel>();
     accountForDonation: DonateAccountViewModel = new DonateAccountViewModel();
     merchantPassword: string = "test";
@@ -44,8 +42,8 @@ export class MakeDonationComponent implements OnInit, DoCheck, OnDestroy{
     user: any;
     merchantData: MerchantDataViewModel = new MerchantDataViewModel();
     paymentInfo: MerchantDataViewModel = new MerchantDataViewModel();
+    //in currency model default cash is UAH, default id =3, change it if you will use another cach type in future
     currency: CurrencyViewModel = new CurrencyViewModel();
-    target: TargetViewModel = new TargetViewModel();
     donate: DonateViewModel = new DonateViewModel();
     messages: DonateMessages = new DonateMessages();
     message: string;
@@ -58,7 +56,6 @@ export class MakeDonationComponent implements OnInit, DoCheck, OnDestroy{
     public formErrors = {
         'amount': '',
         'currency': '',        
-        'target': '',
         'accountForDonation': ''
     }
 
@@ -69,10 +66,7 @@ export class MakeDonationComponent implements OnInit, DoCheck, OnDestroy{
         }, 
         'currency': {
             'required': 'Будь ласка, оберіть значення з випадаючого списку'
-        }, 
-        'target': {
-            'required': 'Будь ласка, оберіть значення з випадаючого списку'
-        }, 
+        },  
         'accountForDonation':{
             'required': 'Будь ласка, оберіть значення з випадаючого списку'
         }
@@ -108,17 +102,15 @@ export class MakeDonationComponent implements OnInit, DoCheck, OnDestroy{
             amount: ['', [Validators.required, Validators.pattern("[0-9]+(\.[0-9]{1,2})?$")]],
             currency: ['', [Validators.required]],
             description: [''],
-            target: ['', [Validators.required]],
             accountForDonation: ['', [Validators.required]], 
             email: ['']
         });
 
         this._donateService.getOrderId().subscribe((result) => this.fondyPayModel.order_id = result);
-        this._donateService.getTargets().subscribe((result) => { this.targets = result; console.log(this.targets) });
         this._donateService.getCurrencies().subscribe((result) => { this.currencies = result, console.log(this.currencies) });
         this.fondyPayModel.server_callback_url = "http://localhost:51116/finance/donate";
         this.fondyPayModel.response_url = "http://fundtrack4.azurewebsites.net/finance/donate";
- 
+        this.fondyPayModel.currency = this.currency.currencyShortName;
 
         this.donateForm.valueChanges.subscribe(() => {
             this.showErrorMessages();
@@ -179,12 +171,7 @@ export class MakeDonationComponent implements OnInit, DoCheck, OnDestroy{
         this.fondyPayModel.currency = this.currency.currencyShortName;       
         this.fondyPayModel.signature = this.createSignature(this.fondyPayModel);
 
-        if (this.target.targetId == undefined) {
-            this.showErrorsForSelect();
-            return;
-        }
-
-        this.merchantData.targetId = this.target.targetId.toString();  
+        this.merchantData.targetId = this.accountForDonation.targetid.toString();  
         
         if (this.user) {
             this.merchantData.userId = this.user.id;
@@ -275,10 +262,6 @@ export class MakeDonationComponent implements OnInit, DoCheck, OnDestroy{
     currencyChange(selectedCurrency): void {
         this.currency = selectedCurrency;
         this.fondyPayModel.currency = this.currency.currencyShortName;
-    }
-
-    targetChange(selectedTarget): void {
-        this.target = selectedTarget;
     }
 
     getAppropriateAmount(value: string): number {

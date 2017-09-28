@@ -35,8 +35,11 @@ namespace FundTrack.BLL.Concrete
                         BankAccountId = orgAccount.BankAccount.Id,
                         MerchantId = (int)orgAccount.BankAccount.MerchantId,
                         MerchantPassword = orgAccount.BankAccount.MerchantPassword,
-                        Name = orgAccount.OrgAccountName
-                    });
+                        Name = orgAccount.OrgAccountName,
+                        TargetId = (int) orgAccount.TargetId,
+                        Target = _unitOfWork.TargetRepository.GetTargetById((int)orgAccount.TargetId).TargetName
+
+                });
                 }
                 return result;
             }
@@ -47,27 +50,14 @@ namespace FundTrack.BLL.Concrete
             }
         }
 
+       
+
         public string GetOrderId()
         {
             return Guid.NewGuid().ToString();
         }
 
-        public IEnumerable<TargetViewModel> GetTargets(int id)
-        {
-            var targets = _unitOfWork.TargetRepository.GetTargetsByOrganizationId(id);
-            var result = new List<TargetViewModel>();
-            foreach(var target in targets)
-            {
-                result.Add(new TargetViewModel
-                {
-                    TargetId = target.Id,
-                    Name = target.TargetName,
-                    OrganizationId = target.OrganizationId
-                });
-            }
-            return result;
-        }
-
+       
         public IEnumerable<CurrencyViewModel> GetCurrencies()
         {
             var currencies = _unitOfWork.CurrencyRepositry.Read();

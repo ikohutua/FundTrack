@@ -4,6 +4,8 @@
     bankAccountId: number;
     merchantId: number;
     merchantPassword: string;
+    targetid: number;
+    target: string;
 }
 
 export class OrganizationDonateAccountsViewModel {

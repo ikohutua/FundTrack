@@ -34,18 +34,13 @@ export class DonateService {
     }
 
     getAccountsForDonate(organizationId: number): Observable<OrganizationDonateAccountsViewModel> {
-        return this._http.get('api/Donate/GetAccountsForDonate/' + organizationId.toString()).
+        return this._http.get('api/Donate/AccountsForDonate/' + organizationId.toString()).
             map((response: Response) => { return response.json() as OrganizationDonateAccountsViewModel });
     }
 
     getOrderId(): Observable<string> {
-        return this._http.get('api/Donate/GetOrderId').
+        return this._http.get('api/Donate/OrderId').
             map((response: Response) => { return response.text() });
-    }
-
-    getTargets(): Observable<TargetViewModel[]> {
-        return this._http.get('api/Donate/GetTargets').
-            map((response: Response) => { return response.json() as TargetViewModel[]});
     }
 
     getCurrencies(): Observable<CurrencyViewModel[]> {
