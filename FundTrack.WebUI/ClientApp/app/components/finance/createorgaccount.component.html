@@ -19,11 +19,20 @@
             <div class="form-group">
                 <label class="col-md-4 control-label"> Призначення </label>
                 <div class="col-md-4">
-                    <select class="form-control" name="target" formControlName="accountTarget" (ngModelChange)="onChangeParentTarget($event)">
+                    <select class="form-control" name="target" formControlName="accountTarget" (ngModelChange)="onChangeTarget($event)" ngModel>
                         <option *ngFor="let target of targets" value="{{target.targetId}}" [selected]="target.targetId==undefined">
                             {{target.name}}
                         </option>
                     </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="accountDescription">Опис рахунку</label>
+                <div class="col-md-4">
+                    <input id="accountDescription" name="accountDescription" formControlName="accountDescription" type="text" placeholder="Короткий опис" class="form-control input-md" [(ngModel)]="account.description" required="">
+                    <span *ngIf="formErrors.accountDescription" class="has-error help-block isinvalid">
+                        {{ formErrors.accountDescription }}
+                    </span>
                 </div>
             </div>
             <div class="form-group">
@@ -61,69 +70,19 @@
     
     <form class="form-horizontal" [formGroup]="accountForm" novalidate>
         <fieldset>
-            <div *ngIf="account.accountType=='bank'">
-                <!-- Text input-->
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="accountNumber">Номер рахунку</label>
-                    <div class="col-md-4">
-                        <input id="accountNumber" name="accountNumber" formControlName="accountNumber" type="text" placeholder="12-14 цифр" class="form-control input-md" [(ngModel)]="account.accNumber" required="">
-                        <span *ngIf="formErrors.accountNumber" class="has-error help-block isinvalid">
-                            {{ formErrors.accountNumber }}
-                        </span>
-                    </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="cardNumber">Номер картки</label>
+                <div class="col-md-4">
+                    <input id="cardNumber" name="cardNumber" formControlName="cardNumber" type="text" placeholder="16 цифр" class="form-control input-md" [(ngModel)]="account.cardNumber" [readonly]="account.accountType=='cash'">
+                     <span *ngIf="formErrors.cardNumber" class="has-error help-block isinvalid">
+                        {{ formErrors.cardNumber }}
+                     </span>
                 </div>
-                <!-- Text input-->
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="accountMFO">МФО</label>
-                    <div class="col-md-4">
-                        <input id="accountMFO" name="accountMFO" formControlName="accountMfo" type="text" placeholder="МФО" class="form-control input-md" [(ngModel)]="account.mfo" required="">
-                        <span *ngIf="formErrors.accountMfo" class="has-error help-block isinvalid">
-                            {{ formErrors.accountMfo }}
-                        </span>
-                    </div>
-                </div>
-                <!-- Text input-->
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="accountEDRPOU">ЄДРПОУ</label>
-                    <div class="col-md-4">
-                        <input id="accountEDRPOU" name="accountEDRPOU" formControlName="accountEdrpou" type="text" placeholder="ЄДРПОУ" class="form-control input-md" [(ngModel)]="account.edrpou" required="">
-                        <span *ngIf="formErrors.accountEdrpou" class="has-error help-block isinvalid">
-                            {{ formErrors.accountEdrpou }}
-                        </span>
-                    </div>
-                </div>
-                <!-- Text input-->
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="accountBankName">Назва банку</label>
-                    <div class="col-md-4">
-                        <input id="accountBankName" name="accountBankName" formControlName="accountBankName" type="text" placeholder="Назва банку" class="form-control input-md" [(ngModel)]="account.bankName" required="">
-                        <span *ngIf="formErrors.accountBankName" class="has-error help-block isinvalid">
-                            {{ formErrors.accountBankName }}
-                        </span>
-                    </div>
-
-                </div>
-                <!-- Text input-->
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="accountDescription">Опис рахунку</label>
-                    <div class="col-md-4">
-                        <input id="accountDescription" name="accountDescription" formControlName="accountDescription" type="text" placeholder="Короткий опис" class="form-control input-md" [(ngModel)]="account.description">
-                        <span *ngIf="formErrors.accountDescription" class="has-error help-block isinvalid">
-                            {{ formErrors.accountDescription }}
-                        </span>
-                    </div>
-                </div>
-                <!-- Select Basic -->
             </div>
             <div class="col-md-1 col-md-offset-7">
                 <button class="btn btn-default pull-right" (click)="createAccount(account)" [disabled]="checkFormValidity()">Створити рахунок</button>
             </div>
             <div id="snackbar">Рахунок створено</div>
-            <!--<label>Form value: {{accountForm.value | json}}</label>
-            <br />
-            <label>Form status: {{accountForm.status | json}}</label>
-            <br />
-            <label> AccountName: {{account | json}}</label>-->
         </fieldset>
     </form>
     <div class="col-md-offset-4">

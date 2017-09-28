@@ -39,7 +39,7 @@ export class CreateOrgAccountComponent {
         name: "Не вказано",
         organizationId: undefined,
         parentTargetId: undefined,
-        isDeletable:true
+        isDeletable: true
     }
 
     constructor(private _accountService: OrgAccountService,
@@ -64,7 +64,8 @@ export class CreateOrgAccountComponent {
                 targetId: undefined,
                 name: "Не вказано",
                 organizationId: undefined,
-                parentTargetId: undefined
+                parentTargetId: undefined,
+                isDeletable: true
             });
             for (var target of result) {
                 this.targets.push(target);
@@ -91,7 +92,8 @@ export class CreateOrgAccountComponent {
             accountName: [this.account.orgAccountName, [Validators.required, Validators.maxLength(100)]],
             currentBalance: [this.account.currentBalance, Validators.pattern(this.decimalValidationRegex)],
             accountCurrency: [this.account.currency, Validators.required],
-            accountTarget: [this.account.targetId]
+            accountTarget: [this.account.targetId],
+            accountDescription: [this.account.description, [Validators.required, Validators.maxLength(200)]]
         });
         this.smallAccountForm.valueChanges
             .subscribe(a => this.onValueChangeSmallForm(a));
