@@ -67,5 +67,11 @@ namespace FundTrack.WebUI.Controllers
         {
             return _orgProfileService.EditAddress(address);
         }
+
+        [HttpPut("EditLogo")]
+        public EditLogoViewModel EditLogo([FromBody] EditLogoViewModel logo)
+        {
+            return _orgProfileService.EditLogo(logo);
+        }
     }
 }

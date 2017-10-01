@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Image } from "../../../../view-models/concrete/image.model";
-
+import * as message from '../../../common-message.storage';
 
 @Component({
     selector: 'image-list',
@@ -34,8 +34,7 @@ export class ImageListComponent {
             : ((this.imageSrc.length > 0) ? this.overlayColor : this.baseColor);
     }
 
-    changeOutlineColorStyle()
-    {
+    changeOutlineColorStyle() {
         this.outlineColorStyle = this.dragging ? this.activeColor : this.baseColor;
     }
 
@@ -71,8 +70,8 @@ export class ImageListComponent {
 
     handleInputChange(e: any) {
 
-        if (this.images.length > this.maxCount-1) {
-            alert("Максимальна кількість зображень: " + this.maxCount);
+        if (this.images.length > this.maxCount - 1) {
+            alert(message.maxImagesCount + ": " + this.maxCount);
             return;
         }
 
@@ -83,18 +82,18 @@ export class ImageListComponent {
 
 
         if (this.currentFile.size > this.maxSize) {
-            alert('Завеликий розмір зображення. Допустимо ' + this.maxSize/1000000 + 'Мб');
-            return;
+            alert(message.exceededImageSize +" "+ message.acceptable +" " + this.maxSize / 1000000 + 'Мб');
+            return; 
         }
 
         if (!this.currentFile.type.match(pattern)) {
-            alert('Невірний формат!');
+            alert(message.invalidFormat);
             return;
         }
 
         if (this.images.find(i => i.name == this.currentFile.name) != null) {
-            alert('Зображення вже вибране!');
-            return
+            alert(message.imageIsAlreadySelected);
+            return;
         }
         this.loaded = false;
         reader.onload = this._handleReaderLoaded.bind(this);
