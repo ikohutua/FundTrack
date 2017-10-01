@@ -30,8 +30,8 @@
                 <label class="col-md-4 control-label" for="accountDescription">Опис рахунку</label>
                 <div class="col-md-4">
                     <input id="accountDescription" name="accountDescription" formControlName="accountDescription" type="text" placeholder="Короткий опис" class="form-control input-md" [(ngModel)]="account.description" required="">
-                    <span *ngIf="formErrors.accountDescription" class="has-error help-block isinvalid">
-                        {{ formErrors.accountDescription }}
+                    <span *ngIf="smallFormErrors.accountDescription" class="has-error help-block isinvalid">
+                        {{ smallFormErrors.accountDescription }}
                     </span>
                 </div>
             </div>
@@ -74,9 +74,19 @@
                 <label class="col-md-4 control-label" for="cardNumber">Номер картки</label>
                 <div class="col-md-4">
                     <input id="cardNumber" name="cardNumber" formControlName="cardNumber" type="text" placeholder="16 цифр" class="form-control input-md" [(ngModel)]="account.cardNumber" [readonly]="account.accountType=='cash'">
-                     <span *ngIf="formErrors.cardNumber" class="has-error help-block isinvalid">
+                    <span *ngIf="formErrors.cardNumber" class="has-error help-block isinvalid">
                         {{ formErrors.cardNumber }}
-                     </span>
+                    </span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label"> Банк </label>
+                <div class="col-md-4">
+                    <select class="form-control" name="bank" formControlName="bank" [(ngModel)]="account.bankId" disabled="true">
+                        <option *ngFor="let bank of banks" value="{{bank.id}}">
+                            {{bank.bankName}}
+                        </option>
+                    </select>
                 </div>
             </div>
             <div class="col-md-1 col-md-offset-7">

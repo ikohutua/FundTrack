@@ -14,6 +14,7 @@ import Targetviewmodel = require("../../../view-models/concrete/finance/donate/t
 import TargetViewModel = Targetviewmodel.TargetViewModel;
 import { GlobalUrlService } from "../global-url.service";
 import { RequestOptionsService } from "../request-options.service";
+import {BankViewModel} from "../../../view-models/concrete/finance/bank-view.model";
 
 /**
  * Service for super admin actions
@@ -26,6 +27,7 @@ export class OrgAccountService {
     private _createUrl: string = 'api/orgaccount/create';
     private _getAccountUrl: string = 'api/orgaccount/get';
     private _deleteAccountUrl: string = 'api/orgaccount/delete';
+    private _getBanksUrl : string = 'api/Bank';
 
     constructor(private _http: Http) {
     }
@@ -169,5 +171,15 @@ export class OrgAccountService {
         return this._http.post(GlobalUrlService.connectExtracts, info, RequestOptionsService.getRequestOptions())
             .map((res: Response) => <DonateCredentialsViewModel>res.json())
             .catch((error: Response) => this.handleError(error));
+    }
+
+    public getAllBanks(): Observable<BankViewModel[]> {
+        return this._http.get(this._getBanksUrl)
+            .map((response: Response) => response.json() as BankViewModel[]);
+    }
+
+    public getBankById(bankId : number): Observable<BankViewModel> {
+        return this._http.get(this._getBanksUrl + '/' + bankId.toString())
+            .map((response: Response) => response.json() as BankViewModel);
     }
 }

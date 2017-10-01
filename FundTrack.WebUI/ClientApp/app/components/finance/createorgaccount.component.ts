@@ -13,6 +13,7 @@ import { AuthorizeUserModel } from "../../view-models/concrete/authorized-user-i
 import { Location } from '@angular/common';
 import Targetviewmodel1 = require("../../view-models/concrete/finance/donate/target.view-model");
 import TargetViewModel = Targetviewmodel1.TargetViewModel;
+import {BankViewModel} from "../../view-models/concrete/finance/bank-view.model";
 
 @Component({
     selector: 'createorgaccount',
@@ -41,6 +42,9 @@ export class CreateOrgAccountComponent {
         parentTargetId: undefined,
         isDeletable: true
     }
+
+    // Property that keeps all available banks
+    private banks : BankViewModel[] = new Array<BankViewModel>();
 
     constructor(private _accountService: OrgAccountService,
         private _fb: FormBuilder,
@@ -71,6 +75,10 @@ export class CreateOrgAccountComponent {
                 this.targets.push(target);
             }
         });
+
+        this._accountService.getAllBanks().subscribe((result) => { this.banks = result;
+            this.account.bankId = 1; // set selected bank as Privat (privat id == 1)
+        });
     }
 
     /*
@@ -78,7 +86,8 @@ export class CreateOrgAccountComponent {
     */
     private createForm(): void {
         this.accountForm = this._fb.group({
-            cardNumber: [this.account.cardNumber, [Validators.required, Validators.maxLength(16), this._validatorsService.isInteger, Validators.minLength(16)]]
+            cardNumber: [this.account.cardNumber, [Validators.required, Validators.maxLength(16), this._validatorsService.isInteger, Validators.minLength(16)]],
+            bank: [this.account.bankId]
         });
         this.accountForm.valueChanges
             .subscribe(a => this.onValueChange(a));
@@ -93,12 +102,10 @@ export class CreateOrgAccountComponent {
             currentBalance: [this.account.currentBalance, Validators.pattern(this.decimalValidationRegex)],
             accountCurrency: [this.account.currency, Validators.required],
             accountTarget: [this.account.targetId],
-            accountDescription: [this.account.description, [Validators.required, Validators.maxLength(200)]]
+            accountDescription: [this.account.description, [Validators.required, Validators.maxLength(100)]]
         });
         this.smallAccountForm.valueChanges
             .subscribe(a => this.onValueChangeSmallForm(a));
-
-        //this.onValueChangeSmallForm();
     }
 
     /*
@@ -108,27 +115,25 @@ export class CreateOrgAccountComponent {
         cardNumber: "",
         accountMfo: "",
         accountEdrpou: "",
-        accountBankName: "",
-        accountDescription: ""
+        accountBankName: ""
     }
     private smallFormErrors = {
         accountName: "",
         currentBalance: "",
-        accountCurrency: ""
+        accountCurrency: "",
+        accountDescription: ""
     }
     /*
     Error messages
     */
-    private requiredMessage = "Поле є обов'язковим для заповнення";
-    private numberMessage = "Поле повинно містити тільки цифри";
-    private LengthMessage = "Недопустима кількість символів";
-    private accountNameWrongLength = "Максимально допустима довжина імені рахунку складає 100 символів";
-    private mfolength = "МФО повинно містити 6 цифр";
-    private edrpoulength = "ЄДРПОУ повинно містити 8 цифр";
-    private banknamelength = "Ім'я банку не може перевищувати 50 символів";
-    private descriptionlength = "Опис рахунку не може перевищувати 200 символів";
-    private currencyselection = "Необхідно вибрати валюту";
-    private wrongBalanceMessage = "Баланс повинен бути у форматі 1 або 1.23";
+    private requiredMessage = "*Поле є обов'язковим для заповнення";
+    private numberMessage = "*Поле повинно містити тільки цифри";
+    private LengthMessage = "*Недопустима кількість символів";
+    private accountNameWrongLength = "*Максимально допустима довжина імені рахунку складає 100 символів";
+    private edrpoulength = "*ЄДРПОУ повинно містити 8 цифр";
+    private descriptionlength = "*Опис рахунку не може перевищувати 100 символів";
+    private currencyselection = "*Необхідно вибрати валюту";
+    private wrongBalanceMessage = "*Баланс повинен бути у форматі 1 або 1.23";
 
     /*
     Assigning error messages to certain validations
@@ -144,24 +149,13 @@ export class CreateOrgAccountComponent {
             maxlength: this.LengthMessage,
             minlength: this.LengthMessage
         },
-        accountMfo: {
-            required: this.requiredMessage,
-            notnumeric: this.numberMessage,
-            minlength: this.mfolength,
-            maxlength: this.mfolength
-        },
         accountEdrpou: {
             required: this.requiredMessage,
             notnumeric: this.numberMessage,
             minlength: this.edrpoulength,
             maxlength: this.edrpoulength
         },
-        accountBankName: {
-            required: this.requiredMessage,
-            maxlength: this.banknamelength
-        },
         accountDescription: {
-            required: this.requiredMessage,
             maxlength: this.descriptionlength
         },
         accountCurrency: {
@@ -247,14 +241,14 @@ export class CreateOrgAccountComponent {
                 if (a.error == "" || a.error == null) {
                     this.showToast();
                     setTimeout(() => {
-                        this._router.navigate(['finance/orgaccounts']);
-                    }, 2000);
-                    
-                }
-                else {
+                            this._router.navigate(['finance/orgaccounts']);
+                        },
+                        2000);
+
+                } else {
                     this.account.error = a.error;
                 }
-            })
+            });
     }
 
     /*

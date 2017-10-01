@@ -244,12 +244,11 @@ namespace FundTrack.BLL.Concrete
                 account.Organization = this._unitOfWork.OrganizationRepository.Get(model.OrgId);
                 account.TargetId = model.TargetId;
                 bankAccount.AccNumber = model.AccNumber;
-                bankAccount.BankName = model.BankName;
                 bankAccount.EDRPOU = model.EDRPOU;
-                bankAccount.MFO = model.MFO;
                 bankAccount.Organization = this._unitOfWork.OrganizationRepository.Get(model.OrgId);
                 bankAccount.OrgId = model.OrgId;
                 bankAccount.CardNumber = model.CardNumber;
+                bankAccount.BankId = model.BankId;
                 this._unitOfWork.BankAccountRepository.Create(bankAccount);
                 account.BankAccId = bankAccount.Id;
                 account.BankAccount = bankAccount;
