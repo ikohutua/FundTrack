@@ -106,7 +106,7 @@ namespace FundTrack.BLL.Concrete
         {
             try
             {
-                var account = this._unitOfWork.OrganizationAccountRepository.Read(organizationAccountId);
+               var account = this._unitOfWork.OrganizationAccountRepository.Read(organizationAccountId);
                if (account == null)
                 {
                     return new OrgAccountViewModel();
@@ -174,12 +174,14 @@ namespace FundTrack.BLL.Concrete
                 case "Банк":
                     account = this.InitializeCommonProperties(item);
                     account.AccountType = "Банк";
-                    account.BankName = item.BankAccount.BankName;
                     account.AccNumber = item.BankAccount.AccNumber;
                     account.EDRPOU = item.BankAccount.EDRPOU;
-                    account.MFO = item.BankAccount.MFO;
                     account.CardNumber = item.BankAccount.CardNumber;
                     account.BankAccId = item.BankAccId;
+                    
+                    account.BankId = item.BankAccount.BankId;
+                    account.BankName = item.BankAccount.Bank.BankName;
+                    account.MFO = item.BankAccount.Bank.MFO;
                     break;
                 default:
                     break;

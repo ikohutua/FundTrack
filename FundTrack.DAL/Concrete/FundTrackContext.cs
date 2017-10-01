@@ -232,6 +232,11 @@ namespace FundTrack.DAL.Concrete
         public DbSet<Donation> Donations { get; set; }
 
         /// <summary>
+        /// Gets or Sets Banks
+        /// </summary>
+        public DbSet<Bank> Banks { get; set; }
+
+        /// <summary>
         /// Configures model creation
         /// </summary>
         /// <param name="modelBuilder">modelBuilder to configure Model Creation</param>
@@ -272,7 +277,8 @@ namespace FundTrack.DAL.Concrete
             RequestedItemImage.Configure(modelBuilder);
             UserResponse.Configure(modelBuilder);
             OrganizationResponse.Configure(modelBuilder);
-            Donation.Configure(modelBuilder);         
+            Donation.Configure(modelBuilder);   
+            Bank.Configure(modelBuilder);
         }
     }
 }

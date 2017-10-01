@@ -98,6 +98,7 @@ namespace FundTrack.WebUI
             services.AddScoped<IFinOpRepository, FinOpRepository>();
             services.AddScoped<IPhoneRepository, PhoneRepository>();
             services.AddScoped<IRepository<FinOpImage>, EFGenericRepository<FinOpImage>>();
+            services.AddScoped<IBankRepository, BankRepositoty>();
 
             //dependency injection BLL
             services.AddScoped<IOrganizationsForFilteringService, OrganizationsForFilteringService>();
@@ -122,6 +123,7 @@ namespace FundTrack.WebUI
             services.AddScoped<ITargetService, TargetService>();
             services.AddScoped<IReportService, ReportService>();
             services.AddScoped<IImageManagementService, AzureImageManagementService>();
+            services.AddScoped<IBankService, BankService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
