@@ -53,6 +53,19 @@ namespace FundTrack.DAL.Entities
         public bool? IsDonationEnabled { get; set; }
 
         /// <summary>
+        /// Gets or sets id of the merchant of the bank system for getting extracts
+        /// </summary>
+        public int? ExtractMerchantId { get; set; }
+        /// <summary>
+        /// Gets or sets password of the merchant of the bank system for getting extracts
+        /// </summary>
+        public string ExtractMerchantPassword { get; set; }
+        /// <summary>
+        /// Gets or sets bit that determines if getting of extracts from account are enabled
+        /// </summary>
+        public bool? IsExtractEnabled { get; set; }
+
+        /// <summary>
         /// Gets or Sets Organization navigation property
         /// </summary>
         public virtual Organization Organization { get; set; }

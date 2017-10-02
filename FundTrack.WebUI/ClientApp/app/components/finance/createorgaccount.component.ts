@@ -34,12 +34,6 @@ export class CreateOrgAccountComponent {
     private smallAccountForm: FormGroup;
     // Property that keeps all targets of current organization
     private targets: TargetViewModel[] = new Array<TargetViewModel>();
-    private defaultTarget: TargetViewModel = {
-        targetId: undefined,
-        name: "Не вказано",
-        organizationId: undefined,
-        parentTargetId:undefined
-    }
 
     constructor(private _accountService: OrgAccountService,
         private _fb: FormBuilder,
@@ -59,7 +53,12 @@ export class CreateOrgAccountComponent {
             }
         };
         this._accountService.getAllBaseTargetsOfOrganization(this.user.orgId).subscribe((result) => {
-            this.targets.push(this.defaultTarget);
+            this.targets.push({
+                targetId: undefined,
+                name: "Не вказано",
+                organizationId: undefined,
+                parentTargetId: undefined
+            });
             for (var target of result) {
                 this.targets.push(target);
             }
@@ -71,7 +70,11 @@ export class CreateOrgAccountComponent {
     */
     private createForm(): void {
         this.accountForm = this._fb.group({
-            cardNumber: [this.account.cardNumber, [Validators.required, Validators.maxLength(16), this._validatorsService.isInteger, Validators.minLength(16)]]
+            accountNumber: [this.account.accNumber, [Validators.required, Validators.maxLength(20), this._validatorsService.isInteger]],
+            accountMfo: [this.account.mfo, [Validators.required, Validators.minLength(6), Validators.maxLength(6), this._validatorsService.isInteger]],
+            accountEdrpou: [this.account.edrpou, [Validators.required, Validators.minLength(8), Validators.maxLength(8), this._validatorsService.isInteger]],
+            accountBankName: [this.account.bankName, [Validators.required, Validators.maxLength(50)]],
+            accountDescription: [this.account.description, [Validators.required, Validators.maxLength(200)]],
         });
         this.accountForm.valueChanges
             .subscribe(a => this.onValueChange(a));
@@ -85,18 +88,19 @@ export class CreateOrgAccountComponent {
             accountName: [this.account.orgAccountName, [Validators.required, Validators.maxLength(100)]],
             currentBalance: [this.account.currentBalance, Validators.pattern(this.decimalValidationRegex)],
             accountCurrency: [this.account.currency, Validators.required],
-            accountTarget: [this.account.targetId],
-            accountDescription: [this.account.description, [Validators.required, Validators.maxLength(200)]]
+            accountTarget: [this.account.targetId]
         });
         this.smallAccountForm.valueChanges
             .subscribe(a => this.onValueChangeSmallForm(a));
+
+        //this.onValueChangeSmallForm();
     }
 
     /*
     Errors to be displayed on the UI
     */
     private formErrors = {
-        cardNumber: "",
+        accountNumber: "",
         accountMfo: "",
         accountEdrpou: "",
         accountBankName: "",
@@ -129,11 +133,10 @@ export class CreateOrgAccountComponent {
             required: this.requiredMessage,
             maxlength: this.accountNameWrongLength
         },
-        cardNumber: {
+        accountNumber: {
             required: this.requiredMessage,
             notnumeric: this.numberMessage,
-            maxlength: this.LengthMessage,
-            minlength: this.LengthMessage
+            maxlength: this.LengthMessage
         },
         accountMfo: {
             required: this.requiredMessage,
@@ -231,6 +234,8 @@ export class CreateOrgAccountComponent {
             return;
         }
         this.account.orgId = this.user.orgId;
+        this.account.creationDate = new Date();
+        this.account.userId = this.user.id;
         this._accountService.createOrgAccount(this.account)
             .subscribe(a => {
                 if (a.error == "" || a.error == null) {
@@ -243,7 +248,7 @@ export class CreateOrgAccountComponent {
                 else {
                     this.account.error = a.error;
                 }
-            });
+            })
     }
 
     /*
@@ -257,12 +262,13 @@ export class CreateOrgAccountComponent {
     Displays toast, that pops up when account is successfuly created
     */
     public showToast() {
-        var x = document.getElementById("snackbar");
+        var x = document.getElementById("snackbar")
         x.className = "show";
         setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
     }
 
-    private onChangeTarget($event): void {
+    private onChangeParentTarget($event): void {
         this.account.targetId = $event;
     }
+
 }

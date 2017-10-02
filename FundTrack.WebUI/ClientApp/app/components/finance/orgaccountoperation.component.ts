@@ -1,11 +1,7 @@
-﻿import { Component, OnInit, Input, SimpleChange, OnChanges, ViewChild } from "@angular/core";
+﻿import { ViewChild, Component, OnInit, Input, SimpleChange, OnChanges, Output } from "@angular/core";
 import { Router } from "@angular/router";
-import { DatePipe } from '@angular/common';
 import { OrgAccountService } from "../../services/concrete/finance/orgaccount.service";
-import { DonateService } from "../../services/concrete/finance/donate-money.service";
 import { OrgAccountViewModel } from "../../view-models/concrete/finance/orgaccount-viewmodel";
-import { CurrencyViewModel } from "../../view-models/concrete/finance/donate/currency.view-model"
-import { TargetViewModel } from "../../view-models/concrete/finance/donate/target.view-model";
 import { DecimalPipe } from '@angular/common';
 import { CurrencyPipe } from '@angular/common';
 import * as key from '../../shared/key.storage';
@@ -22,6 +18,11 @@ import { Image } from "../../view-models/concrete/image.model";
 import { EditOrganizationService } from "../../services/concrete/organization-management/edit-organization.service";
 import { ModeratorViewModel } from '../../view-models/concrete/edit-organization/moderator-view.model';
 import { AuthorizeUserModel } from "../../view-models/concrete/authorized-user-info-view.model";
+import { DonateService } from "../../services/concrete/finance/donate-money.service";
+import { CurrencyViewModel } from "../../view-models/concrete/finance/donate/currency.view-model";
+import { TargetViewModel } from "../../view-models/concrete/finance/donate/target.view-model";
+import { DeleteOrgAccountViewModel } from "../../view-models/concrete/finance/deleteorgaccount-view.model";
+import { OrgAccountDetailComponent } from "../../components/finance/orgaccountdetail.component";
 
 
 @Component({
@@ -40,14 +41,20 @@ export class OrgAccountOperationComponent implements OnChanges {
     private accountForUpdate: OrgAccountViewModel = new OrgAccountViewModel();
     private finOps: FinOpListViewModel[] = new Array<FinOpListViewModel>();
     private reservedFinOpsArray: FinOpListViewModel[] = new Array<FinOpListViewModel>();
+    private currentFinOp: FinOpListViewModel = new FinOpListViewModel();
     private moderators: ModeratorViewModel[] = new Array<ModeratorViewModel>();
     private accountOwner: ModeratorViewModel = new ModeratorViewModel();
     private currentDate = new Date().toJSON().slice(0, 10);
     private user: AuthorizeUserModel = new AuthorizeUserModel();
+    public deleteModel: DeleteOrgAccountViewModel = new DeleteOrgAccountViewModel();
+    public deletedAccountId: number = 0;
     private minDate: string;
     private default: boolean = true;
+    private isCashType: boolean = false;
+    private isTransferOperation: boolean = false;
+    private originalAmount: number;
 
-    @Input('orgId') orgId: number;
+    @Input() orgId: number;
     @Input() accountId: number;
     //------------------------------------------------------------------------------
     //Initialize modal windows
@@ -62,17 +69,26 @@ export class OrgAccountOperationComponent implements OnChanges {
 
     @ViewChild("newAccountManagment")
     private newAccountManagmentWindow: ModalComponent;
+
+    @ViewChild("newDeleteAccount")
+    private newDeleteModalWindow: ModalComponent;
+
+    @ViewChild("newUpdateFinOperation")
+    private newUpdateFinOperationWindow: ModalComponent;
     //-------------------------------------------------------------------------------
     //Initialize model and form
     private moneyIncomeForm: FormGroup;
     private moneySpendingForm: FormGroup;
     private moneyTransferForm: FormGroup;
     private accountManagmentForm: FormGroup;
+    private updateFinOperationForm: FormGroup;
 
-    private moneyOperationModel: MoneyOperationViewModel = new MoneyOperationViewModel();
-    private moneyIncome: MoneyOperationViewModel = new MoneyOperationViewModel();
-    private moneySpending: MoneyOperationViewModel = new MoneyOperationViewModel();
-    private moneyTransfer: MoneyOperationViewModel = new MoneyOperationViewModel();
+    private moneyOperationModel: FinOpListViewModel = new FinOpListViewModel();
+    private moneyIncome: FinOpListViewModel = new FinOpListViewModel();
+    private moneySpending: FinOpListViewModel = new FinOpListViewModel();
+    private moneyTransfer: FinOpListViewModel = new FinOpListViewModel();
+    private manageAccount: OrgAccountViewModel = new OrgAccountViewModel();
+    private updateFinOperation: FinOpListViewModel = new FinOpListViewModel();
     //-------------------------------------------------------------------------------
 
     images: Image[] = [];
@@ -88,68 +104,27 @@ export class OrgAccountOperationComponent implements OnChanges {
             this.createSpendingForm();
             this.createTransferForm();
             this.createManagmantForm();
+            this.createUpdateFinOperationForm();
     }
     private navigateToImportsPage(): void {
         this._router.navigate(['/finance/bank-import']);
-    }
-
-    onImageChange(imgArr: Image[]) {
-        this.images = imgArr;
     }
 
     /*
     Checks for value changes and assignes new account in the component
     */
     ngOnChanges(changes: { [propKey: string]: SimpleChange }) {
-        console.log("aaaaaaa");
-        if (changes['accountId'] && changes['accountId'] != changes['accountId'].currentValue) {
-            //code to execute when property changes
-            if (this.accountId != 1) {
-                this.finOpService.getFinOpsByOrgAccountId(this.accountId)
-                    .subscribe(a => {
-                        this.finOps = a;
-                        this.setFinOperations();
-                        this.reservedFinOpsArray = this.finOps;
-                        this.finOps = this.finOps.slice(0, 10);       
-                    });
-            }
-        }
-        this.accountService.getOrganizationAccountById(this.accountId)
-            .subscribe(currAcc => {
-                this.currentAccount = currAcc;                                      //get current organization account
-                this.accountForUpdate = currAcc;
-                this.getAccontsForTransfer();
-            });
-
-        this.default = false;
-
+        this.getFinOpsByOrgAccountId();
+        this.getCurrentOrgAccount();
+        this.switchDefaultOff();
     }
 
     ngOnInit(): void {
-        console.log("bbbbbb");
-        this.accountService.getAllAccountsOfOrganization()
-            .subscribe(acc => {
-                this.accounts = acc.filter(a =>
-                    a.accountType === "Готівка"                                      //get all cash accounts
-                );
-                this.getAccontsForTransfer();
-            });
-        this.donateService.getCurrencies()
-            .subscribe(curr => {
-                this.currencies = curr;
-            });
-        this.donateService.getTargets()
-            .subscribe(targ => {
-                this.targets = targ;
-            });
-
-        this.editService.getModerators(this.accountId)
-            .subscribe(moder => {
-                this.moderators = moder;
-            });
-
-        this.user = JSON.parse(localStorage.getItem(key.keyModel)) as AuthorizeUserModel;
-
+        this.getTargets();
+        this.getAllCashAccounts();
+        this.getCurrencies();
+        this.getModerators();
+        this.getLoggedUser();
         this.getMinDate();
     }
 
@@ -181,8 +156,66 @@ export class OrgAccountOperationComponent implements OnChanges {
         }
     }
 
+    private getTargets() {
+        this.finOpService.getTargetsByOrgId(this.orgId)
+            .subscribe(t => {
+                this.targets = t;
+            });
+    }
+
+    private getFinOpsByOrgAccountId() {
+        this.finOpService.getFinOpsByOrgAccountId(this.accountId)
+            .subscribe(a => {
+                this.finOps = a;
+                this.setFinOperations();
+                this.reservedFinOpsArray = this.finOps;
+                this.finOps = this.finOps.slice(0, 10);
+            });
+    }
+
+    private getFinOpById(id: number) {
+        this.finOpService.getFinOpById(id).subscribe(f => {
+            this.updateFinOperation = f;
+        });}
+
+    private getCurrentOrgAccount() {
+        this.accountService.getOrganizationAccountById(this.accountId)
+            .subscribe(currAcc => {
+                this.currentAccount = currAcc;                                     
+                this.accountForUpdate = currAcc;
+                this.getType();
+                this.getAccontsForTransfer();
+            });
+    }
+
+    private switchDefaultOn() {
+        this.default = true;
+    }
+
+    private switchDefaultOff() {
+        this.default = false;
+    }
+
     private viewFinOps() {
         this.finOps = this.reservedFinOpsArray;
+        this.switchDefaultOff();
+    }
+
+    private getAllCashAccounts() {
+        this.accountService.getAllAccountsOfOrganization()
+            .subscribe(acc => {
+                this.accounts = acc.filter(a =>
+                    a.accountType === "Готівка"
+                );
+                this.getAccontsForTransfer();
+            });
+    }
+
+    private getCurrencies() {
+        this.donateService.getCurrencies()
+            .subscribe(curr => {
+                this.currencies = curr;
+            });
     }
 
     private viewFinOpsByOperation(operation: number) {
@@ -197,10 +230,10 @@ export class OrgAccountOperationComponent implements OnChanges {
     }
 
     private getModerators() {
-        this.editService.getModerators(this.accountId)
+        this.editService.getModerators(this.orgId)
             .subscribe(moder => {
                 this.moderators = moder;
-            })
+            });
     }
 
     public getMinDate() {
@@ -209,13 +242,48 @@ export class OrgAccountOperationComponent implements OnChanges {
         this.minDate = date.toJSON().slice(0, 10);
     }
 
-    public setDate(date: Date): void {
-        console.log(date);
-        this.moneyOperationModel.date = date;
+    public getLoggedUser() {
+        this.user = JSON.parse(localStorage.getItem(key.keyModel)) as AuthorizeUserModel;
     }
 
-    private getOwner() {
+    public getType() {
+        if (this.currentAccount.accountType === "Готівка") {
+            this.isCashType = true;
+        }
+        else {
+            this.isCashType = false;
+        }
+    }
+
+    public setDate(model: FinOpListViewModel, date: Date) {
+        model.date = date;
+    }
+
+    private setOwner() {
         this.accountOwner = this.moderators.filter(m => m.id === this.currentAccount.userId)[0];
+    }
+
+    public preDeleteAccount(): void {
+        this.newAccountManagmentWindow.hide();
+        this.newDeleteModalWindow.show();
+    }
+
+    public cancelAccountDeleting(): void {
+        this.deleteModel.administratorPassword = '';
+        this.newDeleteModalWindow.hide();
+    }
+
+    public deleteAccount(): void {
+        this.deleteModel.error = '';
+        this.deleteModel.orgAccountId = this.currentAccount.id;
+        this.deletedAccountId = this.currentAccount.id;
+        this.deleteModel.userId = this.user.id;
+        this.deleteModel.organizationId = this.user.orgId;
+        this.accountService.deleteOrganizationAccountById(this.deleteModel)
+            .subscribe(a => {
+                this.deleteModel = a;
+            });
+        this.newDeleteModalWindow.hide();
     }
 
     private createIncomeForm() {
@@ -223,8 +291,8 @@ export class OrgAccountOperationComponent implements OnChanges {
             cardToId: [
                 this.moneyOperationModel.cardToId
             ],
-            sum: [
-                this.moneyOperationModel.sum, [Validators.required,
+            amount: [
+                this.moneyOperationModel.amount, [Validators.required,
                 this.validatorsService.isMinValue,
                 this.validatorsService.isMaxValue,
                 this.validatorsService.isNumber
@@ -250,8 +318,8 @@ export class OrgAccountOperationComponent implements OnChanges {
             cardFromId: [
                 this.moneyOperationModel.cardFromId
             ],
-            sum: [
-                this.moneyOperationModel.sum, [Validators.required,
+            amount: [
+                this.moneyOperationModel.amount, [Validators.required,
                 this.validatorsService.isMinValue,
                 this.validatorsService.isMaxValue,
                 this.validatorsService.isNumber
@@ -281,8 +349,8 @@ export class OrgAccountOperationComponent implements OnChanges {
                 this.moneyOperationModel.cardToId, [Validators.required
                 ]
             ],
-            sum: [
-                this.moneyOperationModel.sum, [Validators.required,
+            amount: [
+                this.moneyOperationModel.amount, [Validators.required,
                 this.validatorsService.isMinValue,
                 this.validatorsService.isMaxValue,
                 this.validatorsService.isNumber
@@ -302,33 +370,69 @@ export class OrgAccountOperationComponent implements OnChanges {
 
     private createManagmantForm() {
         this.accountManagmentForm = this.fb.group({
-
+            userId: [
+                this.accountForUpdate.userId]
         });
+        this.accountManagmentForm.valueChanges
+            .subscribe(a => this.onValueChange(this.accountManagmentForm, this.formTransferErrors, a));
+        this.onValueChange(this.accountManagmentForm, this.formManagmentErrors);
+    }
+
+    private createUpdateFinOperationForm() {
+        this.updateFinOperationForm = this.fb.group({
+            amount: [
+                this.currentFinOp.amount, [this.validatorsService.isMinValue,
+                this.validatorsService.isMaxValue,
+                this.validatorsService.isNumber
+                ]
+            ],
+            targetId: [
+                this.currentFinOp.targetId
+            ],
+            description: [
+                this.currentFinOp.description, [Validators.maxLength(500)]
+            ],
+            date: [
+                this.currentFinOp.date
+            ]
+        });
+        this.updateFinOperationForm.value;
+        this.updateFinOperationForm.valueChanges
+            .subscribe(a => this.onValueChange(this.updateFinOperationForm, this.formUpdateErrors, a));
+        this.onValueChange(this.updateFinOperationForm, this.formUpdateErrors);
     }
 
     private formIncomeErrors = {
-        sum: "",
+        amount: "",
         description: ""
     };
 
     private formSpendingErrors = {
-        sum: "",
+        amount: "",
         description: ""
     };
 
     private formTransferErrors = {
-        sum: "",
+        amount: "",
         description: ""
     };
 
-    private invalidSumMessage = "Поле ‘Сума’ може містити лише цілі числа в межах від 5 до 15000 грн";
+    private formUpdateErrors = {
+        amount: "",
+        description: ""
+    };
+
+    private formManagmentErrors = {
+    };
+
+    private invalidamountMessage = "Поле ‘Сума’ може містити лише цілі числа в межах від 5 до 15000 грн";
     private maxLengthDescription = "Поле ‘Опис’ може містити не більше 500 символів";
 
     private validationMessages = {
-        sum: {
-            notnumber: this.invalidSumMessage,
-            notminvalue: this.invalidSumMessage,
-            notmaxvalue: this.invalidSumMessage
+        amount: {
+            notnumber: this.invalidamountMessage,
+            notminvalue: this.invalidamountMessage,
+            notmaxvalue: this.invalidamountMessage
         },
         description: {
             maxlength: this.maxLengthDescription
@@ -356,13 +460,21 @@ export class OrgAccountOperationComponent implements OnChanges {
     }
 
     private openModal(modal: ModalComponent) {
-        console.log(this.moderators);
         modal.show();
     }
 
     private openManageModal() {
-        this.accountOwner = this.moderators.filter(m => m.id === this.currentAccount.userId)[0];
+        this.setOwner();
         this.newAccountManagmentWindow.show();
+    }
+
+    private openUpdateFinOpModal(finOp: FinOpListViewModel) {
+        this.getFinOpById(finOp.id);
+        this.originalAmount = finOp.amount;
+        if (finOp.finOpType === 2) {
+            this.isTransferOperation = true;
+        }
+        this.openModal(this.newUpdateFinOperationWindow);
     }
 
     private closeModal(modal: ModalComponent, form: FormGroup) {
@@ -400,8 +512,24 @@ export class OrgAccountOperationComponent implements OnChanges {
         this.closeModal(this.newMoneyTransferWindow, this.moneyTransferForm);
     }
 
+    private updateOrgAccount() {
+        this.accountService.updateOrganizationAccount(this.accountForUpdate).subscribe(a => {
+            this.manageAccount = a;
+        })
+    }
+
+    private updateFinOp() {
+        this.updateFinOperation.cardFromId = this.currentAccount.id;
+        this.updateFinOperation.userId = this.currentAccount.userId;
+        this.updateFinOperation.difference = this.updateFinOperation.amount - this.originalAmount;
+        this.finOpService.editFinOperation(this.updateFinOperation).subscribe(f => {
+            this.updateFinOperation = f;
+        });
+        this.isTransferOperation = false;
+    }
+
     private completeModel() {
-        this.moneyOperationModel.orgId = this.accounts[0].orgId;
+        this.moneyOperationModel.orgId = this.orgId;
         this.moneyOperationModel.userId = this.user.id;
         var arr: string[] = [];
         for (var i = 0; i < this.images.length; i++) {

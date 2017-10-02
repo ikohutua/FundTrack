@@ -2,9 +2,11 @@
     overflow: visible;
     max-height: 500px;
 }
-.sup-color-red{
+
+.sup-color-red {
     color: red;
 }
+
 .maindiv {
     background-image: url("https://privat24.privatbank.ua/p24/img/concrete_wall_3.png");
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -14,7 +16,7 @@
 }
 
 h2 {
-   float: left;
+    float: left;
 }
 
 .main-label {

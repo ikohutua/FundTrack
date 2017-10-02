@@ -14,6 +14,7 @@ export class AllOrganizationsComponent implements OnInit {
 
 
     private allOrganizations: OrganizationGeneralViewModel[];
+    private filterBy: string;
 
     constructor(private _service: OrganizationsDetailsService, private router: Router) {
     }

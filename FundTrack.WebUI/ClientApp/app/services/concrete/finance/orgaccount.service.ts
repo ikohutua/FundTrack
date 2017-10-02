@@ -12,6 +12,8 @@ import { DeleteOrgAccountViewModel } from "../../../view-models/concrete/finance
 import { DonateCredentialsViewModel } from "../../../view-models/concrete/finance/donate-credentials.view-model";
 import Targetviewmodel = require("../../../view-models/concrete/finance/donate/target.view-model");
 import TargetViewModel = Targetviewmodel.TargetViewModel;
+import { GlobalUrlService } from "../global-url.service";
+import { RequestOptionsService } from "../request-options.service";
 
 /**
  * Service for super admin actions
@@ -24,7 +26,7 @@ export class OrgAccountService {
     private _createUrl: string = 'api/orgaccount/create';
     private _getAccountUrl: string = 'api/orgaccount/get';
     private _deleteAccountUrl: string = 'api/orgaccount/delete';
-    
+
     constructor(private _http: Http) {
     }
     /**
@@ -37,7 +39,6 @@ export class OrgAccountService {
             let body = this.user;
             return this._http.post(this._readAllUrl, body, this.getRequestOptions())
                 .map((response: Response) => <OrgAccountViewModel[]>response.json())
-                .do(data => console.log('Item' + JSON.stringify(data)))
                 .catch(this.handleError);
         }
     }
@@ -45,7 +46,6 @@ export class OrgAccountService {
         if (this.checkAuthorization()) {
             return this._http.post(this._createUrl, model, this.getRequestOptions())
                 .map((response: Response) => <OrgAccountViewModel>response.json())
-                .do(data => console.log('Account data:' + JSON.stringify(data)))
                 .catch(this.handleError);
         }
     }
@@ -53,7 +53,6 @@ export class OrgAccountService {
         if (this.checkAuthorization()) {
             return this._http.get(this._getAccountUrl + '/' + accountId.toString(), this.getRequestOptions())
                 .map((r: Response) => <OrgAccountViewModel>r.json())
-                .do(data => console.log('Item' + JSON.stringify(data)))
                 .catch(this.handleError);
         }
     }
@@ -148,4 +147,24 @@ export class OrgAccountService {
             .catch((error: Response) => this.handleError(error));
     }
 
+
+    public checkExtractsStatus(bankAccountId: number): Observable<boolean> {
+        if (this.checkAuthorization()) {
+            return this._http.get(GlobalUrlService.getExtractStatus + bankAccountId.toString())
+                .map((response: Response) => <boolean>response.json())
+                .catch(this.handleError);
+        }
+    }
+
+    public getExtractsCredentials(orgAccountId: number): Observable<DonateCredentialsViewModel> {
+        return this._http.get(GlobalUrlService.getExtractCredentials + orgAccountId.toString())
+            .map((response: Response) => <DonateCredentialsViewModel>response.json())
+            .catch(this.handleError);
+    }
+
+    public connectExtracts(info: DonateCredentialsViewModel): Observable<DonateCredentialsViewModel> {
+        return this._http.post(GlobalUrlService.connectExtracts, info, RequestOptionsService.getRequestOptions())
+            .map((res: Response) => <DonateCredentialsViewModel>res.json())
+            .catch((error: Response) => this.handleError(error));
+    }
 }

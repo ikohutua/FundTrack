@@ -40,3 +40,8 @@ a.linkBack {
 .linkCursor {
     cursor: pointer;
 }
+
+.input-style {
+    margin-bottom: 15px;
+    min-width:168px;
+}

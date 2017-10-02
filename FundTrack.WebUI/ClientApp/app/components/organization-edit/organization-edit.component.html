@@ -1,5 +1,23 @@
 ﻿<div>
     <div *ngIf="organization" class="background">
+        <div class="parent">
+            <img class="child" *ngIf="!isNewLogoAvailable" [src]="orgLogo" />
+            <img class="child" *ngIf="isNewLogoAvailable" [src]="newLogo" />
+        </div>
+        <div class="parent-btn">
+            <div class="child-btn">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-info btn-blue" (click)="imageInput.click()">Завантажити інше фото</button>
+                    <input type="file" (change)="handleInputChange($event)" #imageInput accept=".png,.jpg" class="text-center center-block well well-sm hidden">
+                    <button type="button" class="btn btn-danger" (click)="clearImage()">Очистити</button>
+                    <button type="button" class="btn btn-success" (click)="saveImage()">Зберегти</button>
+                </div>
+            </div>
+        </div>
+        <div class="alert danger" *ngIf="isError">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            {{errorMessage}}
+        </div>
         <form>
             <h2> Опис організації</h2>
             <textarea class="form-control" [(ngModel)]="organization.description" name="description" rows="7" cols="100"> {{organization.description}}</textarea>

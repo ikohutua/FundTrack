@@ -33,10 +33,15 @@ export class ReportComponent implements OnInit, OnDestroy {
     private selectedImage: any;   
     private index: number = 0;
     private routeOrgIndex: number = 1;
-    private ifDataExists: boolean=false;
+    private ifDataExists: boolean = false;
+    private inputMaxDate: Date = new Date();
     
     @ViewChild("dateExceptionModal")
     private dateExceptionModal: ModalComponent;
+
+    @ViewChild("dateCompareExceptionModal")
+    private dateCompareExceptionModal: ModalComponent;
+    
 
     @ViewChild("exceptionModal")
     private exceptionModal: ModalComponent;
@@ -81,10 +86,7 @@ export class ReportComponent implements OnInit, OnDestroy {
         this.reportModel.id = orgId;
         console.log("user dateFrom=" + this.datePipe.transform(this.reportModel.dateFrom, 'yyyy-MM-dd') + " and dateTo=" + this.datePipe.transform(this.reportModel.dateTo, 'yyyy-MM-dd'));
         console.log("user orgId=" + this.reportModel.id + " and reportType=" + this.reportModel.reportType);
-        if (this.isDateValid()) {
-            this.openModal(this.dateExceptionModal);
-        }
-        else {
+        if (this.isDateValid()) { 
             this.fillHeadersArray();
             this.getReportDataByType();
             this.accessToFill = this.reportModel.reportType;           
@@ -139,12 +141,16 @@ export class ReportComponent implements OnInit, OnDestroy {
     }
 
     isDateValid(): boolean {
-        if (!this.reportModel.dateFrom || !this.reportModel.dateTo
-            || this.datePipe.transform(this.reportModel.dateFrom, 'yyyy-MM-dd')
-            >= this.datePipe.transform(this.reportModel.dateTo, 'yyyy-MM-dd'))
-            return true;
-        else
+        if (!this.reportModel.dateFrom || !this.reportModel.dateTo) {
+            this.openModal(this.dateExceptionModal);
             return false;
+        }
+        if(this.datePipe.transform(this.reportModel.dateFrom, 'yyyy-MM-dd')
+            > this.datePipe.transform(this.reportModel.dateTo, 'yyyy-MM-dd')){
+            this.openModal(this.dateCompareExceptionModal);
+            return false;
+        }
+            return true;
     }
 
     openModal(modal: ModalComponent): void {
