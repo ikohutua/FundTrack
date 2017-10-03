@@ -1,6 +1,7 @@
 ﻿<div class="container maindiv">
     <h2>Фінансові операції по рахунку</h2>
     <a *ngIf="isCashType" id="right-float" class="btn" (click)="openModal(newAccountManagmentWindow)">Керування рахунком</a>
+    <a *ngIf="!isCashType" id="right-float" class="btn" (click)="openModal(newBankAccountManagmentWindow)">Керування рахунком</a>
     <table class="table table-hover table-responsive">
         <thead>
             <tr>
@@ -411,7 +412,7 @@
                     <input class="form-control"
                            disabled
                            type="text"
-                           placeholder="{{currentAccount.orgAccountName}}"/>
+                           placeholder="{{currentAccount.orgAccountName}}" />
                 </div>
                 <div class="form-group">
                     <label class="control-label">Сума</label>
@@ -483,3 +484,19 @@
 </app-modal>
 
 
+<app-modal #newBankAccountManagment>
+    <div class="app-modal-header">
+        <button type="button" class="close" aria-hidden="true" (click)="closeWindow(newBankAccountManagmentWindow)">&times;</button>
+        <h4 class="modal-title">Керування банківським рахунком</h4>
+    </div>
+    <div class="app-modal-body">
+        <div style="height:350px;">
+            <div class="col-md-6">
+                <orgaccountpayment [accountId]="accountId"></orgaccountpayment>
+            </div>
+            <div class=" col-md-6">
+                <org-account-extracts [accountId]="accountId" (getIsExtractEnable)="onExtractEnableChange($event)"></org-account-extracts>
+            </div>
+        </div>
+    </div>
+</app-modal>

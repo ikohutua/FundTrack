@@ -1,4 +1,4 @@
-﻿import { ViewChild, Component, OnInit, Input, SimpleChange, OnChanges, Output } from "@angular/core";
+﻿import { ViewChild, Component, OnInit, Input, SimpleChange, OnChanges, Output, EventEmitter } from "@angular/core";
 import { Router } from "@angular/router";
 import { OrgAccountService } from "../../services/concrete/finance/orgaccount.service";
 import { OrgAccountViewModel } from "../../view-models/concrete/finance/orgaccount-viewmodel";
@@ -78,6 +78,9 @@ export class OrgAccountOperationComponent implements OnChanges {
 
     @ViewChild("newUpdateFinOperation")
     private newUpdateFinOperationWindow: ModalComponent;
+
+    @ViewChild("newBankAccountManagment")
+    private newBankAccountManagmentWindow: ModalComponent;
     //-------------------------------------------------------------------------------
     //Initialize model and form
     private moneyIncomeForm: FormGroup;
@@ -85,6 +88,8 @@ export class OrgAccountOperationComponent implements OnChanges {
     private moneyTransferForm: FormGroup;
     private accountManagmentForm: FormGroup;
     private updateFinOperationForm: FormGroup;
+    private bankAccountManagmentForm: FormGroup;
+
 
     private moneyOperationModel: FinOpListViewModel = new FinOpListViewModel();
     private moneyIncome: FinOpListViewModel = new FinOpListViewModel();
@@ -95,6 +100,8 @@ export class OrgAccountOperationComponent implements OnChanges {
     //-------------------------------------------------------------------------------
 
     images: Image[] = [];
+    @Output() getIsExtractEnable = new EventEmitter<boolean>();
+
 
     public constructor(private _router: Router,
         private finOpService: FinOpService,
@@ -562,4 +569,11 @@ export class OrgAccountOperationComponent implements OnChanges {
         this.moneyOperationModel.images = arr;
     }
 
+    public closeWindow(modal: ModalComponent) {
+        modal.hide();
+    }
+
+    onExtractEnableChange(event: boolean) {
+        this.getIsExtractEnable.emit(event);
+    }
 }
