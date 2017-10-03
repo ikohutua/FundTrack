@@ -36,7 +36,9 @@ export class OrgAccountOperationComponent implements OnChanges {
     private accounts: OrgAccountViewModel[] = new Array<OrgAccountViewModel>();
     private accountsTo: OrgAccountViewModel[] = new Array<OrgAccountViewModel>();
     private currencies: CurrencyViewModel[] = new Array<CurrencyViewModel>();
-    private targets: TargetViewModel[] = new Array<TargetViewModel>();
+    private orgTargets: TargetViewModel[] = new Array<TargetViewModel>();
+    private baseTargets: TargetViewModel[] = new Array<TargetViewModel>();
+    private subTargets: TargetViewModel[] = new Array<TargetViewModel>();
     private currentAccount: OrgAccountViewModel = new OrgAccountViewModel();
     private accountForUpdate: OrgAccountViewModel = new OrgAccountViewModel();
     private finOps: FinOpListViewModel[] = new Array<FinOpListViewModel>();
@@ -52,6 +54,7 @@ export class OrgAccountOperationComponent implements OnChanges {
     private default: boolean = true;
     private isCashType: boolean = false;
     private isTransferOperation: boolean = false;
+    private isBaseTargetChosen: boolean = false;
     private originalAmount: number;
 
     @Input() orgId: number;
@@ -120,12 +123,16 @@ export class OrgAccountOperationComponent implements OnChanges {
     }
 
     ngOnInit(): void {
-        this.getTargets();
+        this.getOrgTargetsAndBaseTargets();
         this.getAllCashAccounts();
         this.getCurrencies();
         this.getModerators();
         this.getLoggedUser();
         this.getMinDate();
+    }
+
+    ngAfterContentInit(): void {
+        this.setOwner();
     }
 
     private getAccontsForTransfer() {
@@ -156,11 +163,30 @@ export class OrgAccountOperationComponent implements OnChanges {
         }
     }
 
-    private getTargets() {
-        this.finOpService.getTargetsByOrgId(this.orgId)
+    private getOrgTargetsAndBaseTargets() {
+        this.editService.getTargetsByOrganizationId(this.orgId)
             .subscribe(t => {
-                this.targets = t;
+                this.orgTargets = t;
+                this.getBaseTargets();
             });
+    }
+
+    private getBaseTargets() {
+        for (let i = 0; i < this.orgTargets.length; i++) {
+            if (this.orgTargets[i].parentTargetId === null) {
+                this.baseTargets.push(this.orgTargets[i]);
+            }
+        }
+    }
+
+    private getSubTargetsByTargetId(parentTargetId: number) {
+        this.subTargets = new Array<TargetViewModel>();
+        for (let i = 0; i < this.orgTargets.length; i++) {
+            if (this.orgTargets[i].parentTargetId === parentTargetId) {
+                this.subTargets.push(this.orgTargets[i]);
+            }
+        }
+        this.isBaseTargetChosen = true;
     }
 
     private getFinOpsByOrgAccountId() {
@@ -463,23 +489,21 @@ export class OrgAccountOperationComponent implements OnChanges {
         modal.show();
     }
 
-    private openManageModal() {
-        this.setOwner();
-        this.newAccountManagmentWindow.show();
-    }
-
     private openUpdateFinOpModal(finOp: FinOpListViewModel) {
         this.getFinOpById(finOp.id);
         this.originalAmount = finOp.amount;
         if (finOp.finOpType === 2) {
             this.isTransferOperation = true;
         }
+        this.getSubTargetsByTargetId(finOp.targetId);
         this.openModal(this.newUpdateFinOperationWindow);
     }
 
     private closeModal(modal: ModalComponent, form: FormGroup) {
         modal.hide();
         form.reset();
+        this.isBaseTargetChosen = false;
+        this.isTransferOperation = false;
     }
 
     private makeIncome() {
@@ -526,6 +550,7 @@ export class OrgAccountOperationComponent implements OnChanges {
             this.updateFinOperation = f;
         });
         this.isTransferOperation = false;
+        this.closeModal(this.newUpdateFinOperationWindow, this.updateFinOperationForm);
     }
 
     private completeModel() {

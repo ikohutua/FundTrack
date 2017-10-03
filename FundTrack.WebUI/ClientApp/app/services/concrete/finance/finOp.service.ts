@@ -45,14 +45,6 @@ export class FinOpService extends BaseSpinnerService<FinOpViewModel> {
         }
     }
 
-    public getTargetsByOrgId(orgId: number): Observable<TargetViewModel[]> {
-        if (this.checkAuthorization()) {
-            return this._http.get(this.getTargetsUrl + '/' + orgId, this.getRequestOptions())
-                .map((response: Response) => <TargetViewModel[]>response.json())
-                .catch(this.handleError);
-        }
-    }
-
     public createIncome(moneyIncome: FinOpListViewModel): Observable<FinOpListViewModel> {
         let body = moneyIncome;
         return this._http.post(this.incomeUrl, body, this.getRequestOptions())

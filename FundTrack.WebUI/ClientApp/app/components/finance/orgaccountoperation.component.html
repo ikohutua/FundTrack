@@ -1,24 +1,24 @@
 ﻿<div class="container maindiv">
     <h2>Фінансові операції по рахунку</h2>
-    <a *ngIf="isCashType" id="right-float" class="btn" (click)="openManageModal()">Керування рахунком</a>
+    <a *ngIf="isCashType" id="right-float" class="btn" (click)="openModal(newAccountManagmentWindow)">Керування рахунком</a>
     <table class="table table-hover table-responsive">
         <thead>
             <tr>
-                <th style="text-align:center;">№</th>
-                <th style="text-align:center;">Дата і час операції</th>
-                <th style="text-align:center;">
-                    <select #operation (change)="viewFinOpsByOperation(operation.value)" style="text-align:center;">
+                <th class="th-center-align">№</th>
+                <th class="th-center-align">Дата і час операції</th>
+                <th class="th-center-align">
+                    <select #operation (change)="viewFinOpsByOperation(operation.value)" class="th-center-align">
                         <option *ngIf="!default" selected disabled>Тип операції</option>
                         <option value=1>Прихід</option>
                         <option value=0>Розхід</option>
                         <option value=2>Переміщення між рахунками</option>
                     </select>
                 </th>
-                <th style="text-align:center">Опис операції</th>
-                <th style="text-align:center">Призначення</th>
-                <th style="text-align:center">Сума</th>
-                <th style="text-align:center">Фото</th>
-                <th style="text-align:center">Редагувати</th>
+                <th class="th-center-align">Опис операції</th>
+                <th class="th-center-align">Призначення</th>
+                <th class="th-center-align">Сума</th>
+                <th class="th-center-align">Фото</th>
+                <th class="th-center-align">Редагувати</th>
             </tr>
         </thead>
         <tbody>
@@ -89,12 +89,24 @@
                 </div>
                 <div class="form-group">
                     <label class="control-label">Призначення<sup class="sup-color-red">*</sup></label>
-                    <select [(ngModel)]="moneyOperationModel.targetId" formControlName="targetId" id="categoryType" class="form-control">
+                    <select #detalization (change)="getSubTargetsByTargetId(detalization.value)" [(ngModel)]="moneyOperationModel.targetId" formControlName="targetId" id="categoryType" class="form-control">
                         <option></option>
-                        <option *ngFor="let target of targets" value="{{target.targetId}}">
+                        <option *ngFor="let target of baseTargets" value="{{target.targetId}}">
                             {{target.name}}
                         </option>
                     </select>
+                </div>
+                <div [hidden]="!isBaseTargetChosen" class="form-group">
+                    <label class="control-label">Деталізація<sup class="sup-color-red">*</sup></label>
+                    <select [(ngModel)]="moneyOperationModel.targetId" formControlName="targetId" id="categoryType" class="form-control">
+                        <option></option>
+                        <option *ngFor="let target of subTargets" value="{{target.targetId}}">
+                            {{target.name}}
+                        </option>
+                    </select>
+                    <span *ngIf="formIncomeErrors.targetId" class="has-error help-block error-message">
+                        {{ formIncomeErrors.targetId }}
+                    </span>
                 </div>
                 <div class="form-group">
                     <label class="control-label">Дата<sup class="sup-color-red">*</sup></label>
@@ -166,9 +178,21 @@
                 </div>
                 <div class="form-group">
                     <label class="control-label">Призначення<sup class="sup-color-red">*</sup></label>
+                    <select #detalization (change)="getSubTargetsByTargetId(detalization.value)" [(ngModel)]="moneyOperationModel.targetId" formControlName="targetId" id="categoryType" class="form-control">
+                        <option></option>
+                        <option *ngFor="let target of baseTargets" value="{{target.targetId}}">
+                            {{target.name}}
+                        </option>
+                    </select>
+                    <span *ngIf="formSpendingErrors.targetId" class="has-error help-block error-message">
+                        {{ formSpendingErrors.targetId }}
+                    </span>
+                </div>
+                <div [hidden]="!isBaseTargetChosen" class="form-group">
+                    <label class="control-label">Деталізація<sup class="sup-color-red">*</sup></label>
                     <select [(ngModel)]="moneyOperationModel.targetId" formControlName="targetId" id="categoryType" class="form-control">
                         <option></option>
-                        <option *ngFor="let target of targets" value="{{target.targetId}}">
+                        <option *ngFor="let target of subTargets" value="{{target.targetId}}">
                             {{target.name}}
                         </option>
                     </select>
@@ -416,9 +440,18 @@
                 </div>
                 <div class="form-group">
                     <label class="control-label">Призначення</label>
+                    <select #detalization (change)="getSubTargetsByTargetId(detalization.value)" [(ngModel)]="updateFinOperation.targetId" formControlName="targetId" id="categoryType" class="form-control">
+                        <option [disabled]="isTransferOperation"></option>
+                        <option [disabled]="isTransferOperation" *ngFor="let target of baseTargets" value="{{target.targetId}}">
+                            {{target.name}}
+                        </option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Деталізація</label>
                     <select [(ngModel)]="updateFinOperation.targetId" formControlName="targetId" id="categoryType" class="form-control">
                         <option [disabled]="isTransferOperation"></option>
-                        <option [disabled]="isTransferOperation" *ngFor="let target of targets" value="{{target.targetId}}">
+                        <option [disabled]="isTransferOperation" *ngFor="let target of subTargets" value="{{target.targetId}}">
                             {{target.name}}
                         </option>
                     </select>
