@@ -131,7 +131,7 @@ export class TargetManagementComponent implements OnInit {
     }
 
     getTargetsByOrganizationId() {
-        this._editService.getTargetsByOrganizationId(this.user.orgId).subscribe(model => {
+        this._editService.getTargetsWithDeletableField(this.user.orgId).subscribe(model => {
             this.targetArray = model;
         });
     }

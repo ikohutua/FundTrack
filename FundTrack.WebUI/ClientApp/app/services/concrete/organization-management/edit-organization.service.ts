@@ -87,6 +87,11 @@ export class EditOrganizationService {
             map((response: Response) => response.json() as TargetViewModel[]);
     }
 
+    getTargetsWithDeletableField(orgId: number): Observable<TargetViewModel[]> {
+        return this._http.get('api/Target/' + orgId, this.getOptionsForRequest()).
+            map((response: Response) => response.json() as TargetViewModel[]);
+    }
+
     editTarget(target: TargetViewModel): Observable<TargetViewModel> {
         let body = target;
         return this._http.put('api/Target/EditTarget/', body, this.getOptionsForRequest()).

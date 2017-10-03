@@ -27,6 +27,12 @@ namespace FundTrack.WebUI.Controllers
             return _targetService.GetTargetsByOrganizationId(id);
         }
 
+        [HttpGet("{id}")]
+        public IEnumerable<TargetViewModel> GetTargetsByOrganizationIdWithEditableField(int id)
+        {
+            return _targetService.GetTargetsByOrganizationIdWithEditableField(id);
+        }
+
         [HttpPost("CreateTarget")]
         public TargetViewModel AddTarget([FromBody] TargetViewModel target)
         {
