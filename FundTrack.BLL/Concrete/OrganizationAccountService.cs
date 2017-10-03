@@ -102,15 +102,16 @@ namespace FundTrack.BLL.Concrete
             }
         }
 
-        public OrgAccountViewModel GetOrganizationAccountById(int organizationAccountId)
+        public OrgAccountViewModel GetOrganizationAccountById(int accountId)
         {
             try
             {
-                var account = this._unitOfWork.OrganizationAccountRepository.Read(organizationAccountId);
-               if (account == null)
+                var account = this._unitOfWork.OrganizationAccountRepository.Read(accountId);
+                if (account == null)
                 {
                     return new OrgAccountViewModel();
                 }
+               
                 OrgAccountViewModel model = this.InitializeOrgAccountViewModel(account);
                 return model;
             }
@@ -124,7 +125,9 @@ namespace FundTrack.BLL.Concrete
         {
             try
             {
-                var result = _unitOfWork.OrganizationAccountRepository.Edit(model);
+                var result = _unitOfWork.OrganizationAccountRepository.GetOrgAccountById(model.Id);
+                result.UserId = model.UserId;
+                _unitOfWork.OrganizationAccountRepository.Edit(result);
                 _unitOfWork.SaveChanges();
                 return result;
             }
@@ -136,13 +139,6 @@ namespace FundTrack.BLL.Concrete
 
         public OrgAccountViewModel InitializeCommonProperties(OrgAccount item)
         {
-            string firstName = "", lastName = "";
-            if (item.User !=null)
-            {
-                firstName = item.User.FirstName;
-                lastName = item.User.LastName;
-            }
-          
             return new OrgAccountViewModel
             {
                 Id = item.Id,
@@ -155,8 +151,8 @@ namespace FundTrack.BLL.Concrete
                 TargetId = item.TargetId,
                 Description = item.Description,
                 UserId = item.UserId,
-                FirstName = firstName,
-                LastName  = lastName,
+                FirstName = item.User?.FirstName,
+                LastName = item.User?.LastName,
                 CreationDate = item.CreationDate
             };
         }
@@ -205,6 +201,8 @@ namespace FundTrack.BLL.Concrete
                 account.Organization = this._unitOfWork.OrganizationRepository.Get(model.OrgId);
                 account.TargetId = model.TargetId;
                 account.Description = model.Description;
+                account.UserId = model.UserId;
+                account.CreationDate = model.CreationDate;
                 this._unitOfWork.OrganizationAccountRepository.Create(account);
                 this._unitOfWork.SaveChanges();
                 return (OrgAccountViewModel)account;
@@ -247,6 +245,8 @@ namespace FundTrack.BLL.Concrete
                 this._unitOfWork.BankAccountRepository.Create(bankAccount);
                 account.BankAccId = bankAccount.Id;
                 account.BankAccount = bankAccount;
+                account.UserId = model.UserId;
+                account.CreationDate = model.CreationDate;
                 account.Description = model.Description;
                 this._unitOfWork.OrganizationAccountRepository.Create(account);
                 this._unitOfWork.SaveChanges();

@@ -86,7 +86,7 @@ export class MakeDonationComponent implements OnInit, DoCheck, OnDestroy{
 
 
     ngOnInit() {
-
+        console.log("Donate");
         this._storageService.showDropDown = false;
 
         if (localStorage.getItem("order_id")) {

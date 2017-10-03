@@ -85,9 +85,8 @@
 
                     </div>
                 </div>
-
-                <div class="row" style="margin-left: 15px;">
-                    <orgaccountoperation [accountId]="selectAccountId"></orgaccountoperation>
+                <div *ngIf="isDownloaded" class="row" style="margin-left: 15px;">
+                    <orgaccountoperation [accountId]="selectAccountId" [orgId]="orgId"></orgaccountoperation>
                 </div>
                 <br>
             </div>

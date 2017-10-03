@@ -317,12 +317,12 @@
                     <input class="form-control"
                            type="text"
                            disabled
-                           placeholder="{{accountOwner.firstName}} {{accountOwner.lastName}}"
+                           placeholder="{{currentAccount.firstName}} {{currentAccount.lastName}}"
                            name="owner" />
                 </div>
                 <div class="form-group">
                     <label class="control-label">Змінити власника</label>
-                    <select id="categoryType" class="form-control">
+                    <select id="categoryType" class="form-control" [(ngModel)]="accountForUpdate.userId" formControlName="userId">
                         <option value=null></option>
                         <option *ngFor="let moderator of moderators" value="{{moderator.id}}">
                             {{moderator.firstName}} {{moderator.lastName}}
@@ -337,7 +337,7 @@
         </div>
     </div>
     <div class="app-modal-footer">
-        <button (click)="makeIncome()"
+        <button (click)="updateOrgAccount()"
                 class="btn btn-fundtrack-style pull-left"
                 data-dismiss="modal">
             ОК

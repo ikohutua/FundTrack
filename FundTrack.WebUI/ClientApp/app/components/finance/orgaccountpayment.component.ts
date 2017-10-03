@@ -37,6 +37,7 @@ export class OrgAccountPaymentComponent implements OnChanges , OnInit{
     }
 
     ngOnChanges(changes: { [propKey: string]: SimpleChange }) {
+        console.log("OrgPayment");
         if (changes['accountId'] && changes['accountId'] != changes['accountId'].currentValue) {
             if (this.accountId!=(-1)) {
                 this.errorMessage = null;
