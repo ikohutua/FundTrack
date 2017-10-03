@@ -7,9 +7,9 @@
             <label class="control-label"> Назва організації</label>
             <div class="inner-addon left-addon">
                 <i class="glyphicon glyphicon-pencil"></i>
-                <input type="text" class="form-control" [(ngModel)]="organization.name" placeholder="Введіть назву" required minlength="5" maxlength="50" name="name" #name="ngModel"/>
+                <input type="text" class="form-control" [(ngModel)]="organization.name" placeholder="Введіть назву" required minlength="5" maxlength="50" name="name" #name="ngModel" />
             </div>
-             <div *ngIf="name.errors && (name.dirty || name.touched)"
+            <div *ngIf="name.errors && (name.dirty || name.touched)"
                  class="alert alert-danger">
                 <div [hidden]="!name.errors.required">
                     Назва організації обов'язкова
@@ -24,11 +24,11 @@
             <div class="alert-danger">
                 {{nameError}}
             </div>
-            </div>
+        </div>
         <div class="form-group" [class.has-error]="description.invalid&&description.touched">
             <label class="control-label"> Опис організації </label>
             <div class="inner-addon left-addon">
-                <i class="glyphicon glyphicon-pencil" *ngIf ="!description.dirty"></i> 
+                <i class="glyphicon glyphicon-pencil" *ngIf="!description.dirty"></i>
                 <textarea class="form-control" [(ngModel)]="organization.description" required minlength="20" placeholder="     Введіть опис" maxlength="200" name="description" #description="ngModel" rows="5"> </textarea>
             </div>
             <div *ngIf="description.errors && (description.dirty || description.touched)"
@@ -80,8 +80,8 @@
                     Поле може містити лише кирилицю.
                 </div>
             </div>
-            </div>
-        <div class="form-group" [class.has-error]="street.invalid&&street.touched" >
+        </div>
+        <div class="form-group" [class.has-error]="street.invalid&&street.touched">
             <label class="control-label"> Вулиця </label>
             <div class="inner-addon left-addon">
                 <i class="glyphicon glyphicon-home"></i>
@@ -94,12 +94,12 @@
                 </div>
             </div>
         </div>
-          
+
         <div class="form-group" [class.has-error]="house.invalid&&house.touched">
             <label class="control-label"> Будинок </label>
             <div class="inner-addon left-addon">
                 <i class="glyphicon glyphicon-home"></i>
-                <input type="text" class="form-control" [(ngModel)]="organization.house" placeholder="Введіть будинок" name="house" #house="ngModel" required/>
+                <input type="text" class="form-control" [(ngModel)]="organization.house" placeholder="Введіть будинок" name="house" #house="ngModel" required />
             </div>
             <div *ngIf="house.errors && (house.dirty || house.touched)"
                  class="alert alert-danger">
@@ -107,7 +107,22 @@
                     Будинок обов'язковий
                 </div>
             </div>
-        </div>   
+        </div>
+        <div class="form-group">
+            <div>
+                <img class="img-logo" *ngIf="isNewLogoAvailable" [src]="newLogo.imageSrc" />
+                <img class="img-logo" *ngIf="!isNewLogoAvailable" [src]="defaultLogoUrl" />
+            </div>
+            <div style="display:flex;">
+                <button type="button" class="btn btn-danger" *ngIf="isNewLogoAvailable" (click)="clearImage()">Видалити</button>
+                <button type="button" class="btn btn-success" (click)="imageInput.click()">Обрати</button>
+                <input type="file" (change)="handleInputChange($event)" #imageInput accept=".png,.jpg" class="text-center center-block well well-sm hidden">
+            </div>
+            <div class="alert alert-danger" *ngIf="isError">
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                {{errorMessage}}
+            </div>
+        </div>
         <div class="col-md-offset-10 col-md-1">
             <button (click)="registerOrganization()" class="btn btn-primary" type="submit" [disabled]="form.invalid"> Зареєструвати </button>
         </div>

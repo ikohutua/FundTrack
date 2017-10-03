@@ -39,7 +39,6 @@ export class OrgAccountService {
             let body = this.user;
             return this._http.get(this._readAllUrl + '/' + this.user.orgId, this.getRequestOptions())
                 .map((response: Response) => <OrgAccountViewModel[]>response.json())
-                .do(data => console.log('Item' + JSON.stringify(data)))
                 .catch(this.handleError);
         }
     }
@@ -47,7 +46,6 @@ export class OrgAccountService {
         if (this.checkAuthorization()) {
             return this._http.post(this._createUrl, model, this.getRequestOptions())
                 .map((response: Response) => <OrgAccountViewModel>response.json())
-                .do(data => console.log('Account data:' + JSON.stringify(data)))
                 .catch(this.handleError);
         }
     }
@@ -55,7 +53,6 @@ export class OrgAccountService {
         if (this.checkAuthorization()) {
             return this._http.get(this._getAccountUrl + '/' + accountId.toString(), this.getRequestOptions())
                 .map((r: Response) => <OrgAccountViewModel>r.json())
-                .do(data => console.log('Item' + JSON.stringify(data)))
                 .catch(this.handleError);
         }
     }

@@ -36,17 +36,13 @@ namespace FundTrack.BLL.Concrete
                 if (model != null)
                 {
                     OfferedItem item = model;
-                    item.User = this._unitOfWork.UsersRepository.GetUserById(model.UserId);
-                    item.GoodsCategory = this._unitOfWork.GoodsCategoryRepository.GetGoodsCategoryById(model.GoodsCategoryId);
-                    item.Status = this._unitOfWork.StatusRepository.GetStatusByName(initialStatus);
-                    var createdItem = this._unitOfWork.OfferedItemRepository.Create(item);
-                    this.SetNewPictures(model, createdItem);
-                    this._unitOfWork.SaveChanges();
+                    item.User = _unitOfWork.UsersRepository.GetUserById(model.UserId);
+                    item.GoodsCategory = _unitOfWork.GoodsCategoryRepository.GetGoodsCategoryById(model.GoodsCategoryId);
+                    item.Status = _unitOfWork.StatusRepository.GetStatusByName(initialStatus);
+                    var createdItem = _unitOfWork.OfferedItemRepository.Create(item);
+                    createdItem.OfferedItemImages = SetNewPictures(model.Base64Images, createdItem.Id);
+                    _unitOfWork.SaveChanges();
                 }
-
-                //TODO: uncomment
-                //SetImagesUrl(model.Image);
-
                 return model;
             }
             catch (Exception ex)
@@ -74,25 +70,11 @@ namespace FundTrack.BLL.Concrete
                     this._unitOfWork.SaveChanges();
                 }
 
-                //TODO: uncomment
-                //SetImagesUrl(model.Image);
-
                 return model;
             }
             catch (Exception ex)
             {
                 throw new BusinessLogicException(ex.Message);
-            }
-        }
-        /// <summary>
-        /// Get full image URL
-        /// </summary>
-        /// <param name="images"></param>
-        private void SetImagesUrl(OfferedItemImageViewModel[] images)
-        {
-            foreach (var item in images)
-            {
-                item.ImageUrl = _imgService.GetImageUrl(item.ImageUrl);
             }
         }
 
@@ -108,11 +90,6 @@ namespace FundTrack.BLL.Concrete
                 var images = item.OfferedItemImages?.Select(i => i.ImageUrl);
 
                 this._unitOfWork.OfferedItemRepository.Delete(id);
-
-                if (images!=null)
-                {
-                    _imgService.DeleteRangeOfImages(images);
-                }
                 this._unitOfWork.SaveChanges();
             }
             catch (Exception ex)
@@ -214,7 +191,6 @@ namespace FundTrack.BLL.Concrete
             model.Image = this._unitOfWork.OfferImagesRepository.Read().Where(a => a.OfferedItemId == model.Id)
                 .Select(a => new OfferedItemImageViewModel
                 {
-                    //TODO: замінити на ImageName = _imgService.GetImageUrl(a.ImageUrl),
                     ImageUrl = a.ImageUrl,
                     IsMain = a.IsMain,
                     OfferedItemId = model.Id,
@@ -225,36 +201,39 @@ namespace FundTrack.BLL.Concrete
         }
 
         /// <summary>
-        /// Sets specified images of specified offer item
+        ///  Sets specified images of specified offer item. First image is Main
         /// </summary>
-        /// <param name="model">Offer item view model</param>
-        /// <param name="item">Offered item entity</param>
-        /// <returns>List of offered item images</returns>
-        public OfferedItemImageViewModel[] SetNewPictures(OfferedItemViewModel model, OfferedItem item)
+        /// <param name="imagesInBase64code">Base64 code of images</param>
+        /// <param name="offeredItemId">Offered item Id</param>
+        /// <returns>Collection of offered item images</returns>
+        public ICollection<OfferedItemImage> SetNewPictures(string[] imagesInBase64code,int offeredItemId)
         {
-            int i = 0;
-            Dictionary<OfferedItemImage, Task<string>> d = new Dictionary<OfferedItemImage, Task<string>>();
-            foreach (var thing in model.Image)
+            Dictionary<OfferedItemImage, Task<string>> imageTastDictionary = new Dictionary<OfferedItemImage, Task<string>>();
+
+            foreach (var item in imagesInBase64code)
             {
-                var newImage = new OfferedItemImage
+                var newImage = new OfferedItemImage()
                 {
-                    IsMain = thing.IsMain,
-                    OfferedItemId = item.Id
+                    IsMain = false,
+                    OfferedItemId = offeredItemId
                 };
-                var t = _imgService.UploadImage(Convert.FromBase64String(model.Base64Images[i++]));
 
-                d.Add(newImage, t);
+                var t = _imgService.UploadImage(Convert.FromBase64String(item));
+                imageTastDictionary.Add(newImage, t);
             }
-            Task.WhenAll(d.Values);
+            Task.WhenAll(imageTastDictionary.Values);
 
-            foreach (var element in d)
+            foreach (var element in imageTastDictionary)
             {
                 element.Key.ImageUrl = element.Value.Result;
             }
-
-            this._unitOfWork.OfferImagesRepository.CreateMany(d.Keys.ToList());
-            return model.Image;
+            if (imageTastDictionary.Keys.First() != null)
+            {
+                imageTastDictionary.Keys.First().IsMain = true;
+            }
+            return imageTastDictionary.Keys;
         }
+
 
         /// <summary>
         /// Gets offered item images of the specified item by it's id
@@ -325,7 +304,6 @@ namespace FundTrack.BLL.Concrete
                         Id = image.Id,
                         IsMain = image.IsMain,
                         OfferedItemId = image.OfferedItemId,
-                        //TODO: замінити на ImageUrl = _imgService.GetImageUrl(image.ImageUrl)
                         ImageUrl = image.ImageUrl
                     });
             return images;

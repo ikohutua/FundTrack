@@ -40,7 +40,8 @@ export class OrgAccountExtractsComponent implements OnChanges, OnInit {
     }
 
     ngOnChanges(changes: { [propKey: string]: SimpleChange }) {
-        console.log("Org-Accounts-Extracts");
+        this.connectExtractsCredential = new DonateCredentialsViewModel();
+
         if (changes['accountId'] && changes['accountId'] != changes['accountId'].currentValue) {
             if (this.accountId != (-1)) {
                 this.errorMessage = null;
