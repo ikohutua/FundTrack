@@ -99,7 +99,6 @@
                 <div [hidden]="!isBaseTargetChosen" class="form-group">
                     <label class="control-label">Деталізація<sup class="sup-color-red">*</sup></label>
                     <select [(ngModel)]="moneyOperationModel.targetId" formControlName="targetId" id="categoryType" class="form-control">
-                        <option></option>
                         <option *ngFor="let target of subTargets" value="{{target.targetId}}">
                             {{target.name}}
                         </option>
@@ -191,7 +190,6 @@
                 <div [hidden]="!isBaseTargetChosen" class="form-group">
                     <label class="control-label">Деталізація<sup class="sup-color-red">*</sup></label>
                     <select [(ngModel)]="moneyOperationModel.targetId" formControlName="targetId" id="categoryType" class="form-control">
-                        <option></option>
                         <option *ngFor="let target of subTargets" value="{{target.targetId}}">
                             {{target.name}}
                         </option>
@@ -450,7 +448,6 @@
                 <div class="form-group">
                     <label class="control-label">Деталізація</label>
                     <select [(ngModel)]="updateFinOperation.targetId" formControlName="targetId" id="categoryType" class="form-control">
-                        <option [disabled]="isTransferOperation"></option>
                         <option [disabled]="isTransferOperation" *ngFor="let target of subTargets" value="{{target.targetId}}">
                             {{target.name}}
                         </option>

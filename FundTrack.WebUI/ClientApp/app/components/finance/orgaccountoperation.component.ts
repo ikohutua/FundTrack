@@ -182,7 +182,7 @@ export class OrgAccountOperationComponent implements OnChanges {
     private getSubTargetsByTargetId(parentTargetId: number) {
         this.subTargets = new Array<TargetViewModel>();
         for (let i = 0; i < this.orgTargets.length; i++) {
-            if (this.orgTargets[i].parentTargetId === parentTargetId) {
+            if (this.orgTargets[i].parentTargetId == parentTargetId) {
                 this.subTargets.push(this.orgTargets[i]);
             }
         }
