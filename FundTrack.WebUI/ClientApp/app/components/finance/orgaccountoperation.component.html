@@ -1,6 +1,11 @@
 ﻿<div class="container maindiv">
-    <h2>Фінансові операції по рахунку</h2>
-    <a *ngIf="isCashType" id="right-float" class="btn" (click)="openManageModal()">Керування рахунком</a>
+    <div class="row marginLeft">
+        <h2>Фінансові операції по рахунку</h2>
+    </div>
+    <div class="row marginTopRight">
+        <a class="btn pull-right marginLeft" (click)="openModal(fixingBalanceModal)">Зафіксувати баланс</a>
+        <a *ngIf="isCashType" id="right-float" class="btn pull-right" (click)="openManageModal()">Керування рахунком</a>
+    </div>
     <table class="table table-hover table-responsive">
         <thead>
             <tr>
@@ -343,4 +348,15 @@
             Скасувати
         </button>
     </div>
+</app-modal>
+
+<app-modal #fixingBalanceModal>
+    <div class="app-modal-header">
+        <button type="button" class="close" aria-hidden="true" (click)="fixingBalanceModal.hide()">&times;</button>
+        <h4 class="modal-title">Зафіксувати залишок</h4>
+    </div>
+    <div class="app-modal-body">
+        <fixing-balance [accountId]="accountId" (closeModalEvent) ="handleCloseModalEvent($event)"></fixing-balance>
+    </div>
+    <div class="app-modal-footer"></div>
 </app-modal>

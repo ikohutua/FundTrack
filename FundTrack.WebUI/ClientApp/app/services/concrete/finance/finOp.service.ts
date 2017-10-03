@@ -40,7 +40,6 @@ export class FinOpService extends BaseSpinnerService<FinOpViewModel> {
     public createIncome(moneyIncome: MoneyOperationViewModel): Observable<MoneyOperationViewModel> {
         let url = "api/finop/income";
         let body = moneyIncome;
-        console.log(moneyIncome);
         return this._http.post(url, body, this.getRequestOptions())
             .map((response: Response) => <MoneyOperationViewModel>response.json())
             .catch(this.handleError);
@@ -49,7 +48,6 @@ export class FinOpService extends BaseSpinnerService<FinOpViewModel> {
     public createSpending(moneySpending: MoneyOperationViewModel): Observable<MoneyOperationViewModel> {
         let url = "api/finop/spending";
         let body = moneySpending;
-        console.log(moneySpending);
         return this._http.post(url, body, this.getRequestOptions())
             .map((response: Response) => <MoneyOperationViewModel>response.json())
             .catch(this.handleError)
@@ -58,7 +56,6 @@ export class FinOpService extends BaseSpinnerService<FinOpViewModel> {
     public createTransfer(moneyTransfer: MoneyOperationViewModel): Observable<MoneyOperationViewModel> {
         let url = "api/finop/transfer";
         let body = moneyTransfer;
-        console.log(moneyTransfer);
         return this._http.post(url, body, this.getRequestOptions())
             .map((response: Response) => <MoneyOperationViewModel>response.json())
             .catch(this.handleError);
@@ -94,7 +91,6 @@ export class FinOpService extends BaseSpinnerService<FinOpViewModel> {
         if (this.checkAuthorization()) {
             return this._http.get(this.getFinOpsUrl + '/' + orgAccountId, this.getRequestOptions())
                 .map((response: Response) => <FinOpListViewModel[]>response.json())
-                .do(data => console.log('Item' + JSON.stringify(data)))
                 .catch(this.handleError);
         }
     }

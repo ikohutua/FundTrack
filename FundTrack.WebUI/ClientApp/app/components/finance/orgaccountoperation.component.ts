@@ -62,6 +62,9 @@ export class OrgAccountOperationComponent implements OnChanges {
 
     @ViewChild("newAccountManagment")
     private newAccountManagmentWindow: ModalComponent;
+
+    @ViewChild("fixingBalanceModal")
+    private fixingBalanceModal: ModalComponent;
     //-------------------------------------------------------------------------------
     //Initialize model and form
     private moneyIncomeForm: FormGroup;
@@ -115,7 +118,6 @@ export class OrgAccountOperationComponent implements OnChanges {
                 this.accountForUpdate = currAcc;
                 this.getType();
                 this.getAccontsForTransfer();
-                console.log("OrganizationId    " + this.orgId);
             });
 
         this.default = false;
@@ -216,7 +218,6 @@ export class OrgAccountOperationComponent implements OnChanges {
     }
 
     public setDate(date: Date): void {
-        console.log(date);
         this.moneyOperationModel.date = date;
     }
 
@@ -367,13 +368,10 @@ export class OrgAccountOperationComponent implements OnChanges {
 
     private openManageModal() {
         //this.accountOwner = this.moderators.filter(m => m.id === this.currentAccount.userId)[0];
-        console.log(this.moderators);
-        console.log(this.accountOwner);
         this.newAccountManagmentWindow.show();
     }
 
     private closeModal(modal: ModalComponent, form: FormGroup) {
-        console.log(this.orgId);
         modal.hide();
         form.reset();
     }
@@ -416,6 +414,12 @@ export class OrgAccountOperationComponent implements OnChanges {
             arr[i] = this.images[i].base64Data;
         }
         this.moneyOperationModel.images = arr;
+    }
+    handleCloseModalEvent(isCloseModal) {
+        console.log(isCloseModal);
+        if (isCloseModal) {
+            this.fixingBalanceModal.hide();
+        }
     }
 
 }

@@ -43,7 +43,6 @@ export class OrgAccountPaymentComponent implements OnChanges , OnInit{
                 this._orgAccountService.getBankAccId(this.accountId)
                     .subscribe((r) => {
                         this.bankAccountId = r;
-                        console.log(this.bankAccountId);
                     });
                 this._orgAccountService.checkDonateStatus(this.accountId)
                     .subscribe(
@@ -54,7 +53,6 @@ export class OrgAccountPaymentComponent implements OnChanges , OnInit{
                             this._orgAccountService.getDonateCredentials(this.accountId)
                                 .subscribe((res) => {
                                     this.donateCredentials = res;
-                                    console.log("cred", this.donateCredentials);
                                 })
                             this._orgAccountService.checkDonateEnable(this.accountId)
                                 .subscribe((res) => {
@@ -62,9 +60,6 @@ export class OrgAccountPaymentComponent implements OnChanges , OnInit{
                                 })
 
                         }
-
-                        console.log(res);
-                        console.log(this.accountId)
                     },
                     error => {
                         this.isDonationConnected = false;
@@ -88,7 +83,6 @@ export class OrgAccountPaymentComponent implements OnChanges , OnInit{
         this._orgAccountService.getBankAccId(this.accountId)
             .subscribe((r) => {
                 this.connectDonateCredential.bankAccountId = r;
-                console.log(this.bankAccountId);
                 this._orgAccountService.connectDonation(this.connectDonateCredential)
                     .subscribe((r) => {
                         this.donateCredentials = r;
