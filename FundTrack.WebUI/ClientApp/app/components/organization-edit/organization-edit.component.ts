@@ -319,7 +319,7 @@ export class OrganizationEditComponent implements OnInit, OnDestroy, AfterViewIn
             return;
         }
 
-        reader.onload = this._handleReaderLoaded.bind(this);
+        reader.onloadend = this._handleReaderLoaded.bind(this);
         reader.readAsDataURL(this.currentFile);
     }
 
