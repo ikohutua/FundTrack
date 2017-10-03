@@ -27,7 +27,7 @@ namespace FundTrack.WebUI.Controllers
             return _targetService.GetTargetsByOrganizationId(id);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("withDeletable/{id}")]
         public IEnumerable<TargetViewModel> GetTargetsByOrganizationIdWithEditableField(int id)
         {
             return _targetService.GetTargetsByOrganizationIdWithEditableField(id);

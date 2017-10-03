@@ -88,7 +88,7 @@ export class EditOrganizationService {
     }
 
     getTargetsWithDeletableField(orgId: number): Observable<TargetViewModel[]> {
-        return this._http.get('api/Target/' + orgId, this.getOptionsForRequest()).
+        return this._http.get('api/Target/withDeletable/' + orgId, this.getOptionsForRequest()).
             map((response: Response) => response.json() as TargetViewModel[]);
     }
 
