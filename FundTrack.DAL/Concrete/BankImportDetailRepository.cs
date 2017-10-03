@@ -95,8 +95,8 @@ namespace FundTrack.DAL.Concrete
         /// <returns></returns>
         public BankImportDetail ChangeBankImportState(BankImportDetail bankImportDetail)
         {
-            this._context.BankImportDetails.Update(bankImportDetail);
-            return bankImportDetail;
+            var updatedItem =  this._context.BankImportDetails.Update(bankImportDetail);
+            return updatedItem.Entity;
         }
     }
 }

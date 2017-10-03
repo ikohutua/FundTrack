@@ -299,7 +299,8 @@ namespace FundTrack.BLL.Concrete
                 {
                     Id = orgAccount.Id,
                     OrgAccountName = orgAccount.OrgAccountName,
-                    OrgAccountNumber=orgAccount.BankAccount.AccNumber
+                    OrgAccountNumber=orgAccount.BankAccount.AccNumber,
+                    TargetId = orgAccount.TargetId
                 };
             }
             catch (Exception ex)

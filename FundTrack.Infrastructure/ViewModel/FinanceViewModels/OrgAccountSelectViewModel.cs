@@ -32,5 +32,7 @@ namespace FundTrack.Infrastructure.ViewModel.FinanceViewModels
         /// The org account number.
         /// </value>
         public string OrgAccountNumber { get; set; }
+
+        public int? TargetId { get; set; }
     }
 }

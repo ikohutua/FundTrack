@@ -405,6 +405,11 @@ namespace FundTrack.DAL.Concrete
                       .HasForeignKey(oa => oa.OrgId)
                       .HasConstraintName("FK_OrgAccount_Organization");
 
+                entity.HasOne(oa => oa.Target)
+                .WithMany(o => o.OrgAccounts)
+                .HasForeignKey(oa => oa.TargetId)
+                .HasConstraintName("FK_OrgAccount_Targets");
+
                 entity.HasOne(oa => oa.BankAccount)
                       .WithMany(ba => ba.OrgAccounts)
                       .HasForeignKey(oa => oa.BankAccId)

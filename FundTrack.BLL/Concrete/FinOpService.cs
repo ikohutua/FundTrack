@@ -57,22 +57,33 @@ namespace FundTrack.BLL.Concrete
         {
             try
             {
-                var orgAccFrom = _unitOfWork.OrganizationAccountRepository.GetOrgAccountById(finOpModel.CardFromId);
-                var orgAccTo = _unitOfWork.OrganizationAccountRepository.GetOrgAccountById(finOpModel.CardToId);
+                var bankImportDetail = _unitOfWork.BankImportDetailRepository.GetById(finOpModel.BankImportId);
                 var finOp = new FinOp
                 {
-                    AccFromId =orgAccFrom.Id,
-                    AccToId = orgAccTo.Id,
-                    TargetId = finOpModel.Targetid,
-                    Amount = finOpModel.Amount,
+                    TargetId = finOpModel.TargetId,
+                    Amount = finOpModel.AbsoluteAmount,
                     Description = finOpModel.Description,
-                    FinOpDate = DateTime.Now,
+                    FinOpDate = bankImportDetail.Trandate
                 };
-
-                 _unitOfWork.FinOpRepository.Create(finOp);
-                orgAccTo.CurrentBalance += finOpModel.Amount;
-                _unitOfWork.OrganizationAccountRepository.Edit(orgAccTo);
-                var bankImportDetail = _unitOfWork.BankImportDetailRepository.GetById(finOpModel.BankImportId);
+                OrgAccount orgAccFrom = new OrgAccount();
+                OrgAccount orgAccTo = new OrgAccount();
+                if (finOpModel.CardFromId != null)
+                {
+                    orgAccFrom = _unitOfWork.OrganizationAccountRepository.GetOrgAccountById((int)finOpModel.CardFromId);
+                    finOp.AccFromId = orgAccFrom.Id;
+                    finOp.FinOpType = 0;
+                    orgAccFrom.CurrentBalance += finOpModel.Amount;
+                    _unitOfWork.OrganizationAccountRepository.Edit(orgAccFrom);
+                }
+                if (finOpModel.CardToId != null)
+                {
+                    orgAccTo = _unitOfWork.OrganizationAccountRepository.GetOrgAccountById((int)finOpModel.CardToId);
+                    finOp.AccToId = orgAccTo.Id;
+                    orgAccTo.CurrentBalance += finOpModel.Amount;
+                    finOp.FinOpType = 1;
+                    _unitOfWork.OrganizationAccountRepository.Edit(orgAccTo);
+                }
+                _unitOfWork.FinOpRepository.Create(finOp);
                 bankImportDetail.IsLooked = true;
                 _unitOfWork.BankImportDetailRepository.ChangeBankImportState(bankImportDetail);
                 _unitOfWork.SaveChanges();

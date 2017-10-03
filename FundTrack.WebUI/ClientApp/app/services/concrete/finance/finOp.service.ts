@@ -10,7 +10,7 @@ import { AuthorizeUserModel } from "../../../view-models/concrete/authorized-use
 import { isBrowser } from "angular2-universal";
 import { TargetViewModel } from "../../../view-models/concrete/finance/donate/target.view-model";
 import { OrgAccountSelectViewModel } from "../../../view-models/concrete/finance/org-accounts-select-view.model";
-import { FinOpViewModel } from "../../../view-models/concrete/finance/finOp-view.model";
+import { FinOpFromBankViewModel } from "../../../view-models/concrete/finance/finOpFromBank-view.model";
 import { SpinnerComponent } from "../../../shared/components/spinner/spinner.component";
 import { BaseSpinnerService } from "../../abstract/base-spinner-service";
 import { FinOpListViewModel } from "../../../view-models/concrete/finance/finop-list-viewmodel";
@@ -18,7 +18,7 @@ import Moneyoperationviewmodel = require("../../../view-models/concrete/finance/
 import MoneyOperationViewModel = Moneyoperationviewmodel.MoneyOperationViewModel;
 
 @Injectable()
-export class FinOpService extends BaseSpinnerService<FinOpViewModel> {
+export class FinOpService extends BaseSpinnerService<FinOpFromBankViewModel> {
 
     private getFinOpsUrl: string = 'api/finop/getFinOpsByOrgAccId';
 
@@ -81,10 +81,14 @@ export class FinOpService extends BaseSpinnerService<FinOpViewModel> {
      * create new finOp
      * @param finOp
      */
-    public createFinOp(finOp: FinOpViewModel, spinner?: SpinnerComponent): Observable<FinOpViewModel> {
+    public createFinOp(finOp: FinOpFromBankViewModel, spinner?: SpinnerComponent): Observable<FinOpFromBankViewModel> {
         if (this.checkAuthorization()) {
+            debugger;
             let url = 'api/FinOp/CreateFinOp';
             return super.create(url, finOp, this.getRequestOptions())
+            //return this._http.post(url, finOp)
+            //  .map((response: Response) => <FinOpFromBankViewModel>response.json())
+            //.catch(this.handleError);
         }
     }
 
