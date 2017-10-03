@@ -422,10 +422,9 @@ export class OrgAccountOperationComponent implements OnChanges {
                 this.currentFinOp.date
             ]
         });
-        this.updateFinOperationForm.value;
-        this.updateFinOperationForm.valueChanges
-            .subscribe(a => this.onValueChange(this.updateFinOperationForm, this.formUpdateErrors, a));
-        this.onValueChange(this.updateFinOperationForm, this.formUpdateErrors);
+        this.accountManagmentForm.valueChanges
+            .subscribe(a => this.onValueChange(this.accountManagmentForm, this.formTransferErrors, a));
+        this.onValueChange(this.moneyTransferForm, this.formTransferErrors);
     }
 
     private formIncomeErrors = {

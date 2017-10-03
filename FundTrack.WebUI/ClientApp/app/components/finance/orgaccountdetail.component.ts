@@ -45,6 +45,7 @@ export class OrgAccountDetailComponent implements OnInit, OnChanges {
     }
    
     ngOnInit(): void {
+        console.log("OrgDetail");
         if (isBrowser) {
             if (localStorage.getItem(key.keyToken)) {
                 this.user = JSON.parse(localStorage.getItem(key.keyModel)) as AuthorizeUserModel;

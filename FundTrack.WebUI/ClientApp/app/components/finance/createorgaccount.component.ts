@@ -47,6 +47,7 @@ export class CreateOrgAccountComponent {
     }
 
     ngOnInit(): void {
+        console.log("Create-Account");
         if (isBrowser) {
             if (localStorage.getItem(key.keyToken)) {
                 this.user = JSON.parse(localStorage.getItem(key.keyModel)) as AuthorizeUserModel;
