@@ -4,7 +4,7 @@
     bankAccountId: number;
     merchantId: number;
     merchantPassword: string;
-    targetid: number;
+    targetId: number;
     target: string;
 }
 

@@ -268,7 +268,7 @@ namespace FundTrack.DAL.Migrations
 
                     b.Property<Guid>("OrderId");
 
-                    b.Property<int>("TargetId");
+                    b.Property<int?>("TargetId");
 
                     b.Property<int?>("UserId");
 
@@ -985,8 +985,7 @@ namespace FundTrack.DAL.Migrations
                     b.HasOne("FundTrack.DAL.Entities.Target", "Target")
                         .WithMany("Donates")
                         .HasForeignKey("TargetId")
-                        .HasConstraintName("FK_Donation_Target")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasConstraintName("FK_Donation_Target");
 
                     b.HasOne("FundTrack.DAL.Entities.User", "User")
                         .WithMany("UserDonations")

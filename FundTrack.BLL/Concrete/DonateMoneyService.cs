@@ -2,8 +2,10 @@
 using FundTrack.DAL.Abstract;
 using FundTrack.DAL.Entities;
 using FundTrack.Infrastructure.ViewModel.FinanceViewModels.DonateViewModels;
+using Microsoft.EntityFrameworkCore.Internal;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace FundTrack.BLL.Concrete
 {
@@ -18,7 +20,8 @@ namespace FundTrack.BLL.Concrete
 
         public OrganizationDonateAccountsViewModel GetAccountForDonation(int organizationId)
         {
-            var orgAccounts = _unitOfWork.OrganizationAccountRepository.ReadOrgAccountsForDonations(organizationId);
+            var orgAccounts = _unitOfWork.OrganizationAccountRepository.ReadOrgAccountsForDonations(organizationId).Distinct((c1,c2)=> c1.Target == c2.Target);
+           
             var result = new OrganizationDonateAccountsViewModel()
             {
                 OrganizationId = organizationId,
@@ -33,11 +36,11 @@ namespace FundTrack.BLL.Concrete
                     {
                         Description = orgAccount.Description,
                         BankAccountId = orgAccount.BankAccount.Id,
-                        MerchantId = (int)orgAccount.BankAccount.MerchantId,
+                        MerchantId = orgAccount.BankAccount.MerchantId,
                         MerchantPassword = orgAccount.BankAccount.MerchantPassword,
                         Name = orgAccount.OrgAccountName,
-                        TargetId = (int) orgAccount.TargetId,
-                        Target = _unitOfWork.TargetRepository.GetTargetById((int)orgAccount.TargetId).TargetName
+                        TargetId = orgAccount.TargetId,
+                        Target = orgAccount.TargetId == null ? "Загальний" : _unitOfWork.TargetRepository.GetTargetById((int)orgAccount.TargetId).TargetName
 
                 });
                 }
@@ -84,7 +87,8 @@ namespace FundTrack.BLL.Concrete
                 Description = item.Description,
                 UserId = item.UserId,
                 TargetId = item.TargetId,
-                DonatorEmail = item.DonatorEmail
+                DonatorEmail = item.DonatorEmail,
+                DonationDate = Convert.ToDateTime(item.DonationDate)
             };
             var created = _unitOfWork.DonationRepository.Create(itemToAdd);
             _unitOfWork.SaveChanges();
@@ -97,9 +101,15 @@ namespace FundTrack.BLL.Concrete
                 Description = created.Description,
                 UserId = created.UserId,
                 TargetId = created.TargetId,
-                DonatorEmail = created.DonatorEmail
+                DonatorEmail = created.DonatorEmail,
+                DonationDate = Convert.ToDateTime(item.DonationDate)
             };
             return result;
+        }
+
+        public IEnumerable<TargetViewModel> GetTargets(int id)
+        {
+            throw new NotImplementedException();
         }
     }
 }

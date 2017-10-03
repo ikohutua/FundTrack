@@ -18,7 +18,7 @@ namespace FundTrack.DAL.Entities
         public Guid OrderId { get; set; }
         public int? UserId { get; set; }
         public int CurrencyId { get; set; }
-        public int TargetId { get; set; }
+        public int? TargetId { get; set; }
         public int BankAccountId { get; set; }
         public double Amount { get; set; }
         public string Description { get; set; }
