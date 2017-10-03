@@ -1,10 +1,9 @@
 ﻿import { Injectable, Inject, NgZone } from '@angular/core';
 
 @Injectable()
-export class GlobalUrlService {
     // urls to server for all components
-    public static getAllOrganizationsUrl: string = "api/OrganizationDetail";
-    public static getOrganizationDetailUrl: string = "api/OrganizationDetail/OrganinzationDetailByOrgId/";
+export class GlobalUrlService {
+    public static organizationDetailUrl: string = "api/OrganizationDetail/";
 
     //organization account
     public static getExtractStatus: string = "api/OrgAccount/ExtractStatus/";

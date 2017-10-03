@@ -39,7 +39,7 @@ export class OrgAccountService {
     public getAllAccountsOfOrganization(): Observable<OrgAccountViewModel[]> {
         if (this.checkAuthorization()) {
             let body = this.user;
-            return this._http.post(this._readAllUrl, body, this.getRequestOptions())
+            return this._http.get(this._readAllUrl + '/' + this.user.orgId, this.getRequestOptions())
                 .map((response: Response) => <OrgAccountViewModel[]>response.json())
                 .do(data => console.log('Item' + JSON.stringify(data)))
                 .catch(this.handleError);
