@@ -14,6 +14,7 @@ import { BankImportComponent } from "./components/finance/bank-import.component"
 import { MakeDonationComponent } from "./components/finance/donate-money.component";
 import { FinOpService } from "./services/concrete/finance/finOp.service";
 import { OrgAccountExtractsComponent } from "./components/finance/org-account-extracts.component";
+import { MyDonationsComponent } from "./components/finance/my-donations.component";
 
 @NgModule({
     declarations: [
@@ -24,7 +25,8 @@ import { OrgAccountExtractsComponent } from "./components/finance/org-account-ex
         OrgAccountExtractsComponent,
         OrgAccountOperationComponent,
         BankImportComponent,    
-        MakeDonationComponent
+        MakeDonationComponent,
+        MyDonationsComponent
     ],
     imports: [
         CommonModule,

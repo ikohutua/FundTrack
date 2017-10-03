@@ -100,5 +100,10 @@ namespace FundTrack.WebUI.Controllers
             return _donateMoneyService.AddDonation(item);
         }
 
+        [HttpGet("UserDonations/{userId}")]
+        public IEnumerable<UserDonationsViewModel> GetUserDonations(int userId)
+        {
+            return _donateMoneyService.GetUserDonations(userId);
+        }
     }
 }

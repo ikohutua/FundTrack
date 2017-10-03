@@ -9,6 +9,9 @@ import { OrganizationDonateAccountsViewModel } from "../../../view-models/concre
 import { TargetViewModel } from "../../../view-models/concrete/finance/donate/target.view-model";
 import { CurrencyViewModel } from "../../../view-models/concrete/finance/donate/currency.view-model";
 import { DonateViewModel } from "../../../view-models/concrete/finance/donate/donate.view-model";
+import { UserDonationViewModel } from "../../../view-models/concrete/finance/donate/user-donation-view-model";
+import { GlobalUrlService } from "../global-url.service";
+import { RequestOptionsService } from "../request-options.service";
 
 @Injectable()
 export class DonateService {
@@ -45,20 +48,27 @@ export class DonateService {
 
     getTargets(): Observable<TargetViewModel[]> {
         return this._http.get('api/Donate/GetTargets').
-            map((response: Response) => { return response.json() as TargetViewModel[]});
+            map((response: Response) => { return response.json() as TargetViewModel[] });
     }
 
     getCurrencies(): Observable<CurrencyViewModel[]> {
-        return this._http.get('api/Donate/GetCurrencies').
-            map((response: Response) => { return response.json() as CurrencyViewModel[]})
+        return this._http.get('api/Donate/GetCurrencies').map((response: Response) => {
+            return response.json() as CurrencyViewModel[];
+        });
     }
 
-    addDonation(item: DonateViewModel): Observable<DonateViewModel>{
+    addDonation(item: DonateViewModel): Observable<DonateViewModel> {
         return this._http.post('api/Donate/AddDonation', item, this.getOptions())
-            .map((response: Response) => {return  response.json() as DonateViewModel});
+            .map((response: Response) => { return response.json() as DonateViewModel });
     }
 
-    private getOptions() : RequestOptions{
+    getUserDonations(userId: number): Observable<UserDonationViewModel[]> {
+        return this._http.get(GlobalUrlService.userDonations + userId, RequestOptionsService.getRequestOptions())
+            .map((response: Response) => {
+                return response.json() as UserDonationViewModel[];
+            });
+    }
+    private getOptions(): RequestOptions {
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let option = new RequestOptions({ headers: headers });
         return option;

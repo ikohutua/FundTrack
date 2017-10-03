@@ -3,6 +3,7 @@ using FundTrack.DAL.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Microsoft.EntityFrameworkCore;
 
 namespace FundTrack.DAL.Concrete
 {
@@ -39,7 +40,10 @@ namespace FundTrack.DAL.Concrete
         /// <returns> IEnumerable of donations</returns>
         public IEnumerable<Donation> Read()
         {
-            return _context.Donations;
+            return _context.Donations
+                .Include(d=>d.Target)
+                .Include(d=>d.BankAccount)
+                .ThenInclude(ba=>ba.Organization);
         }
     }
 }

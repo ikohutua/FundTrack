@@ -4,6 +4,7 @@ using FundTrack.DAL.Entities;
 using FundTrack.Infrastructure.ViewModel.FinanceViewModels.DonateViewModels;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace FundTrack.BLL.Concrete
 {
@@ -110,6 +111,21 @@ namespace FundTrack.BLL.Concrete
                 DonatorEmail = created.DonatorEmail
             };
             return result;
+        }
+
+        public IEnumerable<UserDonationsViewModel> GetUserDonations(int userid)
+        {
+            var result =  _unitOfWork.DonationRepository.Read()
+                .Where(d => d.UserId == userid).Select(d => new UserDonationsViewModel
+                {
+                    Organization = d.BankAccount.Organization.Name,
+                    Target = d.Target.TargetName,
+                    Date = d.DonationDate,
+                    Sum = d.Amount,
+                    Description = d.Description
+                }).ToList();
+            return result;
+
         }
     }
 }

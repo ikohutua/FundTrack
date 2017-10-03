@@ -12,5 +12,6 @@ namespace FundTrack.BLL.Abstract
         IEnumerable<TargetViewModel> GetTargets(int id);
         IEnumerable<CurrencyViewModel> GetCurrencies();
         DonateViewModel AddDonation(DonateViewModel item);
+        IEnumerable<UserDonationsViewModel> GetUserDonations(int userid);
     }
 }

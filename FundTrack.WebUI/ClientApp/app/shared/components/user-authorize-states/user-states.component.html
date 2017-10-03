@@ -6,6 +6,7 @@
     </button>
     <ul class="dropdown-menu dropdowncolor">
         <li><a [routerLink]="['/userprofile']">Мій профіль</a></li>
+        <li><a [routerLink]="['/mydonations']">Мої пожертви</a></li>
         <li *ngIf="isAdmin"><a [routerLink]="['/superadmin']">Панель адміністратора</a></li>
         <li><a [routerLink]="['/']" (click)="exit()">Вийти</a></li>
     </ul>
