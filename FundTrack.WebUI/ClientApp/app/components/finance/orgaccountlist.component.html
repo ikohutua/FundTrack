@@ -47,44 +47,14 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-8 mb20" style="margin-top: 20px;">
+        <div class="col-md-8 mb20">
             <div class="row" *ngIf="ifBankSelectedType" >
-                <div class="col-md-6 mb20" style="margin-left:10px;">
-                    <orgaccountdetail [accountId]="selectAccountId"
-                                      (onDelete)="onDelete($event)"></orgaccountdetail>
-                </div>
-                <div class="col-md-5 mb20" style="margin-top: 20px;">
-                    <div class="panel-group" id="accordion">
-                        <div class="panel">
-                            <div class="col-md-12">
-                                <button type="button" class="btn btn-lg btn-block custom-button" data-toggle="collapse" data-parent="#accordion" href="#collapse1">
-                                    <strong> Прийом платежів через Fondy</strong>
-                                </button>
-                            </div>
-                            <div id="collapse1" class="panel-collapse collapse in">
-                                <div class="panel-body panel-custom-body">
-                                    <orgaccountpayment [accountId]="selectAccountId"></orgaccountpayment>
-                                </div>
-                            </div>
-                        </div>
-                        <div  class="panel">
-                            <div class="col-md-12">
-                                <button type="button" class="btn btn-lg btn-block custom-button" data-toggle="collapse" data-parent="#accordion" href="#collapse2">
-                                    <strong> Виписки з Приват24</strong>
-                                </button>
-                            </div>
-                            <div id="collapse2" class="panel-collapse collapse">
-                                <div class="panel-body panel-custom-body">
-                                    <org-account-extracts [accountId]="selectAccountId" (getIsExtractEnable)="onExtractEnableChange($event)"></org-account-extracts>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
+                <div *ngIf="isDownloaded" class="col-md-12 mb20">
+                    <orgaccountdetail [accountId]="selectAccountId" (onDelete)="onDelete($event)"></orgaccountdetail>
                 </div>
             </div>
-            <div class="row" style="margin-left: 15px;">
-                <orgaccountoperation [accountId]="selectAccountId"></orgaccountoperation>
+            <div *ngIf="isDownloaded" >
+                <orgaccountoperation [accountId]="selectAccountId" [orgId]="orgId" (getIsExtractEnable)="onExtractEnableChange($event)"></orgaccountoperation>
             </div>
             <br>
         </div>

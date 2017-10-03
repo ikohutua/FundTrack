@@ -64,6 +64,11 @@ namespace FundTrack.DAL.Entities
         public virtual ICollection<Phone> Phones { get; set; }
 
         /// <summary>
+        /// Gets or Sets Phone navigation property
+        /// </summary>
+        public virtual ICollection<OrgAccount> OrgAccounts { get; set; }
+
+        /// <summary>
         /// Gets or Sets Membership navigation property
         /// </summary>
         public virtual Membership Membership { get; set; }

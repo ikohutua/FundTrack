@@ -1,39 +1,30 @@
-﻿<div *ngIf="!isExtractsEnable" class="accountdetail maindiv col-md-12 container-fluid">
+﻿<div *ngIf="!isExtractsEnable">
     <div *ngIf="errorMessage">
         {{errorMessage}}
     </div>
     <div *ngIf="!errorMessage">
         <p> Для отримання виписок з <a href="https://www.privat24.ua">Приват 24</a> введіть дані у відповідні поля нижче.</p>
         <form #form="ngForm">
-            <label>Merchant Id</label>
+            <label>Merchant Id<sup class="sup-color-red">*</sup></label>
             <br />
             <input class="form-control" type="text" required [(ngModel)]="connectExtractsCredential.merchantId" name="merchantId" #merchantId="ngModel" pattern="[0-9]*" />
             <br />
-            <div *ngIf="merchantId.errors && (merchantId.dirty || merchantId.touched)"
+            <div *ngIf="merchantId.errors && merchantId.dirty"
                  class="alert alert-danger">
-                <div [hidden]="!merchantId.errors.required">
-                    Поле є обов'язковим.
-                </div>
-                <div [hidden]="!merchantId.errors.pattern">
                     Введено недозволений символ
-                </div>
             </div>
-            <label>Merchant Password</label>
+            <label>Merchant Password<sup class="sup-color-red">*</sup></label>
             <br />
             <input class="form-control" type="text" required [(ngModel)]="connectExtractsCredential.merchantPassword" name="merchantPassword" #merchantPassword="ngModel" />
             <br />
-            <div *ngIf="merchantPassword.errors && (merchantPassword.dirty || merchantPassword.touched)"
-                 class="alert alert-danger">
-                <div [hidden]="!merchantPassword.errors.required">
-                    Поле є обов'язковим.
-                </div>
-            </div>
+            <span><sup class="sup-color-red">*</sup> поле обов'язкове для заповнення</span>
+            <br />
             <button type="submit" (click)="connectExtracts()" class="btn btn-primary right" [disabled]="form.invalid"> Підключити </button>
         </form>
     </div>
 </div>
 
-<div *ngIf="isExtractsEnable" class="accountdetail maindiv col-md-12 container-fluid">
+<div *ngIf="isExtractsEnable">
     <div class="row">
         <p class="custom-bold">Прийом виписок з даного рахунку доступно</p>
         <br />

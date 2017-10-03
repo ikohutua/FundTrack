@@ -43,10 +43,10 @@
                 <div class="well well-sm">
                     <div class="well-container">
                         <div class="header-text text-center h5"><strong>Контакти</strong></div>
-                        <p *ngIf="organizationDetail.adminPhoneNumber">
-                            {{organizationDetail.adminFirstName + ' ' + organizationDetail.adminLastName + ' ' + organizationDetail.adminPhoneNumber}}
+                        <p *ngIf="organizationDetail.admin">
+                            {{organizationDetail.admin.firstName + ' ' + organizationDetail.admin.lastName + ' ' + organizationDetail.admin.phoneNumber}}
                         </p>
-                        <p *ngIf="!organizationDetail.adminPhoneNumber">
+                        <p *ngIf="!organizationDetail.admin">
                             Контакти не вказано.
                         </p>
                     </div>

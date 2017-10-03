@@ -24,7 +24,7 @@ export class OrgAccountDetailComponent implements OnInit, OnChanges {
     //Input property getting organizationId
     @Input('orgId') orgId: number;
     //Input property getting accountId
-    @Input() accountId: number = -1;
+    @Input() accountId: number;
     //Id of the deleted account
     private deletedAccountId: number = 0;
     //Property indicating if current account has card number assigned

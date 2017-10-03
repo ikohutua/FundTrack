@@ -38,14 +38,14 @@ namespace FundTrack.WebUI.Controllers
         /// </summary>
         /// <param name="id">Organization id</param>
         /// <returns>Requested organization detail view model</returns>
-        [HttpGet("OrganinzationDetailByOrgId/{id}")]
-        public OrganizationDetailViewModel OrganinzationDetailByOrgId(int? id)
+        [HttpGet("{id}")]
+        public IActionResult OrganinzationDetailByOrgId(int? id)
         {
             if (id == null || id <= 0)
             {
-                throw new Exception(ErrorMessages.BadRequestMessage);
+                return BadRequest();
             }
-            return organizationProfileService.GetOrganizationDetail((int)id);
+            return Ok(organizationProfileService.GetOrganizationDetail((int)id));
         }
 
     }

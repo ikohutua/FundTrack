@@ -86,7 +86,6 @@ export class MakeDonationComponent implements OnInit, DoCheck, OnDestroy{
 
 
     ngOnInit() {
-
         this._storageService.showDropDown = false;
 
         if (localStorage.getItem("order_id")) {
@@ -94,7 +93,6 @@ export class MakeDonationComponent implements OnInit, DoCheck, OnDestroy{
             this.checkPaymentModel.merchant_id = parseInt(this.paymentInfo.merchantId);
             this.checkPaymentModel.order_id = localStorage.getItem("order_id");
             this.checkPaymentModel.signature = this.create(this.checkPaymentModel);
-            console.log(this.checkPaymentModel);
             this.checkPayment();
         }
 
@@ -114,10 +112,10 @@ export class MakeDonationComponent implements OnInit, DoCheck, OnDestroy{
         });
 
         this._donateService.getOrderId().subscribe((result) => this.fondyPayModel.order_id = result);
-        this._donateService.getTargets().subscribe((result) => { this.targets = result; console.log(this.targets) });
-        this._donateService.getCurrencies().subscribe((result) => { this.currencies = result, console.log(this.currencies) });
+        this._donateService.getTargets().subscribe((result) => { this.targets = result; });
+        this._donateService.getCurrencies().subscribe((result) => { this.currencies = result; });
         this.fondyPayModel.server_callback_url = "http://localhost:51116/finance/donate";
-        this.fondyPayModel.response_url = "http://fundtrack3.azurewebsites.net/finance/donate";
+        this.fondyPayModel.response_url = "http://fundtrack4.azurewebsites.net/finance/donate";
  
 
         this.donateForm.valueChanges.subscribe(() => {
@@ -132,7 +130,6 @@ export class MakeDonationComponent implements OnInit, DoCheck, OnDestroy{
     ngDoCheck() {
         if (sessionStorage.getItem('id')) {
             this.organizationId = parseInt(sessionStorage.getItem('id'));
-            console.log(this.organizationId);
             this.getAccountsForDonate();
             sessionStorage.removeItem('id');
             this.hasAccountForDonate = false;
@@ -148,9 +145,7 @@ export class MakeDonationComponent implements OnInit, DoCheck, OnDestroy{
         result = this.merchantPassword + '|' + parameters.amount + '|' + parameters.currency + '|' + parameters.merchant_id
             + '|' + parameters.order_desc + '|' + parameters.order_id + '|'
             + parameters.response_url + '|' + parameters.server_callback_url;
-        console.log(result);
         result = <string>sha1(result);
-        console.log(result);
         return result;
     }
 
@@ -208,7 +203,6 @@ export class MakeDonationComponent implements OnInit, DoCheck, OnDestroy{
             localStorage.setItem("merchantData", JSON.stringify(this.merchantData));
             this._donateService.sendRequestToFondy(this.fondyPayModel).
                 subscribe((response) => {
-                    console.log(response);
                     window.location.href = response;
                 });  
         }
@@ -223,7 +217,6 @@ export class MakeDonationComponent implements OnInit, DoCheck, OnDestroy{
     checkPayment(): void {
         this._donateService.checkPaymentRequest(this.checkPaymentModel).
             subscribe((response) => {
-                console.log(response);
                 if (response.response.order_status == "approved") {
                     this.donateAmount = parseFloat(response.response.actual_amount) / 100 + " " + response.response.currency;
                     this.paymentInfo = JSON.parse(localStorage.getItem("merchantData"));
@@ -255,7 +248,6 @@ export class MakeDonationComponent implements OnInit, DoCheck, OnDestroy{
     getAccountsForDonate(): void {
         this._donateService.getAccountsForDonate(this.organizationId).
             subscribe((result) => {
-                console.log(result);
                 if (result.accounts.length != 0) {
                     this.donateOrganization = result.orgName;
                     this.hasAccountForDonate = true;
