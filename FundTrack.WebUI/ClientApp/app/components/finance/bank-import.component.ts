@@ -95,6 +95,7 @@ export class BankImportComponent implements OnInit {
     }
 
     ngOnInit() {
+        console.log("Bank-Import");
         if (isBrowser) {
             if (sessionStorage.getItem(key.keyCardNumber)) {
                 this.orgaccountId = Number(sessionStorage.getItem(key.keyOrgAccountId));

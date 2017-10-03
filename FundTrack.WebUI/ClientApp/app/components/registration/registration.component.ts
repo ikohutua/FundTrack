@@ -73,7 +73,7 @@ export class RegistrationComponent {
             else {
                 localStorage.setItem(keys.keyModel, JSON.stringify(this.autType.userModel));
                 this._storage.emitAuthorizeUserEvent(this.autType.userModel); 
-                this._router.navigate(['/']);              
+                this._router.navigate(['/login']);              
             }
             }, error => {
                 this.errorMessage = <any>error;

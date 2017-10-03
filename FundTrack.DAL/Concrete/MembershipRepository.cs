@@ -3,6 +3,7 @@ using FundTrack.DAL.Abstract;
 using FundTrack.DAL.Entities;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using FundTrack.Infrastructure;
 
 namespace FundTrack.DAL.Concrete
 {
@@ -120,17 +121,17 @@ namespace FundTrack.DAL.Concrete
         /// </summary>
         /// <param name="organizationdId">The organization identifier.</param>
         /// <returns>
-        /// Admin id or if admin not found then return -1
+        /// Instance of user
         /// </returns>
-        public int GetOrganizationAdminId(int organizationdId)
+        public User GetOrganizationAdmin(int organizationdId)
         {
             // Role id for admin = 2
-            Membership orgAdmin = context.Membershipes
-                                 .Where(x => x.OrgId == organizationdId && x.RoleId == 2)
-                                 .FirstOrDefault();
-            if (orgAdmin == null)
-                return -1;
-            return orgAdmin.UserId;
+            Membership orgAdminMembership = context.Membershipes
+                                            .Include(x=>x.User)
+                                            .Include(x=>x.User.Phones)
+                                            .Where(x => x.OrgId == organizationdId && x.RoleId == Constants.AdminRoleId)
+                                            .FirstOrDefault();
+            return orgAdminMembership?.User;
         }
     }
 }

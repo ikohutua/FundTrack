@@ -1,6 +1,9 @@
 ﻿export class OrgAccountViewModel {
     id: number;
     orgId: number;
+    userId: number;
+    firstName: string;
+    lastName: string;
     bankAccId: number;
     cardNumber: string;
     currencyId: number;
@@ -15,5 +18,6 @@
     edrpou: string;
     bankName: string;
     error: string;
-    targetId : number;
+    targetId: number;
+    creationDate: Date;
 }

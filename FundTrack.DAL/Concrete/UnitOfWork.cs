@@ -10,7 +10,7 @@ namespace FundTrack.DAL.Concrete
     public sealed class UnitOfWork : IUnitOfWork, IDisposable
     {
         private readonly IOrganizationsForFilteringRepository _organizationsListRepository;
-        private readonly IUserResporitory _usersListRepository;
+        //private readonly IUserResporitory _usersListRepository;
         private readonly IEventManagementRepository _eventRepository;
         private readonly IOrganizationRepository _organizationRepository;
         private readonly IMembershipRepository _membershipRepository;
@@ -35,6 +35,7 @@ namespace FundTrack.DAL.Concrete
         private readonly IFinOpRepository _finOpRepository;
         private readonly IPhoneRepository _phoneRepository;
         private readonly IRepository<FinOpImage> _finOpImagesRepository;
+        private readonly IUserResporitory _userRepository;
 
         private FundTrackContext _context;
 
@@ -69,12 +70,14 @@ namespace FundTrack.DAL.Concrete
               IDonationRepository donationRepository,
               IFinOpRepository finOpRepository,
               IPhoneRepository phoneRepository,
-              IRepository<FinOpImage> finOpImagesRepository
+              IRepository<FinOpImage> finOpImagesRepository,
+              IUserResporitory userRepository
+
               )
         {
             this._context = contextParam;
             this._organizationsListRepository = organizationsListRepositoryParam;
-            this._usersListRepository = userListRepositoryParam;
+            //this._usersListRepository = userListRepositoryParam;
             this._membershipRepository = membershipRepositoryParam;
             _eventRepository = eventRepository;
             _organizationRepository = organizationRepository;
@@ -99,6 +102,7 @@ namespace FundTrack.DAL.Concrete
             _finOpRepository = finOpRepository;
             this._phoneRepository = phoneRepository;
             _finOpImagesRepository = finOpImagesRepository;
+            _userRepository = userRepository;
         }
 
         /// <summary>
@@ -125,7 +129,7 @@ namespace FundTrack.DAL.Concrete
         {
             get
             {
-                return _usersListRepository;
+                return _userRepository;
             }
         }
 

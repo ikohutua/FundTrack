@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System;
 
 namespace FundTrack.Infrastructure.ViewModel
 {
@@ -7,6 +8,10 @@ namespace FundTrack.Infrastructure.ViewModel
         public int Id { get; set; }
         public int OrgId { get; set; }
         public int? BankAccId { get; set; }
+        public int? UserId { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public DateTime CreationDate { get; set; }
         public string CardNumber { get; set; }
         public string Currency { get; set; }
         public string CurrencyShortName { get; set; }

@@ -21,6 +21,14 @@ import MoneyOperationViewModel = Moneyoperationviewmodel.MoneyOperationViewModel
 export class FinOpService extends BaseSpinnerService<FinOpViewModel> {
 
     private getFinOpsUrl: string = 'api/finop/getFinOpsByOrgAccId';
+    private getTargetsUrl: string = "api/finop/GetTargets";
+    private incomeUrl: string = "api/finop/income";
+    private spendingUrl: string = "api/finop/spending";
+    private transferUrl: string = "api/finop/transfer";
+    private editUrl: string = "api/finop/edit";
+    private getOrgAccForFinOpsUrl: string = 'api/OrgAccount/GetOrgAccountForFinOp';
+    private createUrl: string = 'api/FinOp/CreateFinOp';
+    private getFinOpUrl: string = 'api/finop/getFinOpsById';
 
     /*public*/ constructor(private _http: Http) {
         super(_http)
@@ -31,36 +39,37 @@ export class FinOpService extends BaseSpinnerService<FinOpViewModel> {
      */
     public getTargets(spinner?: SpinnerComponent): Observable<TargetViewModel[]> {
         if (this.checkAuthorization()) {
-            let url = "api/FinOp/GetTargets";
-            return this._http.get(url, this.getRequestOptions())
+            return this._http.get(this.getTargetsUrl, this.getRequestOptions())
                 .map((response: Response) => <TargetViewModel[]>response.json())
                 .catch(this.handleError);
         }
     }
-    public createIncome(moneyIncome: MoneyOperationViewModel) {
-        let url = "api/finop/income";
+
+    public createIncome(moneyIncome: FinOpListViewModel): Observable<FinOpListViewModel> {
         let body = moneyIncome;
-        console.log(moneyIncome);
-        return this._http.post(url, body, this.getRequestOptions())
-            .map((response: Response) => <MoneyOperationViewModel>response.json())
+        return this._http.post(this.incomeUrl, body, this.getRequestOptions())
+            .map((response: Response) => <FinOpListViewModel>response.json())
             .catch(this.handleError);
     }
 
-    public createSpending(moneySpending: MoneyOperationViewModel) {
-        let url = "api/finop/spending";
+    public createSpending(moneySpending: FinOpListViewModel): Observable<FinOpListViewModel> {
         let body = moneySpending;
-        console.log(moneySpending);
-        return this._http.post(url, body, this.getRequestOptions())
-            .map((response: Response) => <MoneyOperationViewModel>response.json())
+        return this._http.post(this.spendingUrl, body, this.getRequestOptions())
+            .map((response: Response) => <FinOpListViewModel>response.json())
             .catch(this.handleError)
     }
 
-    public createTransfer(moneyTransfer: MoneyOperationViewModel): Observable<MoneyOperationViewModel> {
-        let url = "api/finop/transfer";
+    public createTransfer(moneyTransfer: FinOpListViewModel): Observable<FinOpListViewModel> {
         let body = moneyTransfer;
-        console.log(moneyTransfer);
-        return this._http.post(url, body, this.getRequestOptions())
-            .map((response: Response) => <MoneyOperationViewModel>response.json())
+        return this._http.post(this.transferUrl, body, this.getRequestOptions())
+            .map((response: Response) => <FinOpListViewModel>response.json())
+            .catch(this.handleError);
+    }
+
+    public editFinOperation(finOp: FinOpListViewModel): Observable<FinOpListViewModel> {
+        let body = finOp;
+        return this._http.put(this.editUrl, body, this.getRequestOptions())
+            .map((response: Response) => <FinOpListViewModel>response.json())
             .catch(this.handleError);
     }
     /**
@@ -70,8 +79,7 @@ export class FinOpService extends BaseSpinnerService<FinOpViewModel> {
      */
     public getOrgAccountForFinOp(orgId: number, cardNumber: string, spinner?: SpinnerComponent): Observable<OrgAccountSelectViewModel> {
         if (this.checkAuthorization()) {
-            let url = 'api/OrgAccount/GetOrgAccountForFinOp';
-            return this._http.get(url + '/' + orgId + '/' + cardNumber, this.getRequestOptions())
+            return this._http.get(this.getOrgAccForFinOpsUrl + '/' + orgId + '/' + cardNumber, this.getRequestOptions())
                 .map((response: Response) => <OrgAccountSelectViewModel>response.json())
                 .catch(this.handleError);
         }
@@ -83,8 +91,7 @@ export class FinOpService extends BaseSpinnerService<FinOpViewModel> {
      */
     public createFinOp(finOp: FinOpViewModel, spinner?: SpinnerComponent): Observable<FinOpViewModel> {
         if (this.checkAuthorization()) {
-            let url = 'api/FinOp/CreateFinOp';
-            return super.create(url, finOp, this.getRequestOptions())
+            return super.create(this.createUrl, finOp, this.getRequestOptions())
         }
     }
 
@@ -94,7 +101,14 @@ export class FinOpService extends BaseSpinnerService<FinOpViewModel> {
         if (this.checkAuthorization()) {
             return this._http.get(this.getFinOpsUrl + '/' + orgAccountId, this.getRequestOptions())
                 .map((response: Response) => <FinOpListViewModel[]>response.json())
-                .do(data => console.log('Item' + JSON.stringify(data)))
+                .catch(this.handleError);
+        }
+    }
+
+    public getFinOpById(id: number): Observable<FinOpListViewModel> {
+        if (this.checkAuthorization()) {
+            return this._http.get(this.getFinOpUrl + '/' + id, this.getRequestOptions())
+                .map((response: Response) => <FinOpListViewModel>response.json())
                 .catch(this.handleError);
         }
     }

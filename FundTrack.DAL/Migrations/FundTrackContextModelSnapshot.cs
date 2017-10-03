@@ -381,6 +381,8 @@ namespace FundTrack.DAL.Migrations
                     b.Property<DateTime>("FinOpDate")
                         .HasColumnType("datetime");
 
+                    b.Property<int>("FinOpType");
+
                     b.Property<int?>("TargetId");
 
                     b.Property<int?>("UserId");
@@ -536,6 +538,8 @@ namespace FundTrack.DAL.Migrations
 
                     b.Property<int?>("BankAccId");
 
+                    b.Property<DateTime>("CreationDate");
+
                     b.Property<int>("CurrencyId");
 
                     b.Property<decimal>("CurrentBalance")
@@ -551,6 +555,8 @@ namespace FundTrack.DAL.Migrations
 
                     b.Property<int?>("TargetId");
 
+                    b.Property<int?>("UserId");
+
                     b.HasKey("Id")
                         .HasName("PK_OrgAccount");
 
@@ -561,6 +567,8 @@ namespace FundTrack.DAL.Migrations
                     b.HasIndex("OrgId");
 
                     b.HasIndex("TargetId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("OrgAccounts");
                 });
@@ -1134,6 +1142,10 @@ namespace FundTrack.DAL.Migrations
                     b.HasOne("FundTrack.DAL.Entities.Target", "Target")
                         .WithMany("OrgAccounts")
                         .HasForeignKey("TargetId");
+
+                    b.HasOne("FundTrack.DAL.Entities.User", "User")
+                        .WithMany("OrgAccounts")
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("FundTrack.DAL.Entities.OrgAddress", b =>

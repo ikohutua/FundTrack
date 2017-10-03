@@ -127,6 +127,7 @@ namespace FundTrack.DAL.Abstract
         IRepository<Currency> CurrencyRepositry { get; }
         ITargetRepository TargetRepository { get; }
         IDonationRepository DonationRepository { get; }
+        //IUserResporitory UserResporitory { get; }
 
         /// <summary>
         /// Gets the fin op repository.
