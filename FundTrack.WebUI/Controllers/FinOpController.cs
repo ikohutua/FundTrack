@@ -16,7 +16,6 @@ namespace FundTrack.WebUI.Controllers
     [Route("api/[controller]")]
     public class FinOpController : Controller
     {
-
         /// <summary>
         /// The service
         /// </summary>
@@ -89,12 +88,11 @@ namespace FundTrack.WebUI.Controllers
         {
             return this._service.EditFinOperation(finOp);
         }
-
+        
         [HttpGet("{orgId}")]
         public IEnumerable<FinOpViewModel> GetAllFinOpsByOrganizationId(int orgId)
         {
             return _service.GetAllFinOpsByOrgId(orgId);
         }
-
     }
 }

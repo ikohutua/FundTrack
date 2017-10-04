@@ -32,5 +32,6 @@
         public const string CantFindDataById = "Can't find data with requested id";
         public const string GetOrganizationAccount = "Неможливо отримати рахунок організації";
         public const string UpdateOrganizationAccount = "Неможливо оновити рахунок організації";
+        public const string GetFinOpWithoutAccount = "Неможливо присвоїти Id організації, оскільки фінансова операція не прив'язана до акаунта";
     }
 }

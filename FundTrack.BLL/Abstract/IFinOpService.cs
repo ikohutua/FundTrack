@@ -31,13 +31,13 @@ namespace FundTrack.BLL.Abstract
         /// </summary>
         /// <param name="orgAccountId">The org account identifier.</param>
         /// <returns></returns>
-        IEnumerable<FinOpListViewModel> GetFinOpsByOrgAccount(int orgAccountId);
+        IEnumerable<FinOpViewModel> GetFinOpsByOrgAccount(int orgAccountId);
 
         /// <summary>
         /// Gets all finOps by organizationId
         /// </summary>
         /// <param name="orgId">Id of organization</param>
         /// <returns>collection of finOps</returns>
-        //IEnumerable<FinOpViewModel> GetAllFinOpsByOrgId(int orgId);
+        IEnumerable<FinOpViewModel> GetAllFinOpsByOrgId(int orgId);
     }
 }

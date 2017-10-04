@@ -273,24 +273,33 @@ namespace FundTrack.BLL.Concrete
             }
         }
 
-        /*
+        
         public IEnumerable<FinOpViewModel> GetAllFinOpsByOrgId(int orgId)
         {
-            var finOps = _unitOfWork.FinOpRepository.Read();
-            return finOps.Select(f => new FinOpViewModel
+            try
             {
-                Description = f.Description,
-                Sum = f.Amount,
-                CardFromId = f.OrgAccountFrom.Id,
-                CardToId = f.OrgAccountTo.Id,
-                //TargetId = f.TargetId,
-                FinOpType = f.FinOpType,
-                Date = f.FinOpDate,
-                //OrgId = (f.OrgAccountTo != null ? f.OrgAccountTo.OrgId : f.OrgAccountFrom.OrgId)
-            }).Where(f => f.OrgId == orgId); 
+                var finOps = unitOfWork.FinOpRepository.Read();
+                return finOps.Select(f => new FinOpViewModel
+                {
+                    Id = f.Id,
+                    CardFromId = f.AccFromId.GetValueOrDefault(0),
+                    CardToId = f.AccToId.GetValueOrDefault(0),
+                    Date = f.FinOpDate,
+                    Description = f.Description,
+                    Amount = f.Amount,
+                    TargetId = f.TargetId,
+                    Target = f.Target?.TargetName,
+                    FinOpType = f.FinOpType,
+                    IsEditable = true,
+                    OrgId = (f.OrgAccountTo != null ? f.OrgAccountTo.OrgId : f.OrgAccountFrom.OrgId)
+                }).Where(f => f.OrgId == orgId);
+            }
+            catch (Exception e)
+            {
+                throw new BusinessLogicException(ErrorMessages.GetFinOpWithoutAccount, e);
+            }
+            
         }
-        */
-
     }
 }
 
