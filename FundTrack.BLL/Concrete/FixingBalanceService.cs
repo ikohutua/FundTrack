@@ -82,17 +82,16 @@ namespace FundTrack.BLL.Concrete
         
         private bool HasFinOpsAfterLastFixing (BalanceViewModel lastBalanceFixing)
         {
-            int finOpsFromLastFixing = _unitOfWork.FinOpRepository
+           return _unitOfWork.FinOpRepository
               .GetFinOpByOrgAccount(lastBalanceFixing.OrgAccountId)
               .Where(x => x.FinOpDate >= lastBalanceFixing.BalanceDate)
-              .Count();
-            return finOpsFromLastFixing > 0;
+              .Any();
         }
 
         private bool IsFinOpsInBalanceDay (BalanceViewModel balance)
         {
             var finops = _unitOfWork.FinOpRepository.GetFinOpByOrgAccount(balance.OrgAccountId);
-            return finops.Where(x => x.FinOpDate.Date == balance.BalanceDate.Date).Count() > 0;
+            return finops.Where(x => x.FinOpDate.Date == balance.BalanceDate.Date).Any();
         }
     }
 }

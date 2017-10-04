@@ -18,7 +18,6 @@ export class FixingBalanceService {
     }
 
     public fixBalance(balance: BalanceViewModel): Observable<BalanceViewModel> {
-        console.log(balance.balanceDate);
         return this._http.post(GlobalUrlService.getFixingBalanceUrl, balance, RequestOptionsService.getRequestOptions())
             .map((response: Response) => response.json() as BalanceViewModel); 
     }

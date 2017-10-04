@@ -16,13 +16,14 @@ export class FixingBalanceComponent implements OnChanges, OnInit {
 
     @Input('accountId') accountId: number;
 
+    seccessFixingBalance: string = "Поточний баланс успішно зафіксовано";
     isDatePickerEnabled: boolean = true;
     isSubmitEnabled: boolean = true;
     minValueDatePicker: Date;
     serverDate: string;
     currentDate: string;
     lastFixing: BalanceViewModel;
-    errorMessage: string = "";
+    message: string = "";
 
 
     constructor(private fixingBalanceService: FixingBalanceService) {
@@ -34,12 +35,16 @@ export class FixingBalanceComponent implements OnChanges, OnInit {
 
     ngOnChanges(changes: SimpleChanges): void {
         if (changes['accountId'].currentValue && changes['accountId'].currentValue != -1) {
-            this.fixingBalanceService.getFilterByAccId(this.accountId)
-                .subscribe(data => {
-                    this.resetAllData();
-                    this.changeDataForFilter(data);
-                });
+            this.getFilterFromServer();
         }
+    }
+
+    getFilterFromServer() {
+        this.fixingBalanceService.getFilterByAccId(this.accountId)
+            .subscribe(data => {
+                this.resetAllData();
+                this.changeDataForFilter(data);
+            });
     }
 
     changeDataForFilter(filter: FixingBalanceFilteringViewModel) {
@@ -74,12 +79,13 @@ export class FixingBalanceComponent implements OnChanges, OnInit {
         balance.orgAccountId = this.accountId;
         this.fixingBalanceService.fixBalance(balance)
             .subscribe(data => {
-                this.closeModalEvent.emit(true);
+                this.message = this.seccessFixingBalance;
+                this.showToast();
+                this.getFilterFromServer();
             },
             error => {
-                this.errorMessage = error["_body"];
+                this.message = error["_body"];
                 this.showToast();
-                this.closeModalEvent.emit(true);
                 this.isSubmitEnabled = false;
                 this.isDatePickerEnabled = false;
             });
@@ -90,6 +96,9 @@ export class FixingBalanceComponent implements OnChanges, OnInit {
     public showToast() {
         var x = document.getElementById("snackbar");
         x.className = "show";
-        setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
+        setTimeout(() => {
+            x.className = x.className.replace("show", "");
+            this.closeModalEvent.emit(true);
+        }, 3000);
     }
 }
