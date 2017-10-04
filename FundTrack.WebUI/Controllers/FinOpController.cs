@@ -50,9 +50,16 @@ namespace FundTrack.WebUI.Controllers
         /// <returns></returns>
         [HttpGet("GetFinOpsByOrgAccId/{orgAccountId}")]
         [Authorize(Roles = "admin, moderator")]
-        public IEnumerable<FinOpListViewModel> GetFinOpsByOrgAccId(int orgAccountId)
+        public IEnumerable<FinOpViewModel> GetFinOpsByOrgAccId(int orgAccountId)
         {
             return this._service.GetFinOpsByOrgAccount(orgAccountId);
+        }
+
+        [HttpGet("GetFinOpsById/{id}")]
+        [Authorize(Roles = "admin, moderator")]
+        public FinOpViewModel GetFinOpsById(int id)
+        {
+            return this._service.GetFinOpsById(id);
         }
 
         [HttpPost("Income")]
@@ -74,6 +81,13 @@ namespace FundTrack.WebUI.Controllers
         public FinOpViewModel Transfer([FromBody] FinOpViewModel transferModel)
         {
             return this._service.CreateTransfer(transferModel);
+        }
+
+        [HttpPut("Edit")]
+        [Authorize(Roles = "admin, moderator")]
+        public FinOpViewModel Edit([FromBody] FinOpViewModel finOp)
+        {
+            return this._service.EditFinOperation(finOp);
         }
 
         [HttpGet("{orgId}")]

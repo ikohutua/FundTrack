@@ -25,23 +25,24 @@ namespace FundTrack.DAL.Tests
 
             //Act
             var item = new Entities.Target { Id = 5, TargetName = "Приладдя", OrganizationId = 3 };
-            var target = repository.Create(item);
+            var result = repository.Create(item);
             this._context.SaveChanges();
 
             //Assert
-            Assert.IsType<Entities.Target>(target);
-            Assert.Equal("Приладдя", target.TargetName);
+            Assert.IsType<Entities.Target>(result);
+            Assert.Equal(item.TargetName, result.TargetName);
             Assert.True(this._context.Targets.Local.Count == 4);
         }
 
         [Fact]
-        public void GetTargetByName_TargetNull()
+        public void GetTargetByName_TargetNotNull()
         {
             //Arrange
             var repository = new TargetRepository(this._context);
+            const string targetName = "Харчі";
 
             //Act
-            var target = repository.GetTargetByName("Харчі") as Target;
+            var target = repository.GetTargetByName(targetName) as Target;
 
             //Assert
             Assert.NotNull(target);
@@ -51,12 +52,13 @@ namespace FundTrack.DAL.Tests
         {
             //Arrange
             var repository = new TargetRepository(this._context);
+            const string targetName = "Харчі";
 
             //Act
-            var target = repository.GetTargetByName("Харчі") as Target;
+            var target = repository.GetTargetByName(targetName) as Target;
 
             //Assert
-            Assert.Equal("Харчі", target?.TargetName);
+            Assert.Equal(targetName, target.TargetName);
         }
 
 
@@ -112,7 +114,7 @@ namespace FundTrack.DAL.Tests
 
             //Assert
             Assert.Equal(1, target.Id);
-            Assert.Equal("Приладдя", target.TargetName);
+            Assert.Equal(item.TargetName, target.TargetName);
             Assert.Equal(3, target.OrganizationId);
         }
 

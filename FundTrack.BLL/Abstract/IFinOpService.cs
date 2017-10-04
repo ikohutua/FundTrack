@@ -22,6 +22,10 @@ namespace FundTrack.BLL.Abstract
 
         FinOpViewModel CreateTransfer(FinOpViewModel finOpModel);
 
+        FinOpViewModel EditFinOperation(FinOpViewModel finOpModel);
+
+        FinOpViewModel GetFinOpsById(int id);
+
         /// <summary>
         /// Gets the fin ops by org account.
         /// </summary>

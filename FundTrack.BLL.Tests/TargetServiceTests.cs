@@ -1,5 +1,6 @@
 ﻿using FundTrack.BLL.Concrete;
 using FundTrack.DAL.Abstract;
+using FundTrack.DAL.Concrete;
 using FundTrack.DAL.Entities;
 using FundTrack.Infrastructure;
 using FundTrack.Infrastructure.ViewModel.FinanceViewModels.DonateViewModels;
@@ -124,36 +125,33 @@ namespace FundTrack.BLL.Tests
             Assert.True(ErrorMessages.CantFindItem == exception.Message);
         }
 
-        //[Fact]
-        //public void EditTarget()
-        //{
-        //    //Arrange
-        //    var testTargetVm = new TargetViewModel() { TargetId = 5, Name = "техніка", OrganizationId = 2 };
-        //    var testTarget = new Target() { Id = 5, TargetName = "техніка", OrganizationId = 2 };
+        [Fact]
+        public void EditTarget()
+        {
+            //Arrange
+            var testTargetVm = new TargetViewModel() { TargetId = 5, Name = "техніка", OrganizationId = 2 };
+            var testTarget = new Target() { Id = 5, TargetName = "техніка", OrganizationId = 2 };
 
-        //    var reposirory = new Mock<ITargetRepository>();
-        //    reposirory.Setup(x => x.Update(testTarget))
-        //         .Returns(testTarget);
+            var reposirory = new Mock<ITargetRepository>();
+            reposirory.Setup(x => x.Update(It.IsAny<Target>()))
+                 .Returns(testTarget);
 
-        //    var unitOfWork = new Mock<IUnitOfWork>();
-        //    unitOfWork.Setup(x => x.TargetRepository)
-        //        .Returns(reposirory.Object);
+            var unitOfWork = new Mock<IUnitOfWork>();
+            unitOfWork.Setup(x => x.TargetRepository)
+                .Returns(reposirory.Object);
 
-        //    var service = new TargetService(unitOfWork.Object);
+            var service = new TargetService(unitOfWork.Object);
 
-        //    //Act
-        //    var result = service.EditTarget(testTargetVm);
+            //Act
+            var result = service.EditTarget(testTargetVm);
 
-        //    //Assert
-        //    Assert.NotNull(result);
-        //    Assert.IsType<TargetViewModel>(result);
-        //    Assert.True(testTargetVm.TargetId == result.TargetId);
-        //    Assert.True(testTargetVm.Name == result.Name);
-        //    Assert.True(testTargetVm.OrganizationId == result.OrganizationId);
-
-        //    reposirory.Verify(x => x.Update(testTarget));
-        //    unitOfWork.Verify(x => x.TargetRepository);
-        //}
+            //Assert
+            Assert.NotNull(result);
+            Assert.IsType<TargetViewModel>(result);
+            Assert.True(testTargetVm.TargetId == result.TargetId);
+            Assert.True(testTargetVm.Name == result.Name);
+            Assert.True(testTargetVm.OrganizationId == result.OrganizationId);
+        }
 
         [Fact]
         public void EditTarget_ArgumentException()
@@ -282,27 +280,27 @@ namespace FundTrack.BLL.Tests
             Assert.True(ErrorMessages.CantCreatedItem == exception.Message);
         }
 
-        //[Fact]
-        //public void DeleteTarget_BusinessLogicException()
-        //{
-        //    //Arrange
-        //    var testId = -1;
-        //    var reposirory = new Mock<ITargetRepository>();
-        //    reposirory.Setup(x => x.Delete(testId));
+        [Fact]
+        public void DeleteTarget_BusinessLogicException()
+        {
+            //Arrange
+            var testId = -1;
+            var reposirory = new Mock<ITargetRepository>();
+            reposirory.Setup(x => x.Delete(testId)).Throws(new DataAccessException(ErrorMessages.DeleteDataError));
 
-        //    var unitOfWork = new Mock<IUnitOfWork>();
-        //    unitOfWork.Setup(x => x.TargetRepository)
-        //        .Returns(reposirory.Object);
+            var unitOfWork = new Mock<IUnitOfWork>();
+            unitOfWork.Setup(x => x.TargetRepository)
+                .Returns(reposirory.Object);
 
-        //    var service = new TargetService(unitOfWork.Object);
+            var service = new TargetService(unitOfWork.Object);
 
-        //    //Act
-        //    var exception = Record.Exception(() => service.DeleteTarget(testId));
+            //Act
+            var exception = Record.Exception(() => service.DeleteTarget(testId));
 
-        //    //Assert
-        //    Assert.NotNull(exception);
-        //    Assert.IsType<BusinessLogicException>(exception);
-        //    Assert.True(ErrorMessages.DeleteDataError == exception.Message);
-        //}
+            //Assert
+            Assert.NotNull(exception);
+            Assert.IsType<BusinessLogicException>(exception);
+            Assert.True(ErrorMessages.DeleteDataError == exception.Message);
+        }
     }
 }

@@ -15,6 +15,10 @@
     width: 91.5%;
 }
 
+.th-center-align {
+    text-align: center;
+}
+
 h2 {
     float: left;
 }
