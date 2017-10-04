@@ -162,13 +162,13 @@ export class OfferListComponent implements OnInit {
     */
     private checkForMissingImages(offers: OfferViewModel[]): void {
         for (var i = 0; i < this.offers.length; i++) {
-            if (this.offers[i].image.length == 0) {
+            if (this.offers[i].images.length == 0) {
                 let fakeImage = new OfferedItemImageViewModel();
                 fakeImage.id = 1;
                 fakeImage.imageUrl = 'https://s3.eu-central-1.amazonaws.com/fundtrack/default_image_placeholder.png';
                 fakeImage.isMain = true;
                 fakeImage.offeredItemId = this.offers[i].id;
-                this.offers[i].image.push(fakeImage);
+                this.offers[i].images.push(fakeImage);
             }
         }
     }
@@ -177,8 +177,8 @@ export class OfferListComponent implements OnInit {
     */
     private setMainImage(offers: OfferViewModel[]): void {
         for (var i = 0; i < offers.length; i++) {
-            for (var j = 0; j < offers[i].image.length; j++) {
-                let currentImage = offers[i].image[j];
+            for (var j = 0; j < offers[i].images.length; j++) {
+                let currentImage = offers[i].images[j];
                 if (currentImage.isMain) {
                     offers[i].mainImage = currentImage;
                     break;

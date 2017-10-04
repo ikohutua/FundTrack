@@ -40,7 +40,6 @@ namespace FundTrack.BLL.Concrete
                     item.GoodsCategory = _unitOfWork.GoodsCategoryRepository.GetGoodsCategoryById(model.GoodsCategoryId);
                     item.Status = _unitOfWork.StatusRepository.GetStatusByName(initialStatus);
                     var createdItem = _unitOfWork.OfferedItemRepository.Create(item);
-                    createdItem.OfferedItemImages = SetNewPictures(model.Base64Images, createdItem.Id);
                     _unitOfWork.SaveChanges();
                 }
                 return model;
@@ -66,7 +65,7 @@ namespace FundTrack.BLL.Concrete
                     item.Name = model.Name;
                     item.GoodsCategory = this._unitOfWork.GoodsCategoryRepository.GetGoodsCategoryById(model.GoodsCategoryId);
                     item.GoodsCategoryId = item.GoodsCategory.Id;
-                    this.SetOfferedItemPictures(model.Image, item);
+                    this.SetOfferedItemPictures(model.Images, item);
                     this._unitOfWork.SaveChanges();
                 }
 
@@ -129,7 +128,7 @@ namespace FundTrack.BLL.Concrete
             model.GoodsTypeName = this._unitOfWork.GoodsTypeRepository.GetGoodsTypeById(item.GoodsCategory.GoodsTypeId).Name;
             model.GoodsCategoryId = this._unitOfWork.GoodsCategoryRepository.GetGoodsCategoryByName(model.GoodsCategoryName).Id;
             model.GoodsTypeId = this._unitOfWork.GoodsTypeRepository.GetGoodsTypeByName(model.GoodsTypeName).Id;
-            model.Image = this.GetOfferedItemPictures(id).ToArray();
+            model.Images = this.GetOfferedItemPictures(id).ToArray();
             return model;
         }
         /// <summary>
@@ -188,7 +187,7 @@ namespace FundTrack.BLL.Concrete
                 UserId = item.UserId,
                 GoodsTypeName = item.GoodsCategory.GoodsType.Name
             };
-            model.Image = this._unitOfWork.OfferImagesRepository.Read().Where(a => a.OfferedItemId == model.Id)
+            model.Images = this._unitOfWork.OfferImagesRepository.Read().Where(a => a.OfferedItemId == model.Id)
                 .Select(a => new OfferedItemImageViewModel
                 {
                     ImageUrl = a.ImageUrl,
@@ -203,22 +202,22 @@ namespace FundTrack.BLL.Concrete
         /// <summary>
         ///  Sets specified images of specified offer item. First image is Main
         /// </summary>
-        /// <param name="imagesInBase64code">Base64 code of images</param>
+        /// <param name="images">Base64 code of images</param>
         /// <param name="offeredItemId">Offered item Id</param>
         /// <returns>Collection of offered item images</returns>
-        public ICollection<OfferedItemImage> SetNewPictures(string[] imagesInBase64code,int offeredItemId)
+        public ICollection<OfferedItemImage> SetNewPictures(OfferedItemImageViewModel[] images,int offeredItemId)
         {
             Dictionary<OfferedItemImage, Task<string>> imageTastDictionary = new Dictionary<OfferedItemImage, Task<string>>();
 
-            foreach (var item in imagesInBase64code)
+            foreach (var item in images)
             {
                 var newImage = new OfferedItemImage()
                 {
-                    IsMain = false,
+                    IsMain = item.IsMain,
                     OfferedItemId = offeredItemId
                 };
 
-                var t = _imgService.UploadImage(Convert.FromBase64String(item));
+                var t = _imgService.UploadImage(Convert.FromBase64String(item.Base64Data));
                 imageTastDictionary.Add(newImage, t);
             }
             Task.WhenAll(imageTastDictionary.Values);

@@ -8,7 +8,7 @@
                 <th class="th-center-align">№</th>
                 <th class="th-center-align">Дата і час операції</th>
                 <th class="th-center-align">
-                    <select #operation (change)="viewFinOpsByOperation(operation.value)" class="th-center-align">
+                    <select #operation (change)="viewFinOpsByOperation(operation.value)" class="th-center-align" style="width:170px;">
                         <option *ngIf="!default" selected disabled>Тип операції</option>
                         <option value=1>Прихід</option>
                         <option value=0>Розхід</option>
