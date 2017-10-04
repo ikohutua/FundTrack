@@ -1,6 +1,7 @@
 ﻿using FundTrack.BLL.Abstract;
 using FundTrack.DAL.Abstract;
 using FundTrack.DAL.Entities;
+using FundTrack.Infrastructure;
 using FundTrack.Infrastructure.ViewModel.FinanceViewModels.DonateViewModels;
 using System;
 using System.Collections.Generic;
@@ -115,28 +116,43 @@ namespace FundTrack.BLL.Concrete
 
         public IEnumerable<UserDonationsViewModel> GetUserDonations(int userid)
         {
-            var result = _unitOfWork.DonationRepository.Read()
-                .Where(donation => donation.UserId == userid)
-                .Select(donation => new UserDonationsViewModel
-                {
-                    Id = donation.Id,
-                    Organization = donation.BankAccount?.Organization.Name,
-                    Target = donation.Target?.TargetName,
-                    Date = donation.DonationDate,
-                    Amount = donation.Amount,
-                    Description = donation.Description
-                }).OrderBy(donation => donation.Date).ToList();
-            return result;
+            try
+            {
+                var result = _unitOfWork.DonationRepository.Read()
+                    .Where(donation => donation.UserId == userid)
+                    .Select(donation => new UserDonationsViewModel
+                    {
+                        Id = donation.Id,
+                        Organization = donation.BankAccount?.Organization.Name,
+                        Target = donation.Target?.TargetName,
+                        Date = donation.DonationDate,
+                        Amount = donation.Amount,
+                        Description = donation.Description
+                    }).OrderBy(donation => donation.Date).ToList();
+                return result;
+            }
+            catch(Exception ex)
+            {
+                throw new BusinessLogicException(ErrorMessages.CantFindItem, ex);
+            }
 
         }
 
         public IEnumerable<UserDonationsViewModel> GetUserDonationsByDate(int userid, DateTime dateFrom, DateTime dateTo)
         {
-            var result = GetUserDonations(userid)
-                .Where(donat => donat.Date <= dateTo
-                && donat.Date >= dateFrom)
-                .OrderBy(donation => donation.Date).ToList();
-            return result;
+            try
+            {
+                dateTo = dateTo.AddDays(1);
+                var result = GetUserDonations(userid)
+                    .Where(donat => donat.Date <= dateTo
+                    && donat.Date >= dateFrom)
+                    .OrderBy(donation => donation.Date).ToList();
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw new BusinessLogicException(ErrorMessages.CantFindItem, ex);
+            }
         }
     }
 }

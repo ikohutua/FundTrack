@@ -22,14 +22,14 @@ export class DonateService {
     sendRequestToFondy(request: any): Observable<any> {
         let requestBody = JSON.stringify({ request: request });
         console.log(requestBody);
-        return this._http.post('api/Donate/SendRequestFondy', requestBody, this.getOptions()).
+        return this._http.post('api/Donate/SendRequestFondy', requestBody, RequestOptionsService.getRequestOptions()).
             map((response: Response) => { return response.text() });
     }
 
     checkPaymentRequest(request: any): Observable<FondyCheckPaymentResponseViewModel> {
         let requestBody = JSON.stringify({ request: request });
         console.log(requestBody);
-        return this._http.post('api/Donate/CheckPayment', requestBody, this.getOptions()).
+        return this._http.post('api/Donate/CheckPayment', requestBody, RequestOptionsService.getRequestOptions()).
             map((response: Response) => {
                 let result = response.json() as FondyCheckPaymentResponseViewModel;
                 return result;
@@ -58,7 +58,7 @@ export class DonateService {
     }
 
     addDonation(item: DonateViewModel): Observable<DonateViewModel> {
-        return this._http.post('api/Donate/AddDonation', item, this.getOptions())
+        return this._http.post('api/Donate/AddDonation', item, RequestOptionsService.getRequestOptions())
             .map((response: Response) => { return response.json() as DonateViewModel });
     }
 
@@ -67,7 +67,7 @@ export class DonateService {
             .map((response: Response) => {
                 return response.json() as UserDonationViewModel[];
             })
-            .do(data => console.log('ALL ' + JSON.stringify(data)));
+            .catch(this.handleErrorHere);;
     }
     getUserDonationsByDate(userId: number, startDate: string, endDate: string): Observable<UserDonationViewModel[]> {
         debugger;
@@ -75,12 +75,10 @@ export class DonateService {
             .map((response: Response) => {
                 return response.json() as UserDonationViewModel[];
             })
-            .do(data => console.log('ALL ' + JSON.stringify(data)));
-    }
-    private getOptions(): RequestOptions {
-        let headers = new Headers({ 'Content-Type': 'application/json' });
-        let option = new RequestOptions({ headers: headers });
-        return option;
+            .catch(this.handleErrorHere);
     }
 
+    private handleErrorHere(error: Response) {
+        return Observable.throw(error.json().error || 'Server error');
+    };
 }

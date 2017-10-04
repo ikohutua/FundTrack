@@ -48,14 +48,6 @@ export class MyDonationsComponent implements OnInit {
         this.donateService.getUserDonations(this.user.id).subscribe(donation => {
             this.myDonations = donation;
             this.filteringModel.dateFrom = this.myDonations[0].date;
-            //this.myDonations = this.searchTerms
-            //    .debounceTime(300)
-            //    .distinctUntilChanged()
-            //    .switchMap()
-            //    .catch(error => {
-            //        console.log(error);
-            //        return Observable.of<UserDonationViewModel[]>([]);
-            //    });
         });
 
     }
@@ -73,7 +65,7 @@ export class MyDonationsComponent implements OnInit {
     }
     public setEndDate(endDate: Date): void {
         this.filteringModel.dateTo = endDate;
-        this.donationWhenDateChanged();
+         this.donationWhenDateChanged();
     }
 
 }

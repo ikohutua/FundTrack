@@ -109,7 +109,7 @@ namespace FundTrack.WebUI.Controllers
         }
 
         [HttpGet("UserByDate")]
-        //[Authorize(Roles = "admin, moderator,partner")]
+        [Authorize(Roles = "admin, moderator,partner")]
         public IEnumerable<UserDonationsViewModel> GetUserDonationsByDate(int userId, DateTime dateFrom, DateTime dateTo)
         {
             return _donateMoneyService.GetUserDonationsByDate(userId, dateFrom, dateTo);
