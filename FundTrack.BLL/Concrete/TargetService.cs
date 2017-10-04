@@ -74,7 +74,8 @@ namespace FundTrack.BLL.Concrete
 
         private void CheckInTargets(List<TargetViewModel> targets)
         {
-            foreach (var target in targets)
+            var baseTargets = targets.FindAll(t => t.ParentTargetId == null);
+            foreach (var target in baseTargets)
             {
                 foreach (var subTarget in targets)
                 {

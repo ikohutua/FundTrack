@@ -35,10 +35,7 @@ namespace FundTrack.DAL.Concrete
 
         public Bank Update(Bank bank)
         {
-            var editableBank = _context.Banks.FirstOrDefault(b => b.Id == bank.Id);
-            editableBank.BankName = bank.BankName;
-            editableBank.MFO = bank.MFO;
-            return editableBank;
+            return _context.Update(bank).Entity;
         }
 
         public void Delete(int bankId)

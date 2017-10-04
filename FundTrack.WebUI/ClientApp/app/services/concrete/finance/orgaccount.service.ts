@@ -27,7 +27,6 @@ export class OrgAccountService {
     private _createUrl: string = 'api/orgaccount/create';
     private _getAccountUrl: string = 'api/orgaccount/get';
     private _deleteAccountUrl: string = 'api/orgaccount/delete';
-    private _getBanksUrl : string = 'api/Bank';
 
     constructor(private _http: Http) {
     }
@@ -174,12 +173,12 @@ export class OrgAccountService {
     }
 
     public getAllBanks(): Observable<BankViewModel[]> {
-        return this._http.get(this._getBanksUrl)
+        return this._http.get(GlobalUrlService.banksUrl, RequestOptionsService.getRequestOptions())
             .map((response: Response) => response.json() as BankViewModel[]);
     }
 
     public getBankById(bankId : number): Observable<BankViewModel> {
-        return this._http.get(this._getBanksUrl + '/' + bankId.toString())
+        return this._http.get(GlobalUrlService.banksUrl + '/' + bankId.toString(), RequestOptionsService.getRequestOptions())
             .map((response: Response) => response.json() as BankViewModel);
     }
 }

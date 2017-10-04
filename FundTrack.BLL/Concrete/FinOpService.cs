@@ -26,29 +26,6 @@ namespace FundTrack.BLL.Concrete
         }
 
         /// <summary>
-        /// Gets the targets.
-        /// </summary>
-        /// <returns></returns>
-        /// <exception cref="BusinessLogicException"></exception>
-        public IEnumerable<TargetViewModel> GetTargets(int id)
-        {
-            try
-            {
-                return _unitOfWork.TargetRepository.GetTargetsByOrganizationId(id)
-                                       .Select(item => new TargetViewModel
-                                       {
-                                           TargetId = item.Id,
-                                           Name = item.TargetName,
-                                           OrganizationId = item.OrganizationId
-                                       });
-            }
-            catch (Exception ex)
-            {
-                throw new BusinessLogicException(ex.Message, ex);
-            }
-        }
-
-        /// <summary>
         /// Creates the fin op.
         /// </summary>
         /// <param name="finOpModel">The fin op model.</param>
@@ -217,6 +194,24 @@ namespace FundTrack.BLL.Concrete
                 } as IEnumerable<FinOpListViewModel>;
             }
         }
+
+        /*
+        public IEnumerable<FinOpViewModel> GetAllFinOpsByOrgId(int orgId)
+        {
+            var finOps = _unitOfWork.FinOpRepository.Read();
+            return finOps.Select(f => new FinOpViewModel
+            {
+                Description = f.Description,
+                Sum = f.Amount,
+                CardFromId = f.OrgAccountFrom.Id,
+                CardToId = f.OrgAccountTo.Id,
+                //TargetId = f.TargetId,
+                FinOpType = f.FinOpType,
+                Date = f.FinOpDate,
+                //OrgId = (f.OrgAccountTo != null ? f.OrgAccountTo.OrgId : f.OrgAccountFrom.OrgId)
+            }).Where(f => f.OrgId == orgId); 
+        }
+        */
 
     }
 }

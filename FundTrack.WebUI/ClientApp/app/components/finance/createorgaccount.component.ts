@@ -13,7 +13,8 @@ import { AuthorizeUserModel } from "../../view-models/concrete/authorized-user-i
 import { Location } from '@angular/common';
 import Targetviewmodel1 = require("../../view-models/concrete/finance/donate/target.view-model");
 import TargetViewModel = Targetviewmodel1.TargetViewModel;
-import {BankViewModel} from "../../view-models/concrete/finance/bank-view.model";
+import { BankViewModel } from "../../view-models/concrete/finance/bank-view.model";
+import {CreateOrgAccountConstants} from "./createorgaccount.constants"
 
 @Component({
     selector: 'createorgaccount',
@@ -37,7 +38,7 @@ export class CreateOrgAccountComponent {
     private targets: TargetViewModel[] = new Array<TargetViewModel>();
     private defaultTarget: TargetViewModel = {
         targetId: undefined,
-        name: "Не вказано",
+        name: CreateOrgAccountConstants.DefaultTargetName,
         organizationId: undefined,
         parentTargetId: undefined,
         isDeletable: true
@@ -64,13 +65,7 @@ export class CreateOrgAccountComponent {
             }
         };
         this._accountService.getAllBaseTargetsOfOrganization(this.user.orgId).subscribe((result) => {
-            this.targets.push({
-                targetId: undefined,
-                name: "Не вказано",
-                organizationId: undefined,
-                parentTargetId: undefined,
-                isDeletable: true
-            });
+            this.targets.push(this.defaultTarget);
             for (var target of result) {
                 this.targets.push(target);
             }
@@ -123,46 +118,35 @@ export class CreateOrgAccountComponent {
         accountCurrency: "",
         accountDescription: ""
     }
-    /*
-    Error messages
-    */
-    private requiredMessage = "*Поле є обов'язковим для заповнення";
-    private numberMessage = "*Поле повинно містити тільки цифри";
-    private LengthMessage = "*Недопустима кількість символів";
-    private accountNameWrongLength = "*Максимально допустима довжина імені рахунку складає 100 символів";
-    private edrpoulength = "*ЄДРПОУ повинно містити 8 цифр";
-    private descriptionlength = "*Опис рахунку не може перевищувати 100 символів";
-    private currencyselection = "*Необхідно вибрати валюту";
-    private wrongBalanceMessage = "*Баланс повинен бути у форматі 1 або 1.23";
 
     /*
     Assigning error messages to certain validations
     */
     private validationMessages = {
         accountName: {
-            required: this.requiredMessage,
-            maxlength: this.accountNameWrongLength
+            required: CreateOrgAccountConstants.requiredMessage,
+            maxlength: CreateOrgAccountConstants.accountNameWrongLength
         },
         cardNumber: {
-            required: this.requiredMessage,
-            notnumeric: this.numberMessage,
-            maxlength: this.LengthMessage,
-            minlength: this.LengthMessage
+            required: CreateOrgAccountConstants.requiredMessage,
+            notnumeric: CreateOrgAccountConstants.numberMessage,
+            maxlength: CreateOrgAccountConstants.LengthMessage,
+            minlength: CreateOrgAccountConstants.LengthMessage
         },
         accountEdrpou: {
-            required: this.requiredMessage,
-            notnumeric: this.numberMessage,
-            minlength: this.edrpoulength,
-            maxlength: this.edrpoulength
+            required: CreateOrgAccountConstants.requiredMessage,
+            notnumeric: CreateOrgAccountConstants.numberMessage,
+            minlength: CreateOrgAccountConstants.edrpoulength,
+            maxlength: CreateOrgAccountConstants.edrpoulength
         },
         accountDescription: {
-            maxlength: this.descriptionlength
+            maxlength: CreateOrgAccountConstants.descriptionlength
         },
         accountCurrency: {
-            required: this.currencyselection
+            required: CreateOrgAccountConstants.currencyselection
         },
         currentBalance: {
-            pattern: this.wrongBalanceMessage
+            pattern: CreateOrgAccountConstants.wrongBalanceMessage
         }
     }
 
