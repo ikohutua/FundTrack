@@ -82,7 +82,7 @@ namespace FundTrack.WebUI.Controllers
             return _donateMoneyService.GetOrderId();
         }
 
-        [HttpGet("GetCurrencies")]
+        [HttpGet("Currencies")]
         public IEnumerable<CurrencyViewModel> GetCurrencies()
         {
             return _donateMoneyService.GetCurrencies();

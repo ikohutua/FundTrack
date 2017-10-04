@@ -85,7 +85,6 @@ export class MakeDonationComponent implements OnInit, DoCheck, OnDestroy{
 
     ngOnInit() {
         this._storageService.showDropDown = false;
-       
         if (localStorage.getItem("order_id")) {
             this.paymentInfo = JSON.parse(localStorage.getItem("merchantData"));
             this.checkPaymentModel.merchant_id = parseInt(this.paymentInfo.merchantId);
@@ -103,7 +102,7 @@ export class MakeDonationComponent implements OnInit, DoCheck, OnDestroy{
         this.donateForm = this._fb.group({
             amount: ['', [Validators.required,  Validators.pattern("[0-9]+(\.[0-9]{1,2})?$")]],
             currency: ['', [Validators.required]],
-            description: [''],
+            description: ['Коментар відсутній'],
             accountForDonation: ['', [Validators.required]], 
             email: ['']
         });
@@ -113,7 +112,8 @@ export class MakeDonationComponent implements OnInit, DoCheck, OnDestroy{
         this.fondyPayModel.server_callback_url = "http://localhost:51116/finance/donate";
 
         //DONT FORGET PEPLACE LINK TO DEFAULT http://fundtrack4.azurewebsites.net/finance/donate
-        this.fondyPayModel.response_url = "http://localhost:51116/finance/donate";
+        // link for testing http://localhost:51116/finance/donate
+        this.fondyPayModel.response_url = "http://fundtrack4.azurewebsites.net/finance/donate";
         this.fondyPayModel.currency = this.currency.currencyShortName;
 
         this.donateForm.valueChanges.subscribe(() => {

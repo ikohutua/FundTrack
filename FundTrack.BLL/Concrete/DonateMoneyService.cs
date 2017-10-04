@@ -9,7 +9,7 @@ using System.Linq;
 
 namespace FundTrack.BLL.Concrete
 {
-    public class DonateMoneyService: IDonateMoneyService
+    public class DonateMoneyService : IDonateMoneyService
     {
         private readonly IUnitOfWork _unitOfWork;
 
@@ -20,14 +20,15 @@ namespace FundTrack.BLL.Concrete
 
         public OrganizationDonateAccountsViewModel GetAccountForDonation(int organizationId)
         {
-            var orgAccounts = _unitOfWork.OrganizationAccountRepository.ReadOrgAccountsForDonations(organizationId).Distinct((c1,c2)=> c1.Target == c2.Target);
-           
+            var orgAccounts = _unitOfWork.OrganizationAccountRepository.ReadOrgAccountsForDonations(organizationId)
+                              .Distinct((c1, c2) => c1.Target == c2.Target);
+
             var result = new OrganizationDonateAccountsViewModel()
             {
                 OrganizationId = organizationId,
                 OrgName = _unitOfWork.OrganizationRepository.Get(organizationId).Name,
                 Accounts = new List<DonateAccountViewModel>()
-            };            
+            };
             if (orgAccounts != null)
             {
                 foreach (var orgAccount in orgAccounts)
@@ -40,9 +41,10 @@ namespace FundTrack.BLL.Concrete
                         MerchantPassword = orgAccount.BankAccount.MerchantPassword,
                         Name = orgAccount.OrgAccountName,
                         TargetId = orgAccount.TargetId,
-                        Target = orgAccount.TargetId == null ? "Загальний" : _unitOfWork.TargetRepository.GetTargetById((int)orgAccount.TargetId).TargetName
+                        Target = orgAccount.TargetId == null ? "Загальний" : _unitOfWork.TargetRepository
+                                .GetTargetById(orgAccount.TargetId.GetValueOrDefault()).TargetName
 
-                });
+                    });
                 }
                 return result;
             }
@@ -53,19 +55,19 @@ namespace FundTrack.BLL.Concrete
             }
         }
 
-       
+
 
         public string GetOrderId()
         {
             return Guid.NewGuid().ToString();
         }
 
-       
+
         public IEnumerable<CurrencyViewModel> GetCurrencies()
         {
             var currencies = _unitOfWork.CurrencyRepositry.Read();
             var result = new List<CurrencyViewModel>();
-            foreach(var currency in currencies)
+            foreach (var currency in currencies)
             {
                 result.Add(new CurrencyViewModel
                 {

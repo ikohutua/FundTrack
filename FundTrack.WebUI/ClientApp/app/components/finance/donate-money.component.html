@@ -44,7 +44,7 @@
                 </div>
 
                 <div  class="indent">
-                    <label> Приназчення</label>
+                    <label> Призначення</label>
                     <select class="form-control" formControlName="accountForDonation" [(ngModel)]="accountForDonation" (ngModelChange)="onSelectChange($event)">
                         <option class="form-control"  *ngFor="let accountForDonation of donateAccounts" [ngValue]="accountForDonation"> {{accountForDonation.target}} </option>
                     </select>
