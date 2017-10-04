@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace FundTrack.BLL.Concrete
 {
-    public class DonateMoneyService: IDonateMoneyService
+    public class DonateMoneyService : IDonateMoneyService
     {
         private readonly IUnitOfWork _unitOfWork;
 
@@ -25,7 +25,7 @@ namespace FundTrack.BLL.Concrete
                 OrganizationId = organizationId,
                 OrgName = _unitOfWork.OrganizationRepository.Get(organizationId).Name,
                 Accounts = new List<DonateAccountViewModel>()
-            };            
+            };
             if (orgAccounts != null)
             {
                 foreach (var orgAccount in orgAccounts)
@@ -57,7 +57,7 @@ namespace FundTrack.BLL.Concrete
         {
             var targets = _unitOfWork.TargetRepository.GetTargetsByOrganizationId(id);
             var result = new List<TargetViewModel>();
-            foreach(var target in targets)
+            foreach (var target in targets)
             {
                 result.Add(new TargetViewModel
                 {
@@ -73,7 +73,7 @@ namespace FundTrack.BLL.Concrete
         {
             var currencies = _unitOfWork.CurrencyRepositry.Read();
             var result = new List<CurrencyViewModel>();
-            foreach(var currency in currencies)
+            foreach (var currency in currencies)
             {
                 result.Add(new CurrencyViewModel
                 {
@@ -115,17 +115,28 @@ namespace FundTrack.BLL.Concrete
 
         public IEnumerable<UserDonationsViewModel> GetUserDonations(int userid)
         {
-            var result =  _unitOfWork.DonationRepository.Read()
-                .Where(d => d.UserId == userid).Select(d => new UserDonationsViewModel
+            var result = _unitOfWork.DonationRepository.Read()
+                .Where(donation => donation.UserId == userid)
+                .Select(donation => new UserDonationsViewModel
                 {
-                    Organization = d.BankAccount.Organization.Name,
-                    Target = d.Target.TargetName,
-                    Date = d.DonationDate,
-                    Sum = d.Amount,
-                    Description = d.Description
-                }).ToList();
+                    Id = donation.Id,
+                    Organization = donation.BankAccount?.Organization.Name,
+                    Target = donation.Target?.TargetName,
+                    Date = donation.DonationDate,
+                    Amount = donation.Amount,
+                    Description = donation.Description
+                }).OrderBy(donation => donation.Date).ToList();
             return result;
 
+        }
+
+        public IEnumerable<UserDonationsViewModel> GetUserDonationsByDate(int userid, DateTime dateFrom, DateTime dateTo)
+        {
+            var result = GetUserDonations(userid)
+                .Where(donat => donat.Date <= dateTo
+                && donat.Date >= dateFrom)
+                .OrderBy(donation => donation.Date).ToList();
+            return result;
         }
     }
 }

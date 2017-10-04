@@ -75,7 +75,7 @@ namespace FundTrack.BLL.Concrete
                     {
                         Id=finOps.Id,
                         Description = finOps.Description,
-                        Target = finOps.Target.TargetName,
+                        Target = finOps.Target?.TargetName,
                         MoneyAmount = finOps.Amount,
                         Date = finOps.FinOpDate,
                     }).ToList();

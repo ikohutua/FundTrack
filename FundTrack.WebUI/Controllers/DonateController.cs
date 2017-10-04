@@ -1,5 +1,6 @@
 ﻿using FundTrack.BLL.Abstract;
 using FundTrack.Infrastructure.ViewModel.FinanceViewModels.DonateViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,7 @@ namespace FundTrack.WebUI.Controllers
     /// Controller that manages donate money operations
     /// </summary>
     [Route("api/[controller]")]
-    public class DonateController: Controller
+    public class DonateController : Controller
     {
         private readonly IDonateMoneyService _donateMoneyService;
 
@@ -95,15 +96,23 @@ namespace FundTrack.WebUI.Controllers
         }
 
         [HttpPost("AddDonation")]
-        public DonateViewModel AddDonation ([FromBody]DonateViewModel item)
+        public DonateViewModel AddDonation([FromBody]DonateViewModel item)
         {
             return _donateMoneyService.AddDonation(item);
         }
 
-        [HttpGet("UserDonations/{userId}")]
+        [HttpGet("User/{userId}")]
+        [Authorize(Roles = "admin, moderator,partner")]
         public IEnumerable<UserDonationsViewModel> GetUserDonations(int userId)
         {
             return _donateMoneyService.GetUserDonations(userId);
+        }
+
+        [HttpGet("UserByDate")]
+        //[Authorize(Roles = "admin, moderator,partner")]
+        public IEnumerable<UserDonationsViewModel> GetUserDonationsByDate(int userId, DateTime dateFrom, DateTime dateTo)
+        {
+            return _donateMoneyService.GetUserDonationsByDate(userId, dateFrom, dateTo);
         }
     }
 }

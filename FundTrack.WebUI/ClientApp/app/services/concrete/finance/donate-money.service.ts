@@ -66,7 +66,16 @@ export class DonateService {
         return this._http.get(GlobalUrlService.userDonations + userId, RequestOptionsService.getRequestOptions())
             .map((response: Response) => {
                 return response.json() as UserDonationViewModel[];
-            });
+            })
+            .do(data => console.log('ALL ' + JSON.stringify(data)));
+    }
+    getUserDonationsByDate(userId: number, startDate: string, endDate: string): Observable<UserDonationViewModel[]> {
+        debugger;
+        return this._http.get(GlobalUrlService.userDonationsByDate+ '?userId=' + userId + '&datefrom=' + startDate + '&dateto=' + endDate, RequestOptionsService.getRequestOptions())
+            .map((response: Response) => {
+                return response.json() as UserDonationViewModel[];
+            })
+            .do(data => console.log('ALL ' + JSON.stringify(data)));
     }
     private getOptions(): RequestOptions {
         let headers = new Headers({ 'Content-Type': 'application/json' });

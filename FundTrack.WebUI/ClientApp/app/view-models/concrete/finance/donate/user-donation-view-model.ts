@@ -1,7 +1,8 @@
 ﻿export class UserDonationViewModel {
+    id: number;
     organization: string;
-    sum: number;
+    amount: number;
     date: Date;
     target: string;
-    description:string;
+    description: string;
 }
