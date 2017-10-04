@@ -1,8 +1,8 @@
 ﻿<div>
     <div *ngIf="organization" class="background">
         <div class="parent">
-            <img class="child" *ngIf="!isNewLogoAvailable" [src]="orgLogo" />
-            <img class="child" *ngIf="isNewLogoAvailable" [src]="newLogo" />
+            <img class="child" *ngIf="!isNewLogoAvailable" [src]="organization.logoUrl" />
+            <img class="child" *ngIf="isNewLogoAvailable" [src]="newLogoUrl" />
         </div>
         <div class="parent-btn">
             <div class="child-btn">
@@ -14,7 +14,7 @@
                 </div>
             </div>
         </div>
-        <div class="alert danger" *ngIf="isError">
+        <div class="alert alert-danger" *ngIf="isError">
             <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
             {{errorMessage}}
         </div>

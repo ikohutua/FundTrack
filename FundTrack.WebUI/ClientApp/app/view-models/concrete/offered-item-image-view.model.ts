@@ -3,6 +3,7 @@
     imageUrl: string;
     offeredItemId: number;
     isMain: boolean;
+    base64Data: string;
 }
 
 

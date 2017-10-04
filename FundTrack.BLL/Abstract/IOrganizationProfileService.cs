@@ -60,6 +60,12 @@ namespace FundTrack.BLL.Abstract
         /// </summary>
         /// <param name="id">Id of organization</param>
         OrganizationDetailViewModel GetOrganizationDetail(int id);
-       
+
+        /// <summary>
+        /// Edite current logo
+        /// </summary>
+        /// <param name="item">Edit logo view mode</param>
+        /// <returns>Edited logo view mode</returns>
+        EditLogoViewModel EditLogo(EditLogoViewModel item);
     }
 }
