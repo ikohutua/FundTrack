@@ -89,7 +89,7 @@
                 </div>
                 <div class="form-group">
                     <label class="control-label">Призначення<sup class="sup-color-red">*</sup></label>
-                    <select #detalization (change)="getSubTargetsByTargetId(detalization.value)" [(ngModel)]="moneyOperationModel.targetId" formControlName="targetId" id="categoryType" class="form-control">
+                    <select #detalizationIncome (change)="getSubTargetsByTargetId(detalizationIncome.value)" [(ngModel)]="moneyOperationModel.targetId" formControlName="targetId" id="categoryType" class="form-control">
                         <option></option>
                         <option *ngFor="let target of baseTargets" value="{{target.targetId}}">
                             {{target.name}}
@@ -177,7 +177,7 @@
                 </div>
                 <div class="form-group">
                     <label class="control-label">Призначення<sup class="sup-color-red">*</sup></label>
-                    <select #detalization (change)="getSubTargetsByTargetId(detalization.value)" [(ngModel)]="moneyOperationModel.targetId" formControlName="targetId" id="categoryType" class="form-control">
+                    <select #detalizationSpending (change)="getSubTargetsByTargetId(detalizationSpending.value)" [(ngModel)]="moneyOperationModel.targetId" formControlName="targetId" id="categoryType" class="form-control">
                         <option></option>
                         <option *ngFor="let target of baseTargets" value="{{target.targetId}}">
                             {{target.name}}
