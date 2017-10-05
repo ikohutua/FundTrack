@@ -2,7 +2,7 @@
     <div *ngIf="organization" class="background">
         <div class="parent">
             <img class="child" *ngIf="!isNewLogoAvailable" [src]="organization.logoUrl" />
-            <img class="child" *ngIf="isNewLogoAvailable" [src]="newLogoUrl" />
+            <img class="child" *ngIf="isNewLogoAvailable" [src]="editLogo.logoUrl" />
         </div>
         <div class="parent-btn">
             <div class="child-btn">

@@ -13,6 +13,7 @@ export class ImputImagService {
     public MakeImage(file: any) {
         this.startFile = file;
         this.handleImageLoader();
+        
     }
 
     private handleImageLoader() {
@@ -39,5 +40,34 @@ export class ImputImagService {
         let base64Code = newLogoUrl.substring(commaInd + 1);
 
         this.image = new Image(this.currentImageFile.name, newLogoUrl, base64Code);
-     }
+    }
+
+    public getWorkbookFromFile2(startFile: any): Promise<Image> {
+        
+        return new Promise<Image>((resolve, reject) => {
+
+            let currentImageFile = startFile.dataTransfer ? startFile.dataTransfer.files[0] : startFile.target.files[0];
+
+            if (!currentImageFile.type.match(defaultConfig.imageRegExPattern)) {
+                reject(new Error( message.invalidFormat));
+            }
+
+            if (currentImageFile.size > defaultConfig.maxImageSize) {
+                reject(new Error( message.exceededImageSize + " " + message.acceptable + " " + defaultConfig.maxImageSize / 1000000 + "Мб"));
+            }
+
+            var reader = new FileReader();
+
+            reader.onload = (e: any) => {
+                let newLogoUrl = e.target.result;
+
+                var commaInd = newLogoUrl.indexOf(',');
+                let base64Code = newLogoUrl.substring(commaInd + 1);
+
+                let image = new Image(currentImageFile.name, newLogoUrl, base64Code);
+                resolve(image);
+            }
+            reader.readAsDataURL(currentImageFile);
+        });
+    }
 }
