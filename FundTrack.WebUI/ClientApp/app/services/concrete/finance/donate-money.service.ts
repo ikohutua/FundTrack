@@ -9,6 +9,9 @@ import { OrganizationDonateAccountsViewModel } from "../../../view-models/concre
 import { TargetViewModel } from "../../../view-models/concrete/finance/donate/target.view-model";
 import { CurrencyViewModel } from "../../../view-models/concrete/finance/donate/currency.view-model";
 import { DonateViewModel } from "../../../view-models/concrete/finance/donate/donate.view-model";
+import { DonateUrlsService } from "../donate-urls.service";
+import { RequestOptionsService } from "../request-options.service";
+
 
 @Injectable()
 export class DonateService {
@@ -18,13 +21,13 @@ export class DonateService {
 
     sendRequestToFondy(request: any): Observable<any> {
         let requestBody = JSON.stringify({ request: request });
-        return this._http.post('api/Donate/SendRequestFondy', requestBody, this.getOptions()).
+        return this._http.post(DonateUrlsService.sendRequestFondy, requestBody, RequestOptionsService.getRequestOptions()).
             map((response: Response) => { return response.text() });
     }
 
     checkPaymentRequest(request: any): Observable<FondyCheckPaymentResponseViewModel> {
         let requestBody = JSON.stringify({ request: request });
-        return this._http.post('api/Donate/CheckPayment', requestBody, this.getOptions()).
+        return this._http.post(DonateUrlsService.checkPayment, requestBody, RequestOptionsService.getRequestOptions()).
             map((response: Response) => {
                 let result = response.json() as FondyCheckPaymentResponseViewModel;
                 return result;
@@ -32,34 +35,23 @@ export class DonateService {
     }
 
     getAccountsForDonate(organizationId: number): Observable<OrganizationDonateAccountsViewModel> {
-        return this._http.get('api/Donate/GetAccountsForDonate/' + organizationId.toString()).
+        return this._http.get(DonateUrlsService.accountsForDonate + organizationId.toString()).
             map((response: Response) => { return response.json() as OrganizationDonateAccountsViewModel });
     }
 
     getOrderId(): Observable<string> {
-        return this._http.get('api/Donate/GetOrderId').
+        return this._http.get(DonateUrlsService.orderId).
             map((response: Response) => { return response.text() });
     }
 
-    getTargets(): Observable<TargetViewModel[]> {
-        return this._http.get('api/Donate/GetTargets').
-            map((response: Response) => { return response.json() as TargetViewModel[]});
-    }
-
     getCurrencies(): Observable<CurrencyViewModel[]> {
-        return this._http.get('api/Donate/GetCurrencies').
+        return this._http.get(DonateUrlsService.currencies).
             map((response: Response) => { return response.json() as CurrencyViewModel[]})
     }
 
     addDonation(item: DonateViewModel): Observable<DonateViewModel>{
-        return this._http.post('api/Donate/AddDonation', item, this.getOptions())
+        return this._http.post(DonateUrlsService.addDonation, item, RequestOptionsService.getRequestOptions())
             .map((response: Response) => {return  response.json() as DonateViewModel});
-    }
-
-    private getOptions() : RequestOptions{
-        let headers = new Headers({ 'Content-Type': 'application/json' });
-        let option = new RequestOptions({ headers: headers });
-        return option;
     }
 
 }

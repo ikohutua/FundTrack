@@ -75,7 +75,6 @@ export class FixingBalanceComponent implements OnChanges, OnInit {
     fixBalance() {
         let balance = new BalanceViewModel();
         balance.balanceDate = this.currentDate;
-
         balance.orgAccountId = this.accountId;
         this.fixingBalanceService.fixBalance(balance)
             .subscribe(data => {
@@ -90,9 +89,11 @@ export class FixingBalanceComponent implements OnChanges, OnInit {
                 this.isDatePickerEnabled = false;
             });
     }
+
     setCurrentDate(date: Date) {
         this.currentDate = date.toString();
     }
+
     public showToast() {
         var x = document.getElementById("snackbar");
         x.className = "show";
