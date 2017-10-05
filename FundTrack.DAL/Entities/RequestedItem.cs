@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 
 namespace FundTrack.DAL.Entities
 {
@@ -85,5 +86,29 @@ namespace FundTrack.DAL.Entities
         /// UserResponses navigation property
         /// </summary>
         public virtual ICollection<UserResponse> UserResponses { get; set; }
+
+        public static void Configure(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<RequestedItem>(entity =>
+            {
+                entity.HasKey(ri => ri.Id).HasName("PK_RequestedItem");
+
+                entity.Property(ri => ri.Name).IsRequired();
+
+                entity.Property(ri => ri.Description).IsRequired();
+
+                entity.Property(ri => ri.StatusId).IsRequired();
+
+                entity.HasOne(ri => ri.GoodsCategory)
+                    .WithMany(gc => gc.RequestedItems)
+                    .HasForeignKey(ri => ri.GoodsCategoryId)
+                    .HasConstraintName("FK_RequestedItem_GoodsCategory");
+
+                entity.HasOne(ri => ri.Status)
+                    .WithMany(s => s.RequestedItems)
+                    .HasForeignKey(ri => ri.StatusId)
+                    .HasConstraintName("FK_RequestedItem_Status");
+            });
+        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 
 namespace FundTrack.DAL.Entities
 {
@@ -28,5 +29,17 @@ namespace FundTrack.DAL.Entities
         public virtual ICollection<OrgAccount> OrgAccounts { get; set; }
 
         public virtual ICollection<Donation> Donates { get; set; }
+
+        public static void Configure(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Currency>(entity =>
+            {
+                entity.HasKey(e => e.Id).HasName("PK_Currency");
+
+                entity.Property(e => e.ShortName).IsRequired().HasMaxLength(5);
+
+                entity.Property(e => e.FullName).IsRequired().HasMaxLength(30);
+            });
+        }
     }
 }

@@ -17,4 +17,5 @@ export class GlobalUrlService {
 
     //register organization
     public static registerOrganization = "api/OrganizationRegistration/RegisterNewOrganization/";
+    public static readonly banksUrl: string = "api/Bank";
 }
