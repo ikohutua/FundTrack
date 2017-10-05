@@ -128,7 +128,6 @@ export class MakeDonationComponent implements OnInit, DoCheck, OnDestroy{
     ngDoCheck() {
         if (sessionStorage.getItem('id')) {
             this.organizationId = parseInt(sessionStorage.getItem('id'));
-            console.log(this.organizationId);
             this.getAccountsForDonate();
             sessionStorage.removeItem('id');
             this.hasAccountForDonate = false;
@@ -205,8 +204,7 @@ export class MakeDonationComponent implements OnInit, DoCheck, OnDestroy{
         }
 
         else {
-            this.showErrorMessages();
-            //this.showErrorsForSelect();            
+            this.showErrorMessages();           
         }
               
     }

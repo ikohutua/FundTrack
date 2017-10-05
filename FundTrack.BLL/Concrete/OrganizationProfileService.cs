@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System;
 using FundTrack.DAL.Concrete;
 using FundTrack.Infrastructure;
+using System.Threading.Tasks;
 
 namespace FundTrack.BLL.Concrete
 {
@@ -17,14 +18,16 @@ namespace FundTrack.BLL.Concrete
     public class OrganizationProfileService : IOrganizationProfileService
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IImageManagementService _imgManageService;
 
         /// <summary>
         /// Creates new instance of OrganizationProfileService
         /// </summary>
         /// <param name="unitOfWork">Unit of work</param>
-        public OrganizationProfileService(IUnitOfWork unitOfWork)
+        public OrganizationProfileService(IUnitOfWork unitOfWork, IImageManagementService imgManageService)
         {
             _unitOfWork = unitOfWork;
+            _imgManageService = imgManageService;
         }
 
         /// <summary>
@@ -184,32 +187,32 @@ namespace FundTrack.BLL.Concrete
             try
             {
                 OrganizationViewModel organization = GetOrganizationById(id);
-                int orgAdminId = _unitOfWork.MembershipRepository.GetOrganizationAdminId(organization.Id);
+                User orgAdmin = _unitOfWork.MembershipRepository.GetOrganizationAdmin(organization.Id);
                 organizationDetail.Organization = organization;
-                // if found admin of organization
-                if (orgAdminId != -1)
+                // if found admin of organization and he has phone
+                if (orgAdmin != null && orgAdmin.Phones.Count != 0)
                 {
-                    addAdminInfoToOrgDetailModel(organizationDetail, orgAdminId);
+                    AddAdminInfoToOrgDetailModel(organizationDetail, orgAdmin);
                 }
             }
-            catch (NullReferenceException)
+            catch (NullReferenceException ex)
             {
-                throw new DataAccessException(ErrorMessages.CantFindDataById);
-            }        
+                throw new DataAccessException(ErrorMessages.CantFindDataById, ex);
+            }
 
-            addAccountsInfoToOrgDetailModel(organizationDetail);
+            AddAccountsInfoToOrgDetailModel(organizationDetail);
 
             return organizationDetail;
         }
 
-        private IEnumerable<OrgAccountDetailViewModel> convertListOrgAccountToListOrgAccountDetailViewModel(IEnumerable<OrgAccount> accounts)
+        private IEnumerable<OrgAccountDetailViewModel> ConvertListOrgAccountToListOrgAccountDetailViewModel(IEnumerable<OrgAccount> accounts)
         {
             return accounts
-                .Select(x => convertOrgAccountToOrgAccountDetailViewModel(x))
+                .Select(x => ConvertOrgAccountToOrgAccountDetailViewModel(x))
                 .ToList();
         }
 
-        private OrgAccountDetailViewModel convertOrgAccountToOrgAccountDetailViewModel(OrgAccount account)
+        private OrgAccountDetailViewModel ConvertOrgAccountToOrgAccountDetailViewModel(OrgAccount account)
         {
             OrgAccountDetailViewModel orgAccountDetail = new OrgAccountDetailViewModel
             {
@@ -217,10 +220,7 @@ namespace FundTrack.BLL.Concrete
                 Name = account.OrgAccountName
             };
 
-            if (account.Target != null)
-            {
-                orgAccountDetail.Target = account.Target.TargetName;
-            }
+            orgAccountDetail.Target = account.Target?.TargetName;
 
             if (account.BankAccount != null && account.BankAccount.CardNumber != null)
             {
@@ -235,30 +235,45 @@ namespace FundTrack.BLL.Concrete
         /// </summary>
         /// <param name="organizationDetail">Instance of organization detail for fill.</param>
         /// <param name="orgAdminId">Admin identifier.</param>
-        private void addAdminInfoToOrgDetailModel(OrganizationDetailViewModel organizationDetail, int orgAdminId)
+        private void AddAdminInfoToOrgDetailModel(OrganizationDetailViewModel organizationDetail, User orgAdmin)
         {
-            User orgAdmin = _unitOfWork.UsersRepository.Get(orgAdminId);
-            organizationDetail.AdminFirstName = orgAdmin.FirstName;
-            organizationDetail.AdminLastName = orgAdmin.LastName;
+            PersonViewModel adminViewModel = new PersonViewModel();
+            adminViewModel.FirstName = orgAdmin.FirstName;
+            adminViewModel.LastName = orgAdmin.LastName;
             if (orgAdmin.Phones.Count != 0)
             {
-                organizationDetail.AdminPhoneNumber = orgAdmin.Phones.FirstOrDefault().Number;
+                adminViewModel.PhoneNumber = orgAdmin.Phones.FirstOrDefault().Number;
             }
+            organizationDetail.Admin = adminViewModel;
         }
 
         /// <summary>
         /// Add to organization detail view model information about accounts.
         /// </summary>
         /// <param name="organizationDetail">Instance of organization detail for fill.</param>
-        private void addAccountsInfoToOrgDetailModel(OrganizationDetailViewModel organizationDetail)
+        private void AddAccountsInfoToOrgDetailModel(OrganizationDetailViewModel organizationDetail)
         {
             int orgId = organizationDetail.Organization.Id;
             IEnumerable<OrgAccount> allOrgAccounts = _unitOfWork.OrganizationAccountRepository.ReadAllOrgAccounts(orgId);
             IEnumerable<OrgAccount> filteredAccounts = allOrgAccounts
                 .Where(x => x.BankAccId != null && x.BankAccount.CardNumber != null)
                 .ToList();
-            organizationDetail.OrgAccountsList = convertListOrgAccountToListOrgAccountDetailViewModel(filteredAccounts);
+            organizationDetail.OrgAccountsList = ConvertListOrgAccountToListOrgAccountDetailViewModel(filteredAccounts);
         }
 
+        public EditLogoViewModel EditLogo(EditLogoViewModel item)
+        {
+            var organization = _unitOfWork.OrganizationRepository.Get(item.OrganizationId);
+            if (organization!=null)
+            {
+                var task =  _imgManageService.UploadImage(Convert.FromBase64String(item.Base64Code));
+                Task.WhenAll(task);
+                organization.LogoUrl = task.Result;
+                _unitOfWork.SaveChanges();
+
+                item.LogoUrl = AzureStorageConfiguration.GetImageUrl(organization.LogoUrl);
+            }
+            return item;
+        }
     }
 }

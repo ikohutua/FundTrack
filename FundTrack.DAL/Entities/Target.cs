@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.EntityFrameworkCore;
 
 namespace FundTrack.DAL.Entities
 {
@@ -34,5 +35,15 @@ namespace FundTrack.DAL.Entities
         public  virtual Organization Organizations { get; set; }
 
         public virtual Target ParentTarget { get; set; }
+
+        public static void Configure(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Target>(entity =>
+            {
+                entity.HasKey(e => e.Id).HasName("PK_Target");
+
+                entity.Property(e => e.TargetName).IsRequired().HasMaxLength(50);
+            });
+        }
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace FundTrack.DAL.Entities
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace FundTrack.DAL.Entities
 {
     /// <summary>
     /// OrgAddress entity
@@ -29,5 +31,24 @@
         /// Gets or Sets Address navigation property
         /// </summary>
         public virtual Address Address { get; set; }
+
+        public static void Configure(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<OrgAddress>(entity =>
+            {
+                entity.HasKey(e => e.Id).HasName("PK_OrgAddress");
+
+                entity.HasOne(oa => oa.Organization)
+                    .WithMany(o => o.OrgAddresses)
+                    .HasForeignKey(oa => oa.OrgId)
+                    .HasConstraintName("FK_OrgAddress_Organization");
+
+                entity.HasOne(oa => oa.Address)
+                    .WithMany(a => a.OrgAddresses)
+                    .HasForeignKey(oa => oa.AddressId)
+                    .HasConstraintName("FK_OrgAddress_Address");
+            });
+
+        }
     }
 }

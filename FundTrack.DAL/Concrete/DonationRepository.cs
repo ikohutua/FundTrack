@@ -2,6 +2,7 @@
 using FundTrack.DAL.Entities;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace FundTrack.DAL.Concrete
@@ -37,9 +38,19 @@ namespace FundTrack.DAL.Concrete
         /// Read all Donations in database
         /// </summary>
         /// <returns> IEnumerable of donations</returns>
-        public IEnumerable<Donation> Read()
+        public IQueryable<Donation> Read()
         {
             return _context.Donations;
+        }
+
+        /// <summary>
+        /// get donation by id
+        /// </summary>
+        /// <param name="id">id of donation</param>
+        /// <returns></returns>
+        public Donation Get(int id)
+        {
+            return _context.Donations.FirstOrDefault(d => d.Id == id);
         }
     }
 }

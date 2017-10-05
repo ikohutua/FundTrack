@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 
 namespace FundTrack.DAL.Entities
 {
@@ -21,5 +22,15 @@ namespace FundTrack.DAL.Entities
         /// Gets or Sets TagFinOp navigation property
         /// </summary>
         public virtual ICollection<TagFinOp> TagFinOps { get; set; }
+
+        public static void Configure(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Tag>(entity =>
+            {
+                entity.HasKey(e => e.Id).HasName("PK_Tag");
+
+                entity.Property(e => e.TagName).IsRequired().HasMaxLength(30);
+            });
+        }
     }
 }

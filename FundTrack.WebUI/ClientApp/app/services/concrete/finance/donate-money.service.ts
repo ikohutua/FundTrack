@@ -21,14 +21,12 @@ export class DonateService {
 
     sendRequestToFondy(request: any): Observable<any> {
         let requestBody = JSON.stringify({ request: request });
-        console.log(requestBody);
         return this._http.post(DonateUrlsService.sendRequestFondy, requestBody, RequestOptionsService.getRequestOptions()).
             map((response: Response) => { return response.text() });
     }
 
     checkPaymentRequest(request: any): Observable<FondyCheckPaymentResponseViewModel> {
         let requestBody = JSON.stringify({ request: request });
-        console.log(requestBody);
         return this._http.post(DonateUrlsService.checkPayment, requestBody, RequestOptionsService.getRequestOptions()).
             map((response: Response) => {
                 let result = response.json() as FondyCheckPaymentResponseViewModel;

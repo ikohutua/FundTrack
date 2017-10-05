@@ -72,7 +72,7 @@ export class OfferDetailComponent implements OnInit {
             })
             .subscribe(data => {
                 this.offerItem = data;
-                this._images = this.offerItem.image;
+                this._images = this.offerItem.images;
                 if (this.offerItem.goodsTypeId!=null) {
                     this.setGoodsType(this.offerItem.goodsTypeId);
                 }
@@ -103,13 +103,16 @@ export class OfferDetailComponent implements OnInit {
     }
     private submit(offerItem: OfferViewModel): void {
         this.showUserRegistrationSpinner = true;
-        this.offerItem.image = this._images;
 
-        var arr: string[] = [];
         for (var i = 0; i < this.images.length; i++) {
-            arr[i] = this.images[i].base64Data;
-        }
-        this.offerItem.base64Images = arr;
+            let offItImg = new OfferedItemImageViewModel();
+
+            offItImg.base64Data = this.images[i].base64Data;
+            offItImg.isMain = this.images[i].isMain;
+            offItImg.imageUrl = this.images[i].imageSrc;
+            this.offerItem.images.push(offItImg);
+        };       
+
 
         if (this.offerItem.id == null) {
             this._offerService.createOffer(this.offerItem)
@@ -124,16 +127,6 @@ export class OfferDetailComponent implements OnInit {
                     this.showUserRegistrationSpinner = false;
                     this._router.navigate(['/offer-management/mylist'])
                 })
-        }
-    }
-
-
-    private setCurrentImageAsMain(image: OfferedItemImageViewModel) {
-        if (this.offerItem.image) {
-            for (var i = 0; i < this.offerItem.image.length; i++) {
-                this.offerItem.image[i].isMain = false;
-            }
-            image.isMain = true;
         }
     }
 }

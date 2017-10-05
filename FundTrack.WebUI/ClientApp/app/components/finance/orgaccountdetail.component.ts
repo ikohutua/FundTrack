@@ -45,7 +45,6 @@ export class OrgAccountDetailComponent implements OnInit, OnChanges {
     }
    
     ngOnInit(): void {
-        console.log("OrgDetail");
         if (isBrowser) {
             if (localStorage.getItem(key.keyToken)) {
                 this.user = JSON.parse(localStorage.getItem(key.keyModel)) as AuthorizeUserModel;
@@ -56,7 +55,8 @@ export class OrgAccountDetailComponent implements OnInit, OnChanges {
                 targetId: undefined,
                 name: "Не вказано",
                 organizationId: undefined,
-                parentTargetId: undefined
+                parentTargetId: undefined,
+                isDeletable:true
             });
             for (var target of result) {
                 this.targets.push(target);

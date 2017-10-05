@@ -36,6 +36,8 @@ namespace FundTrack.DAL.Concrete
         private readonly IPhoneRepository _phoneRepository;
         private readonly IRepository<FinOpImage> _finOpImagesRepository;
         private readonly IUserResporitory _userRepository;
+        private readonly IBalanceRepository _balanceRepository;
+        private readonly IBankRepository _bankRepository;
 
         private FundTrackContext _context;
 
@@ -71,8 +73,10 @@ namespace FundTrack.DAL.Concrete
               IFinOpRepository finOpRepository,
               IPhoneRepository phoneRepository,
               IRepository<FinOpImage> finOpImagesRepository,
-              IUserResporitory userRepository
-
+              IUserResporitory userRepository,
+              IBalanceRepository balanceRepository,
+              IBankRepository bankRepository
+              
               )
         {
             this._context = contextParam;
@@ -103,6 +107,8 @@ namespace FundTrack.DAL.Concrete
             this._phoneRepository = phoneRepository;
             _finOpImagesRepository = finOpImagesRepository;
             _userRepository = userRepository;
+            _balanceRepository = balanceRepository;
+            _bankRepository = bankRepository;
         }
 
         /// <summary>
@@ -422,6 +428,27 @@ namespace FundTrack.DAL.Concrete
             get
             {
                 return _finOpImagesRepository;
+            }
+        }
+
+        /// <summary>
+        /// Gets the balance repository
+        /// </summary>
+        /// <value>
+        /// The balance repository.
+        /// </value>
+        public IBalanceRepository BalanceRepository
+        {
+            get
+            {
+                return this._balanceRepository;
+            }
+        }
+        public IBankRepository BankRepository
+        {
+            get
+            {
+                return _bankRepository;
             }
         }
 

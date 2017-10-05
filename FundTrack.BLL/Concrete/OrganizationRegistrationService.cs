@@ -3,6 +3,8 @@ using FundTrack.DAL.Abstract;
 using FundTrack.Infrastructure.ViewModel;
 using System.Linq;
 using FundTrack.DAL.Entities;
+using System.Threading.Tasks;
+using System;
 
 namespace FundTrack.BLL.Concrete
 {
@@ -12,13 +14,15 @@ namespace FundTrack.BLL.Concrete
     public class OrganizationRegistrationService: IOrganizationRegistrationService
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IImageManagementService _imgManageService;
         /// <summary>
         /// Creates new instance of OrganizationRegistrationService
         /// </summary>
         /// <param name="unitOfWork">Unit of work</param>
-        public OrganizationRegistrationService (IUnitOfWork unitOfWork)
+        public OrganizationRegistrationService (IUnitOfWork unitOfWork, IImageManagementService imgManageService)
         {
             _unitOfWork = unitOfWork;
+            _imgManageService = imgManageService;
         }
         /// <summary>
         /// Registers new organization
@@ -38,6 +42,7 @@ namespace FundTrack.BLL.Concrete
                     if (checkMembership == null)
                     {
                         var organization = new Organization { Name = item.Name, Description = item.Description };
+
                         _unitOfWork.OrganizationRepository.Create(organization);
                         _unitOfWork.SaveChanges();
 

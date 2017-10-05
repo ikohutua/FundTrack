@@ -14,6 +14,7 @@ import Targetviewmodel = require("../../../view-models/concrete/finance/donate/t
 import TargetViewModel = Targetviewmodel.TargetViewModel;
 import { GlobalUrlService } from "../global-url.service";
 import { RequestOptionsService } from "../request-options.service";
+import {BankViewModel} from "../../../view-models/concrete/finance/bank-view.model";
 
 /**
  * Service for super admin actions
@@ -37,9 +38,8 @@ export class OrgAccountService {
     public getAllAccountsOfOrganization(): Observable<OrgAccountViewModel[]> {
         if (this.checkAuthorization()) {
             let body = this.user;
-            return this._http.post(this._readAllUrl, body, this.getRequestOptions())
+            return this._http.get(this._readAllUrl + '/' + this.user.orgId, this.getRequestOptions())
                 .map((response: Response) => <OrgAccountViewModel[]>response.json())
-                .do(data => console.log('Item' + JSON.stringify(data)))
                 .catch(this.handleError);
         }
     }
@@ -47,7 +47,6 @@ export class OrgAccountService {
         if (this.checkAuthorization()) {
             return this._http.post(this._createUrl, model, this.getRequestOptions())
                 .map((response: Response) => <OrgAccountViewModel>response.json())
-                .do(data => console.log('Account data:' + JSON.stringify(data)))
                 .catch(this.handleError);
         }
     }
@@ -55,7 +54,6 @@ export class OrgAccountService {
         if (this.checkAuthorization()) {
             return this._http.get(this._getAccountUrl + '/' + accountId.toString(), this.getRequestOptions())
                 .map((r: Response) => <OrgAccountViewModel>r.json())
-                .do(data => console.log('Item' + JSON.stringify(data)))
                 .catch(this.handleError);
         }
     }
@@ -169,5 +167,15 @@ export class OrgAccountService {
         return this._http.post(GlobalUrlService.connectExtracts, info, RequestOptionsService.getRequestOptions())
             .map((res: Response) => <DonateCredentialsViewModel>res.json())
             .catch((error: Response) => this.handleError(error));
+    }
+
+    public getAllBanks(): Observable<BankViewModel[]> {
+        return this._http.get(GlobalUrlService.banksUrl, RequestOptionsService.getRequestOptions())
+            .map((response: Response) => response.json() as BankViewModel[]);
+    }
+
+    public getBankById(bankId : number): Observable<BankViewModel> {
+        return this._http.get(GlobalUrlService.banksUrl + '/' + bankId.toString(), RequestOptionsService.getRequestOptions())
+            .map((response: Response) => response.json() as BankViewModel);
     }
 }

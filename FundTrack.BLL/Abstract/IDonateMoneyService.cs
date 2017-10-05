@@ -12,5 +12,13 @@ namespace FundTrack.BLL.Abstract
         IEnumerable<TargetViewModel> GetTargets(int id);
         IEnumerable<CurrencyViewModel> GetCurrencies();
         DonateViewModel AddDonation(DonateViewModel item);
+        IEnumerable<DonateViewModel> GetAllDonatons();
+        DonateViewModel GetDonationById(int id);
+        /// <summary>
+        /// return suggested donation to finOpOperation
+        /// </summary>
+        /// <param name="finOpId"></param>
+        /// <returns></returns>
+        IEnumerable<DonateViewModel> GetSuggestedDonations(int finOpId);
     }
 }

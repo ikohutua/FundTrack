@@ -16,7 +16,7 @@
         public string ContactName { get; set; }
         public int GoodsCategoryId { get; set; }
         public int GoodsTypeId { get; set; }
-        public OfferedItemImageViewModel[] Image { get; set; }
+        public OfferedItemImageViewModel[] Images { get; set; }
 
     }
 }

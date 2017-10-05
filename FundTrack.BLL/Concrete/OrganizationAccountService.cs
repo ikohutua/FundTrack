@@ -102,12 +102,12 @@ namespace FundTrack.BLL.Concrete
             }
         }
 
-        public OrgAccountViewModel GetOrganizationAccountById(int organizationAccountId)
+        public OrgAccountViewModel GetOrganizationAccountById(int accountId)
         {
             try
             {
-                var account = this._unitOfWork.OrganizationAccountRepository.Read(organizationAccountId);
-               if (account == null)
+                var account = this._unitOfWork.OrganizationAccountRepository.Read(accountId);
+                if (account == null)
                 {
                     return new OrgAccountViewModel();
                 }
@@ -138,13 +138,6 @@ namespace FundTrack.BLL.Concrete
 
         public OrgAccountViewModel InitializeCommonProperties(OrgAccount item)
         {
-            string firstName = "", lastName = "";
-            if (item.User !=null)
-            {
-                firstName = item.User.FirstName;
-                lastName = item.User.LastName;
-            }
-          
             return new OrgAccountViewModel
             {
                 Id = item.Id,
@@ -157,8 +150,8 @@ namespace FundTrack.BLL.Concrete
                 TargetId = item.TargetId,
                 Description = item.Description,
                 UserId = item.UserId,
-                FirstName = firstName,
-                LastName  = lastName,
+                FirstName = item.User?.FirstName,
+                LastName = item.User?.LastName,
                 CreationDate = item.CreationDate
             };
         }
@@ -174,12 +167,14 @@ namespace FundTrack.BLL.Concrete
                 case "Банк":
                     account = this.InitializeCommonProperties(item);
                     account.AccountType = "Банк";
-                    account.BankName = item.BankAccount.BankName;
                     account.AccNumber = item.BankAccount.AccNumber;
                     account.EDRPOU = item.BankAccount.EDRPOU;
-                    account.MFO = item.BankAccount.MFO;
                     account.CardNumber = item.BankAccount.CardNumber;
                     account.BankAccId = item.BankAccId;
+                    
+                    account.BankId = item.BankAccount.BankId;
+                    account.BankName = item.BankAccount.Bank.BankName;
+                    account.MFO = item.BankAccount.Bank.MFO;
                     break;
                 default:
                     break;
@@ -242,12 +237,11 @@ namespace FundTrack.BLL.Concrete
                 account.Organization = this._unitOfWork.OrganizationRepository.Get(model.OrgId);
                 account.TargetId = model.TargetId;
                 bankAccount.AccNumber = model.AccNumber;
-                bankAccount.BankName = model.BankName;
                 bankAccount.EDRPOU = model.EDRPOU;
-                bankAccount.MFO = model.MFO;
                 bankAccount.Organization = this._unitOfWork.OrganizationRepository.Get(model.OrgId);
                 bankAccount.OrgId = model.OrgId;
                 bankAccount.CardNumber = model.CardNumber;
+                bankAccount.BankId = model.BankId;
                 this._unitOfWork.BankAccountRepository.Create(bankAccount);
                 account.BankAccId = bankAccount.Id;
                 account.BankAccount = bankAccount;
