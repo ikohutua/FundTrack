@@ -40,8 +40,8 @@ namespace FundTrack.DAL.Concrete
         public FinOp Update(FinOp finOp)
         {
             //_context.Entry(finOp).State = EntityState.Modified;
-            this._context.FinOps.Update(finOp);
-            return finOp;
+            var updatedFinOp = this._context.FinOps.Update(finOp);
+            return updatedFinOp.Entity;
         }
 
         /// <summary>
@@ -64,6 +64,8 @@ namespace FundTrack.DAL.Concrete
         {
             return this._context.FinOps.Include(f => f.OrgAccountTo)
                 .ThenInclude(a => a.Organization)
+                .Include(f => f.OrgAccountFrom)
+                .ThenInclude(a => a.Organization)
                 .Include(f => f.Donation)
                 .Include(f => f.Target);
         }
@@ -76,9 +78,9 @@ namespace FundTrack.DAL.Concrete
         public IQueryable<FinOp> GetFinOpByOrgAccount(int orgAccountId)
         {
             var finOps = this._context.FinOps
-                .Include(a => a.OrgAccountTo)
                 .Include(a => a.OrgAccountFrom)
-                .Where(a => a.AccToId.HasValue ? a.AccToId == orgAccountId : a.AccFromId == orgAccountId);
+                .Include(a => a.OrgAccountTo)
+                .Where(a => a.AccFromId.HasValue ? a.AccFromId == orgAccountId : a.AccToId == orgAccountId);
             return finOps;
         }
     }

@@ -1,5 +1,6 @@
 ﻿using FundTrack.Infrastructure.ViewModel;
 using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 
 namespace FundTrack.DAL.Entities
 {
@@ -37,6 +38,16 @@ namespace FundTrack.DAL.Entities
                 Name=type.Name
             
             };
+        }
+
+        public static void Configure(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<GoodsType>(entity =>
+            {
+                entity.HasKey(gt => gt.Id).HasName("PK_GoodsType");
+
+                entity.Property(gt => gt.Name).IsRequired().HasMaxLength(50);
+            });
         }
     }
 }

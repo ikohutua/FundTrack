@@ -18,7 +18,7 @@ export class OrganizationsDetailsService {
     }
 
     public getAllOrganizations(): Observable<OrganizationGeneralViewModel[]> {
-        return this._http.get(GlobalUrlService.getAllOrganizationsUrl, RequestOptionsService.getRequestOptions())
+        return this._http.get(GlobalUrlService.getOrganizationDetailUrl, RequestOptionsService.getRequestOptions())
             .map((res: Response) => <OrganizationGeneralViewModel[]>res.json());
     }
 

@@ -1,4 +1,6 @@
-﻿namespace FundTrack.DAL.Entities
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace FundTrack.DAL.Entities
 {
     /// <summary>
     /// TagFinOp entity
@@ -29,5 +31,23 @@
         /// Gets or Sets FinOp navigation property
         /// </summary>
         public virtual FinOp FinOp { get; set; }
+
+        public static void Configure(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<TagFinOp>(entity =>
+            {
+                entity.HasKey(e => e.Id).HasName("PK_TagFinOp");
+
+                entity.HasOne(tfp => tfp.Tag)
+                    .WithMany(t => t.TagFinOps)
+                    .HasForeignKey(tfp => tfp.TagId)
+                    .HasConstraintName("FK_TagFinOp_Tag");
+
+                entity.HasOne(tfp => tfp.FinOp)
+                    .WithMany(fo => fo.TagFinOps)
+                    .HasForeignKey(tfp => tfp.FinOpId)
+                    .HasConstraintName("FK_TagFinOp_FinOp");
+            });
+        }
     }
 }

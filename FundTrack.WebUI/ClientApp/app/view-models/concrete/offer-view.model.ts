@@ -1,4 +1,5 @@
 ﻿import { OfferedItemImageViewModel } from "./offered-item-image-view.model";
+import { Image } from "./image.model";
 
 export class OfferViewModel {
     description: string;
@@ -8,8 +9,7 @@ export class OfferViewModel {
     goodsTypeName: string;
     goodsTypeId: number;
     id: number;
-    image = new Array<OfferedItemImageViewModel>();
-    base64Images = new Array<string>();
+    images = new Array<OfferedItemImageViewModel>();
     mainImage = new OfferedItemImageViewModel();
     name: string;
     statusName: string;

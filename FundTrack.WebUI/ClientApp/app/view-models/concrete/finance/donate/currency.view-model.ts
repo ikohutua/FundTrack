@@ -1,4 +1,4 @@
 ﻿export class CurrencyViewModel{
-    currencyId: number;
-    currencyShortName: string;
+    currencyId: number=3;
+    currencyShortName: string="UAH";
 }

@@ -10,12 +10,6 @@ namespace FundTrack.BLL.Abstract
     public interface IFinOpService
     {
         /// <summary>
-        /// Gets the targets with name and id .
-        /// </summary>
-        /// <returns></returns>
-        IEnumerable<TargetViewModel> GetTargets(int id);
-
-        /// <summary>
         /// Creates the fin op.
         /// </summary>
         /// <param name="finOpModel">The fin op model.</param>
@@ -28,11 +22,22 @@ namespace FundTrack.BLL.Abstract
 
         FinOpViewModel CreateTransfer(FinOpViewModel finOpModel);
 
+        FinOpViewModel EditFinOperation(FinOpViewModel finOpModel);
+
+        FinOpViewModel GetFinOpsById(int id);
+
         /// <summary>
         /// Gets the fin ops by org account.
         /// </summary>
         /// <param name="orgAccountId">The org account identifier.</param>
         /// <returns></returns>
-        IEnumerable<FinOpListViewModel> GetFinOpsByOrgAccount(int orgAccountId);
+        IEnumerable<FinOpViewModel> GetFinOpsByOrgAccount(int orgAccountId);
+
+        /// <summary>
+        /// Gets all finOps by organizationId
+        /// </summary>
+        /// <param name="orgId">Id of organization</param>
+        /// <returns>collection of finOps</returns>
+        IEnumerable<FinOpViewModel> GetAllFinOpsByOrgId(int orgId);
     }
 }

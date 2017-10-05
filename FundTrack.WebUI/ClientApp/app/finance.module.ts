@@ -14,7 +14,9 @@ import { BankImportComponent } from "./components/finance/bank-import.component"
 import { MakeDonationComponent } from "./components/finance/donate-money.component";
 import { FinOpService } from "./services/concrete/finance/finOp.service";
 import { OrgAccountExtractsComponent } from "./components/finance/org-account-extracts.component";
+import { FixingBalanceComponent } from "./components/finance/fixing-balance.component";
 import { MyDonationsComponent } from "./components/finance/my-donations.component";
+
 
 @NgModule({
     declarations: [
@@ -26,6 +28,7 @@ import { MyDonationsComponent } from "./components/finance/my-donations.componen
         OrgAccountOperationComponent,
         BankImportComponent,    
         MakeDonationComponent,
+        FixingBalanceComponent
         MyDonationsComponent
     ],
     imports: [

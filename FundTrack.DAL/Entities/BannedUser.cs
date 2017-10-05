@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 
 namespace FundTrack.DAL.Entities
 {
@@ -23,5 +24,17 @@ namespace FundTrack.DAL.Entities
         /// Users navigation property
         /// </summary>
         public virtual User User { get; set; }
+
+        public static void Configure(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<BannedUser>(entity =>
+            {
+                entity.HasKey(e => e.Id).HasName("PK_BannedUser");
+                entity.HasOne(e => e.User).
+                    WithOne(e => e.BannedUser).
+                    HasForeignKey<BannedUser>(e => e.UserId).
+                    HasConstraintName("FK_BannedUser_User");
+            });
+        }
     }
 }

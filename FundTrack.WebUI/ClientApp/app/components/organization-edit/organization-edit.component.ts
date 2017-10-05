@@ -1,4 +1,4 @@
-﻿import { Component, OnInit, ViewChild, OnDestroy, DoCheck, AfterViewInit, QueryList, ViewChildren, OnChanges} from "@angular/core";
+﻿import { Component, OnInit, ViewChild, OnDestroy, DoCheck, AfterViewInit, QueryList, ViewChildren, OnChanges } from "@angular/core";
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormControl, FormGroup } from '@angular/forms';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -15,6 +15,10 @@ import { AddModeratorViewModel } from "../../view-models/concrete/edit-organizat
 import { isBrowser } from "angular2-universal";
 import { AuthorizeUserModel } from "../../view-models/concrete/authorized-user-info-view.model";
 import * as key from '../../shared/key.storage';
+import * as message from '../../shared/common-message.storage';
+import * as defaultConfig from '../../shared/default-configuration.storage';
+import { EditLogoViewModel } from "../../view-models/concrete/edit-organization/edit-org-logo-view.model";
+
 
 @Component({
     selector: 'edit',
@@ -32,17 +36,13 @@ export class OrganizationEditComponent implements OnInit, OnDestroy, AfterViewIn
     orgAddress: OrgAddressViewModel = new OrgAddressViewModel();
     newOrgAddress: OrgAddressViewModel = new OrgAddressViewModel();
     newAddress: AddressViewModel = new AddressViewModel();
+    editLogo: EditLogoViewModel = new EditLogoViewModel();
     private user: AuthorizeUserModel = new AuthorizeUserModel();
     isAdmin: boolean = false;
 
     currentFile: File;
     isNewLogoAvailable: boolean = false;
-
-    newLogo: string = '';
-    orgLogo: string = "http://cadeuc.com/wp-content/themes/musen/img/no-image.png";
-    maxSize: number = 4000000;
-    newLogoByte64Code: string;
-
+    newLogoUrl: string = '';
     errorMessage: string;
     isError: boolean = false;
 
@@ -64,7 +64,6 @@ export class OrganizationEditComponent implements OnInit, OnDestroy, AfterViewIn
     private map: MapComponent;
     private mapInModal: MapComponent;
 
-    
 
     addressArray: Array<AddressViewModel> = new Array(this.googleQuote);
     moderatorArray: ModeratorViewModel[];
@@ -81,10 +80,11 @@ export class OrganizationEditComponent implements OnInit, OnDestroy, AfterViewIn
     ngOnInit() {
         this.sub = this._actRouter.params.subscribe(params => {
             this.organizationId = +params["id"];
-                this.getInformationOfOrganization(this.organizationId);
-                this.getAddresses(this.organizationId);
-                this.getModerators(this.organizationId);
-                this.getPossibleModerators(this.organizationId);
+            this.getInformationOfOrganization(this.organizationId);
+            this.getAddresses(this.organizationId);
+            this.getModerators(this.organizationId);
+            this.getPossibleModerators(this.organizationId);
+            this.editLogo.organizationId = this.organizationId;
         });
         if (isBrowser) {
             if (localStorage.getItem(key.keyToken)) {
@@ -99,8 +99,8 @@ export class OrganizationEditComponent implements OnInit, OnDestroy, AfterViewIn
         this.Maps.changes.subscribe((maps: QueryList<MapComponent>) => {
             this.map = maps.first;
             this.mapInModal = maps.last;
-            this.setMap(this.map);            
-        });        
+            this.setMap(this.map);
+        });
     }
 
     ngOnDestroy() {
@@ -115,6 +115,7 @@ export class OrganizationEditComponent implements OnInit, OnDestroy, AfterViewIn
         this._getInfoService.getById(id, 'api/OrganizationProfile/GetInformationById')
             .subscribe(model => {
                 this.organization = model;
+                this.organization.logoUrl = defaultConfig.defaultOrganizationLogoUrl;
             })
     }
 
@@ -124,7 +125,7 @@ export class OrganizationEditComponent implements OnInit, OnDestroy, AfterViewIn
     editDescriptionOfOrganization(): void {
         this._editService.editDescription(this.organization).subscribe
             (model => {
-             
+
                 this.organization = model;
             })
     }
@@ -148,7 +149,7 @@ export class OrganizationEditComponent implements OnInit, OnDestroy, AfterViewIn
     getModerators(id: number): void {
         this._editService.getModerators(id).subscribe
             (model => {
-              
+
                 this.moderatorArray = model;
                 if (this.moderatorArray.length > 0) {
                     this.isAnyModerators = true;
@@ -162,7 +163,7 @@ export class OrganizationEditComponent implements OnInit, OnDestroy, AfterViewIn
      */
     setMap(map: MapComponent): void {
         this.map.setAllMarkersOnTheMap(this.orgAddress.addresses);
-      
+
     }
 
     /**
@@ -172,7 +173,7 @@ export class OrganizationEditComponent implements OnInit, OnDestroy, AfterViewIn
         this.newModerator.orgId = this.organizationId;
         this._editService.addModerator(this.newModerator).
             subscribe(model => {
-            
+
                 this.getModerators(this.organizationId);
                 this.isAnyModerators = true;
                 this.getPossibleModerators(this.organizationId);
@@ -199,12 +200,11 @@ export class OrganizationEditComponent implements OnInit, OnDestroy, AfterViewIn
      * gets list of users
      * @param id
      */
-    getPossibleModerators(id: number)
-    {
+    getPossibleModerators(id: number) {
         this._editService.getAvailableUsers(id)
             .subscribe(users => {
                 this.possibleModerators = users;
-             
+
             });
     }
 
@@ -212,8 +212,7 @@ export class OrganizationEditComponent implements OnInit, OnDestroy, AfterViewIn
      * deletes address
      * @param addressToDelete
      */
-    deleteAddress(addressToDelete: AddressViewModel)
-    {
+    deleteAddress(addressToDelete: AddressViewModel) {
         let length = this.orgAddress.addresses.length;
         this._editService.deleteAddress(addressToDelete.id)
             .subscribe(address => {
@@ -225,8 +224,7 @@ export class OrganizationEditComponent implements OnInit, OnDestroy, AfterViewIn
             })
     }
 
-    private disableButton(addressArray: AddressViewModel[]): boolean
-    {
+    private disableButton(addressArray: AddressViewModel[]): boolean {
         if (addressArray.length == this.minimumAddresses) {
             return true;
         } else {
@@ -241,7 +239,7 @@ export class OrganizationEditComponent implements OnInit, OnDestroy, AfterViewIn
     addAddress(addressToAdd: AddressViewModel): void {
         addressToAdd.country = 'Україна';
         this.newOrgAddress.orgId = this.organizationId;
-        this.newOrgAddress.addresses = Array <AddressViewModel>();
+        this.newOrgAddress.addresses = Array<AddressViewModel>();
         this.newOrgAddress.addresses.push(addressToAdd);
         this._editService.addAddresses(this.newOrgAddress).
             subscribe(addresses => {
@@ -290,7 +288,7 @@ export class OrganizationEditComponent implements OnInit, OnDestroy, AfterViewIn
      * subscribes to modal show event
      */
     public modalOpens(): void {
-        this.mapInModal.triggerResize();      
+        this.mapInModal.triggerResize();
     }
 
     //open modal window
@@ -303,38 +301,39 @@ export class OrganizationEditComponent implements OnInit, OnDestroy, AfterViewIn
         modal.hide();
     }
 
-    //get image from input
-    handleInputChange(e: any) {
-        this.isError = false;
-        this.currentFile = e.dataTransfer ? e.dataTransfer.files[0] : e.target.files[0];
 
-        var pattern = /image-*/;
+    //get image from input
+    handleInputChange(startFile: any) {
+        this.isError = false;
+
+        this.currentFile = startFile.dataTransfer ? startFile.dataTransfer.files[0] : startFile.target.files[0];
         var reader = new FileReader();
 
-        if (this.currentFile.size > this.maxSize) {
-            this.warning('Завеликий розмір зображення. Допустимо ' + this.maxSize / 1000000 + 'Мб');
+        if (!this.currentFile.type.match(defaultConfig.imageRegExPattern)) {
+            this.imageErrorMessage(message.invalidFormat);
             return;
         }
 
-        if (!this.currentFile.type.match(pattern)) {
-            this.warning('Невірний формат!');
+        if (this.currentFile.size > defaultConfig.maxImageSize) {
+            this.imageErrorMessage(message.exceededImageSize + " " + message.acceptable + " " + defaultConfig.maxImageSize / 1000000 + "Мб");
             return;
         }
-        reader.onload = this._handleReaderLoaded.bind(this);
+
+        reader.onloadend = this._handleReaderLoaded.bind(this);
         reader.readAsDataURL(this.currentFile);
     }
 
-    _handleReaderLoaded(e: any) {
+    private _handleReaderLoaded(e: any) {
         var reader = e.target;
-        this.newLogo = reader.result;
+        this.newLogoUrl = reader.result;
 
-        var commaInd = this.newLogo.indexOf(',');
-        this.newLogoByte64Code = this.newLogo.substring(commaInd + 1);
+        var commaInd = this.newLogoUrl.indexOf(',');
+        this.editLogo.base64Code = this.newLogoUrl.substring(commaInd + 1);
 
         this.isNewLogoAvailable = true;
     }
 
-    warning(message: string) {
+    imageErrorMessage(message: string) {
         this.errorMessage = message;
         this.isError = true;
     }
@@ -348,5 +347,15 @@ export class OrganizationEditComponent implements OnInit, OnDestroy, AfterViewIn
     //set new organization logo
     saveImage() {
         this.isError = false;
+        if (!this.isNewLogoAvailable) {
+            this.imageErrorMessage(message.noImageAvailableToSave);
+            return;
+        }
+
+        this.editLogo.logoUrl = this.organization.logoUrl;
+        this._editService.editLogo(this.editLogo).subscribe(
+            model => {
+                this.organization.logoUrl = model.logoUrl;
+            });
     }
 }

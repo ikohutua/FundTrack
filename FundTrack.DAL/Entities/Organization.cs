@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 
 namespace FundTrack.DAL.Entities
 {
@@ -81,5 +82,15 @@ namespace FundTrack.DAL.Entities
         /// Gets or Sets Target navigation property
         /// </summary>
         public virtual ICollection<Target> Targets { get; set; }
+
+        public static void Configure(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Organization>(entity =>
+            {
+                entity.HasKey(e => e.Id).HasName("PK_Organization");
+
+                entity.Property(e => e.Name).IsRequired().HasMaxLength(100);
+            });
+        }
     }
 }

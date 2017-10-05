@@ -20,4 +20,5 @@
     error: string;
     targetId: number;
     creationDate: Date;
+    bankId: number;
 }

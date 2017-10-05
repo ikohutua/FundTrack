@@ -35,8 +35,10 @@ namespace FundTrack.DAL.Abstract
         /// Gets the organization admin identifier.
         /// </summary>
         /// <param name="organizationId">The organization identifier.</param>
-        /// <returns></returns>
-        int GetOrganizationAdminId(int organizationdId);
+        /// <returns>
+        /// Instance of user
+        /// </returns>
+        User GetOrganizationAdmin(int organizationdId);
 
     }
 }

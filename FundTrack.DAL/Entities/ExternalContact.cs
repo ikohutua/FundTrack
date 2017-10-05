@@ -1,4 +1,6 @@
-﻿namespace FundTrack.DAL.Entities
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace FundTrack.DAL.Entities
 {
     /// <summary>
     /// ExternalContact entity
@@ -34,5 +36,25 @@
         /// Gets or Sets User navigation property
         /// </summary>
         public virtual User User { get; set; }
+
+        public static void Configure(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<ExternalContact>(entity =>
+            {
+                entity.HasKey(e => e.Id).HasName("PK_ExternalContact");
+
+                entity.Property(e => e.ServiceLogin).IsRequired().HasMaxLength(100);
+
+                entity.HasOne(ec => ec.User)
+                    .WithMany(u => u.ExternalContacts)
+                    .HasForeignKey(ec => ec.UserId)
+                    .HasConstraintName("FK_ExternalContact_User");
+
+                entity.HasOne(ec => ec.ExternalService)
+                    .WithMany(es => es.ExtContacts)
+                    .HasForeignKey(ec => ec.ServiceId)
+                    .HasConstraintName("FK_ExternalContact_ExternalService");
+            });
+        }
     }
 }

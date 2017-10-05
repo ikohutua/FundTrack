@@ -9,7 +9,6 @@ namespace FundTrack.Infrastructure.ViewModel
     /// </summary>
     public class OrgAccountDetailViewModel
     {
-
         /// <summary>
         /// Name of orgAccount
         /// </summary>    
@@ -29,6 +28,5 @@ namespace FundTrack.Infrastructure.ViewModel
         /// Card number if account type - bank
         /// </summary>    
         public string CardNumber { get; set; }
-
     }
 }

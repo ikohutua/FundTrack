@@ -3,6 +3,7 @@ using FundTrack.DAL.Abstract;
 using FundTrack.DAL.Entities;
 using FundTrack.Infrastructure;
 using FundTrack.Infrastructure.ViewModel.FinanceViewModels.DonateViewModels;
+using Microsoft.EntityFrameworkCore.Internal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,7 +21,9 @@ namespace FundTrack.BLL.Concrete
 
         public OrganizationDonateAccountsViewModel GetAccountForDonation(int organizationId)
         {
-            var orgAccounts = _unitOfWork.OrganizationAccountRepository.ReadOrgAccountsForDonations(organizationId);
+            var orgAccounts = _unitOfWork.OrganizationAccountRepository.ReadOrgAccountsForDonations(organizationId)
+                              .Distinct((c1, c2) => c1.Target == c2.Target);
+
             var result = new OrganizationDonateAccountsViewModel()
             {
                 OrganizationId = organizationId,
@@ -35,9 +38,13 @@ namespace FundTrack.BLL.Concrete
                     {
                         Description = orgAccount.Description,
                         BankAccountId = orgAccount.BankAccount.Id,
-                        MerchantId = (int)orgAccount.BankAccount.MerchantId,
+                        MerchantId = orgAccount.BankAccount.MerchantId,
                         MerchantPassword = orgAccount.BankAccount.MerchantPassword,
-                        Name = orgAccount.OrgAccountName
+                        Name = orgAccount.OrgAccountName,
+                        TargetId = orgAccount.TargetId,
+                        Target = orgAccount.TargetId == null ? "Загальний" : _unitOfWork.TargetRepository
+                                .GetTargetById(orgAccount.TargetId.GetValueOrDefault()).TargetName
+
                     });
                 }
                 return result;
@@ -49,26 +56,13 @@ namespace FundTrack.BLL.Concrete
             }
         }
 
+
+
         public string GetOrderId()
         {
             return Guid.NewGuid().ToString();
         }
 
-        public IEnumerable<TargetViewModel> GetTargets(int id)
-        {
-            var targets = _unitOfWork.TargetRepository.GetTargetsByOrganizationId(id);
-            var result = new List<TargetViewModel>();
-            foreach (var target in targets)
-            {
-                result.Add(new TargetViewModel
-                {
-                    TargetId = target.Id,
-                    Name = target.TargetName,
-                    OrganizationId = target.OrganizationId
-                });
-            }
-            return result;
-        }
 
         public IEnumerable<CurrencyViewModel> GetCurrencies()
         {
@@ -96,7 +90,8 @@ namespace FundTrack.BLL.Concrete
                 Description = item.Description,
                 UserId = item.UserId,
                 TargetId = item.TargetId,
-                DonatorEmail = item.DonatorEmail
+                DonatorEmail = item.DonatorEmail,
+                DonationDate = Convert.ToDateTime(item.DonationDate)
             };
             var created = _unitOfWork.DonationRepository.Create(itemToAdd);
             _unitOfWork.SaveChanges();
@@ -109,9 +104,55 @@ namespace FundTrack.BLL.Concrete
                 Description = created.Description,
                 UserId = created.UserId,
                 TargetId = created.TargetId,
-                DonatorEmail = created.DonatorEmail
+                DonatorEmail = created.DonatorEmail,
+                DonationDate = Convert.ToDateTime(item.DonationDate)
             };
             return result;
+        }
+
+        public IEnumerable<DonateViewModel> GetAllDonatons()
+        {
+            var donations = _unitOfWork.DonationRepository.Read();
+            return donations.Select(ConvertEntityToModel);
+        }
+
+        public DonateViewModel GetDonationById(int id)
+        {
+            return ConvertEntityToModel(_unitOfWork.DonationRepository.Get(id));
+        }
+
+        private DonateViewModel ConvertEntityToModel(Donation donation)
+        {
+            return new DonateViewModel
+            {
+                Id = donation.Id,
+                OrderId = donation.OrderId.ToString(),
+                UserId = donation.UserId,
+                CurrencyId = donation.CurrencyId,
+                TargetId = donation.TargetId,
+                BankAccountId = donation.BankAccountId,
+                Amount = donation.Amount,
+                Description = donation.Description,
+                DonatorEmail = donation.DonatorEmail,
+                DonationDate = donation.DonationDate
+            };
+        }
+
+        public IEnumerable<DonateViewModel> GetSuggestedDonations(int finOpId)
+        {
+            var finOp = _unitOfWork.FinOpRepository.GetById(finOpId);
+            var finOpMaxPossibleDate = finOp.FinOpDate.AddMinutes(30);
+            var suggestedDonations =
+                _unitOfWork.DonationRepository
+                    .Read()
+                    .Where(d =>
+                        (d.DonationDate >= finOp.FinOpDate
+                        ) && // seggested conditions are same amount and donation time in range of [finOp.Time; finOp.Time + 30 minutes]
+                        (d.DonationDate <= finOpMaxPossibleDate) &&
+                        (d.Amount == (double) finOp.Amount))
+                        .ToList();
+            return suggestedDonations.Select(ConvertEntityToModel);
+        }
         }
 
         public IEnumerable<UserDonationsViewModel> GetUserDonations(int userid)

@@ -152,5 +152,15 @@ namespace FundTrack.DAL.Abstract
         void SaveChanges();
 
         IRepository<FinOpImage> FinOpImages { get;  }
+
+        /// <summary>
+        /// Gets the balance repository.
+        /// </summary>
+        IBalanceRepository BalanceRepository { get; }
+
+        /// <summary>
+        /// Gets the bank repository
+        /// </summary>
+        IBankRepository BankRepository { get; }
     }
 }
