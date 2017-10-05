@@ -100,5 +100,22 @@ namespace FundTrack.WebUI.Controllers
             return _donateMoneyService.AddDonation(item);
         }
 
+        [HttpGet]
+        public IEnumerable<DonateViewModel> GetAllDonations()
+        {
+            return _donateMoneyService.GetAllDonatons();
+        }
+
+        [HttpGet("{id}")]
+        public DonateViewModel GetDonationById(int id)
+        {
+            return _donateMoneyService.GetDonationById(id);
+        }
+
+        [HttpGet("suggested/{finOpId}")]
+        public IEnumerable<DonateViewModel> GetSuggestedDonations(int finOpId)
+        {
+            return _donateMoneyService.GetSuggestedDonations(finOpId);
+        }
     }
 }

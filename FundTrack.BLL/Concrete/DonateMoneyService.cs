@@ -4,6 +4,7 @@ using FundTrack.DAL.Entities;
 using FundTrack.Infrastructure.ViewModel.FinanceViewModels.DonateViewModels;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace FundTrack.BLL.Concrete
 {
@@ -110,6 +111,50 @@ namespace FundTrack.BLL.Concrete
                 DonatorEmail = created.DonatorEmail
             };
             return result;
+        }
+
+        public IEnumerable<DonateViewModel> GetAllDonatons()
+        {
+            var donations = _unitOfWork.DonationRepository.Read();
+            return donations.Select(ConvertEntityToModel);
+        }
+
+        public DonateViewModel GetDonationById(int id)
+        {
+            return ConvertEntityToModel(_unitOfWork.DonationRepository.Get(id));
+        }
+
+        private DonateViewModel ConvertEntityToModel(Donation donation)
+        {
+            return new DonateViewModel
+            {
+                Id = donation.Id,
+                OrderId = donation.OrderId.ToString(),
+                UserId = donation.UserId,
+                CurrencyId = donation.CurrencyId,
+                TargetId = donation.TargetId,
+                BankAccountId = donation.BankAccountId,
+                Amount = donation.Amount,
+                Description = donation.Description,
+                DonatorEmail = donation.DonatorEmail,
+                DonationDate = donation.DonationDate
+            };
+        }
+
+        public IEnumerable<DonateViewModel> GetSuggestedDonations(int finOpId)
+        {
+            var finOp = _unitOfWork.FinOpRepository.GetById(finOpId);
+            var finOpMaxPossibleDate = finOp.FinOpDate.AddMinutes(30);
+            var suggestedDonations =
+                _unitOfWork.DonationRepository
+                    .Read()
+                    .Where(d =>
+                        (d.DonationDate >= finOp.FinOpDate
+                        ) && // seggested conditions are same amount and donation time in range of [finOp.Time; finOp.Time + 30 minutes]
+                        (d.DonationDate <= finOpMaxPossibleDate) &&
+                        (d.Amount == (double) finOp.Amount))
+                        .ToList();
+            return suggestedDonations.Select(ConvertEntityToModel);
         }
     }
 }

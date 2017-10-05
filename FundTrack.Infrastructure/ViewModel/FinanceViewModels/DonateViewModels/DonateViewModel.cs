@@ -6,6 +6,7 @@ namespace FundTrack.Infrastructure.ViewModel.FinanceViewModels.DonateViewModels
 {
     public class DonateViewModel
     {
+        public int Id { get; set; }
         public string OrderId { get; set; }
         public int? UserId { get; set; }
         public int CurrencyId { get; set; }
@@ -14,5 +15,6 @@ namespace FundTrack.Infrastructure.ViewModel.FinanceViewModels.DonateViewModels
         public double Amount { get; set; }
         public string Description { get; set; }
         public string DonatorEmail { get; set; }
+        public DateTime DonationDate { get; set; }
     }
 }
