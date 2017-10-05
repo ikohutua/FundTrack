@@ -43,14 +43,6 @@ namespace FundTrack.BLL.Concrete
                     {
                         var organization = new Organization { Name = item.Name, Description = item.Description };
 
-                        if (!String.IsNullOrEmpty(item.Base64Code))
-                        {
-                            var task = _imgManageService.UploadImage(Convert.FromBase64String(item.Base64Code));
-                            Task.WhenAll(task);
-                            //TODO: uncomment 
-                            //organization.LogoUrl = task.Result;
-                        }
-
                         _unitOfWork.OrganizationRepository.Create(organization);
                         _unitOfWork.SaveChanges();
 

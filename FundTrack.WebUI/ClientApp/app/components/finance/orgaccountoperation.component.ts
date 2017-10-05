@@ -81,6 +81,9 @@ export class OrgAccountOperationComponent implements OnChanges {
 
     @ViewChild("newBankAccountManagment")
     private newBankAccountManagmentWindow: ModalComponent;
+
+    @ViewChild("fixingBalanceModal")
+    private fixingBalanceModal: ModalComponent;
     //-------------------------------------------------------------------------------
     //Initialize model and form
     private moneyIncomeForm: FormGroup;
@@ -571,6 +574,12 @@ export class OrgAccountOperationComponent implements OnChanges {
 
     public closeWindow(modal: ModalComponent) {
         modal.hide();
+    }
+
+    handleCloseModalEvent(isCloseModal) {
+        if (isCloseModal) {
+            this.fixingBalanceModal.hide();
+        }
     }
 
     onExtractEnableChange(event: boolean) {

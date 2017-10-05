@@ -7,6 +7,13 @@
     color: red;
 }
 
+.marginTopRight {
+    margin-top: 10px;
+    padding-right: 10px;
+}
+.marginLeft {
+    margin-left: 10px
+}
 .maindiv {
     background-image: url("https://privat24.privatbank.ua/p24/img/concrete_wall_3.png");
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -29,7 +36,7 @@ h2 {
     font-family: Calibri;
 }
 
-#right-float {
+.right-float {
     float: right;
     margin: 20px;
 }

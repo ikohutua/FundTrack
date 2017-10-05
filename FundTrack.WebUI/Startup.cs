@@ -98,6 +98,7 @@ namespace FundTrack.WebUI
             services.AddScoped<IFinOpRepository, FinOpRepository>();
             services.AddScoped<IPhoneRepository, PhoneRepository>();
             services.AddScoped<IRepository<FinOpImage>, EFGenericRepository<FinOpImage>>();
+            services.AddScoped<IBalanceRepository, BalanceRepository>();
             services.AddScoped<IBankRepository, BankRepositoty>();
 
             //dependency injection BLL
@@ -123,6 +124,7 @@ namespace FundTrack.WebUI
             services.AddScoped<ITargetService, TargetService>();
             services.AddScoped<IReportService, ReportService>();
             services.AddScoped<IImageManagementService, AzureImageManagementService>();
+            services.AddScoped<IFixingBalanceService, FixingBalanceService>();
             services.AddScoped<IBankService, BankService>();
         }
 

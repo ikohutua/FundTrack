@@ -112,8 +112,8 @@ export class MakeDonationComponent implements OnInit, DoCheck, OnDestroy{
         });
 
         this._donateService.getOrderId().subscribe((result) => this.fondyPayModel.order_id = result);
-        this._donateService.getTargets().subscribe((result) => { this.targets = result; });
-        this._donateService.getCurrencies().subscribe((result) => { this.currencies = result; });
+        this._donateService.getTargets().subscribe((result) => { this.targets = result;  });
+        this._donateService.getCurrencies().subscribe((result) => { this.currencies = result });
         this.fondyPayModel.server_callback_url = "http://localhost:51116/finance/donate";
         this.fondyPayModel.response_url = "http://fundtrack4.azurewebsites.net/finance/donate";
  
@@ -208,8 +208,7 @@ export class MakeDonationComponent implements OnInit, DoCheck, OnDestroy{
         }
 
         else {
-            this.showErrorMessages();
-            //this.showErrorsForSelect();            
+            this.showErrorMessages();           
         }
               
     }

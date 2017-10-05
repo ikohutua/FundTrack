@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
 namespace FundTrack.DAL.Entities

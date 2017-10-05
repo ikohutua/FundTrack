@@ -1,6 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Image } from "../../../../view-models/concrete/image.model";
 import * as message from '../../../common-message.storage';
+import * as defaultConfiguration from '../../../default-configuration.storage';
 
 @Component({
     selector: 'image-list',
@@ -22,8 +23,8 @@ export class ImageListComponent {
     imageLoaded: boolean = false;
     imageSrc: string = '';
     currentFile: File;
-    @Input() maxSize: number = 4000000;
     @Input() maxCount: number = 5;
+    @Input() maxSize: number;
 
     colorStyle: string;
     outlineColorStyle: string;
@@ -40,8 +41,23 @@ export class ImageListComponent {
 
     delete(img: Image) {
         let index = this.images.indexOf(img);
-        if (index > -1)
+        if (index > -1) {
             this.images.splice(index, 1);
+            if (img.isMain && this.images.length > 0) {
+                this.images[0].isMain = true;
+            }
+        }
+    }
+
+    setMain(img: Image) {
+        for (var i = 0; i < this.images.length; i++) {
+            this.images[i].isMain = false;
+        }
+        this.setImageAsMain(img);
+    }
+
+    private setImageAsMain(img: Image) {
+        img.isMain = true;
     }
 
     handleDragEnter() {
@@ -76,17 +92,15 @@ export class ImageListComponent {
         }
 
         this.currentFile = e.dataTransfer ? e.dataTransfer.files[0] : e.target.files[0];
-
-        var pattern = /image-*/;
         var reader = new FileReader();
 
 
-        if (this.currentFile.size > this.maxSize) {
-            alert(message.exceededImageSize +" "+ message.acceptable +" " + this.maxSize / 1000000 + 'Мб');
-            return; 
+        if (this.currentFile.size > defaultConfiguration.maxImageSize) {
+            alert(message.exceededImageSize + " " + message.acceptable + " " + defaultConfiguration.maxImageSize / 1000000 + 'Мб');
+            return;
         }
 
-        if (!this.currentFile.type.match(pattern)) {
+        if (!this.currentFile.type.match(defaultConfiguration.imageRegExPattern)) {
             alert(message.invalidFormat);
             return;
         }
@@ -108,6 +122,9 @@ export class ImageListComponent {
         var byteCharacters = this.imageSrc.substring(commaInd + 1);
 
         var item = new Image(this.currentFile.name, this.imageSrc, byteCharacters);
+        if (this.images.length == 0) {
+            this.setImageAsMain(item);
+        }
         this.images.push(item);
 
         this.getImageChange.emit(this.images);

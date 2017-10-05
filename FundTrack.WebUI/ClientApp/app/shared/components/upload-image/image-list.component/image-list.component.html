@@ -13,6 +13,6 @@
         </div>
     </div>
     <div class="image-list" *ngIf="images.length">
-        <image-item *ngFor="let image of images" [image]="image" (delete)="delete($event)"></image-item>
+        <image-item *ngFor="let image of images" [image]="image" (delete)="delete($event)" (setMain)="setMain($event)"></image-item>
     </div>
 </div>
