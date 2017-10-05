@@ -1,41 +1,61 @@
 ﻿<div class="container">
-    <div class="panel panel-default">
+    <spinner [showSpinner]="showSpinner"></spinner>
+    <div *ngIf ="!showSpinner" class="panel panel-default">
+        <div class="panel-heading text-truncate" style="font-size:medium;text-align:center;">
+            Тут ви можете переглянути інформацію про ваші особисті пожертви різним організаціям.
+        </div>
+        <div *ngIf="!isFilteredDataExist" class="panel-heading text-truncate">
+            <div class="panel-heading text-truncate" style="font-size:medium;text-align:center;">
+                За вибраний вами період не здійснено жодної пожертви
+                <br>
+                Змініть діапазон дат або зробіть нову <a [routerLink]="['/finance/donate']" class="linkBack">пожертву</a>.
+            </div>
+        </div>
+        <div *ngIf="isDataExist">
+            <div  class="col-md-6 center-block">
+                <div class="period-panel">
+                    <div class="panel-body ">
+                        <h4 class="muted">Період</h4>
+                        <p></p>
+                        <div class="input-daterange input-group" id="datepicker">
 
-        <div class="col-md-6 center-block">
-            <div class="panel panel-default ">
-                <div class="panel-body ">
-                    <h4 class="muted">Період</h4>
-                    <p></p>
-                    <div class="input-daterange input-group" id="datepicker">
-                        
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
 
 
-                        <input type="date" class="input-sm form-control no-spin " #startDate onkeydown="return false"  (input)="setBeginDate(startDate.value)" [value]="filteringModel.dateFrom | date:'yyyy-MM-dd'"  min="2000-01-01" max="{{inputMaxDate | date:'yyyy-MM-dd'}}" />
-                        
-                        <span class="input-group-addon"> - </span>   <!--onkeydown="return false"  -> paste it to input if will be needed block keyDown -->
-                        <input type="date" class="input-sm form-control no-spin" #endDate onkeydown="return false" (input)="setEndDate(endDate.value)" [value]="filteringModel.dateTo | date:'yyyy-MM-dd'" min="2000-01-01" max="{{inputMaxDate | date:'yyyy-MM-dd'}}" />
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                            <input type="date" class="input-sm form-control no-spin " #startDate onkeydown="return false" (input)="setBeginDate(startDate.value)" [value]="filteringModel.dateFrom | date:'yyyy-MM-dd'" min="2000-01-01" max="{{inputMaxDate | date:'yyyy-MM-dd'}}" />
+
+                            <span class="input-group-addon"> - </span>   <!--onkeydown="return false"  -> paste it to input if will be needed block keyDown -->
+                            <input type="date" class="input-sm form-control no-spin" #endDate onkeydown="return false" (input)="setEndDate(endDate.value)" [value]="filteringModel.dateTo | date:'yyyy-MM-dd'" min="2000-01-01" max="{{inputMaxDate | date:'yyyy-MM-dd'}}" />
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                        </div>
                     </div>
                 </div>
             </div>
+            <div  class="panel-body">
+                <table *ngIf ="isFilteredDataExist" class="table table-hover table-condensed table-striped">
+                    <thead>
+                    <th *ngFor="let header of UserDonationsTableHeaders">{{header}}</th>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of myDonations; let i = index">
+                            <td>{{i+1}}</td>
+                            <td>{{item.organization}}</td>
+                            <td>{{item.target}}</td>
+                            <td>{{item.amount  | number : '1.2-2'}}</td>
+                            <td>{{item.date | date:'dd-MMM-yyyy HH:mm'}}</td>
+                            <td>{{item.description}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
-        <div class="panel-body">
-            <table class="table table-hover table-condensed table-striped">
-                <thead>
-                <th *ngFor="let header of UserDonationsTableHeaders">{{header}}</th>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let item of myDonations; let i = index">
-                        <td>{{i+1}}</td>
-                        <td>{{item.organization}}</td>
-                        <td>{{item.target}}</td>
-                        <td>{{item.amount  | number : '1.2-2'}}</td>
-                        <td>{{item.date | date:'dd-MMM-yyyy HH:mm'}}</td>
-                        <td>{{item.description}}</td>
-                    </tr>
-                </tbody>
-            </table>
+        <div *ngIf="!isDataExist" class="panel-heading text-truncate">
+            <div style="font-size:medium;text-align:center;">
+                Поки що, ви не зробили жодної пожертви.
+                <br>
+                Щоб здійснити свою першу пожертву перейдіть на відповідну <a [routerLink]="['/finance/donate']" class="linkBack">сторінку</a>.
+                <br>Давайте робити хорошу справу разом!
+            </div>
         </div>
     </div>
 </div>

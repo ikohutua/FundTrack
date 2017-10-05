@@ -1,8 +1,9 @@
-﻿.img-big {
-    height: 200px !important;
-    width: auto;
+﻿a.linkBack {
+    color: #314720;
+    text-decoration-line: underline;
+    font: bold !important;
+    font-weight: 400 !important;
 }
-
 .no-spin::-webkit-inner-spin-button {
     -webkit-appearance: none;
 }
@@ -143,4 +144,8 @@ li {
 
 .arrow-back {
     right: 612px;
+}
+
+.period-panel{
+    margin-bottom: 10px;
 }

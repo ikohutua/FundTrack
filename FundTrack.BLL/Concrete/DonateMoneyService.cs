@@ -135,7 +135,6 @@ namespace FundTrack.BLL.Concrete
             {
                 throw new BusinessLogicException(ErrorMessages.CantFindItem, ex);
             }
-
         }
 
         public IEnumerable<UserDonationsViewModel> GetUserDonationsByDate(int userid, DateTime dateFrom, DateTime dateTo)

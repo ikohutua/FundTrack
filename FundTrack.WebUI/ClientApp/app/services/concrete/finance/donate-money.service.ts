@@ -28,7 +28,6 @@ export class DonateService {
 
     checkPaymentRequest(request: any): Observable<FondyCheckPaymentResponseViewModel> {
         let requestBody = JSON.stringify({ request: request });
-        console.log(requestBody);
         return this._http.post('api/Donate/CheckPayment', requestBody, RequestOptionsService.getRequestOptions()).
             map((response: Response) => {
                 let result = response.json() as FondyCheckPaymentResponseViewModel;
@@ -70,7 +69,6 @@ export class DonateService {
             .catch(this.handleErrorHere);;
     }
     getUserDonationsByDate(userId: number, startDate: string, endDate: string): Observable<UserDonationViewModel[]> {
-        debugger;
         return this._http.get(GlobalUrlService.userDonationsByDate+ '?userId=' + userId + '&datefrom=' + startDate + '&dateto=' + endDate, RequestOptionsService.getRequestOptions())
             .map((response: Response) => {
                 return response.json() as UserDonationViewModel[];

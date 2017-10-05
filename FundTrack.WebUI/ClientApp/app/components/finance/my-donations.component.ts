@@ -26,15 +26,14 @@ export class MyDonationsComponent implements OnInit {
     private filteringModel: UserDonationFilteringViewModel = new UserDonationFilteringViewModel();
     private UserDonationsTableHeaders: string[] = ['№ п/п', 'Організація', 'Призначення', 'Сума, ₴', 'Дата', 'Опис'];
     private inputMaxDate: Date = new Date();
-    private searchTerms = new Subject<string>();
+    private isDataExist: boolean;
+    private isFilteredDataExist: boolean = true;
+    private showSpinner: boolean = false;
     constructor(private donateService: DonateService,
         private datePipe: DatePipe) {
-
-    }
-    search(term: string): void {
-        this.searchTerms.next(term);
     }
     ngOnInit(): void {
+        this.showSpinner = true;
         this.filteringModel.id = 0;
         this.filteringModel.dateFrom = new Date();
         this.filteringModel.dateTo = new Date();
@@ -46,15 +45,27 @@ export class MyDonationsComponent implements OnInit {
         };
 
         this.donateService.getUserDonations(this.user.id).subscribe(donation => {
-            this.myDonations = donation;
-            this.filteringModel.dateFrom = this.myDonations[0].date;
+            if (donation.length != 0) {
+                this.isDataExist = true;
+                this.myDonations = donation;
+                this.filteringModel.dateFrom = this.myDonations[0].date;
+            }
+            else {
+                this.isDataExist = false;
+            }
+            this.showSpinner = false;
         });
-
     }
     private donationWhenDateChanged() {
         this.donateService.getUserDonationsByDate(this.user.id, this.datePipe.transform(this.filteringModel.dateFrom, 'yyyy-MM-dd'), this.datePipe.transform(this.filteringModel.dateTo, 'yyyy-MM-dd'))
             .subscribe((outcomeData: UserDonationViewModel[]) => {
-                this.myDonations = outcomeData;
+                if (outcomeData.length != 0) {
+                    this.isFilteredDataExist = true;
+                    this.myDonations = outcomeData;
+                }
+                else {
+                    this.isFilteredDataExist = false;
+                }
             })
     }
     public setBeginDate(beginDate: Date): void {
@@ -65,7 +76,6 @@ export class MyDonationsComponent implements OnInit {
     }
     public setEndDate(endDate: Date): void {
         this.filteringModel.dateTo = endDate;
-         this.donationWhenDateChanged();
+        this.donationWhenDateChanged();
     }
-
 }
