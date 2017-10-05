@@ -25,7 +25,7 @@ export class FinOpService extends BaseSpinnerService<FinOpViewModel> {
     private incomeUrl: string = "api/finop/income";
     private spendingUrl: string = "api/finop/spending";
     private transferUrl: string = "api/finop/transfer";
-    private editUrl: string = "api/finop/edit";
+    private editUrl: string = "api/finop";
     private getOrgAccForFinOpsUrl: string = 'api/OrgAccount/GetOrgAccountForFinOp';
     private createUrl: string = 'api/FinOp/CreateFinOp';
     private getFinOpUrl: string = 'api/finop/getFinOpsById';

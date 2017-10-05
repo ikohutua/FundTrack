@@ -43,17 +43,6 @@ namespace FundTrack.WebUI.Controllers
         }
 
         /// <summary>
-        /// Gets the targets by organization ID.
-        /// </summary>
-        /// <returns></returns>
-        [HttpGet("GetTargets/{orgId}")]
-        [Authorize(Roles = "admin, moderator")]
-        public IEnumerable<TargetViewModel> GetTargetsByOrgId(int orgId)
-        {
-            return this._service.GetTargets(orgId);
-        }
-
-        /// <summary>
         /// Creates the fin op.
         /// </summary>
         /// <param name="finOpModel">The fin op model.</param>
@@ -105,7 +94,7 @@ namespace FundTrack.WebUI.Controllers
             return this._service.CreateTransfer(transferModel);
         }
 
-        [HttpPut("Edit")]
+        [HttpPut()]
         [Authorize(Roles = "admin, moderator")]
         public FinOpViewModel Edit([FromBody] FinOpViewModel finOp)
         {
