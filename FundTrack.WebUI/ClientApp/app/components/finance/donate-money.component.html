@@ -34,7 +34,7 @@
 
                 <div class="indent">
                     <label> Валюта </label>
-                    <!-- use  [ngClass]="{'disabled':!hasAccountForDonate}" instead disabled property for choosing cash type. Default is UAH and id is 3(view CurrencyViewModel)-->
+                    <!-- Use  [ngClass]="{'disabled':!hasAccountForDonate}" instead disabled property for choosing cash type. Default is UAH and id is 3(view CurrencyViewModel)-->
                     <select  disabled class="form-control"  formControlName="currency" *ngIf="currencies" [(ngModel)]="currency" (ngModelChange)="currencyChange($event)">
                         <option [disabled]="!this.hasAccountForDonate" *ngFor="let currency of currencies" [selected]="currency.currencyId == 3" [ngValue]="currency">{{currency.currencyShortName }} </option>
                     </select><br />
