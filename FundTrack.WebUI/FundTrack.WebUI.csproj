@@ -31,6 +31,7 @@
     <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="5.1.4" />
     <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink" Version="1.1.2" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="1.1.1" />
+    <PackageReference Include="Serilog.Extensions.Logging.File" Version="1.1.0" />
     <PackageReference Include="WindowsAzure.Storage" Version="8.4.0" />
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="1.0.1" />
   </ItemGroup>
@@ -67,7 +68,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ClientApp\app\shared\components\upload-image\" />
-    <Folder Include="Middlewares\" />
     <Folder Include="wwwroot\images\" />
   </ItemGroup>
   <Target Name="RunWebpack" AfterTargets="ComputeFilesToPublish">

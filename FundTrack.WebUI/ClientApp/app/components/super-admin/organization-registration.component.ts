@@ -8,6 +8,7 @@ import { ModalComponent } from '../../shared/components/modal/modal-component';
 import * as message from '../../shared/common-message.storage';
 import * as defaultConfig from '../../shared/default-configuration.storage';
 import { Image } from "../../view-models/concrete/image.model";
+import { ImputImageService } from "../../shared/input-image-service";
 
 
 @Component({
@@ -67,7 +68,6 @@ export class OrganizationRegistrationComponent implements OnInit {
                 }
             });
     }
-
     getAddresses() {
 
     }
@@ -77,33 +77,22 @@ export class OrganizationRegistrationComponent implements OnInit {
     }
 
     handleInputChange(startFile: any) {
+
+        if (!startFile.target.files.length) {
+            return;
+        }
         this.isError = false;
+        let imgInpServ: ImputImageService = new ImputImageService();
 
-        this.currentFile = startFile.dataTransfer ? startFile.dataTransfer.files[0] : startFile.target.files[0];
-        var reader = new FileReader();
-
-        if (!this.currentFile.type.match(defaultConfig.imageRegExPattern)) {
-            this.imageErrorMessage(message.invalidFormat);
-            return;
-        }
-
-        if (this.currentFile.size > defaultConfig.maxImageSize) {
-            this.imageErrorMessage(message.exceededImageSize + " " + message.acceptable + " " + defaultConfig.maxImageSize / 1000000 + "Мб");
-            return;
-        }
-
-        reader.onload = this._handleReaderLoaded.bind(this);
-        reader.readAsDataURL(this.currentFile);
-    }
-
-    private _handleReaderLoaded(e: any) {
-        var reader = e.target;
-        let newLogoUrl = reader.result;
-        var commaInd = newLogoUrl.indexOf(',');
-        let base64Code = newLogoUrl.substring(commaInd + 1);
-
-        this.newLogo = new Image(this.currentFile.name, newLogoUrl, base64Code);
-        this.isNewLogoAvailable = true;
+        imgInpServ.UploadImageFromFile(startFile)
+            .then((res) => {
+                console.log(res);
+                this.newLogo = res;
+                this.isNewLogoAvailable = true;
+            })
+            .catch((err) => {
+                this.imageErrorMessage(err.message);
+            });
     }
 
     imageErrorMessage(message: string) {

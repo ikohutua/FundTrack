@@ -2,8 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using FundTrack.DAL.Entities;
 using FundTrack.Infrastructure.ViewModel;
 using FundTrack.DAL.Abstract;
@@ -33,7 +31,7 @@ namespace FundTrack.BLL.Concrete
             }
             else
             {
-                throw new BusinessLogicException("Неможливо створити рахунок невизначеного типу");
+                throw new BusinessLogicException(ErrorMessages.CantCreateAccountWithundefinedType);
             }
         }
 
@@ -62,7 +60,7 @@ namespace FundTrack.BLL.Concrete
                     {
                         return new DeleteOrgAccountViewModel
                         {
-                            Error = "Ви не адміністратор цієї організації"
+                            Error = ErrorMessages.YouArentAdminOfThisOrganization
                         };
                     }
                 }
@@ -70,7 +68,7 @@ namespace FundTrack.BLL.Concrete
                 {
                     return new DeleteOrgAccountViewModel
                     {
-                        Error = "Невірний пароль адміністратора організації"
+                        Error = ErrorMessages.WrongAdminPasswond
                     };
                 }
             }
@@ -211,8 +209,7 @@ namespace FundTrack.BLL.Concrete
             }
             catch (Exception e)
             {
-                string message = string.Format("Неможливо створити рахунок організації. Помилка: {0}", e.Message);
-                throw new BusinessLogicException(message, e);
+                throw new BusinessLogicException(ErrorMessages.CantCreateAccountOfOrganization, e);
             }
         }
         public OrgAccountViewModel CreateBankAccount(OrgAccountViewModel model)
@@ -255,8 +252,7 @@ namespace FundTrack.BLL.Concrete
             }
             catch (Exception e)
             {
-                string message = string.Format("Неможливо створити рахунок організації. Помилка: {0}", e.Message);
-                throw new BusinessLogicException(message, e);
+                throw new BusinessLogicException(ErrorMessages.CantCreateAccountOfOrganization, e);
             }
         }
         public string ValidateOrgAccount(OrgAccountViewModel model)
@@ -266,7 +262,7 @@ namespace FundTrack.BLL.Concrete
             {
                 if (item.OrgAccountName == model.OrgAccountName)
                 {
-                    return "Рахунок організації з таким іменем уже існує";
+                    return ErrorMessages.OrganizarionAccountWithNameExists;
                 }
             }
             if (model.AccountType == "bank")
@@ -276,7 +272,7 @@ namespace FundTrack.BLL.Concrete
                 {
                     if (item.BankAccount.AccNumber != null && item.BankAccount.AccNumber == model.AccNumber)
                     {
-                        return "Рахунок з таким номером уже зареєстрований";
+                        return ErrorMessages.OrganizarionAccountWithNumberExists;
                     }
                 }
             }
@@ -364,8 +360,7 @@ namespace FundTrack.BLL.Concrete
 
             catch (Exception ex)
             {
-                string message = string.Format("Неможливо отримати інформацію для рахунку. Помилка: {0}", ex.Message);
-                throw new BusinessLogicException(message, ex);
+                throw new BusinessLogicException(ErrorMessages.CantGetInfoForAccount, ex);
             }
         }
 
@@ -386,10 +381,8 @@ namespace FundTrack.BLL.Concrete
                 return (bool)bankAccount.IsDonationEnabled;
             }
 
-            catch (Exception ex)
-            {
-                string message = string.Format("Неможливо змінити інформацію для рахунку. Помилка: {0}", ex.Message);
-                throw new BusinessLogicException(message, ex);
+            catch (Exception ex) { 
+                throw new BusinessLogicException(ErrorMessages.CantEditInfoForAccount, ex);
             }           
         }
 
@@ -473,11 +466,11 @@ namespace FundTrack.BLL.Concrete
 
             catch (Exception ex)
             {
-                throw new BusinessLogicException($"Неможливо отримати інформацію для рахунку. Помилка: {ex.Message}", ex);
+                throw new BusinessLogicException(ErrorMessages.CantGetInfoForAccount, ex);
             }
         }
 
-        public bool IsExtractEnabled(int orgAccountId)
+        public bool IsExtractsEnabled(int orgAccountId)
         {
             OrgAccount orgAccount = _unitOfWork.OrganizationAccountRepository.GetOrgAccountById(orgAccountId);
             return orgAccount?.BankAccount?.IsExtractEnabled ?? false;
@@ -501,6 +494,68 @@ namespace FundTrack.BLL.Concrete
             else
             {
                 return info;
+            }
+        }
+
+        public bool ToggleExtractsFunction(int orgAccountId)
+        {
+            var orgAccount = _unitOfWork.OrganizationAccountRepository.GetOrgAccountById(orgAccountId);
+
+            try
+            {
+                var bankAccount = _unitOfWork.BankAccountRepository.Get((int)orgAccount.BankAccId);
+                bankAccount.IsExtractEnabled = !bankAccount.IsExtractEnabled;
+
+                _unitOfWork.BankAccountRepository.Update(bankAccount);
+                _unitOfWork.SaveChanges();
+
+                return (bool)bankAccount.IsExtractEnabled;
+            }
+            catch (Exception ex)
+            {
+                throw new BusinessLogicException(ErrorMessages.CantEditInfoForAccount, ex);
+            }
+
+        }
+
+        public BankAccountDonateViewModel DisableExtractsFunction(int bankAccountId)
+        {
+            var bankAccount = _unitOfWork.BankAccountRepository.Get(bankAccountId);
+
+            if (bankAccount != null)
+            {
+                bankAccount.ExtractMerchantId = null;
+                bankAccount.ExtractMerchantPassword = null;
+                bankAccount.IsExtractEnabled = false;
+
+                _unitOfWork.BankAccountRepository.Update(bankAccount);
+                _unitOfWork.SaveChanges();
+
+                return new BankAccountDonateViewModel
+                {
+                    BankAccountId = bankAccountId
+                };
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public bool IsExtractsConnected(int orgAccountId)
+        {
+            var orgAccount = _unitOfWork.OrganizationAccountRepository.GetOrgAccountById(orgAccountId);
+
+            try
+            {
+                if (orgAccount.BankAccount.ExtractMerchantId != null && orgAccount.BankAccount.ExtractMerchantPassword != null)
+                    return true;
+                else return false;
+            }
+
+            catch (Exception)
+            {
+                return false;
             }
         }
     }

@@ -18,6 +18,7 @@ import * as key from '../../shared/key.storage';
 import * as message from '../../shared/common-message.storage';
 import * as defaultConfig from '../../shared/default-configuration.storage';
 import { EditLogoViewModel } from "../../view-models/concrete/edit-organization/edit-org-logo-view.model";
+import { ImputImageService } from "../../shared/input-image-service";
 
 
 @Component({
@@ -246,7 +247,6 @@ export class OrganizationEditComponent implements OnInit, OnDestroy, AfterViewIn
                 this.orgAddress = addresses;
                 this.getAddresses(this.organizationId);
                 this.setMap(this.map);
-                console.log(this.orgAddress.errorMessage);
             });
         this.addAddressModal.hide();
     }
@@ -256,7 +256,6 @@ export class OrganizationEditComponent implements OnInit, OnDestroy, AfterViewIn
      * @param addressToEdit
      */
     updateAddress(addressToEdit: AddressViewModel): void {
-        console.log("in update address", addressToEdit);
         this._editService.editAddress(addressToEdit).subscribe(
             address => {
                 this.orgAddress = address;
@@ -277,7 +276,6 @@ export class OrganizationEditComponent implements OnInit, OnDestroy, AfterViewIn
      * @param addresses
      */
     public showAddress(addresses: IAddressViewModel[]): void {
-        console.log(addresses);
         //this.addressToEdit.id = addresses[0].id;
         this.addressToEdit.city = addresses[0].city;
         this.addressToEdit.street = addresses[0].street;
@@ -301,36 +299,24 @@ export class OrganizationEditComponent implements OnInit, OnDestroy, AfterViewIn
         modal.hide();
     }
 
-
     //get image from input
     handleInputChange(startFile: any) {
+        if (!startFile.target.files.length) {
+            return;
+        }
         this.isError = false;
+        let imgInpServ: ImputImageService = new ImputImageService();
 
-        this.currentFile = startFile.dataTransfer ? startFile.dataTransfer.files[0] : startFile.target.files[0];
-        var reader = new FileReader();
-
-        if (!this.currentFile.type.match(defaultConfig.imageRegExPattern)) {
-            this.imageErrorMessage(message.invalidFormat);
-            return;
-        }
-
-        if (this.currentFile.size > defaultConfig.maxImageSize) {
-            this.imageErrorMessage(message.exceededImageSize + " " + message.acceptable + " " + defaultConfig.maxImageSize / 1000000 + "Мб");
-            return;
-        }
-
-        reader.onloadend = this._handleReaderLoaded.bind(this);
-        reader.readAsDataURL(this.currentFile);
-    }
-
-    private _handleReaderLoaded(e: any) {
-        var reader = e.target;
-        this.newLogoUrl = reader.result;
-
-        var commaInd = this.newLogoUrl.indexOf(',');
-        this.editLogo.base64Code = this.newLogoUrl.substring(commaInd + 1);
-
-        this.isNewLogoAvailable = true;
+        imgInpServ.UploadImageFromFile(startFile)
+            .then((res) => {
+                console.log(res);
+                this.editLogo.base64Code = res.base64Data;
+                this.editLogo.logoUrl = res.imageSrc;
+                this.isNewLogoAvailable = true;
+            })
+            .catch((err) => {
+                this.imageErrorMessage(err.message);
+            });
     }
 
     imageErrorMessage(message: string) {
@@ -352,7 +338,6 @@ export class OrganizationEditComponent implements OnInit, OnDestroy, AfterViewIn
             return;
         }
 
-        this.editLogo.logoUrl = this.organization.logoUrl;
         this._editService.editLogo(this.editLogo).subscribe(
             model => {
                 this.organization.logoUrl = model.logoUrl;

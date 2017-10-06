@@ -38,6 +38,11 @@ namespace FundTrack.BLL.Abstract
 
         FinOpViewModel EditFinOperation(FinOpViewModel finOpModel);
 
+        /// <summary>
+        /// Gets the fin op by id.
+        /// </summary>
+        /// <param name="orgAccountId">The fin op identifier.</param>
+        /// <returns></returns>
         FinOpViewModel GetFinOpsById(int id);
 
         /// <summary>

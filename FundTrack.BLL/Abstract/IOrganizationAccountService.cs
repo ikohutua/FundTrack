@@ -45,7 +45,35 @@ namespace FundTrack.BLL.Abstract
         BankAccountDonateViewModel DisableDonateFunction(int bankAccountId);
 
         BankAccountDonateViewModel ExtractCredentials(int orgAccountId);
-        bool IsExtractEnabled(int orgAccountId);
+        /// <summary>
+        /// Check if data can be extracted
+        /// </summary>
+        /// <param name="orgAccountId"></param>
+        /// <returns></returns>
+        bool IsExtractsEnabled(int orgAccountId);
+
+        /// <summary>
+        /// Set access to get extracts
+        /// </summary>
+        /// <param name="info"></param>
+        /// <returns></returns>
         BankAccountDonateViewModel ConnectExtractsFunction(BankAccountDonateViewModel info);
+
+        /// <summary>
+        /// Disable the opportunity to get the extracts
+        /// </summary>
+        /// <param name="orgAccountId"></param>
+        /// <returns></returns>
+        bool ToggleExtractsFunction(int orgAccountId);
+
+        /// <summary>
+        /// Exclude the opportunity to get the extracts
+        /// </summary>
+        /// <param name="info"></param>
+        /// <returns></returns>
+        BankAccountDonateViewModel DisableExtractsFunction(int bankAccountId);
+
+        bool IsExtractsConnected(int orgAccountId);
+
     }
 }
