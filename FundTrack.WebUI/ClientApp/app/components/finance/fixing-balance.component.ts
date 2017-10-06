@@ -95,7 +95,7 @@ export class FixingBalanceComponent implements OnChanges, OnInit {
     }
 
     public showToast() {
-        var x = document.getElementById("snackbar");
+        var x = document.getElementById("showMessageToaster");
         x.className = "show";
         setTimeout(() => {
             x.className = x.className.replace("show", "");
