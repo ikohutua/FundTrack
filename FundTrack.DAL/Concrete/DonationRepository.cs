@@ -39,7 +39,7 @@ namespace FundTrack.DAL.Concrete
         /// Read all Donations in database
         /// </summary>
         /// <returns> IEnumerable of donations</returns>
-        public IQueryable<Donation> Read()
+        public IEnumerable<Donation> Read()
         {
             return _context.Donations
                 .Include(d=>d.Target)

@@ -28,7 +28,7 @@ import { MyDonationsComponent } from "./components/finance/my-donations.componen
         OrgAccountOperationComponent,
         BankImportComponent,    
         MakeDonationComponent,
-        FixingBalanceComponent
+        FixingBalanceComponent,
         MyDonationsComponent
     ],
     imports: [

@@ -153,7 +153,7 @@ namespace FundTrack.BLL.Concrete
                         .ToList();
             return suggestedDonations.Select(ConvertEntityToModel);
         }
-        }
+        
 
         public IEnumerable<UserDonationsViewModel> GetUserDonations(int userid)
         {
@@ -164,8 +164,8 @@ namespace FundTrack.BLL.Concrete
                     .Select(donation => new UserDonationsViewModel
                     {
                         Id = donation.Id,
-                        Organization = donation.BankAccount?.Organization.Name,
-                        Target = donation.Target?.TargetName,
+                        Organization = donation.BankAccount.Organization.Name,
+                        Target = donation.Target.TargetName,
                         Date = donation.DonationDate,
                         Amount = donation.Amount,
                         Description = donation.Description

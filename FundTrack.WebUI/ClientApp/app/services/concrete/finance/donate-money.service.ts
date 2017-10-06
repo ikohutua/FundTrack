@@ -12,6 +12,7 @@ import { DonateViewModel } from "../../../view-models/concrete/finance/donate/do
 import { UserDonationViewModel } from "../../../view-models/concrete/finance/donate/user-donation-view-model";
 import { GlobalUrlService } from "../global-url.service";
 import { RequestOptionsService } from "../request-options.service";
+import { DonateUrlsService } from "../donate-urls.service";
 
 
 @Injectable()
