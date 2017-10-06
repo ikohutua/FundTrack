@@ -24,6 +24,7 @@ export class FixingBalanceComponent implements OnChanges, OnInit {
     currentDate: string;
     lastFixing: BalanceViewModel;
     message: string = "";
+    toasterClass: string = "";
 
 
     constructor(private fixingBalanceService: FixingBalanceService) {
@@ -95,10 +96,9 @@ export class FixingBalanceComponent implements OnChanges, OnInit {
     }
 
     public showToast() {
-        var x = document.getElementById("showMessageToaster");
-        x.className = "show";
+        this.toasterClass = "show";
         setTimeout(() => {
-            x.className = x.className.replace("show", "");
+            this.toasterClass = "";
             this.closeModalEvent.emit(true);
         }, 3000);
     }
