@@ -7,17 +7,12 @@ import { DatePipe } from '@angular/common';
 import { isBrowser } from "angular2-universal";
 import * as key from "../../shared/key.storage";
 import { Subject } from "rxjs/Subject";
-// Observable operators
 import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/debounceTime';
-import 'rxjs/add/operator/distinctUntilChanged';
-import { Observable } from "rxjs/Observable";
 
 @Component({
     selector: 'my-donations',
     templateUrl: './my-donations.component.html',
     styleUrls: ['./my-donations.component.css'],
-    providers: [DonateService, DatePipe]
 })
 export class MyDonationsComponent implements OnInit {
 
@@ -48,7 +43,7 @@ export class MyDonationsComponent implements OnInit {
             if (donation.length != 0) {
                 this.isDataExist = true;
                 this.myDonations = donation;
-                this.filteringModel.dateFrom = this.myDonations[0].date;
+                this.filteringModel.dateFrom = this.myDonations[this.myDonations.length-1].date;
             }
             else {
                 this.isDataExist = false;

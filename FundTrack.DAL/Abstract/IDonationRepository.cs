@@ -9,7 +9,7 @@ namespace FundTrack.DAL.Abstract
     public interface IDonationRepository
     {
         Donation Create(Donation item);
-        IEnumerable<Donation> Read();
+        IQueryable<Donation> Read();
         Donation Get(int id);
     }
 }

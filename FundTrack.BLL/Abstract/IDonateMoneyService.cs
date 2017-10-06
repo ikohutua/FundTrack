@@ -19,7 +19,19 @@ namespace FundTrack.BLL.Abstract
         /// <param name="finOpId"></param>
         /// <returns></returns>
         IEnumerable<DonateViewModel> GetSuggestedDonations(int finOpId);
-        IEnumerable<UserDonationsViewModel> GetUserDonations(int userid);
-        IEnumerable<UserDonationsViewModel> GetUserDonationsByDate(int userid, DateTime dateFrom, DateTime dateTo);
+        /// <summary>
+        /// Returns all donations of user
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        IEnumerable<UserDonationsViewModel> GetUserDonations(int userId);
+        /// <summary>
+        /// Returns all donations of user in date period
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="dateFrom"></param>
+        /// <param name="dateTo"></param>
+        /// <returns></returns>
+        IEnumerable<UserDonationsViewModel> GetUserDonationsByDate(int userId, DateTime dateFrom, DateTime dateTo);
     }
 }

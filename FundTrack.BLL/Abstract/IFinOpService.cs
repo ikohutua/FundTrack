@@ -10,16 +10,30 @@ namespace FundTrack.BLL.Abstract
     public interface IFinOpService
     {
         /// <summary>
-        /// Creates the fin op.
+        /// Creates the fin op from bank account.
         /// </summary>
         /// <param name="finOpModel">The fin op model.</param>
         /// <returns></returns>
         FinOpFromBankViewModel CreateFinOp(FinOpFromBankViewModel finOpModel);
-
+        /// <summary>
+        /// Creates the income fin op from cash account
+        /// </summary>
+        /// <param name="finOpModel"></param>
+        /// <returns></returns>
         FinOpViewModel CreateIncome(FinOpViewModel finOpModel);
 
+        /// <summary>
+        /// Creates the spending fin op from cash account
+        /// </summary>
+        /// <param name="finOpModel"></param>
+        /// <returns></returns>
         FinOpViewModel CreateSpending(FinOpViewModel finOpModel);
 
+        /// <summary>
+        /// Creates the transfer fin op from cash account
+        /// </summary>
+        /// <param name="finOpModel"></param>
+        /// <returns></returns>
         FinOpViewModel CreateTransfer(FinOpViewModel finOpModel);
 
         FinOpViewModel EditFinOperation(FinOpViewModel finOpModel);

@@ -99,7 +99,6 @@ export class BankImportComponent implements OnInit {
         console.log("Bank-Import");
         if (isBrowser) {
             if (sessionStorage.getItem(key.keyCardNumber)) {
-                //this.orgaccountId = Number(sessionStorage.getItem(key.keyOrgAccountId));
                 this.card = sessionStorage.getItem(key.keyCardNumber);
                 this._service.getCountExtractsOnCard(this.card)
                     .subscribe(response => {
@@ -113,11 +112,9 @@ export class BankImportComponent implements OnInit {
                                 .subscribe(response => {
                                     this.currentOrgAccount = response;
                                     if (this.currentOrgAccount.targetId != null) {
-                                        debugger;
                                         this.isOrgAccountHaveTarget = true;
                                         this._orgAccountService.getTargetById(this.currentOrgAccount.targetId)
                                             .subscribe(response => {
-                                                debugger;
                                                 this.targets = new Array<TargetViewModel>();
                                                 this.targets[0] = response;
                                             });
@@ -128,14 +125,9 @@ export class BankImportComponent implements OnInit {
                                             })
                                     }
                                 });
-                        
-
-
-
                             this.getAllExtracts();
                         }
                     });
-
             }
         }
     }
@@ -261,18 +253,13 @@ export class BankImportComponent implements OnInit {
         this._newFinOp.absoluteAmount = Math.abs(this._newFinOp.amount);
         if (this._newFinOp.amount > 0) {
             this._newFinOp.cardToId = Number(this.currentOrgAccount.id);
-            //this._newFinOp.cardFromId = 0;
         }
         if (this._newFinOp.amount < 0) {
             this._newFinOp.cardFromId = Number(this.currentOrgAccount.id);
-            //this._newFinOp.cardToId = 0;
         }
         this._newFinOp.orgId = this.user.orgId;
-        //this._newFinOp.trandate = bankImport.trandate;
         this.index = this._dataForFinOp.findIndex(element => element.id == bankImport.id);
         this.currentOrgAccountNumber = this.currentOrgAccount.orgAccountName + ': ' + this.currentOrgAccount.orgAccountNumber;
-
-        //this.openFinOpModal();
     }
 
     //save new initialize finOp

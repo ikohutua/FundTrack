@@ -77,10 +77,5 @@ namespace FundTrack.Infrastructure.ViewModel.FinanceViewModels
         /// The org identifier.
         /// </value>
         public int OrgId { get; set; }
-
-        /// <summary>
-        /// Gets or sets the FinOp date.
-        /// </summary>
-        //public DateTime Trandate { get; set; }
     }
 }

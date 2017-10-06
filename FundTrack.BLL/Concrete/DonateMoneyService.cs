@@ -149,43 +149,43 @@ namespace FundTrack.BLL.Concrete
                         (d.DonationDate >= finOp.FinOpDate
                         ) && // seggested conditions are same amount and donation time in range of [finOp.Time; finOp.Time + 30 minutes]
                         (d.DonationDate <= finOpMaxPossibleDate) &&
-                        (d.Amount == (double) finOp.Amount))
+                        (d.Amount == (double)finOp.Amount))
                         .ToList();
             return suggestedDonations.Select(ConvertEntityToModel);
         }
-        
 
-        public IEnumerable<UserDonationsViewModel> GetUserDonations(int userid)
+
+        public IEnumerable<UserDonationsViewModel> GetUserDonations(int userId)
         {
             try
             {
                 var result = _unitOfWork.DonationRepository.Read()
-                    .Where(donation => donation.UserId == userid)
+                    .Where(donation => donation.UserId == userId).ToList()
                     .Select(donation => new UserDonationsViewModel
                     {
                         Id = donation.Id,
                         Organization = donation.BankAccount.Organization.Name,
-                        Target = donation.Target.TargetName,
+                        Target = donation.Target?.TargetName,
                         Date = donation.DonationDate,
                         Amount = donation.Amount,
                         Description = donation.Description
-                    }).OrderBy(donation => donation.Date).ToList();
+                    }).OrderByDescending(donation => donation.Date);
                 return result;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw new BusinessLogicException(ErrorMessages.CantFindItem, ex);
             }
         }
 
-        public IEnumerable<UserDonationsViewModel> GetUserDonationsByDate(int userid, DateTime dateFrom, DateTime dateTo)
+        public IEnumerable<UserDonationsViewModel> GetUserDonationsByDate(int userId, DateTime dateFrom, DateTime dateTo)
         {
             try
             {
                 dateTo = dateTo.AddDays(1);
-                var result = GetUserDonations(userid)
-                    .Where(donat => donat.Date <= dateTo
-                    && donat.Date >= dateFrom)
+                var result = GetUserDonations(userId)
+                    .Where(donat => (donat.Date <= dateTo)
+                    && (donat.Date >= dateFrom))
                     .OrderBy(donation => donation.Date).ToList();
                 return result;
             }

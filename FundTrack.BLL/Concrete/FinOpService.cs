@@ -79,6 +79,7 @@ namespace FundTrack.BLL.Concrete
                 throw new ArgumentException(ErrorMessages.MoneyFinOpLimit);
             }
         }
+        ///
         public FinOpViewModel CreateIncome(FinOpViewModel finOpModel)
         {
             FinOpInputDataValidation(finOpModel);
@@ -289,7 +290,7 @@ namespace FundTrack.BLL.Concrete
         {
             try
             {
-                var finOps = _unitOfWork.FinOpRepository.Read();
+                var finOps = _unitOfWork.FinOpRepository.Read().ToList();
                 return finOps.Select(f => new FinOpViewModel
                 {
                     Id = f.Id,

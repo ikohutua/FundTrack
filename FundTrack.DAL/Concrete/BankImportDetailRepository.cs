@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using FundTrack.Infrastructure;
 
 namespace FundTrack.DAL.Concrete
 {
@@ -95,8 +96,16 @@ namespace FundTrack.DAL.Concrete
         /// <returns></returns>
         public BankImportDetail ChangeBankImportState(BankImportDetail bankImportDetail)
         {
-            var updatedItem =  this._context.BankImportDetails.Update(bankImportDetail);
-            return updatedItem.Entity;
+            try
+            {
+                var updatedItem = this._context.BankImportDetails.Update(bankImportDetail);
+                return updatedItem.Entity;
+            }
+            catch (Exception ex)
+            {
+                throw new DataAccessException(ErrorMessages.UpdateDataError,ex);
+            }
+            
         }
     }
 }

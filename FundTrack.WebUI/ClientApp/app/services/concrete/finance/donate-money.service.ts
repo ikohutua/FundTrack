@@ -58,6 +58,7 @@ export class DonateService {
 
     getUserDonations(userId: number): Observable<UserDonationViewModel[]> {
         return this._http.get(GlobalUrlService.userDonations + userId, RequestOptionsService.getRequestOptions())
+        
             .map((response: Response) => {
                 return response.json() as UserDonationViewModel[];
             })

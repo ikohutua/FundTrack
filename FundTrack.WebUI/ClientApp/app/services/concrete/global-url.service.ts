@@ -22,4 +22,7 @@ export class GlobalUrlService {
     //donation URLs
     public static userDonations: string = "api/Donate/User/";
     public static userDonationsByDate: string = "api/Donate/UserByDate/";
+
+    //FinOp URLs
+    public static createFinOp: string = "api/FinOp/CreateFinOp/";
 }

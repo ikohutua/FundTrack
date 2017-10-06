@@ -13,7 +13,6 @@
                         <p></p>
                         <div>
                             <select #selectedOrganization name="selectbasic" class="input-sm form-control">
-                                <!-- value="{{target.targetId}}" -->
                                 <option value="{{item.id}}" *ngFor="let item of organizations" [selected]="item.id == routeOrgIndex">{{item.name}}</option>
                             </select>
                         </div>
