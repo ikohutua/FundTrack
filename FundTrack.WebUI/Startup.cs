@@ -18,6 +18,7 @@ using FundTrack.Infrastructure.ViewModel.EventViewModel;
 using FundTrack.WebUI.Formatter;
 using Microsoft.AspNetCore.Http;
 using FundTrack.WebUI.Middlewares;
+using FundTrack.WebUI.Middlewares.Logging;
 
 namespace FundTrack.WebUI
 {
@@ -133,10 +134,11 @@ namespace FundTrack.WebUI
         {
             app.UseGlobalErrorHandling();
 
-            app.UseStaticFiles();
-          
-      
+            //app.LoggingHandling();
 
+            app.UseStaticFiles();
+
+          
             app.UseJwtBearerAuthentication(new JwtBearerOptions
             {
                 AutomaticAuthenticate = true,
@@ -158,14 +160,13 @@ namespace FundTrack.WebUI
             //    AuthenticationScheme = "Bearer",
             //    AutomaticChallenge = true
             //});
-
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
             //if (env.IsDevelopment())
             //{
                 
-            //}
+            //
 
             app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions
             {

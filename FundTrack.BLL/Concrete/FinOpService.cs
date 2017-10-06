@@ -16,9 +16,9 @@ namespace FundTrack.BLL.Concrete
     {
         private readonly IUnitOfWork unitOfWork;
 
-        /// <Amountmary>
+        /// <Summary>
         /// Creates new instance of FinOpService
-        /// </Amountmary>
+        /// </Summary>
         /// <param name="unitOfWork">Unit of work</param>
         public FinOpService(IUnitOfWork unitOfWork)
         {
@@ -27,7 +27,7 @@ namespace FundTrack.BLL.Concrete
 
         /// <summary>
         /// Creates the fin op.
-        /// </Amountmary>
+        /// </Summary>
         /// <param name="finOpModel">The fin op model.</param>
         /// <returns></returns>
         public FinOpFromBankViewModel CreateFinOp(FinOpFromBankViewModel finOpModel)
@@ -93,7 +93,7 @@ namespace FundTrack.BLL.Concrete
             }
             catch (Exception ex)
             {
-                throw new BusinessLogicException("Щось пішло не так....О_о", ex);
+                throw new BusinessLogicException(ErrorMessages.OperationIncomeError, ex);
             }
         }
 
@@ -105,7 +105,7 @@ namespace FundTrack.BLL.Concrete
                 var orgAccFrom = unitOfWork.OrganizationAccountRepository.GetOrgAccountById(finOpModel.CardFromId);
                 if (finOpModel.Amount > orgAccFrom.CurrentBalance)
                 {
-                    throw new ArgumentException("Витрати не можуть перебільшувати баланс рахунку");
+                    throw new ArgumentException(ErrorMessages.SpendingIsExceeded);
                 }
                 var finOp = new FinOp
                 {
@@ -125,7 +125,7 @@ namespace FundTrack.BLL.Concrete
             }
             catch (Exception ex)
             {
-                throw new BusinessLogicException("Щось пішло не так....О_о", ex);
+                throw new BusinessLogicException(ErrorMessages.OperationSpendingError, ex);
             }
         }
 
@@ -138,7 +138,7 @@ namespace FundTrack.BLL.Concrete
                 var orgAccTo = unitOfWork.OrganizationAccountRepository.GetOrgAccountById(finOpModel.CardToId);
                 if (finOpModel.Amount > orgAccFrom.CurrentBalance)
                 {
-                    throw new ArgumentException("Витрати не можуть перебільшувати баланс рахунку");
+                    throw new ArgumentException(ErrorMessages.SpendingIsExceeded);
                 }
                 var finOp = new FinOp
                 {
@@ -160,12 +160,12 @@ namespace FundTrack.BLL.Concrete
             }
             catch (Exception ex)
             {
-                throw new BusinessLogicException("Щось пішло не так....О_о", ex);
+                throw new BusinessLogicException(ErrorMessages.OperationTransferError, ex);
             }
         }
-        /// <Amountmary>
+        /// <Summary>
         /// Gets the fin ops by org account.
-        /// </Amountmary>
+        /// </Summary>
         /// <param name="orgAccountId">The org account identifier.</param>
         /// <returns></returns>
         public IEnumerable<FinOpViewModel> GetFinOpsByOrgAccount(int orgAccountId)
@@ -191,10 +191,8 @@ namespace FundTrack.BLL.Concrete
             }
             catch (Exception ex)
             {
-                return new FinOpViewModel
-                {
-                    Error = "Список фінансових операцій порожній."
-                } as IEnumerable<FinOpViewModel>;
+                throw new BusinessLogicException(ErrorMessages.EmptyFinOpList, ex);
+                
             }
         }
         /// <Amountmary>
@@ -206,28 +204,29 @@ namespace FundTrack.BLL.Concrete
         {
             try
             {
-                var f = unitOfWork.FinOpRepository.GetById(id);
+                if ((id <= 0))
+                {
+                    throw new BusinessLogicException(ErrorMessages.InvalidIdentificator);
+                }
+                var finOpFromDataBase = unitOfWork.FinOpRepository.GetById(id);
                 var finOp = new FinOpViewModel
                 {
-                    Id = f.Id,
-                    CardFromId = f.AccFromId.GetValueOrDefault(0),
-                    CardToId = f.AccToId.GetValueOrDefault(0),
-                    Date = f.FinOpDate,
-                    Description = f.Description,
-                    Amount = f.Amount,
-                    TargetId = f.TargetId,
-                    Target = f.Target?.TargetName,
-                    FinOpType = f.FinOpType,
+                    Id = finOpFromDataBase.Id,
+                    CardFromId = finOpFromDataBase.AccFromId.GetValueOrDefault(0),
+                    CardToId = finOpFromDataBase.AccToId.GetValueOrDefault(0),
+                    Date = finOpFromDataBase.FinOpDate,
+                    Description = finOpFromDataBase.Description,
+                    Amount = finOpFromDataBase.Amount,
+                    TargetId = finOpFromDataBase.TargetId,
+                    Target = finOpFromDataBase.Target?.TargetName,
+                    FinOpType = finOpFromDataBase.FinOpType,
                     IsEditable = true
                 };
                 return finOp;
             }
             catch (Exception ex)
             {
-                return new FinOpViewModel
-                {
-                    Error = "Список фінансових операцій порожній."
-                };
+                throw new BusinessLogicException(ErrorMessages.EmptyFinOpList, ex);
             }
         }
 
@@ -247,21 +246,23 @@ namespace FundTrack.BLL.Concrete
 
                 switch (finOpModel.FinOpType)
                 {
-                    case 0:
+                    case Constants.FinOpSpending:
                         orgAccFrom.CurrentBalance -= finOpModel.Difference;
                         unitOfWork.OrganizationAccountRepository.Edit(orgAccFrom);
                         break;
-                    case 1:
+                    case Constants.FinOpIncome:
                         orgAccFrom.CurrentBalance += finOpModel.Difference;
                         unitOfWork.OrganizationAccountRepository.Edit(orgAccFrom);
                         break;
-                    case 2:
+                    case Constants.FinOpTransfer:
                         var orgAccTo = unitOfWork.OrganizationAccountRepository.GetOrgAccountById(finOpModel.CardToId);
                         orgAccFrom.CurrentBalance -= finOpModel.Difference;
                         orgAccTo.CurrentBalance += finOpModel.Difference;
                         unitOfWork.OrganizationAccountRepository.Edit(orgAccFrom);
                         unitOfWork.OrganizationAccountRepository.Edit(orgAccTo);
                         break;
+                    default:
+                        throw new BusinessLogicException(ErrorMessages.InvalidFinanceOperation);
 
                 }
                 unitOfWork.SaveChanges();
@@ -269,7 +270,7 @@ namespace FundTrack.BLL.Concrete
             }
             catch (Exception ex)
             {
-                throw new BusinessLogicException("Щось пішло не так....О_о", ex);
+                throw new BusinessLogicException(ErrorMessages.UpdateDataError, ex);
             }
         }
 
