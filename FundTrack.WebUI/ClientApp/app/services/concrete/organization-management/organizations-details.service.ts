@@ -23,7 +23,7 @@ export class OrganizationsDetailsService {
     }
 
     public getOrganizationDetail(orgId: number): Observable<OrganizationDetailViewModel> {
-        return this._http.get(GlobalUrlService.getOrganizationDetailUrl + orgId, RequestOptionsService.getRequestOptions())
+        return this._http.get(GlobalUrlService.getAllOrganizationsUrl + orgId, RequestOptionsService.getRequestOptions())
             .map((res: Response) => <OrganizationDetailViewModel>res.json());
 }
    

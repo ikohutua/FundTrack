@@ -64,6 +64,8 @@ namespace FundTrack.DAL.Concrete
         {
             return this._context.FinOps.Include(f => f.OrgAccountTo)
                 .ThenInclude(a => a.Organization)
+                .Include(f => f.OrgAccountFrom)
+                .ThenInclude(a => a.Organization)
                 .Include(f => f.Donation)
                 .Include(f => f.Target);
         }

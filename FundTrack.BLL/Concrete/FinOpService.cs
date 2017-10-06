@@ -25,30 +25,7 @@ namespace FundTrack.BLL.Concrete
             this.unitOfWork = unitOfWork;
         }
 
-        /// <Summary>
-        /// Gets the targets.
-        /// </Summary>
-        /// <returns></returns>
-        /// <exception cref="BusinessLogicException"></exception>
-        public IEnumerable<TargetViewModel> GetTargets(int id)
-        {
-            try
-            {
-                return unitOfWork.TargetRepository.GetTargetsByOrganizationId(id)
-                                       .Select(item => new TargetViewModel
-                                       {
-                                           TargetId = item.Id,
-                                           Name = item.TargetName,
-                                           OrganizationId = item.OrganizationId
-                                       });
-            }
-            catch (Exception ex)
-            {
-                throw new BusinessLogicException(ex.Message, ex);
-            }
-        }
-
-        /// <Summary>
+        /// <summary>
         /// Creates the fin op.
         /// </Summary>
         /// <param name="finOpModel">The fin op model.</param>
@@ -297,6 +274,33 @@ namespace FundTrack.BLL.Concrete
             }
         }
 
+        
+        public IEnumerable<FinOpViewModel> GetAllFinOpsByOrgId(int orgId)
+        {
+            try
+            {
+                var finOps = unitOfWork.FinOpRepository.Read();
+                return finOps.Select(f => new FinOpViewModel
+                {
+                    Id = f.Id,
+                    CardFromId = f.AccFromId.GetValueOrDefault(0),
+                    CardToId = f.AccToId.GetValueOrDefault(0),
+                    Date = f.FinOpDate,
+                    Description = f.Description,
+                    Amount = f.Amount,
+                    TargetId = f.TargetId,
+                    Target = f.Target?.TargetName,
+                    FinOpType = f.FinOpType,
+                    IsEditable = true,
+                    OrgId = (f.OrgAccountTo != null ? f.OrgAccountTo.OrgId : f.OrgAccountFrom.OrgId)
+                }).Where(f => f.OrgId == orgId);
+            }
+            catch (Exception e)
+            {
+                throw new BusinessLogicException(ErrorMessages.GetFinOpWithoutAccount, e);
+            }
+            
+        }
     }
 }
 

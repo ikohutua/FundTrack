@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.EntityFrameworkCore;
 
 namespace FundTrack.DAL.Entities
 {
@@ -73,6 +74,32 @@ namespace FundTrack.DAL.Entities
         public int? AppCode { get; set; }
 
         public bool IsLooked { get; set; }
+
+        public static void Configure(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<BankImportDetail>(entity =>
+            {
+                entity.HasKey(bid => bid.Id).HasName("PK_BankImportDetail");
+
+                entity.Property(bid => bid.Card).IsRequired().HasMaxLength(16);
+
+                entity.Property(bid => bid.Trandate).IsRequired().HasColumnType("datetime");
+
+                entity.Property(bid => bid.IsLooked).IsRequired();
+
+                entity.Property(bid => bid.Amount).IsRequired();
+
+                entity.Property(bid => bid.CardAmount).IsRequired();
+
+                entity.Property(bid => bid.Rest).IsRequired();
+
+                entity.Property(bid => bid.Terminal).IsRequired();
+
+                entity.Property(bid => bid.Description).IsRequired();
+                entity.Property(bid => bid.AppCode).HasMaxLength(8);
+
+            });
+        }
     }
 }
 

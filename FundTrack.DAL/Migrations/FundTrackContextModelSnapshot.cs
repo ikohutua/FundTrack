@@ -64,6 +64,20 @@ namespace FundTrack.DAL.Migrations
                     b.ToTable("Balances");
                 });
 
+            modelBuilder.Entity("FundTrack.DAL.Entities.Bank", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("BankName");
+
+                    b.Property<string>("MFO");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Banks");
+                });
+
             modelBuilder.Entity("FundTrack.DAL.Entities.BankAccount", b =>
                 {
                     b.Property<int>("Id")
@@ -71,6 +85,8 @@ namespace FundTrack.DAL.Migrations
 
                     b.Property<string>("AccNumber")
                         .HasMaxLength(20);
+
+                    b.Property<int>("BankId");
 
                     b.Property<string>("BankName")
                         .HasMaxLength(50);
@@ -100,6 +116,8 @@ namespace FundTrack.DAL.Migrations
 
                     b.HasKey("Id")
                         .HasName("PK_BankAccount");
+
+                    b.HasIndex("BankId");
 
                     b.HasIndex("OrgId");
 
@@ -268,7 +286,7 @@ namespace FundTrack.DAL.Migrations
 
                     b.Property<Guid>("OrderId");
 
-                    b.Property<int>("TargetId");
+                    b.Property<int?>("TargetId");
 
                     b.Property<int?>("UserId");
 
@@ -928,6 +946,11 @@ namespace FundTrack.DAL.Migrations
 
             modelBuilder.Entity("FundTrack.DAL.Entities.BankAccount", b =>
                 {
+                    b.HasOne("FundTrack.DAL.Entities.Bank", "Bank")
+                        .WithMany()
+                        .HasForeignKey("BankId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
                     b.HasOne("FundTrack.DAL.Entities.Organization", "Organization")
                         .WithMany("BankAccounts")
                         .HasForeignKey("OrgId")
@@ -985,8 +1008,7 @@ namespace FundTrack.DAL.Migrations
                     b.HasOne("FundTrack.DAL.Entities.Target", "Target")
                         .WithMany("Donates")
                         .HasForeignKey("TargetId")
-                        .HasConstraintName("FK_Donation_Target")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasConstraintName("FK_Donation_Target");
 
                     b.HasOne("FundTrack.DAL.Entities.User", "User")
                         .WithMany("UserDonations")

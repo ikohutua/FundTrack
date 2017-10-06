@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 
 namespace FundTrack.DAL.Entities
 {
@@ -21,5 +22,15 @@ namespace FundTrack.DAL.Entities
         /// Gets or Sets Membership navigation property
         /// </summary>
         public virtual ICollection<Membership> Memberships { get; set; }
+
+        public static void Configure(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Role>(entity =>
+            {
+                entity.HasKey(e => e.Id).HasName("PK_Role");
+
+                entity.Property(e => e.Name).IsRequired().HasMaxLength(20);
+            });
+        }
     }
 }

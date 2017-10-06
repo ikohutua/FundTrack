@@ -16,7 +16,6 @@ namespace FundTrack.WebUI.Controllers
     [Route("api/[controller]")]
     public class FinOpController : Controller
     {
-
         /// <summary>
         /// The service
         /// </summary>
@@ -29,17 +28,6 @@ namespace FundTrack.WebUI.Controllers
         public FinOpController(IFinOpService service)
         {
             _service = service;
-        }
-
-        /// <summary>
-        /// Gets the targets.
-        /// </summary>
-        /// <returns></returns>
-        [HttpGet("GetTargets")]
-        [Authorize(Roles = "admin, moderator")]
-        public IEnumerable<TargetViewModel> GetTargets(int id)
-        {
-            return this._service.GetTargets(id);
         }
 
         /// <summary>
@@ -100,6 +88,11 @@ namespace FundTrack.WebUI.Controllers
         {
             return this._service.EditFinOperation(finOp);
         }
-
+        
+        [HttpGet("{orgId}")]
+        public IEnumerable<FinOpViewModel> GetAllFinOpsByOrganizationId(int orgId)
+        {
+            return _service.GetAllFinOpsByOrgId(orgId);
+        }
     }
 }

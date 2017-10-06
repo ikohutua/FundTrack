@@ -1,0 +1,33 @@
+﻿<div class="accountdetail maindiv col-md-12 container-fluid">
+    <div class="row">
+        <div class="text-justify">
+            <strong class="font-for-strong">Остання фіксація: </strong>
+            <span *ngIf ="!lastFixing">
+                Немає фіксацій
+            <br>
+            </span>
+            <div *ngIf="lastFixing">
+                <strong>Дата:</strong> {{lastFixing.balanceDate | date: 'shortDate'}} 
+                <br />
+                <strong>Сума:</strong> {{lastFixing.amount}}
+            </div>
+           <br /> 
+            При фіксації поточного балансу неповинно бути фінансових операцій за сьогодні.
+            Якщо хочете зафіксувати баланс заднім числом з вибраного числа до сьогодні не повинно бути фінансових операцій.
+        </div>
+        <div class="form-group">
+            <label for="dateOfFixing">Виберіть дату:</label>
+            <input #currentDate class="form-control" type="date" id="dateOfFixing" 
+                  value="{{serverDate | date:'yyyy-MM-dd'}}" 
+                   [max] ="serverDate | date:'yyyy-MM-dd'" 
+                   [disabled] ="!isDatePickerEnabled"
+                   [min] ="minValueDatePicker | date:'yyyy-MM-dd'"
+                   (input)="setCurrentDate(currentDate.value)"
+                   />
+        </div>
+        <button  class="btn btn-primary right" 
+                [disabled] ="!isSubmitEnabled" 
+                (click) ="fixBalance()">Зафіксувати</button>
+    </div>
+</div>
+<div id="showMessageToaster">{{message}}</div>

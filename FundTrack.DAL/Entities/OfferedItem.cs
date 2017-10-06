@@ -1,6 +1,7 @@
 ﻿using FundTrack.Infrastructure.ViewModel;
 using System;
 using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 
 namespace FundTrack.DAL.Entities
 {
@@ -100,6 +101,30 @@ namespace FundTrack.DAL.Entities
                 Name = model.Name,
                 UserId = model.UserId
             };
+        }
+
+        public static void Configure(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<OfferedItem>(entity =>
+            {
+                entity.HasKey(oi => oi.Id).HasName("PK_OfferedItem");
+
+                entity.Property(oi => oi.Name).IsRequired();
+
+                entity.Property(oi => oi.Description).IsRequired();
+
+                entity.Property(oi => oi.StatusId).IsRequired();
+
+                entity.HasOne(oi => oi.GoodsCategory)
+                    .WithMany(gc => gc.OfferedItems)
+                    .HasForeignKey(oi => oi.GoodsCategoryId)
+                    .HasConstraintName("FK_OfferedItems_GoodsCategory");
+
+                entity.HasOne(oi => oi.Status)
+                    .WithMany(s => s.OfferedItems)
+                    .HasForeignKey(oi => oi.StatusId)
+                    .HasConstraintName("FK_OfferedItems_Status");
+            });
         }
     }
 }

@@ -36,3 +36,14 @@
     background-color: #ddddbb;
     padding: 7px 15px 20px 30px;
 }
+
+.img-logo{
+    height: 200px;
+    width: auto;
+    margin-right: auto;
+    padding: 10px 0px;
+}
+
+.sup-color-red {
+    color: red;
+}

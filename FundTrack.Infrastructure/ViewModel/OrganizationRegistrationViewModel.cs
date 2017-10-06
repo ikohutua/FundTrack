@@ -58,5 +58,10 @@ namespace FundTrack.Infrastructure.ViewModel
         /// Error message about name of organization
         /// </summary>
         public string NameError { get; set; }
+
+        /// <summary>
+        /// base64 code of logo
+        /// </summary>
+        public string Base64Code { get; set; }
     }
 }

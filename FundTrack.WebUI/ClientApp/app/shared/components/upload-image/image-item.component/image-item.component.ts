@@ -11,8 +11,13 @@ import { Image } from "../../../../view-models/concrete/image.model";
 export class ImageItemComponent{
     @Input() image: Image;
     @Output() delete: EventEmitter<Image> = new EventEmitter<Image>();
+    @Output() setMain: EventEmitter<Image> = new EventEmitter<Image>();
    
     onDelete(){
         this.delete.emit(this.image);
+    }
+
+    onSetMain() {
+        this.setMain.emit(this.image);
     }
 }
