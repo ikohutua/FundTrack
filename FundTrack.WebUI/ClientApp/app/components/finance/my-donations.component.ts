@@ -69,7 +69,6 @@ export class MyDonationsComponent implements OnInit {
             })
     }
     public setBeginDate(beginDate: Date): void {
-        debugger;
         this.filteringModel.dateFrom = beginDate;
         this.donationWhenDateChanged();
 

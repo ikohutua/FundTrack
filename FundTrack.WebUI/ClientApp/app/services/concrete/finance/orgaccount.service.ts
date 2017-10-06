@@ -158,7 +158,6 @@ export class OrgAccountService {
     }
 
     public getExtractsCredentials(orgAccountId: number): Observable<DonateCredentialsViewModel> {
-        debugger;
         return this._http.get(GlobalUrlService.getExtractCredentials +"/"+ orgAccountId.toString())
             .map((response: Response) => <DonateCredentialsViewModel>response.json())
             .catch(this.handleError);

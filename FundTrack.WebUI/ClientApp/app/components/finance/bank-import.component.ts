@@ -71,6 +71,7 @@ export class BankImportComponent implements OnInit {
     //count bank imports in selected orgAccounts
     private count: number;
     private orgaccountId: number;
+    private isOrgAccountHaveTarget: boolean;
 
 
     //constructor
@@ -111,12 +112,23 @@ export class BankImportComponent implements OnInit {
                             this._finOpService.getOrgAccountForFinOp(this.user.orgId, this.card)
                                 .subscribe(response => {
                                     this.currentOrgAccount = response;
-                                    this._orgAccountService.getExtractsCredentials(this.currentOrgAccount.id)
-                                        .subscribe((res) => {
-                                            this.idMerchant = res.merchantId;
-                                            this.password = res.merchantPassword;
-                                        })
+                                    if (this.currentOrgAccount.targetId != null) {
+                                        debugger;
+                                        this.isOrgAccountHaveTarget = true;
+                                        this._orgAccountService.getTargetById(this.currentOrgAccount.targetId)
+                                            .subscribe(response => {
+                                                debugger;
+                                                this.targets = new Array<TargetViewModel>();
+                                                this.targets[0] = response;
+                                            });
+                                        this._orgAccountService.getExtractsCredentials(this.currentOrgAccount.id)
+                                            .subscribe((res) => {
+                                                this.idMerchant = res.merchantId;
+                                                this.password = res.merchantPassword;
+                                            })
+                                    }
                                 });
+                        
 
 
 
@@ -243,7 +255,6 @@ export class BankImportComponent implements OnInit {
 
     //initialize data for new finOp
     public createFinOp(bankImport: ImportDetailPrivatViewModel) {
-        debugger;
         this._newFinOp.description = bankImport.description;
         this._newFinOp.bankImportId = bankImport.id;
         this._newFinOp.amount = +bankImport.cardAmount.split(' ')[0];
@@ -266,7 +277,6 @@ export class BankImportComponent implements OnInit {
 
     //save new initialize finOp
     public saveFinOp() {
-        debugger;
         this._finOpService.createFinOp(this._newFinOp, this.spinner)
             .subscribe(response => {
                 this.showToast();
@@ -306,7 +316,6 @@ export class BankImportComponent implements OnInit {
      * open finOp modal window
      */
     public openFinOpModal(bankImport: ImportDetailPrivatViewModel): void {
-        debugger;
         this.createFinOp(bankImport);
         this.finOpModalWindow.show();
     }
