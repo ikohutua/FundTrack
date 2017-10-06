@@ -28,10 +28,17 @@
         public const string CantCreatedItem = "Неможливо створити об'єкт";
         public const string BadRequestMessage = "Bad request error";
         public const string PatternPhoneMessage = "Невірний формат телефону";
-        public const string MoneyFinOpLimit = "Сума повинна бути більшою 0 і меншою 1000000";
+        public const string MoneyFinOpLimit = "Сума повинна бути більшою 5 і меншою 15000";
         public const string CantFindDataById = "Can't find data with requested id";
         public const string GetOrganizationAccount = "Неможливо отримати рахунок організації";
         public const string UpdateOrganizationAccount = "Неможливо оновити рахунок організації";
+        public const string OperationIncomeError = "Неможливо виконати фінансову операцію \"Прихід\"";
+        public const string OperationSpendingError = "Неможливо виконати фінансову операцію \"Розхід\"";
+        public const string OperationTransferError = "Неможливо виконати фінансову операцію \"Переміщення\"";
+        public const string EmptyFinOpList = "Список фінансових операцій порожній";
+        public const string InvalidIdentificator = "Невірне значення ідентифікатора";
+        public const string SpendingIsExceeded = "Витрати не можуть перебільшувати баланс рахунку";
+        public const string InvalidFinanceOperation = "Непраильна фінансова операція";
         public const string AddNewBalanceMessage = "Неможливо зафіксувати баланс! За вказаний день проведено фінансову операцію.";
         public const string GetFinOpWithoutAccount = "Неможливо присвоїти Id організації, оскільки фінансова операція не прив'язана до акаунта";
     }
