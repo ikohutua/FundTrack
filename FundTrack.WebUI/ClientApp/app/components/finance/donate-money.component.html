@@ -19,27 +19,14 @@
                     <label> Виберіть організацію </label>
                     <dropdown-org class="line-left"> </dropdown-org>
                 </div>
-                
-                <div *ngIf="hasAccountForDonate" class="indent">
-                    <label> Виберіть рахунок</label>
-                    <select class="form-control" formControlName="accountForDonation" [(ngModel)]="accountForDonation" (ngModelChange)="onSelectChange($event)">
-                        <option class="form-control" *ngFor="let accountForDonation of donateAccounts" [ngValue]="accountForDonation"> {{accountForDonation.name}} </option>
-                    </select>
-                    <p *ngIf="accountForDonation.description" class="message">
-                        <strong> Опис рахунку: </strong> {{accountForDonation.description}}
-                    </p>
-                    <div *ngIf="formErrors.accountForDonation">
-                        {{formErrors.accountForDonation}}
-                    </div>         
-                </div>
-
+               
                 <div *ngIf="this.organizationId && !this.hasAccountForDonate">
                     <p class="message"> {{messages.notEnabledDonationFunction}}</p>
                 </div>
 
                 <div class="indent">
-                    <label> Сума </label>
-                    <input [readonly]="!this.hasAccountForDonate" class="form-control" [ngClass]="{'disabled':!hasAccountForDonate}" type="text" formControlName="amount" />
+                    <label> Сума </label> <!--step=0.1-->
+                    <input [readonly]="!this.hasAccountForDonate" type="text" class="form-control" [ngClass]="{'disabled':!hasAccountForDonate}"  formControlName="amount" />
                     <div *ngIf="formErrors.amount" class="danger">
                         <p class="message">{{formErrors.amount}} </p>
                     </div>
@@ -47,21 +34,25 @@
 
                 <div class="indent">
                     <label> Валюта </label>
-                    <select  class="form-control" [ngClass]="{'disabled':!hasAccountForDonate}" formControlName="currency" *ngIf="currencies" [(ngModel)]="currency" (ngModelChange)="currencyChange($event)">
-                        <option [disabled]="!this.hasAccountForDonate" *ngFor="let currency of currencies" [ngValue]="currency">{{currency.currencyShortName}} </option>
+                    <!-- Use  [ngClass]="{'disabled':!hasAccountForDonate}" instead disabled property for choosing cash type. Default is UAH and id is 3(view CurrencyViewModel)-->
+                    <select  disabled class="form-control"  formControlName="currency" *ngIf="currencies" [(ngModel)]="currency" (ngModelChange)="currencyChange($event)">
+                        <option [disabled]="!this.hasAccountForDonate" *ngFor="let currency of currencies" [selected]="currency.currencyId == 3" [ngValue]="currency">{{currency.currencyShortName }} </option>
                     </select><br />
                     <div *ngIf="formErrors.currency">
                         <p class="message"> {{formErrors.currency}} </p> 
                     </div>
                 </div>
 
-                <div class="indent">
-                    <label> Призначення </label>
-                    <select class="form-control" [ngClass]="{'disabled':!hasAccountForDonate}" formControlName="target" *ngIf="targets" [(ngModel)]="target" (ngModelChange)="targetChange($event)">
-                        <option [disabled]="!this.hasAccountForDonate" *ngFor="let target of targets" [ngValue]="target"> {{target.name}} </option>
-                    </select><br />
-                    <div *ngIf="formErrors.target">
-                        <p class=" message"> {{formErrors.target}} </p>
+                <div  class="indent">
+                    <label> Призначення</label>
+                    <select class="form-control" formControlName="accountForDonation" [(ngModel)]="accountForDonation" (ngModelChange)="onSelectChange($event)">
+                        <option class="form-control"  *ngFor="let accountForDonation of donateAccounts" [ngValue]="accountForDonation"> {{accountForDonation.target}} </option>
+                    </select>
+                    <p *ngIf="accountForDonation.description" class="message">
+                        <strong> Опис рахунку: </strong> {{accountForDonation.description}}
+                    </p>
+                    <div *ngIf="formErrors.accountForDonation">
+                        {{formErrors.accountForDonation}}
                     </div>
                 </div>
 
@@ -70,7 +61,9 @@
             
                     </textarea><br />
                 </div>
-
+                <div class="indent">
+                    <button type="reset" class="btn btn-primary  pull-left" style="margin-bottom: 20px;" (click)="sendDonateRequest()" > Скасувати </button>
+                </div>
                 <div class="indent">
                     <button type="submit" class="btn btn-primary right" style="margin-bottom: 20px;" (click)="sendDonateRequest()" [disabled]="!hasAccountForDonate"> Пожертвувати </button>
                 </div>

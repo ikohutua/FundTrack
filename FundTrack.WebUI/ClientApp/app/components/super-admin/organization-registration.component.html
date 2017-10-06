@@ -4,16 +4,13 @@
     <form #form="ngForm">
         <h4> Загальні відомості </h4>
         <div class="form-group" [class.has-error]="name.invalid&&name.touched">
-            <label class="control-label"> Назва організації</label>
+            <label class="control-label"> Назва організації<sup class="sup-color-red">*</sup></label>
             <div class="inner-addon left-addon">
                 <i class="glyphicon glyphicon-pencil"></i>
-                <input type="text" class="form-control" [(ngModel)]="organization.name" placeholder="Введіть назву" required minlength="5" maxlength="50" name="name" #name="ngModel"/>
+                <input type="text" class="form-control" [(ngModel)]="organization.name" placeholder="Введіть назву" required minlength="5" maxlength="50" name="name" #name="ngModel" />
             </div>
-             <div *ngIf="name.errors && (name.dirty || name.touched)"
+            <div *ngIf="name.errors && name.errors.minlength"
                  class="alert alert-danger">
-                <div [hidden]="!name.errors.required">
-                    Назва організації обов'язкова
-                </div>
                 <div [hidden]="!name.errors.minlength">
                     Назва має містити принаймі 5 символів.
                 </div>
@@ -24,18 +21,15 @@
             <div class="alert-danger">
                 {{nameError}}
             </div>
-            </div>
+        </div>
         <div class="form-group" [class.has-error]="description.invalid&&description.touched">
-            <label class="control-label"> Опис організації </label>
+            <label class="control-label"> Опис організації<sup class="sup-color-red">*</sup></label>
             <div class="inner-addon left-addon">
-                <i class="glyphicon glyphicon-pencil" *ngIf ="!description.dirty"></i> 
+                <i class="glyphicon glyphicon-pencil" *ngIf="!description.dirty"></i>
                 <textarea class="form-control" [(ngModel)]="organization.description" required minlength="20" placeholder="     Введіть опис" maxlength="200" name="description" #description="ngModel" rows="5"> </textarea>
             </div>
-            <div *ngIf="description.errors && (description.dirty || description.touched)"
+            <div *ngIf="description.errors && description.errors.minlength"
                  class="alert alert-danger">
-                <div [hidden]="!description.errors.required">
-                    Опис організації обов'язковий
-                </div>
                 <div [hidden]="!description.errors.minlength">
                     Опис має містити принаймі 20 символів.
                 </div>
@@ -46,16 +40,13 @@
         </div>
         <h4> Представник </h4>
         <div class="form-group" [class.has-error]="login.invalid&&login.touched">
-            <label class="control-label"> Логін адміністратора</label>
+            <label class="control-label"> Логін адміністратора<sup class="sup-color-red">*</sup></label>
             <div class="inner-addon left-addon">
                 <i class="glyphicon glyphicon-user"></i>
                 <input type="text" class="form-control" required [(ngModel)]="organization.administratorLogin" pattern="[a-zA-Z0-9_]*" placeholder="Введіть логін адміністратора" name="login" #login="ngModel" />
             </div>
-            <div *ngIf="login.errors && (login.dirty || login.touched)"
+            <div *ngIf="login.errors && login.length"
                  class="alert alert-danger">
-                <div [hidden]="!login.errors.required">
-                    Логін адміністратора обов'язковий
-                </div>
                 <div [hidden]="!login.errors.pattern">
                     Введено недозволений символ
                 </div>
@@ -66,48 +57,50 @@
         </div>
         <h4> Місцезнаходження</h4>
         <div class="form-group" [class.has-error]="city.invalid&&city.touched">
-            <label class="control-label"> Місто </label>
+            <label class="control-label"> Місто<sup class="sup-color-red">*</sup></label>
             <div class="inner-addon left-addon">
                 <i class="glyphicon glyphicon-home"></i>
                 <input type="text" class="form-control" [(ngModel)]="organization.city" placeholder="Введіть місто" pattern="[А-Яа-яїЇіІ]*" name="city" #city="ngModel" />
             </div>
             <div *ngIf="city.errors && (city.dirty || city.touched)"
                  class="alert alert-danger">
-                <div [hidden]="!city.errors.required">
-                    Місто обов'язкове
-                </div>
                 <div [hidden]="!city.errors.pattern">
                     Поле може містити лише кирилицю.
                 </div>
             </div>
-            </div>
-        <div class="form-group" [class.has-error]="street.invalid&&street.touched" >
-            <label class="control-label"> Вулиця </label>
+        </div>
+        <div class="form-group" [class.has-error]="street.invalid&&street.touched">
+            <label class="control-label"> Вулиця<sup class="sup-color-red">*</sup></label>
             <div class="inner-addon left-addon">
                 <i class="glyphicon glyphicon-home"></i>
-                <input type="text" class="form-control" [(ngModel)]="organization.street" required placeholder="Введіть вулицю" name="street" #street="ngModel" />
-            </div>
-            <div *ngIf="street.errors && (street.dirty || street.touched)"
-                 class="alert alert-danger">
-                <div [hidden]="!street.errors.required">
-                    Вулиця обов'язкова
-                </div>
+                <input type="text" class="form-control" [(ngModel)]="organization.street" required placeholder="Введіть вулицю" name="street" #street="ngModel"/>
             </div>
         </div>
-          
+
         <div class="form-group" [class.has-error]="house.invalid&&house.touched">
-            <label class="control-label"> Будинок </label>
+            <label class="control-label"> Будинок<sup class="sup-color-red">*</sup></label>
             <div class="inner-addon left-addon">
                 <i class="glyphicon glyphicon-home"></i>
-                <input type="text" class="form-control" [(ngModel)]="organization.house" placeholder="Введіть будинок" name="house" #house="ngModel" required/>
+                <input type="text" class="form-control" [(ngModel)]="organization.house" placeholder="Введіть будинок" name="house" #house="ngModel" required />
             </div>
-            <div *ngIf="house.errors && (house.dirty || house.touched)"
-                 class="alert alert-danger">
-                <div [hidden]="!house.errors.required">
-                    Будинок обов'язковий
-                </div>
+        </div>
+        <span><sup class="sup-color-red">*</sup> поле обов'язкове для заповнення</span>
+        <br />
+        <div class="form-group">
+            <div>
+                <img class="img-logo" *ngIf="isNewLogoAvailable" [src]="newLogo.imageSrc" />
+                <img class="img-logo" *ngIf="!isNewLogoAvailable" [src]="defaultLogoUrl" />
             </div>
-        </div>   
+            <div style="display:flex;">
+                <button type="button" class="btn btn-danger" *ngIf="isNewLogoAvailable" (click)="clearImage()">Видалити</button>
+                <button type="button" class="btn btn-success" (click)="imageInput.click()">Обрати</button>
+                <input type="file" (change)="handleInputChange($event)" #imageInput accept=".png,.jpg" class="text-center center-block well well-sm hidden">
+            </div>
+            <div class="alert alert-danger" *ngIf="isError">
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                {{errorMessage}}
+            </div>
+        </div>
         <div class="col-md-offset-10 col-md-1">
             <button (click)="registerOrganization()" class="btn btn-primary" type="submit" [disabled]="form.invalid"> Зареєструвати </button>
         </div>

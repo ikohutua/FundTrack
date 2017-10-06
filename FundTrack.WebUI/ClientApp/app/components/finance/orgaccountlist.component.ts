@@ -46,23 +46,17 @@ export class OrgAccountListComponent implements OnInit {
    Executes when component is initialized
    */
     ngOnInit(): void {
-        console.log("OrgList");
         this.showSpinner = true;
-        console.log("First  "+this.selectAccountId);
         this._accountService.getAllAccountsOfOrganization().
             subscribe(r => {
-                console.log("Second  "+this.selectAccountId);
                 this.accounts = r;
-                console.log("Thirth  "+this.selectAccountId);
                 this.filterAccounts();
-                console.log(this.selectAccountId);
                 if (this.isBankAccountAvailable) {
                     this.setActiveAccount(this.bankAccounts[0]);
                 }
                 else if (this.isCashAccountAvailable) {
                     this.setActiveAccount(this.cashAccounts[0]);
                 }
-                console.log(this.selectAccountId);
                 this.isDownloaded = true;
                 this.showSpinner = false;
             });

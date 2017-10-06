@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 
 namespace FundTrack.DAL.Entities
 {  
@@ -41,5 +42,21 @@ namespace FundTrack.DAL.Entities
         /// Gets or Sets OrgAddresses navigation property
         /// </summary>
         public virtual ICollection<OrgAddress> OrgAddresses { get; set; }
+
+        public static void Configure(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Address>(entity =>
+            {
+                entity.HasKey(e => e.Id).HasName("PK_Address");
+
+                entity.Property(e => e.City).IsRequired().HasMaxLength(100);
+
+                entity.Property(e => e.Country).IsRequired().HasMaxLength(100);
+
+                entity.Property(e => e.Street).IsRequired().HasMaxLength(100);
+
+                entity.Property(e => e.Building).IsRequired().HasMaxLength(100);
+            });
+        }
     }
 }

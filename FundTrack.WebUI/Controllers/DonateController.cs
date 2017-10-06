@@ -70,25 +70,19 @@ namespace FundTrack.WebUI.Controllers
         /// </summary>
         /// <param name="organizationId">Id of organization</param>
         /// <returns>Organization id and accounts</returns>
-        [HttpGet("GetAccountsForDonate/{organizationId}")]
+        [HttpGet("AccountsForDonate/{organizationId}")]
         public OrganizationDonateAccountsViewModel GetAccountsForDonate(int organizationId)
         {
             return _donateMoneyService.GetAccountForDonation(organizationId);
         }
 
-        [HttpGet("GetOrderId")]
+        [HttpGet("OrderId")]
         public string GetOrderId()
         {
             return _donateMoneyService.GetOrderId();
         }
 
-        [HttpGet("GetTargets")]
-        public IEnumerable<TargetViewModel> GetTargets()
-        {
-            return _donateMoneyService.GetTargets(1);
-        }
-
-        [HttpGet("GetCurrencies")]
+        [HttpGet("Currencies")]
         public IEnumerable<CurrencyViewModel> GetCurrencies()
         {
             return _donateMoneyService.GetCurrencies();
@@ -100,5 +94,22 @@ namespace FundTrack.WebUI.Controllers
             return _donateMoneyService.AddDonation(item);
         }
 
+        [HttpGet]
+        public IEnumerable<DonateViewModel> GetAllDonations()
+        {
+            return _donateMoneyService.GetAllDonatons();
+        }
+
+        [HttpGet("{id}")]
+        public DonateViewModel GetDonationById(int id)
+        {
+            return _donateMoneyService.GetDonationById(id);
+        }
+
+        [HttpGet("suggested/{finOpId}")]
+        public IEnumerable<DonateViewModel> GetSuggestedDonations(int finOpId)
+        {
+            return _donateMoneyService.GetSuggestedDonations(finOpId);
+        }
     }
 }

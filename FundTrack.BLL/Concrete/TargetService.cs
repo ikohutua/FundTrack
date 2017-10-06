@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -13,9 +14,11 @@ namespace FundTrack.BLL.Concrete
     public class TargetService : ITargetService
     {
         private readonly IUnitOfWork _unitOfWork;
-        public TargetService(IUnitOfWork unitOfWork)
+        private readonly IFinOpService _finOpService;
+        public TargetService(IUnitOfWork unitOfWork, IFinOpService finOpService)
         {
             _unitOfWork = unitOfWork;
+            _finOpService = finOpService;
         }
         public TargetViewModel GetTargetById(int id)
         {
@@ -43,9 +46,106 @@ namespace FundTrack.BLL.Concrete
             }
         }
 
+        public IEnumerable<TargetViewModel> GetTargetsByOrganizationIdWithEditableField(int id)
+        {
+            try
+            {
+                var targets = GetTargetsByOrganizationId(id).ToList();
+                CheckIsDeletableField(targets);
+                return targets;
+            }
+            catch (System.Exception ex)
+            {
+                throw new BusinessLogicException(ErrorMessages.CantFindItem, ex);
+            }
+        }
+
         private IEnumerable<TargetViewModel> ConvertTargetsToTargetViewModel(IEnumerable<Target> targets)
         {
-            return targets.Select(ConvertTargetToViewModel).ToList();
+            var targetsVm = targets.Select(ConvertTargetToViewModel).ToList();
+            return targetsVm;
+        }
+
+        private void CheckIsDeletableField(List<TargetViewModel> targets)
+        {
+            CheckInTargets(targets);
+            CheckInOrgAccounts(targets);
+            CheckInDonations(targets);
+            CheckInFinOps(targets);
+        }
+
+        private void CheckInTargets(List<TargetViewModel> targets)
+        {
+            var baseTargets = targets.FindAll(t => t.ParentTargetId == null);
+            foreach (var target in baseTargets)
+            {
+                if (targets.Exists(t => t.ParentTargetId == target.TargetId))
+                {
+                    target.IsDeletable = false;
+                }
+                else
+                {
+                    target.IsDeletable = true;
+                }
+            }
+        }
+
+        private void CheckInOrgAccounts(List<TargetViewModel> targets)
+        {
+            try
+            {
+                var accounts = _unitOfWork.OrganizationAccountRepository.ReadAllOrgAccounts(targets[0].OrganizationId)
+                    .ToList();
+                foreach (var target in targets.FindAll(t => t.ParentTargetId == null))
+                {
+                    if (accounts.Exists(acc => acc.TargetId == target.TargetId))
+                    {
+                        target.IsDeletable = false;
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                throw new BusinessLogicException(ErrorMessages.CantFindDataById, e);
+            }
+        }
+
+        private void CheckInDonations(List<TargetViewModel> targets)
+        {
+            try
+            {
+                var donations = _unitOfWork.DonationRepository.Read().ToList();
+                foreach (var target in targets)
+                {
+                    if (donations.Exists(d => d.TargetId == target.TargetId))
+                    {
+                        target.IsDeletable = false;
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                throw new BusinessLogicException(ErrorMessages.CantFindDataById, e); 
+            }
+        }
+
+        private void CheckInFinOps(List<TargetViewModel> targets)
+        {
+            try
+            {
+                var finOps = _finOpService.GetAllFinOpsByOrgId(targets[0].OrganizationId).ToList();
+                foreach (var target in targets)
+                {
+                    if (finOps.Exists(f => f.TargetId == target.TargetId))
+                    {
+                        target.IsDeletable = false;
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                throw new BusinessLogicException(ErrorMessages.CantFindDataById, e); 
+            }
         }
 
         private TargetViewModel ConvertTargetToViewModel(Target target)

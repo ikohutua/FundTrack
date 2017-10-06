@@ -58,6 +58,7 @@ namespace FundTrack.DAL.Concrete
         {
             return this._context.OrgAccounts
                 .Include(a => a.BankAccount)
+                .ThenInclude(a => a.Bank)
                 .Include(a => a.Balances)
                 .Include(a => a.Currency)
                 .Include(a => a.FinOpsFrom)
@@ -70,6 +71,7 @@ namespace FundTrack.DAL.Concrete
         {
             return this._context.OrgAccounts
                 .Include(a => a.BankAccount)
+                .ThenInclude(a => a.Bank)
                 .Include(a => a.Balances)
                 .Include(a => a.Currency)
                 .Include(a => a.FinOpsFrom)

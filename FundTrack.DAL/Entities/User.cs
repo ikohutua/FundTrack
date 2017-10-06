@@ -1,5 +1,6 @@
 ﻿using FundTrack.Infrastructure.ViewModel;
 using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 
 namespace FundTrack.DAL.Entities
 {
@@ -175,6 +176,26 @@ namespace FundTrack.DAL.Entities
                 PhotoUrl = user.PhotoUrl,
                 FbLink = user.FB_Link.Substring(13)
             };
+        }
+
+        public static void Configure(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<User>(entity =>
+            {
+                entity.HasKey(e => e.Id).HasName("PK_User");
+
+                entity.Property(e => e.Email).IsRequired();
+
+                entity.Property(e => e.FirstName).IsRequired().HasMaxLength(100);
+
+                entity.Property(e => e.Login).IsRequired().HasMaxLength(100);
+
+                entity.Property(e => e.LastName).IsRequired().HasMaxLength(100);
+
+                entity.Property(e => e.Password).IsRequired();
+
+                entity.Property(e => e.PhotoUrl).HasDefaultValue("https://s3.eu-central-1.amazonaws.com/fundtrack/default-user-image.png");
+            });
         }
     }
 }

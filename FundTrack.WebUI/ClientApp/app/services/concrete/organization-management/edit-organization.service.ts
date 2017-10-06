@@ -10,6 +10,8 @@ import { ModeratorViewModel } from '../../../view-models/concrete/edit-organizat
 import { AddModeratorViewModel } from "../../../view-models/concrete/edit-organization/add-moderator-view.model";
 import { AddressViewModel } from "../../../view-models/concrete/edit-organization/address-view.model";
 import { TargetViewModel } from "../../../view-models/concrete/finance/donate/target.view-model";
+import { GlobalUrlService } from "../global-url.service";
+import { EditLogoViewModel } from "../../../view-models/concrete/edit-organization/edit-org-logo-view.model";
 
 @Injectable()
 export class EditOrganizationService {
@@ -87,6 +89,11 @@ export class EditOrganizationService {
             map((response: Response) => response.json() as TargetViewModel[]);
     }
 
+    getTargetsWithDeletableField(orgId: number): Observable<TargetViewModel[]> {
+        return this._http.get('api/Target/withDeletable/' + orgId, this.getOptionsForRequest()).
+            map((response: Response) => response.json() as TargetViewModel[]);
+    }
+
     editTarget(target: TargetViewModel): Observable<TargetViewModel> {
         let body = target;
         return this._http.put('api/Target/EditTarget/', body, this.getOptionsForRequest()).
@@ -95,5 +102,11 @@ export class EditOrganizationService {
 
     deleteTarget(targetId: number) {
         return this._http.delete('api/Target/DeleteTarget/' + targetId);
+    }
+
+    editLogo(item: EditLogoViewModel): Observable<EditLogoViewModel> {
+        let body = item;
+        return this._http.put(GlobalUrlService.editLogo, body, this.getOptionsForRequest())
+            .map((response: Response) => response.json() as EditLogoViewModel);
     }
 }

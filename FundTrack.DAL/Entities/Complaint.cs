@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.EntityFrameworkCore;
 
 namespace FundTrack.DAL.Entities
 {
@@ -67,5 +68,29 @@ namespace FundTrack.DAL.Entities
         /// The organization.
         /// </value>
         public virtual Organization Organization { get; set; }
+
+        public static void Configure(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Complaint>(entity =>
+            {
+                entity.HasKey(e => e.Id).HasName("PK_Complaint");
+
+                entity.Property(e => e.Description).IsRequired();
+
+                entity.Property(e => e.CreateDate).IsRequired().HasColumnType("datetime");
+
+                entity.Property(e => e.IsLooked).IsRequired();
+
+                entity.HasOne(c => c.User)
+                    .WithMany(u => u.Complaints)
+                    .HasForeignKey(c => c.UserId)
+                    .HasConstraintName("FK_Complaint_User");
+
+                entity.HasOne(c => c.Organization)
+                    .WithMany(o => o.Complaints)
+                    .HasForeignKey(c => c.OrganizationId)
+                    .HasConstraintName("FK_Complaint_Organization");
+            });
+        }
     }
 }

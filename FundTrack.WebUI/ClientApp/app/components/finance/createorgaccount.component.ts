@@ -13,6 +13,8 @@ import { AuthorizeUserModel } from "../../view-models/concrete/authorized-user-i
 import { Location } from '@angular/common';
 import Targetviewmodel1 = require("../../view-models/concrete/finance/donate/target.view-model");
 import TargetViewModel = Targetviewmodel1.TargetViewModel;
+import { BankViewModel } from "../../view-models/concrete/finance/bank-view.model";
+import {CreateOrgAccountConstants} from "./createorgaccount.constants"
 
 @Component({
     selector: 'createorgaccount',
@@ -34,6 +36,16 @@ export class CreateOrgAccountComponent {
     private smallAccountForm: FormGroup;
     // Property that keeps all targets of current organization
     private targets: TargetViewModel[] = new Array<TargetViewModel>();
+    private defaultTarget: TargetViewModel = {
+        targetId: undefined,
+        name: CreateOrgAccountConstants.DefaultTargetName,
+        organizationId: undefined,
+        parentTargetId: undefined,
+        isDeletable: true
+    }
+
+    // Property that keeps all available banks
+    private banks : BankViewModel[] = new Array<BankViewModel>();
 
     constructor(private _accountService: OrgAccountService,
         private _fb: FormBuilder,
@@ -47,22 +59,20 @@ export class CreateOrgAccountComponent {
     }
 
     ngOnInit(): void {
-        console.log("Create-Account");
         if (isBrowser) {
             if (localStorage.getItem(key.keyToken)) {
                 this.user = JSON.parse(localStorage.getItem(key.keyModel)) as AuthorizeUserModel;
             }
         };
         this._accountService.getAllBaseTargetsOfOrganization(this.user.orgId).subscribe((result) => {
-            this.targets.push({
-                targetId: undefined,
-                name: "Не вказано",
-                organizationId: undefined,
-                parentTargetId: undefined
-            });
+            this.targets.push(this.defaultTarget);
             for (var target of result) {
                 this.targets.push(target);
             }
+        });
+
+        this._accountService.getAllBanks().subscribe((result) => { this.banks = result;
+            this.account.bankId = 1; // set selected bank as Privat (privat id == 1)
         });
     }
 
@@ -71,11 +81,8 @@ export class CreateOrgAccountComponent {
     */
     private createForm(): void {
         this.accountForm = this._fb.group({
-            accountNumber: [this.account.accNumber, [Validators.required, Validators.maxLength(20), this._validatorsService.isInteger]],
-            accountMfo: [this.account.mfo, [Validators.required, Validators.minLength(6), Validators.maxLength(6), this._validatorsService.isInteger]],
-            accountEdrpou: [this.account.edrpou, [Validators.required, Validators.minLength(8), Validators.maxLength(8), this._validatorsService.isInteger]],
-            accountBankName: [this.account.bankName, [Validators.required, Validators.maxLength(50)]],
-            accountDescription: [this.account.description, [Validators.required, Validators.maxLength(200)]],
+            cardNumber: [this.account.cardNumber, [Validators.required, Validators.maxLength(16), this._validatorsService.isInteger, Validators.minLength(16)]],
+            bank: [this.account.bankId]
         });
         this.accountForm.valueChanges
             .subscribe(a => this.onValueChange(a));
@@ -89,81 +96,57 @@ export class CreateOrgAccountComponent {
             accountName: [this.account.orgAccountName, [Validators.required, Validators.maxLength(100)]],
             currentBalance: [this.account.currentBalance, Validators.pattern(this.decimalValidationRegex)],
             accountCurrency: [this.account.currency, Validators.required],
-            accountTarget: [this.account.targetId]
+            accountTarget: [this.account.targetId],
+            accountDescription: [this.account.description, [Validators.required, Validators.maxLength(100)]]
         });
         this.smallAccountForm.valueChanges
             .subscribe(a => this.onValueChangeSmallForm(a));
-
-        //this.onValueChangeSmallForm();
     }
 
     /*
     Errors to be displayed on the UI
     */
     private formErrors = {
-        accountNumber: "",
+        cardNumber: "",
         accountMfo: "",
         accountEdrpou: "",
-        accountBankName: "",
-        accountDescription: ""
+        accountBankName: ""
     }
     private smallFormErrors = {
         accountName: "",
         currentBalance: "",
-        accountCurrency: ""
+        accountCurrency: "",
+        accountDescription: ""
     }
-    /*
-    Error messages
-    */
-    private requiredMessage = "Поле є обов'язковим для заповнення";
-    private numberMessage = "Поле повинно містити тільки цифри";
-    private LengthMessage = "Недопустима кількість символів";
-    private accountNameWrongLength = "Максимально допустима довжина імені рахунку складає 100 символів";
-    private mfolength = "МФО повинно містити 6 цифр";
-    private edrpoulength = "ЄДРПОУ повинно містити 8 цифр";
-    private banknamelength = "Ім'я банку не може перевищувати 50 символів";
-    private descriptionlength = "Опис рахунку не може перевищувати 200 символів";
-    private currencyselection = "Необхідно вибрати валюту";
-    private wrongBalanceMessage = "Баланс повинен бути у форматі 1 або 1.23";
 
     /*
     Assigning error messages to certain validations
     */
     private validationMessages = {
         accountName: {
-            required: this.requiredMessage,
-            maxlength: this.accountNameWrongLength
+            required: CreateOrgAccountConstants.requiredMessage,
+            maxlength: CreateOrgAccountConstants.accountNameWrongLength
         },
-        accountNumber: {
-            required: this.requiredMessage,
-            notnumeric: this.numberMessage,
-            maxlength: this.LengthMessage
-        },
-        accountMfo: {
-            required: this.requiredMessage,
-            notnumeric: this.numberMessage,
-            minlength: this.mfolength,
-            maxlength: this.mfolength
+        cardNumber: {
+            required: CreateOrgAccountConstants.requiredMessage,
+            notnumeric: CreateOrgAccountConstants.numberMessage,
+            maxlength: CreateOrgAccountConstants.LengthMessage,
+            minlength: CreateOrgAccountConstants.LengthMessage
         },
         accountEdrpou: {
-            required: this.requiredMessage,
-            notnumeric: this.numberMessage,
-            minlength: this.edrpoulength,
-            maxlength: this.edrpoulength
-        },
-        accountBankName: {
-            required: this.requiredMessage,
-            maxlength: this.banknamelength
+            required: CreateOrgAccountConstants.requiredMessage,
+            notnumeric: CreateOrgAccountConstants.numberMessage,
+            minlength: CreateOrgAccountConstants.edrpoulength,
+            maxlength: CreateOrgAccountConstants.edrpoulength
         },
         accountDescription: {
-            required: this.requiredMessage,
-            maxlength: this.descriptionlength
+            maxlength: CreateOrgAccountConstants.descriptionlength
         },
         accountCurrency: {
-            required: this.currencyselection
+            required: CreateOrgAccountConstants.currencyselection
         },
         currentBalance: {
-            pattern: this.wrongBalanceMessage
+            pattern: CreateOrgAccountConstants.wrongBalanceMessage
         }
     }
 
@@ -242,14 +225,14 @@ export class CreateOrgAccountComponent {
                 if (a.error == "" || a.error == null) {
                     this.showToast();
                     setTimeout(() => {
-                        this._router.navigate(['finance/orgaccounts']);
-                    }, 2000);
-                    
-                }
-                else {
+                            this._router.navigate(['finance/orgaccounts']);
+                        },
+                        2000);
+
+                } else {
                     this.account.error = a.error;
                 }
-            })
+            });
     }
 
     /*
@@ -263,12 +246,12 @@ export class CreateOrgAccountComponent {
     Displays toast, that pops up when account is successfuly created
     */
     public showToast() {
-        var x = document.getElementById("snackbar")
+        var x = document.getElementById("snackbar");
         x.className = "show";
         setTimeout(function () { x.className = x.className.replace("show", ""); }, 3000);
     }
 
-    private onChangeParentTarget($event): void {
+    private onChangeTarget($event): void {
         this.account.targetId = $event;
     }
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.EntityFrameworkCore;
 
 namespace FundTrack.DAL.Entities
 {
@@ -31,5 +32,22 @@ namespace FundTrack.DAL.Entities
         /// Gets or Sets OrgAccount navigation property
         /// </summary>
         public virtual OrgAccount OrgAccount { get; set; }
+
+        public static void Configure(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Balance>(entity =>
+            {
+                entity.HasKey(e => e.Id).HasName("PK_Balance");
+
+                entity.Property(e => e.BalanceDate).HasColumnType("datetime");
+
+                entity.Property(e => e.Amount).HasColumnType("decimal(18,2)");
+
+                entity.HasOne(b => b.OrgAccount)
+                    .WithMany(oa => oa.Balances)
+                    .HasForeignKey(b => b.OrgAccountId)
+                    .HasConstraintName("FK_Balance_OrgAccount");
+            });
+        }
     }
 }

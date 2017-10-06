@@ -16,7 +16,6 @@ namespace FundTrack.WebUI.Controllers
     [Route("api/[controller]")]
     public class FinOpController : Controller
     {
-
         /// <summary>
         /// The service
         /// </summary>
@@ -29,17 +28,6 @@ namespace FundTrack.WebUI.Controllers
         public FinOpController(IFinOpService service)
         {
             _service = service;
-        }
-
-        /// <summary>
-        /// Gets the targets.
-        /// </summary>
-        /// <returns></returns>
-        [HttpGet("GetTargets")]
-        [Authorize(Roles = "admin, moderator")]
-        public IEnumerable<TargetViewModel> GetTargets(int id)
-        {
-            return this._service.GetTargets(id);
         }
 
         /// <summary>
@@ -61,9 +49,16 @@ namespace FundTrack.WebUI.Controllers
         /// <returns></returns>
         [HttpGet("GetFinOpsByOrgAccId/{orgAccountId}")]
         [Authorize(Roles = "admin, moderator")]
-        public IEnumerable<FinOpListViewModel> GetFinOpsByOrgAccId(int orgAccountId)
+        public IEnumerable<FinOpViewModel> GetFinOpsByOrgAccId(int orgAccountId)
         {
             return this._service.GetFinOpsByOrgAccount(orgAccountId);
+        }
+
+        [HttpGet("GetFinOpsById/{id}")]
+        [Authorize(Roles = "admin, moderator")]
+        public FinOpViewModel GetFinOpsById(int id)
+        {
+            return this._service.GetFinOpsById(id);
         }
 
         [HttpPost("Income")]
@@ -87,5 +82,17 @@ namespace FundTrack.WebUI.Controllers
             return this._service.CreateTransfer(transferModel);
         }
 
+        [HttpPut("Edit")]
+        [Authorize(Roles = "admin, moderator")]
+        public FinOpViewModel Edit([FromBody] FinOpViewModel finOp)
+        {
+            return this._service.EditFinOperation(finOp);
+        }
+        
+        [HttpGet("{orgId}")]
+        public IEnumerable<FinOpViewModel> GetAllFinOpsByOrganizationId(int orgId)
+        {
+            return _service.GetAllFinOpsByOrgId(orgId);
+        }
     }
 }

@@ -37,6 +37,7 @@ namespace FundTrack.DAL.Concrete
         private readonly IRepository<FinOpImage> _finOpImagesRepository;
         private readonly IUserResporitory _userRepository;
         private readonly IBalanceRepository _balanceRepository;
+        private readonly IBankRepository _bankRepository;
 
         private FundTrackContext _context;
 
@@ -73,8 +74,9 @@ namespace FundTrack.DAL.Concrete
               IPhoneRepository phoneRepository,
               IRepository<FinOpImage> finOpImagesRepository,
               IUserResporitory userRepository,
-              IBalanceRepository balanceRepository
-
+              IBalanceRepository balanceRepository,
+              IBankRepository bankRepository
+              
               )
         {
             this._context = contextParam;
@@ -106,6 +108,7 @@ namespace FundTrack.DAL.Concrete
             _finOpImagesRepository = finOpImagesRepository;
             _userRepository = userRepository;
             _balanceRepository = balanceRepository;
+            _bankRepository = bankRepository;
         }
 
         /// <summary>
@@ -441,6 +444,14 @@ namespace FundTrack.DAL.Concrete
                 return this._balanceRepository;
             }
         }
+        public IBankRepository BankRepository
+        {
+            get
+            {
+                return _bankRepository;
+            }
+        }
+
 
         /// <summary>
         /// Saves all changes made in this context to the database.
