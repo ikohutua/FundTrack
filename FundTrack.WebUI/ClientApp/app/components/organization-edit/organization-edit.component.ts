@@ -18,7 +18,7 @@ import * as key from '../../shared/key.storage';
 import * as message from '../../shared/common-message.storage';
 import * as defaultConfig from '../../shared/default-configuration.storage';
 import { EditLogoViewModel } from "../../view-models/concrete/edit-organization/edit-org-logo-view.model";
-import { ImputImagService } from "../../shared/input-image-service";
+import { ImputImageService } from "../../shared/input-image-service";
 
 
 @Component({
@@ -247,7 +247,6 @@ export class OrganizationEditComponent implements OnInit, OnDestroy, AfterViewIn
                 this.orgAddress = addresses;
                 this.getAddresses(this.organizationId);
                 this.setMap(this.map);
-                console.log(this.orgAddress.errorMessage);
             });
         this.addAddressModal.hide();
     }
@@ -257,7 +256,6 @@ export class OrganizationEditComponent implements OnInit, OnDestroy, AfterViewIn
      * @param addressToEdit
      */
     updateAddress(addressToEdit: AddressViewModel): void {
-        console.log("in update address", addressToEdit);
         this._editService.editAddress(addressToEdit).subscribe(
             address => {
                 this.orgAddress = address;
@@ -278,7 +276,6 @@ export class OrganizationEditComponent implements OnInit, OnDestroy, AfterViewIn
      * @param addresses
      */
     public showAddress(addresses: IAddressViewModel[]): void {
-        console.log(addresses);
         //this.addressToEdit.id = addresses[0].id;
         this.addressToEdit.city = addresses[0].city;
         this.addressToEdit.street = addresses[0].street;
@@ -308,9 +305,9 @@ export class OrganizationEditComponent implements OnInit, OnDestroy, AfterViewIn
             return;
         }
         this.isError = false;
-        let imgInpServ: ImputImagService = new ImputImagService();
+        let imgInpServ: ImputImageService = new ImputImageService();
 
-        imgInpServ.getWorkbookFromFile2(startFile)
+        imgInpServ.UploadImageFromFile(startFile)
             .then((res) => {
                 console.log(res);
                 this.editLogo.base64Code = res.base64Data;
@@ -341,7 +338,6 @@ export class OrganizationEditComponent implements OnInit, OnDestroy, AfterViewIn
             return;
         }
 
-        this.editLogo.logoUrl = this.organization.logoUrl;
         this._editService.editLogo(this.editLogo).subscribe(
             model => {
                 this.organization.logoUrl = model.logoUrl;

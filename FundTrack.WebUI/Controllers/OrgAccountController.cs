@@ -116,13 +116,31 @@ namespace FundTrack.WebUI.Controllers
         [HttpGet("ExtractStatus/{orgAccountId}")]
         public JsonResult ExtractStatus(int orgAccountId)
         {
-            return Json(_orgAccountService.IsExtractEnabled(orgAccountId));
+            return Json(_orgAccountService.IsExtractsConnected(orgAccountId));
         }
 
         [HttpPost("[action]")]
         public BankAccountDonateViewModel ConnectExtracts([FromBody]BankAccountDonateViewModel item)
         {
             return _orgAccountService.ConnectExtractsFunction(item);
+        }
+
+        [HttpPut("[action]")]
+        public JsonResult ToggleExtractsFunction([FromBody]int orgAccountId)
+        {
+            return Json(_orgAccountService.ToggleExtractsFunction(orgAccountId));
+        }
+
+        [HttpPut("[action]")]
+        public BankAccountDonateViewModel DisableExtractsFunction([FromBody]int bankAccountId)
+        {
+            return _orgAccountService.DisableExtractsFunction(bankAccountId);
+        }
+
+        [HttpGet("CheckExtractsFunction/{orgAccountId}")]
+        public JsonResult CheckExtractsFunction(int orgAccountId)
+        {
+            return Json(_orgAccountService.IsExtractsEnabled(orgAccountId));
         }
     }
 }

@@ -5,7 +5,6 @@
     }
 </style>
 <div class="col-md-12">
-   
     <div class="col-md-2 col-md-offset-0 container back table-responsive">
         <button class="btn btn-md btn-block btn-success custom-button" (click)="navigateBack()"><span class="glyphicon glyphicon-arrow-left"></span> <strong>Назад</strong></button>
         <button type="button" class="btn btn-default btn-lg btn-block" style="margin-top:10%; border-color:#314720;color:#314720" (click)="onActionClick()">
@@ -15,7 +14,6 @@
         <button type="button" class="btn btn-default btn-lg btn-block" style="margin-bottom:10%; border-color:#314720;color:#314720" data-toggle="collapse" data-target="#demo">
             <strong>Фільтри</strong>
         </button>
-
         <div id="demo" class="collapse">
             <div class="form-group" style="float:left !important;">
                 <label class="control-label" style="margin-top:10%;">Дата "з":</label>
@@ -98,30 +96,6 @@
                         {{ formErrors.cardNumber }}
                     </span>
                 </div>
-                <!--<div class="form-group">
-                    <label class="control-label">ID мерчанта:</label>
-                    <input class="form-control"
-                           type="text"
-                           placeholder="ID мерчанта"
-                           formControlName="idMerchant"
-                           required=""
-                           [(ngModel)]="dataForPrivat.idMerchant" />
-                    <span *ngIf="formErrors.idMerchant" class="has-error help-block error-message">
-                        {{ formErrors.idMerchant }}
-                    </span>
-                </div>
-                <div class="form-group">
-                    <label class="control-label">Пароль мерчанта:</label>
-                    <input class="form-control"
-                           type="password"
-                           formControlName="password"
-                           placeholder="Пароль мерчанта"
-                           required=""
-                           [(ngModel)]="dataForPrivat.password" />
-                    <span *ngIf="formErrors.password" class="has-error help-block error-message">
-                        {{ formErrors.password}}
-                    </span>
-                </div>-->
                 <div class="form-group">
                     <label class="control-label">Дата "з":</label>
                     <input class="form-control" type="date"

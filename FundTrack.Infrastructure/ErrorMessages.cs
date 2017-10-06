@@ -34,5 +34,13 @@
         public const string UpdateOrganizationAccount = "Неможливо оновити рахунок організації";
         public const string AddNewBalanceMessage = "Неможливо зафіксувати баланс! За вказаний день проведено фінансову операцію.";
         public const string GetFinOpWithoutAccount = "Неможливо присвоїти Id організації, оскільки фінансова операція не прив'язана до акаунта";
+        public const string CantCreateAccountWithundefinedType = "Неможливо створити рахунок невизначеного типу";
+        public const string CantCreateAccountOfOrganization = "Неможливо створити рахунок організацї";
+        public const string YouArentAdminOfThisOrganization = "Ви не адміністратор цієї організації";
+        public const string WrongAdminPasswond = "Невірний пароль адміністратора організації";
+        public const string OrganizarionAccountWithNameExists = "Рахунок організації з таким іменем уже існує";
+        public const string OrganizarionAccountWithNumberExists = "Рахунок з таким номером уже зареєстрований";
+        public const string CantGetInfoForAccount = "Неможливо отримати інформацію для рахунку";
+        public const string CantEditInfoForAccount = "Неможливо змінити інформацію для рахунку";
     }
 }

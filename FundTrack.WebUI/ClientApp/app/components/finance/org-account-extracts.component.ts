@@ -6,6 +6,7 @@ import { DecimalPipe } from '@angular/common';
 import { CurrencyPipe } from '@angular/common';
 import { DonateCredentialsViewModel } from "../../view-models/concrete/finance/donate-credentials.view-model";
 import { ModalComponent } from '../../shared/components/modal/modal-component';
+import * as message from '../../shared/common-message.storage';
 
 @Component({
     selector: 'org-account-extracts',
@@ -16,9 +17,9 @@ import { ModalComponent } from '../../shared/components/modal/modal-component';
 export class OrgAccountExtractsComponent implements OnChanges, OnInit {
     @Input('orgId') orgId: number;
     @Input('accountId') accountId: number = -1;
-    public isExtractsEnable: boolean = false;
+    isExtractsEnable: boolean = false;
+    isExtractsConnected: boolean = false;
     @Output() getIsExtractEnable = new EventEmitter<boolean>();
-
 
     extractsCredentials: DonateCredentialsViewModel = new DonateCredentialsViewModel();
     connectExtractsCredential: DonateCredentialsViewModel = new DonateCredentialsViewModel();
@@ -30,49 +31,48 @@ export class OrgAccountExtractsComponent implements OnChanges, OnInit {
 
     }
 
-
-    /*
-    Checks for value changes and assignes new account in the component
-    */
-
     ngOnInit() {
 
     }
 
     ngOnChanges(changes: { [propKey: string]: SimpleChange }) {
-        this.connectExtractsCredential = new DonateCredentialsViewModel();
-
         if (changes['accountId'] && changes['accountId'] != changes['accountId'].currentValue) {
             if (this.accountId != (-1)) {
                 this.errorMessage = null;
                 this._orgAccountService.getBankAccId(this.accountId)
                     .subscribe((r) => {
                         this.bankAccountId = r;
+                        console.log(this.accountId);
+                        console.log(r);
                     });
                 this._orgAccountService.checkExtractsStatus(this.accountId)
                     .subscribe(
                     res => {
-                        this.isExtractsEnable = res;
-                        if (this.isExtractsEnable) {
+                        this.isExtractsConnected = res;
+                        if (this.isExtractsConnected) {
                             this._orgAccountService.getExtractsCredentials(this.accountId)
                                 .subscribe((res) => {
                                     this.extractsCredentials = res;
                                 })
-                            this.getIsExtractEnable.emit(this.isExtractsEnable);
+                            this._orgAccountService.checkExtractsEnable(this.accountId)
+                                .subscribe((res) => {
+                                    this.isExtractsEnable = res;
+                                    this.emitIsExtractEnable();
+                                })
                         }
                     },
                     error => {
-                        this.isExtractsEnable = false;
-                        this.errorMessage = "Некоректний тип рахунку";
-                        this.getIsExtractEnable.emit(this.isExtractsEnable);
-
+                        this.isExtractsConnected = false;
+                        this.errorMessage = message.uncorrectAccountType;
+                        this.emitIsExtractEnable();
                     })
-
-
             }
         }
     }
 
+    /**
+     * Attach data to get extracts
+     */
     connectExtracts() {
         this._orgAccountService.getBankAccId(this.accountId)
             .subscribe((r) => {
@@ -80,8 +80,45 @@ export class OrgAccountExtractsComponent implements OnChanges, OnInit {
                 this._orgAccountService.connectExtracts(this.connectExtractsCredential)
                     .subscribe((r) => {
                         this.extractsCredentials = r;
+                        this.isExtractsConnected = true;
                         this.isExtractsEnable = true;
+                        this.emitIsExtractEnable();
                     });
             });
+    }
+
+    /**
+     *Stop the opportunity to get extracts
+     */
+    toggleExtracts() {
+        this._orgAccountService.toggleExtracts(this.accountId)
+            .subscribe((res) => {
+                this.isExtractsEnable = res;
+                this.emitIsExtractEnable();
+            },
+            (error) => {
+            });
+    }
+
+    /**
+     * Delete current MerchantId & Password. Getting extracts won't be available
+     */
+    disableExtracts() {
+        this._orgAccountService.getBankAccId(this.accountId)
+            .subscribe((r) => {
+                this.connectExtractsCredential.bankAccountId = r;
+                this._orgAccountService.disableExtracts(r)
+                    .subscribe((r) => {
+                        this.connectExtractsCredential = r;
+                        this.isExtractsConnected = false;
+                        this.isExtractsEnable = false;
+                        this.disableModal.hide();
+                        this.emitIsExtractEnable();
+                    });
+            });
+    }
+
+    private emitIsExtractEnable() {
+        this.getIsExtractEnable.emit(this.isExtractsEnable);
     }
 }

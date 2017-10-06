@@ -109,8 +109,6 @@ export class BankImportComponent implements OnInit {
                                 .subscribe(response => this.targets = response);
                             this._finOpService.getOrgAccountForFinOp(this.user.orgId, this.card)
                                 .subscribe(response => this.currentOrgAccount = response);
-
-
                             this.getAllExtracts();
                         }
                     });
@@ -211,7 +209,6 @@ export class BankImportComponent implements OnInit {
                             }, 2500);
                         });
                 }
-
             });
     }
 
