@@ -7,6 +7,7 @@ import { BankImportComponent } from "../components/finance/bank-import.component
 import { MakeDonationComponent } from "../components/finance/donate-money.component";
 import { AdminRouteGuard } from "../services/concrete/security/admin-route-guard";
 import { PartnerRouteGuard } from "../services/concrete/security/partner-route-guard";
+import { MyDonationsComponent } from "../components/finance/my-donations.component";
 
 @NgModule({
     imports: [RouterModule.forChild([
@@ -38,6 +39,9 @@ import { PartnerRouteGuard } from "../services/concrete/security/partner-route-g
                 }
             ]
             
+        },
+        {
+            path: 'mydonations', component: MyDonationsComponent
         }
     ])],
     exports: [RouterModule]

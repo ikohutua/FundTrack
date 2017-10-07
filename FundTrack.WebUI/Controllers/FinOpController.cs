@@ -82,7 +82,7 @@ namespace FundTrack.WebUI.Controllers
             return this._service.CreateTransfer(transferModel);
         }
 
-        [HttpPut("Edit")]
+        [HttpPut()]
         [Authorize(Roles = "admin, moderator")]
         public FinOpViewModel Edit([FromBody] FinOpViewModel finOp)
         {

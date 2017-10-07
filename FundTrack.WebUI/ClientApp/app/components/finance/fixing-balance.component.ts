@@ -24,6 +24,7 @@ export class FixingBalanceComponent implements OnChanges, OnInit {
     currentDate: string;
     lastFixing: BalanceViewModel;
     message: string = "";
+    toasterClass: string = "";
 
 
     constructor(private fixingBalanceService: FixingBalanceService) {
@@ -75,7 +76,6 @@ export class FixingBalanceComponent implements OnChanges, OnInit {
     fixBalance() {
         let balance = new BalanceViewModel();
         balance.balanceDate = this.currentDate;
-
         balance.orgAccountId = this.accountId;
         this.fixingBalanceService.fixBalance(balance)
             .subscribe(data => {
@@ -90,14 +90,15 @@ export class FixingBalanceComponent implements OnChanges, OnInit {
                 this.isDatePickerEnabled = false;
             });
     }
+
     setCurrentDate(date: Date) {
         this.currentDate = date.toString();
     }
+
     public showToast() {
-        var x = document.getElementById("snackbar");
-        x.className = "show";
+        this.toasterClass = "show";
         setTimeout(() => {
-            x.className = x.className.replace("show", "");
+            this.toasterClass = "";
             this.closeModalEvent.emit(true);
         }, 3000);
     }

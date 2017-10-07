@@ -8,5 +8,5 @@
     amount: number;
     description: string;
     donatorEmail: string;
-    donationDate: Date;
+    donationDate: string;
 }

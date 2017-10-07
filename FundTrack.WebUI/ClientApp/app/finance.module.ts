@@ -1,5 +1,5 @@
 ﻿import { NgModule } from "@angular/core";
-import { CommonModule } from "@angular/common";
+import { CommonModule, DatePipe } from "@angular/common";
 import { SharedModule } from "./shared.module";
 import { FinanceRoutingModule } from "./routes/finance-routing.module";
 import { OrgAccountListComponent } from "./components/finance/orgaccountlist.component";
@@ -15,6 +15,8 @@ import { MakeDonationComponent } from "./components/finance/donate-money.compone
 import { FinOpService } from "./services/concrete/finance/finOp.service";
 import { OrgAccountExtractsComponent } from "./components/finance/org-account-extracts.component";
 import { FixingBalanceComponent } from "./components/finance/fixing-balance.component";
+import { MyDonationsComponent } from "./components/finance/my-donations.component";
+import { DonateService } from "./services/concrete/finance/donate-money.service";
 
 
 @NgModule({
@@ -27,7 +29,8 @@ import { FixingBalanceComponent } from "./components/finance/fixing-balance.comp
         OrgAccountOperationComponent,
         BankImportComponent,    
         MakeDonationComponent,
-        FixingBalanceComponent
+        FixingBalanceComponent,
+        MyDonationsComponent
     ],
     imports: [
         CommonModule,
@@ -39,7 +42,9 @@ import { FixingBalanceComponent } from "./components/finance/fixing-balance.comp
     ],
     providers: [
         OrgAccountService,
-        FinOpService
+        FinOpService,
+        DatePipe,
+        DonateService
     ]
 })
 export class FinanceModule { }

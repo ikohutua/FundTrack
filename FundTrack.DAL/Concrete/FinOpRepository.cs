@@ -60,7 +60,7 @@ namespace FundTrack.DAL.Concrete
         /// Reads this instance.
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<FinOp> Read()
+        public IQueryable<FinOp> Read()
         {
             return this._context.FinOps.Include(f => f.OrgAccountTo)
                 .ThenInclude(a => a.Organization)

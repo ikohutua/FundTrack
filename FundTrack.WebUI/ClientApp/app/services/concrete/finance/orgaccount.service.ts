@@ -158,7 +158,7 @@ export class OrgAccountService {
     }
 
     public getExtractsCredentials(orgAccountId: number): Observable<DonateCredentialsViewModel> {
-        return this._http.get(GlobalUrlService.getExtractCredentials + orgAccountId.toString())
+        return this._http.get(GlobalUrlService.getExtractCredentials +"/"+ orgAccountId.toString())
             .map((response: Response) => <DonateCredentialsViewModel>response.json())
             .catch(this.handleError);
     }
@@ -169,13 +169,32 @@ export class OrgAccountService {
             .catch((error: Response) => this.handleError(error));
     }
 
+
+    public toggleExtracts(orgAccountId: number): Observable<boolean> {
+        return this._http.put(GlobalUrlService.toggleExtracts, orgAccountId, this.getRequestOptions())
+            .map((response: Response) => <boolean>response.json())
+            .catch((error: Response) => this.handleError(error));
+    }
+
+    public disableExtracts(bankAccountId: number): Observable<DonateCredentialsViewModel> {
+        return this._http.put(GlobalUrlService.disableExtracts, bankAccountId, this.getRequestOptions())
+            .map((res: Response) => <DonateCredentialsViewModel>res.json())
+            .catch((error: Response) => this.handleError(error));
+    }
+
     public getAllBanks(): Observable<BankViewModel[]> {
         return this._http.get(GlobalUrlService.banksUrl, RequestOptionsService.getRequestOptions())
             .map((response: Response) => response.json() as BankViewModel[]);
     }
 
     public getBankById(bankId : number): Observable<BankViewModel> {
-        return this._http.get(GlobalUrlService.banksUrl + '/' + bankId.toString(), RequestOptionsService.getRequestOptions())
+        return this._http.get(GlobalUrlService.banksUrl + bankId.toString(), RequestOptionsService.getRequestOptions())
             .map((response: Response) => response.json() as BankViewModel);
+    }
+
+    public checkExtractsEnable(orgAccountId: number): Observable<boolean> {
+        return this._http.get(GlobalUrlService.checkExtractsFunction + orgAccountId.toString())
+            .map((response: Response) => <boolean>response.json())
+            .catch(this.handleError);
     }
 }

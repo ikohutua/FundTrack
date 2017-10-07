@@ -44,31 +44,31 @@ namespace FundTrack.WebUI.Controllers
             return _orgProfileService.EditDescription(item);
         }
 
-        [HttpGet("GetAddress/{id}")]
+        [HttpGet("Address/{id}")]
         public EditAddressViewModel GetAddress(int id)
         {
             return _orgProfileService.GetOrgAddress(id);
         }
 
-        [HttpPost("AddAddresses")]
+        [HttpPost("Addresses")]
         public EditAddressViewModel AddAddresses([FromBody] EditAddressViewModel addresses)
         {
             return _orgProfileService.AddAddresses(addresses);
         }
 
-        [HttpDelete("DeleteAddress/{id}")]
+        [HttpDelete("Address/{id}")]
         public void DeleteAddress(int id)
         {
             _orgProfileService.DeleteAddress(id);
         }
 
-        [HttpPut("EditAddress")]
+        [HttpPut("Address")]
         public EditAddressViewModel EditAddress([FromBody] AddressViewModel address)
         {
             return _orgProfileService.EditAddress(address);
         }
 
-        [HttpPut("EditLogo")]
+        [HttpPut("Logo")]
         public EditLogoViewModel EditLogo([FromBody] EditLogoViewModel logo)
         {
             return _orgProfileService.EditLogo(logo);

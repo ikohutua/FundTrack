@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.EntityFrameworkCore;
 
 namespace FundTrack.DAL.Concrete
 {
@@ -37,10 +38,13 @@ namespace FundTrack.DAL.Concrete
         /// <summary>
         /// Read all Donations in database
         /// </summary>
-        /// <returns> IEnumerable of donations</returns>
+        /// <returns> IQueryable of donations</returns>
         public IQueryable<Donation> Read()
         {
-            return _context.Donations;
+            return _context.Donations
+                .Include(d=>d.Target)
+                .Include(d=>d.BankAccount)
+                .ThenInclude(ba=>ba.Organization);
         }
 
         /// <summary>

@@ -430,24 +430,24 @@ export class OrgAccountOperationComponent implements OnChanges {
     private createUpdateFinOperationForm() {
         this.updateFinOperationForm = this.fb.group({
             amount: [
-                this.currentFinOp.amount, [this.validatorsService.isMinValue,
+                this.updateFinOperation.amount, [this.validatorsService.isMinValue,
                 this.validatorsService.isMaxValue,
                 this.validatorsService.isNumber
                 ]
             ],
             targetId: [
-                this.currentFinOp.targetId
+                this.updateFinOperation.targetId
             ],
             description: [
-                this.currentFinOp.description, [Validators.maxLength(500)]
+                this.updateFinOperation.description, [Validators.maxLength(500)]
             ],
             date: [
-                this.currentFinOp.date
+                this.updateFinOperation.date
             ]
         });
         this.accountManagmentForm.valueChanges
-            .subscribe(a => this.onValueChange(this.accountManagmentForm, this.formTransferErrors, a));
-        this.onValueChange(this.moneyTransferForm, this.formTransferErrors);
+            .subscribe(a => this.onValueChange(this.updateFinOperationForm, this.formUpdateErrors, a));
+        this.onValueChange(this.updateFinOperationForm, this.formUpdateErrors);
     }
 
     private formIncomeErrors = {

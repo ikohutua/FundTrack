@@ -1,4 +1,5 @@
-﻿using FundTrack.BLL.Concrete;
+﻿using FundTrack.BLL.Abstract;
+using FundTrack.BLL.Concrete;
 using FundTrack.DAL.Abstract;
 using FundTrack.DAL.Concrete;
 using FundTrack.DAL.Entities;
@@ -38,7 +39,9 @@ namespace FundTrack.BLL.Tests
             unitOfWork.Setup(x => x.TargetRepository)
                 .Returns(reposirory.Object);
 
-            var service = new TargetService(unitOfWork.Object);
+            var finOpService = new Mock<IFinOpService>();
+
+            var service = new TargetService(unitOfWork.Object, finOpService.Object);
 
             //Act
             var result = service.GetTargetById(testId);
@@ -62,7 +65,9 @@ namespace FundTrack.BLL.Tests
             unitOfWork.Setup(x => x.TargetRepository)
                 .Returns(reposirory.Object);
 
-            var service = new TargetService(unitOfWork.Object);
+            var finOpService = new Mock<IFinOpService>();
+
+            var service = new TargetService(unitOfWork.Object, finOpService.Object);
 
             //Act
             var exception = Record.Exception(() => service.GetTargetById(testId));
@@ -87,7 +92,9 @@ namespace FundTrack.BLL.Tests
             unitOfWork.Setup(x => x.TargetRepository)
                 .Returns(reposirory.Object);
 
-            var service = new TargetService(unitOfWork.Object);
+            var finOpService = new Mock<IFinOpService>();
+
+            var service = new TargetService(unitOfWork.Object, finOpService.Object);
 
             //Act
             var result = service.GetTargetsByOrganizationId(testOrgId);
@@ -114,7 +121,9 @@ namespace FundTrack.BLL.Tests
             unitOfWork.Setup(x => x.TargetRepository)
                 .Returns(reposirory.Object);
 
-            var service = new TargetService(unitOfWork.Object);
+            var finOpService = new Mock<IFinOpService>();
+
+            var service = new TargetService(unitOfWork.Object, finOpService.Object);
 
             //Act
             var exception = Record.Exception(() => service.GetTargetsByOrganizationId(testId));
@@ -140,7 +149,9 @@ namespace FundTrack.BLL.Tests
             unitOfWork.Setup(x => x.TargetRepository)
                 .Returns(reposirory.Object);
 
-            var service = new TargetService(unitOfWork.Object);
+            var finOpService = new Mock<IFinOpService>();
+
+            var service = new TargetService(unitOfWork.Object, finOpService.Object);
 
             //Act
             var result = service.EditTarget(testTargetVm);
@@ -164,7 +175,9 @@ namespace FundTrack.BLL.Tests
             unitOfWork.Setup(x => x.TargetRepository)
                 .Returns(reposirory.Object);
 
-            var service = new TargetService(unitOfWork.Object);
+            var finOpService = new Mock<IFinOpService>();
+
+            var service = new TargetService(unitOfWork.Object, finOpService.Object);
 
             //Act
             var exception = Record.Exception(() => service.EditTarget(testTargetVm));
@@ -189,7 +202,9 @@ namespace FundTrack.BLL.Tests
             unitOfWork.Setup(x => x.TargetRepository)
                 .Returns(reposirory.Object);
 
-            var service = new TargetService(unitOfWork.Object);
+            var finOpService = new Mock<IFinOpService>();
+
+            var service = new TargetService(unitOfWork.Object, finOpService.Object);
 
             //Act
             var exception = Record.Exception(() => service.EditTarget(testTargetVm));
@@ -216,7 +231,9 @@ namespace FundTrack.BLL.Tests
             unitOfWork.Setup(x => x.TargetRepository)
                 .Returns(reposirory.Object);
 
-            var service = new TargetService(unitOfWork.Object);
+            var finOpService = new Mock<IFinOpService>();
+
+            var service = new TargetService(unitOfWork.Object, finOpService.Object);
 
             //Act
             var result = service.CreateTarget(testTargetVm);
@@ -244,7 +261,9 @@ namespace FundTrack.BLL.Tests
             unitOfWork.Setup(x => x.TargetRepository)
                 .Returns(reposirory.Object);
 
-            var service = new TargetService(unitOfWork.Object);
+            var finOpService = new Mock<IFinOpService>();
+
+            var service = new TargetService(unitOfWork.Object, finOpService.Object);
 
             //Act
             var exception = Record.Exception(() => service.CreateTarget(testTargetVm));
@@ -269,7 +288,9 @@ namespace FundTrack.BLL.Tests
             unitOfWork.Setup(x => x.TargetRepository)
                 .Returns(reposirory.Object);
 
-            var service = new TargetService(unitOfWork.Object);
+            var finOpService = new Mock<IFinOpService>();
+
+            var service = new TargetService(unitOfWork.Object, finOpService.Object);
 
             //Act
             var exception = Record.Exception(() => service.CreateTarget(testTargetVm));
@@ -292,8 +313,9 @@ namespace FundTrack.BLL.Tests
             unitOfWork.Setup(x => x.TargetRepository)
                 .Returns(reposirory.Object);
 
-            var service = new TargetService(unitOfWork.Object);
+            var finOpService = new Mock<IFinOpService>();
 
+            var service = new TargetService(unitOfWork.Object, finOpService.Object);
             //Act
             var exception = Record.Exception(() => service.DeleteTarget(testId));
 
