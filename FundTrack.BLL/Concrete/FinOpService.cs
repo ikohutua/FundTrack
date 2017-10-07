@@ -48,7 +48,7 @@ namespace FundTrack.BLL.Concrete
                 {
                     orgAccFrom = _unitOfWork.OrganizationAccountRepository.GetOrgAccountById((int)finOpModel.CardFromId);
                     finOp.AccFromId = orgAccFrom.Id;
-                    finOp.FinOpType = 0;
+                    finOp.FinOpType = Constants.FinOpSpending;
                     orgAccFrom.CurrentBalance += finOpModel.Amount;
                     _unitOfWork.OrganizationAccountRepository.Edit(orgAccFrom);
                 }
@@ -57,7 +57,7 @@ namespace FundTrack.BLL.Concrete
                     orgAccTo = _unitOfWork.OrganizationAccountRepository.GetOrgAccountById((int)finOpModel.CardToId);
                     finOp.AccToId = orgAccTo.Id;
                     orgAccTo.CurrentBalance += finOpModel.Amount;
-                    finOp.FinOpType = 1;
+                    finOp.FinOpType = Constants.FinOpIncome;
                     _unitOfWork.OrganizationAccountRepository.Edit(orgAccTo);
                 }
                 _unitOfWork.FinOpRepository.Create(finOp);
@@ -205,7 +205,6 @@ namespace FundTrack.BLL.Concrete
             catch (Exception ex)
             {
                 throw new BusinessLogicException(ErrorMessages.EmptyFinOpList, ex);
-                
             }
         }
         /// <Amountmary>
