@@ -11,5 +11,6 @@ namespace FundTrack.DAL.Abstract
         Donation Create(Donation item);
         IQueryable<Donation> Read();
         Donation Get(int id);
+        Donation Update(Donation item);
     }
 }

@@ -33,7 +33,7 @@ export class BankImportService extends BaseSpinnerService<ImportDetailPrivatView
         if (this.checkAuthorization()) {
             let data = `<oper>cmt</oper>
                         <wait>0</wait>
-                        <test>0</test>
+                        <test>1</test>
                         <payment id="">
                           <prop name="sd" value="${dataForRequest.dataFrom}" />
                           <prop name="ed" value="${dataForRequest.dataTo}" />

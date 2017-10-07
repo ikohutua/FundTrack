@@ -1,0 +1,102 @@
+﻿a.linkBack {
+    color: #314720;
+    text-decoration-line: underline;
+    font: bold !important;
+    font-weight: 400 !important;
+}
+
+.no-spin::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+.center-block {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.fundtrack-style {
+    background-color: #314720;
+    color: white;
+    font-size: large;
+    text-align: center;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.fundtrack-style-border {
+    border: 2px solid white;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.btn-fundtrack-style {
+    background-color: #314720;
+    border-color: white;
+    color: white;
+}
+
+.castome-paging {
+    padding-top: 20px;
+}
+
+.thumbnail {
+    margin-bottom: 20px;
+    padding: 0px;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+}
+
+.item.list-group-item {
+    float: none;
+    width: 100%;
+    background-color: #fff;
+    margin-bottom: 10px;
+}
+
+    .item.list-group-item:nth-of-type(odd):hover, .item.list-group-item:hover {
+        background: #428bca;
+    }
+
+    .item.list-group-item .list-group-image {
+        margin-right: 10px;
+    }
+
+    .item.list-group-item .thumbnail {
+        margin-bottom: 0px;
+    }
+
+    .item.list-group-item .caption {
+        padding: 9px 9px 0px 9px;
+    }
+
+    .item.list-group-item:nth-of-type(odd) {
+        background: #eeeeee;
+    }
+
+    .item.list-group-item:before, .item.list-group-item:after {
+        display: table;
+        content: " ";
+    }
+
+    .item.list-group-item img {
+        float: left;
+    }
+
+    .item.list-group-item:after {
+        clear: both;
+    }
+
+.list-group-item-text {
+    margin: 0 0 11px;
+}
+
+
+.modal-content {
+    width: 670px !important;
+}
+
+.period-panel {
+    margin-bottom: 10px;
+}

@@ -1,11 +1,5 @@
 ﻿<spinner></spinner>
-<style>
-    .custom-button{
-        margin-top: 10%;
-    }
-</style>
 <div class="col-md-12">
-   
     <div class="col-md-2 col-md-offset-0 container back table-responsive">
         <button class="btn btn-md btn-block btn-success custom-button" (click)="navigateBack()"><span class="glyphicon glyphicon-arrow-left"></span> <strong>Назад</strong></button>
         <button type="button" class="btn btn-default btn-lg btn-block" style="margin-top:10%; border-color:#314720;color:#314720" (click)="onActionClick()">
@@ -15,7 +9,6 @@
         <button type="button" class="btn btn-default btn-lg btn-block" style="margin-bottom:10%; border-color:#314720;color:#314720" data-toggle="collapse" data-target="#demo">
             <strong>Фільтри</strong>
         </button>
-
         <div id="demo" class="collapse">
             <div class="form-group" style="float:left !important;">
                 <label class="control-label" style="margin-top:10%;">Дата "з":</label>
@@ -44,7 +37,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-8" *ngIf="_dataForFinOp" >
+    <div class="col-md-8" *ngIf="_dataForFinOp">
         <div class="row grid-divider">
             <table class="table table-list-search back" style="margin-left:4%">
                 <thead>
@@ -68,7 +61,7 @@
                         <td class='deactivated-state' *ngIf="!dataFinOp.isLooked">Необроблена</td>
                         <td *ngIf="dataFinOp.isLooked">Оброблена</td>
                         <td> {{dataFinOp.description}}</td>
-                        <td><button id="submit" class="btn btn-fundtrack-style pull-right" [disabled]="dataFinOp.isLooked" (click)="createFinOp(dataFinOp)">Обробити</button></td>
+                        <td><button id="submit" class="btn btn-fundtrack-style pull-right" [disabled]="dataFinOp.isLooked" (click)="openFinOpModal(dataFinOp)">Обробити</button></td>
                     </tr>
                 </tbody>
             </table>
@@ -87,10 +80,10 @@
                 <div class="form-group">
                     <label class="control-label">Номер картки:</label>
                     <input class="form-control"
-                           disabled
+                           readonly
                            type="text"
                            placeholder="Номер картки"
-                           name="cardNumber"    
+                           name="cardNumber"
                            formControlName="cardNumber"
                            [(ngModel)]="dataForPrivat.card"
                            required="" />
@@ -98,30 +91,6 @@
                         {{ formErrors.cardNumber }}
                     </span>
                 </div>
-                <!--<div class="form-group">
-                    <label class="control-label">ID мерчанта:</label>
-                    <input class="form-control"
-                           type="text"
-                           placeholder="ID мерчанта"
-                           formControlName="idMerchant"
-                           required=""
-                           [(ngModel)]="dataForPrivat.idMerchant" />
-                    <span *ngIf="formErrors.idMerchant" class="has-error help-block error-message">
-                        {{ formErrors.idMerchant }}
-                    </span>
-                </div>
-                <div class="form-group">
-                    <label class="control-label">Пароль мерчанта:</label>
-                    <input class="form-control"
-                           type="password"
-                           formControlName="password"
-                           placeholder="Пароль мерчанта"
-                           required=""
-                           [(ngModel)]="dataForPrivat.password" />
-                    <span *ngIf="formErrors.password" class="has-error help-block error-message">
-                        {{ formErrors.password}}
-                    </span>
-                </div>-->
                 <div class="form-group">
                     <label class="control-label">Дата "з":</label>
                     <input class="form-control" type="date"
@@ -141,7 +110,7 @@
             </form>
         </div>
         <div *ngIf="importData.error" class="error-message">
-           Помилка банку: {{importData.error}}
+            Помилка банку: {{importData.error}}
         </div>
     </div>
     <div class="app-modal-footer">
@@ -181,13 +150,13 @@
                    [disabled]="true"
                    placeholder="Сума"
                    required=""
-                   [(ngModel)]="_newFinOp.absoluteAmount"/>
+                   [(ngModel)]="_newFinOp.absoluteAmount" />
         </div>
         <br>
         <div class="form-group">
             <label class="control-label" for="accountName">Рух коштів:</label>
             <div>
-                <input type="radio" name="gender" value="true" [checked]="_newFinOp.amount>0" disabled > Прихід<br>
+                <input type="radio" name="gender" value="true" [checked]="_newFinOp.amount>0" disabled> Прихід<br>
                 <input type="radio" name="gender" value="false" [checked]="_newFinOp.amount<0" disabled> Розхід<br>
             </div>
         </div>
@@ -203,16 +172,16 @@
         </div>
         <div>
             <label class="control-label">Виберіть призначення платежу:</label>
-            <select class="form-control" [(ngModel)]="_newFinOp.targetName" required="" id="target">
+            <select class="form-control" [(ngModel)]="_newFinOp.targetId" required="" id="target" (ngModelChange)="onChangeSelection($event)">
                 <option [ngValue]="undefined" selected>Призначення платежу</option>
-                <option value={{item.name}} *ngFor="let item of targets">{{item.name}}</option>
+                <option *ngFor="let item of targets" value={{(item.targetId)*1}}>{{item.name}}</option>
             </select>
         </div>
     </div>
     <div class="app-modal-footer">
         <button class="btn btn-fundtrack-style pull-right"
                 (click)="saveFinOp()"
-                [disabled]="!_newFinOp.targetName"
+                [disabled]="!_newFinOp.targetId"
                 data-dismiss="modal">
             OK
         </button>

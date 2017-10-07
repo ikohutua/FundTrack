@@ -18,7 +18,6 @@
     background-image: url("https://privat24.privatbank.ua/p24/img/concrete_wall_3.png");
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     display: block;
-    margin-left: 10px;
     width: 91.5%;
 }
 
@@ -137,7 +136,6 @@ td {
 }
 
 .container {
-    background-color: darkseagreen;
     margin-left: 3%;
     margin-right: 3%;
 }
@@ -172,6 +170,30 @@ td {
 .deactivated-state {
     color: #5b9b21;
 }
+
+#suggestedToast {
+    visibility: hidden; /* Hidden by default. Visible on click */
+    min-width: 250px; /* Set a default minimum width */
+    margin-left: -125px; /* Divide value of min-width by 2 */
+    background-color: #333; /* Black background color */
+    color: #fff; /* White text color */
+    text-align: center; /* Centered text */
+    border-radius: 2px; /* Rounded borders */
+    padding: 16px; /* Padding */
+    position: fixed; /* Sit on top of the screen */
+    z-index: 999999; /* Add a z-index if needed */
+    left: 50%; /* Center the snackbar */
+    top: 250px; /* 30px from the bottom */
+}
+
+/* Show the snackbar when clicking on a button (class added with JavaScript) */
+    #suggestedToast.show {
+        visibility: visible; /* Show the snackbar */
+        /* Add animation: Take 0.5 seconds to fade in and out the snackbar. 
+However, delay the fade out process for 2.5 seconds */
+        -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+        animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    }
 
 #snackbar {
     visibility: hidden; /* Hidden by default. Visible on click */
@@ -244,4 +266,13 @@ However, delay the fade out process for 2.5 seconds */
         top: 0;
         opacity: 0;
     }
+}
+
+.accountdetail {
+    background-image: url("https://privat24.privatbank.ua/p24/img/concrete_wall_3.png");
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    display: block;
+    padding: 15px 10px 15px 20px;
+    width: 100%;
+    align-items: center;
 }

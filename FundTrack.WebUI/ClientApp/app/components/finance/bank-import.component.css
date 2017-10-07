@@ -4,15 +4,19 @@
     overflow-x: hidden !important;
 }
 
+.custom-button {
+    margin-top: 10%;
+}
+
 .table {
-    display:inline-block;
+    display: inline-block;
     margin-left: 1%;
     margin-right: 2%;
     max-height: 600px !important;
-    height:auto;
+    height: auto;
     overflow-x: auto;
-    width:100% !important;
-    overflow-y:auto;
+    width: 100% !important;
+    overflow-y: auto;
 }
 
 .margin {
@@ -57,10 +61,11 @@
 }
 
 .container {
-    background-color:darkseagreen;
-    margin-left:3%;
-    margin-right:3%;
+    background-color: darkseagreen;
+    margin-left: 3%;
+    margin-right: 3%;
 }
+
 .btn-fundtrack-style {
     background-color: #314720;
     border-color: white;
@@ -74,21 +79,18 @@
 }
 
 .back {
-    background-image:url("https://privat24.privatbank.ua/p24/img/concrete_wall_3.png");
-    box-shadow: 0 4px 8px 0
-    rgba(0,0,0,0.2),
-        0 6px 20px 0
-    rgba(0,0,0,0.19);
-    margin-top:-10px;
+    background-image: url("https://privat24.privatbank.ua/p24/img/concrete_wall_3.png");
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    margin-top: -10px;
 }
 
 .deactivated {
     color: black;
 }
 
-.activated{
-    color:black;
-    opacity:0.5;
+.activated {
+    color: black;
+    opacity: 0.5;
 }
 
 .deactivated-state {

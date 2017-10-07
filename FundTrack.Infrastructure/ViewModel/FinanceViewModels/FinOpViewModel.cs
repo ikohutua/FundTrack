@@ -43,5 +43,7 @@ namespace FundTrack.Infrastructure.ViewModel.FinanceViewModels
 
         public string Error { get; set; }
 
+        public int? DonationId { get; set; }
+
     }
 }

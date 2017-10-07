@@ -36,7 +36,7 @@ namespace FundTrack.DAL.Abstract
         /// Reads this instance.
         /// </summary>
         /// <returns></returns>
-        IEnumerable<FinOp> Read();
+        IQueryable<FinOp> Read();
 
         /// <summary>
         /// Gets the fin op by org account.
