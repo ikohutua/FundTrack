@@ -145,7 +145,8 @@ namespace FundTrack.BLL.Concrete
             var suggestedDonations =
                 _unitOfWork.DonationRepository
                     .Read()
-                    .Where(d =>                                                 // seggested conditions are: 
+                    .Where(d =>                                                 // suggested conditions are: 
+                        (d.UserId == null)&&                                    // if donation is not bind yet
                         (d.DonationDate >= finOp.FinOpDate) &&                  // min bound for date/time
                         (d.DonationDate <= finOpMaxPossibleDate) &&             // max bound for date/time
                         (d.Amount == (double) finOp.Amount))                    // same amount
