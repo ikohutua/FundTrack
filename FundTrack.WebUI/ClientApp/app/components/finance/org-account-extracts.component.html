@@ -2,7 +2,7 @@
     <div *ngIf="errorMessage">
         {{errorMessage}}
     </div>
-    <div *ngIf="!errorMessage">
+    <div *ngIf="!errorMessage" >
         <p> Для отримання виписок з <a href="https://www.privat24.ua">Приват 24</a> введіть дані у відповідні поля нижче.</p>
         <form #form="ngForm">
             <label>Merchant Id<sup class="sup-color-red">*</sup></label>

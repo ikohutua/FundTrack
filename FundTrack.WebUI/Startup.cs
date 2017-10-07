@@ -138,7 +138,7 @@ namespace FundTrack.WebUI
 
             app.UseStaticFiles();
 
-          
+
             app.UseJwtBearerAuthentication(new JwtBearerOptions
             {
                 AutomaticAuthenticate = true,
@@ -163,16 +163,14 @@ namespace FundTrack.WebUI
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
-            //if (env.IsDevelopment())
-            //{
-                
-            //
-
-            app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions
+            if (env.IsDevelopment())
             {
-                HotModuleReplacement = true
-            });
-
+                app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions
+                {
+                    HotModuleReplacement = true
+                });
+            }
+            
             app.UseWebSockets();
 
             app.UseMvc(routes =>
