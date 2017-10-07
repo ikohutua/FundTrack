@@ -127,6 +127,10 @@ namespace FundTrack.WebUI
             services.AddScoped<IImageManagementService, AzureImageManagementService>();
             services.AddScoped<IFixingBalanceService, FixingBalanceService>();
             services.AddScoped<IBankService, BankService>();
+
+            //dependency injection WebUI
+            services.AddScoped<IErrorLogger, ErrorLogger>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

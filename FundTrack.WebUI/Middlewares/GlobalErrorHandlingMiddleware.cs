@@ -14,12 +14,12 @@ namespace FundTrack.WebUI.Middlewares
     public sealed class GlobalErrorHandlingMiddleware
     {
         private readonly RequestDelegate _next;
-        private readonly LoggingMiddleware _logging;
+        private readonly IErrorLogger _logging;
 
-        public GlobalErrorHandlingMiddleware(RequestDelegate next)
+        public GlobalErrorHandlingMiddleware(RequestDelegate next, IErrorLogger logging)
         {
             _next = next;
-            //_logging = logging;
+            _logging = logging;
         }
 
         public async Task Invoke(HttpContext context)
@@ -41,9 +41,8 @@ namespace FundTrack.WebUI.Middlewares
                 {
                     ContractResolver = new CamelCasePropertyNamesContractResolver()
                 });
-                //_logging.WriteLogInFile(ex);
-                LoggingMiddleware logging = new LoggingMiddleware();
-                logging.WriteLogInFile(ex);
+
+                _logging.WriteLogInFile(ex);
                 
 
                 await context.Response.WriteAsync(json);
