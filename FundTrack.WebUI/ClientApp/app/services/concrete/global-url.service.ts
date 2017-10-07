@@ -22,7 +22,6 @@ export class GlobalUrlService {
     
     //register organization
     public static registerOrganization = "api/OrganizationRegistration/RegisterNewOrganization/";
-    public static readonly banksUrl: string = "api/Bank/";
 
     //target urls
     public static readonly editTarget = "api/Target/EditTarget/";
@@ -36,4 +35,21 @@ export class GlobalUrlService {
     public static readonly deactivateModerator = "api/Moderator/DeactivateModerator/";
     public static readonly addModerator = "api/Moderator/AddModerator";
     public static readonly getModerators = "api/Moderator/GetModerators/";
+
+    //donation URLs
+    public static userDonations: string = "api/Donate/User/";
+    public static userDonationsByDate: string = "api/Donate/UserByDate/";
+
+    //FinOp URLs
+    public static createFinOp: string = "api/FinOp/CreateFinOp/";
+    public static readonly banksUrl: string = "api/Bank";
+
+    // donate service
+    public static readonly getSuggestedDonations = "api/Donate/suggested/";
+
+    // finOp service
+    public static readonly bindDonationAndFinOp = "api/FinOp/bindDonationAndFinOp";
+
+    // user service
+    public static readonly getAllUsers = "api/User";
 }

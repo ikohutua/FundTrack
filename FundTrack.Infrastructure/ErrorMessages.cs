@@ -49,5 +49,6 @@
         public const string OrganizarionAccountWithNumberExists = "Рахунок з таким номером уже зареєстрований";
         public const string CantGetInfoForAccount = "Неможливо отримати інформацію для рахунку";
         public const string CantEditInfoForAccount = "Неможливо змінити інформацію для рахунку";
+        public const string BindingDonationToFinOp = "Неможливо прив'язати пожертву до фінансової операції";
     }
 }

@@ -1,6 +1,7 @@
 ﻿using FundTrack.BLL.Abstract;
 using FundTrack.DAL.Abstract;
 using FundTrack.DAL.Entities;
+using FundTrack.Infrastructure;
 using FundTrack.Infrastructure.ViewModel.FinanceViewModels.DonateViewModels;
 using Microsoft.EntityFrameworkCore.Internal;
 using System;
@@ -144,13 +145,55 @@ namespace FundTrack.BLL.Concrete
             var suggestedDonations =
                 _unitOfWork.DonationRepository
                     .Read()
-                    .Where(d =>
-                        (d.DonationDate >= finOp.FinOpDate
-                        ) && // seggested conditions are same amount and donation time in range of [finOp.Time; finOp.Time + 30 minutes]
-                        (d.DonationDate <= finOpMaxPossibleDate) &&
-                        (d.Amount == (double) finOp.Amount))
+                    .Where(d =>                                                 // suggested conditions are: 
+                        (d.UserId == null)&&                                    // if donation is not bind yet
+                        (d.DonationDate >= finOp.FinOpDate) &&                  // min bound for date/time
+                        (d.DonationDate <= finOpMaxPossibleDate) &&             // max bound for date/time
+                        (d.Amount == (double)finOp.Amount))                    // same amount
                         .ToList();
             return suggestedDonations.Select(ConvertEntityToModel);
+        }
+
+
+        public IEnumerable<UserDonationsViewModel> GetUserDonations(int userId)
+        {
+            try
+            {
+                var result = _unitOfWork.DonationRepository.Read()
+                    .Where(donation => donation.UserId == userId).ToList()
+                    .Select(donation => new UserDonationsViewModel
+                    {
+                        Id = donation.Id,
+                        Organization = donation.BankAccount.Organization.Name,
+                        Target = donation.Target?.TargetName,
+                        Date = donation.DonationDate,
+                        Amount = donation.Amount,
+                        Description = donation.Description
+                    }).OrderByDescending(donation => donation.Date);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw new BusinessLogicException(ErrorMessages.CantFindItem, ex);
+            }
+        }
+
+        public IEnumerable<UserDonationsViewModel> GetUserDonationsByDate(int userId, DateTime dateFrom, DateTime dateTo)
+        {
+            try
+            {
+                dateTo = dateTo.AddDays(1);
+                var result = GetUserDonations(userId)
+                    .Where(donat =>
+                    (donat.Date <= dateTo)
+                    && (donat.Date >= dateFrom))
+                    .OrderByDescending(donation => donation.Date).ToList();
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw new BusinessLogicException(ErrorMessages.CantFindItem, ex);
+            }
         }
     }
 }

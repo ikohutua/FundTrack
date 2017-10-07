@@ -63,7 +63,6 @@ export class FixingBalanceComponent implements OnChanges, OnInit {
             this.isDatePickerEnabled = false;
             this.isSubmitEnabled = false;
         }
-
     }
 
     resetAllData() {

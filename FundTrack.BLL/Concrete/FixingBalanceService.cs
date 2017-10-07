@@ -46,7 +46,7 @@ namespace FundTrack.BLL.Concrete
             }
             else
             {
-                fixing.HasFinOpsAfterLastFixing = _unitOfWork.FinOpRepository.GetFinOpByOrgAccount(accountId).Count() > 0;
+                fixing.HasFinOpsAfterLastFixing = _unitOfWork.FinOpRepository.GetFinOpByOrgAccount(accountId).Any();
             }
             return fixing;
         }

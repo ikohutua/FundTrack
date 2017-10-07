@@ -35,10 +35,8 @@ export class OrganizationManagementEventDetailComponent {
     * @param id
     */
     private getInformationOfEvent(id: number): void {
-        debugger;
         this._service.getOneEventById(id).subscribe(
             event => {
-                debugger;
                 this._event = event;
                 this._images = [];
                 this._event.images.forEach((image) => {

@@ -124,6 +124,7 @@ namespace FundTrack.BLL.Concrete
             {
                 var result = _unitOfWork.OrganizationAccountRepository.GetOrgAccountById(model.Id);
                 result.UserId = model.UserId;
+                result.TargetId = model.TargetId;
                 _unitOfWork.OrganizationAccountRepository.Edit(result);
                 _unitOfWork.SaveChanges();
                 return result;
@@ -295,7 +296,8 @@ namespace FundTrack.BLL.Concrete
                 {
                     Id = orgAccount.Id,
                     OrgAccountName = orgAccount.OrgAccountName,
-                    OrgAccountNumber=orgAccount.BankAccount.AccNumber
+                    OrgAccountNumber=orgAccount.BankAccount.AccNumber,
+                    TargetId = orgAccount.TargetId
                 };
             }
             catch (Exception ex)

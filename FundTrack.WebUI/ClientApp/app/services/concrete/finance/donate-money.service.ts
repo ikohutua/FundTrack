@@ -9,8 +9,10 @@ import { OrganizationDonateAccountsViewModel } from "../../../view-models/concre
 import { TargetViewModel } from "../../../view-models/concrete/finance/donate/target.view-model";
 import { CurrencyViewModel } from "../../../view-models/concrete/finance/donate/currency.view-model";
 import { DonateViewModel } from "../../../view-models/concrete/finance/donate/donate.view-model";
-import { DonateUrlsService } from "../donate-urls.service";
+import { UserDonationViewModel } from "../../../view-models/concrete/finance/donate/user-donation-view-model";
+import { GlobalUrlService } from "../global-url.service";
 import { RequestOptionsService } from "../request-options.service";
+import { DonateUrlsService } from "../donate-urls.service";
 
 
 @Injectable()
@@ -54,4 +56,27 @@ export class DonateService {
             .map((response: Response) => {return  response.json() as DonateViewModel});
     }
 
+    getUserDonations(userId: number): Observable<UserDonationViewModel[]> {
+        return this._http.get(GlobalUrlService.userDonations + userId, RequestOptionsService.getRequestOptions())
+        
+            .map((response: Response) => {
+                return response.json() as UserDonationViewModel[];
+            })
+            .catch(this.handleErrorHere);;
+    }
+    getUserDonationsByDate(userId: number, startDate: string, endDate: string): Observable<UserDonationViewModel[]> {
+        return this._http.get(GlobalUrlService.userDonationsByDate+ '?userId=' + userId + '&datefrom=' + startDate + '&dateto=' + endDate, RequestOptionsService.getRequestOptions())
+            .map((response: Response) => {
+                return response.json() as UserDonationViewModel[];
+            })
+            .catch(this.handleErrorHere);
+    }
+
+    private handleErrorHere(error: Response) {
+        return Observable.throw(error.json().error || 'Server error');
+    };
+    getSuggestedDonations(finOpId: number): Observable<DonateViewModel[]> {
+        return this._http.get(GlobalUrlService.getSuggestedDonations + finOpId.toString(), RequestOptionsService.getRequestOptions())
+            .map((response: Response) => { return response.json() as DonateViewModel[] });
+    }
 }
