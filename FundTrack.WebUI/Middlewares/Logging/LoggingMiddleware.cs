@@ -16,8 +16,8 @@ namespace FundTrack.WebUI.Middlewares.Logging
         {
             string path = @"C:\FundTrack\FundTrack.WebUI\Middlewares\Logging\" + DateTime.Now.Date + "_Exception_Logs.txt";
             {
-                using (var fs = new FileStream(path, FileMode.Append))
-                using (var fw = new StreamWriter(fs))
+                using (var file = new FileStream(path, FileMode.Append))
+                using (var fw = new StreamWriter(file))
                 {
                     string log = "Date and time:  " + DateTime.Now + "\n" + "Error message:  " + ex.Message +
                         "\n" + "Source:  " + ex.Source + "\n" + "InnerException:  " + ex.InnerException +

@@ -68,6 +68,8 @@ export class OrgAccountOperationComponent implements OnChanges {
 
     @Input() orgId: number;
     @Input() accountId: number;
+    @Output() getIsExtractEnable = new EventEmitter<boolean>();
+    @Output() onDelete = new EventEmitter<number>();
     //------------------------------------------------------------------------------
     //Initialize modal windows
     @ViewChild("newMoneyIncome")
@@ -115,7 +117,6 @@ export class OrgAccountOperationComponent implements OnChanges {
     //-------------------------------------------------------------------------------
 
     images: Image[] = [];
-    @Output() getIsExtractEnable = new EventEmitter<boolean>();
 
 
     public constructor(private _router: Router,
@@ -331,8 +332,18 @@ export class OrgAccountOperationComponent implements OnChanges {
         this.accountService.deleteOrganizationAccountById(this.deleteModel)
             .subscribe(a => {
                 this.deleteModel = a;
+                this.onDelete.emit(this.deletedAccountId);
             });
         this.newDeleteModalWindow.hide();
+    }
+
+    private pushReverse(array: Array<any>, element: any) {
+        console.log(array);
+        console.log(element);
+        array.reverse();
+        array.push(element);
+        array.reverse();
+        console.log(array);
     }
 
     private createIncomeForm() {
@@ -534,16 +545,19 @@ export class OrgAccountOperationComponent implements OnChanges {
         this.moneyOperationModel.finOpType = 1;
         this.finOpService.createIncome(this.moneyOperationModel).subscribe(a => {
             this.moneyIncome = a;
+            //this.getFinOpsByOrgAccountId();
+            //this.pushReverse(this.finOps, this.moneyIncome);
         });
+        //console.log(this.moneyIncome);
         this.closeModal(this.newMoneyIncomeWindow, this.moneyIncomeForm);
     }
 
     private makeSpending() {
-        this.completeModel();
         this.moneyOperationModel.cardFromId = this.currentAccount.id;
         this.moneyOperationModel.finOpType = 0;
         this.finOpService.createSpending(this.moneyOperationModel).subscribe(a => {
             this.moneySpending = a;
+            //this.pushReverse(this.finOps, this.moneySpending);
         });
         this.closeModal(this.newMoneySpendingWindow, this.moneySpendingForm);
     }
@@ -554,6 +568,7 @@ export class OrgAccountOperationComponent implements OnChanges {
         this.moneyOperationModel.finOpType = 2;
         this.finOpService.createTransfer(this.moneyOperationModel).subscribe(a => {
             this.moneyTransfer = a;
+            this.pushReverse(this.finOps, this.moneyTransfer);
         });
         this.closeModal(this.newMoneyTransferWindow, this.moneyTransferForm);
     }
@@ -568,6 +583,7 @@ export class OrgAccountOperationComponent implements OnChanges {
         this.updateFinOperation.cardFromId = this.currentAccount.id;
         this.updateFinOperation.userId = this.currentAccount.userId;
         this.updateFinOperation.difference = this.updateFinOperation.amount - this.originalAmount;
+        this.currentFinOp = this.updateFinOperation;
         this.finOpService.editFinOperation(this.updateFinOperation).subscribe(f => {
             this.updateFinOperation = f;
         });

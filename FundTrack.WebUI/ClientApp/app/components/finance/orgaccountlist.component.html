@@ -54,7 +54,7 @@
                 </div>
             </div>
             <div *ngIf="isDownloaded" >
-                <orgaccountoperation [accountId]="selectAccountId" [orgId]="orgId" (getIsExtractEnable)="onExtractEnableChange($event)"></orgaccountoperation>
+                <orgaccountoperation [accountId]="selectAccountId" [orgId]="orgId" (getIsExtractEnable)="onExtractEnableChange($event)" (onDelete)="onDelete($event)"></orgaccountoperation>
             </div>
             <br>
         </div>
