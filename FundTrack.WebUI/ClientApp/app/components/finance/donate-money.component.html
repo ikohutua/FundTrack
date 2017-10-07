@@ -17,7 +17,7 @@
                
                 <div class="indent">
                     <label> Виберіть організацію </label>
-                    <dropdown-org class="line-left"> </dropdown-org>
+                    <dropdown-org class="line-left" [defaultOrgId] ="_defaultOrgId" > </dropdown-org>
                 </div>
                
                 <div *ngIf="this.organizationId && !this.hasAccountForDonate">

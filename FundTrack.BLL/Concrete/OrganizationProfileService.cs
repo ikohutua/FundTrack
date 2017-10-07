@@ -190,7 +190,7 @@ namespace FundTrack.BLL.Concrete
                 User orgAdmin = _unitOfWork.MembershipRepository.GetOrganizationAdmin(organization.Id);
                 organizationDetail.Organization = organization;
                 // if found admin of organization and he has phone
-                if (orgAdmin != null && orgAdmin.Phones.Count != 0)
+                if (orgAdmin != null && orgAdmin.Phones.Any())
                 {
                     AddAdminInfoToOrgDetailModel(organizationDetail, orgAdmin);
                 }
