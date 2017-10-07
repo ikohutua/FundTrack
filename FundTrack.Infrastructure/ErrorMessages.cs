@@ -34,5 +34,6 @@
         public const string UpdateOrganizationAccount = "Неможливо оновити рахунок організації";
         public const string AddNewBalanceMessage = "Неможливо зафіксувати баланс! За вказаний день проведено фінансову операцію.";
         public const string GetFinOpWithoutAccount = "Неможливо присвоїти Id організації, оскільки фінансова операція не прив'язана до акаунта";
+        public const string BindingDonationToFinOp = "Неможливо прив'язати пожертву до фінансової операції";
     }
 }

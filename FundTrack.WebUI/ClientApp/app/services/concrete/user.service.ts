@@ -17,6 +17,10 @@ import 'rxjs/add/operator/catch';
 import * as key from '../../shared/key.storage';
 import { AuthService } from "angular2-social-login";
 import { OrganizationIdViewModel } from '../../view-models/abstract/organization-id-view-model';
+import { UserInfo } from "../../view-models/concrete/user-info.model";
+import Requestoptionsservice = require("./request-options.service");
+import RequestOptionsService = Requestoptionsservice.RequestOptionsService;
+import { GlobalUrlService } from "./global-url.service";
 
 @Injectable()
 export class UserService {
@@ -166,6 +170,11 @@ export class UserService {
     public getOrganizationId(login: string): Observable<OrganizationIdViewModel> {
         return this._http.get('api/User/GetIdOfOrganization/' + login)
             .map((response: Response) => response.json() as OrganizationIdViewModel);
+    }
+
+    public getAllUsers(): Observable<UserInfo[]> {
+        return this._http.get(GlobalUrlService.getAllUsers, RequestOptionsService.getRequestOptions())
+            .map((response: Response) => response.json() as UserInfo[]);
     }
 }
 

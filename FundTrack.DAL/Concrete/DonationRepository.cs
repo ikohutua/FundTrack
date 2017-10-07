@@ -52,5 +52,11 @@ namespace FundTrack.DAL.Concrete
         {
             return _context.Donations.FirstOrDefault(d => d.Id == id);
         }
+
+        public Donation Update(Donation item)
+        {
+            var updated = _context.Donations.Update(item);
+            return updated.Entity;
+        }
     }
 }

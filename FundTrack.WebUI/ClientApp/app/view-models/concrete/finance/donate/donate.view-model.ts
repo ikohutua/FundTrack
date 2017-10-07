@@ -1,4 +1,5 @@
 ﻿export class DonateViewModel{
+    id: number;
     orderId: string;
     userId?: number;
     currencyId: number;
@@ -7,4 +8,5 @@
     amount: number;
     description: string;
     donatorEmail: string;
+    donationDate: Date;
 }

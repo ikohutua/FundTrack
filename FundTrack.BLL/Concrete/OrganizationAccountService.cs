@@ -126,6 +126,7 @@ namespace FundTrack.BLL.Concrete
             {
                 var result = _unitOfWork.OrganizationAccountRepository.GetOrgAccountById(model.Id);
                 result.UserId = model.UserId;
+                result.TargetId = model.TargetId;
                 _unitOfWork.OrganizationAccountRepository.Edit(result);
                 _unitOfWork.SaveChanges();
                 return result;

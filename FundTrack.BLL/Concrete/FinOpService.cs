@@ -185,7 +185,8 @@ namespace FundTrack.BLL.Concrete
                         TargetId = f.TargetId,
                         Target = f.Target.TargetName,
                         FinOpType = f.FinOpType,
-                        IsEditable = true
+                        IsEditable = true,
+                        DonationId = f.DonationId
                     });
                 return finOps;
             }
@@ -218,7 +219,8 @@ namespace FundTrack.BLL.Concrete
                     TargetId = f.TargetId,
                     Target = f.Target?.TargetName,
                     FinOpType = f.FinOpType,
-                    IsEditable = true
+                    IsEditable = true,
+                    DonationId = f.DonationId
                 };
                 return finOp;
             }
@@ -243,6 +245,7 @@ namespace FundTrack.BLL.Concrete
                 finOp.TargetId = finOpModel.TargetId;
                 finOp.FinOpDate = finOpModel.Date;
                 finOp.UserId = finOpModel.UserId;
+                finOp.DonationId = finOpModel.DonationId;
                 unitOfWork.FinOpRepository.Update(finOp);
 
                 switch (finOpModel.FinOpType)
@@ -291,7 +294,8 @@ namespace FundTrack.BLL.Concrete
                     Target = f.Target?.TargetName,
                     FinOpType = f.FinOpType,
                     IsEditable = true,
-                    OrgId = (f.OrgAccountTo != null ? f.OrgAccountTo.OrgId : f.OrgAccountFrom.OrgId)
+                    OrgId = (f.OrgAccountTo != null ? f.OrgAccountTo.OrgId : f.OrgAccountFrom.OrgId),
+                    DonationId = f.DonationId
                 }).Where(f => f.OrgId == orgId);
             }
             catch (Exception e)
@@ -299,6 +303,26 @@ namespace FundTrack.BLL.Concrete
                 throw new BusinessLogicException(ErrorMessages.GetFinOpWithoutAccount, e);
             }
             
+        }
+        
+        public FinOpViewModel BindDonationAndFinOp(FinOpViewModel finOp)
+        {
+            try
+            {
+                var donation = unitOfWork.DonationRepository.Get((int)finOp.DonationId);
+                donation.UserId = finOp.UserId;
+                unitOfWork.DonationRepository.Update(donation);
+                var finOpEntity = unitOfWork.FinOpRepository.GetById(finOp.Id);
+                finOpEntity.UserId = finOp.UserId;
+                finOpEntity.DonationId = finOp.DonationId;
+                unitOfWork.FinOpRepository.Update(finOpEntity);
+                unitOfWork.SaveChanges();
+                return finOp;
+            }
+            catch (Exception e)
+            {
+                throw new BusinessLogicException(ErrorMessages.BindingDonationToFinOp, e);
+            }
         }
     }
 }

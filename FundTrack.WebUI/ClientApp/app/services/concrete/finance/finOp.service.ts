@@ -16,6 +16,8 @@ import { BaseSpinnerService } from "../../abstract/base-spinner-service";
 import { FinOpListViewModel } from "../../../view-models/concrete/finance/finop-list-viewmodel";
 import Moneyoperationviewmodel = require("../../../view-models/concrete/finance/money-operation-view-model");
 import MoneyOperationViewModel = Moneyoperationviewmodel.MoneyOperationViewModel;
+import { RequestOptionsService } from "../request-options.service";
+import { GlobalUrlService } from "../global-url.service";
 
 @Injectable()
 export class FinOpService extends BaseSpinnerService<FinOpViewModel> {
@@ -137,5 +139,10 @@ export class FinOpService extends BaseSpinnerService<FinOpViewModel> {
             }
             return false;
         };
+    }
+
+    bindDonationAndFinOp(finOp: FinOpListViewModel): Observable<FinOpListViewModel> {
+        return this._http.post(GlobalUrlService.bindDonationAndFinOp, finOp, RequestOptionsService.getRequestOptions())
+            .map((response: Response) => { return response.json() as FinOpListViewModel });
     }
 }

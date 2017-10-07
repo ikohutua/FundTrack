@@ -18,4 +18,13 @@ export class GlobalUrlService {
     //register organization
     public static registerOrganization = "api/OrganizationRegistration/RegisterNewOrganization/";
     public static readonly banksUrl: string = "api/Bank";
+
+    // donate service
+    public static readonly getSuggestedDonations = "api/Donate/suggested/";
+
+    // finOp service
+    public static readonly bindDonationAndFinOp = "api/FinOp/bindDonationAndFinOp";
+
+    // user service
+    public static readonly getAllUsers = "api/User";
 }

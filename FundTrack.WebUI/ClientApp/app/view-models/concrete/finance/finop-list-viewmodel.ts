@@ -17,4 +17,5 @@
     currencyFullName: string;
     isEditable: boolean;
     error: string;
+    donationId: number;
 }

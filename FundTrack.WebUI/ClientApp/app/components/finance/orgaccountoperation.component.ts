@@ -23,13 +23,16 @@ import { CurrencyViewModel } from "../../view-models/concrete/finance/donate/cur
 import { TargetViewModel } from "../../view-models/concrete/finance/donate/target.view-model";
 import { DeleteOrgAccountViewModel } from "../../view-models/concrete/finance/deleteorgaccount-view.model";
 import { OrgAccountDetailComponent } from "../../components/finance/orgaccountdetail.component";
+import { DonateViewModel} from"../../view-models/concrete/finance/donate/donate.view-model";
+import { UserInfo}  from "../../view-models/concrete/user-info.model";
+import { UserService} from "../../services/concrete/user.service";
 
 
 @Component({
     selector: 'orgaccountoperation',
     templateUrl: './orgaccountoperation.component.html',
     styleUrls: ['./orgaccountoperation.component.css'],
-    providers: [DonateService, OrgAccountService, EditOrganizationService]
+    providers: [DonateService, OrgAccountService, EditOrganizationService, UserService]
 })
 export class OrgAccountOperationComponent implements OnChanges {
 
@@ -48,6 +51,11 @@ export class OrgAccountOperationComponent implements OnChanges {
     private accountOwner: ModeratorViewModel = new ModeratorViewModel();
     private currentDate = new Date().toJSON().slice(0, 10);
     private user: AuthorizeUserModel = new AuthorizeUserModel();
+    private suggestedDonations: DonateViewModel[] = new Array<DonateViewModel>();
+    private users: UserInfo[] = new Array<UserInfo>();
+    private selectedDonationId: number = undefined;
+    private selectedFinOp: FinOpListViewModel = new FinOpListViewModel();
+    private selectedUserId: number = undefined;
     public deleteModel: DeleteOrgAccountViewModel = new DeleteOrgAccountViewModel();
     public deletedAccountId: number = 0;
     private minDate: string;
@@ -56,6 +64,7 @@ export class OrgAccountOperationComponent implements OnChanges {
     private isTransferOperation: boolean = false;
     private isBaseTargetChosen: boolean = false;
     private originalAmount: number;
+    private toasterMessage: string;
 
     @Input() orgId: number;
     @Input() accountId: number;
@@ -84,6 +93,9 @@ export class OrgAccountOperationComponent implements OnChanges {
 
     @ViewChild("fixingBalanceModal")
     private fixingBalanceModal: ModalComponent;
+
+    @ViewChild("suggestedDonationsModal")
+    private suggestedDonationsModal : ModalComponent;
     //-------------------------------------------------------------------------------
     //Initialize model and form
     private moneyIncomeForm: FormGroup;
@@ -112,6 +124,7 @@ export class OrgAccountOperationComponent implements OnChanges {
         private validatorsService: ValidatorsService,
         private accountService: OrgAccountService,
         private donateService: DonateService,
+        private userService: UserService,
         private editService: EditOrganizationService) {
             this.createIncomeForm();
             this.createSpendingForm();
@@ -584,5 +597,64 @@ export class OrgAccountOperationComponent implements OnChanges {
 
     onExtractEnableChange(event: boolean) {
         this.getIsExtractEnable.emit(event);
+    }
+
+    private getSuggestedDonations(finOp : FinOpListViewModel) {
+        this.donateService.getSuggestedDonations(finOp.id).subscribe(result => {
+            this.suggestedDonations = result;
+            this.selectedFinOp = finOp;
+            this.suggestedDonationsModal.show();
+            if (this.suggestedDonations.length == 1) {
+                this.selectedDonationId = this.suggestedDonations[0].id;
+            }
+        });
+        this.userService.getAllUsers().subscribe(result => this.users = result);
+    }
+
+    private IsOkButtonEnable(): boolean {
+        if (this.suggestedDonations.length > 1) {
+            if (this.selectedDonationId == undefined || this.selectedUserId == undefined) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private radioButtonOnChange(donation : DonateViewModel) {
+        this.selectedDonationId = donation.id;
+    }
+
+    private closeSuggestionsModal() {
+        this.selectedDonationId = undefined;
+        this.selectedUserId = undefined;
+        this.suggestedDonationsModal.hide();
+    }
+
+    private onClickSuggestionModalButton() {
+        if (this.suggestedDonations.length == 0) {
+            this.toasterMessage = "На даний момент операція недоступна.";
+            this.showToast();
+            this.closeSuggestionsModal();
+            return;
+        }
+        this.selectedFinOp.userId = this.selectedUserId;
+        this.selectedFinOp.donationId = this.selectedDonationId;
+        this.finOpService.bindDonationAndFinOp(this.selectedFinOp).subscribe(result => {
+            this.toasterMessage = "Операція виконана успішно.";
+            this.showToast();
+            this.closeSuggestionsModal();
+        });
+    }
+
+    public showToast() {
+        var x = document.getElementById("suggestedToast");
+        x.className = "show";
+        setTimeout(function () {
+            x.className = x.className.replace("show", "");
+        }, 3000);
+    }
+
+    private onChangeUser($event) {
+        this.selectedUserId = $event;
     }
 }

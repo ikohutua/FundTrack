@@ -9,6 +9,8 @@ import { OrganizationDonateAccountsViewModel } from "../../../view-models/concre
 import { TargetViewModel } from "../../../view-models/concrete/finance/donate/target.view-model";
 import { CurrencyViewModel } from "../../../view-models/concrete/finance/donate/currency.view-model";
 import { DonateViewModel } from "../../../view-models/concrete/finance/donate/donate.view-model";
+import { RequestOptionsService} from "../request-options.service";
+import { GlobalUrlService} from "../global-url.service";
 
 @Injectable()
 export class DonateService {
@@ -62,4 +64,8 @@ export class DonateService {
         return option;
     }
 
+    getSuggestedDonations(finOpId: number): Observable<DonateViewModel[]> {
+        return this._http.get(GlobalUrlService.getSuggestedDonations + finOpId.toString(), RequestOptionsService.getRequestOptions())
+            .map((response: Response) => { return response.json() as DonateViewModel[] });
+    }
 }

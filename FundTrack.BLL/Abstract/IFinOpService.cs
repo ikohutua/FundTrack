@@ -39,5 +39,12 @@ namespace FundTrack.BLL.Abstract
         /// <param name="orgId">Id of organization</param>
         /// <returns>collection of finOps</returns>
         IEnumerable<FinOpViewModel> GetAllFinOpsByOrgId(int orgId);
+
+        /// <summary>
+        /// Bind donation and relative finOp
+        /// </summary>
+        /// <param name="finOp"></param>
+        /// <returns></returns>
+        FinOpViewModel BindDonationAndFinOp(FinOpViewModel finOp);
     }
 }

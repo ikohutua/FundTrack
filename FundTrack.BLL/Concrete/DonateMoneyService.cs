@@ -148,11 +148,10 @@ namespace FundTrack.BLL.Concrete
             var suggestedDonations =
                 _unitOfWork.DonationRepository
                     .Read()
-                    .Where(d =>
-                        (d.DonationDate >= finOp.FinOpDate
-                        ) && // seggested conditions are same amount and donation time in range of [finOp.Time; finOp.Time + 30 minutes]
-                        (d.DonationDate <= finOpMaxPossibleDate) &&
-                        (d.Amount == (double) finOp.Amount))
+                    .Where(d =>                                                 // seggested conditions are: 
+                        (d.DonationDate >= finOp.FinOpDate) &&                  // min bound for date/time
+                        (d.DonationDate <= finOpMaxPossibleDate) &&             // max bound for date/time
+                        (d.Amount == (double) finOp.Amount))                    // same amount
                         .ToList();
             return suggestedDonations.Select(ConvertEntityToModel);
         }

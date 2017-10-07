@@ -94,5 +94,11 @@ namespace FundTrack.WebUI.Controllers
         {
             return _service.GetAllFinOpsByOrgId(orgId);
         }
+        
+        [HttpPost("bindDonationAndFinOp")]
+        public FinOpViewModel BindDonationAndFinOp([FromBody] FinOpViewModel finOp)
+        {
+            return _service.BindDonationAndFinOp(finOp);
+        }
     }
 }

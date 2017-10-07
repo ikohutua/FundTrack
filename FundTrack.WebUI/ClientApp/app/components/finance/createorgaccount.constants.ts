@@ -8,5 +8,4 @@
     public static readonly descriptionlength: string = "*Опис рахунку не може перевищувати 100 символів";
     public static readonly currencyselection: string =  "*Необхідно вибрати валюту";
     public static readonly wrongBalanceMessage: string = "*Баланс повинен бути у форматі 1 або 1.23";
-
 }
