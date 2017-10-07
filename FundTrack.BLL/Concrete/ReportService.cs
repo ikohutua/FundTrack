@@ -38,7 +38,7 @@ namespace FundTrack.BLL.Concrete
                         && (finOps.FinOpDate < dateTo)).ToList()
                     .Select(finOps => new ReportIncomeViewModel
                     {
-                        From = finOps.Donation?.User.LastName,
+                        From = finOps.Donation?.User?.LastName,
                         Description = finOps.Description,
                         TargetTo = finOps.Target?.TargetName,
                         MoneyAmount = finOps.Amount,

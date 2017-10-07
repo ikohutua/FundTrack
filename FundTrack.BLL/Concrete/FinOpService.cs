@@ -257,7 +257,7 @@ namespace FundTrack.BLL.Concrete
                 finOp.FinOpDate = finOpModel.Date;
                 finOp.UserId = finOpModel.UserId;
                 finOp.DonationId = finOpModel.DonationId;
-                unitOfWork.FinOpRepository.Update(finOp);
+                _unitOfWork.FinOpRepository.Update(finOp);
 
                 switch (finOpModel.FinOpType)
                 {
@@ -307,7 +307,7 @@ namespace FundTrack.BLL.Concrete
                     Target = f.Target?.TargetName,
                     FinOpType = f.FinOpType,
                     IsEditable = true,
-                    OrgId = (f.OrgAccountTo != null ? f.OrgAccountTo.OrgId : f.OrgAccountFrom.OrgId),
+                    OrgId = f.OrgAccountTo?.OrgId ?? f.OrgAccountFrom.OrgId,
                     DonationId = f.DonationId
                 }).Where(f => f.OrgId == orgId);
             }
@@ -322,14 +322,14 @@ namespace FundTrack.BLL.Concrete
         {
             try
             {
-                var donation = unitOfWork.DonationRepository.Get((int)finOp.DonationId);
+                var donation = _unitOfWork.DonationRepository.Get((int)finOp.DonationId);
                 donation.UserId = finOp.UserId;
-                unitOfWork.DonationRepository.Update(donation);
-                var finOpEntity = unitOfWork.FinOpRepository.GetById(finOp.Id);
+                _unitOfWork.DonationRepository.Update(donation);
+                var finOpEntity = _unitOfWork.FinOpRepository.GetById(finOp.Id);
                 finOpEntity.UserId = finOp.UserId;
                 finOpEntity.DonationId = finOp.DonationId;
-                unitOfWork.FinOpRepository.Update(finOpEntity);
-                unitOfWork.SaveChanges();
+                _unitOfWork.FinOpRepository.Update(finOpEntity);
+                _unitOfWork.SaveChanges();
                 return finOp;
             }
             catch (Exception e)
