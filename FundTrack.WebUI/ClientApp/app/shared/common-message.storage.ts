@@ -5,3 +5,7 @@ export const exceededImageSize: string = "Завеликий розмір зоб
 export const invalidFormat: string = "Невірний формат!";
 export const noImageAvailableToSave: string = "Немає зображення для збереження!";
 export const uncorrectAccountType: string = "Некоректний тип рахунку!";
+export const requiredField = "Поле є обов'язковим для заповнення";
+export const requiredNumberFielsd = "Поле повинно містити тільки цифри";
+export const wrongLength = "Недопустима кількість символів";
+export const invalidCardNumberMessage = "Номер картки повинен складатися з 16 цифр";

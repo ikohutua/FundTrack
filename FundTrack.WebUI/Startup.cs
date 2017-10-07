@@ -142,7 +142,7 @@ namespace FundTrack.WebUI
 
             app.UseStaticFiles();
 
-          
+
             app.UseJwtBearerAuthentication(new JwtBearerOptions
             {
                 AutomaticAuthenticate = true,
@@ -169,13 +169,11 @@ namespace FundTrack.WebUI
 
             //if (env.IsDevelopment())
             //{
-                
-            //
-
             app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions
             {
                 HotModuleReplacement = true
             });
+            //}
 
             app.UseWebSockets();
 

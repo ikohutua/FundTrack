@@ -110,13 +110,11 @@ export class OrgAccountListComponent implements OnInit {
     Sets active account
     */
     private setActiveAccount(account: OrgAccountViewModel): void {
+        this.isExtractsMerchantEnable = false;
         this.selectAccountId = account.id;
         this.orgId = account.orgId;
         this.selectedAccount = account;
         this.ifBankSelectedType = account.accountType === "Банк" ? true : false;
-
-        //sessionStorage.setItem(key.keyOrgAccountId, account.id.toString());
-        //sessionStorage.setItem(key.keyOrgId, account.orgId.toString());
     }
     /*
     After account has been deleted - sets first account in the list as active and removes deleted account from the array

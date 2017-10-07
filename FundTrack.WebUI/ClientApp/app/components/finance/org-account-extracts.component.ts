@@ -7,6 +7,7 @@ import { CurrencyPipe } from '@angular/common';
 import { DonateCredentialsViewModel } from "../../view-models/concrete/finance/donate-credentials.view-model";
 import { ModalComponent } from '../../shared/components/modal/modal-component';
 import * as message from '../../shared/common-message.storage';
+import { FormGroup, FormControl } from "@angular/forms";
 
 @Component({
     selector: 'org-account-extracts',
@@ -14,11 +15,10 @@ import * as message from '../../shared/common-message.storage';
     styleUrls: ['./org-account-extracts.component.css'],
     providers: [OrgAccountService]
 })
-export class OrgAccountExtractsComponent implements OnChanges, OnInit {
-    @Input('orgId') orgId: number;
+export class OrgAccountExtractsComponent implements OnChanges {
     @Input('accountId') accountId: number = -1;
-    isExtractsEnable: boolean = false;
-    isExtractsConnected: boolean = false;
+    isExtractsEnable: boolean;
+    isExtractsConnected: boolean;
     @Output() getIsExtractEnable = new EventEmitter<boolean>();
 
     extractsCredentials: DonateCredentialsViewModel = new DonateCredentialsViewModel();
@@ -28,11 +28,6 @@ export class OrgAccountExtractsComponent implements OnChanges, OnInit {
     @ViewChild('disable') disableModal: ModalComponent;
 
     constructor(private _orgAccountService: OrgAccountService) {
-
-    }
-
-    ngOnInit() {
-
     }
 
     ngOnChanges(changes: { [propKey: string]: SimpleChange }) {
@@ -42,8 +37,6 @@ export class OrgAccountExtractsComponent implements OnChanges, OnInit {
                 this._orgAccountService.getBankAccId(this.accountId)
                     .subscribe((r) => {
                         this.bankAccountId = r;
-                        console.log(this.accountId);
-                        console.log(r);
                     });
                 this._orgAccountService.checkExtractsStatus(this.accountId)
                     .subscribe(
@@ -95,8 +88,6 @@ export class OrgAccountExtractsComponent implements OnChanges, OnInit {
             .subscribe((res) => {
                 this.isExtractsEnable = res;
                 this.emitIsExtractEnable();
-            },
-            (error) => {
             });
     }
 
