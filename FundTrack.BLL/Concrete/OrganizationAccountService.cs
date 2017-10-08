@@ -170,7 +170,7 @@ namespace FundTrack.BLL.Concrete
                     account.EDRPOU = item.BankAccount.EDRPOU;
                     account.CardNumber = item.BankAccount.CardNumber;
                     account.BankAccId = item.BankAccId;
-                    
+
                     account.BankId = item.BankAccount.BankId;
                     account.BankName = item.BankAccount.Bank.BankName;
                     account.MFO = item.BankAccount.Bank.MFO;
@@ -296,7 +296,7 @@ namespace FundTrack.BLL.Concrete
                 {
                     Id = orgAccount.Id,
                     OrgAccountName = orgAccount.OrgAccountName,
-                    OrgAccountNumber=orgAccount.BankAccount.AccNumber,
+                    OrgAccountNumber = orgAccount.BankAccount.AccNumber,
                     TargetId = orgAccount.TargetId
                 };
             }
@@ -316,16 +316,16 @@ namespace FundTrack.BLL.Concrete
             var orgAccount = _unitOfWork.OrganizationAccountRepository.GetOrgAccountById(orgAccountId);
 
             try
-            {               
-                if(orgAccount.BankAccount.MerchantId != null)
-                return true;
-                else return false;              
+            {
+                if (orgAccount.BankAccount.MerchantId != null)
+                    return true;
+                else return false;
             }
 
             catch (Exception)
             {
                 return false;
-            }            
+            }
         }
 
         public bool IsDonationEnabled(int orgAccountId)
@@ -334,7 +334,7 @@ namespace FundTrack.BLL.Concrete
 
             try
             {
-                if (orgAccount.BankAccount.IsDonationEnabled!= null && (bool)orgAccount.BankAccount.IsDonationEnabled)
+                if (orgAccount.BankAccount.IsDonationEnabled != null && (bool)orgAccount.BankAccount.IsDonationEnabled)
                     return true;
                 else return false;
             }
@@ -347,11 +347,12 @@ namespace FundTrack.BLL.Concrete
 
         public BankAccountDonateViewModel GetDonateCredentials(int orgAccountId)
         {
-            var orgAccount = _unitOfWork.OrganizationAccountRepository.GetOrgAccountById(orgAccountId);           
+            var orgAccount = _unitOfWork.OrganizationAccountRepository.GetOrgAccountById(orgAccountId);
 
             try
             {
-                var result = new BankAccountDonateViewModel() {
+                var result = new BankAccountDonateViewModel()
+                {
                     BankAccountId = orgAccount.BankAccount.Id,
                     MerchantId = (int)orgAccount.BankAccount.MerchantId,
                     MerchantPassword = orgAccount.BankAccount.MerchantPassword
@@ -382,16 +383,17 @@ namespace FundTrack.BLL.Concrete
                 return (bool)bankAccount.IsDonationEnabled;
             }
 
-            catch (Exception ex) { 
+            catch (Exception ex)
+            {
                 throw new BusinessLogicException(ErrorMessages.CantEditInfoForAccount, ex);
-            }           
+            }
         }
 
         public BankAccountDonateViewModel ConnectDonateFunction(BankAccountDonateViewModel info)
         {
             var bankAccount = _unitOfWork.BankAccountRepository.Get(info.BankAccountId);
 
-            if(bankAccount != null)
+            if (bankAccount != null)
             {
                 bankAccount.MerchantId = (int)info.MerchantId;
                 bankAccount.MerchantPassword = info.MerchantPassword;
@@ -413,12 +415,12 @@ namespace FundTrack.BLL.Concrete
         {
             var orgAccount = _unitOfWork.OrganizationAccountRepository.GetOrgAccountById(orgAccountId);
 
-            if (orgAccount!=null && orgAccount.BankAccId.HasValue)
+            if (orgAccount != null && orgAccount.BankAccId.HasValue)
             {
                 return (int)orgAccount.BankAccId;
             }
 
-            else return 0;           
+            else return 0;
         }
 
         public BankAccountDonateViewModel DisableDonateFunction(int bankAccountId)
@@ -452,23 +454,19 @@ namespace FundTrack.BLL.Concrete
 
         public BankAccountDonateViewModel ExtractCredentials(int orgAccountId)
         {
-            var orgAccount = _unitOfWork.OrganizationAccountRepository.GetOrgAccountById(orgAccountId);
-
-            try
+            var bankAccount = _unitOfWork.OrganizationAccountRepository.GetOrgAccountById(orgAccountId)?.BankAccount;
+            if (bankAccount == null)
             {
-                var result = new BankAccountDonateViewModel()
-                {
-                    BankAccountId = orgAccount.BankAccount.Id,
-                    MerchantId = (int)orgAccount.BankAccount.ExtractMerchantId,
-                    MerchantPassword = orgAccount.BankAccount.ExtractMerchantPassword
-                };
-                return result;
+                throw new BusinessLogicException(ErrorMessages.CantGetInfoForAccount);
             }
 
-            catch (Exception ex)
+            var result = new BankAccountDonateViewModel()
             {
-                throw new BusinessLogicException(ErrorMessages.CantGetInfoForAccount, ex);
-            }
+                BankAccountId = bankAccount.Id,
+                MerchantId = bankAccount.ExtractMerchantId.Value,
+                MerchantPassword = bankAccount.ExtractMerchantPassword
+            };
+            return result;
         }
 
         public bool IsExtractsEnabled(int orgAccountId)
@@ -545,16 +543,18 @@ namespace FundTrack.BLL.Concrete
 
         public bool IsExtractsConnected(int orgAccountId)
         {
-            var orgAccount = _unitOfWork.OrganizationAccountRepository.GetOrgAccountById(orgAccountId);
+            var bankAccount = _unitOfWork.OrganizationAccountRepository.GetOrgAccountById(orgAccountId)?.BankAccount;
 
-            try
+            if (bankAccount == null)
             {
-                if (orgAccount.BankAccount.ExtractMerchantId != null && orgAccount.BankAccount.ExtractMerchantPassword != null)
-                    return true;
-                else return false;
+                return false;
             }
-
-            catch (Exception)
+            if (bankAccount.ExtractMerchantId.HasValue &&
+                    !String.IsNullOrEmpty(bankAccount.ExtractMerchantPassword))
+            {
+                return true;
+            }
+            else
             {
                 return false;
             }

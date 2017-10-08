@@ -1,4 +1,5 @@
 ﻿using FundTrack.BLL.Abstract;
+using FundTrack.BLL.Concrete;
 using FundTrack.Infrastructure.ViewModel;
 using FundTrack.Infrastructure.ViewModel.FinanceViewModels;
 using Microsoft.AspNetCore.Authorization;
@@ -7,42 +8,47 @@ using Microsoft.AspNetCore.Mvc;
 namespace FundTrack.WebUI.Controllers
 {
     [Route("api/[controller]")]
-    public class OrgAccountController:Controller
+    public class OrgAccountController : Controller
     {
         private readonly IOrganizationAccountService _orgAccountService;
         public OrgAccountController(IOrganizationAccountService orgAccountService)
         {
-            this._orgAccountService = orgAccountService;
+            _orgAccountService = orgAccountService;
         }
+
         [Authorize(Roles = "admin, moderator")]
         [HttpGet("[action]/{id}")]
-        public JsonResult Get(int id)
+        public IActionResult Get(int id)
         {
-            return Json(this._orgAccountService.GetOrganizationAccountById(id));
+            return Ok(_orgAccountService.GetOrganizationAccountById(id));
         }
-        [Authorize(Roles ="admin, moderator")]
+
+        [Authorize(Roles = "admin, moderator")]
         [HttpGet("[action]/{orgId}")]
-        public JsonResult ReadAll(int orgId)
+        public IActionResult ReadAll(int orgId)
         {
-            return Json(this._orgAccountService.GetAccountsByOrganizationId(orgId));
+            return Ok(_orgAccountService.GetAccountsByOrganizationId(orgId));
         }
+
         [Authorize(Roles = "admin")]
         [HttpPost("[action]")]
-        public JsonResult Create([FromBody]OrgAccountViewModel model)
+        public IActionResult Create([FromBody]OrgAccountViewModel model)
         {
-            var item= this._orgAccountService.CreateOrganizationAccount(model);
-            return Json(item);
+            var item = _orgAccountService.CreateOrganizationAccount(model);
+            return Ok(item);
         }
+
         [HttpPut("[action]")]
-        public JsonResult Edit([FromBody]OrgAccountViewModel model)
+        public IActionResult Edit([FromBody]OrgAccountViewModel model)
         {
-            return Json(this._orgAccountService.UpdateOrganizationAccount(model));
+            return Ok(_orgAccountService.UpdateOrganizationAccount(model));
         }
+
         [Authorize(Roles = "admin")]
         [HttpPost("[action]")]
         public DeleteOrgAccountViewModel Delete([FromBody]DeleteOrgAccountViewModel model)
         {
-            return this._orgAccountService.DeleteOrganizationAccount(model);
+            return _orgAccountService.DeleteOrganizationAccount(model);
         }
 
         /// <summary>
@@ -53,39 +59,39 @@ namespace FundTrack.WebUI.Controllers
         /// <returns></returns>
         [HttpGet("GetOrgAccountForFinOp/{orgId}/{cardNumber}")]
         [Authorize(Roles = "admin, moderator")]
-        public JsonResult GetOrgAccountsForFinOp(int orgId,string cardNumber)
+        public IActionResult GetOrgAccountsForFinOp(int orgId, string cardNumber)
         {
-            return Json(this._orgAccountService.GetAccountForSelect(orgId,cardNumber));
+            return Ok(_orgAccountService.GetAccountForSelect(orgId, cardNumber));
         }
 
-        [HttpGet("GetDonationStatus/{orgAccountId}")]        
-        public JsonResult GetDonationStatus(int orgAccountId)
+        [HttpGet("GetDonationStatus/{orgAccountId}")]
+        public IActionResult GetDonationStatus(int orgAccountId)
         {
-            return Json(_orgAccountService.IsDonationConnected(orgAccountId));
+            return Ok(_orgAccountService.IsDonationConnected(orgAccountId));
         }
 
         [HttpGet("CheckDonateFunction/{orgAccountId}")]
-        public JsonResult CheckDonateFunction(int orgAccountId)
+        public IActionResult CheckDonateFunction(int orgAccountId)
         {
-            return Json(_orgAccountService.IsDonationEnabled(orgAccountId));
+            return Ok(_orgAccountService.IsDonationEnabled(orgAccountId));
         }
 
         [HttpGet("GetDonateCredentials/{orgAccountId}")]
-        public JsonResult GetDonateCredentials(int orgAccountId)
+        public IActionResult GetDonateCredentials(int orgAccountId)
         {
-            return Json(_orgAccountService.GetDonateCredentials(orgAccountId));
+            return Ok(_orgAccountService.GetDonateCredentials(orgAccountId));
         }
 
         [HttpPut("[action]")]
-        public JsonResult ToggleDonateFunction([FromBody]int orgAccountId)
+        public IActionResult ToggleDonateFunction([FromBody]int orgAccountId)
         {
-             return Json(_orgAccountService.ToggleDonateFunction(orgAccountId));
+            return Ok(_orgAccountService.ToggleDonateFunction(orgAccountId));
         }
 
         [HttpGet("GetBankAccountId/{orgAccountId}")]
-        public int GetBankAccountId(int orgAccountId)
+        public IActionResult GetBankAccountId(int orgAccountId)
         {
-            return _orgAccountService.GetBankAccountIdByOrgAccountId(orgAccountId);
+            return Ok(_orgAccountService.GetBankAccountIdByOrgAccountId(orgAccountId));
         }
 
         [HttpPost("[action]")]
@@ -106,41 +112,72 @@ namespace FundTrack.WebUI.Controllers
             return _orgAccountService.UpdateOrganizationAccount(account);
         }
 
-
         [HttpGet("ExtractCredentials/{orgAccountId}")]
-        public JsonResult ExtractCredentials(int orgAccountId)
+        public IActionResult ExtractCredentials(int? orgAccountId)
         {
-            return Json(_orgAccountService.ExtractCredentials(orgAccountId));
+            if (HasNonNegativeValue(orgAccountId))
+            {
+                return BadRequest();
+            }
+            try
+            {
+                return Ok(_orgAccountService.ExtractCredentials(orgAccountId.Value));
+            }
+            catch (BusinessLogicException ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpGet("ExtractStatus/{orgAccountId}")]
-        public JsonResult ExtractStatus(int orgAccountId)
+        public IActionResult ExtractStatus(int orgAccountId)
         {
-            return Json(_orgAccountService.IsExtractsConnected(orgAccountId));
+            if (orgAccountId<0)
+            {
+                return BadRequest();
+            }
+            return Ok(_orgAccountService.IsExtractsConnected(orgAccountId));
         }
 
         [HttpPost("[action]")]
-        public BankAccountDonateViewModel ConnectExtracts([FromBody]BankAccountDonateViewModel item)
+        public IActionResult ConnectExtracts([FromBody]BankAccountDonateViewModel item)
         {
-            return _orgAccountService.ConnectExtractsFunction(item);
+            return Ok(_orgAccountService.ConnectExtractsFunction(item));
         }
 
         [HttpPut("[action]")]
-        public JsonResult ToggleExtractsFunction([FromBody]int orgAccountId)
+        public IActionResult ToggleExtractsFunction([FromBody]int? orgAccountId)
         {
-            return Json(_orgAccountService.ToggleExtractsFunction(orgAccountId));
+            if (HasNonNegativeValue(orgAccountId))
+            {
+                return BadRequest(orgAccountId);
+            }
+            return Ok(_orgAccountService.ToggleExtractsFunction(orgAccountId.Value));
         }
 
         [HttpPut("[action]")]
-        public BankAccountDonateViewModel DisableExtractsFunction([FromBody]int bankAccountId)
+        public IActionResult DisableExtractsFunction([FromBody]int? bankAccountId)
         {
-            return _orgAccountService.DisableExtractsFunction(bankAccountId);
+            if (HasNonNegativeValue(bankAccountId))
+            {
+                return BadRequest(bankAccountId);
+            }
+            return Ok(_orgAccountService.DisableExtractsFunction(bankAccountId.Value));
         }
 
         [HttpGet("CheckExtractsFunction/{orgAccountId}")]
-        public JsonResult CheckExtractsFunction(int orgAccountId)
+        public IActionResult CheckExtractsFunction(int orgAccountId)
         {
-            return Json(_orgAccountService.IsExtractsEnabled(orgAccountId));
+            if (orgAccountId < 0)
+            {
+                return BadRequest();
+            }
+            return Ok(_orgAccountService.IsExtractsEnabled(orgAccountId));
+        }
+
+        private bool HasNonNegativeValue(int? value)
+        {
+            return !value.HasValue || value < 0;
         }
     }
 }
