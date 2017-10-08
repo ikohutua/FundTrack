@@ -341,6 +341,8 @@ export class OrganizationEditComponent implements OnInit, OnDestroy, AfterViewIn
         this._editService.editLogo(this.editLogo).subscribe(
             model => {
                 this.organization.logoUrl = model.logoUrl;
+            }, error => {
+                alert(error);
             });
     }
 }
