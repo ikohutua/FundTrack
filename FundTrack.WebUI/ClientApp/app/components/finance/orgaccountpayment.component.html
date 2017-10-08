@@ -10,7 +10,7 @@
             <br />
             <input class="form-control" type="text" required [(ngModel)]="connectDonateCredential.merchantId" name="merchantId" #merchantId="ngModel" pattern="[0-9]*" />
             <br />
-            <div *ngIf="merchantId.errors && merchantId.dirty"
+            <div *ngIf="merchantId.value && merchantId.errors && merchantId.dirty"
                  class="alert alert-danger">
                 Введено недозволений символ
             </div>

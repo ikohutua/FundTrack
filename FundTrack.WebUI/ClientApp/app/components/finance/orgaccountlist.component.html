@@ -2,7 +2,7 @@
     <div class="row">
         <ul>
             <li><a title="Додати новий рахунок організації" (click)="navigateToCreatePage()" class="active">Додати рахунок</a></li>
-            <li><a *ngIf="isExtractsMerchantEnable" title="Імпорт даних для вибраного рахунку зі списку" (click)="navigateToBankImportPage()" class="active">Імпортувати дані з банку</a></li>
+            <li><a *ngIf="isExtractsMerchantEnable" title="Імпорт даних для вибраного рахунку" (click)="navigateToBankImportPage()" class="active">Імпортувати дані з банку</a></li>
             <li><a *ngIf="!isExtractsMerchantEnable" title="Для імпортування даних з вибраного рахунку вкажіть MercantId та MerchantPassword для Приват 24" class="disabled">Імпортувати дані з банку</a></li>
         </ul>
     </div>

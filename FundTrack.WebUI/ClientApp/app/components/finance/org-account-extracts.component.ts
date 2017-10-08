@@ -4,7 +4,7 @@ import { OrgAccountService } from "../../services/concrete/finance/orgaccount.se
 import { OrgAccountViewModel } from "../../view-models/concrete/finance/orgaccount-viewmodel";
 import { DecimalPipe } from '@angular/common';
 import { CurrencyPipe } from '@angular/common';
-import { DonateCredentialsViewModel } from "../../view-models/concrete/finance/donate-credentials.view-model";
+import { BankCredentialsViewModel } from "../../view-models/concrete/finance/donate-credentials.view-model";
 import { ModalComponent } from '../../shared/components/modal/modal-component';
 import * as message from '../../shared/common-message.storage';
 import { FormGroup, FormControl } from "@angular/forms";
@@ -21,18 +21,21 @@ export class OrgAccountExtractsComponent implements OnChanges {
     isExtractsConnected: boolean;
     @Output() getIsExtractEnable = new EventEmitter<boolean>();
 
-    extractsCredentials: DonateCredentialsViewModel = new DonateCredentialsViewModel();
-    connectExtractsCredential: DonateCredentialsViewModel = new DonateCredentialsViewModel();
+    extractsCredentials: BankCredentialsViewModel = new BankCredentialsViewModel();
+    connectExtractsCredential: BankCredentialsViewModel = new BankCredentialsViewModel();
     errorMessage: string;
     bankAccountId: number;
     @ViewChild('disable') disableModal: ModalComponent;
+
+    lengthNotZero: boolean = this.connectExtractsCredential.merchantId > 0;
 
     constructor(private _orgAccountService: OrgAccountService) {
     }
 
     ngOnChanges(changes: { [propKey: string]: SimpleChange }) {
+        this.connectExtractsCredential = new BankCredentialsViewModel();
         if (changes['accountId'] && changes['accountId'] != changes['accountId'].currentValue) {
-            if (this.accountId != (-1)) {
+            if (this.accountId >= 0) {
                 this.errorMessage = null;
                 this._orgAccountService.getBankAccId(this.accountId)
                     .subscribe((r) => {
