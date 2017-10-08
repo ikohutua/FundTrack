@@ -184,7 +184,6 @@ namespace FundTrack.BLL.Concrete
         {
             try
             {
-                throw new BusinessLogicException(ErrorMessages.CantGetInfoForAccount);
                 var finOps = _unitOfWork.FinOpRepository.GetFinOpByOrgAccount(orgAccountId)
                     .OrderByDescending(f => f.Id)
                     .Select(f => new FinOpViewModel
