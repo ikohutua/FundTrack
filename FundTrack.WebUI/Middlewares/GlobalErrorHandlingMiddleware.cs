@@ -1,13 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using System;
 using System.Threading.Tasks;
 using FundTrack.WebUI.Middlewares.Logging;
-using System.Data;
-using System.Diagnostics;
 
 namespace FundTrack.WebUI.Middlewares
 {

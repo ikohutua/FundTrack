@@ -1,7 +1,5 @@
 ﻿using FundTrack.BLL.Abstract;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using FundTrack.Infrastructure.ViewModel;
 using FundTrack.DAL.Abstract;
 using System.Linq;

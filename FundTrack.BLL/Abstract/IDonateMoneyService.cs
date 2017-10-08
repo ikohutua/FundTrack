@@ -1,7 +1,6 @@
 ﻿using FundTrack.Infrastructure.ViewModel.FinanceViewModels.DonateViewModels;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace FundTrack.BLL.Abstract
 {

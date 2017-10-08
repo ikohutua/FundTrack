@@ -3,8 +3,6 @@ using FundTrack.DAL.Abstract;
 using FundTrack.Infrastructure.ViewModel;
 using System.Linq;
 using FundTrack.DAL.Entities;
-using System.Threading.Tasks;
-using System;
 
 namespace FundTrack.BLL.Concrete
 {

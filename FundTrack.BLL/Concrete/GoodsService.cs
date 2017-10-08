@@ -1,9 +1,5 @@
 ﻿using FundTrack.BLL.Abstract;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using FundTrack.Infrastructure.ViewModel;
 using FundTrack.DAL.Abstract;
 using FundTrack.DAL.Entities;

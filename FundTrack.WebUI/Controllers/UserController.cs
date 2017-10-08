@@ -3,8 +3,6 @@ using FundTrack.Infrastructure;
 using FundTrack.Infrastructure.ViewModel;
 using FundTrack.Infrastructure.ViewModel.ResetPassword;
 using FundTrack.WebUI.secutiry;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System;
