@@ -142,7 +142,14 @@ namespace FundTrack.WebUI.Controllers
         [HttpPost("[action]")]
         public IActionResult ConnectExtracts([FromBody]BankAccountDonateViewModel item)
         {
-            return Ok(_orgAccountService.ConnectExtractsFunction(item));
+            try
+            {
+                return Ok(_orgAccountService.ConnectExtractsFunction(item));
+            }
+            catch (BusinessLogicException ex)
+            {
+                return BadRequest(ex.Message); 
+            }
         }
 
         [HttpPut("[action]")]

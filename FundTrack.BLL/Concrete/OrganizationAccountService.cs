@@ -492,7 +492,7 @@ namespace FundTrack.BLL.Concrete
             }
             else
             {
-                return info;
+                throw new BusinessLogicException(ErrorMessages.BadRequestMessage);
             }
         }
 
