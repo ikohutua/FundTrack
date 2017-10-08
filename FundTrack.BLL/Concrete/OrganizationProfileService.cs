@@ -183,7 +183,6 @@ namespace FundTrack.BLL.Concrete
         public OrganizationDetailViewModel GetOrganizationDetail(int id)
         {
             OrganizationDetailViewModel organizationDetail = new OrganizationDetailViewModel();
-
             try
             {
                 OrganizationViewModel organization = GetOrganizationById(id);
@@ -194,14 +193,12 @@ namespace FundTrack.BLL.Concrete
                 {
                     AddAdminInfoToOrgDetailModel(organizationDetail, orgAdmin);
                 }
+                AddAccountsInfoToOrgDetailModel(organizationDetail);
             }
             catch (NullReferenceException ex)
             {
                 throw new DataAccessException(ErrorMessages.CantFindDataById, ex);
             }
-
-            AddAccountsInfoToOrgDetailModel(organizationDetail);
-
             return organizationDetail;
         }
 
