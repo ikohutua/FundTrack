@@ -270,6 +270,10 @@ namespace FundTrack.BLL.Concrete
 
                 item.LogoUrl = AzureStorageConfiguration.GetImageUrl(organization.LogoUrl);
             }
+            else
+            {
+                throw new BusinessLogicException(ErrorMessages.BadRequestMessage);
+            }
             return item;
         }
     }

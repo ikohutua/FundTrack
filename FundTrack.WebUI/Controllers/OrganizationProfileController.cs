@@ -2,7 +2,7 @@
 using FundTrack.BLL.Abstract;
 using FundTrack.Infrastructure.ViewModel;
 using FundTrack.Infrastructure.ViewModel.EditOrganizationViewModels;
-using System.Collections.Generic;
+using FundTrack.BLL.Concrete;
 
 namespace FundTrack.WebUI.Controllers
 {
@@ -69,9 +69,16 @@ namespace FundTrack.WebUI.Controllers
         }
 
         [HttpPut("Logo")]
-        public EditLogoViewModel EditLogo([FromBody] EditLogoViewModel logo)
+        public IActionResult EditLogo([FromBody] EditLogoViewModel logo)
         {
-            return _orgProfileService.EditLogo(logo);
+            try
+            {
+                return Ok(_orgProfileService.EditLogo(logo));
+            }
+            catch (BusinessLogicException ex)
+            {
+                return BadRequest(ex);
+            }
         }
     }
 }
