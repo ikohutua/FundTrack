@@ -7,7 +7,6 @@
     cardToId: number;
     date: Date;
     description: string;
-    difference: number;
     amount: number;
     target: string;
     targetId: number;

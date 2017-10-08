@@ -37,9 +37,13 @@ namespace FundTrack.WebUI.Controllers
         /// <returns></returns>
         [HttpPost("CreateFinOp")]
         [Authorize(Roles = "admin, moderator")]
-        public FinOpFromBankViewModel CreateFinOp([FromBody] FinOpFromBankViewModel finOpModel)
+        public IActionResult CreateFinOp([FromBody] FinOpFromBankViewModel finOpModel)
         {
-            return this._service.CreateFinOp(finOpModel);
+            if(finOpModel == null)
+            {
+                return BadRequest();
+            }
+            return Ok(_service.CreateFinOp(finOpModel));
         }
 
         /// <summary>
@@ -49,56 +53,88 @@ namespace FundTrack.WebUI.Controllers
         /// <returns></returns>
         [HttpGet("GetFinOpsByOrgAccId/{orgAccountId}")]
         [Authorize(Roles = "admin, moderator")]
-        public IEnumerable<FinOpViewModel> GetFinOpsByOrgAccId(int orgAccountId)
+        public IActionResult GetFinOpsByOrgAccId(int orgAccountId)
         {
-            return this._service.GetFinOpsByOrgAccount(orgAccountId);
+            if (orgAccountId <= 0)
+            {
+                return BadRequest();
+            }
+            return Ok(_service.GetFinOpsByOrgAccount(orgAccountId));
         }
 
         [HttpGet("GetFinOpsById/{id}")]
         [Authorize(Roles = "admin, moderator")]
-        public FinOpViewModel GetFinOpsById(int id)
+        public IActionResult GetFinOpsById(int id)
         {
-            return this._service.GetFinOpsById(id);
+            if (id <= 0)
+            {
+                return BadRequest();
+            }
+            return Ok(_service.GetFinOpsById(id));
         }
 
         [HttpPost("Income")]
         [Authorize(Roles = "admin, moderator")]
-        public FinOpViewModel Income([FromBody] FinOpViewModel incomeModel)
+        public IActionResult Income([FromBody] FinOpViewModel incomeModel)
         {
-            return this._service.CreateIncome(incomeModel);
+            if(incomeModel == null)
+            {
+                return BadRequest();
+            }
+            return Ok(_service.CreateIncome(incomeModel));
         }
 
         [HttpPost("Spending")]
         [Authorize(Roles = "admin, moderator")]
-        public FinOpViewModel Spending([FromBody] FinOpViewModel spendingModel)
+        public IActionResult Spending([FromBody] FinOpViewModel spendingModel)
         {
-            return this._service.CreateSpending(spendingModel);
+            if (spendingModel == null)
+            {
+                return BadRequest();
+            }
+            return Ok(_service.CreateSpending(spendingModel));
         }
 
         [HttpPost("Transfer")]
         [Authorize(Roles = "admin, moderator")]
-        public FinOpViewModel Transfer([FromBody] FinOpViewModel transferModel)
+        public IActionResult Transfer([FromBody] FinOpViewModel transferModel)
         {
-            return this._service.CreateTransfer(transferModel);
+            if (transferModel == null)
+            {
+                return BadRequest();
+            }
+            return Ok(_service.CreateTransfer(transferModel));
         }
 
         [HttpPut()]
         [Authorize(Roles = "admin, moderator")]
-        public FinOpViewModel Edit([FromBody] FinOpViewModel finOp)
+        public IActionResult Edit([FromBody] FinOpViewModel finOp)
         {
-            return this._service.EditFinOperation(finOp);
+            if (finOp == null)
+            {
+                return BadRequest();
+            }
+            return Ok(_service.EditFinOperation(finOp));
         }
         
         [HttpGet("{orgId}")]
-        public IEnumerable<FinOpViewModel> GetAllFinOpsByOrganizationId(int orgId)
+        public IActionResult GetAllFinOpsByOrganizationId(int orgId)
         {
-            return _service.GetAllFinOpsByOrgId(orgId);
+            if (orgId <= 0)
+            {
+                BadRequest();
+            }
+            return Ok(_service.GetAllFinOpsByOrgId(orgId));
         }
         
         [HttpPost("bindDonationAndFinOp")]
-        public FinOpViewModel BindDonationAndFinOp([FromBody] FinOpViewModel finOp)
+        public IActionResult BindDonationAndFinOp([FromBody] FinOpViewModel finOp)
         {
-            return _service.BindDonationAndFinOp(finOp);
+            if (finOp == null)
+            {
+                return BadRequest();
+            }
+            return Ok(_service.BindDonationAndFinOp(finOp));
         }
     }
 }

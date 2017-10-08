@@ -6,9 +6,6 @@ import { BehaviorSubject } from "rxjs/BehaviorSubject";
 
 @Injectable()
 export class ImputImageService {
-    private startFile: any;
-    private currentImageFile: File;
-    private image: Image;
 
     public UploadImageFromFile(startFile: any): Promise<Image> {
         
