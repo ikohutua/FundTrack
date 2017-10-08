@@ -33,7 +33,7 @@ namespace FundTrack.BLL.Concrete
 
                 return _unitOfWork.FinOpRepository.Read()
                     .Where(finOps =>
-                        (finOps.FinOpType == Constants.FinOpIncome)
+                        (finOps.FinOpType == Constants.FinOpTypeIncome)
                         && (finOps.OrgAccountTo.OrgId == orgId)
                         && (finOps.FinOpDate > dateFrom)
                         && (finOps.FinOpDate < dateTo)).ToList()
@@ -68,7 +68,7 @@ namespace FundTrack.BLL.Concrete
 
                 return _unitOfWork.FinOpRepository.Read()
                     .Where(finOps =>
-                        (finOps.FinOpType == Constants.FinOpSpending)
+                        (finOps.FinOpType == Constants.FinOpTypeSpending)
                         && finOps.OrgAccountFrom.OrgId == orgId
                         && finOps.FinOpDate > dateFrom
                         && finOps.FinOpDate < dateTo).ToList()

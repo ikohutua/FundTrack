@@ -49,6 +49,15 @@ export class GlobalUrlService {
 
     // finOp service
     public static readonly bindDonationAndFinOp = "api/FinOp/bindDonationAndFinOp";
+    public static readonly getFinOpsUrl: string = 'api/finop/getFinOpsByOrgAccId';
+    public static readonly getTargetsUrl: string = "api/finop/GetTargets";
+    public static readonly incomeUrl: string = "api/finop/income";
+    public static readonly spendingUrl: string = "api/finop/spending";
+    public static readonly transferUrl: string = "api/finop/transfer";
+    public static readonly editUrl: string = "api/finop";
+    public static readonly getOrgAccForFinOpsUrl: string = 'api/OrgAccount/GetOrgAccountForFinOp';
+    public static readonly createUrl: string = 'api/FinOp/CreateFinOp';
+    public static readonly getFinOpUrl: string = 'api/finop/getFinOpsById';
 
     // user service
     public static readonly getAllUsers = "api/User";
