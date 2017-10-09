@@ -207,9 +207,9 @@ namespace FundTrack.BLL.Concrete
                 throw new BusinessLogicException(ErrorMessages.EmptyFinOpList, ex);
             }
         }
-        /// <Amountmary>
+        /// <Summary>
         /// Gets the fin ops by id.
-        /// </Amountmary>
+        /// </Summary>
         /// <param name="id">The fin ops identifier.</param>
         /// <returns></returns>
         public FinOpViewModel GetFinOpsById(int id)
@@ -243,6 +243,11 @@ namespace FundTrack.BLL.Concrete
             }
         }
 
+        /// <Summary>
+        /// Edit the finance operation.
+        /// </Summary>
+        /// <param name="finOpModel">The finance operation model.</param>
+        /// <returns></returns>
         public FinOpViewModel EditFinOperation(FinOpViewModel finOpModel)
         {
             try

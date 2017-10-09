@@ -62,6 +62,11 @@ namespace FundTrack.WebUI.Controllers
             return Ok(_service.GetFinOpsByOrgAccount(orgAccountId));
         }
 
+        /// <summary>
+        /// Gets the fin op by fin op identifier.
+        /// </summary>
+        /// <param name="orgAccountId">The fin op identifier.</param>
+        /// <returns></returns>
         [HttpGet("GetFinOpsById/{id}")]
         [Authorize(Roles = "admin, moderator")]
         public IActionResult GetFinOpsById(int id)
@@ -73,6 +78,11 @@ namespace FundTrack.WebUI.Controllers
             return Ok(_service.GetFinOpsById(id));
         }
 
+        /// <summary>
+        /// Create income finance operation.
+        /// </summary>
+        /// <param name="incomeModel">The income finance operation model.</param>
+        /// <returns></returns>
         [HttpPost("Income")]
         [Authorize(Roles = "admin, moderator")]
         public IActionResult Income([FromBody] FinOpViewModel incomeModel)
@@ -84,6 +94,11 @@ namespace FundTrack.WebUI.Controllers
             return Ok(_service.CreateIncome(incomeModel));
         }
 
+        /// <summary>
+        /// Create spending finance operation.
+        /// </summary>
+        /// <param name="spendingModel">The spending finance operation model.</param>
+        /// <returns></returns>
         [HttpPost("Spending")]
         [Authorize(Roles = "admin, moderator")]
         public IActionResult Spending([FromBody] FinOpViewModel spendingModel)
@@ -95,6 +110,11 @@ namespace FundTrack.WebUI.Controllers
             return Ok(_service.CreateSpending(spendingModel));
         }
 
+        /// <summary>
+        /// Create transfer finance operation.
+        /// </summary>
+        /// <param name="transferModel">The transfer finance operation model.</param>
+        /// <returns></returns>
         [HttpPost("Transfer")]
         [Authorize(Roles = "admin, moderator")]
         public IActionResult Transfer([FromBody] FinOpViewModel transferModel)
@@ -106,7 +126,12 @@ namespace FundTrack.WebUI.Controllers
             return Ok(_service.CreateTransfer(transferModel));
         }
 
-        [HttpPut()]
+        /// <summary>
+        /// Edit the fin op.
+        /// </summary>
+        /// <param name="finOp">The fin op model.</param>
+        /// <returns></returns>
+        [HttpPut]
         [Authorize(Roles = "admin, moderator")]
         public IActionResult Edit([FromBody] FinOpViewModel finOp)
         {

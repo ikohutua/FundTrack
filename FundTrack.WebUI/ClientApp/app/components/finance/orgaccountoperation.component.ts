@@ -58,6 +58,7 @@ export class OrgAccountOperationComponent implements OnChanges {
     private selectedDonationId: number = undefined;
     private selectedFinOp: FinOpListViewModel = new FinOpListViewModel();
     private selectedUserId: number = undefined;
+    images: Image[] = [];
     public deleteModel: DeleteOrgAccountViewModel = new DeleteOrgAccountViewModel();
     public deletedAccountId: number = 0;
     private minDate: string;
@@ -118,9 +119,6 @@ export class OrgAccountOperationComponent implements OnChanges {
     private updateFinOperation: FinOpListViewModel = new FinOpListViewModel();
     //-------------------------------------------------------------------------------
 
-    images: Image[] = [];
-
-
     public constructor(private _router: Router,
         private finOpService: FinOpService,
         private fb: FormBuilder,
@@ -133,7 +131,7 @@ export class OrgAccountOperationComponent implements OnChanges {
             this.createSpendingForm();
             this.createTransferForm();
             this.createManagmantForm();
-            this.createUpdateFinOperationForm();
+            this.createFinOperationFormForUpdate();
     }
     private navigateToImportsPage(): void {
         this._router.navigate(['/finance/bank-import']);
@@ -151,7 +149,6 @@ export class OrgAccountOperationComponent implements OnChanges {
     ngOnInit(): void {
         this.getOrgTargetsAndBaseTargets();
         this.getAllCashAccounts();
-        this.getCurrencies();
         this.getModerators();
         this.getLoggedUser();
         this.getMinDate();
@@ -159,17 +156,6 @@ export class OrgAccountOperationComponent implements OnChanges {
 
     ngAfterContentInit(): void {
         this.setOwner();
-    }
-
-    private getAccontsForTransfer() {
-        if (this.currentAccount.targetId === null) {
-            this.accountsTo = this.accounts.filter(acc => acc.id != this.currentAccount.id);
-        }
-        else {
-            this.accountsTo = this.accounts.filter(acc =>
-                acc.targetId === this.currentAccount.targetId &&
-                acc.id != this.currentAccount.id);
-        }
     }
 
     private setFinOperations() {
@@ -187,6 +173,22 @@ export class OrgAccountOperationComponent implements OnChanges {
                 this.finOps[i].finOpName = constant.transferUA;
             }
         }
+    }
+
+    private getFinOpsByOrgAccountId() {
+        this.finOpService.getFinOpsByOrgAccountId(this.accountId)
+            .subscribe(a => {
+                this.finOps = a;
+                this.setFinOperations();
+                this.reservedFinOpsArray = this.finOps;
+                this.finOps = this.finOps.slice(0, 10);
+            });
+    }
+
+    private getFinOpById(id: number) {
+        this.finOpService.getFinOpById(id).subscribe(f => {
+            this.updateFinOperation = f;
+        });
     }
 
     private getOrgTargetsAndBaseTargets() {
@@ -215,21 +217,6 @@ export class OrgAccountOperationComponent implements OnChanges {
         this.isBaseTargetChosen = true;
     }
 
-    private getFinOpsByOrgAccountId() {
-        this.finOpService.getFinOpsByOrgAccountId(this.accountId)
-            .subscribe(a => {
-                this.finOps = a;
-                this.setFinOperations();
-                this.reservedFinOpsArray = this.finOps;
-                this.finOps = this.finOps.slice(0, 10);
-            });
-    }
-
-    private getFinOpById(id: number) {
-        this.finOpService.getFinOpById(id).subscribe(f => {
-            this.updateFinOperation = f;
-        });}
-
     private getCurrentOrgAccount() {
         this.accountService.getOrganizationAccountById(this.accountId)
             .subscribe(currAcc => {
@@ -240,26 +227,9 @@ export class OrgAccountOperationComponent implements OnChanges {
             });
     }
 
-    private viewFinOps() {
+    private viewAllFinOps() {
         this.finOps = this.reservedFinOpsArray;
         this.default = false;
-    }
-
-    private getAllCashAccounts() {
-        this.accountService.getAllAccountsOfOrganization()
-            .subscribe(acc => {
-                this.accounts = acc.filter(a =>
-                    a.accountType === constant.cashUA
-                );
-                this.getAccontsForTransfer();
-            });
-    }
-
-    private getCurrencies() {
-        this.donateService.getCurrencies()
-            .subscribe(curr => {
-                this.currencies = curr;
-            });
     }
 
     private viewFinOpsByOperation(operation: number) {
@@ -269,7 +239,7 @@ export class OrgAccountOperationComponent implements OnChanges {
                 this.finOps.push(this.reservedFinOpsArray[i]);
             }
         }
-        this.finOps = this.finOps.slice(0, 10);    
+        this.finOps = this.finOps.slice(0, 10);
         this.default = true;
     }
 
@@ -284,6 +254,16 @@ export class OrgAccountOperationComponent implements OnChanges {
         let date = new Date();
         date.setDate(date.getDate() - 10);
         this.minDate = date.toJSON().slice(0, 10);
+    }
+
+    private getAllCashAccounts() {
+        this.accountService.getAllAccountsOfOrganization()
+            .subscribe(acc => {
+                this.accounts = acc.filter(a =>
+                    a.accountType === constant.cashUA
+                );
+                this.getAccontsForTransfer();
+            });
     }
 
     public getLoggedUser() {
@@ -329,6 +309,17 @@ export class OrgAccountOperationComponent implements OnChanges {
                 this.onDelete.emit(this.deletedAccountId);
             });
         this.newDeleteModalWindow.hide();
+    }
+
+    private getAccontsForTransfer() {
+        if (this.currentAccount.targetId === null) {
+            this.accountsTo = this.accounts.filter(acc => acc.id != this.currentAccount.id);
+        }
+        else {
+            this.accountsTo = this.accounts.filter(acc =>
+                acc.targetId === this.currentAccount.targetId &&
+                acc.id != this.currentAccount.id);
+        }
     }
 
     private pushReverse(array: Array<any>, element: any) {
@@ -429,7 +420,7 @@ export class OrgAccountOperationComponent implements OnChanges {
         this.onValueChange(this.accountManagmentForm, this.formManagmentErrors);
     }
 
-    private createUpdateFinOperationForm() {
+    private createFinOperationFormForUpdate() {
         this.updateFinOperationForm = this.fb.group({
             amount: [
                 this.updateFinOperation.amount, [this.validatorsService.isMinValue,
