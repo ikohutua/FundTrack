@@ -161,11 +161,11 @@ export class OrgAccountOperationComponent implements OnChanges {
     private setFinOperations() {
         for (var i = 0; i < this.finOps.length; i++) {
 
-            if (this.finOps[i].finOpType == 1) {
+            if (this.finOps[i].finOpType == constant.incomeId) {
                 this.finOps[i].finOpName = constant.incomeUA;
             }
 
-            else if (this.finOps[i].finOpType == 0) {
+            else if (this.finOps[i].finOpType == constant.spendingId) {
                 this.finOps[i].finOpName = constant.spendingUA;
             }
 
@@ -256,16 +256,6 @@ export class OrgAccountOperationComponent implements OnChanges {
         this.minDate = date.toJSON().slice(0, 10);
     }
 
-    private getAllCashAccounts() {
-        this.accountService.getAllAccountsOfOrganization()
-            .subscribe(acc => {
-                this.accounts = acc.filter(a =>
-                    a.accountType === constant.cashUA
-                );
-                this.getAccontsForTransfer();
-            });
-    }
-
     public getLoggedUser() {
         this.user = JSON.parse(localStorage.getItem(key.keyModel)) as AuthorizeUserModel;
     }
@@ -277,10 +267,6 @@ export class OrgAccountOperationComponent implements OnChanges {
         else {
             this.isCashType = false;
         }
-    }
-
-    public setDate(model: FinOpListViewModel, date: Date) {
-        model.date = date;
     }
 
     private setOwner() {
@@ -322,10 +308,24 @@ export class OrgAccountOperationComponent implements OnChanges {
         }
     }
 
+    public setDate(model: FinOpListViewModel, date: Date) {
+        model.date = date;
+    }
+
     private pushReverse(array: Array<any>, element: any) {
         array.reverse();
         array.push(element);
         array.reverse();
+    }
+
+    private getAllCashAccounts() {
+        this.accountService.getAllAccountsOfOrganization()
+            .subscribe(acc => {
+                this.accounts = acc.filter(a =>
+                    a.accountType === constant.cashUA
+                );
+                this.getAccontsForTransfer();
+            });
     }
 
     private createIncomeForm() {
@@ -438,7 +438,7 @@ export class OrgAccountOperationComponent implements OnChanges {
                 this.updateFinOperation.date
             ]
         });
-        this.accountManagmentForm.valueChanges
+        this.updateFinOperationForm.valueChanges
             .subscribe(a => this.onValueChange(this.updateFinOperationForm, this.formUpdateErrors, a));
         this.onValueChange(this.updateFinOperationForm, this.formUpdateErrors);
     }
