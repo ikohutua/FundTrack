@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace FundTrack.AutoImportService
@@ -23,7 +24,11 @@ namespace FundTrack.AutoImportService
         
         static void Main(string[] args)
         {
-            RunAsync().Wait();
+            while (true)
+            {
+                RunAsync().Wait();
+                Thread.Sleep(120000);
+            }
         }
         static async Task RunAsync()
         {
