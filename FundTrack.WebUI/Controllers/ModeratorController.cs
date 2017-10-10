@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using FundTrack.BLL.Abstract;
-using FundTrack.Infrastructure.ViewModel;
 using FundTrack.Infrastructure.ViewModel.EditOrganizationViewModels;
 using System.Collections.Generic;
 

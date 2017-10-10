@@ -79,6 +79,9 @@ export class OrgAccountExtractsComponent implements OnChanges {
                         this.isExtractsConnected = true;
                         this.isExtractsEnable = true;
                         this.emitIsExtractEnable();
+                    },
+                    (error) => {
+                        alert(error);
                     });
             });
     }

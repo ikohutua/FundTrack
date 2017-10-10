@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace FundTrack.BLL.Concrete
+﻿namespace FundTrack.BLL.Concrete
 {
    public static class AzureStorageConfiguration
     {

@@ -112,18 +112,27 @@ namespace FundTrack.WebUI.Controllers
         {
             return _donateMoneyService.GetSuggestedDonations(finOpId);
         }
+
         [HttpGet("User/{userId}")]
         [Authorize]
-        public IEnumerable<UserDonationsViewModel> GetUserDonations(int userId)
+        public IActionResult GetUserDonations(int userId)
         {
-            return _donateMoneyService.GetUserDonations(userId);
+            if (userId <= 0)
+            {
+                return BadRequest();
+            }
+            return Ok(_donateMoneyService.GetUserDonations(userId));
         }
 
         [HttpGet("UserByDate")]
         [Authorize]
-        public IEnumerable<UserDonationsViewModel> GetUserDonationsByDate(int userId, DateTime dateFrom, DateTime dateTo)
+        public IActionResult GetUserDonationsByDate(int userId, DateTime dateFrom, DateTime dateTo)
         {
-            return _donateMoneyService.GetUserDonationsByDate(userId, dateFrom, dateTo);
+            if (userId <= 0)
+            {
+                return BadRequest();
+            }
+            return Ok(_donateMoneyService.GetUserDonationsByDate(userId, dateFrom, dateTo));
         }
     }
 }

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace FundTrack.Infrastructure.ViewModel.FinanceViewModels.DonateViewModels
+﻿namespace FundTrack.Infrastructure.ViewModel.FinanceViewModels.DonateViewModels
 {
     public class CheckoutViewModel
     {

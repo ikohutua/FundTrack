@@ -8,7 +8,6 @@ using FundTrack.Infrastructure.ViewModel.FinanceViewModels.DonateViewModels;
 using Moq;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using Xunit;
 
 namespace FundTrack.BLL.Tests

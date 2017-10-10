@@ -48,7 +48,7 @@ namespace FundTrack.BLL.Concrete
                 {
                     orgAccFrom = _unitOfWork.OrganizationAccountRepository.GetOrgAccountById((int)finOpModel.CardFromId);
                     finOp.AccFromId = orgAccFrom.Id;
-                    finOp.FinOpType = Constants.FinOpSpending;
+                    finOp.FinOpType = Constants.FinOpTypeSpending;
                     orgAccFrom.CurrentBalance += finOpModel.Amount;
                     _unitOfWork.OrganizationAccountRepository.Edit(orgAccFrom);
                 }
@@ -57,7 +57,7 @@ namespace FundTrack.BLL.Concrete
                     orgAccTo = _unitOfWork.OrganizationAccountRepository.GetOrgAccountById((int)finOpModel.CardToId);
                     finOp.AccToId = orgAccTo.Id;
                     orgAccTo.CurrentBalance += finOpModel.Amount;
-                    finOp.FinOpType = Constants.FinOpIncome;
+                    finOp.FinOpType = Constants.FinOpTypeIncome;
                     _unitOfWork.OrganizationAccountRepository.Edit(orgAccTo);
                 }
                 _unitOfWork.FinOpRepository.Create(finOp);
@@ -207,9 +207,9 @@ namespace FundTrack.BLL.Concrete
                 throw new BusinessLogicException(ErrorMessages.EmptyFinOpList, ex);
             }
         }
-        /// <Amountmary>
+        /// <Summary>
         /// Gets the fin ops by id.
-        /// </Amountmary>
+        /// </Summary>
         /// <param name="id">The fin ops identifier.</param>
         /// <returns></returns>
         public FinOpViewModel GetFinOpsById(int id)
@@ -243,13 +243,36 @@ namespace FundTrack.BLL.Concrete
             }
         }
 
+        /// <Summary>
+        /// Edit the finance operation.
+        /// </Summary>
+        /// <param name="finOpModel">The finance operation model.</param>
+        /// <returns></returns>
         public FinOpViewModel EditFinOperation(FinOpViewModel finOpModel)
         {
             try
             {
-                var orgAccFrom = _unitOfWork.OrganizationAccountRepository.GetOrgAccountById(finOpModel.CardFromId);
-
                 var finOp = _unitOfWork.FinOpRepository.GetById(finOpModel.Id);
+                if (finOpModel.Amount != finOp.Amount)
+                {
+                    switch (finOpModel.FinOpType)
+                    {
+                        case Constants.FinOpTypeSpending:
+                            OrgAccFromChangeBalance(finOpModel, finOp.Amount);
+                            break;
+                        case Constants.FinOpTypeIncome:
+                            OrgAccToChangeBalance(finOpModel, finOp.Amount);
+                            break;
+                        case Constants.FinOpTypeTransfer:
+                            OrgAccFromChangeBalance(finOpModel, finOp.Amount);
+                            OrgAccToChangeBalance(finOpModel, finOp.Amount);
+                            break;
+                        default:
+                            throw new BusinessLogicException(ErrorMessages.InvalidFinanceOperation);
+
+                    }
+                }
+
                 finOp.Amount = finOpModel.Amount;
                 finOp.Description = finOpModel.Description;
                 finOp.TargetId = finOpModel.TargetId;
@@ -257,28 +280,6 @@ namespace FundTrack.BLL.Concrete
                 finOp.UserId = finOpModel.UserId;
                 finOp.DonationId = finOpModel.DonationId;
                 _unitOfWork.FinOpRepository.Update(finOp);
-
-                switch (finOpModel.FinOpType)
-                {
-                    case Constants.FinOpSpending:
-                        orgAccFrom.CurrentBalance -= finOpModel.Difference;
-                        _unitOfWork.OrganizationAccountRepository.Edit(orgAccFrom);
-                        break;
-                    case Constants.FinOpIncome:
-                        orgAccFrom.CurrentBalance += finOpModel.Difference;
-                        _unitOfWork.OrganizationAccountRepository.Edit(orgAccFrom);
-                        break;
-                    case Constants.FinOpTransfer:
-                        var orgAccTo = _unitOfWork.OrganizationAccountRepository.GetOrgAccountById(finOpModel.CardToId);
-                        orgAccFrom.CurrentBalance -= finOpModel.Difference;
-                        orgAccTo.CurrentBalance += finOpModel.Difference;
-                        _unitOfWork.OrganizationAccountRepository.Edit(orgAccFrom);
-                        _unitOfWork.OrganizationAccountRepository.Edit(orgAccTo);
-                        break;
-                    default:
-                        throw new BusinessLogicException(ErrorMessages.InvalidFinanceOperation);
-
-                }
                 _unitOfWork.SaveChanges();
                 return finOpModel;
             }
@@ -288,6 +289,19 @@ namespace FundTrack.BLL.Concrete
             }
         }
 
+        public void OrgAccFromChangeBalance(FinOpViewModel finOpModel, decimal originalAmount)
+        {
+            var orgAccFrom = _unitOfWork.OrganizationAccountRepository.GetOrgAccountById(finOpModel.CardFromId);
+            orgAccFrom.CurrentBalance -= finOpModel.Amount - originalAmount;
+            _unitOfWork.OrganizationAccountRepository.Edit(orgAccFrom);
+        }
+
+        public void OrgAccToChangeBalance(FinOpViewModel finOpModel, decimal originalAmount)
+        {
+            var orgAccTo = _unitOfWork.OrganizationAccountRepository.GetOrgAccountById(finOpModel.CardToId);
+            orgAccTo.CurrentBalance += finOpModel.Amount - originalAmount;
+            _unitOfWork.OrganizationAccountRepository.Edit(orgAccTo);
+        }
         
         public IEnumerable<FinOpViewModel> GetAllFinOpsByOrgId(int orgId)
         {

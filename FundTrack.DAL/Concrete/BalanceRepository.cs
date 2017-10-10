@@ -1,7 +1,5 @@
 ﻿using FundTrack.DAL.Abstract;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using FundTrack.DAL.Entities;
 using FundTrack.Infrastructure.ViewModel.FinanceViewModels;
 using System.Linq;

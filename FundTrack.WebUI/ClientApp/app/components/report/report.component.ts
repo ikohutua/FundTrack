@@ -73,7 +73,6 @@ export class ReportComponent implements OnInit, OnDestroy {
         this.route.params.subscribe(params => {
             this.routeOrgIndex = params['id'];
             if (this.routeOrgIndex != null) {
-                console.log("CURRENT ORG ID FROM URL == " + this.routeOrgIndex);
                 this.generateReport(this.routeOrgIndex);
             }
         }, error => {
@@ -84,8 +83,6 @@ export class ReportComponent implements OnInit, OnDestroy {
 
     generateReport(orgId): void {
         this.reportModel.id = orgId;
-        console.log("user dateFrom=" + this.datePipe.transform(this.reportModel.dateFrom, 'yyyy-MM-dd') + " and dateTo=" + this.datePipe.transform(this.reportModel.dateTo, 'yyyy-MM-dd'));
-        console.log("user orgId=" + this.reportModel.id + " and reportType=" + this.reportModel.reportType);
         if (this.isDateValid()) { 
             this.fillHeadersArray();
             this.getReportDataByType();
@@ -100,8 +97,7 @@ export class ReportComponent implements OnInit, OnDestroy {
                     this.ifDataExists = true;
                     this.outcomeReportData = outcomeData;
                     this.reportOutTotalSum = this.getReportMoneySumByType(this.outcomeReportData);
-                    console.log("SUM IS=" + this.getReportMoneySumByType(this.outcomeReportData));
-                }
+               }
                 else {
                     this.ifDataExists = false;
                     this.openModal(this.emptyResultsModal);
@@ -118,7 +114,6 @@ export class ReportComponent implements OnInit, OnDestroy {
                     this.ifDataExists = true;
                     this.incomeReportData = incomeData;
                     this.reportInTotalSum = this.getReportMoneySumByType(this.incomeReportData);
-                    console.log("SUM IS=" + this.getReportMoneySumByType(this.incomeReportData));
                 }
                 else {
                     this.openModal(this.emptyResultsModal);

@@ -24,7 +24,6 @@
                 <th class="th-center-align col-sm-3">Опис операції</th>
                 <th class="th-center-align col-sm-1">Призначення</th>
                 <th class="th-center-align col-sm-1">Сума</th>
-                <th class="th-center-align col-sm-1">Фото</th>
                 <th class="th-center-align col-sm-1">Редагувати</th>
                 <th class="th-center-align col-sm-1"> </th>
             </tr>
@@ -37,9 +36,8 @@
                 <td class="col-sm-3">{{finOp.description}}</td>
                 <td class="col-sm-1">{{finOp.target}}</td>
                 <td class="col-sm-1 money">{{finOp.amount}}</td>
-                <td class="col-sm-1"></td>
                 <td class="col-sm-1">
-                    <button class="btn right" title="Видалити" (click)="openUpdateFinOpModal(finOp)">
+                    <button class="btn right" title="Редагувати" (click)="openUpdateFinOpModal(finOp)">
                         <span class="glyphicon glyphicon-pencil">
                         </span>
                     </button>
@@ -52,7 +50,7 @@
             </tr>
         </tbody>
     </table>
-    <a class="btn" (click)="viewFinOps()">Переглянути всі операції по рахунку</a>
+    <a class="btn" (click)="viewAllFinOps()">Переглянути всі операції по рахунку</a>
 
     <a *ngIf="isCashType" class="btn" (click)="openModal(newMoneyIncomeWindow)">Добавити прихід</a>
     <a *ngIf="isCashType" class="btn" (click)="openModal(newMoneySpendingWindow)">Добавити витрату</a>
@@ -352,7 +350,8 @@
                     <input class="form-control"
                            type="text"
                            placeholder={{currentAccount.orgAccountName}}
-                           name="account" />
+                           name="account"
+                           disabled/>
                 </div>
                 <div class="form-group">
                     <label class="control-label">Власник рахунку</label>
