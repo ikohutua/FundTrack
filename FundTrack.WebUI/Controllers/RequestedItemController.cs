@@ -1,13 +1,10 @@
 using System;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
-using FundTrack.BLL.Concrete;
 using FundTrack.Infrastructure.ViewModel;
 using FundTrack.BLL.Abstract;
 using FundTrack.Infrastructure.ViewModel.RequestedItemModel;
-using System.Threading;
 using System.Linq;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace FundTrack.WebUI.Controllers
 {

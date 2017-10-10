@@ -2,9 +2,6 @@
 using FundTrack.Infrastructure.ViewModel;
 using FundTrack.WebUI.Controllers;
 using Moq;
-using Microsoft.AspNetCore.Http;
-using System;
-using System.Collections.Generic;
 using Xunit;
 
 namespace FundTrack.WebUI.Tests

@@ -1,9 +1,6 @@
 ﻿using FundTrack.DAL.Abstract;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using FundTrack.DAL.Entities;
 using Microsoft.EntityFrameworkCore;
 
@@ -58,6 +55,7 @@ namespace FundTrack.DAL.Concrete
         {
             return this._context.OrgAccounts
                 .Include(a => a.BankAccount)
+                .ThenInclude(a => a.Bank)
                 .Include(a => a.Balances)
                 .Include(a => a.Currency)
                 .Include(a => a.FinOpsFrom)
@@ -70,6 +68,7 @@ namespace FundTrack.DAL.Concrete
         {
             return this._context.OrgAccounts
                 .Include(a => a.BankAccount)
+                .ThenInclude(a => a.Bank)
                 .Include(a => a.Balances)
                 .Include(a => a.Currency)
                 .Include(a => a.FinOpsFrom)

@@ -1,95 +1,62 @@
-﻿<spinner [showSpinner]="showSpinner"></spinner>
-<div *ngIf="!showSpinner">
-    <div>
-        <div class="row">
-            <ul>
-                <li><a title="Додати новий рахунок організації" (click)="navigateToCreatePage()" class="active">Додати рахунок</a></li>
-                <li><a *ngIf="isExtractsMerchantEnable" title="Імпорт даних для вибраного рахунку зі списку" (click)="navigateToBankImportPage()" class="active">Імпортувати дані з банку</a></li>
-                <li><a *ngIf="!isExtractsMerchantEnable" title="Для імпортування даних з вибраного рахунку вкажіть MercantId та MerchantPassword для Приват 24" class="disabled">Імпортувати дані з банку</a></li>
-            </ul>
+﻿<div>
+    <div class="row">
+        <ul>
+            <li><a title="Додати новий рахунок організації" (click)="navigateToCreatePage()" class="active">Додати рахунок</a></li>
+            <li><a *ngIf="isExtractsMerchantEnable" title="Імпорт даних для вибраного рахунку" (click)="navigateToBankImportPage()" class="active">Імпортувати дані з банку</a></li>
+            <li><a *ngIf="!isExtractsMerchantEnable" title="Для імпортування даних з вибраного рахунку вкажіть MercantId та MerchantPassword для Приват 24" class="disabled">Імпортувати дані з банку</a></li>
+        </ul>
+    </div>
+    <div class="row">
+        <spinner [showSpinner]="showSpinner"></spinner>
+        <div class="col-md-4">
+            <div class="row">
+                <h3 style="padding-left: 2%;"> Доступні рахунки</h3>
+            </div>
+            <div class="row">
+                <button type="button" class="btn btn-lg btn-block custom-button" data-toggle="collapse" data-target="#bankAcc">
+                    <strong>Банківські рахунки</strong>
+                </button>
+            </div>
+            <div id="bankAcc" class="collapse in account-list">
+                <div *ngFor="let account of bankAccounts" class="account row grow"
+                     (click)="setActiveAccount(account)"
+                     [class.selected]="account === selectedAccount">
+                    <div class="col-md-6">
+                        {{account.orgAccountName}}
+                    </div>
+                    <div class="col-md-2 amount col-md-offset-2">
+                        <strong>{{account.currentBalance | currency: account.currencyShortName: true}}</strong>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <button type="button" class="btn btn-lg btn-block custom-button" data-toggle="collapse" data-target="#cashAcc">
+                    <strong>Готівкові рахунки</strong>
+                </button>
+            </div>
+            <div id="cashAcc" class="collapse in account-list">
+                <div *ngFor="let account of cashAccounts" class="account row grow"
+                     (click)="setActiveAccount(account)"
+                     [class.selected]="account === selectedAccount">
+                    <div class="col-md-6">
+                        {{account.orgAccountName}}
+                    </div>
+                    <div class="col-md-1 amount col-md-offset-2">
+                        <strong>{{account.currentBalance | currency: account.currencyShortName: true}}</strong>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="row">
-            <div class="col-md-4">
-                <div class="row">
-                    <h3 style="padding-left: 2%;"> Доступні рахунки</h3>
-                </div>
-                <div class="row">
-                    <button type="button" class="btn btn-lg btn-block custom-button" data-toggle="collapse" data-target="#bankAcc">
-                        <strong>Банківські рахунки</strong>
-                    </button>
-                </div>
-                <div id="bankAcc" class="collapse in account-list">
-                    <div *ngFor="let account of bankAccounts" class="account row grow"
-                         (click)="setActiveAccount(account)"
-                         [class.selected]="account === selectedAccount">
-                        <div class="col-md-6">
-                            {{account.orgAccountName}}
-                        </div>
-                        <div class="col-md-2 amount col-md-offset-2">
-                            <strong>{{account.currentBalance | currency: account.currencyShortName: true}}</strong>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <button type="button" class="btn btn-lg btn-block custom-button" data-toggle="collapse" data-target="#cashAcc">
-                        <strong>Готівкові рахунки</strong>
-                    </button>
-                </div>
-                <div id="cashAcc" class="collapse  account-list">
-                    <div *ngFor="let account of cashAccounts" class="account row grow"
-                         (click)="setActiveAccount(account)"
-                         [class.selected]="account === selectedAccount">
-                        <div class="col-md-6">
-                            {{account.orgAccountName}}
-                        </div>
-                        <div class="col-md-1 amount col-md-offset-2">
-                            <strong>{{account.currentBalance | currency: account.currencyShortName: true}}</strong>
-                        </div>
-                    </div>
+        <div class="col-md-8 mb20">
+            <div class="row" *ngIf="ifBankSelectedType" >
+                <div *ngIf="isDownloaded" class="col-md-12 mb20">
+                    <orgaccountdetail [accountId]="selectAccountId" (onDelete)="onDelete($event)"></orgaccountdetail>
                 </div>
             </div>
-            <div class="col-md-8 mb20" style="margin-top: 20px;">
-                <div class="row">
-                    <div class="col-md-6 mb20" style="margin-left:10px;" *ngIf="ifBankSelectedType">
-                        <orgaccountdetail [accountId]="selectAccountId"
-                                          (onDelete)="onDelete($event)"></orgaccountdetail>
-                    </div>
-                    <div class="col-md-5 mb20" style="margin-top: 20px;">
-
-                        <div class="panel-group" id="accordion">
-                            <div class="panel" *ngIf="ifBankSelectedType">
-                                <div class="col-md-12">
-                                    <button type="button" class="btn btn-lg btn-block custom-button" data-toggle="collapse" data-parent="#accordion" href="#collapse1">
-                                        <strong> Прийом платежів через Fondy</strong>
-                                    </button>
-                                </div>
-                                <div id="collapse1" class="panel-collapse collapse">
-                                    <div class="panel-body panel-custom-body">
-                                        <orgaccountpayment [accountId]="selectAccountId"></orgaccountpayment>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="panel" *ngIf="ifBankSelectedType">
-                                <div class="col-md-12">
-                                    <button type="button" class="btn btn-lg btn-block custom-button" data-toggle="collapse" data-parent="#accordion" href="#collapse2">
-                                        <strong> Виписки з Приват24</strong>
-                                    </button>
-                                </div>
-                                <div id="collapse2" class="panel-collapse collapse">
-                                    <div class="panel-body panel-custom-body">
-                                        <org-account-extracts [accountId]="selectAccountId" (getIsExtractEnable)="onExtractEnableChange($event)"></org-account-extracts>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-                <div *ngIf="isDownloaded" class="row" style="margin-left: 15px;">
-                    <orgaccountoperation [accountId]="selectAccountId" [orgId]="orgId"></orgaccountoperation>
-                </div>
-                <br>
+            <div *ngIf="isDownloaded" >
+                <orgaccountoperation [accountId]="selectAccountId" [orgId]="orgId" (getIsExtractEnable)="onExtractEnableChange($event)" (onDelete)="onDelete($event)"></orgaccountoperation>
             </div>
+            <br>
         </div>
     </div>
 </div>

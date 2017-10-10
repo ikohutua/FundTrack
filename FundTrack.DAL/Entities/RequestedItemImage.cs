@@ -1,4 +1,6 @@
-﻿namespace FundTrack.DAL.Entities
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace FundTrack.DAL.Entities
 {
     public class RequestedItemImage
     {
@@ -38,5 +40,22 @@
         /// Event navigation property
         /// </summary>
         public virtual RequestedItem RequestedItem { get; set; }
+
+        public static void Configure(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<RequestedItemImage>(entity =>
+            {
+                entity.HasKey(e => e.Id).HasName("PK_<RequestedItemImage");
+
+                entity.Property(e => e.RequestedItemId).IsRequired();
+
+                entity.Property(e => e.ImageUrl).IsRequired();
+
+                entity.HasOne(ri => ri.RequestedItem)
+                    .WithMany(rii => rii.RequestedItemImages)
+                    .HasForeignKey(rii => rii.RequestedItemId)
+                    .HasConstraintName("FK_<RequestedItemImage_<RequestedItem");
+            });
+        }
     }
 }

@@ -127,7 +127,7 @@ a {
 .font-for-strong {
     font-size: 16px;
 }
-#snackbar {
+#showMessageToaster {
     visibility: hidden; /* Hidden by default. Visible on click */
     min-width: 250px; /* Set a default minimum width */
     margin-left: -125px; /* Divide value of min-width by 2 */
@@ -138,18 +138,18 @@ a {
     padding: 16px; /* Padding */
     position: fixed; /* Sit on top of the screen */
     z-index: 999999; /* Add a z-index if needed */
-    left: 50%; /* Center the snackbar */
+    left: 50%; /* Center the showMessageToaster */
     top: 250px; /* 30px from the bottom */
 }
 
-    /* Show the snackbar when clicking on a button (class added with JavaScript) */
-    #snackbar.show {
-        visibility: visible; /* Show the snackbar */
+    /* Show the showMessageToaster when clicking on a button (class added with JavaScript) */
+    #showMessageToaster.show {
+        visibility: visible; /* Show the showMessageToaster */
         -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
         animation: fadein 0.5s, fadeout 0.5s 2.5s;
     }
 
-/* Animations to fade the snackbar in and out */
+/* Animations to fade the showMessageToaster in and out */
 @-webkit-keyframes fadein {
     from {
         top: 0;

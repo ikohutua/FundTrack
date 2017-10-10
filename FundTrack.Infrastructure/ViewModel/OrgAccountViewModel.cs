@@ -29,5 +29,6 @@ namespace FundTrack.Infrastructure.ViewModel
         public string BankName { get; set; }
         public string Error { get; set; }
         public int? TargetId { get; set; }
+        public int BankId { get; set; }
     }
 }

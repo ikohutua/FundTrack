@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace FundTrack.Infrastructure.ViewModel
+﻿namespace FundTrack.Infrastructure.ViewModel
 {
     /// <summary>
     /// View model for registration of new organization
@@ -58,5 +54,10 @@ namespace FundTrack.Infrastructure.ViewModel
         /// Error message about name of organization
         /// </summary>
         public string NameError { get; set; }
+
+        /// <summary>
+        /// base64 code of logo
+        /// </summary>
+        public string Base64Code { get; set; }
     }
 }

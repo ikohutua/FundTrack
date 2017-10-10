@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 
 namespace FundTrack.DAL.Entities
 {
@@ -32,6 +33,10 @@ namespace FundTrack.DAL.Entities
         /// Gets or Sets Id of User
         /// </summary>
         public int? UserId { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Id of Donation
+        /// </summary>
         public int? DonationId { get; set; }
 
         /// <summary>
@@ -44,6 +49,9 @@ namespace FundTrack.DAL.Entities
         /// </summary>
         public string Description { get; set; }
 
+        /// <summary>
+        /// Gets or Sets type of FinOp
+        /// </summary>
         public int FinOpType { get; set; }
 
         /// <summary>
@@ -75,6 +83,10 @@ namespace FundTrack.DAL.Entities
         /// Gets or Sets TagFinOp navigation property
         /// </summary>
         public virtual ICollection<TagFinOp> TagFinOps { get; set; }
+        
+        /// <summary>
+        /// Gets or Sets Donation navigation property
+        /// </summary>
         public virtual Donation Donation { get; set; }
 
        
@@ -82,5 +94,39 @@ namespace FundTrack.DAL.Entities
         /// Gets or Sets table for binding
         /// </summary>
         public virtual ICollection<FinOpImage> FinOpImage { get; set; }
+
+        public static void Configure(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<FinOp>(entity =>
+            {
+                entity.HasKey(e => e.Id).HasName("PK_FinOp");
+
+                entity.Property(e => e.Amount).HasColumnType("decimal(18,2)");
+
+                entity.Property(e => e.FinOpDate).HasColumnType("datetime");
+
+                entity.HasOne(fo => fo.Target)
+                    .WithMany(t => t.FinOp)
+                    .HasForeignKey(fo => fo.TargetId)
+                    .HasConstraintName("FK_FinOp_Target");
+
+                entity.HasOne(fo => fo.OrgAccountFrom)
+                    .WithMany(oa => oa.FinOpsFrom)
+                    .HasForeignKey(fo => fo.AccFromId)
+                    .HasConstraintName("FK_FinOp_OrgAccountFrom");
+
+                entity.HasOne(fo => fo.OrgAccountTo)
+                    .WithMany(oa => oa.FinOpsTo)
+                    .HasForeignKey(fo => fo.AccToId)
+                    .HasConstraintName("FK_FinOp_OrgAccountTo");
+
+                entity.HasOne(fo => fo.User)
+                    .WithMany(u => u.FinOps)
+                    .HasForeignKey(fo => fo.UserId)
+                    .HasConstraintName("FK_FinOp_User");
+                entity.HasOne(fo => fo.Donation)
+                    .WithOne();
+            });
+        }
     }
 }

@@ -9,6 +9,8 @@ import { IOrganizationRegistrationViewModel } from '../../view-models/abstract/o
 import { OrganizationRegistrationViewModel } from '../../view-models/concrete/organization-registration-view-model';
 import { BaseSpinnerService } from "../abstract/base-spinner-service";
 import { SpinnerComponent } from "../../shared/components/spinner/spinner.component";
+import { GlobalUrlService } from "../../services/concrete/global-url.service";
+import { RequestOptionsService } from "../../services/concrete/request-options.service";
 
 /**
  * Service to register new organization
@@ -24,18 +26,7 @@ export class OrganizationRegistrationService extends BaseSpinnerService<Organiza
      * @param organization to create
      */
     registerOrganization(organization: OrganizationRegistrationViewModel, spinner?: SpinnerComponent): Observable<OrganizationRegistrationViewModel> {
-        //let headers = new Headers({ 'Content-Type': 'application/json' });
-        //let options = new RequestOptions({ headers: headers });
-        //let body = organization;
-        let url = 'api/OrganizationRegistration/RegisterNewOrganization/';
-        return super.create(url, organization, this.getRequestOptions());
-        //return this.http.post('api/OrganizationRegistration/RegisterNewOrganization/', body, options).map((response: Response) => <OrganizationRegistrationViewModel>response.json());
-    }
-
-    private getRequestOptions() {
-        let headers = new Headers({ 'Content-Type': 'application/json' });
-        let options = new RequestOptions({ headers: headers });
-        return options;
+        return super.create(GlobalUrlService.registerOrganization, organization, RequestOptionsService.getRequestOptions());
     }
 }
 

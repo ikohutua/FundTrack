@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace FundTrack.DAL.Entities
 {
@@ -43,6 +43,23 @@ namespace FundTrack.DAL.Entities
         /// The debet.
         /// </value>
         public decimal Debet { get; set; }
+
+        public static void Configure(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<BankImport>(entity =>
+            {
+                entity.HasKey(bi => bi.Id).HasName("PK_BankImport");
+
+                entity.Property(bi => bi.IdMerchant).IsRequired();
+
+                entity.Property(bi => bi.Signature).IsRequired();
+
+                entity.Property(bi => bi.Credit).HasColumnType("decimal(18,2)");
+
+                entity.Property(bi => bi.Debet).HasColumnType("decimal(18,2)");
+
+            });
+        }
     }
 }
 

@@ -67,6 +67,11 @@ namespace FundTrack.DAL.Entities
         public bool? IsExtractEnabled { get; set; }
 
         /// <summary>
+        /// Gets or Sets bank id
+        /// </summary>
+        public int BankId { get; set; }
+
+        /// <summary>
         /// Gets or Sets Organization navigation property
         /// </summary>
         public virtual Organization Organization { get; set; }
@@ -77,6 +82,11 @@ namespace FundTrack.DAL.Entities
         public virtual ICollection<OrgAccount> OrgAccounts { get; set; }
 
         public virtual ICollection<Donation> Donations { get; set; }
+
+        /// <summar>
+        /// Gets or Sets navigation property
+        /// </summar>
+        public virtual Bank Bank { get; set; }
 
         public static void Configure(ModelBuilder modelBuilder)
         {
@@ -91,12 +101,20 @@ namespace FundTrack.DAL.Entities
                 entity.Property(e => e.EDRPOU).HasMaxLength(10);
 
                 entity.Property(e => e.BankName).HasMaxLength(50);
+
                 entity.Property(e => e.CardNumber).HasMaxLength(16);
 
+                entity.Property(e => e.BankId).IsRequired();
+
                 entity.HasOne(ba => ba.Organization)
-                      .WithMany(o => o.BankAccounts)
-                      .HasForeignKey(ba => ba.OrgId)
-                      .HasConstraintName("FK_BankAccount_Organization");
+                    .WithMany(o => o.BankAccounts)
+                    .HasForeignKey(ba => ba.OrgId)
+                    .HasConstraintName("FK_BankAccount_Organization");
+
+                entity.HasOne(ba => ba.Bank)
+                    .WithMany(b => b.BankAccounts)
+                    .HasForeignKey(ba => ba.BankId)
+                    .HasConstraintName("FK_BankAccount_Bank");
             });
         }
     }

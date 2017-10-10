@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace FundTrack.DAL.Entities
 {
@@ -42,5 +40,22 @@ namespace FundTrack.DAL.Entities
         /// Event navigation property
         /// </summary>
         public virtual Event Event { get; set; }
+
+        public static void Configure(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<EventImage>(entity =>
+            {
+                entity.HasKey(e => e.Id).HasName("PK_EventImage");
+
+                entity.Property(e => e.EventId).IsRequired();
+
+                entity.Property(e => e.ImageUrl).IsRequired();
+
+                entity.HasOne(e => e.Event)
+                    .WithMany(o => o.EventImages)
+                    .HasForeignKey(e => e.EventId)
+                    .HasConstraintName("FK_EvantImage_Event");
+            });
+        }
     }
 }

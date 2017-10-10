@@ -1,13 +1,13 @@
 ﻿using FundTrack.DAL.Entities;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Linq;
 
 namespace FundTrack.DAL.Abstract
 {
     public interface IDonationRepository
     {
         Donation Create(Donation item);
-        IEnumerable<Donation> Read();
+        IQueryable<Donation> Read();
+        Donation Get(int id);
+        Donation Update(Donation item);
     }
 }

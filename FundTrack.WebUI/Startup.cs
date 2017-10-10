@@ -16,8 +16,8 @@ using FundTrack.BLL.DomainServices;
 using FundTrack.DAL.Repositories;
 using FundTrack.Infrastructure.ViewModel.EventViewModel;
 using FundTrack.WebUI.Formatter;
-using Microsoft.AspNetCore.Http;
 using FundTrack.WebUI.Middlewares;
+using FundTrack.WebUI.Middlewares.Logging;
 
 namespace FundTrack.WebUI
 {
@@ -99,6 +99,7 @@ namespace FundTrack.WebUI
             services.AddScoped<IPhoneRepository, PhoneRepository>();
             services.AddScoped<IRepository<FinOpImage>, EFGenericRepository<FinOpImage>>();
             services.AddScoped<IBalanceRepository, BalanceRepository>();
+            services.AddScoped<IBankRepository, BankRepositoty>();
 
             //dependency injection BLL
             services.AddScoped<IOrganizationsForFilteringService, OrganizationsForFilteringService>();
@@ -124,6 +125,11 @@ namespace FundTrack.WebUI
             services.AddScoped<IReportService, ReportService>();
             services.AddScoped<IImageManagementService, AzureImageManagementService>();
             services.AddScoped<IFixingBalanceService, FixingBalanceService>();
+            services.AddScoped<IBankService, BankService>();
+
+            //dependency injection WebUI
+            services.AddScoped<IErrorLogger, ErrorLogger>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -131,9 +137,10 @@ namespace FundTrack.WebUI
         {
             app.UseGlobalErrorHandling();
 
+            //app.LoggingHandling();
+
             app.UseStaticFiles();
-          
-      
+
 
             app.UseJwtBearerAuthentication(new JwtBearerOptions
             {
@@ -156,19 +163,16 @@ namespace FundTrack.WebUI
             //    AuthenticationScheme = "Bearer",
             //    AutomaticChallenge = true
             //});
-
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
             //if (env.IsDevelopment())
             //{
-                
-            //}
-
             app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions
             {
                 HotModuleReplacement = true
             });
+            //}
 
             app.UseWebSockets();
 

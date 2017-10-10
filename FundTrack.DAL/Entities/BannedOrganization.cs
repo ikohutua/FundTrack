@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace FundTrack.DAL.Entities
 {
@@ -25,5 +23,17 @@ namespace FundTrack.DAL.Entities
         /// Organization navigation property
         /// </summary>
         public virtual Organization Organization { get; set; }
+
+        public static void Configure(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<BannedOrganization>(entity =>
+            {
+                entity.HasKey(e => e.Id).HasName("PK_BannedOrganization");
+                entity.HasOne(e => e.Organization).
+                    WithOne(e => e.BannedOrganization).
+                    HasForeignKey<BannedOrganization>(e => e.OrganizationId).
+                    HasConstraintName("FK_BannedOrganization_Organization");
+            });
+        }
     }
 }

@@ -10,6 +10,9 @@ import { ModeratorViewModel } from '../../../view-models/concrete/edit-organizat
 import { AddModeratorViewModel } from "../../../view-models/concrete/edit-organization/add-moderator-view.model";
 import { AddressViewModel } from "../../../view-models/concrete/edit-organization/address-view.model";
 import { TargetViewModel } from "../../../view-models/concrete/finance/donate/target.view-model";
+import { GlobalUrlService } from "../global-url.service";
+import { EditLogoViewModel } from "../../../view-models/concrete/edit-organization/edit-org-logo-view.model";
+import { RequestOptionsService } from "../request-options.service";
 
 @Injectable()
 export class EditOrganizationService {
@@ -24,76 +27,81 @@ export class EditOrganizationService {
 
     editDescription(organization: OrganizationGeneralViewModel): Observable<OrganizationGeneralViewModel> {
         let body = organization;
-        let headers = new Headers({ 'ContentType': 'application/json' });
-        return this._http.put('api/OrganizationProfile/EditDescription', body, { headers: headers })
+        return this._http.put(GlobalUrlService.organizationEditDescription, body, RequestOptionsService.getRequestOptions())
             .map(response => response.json() as OrganizationGeneralViewModel);
     }
 
     getAddress(id: number): Observable<OrgAddressViewModel> {
-        return this._http.get('api/OrganizationProfile/GetAddress/' + id.toString()).
+        return this._http.get(GlobalUrlService.organizationProfileAddress + id.toString()).
             map((response: Response) => response.json() as OrgAddressViewModel);
     }
 
     getModerators(id: number): Observable<ModeratorViewModel[]> {
-        return this._http.get('api/Moderator/GetModerators/' + id.toString()).
+        return this._http.get(GlobalUrlService.getModerators + id.toString()).
             map((response: Response) => response.json() as ModeratorViewModel[]);
     }
 
     addModerator(moderator: AddModeratorViewModel): Observable<ModeratorViewModel> {
         let body = moderator;
-        return this._http.post('api/Moderator/AddModerator/', body, this.getOptionsForRequest()).
+        return this._http.post(GlobalUrlService.addModerator, body, RequestOptionsService.getRequestOptions()).
             map((response: Response) => response.json() as ModeratorViewModel);
     }
 
     deactivateModerator(login: string) {
-        return this._http.delete('api/Moderator/DeactivateModerator/' + login);
+        return this._http.delete(GlobalUrlService.deactivateModerator + login);
     }
 
     getAvailableUsers(id: number): Observable<AddModeratorViewModel[]> {
-        return this._http.get('api/Moderator/GetAvailableUsers/' + id.toString()).
+        return this._http.get(GlobalUrlService.getAvailableUsers + id.toString()).
             map((response: Response) => response.json() as AddModeratorViewModel[]);
     }
 
     addAddresses(addresses: OrgAddressViewModel): Observable<OrgAddressViewModel> {
 
         let body = addresses;
-        return this._http.post('api/OrganizationProfile/AddAddresses', body, this.getOptionsForRequest())
+        return this._http.post(GlobalUrlService.organizationProfileAddresses, body, RequestOptionsService.getRequestOptions())
             .map((response: Response) => response.json() as OrgAddressViewModel);
     }
 
     deleteAddress(id: number) {
-        return this._http.delete('api/OrganizationProfile/DeleteAddress/' + id.toString());
+        return this._http.delete(GlobalUrlService.organizationProfileAddress + id.toString());
     }
 
     editAddress(address: AddressViewModel): Observable<OrgAddressViewModel> {
         let body = address;
-        return this._http.put('api/organizationProfile/EditAddress', body, this.getOptionsForRequest())
+        return this._http.put(GlobalUrlService.organizationProfileAddress, body, RequestOptionsService.getRequestOptions())
             .map((response: Response) => response.json() as OrgAddressViewModel);
     }
 
     addTarget(target: TargetViewModel): Observable<TargetViewModel> {
         let body = target;
-        return this._http.post('api/Target/CreateTarget/', body, this.getOptionsForRequest()).
+        return this._http.post(GlobalUrlService.addTarget, body, RequestOptionsService.getRequestOptions()).
             map((response: Response) => response.json() as TargetViewModel);
     }
 
-    getOptionsForRequest(): RequestOptions {
-        let headers = new Headers({ 'Content-Type': 'application/json' });
-        return new RequestOptions({ headers: headers });
+    getTargetsByOrganizationId(organizationId: number): Observable<TargetViewModel[]> {
+        return this._http.get(GlobalUrlService.getAllTargetsOfOrganization + organizationId).
+            map((response: Response) => response.json() as TargetViewModel[]);
     }
 
-    getTargetsByOrganizationId(organizationId: number): Observable<TargetViewModel[]> {
-        return this._http.get('api/Target/GetAllTargetsOfOrganization/' + organizationId).
+    getTargetsWithDeletableField(orgId: number): Observable<TargetViewModel[]> {
+        return this._http.get(GlobalUrlService.getTargetsWithDeletableField + orgId, RequestOptionsService.getRequestOptions()).
             map((response: Response) => response.json() as TargetViewModel[]);
     }
 
     editTarget(target: TargetViewModel): Observable<TargetViewModel> {
         let body = target;
-        return this._http.put('api/Target/EditTarget/', body, this.getOptionsForRequest()).
+        return this._http.put(GlobalUrlService.editTarget, body, RequestOptionsService.getRequestOptions()).
             map((response: Response) => response.json() as TargetViewModel);
     }
 
     deleteTarget(targetId: number) {
-        return this._http.delete('api/Target/DeleteTarget/' + targetId);
+        return this._http.delete(GlobalUrlService.deleteTarget + targetId);
+    }
+
+    editLogo(item: EditLogoViewModel): Observable<EditLogoViewModel> {
+        let body = item;
+        return this._http.put(GlobalUrlService.editLogo, body, RequestOptionsService.getRequestOptions())
+            .map((response: Response) => response.json() as EditLogoViewModel);
     }
 }

@@ -1,6 +1,7 @@
 ﻿using FundTrack.Infrastructure.ViewModel;
 using System.Collections.Generic;
 using System;
+using Microsoft.EntityFrameworkCore;
 
 namespace FundTrack.DAL.Entities
 {
@@ -104,7 +105,7 @@ namespace FundTrack.DAL.Entities
         /// </summary>
         public virtual ICollection<FinOp> FinOpsTo { get; set; }
         #region Operators
-        public static implicit operator OrgAccount (OrgAccountViewModel model)
+        public static implicit operator OrgAccount(OrgAccountViewModel model)
         {
             return new OrgAccount
             {
@@ -114,26 +115,60 @@ namespace FundTrack.DAL.Entities
                 CurrencyId = model.CurrencyId,
                 OrgAccountName = model.OrgAccountName,
                 AccountType = model.AccountType,
-                Description=model.Description,
-                CurrentBalance=model.CurrentBalance,
+                Description = model.Description,
+                CurrentBalance = model.CurrentBalance,
                 TargetId = model.TargetId
             };
         }
-        public static implicit operator OrgAccountViewModel (OrgAccount item)
+        public static implicit operator OrgAccountViewModel(OrgAccount item)
         {
             return new OrgAccountViewModel
             {
-                Id=item.Id,
-                OrgId=item.OrgId,
-                BankAccId=item.BankAccId,
-                CurrencyId=item.CurrencyId,
-                OrgAccountName=item.OrgAccountName,
-                AccountType=item.AccountType,
-                Description=item.Description,
-                CurrentBalance=item.CurrentBalance,
+                Id = item.Id,
+                OrgId = item.OrgId,
+                BankAccId = item.BankAccId,
+                CurrencyId = item.CurrencyId,
+                OrgAccountName = item.OrgAccountName,
+                AccountType = item.AccountType,
+                Description = item.Description,
+                CurrentBalance = item.CurrentBalance,
                 TargetId = item.TargetId
             };
         }
         #endregion
+
+        public static void Configure(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<OrgAccount>(entity =>
+            {
+                entity.HasKey(e => e.Id).HasName("PK_OrgAccount");
+
+                entity.Property(e => e.OrgAccountName).IsRequired().HasMaxLength(100);
+
+                entity.Property(e => e.AccountType).IsRequired().HasMaxLength(10);
+
+                entity.Property(e => e.CurrentBalance).HasColumnType("decimal(18,2)");
+
+                entity.HasOne(oa => oa.Organization)
+                    .WithMany(o => o.OrgAccounts)
+                    .HasForeignKey(oa => oa.OrgId)
+                    .HasConstraintName("FK_OrgAccount_Organization");
+
+                entity.HasOne(oa => oa.Target)
+                 .WithMany(o => o.OrgAccounts)
+                 .HasForeignKey(oa => oa.TargetId)
+                 .HasConstraintName("FK_OrgAccount_Targets");
+
+                entity.HasOne(oa => oa.BankAccount)
+                    .WithMany(ba => ba.OrgAccounts)
+                    .HasForeignKey(oa => oa.BankAccId)
+                    .HasConstraintName("FK_OrgAccount_BankAccount");
+
+                entity.HasOne(oa => oa.Currency)
+                    .WithMany(c => c.OrgAccounts)
+                    .HasForeignKey(oa => oa.CurrencyId)
+                    .HasConstraintName("FK_OrgAccount_Currency");
+            });
+        }
     }
 }

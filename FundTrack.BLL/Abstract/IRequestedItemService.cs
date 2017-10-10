@@ -1,5 +1,4 @@
-﻿using FundTrack.DAL.Entities;
-using FundTrack.Infrastructure.ViewModel;
+﻿using FundTrack.Infrastructure.ViewModel;
 using FundTrack.Infrastructure.ViewModel.RequestedItemModel;
 using System.Collections.Generic;
 

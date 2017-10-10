@@ -1,6 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 
 namespace FundTrack.DAL.Entities
 {
@@ -45,6 +44,16 @@ namespace FundTrack.DAL.Entities
         /// The user responses.
         /// </value>
         public virtual ICollection<UserResponse> UserResponses { get; set; }
+
+        public static void Configure(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Status>(entity =>
+            {
+                entity.HasKey(e => e.Id).HasName("PK_Status");
+
+                entity.Property(e => e.StatusName).IsRequired().HasMaxLength(20);
+            });
+        }
     }
 }
 

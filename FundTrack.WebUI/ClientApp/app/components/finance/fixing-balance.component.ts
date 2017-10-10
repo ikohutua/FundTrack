@@ -1,4 +1,4 @@
-﻿import { Component, OnInit, Input, OnChanges, SimpleChanges, Output, EventEmitter } from "@angular/core";
+﻿import { Component, Input, OnChanges, SimpleChanges, Output, EventEmitter } from "@angular/core";
 import { DatePipe } from '@angular/common';
 import { FixingBalanceService } from "../../services/concrete/fixing-balance.service";
 import { FixingBalanceFilteringViewModel } from "../../view-models/concrete/fixing-balance-filtering-view.model";
@@ -10,7 +10,7 @@ import { BalanceViewModel } from "../../view-models/concrete/finance/balance-vie
     styleUrls: ['./fixing-balance.component.css'],
     providers: [FixingBalanceService]
 })
-export class FixingBalanceComponent implements OnChanges, OnInit {
+export class FixingBalanceComponent implements OnChanges {
 
     @Output() closeModalEvent = new EventEmitter<boolean>();
 
@@ -24,13 +24,10 @@ export class FixingBalanceComponent implements OnChanges, OnInit {
     currentDate: string;
     lastFixing: BalanceViewModel;
     message: string = "";
+    toasterClass: string = "";
 
 
     constructor(private fixingBalanceService: FixingBalanceService) {
-    }
-
-    ngOnInit(): void {
-
     }
 
     ngOnChanges(changes: SimpleChanges): void {
@@ -62,7 +59,6 @@ export class FixingBalanceComponent implements OnChanges, OnInit {
             this.isDatePickerEnabled = false;
             this.isSubmitEnabled = false;
         }
-
     }
 
     resetAllData() {
@@ -75,7 +71,6 @@ export class FixingBalanceComponent implements OnChanges, OnInit {
     fixBalance() {
         let balance = new BalanceViewModel();
         balance.balanceDate = this.currentDate;
-
         balance.orgAccountId = this.accountId;
         this.fixingBalanceService.fixBalance(balance)
             .subscribe(data => {
@@ -90,14 +85,15 @@ export class FixingBalanceComponent implements OnChanges, OnInit {
                 this.isDatePickerEnabled = false;
             });
     }
+
     setCurrentDate(date: Date) {
         this.currentDate = date.toString();
     }
+
     public showToast() {
-        var x = document.getElementById("snackbar");
-        x.className = "show";
+        this.toasterClass = "show";
         setTimeout(() => {
-            x.className = x.className.replace("show", "");
+            this.toasterClass = "";
             this.closeModalEvent.emit(true);
         }, 3000);
     }

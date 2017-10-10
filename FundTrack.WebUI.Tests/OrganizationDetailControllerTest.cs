@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using FundTrack.BLL.Abstract;
 using FundTrack.Infrastructure.ViewModel;
 using FundTrack.WebUI.Controllers;
-using System.Linq;
 
 namespace FundTrack.WebUI.Tests
 {

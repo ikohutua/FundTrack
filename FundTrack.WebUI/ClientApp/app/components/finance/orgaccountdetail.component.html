@@ -1,4 +1,4 @@
-﻿<div class="accountdetail maindiv col-md-12">
+﻿<div class="container maindiv">
     <div class="col-md-5">
         <p class="leftside uptop date">{{currentDate | date: 'dd/MM/yyyy'}}</p>
         <p class="leftside "><span style="font-weight: bold; font-size:24px; font-family:Calibri">{{account.orgAccountName}}</span></p>
@@ -15,12 +15,9 @@
             </div>
         </div>
     </div>
-    <div style="margin-top:20px;" *ngIf="account.accountType=='Банк'" class="col-md-5">
-        <p class="leftside ">Номер рахунку: <span class="accountname">{{account.accNumber}}</span></p>
+    <div style="margin-top:20px;" class="col-md-5">
         <p *ngIf="hasCardNumber" class="leftside ">Номер картки: <span  class="accountname">{{account.cardNumber}}</span></p>
         <p class="leftside">Назва банку: <span class="accountname">{{account.bankName}}</span></p>
-        <p class="leftside">МФО: <span class="accountname">{{account.mfo}}</span></p>
-        <p class="leftside">ЄДРПОУ: <span class="accountname">{{account.edrpou}}</span></p>
         <p class="leftside">Опис рахунку: <i>{{account.description}}</i></p>
     </div>
     <div class="col-md-2 pull-right">

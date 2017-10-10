@@ -1,6 +1,8 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { Image } from "../../../../view-models/concrete/image.model";
-
+import * as message from '../../../common-message.storage';
+import * as defaultConfiguration from '../../../default-configuration.storage';
+import { ImputImageService } from "../../../input-image-service";
 
 @Component({
     selector: 'image-list',
@@ -9,7 +11,7 @@ import { Image } from "../../../../view-models/concrete/image.model";
     inputs: ['activeColor', 'baseColor', 'overlayColor']
 })
 
-export class ImageListComponent {
+export class ImageListComponent implements OnInit {
     @Input() images: Image[] = [];
     @Output() getImageChange = new EventEmitter<Image[]>();
 
@@ -22,11 +24,17 @@ export class ImageListComponent {
     imageLoaded: boolean = false;
     imageSrc: string = '';
     currentFile: File;
-    @Input() maxSize: number = 4000000;
-    @Input() maxCount: number = 5;
+    @Input() maxCount: number;
+    @Input() maxSize: number;
 
     colorStyle: string;
     outlineColorStyle: string;
+
+    ngOnInit(): void {
+        if (this.maxCount == 0) {
+            this.maxCount = defaultConfiguration.maxImagesCountInList;
+        }
+    }
 
     changeColorStyle() {
         this.colorStyle = this.dragging ?
@@ -34,15 +42,29 @@ export class ImageListComponent {
             : ((this.imageSrc.length > 0) ? this.overlayColor : this.baseColor);
     }
 
-    changeOutlineColorStyle()
-    {
+    changeOutlineColorStyle() {
         this.outlineColorStyle = this.dragging ? this.activeColor : this.baseColor;
     }
 
     delete(img: Image) {
         let index = this.images.indexOf(img);
-        if (index > -1)
+        if (index > -1) {
             this.images.splice(index, 1);
+            if (img.isMain && this.images.length > 0) {
+                this.setMain(this.images[0]);
+            }
+        }
+    }
+
+    setMain(img: Image) {
+        for (var i = 0; i < this.images.length; i++) {
+            this.images[i].isMain = false;
+        }
+        this.setImageAsMain(img);
+    }
+
+    private setImageAsMain(img: Image) {
+        img.isMain = true;
     }
 
     handleDragEnter() {
@@ -65,53 +87,31 @@ export class ImageListComponent {
         this.handleInputChange(e);
     }
 
-    handleImageLoad() {
-        this.imageLoaded = true;
-    }
 
-    handleInputChange(e: any) {
-
-        if (this.images.length > this.maxCount-1) {
-            alert("Максимальна кількість зображень: " + this.maxCount);
+    handleInputChange(startFile: any) {
+        if (!startFile.target.files.length) {
             return;
         }
 
-        this.currentFile = e.dataTransfer ? e.dataTransfer.files[0] : e.target.files[0];
-
-        var pattern = /image-*/;
-        var reader = new FileReader();
-
-
-        if (this.currentFile.size > this.maxSize) {
-            alert('Завеликий розмір зображення. Допустимо ' + this.maxSize/1000000 + 'Мб');
+        if (this.images.length >= this.maxCount) {
+            alert(message.maxImagesCount);
             return;
         }
 
-        if (!this.currentFile.type.match(pattern)) {
-            alert('Невірний формат!');
-            return;
-        }
-
-        if (this.images.find(i => i.name == this.currentFile.name) != null) {
-            alert('Зображення вже вибране!');
-            return
-        }
         this.loaded = false;
-        reader.onload = this._handleReaderLoaded.bind(this);
-        reader.readAsDataURL(this.currentFile);
-    }
+        let imgInpServ: ImputImageService = new ImputImageService();
 
-    _handleReaderLoaded(e: any) {
-        var reader = e.target;
-        this.imageSrc = reader.result;
-
-        var commaInd = this.imageSrc.indexOf(',');
-        var byteCharacters = this.imageSrc.substring(commaInd + 1);
-
-        var item = new Image(this.currentFile.name, this.imageSrc, byteCharacters);
-        this.images.push(item);
-
-        this.getImageChange.emit(this.images);
-        this.loaded = true;
+        imgInpServ.UploadImageFromFile(startFile)
+            .then((res) => {
+                if (this.images.length == 0) {
+                    res.isMain = true;
+                }
+                this.images.push(res);
+                this.getImageChange.emit(this.images);
+                this.loaded = true;
+            })
+            .catch((err) => {
+                alert(err.message);
+            });
     }
 }

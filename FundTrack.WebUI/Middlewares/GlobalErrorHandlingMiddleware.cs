@@ -1,20 +1,21 @@
 ﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using System;
 using System.Threading.Tasks;
+using FundTrack.WebUI.Middlewares.Logging;
 
 namespace FundTrack.WebUI.Middlewares
 {
     public sealed class GlobalErrorHandlingMiddleware
     {
         private readonly RequestDelegate _next;
+        private readonly IErrorLogger _logging;
 
-        public GlobalErrorHandlingMiddleware(RequestDelegate next)
+        public GlobalErrorHandlingMiddleware(RequestDelegate next, IErrorLogger logging)
         {
             _next = next;
+            _logging = logging;
         }
 
         public async Task Invoke(HttpContext context)
@@ -37,6 +38,8 @@ namespace FundTrack.WebUI.Middlewares
                     ContractResolver = new CamelCasePropertyNamesContractResolver()
                 });
 
+                _logging.WriteLogInFile(ex);
+                
 
                 await context.Response.WriteAsync(json);
             }

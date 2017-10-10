@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace FundTrack.Infrastructure.ViewModel.FinanceViewModels
+﻿namespace FundTrack.Infrastructure.ViewModel.FinanceViewModels
 {
     public class FinOpFromBankViewModel
     {
@@ -28,7 +24,7 @@ namespace FundTrack.Infrastructure.ViewModel.FinanceViewModels
         /// <value>
         /// The name of the target.
         /// </value>
-        public int Targetid { get; set; }
+        public int? TargetId { get; set; }
 
         /// <summary>
         /// Gets or sets the name of the acc from.
@@ -36,7 +32,7 @@ namespace FundTrack.Infrastructure.ViewModel.FinanceViewModels
         /// <value>
         /// The name of the acc from.
         /// </value>
-        public int CardFromId { get; set; }
+        public int? CardFromId { get; set; }
 
         /// <summary>
         /// Gets or sets the name of the acc to.
@@ -44,7 +40,7 @@ namespace FundTrack.Infrastructure.ViewModel.FinanceViewModels
         /// <value>
         /// The name of the acc to.
         /// </value>
-        public int CardToId { get; set; }
+        public int? CardToId { get; set; }
 
         /// <summary>
         /// Gets or sets the amount.

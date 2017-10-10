@@ -1,16 +1,21 @@
-﻿import { Component, Injectable, Input, Output, ElementRef, ViewChild, NgZone, OnInit} from '@angular/core';
+﻿import { Component, Injectable, Input, Output, ElementRef, ViewChild, NgZone, OnInit } from '@angular/core';
 import { IOrganizationRegistrationViewModel } from '../../view-models/abstract/organization-registration-view-model.interface';
 import { OrganizationRegistrationService } from '../../services/concrete/organization-registration.service';
 import { OrganizationRegistrationViewModel } from '../../view-models/concrete/organization-registration-view-model';
 import { MapComponent } from '../../shared/components/map/map.component';
 import { Observable } from "rxjs/Observable";
 import { ModalComponent } from '../../shared/components/modal/modal-component';
+import * as message from '../../shared/common-message.storage';
+import * as defaultConfig from '../../shared/default-configuration.storage';
+import { Image } from "../../view-models/concrete/image.model";
+import { ImputImageService } from "../../shared/input-image-service";
+
 
 @Component({
-    selector: 'register-organization', 
+    selector: 'register-organization',
     template: require('./organization-registration.component.html'),
-    styleUrls: ['./organization-registration.component.css'], 
-    providers:[MapComponent]
+    styleUrls: ['./organization-registration.component.css'],
+    providers: [MapComponent]
 })
 
 /**
@@ -28,22 +33,31 @@ export class OrganizationRegistrationComponent implements OnInit {
     addresses: string[];
     organization: OrganizationRegistrationViewModel = new OrganizationRegistrationViewModel();
     orgName: string;
+
+    currentFile: File;
+    defaultLogoUrl: string;
+    newLogo: Image;
+    isNewLogoAvailable: boolean = false;
+    errorMessage: string;
+    isError: boolean = false;
+
+
     constructor(private _registerService: OrganizationRegistrationService, private _map: MapComponent) {
-        
+
     }
 
     ngOnInit() {
-       
+        this.defaultLogoUrl = defaultConfig.defaultOrganizationLogoUrl;
     }
 
     /**
      * Registers new organization
      */
     registerOrganization() {
-        //this.userError = " ";
-        //this.nameError = " ";
         this.organization.country = "Україна";
-        console.log(this.organization);
+        if (this.isNewLogoAvailable) {
+            this.organization.base64Code = this.newLogo.base64Data;
+        }
         this._registerService.registerOrganization(this.organization)
             .subscribe(org => {
                 this.userError = org.userError;
@@ -54,12 +68,39 @@ export class OrganizationRegistrationComponent implements OnInit {
                 }
             });
     }
-
     getAddresses() {
-      
+
     }
 
     openModal() {
         this.modal.show();
+    }
+
+    handleInputChange(startFile: any) {
+
+        if (!startFile.target.files.length) {
+            return;
+        }
+        this.isError = false;
+        let imgInpServ: ImputImageService = new ImputImageService();
+
+        imgInpServ.UploadImageFromFile(startFile)
+            .then((res) => {
+                console.log(res);
+                this.newLogo = res;
+                this.isNewLogoAvailable = true;
+            })
+            .catch((err) => {
+                this.imageErrorMessage(err.message);
+            });
+    }
+
+    imageErrorMessage(message: string) {
+        this.errorMessage = message;
+        this.isError = true;
+    }
+
+    clearImage() {
+        this.isNewLogoAvailable = false;
     }
 }

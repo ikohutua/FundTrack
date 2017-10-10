@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System;
 using FundTrack.DAL.Concrete;
 using FundTrack.Infrastructure;
+using System.Threading.Tasks;
 
 namespace FundTrack.BLL.Concrete
 {
@@ -17,14 +18,16 @@ namespace FundTrack.BLL.Concrete
     public class OrganizationProfileService : IOrganizationProfileService
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IImageManagementService _imgManageService;
 
         /// <summary>
         /// Creates new instance of OrganizationProfileService
         /// </summary>
         /// <param name="unitOfWork">Unit of work</param>
-        public OrganizationProfileService(IUnitOfWork unitOfWork)
+        public OrganizationProfileService(IUnitOfWork unitOfWork, IImageManagementService imgManageService)
         {
             _unitOfWork = unitOfWork;
+            _imgManageService = imgManageService;
         }
 
         /// <summary>
@@ -180,25 +183,22 @@ namespace FundTrack.BLL.Concrete
         public OrganizationDetailViewModel GetOrganizationDetail(int id)
         {
             OrganizationDetailViewModel organizationDetail = new OrganizationDetailViewModel();
-
             try
             {
                 OrganizationViewModel organization = GetOrganizationById(id);
                 User orgAdmin = _unitOfWork.MembershipRepository.GetOrganizationAdmin(organization.Id);
                 organizationDetail.Organization = organization;
                 // if found admin of organization and he has phone
-                if (orgAdmin != null && orgAdmin.Phones.Count != 0)
+                if (orgAdmin != null && orgAdmin.Phones.Any())
                 {
                     AddAdminInfoToOrgDetailModel(organizationDetail, orgAdmin);
                 }
+                AddAccountsInfoToOrgDetailModel(organizationDetail);
             }
             catch (NullReferenceException ex)
             {
                 throw new DataAccessException(ErrorMessages.CantFindDataById, ex);
             }
-
-            AddAccountsInfoToOrgDetailModel(organizationDetail);
-
             return organizationDetail;
         }
 
@@ -258,5 +258,23 @@ namespace FundTrack.BLL.Concrete
             organizationDetail.OrgAccountsList = ConvertListOrgAccountToListOrgAccountDetailViewModel(filteredAccounts);
         }
 
+        public EditLogoViewModel EditLogo(EditLogoViewModel item)
+        {
+            var organization = _unitOfWork.OrganizationRepository.Get(item.OrganizationId);
+            if (organization!=null)
+            {
+                var task =  _imgManageService.UploadImage(Convert.FromBase64String(item.Base64Code));
+                Task.WhenAll(task);
+                organization.LogoUrl = task.Result;
+                _unitOfWork.SaveChanges();
+
+                item.LogoUrl = AzureStorageConfiguration.GetImageUrl(organization.LogoUrl);
+            }
+            else
+            {
+                throw new BusinessLogicException(ErrorMessages.BadRequestMessage);
+            }
+            return item;
+        }
     }
 }

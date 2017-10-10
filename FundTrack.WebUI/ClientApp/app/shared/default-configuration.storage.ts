@@ -1,0 +1,11 @@
+﻿export const defaultOrganizationLogoUrl: string = "https://www.justpro.co/img/no-image.png";
+export const imageRegExPattern: RegExp = /image*/;
+export const maxImageSize: number = 4000000;
+export const maxImagesCountInList: number = 8;
+export const incomeUA: string = "Прихід";
+export const spendingUA: string = "Розхід";
+export const transferUA: string = "Переміщення";
+export const cashUA: string = "Готівка";
+export const incomeId: number = 1;
+export const spendingId: number = 0;
+export const transferId: number = 2;

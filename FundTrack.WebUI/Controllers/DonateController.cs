@@ -1,5 +1,6 @@
 ﻿using FundTrack.BLL.Abstract;
 using FundTrack.Infrastructure.ViewModel.FinanceViewModels.DonateViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,7 @@ namespace FundTrack.WebUI.Controllers
     /// Controller that manages donate money operations
     /// </summary>
     [Route("api/[controller]")]
-    public class DonateController: Controller
+    public class DonateController : Controller
     {
         private readonly IDonateMoneyService _donateMoneyService;
 
@@ -70,35 +71,68 @@ namespace FundTrack.WebUI.Controllers
         /// </summary>
         /// <param name="organizationId">Id of organization</param>
         /// <returns>Organization id and accounts</returns>
-        [HttpGet("GetAccountsForDonate/{organizationId}")]
+        [HttpGet("AccountsForDonate/{organizationId}")]
         public OrganizationDonateAccountsViewModel GetAccountsForDonate(int organizationId)
         {
             return _donateMoneyService.GetAccountForDonation(organizationId);
         }
 
-        [HttpGet("GetOrderId")]
+        [HttpGet("OrderId")]
         public string GetOrderId()
         {
             return _donateMoneyService.GetOrderId();
         }
 
-        [HttpGet("GetTargets")]
-        public IEnumerable<TargetViewModel> GetTargets()
-        {
-            return _donateMoneyService.GetTargets(1);
-        }
-
-        [HttpGet("GetCurrencies")]
+        [HttpGet("Currencies")]
         public IEnumerable<CurrencyViewModel> GetCurrencies()
         {
             return _donateMoneyService.GetCurrencies();
         }
 
         [HttpPost("AddDonation")]
-        public DonateViewModel AddDonation ([FromBody]DonateViewModel item)
+        public DonateViewModel AddDonation([FromBody]DonateViewModel item)
         {
             return _donateMoneyService.AddDonation(item);
         }
 
+        [HttpGet]
+        public IEnumerable<DonateViewModel> GetAllDonations()
+        {
+            return _donateMoneyService.GetAllDonatons();
+        }
+
+        [HttpGet("{id}")]
+        public DonateViewModel GetDonationById(int id)
+        {
+            return _donateMoneyService.GetDonationById(id);
+        }
+
+        [HttpGet("suggested/{finOpId}")]
+        public IEnumerable<DonateViewModel> GetSuggestedDonations(int finOpId)
+        {
+            return _donateMoneyService.GetSuggestedDonations(finOpId);
+        }
+
+        [HttpGet("User/{userId}")]
+        [Authorize]
+        public IActionResult GetUserDonations(int userId)
+        {
+            if (userId <= 0)
+            {
+                return BadRequest();
+            }
+            return Ok(_donateMoneyService.GetUserDonations(userId));
+        }
+
+        [HttpGet("UserByDate")]
+        [Authorize]
+        public IActionResult GetUserDonationsByDate(int userId, DateTime dateFrom, DateTime dateTo)
+        {
+            if (userId <= 0)
+            {
+                return BadRequest();
+            }
+            return Ok(_donateMoneyService.GetUserDonationsByDate(userId, dateFrom, dateTo));
+        }
     }
 }

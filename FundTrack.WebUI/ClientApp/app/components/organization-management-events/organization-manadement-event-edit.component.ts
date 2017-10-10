@@ -88,7 +88,6 @@ export class OrganizationManadementEventEditComponent implements OnInit {
      * @param imageUrl
      */
     private deleteImageFromList(imageUrl: string): void {
-        debugger;
         this._event.images.splice(this._event.images.findIndex(i => i.imageUrl == imageUrl), 1)
     }
 
