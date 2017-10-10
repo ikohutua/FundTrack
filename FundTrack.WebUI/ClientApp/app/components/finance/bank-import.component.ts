@@ -113,6 +113,7 @@ export class BankImportComponent implements OnInit {
                                     this.currentOrgAccount = response;
                                     if (this.currentOrgAccount.targetId != null) {
                                         this.isOrgAccountHaveTarget = true;
+                                        debugger;
                                         this._orgAccountService.getTargetById(this.currentOrgAccount.targetId)
                                             .subscribe(response => {
                                                 this.targets = new Array<TargetViewModel>();

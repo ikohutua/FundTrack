@@ -158,7 +158,7 @@ export class OrgAccountService {
     }
 
     public getExtractsCredentials(orgAccountId: number): Observable<BankCredentialsViewModel> {
-        return this._http.get(GlobalUrlService.getExtractCredentials +"/"+ orgAccountId.toString())
+        return this._http.get(GlobalUrlService.getExtractCredentials + orgAccountId.toString())
             .map((response: Response) => <BankCredentialsViewModel>response.json())
             .catch(this.handleError);
     }
