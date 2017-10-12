@@ -276,3 +276,7 @@ However, delay the fade out process for 2.5 seconds */
     width: 100%;
     align-items: center;
 }
+
+.emptyDiv {
+    padding: 20px;
+}

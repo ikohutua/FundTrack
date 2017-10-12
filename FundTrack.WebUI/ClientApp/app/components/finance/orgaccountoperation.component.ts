@@ -304,7 +304,7 @@ export class OrgAccountOperationComponent implements OnChanges {
         }
     }
 
-    public setDate(model: FinOpListViewModel, date: Date) {
+    public setDate(model: FinOpListViewModel, date: string) {
         model.date = date;
     }
 
@@ -606,14 +606,18 @@ export class OrgAccountOperationComponent implements OnChanges {
             this.suggestedDonationsModal.show();
             if (this.suggestedDonations.length == 1) {
                 this.selectedDonationId = this.suggestedDonations[0].id;
+                this.selectedUserId = this.suggestedDonations[0].userId;
             }
         });
         this.userService.getAllUsers().subscribe(result => this.users = result);
     }
 
     private IsOkButtonEnable(): boolean {
+        if (this.selectedUserId == undefined) {
+            return false;
+        }
         if (this.suggestedDonations.length > 1) {
-            if (this.selectedDonationId == undefined || this.selectedUserId == undefined) {
+            if (this.selectedDonationId == undefined) {
                 return false;
             }
         }
@@ -622,19 +626,19 @@ export class OrgAccountOperationComponent implements OnChanges {
 
     private radioButtonOnChange(donation : DonateViewModel) {
         this.selectedDonationId = donation.id;
+        this.selectedUserId = donation.userId;
     }
 
     private closeSuggestionsModal() {
         this.selectedDonationId = undefined;
         this.selectedUserId = undefined;
+        this.suggestedDonations.length = 0;
         this.suggestedDonationsModal.hide();
     }
 
     private onClickSuggestionModalButton() {
         if (this.suggestedDonations.length == 0) {
-            this.toasterMessage = "На даний момент операція недоступна.";
-            this.showToast();
-            this.closeSuggestionsModal();
+            this.createDonationFromFinOp(this.selectedFinOp.id);
             return;
         }
         this.selectedFinOp.userId = this.selectedUserId;
@@ -644,6 +648,32 @@ export class OrgAccountOperationComponent implements OnChanges {
             this.showToast();
             this.closeSuggestionsModal();
         });
+    }
+
+    private createDonationFromFinOp(finOpId: number): DonateViewModel {
+        this.selectedFinOp.userId = this.selectedUserId;
+        var donation: DonateViewModel = new DonateViewModel();
+        donation.amount = this.selectedFinOp.amount;
+        donation.userId = this.selectedUserId;
+        donation.currencyId = this.currentAccount.currencyId; 
+        donation.targetId = this.selectedFinOp.targetId;
+        donation.description = this.selectedFinOp.description;
+        donation.donationDate = this.selectedFinOp.date;
+        this.donateService.getOrderId().subscribe(result => {
+            donation.orderId = result;
+            this.accountService.getBankAccId(this.selectedFinOp.cardToId).subscribe(result => {
+                donation.bankAccountId = result;
+                this.donateService.addDonation(donation).subscribe(result => {
+                    this.selectedFinOp.donationId = result.id;
+                    this.finOpService.bindDonationAndFinOp(this.selectedFinOp).subscribe(result => {
+                        this.toasterMessage = "Операція виконана успішно.";
+                        this.showToast();
+                        this.closeSuggestionsModal();
+                    });
+                });
+            });
+        });
+        return donation;
     }
 
     public showToast() {
@@ -656,5 +686,19 @@ export class OrgAccountOperationComponent implements OnChanges {
 
     private onChangeUser($event) {
         this.selectedUserId = $event;
+    }
+
+    private isUserSelectDisabled(): boolean {
+        if (this.suggestedDonations.length == 0) {
+            return false;
+        }
+        if (this.selectedDonationId != undefined) {
+            var d = this.suggestedDonations.find(d => d.id === this.selectedDonationId);
+            if (d.userId != undefined) {
+                return true; // if selected donation already has user
+            }
+            return false; 
+        }
+        return true;
     }
 }

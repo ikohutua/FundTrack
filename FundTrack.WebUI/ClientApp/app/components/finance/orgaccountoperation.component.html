@@ -541,36 +541,39 @@
                 <h4 *ngIf="suggestedDonations.length>1">Виберіть пожертву:</h4>
                 <table class="table table-hover table-responsive">
                     <thead>
-                        <tr>
-                            <th class="th-center-align" *ngIf="suggestedDonations.length>1"></th>
-                            <th class="th-center-align">Дата</th>
-                            <th class="th-center-align">Сума</th>
-                            <th class="th-center-align">Опис</th>
-                        </tr>
+                    <tr>
+                        <th class="th-center-align" *ngIf="suggestedDonations.length>1"></th>
+                        <th class="th-center-align">Дата</th>
+                        <th class="th-center-align">Сума</th>
+                        <th class="th-center-align">Опис</th>
+                    </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let donation of suggestedDonations">
-                            <td class="th-center-align" *ngIf="suggestedDonations.length>1">
-                                <input type="radio" name="selectedRadioButton" [value]="donation.id" (change)="radioButtonOnChange(donation)" />
-                            </td>
-                            <td class="th-center-align">{{donation.donationDate | date: 'dd/MM/yyyy hh:mm'}}</td>
-                            <td class="th-center-align">{{donation.amount}}</td>
-                            <td class="th-center-align">{{donation.description}}</td>
-                        </tr>
+                    <tr *ngFor="let donation of suggestedDonations">
+                        <td class="th-center-align" *ngIf="suggestedDonations.length>1">
+                            <input type="radio" name="selectedRadioButton" [value]="donation.id" (change)="radioButtonOnChange(donation)" />
+                        </td>
+                        <td class="th-center-align">{{donation.donationDate | date: 'dd/MM/yyyy hh:mm'}}</td>
+                        <td class="th-center-align">{{donation.amount}}</td>
+                        <td class="th-center-align">{{donation.description}}</td>
+                    </tr>
                     </tbody>
                 </table>
-                <div class="form-group col-md-5">
-                    <label class="control-label"> Виберіть користувача: </label>
-                    <select class="form-control" name="user" (ngModelChange)="onChangeUser($event)" ngModel>
-                        <option *ngFor="let user of users" value="{{user.id}}" [selected]="user.targetId==undefined">
-                            {{user.firstName}} {{user.lastName}}
-                        </option>
-                    </select>
-                </div>
+                
+            </div>
+            <div class="emptyDiv">
+            </div>
+            <div class="form-group col-md-5">
+                <label class="control-label"> Виберіть користувача: </label>
+                <select class="form-control" name="user" (ngModelChange)="onChangeUser($event)" ngModel [disabled]="isUserSelectDisabled()">
+                    <option *ngFor="let user of users" value="{{user.id}}" [selected]="user.id==selectedUserId">
+                        {{user.firstName}} {{user.lastName}} ({{user.login}})
+                    </option>
+                </select>
             </div>
             <div class="right-float">
                 <button (click)="onClickSuggestionModalButton()"
-                        class="btn btn-default"
+                        class="btn"
                         data-dismiss="modal"
                         [disabled]="!IsOkButtonEnable()">
                     Так
