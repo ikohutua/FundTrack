@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace FundTrack.DAL.Entities
+﻿namespace FundTrack.DAL.Entities
 {
     public class FinOpImage
     {

@@ -39,8 +39,6 @@ namespace FundTrack.Infrastructure.ViewModel.FinanceViewModels
 
         public bool IsEditable { get; set; }
 
-        public decimal Difference { get; set; }
-
         public string Error { get; set; }
 
         public int? DonationId { get; set; }

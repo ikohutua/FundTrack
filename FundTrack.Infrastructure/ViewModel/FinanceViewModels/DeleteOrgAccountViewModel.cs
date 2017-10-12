@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace FundTrack.Infrastructure.ViewModel.FinanceViewModels
+﻿namespace FundTrack.Infrastructure.ViewModel.FinanceViewModels
 {
     public class DeleteOrgAccountViewModel
     {

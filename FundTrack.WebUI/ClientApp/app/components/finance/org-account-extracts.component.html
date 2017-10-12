@@ -9,9 +9,8 @@
             <br />
             <input class="form-control" type="text" required [(ngModel)]="connectExtractsCredential.merchantId" name="merchantId" #merchantId="ngModel" pattern="[0-9]*" />
             <br />
-            <div *ngIf="merchantId.errors && merchantId.dirty"
-                 class="alert alert-danger">
-                    Введено недозволений символ
+            <div *ngIf="merchantId.value &&  merchantId.errors && merchantId.dirty" class="alert alert-danger">
+                Введено недозволений символ
             </div>
             <label>Merchant Password<sup class="sup-color-red">*</sup></label>
             <br />
@@ -26,7 +25,7 @@
 
 <div *ngIf="isExtractsConnected">
     <p class="custom-bold">Прийом виписок з даного рахунку доступно</p>
-   
+
     <div class="row">
         <button (click)="disableModal.show()" class="btn btn-danger right"> Відключити </button>
         <label class="switch">

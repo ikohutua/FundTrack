@@ -16,7 +16,6 @@ using FundTrack.BLL.DomainServices;
 using FundTrack.DAL.Repositories;
 using FundTrack.Infrastructure.ViewModel.EventViewModel;
 using FundTrack.WebUI.Formatter;
-using Microsoft.AspNetCore.Http;
 using FundTrack.WebUI.Middlewares;
 using FundTrack.WebUI.Middlewares.Logging;
 
@@ -127,6 +126,10 @@ namespace FundTrack.WebUI
             services.AddScoped<IImageManagementService, AzureImageManagementService>();
             services.AddScoped<IFixingBalanceService, FixingBalanceService>();
             services.AddScoped<IBankService, BankService>();
+
+            //dependency injection WebUI
+            services.AddScoped<IErrorLogger, ErrorLogger>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -138,7 +141,7 @@ namespace FundTrack.WebUI
 
             app.UseStaticFiles();
 
-          
+
             app.UseJwtBearerAuthentication(new JwtBearerOptions
             {
                 AutomaticAuthenticate = true,
@@ -165,13 +168,11 @@ namespace FundTrack.WebUI
 
             //if (env.IsDevelopment())
             //{
-                
-            //
-
             app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions
             {
                 HotModuleReplacement = true
             });
+            //}
 
             app.UseWebSockets();
 

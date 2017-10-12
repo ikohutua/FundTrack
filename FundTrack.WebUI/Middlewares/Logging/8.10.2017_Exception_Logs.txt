@@ -1,11 +1,10 @@
-Date and time:  06.10.2017 16:20:17
+﻿Date and time:  08.10.2017 20:25:19
 Error message:  Список фінансових операцій порожній
 Source:  FundTrack.BLL
-InnerException:  FundTrack.BLL.Concrete.BusinessLogicException: Список фінансових операцій порожній
-   at FundTrack.BLL.Concrete.FinOpService.GetFinOpsByOrgAccount(Int32 orgAccountId) in C:\FundTrack\FundTrack.BLL\Concrete\FinOpService.cs:line 198
-
-StackTrace:     at FundTrack.BLL.Concrete.FinOpService.GetFinOpsByOrgAccount(Int32 orgAccountId) in C:\FundTrack\FundTrack.BLL\Concrete\FinOpService.cs:line 218
-   at FundTrack.WebUI.Controllers.FinOpController.GetFinOpsByOrgAccId(Int32 orgAccountId) in C:\FundTrack\FundTrack.WebUI\Controllers\FinOpController.cs:line 66
+InnerException:  FundTrack.BLL.Concrete.BusinessLogicException: Неможливо отримати інформацію для рахунку
+   at FundTrack.BLL.Concrete.FinOpService.GetFinOpsByOrgAccount(Int32 orgAccountId) in C:\FundTrack\FundTrack.BLL\Concrete\FinOpService.cs:line 187
+StackTrace:     at FundTrack.BLL.Concrete.FinOpService.GetFinOpsByOrgAccount(Int32 orgAccountId) in C:\FundTrack\FundTrack.BLL\Concrete\FinOpService.cs:line 208
+   at FundTrack.WebUI.Controllers.FinOpController.GetFinOpsByOrgAccId(Int32 orgAccountId) in C:\FundTrack\FundTrack.WebUI\Controllers\FinOpController.cs:line 62
    at lambda_method(Closure , Object , Object[] )
    at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.<InvokeActionMethodAsync>d__27.MoveNext()
 --- End of stack trace from previous location where exception was thrown ---
@@ -46,5 +45,5 @@ StackTrace:     at FundTrack.BLL.Concrete.FinOpService.GetFinOpsByOrgAccount(Int
    at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
    at System.Runtime.CompilerServices.TaskAwaiter.GetResult()
    at FundTrack.WebUI.Middlewares.GlobalErrorHandlingMiddleware.<Invoke>d__3.MoveNext() in C:\FundTrack\FundTrack.WebUI\Middlewares\GlobalErrorHandlingMiddleware.cs:line 29
--------------------------------------------------------------------------------------
+____________________________________________________________________________________________________________________________________________
 

@@ -13,6 +13,7 @@ import { FinOpService } from "../../services/concrete/finance/finOp.service";
 import { TargetViewModel } from "../../view-models/concrete/finance/donate/target.view-model";
 import { OrgAccountSelectViewModel } from "../../view-models/concrete/finance/org-accounts-select-view.model";
 import * as key from '../../shared/key.storage'
+import * as message from '../../shared/common-message.storage'
 import { AuthorizeUserModel } from "../../view-models/concrete/authorized-user-info-view.model";
 import { SpinnerComponent } from "../../shared/components/spinner/spinner.component";
 import { OrgAccountService } from "../../services/concrete/finance/orgaccount.service";
@@ -96,7 +97,6 @@ export class BankImportComponent implements OnInit {
     }
 
     ngOnInit() {
-        console.log("Bank-Import");
         if (isBrowser) {
             if (sessionStorage.getItem(key.keyCardNumber)) {
                 this.card = sessionStorage.getItem(key.keyCardNumber);
@@ -113,6 +113,7 @@ export class BankImportComponent implements OnInit {
                                     this.currentOrgAccount = response;
                                     if (this.currentOrgAccount.targetId != null) {
                                         this.isOrgAccountHaveTarget = true;
+                                        debugger;
                                         this._orgAccountService.getTargetById(this.currentOrgAccount.targetId)
                                             .subscribe(response => {
                                                 this.targets = new Array<TargetViewModel>();
@@ -162,10 +163,10 @@ export class BankImportComponent implements OnInit {
     /*
     Error messages
     */
-    private requiredMessage = "Поле є обов'язковим для заповнення";
-    private numberMessage = "Поле повинно містити тільки цифри";
-    private lengthMessage = "Недопустима кількість символів";
-    private cardMessage = "Номер картки повинен складатися з 16 цифр";
+    private requiredMessage = message.requiredField;
+    private numberMessage = message.requiredNumberFielsd;
+    private lengthMessage = message.wrongLength;
+    private cardMessage = message.invalidCardNumberMessage;
 
     private validationMessages = {
         cardNumber: {

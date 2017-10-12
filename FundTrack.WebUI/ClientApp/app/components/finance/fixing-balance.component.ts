@@ -1,4 +1,4 @@
-﻿import { Component, OnInit, Input, OnChanges, SimpleChanges, Output, EventEmitter } from "@angular/core";
+﻿import { Component, Input, OnChanges, SimpleChanges, Output, EventEmitter } from "@angular/core";
 import { DatePipe } from '@angular/common';
 import { FixingBalanceService } from "../../services/concrete/fixing-balance.service";
 import { FixingBalanceFilteringViewModel } from "../../view-models/concrete/fixing-balance-filtering-view.model";
@@ -10,7 +10,7 @@ import { BalanceViewModel } from "../../view-models/concrete/finance/balance-vie
     styleUrls: ['./fixing-balance.component.css'],
     providers: [FixingBalanceService]
 })
-export class FixingBalanceComponent implements OnChanges, OnInit {
+export class FixingBalanceComponent implements OnChanges {
 
     @Output() closeModalEvent = new EventEmitter<boolean>();
 
@@ -28,10 +28,6 @@ export class FixingBalanceComponent implements OnChanges, OnInit {
 
 
     constructor(private fixingBalanceService: FixingBalanceService) {
-    }
-
-    ngOnInit(): void {
-
     }
 
     ngOnChanges(changes: SimpleChanges): void {

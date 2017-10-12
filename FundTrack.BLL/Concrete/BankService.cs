@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using FundTrack.BLL.Abstract;
 using FundTrack.DAL.Abstract;
 using FundTrack.DAL.Entities;

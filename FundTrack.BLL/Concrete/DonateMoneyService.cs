@@ -149,7 +149,7 @@ namespace FundTrack.BLL.Concrete
                     .Where(d =>                                                 // suggested conditions are: 
                         (d.DonationDate >= finOp.FinOpDate) &&                  // min bound for date/time
                         (d.DonationDate <= finOpMaxPossibleDate) &&             // max bound for date/time
-                        (d.Amount == (double) finOp.Amount))                    // same amount
+                        (d.Amount == (double)finOp.Amount))                    // same amount
                         .ToList();
             return suggestedDonations.Select(ConvertEntityToModel);
         }
@@ -184,9 +184,10 @@ namespace FundTrack.BLL.Concrete
             {
                 dateTo = dateTo.AddDays(1);
                 var result = GetUserDonations(userId)
-                    .Where(donat => (donat.Date <= dateTo)
+                    .Where(donat =>
+                    (donat.Date <= dateTo)
                     && (donat.Date >= dateFrom))
-                    .OrderBy(donation => donation.Date).ToList();
+                    .OrderByDescending(donation => donation.Date).ToList();
                 return result;
             }
             catch (Exception ex)

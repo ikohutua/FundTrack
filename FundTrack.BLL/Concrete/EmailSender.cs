@@ -1,8 +1,6 @@
 ﻿using FundTrack.BLL.Abstract;
 using MailKit.Net.Smtp;
-using Microsoft.Extensions.Configuration;
 using MimeKit;
-using System;
 
 namespace FundTrack.BLL.Concrete
 {

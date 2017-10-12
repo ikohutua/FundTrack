@@ -1,9 +1,5 @@
-﻿using FundTrack.DAL.Entities;
-using FundTrack.Infrastructure.ViewModel.FinanceViewModels;
-using FundTrack.Infrastructure.ViewModel.FinanceViewModels.DonateViewModels;
-using System;
+﻿using FundTrack.Infrastructure.ViewModel.FinanceViewModels;
 using System.Collections.Generic;
-using System.Text;
 
 namespace FundTrack.BLL.Abstract
 {

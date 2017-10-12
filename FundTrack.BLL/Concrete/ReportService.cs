@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using FundTrack.Infrastructure.ViewModel;
 using FundTrack.DAL.Abstract;
 using System.Linq;
+using FundTrack.Infrastructure;
 
 namespace FundTrack.BLL.Concrete
 {
@@ -32,7 +33,7 @@ namespace FundTrack.BLL.Concrete
 
                 return _unitOfWork.FinOpRepository.Read()
                     .Where(finOps =>
-                        (finOps.FinOpType == 1)
+                        (finOps.FinOpType == Constants.FinOpTypeIncome)
                         && (finOps.OrgAccountTo.OrgId == orgId)
                         && (finOps.FinOpDate > dateFrom)
                         && (finOps.FinOpDate < dateTo)).ToList()
@@ -43,7 +44,7 @@ namespace FundTrack.BLL.Concrete
                         TargetTo = finOps.Target?.TargetName,
                         MoneyAmount = finOps.Amount,
                         Date = finOps.FinOpDate,
-                    });
+                    }).OrderByDescending(finop => finop.Date);
             }
             catch (Exception ex)
             {
@@ -67,7 +68,7 @@ namespace FundTrack.BLL.Concrete
 
                 return _unitOfWork.FinOpRepository.Read()
                     .Where(finOps =>
-                        (finOps.FinOpType == 0)
+                        (finOps.FinOpType == Constants.FinOpTypeSpending)
                         && finOps.OrgAccountFrom.OrgId == orgId
                         && finOps.FinOpDate > dateFrom
                         && finOps.FinOpDate < dateTo).ToList()
@@ -78,7 +79,7 @@ namespace FundTrack.BLL.Concrete
                         Target = finOps.Target?.TargetName,
                         MoneyAmount = finOps.Amount,
                         Date = finOps.FinOpDate,
-                    });
+                    }).OrderByDescending(finop=>finop.Date);
             }
             catch (Exception ex)
             {
