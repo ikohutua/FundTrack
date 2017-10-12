@@ -312,10 +312,6 @@ export class OrgAccountOperationComponent implements OnChanges {
         }
     }
 
-    public setDate(model: FinOpListViewModel, date: Date) {
-        model.date = date;
-    }
-
     private pushReverse(array: Array<any>, element: any) {
         array.reverse();
         array.push(element);
