@@ -61,7 +61,7 @@ export class AuthorizationComponent {
         this.loginModel.login = "";
         this.loginModel.password = "";
         let userNamesFacebook;
-        let userForAuthorization: LoginFacebookViewModel=new LoginFacebookViewModel();
+        let userForAuthorization: LoginFacebookViewModel = new LoginFacebookViewModel();
         localStorage.clear();
         this._auth.login(provider)
             .subscribe(data => {
@@ -96,6 +96,14 @@ export class AuthorizationComponent {
         this.errorMessage = "";
         this._authorizationService.logIn(this.loginModel)
             .subscribe(data => {
+
+                //----------------------------------------------------------------------------
+                this._authorizationService.getAccessToken(this.loginModel)
+                    .subscribe(res => {
+                        console.log(res);
+                        data.access_token = res;
+                    });
+                //----------------------------------------------------------------------------
                 this.subscribeForAuthorization(data);
             });
     }

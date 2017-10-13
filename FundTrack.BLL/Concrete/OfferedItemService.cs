@@ -37,7 +37,9 @@ namespace FundTrack.BLL.Concrete
                     item.User = _unitOfWork.UsersRepository.GetUserById(model.UserId);
                     item.GoodsCategory = _unitOfWork.GoodsCategoryRepository.GetGoodsCategoryById(model.GoodsCategoryId);
                     item.Status = _unitOfWork.StatusRepository.GetStatusByName(initialStatus);
+                    item.OfferedItemImages = SetNewPictures(model.Images, model.Id);
                     var createdItem = _unitOfWork.OfferedItemRepository.Create(item);
+
                     _unitOfWork.SaveChanges();
                 }
                 return model;
