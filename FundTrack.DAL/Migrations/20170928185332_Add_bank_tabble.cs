@@ -15,8 +15,8 @@ namespace FundTrack.DAL.Migrations
                 {
                     Id = table.Column<int>()
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    BankName = table.Column<string>(),
-                    MFO = table.Column<string>()
+                    BankName = table.Column<string>(maxLength: 50, nullable: false),
+                    MFO = table.Column<string>(maxLength: 6, nullable: false)
                 },
                 constraints: table =>
                 {
