@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.15
+VisualStudioVersion = 15.0.26730.16
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FundTrack.WebUI", "FundTrack.WebUI\FundTrack.WebUI.csproj", "{465AB00F-51CD-4C6E-979D-B7EFA4387DC7}"
 EndProject
@@ -16,6 +16,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FundTrack.WebUI.Tests", "FundTrack.WebUI.Tests\FundTrack.WebUI.Tests.csproj", "{6EEE8694-DA10-4324-8A40-B9A79DB35B69}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FundTrack.DAL.Tests", "FundTrack.DAL.Tests\FundTrack.DAL.Tests.csproj", "{7120293D-AFFF-4363-AD57-B3D8EDCC857C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OwinAuthServer", "OwinAuthServer\OwinAuthServer\OwinAuthServer.csproj", "{5F23A1B1-A6EA-435D-9326-F8ED96B2E1C6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -65,6 +67,12 @@ Global
 		{7120293D-AFFF-4363-AD57-B3D8EDCC857C}.FundTrackDeploy|Any CPU.ActiveCfg = Release|Any CPU
 		{7120293D-AFFF-4363-AD57-B3D8EDCC857C}.FundTrackDeploy|Any CPU.Build.0 = Release|Any CPU
 		{7120293D-AFFF-4363-AD57-B3D8EDCC857C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F23A1B1-A6EA-435D-9326-F8ED96B2E1C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F23A1B1-A6EA-435D-9326-F8ED96B2E1C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F23A1B1-A6EA-435D-9326-F8ED96B2E1C6}.FundTrackDeploy|Any CPU.ActiveCfg = Release|Any CPU
+		{5F23A1B1-A6EA-435D-9326-F8ED96B2E1C6}.FundTrackDeploy|Any CPU.Build.0 = Release|Any CPU
+		{5F23A1B1-A6EA-435D-9326-F8ED96B2E1C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F23A1B1-A6EA-435D-9326-F8ED96B2E1C6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

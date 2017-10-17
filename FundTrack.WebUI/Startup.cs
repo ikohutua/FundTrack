@@ -56,7 +56,8 @@ namespace FundTrack.WebUI
 
             services.AddCors(
      options => options.AddPolicy("AllowCors",
-         builder => {
+         builder =>
+         {
              builder
                  //.WithOrigins("http://localhost:4456") //AllowSpecificOrigins;  
                  //.WithOrigins("http://localhost:4456", "http://localhost:4457") //AllowMultipleOrigins;  
@@ -68,7 +69,7 @@ namespace FundTrack.WebUI
                                                               //.AllowAnyMethod() //AllowAllMethods;  
                                                               //.WithHeaders("Accept", "Content-type", "Origin", "X-Custom-Header"); //AllowSpecificHeaders;  
                  .AllowAnyHeader(); //AllowAllHeaders;  
-        })
+         })
  );
 
 
@@ -167,23 +168,23 @@ namespace FundTrack.WebUI
 
 
             //ATTEMPT 2
-            app.UseJwtBearerAuthentication(new JwtBearerOptions
-            {
-                AutomaticAuthenticate = true,
-                AutomaticChallenge = true,
-                AuthenticationScheme = "Bearer",
-                Audience = "http://localhost:51469/token",
-                Authority = "http://localhost:51469/token",
-                RequireHttpsMetadata = false,
-                TokenValidationParameters = new TokenValidationParameters
-                {
-                    ValidateIssuer = false,
-                    ValidateAudience = false,
-                    ValidateLifetime = false,
-                    IssuerSigningKey = AuthOptions.GetSymmetricSecurityKey(),
-                    ValidateIssuerSigningKey = true,
-                }
-            });
+            //app.UseJwtBearerAuthentication(new JwtBearerOptions
+            //{
+            //    AutomaticAuthenticate = true,
+            //    AutomaticChallenge = true,
+            //    AuthenticationScheme = "Bearer",
+            //    Audience = "http://localhost:51469/token",
+            //    Authority = "http://localhost:51469/token",
+            //    RequireHttpsMetadata = false,
+            //    TokenValidationParameters = new TokenValidationParameters
+            //    {
+            //        ValidateIssuer = false,
+            //        ValidateAudience = false,
+            //        ValidateLifetime = false,
+            //        IssuerSigningKey = AuthOptions.GetSymmetricSecurityKey(),
+            //        ValidateIssuerSigningKey = true,
+            //    }
+            //});
 
 
             //Old authorization
@@ -202,6 +203,7 @@ namespace FundTrack.WebUI
             {
                 HotModuleReplacement = true
             });
+
 
             app.UseWebSockets();
 
