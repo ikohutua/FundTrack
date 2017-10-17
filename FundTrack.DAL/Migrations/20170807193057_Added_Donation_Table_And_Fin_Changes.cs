@@ -991,7 +991,7 @@ namespace FundTrack.DAL.Migrations
                 name: "IX_FinOps_TargetId",
                 table: "FinOps",
                 column: "TargetId",
-                unique: true);
+                unique: false);
 
             migrationBuilder.CreateIndex(
                 name: "IX_FinOps_UserId",

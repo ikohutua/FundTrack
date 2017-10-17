@@ -69,11 +69,16 @@ namespace FundTrack.DAL.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("BankName");
+                    b.Property<string>("BankName")
+                        .IsRequired()
+                        .HasMaxLength(50);
 
-                    b.Property<string>("MFO");
+                    b.Property<string>("MFO")
+                        .IsRequired()
+                        .HasMaxLength(6);
 
-                    b.HasKey("Id");
+                    b.HasKey("Id")
+                        .HasName("PK_Bank");
 
                     b.ToTable("Banks");
                 });
@@ -947,8 +952,9 @@ namespace FundTrack.DAL.Migrations
             modelBuilder.Entity("FundTrack.DAL.Entities.BankAccount", b =>
                 {
                     b.HasOne("FundTrack.DAL.Entities.Bank", "Bank")
-                        .WithMany()
+                        .WithMany("BankAccounts")
                         .HasForeignKey("BankId")
+                        .HasConstraintName("FK_BankAccount_Bank")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("FundTrack.DAL.Entities.Organization", "Organization")
@@ -1163,7 +1169,8 @@ namespace FundTrack.DAL.Migrations
 
                     b.HasOne("FundTrack.DAL.Entities.Target", "Target")
                         .WithMany("OrgAccounts")
-                        .HasForeignKey("TargetId");
+                        .HasForeignKey("TargetId")
+                        .HasConstraintName("FK_OrgAccount_Targets");
 
                     b.HasOne("FundTrack.DAL.Entities.User", "User")
                         .WithMany("OrgAccounts")

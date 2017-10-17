@@ -66,7 +66,7 @@ export class OrgAccountListComponent implements OnInit {
 
     checkIfAccTypesIsAvailable() {
         this.isBankAccountAvailable = this.containItem(this.accounts, this.bankType);
-        this.isBankAccountAvailable = this.containItem(this.accounts, this.cashType);
+        this.isCashAccountAvailable = this.containItem(this.accounts, this.cashType);
     }
 
     filterAccounts() {
@@ -76,7 +76,7 @@ export class OrgAccountListComponent implements OnInit {
             this.bankAccounts = this.getAccountsByType(this.bankType);
         }
 
-        if (this.isBankAccountAvailable) {
+        if (this.isCashAccountAvailable) {
             this.cashAccounts = this.getAccountsByType(this.cashType);
         }
     }
