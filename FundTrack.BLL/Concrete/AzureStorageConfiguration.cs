@@ -8,5 +8,11 @@
         {
             return _baseUrl + imageName;
         }
+        public static string GetImageNameFromUrl(string url)
+        {
+            int ind = url.LastIndexOf('/');
+            return url.Substring(ind + 1, url.Length - ind - 1);
+        }
+
     }
 }

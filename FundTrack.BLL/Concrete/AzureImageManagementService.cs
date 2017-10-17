@@ -40,9 +40,9 @@ namespace FundTrack.BLL.Concrete
             }
         }
 
-        public async Task<string> UploadImage(byte[] file)
+        public async Task<string> UploadImageAsync(byte[] file, string imageExtension)
         {
-            string imageName = Guid.NewGuid().ToString();
+            string imageName = $"{Guid.NewGuid().ToString()}.{imageExtension}";
 
             CloudBlockBlob blockBlob = _container.GetBlockBlobReference(imageName);
 
@@ -52,6 +52,12 @@ namespace FundTrack.BLL.Concrete
             }
 
             return imageName;
+        }
+
+        public void DeleteImageAsync(string name)
+        {
+            CloudBlockBlob blockBlob = _container.GetBlockBlobReference(name);
+            blockBlob.DeleteIfExistsAsync();
         }
     }
 }

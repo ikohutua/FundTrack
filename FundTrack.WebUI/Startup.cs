@@ -9,8 +9,6 @@ using FundTrack.BLL.Abstract;
 using FundTrack.DAL.Concrete;
 using FundTrack.BLL.Concrete;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
-using FundTrack.WebUI.token;
 using FundTrack.DAL.Entities;
 using FundTrack.BLL.DomainServices;
 using FundTrack.DAL.Repositories;
@@ -27,6 +25,9 @@ using Newtonsoft.Json.Converters;
 using System.Dynamic;
 using Newtonsoft.Json;
 using System.Security.Claims;
+using Microsoft.IdentityModel.Tokens;
+using FundTrack.WebUI.token;
+using Microsoft.AspNetCore.Http;
 
 namespace FundTrack.WebUI
 {
@@ -149,8 +150,10 @@ namespace FundTrack.WebUI
 
             app.UseStaticFiles();
 
+            //ATTEMPT 1
             //app.UseOAuthAuthentication(new OAuthOptions()
             //{
+            //    AuthorizationEndpoint = new PathString("/login"),
             //    ClientId = "sss",
             //    AuthenticationScheme = "Application",
             //    TokenEndpoint = "http://localhost:51469/token",
@@ -161,50 +164,44 @@ namespace FundTrack.WebUI
             //    }
             //});
 
-            //app.UseOAuthBearerAuthentication(options =>
-            //{
-            //    options.Authority = "https://base_address_of_idsrv";
-            //    options.Audience = "https://base_address_of_idsrv/resources";
-
-            //    options.AutomaticAuthentication = true;
-            //});
 
 
-            #region UseJwtBearer
+            //ATTEMPT 2
+            app.UseJwtBearerAuthentication(new JwtBearerOptions
+            {
+                AutomaticAuthenticate = true,
+                AutomaticChallenge = true,
+                AuthenticationScheme = "Bearer",
+                Audience = "http://localhost:51469/token",
+                Authority = "http://localhost:51469/token",
+                RequireHttpsMetadata = false,
+                TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = false,
+                    ValidateAudience = false,
+                    ValidateLifetime = false,
+                    IssuerSigningKey = AuthOptions.GetSymmetricSecurityKey(),
+                    ValidateIssuerSigningKey = true,
+                }
+            });
 
-            //app.UseJwtBearerAuthentication(new JwtBearerOptions
-            //{
-            //    AutomaticAuthenticate = true,
-            //    AutomaticChallenge = true,
-            //    AuthenticationScheme = "Bearer",
-            //    TokenValidationParameters = new TokenValidationParameters
-            //    {
-            //        ValidateIssuer = false,
-            //        ValidateAudience = false,
-            //        ValidateLifetime = false,
-            //        IssuerSigningKey = AuthOptions.GetSymmetricSecurityKey(),
-            //        ValidateIssuerSigningKey = true,
-            //    }
-            //});
 
+            //Old authorization
             //app.UseCookieAuthentication(new CookieAuthenticationOptions
             //{
             //    LoginPath = new PathString("/User/LogIn"),
             //    AuthenticationScheme = "Bearer",
             //    AutomaticChallenge = true
             //});
-            #endregion
 
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
-            //if (env.IsDevelopment())
-            //{
+
             app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions
             {
                 HotModuleReplacement = true
             });
-            //}
 
             app.UseWebSockets();
 

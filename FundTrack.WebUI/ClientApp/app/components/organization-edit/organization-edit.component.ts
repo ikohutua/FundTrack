@@ -46,7 +46,7 @@ export class OrganizationEditComponent implements OnInit, OnDestroy, AfterViewIn
     newLogoUrl: string = '';
     errorMessage: string;
     isError: boolean = false;
-
+ 
     //modal window to add moderator
     @ViewChild("moderator")
     public modal: ModalComponent;
@@ -116,7 +116,11 @@ export class OrganizationEditComponent implements OnInit, OnDestroy, AfterViewIn
         this._getInfoService.getById(id, 'api/OrganizationProfile/GetInformationById')
             .subscribe(model => {
                 this.organization = model;
-                this.organization.logoUrl = defaultConfig.defaultOrganizationLogoUrl;
+
+                debugger;
+                if (!model.logoUrl.length) {
+                    this.organization.logoUrl = defaultConfig.defaultOrganizationLogoUrl;
+                }
             })
     }
 
@@ -312,6 +316,7 @@ export class OrganizationEditComponent implements OnInit, OnDestroy, AfterViewIn
                 console.log(res);
                 this.editLogo.base64Code = res.base64Data;
                 this.editLogo.logoUrl = res.imageSrc;
+                this.editLogo.imageExtension = res.imageExtension;
                 this.isNewLogoAvailable = true;
             })
             .catch((err) => {
@@ -339,10 +344,11 @@ export class OrganizationEditComponent implements OnInit, OnDestroy, AfterViewIn
         }
 
         this._editService.editLogo(this.editLogo).subscribe(
-            model => {
-                this.organization.logoUrl = model.logoUrl;
+            res => {
+                this.organization.logoUrl = res.logoUrl;
+                alert("Зображення успішно змінено!");
             }, error => {
-                alert(error);
+                this.imageErrorMessage(error);
             });
     }
 }
