@@ -50,6 +50,11 @@ namespace FundTrack.DAL.Entities
                     .WithMany(t => t.Donates).
                     HasForeignKey(e => e.TargetId).
                     HasConstraintName("FK_Donation_Target");
+
+                entity.HasOne(e => e.OrgAccount)
+                    .WithMany(a => a.Donations)
+                    .HasForeignKey(e => e.OrgAccountId)
+                    .HasConstraintName("FK_Donations_OrgAccounts_OrgAccountId");
             });
         }
     }

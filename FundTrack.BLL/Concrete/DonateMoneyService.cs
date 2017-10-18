@@ -37,7 +37,7 @@ namespace FundTrack.BLL.Concrete
                     result.Accounts.Add(new DonateAccountViewModel
                     {
                         Description = orgAccount.Description,
-                        BankAccountId = orgAccount.BankAccount.Id,
+                        BankAccountId = orgAccount.Id,
                         MerchantId = orgAccount.BankAccount.MerchantId,
                         MerchantPassword = orgAccount.BankAccount.MerchantPassword,
                         Name = orgAccount.OrgAccountName,
@@ -83,7 +83,7 @@ namespace FundTrack.BLL.Concrete
         {
             if (item.Description == null)
             {
-                item.Description = "Гтівкова пожертва";
+                item.Description = "Готівкова пожертва";
             }
             var itemToAdd = new Donation
             {
@@ -168,7 +168,7 @@ namespace FundTrack.BLL.Concrete
                     .Select(donation => new UserDonationsViewModel
                     {
                         Id = donation.Id,
-                        Organization = donation.OrgAccount.Organization.Name, //!!!!!
+                        Organization = donation.OrgAccount.Organization.Name,
                         Target = donation.Target?.TargetName,
                         Date = donation.DonationDate,
                         Amount = donation.Amount,

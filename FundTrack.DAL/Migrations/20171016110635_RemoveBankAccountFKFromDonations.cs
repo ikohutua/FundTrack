@@ -17,30 +17,26 @@ namespace FundTrack.DAL.Migrations
                 name: "IX_Donations_BankAccountId",
                 table: "Donations");
 
-            migrationBuilder.RenameColumn(
+            migrationBuilder.DropColumn(
                 name: "BankAccountId",
-                newName: "OrgAccountId",
                 table: "Donations");
 
-            migrationBuilder.AlterColumn<int>(
+            migrationBuilder.AddColumn<int>(
                 name: "OrgAccountId",
                 table: "Donations",
-                nullable: true,
-                oldClrType: typeof(int));   
+                nullable: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AlterColumn<int>(
+            migrationBuilder.DropColumn(
                 name: "OrgAccountId",
-                table: "Donations",
-                nullable: false,
-                oldClrType: typeof(int));
-
-            migrationBuilder.RenameColumn(
-                name: "OrgAccountId",
-                newName: "BankAccountId",
                 table: "Donations");
+
+            migrationBuilder.AddColumn<int>(
+                name: "BankAccountId",
+                table: "Donations",
+                nullable: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Donations_BankAccountId",
