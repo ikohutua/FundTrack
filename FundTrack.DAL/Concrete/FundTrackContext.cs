@@ -237,6 +237,11 @@ namespace FundTrack.DAL.Concrete
         public DbSet<Bank> Banks { get; set; }
 
         /// <summary>
+        /// Gets or Sets Auto Import Interval
+        /// </summary>
+        public DbSet<AutoImportIntervals> AutoImportInterval { get; set; }
+
+        /// <summary>
         /// Configures model creation
         /// </summary>
         /// <param name="modelBuilder">modelBuilder to configure Model Creation</param>
@@ -279,6 +284,7 @@ namespace FundTrack.DAL.Concrete
             OrganizationResponse.Configure(modelBuilder);
             Donation.Configure(modelBuilder);   
             Bank.Configure(modelBuilder);
+            AutoImportIntervals.Configure(modelBuilder);
         }
     }
 }

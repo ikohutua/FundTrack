@@ -43,6 +43,24 @@ namespace FundTrack.DAL.Migrations
                     b.ToTable("Addresses");
                 });
 
+            modelBuilder.Entity("FundTrack.DAL.Entities.AutoImportIntervals", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("Interval");
+
+                    b.Property<int>("OrgId");
+
+                    b.HasKey("Id")
+                        .HasName("PK_AutoImportIntervals");
+
+                    b.HasIndex("OrgId")
+                        .IsUnique();
+
+                    b.ToTable("AutoImportInterval");
+                });
+
             modelBuilder.Entity("FundTrack.DAL.Entities.Balance", b =>
                 {
                     b.Property<int>("Id")
@@ -938,6 +956,15 @@ namespace FundTrack.DAL.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("UserResponses");
+                });
+
+            modelBuilder.Entity("FundTrack.DAL.Entities.AutoImportIntervals", b =>
+                {
+                    b.HasOne("FundTrack.DAL.Entities.Organization", "Organization")
+                        .WithOne("AutoImportInterval")
+                        .HasForeignKey("FundTrack.DAL.Entities.AutoImportIntervals", "OrgId")
+                        .HasConstraintName("FK_AutoImportIntervals_Organization")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("FundTrack.DAL.Entities.Balance", b =>
