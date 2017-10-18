@@ -25,6 +25,8 @@ import { OrganizationDetailComponent } from "./components/organization-detail/or
 import { TargetManagementComponent } from './components/organization-edit/target-management.component';
 import { OrganizationStatisticsComponent } from "./components/organization-edit/organization-statistics.component";
 import { ChartsModule } from 'ng2-charts';
+import { BrowserModule } from '@angular/platform-browser';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 @NgModule({
     declarations: [
@@ -54,7 +56,9 @@ import { ChartsModule } from 'ng2-charts';
         OrganizationManagementRoutingModule,
         SharedModule, 
         MapModule,
-        ChartsModule
+        ChartsModule,
+        BrowserModule,
+        NgxChartsModule 
     ],
     exports: [
         SpinnerComponent
