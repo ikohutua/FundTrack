@@ -1,4 +1,5 @@
-﻿using FundTrack.BLL.Abstract;
+﻿using System;
+using FundTrack.BLL.Abstract;
 using FundTrack.DAL.Entities;
 using FundTrack.Infrastructure.ViewModel;
 using FundTrack.Infrastructure.ViewModel.FinanceViewModels;
@@ -21,13 +22,17 @@ namespace FundTrack.WebUI.Controllers
         /// </summary>
         private readonly IFinOpService _service;
 
+        private readonly IOrganizationStatisticsService _organizationStatisticsService;
+
         /// <summary>
         /// Initializes a new instance of the "EventController" class
         /// </summary>
         /// <param name="service">The instance of service.</param>
-        public FinOpController(IFinOpService service)
+        /// <param name="organizationStatisticsService"></param>
+        public FinOpController(IFinOpService service, IOrganizationStatisticsService organizationStatisticsService)
         {
             _service = service;
+            _organizationStatisticsService = organizationStatisticsService;
         }
 
         /// <summary>
@@ -160,6 +165,13 @@ namespace FundTrack.WebUI.Controllers
                 return BadRequest();
             }
             return Ok(_service.BindDonationAndFinOp(finOp));
+        }
+
+        [HttpGet("GetFinOpsByTargetId/{targetId}")]
+        public IEnumerable<FinOpViewModel> GetFinOpsByTargetId(int targetId, DateTime dateFrom, DateTime dateTo)
+        {
+            http://localhost:51116/api/FinOp/GetFinOpsByTargetId/?dateFrom=2015/01/01&dateTo=2019/01/01
+            return _organizationStatisticsService.GetFinOpsByTargetId(targetId, dateFrom, dateTo);
         }
     }
 }
