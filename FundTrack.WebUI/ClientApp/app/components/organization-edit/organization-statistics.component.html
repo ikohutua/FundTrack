@@ -1,25 +1,33 @@
 ﻿<script src="node_modules/chart.js/src/chart.js"></script>
 
-<div class="col-md-12">
-    <h1>Organization statistics</h1>
-    <div class="col-md-6">
-        <canvas baseChart
-                [data]="lineChartData"
-                [labels]="lineChartLabels"
-                [options]="lineChartOptions"
-                [chartType]="lineChartType"
-                (chartHover)="chartHovered($event)"
-                (chartClick)="chartClicked($event)"></canvas>
+<div class="container">
+    <h1 class="page-header">Organization statistics</h1>
+    <div class="container-fluid">
+        <div class="col-md-4 chart-container">
+            <ngx-charts-bar-vertical
+                                     [scheme]="colorScheme"
+                                     [results]="dataSet"
+                                     [gradient]="gradient"
+                                     [xAxis]="showXAxis"
+                                     [yAxis]="showYAxis"
+                                     [legend]="showLegend"
+                                     [showXAxisLabel]="showXAxisLabel"
+                                     [showYAxisLabel]="showYAxisLabel"
+                                     [xAxisLabel]="xAxisLabel"
+                                     [yAxisLabel]="yAxisLabel"
+                                     [barPadding]="barPadding"
+                                     (select)="onSelect($event)">
+            </ngx-charts-bar-vertical>
+        </div>
+        <div class="col-md-8 chart-container">
+            <ngx-charts-advanced-pie-chart
+                                           [scheme]="colorScheme"
+                                           [results]="dataSet"
+                                           [gradient]="gradient"
+                                           (select)="onSelect($event)">
+                                          
+            </ngx-charts-advanced-pie-chart>
+        </div>
     </div>
-    <div class="col-md-6">
-        <canvas baseChart
-                [data]="pieChartData"
-                [labels]="pieChartLabels"
-                [chartType]="pieChartType"
-                (chartHover)="chartHovered($event)"
-                (chartClick)="chartClicked($event)"></canvas>
-    </div>
-    <div class="col-md-12 text-center" style="margin-top: 10px;height: 50%">
-        <button (click)="randomizeType()" style="display: inline-block">Toggle</button>
-    </div>
+
 </div>

@@ -1,6 +1,8 @@
 ﻿import { OnInit, Component } from "@angular/core";
 import { OrganizationGetGeneralInfoService } from "../../services/concrete/organization-management/organization-get-general-info.service";
 import { EditOrganizationService } from "../../services/concrete/organization-management/edit-organization.service";
+import { TargetReportViewModel } from "../../view-models/concrete/edit-organization/target-report-view.model";
+import { FinOpListViewModel } from "../../view-models/concrete/finance/finop-list-viewmodel";
 
 @Component({
     selector: 'statistics',
@@ -10,38 +12,53 @@ import { EditOrganizationService } from "../../services/concrete/organization-ma
 })
 export class OrganizationStatisticsComponent implements OnInit {
 
-    constructor() {
+    allTargets: Array<TargetReportViewModel> = new Array<TargetReportViewModel>();
+    testTargets: Array<TargetReportViewModel> = [
+        { targetName: "Медицина", sum: 10600, list: new Array<FinOpListViewModel>() },
+        { targetName: "Продукти", sum: 6350, list: new Array<FinOpListViewModel>() },
+        { targetName: "Одяг", sum: 9700, list: new Array<FinOpListViewModel>() },
+        { targetName: "Електроніка", sum:25000, list: new Array<FinOpListViewModel>() },
+        { targetName: "Test", sum: 400, list: new Array<FinOpListViewModel>() }
+    ];
 
+    //Vertical bar chart & pie chart
+    showXAxis = true;
+    showYAxis = true;
+    gradient = false;
+    showLegend = false;
+    showXAxisLabel = false;
+    xAxisLabel = 'Targets';
+    showYAxisLabel = false;
+    yAxisLabel = 'Money';
+    barPadding = 20;
+    colorScheme = {
+        domain: [
+            '#2597FB', '#65EBFD', '#99FDD0',
+            '#FCEE4B', '#FDD6E3', '#FCB1A8',
+            '#EF6F7B', '#CB96E8', '#EFDEE0',
+            '#FEFCFA']
+    };
+    public dataSet: any[] = [];
+
+    constructor() {
     }
 
     ngOnInit(): void {
-
+        this.allTargets = this.testTargets;
+        this.PrepareTargetsForCharts(this.allTargets);
     }
 
-    // lineChart
-    public lineChartData: Array<any> = [
-        [65, 59, 80, 81, 56, 55, 40],
-        [28, 48, 40, 19, 86, 27, 90],
-        [50, 0, 20, 10, 50, 21, 30]
-    ];
-    public lineChartLabels: Array<any> = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
-    public lineChartType: string = 'bar';
-    public pieChartType: string = 'pie';
+    public PrepareTargetsForCharts(list: Array<TargetReportViewModel>) {
 
-    // Pie
-    public pieChartLabels: string[] = ['Download Sales', 'In-Store Sales', 'Mail Sales', 'Ololol'];
-    public pieChartData: number[] = [300, 500, 100, 700];
-
-    public randomizeType(): void {
-        //this.lineChartType = this.lineChartType === 'line' ? 'bar' : 'line';
-        this.pieChartType = this.pieChartType === 'doughnut' ? 'pie' : 'doughnut';
+        list.forEach(t => {
+            this.dataSet.push({
+                name: t.targetName,
+                value: t.sum
+            });
+        })
     }
 
-    public chartClicked(e: any): void {
-        console.log(e);
-    }
-
-    public chartHovered(e: any): void {
-        console.log(e);
+    onSelect(event) {
+        console.log(event);
     }
 }
