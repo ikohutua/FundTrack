@@ -1,0 +1,239 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="FundTrackSSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BankAccounts">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AccNumber" Type="nvarchar" MaxLength="20" />
+          <Property Name="BankName" Type="nvarchar" MaxLength="50" />
+          <Property Name="CardNumber" Type="nvarchar" MaxLength="16" />
+          <Property Name="EDRPOU" Type="nvarchar" MaxLength="10" />
+          <Property Name="MFO" Type="nvarchar" MaxLength="6" />
+          <Property Name="MerchantId" Type="int" />
+          <Property Name="MerchantPassword" Type="nvarchar(max)" />
+          <Property Name="OrgId" Type="int" Nullable="false" />
+          <Property Name="IsDonationEnabled" Type="bit" />
+          <Property Name="ExtractMerchantId" Type="int" />
+          <Property Name="ExtractMerchantPassword" Type="nvarchar(max)" />
+          <Property Name="IsExtractEnabled" Type="bit" />
+          <Property Name="BankId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BankImportDetails">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Amount" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="AppCode" Type="int" />
+          <Property Name="Card" Type="nvarchar" MaxLength="16" Nullable="false" />
+          <Property Name="CardAmount" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Rest" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Terminal" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Trandate" Type="datetime" Nullable="false" />
+          <Property Name="IsLooked" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OrgAccounts">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AccountType" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="BankAccId" Type="int" />
+          <Property Name="CurrencyId" Type="int" Nullable="false" />
+          <Property Name="CurrentBalance" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="OrgAccountName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="OrgId" Type="int" Nullable="false" />
+          <Property Name="TargetId" Type="int" />
+          <Property Name="CreationDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="UserId" Type="int" />
+        </EntityType>
+        <Association Name="FK_OrgAccount_BankAccount">
+          <End Role="BankAccounts" Type="Self.BankAccounts" Multiplicity="0..1" />
+          <End Role="OrgAccounts" Type="Self.OrgAccounts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BankAccounts">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrgAccounts">
+              <PropertyRef Name="BankAccId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FundTrackSSModelStoreContainer">
+          <EntitySet Name="BankAccounts" EntityType="Self.BankAccounts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BankImportDetails" EntityType="Self.BankImportDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrgAccounts" EntityType="Self.OrgAccounts" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_OrgAccount_BankAccount" Association="Self.FK_OrgAccount_BankAccount">
+            <End Role="BankAccounts" EntitySet="BankAccounts" />
+            <End Role="OrgAccounts" EntitySet="OrgAccounts" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FundTrackSSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="BankAccounts">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AccNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="BankName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CardNumber" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="EDRPOU" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="MFO" Type="String" MaxLength="6" FixedLength="false" Unicode="true" />
+          <Property Name="MerchantId" Type="Int32" />
+          <Property Name="MerchantPassword" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OrgId" Type="Int32" Nullable="false" />
+          <Property Name="IsDonationEnabled" Type="Boolean" />
+          <Property Name="ExtractMerchantId" Type="Int32" />
+          <Property Name="ExtractMerchantPassword" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsExtractEnabled" Type="Boolean" />
+          <Property Name="BankId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="OrgAccounts" Relationship="Self.FK_OrgAccount_BankAccount" FromRole="BankAccounts" ToRole="OrgAccounts" />
+        </EntityType>
+        <EntityType Name="BankImportDetails">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Amount" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AppCode" Type="Int32" />
+          <Property Name="Card" Type="String" MaxLength="16" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CardAmount" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Rest" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Terminal" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Trandate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IsLooked" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OrgAccounts">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AccountType" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="BankAccId" Type="Int32" />
+          <Property Name="CurrencyId" Type="Int32" Nullable="false" />
+          <Property Name="CurrentBalance" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OrgAccountName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="OrgId" Type="Int32" Nullable="false" />
+          <Property Name="TargetId" Type="Int32" />
+          <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="UserId" Type="Int32" />
+          <NavigationProperty Name="BankAccounts" Relationship="Self.FK_OrgAccount_BankAccount" FromRole="OrgAccounts" ToRole="BankAccounts" />
+        </EntityType>
+        <Association Name="FK_OrgAccount_BankAccount">
+          <End Role="BankAccounts" Type="Self.BankAccounts" Multiplicity="0..1" />
+          <End Role="OrgAccounts" Type="Self.OrgAccounts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BankAccounts">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrgAccounts">
+              <PropertyRef Name="BankAccId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FundTrackSS" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BankAccounts" EntityType="Self.BankAccounts" />
+          <EntitySet Name="BankImportDetails" EntityType="Self.BankImportDetails" />
+          <EntitySet Name="OrgAccounts" EntityType="Self.OrgAccounts" />
+          <AssociationSet Name="FK_OrgAccount_BankAccount" Association="Self.FK_OrgAccount_BankAccount">
+            <End Role="BankAccounts" EntitySet="BankAccounts" />
+            <End Role="OrgAccounts" EntitySet="OrgAccounts" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="FundTrackSSModelStoreContainer" CdmEntityContainer="FundTrackSS">
+          <EntitySetMapping Name="BankAccounts">
+            <EntityTypeMapping TypeName="FundTrackSSModel.BankAccounts">
+              <MappingFragment StoreEntitySet="BankAccounts">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="AccNumber" ColumnName="AccNumber" />
+                <ScalarProperty Name="BankName" ColumnName="BankName" />
+                <ScalarProperty Name="CardNumber" ColumnName="CardNumber" />
+                <ScalarProperty Name="EDRPOU" ColumnName="EDRPOU" />
+                <ScalarProperty Name="MFO" ColumnName="MFO" />
+                <ScalarProperty Name="MerchantId" ColumnName="MerchantId" />
+                <ScalarProperty Name="MerchantPassword" ColumnName="MerchantPassword" />
+                <ScalarProperty Name="OrgId" ColumnName="OrgId" />
+                <ScalarProperty Name="IsDonationEnabled" ColumnName="IsDonationEnabled" />
+                <ScalarProperty Name="ExtractMerchantId" ColumnName="ExtractMerchantId" />
+                <ScalarProperty Name="ExtractMerchantPassword" ColumnName="ExtractMerchantPassword" />
+                <ScalarProperty Name="IsExtractEnabled" ColumnName="IsExtractEnabled" />
+                <ScalarProperty Name="BankId" ColumnName="BankId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BankImportDetails">
+            <EntityTypeMapping TypeName="FundTrackSSModel.BankImportDetails">
+              <MappingFragment StoreEntitySet="BankImportDetails">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="AppCode" ColumnName="AppCode" />
+                <ScalarProperty Name="Card" ColumnName="Card" />
+                <ScalarProperty Name="CardAmount" ColumnName="CardAmount" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Rest" ColumnName="Rest" />
+                <ScalarProperty Name="Terminal" ColumnName="Terminal" />
+                <ScalarProperty Name="Trandate" ColumnName="Trandate" />
+                <ScalarProperty Name="IsLooked" ColumnName="IsLooked" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrgAccounts">
+            <EntityTypeMapping TypeName="FundTrackSSModel.OrgAccounts">
+              <MappingFragment StoreEntitySet="OrgAccounts">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="AccountType" ColumnName="AccountType" />
+                <ScalarProperty Name="BankAccId" ColumnName="BankAccId" />
+                <ScalarProperty Name="CurrencyId" ColumnName="CurrencyId" />
+                <ScalarProperty Name="CurrentBalance" ColumnName="CurrentBalance" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="OrgAccountName" ColumnName="OrgAccountName" />
+                <ScalarProperty Name="OrgId" ColumnName="OrgId" />
+                <ScalarProperty Name="TargetId" ColumnName="TargetId" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Threading;
-using pPrivatLib2;
+using FundTrack.PrivatImport;
 
 
 namespace FundTrack.AutoImportService.Services
@@ -26,7 +26,7 @@ namespace FundTrack.AutoImportService.Services
             Console.WriteLine("Go");
             TimerWithIntervalViewModel thisTimer = (TimerWithIntervalViewModel)o;
             long intervalInMinutes = thisTimer.Interval / 60000;
-            //PrivatImporter.Run(thisTimer.OrganizationId, (int)intervalInMinutes);
+            PrivatImporter.Run(thisTimer.OrganizationId, (int)intervalInMinutes);
             Console.WriteLine(thisTimer.OrganizationId);
             Console.WriteLine(DateTime.Now);
         }
