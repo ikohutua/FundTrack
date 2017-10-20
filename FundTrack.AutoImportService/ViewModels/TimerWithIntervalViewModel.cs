@@ -9,8 +9,20 @@ namespace FundTrack.AutoImportService.ViewModels
 {
     public class TimerWithIntervalViewModel
     {
+        /// <summary>
+        /// Gets or sets the timer.
+        /// </summary>
+        /// <value>
+        /// The timer.
+        /// </value>
         public Timer Timer { get; set; }
-        public long Interval { get; set; }
-        public int OrganizationId { get; set; }
+
+        /// <summary>
+        /// Gets or sets the interval view model.
+        /// </summary>
+        /// <value>
+        /// The information about interval.
+        /// </value>
+        public AutoImportIntervalViewModel IntervalViewModel { get; set; }
     }
 }
