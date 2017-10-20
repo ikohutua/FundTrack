@@ -1,0 +1,48 @@
+﻿<div class="container">
+    <h2 class="sub-header">Users donations reports</h2>
+    <div class="panel-body">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h4 class="muted">Період</h4>
+                    <p></p>
+                    <div class="input-daterange input-group" id="datepicker">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                        <input type="date" #startDate class="input-sm form-control no-spin"  required [(ngModel)]="reportModel.dateFrom" (keyup.enter)="generateReport()" [value]="reportModel.dateFrom | date:'yyyy-MM-dd'" min="2000-01-01" max="{{inputMaxDate | date:'yyyy-MM-dd'}}" />
+                        <span class="input-group-addon"> - </span>
+                        <input type="date" #endDate class="input-sm form-control no-spin" required [(ngModel)]="reportModel.dateTo" (keyup.enter)="generateReport()" [value]="reportModel.dateTo | date:'yyyy-MM-dd'" min="2000-01-01" max="{{inputMaxDate | date:'yyyy-MM-dd'}}" />
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Логін</th>
+                    <th>Користувач</th>
+                    <th>Сума</th>
+                    <th>Призначення</th>
+                    <th>Опис</th>
+                    <th>Дата-Час</th>
+                </tr>
+            </thead>
+            <tbody *ngIf="isDataAvailable">
+                <tr *ngFor="let item of reportData">
+                    <td>{{item.userId}}</td>
+                    <td>{{item.userLogin}}</td>
+                    <td>{{item.userFirstName}} {{item.userLastName}}</td>
+                    <td>{{item.moneyAmount}}</td>
+                    <td>{{item.target}}</td>
+                    <td>{{item.description}}</td>
+                    <td>{{item.date}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <p>{{reportModel.dateFrom}}  -  {{reportModel.dateTo}}</p>
+</div>

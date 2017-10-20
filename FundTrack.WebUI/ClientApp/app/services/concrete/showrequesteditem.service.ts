@@ -15,6 +15,7 @@ import { IOrganizationForFiltering } from "../../view-models/abstract/organizati
 import { FilterRequstedViewModel } from '../../view-models/concrete/filter-requests-view.model';
 import { IncomeReportDataViewModel } from "../../view-models/concrete/income-report-data-view-model";
 import { OutcomeReportDataViewModel } from "../../view-models/concrete/outcome-report-data-view-model";
+import { UsersDonationsReportDataViewModel } from "../../view-models/concrete/users-donations-view.model";
 
 @Injectable()
 export class ShowRequestedItemService extends BaseService<IShowRequestedItem>{
@@ -27,6 +28,7 @@ export class ShowRequestedItemService extends BaseService<IShowRequestedItem>{
     private _urlFilterRequestedItem: string = 'api/RequestedItem/GetFilterRequestedItemPaginationData';
     private _urlGetIncomeReportData: string = 'api/reports/IncomeReport';
     private _urlGetOutcomeReportData: string = 'api/reports/OutcomeReport';
+    private _urlGetUsersDonationsReportData: string = 'api/reports/UsersDonationsReport';
     private _urlGetFinOpImagesById: string = 'api/reports/FinOpImages';
 
     /**
@@ -79,6 +81,10 @@ export class ShowRequestedItemService extends BaseService<IShowRequestedItem>{
 
     public getOutcomeReportData(organizationId: number, startDate: string, endDate: string): Observable<OutcomeReportDataViewModel[]> {
         return this.getCollections<OutcomeReportDataViewModel>(this._urlGetOutcomeReportData + '?orgId=' + organizationId + '&datefrom=' + startDate + '&dateto=' + endDate);
+    }
+
+    public getUsersDonationsReport(organizationId: number, startDate: string, endDate: string): Observable<UsersDonationsReportDataViewModel[]> {
+        return this.getCollections<UsersDonationsReportDataViewModel>(this._urlGetUsersDonationsReportData + '?orgId=' + organizationId + '&datefrom=' + startDate + '&dateto=' + endDate);
     }
 
     public getFinOpImages(finOpId: number): Observable<string[]> {

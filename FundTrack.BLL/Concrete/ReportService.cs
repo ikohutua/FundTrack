@@ -101,5 +101,11 @@ namespace FundTrack.BLL.Concrete
                 throw new BusinessLogicException("Error while getting image path list from FinOPImages entities by finOpId.", ex);
             }
         }
+
+        public IEnumerable<UsersDonationsReportViewModel> GetUsersDonationsReport(int orgId, DateTime? dateFrom, DateTime? dateTo)
+        {
+
+            return null;
+        }
     }
 }

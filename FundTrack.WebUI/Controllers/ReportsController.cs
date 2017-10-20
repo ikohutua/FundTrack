@@ -33,5 +33,16 @@ namespace FundTrack.WebUI.Controllers
         {
             return _service.GetImagesById(finOpId);
         }
+
+        [HttpGet("UsersDonationsReport")]
+        public ActionResult UsersDonationsReport(int orgId, DateTime? dateFrom, DateTime? dateTo)
+        {
+            if (orgId>0 && dateTo<=DateTime.Now.Date && dateFrom<=dateTo)
+            {
+                return Ok(_service.GetUsersDonationsReport(orgId, dateFrom, dateTo));
+            }
+
+            return new BadRequestObjectResult($"Invalid data! orgId: {orgId}, dateFrom: {dateFrom}, dateTo: {dateTo}");
+        }
     }
 }

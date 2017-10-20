@@ -11,4 +11,11 @@ namespace FundTrack.Infrastructure.ViewModel
         public decimal MoneyAmount { get; set; }
 
     }
+
+    public class UsersDonationsReportViewModel : ReportOutcomeViewModel
+    {
+        public string UserLogin { get; set; }
+        public string UserFirstName { get; set; }
+        public string UserLastName { get; set; }
+    }
 }
