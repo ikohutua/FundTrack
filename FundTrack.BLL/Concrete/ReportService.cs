@@ -79,7 +79,7 @@ namespace FundTrack.BLL.Concrete
                         Target = finOps.Target?.TargetName,
                         MoneyAmount = finOps.Amount,
                         Date = finOps.FinOpDate,
-                    }).OrderByDescending(finop=>finop.Date);
+                    }).OrderByDescending(finop => finop.Date);
             }
             catch (Exception ex)
             {
@@ -102,10 +102,39 @@ namespace FundTrack.BLL.Concrete
             }
         }
 
-        public IEnumerable<UsersDonationsReportViewModel> GetUsersDonationsReport(int orgId, DateTime? dateFrom, DateTime? dateTo)
+        public int GetCountOfUsersDonationsReport(int orgId, DateTime dateFrom, DateTime dateTo)
         {
+           return GetUserDonations(orgId, dateFrom, dateTo).ToList().Count;
+        }
 
-            return null;
+        public IEnumerable<UsersDonationsReportViewModel> GetUsersDonationsPaginatedReportn(int orgId, DateTime dateFrom, DateTime dateTo, int pageIndex, int pageSize)
+        {
+            var list = GetUserDonations(orgId, dateFrom, dateTo).Skip((pageIndex-1) * pageSize).Take(pageSize).ToList();
+            list.Sort();
+            return list;
+        }
+
+        private IQueryable<UsersDonationsReportViewModel> GetUserDonations(int orgId, DateTime dateFrom, DateTime dateTo)
+        {
+            var orgAccountsIds = _unitOfWork.OrganizationAccountRepository.ReadAllOrgAccounts(orgId).Select(oa => oa.Id);
+
+            var donations = _unitOfWork.DonationRepository.Read()
+                .Where(d => d.DonationDate >= dateFrom &&
+                            d.DonationDate <= dateTo &&
+                            orgAccountsIds.Contains(d.OrgAccountId));
+
+            var query = donations.Select(d => new UsersDonationsReportViewModel()
+            {
+                Id = d.Id,
+                Target = d.Target.TargetName,
+                UserFirstName = d.User.FirstName,
+                UserLastName = d.User.LastName,
+                UserLogin = d.User.Login,
+                Date = d.DonationDate,
+                MoneyAmount = (decimal)d.Amount,
+                Description = d.Description
+            }).Where(d => !String.IsNullOrEmpty(d.UserLogin));
+            return query;
         }
     }
 }

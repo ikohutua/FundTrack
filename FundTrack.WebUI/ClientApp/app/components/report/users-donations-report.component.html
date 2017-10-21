@@ -1,48 +1,83 @@
 ﻿<div class="container">
     <h2 class="sub-header">Users donations reports</h2>
-    <div class="panel-body">
-        <div class="col-md-12">
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <h4 class="muted">Період</h4>
-                    <p></p>
+    <div>
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <h4 class="muted">Період</h4>
+                <div class="col-md-6">
                     <div class="input-daterange input-group" id="datepicker">
+                        <span class="input-group-addon" id="basic-addon1">Від: </span>
+                        <input type="date" [ngModel]="reportModel.dateFrom | date:'yyyy-MM-dd'" (ngModelChange)="setBeginDate( $event)" #startDate class="input-sm form-control no-spin" required min="{{inputMinDate}}" max="{{inputMaxDate}}" />
                         <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                        <input type="date" #startDate class="input-sm form-control no-spin"  required [(ngModel)]="reportModel.dateFrom" (keyup.enter)="generateReport()" [value]="reportModel.dateFrom | date:'yyyy-MM-dd'" min="2000-01-01" max="{{inputMaxDate | date:'yyyy-MM-dd'}}" />
-                        <span class="input-group-addon"> - </span>
-                        <input type="date" #endDate class="input-sm form-control no-spin" required [(ngModel)]="reportModel.dateTo" (keyup.enter)="generateReport()" [value]="reportModel.dateTo | date:'yyyy-MM-dd'" min="2000-01-01" max="{{inputMaxDate | date:'yyyy-MM-dd'}}" />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="input-daterange input-group" id="datepicker">
+                        <span class="input-group-addon" id="basic-addon1">До: </span>
+                        <input type="date" [ngModel]="reportModel.dateTo | date:'yyyy-MM-dd'" (ngModelChange)="setEndDate( $event)" #endDate class="input-sm form-control no-spin" required min="{{inputMinDate}}" max="{{inputMaxDate}}" />
                         <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="table-responsive">
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Логін</th>
-                    <th>Користувач</th>
-                    <th>Сума</th>
-                    <th>Призначення</th>
-                    <th>Опис</th>
-                    <th>Дата-Час</th>
-                </tr>
-            </thead>
-            <tbody *ngIf="isDataAvailable">
-                <tr *ngFor="let item of reportData">
-                    <td>{{item.userId}}</td>
-                    <td>{{item.userLogin}}</td>
-                    <td>{{item.userFirstName}} {{item.userLastName}}</td>
-                    <td>{{item.moneyAmount}}</td>
-                    <td>{{item.target}}</td>
-                    <td>{{item.description}}</td>
-                    <td>{{item.date}}</td>
-                </tr>
-            </tbody>
-        </table>
+    <div *ngIf="isDataAvailable">
+        <div class="row container">
+            <div class="col-md-3 col-md-offset-9 input-group stylish-input-group">
+                <input type="text" class="form-control" placeholder="Search">
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-search blue"></span>
+                </span>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered table-sortable">
+                <thead>
+                    <tr>
+                        <th onclick="sortTable(0)">#</th>
+                        <th onclick="sortTable(1)">Логін</th>
+                        <th onclick="sortTable(2)">Користувач</th>
+                        <th onclick="sortTable(3)">Сума</th>
+                        <th onclick="sortTable(4)">Призначення</th>
+                        <th onclick="sortTable(5)">Опис</th>
+                        <th onclick="sortTable(6)">Дата-Час</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of pagedReportItems">
+                        <td>{{item.id}}</td>
+                        <td>{{item.userLogin}}</td>
+                        <td>{{item.userFirstName}} {{item.userLastName}}</td>
+                        <td>{{item.moneyAmount}}</td>
+                        <td>{{item.target}}</td>
+                        <td>{{item.description}}</td>
+                        <td>{{item.date | date:'dd-MMM-yyyy HH:mm'}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="text-center">
+                <!-- pager -->
+                <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+                    <li [ngClass]="{disabled:pager.currentPage === 1}">
+                        <a (click)="setPage(1)">На початок</a>
+                    </li>
+                    <li [ngClass]="{disabled:pager.currentPage === 1}">
+                        <a (click)="setPage(pager.currentPage - 1)">Попередня</a>
+                    </li>
+                    <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+                        <a (click)="setPage(page)">{{page}}</a>
+                    </li>
+                    <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                        <a (click)="setPage(pager.currentPage + 1)">Наступна</a>
+                    </li>
+                    <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                        <a (click)="setPage(pager.totalPages)">В кінець</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </div>
-
-    <p>{{reportModel.dateFrom}}  -  {{reportModel.dateTo}}</p>
+    <div class="col-md-6 col-md-offset-3" *ngIf="!isDataAvailable">
+        <img class="img-responsive" src="https://cdn.dribbble.com/users/27766/screenshots/3488007/empty_state.png"/>
+    </div>
 </div>

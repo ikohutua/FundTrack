@@ -16,6 +16,8 @@ import { FilterRequstedViewModel } from '../../view-models/concrete/filter-reque
 import { IncomeReportDataViewModel } from "../../view-models/concrete/income-report-data-view-model";
 import { OutcomeReportDataViewModel } from "../../view-models/concrete/outcome-report-data-view-model";
 import { UsersDonationsReportDataViewModel } from "../../view-models/concrete/users-donations-view.model";
+import { GlobalUrlService } from "./global-url.service";
+import { RequestOptionsService } from "./request-options.service";
 
 @Injectable()
 export class ShowRequestedItemService extends BaseService<IShowRequestedItem>{
@@ -28,7 +30,6 @@ export class ShowRequestedItemService extends BaseService<IShowRequestedItem>{
     private _urlFilterRequestedItem: string = 'api/RequestedItem/GetFilterRequestedItemPaginationData';
     private _urlGetIncomeReportData: string = 'api/reports/IncomeReport';
     private _urlGetOutcomeReportData: string = 'api/reports/OutcomeReport';
-    private _urlGetUsersDonationsReportData: string = 'api/reports/UsersDonationsReport';
     private _urlGetFinOpImagesById: string = 'api/reports/FinOpImages';
 
     /**
@@ -83,9 +84,17 @@ export class ShowRequestedItemService extends BaseService<IShowRequestedItem>{
         return this.getCollections<OutcomeReportDataViewModel>(this._urlGetOutcomeReportData + '?orgId=' + organizationId + '&datefrom=' + startDate + '&dateto=' + endDate);
     }
 
-    public getUsersDonationsReport(organizationId: number, startDate: string, endDate: string): Observable<UsersDonationsReportDataViewModel[]> {
-        return this.getCollections<UsersDonationsReportDataViewModel>(this._urlGetUsersDonationsReportData + '?orgId=' + organizationId + '&datefrom=' + startDate + '&dateto=' + endDate);
+    public getUsersDonationsPaginatedReport(organizationId: number, startDate: string, endDate: string, pageIndex: number, pageSize: number): Observable<UsersDonationsReportDataViewModel[]> {
+        return this.getCollections<UsersDonationsReportDataViewModel>(GlobalUrlService.usersDonationsPaginatedReport + '?orgId=' + organizationId + '&datefrom=' + startDate + '&dateto=' + endDate + '&pageIndex=' + pageIndex + '&pageSize=' + pageSize);
     }
+
+    public getCountOfUsersDonationsReportItems(organizationId: number, startDate: string, endDate: string): Observable<number> {
+        let _myUrl = GlobalUrlService.countOfUsersDonationsReportItems + '?orgId=' + organizationId + '&datefrom=' + startDate + '&dateto=' + endDate;
+
+        return this.http.get(_myUrl, RequestOptionsService.getRequestOptions())
+            .map((response: Response) => response.json() as number);
+    }
+    
 
     public getFinOpImages(finOpId: number): Observable<string[]> {
         return this.getCollections<string>(this._urlGetFinOpImagesById + '?finopid=' + finOpId);
