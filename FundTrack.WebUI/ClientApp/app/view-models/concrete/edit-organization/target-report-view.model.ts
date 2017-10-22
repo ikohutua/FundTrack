@@ -1,7 +1,17 @@
 ﻿import { FinOpListViewModel } from "../finance/finop-list-viewmodel";
 
-export class TargetReportViewModel {
+export class AbctractTargetViewModel {
+    id: number;
     targetName: string;
     sum: number;
-    list: Array< FinOpListViewModel>;
+    isOpen: boolean = false;
+}
+
+
+export class BaseTargetReportViewModel  extends  AbctractTargetViewModel {
+    subTargetsArray: Array<SubTargetReportViewModel>;
+}
+
+export class SubTargetReportViewModel extends AbctractTargetViewModel {
+    finOpsArray: Array<FinOpListViewModel>;
 }

@@ -23,8 +23,7 @@ namespace FundTrack.BLL.Concrete
         }
 
         public IEnumerable<TargetReportViewModel> GetReportForIncomeFinopsByTargets(int orgId, DateTime dateFrom, DateTime dateTo)
-        {  //http://localhost:51116/api/reports/1?dateFrom=2015/01/01&dateTo=2019/01/01
-
+        { 
             var finOps = _unitOfWork.FinOpRepository.Read()
                 .Where(f => IfDateInRange(dateFrom, dateTo, f.FinOpDate) &&
                             f.FinOpType == Constants.FinOpTypeIncome).ToList();
@@ -32,6 +31,7 @@ namespace FundTrack.BLL.Concrete
             finOps.ForEach(f => f.TargetId = f.Target?.ParentTargetId ?? f.TargetId);
             var result = finOps.GroupBy(f => f.TargetId).Select(t => new TargetReportViewModel
             {
+                Id = t.First().TargetId??-1,
                 TargetName = t.First().Target?.TargetName ?? "Призначення не вказано",
                 Sum = t.Sum(s => s.Amount)
             });
@@ -50,6 +50,7 @@ namespace FundTrack.BLL.Concrete
 
             var result = finOps.GroupBy(f => f.TargetId).Select(t => new TargetReportViewModel
             {
+                Id = t.First().TargetId ?? -1,
                 TargetName = t.First().TargetId == baseTargetId ? "Базове призначення" : t.First().Target.TargetName,
                 Sum = t.Sum(s => s.Amount)
             });
