@@ -7,14 +7,14 @@
                 <div class="col-md-6">
                     <div class="input-daterange input-group" id="datepicker">
                         <span class="input-group-addon" id="basic-addon1">Від: </span>
-                        <input type="date" [ngModel]="reportModel.dateFrom | date:'yyyy-MM-dd'" (ngModelChange)="setBeginDate( $event)" #startDate class="input-sm form-control no-spin" required min="{{inputMinDate}}" max="{{inputMaxDate}}" />
+                        <input type="date" [ngModel]="reportModel.dateFrom | date:'yyyy-MM-dd'" (ngModelChange)="setBeginDate( $event)" #startDate class="input-sm form-control no-spin" required min="{{inputMinDate}}" max="{{inputMaxDate | date:'yyyy-MM-dd'}}" />
                         <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="input-daterange input-group" id="datepicker">
                         <span class="input-group-addon" id="basic-addon1">До: </span>
-                        <input type="date" [ngModel]="reportModel.dateTo | date:'yyyy-MM-dd'" (ngModelChange)="setEndDate( $event)" #endDate class="input-sm form-control no-spin" required min="{{inputMinDate}}" max="{{inputMaxDate}}" />
+                        <input type="date" [ngModel]="reportModel.dateTo | date:'yyyy-MM-dd'" (ngModelChange)="setEndDate( $event)" #endDate class="input-sm form-control no-spin" required min="{{inputMinDate}}" max="{{inputMaxDate | date:'yyyy-MM-dd'}}" />
                         <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                     </div>
                 </div>
@@ -22,14 +22,14 @@
         </div>
     </div>
     <div *ngIf="isDataAvailable">
-        <div class="row container">
+        <!--<div class="row container">
             <div class="col-md-3 col-md-offset-9 input-group stylish-input-group">
                 <input type="text" class="form-control" placeholder="Search">
                 <span class="input-group-addon">
                     <span class="glyphicon glyphicon-search blue"></span>
                 </span>
             </div>
-        </div>
+        </div>-->
         <div class="table-responsive">
             <table class="table table-striped table-bordered table-sortable">
                 <thead>
@@ -77,7 +77,12 @@
             </div>
         </div>
     </div>
-    <div class="col-md-6 col-md-offset-3" *ngIf="!isDataAvailable">
-        <img class="img-responsive" src="https://cdn.dribbble.com/users/27766/screenshots/3488007/empty_state.png"/>
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3 text-center" *ngIf="!isDataAvailable && !isGettingDataStarted">
+            <img class="img-responsive" src="https://cdn.dribbble.com/users/27766/screenshots/3488007/empty_state.png" />
+        </div>
+        <div class="col-md-6 col-md-offset-3 text-center" *ngIf="isGettingDataStarted">
+            <img  src="https://cdn.dribbble.com/users/421466/screenshots/2379575/replace-2r-400px.gif" />
+        </div>
     </div>
 </div>

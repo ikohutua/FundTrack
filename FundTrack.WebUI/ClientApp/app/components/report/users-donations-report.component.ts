@@ -9,6 +9,53 @@ import { UsersDonationsReportDataViewModel } from "../../view-models/concrete/us
 import * as _ from 'underscore';
 import * as commonMessages from '../../shared/common-message.storage';
 
+export class Pager {
+    public totalItems: number;
+    public currentPage: number;
+    public pageSize: number;
+    public totalPages: number;
+    public startPage: number;
+    public endPage: number;
+    public startIndex: number;
+    public endIndex: number;
+    public pages: number[];
+
+    public getPager(totalItems: number, currentPage: number = 1, pageSize: number = 10): Pager {
+        this.totalItems = totalItems;
+        this.currentPage = currentPage;
+        this.pageSize = pageSize;
+        // calculate total pages
+        this.totalPages = Math.ceil(this.totalItems / this.pageSize);
+
+        if (this.totalPages <= 10) {
+            // less than 10 total pages so show all
+            this.startPage = 1;
+            this.endPage = this.totalPages;
+        } else {
+            // more than 10 total pages so calculate start and end pages
+            if (this.currentPage <= 6) {
+                this.startPage = 1;
+                this.endPage = 10;
+            } else if (this.currentPage + 4 >= this.totalPages) {
+                this.startPage = this.totalPages - 9;
+                this.endPage = this.totalPages;
+            } else {
+                this.startPage = this.currentPage - 5;
+                this.endPage = this.currentPage + 4;
+            }
+        }
+
+        // calculate start and end item indexes
+        this.startIndex = (this.currentPage - 1) * this.pageSize;
+        this.endIndex = Math.min(this.startIndex + this.pageSize - 1, this.totalItems - 1);
+
+        // create an array of pages to ng-repeat in the pager control
+        this.pages = _.range(this.startPage, this.endPage + 1);
+
+        return this;
+    };
+}
+
 @Component({
     templateUrl: './users-donations-report.component.html',
     styleUrls: ['./users-donations-report.component.css'],
@@ -22,78 +69,9 @@ export class UsersDonationsReportComponent implements OnInit {
     inputMaxDate: Date = new Date();
     inputMinDate: Date = new Date("2000-01-01");
     isDataAvailable: boolean;
+    isGettingDataStarted: boolean = true;
     totalReportItemsCount: number;
-
-    //----------------------------------------------
-    // pager object
-    pager: any = {};
-
-    setPage(page: number) {
-        if (page < 1) {
-            return;
-        }
-        // get pager object from service
-        this.pager = this.getPager(this.totalReportItemsCount, page);
-
-        this._service.getUsersDonationsPaginatedReport(this.reportModel.id,
-            this.prepareDate(this.reportModel.dateFrom),
-            this.prepareDate(this.reportModel.dateTo),
-            page, this.pager.pageSize)
-            .subscribe(res => {
-                this.pagedReportItems = res;
-                this.isDataAvailable = res != undefined && res.length > 0 ? true : false;
-            },
-            error => {
-                this.isDataAvailable = false;
-                this.showErrorMessage(error);
-            });
-    }
-
-    getPager(totalItems: number, currentPage: number = 1, pageSize: number = 10) {
-        // calculate total pages
-        let totalPages = Math.ceil(totalItems / pageSize);
-
-        let startPage: number, endPage: number;
-        if (totalPages <= 10) {
-            // less than 10 total pages so show all
-            startPage = 1;
-            endPage = totalPages;
-        } else {
-            // more than 10 total pages so calculate start and end pages
-            if (currentPage <= 6) {
-                startPage = 1;
-                endPage = 10;
-            } else if (currentPage + 4 >= totalPages) {
-                startPage = totalPages - 9;
-                endPage = totalPages;
-            } else {
-                startPage = currentPage - 5;
-                endPage = currentPage + 4;
-            }
-        }
-
-        // calculate start and end item indexes
-        let startIndex = (currentPage - 1) * pageSize;
-        let endIndex = Math.min(startIndex + pageSize - 1, totalItems - 1);
-
-        // create an array of pages to ng-repeat in the pager control
-        let pages = _.range(startPage, endPage + 1);
-
-        // return object with all pager properties required by the view
-        return {
-            totalItems: totalItems,
-            currentPage: currentPage,
-            pageSize: pageSize,
-            totalPages: totalPages,
-            startPage: startPage,
-            endPage: endPage,
-            startIndex: startIndex,
-            endIndex: endIndex,
-            pages: pages
-        };
-    }
-
-    //----------------------------------------------
+    pager: Pager = new Pager();
 
     constructor(private _service: ShowRequestedItemService,
         private datePipe: DatePipe,
@@ -119,8 +97,17 @@ export class UsersDonationsReportComponent implements OnInit {
         });
     }
 
+    setBeginDate(value: Date) {
+        this.reportModel.dateFrom = value;
+        this.generateReport();
+    }
+    setEndDate(value: Date) {
+        this.reportModel.dateTo = value;
+        this.generateReport();
+    }
+
     generateReport() {
-        if (this.isRequestDataValid()) {
+        if (!this.isRequestDataValid()) {
             alert(commonMessages.invalidDate);
             return;
         }
@@ -136,23 +123,54 @@ export class UsersDonationsReportComponent implements OnInit {
             });
     }
 
+    setPage(page: number) {
+        if (page < 1) {
+            return;
+        }
+        this.isGettingDataStarted = true;
+        this.isDataAvailable = false;
+
+        // get pager object to help implement pagination
+        this.pager = new Pager().getPager(this.totalReportItemsCount, page);
+
+        this._service.getUsersDonationsPaginatedReport(this.reportModel.id,
+            this.prepareDate(this.reportModel.dateFrom),
+            this.prepareDate(this.reportModel.dateTo),
+            page, this.pager.pageSize)
+            .subscribe(res => {
+                this.pagedReportItems = res;
+                this.isDataAvailable = (res != undefined && res.length > 0);
+                this.isGettingDataStarted = false;
+            },
+            error => {
+                this.showErrorMessage(error);
+                this.isGettingDataStarted = false;
+            });
+    }
+
+
     isRequestDataValid(): boolean {
-        return this.reportModel.id > 0 && this.reportModel.dateTo <= this.inputMaxDate && this.reportModel.dateFrom <= this.reportModel.dateTo;
+        console.log(this.reportModel.dateFrom);
+        this.reportModel.dateFrom = new Date(this.datePipe.transform(this.reportModel.dateFrom));
+        this.reportModel.dateTo = new Date( this.datePipe.transform(this.reportModel.dateTo));
+
+        console.log(this.reportModel.dateFrom);
+        console.log(this.reportModel.dateTo);
+
+        let a = this.reportModel.id > 0 && (this.reportModel.dateTo <= this.inputMaxDate && this.reportModel.dateTo >= this.reportModel.dateFrom) && this.reportModel.dateFrom <= this.reportModel.dateTo;
+
+        console.log(a);
+        console.log(this.reportModel.id > 0);
+        console.log(this.reportModel.dateTo.getDate() <= this.inputMaxDate.getDate());
+        console.log(this.reportModel.dateTo.getDate() >= this.reportModel.dateFrom.getDate());
+        console.log(this.reportModel.dateFrom.getDate() <= this.reportModel.dateTo.getDate());
+        return a;
     }
     prepareDate(date: Date): string {
         return this.datePipe.transform(date, 'yyyy-MM-dd')
     }
 
     showErrorMessage(message: string) {
-        alert(commonMessages.anErrorOccurred+"\n" + message);
-    }
-
-    setBeginDate(value: Date) {
-        this.reportModel.dateFrom = value;
-        this.generateReport();
-    }
-    setEndDate(value: Date) {
-        this.reportModel.dateTo = value;
-        this.generateReport();
+        alert(commonMessages.anErrorOccurred + "\n" + message);
     }
 }

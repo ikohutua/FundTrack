@@ -5,6 +5,7 @@ using FundTrack.Infrastructure.ViewModel;
 using FundTrack.DAL.Abstract;
 using System.Linq;
 using FundTrack.Infrastructure;
+using System.Threading.Tasks;
 
 namespace FundTrack.BLL.Concrete
 {
@@ -102,39 +103,44 @@ namespace FundTrack.BLL.Concrete
             }
         }
 
-        public int GetCountOfUsersDonationsReport(int orgId, DateTime dateFrom, DateTime dateTo)
+        public async Task<int> GetCountOfUsersDonationsReport(int orgId, DateTime dateFrom, DateTime dateTo)
         {
-           return GetUserDonations(orgId, dateFrom, dateTo).ToList().Count;
+            var t = await GetUserDonations(orgId, dateFrom, dateTo);
+            return t.ToList().Count;
         }
 
-        public IEnumerable<UsersDonationsReportViewModel> GetUsersDonationsPaginatedReportn(int orgId, DateTime dateFrom, DateTime dateTo, int pageIndex, int pageSize)
+        public async Task<IEnumerable<UsersDonationsReportViewModel>> GetUsersDonationsPaginatedReportn(int orgId, DateTime dateFrom, DateTime dateTo, int pageIndex, int pageSize)
         {
-            var list = GetUserDonations(orgId, dateFrom, dateTo).Skip((pageIndex-1) * pageSize).Take(pageSize).ToList();
+            var t = await GetUserDonations(orgId, dateFrom, dateTo);
+            var list = t.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
             list.Sort();
             return list;
         }
 
-        private IQueryable<UsersDonationsReportViewModel> GetUserDonations(int orgId, DateTime dateFrom, DateTime dateTo)
+        private Task<IQueryable<UsersDonationsReportViewModel>> GetUserDonations(int orgId, DateTime dateFrom, DateTime dateTo)
         {
-            var orgAccountsIds = _unitOfWork.OrganizationAccountRepository.ReadAllOrgAccounts(orgId).Select(oa => oa.Id);
-
-            var donations = _unitOfWork.DonationRepository.Read()
-                .Where(d => d.DonationDate >= dateFrom &&
-                            d.DonationDate <= dateTo &&
-                            orgAccountsIds.Contains(d.OrgAccountId));
-
-            var query = donations.Select(d => new UsersDonationsReportViewModel()
+            return Task.Run(() =>
             {
-                Id = d.Id,
-                Target = d.Target.TargetName,
-                UserFirstName = d.User.FirstName,
-                UserLastName = d.User.LastName,
-                UserLogin = d.User.Login,
-                Date = d.DonationDate,
-                MoneyAmount = (decimal)d.Amount,
-                Description = d.Description
-            }).Where(d => !String.IsNullOrEmpty(d.UserLogin));
-            return query;
+                var orgAccountsIds = _unitOfWork.OrganizationAccountRepository.ReadAllOrgAccounts(orgId).Select(oa => oa.Id);
+
+                var donations = _unitOfWork.DonationRepository.Read()
+                    .Where(d => d.DonationDate >= dateFrom &&
+                                d.DonationDate <= dateTo &&
+                                orgAccountsIds.Contains(d.OrgAccountId));
+
+                var query = donations.Select(d => new UsersDonationsReportViewModel()
+                {
+                    Id = d.Id,
+                    Target = d.Target.TargetName,
+                    UserFirstName = d.User.FirstName,
+                    UserLastName = d.User.LastName,
+                    UserLogin = d.User.Login,
+                    Date = d.DonationDate,
+                    MoneyAmount = (decimal)d.Amount,
+                    Description = d.Description
+                }).Where(d => !String.IsNullOrEmpty(d.UserLogin));
+                return query;
+            });
         }
     }
 }

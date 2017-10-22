@@ -36,26 +36,40 @@ namespace FundTrack.WebUI.Controllers
         }
 
         [HttpGet("UsersDonationsPaginatedReport")]
-        public IActionResult UsersDonationsReport(int? orgId, DateTime? dateFrom, DateTime? dateTo, int? pageIndex, int? pageSize)
+        public async Task<IActionResult> UsersDonationsPaginatedReport(int? orgId, DateTime? dateFrom, DateTime? dateTo, int? pageIndex, int? pageSize)
         {
-            if (orgId > 0 && dateTo <= DateTime.Now.Date && dateFrom <= dateTo)
+            if (isDataValid(dateFrom, dateTo, orgId, pageIndex, pageSize))
             {
-                return Ok(_service.GetUsersDonationsPaginatedReportn(orgId.Value, dateFrom.Value, dateTo.Value, pageIndex.Value, pageSize.Value));
+                var list = await _service.GetUsersDonationsPaginatedReportn(orgId.Value, dateFrom.Value, dateTo.Value, pageIndex.Value, pageSize.Value);
+                return Ok(list);
             }
 
             return new BadRequestObjectResult($"Invalid data!");
         }
 
         [HttpGet("CountOfUsersDonationsReport")]
-        public IActionResult CountOfUsersDonationsReport(int? orgId, DateTime? dateFrom, DateTime? dateTo)
+        public async Task<IActionResult> CountOfUsersDonationsReport(int? orgId, DateTime? dateFrom, DateTime? dateTo)
         {
-            if (orgId > 0 && dateTo <= DateTime.Now.Date && dateFrom <= dateTo)
+            if (isDataValid(dateFrom, dateTo, orgId))
             {
-                return Ok(_service.GetCountOfUsersDonationsReport(orgId.Value, dateFrom.Value, dateTo.Value));
+                var count = await _service.GetCountOfUsersDonationsReport(orgId.Value, dateFrom.Value, dateTo.Value);
+                return Ok(count);
             }
 
             return new BadRequestObjectResult($"Invalid data!");
         }
 
+        private bool isDataValid(DateTime? dateFrom, DateTime? dateTo, params int?[] parametrs)
+        {
+            var res = (dateTo.HasValue && dateTo <= DateTime.Now.Date) &&
+                (dateFrom.HasValue && dateFrom.Value <= dateTo);
+
+            foreach (var item in parametrs)
+            {
+                res = res & (item.HasValue && item.Value > 0);
+            }
+
+            return res;
+        }
     }
 }
