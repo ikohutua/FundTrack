@@ -52,33 +52,24 @@ export class OrganizationStatisticsComponent implements OnInit {
 
     ngOnInit(): void {
         this.dateFrom.setMonth(this.dateFrom.getMonth() - 24);
-        this.allTargets = this.testTargets;
-        this.prepareTargetsForCharts(this.allTargets);
-
         this.organizationStatisticsService.getReportForFinopsByTargets(1,
             this.datePipe.transform(this.dateFrom, 'yyyy-MM-dd'),
             this.datePipe.transform(this.dateTo, 'yyyy-MM-dd'))
             .subscribe(response => {
-                debugger;
-
                 this.allTargets = response;
-                this.prepareTargetsForCharts(response);
+                this.prepareTargetsForCharts(this.allTargets);
 
             });
     }
 
     public prepareTargetsForCharts(list: Array<AbctractTargetViewModel>) {
-        debugger;
-
+        this.dataSet = [];
         list.forEach(t => {
             this.dataSet.push({
                 name: t.targetName,
                 value: t.sum
             });
         });
-
-        debugger;
-
     }
 
     onSelect(event) {
@@ -102,7 +93,13 @@ export class OrganizationStatisticsComponent implements OnInit {
                 target.id,
                 this.datePipe.transform(this.dateFrom, 'yyyy-MM-dd'),
                 this.datePipe.transform(this.dateTo, 'yyyy-MM-dd'))
-                .subscribe(response => target.subTargetsArray = response);
+                .subscribe(response => {
+                    target.subTargetsArray = response;
+                    this.prepareTargetsForCharts(response);
+                });
+        }
+        else {
+            this.prepareTargetsForCharts(this.allTargets);
         }
     }
 
