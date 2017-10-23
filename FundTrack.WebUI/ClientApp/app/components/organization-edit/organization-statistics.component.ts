@@ -1,7 +1,7 @@
 ﻿import { OnInit, Component } from "@angular/core";
 import { OrganizationGetGeneralInfoService } from "../../services/concrete/organization-management/organization-get-general-info.service";
 import { EditOrganizationService } from "../../services/concrete/organization-management/edit-organization.service";
-import { BaseTargetReportViewModel, SubTargetReportViewModel } from "../../view-models/concrete/edit-organization/target-report-view.model";
+import { BaseTargetReportViewModel, SubTargetReportViewModel, AbctractTargetViewModel } from "../../view-models/concrete/edit-organization/target-report-view.model";
 import { FinOpListViewModel } from "../../view-models/concrete/finance/finop-list-viewmodel";
 import { OrganizationStatisticsService } from "../../services/concrete/organization-management/organization-statistics.service";
 import { DatePipe } from '@angular/common';
@@ -17,10 +17,10 @@ export class OrganizationStatisticsComponent implements OnInit {
     allTargets: Array<BaseTargetReportViewModel> = new Array<BaseTargetReportViewModel>();
     testTargets: Array<BaseTargetReportViewModel> = [
         { id: -1, targetName: "Медицина", sum: 10600, subTargetsArray: new Array<SubTargetReportViewModel>(), isOpen: false },
-        { id: -1, targetName: "Продукти", sum: 6350, subTargetsArray: new Array<SubTargetReportViewModel>(), isOpen: false},
-        { id: -1, targetName: "Одяг", sum: 9700, subTargetsArray: new Array<SubTargetReportViewModel>(), isOpen: false},
-        { id: -1, targetName: "Електроніка", sum: 25000, subTargetsArray: new Array<SubTargetReportViewModel>(), isOpen: false},
-        { id: -1, targetName: "Test", sum: 400, subTargetsArray: new Array<SubTargetReportViewModel>(), isOpen: false}
+        { id: -1, targetName: "Продукти", sum: 6350, subTargetsArray: new Array<SubTargetReportViewModel>(), isOpen: false },
+        { id: -1, targetName: "Одяг", sum: 9700, subTargetsArray: new Array<SubTargetReportViewModel>(), isOpen: false },
+        { id: -1, targetName: "Електроніка", sum: 25000, subTargetsArray: new Array<SubTargetReportViewModel>(), isOpen: false },
+        { id: -1, targetName: "Test", sum: 400, subTargetsArray: new Array<SubTargetReportViewModel>(), isOpen: false }
     ];
 
     //Vertical bar chart & pie chart
@@ -41,22 +41,34 @@ export class OrganizationStatisticsComponent implements OnInit {
             '#FEFCFA']
     };
     public dataSet: any[] = [];
+
     dateFrom: Date = new Date();
     dateTo: Date = new Date();
+    inputMaxDate: Date = new Date();
 
     constructor(private organizationStatisticsService: OrganizationStatisticsService,
-                private datePipe: DatePipe) {
+        private datePipe: DatePipe) {
     }
 
     ngOnInit(): void {
-        this.dateFrom.setMonth(this.dateFrom.getMonth() - 24); 
-        //this.allTargets = this.testTargets;
+        this.dateFrom.setMonth(this.dateFrom.getMonth() - 24);
+        this.allTargets = this.testTargets;
         this.prepareTargetsForCharts(this.allTargets);
-        this.organizationStatisticsService.getReportForFinopsByTargets(1, this.datePipe.transform(this.dateFrom, 'yyyy-MM-dd'), this.datePipe.transform(this.dateTo, 'yyyy-MM-dd'))
-            .subscribe(response => this.allTargets = response);
+
+        this.organizationStatisticsService.getReportForFinopsByTargets(1,
+            this.datePipe.transform(this.dateFrom, 'yyyy-MM-dd'),
+            this.datePipe.transform(this.dateTo, 'yyyy-MM-dd'))
+            .subscribe(response => {
+                debugger;
+
+                this.allTargets = response;
+                this.prepareTargetsForCharts(response);
+
+            });
     }
 
-    public prepareTargetsForCharts(list: Array<BaseTargetReportViewModel>) {
+    public prepareTargetsForCharts(list: Array<AbctractTargetViewModel>) {
+        debugger;
 
         list.forEach(t => {
             this.dataSet.push({
@@ -64,6 +76,9 @@ export class OrganizationStatisticsComponent implements OnInit {
                 value: t.sum
             });
         });
+
+        debugger;
+
     }
 
     onSelect(event) {
@@ -80,23 +95,23 @@ export class OrganizationStatisticsComponent implements OnInit {
         console.log(endDate);
     }
 
-    private onClickBaseTarget(target : BaseTargetReportViewModel): void {
+    private onClickBaseTarget(target: BaseTargetReportViewModel): void {
         target.isOpen = !target.isOpen;
         if (target.isOpen) {
             this.organizationStatisticsService.getSubTargets(1,
-                    target.id,
-                    this.datePipe.transform(this.dateFrom, 'yyyy-MM-dd'),
-                    this.datePipe.transform(this.dateTo, 'yyyy-MM-dd'))
+                target.id,
+                this.datePipe.transform(this.dateFrom, 'yyyy-MM-dd'),
+                this.datePipe.transform(this.dateTo, 'yyyy-MM-dd'))
                 .subscribe(response => target.subTargetsArray = response);
         }
     }
 
-    private onClickSubTarget(subTarget : SubTargetReportViewModel): void {
+    private onClickSubTarget(subTarget: SubTargetReportViewModel): void {
         subTarget.isOpen = !subTarget.isOpen;
         if (subTarget.isOpen) {
             this.organizationStatisticsService.getFinOpsByTargetId(subTarget.id,
-                    this.datePipe.transform(this.dateFrom, 'yyyy-MM-dd'),
-                    this.datePipe.transform(this.dateTo, 'yyyy-MM-dd'))
+                this.datePipe.transform(this.dateFrom, 'yyyy-MM-dd'),
+                this.datePipe.transform(this.dateTo, 'yyyy-MM-dd'))
                 .subscribe(response => subTarget.finOpsArray = response);
         }
     }
