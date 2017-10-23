@@ -12,23 +12,33 @@ namespace FundTrack.AutoImportService.Services
 {
     class TimerService
     {
-        public TimerWithIntervalViewModel CreateTimer(int organizationId, long interval)
+        /// <summary>
+        /// Create new timer
+        /// </summary>
+        /// <param name="intervalModel">View model with information about interval from db.</param>
+        /// <returns>New timer with information about interval.</returns>
+        public TimerWithIntervalViewModel CreateTimer(AutoImportIntervalViewModel intervalModel)
         {
             TimerWithIntervalViewModel timer = new TimerWithIntervalViewModel();
-            timer.Interval = interval;
-            timer.OrganizationId = organizationId;
-            timer.Timer = new Timer(ImportDataFromBank, timer, 0, interval);
+            timer.IntervalViewModel = intervalModel;
+            timer.Timer = new Timer(ImportDataFromBank, timer, 0, intervalModel.Interval);
             return timer;
         }
 
+        /// <summary>
+        /// Import data from privat 24. Called when the timer is triggered.
+        /// </summary>
+        /// <param name="o">Object from timer.</param>
         private void ImportDataFromBank(object o)
         {
-            Console.WriteLine("Go");
             TimerWithIntervalViewModel thisTimer = (TimerWithIntervalViewModel)o;
-            long intervalInMinutes = thisTimer.Interval / 60000;
-            PrivatImporter.Run(thisTimer.OrganizationId, (int)intervalInMinutes);
-            Console.WriteLine(thisTimer.OrganizationId);
-            Console.WriteLine(DateTime.Now);
+            int intervalInMinutes = (int)ConvertToMinutes(thisTimer.IntervalViewModel.Interval);
+            PrivatImporter.Run(thisTimer.IntervalViewModel.OrganizationId, intervalInMinutes);
+        }
+
+        private long ConvertToMinutes(long milliseconds)
+        {
+            return milliseconds / 60000;
         }
     }
 }
