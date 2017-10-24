@@ -2,34 +2,8 @@
 
 <div class="container">
     <h1 class="page-header">Organization statistics</h1>
-    <div class="container-fluid">
-        <div class="col-md-4 chart-container">
-            <ngx-charts-bar-vertical
-                [scheme]="colorScheme"
-                [results]="dataSet"
-                [gradient]="gradient"
-                [xAxis]="showXAxis"
-                [yAxis]="showYAxis"
-                [legend]="showLegend"
-                [showXAxisLabel]="showXAxisLabel"
-                [showYAxisLabel]="showYAxisLabel"
-                [xAxisLabel]="xAxisLabel"
-                [yAxisLabel]="yAxisLabel"
-                [barPadding]="barPadding"
-                (select)="onSelect($event)">
-            </ngx-charts-bar-vertical>
-        </div>
-        <div class="col-md-8 chart-container">
-            <ngx-charts-advanced-pie-chart
-                [scheme]="colorScheme"
-                [results]="dataSet"
-                [gradient]="gradient"
-                (select)="onSelect($event)">
-                                          
-            </ngx-charts-advanced-pie-chart>
-        </div>
-    </div>
-    <div class="col-md-6 center">
+    
+    <div>
         <div class="panel panel-default">
             <div class="panel-body">
                 <h4 class="muted">Період</h4>
@@ -111,6 +85,32 @@
                         </table>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="col-md-4 chart-container">
+            <ngx-charts-bar-vertical [scheme]="colorScheme"
+                                     [results]="dataSet"
+                                     [gradient]="gradient"
+                                     [xAxis]="showXAxis"
+                                     [yAxis]="showYAxis"
+                                     [legend]="showLegend"
+                                     [showXAxisLabel]="showXAxisLabel"
+                                     [showYAxisLabel]="showYAxisLabel"
+                                     [xAxisLabel]="xAxisLabel"
+                                     [yAxisLabel]="yAxisLabel"
+                                     [barPadding]="barPadding"
+                                     (select)="onSelect($event)">
+            </ngx-charts-bar-vertical>
+        </div>
+        <div class="col-md-8 chart-container">
+            <ngx-charts-advanced-pie-chart [scheme]="colorScheme"
+                                           [results]="dataSet"
+                                           [gradient]="gradient"
+                                           (select)="onSelect($event)">
+
+            </ngx-charts-advanced-pie-chart>
         </div>
     </div>
 </div>

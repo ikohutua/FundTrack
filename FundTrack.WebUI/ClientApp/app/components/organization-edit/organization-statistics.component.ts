@@ -1,7 +1,7 @@
 ﻿import { OnInit, Component } from "@angular/core";
 import { OrganizationGetGeneralInfoService } from "../../services/concrete/organization-management/organization-get-general-info.service";
 import { EditOrganizationService } from "../../services/concrete/organization-management/edit-organization.service";
-import { BaseTargetReportViewModel, SubTargetReportViewModel } from "../../view-models/concrete/edit-organization/target-report-view.model";
+import { BaseTargetReportViewModel, SubTargetReportViewModel, AbctractTargetViewModel } from "../../view-models/concrete/edit-organization/target-report-view.model";
 import { FinOpListViewModel } from "../../view-models/concrete/finance/finop-list-viewmodel";
 import { OrganizationStatisticsService } from "../../services/concrete/organization-management/organization-statistics.service";
 import { DatePipe } from '@angular/common';
@@ -21,10 +21,10 @@ export class OrganizationStatisticsComponent implements OnInit {
     allTargets: Array<BaseTargetReportViewModel> = new Array<BaseTargetReportViewModel>();
     testTargets: Array<BaseTargetReportViewModel> = [
         { id: -1, targetName: "Медицина", sum: 10600, subTargetsArray: new Array<SubTargetReportViewModel>(), isOpen: false },
-        { id: -1, targetName: "Продукти", sum: 6350, subTargetsArray: new Array<SubTargetReportViewModel>(), isOpen: false},
-        { id: -1, targetName: "Одяг", sum: 9700, subTargetsArray: new Array<SubTargetReportViewModel>(), isOpen: false},
-        { id: -1, targetName: "Електроніка", sum: 25000, subTargetsArray: new Array<SubTargetReportViewModel>(), isOpen: false},
-        { id: -1, targetName: "Test", sum: 400, subTargetsArray: new Array<SubTargetReportViewModel>(), isOpen: false}
+        { id: -1, targetName: "Продукти", sum: 6350, subTargetsArray: new Array<SubTargetReportViewModel>(), isOpen: false },
+        { id: -1, targetName: "Одяг", sum: 9700, subTargetsArray: new Array<SubTargetReportViewModel>(), isOpen: false },
+        { id: -1, targetName: "Електроніка", sum: 25000, subTargetsArray: new Array<SubTargetReportViewModel>(), isOpen: false },
+        { id: -1, targetName: "Test", sum: 400, subTargetsArray: new Array<SubTargetReportViewModel>(), isOpen: false }
     ];
 
     //Vertical bar chart & pie chart
@@ -45,14 +45,16 @@ export class OrganizationStatisticsComponent implements OnInit {
             '#FEFCFA']
     };
     public dataSet: any[] = [];
+
     dateFrom: Date = new Date();
     dateTo: Date = new Date();
+    inputMaxDate: Date = new Date();
     unassingnedFinOps: FinOpListViewModel[] = Array<FinOpListViewModel>();
     user: AuthorizeUserModel = new AuthorizeUserModel();
     reportType: number = constant.incomeId; // set spending type as selected
 
     constructor(private organizationStatisticsService: OrganizationStatisticsService,
-                private datePipe: DatePipe) {
+        private datePipe: DatePipe) {
     }
 
     ngOnInit(): void {
@@ -68,8 +70,8 @@ export class OrganizationStatisticsComponent implements OnInit {
             .subscribe(response => this.allTargets = response);
     }
 
-    public prepareTargetsForCharts(list: Array<BaseTargetReportViewModel>) {
-
+    public prepareTargetsForCharts(list: Array<AbctractTargetViewModel>) {
+        this.dataSet = [];
         list.forEach(t => {
             this.dataSet.push({
                 name: t.targetName,
@@ -92,7 +94,7 @@ export class OrganizationStatisticsComponent implements OnInit {
         console.log(endDate);
     }
 
-    private onClickBaseTarget(target : BaseTargetReportViewModel): void {
+    private onClickBaseTarget(target: BaseTargetReportViewModel): void {
         target.isOpen = !target.isOpen;
         if (target.isOpen) {
             if (target.id === -1) {
@@ -103,9 +105,12 @@ export class OrganizationStatisticsComponent implements OnInit {
                     .subscribe(response => target.subTargetsArray = response);
             }
         }
+        else {
+            this.prepareTargetsForCharts(this.allTargets);
+        }
     }
 
-    private onClickSubTarget(subTarget : SubTargetReportViewModel): void {
+    private onClickSubTarget(subTarget: SubTargetReportViewModel): void {
         subTarget.isOpen = !subTarget.isOpen;
         if (subTarget.isOpen) {
             this.organizationStatisticsService.getFinOpsByTargetId(this.reportType, subTarget.id, this.transformDate(this.dateFrom), this.transformDate(this.dateTo))
