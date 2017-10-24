@@ -317,3 +317,5 @@ FundTrack.Infrastructure/bin/
 FundTrack.Infrastructure/obj/
 FundTrack.WebUI.Tests/bin/
 FundTrack.WebUI.Tests/obj/
+/FundTrack.WebUI/Logs
+/FundTrack.WebUI/Middlewares/Logging
