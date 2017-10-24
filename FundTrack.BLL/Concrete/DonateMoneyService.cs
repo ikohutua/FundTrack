@@ -97,6 +97,7 @@ namespace FundTrack.BLL.Concrete
             _unitOfWork.SaveChanges();
             var result = new DonateViewModel
             {
+                Id = created.Id,
                 OrderId = created.OrderId.ToString(),
                 Amount = created.Amount,
                 BankAccountId = created.BankAccountId,
@@ -146,7 +147,6 @@ namespace FundTrack.BLL.Concrete
                 _unitOfWork.DonationRepository
                     .Read()
                     .Where(d =>                                                 // suggested conditions are: 
-                        (d.UserId == null)&&                                    // if donation is not bind yet
                         (d.DonationDate >= finOp.FinOpDate) &&                  // min bound for date/time
                         (d.DonationDate <= finOpMaxPossibleDate) &&             // max bound for date/time
                         (d.Amount == (double)finOp.Amount))                    // same amount

@@ -12,11 +12,20 @@ namespace FundTrack.DAL.Migrations
                 name: "FK_Donation_Target",
                 table: "Donations");
 
+            migrationBuilder.DropIndex(
+                name: "IX_Donations_TargetId",
+                table:"Donations");
+
             migrationBuilder.AlterColumn<int>(
                 name: "TargetId",
                 table: "Donations",
                 nullable: true,
                 oldClrType: typeof(int));
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Donations_TargetId",
+                table: "Donations",
+                column: "TargetId");
 
             migrationBuilder.AddForeignKey(
                 name: "FK_Donation_Target",
@@ -33,12 +42,21 @@ namespace FundTrack.DAL.Migrations
                 name: "FK_Donation_Target",
                 table: "Donations");
 
+            migrationBuilder.DropIndex(
+                name: "IX_Donations_TargetId",
+                table: "Donations");
+
             migrationBuilder.AlterColumn<int>(
                 name: "TargetId",
                 table: "Donations",
                 nullable: false,
                 oldClrType: typeof(int),
                 oldNullable: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Donations_TargetId",
+                table: "Donations",
+                column: "TargetId");
 
             migrationBuilder.AddForeignKey(
                 name: "FK_Donation_Target",
