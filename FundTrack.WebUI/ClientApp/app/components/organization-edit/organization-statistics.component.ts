@@ -5,6 +5,10 @@ import { BaseTargetReportViewModel, SubTargetReportViewModel } from "../../view-
 import { FinOpListViewModel } from "../../view-models/concrete/finance/finop-list-viewmodel";
 import { OrganizationStatisticsService } from "../../services/concrete/organization-management/organization-statistics.service";
 import { DatePipe } from '@angular/common';
+import { isBrowser } from "angular2-universal";
+import * as key from '../../shared/key.storage';
+import * as constant from '../../shared/default-configuration.storage';
+import { AuthorizeUserModel } from "../../view-models/concrete/authorized-user-info-view.model";
 
 @Component({
     selector: 'statistics',
@@ -43,16 +47,24 @@ export class OrganizationStatisticsComponent implements OnInit {
     public dataSet: any[] = [];
     dateFrom: Date = new Date();
     dateTo: Date = new Date();
+    unassingnedFinOps: FinOpListViewModel[] = Array<FinOpListViewModel>();
+    user: AuthorizeUserModel = new AuthorizeUserModel();
+    reportType: number = constant.incomeId; // set spending type as selected
 
     constructor(private organizationStatisticsService: OrganizationStatisticsService,
                 private datePipe: DatePipe) {
     }
 
     ngOnInit(): void {
+        if (isBrowser) {
+            if (localStorage.getItem(key.keyToken)) {
+                this.user = JSON.parse(localStorage.getItem(key.keyModel)) as AuthorizeUserModel;
+            }
+        };
         this.dateFrom.setMonth(this.dateFrom.getMonth() - 24); 
         //this.allTargets = this.testTargets;
         this.prepareTargetsForCharts(this.allTargets);
-        this.organizationStatisticsService.getReportForFinopsByTargets(1, this.datePipe.transform(this.dateFrom, 'yyyy-MM-dd'), this.datePipe.transform(this.dateTo, 'yyyy-MM-dd'))
+        this.organizationStatisticsService.getReportForFinopsByTargets(this.user.orgId, this.reportType, this.transformDate(this.dateFrom), this.transformDate(this.dateTo))
             .subscribe(response => this.allTargets = response);
     }
 
@@ -83,21 +95,31 @@ export class OrganizationStatisticsComponent implements OnInit {
     private onClickBaseTarget(target : BaseTargetReportViewModel): void {
         target.isOpen = !target.isOpen;
         if (target.isOpen) {
-            this.organizationStatisticsService.getSubTargets(1,
-                    target.id,
-                    this.datePipe.transform(this.dateFrom, 'yyyy-MM-dd'),
-                    this.datePipe.transform(this.dateTo, 'yyyy-MM-dd'))
-                .subscribe(response => target.subTargetsArray = response);
+            if (target.id === -1) {
+                this.organizationStatisticsService.getFinOpsByTargetId(this.reportType, target.id, this.transformDate(this.dateFrom), this.transformDate(this.dateTo))
+                    .subscribe(response => this.unassingnedFinOps = response);
+            } else {
+                this.organizationStatisticsService.getSubTargets(this.user.orgId, this.reportType, target.id, this.transformDate(this.dateFrom), this.transformDate(this.dateTo))
+                    .subscribe(response => target.subTargetsArray = response);
+            }
         }
     }
 
     private onClickSubTarget(subTarget : SubTargetReportViewModel): void {
         subTarget.isOpen = !subTarget.isOpen;
         if (subTarget.isOpen) {
-            this.organizationStatisticsService.getFinOpsByTargetId(subTarget.id,
-                    this.datePipe.transform(this.dateFrom, 'yyyy-MM-dd'),
-                    this.datePipe.transform(this.dateTo, 'yyyy-MM-dd'))
+            this.organizationStatisticsService.getFinOpsByTargetId(this.reportType, subTarget.id, this.transformDate(this.dateFrom), this.transformDate(this.dateTo))
                 .subscribe(response => subTarget.finOpsArray = response);
         }
+    }
+
+    private transformDate(date : Date) : string {
+        return this.datePipe.transform(date, "yyyy-MM-dd");
+    }
+
+    private onChangeFinOpType($event): void {
+        this.reportType = $event;
+        this.organizationStatisticsService.getReportForFinopsByTargets(this.user.orgId, this.reportType, this.transformDate(this.dateFrom), this.transformDate(this.dateTo))
+            .subscribe(response => this.allTargets = response);
     }
 }

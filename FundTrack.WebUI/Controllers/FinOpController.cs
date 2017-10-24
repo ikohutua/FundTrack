@@ -166,12 +166,5 @@ namespace FundTrack.WebUI.Controllers
             }
             return Ok(_service.BindDonationAndFinOp(finOp));
         }
-
-        [HttpGet("GetFinOpsByTargetId/{targetId}")]
-        public IEnumerable<FinOpViewModel> GetFinOpsByTargetId(int targetId, DateTime dateFrom, DateTime dateTo)
-        {
-            http://localhost:51116/api/FinOp/GetFinOpsByTargetId/?dateFrom=2015/01/01&dateTo=2019/01/01
-            return _organizationStatisticsService.GetFinOpsByTargetId(targetId, dateFrom, dateTo);
-        }
     }
 }

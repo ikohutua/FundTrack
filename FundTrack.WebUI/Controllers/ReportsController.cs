@@ -40,24 +40,24 @@ namespace FundTrack.WebUI.Controllers
         }
 
         [Authorize(Roles = "admin, moderator")]
-        [HttpGet("{orgId}")]
-        public IEnumerable<TargetReportViewModel> GetTargetsReport(int orgId, DateTime dateFrom, DateTime dateTo)
+        [HttpGet("{orgId}/{finOpType}")]
+        public IEnumerable<TargetReportViewModel> GetTargetsReport(int orgId, int finOpType, DateTime dateFrom, DateTime dateTo)
         {
-            return _organizationStatisticsService.GetReportForIncomeFinopsByTargets(orgId, dateFrom, dateTo);
+            return _organizationStatisticsService.GetReportForIncomeFinopsByTargets(orgId, finOpType, dateFrom, dateTo);
         }
 
         [Authorize(Roles = "admin, moderator")]
-        [HttpGet("GetSubTargets/{orgId}/{baseTargetId}")]
-        public IEnumerable<TargetReportViewModel> GetSubTargets(int orgId, int baseTargetId, DateTime dateFrom, DateTime dateTo)
+        [HttpGet("GetSubTargets/{orgId}/{finOpType}/{baseTargetId}")]
+        public IEnumerable<TargetReportViewModel> GetSubTargets(int orgId, int finOpType, int baseTargetId, DateTime dateFrom, DateTime dateTo)
         {
-            return _organizationStatisticsService.GetSubTargets(orgId, baseTargetId, dateFrom, dateTo);
+            return _organizationStatisticsService.GetSubTargets(orgId, finOpType, baseTargetId, dateFrom, dateTo);
         }
 
         [Authorize(Roles = "admin, moderator")]
-        [HttpGet("GetFinOpsByTargetId/{targetId}")]
-        public IEnumerable<FinOpViewModel> GetFinOpsByTargetId(int targetId, DateTime dateFrom, DateTime dateTo)
+        [HttpGet("GetFinOpsByTargetId/{finOpType}/{targetId}")]
+        public IEnumerable<FinOpViewModel> GetFinOpsByTargetId(int finOpType, int targetId, DateTime dateFrom, DateTime dateTo)
         {
-            return _organizationStatisticsService.GetFinOpsByTargetId(targetId, dateFrom, dateTo);
+            return _organizationStatisticsService.GetFinOpsByTargetId(finOpType, targetId, dateFrom, dateTo);
         }
 
     }

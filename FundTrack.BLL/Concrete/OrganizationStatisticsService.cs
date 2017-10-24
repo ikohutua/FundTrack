@@ -22,11 +22,11 @@ namespace FundTrack.BLL.Concrete
             _targetService = targetService;
         }
 
-        public IEnumerable<TargetReportViewModel> GetReportForIncomeFinopsByTargets(int orgId, DateTime dateFrom, DateTime dateTo)
+        public IEnumerable<TargetReportViewModel> GetReportForIncomeFinopsByTargets(int orgId, int finOpType, DateTime dateFrom, DateTime dateTo)
         { 
             var finOps = _unitOfWork.FinOpRepository.Read()
                 .Where(f => IfDateInRange(dateFrom, dateTo, f.FinOpDate) &&
-                            f.FinOpType == Constants.FinOpTypeIncome).ToList();
+                            f.FinOpType == finOpType).ToList();
 
             finOps.ForEach(f => f.TargetId = f.Target?.ParentTargetId ?? f.TargetId);
             var result = finOps.GroupBy(f => f.TargetId).Select(t => new TargetReportViewModel
@@ -34,17 +34,17 @@ namespace FundTrack.BLL.Concrete
                 Id = t.First().TargetId??-1,
                 TargetName = t.First().Target?.TargetName ?? "Призначення не вказано",
                 Sum = t.Sum(s => s.Amount)
-            });
+            }).OrderBy(t => t.Id);
 
             return result;
         }
 
-        public IEnumerable<TargetReportViewModel> GetSubTargets(int orgId, int baseTargetId, DateTime dateFrom, DateTime dateTo)
+        public IEnumerable<TargetReportViewModel> GetSubTargets(int orgId, int finOpType, int baseTargetId, DateTime dateFrom, DateTime dateTo)
         {
             var targetIds = _targetService.GetTargets(orgId, baseTargetId).Select(t => t.TargetId).ToList();
             var finOps = _unitOfWork.FinOpRepository.Read()
                 .Where(f => IfDateInRange(dateFrom, dateTo, f.FinOpDate) &&
-                            f.FinOpType == Constants.FinOpTypeIncome).ToList();
+                            f.FinOpType == finOpType).ToList();
 
             finOps = finOps.Where(f => f.TargetId == baseTargetId || targetIds.Contains(f.TargetId ?? -1)).ToList();
 
@@ -58,10 +58,14 @@ namespace FundTrack.BLL.Concrete
             return result;
         }
 
-        public IEnumerable<FinOpViewModel> GetFinOpsByTargetId(int targetId, DateTime dateFrom, DateTime dateTo)
+        public IEnumerable<FinOpViewModel> GetFinOpsByTargetId(int finOpType, int? targetId, DateTime dateFrom, DateTime dateTo)
         {
+            if (targetId == -1)
+            {
+                targetId = null; // to get all finOps without target
+            }
             var finOps = _unitOfWork.FinOpRepository.Read()
-                .Where(f => f.TargetId == targetId && IfDateInRange(dateFrom, dateTo, f.FinOpDate)).ToList();
+                .Where(f => f.FinOpType == finOpType && f.TargetId == targetId && IfDateInRange(dateFrom, dateTo, f.FinOpDate)).ToList();
             return finOps.Select(ConvertFinOpToViewModel);
         }
 
