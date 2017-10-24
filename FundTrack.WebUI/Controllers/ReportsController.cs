@@ -5,6 +5,7 @@ using FundTrack.BLL.Abstract;
 using FundTrack.Infrastructure.ViewModel;
 using System.Threading.Tasks;
 using FundTrack.BLL.Concrete;
+using System.Diagnostics;
 
 namespace FundTrack.WebUI.Controllers
 {
@@ -37,13 +38,16 @@ namespace FundTrack.WebUI.Controllers
         }
 
         [HttpGet("UsersDonationsPaginatedReport")]
-        public async Task<IActionResult> UsersDonationsPaginatedReport(int? orgId, DateTime? dateFrom, DateTime? dateTo, int? pageIndex, int? pageSize)
+        public async Task<IActionResult> UsersDonationsPaginatedReport(int? orgId, DateTime? dateFrom, DateTime? dateTo, int? pageIndex, int? pageSize, string filterValue)
         {
             if (isDataNotNull(dateFrom, dateTo, orgId, pageIndex, pageSize))
             {
                 try
                 {
-                    var list = await _service.GetUsersDonationsPaginatedReportn(orgId.Value, dateFrom.Value, dateTo.Value, pageIndex.Value, pageSize.Value);
+                    var list = String.IsNullOrEmpty(filterValue)
+                        ? await _service.GetUsersDonationsPaginatedReport(orgId.Value, dateFrom.Value, dateTo.Value, pageIndex.Value, pageSize.Value)
+                        : await _service.GetFilteredUsersDonationsPaginatedReport(orgId.Value, dateFrom.Value, dateTo.Value, pageIndex.Value, pageSize.Value, filterValue);
+
                     return Ok(list);
                 }
                 catch (BusinessLogicException ex)
@@ -56,13 +60,16 @@ namespace FundTrack.WebUI.Controllers
         }
 
         [HttpGet("CountOfUsersDonationsReport")]
-        public async Task<IActionResult> CountOfUsersDonationsReport(int? orgId, DateTime? dateFrom, DateTime? dateTo)
+        public async Task<IActionResult> CountOfUsersDonationsReport(int? orgId, DateTime? dateFrom, DateTime? dateTo, string filterValue)
         {
             if (isDataNotNull(dateFrom, dateTo, orgId))
             {
                 try
                 {
-                    var count = await _service.GetCountOfUsersDonationsReport(orgId.Value, dateFrom.Value, dateTo.Value);
+                    int count = String.IsNullOrEmpty(filterValue)
+                       ? await _service.GetCountOfUsersDonationsReport(orgId.Value, dateFrom.Value, dateTo.Value)
+                       : await _service.GetFilteredCountOfUsersDonationsReport(orgId.Value, dateFrom.Value, dateTo.Value, filterValue);
+
                     return Ok(count);
                 }
                 catch (BusinessLogicException ex)

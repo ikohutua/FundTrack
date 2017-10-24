@@ -109,9 +109,27 @@ namespace FundTrack.BLL.Concrete
             return t.ToList().Count;
         }
 
-        public async Task<IEnumerable<UsersDonationsReportViewModel>> GetUsersDonationsPaginatedReportn(int orgId, DateTime dateFrom, DateTime dateTo, int pageIndex, int pageSize)
+        public async Task<int> GetFilteredCountOfUsersDonationsReport(int orgId, DateTime dateFrom, DateTime dateTo, string filterValue)
         {
             var t = await GetUserDonations(orgId, dateFrom, dateTo);
+            return t.Where(d => d.UserLogin.Contains(filterValue)).ToList().Count;
+        }
+
+        public async Task<IEnumerable<UsersDonationsReportViewModel>> GetUsersDonationsPaginatedReport(int orgId, DateTime dateFrom, DateTime dateTo, int pageIndex, int pageSize)
+        {
+            var t = await GetUserDonations(orgId, dateFrom, dateTo);
+            return PaginateReport(pageIndex, pageSize, t);
+        }
+
+        public async Task<IEnumerable<UsersDonationsReportViewModel>> GetFilteredUsersDonationsPaginatedReport(int orgId, DateTime dateFrom, DateTime dateTo, int pageIndex, int pageSize, string filterValue)
+        {
+            var t = await GetUserDonations(orgId, dateFrom, dateTo);
+            var res = t.Where(d => d.UserLogin.Contains(filterValue));
+            return PaginateReport(pageIndex, pageSize, res);
+        }
+
+        private List<UsersDonationsReportViewModel> PaginateReport(int pageIndex, int pageSize, IQueryable<UsersDonationsReportViewModel> t)
+        {
             var list = t.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
             list.Sort();
             return list;
@@ -128,11 +146,11 @@ namespace FundTrack.BLL.Concrete
                     throw new BusinessLogicException(ErrorMessages.OrganizationNotFound);
                 }
 
-                dateFrom = dateFrom.AddDays(-1);
-                dateTo = dateTo.AddDays(1);
+                dateFrom = dateFrom.Date;
+                dateTo = dateTo.Date;
                 var donations = _unitOfWork.DonationRepository.Read()
-                    .Where(d => d.DonationDate >= dateFrom &&
-                                d.DonationDate <= dateTo &&
+                    .Where(d => d.DonationDate.Date >= dateFrom &&
+                                d.DonationDate.Date <= dateTo &&
                                 orgAccountsIds.Contains(d.OrgAccountId));
 
                 var query = donations.Select(d => new UsersDonationsReportViewModel()
@@ -141,11 +159,11 @@ namespace FundTrack.BLL.Concrete
                     Target = d.Target.TargetName,
                     UserFirstName = d.User.FirstName,
                     UserLastName = d.User.LastName,
-                    UserLogin = d.User.Login,
+                    UserLogin = String.IsNullOrEmpty(d.User.Login) ? "<Анонімний>" : d.User.Login,
                     Date = d.DonationDate,
                     MoneyAmount = (decimal)d.Amount,
                     Description = d.Description
-                }).Where(d => !String.IsNullOrEmpty(d.UserLogin));
+                });
                 return query;
             });
         }

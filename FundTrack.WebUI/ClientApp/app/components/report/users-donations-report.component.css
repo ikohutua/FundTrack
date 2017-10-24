@@ -4,27 +4,9 @@
     background-image: none;
 }
 
-    .table-sortable > thead > tr > th:after,
-    .table-sortable > thead > tr > th.sort-false:after,
-    .table-sortable > thead > tr > th.sort-true:after {
-        font-family: FontAwesome;
-        padding-left: 5px;
-    }
-
-    .table-sortable > thead > tr > th:after {
-        content: "\f0dc";
-        color: #ddd;
-    }
-
-    .table-sortable > thead > tr > th.sort-false:after {
-        content: "\f0de";
-        color: #767676;
-    }
-
-    .table-sortable > thead > tr > th.sort-true:after {
-        content: "\f0dd";
-        color: #767676;
-    }
+.grey{
+    color: #ccc
+}
 
 a {
     cursor: pointer;
@@ -45,11 +27,13 @@ a {
         border-color: #ccc;
     }
 
-    .stylish-input-group button {
-        border: 0;
-        background: transparent;
-    }
-
 .blue {
     color: royalblue;
+}
+
+/*---------Drop Down----------*/
+select {
+    width: 80px;
+    border-radius: 4px;
+    border: 1px solid #550;
 }
