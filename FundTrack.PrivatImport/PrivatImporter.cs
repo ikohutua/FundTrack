@@ -123,11 +123,9 @@ namespace FundTrack.PrivatImport
 
           #endregion*/
 
-        private static async Task<string> PrivatRequestAsync(BankAccounts bankAccount, DateTime dateFrom, DateTime dateTo)
+        private  static async Task<string> PrivatRequestAsync(BankAccounts bankAccount, DateTime dateFrom, DateTime dateTo)
         {
-
-            var dataToBeSent = ImportXmlData(bankAccount.CardNumber, bankAccount.ExtractMerchantId.ToString(), bankAccount.ExtractMerchantPassword, new DateTime(2017,09,19), new DateTime(2017, 10, 19));
-            //var datatobeSent = MakeRequest("4149497823331790", 130668, "0Iyb6lMa6cO8490h959L01PXG3eB5VF2", new DateTime(2017, 10, 01), new DateTime(2017, 10, 13));
+            var dataToBeSent = ImportXmlData(bankAccount.CardNumber, bankAccount.ExtractMerchantId.ToString(), bankAccount.ExtractMerchantPassword, dateFrom, dateTo);
             var content = new StringContent(dataToBeSent);
             using (var client = new HttpClient())
             {
@@ -167,7 +165,7 @@ namespace FundTrack.PrivatImport
             {
                 return;
             }
-
+            
             var responses = bankAccounts.Select(bankAccount => PrivatRequestAsync(bankAccount, dateFrom, dateTo)).ToList();
             await Task.WhenAll(responses.ToArray());
             foreach (var task in responses)
