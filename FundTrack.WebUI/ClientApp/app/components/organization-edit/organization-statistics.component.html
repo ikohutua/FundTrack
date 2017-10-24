@@ -1,25 +1,31 @@
 ﻿<script src="node_modules/chart.js/src/chart.js"></script>
 
 <div class="container">
-    <h1 class="page-header">Organization statistics</h1>
+    <h1 class="page-header">Звіт по призначеннях</h1>
     
     <div>
-        <div class="panel panel-default">
+        <div class="panel panel-default col-md-9">
             <div class="panel-body">
                 <h4 class="muted">Період</h4>
-                <p></p>
-                <div class="input-daterange input-group" id="datepicker">
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                    <input type="date" class="input-sm form-control no-spin" #startDate onkeydown="return false" (input)="setBeginDate(startDate.value)" [value]="dateFrom | date:'yyyy-MM-dd'" min="2000-01-01" max="{{inputMaxDate | date:'yyyy-MM-dd'}}" />
-                    <span class="input-group-addon"> - </span>   <!--onkeydown="return false"  -> paste it to input if will be needed block keyDown -->
-                    <input type="date" class="input-sm form-control no-spin" #endDate onkeydown="return false" (input)="setEndDate(endDate.value)" [value]="dateTo | date:'yyyy-MM-dd'" min="2000-01-01" max="{{inputMaxDate | date:'yyyy-MM-dd'}}" />
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                <div class="col-md-5">
+                    <div class="input-daterange input-group" id="datepicker">
+                        <span class="input-group-addon" id="basic-addon1">Від: </span>
+                        <input type="date" class="input-sm form-control no-spin" #startDate onkeydown="return false" (input)="setBeginDate(startDate.value)" [value]="dateFrom | date:'yyyy-MM-dd'" min="2000-01-01" max="{{inputMaxDate | date:'yyyy-MM-dd'}}" />
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="input-daterange input-group" id="datepicker">
+                        <span class="input-group-addon" id="basic-addon1">До: </span>
+                        <input type="date" class="input-sm form-control no-spin" #endDate onkeydown="return false" (input)="setEndDate(endDate.value)" [value]="dateTo | date:'yyyy-MM-dd'" min="2000-01-01" max="{{inputMaxDate | date:'yyyy-MM-dd'}}" />
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                    </div>
                 </div>
             </div>
+            
         </div>
-    </div>
-    <div class="col-md-2">
-        <div class="panel panel-default">
+        
+        <div class="panel panel-default col-md-2 col-md-offset-1">
             <div class="panel-body">
                 <h4 class="muted">Тип звіту</h4>
                 <p></p>
@@ -32,8 +38,12 @@
                 </div>
             </div>
         </div>
+
     </div>
-    <div class="col-md-10">
+    
+    
+
+    <div class="col-md-10 col-md-offset-1">
         <div class="row" *ngFor="let target of allTargets">
             <button type="button" class="baseTargetDiv" data-toggle="collapse" [attr.data-target]="'#' + target.id" (click)="onClickBaseTarget(target)">
                 <strong>{{target.targetName}}  {{target.sum | number : '1.2-2'}} ₴</strong>

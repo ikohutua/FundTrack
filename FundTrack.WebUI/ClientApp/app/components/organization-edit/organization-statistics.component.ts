@@ -19,13 +19,6 @@ import { AuthorizeUserModel } from "../../view-models/concrete/authorized-user-i
 export class OrganizationStatisticsComponent implements OnInit {
 
     allTargets: Array<BaseTargetReportViewModel> = new Array<BaseTargetReportViewModel>();
-    testTargets: Array<BaseTargetReportViewModel> = [
-        { id: -1, targetName: "Медицина", sum: 10600, subTargetsArray: new Array<SubTargetReportViewModel>(), isOpen: false },
-        { id: -1, targetName: "Продукти", sum: 6350, subTargetsArray: new Array<SubTargetReportViewModel>(), isOpen: false },
-        { id: -1, targetName: "Одяг", sum: 9700, subTargetsArray: new Array<SubTargetReportViewModel>(), isOpen: false },
-        { id: -1, targetName: "Електроніка", sum: 25000, subTargetsArray: new Array<SubTargetReportViewModel>(), isOpen: false },
-        { id: -1, targetName: "Test", sum: 400, subTargetsArray: new Array<SubTargetReportViewModel>(), isOpen: false }
-    ];
 
     //Vertical bar chart & pie chart
     showXAxis = true;
@@ -64,10 +57,12 @@ export class OrganizationStatisticsComponent implements OnInit {
             }
         };
         this.dateFrom.setMonth(this.dateFrom.getMonth() - 24); 
-        //this.allTargets = this.testTargets;
         this.prepareTargetsForCharts(this.allTargets);
         this.organizationStatisticsService.getReportForFinopsByTargets(this.user.orgId, this.reportType, this.transformDate(this.dateFrom), this.transformDate(this.dateTo))
-            .subscribe(response => this.allTargets = response);
+            .subscribe(response => {
+                this.allTargets = response;
+                this.prepareTargetsForCharts(this.allTargets);
+            });
     }
 
     public prepareTargetsForCharts(list: Array<AbctractTargetViewModel>) {
@@ -102,7 +97,10 @@ export class OrganizationStatisticsComponent implements OnInit {
                     .subscribe(response => this.unassingnedFinOps = response);
             } else {
                 this.organizationStatisticsService.getSubTargets(this.user.orgId, this.reportType, target.id, this.transformDate(this.dateFrom), this.transformDate(this.dateTo))
-                    .subscribe(response => target.subTargetsArray = response);
+                    .subscribe(response => {
+                        target.subTargetsArray = response;
+                        this.prepareTargetsForCharts(response);
+                    });
             }
         }
         else {
