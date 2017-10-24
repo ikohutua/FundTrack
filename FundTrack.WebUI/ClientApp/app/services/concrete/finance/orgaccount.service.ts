@@ -9,7 +9,7 @@ import * as key from '../../../shared/key.storage';
 import { AuthorizeUserModel } from "../../../view-models/concrete/authorized-user-info-view.model";
 import { isBrowser } from "angular2-universal";
 import { DeleteOrgAccountViewModel } from "../../../view-models/concrete/finance/deleteorgaccount-view.model";
-import { DonateCredentialsViewModel } from "../../../view-models/concrete/finance/donate-credentials.view-model";
+import { BankCredentialsViewModel } from "../../../view-models/concrete/finance/donate-credentials.view-model";
 import Targetviewmodel = require("../../../view-models/concrete/finance/donate/target.view-model");
 import TargetViewModel = Targetviewmodel.TargetViewModel;
 import { GlobalUrlService } from "../global-url.service";
@@ -79,9 +79,9 @@ export class OrgAccountService {
             .catch(this.handleError);
     }
 
-    public getDonateCredentials(orgAccountId: number): Observable<DonateCredentialsViewModel> {
+    public getDonateCredentials(orgAccountId: number): Observable<BankCredentialsViewModel> {
         return this._http.get('api/OrgAccount/GetDonateCredentials/' + orgAccountId.toString())
-            .map((response: Response) => <DonateCredentialsViewModel>response.json())
+            .map((response: Response) => <BankCredentialsViewModel>response.json())
             .catch(this.handleError);
     }
 
@@ -97,15 +97,15 @@ export class OrgAccountService {
             .catch(this.handleError);
     }
 
-    public connectDonation(info: DonateCredentialsViewModel): Observable<DonateCredentialsViewModel> {
+    public connectDonation(info: BankCredentialsViewModel): Observable<BankCredentialsViewModel> {
         return this._http.post('api/OrgAccount/ConnectDonation', info, this.getRequestOptions())
-            .map((res: Response) => <DonateCredentialsViewModel>res.json())
+            .map((res: Response) => <BankCredentialsViewModel>res.json())
             .catch((error: Response) => this.handleError(error));
     }
 
-    public disableDonation(bankAccountId: number): Observable<DonateCredentialsViewModel> {
+    public disableDonation(bankAccountId: number): Observable<BankCredentialsViewModel> {
         return this._http.put('api/OrgAccount/DisableDonateFunction', bankAccountId, this.getRequestOptions())
-            .map((res: Response) => <DonateCredentialsViewModel>res.json())
+            .map((res: Response) => <BankCredentialsViewModel>res.json())
             .catch((error: Response) => this.handleError(error));
     }
   
@@ -157,15 +157,28 @@ export class OrgAccountService {
         }
     }
 
-    public getExtractsCredentials(orgAccountId: number): Observable<DonateCredentialsViewModel> {
+    public getExtractsCredentials(orgAccountId: number): Observable<BankCredentialsViewModel> {
         return this._http.get(GlobalUrlService.getExtractCredentials + orgAccountId.toString())
-            .map((response: Response) => <DonateCredentialsViewModel>response.json())
+            .map((response: Response) => <BankCredentialsViewModel>response.json())
             .catch(this.handleError);
     }
 
-    public connectExtracts(info: DonateCredentialsViewModel): Observable<DonateCredentialsViewModel> {
+    public connectExtracts(info: BankCredentialsViewModel): Observable<BankCredentialsViewModel> {
         return this._http.post(GlobalUrlService.connectExtracts, info, RequestOptionsService.getRequestOptions())
-            .map((res: Response) => <DonateCredentialsViewModel>res.json())
+            .map((res: Response) => <BankCredentialsViewModel>res.json())
+            .catch((error: Response) => this.handleError(error));
+    }
+
+
+    public toggleExtracts(orgAccountId: number): Observable<boolean> {
+        return this._http.put(GlobalUrlService.toggleExtracts, orgAccountId, this.getRequestOptions())
+            .map((response: Response) => <boolean>response.json())
+            .catch((error: Response) => this.handleError(error));
+    }
+
+    public disableExtracts(bankAccountId: number): Observable<BankCredentialsViewModel> {
+        return this._http.put(GlobalUrlService.disableExtracts, bankAccountId, this.getRequestOptions())
+            .map((res: Response) => <BankCredentialsViewModel>res.json())
             .catch((error: Response) => this.handleError(error));
     }
 
@@ -175,7 +188,13 @@ export class OrgAccountService {
     }
 
     public getBankById(bankId : number): Observable<BankViewModel> {
-        return this._http.get(GlobalUrlService.banksUrl + '/' + bankId.toString(), RequestOptionsService.getRequestOptions())
+        return this._http.get(GlobalUrlService.banksUrl + bankId.toString(), RequestOptionsService.getRequestOptions())
             .map((response: Response) => response.json() as BankViewModel);
+    }
+
+    public checkExtractsEnable(orgAccountId: number): Observable<boolean> {
+        return this._http.get(GlobalUrlService.checkExtractsFunction + orgAccountId.toString())
+            .map((response: Response) => <boolean>response.json())
+            .catch(this.handleError);
     }
 }

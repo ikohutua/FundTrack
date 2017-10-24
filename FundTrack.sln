@@ -17,7 +17,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FundTrack.WebUI.Tests", "Fu
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FundTrack.DAL.Tests", "FundTrack.DAL.Tests\FundTrack.DAL.Tests.csproj", "{7120293D-AFFF-4363-AD57-B3D8EDCC857C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplicationOwin", "WebApplicationOwin\WebApplicationOwin.csproj", "{AFC01B7D-B820-43ED-B68F-24C9EB52049C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FundTrack.AutoImportService", "FundTrack.AutoImportService\FundTrack.AutoImportService.csproj", "{F4EC9D76-714C-446D-A969-45F8D00BF176}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -67,17 +67,54 @@ Global
 		{7120293D-AFFF-4363-AD57-B3D8EDCC857C}.FundTrackDeploy|Any CPU.ActiveCfg = Release|Any CPU
 		{7120293D-AFFF-4363-AD57-B3D8EDCC857C}.FundTrackDeploy|Any CPU.Build.0 = Release|Any CPU
 		{7120293D-AFFF-4363-AD57-B3D8EDCC857C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AFC01B7D-B820-43ED-B68F-24C9EB52049C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AFC01B7D-B820-43ED-B68F-24C9EB52049C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AFC01B7D-B820-43ED-B68F-24C9EB52049C}.FundTrackDeploy|Any CPU.ActiveCfg = Release|Any CPU
-		{AFC01B7D-B820-43ED-B68F-24C9EB52049C}.FundTrackDeploy|Any CPU.Build.0 = Release|Any CPU
-		{AFC01B7D-B820-43ED-B68F-24C9EB52049C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AFC01B7D-B820-43ED-B68F-24C9EB52049C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4EC9D76-714C-446D-A969-45F8D00BF176}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4EC9D76-714C-446D-A969-45F8D00BF176}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4EC9D76-714C-446D-A969-45F8D00BF176}.FundTrackDeploy|Any CPU.ActiveCfg = Release|Any CPU
+		{F4EC9D76-714C-446D-A969-45F8D00BF176}.FundTrackDeploy|Any CPU.Build.0 = Release|Any CPU
+		{F4EC9D76-714C-446D-A969-45F8D00BF176}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4EC9D76-714C-446D-A969-45F8D00BF176}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {CFA4FF03-0A1B-44F1-82AE-9A3AC09CD3E2}
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 7
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://tfs12.training.local:8080/tfs/defaultcollection
+		SccProjectUniqueName0 = FundTrack.BLL\\FundTrack.BLL.csproj
+		SccProjectName0 = FundTrack.BLL
+		SccAuxPath0 = http://tfs12.training.local:8080/tfs/defaultcollection
+		SccLocalPath0 = FundTrack.BLL
+		SccProvider0 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccProjectUniqueName1 = FundTrack.DAL\\FundTrack.DAL.csproj
+		SccProjectName1 = FundTrack.DAL
+		SccAuxPath1 = http://tfs12.training.local:8080/tfs/defaultcollection
+		SccLocalPath1 = FundTrack.DAL
+		SccProvider1 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccProjectUniqueName2 = FundTrack.Infrastructure\\FundTrack.Infrastructure.csproj
+		SccProjectName2 = FundTrack.Infrastructure
+		SccAuxPath2 = http://tfs12.training.local:8080/tfs/defaultcollection
+		SccLocalPath2 = FundTrack.Infrastructure
+		SccProvider2 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccProjectUniqueName3 = FundTrack.WebUI\\FundTrack.WebUI.csproj
+		SccProjectName3 = FundTrack.WebUI
+		SccAuxPath3 = http://tfs12.training.local:8080/tfs/defaultcollection
+		SccLocalPath3 = FundTrack.WebUI
+		SccProvider3 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccProjectUniqueName4 = FundTrack.BLL.Tests\\FundTrack.BLL.Tests.csproj
+		SccProjectName4 = FundTrack.BLL.Tests
+		SccAuxPath4 = http://tfs12.training.local:8080/tfs/defaultcollection
+		SccLocalPath4 = FundTrack.BLL.Tests
+		SccProvider4 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccProjectUniqueName5 = FundTrack.WebUI.Tests\\FundTrack.WebUI.Tests.csproj
+		SccProjectName5 = FundTrack.WebUI.Tests
+		SccAuxPath5 = http://tfs12.training.local:8080/tfs/defaultcollection
+		SccLocalPath5 = FundTrack.WebUI.Tests
+		SccProvider5 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccProjectUniqueName6 = FundTrack.DAL.Tests\\FundTrack.DAL.Tests.csproj
+		SccProjectName6 = FundTrack.DAL.Tests
+		SccAuxPath6 = http://tfs12.training.local:8080/tfs/defaultcollection
+		SccLocalPath6 = FundTrack.DAL.Tests
+		SccProvider6 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 	EndGlobalSection
 EndGlobal

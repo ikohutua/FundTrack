@@ -183,25 +183,22 @@ namespace FundTrack.BLL.Concrete
         public OrganizationDetailViewModel GetOrganizationDetail(int id)
         {
             OrganizationDetailViewModel organizationDetail = new OrganizationDetailViewModel();
-
             try
             {
                 OrganizationViewModel organization = GetOrganizationById(id);
                 User orgAdmin = _unitOfWork.MembershipRepository.GetOrganizationAdmin(organization.Id);
                 organizationDetail.Organization = organization;
                 // if found admin of organization and he has phone
-                if (orgAdmin != null && orgAdmin.Phones.Count != 0)
+                if (orgAdmin != null && orgAdmin.Phones.Any())
                 {
                     AddAdminInfoToOrgDetailModel(organizationDetail, orgAdmin);
                 }
+                AddAccountsInfoToOrgDetailModel(organizationDetail);
             }
             catch (NullReferenceException ex)
             {
                 throw new DataAccessException(ErrorMessages.CantFindDataById, ex);
             }
-
-            AddAccountsInfoToOrgDetailModel(organizationDetail);
-
             return organizationDetail;
         }
 
@@ -272,6 +269,10 @@ namespace FundTrack.BLL.Concrete
                 _unitOfWork.SaveChanges();
 
                 item.LogoUrl = AzureStorageConfiguration.GetImageUrl(organization.LogoUrl);
+            }
+            else
+            {
+                throw new BusinessLogicException(ErrorMessages.BadRequestMessage);
             }
             return item;
         }

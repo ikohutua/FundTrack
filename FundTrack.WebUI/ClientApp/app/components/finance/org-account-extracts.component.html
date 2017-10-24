@@ -1,4 +1,4 @@
-﻿<div *ngIf="!isExtractsEnable">
+﻿<div *ngIf="!isExtractsConnected">
     <div *ngIf="errorMessage">
         {{errorMessage}}
     </div>
@@ -9,9 +9,8 @@
             <br />
             <input class="form-control" type="text" required [(ngModel)]="connectExtractsCredential.merchantId" name="merchantId" #merchantId="ngModel" pattern="[0-9]*" />
             <br />
-            <div *ngIf="merchantId.errors && merchantId.dirty"
-                 class="alert alert-danger">
-                    Введено недозволений символ
+            <div *ngIf="merchantId.value &&  merchantId.errors && merchantId.dirty" class="alert alert-danger">
+                Введено недозволений символ
             </div>
             <label>Merchant Password<sup class="sup-color-red">*</sup></label>
             <br />
@@ -24,12 +23,37 @@
     </div>
 </div>
 
-<div *ngIf="isExtractsEnable">
+<div *ngIf="isExtractsConnected">
+    <p class="custom-bold">Прийом виписок з даного рахунку доступно</p>
+
     <div class="row">
-        <p class="custom-bold">Прийом виписок з даного рахунку доступно</p>
-        <br />
+        <button (click)="disableModal.show()" class="btn btn-danger right"> Відключити </button>
+        <label class="switch">
+            <input type="checkbox" class="pull-left" [(ngModel)]="isExtractsEnable" name="extractsEnable" (change)="toggleExtracts()">
+            <span class="slider round"></span>
+        </label>
+    </div>
+    <div class="row">
         <p> <strong> Merchant Id: </strong> <span class="green-font">{{extractsCredentials.merchantId}} </span></p>
         <p> <strong> Merchant Password: </strong> <span class="green-font">{{extractsCredentials.merchantPassword}}</span></p>
         <br />
     </div>
+    <div class="row">
+        <p>*Функція отримання виписок</p>
+        <p *ngIf="isExtractsEnable"> <b>активована.</b> </p>
+        <p *ngIf="!isExtractsEnable"> <b>деактивована.</b> </p>
+    </div>
 </div>
+
+<app-modal #disable>
+    <div class="app-modal-header">
+        <h4> Підтвердження </h4>
+    </div>
+    <div class="app-modal-body">
+        <p> Ви впевнені, що хочете відключити можливіть отримання виписок? Для повторного включення, потрібно буде ще раз ввести <b>Merchant Id</b> та <b>Merchant Password</b>.</p>
+    </div>
+    <div class="app-modal-footer">
+        <button class="btn btn-danger" (click)="disableExtracts()"> Підтвердити </button>
+        <button type="button" class="btn btn-primary" (click)="disableModal.hide()">Закрити</button>
+    </div>
+</app-modal>

@@ -83,6 +83,11 @@ namespace FundTrack.DAL.Entities
         /// </summary>
         public virtual ICollection<Target> Targets { get; set; }
 
+        /// <summary>
+        /// Gets or Sets auto import interval navigation property
+        /// </summary>
+        public virtual AutoImportIntervals AutoImportInterval { get; set; }
+
         public static void Configure(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Organization>(entity =>

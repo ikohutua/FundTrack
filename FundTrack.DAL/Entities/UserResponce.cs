@@ -1,6 +1,4 @@
-﻿using FundTrack.Infrastructure.ViewModel;
-using System;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace FundTrack.DAL.Entities
 {

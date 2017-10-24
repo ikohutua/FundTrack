@@ -5,6 +5,8 @@ import { OrgAccountViewModel } from "../../view-models/concrete/finance/orgaccou
 import { DecimalPipe } from '@angular/common';
 import { CurrencyPipe } from '@angular/common';
 import * as key from '../../shared/key.storage';
+import * as constant from '../../shared/default-configuration.storage';
+import * as message from '../../shared/common-message.storage';
 import { FinOpService } from "../../services/concrete/finance/finOp.service";
 import { FinOpListViewModel } from "../../view-models/concrete/finance/finop-list-viewmodel";
 import { isBrowser } from "angular2-universal";
@@ -23,13 +25,16 @@ import { CurrencyViewModel } from "../../view-models/concrete/finance/donate/cur
 import { TargetViewModel } from "../../view-models/concrete/finance/donate/target.view-model";
 import { DeleteOrgAccountViewModel } from "../../view-models/concrete/finance/deleteorgaccount-view.model";
 import { OrgAccountDetailComponent } from "../../components/finance/orgaccountdetail.component";
+import { DonateViewModel} from"../../view-models/concrete/finance/donate/donate.view-model";
+import { UserInfo}  from "../../view-models/concrete/user-info.model";
+import { UserService } from "../../services/concrete/user.service";
 
 
 @Component({
     selector: 'orgaccountoperation',
     templateUrl: './orgaccountoperation.component.html',
     styleUrls: ['./orgaccountoperation.component.css'],
-    providers: [DonateService, OrgAccountService, EditOrganizationService]
+    providers: [DonateService, OrgAccountService, EditOrganizationService, UserService]
 })
 export class OrgAccountOperationComponent implements OnChanges {
 
@@ -48,6 +53,12 @@ export class OrgAccountOperationComponent implements OnChanges {
     private accountOwner: ModeratorViewModel = new ModeratorViewModel();
     private currentDate = new Date().toJSON().slice(0, 10);
     private user: AuthorizeUserModel = new AuthorizeUserModel();
+    private suggestedDonations: DonateViewModel[] = new Array<DonateViewModel>();
+    private users: UserInfo[] = new Array<UserInfo>();
+    private selectedDonationId: number = undefined;
+    private selectedFinOp: FinOpListViewModel = new FinOpListViewModel();
+    private selectedUserId: number = undefined;
+    images: Image[] = [];
     public deleteModel: DeleteOrgAccountViewModel = new DeleteOrgAccountViewModel();
     public deletedAccountId: number = 0;
     private minDate: string;
@@ -56,9 +67,12 @@ export class OrgAccountOperationComponent implements OnChanges {
     private isTransferOperation: boolean = false;
     private isBaseTargetChosen: boolean = false;
     private originalAmount: number;
+    private toasterMessage: string;
 
     @Input() orgId: number;
     @Input() accountId: number;
+    @Output() getIsExtractEnable = new EventEmitter<boolean>();
+    @Output() onDelete = new EventEmitter<number>();
     //------------------------------------------------------------------------------
     //Initialize modal windows
     @ViewChild("newMoneyIncome")
@@ -84,6 +98,9 @@ export class OrgAccountOperationComponent implements OnChanges {
 
     @ViewChild("fixingBalanceModal")
     private fixingBalanceModal: ModalComponent;
+
+    @ViewChild("suggestedDonationsModal")
+    private suggestedDonationsModal : ModalComponent;
     //-------------------------------------------------------------------------------
     //Initialize model and form
     private moneyIncomeForm: FormGroup;
@@ -102,22 +119,19 @@ export class OrgAccountOperationComponent implements OnChanges {
     private updateFinOperation: FinOpListViewModel = new FinOpListViewModel();
     //-------------------------------------------------------------------------------
 
-    images: Image[] = [];
-    @Output() getIsExtractEnable = new EventEmitter<boolean>();
-
-
     public constructor(private _router: Router,
         private finOpService: FinOpService,
         private fb: FormBuilder,
         private validatorsService: ValidatorsService,
         private accountService: OrgAccountService,
         private donateService: DonateService,
+        private userService: UserService,
         private editService: EditOrganizationService) {
             this.createIncomeForm();
             this.createSpendingForm();
             this.createTransferForm();
             this.createManagmantForm();
-            this.createUpdateFinOperationForm();
+            this.createFinOperationFormForUpdate();
     }
     private navigateToImportsPage(): void {
         this._router.navigate(['/finance/bank-import']);
@@ -129,13 +143,12 @@ export class OrgAccountOperationComponent implements OnChanges {
     ngOnChanges(changes: { [propKey: string]: SimpleChange }) {
         this.getFinOpsByOrgAccountId();
         this.getCurrentOrgAccount();
-        this.switchDefaultOff();
+        this.default = false;
     }
 
     ngOnInit(): void {
         this.getOrgTargetsAndBaseTargets();
         this.getAllCashAccounts();
-        this.getCurrencies();
         this.getModerators();
         this.getLoggedUser();
         this.getMinDate();
@@ -145,58 +158,21 @@ export class OrgAccountOperationComponent implements OnChanges {
         this.setOwner();
     }
 
-    private getAccontsForTransfer() {
-        if (this.currentAccount.targetId === null) {
-            this.accountsTo = this.accounts.filter(acc => acc.id != this.currentAccount.id);
-        }
-        else {
-            this.accountsTo = this.accounts.filter(acc =>
-                acc.targetId === this.currentAccount.targetId &&
-                acc.id != this.currentAccount.id);
-        }
-    }
-
     private setFinOperations() {
         for (var i = 0; i < this.finOps.length; i++) {
 
-            if (this.finOps[i].finOpType == 1) {
-                this.finOps[i].finOpName = "Прихід";
+            if (this.finOps[i].finOpType == constant.incomeId) {
+                this.finOps[i].finOpName = constant.incomeUA;
             }
 
-            else if (this.finOps[i].finOpType == 0) {
-                this.finOps[i].finOpName = "Розхід";
+            else if (this.finOps[i].finOpType == constant.spendingId) {
+                this.finOps[i].finOpName = constant.spendingUA;
             }
 
             else {
-                this.finOps[i].finOpName = "Переміщення"
+                this.finOps[i].finOpName = constant.transferUA;
             }
         }
-    }
-
-    private getOrgTargetsAndBaseTargets() {
-        this.editService.getTargetsByOrganizationId(this.orgId)
-            .subscribe(t => {
-                this.orgTargets = t;
-                this.getBaseTargets();
-            });
-    }
-
-    private getBaseTargets() {
-        for (let i = 0; i < this.orgTargets.length; i++) {
-            if (this.orgTargets[i].parentTargetId === null) {
-                this.baseTargets.push(this.orgTargets[i]);
-            }
-        }
-    }
-
-    private getSubTargetsByTargetId(parentTargetId: number) {
-        this.subTargets = new Array<TargetViewModel>();
-        for (let i = 0; i < this.orgTargets.length; i++) {
-            if (this.orgTargets[i].parentTargetId == parentTargetId) {
-                this.subTargets.push(this.orgTargets[i]);
-            }
-        }
-        this.isBaseTargetChosen = true;
     }
 
     private getFinOpsByOrgAccountId() {
@@ -212,46 +188,48 @@ export class OrgAccountOperationComponent implements OnChanges {
     private getFinOpById(id: number) {
         this.finOpService.getFinOpById(id).subscribe(f => {
             this.updateFinOperation = f;
-        });}
+        });
+    }
+
+    private getOrgTargetsAndBaseTargets() {
+        this.editService.getTargetsByOrganizationId(this.orgId)
+            .subscribe(t => {
+                this.orgTargets = t;
+                this.getBaseTargets();
+            });
+    }
+
+    private getBaseTargets() {
+        for (let i = 0; i < this.orgTargets.length; i++) {
+            if (this.orgTargets[i].parentTargetId == null) {
+                this.baseTargets.push(this.orgTargets[i]);
+            }
+        }
+    }
+
+    private getSubTargetsByTargetId(parentTargetId: number) {
+        this.subTargets = new Array<TargetViewModel>();
+        for (let i = 0; i < this.orgTargets.length; i++) {
+            if (this.orgTargets[i].parentTargetId == parentTargetId) {
+                this.subTargets.push(this.orgTargets[i]);
+            }
+        }
+        this.isBaseTargetChosen = true;
+    }
 
     private getCurrentOrgAccount() {
         this.accountService.getOrganizationAccountById(this.accountId)
             .subscribe(currAcc => {
                 this.currentAccount = currAcc;                                     
                 this.accountForUpdate = currAcc;
-                this.getType();
+                this.getAccountType();
                 this.getAccontsForTransfer();
             });
     }
 
-    private switchDefaultOn() {
-        this.default = true;
-    }
-
-    private switchDefaultOff() {
-        this.default = false;
-    }
-
-    private viewFinOps() {
+    private viewAllFinOps() {
         this.finOps = this.reservedFinOpsArray;
-        this.switchDefaultOff();
-    }
-
-    private getAllCashAccounts() {
-        this.accountService.getAllAccountsOfOrganization()
-            .subscribe(acc => {
-                this.accounts = acc.filter(a =>
-                    a.accountType === "Готівка"
-                );
-                this.getAccontsForTransfer();
-            });
-    }
-
-    private getCurrencies() {
-        this.donateService.getCurrencies()
-            .subscribe(curr => {
-                this.currencies = curr;
-            });
+        this.default = false;
     }
 
     private viewFinOpsByOperation(operation: number) {
@@ -261,7 +239,7 @@ export class OrgAccountOperationComponent implements OnChanges {
                 this.finOps.push(this.reservedFinOpsArray[i]);
             }
         }
-        this.finOps = this.finOps.slice(0, 10);    
+        this.finOps = this.finOps.slice(0, 10);
         this.default = true;
     }
 
@@ -282,8 +260,8 @@ export class OrgAccountOperationComponent implements OnChanges {
         this.user = JSON.parse(localStorage.getItem(key.keyModel)) as AuthorizeUserModel;
     }
 
-    public getType() {
-        if (this.currentAccount.accountType === "Готівка") {
+    public getAccountType() {
+        if (this.currentAccount.accountType === constant.cashUA) {
             this.isCashType = true;
         }
         else {
@@ -291,12 +269,12 @@ export class OrgAccountOperationComponent implements OnChanges {
         }
     }
 
-    public setDate(model: FinOpListViewModel, date: Date) {
+    public setDate(model: FinOpListViewModel, date: string) {
         model.date = date;
     }
 
     private setOwner() {
-        this.accountOwner = this.moderators.filter(m => m.id === this.currentAccount.userId)[0];
+        this.accountOwner = this.moderators.find(m => m.id == this.currentAccount.userId);
     }
 
     public preDeleteAccount(): void {
@@ -318,8 +296,36 @@ export class OrgAccountOperationComponent implements OnChanges {
         this.accountService.deleteOrganizationAccountById(this.deleteModel)
             .subscribe(a => {
                 this.deleteModel = a;
+                this.onDelete.emit(this.deletedAccountId);
             });
         this.newDeleteModalWindow.hide();
+    }
+
+    private getAccontsForTransfer() {
+        if (this.currentAccount.targetId === null) {
+            this.accountsTo = this.accounts.filter(acc => acc.id != this.currentAccount.id);
+        }
+        else {
+            this.accountsTo = this.accounts.filter(acc =>
+                acc.targetId === this.currentAccount.targetId &&
+                acc.id != this.currentAccount.id);
+        }
+    }
+
+    private pushReverse(array: Array<any>, element: any) {
+        array.reverse();
+        array.push(element);
+        array.reverse();
+    }
+
+    private getAllCashAccounts() {
+        this.accountService.getAllAccountsOfOrganization()
+            .subscribe(acc => {
+                this.accounts = acc.filter(a =>
+                    a.accountType === constant.cashUA
+                );
+                this.getAccontsForTransfer();
+            });
     }
 
     private createIncomeForm() {
@@ -414,7 +420,7 @@ export class OrgAccountOperationComponent implements OnChanges {
         this.onValueChange(this.accountManagmentForm, this.formManagmentErrors);
     }
 
-    private createUpdateFinOperationForm() {
+    private createFinOperationFormForUpdate() {
         this.updateFinOperationForm = this.fb.group({
             amount: [
                 this.updateFinOperation.amount, [this.validatorsService.isMinValue,
@@ -432,7 +438,7 @@ export class OrgAccountOperationComponent implements OnChanges {
                 this.updateFinOperation.date
             ]
         });
-        this.accountManagmentForm.valueChanges
+        this.updateFinOperationForm.valueChanges
             .subscribe(a => this.onValueChange(this.updateFinOperationForm, this.formUpdateErrors, a));
         this.onValueChange(this.updateFinOperationForm, this.formUpdateErrors);
     }
@@ -460,14 +466,14 @@ export class OrgAccountOperationComponent implements OnChanges {
     private formManagmentErrors = {
     };
 
-    private invalidamountMessage = "Поле ‘Сума’ може містити лише цілі числа в межах від 5 до 15000 грн";
-    private maxLengthDescription = "Поле ‘Опис’ може містити не більше 500 символів";
+    private invalidAmountMessage = message.invalidAmountMessage;
+    private maxLengthDescription = message.maxLengthDescription;
 
     private validationMessages = {
         amount: {
-            notnumber: this.invalidamountMessage,
-            notminvalue: this.invalidamountMessage,
-            notmaxvalue: this.invalidamountMessage
+            notnumber: this.invalidAmountMessage,
+            notminvalue: this.invalidAmountMessage,
+            notmaxvalue: this.invalidAmountMessage
         },
         description: {
             maxlength: this.maxLengthDescription
@@ -499,9 +505,9 @@ export class OrgAccountOperationComponent implements OnChanges {
     }
 
     private openUpdateFinOpModal(finOp: FinOpListViewModel) {
+        this.currentFinOp = finOp;
         this.getFinOpById(finOp.id);
-        this.originalAmount = finOp.amount;
-        if (finOp.finOpType === 2) {
+        if (finOp.finOpType === constant.transferId) {
             this.isTransferOperation = true;
         }
         this.getSubTargetsByTargetId(finOp.targetId);
@@ -518,7 +524,7 @@ export class OrgAccountOperationComponent implements OnChanges {
     private makeIncome() {
         this.completeModel();
         this.moneyOperationModel.cardToId = this.currentAccount.id;
-        this.moneyOperationModel.finOpType = 1;
+        this.moneyOperationModel.finOpType = constant.incomeId;
         this.finOpService.createIncome(this.moneyOperationModel).subscribe(a => {
             this.moneyIncome = a;
         });
@@ -526,9 +532,8 @@ export class OrgAccountOperationComponent implements OnChanges {
     }
 
     private makeSpending() {
-        this.completeModel();
         this.moneyOperationModel.cardFromId = this.currentAccount.id;
-        this.moneyOperationModel.finOpType = 0;
+        this.moneyOperationModel.finOpType = constant.spendingId;
         this.finOpService.createSpending(this.moneyOperationModel).subscribe(a => {
             this.moneySpending = a;
         });
@@ -538,9 +543,10 @@ export class OrgAccountOperationComponent implements OnChanges {
     private makeTransfer() {
         this.completeModel();
         this.moneyOperationModel.cardFromId = this.currentAccount.id;
-        this.moneyOperationModel.finOpType = 2;
+        this.moneyOperationModel.finOpType = constant.transferId;
         this.finOpService.createTransfer(this.moneyOperationModel).subscribe(a => {
             this.moneyTransfer = a;
+            this.pushReverse(this.finOps, this.moneyTransfer);
         });
         this.closeModal(this.newMoneyTransferWindow, this.moneyTransferForm);
     }
@@ -552,9 +558,8 @@ export class OrgAccountOperationComponent implements OnChanges {
     }
 
     private updateFinOp() {
-        this.updateFinOperation.cardFromId = this.currentAccount.id;
         this.updateFinOperation.userId = this.currentAccount.userId;
-        this.updateFinOperation.difference = this.updateFinOperation.amount - this.originalAmount;
+        this.currentFinOp = this.updateFinOperation;
         this.finOpService.editFinOperation(this.updateFinOperation).subscribe(f => {
             this.updateFinOperation = f;
         });
@@ -584,5 +589,108 @@ export class OrgAccountOperationComponent implements OnChanges {
 
     onExtractEnableChange(event: boolean) {
         this.getIsExtractEnable.emit(event);
+    }
+
+    private getSuggestedDonations(finOp : FinOpListViewModel) {
+        this.donateService.getSuggestedDonations(finOp.id).subscribe(result => {
+            this.suggestedDonations = result;
+            this.selectedFinOp = finOp;
+            this.suggestedDonationsModal.show();
+            if (this.suggestedDonations.length == 1) {
+                this.selectedDonationId = this.suggestedDonations[0].id;
+                this.selectedUserId = this.suggestedDonations[0].userId;
+            }
+        });
+        this.userService.getAllUsers().subscribe(result => this.users = result);
+    }
+
+    private IsOkButtonEnable(): boolean {
+        if (this.selectedUserId == undefined) {
+            return false;
+        }
+        if (this.suggestedDonations.length > 1) {
+            if (this.selectedDonationId == undefined) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private radioButtonOnChange(donation : DonateViewModel) {
+        this.selectedDonationId = donation.id;
+        this.selectedUserId = donation.userId;
+    }
+
+    private closeSuggestionsModal() {
+        this.selectedDonationId = undefined;
+        this.selectedUserId = undefined;
+        this.suggestedDonations.length = 0;
+        this.suggestedDonationsModal.hide();
+    }
+
+    private onClickSuggestionModalButton() {
+        if (this.suggestedDonations.length == 0) {
+            this.createDonationFromFinOp(this.selectedFinOp.id);
+            return;
+        }
+        this.selectedFinOp.userId = this.selectedUserId;
+        this.selectedFinOp.donationId = this.selectedDonationId;
+        this.finOpService.bindDonationAndFinOp(this.selectedFinOp).subscribe(result => {
+            this.toasterMessage = "Операція виконана успішно.";
+            this.showToast();
+            this.closeSuggestionsModal();
+        });
+    }
+
+    private createDonationFromFinOp(finOpId: number): DonateViewModel {
+        this.selectedFinOp.userId = this.selectedUserId;
+        var donation: DonateViewModel = new DonateViewModel();
+        donation.amount = this.selectedFinOp.amount;
+        donation.userId = this.selectedUserId;
+        donation.currencyId = this.currentAccount.currencyId; 
+        donation.targetId = this.selectedFinOp.targetId;
+        donation.description = this.selectedFinOp.description;
+        donation.donationDate = this.selectedFinOp.date;
+        this.donateService.getOrderId().subscribe(result => {
+            donation.orderId = result;
+            this.accountService.getBankAccId(this.selectedFinOp.cardToId).subscribe(result => {
+                donation.bankAccountId = result;
+                this.donateService.addDonation(donation).subscribe(result => {
+                    this.selectedFinOp.donationId = result.id;
+                    this.finOpService.bindDonationAndFinOp(this.selectedFinOp).subscribe(result => {
+                        this.toasterMessage = "Операція виконана успішно.";
+                        this.showToast();
+                        this.closeSuggestionsModal();
+                    });
+                });
+            });
+        });
+        return donation;
+    }
+
+    public showToast() {
+        var x = document.getElementById("suggestedToast");
+        x.className = "show";
+        setTimeout(function () {
+            x.className = x.className.replace("show", "");
+        }, 3000);
+    }
+
+    private onChangeUser($event) {
+        this.selectedUserId = $event;
+    }
+
+    private isUserSelectDisabled(): boolean {
+        if (this.suggestedDonations.length == 0) {
+            return false;
+        }
+        if (this.selectedDonationId != undefined) {
+            var d = this.suggestedDonations.find(d => d.id === this.selectedDonationId);
+            if (d.userId != undefined) {
+                return true; // if selected donation already has user
+            }
+            return false; 
+        }
+        return true;
     }
 }

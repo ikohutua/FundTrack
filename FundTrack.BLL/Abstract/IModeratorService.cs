@@ -1,5 +1,4 @@
-﻿using FundTrack.Infrastructure.ViewModel;
-using FundTrack.Infrastructure.ViewModel.EditOrganizationViewModels;
+﻿using FundTrack.Infrastructure.ViewModel.EditOrganizationViewModels;
 using System.Collections.Generic;
 
 namespace FundTrack.BLL.Abstract

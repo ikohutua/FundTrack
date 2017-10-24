@@ -10,7 +10,7 @@
             <br />
             <input class="form-control" type="text" required [(ngModel)]="connectDonateCredential.merchantId" name="merchantId" #merchantId="ngModel" pattern="[0-9]*" />
             <br />
-            <div *ngIf="merchantId.errors && merchantId.dirty"
+            <div *ngIf="merchantId.value && merchantId.errors && merchantId.dirty"
                  class="alert alert-danger">
                 Введено недозволений символ
             </div>
@@ -50,7 +50,7 @@
         <h4> Підтвердження </h4>
     </div>
     <div class="app-modal-body">
-        <p> Ви впевнені, що хочете відключити можливіть прийому платежів? Для повторного включення, потрібно буде ще раз ввести Merchant Id та Merchant Password.</p>
+        <p> Ви впевнені, що хочете відключити можливіть прийому платежів? Для повторного включення, потрібно буде ще раз ввести <b>Merchant Id</b> та <b>Merchant Password</b>.</p>
     </div>
     <div class="app-modal-footer">
         <button class="btn btn-danger" (click)="disableDonation()"> Підтвердити </button>

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace FundTrack.Infrastructure.ViewModel
+﻿namespace FundTrack.Infrastructure.ViewModel
 {
     /// <summary>
     /// Class which decsribe entity UserResponse

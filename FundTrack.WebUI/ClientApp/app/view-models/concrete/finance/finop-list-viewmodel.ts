@@ -5,9 +5,8 @@
     finOpName: string;
     cardFromId: number;
     cardToId: number;
-    date: Date;
+    date: string;
     description: string;
-    difference: number;
     amount: number;
     target: string;
     targetId: number;
@@ -17,4 +16,5 @@
     currencyFullName: string;
     isEditable: boolean;
     error: string;
+    donationId: number;
 }

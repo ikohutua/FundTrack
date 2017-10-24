@@ -3,16 +3,16 @@ import { OrgAccountService } from "../../services/concrete/finance/orgaccount.se
 import { OrgAccountViewModel } from "../../view-models/concrete/finance/orgaccount-viewmodel";
 import { DeleteOrgAccountViewModel } from "../../view-models/concrete/finance/deleteorgaccount-view.model";
 import { ModalComponent } from "../../shared/components/modal/modal-component";
-import * as key from '../../shared/key.storage';
+import * as key from "../../shared/key.storage";
 import { isBrowser } from "angular2-universal";
 import { AuthorizeUserModel } from "../../view-models/concrete/authorized-user-info-view.model";
 import Targetviewmodel = require("../../view-models/concrete/finance/donate/target.view-model");
 import TargetViewModel = Targetviewmodel.TargetViewModel;
 
 @Component({
-    selector: 'orgaccountdetail',
-    templateUrl: './orgaccountdetail.component.html',
-    styleUrls: ['./orgaccountdetail.component.css']
+    selector: "orgaccountdetail",
+    templateUrl: "./orgaccountdetail.component.html",
+    styleUrls: ["./orgaccountdetail.component.css"]
 })
 export class OrgAccountDetailComponent implements OnInit, OnChanges {
 
@@ -22,7 +22,7 @@ export class OrgAccountDetailComponent implements OnInit, OnChanges {
     //Event emitter to send notifications to parent component
     @Output() onDelete = new EventEmitter<number>();
     //Input property getting organizationId
-    @Input('orgId') orgId: number;
+    @Input("orgId") orgId: number;
     //Input property getting accountId
     @Input() accountId: number;
     //Id of the deleted account
@@ -32,7 +32,7 @@ export class OrgAccountDetailComponent implements OnInit, OnChanges {
     //Property, containing data about logged in user
     private user: AuthorizeUserModel = new AuthorizeUserModel();
     //Property, containing today's date
-    private currentDate = new Date().toJSON().slice(0, 10).replace(/-/g, '/');
+    private currentDate = new Date().toJSON().slice(0, 10).replace(/-/g, "/");
     //Property, containing current organization account
     private account: OrgAccountViewModel = new OrgAccountViewModel();
     //Property, containing model, used for account deleting
@@ -69,7 +69,7 @@ export class OrgAccountDetailComponent implements OnInit, OnChanges {
     */
     ngOnChanges(changes: { [propKey: string]: SimpleChange }) {
         //this.accountId = 97;
-        if (changes['accountId'] && changes['accountId'] != changes['accountId'].currentValue) {
+        if (changes["accountId"] && changes["accountId"] != changes["accountId"].currentValue) {
             if (this.accountId>(-1)) {
                 this._service.getOrganizationAccountById(this.accountId)
                     .subscribe(a => {
@@ -97,7 +97,7 @@ export class OrgAccountDetailComponent implements OnInit, OnChanges {
     Cleans input and closes modal window
     */
     private cancelAccountDeleting(): void {
-        this.deleteModel.administratorPassword = '';
+        this.deleteModel.administratorPassword = "";
         this.modal.hide();
     }
 
@@ -105,7 +105,7 @@ export class OrgAccountDetailComponent implements OnInit, OnChanges {
     Deletes organization account
     */
     private deleteAccount(): void {
-        this.deleteModel.error = '';
+        this.deleteModel.error = "";
         this.deleteModel.orgAccountId = this.account.id;
         this.deletedAccountId = this.account.id;
         this.deleteModel.userId = this.user.id;
@@ -113,7 +113,7 @@ export class OrgAccountDetailComponent implements OnInit, OnChanges {
         this._service.deleteOrganizationAccountById(this.deleteModel)
             .subscribe(a => {
                 this.deleteModel = a;
-                if (a.error == '' || a.error == null) {
+                if (a.error == "" || a.error == null) {
                     this.showToast();
                     setTimeout(() => {
                         this.modal.hide();
@@ -136,7 +136,7 @@ export class OrgAccountDetailComponent implements OnInit, OnChanges {
     Verifies if org account has linked cardnumber
     */
     public CheckForCardPresence(account: OrgAccountViewModel): boolean {
-        if (account.cardNumber === '' || account.cardNumber===null) {
+        if (account.cardNumber === "" || account.cardNumber===null) {
             return false;
         }
         else {

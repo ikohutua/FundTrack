@@ -1,10 +1,7 @@
 ﻿using FundTrack.DAL.Abstract;
 using FundTrack.DAL.Entities;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace FundTrack.DAL.Concrete
 {
@@ -60,7 +57,7 @@ namespace FundTrack.DAL.Concrete
         /// Reads this instance.
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<FinOp> Read()
+        public IQueryable<FinOp> Read()
         {
             return this._context.FinOps.Include(f => f.OrgAccountTo)
                 .ThenInclude(a => a.Organization)

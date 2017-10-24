@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using FundTrack.Infrastructure.ViewModel;
 using FundTrack.DAL.Abstract;
 using System.Linq;
+using FundTrack.Infrastructure;
 
 namespace FundTrack.BLL.Concrete
 {
@@ -16,8 +17,8 @@ namespace FundTrack.BLL.Concrete
             _unitOfWork = unitOfWork;
         }
 
-        public IEnumerable<ReportIncomeViewModel> GetIncomeReports(int orgId, DateTime? dateFrom , DateTime? dateTo )
-        { 
+        public IEnumerable<ReportIncomeViewModel> GetIncomeReports(int orgId, DateTime? dateFrom, DateTime? dateTo)
+        {
             try
             {
                 if (dateTo == null)
@@ -30,20 +31,20 @@ namespace FundTrack.BLL.Concrete
                     dateFrom = DateTime.MinValue;
                 }
 
-                return _unitOfWork.FinOpRepository.Read().ToList()
+                return _unitOfWork.FinOpRepository.Read()
                     .Where(finOps =>
-                        (finOps.FinOpType==1)
+                        (finOps.FinOpType == Constants.FinOpTypeIncome)
                         && (finOps.OrgAccountTo.OrgId == orgId)
                         && (finOps.FinOpDate > dateFrom)
-                        && (finOps.FinOpDate < dateTo))
+                        && (finOps.FinOpDate < dateTo)).ToList()
                     .Select(finOps => new ReportIncomeViewModel
                     {
-                        From = finOps.Donation?.User.LastName,
+                        From = finOps.Donation?.User?.LastName,
                         Description = finOps.Description,
                         TargetTo = finOps.Target?.TargetName,
                         MoneyAmount = finOps.Amount,
                         Date = finOps.FinOpDate,
-                    }).ToList();
+                    }).OrderByDescending(finop => finop.Date);
             }
             catch (Exception ex)
             {
@@ -65,20 +66,20 @@ namespace FundTrack.BLL.Concrete
                     dateFrom = DateTime.MinValue;
                 }
 
-                return _unitOfWork.FinOpRepository.Read().ToList()
+                return _unitOfWork.FinOpRepository.Read()
                     .Where(finOps =>
-                        (finOps.FinOpType == 0)
+                        (finOps.FinOpType == Constants.FinOpTypeSpending)
                         && finOps.OrgAccountFrom.OrgId == orgId
                         && finOps.FinOpDate > dateFrom
-                        && finOps.FinOpDate < dateTo)
+                        && finOps.FinOpDate < dateTo).ToList()
                     .Select(finOps => new ReportOutcomeViewModel
                     {
-                        Id=finOps.Id,
+                        Id = finOps.Id,
                         Description = finOps.Description,
-                        Target = finOps.Target.TargetName,
+                        Target = finOps.Target?.TargetName,
                         MoneyAmount = finOps.Amount,
                         Date = finOps.FinOpDate,
-                    }).ToList();
+                    }).OrderByDescending(finop=>finop.Date);
             }
             catch (Exception ex)
             {
@@ -91,9 +92,9 @@ namespace FundTrack.BLL.Concrete
             try
             {
                 return _unitOfWork.FinOpImages.Read().ToList()
-                    .Where(finOpImg =>                
+                    .Where(finOpImg =>
                         finOpImg.FinOpId == finOpId)
-                    .Select(finOpImages =>finOpImages.ImageUrl).ToList();
+                    .Select(finOpImages => finOpImages.ImageUrl).ToList();
             }
             catch (Exception ex)
             {

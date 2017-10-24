@@ -3,9 +3,7 @@ using FundTrack.DAL.Concrete;
 using FundTrack.DAL.Entities;
 using FundTrack.DAL.Extensions;
 using FundTrack.Infrastructure;
-using FundTrack.Infrastructure.ViewModel;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 

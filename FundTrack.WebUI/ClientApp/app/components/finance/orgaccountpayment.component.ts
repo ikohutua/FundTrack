@@ -4,7 +4,7 @@ import { OrgAccountService } from "../../services/concrete/finance/orgaccount.se
 import { OrgAccountViewModel } from "../../view-models/concrete/finance/orgaccount-viewmodel";
 import { DecimalPipe } from '@angular/common';
 import { CurrencyPipe } from '@angular/common';
-import { DonateCredentialsViewModel } from "../../view-models/concrete/finance/donate-credentials.view-model";
+import { BankCredentialsViewModel } from "../../view-models/concrete/finance/donate-credentials.view-model";
 import { ModalComponent } from '../../shared/components/modal/modal-component';
 
 @Component({
@@ -18,8 +18,8 @@ export class OrgAccountPaymentComponent implements OnChanges , OnInit{
     @Input('accountId') accountId: number = -1;
     isDonationConnected: boolean = false;
     isDonationEnabled: boolean = false;
-    donateCredentials: DonateCredentialsViewModel = new DonateCredentialsViewModel();
-    connectDonateCredential: DonateCredentialsViewModel = new DonateCredentialsViewModel();
+    donateCredentials: BankCredentialsViewModel = new BankCredentialsViewModel();
+    connectDonateCredential: BankCredentialsViewModel = new BankCredentialsViewModel();
     errorMessage: string;
     bankAccountId: number;
     @ViewChild('disable') disableModal: ModalComponent;   
@@ -37,6 +37,7 @@ export class OrgAccountPaymentComponent implements OnChanges , OnInit{
     }
 
     ngOnChanges(changes: { [propKey: string]: SimpleChange }) {
+        this.connectDonateCredential = new BankCredentialsViewModel();
         if (changes['accountId'] && changes['accountId'] != changes['accountId'].currentValue) {
             if (this.accountId!=(-1)) {
                 this.errorMessage = null;
@@ -104,5 +105,4 @@ export class OrgAccountPaymentComponent implements OnChanges , OnInit{
                     });
             });    
     }
-
 }

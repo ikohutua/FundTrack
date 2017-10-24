@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using FundTrack.DAL.Entities;
 
 namespace FundTrack.DAL.Abstract
 {

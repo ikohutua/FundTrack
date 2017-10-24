@@ -8,7 +8,7 @@ import { ModalComponent } from '../../shared/components/modal/modal-component';
 import * as message from '../../shared/common-message.storage';
 import * as defaultConfig from '../../shared/default-configuration.storage';
 import { Image } from "../../view-models/concrete/image.model";
-import { ImputImagService } from "../../shared/input-image-service";
+import { ImputImageService } from "../../shared/input-image-service";
 
 
 @Component({
@@ -82,9 +82,9 @@ export class OrganizationRegistrationComponent implements OnInit {
             return;
         }
         this.isError = false;
-        let imgInpServ: ImputImagService = new ImputImagService();
+        let imgInpServ: ImputImageService = new ImputImageService();
 
-        imgInpServ.getWorkbookFromFile2(startFile)
+        imgInpServ.UploadImageFromFile(startFile)
             .then((res) => {
                 console.log(res);
                 this.newLogo = res;

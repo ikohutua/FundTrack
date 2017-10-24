@@ -25,18 +25,19 @@ export class OrgAccountListComponent implements OnInit {
     private selectedAccount: OrgAccountViewModel;
     //Property that keeps title for the page
     private pageTitle: string = 'Рахунки організації';
+    private readonly bankType: string = "Банк";
+    private readonly cashType: string = "Готівка";
     //Property that keeps an array of organization account
     private bankAccounts: OrgAccountViewModel[] = new Array<OrgAccountViewModel>();
     //Property that keeps an array of organization account
     private cashAccounts: OrgAccountViewModel[] = new Array<OrgAccountViewModel>();
 
-    isBankAccountAvailable: boolean = false;
-    isCashAccountAvailable: boolean = false;
+    isBankAccountAvailable: boolean;
+    isCashAccountAvailable: boolean;
 
-    isDownloaded = false;
-
-    ifBankSelectedType: boolean = false;
-    isExtractsMerchantEnable: boolean = false;
+    isDownloaded: boolean;
+    ifBankSelectedType: boolean;
+    isExtractsMerchantEnable: boolean;
 
     constructor(private _accountService: OrgAccountService,
         private router: Router) {
@@ -51,6 +52,7 @@ export class OrgAccountListComponent implements OnInit {
             subscribe(r => {
                 this.accounts = r;
                 this.filterAccounts();
+
                 if (this.isBankAccountAvailable) {
                     this.setActiveAccount(this.bankAccounts[0]);
                 }
@@ -63,19 +65,19 @@ export class OrgAccountListComponent implements OnInit {
     }
 
     checkIfAccTypesIsAvailable() {
-        this.isBankAccountAvailable = this.containItem(this.accounts, "Банк");
-        this.isBankAccountAvailable = this.containItem(this.accounts, "Готівка");
+        this.isBankAccountAvailable = this.containItem(this.accounts, this.bankType);
+        this.isCashAccountAvailable = this.containItem(this.accounts, this.cashType);
     }
 
     filterAccounts() {
         this.checkIfAccTypesIsAvailable();
 
         if (this.isBankAccountAvailable) {
-            this.bankAccounts = this.getAccountsByType("Банк");
+            this.bankAccounts = this.getAccountsByType(this.bankType);
         }
 
-        if (this.isBankAccountAvailable) {
-            this.cashAccounts = this.getAccountsByType("Готівка");
+        if (this.isCashAccountAvailable) {
+            this.cashAccounts = this.getAccountsByType(this.cashType);
         }
     }
 
@@ -110,13 +112,11 @@ export class OrgAccountListComponent implements OnInit {
     Sets active account
     */
     private setActiveAccount(account: OrgAccountViewModel): void {
+        this.isExtractsMerchantEnable = false;
         this.selectAccountId = account.id;
         this.orgId = account.orgId;
         this.selectedAccount = account;
-        this.ifBankSelectedType = account.accountType === "Банк" ? true : false;
-
-        //sessionStorage.setItem(key.keyOrgAccountId, account.id.toString());
-        //sessionStorage.setItem(key.keyOrgId, account.orgId.toString());
+        this.ifBankSelectedType = account.accountType === this.bankType ? true : false;
     }
     /*
     After account has been deleted - sets first account in the list as active and removes deleted account from the array

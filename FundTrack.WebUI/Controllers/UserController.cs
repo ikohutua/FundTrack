@@ -3,13 +3,12 @@ using FundTrack.Infrastructure;
 using FundTrack.Infrastructure.ViewModel;
 using FundTrack.Infrastructure.ViewModel.ResetPassword;
 using FundTrack.WebUI.secutiry;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using FundTrack.DAL.Entities;
 
 namespace FundTrack.WebUI.Controllers
 {
@@ -260,6 +259,24 @@ namespace FundTrack.WebUI.Controllers
         public OrganizationIdViewModel GetIdOfOrganization(string login)
         {
             return _userDomainService.GetOrganizationId(login);
+        }
+
+        [HttpGet]
+        public IEnumerable<UserInfoViewModel> GetAllUsers()
+        {
+            return _userDomainService.GetAllUsers().Select(ConvertEntityToViewModel);
+
+        }
+
+        private UserInfoViewModel ConvertEntityToViewModel(User user)
+        {
+            return new UserInfoViewModel
+            {
+                Id = user.Id,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                Login = user.Login
+            };
         }
     }
 }

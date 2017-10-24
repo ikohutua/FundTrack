@@ -7,12 +7,13 @@ import { ImportDetailPrivatViewModel, ImportPrivatViewModel } from "../../view-m
 import { BankImportSearchViewModel } from "../../view-models/concrete/finance/bank-import-search-view.model";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { ValidatorsService } from "../../services/concrete/validators/validator.service";
-import { FinOpViewModel } from "../../view-models/concrete/finance/finOp-view.model";
+import { FinOpFromBankViewModel } from "../../view-models/concrete/finance/finOpFromBank-view.model";
 import { isBrowser } from "angular2-universal";
 import { FinOpService } from "../../services/concrete/finance/finOp.service";
 import { TargetViewModel } from "../../view-models/concrete/finance/donate/target.view-model";
 import { OrgAccountSelectViewModel } from "../../view-models/concrete/finance/org-accounts-select-view.model";
 import * as key from '../../shared/key.storage'
+import * as message from '../../shared/common-message.storage'
 import { AuthorizeUserModel } from "../../view-models/concrete/authorized-user-info-view.model";
 import { SpinnerComponent } from "../../shared/components/spinner/spinner.component";
 import { OrgAccountService } from "../../services/concrete/finance/orgaccount.service";
@@ -47,7 +48,7 @@ export class BankImportComponent implements OnInit {
     @ViewChild(SpinnerComponent) spinner: SpinnerComponent;
 
     //model which contain data to create new finOp
-    private _newFinOp: FinOpViewModel = new FinOpViewModel();
+    private _newFinOp: FinOpFromBankViewModel = new FinOpFromBankViewModel();
     //data which was received from privat24
     private importData: ImportPrivatViewModel = new ImportPrivatViewModel();
     //array which contain register bank imports in db
@@ -71,6 +72,7 @@ export class BankImportComponent implements OnInit {
     //count bank imports in selected orgAccounts
     private count: number;
     private orgaccountId: number;
+    private isOrgAccountHaveTarget: boolean;
 
 
     //constructor
@@ -95,38 +97,56 @@ export class BankImportComponent implements OnInit {
     }
 
     ngOnInit() {
-        console.log("Bank-Import");
         if (isBrowser) {
             if (sessionStorage.getItem(key.keyCardNumber)) {
-                this.orgaccountId = Number(sessionStorage.getItem(key.keyOrgAccountId));
                 this.card = sessionStorage.getItem(key.keyCardNumber);
                 this._service.getCountExtractsOnCard(this.card)
                     .subscribe(response => {
                         this.count = response;
                         if (localStorage.getItem(key.keyToken)) {
                             this.user = JSON.parse(localStorage.getItem(key.keyModel)) as AuthorizeUserModel;
-                            this._finOpService.getTargets()
+                            this._orgAccountService.getAllBaseTargetsOfOrganization(this.user.orgId)
                                 .subscribe(response => this.targets = response);
+
                             this._finOpService.getOrgAccountForFinOp(this.user.orgId, this.card)
-                                .subscribe(response => this.currentOrgAccount = response);
-
-
+                                .subscribe(response => {
+                                    this.currentOrgAccount = response;
+                                    if (this.currentOrgAccount.targetId != null) {
+                                        this.isOrgAccountHaveTarget = true;
+                                        debugger;
+                                        this._orgAccountService.getTargetById(this.currentOrgAccount.targetId)
+                                            .subscribe(response => {
+                                                this.targets = new Array<TargetViewModel>();
+                                                this.targets[0] = response;
+                                            });
+                                        this._orgAccountService.getExtractsCredentials(this.currentOrgAccount.id)
+                                            .subscribe((res) => {
+                                                this.idMerchant = res.merchantId;
+                                                this.password = res.merchantPassword;
+                                            })
+                                    }
+                                });
                             this.getAllExtracts();
                         }
                     });
-
-                this._orgAccountService.getExtractsCredentials(this.orgaccountId)
-                    .subscribe((res) => {
-                        this.idMerchant = res.merchantId;
-                        this.password = res.merchantPassword;
-                    })
             }
         }
     }
 
     private getAllExtracts() {
         this._service.getAllExtracts(this.card, this.spinner)
-            .subscribe(response => this._dataForFinOp = response);
+            .subscribe(response => {
+                this._dataForFinOp = response;
+
+                if (this.currentOrgAccount.targetId != undefined) {
+                    for (let bankDetail of this._dataForFinOp) {
+                        if (Number(bankDetail.amount) > 0) {
+                            this.createFinOp(bankDetail);
+                            this.saveFinOp();
+                        }
+                    }
+                }
+            });
     }
 
     /*
@@ -143,10 +163,10 @@ export class BankImportComponent implements OnInit {
     /*
     Error messages
     */
-    private requiredMessage = "Поле є обов'язковим для заповнення";
-    private numberMessage = "Поле повинно містити тільки цифри";
-    private lengthMessage = "Недопустима кількість символів";
-    private cardMessage = "Номер картки повинен складатися з 16 цифр";
+    private requiredMessage = message.requiredField;
+    private numberMessage = message.requiredNumberFielsd;
+    private lengthMessage = message.wrongLength;
+    private cardMessage = message.invalidCardNumberMessage;
 
     private validationMessages = {
         cardNumber: {
@@ -211,7 +231,6 @@ export class BankImportComponent implements OnInit {
                             }, 2500);
                         });
                 }
-
             });
     }
 
@@ -233,11 +252,15 @@ export class BankImportComponent implements OnInit {
         this._newFinOp.bankImportId = bankImport.id;
         this._newFinOp.amount = +bankImport.cardAmount.split(' ')[0];
         this._newFinOp.absoluteAmount = Math.abs(this._newFinOp.amount);
-        this._newFinOp.accToName = this.currentOrgAccount.orgAccountName;
+        if (this._newFinOp.amount > 0) {
+            this._newFinOp.cardToId = Number(this.currentOrgAccount.id);
+        }
+        if (this._newFinOp.amount < 0) {
+            this._newFinOp.cardFromId = Number(this.currentOrgAccount.id);
+        }
         this._newFinOp.orgId = this.user.orgId;
         this.index = this._dataForFinOp.findIndex(element => element.id == bankImport.id);
         this.currentOrgAccountNumber = this.currentOrgAccount.orgAccountName + ': ' + this.currentOrgAccount.orgAccountNumber;
-        this.openFinOpModal();
     }
 
     //save new initialize finOp
@@ -274,13 +297,14 @@ export class BankImportComponent implements OnInit {
      */
     public closeFinOpModal(): void {
         this.finOpModalWindow.hide();
-        this._newFinOp = new FinOpViewModel();
+        this._newFinOp = new FinOpFromBankViewModel();
     }
 
     /**
      * open finOp modal window
      */
-    public openFinOpModal(): void {
+    public openFinOpModal(bankImport: ImportDetailPrivatViewModel): void {
+        this.createFinOp(bankImport);
         this.finOpModalWindow.show();
     }
 
@@ -298,5 +322,8 @@ export class BankImportComponent implements OnInit {
     */
     private navigateBack(): void {
         this._location.back();
+    }
+    onChangeSelection(selected) {
+        this._newFinOp.targetId = parseInt(selected);
     }
 }

@@ -33,6 +33,10 @@ namespace FundTrack.DAL.Entities
         /// Gets or Sets Id of User
         /// </summary>
         public int? UserId { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Id of Donation
+        /// </summary>
         public int? DonationId { get; set; }
 
         /// <summary>
@@ -45,6 +49,9 @@ namespace FundTrack.DAL.Entities
         /// </summary>
         public string Description { get; set; }
 
+        /// <summary>
+        /// Gets or Sets type of FinOp
+        /// </summary>
         public int FinOpType { get; set; }
 
         /// <summary>
@@ -76,6 +83,10 @@ namespace FundTrack.DAL.Entities
         /// Gets or Sets TagFinOp navigation property
         /// </summary>
         public virtual ICollection<TagFinOp> TagFinOps { get; set; }
+        
+        /// <summary>
+        /// Gets or Sets Donation navigation property
+        /// </summary>
         public virtual Donation Donation { get; set; }
 
        

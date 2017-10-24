@@ -9,6 +9,10 @@
 }
 .maindiv {
     min-height: 200px;
+    background-image: url("https://privat24.privatbank.ua/p24/img/concrete_wall_3.png");
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    display: block;
+    width: 91.5%;
 }
 
 .leftside{
@@ -101,4 +105,9 @@ However, delay the fade out process for 2.5 seconds */
         top: 0;
         opacity: 0;
     }
+}
+
+.container {
+    margin-left: 3%;
+    margin-right: 3%;
 }
