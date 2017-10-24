@@ -123,6 +123,13 @@ namespace FundTrack.BLL.Concrete
             {
                 var orgAccountsIds = _unitOfWork.OrganizationAccountRepository.ReadAllOrgAccounts(orgId).Select(oa => oa.Id);
 
+                if (orgAccountsIds == null || orgAccountsIds.Count() == 0)
+                {
+                    throw new BusinessLogicException(ErrorMessages.OrganizationNotFound);
+                }
+
+                dateFrom = dateFrom.AddDays(-1);
+                dateTo = dateTo.AddDays(1);
                 var donations = _unitOfWork.DonationRepository.Read()
                     .Where(d => d.DonationDate >= dateFrom &&
                                 d.DonationDate <= dateTo &&
