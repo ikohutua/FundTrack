@@ -1,0 +1,55 @@
+﻿.table-sortable > thead > tr > th {
+    cursor: pointer;
+    position: relative;
+    background-image: none;
+}
+
+    .table-sortable > thead > tr > th:after,
+    .table-sortable > thead > tr > th.sort-false:after,
+    .table-sortable > thead > tr > th.sort-true:after {
+        font-family: FontAwesome;
+        padding-left: 5px;
+    }
+
+    .table-sortable > thead > tr > th:after {
+        content: "\f0dc";
+        color: #ddd;
+    }
+
+    .table-sortable > thead > tr > th.sort-false:after {
+        content: "\f0de";
+        color: #767676;
+    }
+
+    .table-sortable > thead > tr > th.sort-true:after {
+        content: "\f0dd";
+        color: #767676;
+    }
+
+a {
+    cursor: pointer;
+}
+
+/*---------Search input----------*/
+.stylish-input-group {
+    margin-bottom: 10px;
+}
+
+    .stylish-input-group .input-group-addon {
+        background: white !important;
+    }
+
+    .stylish-input-group .form-control {
+        border-right: 0;
+        box-shadow: 0 0 0;
+        border-color: #ccc;
+    }
+
+    .stylish-input-group button {
+        border: 0;
+        background: transparent;
+    }
+
+.blue {
+    color: royalblue;
+}

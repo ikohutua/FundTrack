@@ -11,4 +11,16 @@ namespace FundTrack.Infrastructure.ViewModel
         public decimal MoneyAmount { get; set; }
 
     }
+
+    public class UsersDonationsReportViewModel : ReportOutcomeViewModel, IComparable<UsersDonationsReportViewModel>
+    {
+        public string UserLogin { get; set; }
+        public string UserFirstName { get; set; }
+        public string UserLastName { get; set; }
+
+        public int CompareTo(UsersDonationsReportViewModel other)
+        {
+            return Date > other.Date ? -1 : Date < other.Date ? 1 : 0;
+        }
+    }
 }

@@ -16,7 +16,7 @@ namespace FundTrack.DAL.Entities
         public int? UserId { get; set; }
         public int CurrencyId { get; set; }
         public int? TargetId { get; set; }
-        public int BankAccountId { get; set; }
+        public int OrgAccountId { get; set; }
         public double Amount { get; set; }
         public string Description { get; set; }
         public DateTime DonationDate { get; set; }
@@ -24,7 +24,7 @@ namespace FundTrack.DAL.Entities
         public virtual Currency Currency {get;set;}
         public virtual User User { get; set; }
         public virtual Target Target { get; set; }
-        public virtual BankAccount BankAccount { get; set; }
+        public virtual OrgAccount OrgAccount { get; set; }
 
         public static void Configure(ModelBuilder modelBuilder)
         {
@@ -51,10 +51,10 @@ namespace FundTrack.DAL.Entities
                     HasForeignKey(e => e.TargetId).
                     HasConstraintName("FK_Donation_Target");
 
-                entity.HasOne(e => e.BankAccount)
-                    .WithMany(b => b.Donations)
-                    .HasForeignKey(e => e.BankAccountId)
-                    .HasConstraintName("FK_Donation_BankAccount");
+                entity.HasOne(e => e.OrgAccount)
+                    .WithMany(a => a.Donations)
+                    .HasForeignKey(e => e.OrgAccountId)
+                    .HasConstraintName("FK_Donations_OrgAccounts_OrgAccountId");
             });
         }
     }

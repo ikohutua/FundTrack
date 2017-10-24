@@ -5,6 +5,7 @@ using FundTrack.Infrastructure.ViewModel;
 using FundTrack.DAL.Abstract;
 using System.Linq;
 using FundTrack.Infrastructure;
+using System.Threading.Tasks;
 
 namespace FundTrack.BLL.Concrete
 {
@@ -79,7 +80,7 @@ namespace FundTrack.BLL.Concrete
                         Target = finOps.Target?.TargetName,
                         MoneyAmount = finOps.Amount,
                         Date = finOps.FinOpDate,
-                    }).OrderByDescending(finop=>finop.Date);
+                    }).OrderByDescending(finop => finop.Date);
             }
             catch (Exception ex)
             {
@@ -100,6 +101,46 @@ namespace FundTrack.BLL.Concrete
             {
                 throw new BusinessLogicException("Error while getting image path list from FinOPImages entities by finOpId.", ex);
             }
+        }
+
+        public async Task<int> GetCountOfUsersDonationsReport(int orgId, DateTime dateFrom, DateTime dateTo)
+        {
+            var t = await GetUserDonations(orgId, dateFrom, dateTo);
+            return t.ToList().Count;
+        }
+
+        public async Task<IEnumerable<UsersDonationsReportViewModel>> GetUsersDonationsPaginatedReportn(int orgId, DateTime dateFrom, DateTime dateTo, int pageIndex, int pageSize)
+        {
+            var t = await GetUserDonations(orgId, dateFrom, dateTo);
+            var list = t.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
+            list.Sort();
+            return list;
+        }
+
+        private Task<IQueryable<UsersDonationsReportViewModel>> GetUserDonations(int orgId, DateTime dateFrom, DateTime dateTo)
+        {
+            return Task.Run(() =>
+            {
+                var orgAccountsIds = _unitOfWork.OrganizationAccountRepository.ReadAllOrgAccounts(orgId).Select(oa => oa.Id);
+
+                var donations = _unitOfWork.DonationRepository.Read()
+                    .Where(d => d.DonationDate >= dateFrom &&
+                                d.DonationDate <= dateTo &&
+                                orgAccountsIds.Contains(d.OrgAccountId));
+
+                var query = donations.Select(d => new UsersDonationsReportViewModel()
+                {
+                    Id = d.Id,
+                    Target = d.Target.TargetName,
+                    UserFirstName = d.User.FirstName,
+                    UserLastName = d.User.LastName,
+                    UserLogin = d.User.Login,
+                    Date = d.DonationDate,
+                    MoneyAmount = (decimal)d.Amount,
+                    Description = d.Description
+                }).Where(d => !String.IsNullOrEmpty(d.UserLogin));
+                return query;
+            });
         }
     }
 }
