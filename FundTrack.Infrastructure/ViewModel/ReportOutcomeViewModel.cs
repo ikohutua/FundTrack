@@ -15,8 +15,7 @@ namespace FundTrack.Infrastructure.ViewModel
     public class UsersDonationsReportViewModel : ReportOutcomeViewModel, IComparable<UsersDonationsReportViewModel>
     {
         public string UserLogin { get; set; }
-        public string UserFirstName { get; set; }
-        public string UserLastName { get; set; }
+        public string UserFulName { get; set; }
 
         public int CompareTo(UsersDonationsReportViewModel other)
         {

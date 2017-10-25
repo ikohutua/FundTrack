@@ -55,7 +55,6 @@ namespace FundTrack.WebUI.Controllers
                     return new BadRequestObjectResult(ex.Message);
                 }
             }
-
             return new BadRequestObjectResult($"Invalid data!");
         }
 
@@ -77,7 +76,42 @@ namespace FundTrack.WebUI.Controllers
                     return new BadRequestObjectResult(ex.Message);
                 }
             }
+            return new BadRequestObjectResult($"Invalid data!");
+        }
 
+        [HttpGet("CountOfCommonUsersDonationsReport")]
+        public async Task<IActionResult> CountOfCommonUsersDonationsReport(int? orgId, DateTime? dateFrom, DateTime? dateTo)
+        {
+            if (isDataNotNull(dateFrom, dateTo, orgId))
+            {
+                try
+                {
+                    int count = await _service.GetCountOfCommonUsersDonationsReport(orgId.Value, dateFrom.Value, dateTo.Value);
+                    return Ok(count);
+                }
+                catch (BusinessLogicException ex)
+                {
+                    return new BadRequestObjectResult(ex.Message);
+                }
+            }
+            return new BadRequestObjectResult($"Invalid data!");
+        }
+
+        [HttpGet("CommonUsersDonationsPaginatedReport")]
+        public async Task<IActionResult> CommonUsersDonationsPaginatedReport(int? orgId, DateTime? dateFrom, DateTime? dateTo, int? pageIndex, int? pageSize)
+        {
+            if (isDataNotNull(dateFrom, dateTo, orgId, pageIndex, pageSize))
+            {
+                try
+                {
+                    var list = await _service.GetCommonUsersDonationsPaginatedReport(orgId.Value, dateFrom.Value, dateTo.Value, pageIndex.Value, pageSize.Value);
+                    return Ok(list);
+                }
+                catch (BusinessLogicException ex)
+                {
+                    return new BadRequestObjectResult(ex.Message);
+                }
+            }
             return new BadRequestObjectResult($"Invalid data!");
         }
 

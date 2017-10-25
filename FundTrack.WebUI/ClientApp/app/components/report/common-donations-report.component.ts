@@ -11,12 +11,12 @@ import * as commonMessages from '../../shared/common-message.storage';
 import { Pager } from "../../services/concrete/pager.service";
 
 @Component({
-    templateUrl: './users-donations-report.component.html',
-    styleUrls: ['./users-donations-report.component.css'],
+    templateUrl: './common-donations-report.component.html',
+    styleUrls: ['./common-donations-report.component.css'],
     providers: [DatePipe, ShowRequestedItemService, OrganizationManagementRequestService]
 })
 
-export class UsersDonationsReportComponent implements OnInit {
+export class CommonDonationsReportComponent implements OnInit {
     pagedReportItems: Array<UsersDonationsReportDataViewModel>;
     reportModel: ReportFilterQueryViewModel = new ReportFilterQueryViewModel();
     inputMaxDate: Date = new Date();
@@ -33,7 +33,28 @@ export class UsersDonationsReportComponent implements OnInit {
     previousSortedColIndex: number = 0;
     currentSortedColIndex: number = -1;
 
-    isFilterTurnedOn: boolean;
+    isChartVisible: boolean;
+
+    //---------Pie chart---------
+    showXAxis = true;
+    showYAxis = true;
+    gradient = false;
+    showLegend = false;
+    showXAxisLabel = false;
+    xAxisLabel = 'Targets';
+    showYAxisLabel = false;
+    yAxisLabel = 'Money';
+    barPadding = 20;
+    colorScheme = {
+        domain: [
+            '#2597FB', '#65EBFD', '#99FDD0',
+            '#FCEE4B', '#FDD6E3', '#FCB1A8',
+            '#EF6F7B', '#CB96E8', '#EFDEE0',
+            '#FEFCFA']
+    };
+    public dataSet: any[] = [];
+      //---------Pie chart---------
+
 
     constructor(private _service: ShowRequestedItemService,
         private datePipe: DatePipe,
@@ -70,8 +91,9 @@ export class UsersDonationsReportComponent implements OnInit {
         this.generateSimpleReport();
     }
 
-    filter() {
-        this.generateSimpleReport();
+    showChart() {
+        this.isChartVisible = !this.isChartVisible;
+        //this.prepareUsersDonationsReportForCharts(this.pagedReportItems);
     }
 
     sortTable(value: number) {
@@ -83,8 +105,6 @@ export class UsersDonationsReportComponent implements OnInit {
             case 2: colName = "userFulName"; break;
             case 3: colName = "moneyAmount"; break;
             case 4: colName = "target"; break;
-            case 5: colName = "description"; break;
-            case 6: colName = "date"; break;
             default:
         }
 
@@ -110,7 +130,7 @@ export class UsersDonationsReportComponent implements OnInit {
             return;
         }
 
-        this._service.getCountOfUsersDonationsReportItems(this.reportModel)
+        this._service.getCountOfCommonUsersDonationsReportItems(this.reportModel)
             .subscribe(res => {
                 this.totalReportItemsCount = res;
                 this.setPage(1);
@@ -132,7 +152,7 @@ export class UsersDonationsReportComponent implements OnInit {
         this.pager = new Pager().getPager(this.totalReportItemsCount, this.reportModel.currentPage, this.pageSize);
         this.reportModel.pageSize = this.pager.pageSize;
 
-        this._service.getUsersDonationsPaginatedReport(this.reportModel)
+        this._service.getCommonUsersDonationsPaginatedReport(this.reportModel)
             .subscribe(res => {
                 this.calculateSequenceNumber(res);
                 this.pagedReportItems = res;
@@ -160,6 +180,16 @@ export class UsersDonationsReportComponent implements OnInit {
     }
     prepareDate(date: Date): string {
         return this.datePipe.transform(date, 'yyyy-MM-dd')
+    }
+
+    public prepareUsersDonationsReportForCharts(list: Array<UsersDonationsReportDataViewModel>) {
+        this.dataSet = [];
+        list.forEach(d => {
+            this.dataSet.push({
+                name: d.userLogin,
+                value: d.moneyAmount
+            });
+        });
     }
 
     showErrorMessage(message: string) {

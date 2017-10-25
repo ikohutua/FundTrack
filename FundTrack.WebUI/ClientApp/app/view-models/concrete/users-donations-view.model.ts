@@ -4,8 +4,7 @@ export class UsersDonationsReportDataViewModel implements ITotalSum {
     Id: number;
     sequenceNumber: number
     userLogin: string;
-    userFirstName: string;
-    userLastName: string;
+    userFulName: string;
     moneyAmount: number;
     target: number;
     description: string;

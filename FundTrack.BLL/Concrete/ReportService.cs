@@ -115,6 +115,14 @@ namespace FundTrack.BLL.Concrete
             return t.Where(d => d.UserLogin.Contains(filterValue)).ToList().Count;
         }
 
+        public async Task<int> GetCountOfCommonUsersDonationsReport(int orgId, DateTime dateFrom, DateTime dateTo)
+        {
+            var t = await GetUserDonations(orgId, dateFrom, dateTo);
+            var res = GroupDonationsByUserLogin(t.ToList());
+            return res.ToList().Count;
+        }
+
+
         public async Task<IEnumerable<UsersDonationsReportViewModel>> GetUsersDonationsPaginatedReport(int orgId, DateTime dateFrom, DateTime dateTo, int pageIndex, int pageSize)
         {
             var t = await GetUserDonations(orgId, dateFrom, dateTo);
@@ -126,6 +134,25 @@ namespace FundTrack.BLL.Concrete
             var t = await GetUserDonations(orgId, dateFrom, dateTo);
             var res = t.Where(d => d.UserLogin.Contains(filterValue));
             return PaginateReport(pageIndex, pageSize, res);
+        }
+
+        public async Task<IEnumerable<UsersDonationsReportViewModel>> GetCommonUsersDonationsPaginatedReport(int orgId, DateTime dateFrom, DateTime dateTo, int pageIndex, int pageSize)
+        {
+            var t = await GetUserDonations(orgId, dateFrom, dateTo);
+            var res = GroupDonationsByUserLogin(t.ToList());
+            return PaginateReport(pageIndex, pageSize, res);
+        }
+
+        private static IQueryable<UsersDonationsReportViewModel> GroupDonationsByUserLogin(IEnumerable<UsersDonationsReportViewModel> list)
+        {
+            return list.GroupBy(d => d.UserLogin)
+                .Select(d => new UsersDonationsReportViewModel()
+            {
+                UserLogin = d.Select(u => u.UserLogin).FirstOrDefault(),
+                UserFulName = d.Select(u => u.UserFulName).FirstOrDefault() ,
+                MoneyAmount = d.Sum(u => u.MoneyAmount),
+                Target = String.Join(", ", d.Select(u=>u.Target).Where(t=> !String.IsNullOrEmpty(t)).Distinct().ToArray())
+            }).AsQueryable();
         }
 
         private List<UsersDonationsReportViewModel> PaginateReport(int pageIndex, int pageSize, IQueryable<UsersDonationsReportViewModel> t)
@@ -157,8 +184,7 @@ namespace FundTrack.BLL.Concrete
                 {
                     Id = d.Id,
                     Target = d.Target.TargetName,
-                    UserFirstName = d.User.FirstName,
-                    UserLastName = d.User.LastName,
+                    UserFulName = $"{d.User.FirstName} {d.User.LastName}",
                     UserLogin = String.IsNullOrEmpty(d.User.Login) ? "<Анонімний>" : d.User.Login,
                     Date = d.DonationDate,
                     MoneyAmount = (decimal)d.Amount,

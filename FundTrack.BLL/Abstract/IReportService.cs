@@ -15,5 +15,8 @@ namespace FundTrack.BLL.Abstract
         Task<int> GetCountOfUsersDonationsReport(int orgId, DateTime dateFrom, DateTime dateTo);
         Task<IEnumerable<UsersDonationsReportViewModel>> GetFilteredUsersDonationsPaginatedReport(int orgId, DateTime dateFrom, DateTime dateTo, int pageIndex, int pageSize, string filterValue);
         Task<int> GetFilteredCountOfUsersDonationsReport(int orgId, DateTime dateFrom, DateTime dateTo, string filterValue);
+        Task<IEnumerable<UsersDonationsReportViewModel>> GetCommonUsersDonationsPaginatedReport(int orgId, DateTime dateFrom, DateTime dateTo, int pageIndex, int pageSize);
+        Task<int> GetCountOfCommonUsersDonationsReport(int orgId, DateTime dateFrom, DateTime dateTo);
+
     }
 }

@@ -24,6 +24,7 @@ import { AllOrganizationsComponent } from "./components/all-organizations/all-or
 import { OrganizationDetailComponent } from "./components/organization-detail/organization-detail.component";
 import { TargetManagementComponent } from './components/organization-edit/target-management.component';
 import { UsersDonationsReportComponent } from "./components/report/users-donations-report.component";
+import { CommonDonationsReportComponent } from "./components/report/common-donations-report.component";
 
 @NgModule({
     declarations: [
@@ -45,7 +46,8 @@ import { UsersDonationsReportComponent } from "./components/report/users-donatio
         AllOrganizationsComponent,
         OrganizationDetailComponent,
         TargetManagementComponent,
-        UsersDonationsReportComponent
+        UsersDonationsReportComponent,
+        CommonDonationsReportComponent
     ],
     imports: [
         FormsModule,

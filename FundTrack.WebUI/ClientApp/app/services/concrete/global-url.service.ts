@@ -65,4 +65,7 @@ export class GlobalUrlService {
     //ShowRequestedItemService
     public static readonly countOfUsersDonationsReportItems = "api/reports/CountOfUsersDonationsReport";
     public static readonly usersDonationsPaginatedReport = 'api/reports/UsersDonationsPaginatedReport';
+
+    public static readonly countOfCommonUsersDonationsReportItems = "api/reports/CountOfCommonUsersDonationsReport";
+    public static readonly commonUsersDonationsPaginatedReport = 'api/reports/CommonUsersDonationsPaginatedReport';
 }

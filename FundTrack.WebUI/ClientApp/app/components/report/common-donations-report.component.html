@@ -1,5 +1,5 @@
 ﻿<div class="container">
-    <h2 class="sub-header">Звіт пожертв</h2>
+    <h2 class="sub-header">Загальний звіт пожертв користувачів</h2>
     <div>
         <div class="panel panel-default">
             <div class="panel-body">
@@ -28,13 +28,15 @@
                 <option *ngFor="let item of listOfPagesSizes" [ngValue]="item">{{item}}</option>
             </select>
         </div>
-        <div class="col-md-4 col-md-offset-8 input-group">
-            <input type="text" class="form-control" [(ngModel)]="reportModel.filterValue" (keyup.enter)="filter()" placeholder="Введіть логін користувача">
-            <div class="input-group-btn">
-                <button type="button" class="btn btn-primary" (click)="filter()">
-                    <span class="glyphicon glyphicon-filter"></span> Фільтрувати
+        <div class="col-md-2 col-md-offset-10 input-group">
+                <button type="button" class="btn btn-primary" (click)="showChart()">
+                    <span class="glyphicon glyphicon-stats"></span> Показати на графік
                 </button>
-            </div>
+        </div>
+    </div>
+    <div *ngIf="isChartVisible"  class="row container">
+        <div class="col-md-6 col-md-offset-3 text-center">
+            <img class="img-responsive" src="https://cdn.dribbble.com/users/27766/screenshots/3488007/empty_state.png" />
         </div>
     </div>
     <div *ngIf="isDataAvailable">
@@ -44,27 +46,22 @@
                     <tr>
                         <th (click)="sortTable(0) "># <span class="glyphicon" [ngClass]="{'glyphicon-sort grey': currentSortedColIndex != 0, 'glyphicon-sort-by-attributes': currentSortedColIndex == 0 && isDesc, 'glyphicon-sort-by-attributes-alt': currentSortedColIndex == 0 && !isDesc }"></span></th>
                         <th (click)="sortTable(1)">Логін <span class="glyphicon" [ngClass]="{'glyphicon-sort grey': currentSortedColIndex != 1, 'glyphicon-sort-by-attributes': currentSortedColIndex == 1 && isDesc, 'glyphicon-sort-by-attributes-alt': currentSortedColIndex == 1 && !isDesc }"></span></th>
-                        <th (click)="sortTable(2)">Користувач<span class="glyphicon" [ngClass]="{'glyphicon-sort grey': currentSortedColIndex != 2, 'glyphicon-sort-by-attributes': currentSortedColIndex == 2 && isDesc, 'glyphicon-sort-by-attributes-alt': currentSortedColIndex == 2 && !isDesc }"></span></th>
-                        <th (click)="sortTable(3)">Сума <span class="glyphicon" [ngClass]="{'glyphicon-sort grey': currentSortedColIndex != 3, 'glyphicon-sort-by-attributes': currentSortedColIndex == 3 && isDesc, 'glyphicon-sort-by-attributes-alt': currentSortedColIndex == 3 && !isDesc }"></span></th>
+                        <th (click)="sortTable(2)">Користувач <span class="glyphicon" [ngClass]="{'glyphicon-sort grey': currentSortedColIndex != 2, 'glyphicon-sort-by-attributes': currentSortedColIndex == 2 && isDesc, 'glyphicon-sort-by-attributes-alt': currentSortedColIndex == 2 && !isDesc }"></span></th>
+                        <th (click)="sortTable(3)">Загальна сума <span class="glyphicon" [ngClass]="{'glyphicon-sort grey': currentSortedColIndex != 3, 'glyphicon-sort-by-attributes': currentSortedColIndex == 3 && isDesc, 'glyphicon-sort-by-attributes-alt': currentSortedColIndex == 3 && !isDesc }"></span></th>
                         <th (click)="sortTable(4)">Призначення <span class="glyphicon" [ngClass]="{'glyphicon-sort grey': currentSortedColIndex != 4, 'glyphicon-sort-by-attributes': currentSortedColIndex == 4 && isDesc, 'glyphicon-sort-by-attributes-alt': currentSortedColIndex == 4 && !isDesc }"></span></th>
-                        <th (click)="sortTable(5)">Опис<span class="glyphicon" [ngClass]="{'glyphicon-sort grey': currentSortedColIndex != 5, 'glyphicon-sort-by-attributes': currentSortedColIndex == 5 && isDesc, 'glyphicon-sort-by-attributes-alt': currentSortedColIndex == 5 && !isDesc }"></span></th>
-                        <th (click)="sortTable(6)">Дата-Час <span class="glyphicon" [ngClass]="{'glyphicon-sort grey': currentSortedColIndex != 6, 'glyphicon-sort-by-attributes': currentSortedColIndex == 6 && isDesc, 'glyphicon-sort-by-attributes-alt': currentSortedColIndex == 6 && !isDesc }"></span></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let item of pagedReportItems; let i = index">
-                        <td>{{ item.sequenceNumber}}</td>
+                        <td>{{item.sequenceNumber}}</td>
                         <td>{{item.userLogin}}</td>
                         <td>{{item.userFulName}}</td>
                         <td>{{item.moneyAmount}}</td>
                         <td>{{item.target}}</td>
-                        <td>{{item.description}}</td>
-                        <td>{{item.date | date:'dd-MMM-yyyy HH:mm'}}</td>
                     </tr>
                 </tbody>
             </table>
         </div>
-
         <div class="row container">
             <div class="text-center">
                 <!-- pager -->
