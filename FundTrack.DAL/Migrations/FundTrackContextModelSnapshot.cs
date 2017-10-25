@@ -50,6 +50,8 @@ namespace FundTrack.DAL.Migrations
 
                     b.Property<int>("Interval");
 
+                    b.Property<DateTime?>("LastUpdateDate");
+
                     b.Property<int>("OrgId");
 
                     b.HasKey("Id")
@@ -190,6 +192,8 @@ namespace FundTrack.DAL.Migrations
                     b.Property<string>("Description")
                         .IsRequired();
 
+                    b.Property<int?>("FinOpId");
+
                     b.Property<bool>("IsLooked");
 
                     b.Property<string>("Rest")
@@ -203,6 +207,8 @@ namespace FundTrack.DAL.Migrations
 
                     b.HasKey("Id")
                         .HasName("PK_BankImportDetail");
+
+                    b.HasIndex("FinOpId");
 
                     b.ToTable("BankImportDetails");
                 });
@@ -989,6 +995,14 @@ namespace FundTrack.DAL.Migrations
                         .HasForeignKey("OrgId")
                         .HasConstraintName("FK_BankAccount_Organization")
                         .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("FundTrack.DAL.Entities.BankImportDetail", b =>
+                {
+                    b.HasOne("FundTrack.DAL.Entities.FinOp", "FinOp")
+                        .WithMany("BankImportDetails")
+                        .HasForeignKey("FinOpId")
+                        .HasConstraintName("FK_BankImportDetails_FinOp");
                 });
 
             modelBuilder.Entity("FundTrack.DAL.Entities.BannedOrganization", b =>
