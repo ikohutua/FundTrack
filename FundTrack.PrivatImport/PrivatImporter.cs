@@ -123,9 +123,9 @@ namespace FundTrack.PrivatImport
 
           #endregion*/
 
-        private  static async Task<string> PrivatRequestAsync(BankAccounts bankAccount, DateTime dateFrom, DateTime dateTo)
+        private static async Task<string> PrivatRequestAsync(string cardNumber, string merchantId, string merchantPassword, DateTime dateFrom, DateTime dateTo)
         {
-            var dataToBeSent = ImportXmlData(bankAccount.CardNumber, bankAccount.ExtractMerchantId.ToString(), bankAccount.ExtractMerchantPassword, dateFrom, dateTo);
+            var dataToBeSent = ImportXmlData(cardNumber, merchantId, merchantPassword, dateFrom, dateTo);
             var content = new StringContent(dataToBeSent);
             using (var client = new HttpClient())
             {
@@ -148,12 +148,6 @@ namespace FundTrack.PrivatImport
                                                             && ba.IsExtractEnabled == true).ToList();
         }
 
-        private static void AddBankImportDetails(BankImportDetails item, FundTrackSS context)
-        {
-            {
-                context.BankImportDetails.Add(item);
-            }
-        }
         public static async void Run(int orgId, int minutes)
         {
             var fundTrackEntitiesContext = new FundTrackSS();
@@ -165,8 +159,10 @@ namespace FundTrack.PrivatImport
             {
                 return;
             }
-            
-            var responses = bankAccounts.Select(bankAccount => PrivatRequestAsync(bankAccount, dateFrom, dateTo)).ToList();
+
+            var responses = bankAccounts
+                .Select(bankAccount =>
+                PrivatRequestAsync(bankAccount.CardNumber, bankAccount.ExtractMerchantId.ToString(), bankAccount.ExtractMerchantPassword, dateFrom, dateTo)).ToList();
             await Task.WhenAll(responses.ToArray());
             foreach (var task in responses)
             {
@@ -190,7 +186,7 @@ namespace FundTrack.PrivatImport
                 var dataForImportDetails = PrivatToBankImportDetails(privatImport, fundTrackEntitiesContext);
                 foreach (var detail in dataForImportDetails)
                 {
-                    AddBankImportDetails(detail, fundTrackEntitiesContext);
+                    fundTrackEntitiesContext.BankImportDetails.Add(detail);
                 }
                 fundTrackEntitiesContext.SaveChanges();
             }
