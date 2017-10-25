@@ -1,6 +1,9 @@
 ﻿using FundTrack.AutoImportService.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +15,11 @@ namespace FundTrack.AutoImportService.Services
 {
     class TimerService
     {
+        private readonly string _connectionString;
+        public TimerService()
+        {
+            _connectionString = ConfigurationManager.ConnectionStrings[Constants.ConnectionStringName].ConnectionString;
+        }
         /// <summary>
         /// Create new timer
         /// </summary>
@@ -25,6 +33,17 @@ namespace FundTrack.AutoImportService.Services
             return timer;
         }
 
+        private void UpdateDate(int currentOrgId)
+        {
+            var newComand = Constants.UpdateQuerySet;
+            SqlConnection connection = new SqlConnection(_connectionString);
+            SqlCommand command = new SqlCommand(newComand, connection);
+            command.Parameters.Add("@DateParam", SqlDbType.DateTime2).Value = DateTime.Now;
+            command.Parameters.Add("@orgId", SqlDbType.Int).Value = currentOrgId;
+            connection.Open();
+            command.ExecuteNonQuery();
+            connection.Close();
+        }
         /// <summary>
         /// Import data from privat 24. Called when the timer is triggered.
         /// </summary>
@@ -33,7 +52,9 @@ namespace FundTrack.AutoImportService.Services
         {
             TimerWithIntervalViewModel thisTimer = (TimerWithIntervalViewModel)o;
             int intervalInMinutes = (int)ConvertToMinutes(thisTimer.IntervalViewModel.Interval);
-            PrivatImporter.Run(thisTimer.IntervalViewModel.OrganizationId, intervalInMinutes);
+            PrivatImporter.Import(thisTimer.IntervalViewModel.OrganizationId, intervalInMinutes);
+            UpdateDate(thisTimer.IntervalViewModel.OrganizationId);
+
         }
 
         private long ConvertToMinutes(long milliseconds)

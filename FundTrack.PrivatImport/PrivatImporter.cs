@@ -148,7 +148,42 @@ namespace FundTrack.PrivatImport
                                                             && ba.IsExtractEnabled == true).ToList();
         }
 
-        public static async void Run(int orgId, int minutes)
+        /// <summary>
+        /// Import data from Privat24 for card from some date to now
+        /// </summary>
+        /// <param name="cardNumber">Privat merchant card number</param>
+        /// <param name="merchantId">Merchant Id from Privat24</param>
+        /// <param name="merchantPassword">Merchant password from Privat24</param>
+        /// <param name="dateFrom"></param>
+        public static async void Import(string cardNumber, string merchantId, string merchantPassword, DateTime dateFrom)
+        {
+            var fundTrackEntitiesContext = new FundTrackSS();
+            var responce = PrivatRequestAsync(cardNumber, merchantId, merchantPassword, dateFrom, DateTime.Now.Date);
+            await Task.WhenAll(responce);
+            ResponceProcessing(responce, fundTrackEntitiesContext);
+        }
+        /// <summary>
+        /// Import data from Privat24 for card from some date to end date
+        /// </summary>
+        /// <param name="cardNumber">Privat merchant card number</param>
+        /// <param name="merchantId">Merchant Id from Privat24</param>
+        /// <param name="merchantPassword">Merchant password from Privat24</param>
+        /// <param name="dateFrom"></param>
+        /// <param name="dateTo"></param>
+
+        public static async void Import(string cardNumber, string merchantId, string merchantPassword, DateTime dateFrom, DateTime dateTo)
+        {
+            var fundTrackEntitiesContext = new FundTrackSS();
+            var responce = PrivatRequestAsync(cardNumber, merchantId, merchantPassword, dateFrom, dateTo);
+            await Task.WhenAll(responce);
+            ResponceProcessing(responce, fundTrackEntitiesContext);
+        }
+        /// <summary>
+        /// Import data from Privat24 for all accounts of Organization
+        /// </summary>
+        /// <param name="orgId">Organization Id </param>
+        /// <param name="minutes">Interval (in minutes)</param>
+        public static async void Import(int orgId, int minutes)
         {
             var fundTrackEntitiesContext = new FundTrackSS();
             DateTime dateTo = DateTime.Now;
@@ -166,33 +201,41 @@ namespace FundTrack.PrivatImport
             await Task.WhenAll(responses.ToArray());
             foreach (var task in responses)
             {
-                var response = task.Result?.ParseXmlTo<Response>();
-                if (response?.merchant == null)
-                {
-                    continue;
-                }
-
-                var privatImport = response.data.info.statements.statement;
-                if (privatImport == null)
-                {
-                    continue;
-                }
-                var appcodes = fundTrackEntitiesContext.BankImportDetails.Select(bid => bid.AppCode).ToList();
-                privatImport = privatImport.Where(bi => !appcodes.Contains((int?)bi.appcode)).ToArray();
-                if (privatImport.Length == 0)
-                {
-                    continue;
-                }
-                var dataForImportDetails = PrivatToBankImportDetails(privatImport, fundTrackEntitiesContext);
-                foreach (var detail in dataForImportDetails)
-                {
-                    fundTrackEntitiesContext.BankImportDetails.Add(detail);
-                }
-                fundTrackEntitiesContext.SaveChanges();
+                ResponceProcessing(task, fundTrackEntitiesContext);
             }
         }
 
-        private static List<BankImportDetails> PrivatToBankImportDetails(IEnumerable<Statement> import, FundTrackSS context)
+        private static void ResponceProcessing(Task<string> task, FundTrackSS context)
+        {
+            var response = task.Result?.ParseXmlTo<Response>();
+            if (response?.merchant == null)
+            {
+                return;
+            }
+
+            var privatImport = response.data.info.statements.statement;
+            if (privatImport == null)
+            {
+                return;
+            }
+
+            var appcodes = context.BankImportDetails.Select(bid => bid.AppCode).ToList();
+            privatImport = privatImport.Where(bi => !appcodes.Contains((int?)bi.appcode)).ToArray();
+            if (privatImport.Length == 0)
+            {
+                return;
+            }
+
+            var dataForImportDetails = PrivatToBankImportDetails(privatImport);
+            foreach (var detail in dataForImportDetails)
+            {
+                context.BankImportDetails.Add(detail);
+            }
+
+            context.SaveChanges();
+        }
+
+        private static List<BankImportDetails> PrivatToBankImportDetails(IEnumerable<Statement> import)
         {
             return import.Select(bankImport => new BankImportDetails
             {

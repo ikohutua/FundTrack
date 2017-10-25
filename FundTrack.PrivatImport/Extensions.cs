@@ -1,16 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Serialization;
 
 namespace FundTrack.PrivatImport
 {
-    public static class StringExtensions
-    {
+    public static class Extensions
+    { 
+        /// <summary>
+        /// Make Stream from string
+        /// </summary>
         private static Stream ToStream(this string @this)
         {
             var stream = new MemoryStream();
@@ -21,6 +20,9 @@ namespace FundTrack.PrivatImport
             return stream;
         }
 
+        /// <summary>
+        /// parse XML string into object of T class using serialization
+        /// </summary>
         public static T ParseXmlTo<T>(this string @this) where T : class
         {
             var reader = XmlReader.Create(@this.Trim().ToStream(),
@@ -34,6 +36,10 @@ namespace FundTrack.PrivatImport
             return new object() as T;
         }
 
+        /// <summary>
+        /// Serialize T object into XML string
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
         public static string Serialize<T>(this T value)
         {
             if (value == null)

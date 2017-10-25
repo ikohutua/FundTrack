@@ -55,6 +55,7 @@
     <Compile Include="BankImportDetails.cs">
       <DependentUpon>FundTrackEntityModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Extensions.cs" />
     <Compile Include="FundTrackEntityModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -81,7 +82,6 @@
     <Compile Include="Response\Response.cs" />
     <Compile Include="Response\Statement.cs" />
     <Compile Include="Response\Statements.cs" />
-    <Compile Include="StringExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <EntityDeploy Include="FundTrackEntityModel.edmx">

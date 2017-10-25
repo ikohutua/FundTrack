@@ -24,5 +24,6 @@ namespace FundTrack.PrivatImport
         public string Terminal { get; set; }
         public System.DateTime Trandate { get; set; }
         public bool IsLooked { get; set; }
+        public Nullable<int> FinOpId { get; set; }
     }
 }

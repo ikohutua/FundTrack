@@ -15,14 +15,14 @@ namespace FundTrack.AutoImportService.Services
 {
     public class AutoImportIntervalService
     {
-        private string connectionString;
+        private readonly string _connectionString;
         private List<TimerWithIntervalViewModel> timers;
         TimerService timerService;
         Timer timerForCheckChanges;
 
         public AutoImportIntervalService()
         {
-            connectionString = ConfigurationManager.ConnectionStrings[Constants.ConnectionStringName].ConnectionString;
+            _connectionString = ConfigurationManager.ConnectionStrings[Constants.ConnectionStringName].ConnectionString;
             timers = new List<TimerWithIntervalViewModel>();
             timerService = new TimerService();
         }
@@ -37,9 +37,11 @@ namespace FundTrack.AutoImportService.Services
             }
         }
 
+        
+
         public IEnumerable<AutoImportIntervalViewModel> GetIntervals()
         {
-            SqlConnection connection = new SqlConnection(connectionString);
+            SqlConnection connection = new SqlConnection(_connectionString);
             SqlCommand command = new SqlCommand(Constants.SelectAllIntervalsQuery, connection);
             connection.Open();
             SqlDataReader reader = command.ExecuteReader();
@@ -51,6 +53,7 @@ namespace FundTrack.AutoImportService.Services
                 model.Id = (int)reader[Constants.IdColumn];
                 model.Interval = ConvertToMiliseconds((int)reader[Constants.IntervalColumn]);
                 model.OrganizationId = (int)reader[Constants.OrgIdColumn];
+                //model.LastUpdateDate = (DateTime?)reader[Constants.LastUpdateColumn];
                 intervals.Add(model);
             }
             connection.Close();
@@ -67,7 +70,7 @@ namespace FundTrack.AutoImportService.Services
             var intervals = GetIntervals();
             foreach (var interval in intervals)
             {
-                var timer = timers.Where(x => x.IntervalViewModel.Id == interval.Id).FirstOrDefault();
+                var timer = timers.FirstOrDefault(x => x.IntervalViewModel.Id == interval.Id);
                 // If timer not found that it is new interval in db.
                 if(timer == null)
                 {
@@ -85,3 +88,4 @@ namespace FundTrack.AutoImportService.Services
 
     }
 }
+

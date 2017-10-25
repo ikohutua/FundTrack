@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="FundTrackSSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="FundTrackSSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="BankAccounts">
           <Key>
             <PropertyRef Name="Id" />
@@ -38,6 +38,7 @@
           <Property Name="Terminal" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Trandate" Type="datetime" Nullable="false" />
           <Property Name="IsLooked" Type="bit" Nullable="false" />
+          <Property Name="FinOpId" Type="int" />
         </EntityType>
         <EntityType Name="OrgAccounts">
           <Key>
@@ -76,8 +77,7 @@
             <End Role="OrgAccounts" EntitySet="OrgAccounts" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="FundTrackSSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -115,6 +115,7 @@
           <Property Name="Terminal" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Trandate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="IsLooked" Type="Boolean" Nullable="false" />
+          <Property Name="FinOpId" Type="Int32" />
         </EntityType>
         <EntityType Name="OrgAccounts">
           <Key>
@@ -153,7 +154,7 @@
             <End Role="BankAccounts" EntitySet="BankAccounts" />
             <End Role="OrgAccounts" EntitySet="OrgAccounts" />
           </AssociationSet>
-        </EntityContainer>
+          </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -183,6 +184,7 @@
           <EntitySetMapping Name="BankImportDetails">
             <EntityTypeMapping TypeName="FundTrackSSModel.BankImportDetails">
               <MappingFragment StoreEntitySet="BankImportDetails">
+                <ScalarProperty Name="FinOpId" ColumnName="FinOpId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Amount" ColumnName="Amount" />
                 <ScalarProperty Name="AppCode" ColumnName="AppCode" />
@@ -213,7 +215,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-        </EntityContainerMapping>
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>
