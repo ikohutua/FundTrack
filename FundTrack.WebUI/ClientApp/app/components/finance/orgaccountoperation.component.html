@@ -14,8 +14,8 @@
                 <th class="th-center-align col-sm-1">№</th>
                 <th class="th-center-align col-sm-2">Дата і час операції</th>
                 <th class="th-center-align col-sm-1">
-                    <select #operation (change)="viewFinOpsByOperation(operation.value)" class="th-center-align" >
-                        <option *ngIf="!default" selected disabled>Тип операції</option>
+                    <select #operation (change)="onFinOpTypeChange(operation.value)" class="th-center-align" >
+                        <option value=-1 selected>Всі операції</option>
                         <option value=1>Прихід</option>
                         <option value=0>Розхід</option>
                         <option value=2>Переміщення</option>
@@ -30,14 +30,14 @@
         </thead>
         <tbody>
             <tr *ngFor="let finOp of finOps; let i = index">
-                <td class="col-sm-1"> {{i+1}}</td>
+                <td class="col-sm-1">{{offset + i + 1}}</td>
                 <td class="col-sm-2">{{finOp.date | date: 'dd/MM/yyyy hh:mm'}}</td>
                 <td class="col-sm-1">{{finOp.finOpName}}</td>
                 <td class="col-sm-3">{{finOp.description}}</td>
                 <td class="col-sm-1">{{finOp.target}}</td>
                 <td class="col-sm-1 money">{{finOp.amount}}</td>
                 <td class="col-sm-1">
-                    <button class="btn right" title="Редагувати" (click)="openUpdateFinOpModal(finOp)">
+                    <button [disabled]="!finOp.isEditable" class="btn right" title="Редагувати" (click)="openUpdateFinOpModal(finOp)">
                         <span class="glyphicon glyphicon-pencil">
                         </span>
                     </button>
@@ -50,203 +50,30 @@
             </tr>
         </tbody>
     </table>
+    <div>
+        <div id="for-select-item">
+            <span>Показати по:</span>
+            <select #count (change)="itemsPerPageChange(count.value)" class="th-center-align">
+                <option value =5>5</option>
+                <option value=10 selected>10</option>
+                <option value=20>20</option>
+                <option value=50>50</option>
+            </select>
+        </div>
+        <div class="text-center" *ngIf="(totalItems) && (itemPerPage)">
+            <pagination-pages [offset]="offset" [limit]="itemPerPage" [size]="totalItemsForFinOpType" [currentPage]="currentPage" (pageChange)="onPageChange($event)"
+                              class="col-md-12">
+            </pagination-pages>
+        </div>
+    </div>
     <a class="btn" (click)="viewAllFinOps()">Переглянути всі операції по рахунку</a>
 
-    <a *ngIf="isCashType" class="btn" (click)="openModal(newMoneyIncomeWindow)">Добавити прихід</a>
-    <a *ngIf="isCashType" class="btn" (click)="openModal(newMoneySpendingWindow)">Добавити витрату</a>
+    <a *ngIf="isCashType" class="btn" (click)="navigateToIncomeOperationPage()">Добавити прихід</a>
+    <a *ngIf="isCashType" class="btn" (click)="navigateToSpendingOperationPage()">Добавити витрату</a>
     <a *ngIf="isCashType" class="btn" (click)="openModal(newMoneyTransferWindow)">Переказ коштів</a>
 
     <div name="snackbar" id="suggestedToast">{{toasterMessage}}</div>
 </div>
-
-<app-modal #newMoneyIncome>
-    <div class="app-modal-header">
-        <button type="button" class="close" aria-hidden="true" (click)="closeModal(newMoneyIncomeWindow, moneyIncomeForm)">&times;</button>
-        <h4 class="modal-title">Додати прихід </h4>
-    </div>
-    <div class="app-modal-body">
-        <div class="collapse in" id="collapseExample">
-            <form class="form-horizontal" [formGroup]="moneyIncomeForm" id="moneyOperation" novalidate>
-                <div class="form-group">
-                    <label class="control-label">Назва рахунку</label>
-                    <input class="form-control"
-                           disabled
-                           type="text"
-                           placeholder={{currentAccount.orgAccountName}}
-                           name="cardToId" />
-                </div>
-                <div class="form-group">
-                    <label class="control-label">Сума<sup class="sup-color-red">*</sup></label>
-                    <input class="form-control"
-                           type="text"
-                           placeholder="Сума"
-                           name="amount"
-                           formControlName="amount"
-                           [(ngModel)]="moneyOperationModel.amount"
-                           required="" />
-                    <span *ngIf="formIncomeErrors.amount" class="has-error help-block error-message">
-                        {{ formIncomeErrors.amount }}
-                    </span>
-                </div>
-                <div class="form-group">
-                    <label class="control-label">Опис</label>
-                    <textarea class="form-control"
-                              placeholder="Опис"
-                              name="description"
-                              maxlength="500"
-                              formControlName="description"
-                              [(ngModel)]="moneyOperationModel.description"></textarea>
-                    <span *ngIf="formIncomeErrors.description" class="has-error help-block error-message">
-                        {{ formIncomeErrors.description }}
-                    </span>
-                </div>
-                <div class="form-group">
-                    <label class="control-label">Призначення<sup class="sup-color-red">*</sup></label>
-                    <select #detalizationIncome (change)="getSubTargetsByTargetId(detalizationIncome.value)" [(ngModel)]="moneyOperationModel.targetId" formControlName="targetId" id="categoryType" class="form-control">
-                        <option></option>
-                        <option *ngFor="let target of baseTargets" value="{{target.targetId}}">
-                            {{target.name}}
-                        </option>
-                    </select>
-                </div>
-                <div [hidden]="!isBaseTargetChosen" class="form-group">
-                    <label class="control-label">Деталізація<sup class="sup-color-red">*</sup></label>
-                    <select [(ngModel)]="moneyOperationModel.targetId" formControlName="targetId" id="categoryType" class="form-control">
-                        <option *ngFor="let target of subTargets" value="{{target.targetId}}">
-                            {{target.name}}
-                        </option>
-                    </select>
-                    <span *ngIf="formIncomeErrors.targetId" class="has-error help-block error-message">
-                        {{ formIncomeErrors.targetId }}
-                    </span>
-                </div>
-                <div class="form-group">
-                    <label class="control-label">Дата<sup class="sup-color-red">*</sup></label>
-                    <input type="date"
-                           class="input-sm form-control no-spin"
-                           formControlName="date"
-                           #dateIncome (input)="setDate(moneyOperationModel,dateIncome.value)"
-                           [value]="moneyOperationModel.date | date:'yyyy-MM-dd'"
-                           min="{{minDate}}"
-                           max="{{currentDate}}" />
-
-                </div>
-            </form>
-        </div>
-    </div>
-    <div class="app-modal-footer">
-        <button (click)="makeIncome()"
-                class="btn btn-fundtrack-style pull-left"
-                data-dismiss="modal"
-                [disabled]="moneyIncomeForm.invalid">
-            ОК
-        </button>
-        <button (click)="closeModal(newMoneyIncomeWindow, moneyIncomeForm)"
-                class="btn btn-default pull-right"
-                data-dismiss="modal">
-            Скасувати
-        </button>
-    </div>
-</app-modal>
-
-<app-modal #newMoneySpending>
-    <div class="app-modal-header">
-        <button type="button" class="close" aria-hidden="true" (click)="closeModal(newMoneySpendingWindow, moneySpendingForm)">&times;</button>
-        <h4 class="modal-title">Додати розхід </h4>
-    </div>
-    <div class="app-modal-body">
-        <div class="collapse in" id="collapseExample">
-            <form class="form-horizontal" [formGroup]="moneySpendingForm" id="moneySpending" novalidate>
-                <div class="form-group">
-                    <label class="control-label">Назва рахунку</label>
-                    <input class="form-control"
-                           disabled
-                           type="text"
-                           placeholder={{currentAccount.orgAccountName}}
-                           name="cardFromId" />
-                </div>
-                <div class="form-group">
-                    <label class="control-label">Сума<sup class="sup-color-red">*</sup></label>
-                    <input class="form-control"
-                           type="text"
-                           placeholder="Сума"
-                           formControlName="amount"
-                           [(ngModel)]="moneyOperationModel.amount" />
-                    <span *ngIf="formSpendingErrors.amount" class="has-error help-block error-message">
-                        {{ formSpendingErrors.amount }}
-                    </span>
-                </div>
-                <div class="form-group">
-                    <label class="control-label">Опис</label>
-                    <textarea class="form-control"
-                              placeholder="Опис"
-                              name="description"
-                              maxlength="500"
-                              formControlName="description"
-                              [(ngModel)]="moneyOperationModel.description"></textarea>
-                    <span *ngIf="formSpendingErrors.description" class="has-error help-block error-message">
-                        {{ formSpendingErrors.description }}
-                    </span>
-                </div>
-                <div class="form-group">
-                    <label class="control-label">Призначення<sup class="sup-color-red">*</sup></label>
-                    <select #detalizationSpending (change)="getSubTargetsByTargetId(detalizationSpending.value)" [(ngModel)]="moneyOperationModel.targetId" formControlName="targetId" id="categoryType" class="form-control">
-                        <option></option>
-                        <option *ngFor="let target of baseTargets" value="{{target.targetId}}">
-                            {{target.name}}
-                        </option>
-                    </select>
-                    <span *ngIf="formSpendingErrors.targetId" class="has-error help-block error-message">
-                        {{ formSpendingErrors.targetId }}
-                    </span>
-                </div>
-                <div [hidden]="!isBaseTargetChosen" class="form-group">
-                    <label class="control-label">Деталізація<sup class="sup-color-red">*</sup></label>
-                    <select [(ngModel)]="moneyOperationModel.targetId" formControlName="targetId" id="categoryType" class="form-control">
-                        <option *ngFor="let target of subTargets" value="{{target.targetId}}">
-                            {{target.name}}
-                        </option>
-                    </select>
-                    <span *ngIf="formSpendingErrors.targetId" class="has-error help-block error-message">
-                        {{ formSpendingErrors.targetId }}
-                    </span>
-                </div>
-                <div class="form-group">
-                    <label class="control-label">Дата<sup class="sup-color-red">*</sup></label>
-                    <input type="date"
-                           class="input-sm form-control no-spin"
-                           formControlName="date"
-                           #dateSpending (input)="setDate(moneyOperationModel,dateSpending.value)"
-                           [value]="moneyOperationModel.date | date:'yyyy-MM-dd'"
-                           min="{{minDate}}"
-                           max="{{currentDate}}" />
-
-                </div>
-                <div class="form-group">
-                    <label class="control-label">Фото<sup class="sup-color-red">*</sup></label>
-                    <div class="col-md-12">
-                        <div>
-                            <image-list [images]="images" [maxCount]="maxImgCount" [maxSize]="maxImgSize" (getImageChange)="onImageChange($event)"></image-list>
-                        </div>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-    <div class="app-modal-footer">
-        <button (click)="makeSpending()"
-                class="btn btn-fundtrack-style pull-left"
-                data-dismiss="modal"
-                [disabled]="moneySpendingForm.invalid">
-            ОК
-        </button>
-        <button (click)="closeModal(newMoneySpendingWindow, moneySpendingForm)"
-                class="btn btn-default pull-right"
-                data-dismiss="modal">
-            Скасувати
-        </button>
-    </div>
-</app-modal>
 
 <app-modal #newMoneyTransfer>
     <div class="app-modal-header">
@@ -427,6 +254,22 @@
                            type="text"
                            placeholder="{{currentAccount.orgAccountName}}" />
                 </div>
+                <div *ngIf="(isDeposite)" class="form-group">
+                    <label class="control-label">Назва готівкового рахунку</label>
+                    <select [(ngModel)]="updateFinOperation.cardFromId" formControlName="cardFromId" id="categoryType" class="form-control" required>
+                        <option *ngFor="let account of accountsTo" value="{{account.id}}">
+                            {{account.orgAccountName}}
+                        </option>
+                    </select>
+                </div>
+                <div *ngIf="(isWindthraw)" class="form-group">
+                    <label class="control-label">Назва готівкового рахунку</label>
+                    <select [(ngModel)]="updateFinOperation.cardToId" formControlName="cardToId" id="categoryType" class="form-control" required>
+                        <option *ngFor="let account of accountsTo" value="{{account.id}}">
+                            {{account.orgAccountName}}
+                        </option>
+                    </select>
+                </div>
                 <div class="form-group">
                     <label class="control-label">Сума</label>
                     <input class="form-control"
@@ -476,10 +319,23 @@
                            [value]="updateFinOperation.date | date:'yyyy-MM-dd'"
                            min="{{minDate}}"
                            max="{{currentDate}}" />
-
                 </div>
-            </form>
-        </div>
+                <div *ngIf="(!isCashType) && (updateFinOperation.finOpType==0)" class="form-group">
+                    <input type="checkbox"
+                           name="iswindthraw"
+                           [checked]="isWindthraw"
+                           (change)="isWindthraw=!isWindthraw" />
+                    <label class="control-label">Це зняття коштів?</label>
+                </div>
+                <div *ngIf="(!isCashType) && (updateFinOperation.finOpType==1)" class="form-group">
+                    <input type="checkbox"
+                           name="isdeposite"
+                           [checked]="isDeposite"
+                           (change)="isDeposite=!isDeposite" />
+                    <label class="control-label">Це депозит?</label>
+                </div>
+        </form>
+    </div>
     </div>
     <div class="app-modal-footer">
         <button (click)="updateFinOp()"
@@ -495,7 +351,6 @@
         </button>
     </div>
 </app-modal>
-
 
 <app-modal #newBankAccountManagment>
     <div class="app-modal-header">
@@ -540,39 +395,36 @@
                 <h4 *ngIf="suggestedDonations.length>1">Виберіть пожертву:</h4>
                 <table class="table table-hover table-responsive">
                     <thead>
-                    <tr>
-                        <th class="th-center-align" *ngIf="suggestedDonations.length>1"></th>
-                        <th class="th-center-align">Дата</th>
-                        <th class="th-center-align">Сума</th>
-                        <th class="th-center-align">Опис</th>
-                    </tr>
+                        <tr>
+                            <th class="th-center-align" *ngIf="suggestedDonations.length>1"></th>
+                            <th class="th-center-align">Дата</th>
+                            <th class="th-center-align">Сума</th>
+                            <th class="th-center-align">Опис</th>
+                        </tr>
                     </thead>
                     <tbody>
-                    <tr *ngFor="let donation of suggestedDonations">
-                        <td class="th-center-align" *ngIf="suggestedDonations.length>1">
-                            <input type="radio" name="selectedRadioButton" [value]="donation.id" (change)="radioButtonOnChange(donation)" />
-                        </td>
-                        <td class="th-center-align">{{donation.donationDate | date: 'dd/MM/yyyy hh:mm'}}</td>
-                        <td class="th-center-align">{{donation.amount}}</td>
-                        <td class="th-center-align">{{donation.description}}</td>
-                    </tr>
+                        <tr *ngFor="let donation of suggestedDonations">
+                            <td class="th-center-align" *ngIf="suggestedDonations.length>1">
+                                <input type="radio" name="selectedRadioButton" [value]="donation.id" (change)="radioButtonOnChange(donation)" />
+                            </td>
+                            <td class="th-center-align">{{donation.donationDate | date: 'dd/MM/yyyy hh:mm'}}</td>
+                            <td class="th-center-align">{{donation.amount}}</td>
+                            <td class="th-center-align">{{donation.description}}</td>
+                        </tr>
                     </tbody>
                 </table>
-                
-            </div>
-            <div class="emptyDiv">
-            </div>
-            <div class="form-group col-md-5">
-                <label class="control-label"> Виберіть користувача: </label>
-                <select class="form-control" name="user" (ngModelChange)="onChangeUser($event)" ngModel [disabled]="isUserSelectDisabled()">
-                    <option *ngFor="let user of users" value="{{user.id}}" [selected]="user.id==selectedUserId">
-                        {{user.firstName}} {{user.lastName}} ({{user.login}})
-                    </option>
-                </select>
+                <div class="form-group col-md-5">
+                    <label class="control-label"> Виберіть користувача: </label>
+                    <select class="form-control" name="user" (ngModelChange)="onChangeUser($event)" ngModel>
+                        <option *ngFor="let user of users" value="{{user.id}}" [selected]="user.targetId==undefined">
+                            {{user.firstName}} {{user.lastName}}
+                        </option>
+                    </select>
+                </div>
             </div>
             <div class="right-float">
                 <button (click)="onClickSuggestionModalButton()"
-                        class="btn"
+                        class="btn btn-default"
                         data-dismiss="modal"
                         [disabled]="!IsOkButtonEnable()">
                     Так
@@ -587,3 +439,7 @@
     </div>
     <div class="app-modal-footer"></div>
 </app-modal>
+
+<!--<div>
+    <incomeoperation [orgId]="orgId" [currentAccount]="currentAccount"></incomeoperation>
+</div>-->

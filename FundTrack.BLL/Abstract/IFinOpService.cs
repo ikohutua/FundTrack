@@ -1,4 +1,5 @@
 ﻿using FundTrack.Infrastructure.ViewModel.FinanceViewModels;
+using FundTrack.Infrastructure.ViewModel.SuperAdminViewModels;
 using System.Collections.Generic;
 
 namespace FundTrack.BLL.Abstract
@@ -47,6 +48,10 @@ namespace FundTrack.BLL.Abstract
         /// <param name="orgAccountId">The org account identifier.</param>
         /// <returns></returns>
         IEnumerable<FinOpViewModel> GetFinOpsByOrgAccount(int orgAccountId);
+
+        IEnumerable<FinOpViewModel> GetFinOpByOrgAccountIdForPage(int orgAccountId, int currentPage, int itemsPerPage, int finOpType);
+
+        IEnumerable<int> GetFinOpInitData(int accountId);
 
         /// <summary>
         /// Gets all finOps by organizationId

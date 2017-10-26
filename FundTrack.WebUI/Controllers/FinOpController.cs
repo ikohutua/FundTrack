@@ -78,6 +78,26 @@ namespace FundTrack.WebUI.Controllers
             return Ok(_service.GetFinOpsById(id));
         }
 
+        [HttpGet("GetFinOpsByIdForPage/{accountId}/{currentPage}/{pageSize}/{finOptype}")]
+        public IActionResult GetFinOpsByIdForPage(int accountId, int currentPage, int pageSize, int finOpType)
+        {
+            if ((currentPage <= 0) && (pageSize <= 0))
+            {
+                return BadRequest();
+            }
+            return Ok(_service.GetFinOpByOrgAccountIdForPage(accountId, currentPage, pageSize, finOpType));
+        }
+
+        [HttpGet("GetFinOpInitData/{id}")]
+        public IActionResult GetFinOpInitData(int id)
+        {
+            if (id <= 0)
+            {
+                return BadRequest();
+            }
+            return Ok(_service.GetFinOpInitData(id));
+        }
+
         /// <summary>
         /// Create income finance operation.
         /// </summary>

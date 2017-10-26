@@ -12,7 +12,7 @@ namespace FundTrack.WebUI.Middlewares.Logging
 {
     public sealed class ErrorLogger: IErrorLogger
     {
-        public void WriteLogInFile(Exception ex)
+        public void WriteErrorLogInFile(Exception ex)
         {
             string path = @"C:\FundTrack\FundTrack.WebUI\Middlewares\Logging\" + DateTime.Now.Day + "."
                 + DateTime.Now.Month + "." + DateTime.Now.Year + "_Exception_Logs.txt";

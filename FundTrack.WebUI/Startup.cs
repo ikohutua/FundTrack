@@ -165,6 +165,8 @@ namespace FundTrack.WebUI
             //});
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
+            loggerFactory.AddFile("Logs/Errors/{Date}.txt", LogLevel.Error);
+            loggerFactory.AddFile("Logs/Info/{Date}.txt", LogLevel.Information);
 
             //if (env.IsDevelopment())
             //{

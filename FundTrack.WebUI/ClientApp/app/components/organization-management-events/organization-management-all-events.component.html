@@ -30,7 +30,7 @@
 <div *ngIf="_allEvents">
     <div class="center-block pagination-dropdown">
         <span id="for-select-item">Показати по:</span>
-        <select-item [items]="[4, 8, 12, 24, 48]" (onSelect)="itemsPerPageChange($event)">
+        <select-item [items]="[4,8,16,24,48]" (onSelect)="itemsPerPageChange($event)">
         </select-item>
     </div>
     <div class="text-center" *ngIf="_totalItems && _itemPerPage">
