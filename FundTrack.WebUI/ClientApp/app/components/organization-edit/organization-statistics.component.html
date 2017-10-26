@@ -22,14 +22,11 @@
                     </div>
                 </div>
             </div>
-            
         </div>
-        
         <div class="panel panel-default col-md-2 col-md-offset-1">
             <div class="panel-body">
                 <h4 class="muted">Тип звіту</h4>
                 <p></p>
-
                 <div>
                     <select name="finOpTypeSelect" class="input-sm form-control" [(ngModel)]="reportType" (ngModelChange)="onChangeFinOpType($event)" ngModel>
                         <option value="0">Витрати</option>
@@ -38,12 +35,15 @@
                 </div>
             </div>
         </div>
-
     </div>
-    
-    
-
-    <div class="col-md-10 col-md-offset-1">
+    <spinner [showSpinner]="showSpinner"></spinner>
+    <div *ngIf ="!showSpinner">
+    <div *ngIf="!isDataExists" class="panel-heading text-truncate">
+        <div style="font-size:medium;text-align:center;">
+            За даними критеріями фінансових операцій не знайдено.
+        </div>
+    </div>
+    <div class="col-md-10 col-md-offset-1 targets-list">
         <div class="row" *ngFor="let target of allTargets">
             <button type="button" class="baseTargetDiv" data-toggle="collapse" [attr.data-target]="'#' + target.id" (click)="onClickBaseTarget(target)">
                 <strong>{{target.targetName}}  {{target.sum | number : '1.2-2'}} ₴</strong>
@@ -97,30 +97,34 @@
             </div>
         </div>
     </div>
-
-    <div class="container-fluid">
-        <div class="col-md-4 chart-container">
-            <ngx-charts-bar-vertical [scheme]="colorScheme"
-                                     [results]="dataSet"
-                                     [gradient]="gradient"
-                                     [xAxis]="showXAxis"
-                                     [yAxis]="showYAxis"
-                                     [legend]="showLegend"
-                                     [showXAxisLabel]="showXAxisLabel"
-                                     [showYAxisLabel]="showYAxisLabel"
-                                     [xAxisLabel]="xAxisLabel"
-                                     [yAxisLabel]="yAxisLabel"
-                                     [barPadding]="barPadding"
-                                     (select)="onSelect($event)">
-            </ngx-charts-bar-vertical>
-        </div>
-        <div class="col-md-8 chart-container">
-            <ngx-charts-advanced-pie-chart [scheme]="colorScheme"
-                                           [results]="dataSet"
-                                           [gradient]="gradient"
-                                           (select)="onSelect($event)">
-
-            </ngx-charts-advanced-pie-chart>
+        <div *ngIf="isDataExists">
+            <div class="col-md-12">
+                <h4>Графіки по категорії: <label style="font-weight: bold">{{selectedCategory}}</label></h4>
+            </div>
+            <div class="container-fluid">
+                <div class="col-md-4 chart-container">
+                    <ngx-charts-bar-vertical [scheme]="colorScheme"
+                                             [results]="dataSet"
+                                             [gradient]="gradient"
+                                             [xAxis]="showXAxis"
+                                             [yAxis]="showYAxis"
+                                             [legend]="showLegend"
+                                             [showXAxisLabel]="showXAxisLabel"
+                                             [showYAxisLabel]="showYAxisLabel"
+                                             [xAxisLabel]="xAxisLabel"
+                                             [yAxisLabel]="yAxisLabel"
+                                             [barPadding]="barPadding"
+                                             (select)="onSelect($event)">
+                    </ngx-charts-bar-vertical>
+                </div>
+                <div class="col-md-8 chart-container">
+                    <ngx-charts-advanced-pie-chart [scheme]="colorScheme"
+                                                   [results]="dataSet"
+                                                   [gradient]="gradient"
+                                                   (select)="onSelect($event)">
+                    </ngx-charts-advanced-pie-chart>
+                </div>
+            </div>
         </div>
     </div>
 </div>

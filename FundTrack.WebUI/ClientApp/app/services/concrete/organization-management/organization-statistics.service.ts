@@ -14,8 +14,7 @@ export class OrganizationStatisticsService {
     public getReportForFinopsByTargets(orgId: number, finOpType:number, dateFrom: string, dateTo: string):
         Observable<BaseTargetReportViewModel[]> {
         return this._http.get(GlobalUrlService.getReportForFinopsByTargets + orgId.toString() + '/' + finOpType.toString() + '?dateFrom=' + dateFrom + '&dateTo=' + dateTo, RequestOptionsService.getRequestOptions())
-            .map((res: Response) => <BaseTargetReportViewModel[]>res.json())
-            .do(res => console.log(res));
+            .map((res: Response) => <BaseTargetReportViewModel[]>res.json());
     }
 
     public getSubTargets(orgId: number, finOpType: number, baseTargetId: number, dateFrom: string, dateTo: string): Observable<SubTargetReportViewModel[]>{

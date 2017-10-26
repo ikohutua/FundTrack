@@ -45,24 +45,25 @@ export class OrganizationStatisticsComponent implements OnInit {
     unassingnedFinOps: FinOpListViewModel[] = Array<FinOpListViewModel>();
     user: AuthorizeUserModel = new AuthorizeUserModel();
     reportType: number = constant.incomeId; // set spending type as selected
+    selectedCategory: string = "Базові";
+    isDataExists: boolean = false;
+    private showSpinner: boolean = false;
+    private readonly baseTargetName: string = "Базові";
 
     constructor(private organizationStatisticsService: OrganizationStatisticsService,
         private datePipe: DatePipe) {
     }
 
     ngOnInit(): void {
+        this.showSpinner = true;
         if (isBrowser) {
             if (localStorage.getItem(key.keyToken)) {
                 this.user = JSON.parse(localStorage.getItem(key.keyModel)) as AuthorizeUserModel;
             }
         };
-        this.dateFrom.setMonth(this.dateFrom.getMonth() - 24); 
+        this.dateFrom.setMonth(this.dateFrom.getMonth() - 1); 
         this.prepareTargetsForCharts(this.allTargets);
-        this.organizationStatisticsService.getReportForFinopsByTargets(this.user.orgId, this.reportType, this.transformDate(this.dateFrom), this.transformDate(this.dateTo))
-            .subscribe(response => {
-                this.allTargets = response;
-                this.prepareTargetsForCharts(this.allTargets);
-            });
+        this.getBaseTargets();
     }
 
     public prepareTargetsForCharts(list: Array<AbctractTargetViewModel>) {
@@ -81,29 +82,33 @@ export class OrganizationStatisticsComponent implements OnInit {
 
     public setBeginDate(beginDate: Date): void {
         this.dateFrom = beginDate;
-        console.log(beginDate);
+        this.getBaseTargets();
     }
 
     public setEndDate(endDate: Date): void {
         this.dateTo = endDate;
-        console.log(endDate);
+        this.getBaseTargets();
     }
 
     private onClickBaseTarget(target: BaseTargetReportViewModel): void {
         target.isOpen = !target.isOpen;
         if (target.isOpen) {
             if (target.id === -1) {
+                this.selectedCategory = this.baseTargetName;
+                this.prepareTargetsForCharts(this.allTargets);
                 this.organizationStatisticsService.getFinOpsByTargetId(this.reportType, target.id, this.transformDate(this.dateFrom), this.transformDate(this.dateTo))
                     .subscribe(response => this.unassingnedFinOps = response);
             } else {
+                this.selectedCategory = target.targetName;
                 this.organizationStatisticsService.getSubTargets(this.user.orgId, this.reportType, target.id, this.transformDate(this.dateFrom), this.transformDate(this.dateTo))
                     .subscribe(response => {
-                        target.subTargetsArray = response;
+                        target.subTargetsArray = response; 
                         this.prepareTargetsForCharts(response);
                     });
             }
         }
         else {
+            this.selectedCategory = this.baseTargetName;
             this.prepareTargetsForCharts(this.allTargets);
         }
     }
@@ -122,7 +127,30 @@ export class OrganizationStatisticsComponent implements OnInit {
 
     private onChangeFinOpType($event): void {
         this.reportType = $event;
+        this.getBaseTargets();
+    }
+
+    private getBaseTargets(): void {
+        this.showSpinner = true;
         this.organizationStatisticsService.getReportForFinopsByTargets(this.user.orgId, this.reportType, this.transformDate(this.dateFrom), this.transformDate(this.dateTo))
-            .subscribe(response => this.allTargets = response);
+            .subscribe(response => {
+                this.allTargets = response;
+                this.prepareTargetsForCharts(response);
+                this.selectedCategory = this.baseTargetName;
+                this.checkData();
+                this.showSpinner = false;
+            });
+    }
+
+    private checkData(): void {
+        if (this.allTargets == undefined) {
+            this.isDataExists = false;
+            return;
+        }
+        if (this.allTargets.length == 0) {
+            this.isDataExists = false;
+            return;
+        }
+        this.isDataExists = true;
     }
 }

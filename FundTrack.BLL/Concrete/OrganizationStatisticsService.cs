@@ -23,55 +23,87 @@ namespace FundTrack.BLL.Concrete
         }
 
         public IEnumerable<TargetReportViewModel> GetReportForIncomeFinopsByTargets(int orgId, int finOpType, DateTime dateFrom, DateTime dateTo)
-        { 
-            var finOps = _unitOfWork.FinOpRepository.Read()
-                .Where(f => IfDateInRange(dateFrom, dateTo, f.FinOpDate) &&
-                            f.FinOpType == finOpType).ToList();
-
-            finOps.ForEach(f => f.TargetId = f.Target?.ParentTargetId ?? f.TargetId);
-            var result = finOps.GroupBy(f => f.TargetId).Select(t => new TargetReportViewModel
+        {
+            try
             {
-                Id = t.First().TargetId??-1,
-                TargetName = t.First().Target?.TargetName ?? "Призначення не вказано",
-                Sum = t.Sum(s => s.Amount)
-            }).OrderBy(t => t.Id);
+                var finOps = _unitOfWork.FinOpRepository.Read()
+                    .Where(f => IfDateInRange(dateFrom, dateTo, f.FinOpDate) &&
+                                f.FinOpType == finOpType
+                                && (f.OrgAccountTo.OrgId == orgId || f.OrgAccountFrom.OrgId == orgId)).ToList();
 
-            return result;
+                finOps.ForEach(f =>
+                {
+                    if (f.Target?.ParentTargetId != null)
+                    {
+                        f.TargetId = f.Target?.ParentTargetId;
+                        f.Target.TargetName = f.Target.ParentTarget.TargetName;
+                    }
+                });
+
+                var result = finOps.GroupBy(f => f.TargetId).Select(t => new TargetReportViewModel
+                {
+                    Id = t.First().TargetId ?? -1,
+                    TargetName = t.First().Target?.TargetName ?? "Призначення не вказано",
+                    Sum = t.Sum(s => s.Amount)
+                }).OrderBy(t => t.Id);
+
+                return result;
+            }
+            catch (Exception e)
+            {
+                throw new BusinessLogicException(ErrorMessages.CantGetFinOpsForReport, e);
+            }
+            
         }
 
         public IEnumerable<TargetReportViewModel> GetSubTargets(int orgId, int finOpType, int baseTargetId, DateTime dateFrom, DateTime dateTo)
         {
-            var targetIds = _targetService.GetTargets(orgId, baseTargetId).Select(t => t.TargetId).ToList();
-            var finOps = _unitOfWork.FinOpRepository.Read()
-                .Where(f => IfDateInRange(dateFrom, dateTo, f.FinOpDate) &&
-                            f.FinOpType == finOpType).ToList();
-
-            finOps = finOps.Where(f => f.TargetId == baseTargetId || targetIds.Contains(f.TargetId ?? -1)).ToList();
-
-            var result = finOps.GroupBy(f => f.TargetId).Select(t => new TargetReportViewModel
+            try
             {
-                Id = t.First().TargetId ?? -1,
-                TargetName = t.First().TargetId == baseTargetId ? "Базове призначення" : t.First().Target.TargetName,
-                Sum = t.Sum(s => s.Amount)
-            });
+                var targetIds = _targetService.GetTargets(orgId, baseTargetId).Select(t => t.TargetId).ToList();
+                var finOps = _unitOfWork.FinOpRepository.Read()
+                    .Where(f => IfDateInRange(dateFrom, dateTo, f.FinOpDate) &&
+                                f.FinOpType == finOpType
+                                && (f.OrgAccountTo.OrgId == orgId || f.OrgAccountFrom.OrgId == orgId)).ToList();
 
-            return result;
+                finOps = finOps.Where(f => f.TargetId == baseTargetId || targetIds.Contains(f.TargetId ?? -1)).ToList();
+
+                var result = finOps.GroupBy(f => f.TargetId).Select(t => new TargetReportViewModel
+                {
+                    Id = t.First().TargetId ?? -1,
+                    TargetName = t.First().TargetId == baseTargetId ? "Базове призначення" : t.First().Target.TargetName,
+                    Sum = t.Sum(s => s.Amount)
+                });
+
+                return result;
+            }
+            catch (Exception e)
+            { 
+                throw new BusinessLogicException(ErrorMessages.CantGetFinOpsForReport, e);
+            }
         }
 
         public IEnumerable<FinOpViewModel> GetFinOpsByTargetId(int finOpType, int? targetId, DateTime dateFrom, DateTime dateTo)
         {
-            if (targetId == -1)
+            try
             {
-                targetId = null; // to get all finOps without target
+                if (targetId == -1)
+                {
+                    targetId = null; // to get all finOps without target
+                }
+                var finOps = _unitOfWork.FinOpRepository.Read()
+                    .Where(f => f.FinOpType == finOpType && f.TargetId == targetId && IfDateInRange(dateFrom, dateTo, f.FinOpDate)).ToList();
+                return finOps.Select(ConvertFinOpToViewModel);
             }
-            var finOps = _unitOfWork.FinOpRepository.Read()
-                .Where(f => f.FinOpType == finOpType && f.TargetId == targetId && IfDateInRange(dateFrom, dateTo, f.FinOpDate)).ToList();
-            return finOps.Select(ConvertFinOpToViewModel);
+            catch (Exception e)
+            {
+                throw new BusinessLogicException(ErrorMessages.CantGetFinOpsForReport, e);
+            }
         }
 
         private bool IfDateInRange(DateTime dateFrom, DateTime dateTo, DateTime current)
         {
-            return current >= dateFrom && current <= dateTo;
+            return current.Date >= dateFrom.Date && current.Date <= dateTo.Date;
         }
 
         public static FinOpViewModel ConvertFinOpToViewModel(FinOp f)
