@@ -15,7 +15,7 @@ namespace FundTrack.PrivatImport
         private decimal _debet;
 
         [XmlElement("statement")]
-        public Statement[] statement
+        public Statement[] Statement
         {
             get
             {
@@ -27,8 +27,8 @@ namespace FundTrack.PrivatImport
             }
         }
 
-        [XmlAttribute]
-        public string status
+        [XmlAttribute("status")]
+        public string Status
         {
             get
             {
@@ -40,8 +40,8 @@ namespace FundTrack.PrivatImport
             }
         }
 
-        [XmlAttribute]
-        public decimal credit
+        [XmlAttribute("credit")]
+        public decimal Credit
         {
             get
             {
@@ -53,8 +53,8 @@ namespace FundTrack.PrivatImport
             }
         }
 
-        [XmlAttribute]
-        public decimal debet
+        [XmlAttribute("debet")]
+        public decimal Debet
         {
             get
             {

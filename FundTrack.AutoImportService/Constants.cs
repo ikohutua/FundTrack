@@ -9,7 +9,7 @@ namespace FundTrack.AutoImportService
     class Constants
     {
         public const string SelectAllIntervalsQuery = "select * from AutoImportInterval";
-        public const string UpdateQuerySet = "update AutoImportInterval set LastUpdateDate = @DateParam where OrgId = @orgId";
+        public const string UpdateQuerySet = "update AutoImportInterval set LastUpdateDate = @dateParam where OrgId = @orgId";
         public const string UpdateQueryWhere = " where OrgId = " ;
         public const string IntervalColumn = "Interval";
         public const string OrgIdColumn = "OrgId";

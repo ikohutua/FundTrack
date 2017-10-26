@@ -11,7 +11,8 @@ namespace FundTrack.PrivatImport
     {
         private Statements _statements;
 
-        public Statements statements
+        [XmlElement("statements")]
+        public Statements Statements
         {
             get
             {

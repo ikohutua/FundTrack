@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Configuration;
-using System.Data.OleDb;
 using System.Data.SqlClient;
 using FundTrack.AutoImportService.ViewModels;
 using System.Threading;
-using System.Data;
-using System.Data.Common;
 
 namespace FundTrack.AutoImportService.Services
 {

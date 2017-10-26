@@ -12,7 +12,8 @@ namespace FundTrack.PrivatImport
         private string _oper;
         private Info _info;
 
-        public string oper
+        [XmlElement("oper")]
+        public string Oper
         {
             get
             {
@@ -24,7 +25,8 @@ namespace FundTrack.PrivatImport
             }
         }
 
-        public Info info
+        [XmlElement("info")]
+        public Info Info
         {
             get
             {

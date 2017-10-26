@@ -19,8 +19,8 @@ namespace FundTrack.PrivatImport
         private string _terminal;
         private string _description;
 
-        [XmlAttribute]
-        public ulong card
+        [XmlAttribute("card")]
+        public ulong Card
         {
             get
             {
@@ -32,8 +32,8 @@ namespace FundTrack.PrivatImport
             }
         }
 
-        [XmlAttribute]
-        public uint appcode
+        [XmlAttribute("appcode")]
+        public uint Appcode
         {
             get
             {
@@ -45,8 +45,8 @@ namespace FundTrack.PrivatImport
             }
         }
 
-        [XmlAttribute(DataType = "date")]
-        public DateTime trandate
+        [XmlAttribute("trandate", DataType = "date")]
+        public DateTime Trandate
         {
             get
             {
@@ -58,8 +58,8 @@ namespace FundTrack.PrivatImport
             }
         }
 
-        [XmlAttribute(DataType = "time")]
-        public DateTime trantime
+        [XmlAttribute("trantime", DataType = "time")]
+        public DateTime Trantime
         {
             get
             {
@@ -71,8 +71,8 @@ namespace FundTrack.PrivatImport
             }
         }
 
-        [XmlAttribute]
-        public string amount
+        [XmlAttribute("amount")]
+        public string Amount
         {
             get
             {
@@ -84,8 +84,8 @@ namespace FundTrack.PrivatImport
             }
         }
 
-        [XmlAttribute]
-        public string cardamount
+        [XmlAttribute("cardamount")]
+        public string Cardamount
         {
             get
             {
@@ -97,8 +97,8 @@ namespace FundTrack.PrivatImport
             }
         }
 
-        [XmlAttribute]
-        public string rest
+        [XmlAttribute("rest")]
+        public string Rest
         {
             get
             {
@@ -110,8 +110,8 @@ namespace FundTrack.PrivatImport
             }
         }
 
-        [XmlAttribute]
-        public string terminal
+        [XmlAttribute("terminal")]
+        public string Terminal
         {
             get
             {
@@ -123,8 +123,8 @@ namespace FundTrack.PrivatImport
             }
         }
 
-        [XmlAttribute]
-        public string description
+        [XmlAttribute("description")]
+        public string Description
         {
             get
             {

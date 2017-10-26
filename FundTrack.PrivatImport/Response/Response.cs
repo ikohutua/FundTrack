@@ -14,7 +14,8 @@ namespace FundTrack.PrivatImport
         private Data _data;
         private decimal _version;
 
-        public Merchant merchant
+        [XmlElement("merchant")]
+        public Merchant Merchant
         {
             get
             {
@@ -26,7 +27,8 @@ namespace FundTrack.PrivatImport
             }
         }
 
-        public Data data
+        [XmlElement("data")]
+        public Data Data
         {
             get
             {
@@ -38,8 +40,8 @@ namespace FundTrack.PrivatImport
             }
         }
 
-        [XmlAttribute]
-        public decimal version
+        [XmlAttribute("version")]
+        public decimal Version
         {
             get
             {

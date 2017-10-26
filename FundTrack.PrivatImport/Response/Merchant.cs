@@ -12,7 +12,8 @@ namespace FundTrack.PrivatImport
         private uint _id;
         private string _signature;
 
-        public uint id
+        [XmlElement("id")]
+        public uint Id
         {
             get
             {
@@ -24,7 +25,8 @@ namespace FundTrack.PrivatImport
             }
         }
 
-        public string signature
+        [XmlElement("signature")]
+        public string Signature
         {
             get
             {

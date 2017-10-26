@@ -14,7 +14,6 @@ namespace FundTrack.PrivatImport
     
     public partial class BankAccounts
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public BankAccounts()
         {
             this.OrgAccounts = new HashSet<OrgAccounts>();
@@ -35,7 +34,6 @@ namespace FundTrack.PrivatImport
         public Nullable<bool> IsExtractEnabled { get; set; }
         public int BankId { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrgAccounts> OrgAccounts { get; set; }
     }
 }

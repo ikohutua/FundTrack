@@ -1,12 +1,8 @@
 ﻿using FundTrack.AutoImportService.ViewModels;
 using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Threading;
 using FundTrack.PrivatImport;
 
@@ -36,13 +32,14 @@ namespace FundTrack.AutoImportService.Services
         private void UpdateDate(int currentOrgId)
         {
             var newComand = Constants.UpdateQuerySet;
-            SqlConnection connection = new SqlConnection(_connectionString);
-            SqlCommand command = new SqlCommand(newComand, connection);
-            command.Parameters.Add("@DateParam", SqlDbType.DateTime2).Value = DateTime.Now;
-            command.Parameters.Add("@orgId", SqlDbType.Int).Value = currentOrgId;
-            connection.Open();
-            command.ExecuteNonQuery();
-            connection.Close();
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                SqlCommand command = new SqlCommand(newComand, connection);
+                command.Parameters.Add("@dateParam", SqlDbType.DateTime2).Value = DateTime.Now;
+                command.Parameters.Add("@orgId", SqlDbType.Int).Value = currentOrgId;
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
         }
         /// <summary>
         /// Import data from privat 24. Called when the timer is triggered.
@@ -51,10 +48,9 @@ namespace FundTrack.AutoImportService.Services
         private void ImportDataFromBank(object o)
         {
             TimerWithIntervalViewModel thisTimer = (TimerWithIntervalViewModel)o;
+            UpdateDate(thisTimer.IntervalViewModel.OrganizationId);
             int intervalInMinutes = (int)ConvertToMinutes(thisTimer.IntervalViewModel.Interval);
             PrivatImporter.Import(thisTimer.IntervalViewModel.OrganizationId, intervalInMinutes);
-            UpdateDate(thisTimer.IntervalViewModel.OrganizationId);
-
         }
 
         private long ConvertToMinutes(long milliseconds)

@@ -4,7 +4,7 @@ using FundTrack.Infrastructure.ViewModel.FinanceViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
-
+using FundTrack.PrivatImport;
 namespace FundTrack.WebUI.Controllers
 {
     /// <summary>
@@ -40,6 +40,7 @@ namespace FundTrack.WebUI.Controllers
             return this._service.RegisterBankExtracts(bankModel);
         }
 
+
         //[HttpPost("SendRequestFondy")]
         //public string SendRequestFondy([FromBody]  DataRequestPrivatViewModel request)
         //{
@@ -68,6 +69,7 @@ namespace FundTrack.WebUI.Controllers
             return this._service.GetRawExtracts(bankSearchModel);
         }
 
+
         /// <summary>
         /// Gets all extracts in one orgaccount.
         /// </summary>
@@ -90,6 +92,14 @@ namespace FundTrack.WebUI.Controllers
         public int GetCountExtracts(string card)
         {
             return this._service.GetCountExtracts(card);
+        }
+
+        [HttpPost("ImportPrivate/{orgAccountId}")]
+        //[Authorize(Roles = "admin, moderator")]
+        public IActionResult ImportPrivate(int orgAccountId)
+        {
+            _service.ImportFromPrivat(orgAccountId);
+            return Ok();
         }
     }
 }

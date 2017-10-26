@@ -208,19 +208,19 @@ namespace FundTrack.PrivatImport
         private static void ResponceProcessing(Task<string> task, FundTrackSS context)
         {
             var response = task.Result?.ParseXmlTo<Response>();
-            if (response?.merchant == null)
+            if (response?.Merchant == null)
             {
                 return;
             }
 
-            var privatImport = response.data.info.statements.statement;
+            var privatImport = response.Data.Info.Statements.Statement;
             if (privatImport == null)
             {
                 return;
             }
 
             var appcodes = context.BankImportDetails.Select(bid => bid.AppCode).ToList();
-            privatImport = privatImport.Where(bi => !appcodes.Contains((int?)bi.appcode)).ToArray();
+            privatImport = privatImport.Where(bi => !appcodes.Contains((int?)bi.Appcode)).ToArray();
             if (privatImport.Length == 0)
             {
                 return;
@@ -239,15 +239,15 @@ namespace FundTrack.PrivatImport
         {
             return import.Select(bankImport => new BankImportDetails
             {
-                AppCode = (int?)bankImport.appcode,
-                Card = bankImport.card.ToString(),
-                Amount = bankImport.amount,
-                Description = bankImport.description,
-                Trandate = new DateTime(bankImport.trandate.Year, bankImport.trandate.Month, bankImport.trandate.Day,
-                                        bankImport.trantime.Hour, bankImport.trantime.Minute, bankImport.trantime.Second),
-                Terminal = bankImport.terminal,
-                CardAmount = bankImport.cardamount,
-                Rest = bankImport.rest,
+                AppCode = (int?)bankImport.Appcode,
+                Card = bankImport.Card.ToString(),
+                Amount = bankImport.Amount,
+                Description = bankImport.Description,
+                Trandate = new DateTime(bankImport.Trandate.Year, bankImport.Trandate.Month, bankImport.Trandate.Day,
+                                        bankImport.Trantime.Hour, bankImport.Trantime.Minute, bankImport.Trantime.Second),
+                Terminal = bankImport.Terminal,
+                CardAmount = bankImport.Cardamount,
+                Rest = bankImport.Rest,
                 IsLooked = false
             }).ToList();
         }
