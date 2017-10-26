@@ -5,7 +5,7 @@ import { Observable } from "rxjs/Observable";
 import "rxjs/add/operator/map";
 import 'rxjs/add/operator/do';
 import "rxjs/add/operator/catch";
-import { PaginationInitViewModel } from "../../../view-models/abstract/organization-management-view-models/pagination-init-view-model.interface";
+import { EventInitViewModel } from "../../../view-models/abstract/event-initpaginationdata-view-model";
 
 @Injectable()
 export class OrganizationManagementEventsService {
@@ -91,9 +91,9 @@ export class OrganizationManagementEventsService {
      * Gets Events Init Data
      * @param idOrganization
      */
-    public getEventsInitData(idOrganization: number): Observable<PaginationInitViewModel> {
+    public getEventsInitData(idOrganization: number): Observable<EventInitViewModel> {
         return this._http.get(this._url + "GetEventsInitData/" + idOrganization)
-            .map((response: Response) => <PaginationInitViewModel>response.json())
+            .map((response: Response) => <EventInitViewModel>response.json())
             .catch(this.handleError);
     }
 

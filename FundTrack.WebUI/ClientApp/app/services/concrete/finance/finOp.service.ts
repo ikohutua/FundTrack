@@ -14,7 +14,7 @@ import { FinOpFromBankViewModel } from "../../../view-models/concrete/finance/fi
 import { SpinnerComponent } from "../../../shared/components/spinner/spinner.component";
 import { BaseSpinnerService } from "../../abstract/base-spinner-service";
 import { FinOpListViewModel } from "../../../view-models/concrete/finance/finop-list-viewmodel";
-import { PaginationInitViewModel } from "../../../view-models/abstract/organization-management-view-models/pagination-init-view-model.interface";
+import { EventInitViewModel } from "../../../view-models/abstract/event-initpaginationdata-view-model";
 import { RequestOptionsService } from "../request-options.service";
 import { GlobalUrlService } from "../global-url.service";
 
@@ -126,9 +126,8 @@ export class FinOpService extends BaseSpinnerService<FinOpFromBankViewModel> {
     }
 
     public getFinOpByOrgAccountIdForPage(accountId: number, currentPage: number, pageSize: number, finOpType: number = -1): Observable<FinOpListViewModel[]> {
-        //debugger;
         if (this.checkAuthorization()) {
-            return this._http.get(GlobalUrlService.getFinOpUrlForPage + '/' + accountId + '/' + currentPage + '/' + pageSize + '/' + finOpType,
+            return this._http.get(GlobalUrlService.getFinOpUrlForPage + '/' + accountId + '/' + finOpType + '?currentPage=' + currentPage + '&pageSize=' + pageSize,
                  RequestOptionsService.getRequestOptions())
                 .map((response: Response) => <FinOpListViewModel[]>response.json())
                 .catch(this.handleError);
@@ -136,7 +135,6 @@ export class FinOpService extends BaseSpinnerService<FinOpFromBankViewModel> {
     }
 
     public getFinOpInitData(accountId: number): Observable<number[]> {
-        //debugger;
         return this._http.get(GlobalUrlService.getFinOpInitData + '/' + accountId)
             .map((response: Response) => <number[]>response.json())
             .catch(this.handleError);

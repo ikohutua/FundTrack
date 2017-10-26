@@ -78,7 +78,7 @@ namespace FundTrack.WebUI.Controllers
             return Ok(_service.GetFinOpsById(id));
         }
 
-        [HttpGet("GetFinOpsByIdForPage/{accountId}/{currentPage}/{pageSize}/{finOptype}")]
+        [HttpGet("GetFinOpsByIdForPage/{accountId}/{finOptype}")]
         public IActionResult GetFinOpsByIdForPage(int accountId, int currentPage, int pageSize, int finOpType)
         {
             if ((currentPage <= 0) && (pageSize <= 0))

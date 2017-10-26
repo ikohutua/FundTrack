@@ -20,7 +20,6 @@ import Targetviewmodel = require("../../view-models/concrete/finance/donate/targ
 import { Image } from "../../view-models/concrete/image.model";
 import { EditOrganizationService } from "../../services/concrete/organization-management/edit-organization.service";
 import { ModeratorViewModel } from '../../view-models/concrete/edit-organization/moderator-view.model';
-import { PaginationInitViewModel } from "../../view-models/abstract/organization-management-view-models/pagination-init-view-model.interface";
 import { AuthorizeUserModel } from "../../view-models/concrete/authorized-user-info-view.model";
 import { DonateService } from "../../services/concrete/finance/donate-money.service";
 import { CurrencyViewModel } from "../../view-models/concrete/finance/donate/currency.view-model";
@@ -42,7 +41,6 @@ export class OrgAccountOperationComponent implements OnChanges {
 
     //private accounts: OrgAccountViewModel[] = new Array<OrgAccountViewModel>();
     private accountsTo: OrgAccountViewModel[] = new Array<OrgAccountViewModel>();
-    private currencies: CurrencyViewModel[] = new Array<CurrencyViewModel>();
     private orgTargets: TargetViewModel[] = new Array<TargetViewModel>();
     private baseTargets: TargetViewModel[] = new Array<TargetViewModel>();
     private subTargets: TargetViewModel[] = new Array<TargetViewModel>();
@@ -361,12 +359,6 @@ export class OrgAccountOperationComponent implements OnChanges {
             });
     }
 
-    private pushReverse(array: Array<any>, element: any) {
-        array.reverse;
-        array.push(element);
-        array.reverse();
-    }
-
     private getCurrentTarget() {
             this.currentTarget = this.baseTargets.find(target => target.targetId == this.currentAccount.targetId);
     }
@@ -478,7 +470,6 @@ export class OrgAccountOperationComponent implements OnChanges {
         description: {
             maxlength: this.maxLengthDescription
         }
-
     }
 
     private onValueChange(formMoney: FormGroup, formErrors, data?: any) {
@@ -511,6 +502,7 @@ export class OrgAccountOperationComponent implements OnChanges {
             this.isTransferOperation = true;
         }
         this.getSubTargetsByTargetId(finOp.targetId);
+        console.log(finOp.targetId);
         this.openModal(this.newUpdateFinOperationWindow);
     }
 
@@ -526,7 +518,6 @@ export class OrgAccountOperationComponent implements OnChanges {
         this.moneyOperationModel.finOpType = constant.transferId;
         this.finOpService.createTransfer(this.moneyOperationModel).subscribe(a => {
             this.moneyTransfer = a;
-            this.pushReverse(this.finOps, this.moneyTransfer);
         });
         this.closeModal(this.newMoneyTransferWindow, this.moneyTransferForm);
     }

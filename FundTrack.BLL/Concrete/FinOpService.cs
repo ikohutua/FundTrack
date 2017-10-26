@@ -203,15 +203,14 @@ namespace FundTrack.BLL.Concrete
         {
             try
             {
+                var finOps = _unitOfWork.FinOpRepository.GetFinOpByOrgAccountIdForPage(orgAccountId, currentPage, itemsPerPage);
                 if (finOpType == Constants.AnyFinOpType)
                 {
-                    var finOps = _unitOfWork.FinOpRepository.GetFinOpByOrgAccountIdForPage(orgAccountId, currentPage, itemsPerPage);
                     return InitializeFinOps(finOps);
                 }
                 else
                 {
-                    var finOps = _unitOfWork.FinOpRepository.GetFinOpByOrgAccountIdForPage(orgAccountId, currentPage, itemsPerPage)
-                        .Where(f => f.FinOpType == finOpType);
+                    finOps.Where(f => f.FinOpType == finOpType);
                     return InitializeFinOps(finOps);
                 }
             }

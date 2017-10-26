@@ -6,7 +6,7 @@ namespace FundTrack.DAL.Abstract
     /// <summary>
     /// 
     /// </summary>
-    public interface IFinOpRepository: IFinOpManagmentRepository
+    public interface IFinOpRepository
     {
         /// <summary>
         /// Creates the specified fin op.

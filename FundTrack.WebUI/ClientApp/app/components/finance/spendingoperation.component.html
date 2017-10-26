@@ -1,0 +1,98 @@
+﻿<div class="well container-fluid">
+    <form class="form-horizontal" [formGroup]="moneySpendingForm" novalidate>
+        <fieldset>
+            <legend>Додати рахунок</legend>
+
+            <button class="btn btn-success" (click)="navigateBack()"><span class="glyphicon glyphicon-arrow-left"></span> Назад</button>
+            <div *ngIf="isAccountKnown && isAccountChosen" class="form-group">
+                <label class="col-md-4 control-label">Назва рахунку</label>
+                <div class="col-md-4">
+                    <input class="form-control"
+                           type="text"
+                           readonly
+                           placeholder={{currentAccount.orgAccountName}}
+                           name="cardFromId" />
+                </div>
+            </div>
+            <div *ngIf="!isAccountKnown" class="form-group">
+                <label class="col-md-4 control-label">Назва готівкового рахунку<sup class="sup-color-red">*</sup></label>
+                <div class="col-md-4">
+                    <select #accountId (change)="onAccountSelect(accountId.value)" [(ngModel)]="moneyOperationModel.cardFromId" formControlName="cardFromId" id="categoryType" class="form-control">
+                        <option *ngFor="let account of cashAccounts" value="{{account.id}}">
+                            {{account.orgAccountName}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label">Сума<sup class="sup-color-red">*</sup></label>
+                <div class="col-md-4">
+                    <input class="form-control"
+                           type="text"
+                           placeholder="Сума"
+                           name="amount"
+                           formControlName="amount"
+                           [readonly]="!isAccountChosen"
+                           [(ngModel)]="moneyOperationModel.amount"
+                           required="" />
+                    <span *ngIf="formSpendingErrors.amount" class="has-error help-block error-message">
+                        {{ formSpendingErrors.amount }}
+                    </span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label">Опис</label>
+                <div class="col-md-4">
+                    <textarea class="form-control"
+                              placeholder="Опис"
+                              name="description"
+                              maxlength="500"
+                              formControlName="description"
+                              [readonly]="!isAccountChosen"
+                              [(ngModel)]="moneyOperationModel.description"></textarea>
+                    <span *ngIf="formSpendingErrors.description" class="has-error help-block error-message">
+                        {{ formSpendingErrors.description }}
+                    </span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label">Призначення</label>
+                <div class="col-md-4">
+                    <input class="form-control"
+                           type="text"
+                           readonly
+                           placeholder={{currentTarget.name}}
+                           name="targetId" />
+                </div>
+            </div>
+            <div *ngIf="!isTargetNull" class="form-group">
+                <label class="col-md-4 control-label">Деталізація<sup class="sup-color-red">*</sup></label>
+                <div class="col-md-4">
+                    <select [(ngModel)]="moneyOperationModel.targetId" formControlName="targetId" id="categoryType" class="form-control">
+                        <option *ngFor="let target of subTargets" value="{{target.targetId}}">
+                            {{target.name}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label">Дата<sup class="sup-color-red">*</sup></label>
+                <div class="col-md-4">
+                    <input type="date"
+                           class="input-sm form-control no-spin"
+                           formControlName="date"
+                           #dateSpending (input)="setDate(moneyOperationModel,dateSpending.value)"
+                           [readonly]="!isAccountChosen"
+                           [value]="moneyOperationModel.date | date:'yyyy-MM-dd'"
+                           min="{{minDate}}"
+                           max="{{currentDate}}" />
+
+                </div>
+            </div>
+            <div class="col-md-1 col-md-offset-7">
+                <button class="btn btn-default pull-right" (click)="makeSpending()" [disabled]="moneySpendingForm.invalid">Здійснити операцію</button>
+            </div>
+            <div id="snackbar">Операцію здійснено</div>
+        </fieldset>
+    </form>
+</div>
