@@ -185,7 +185,7 @@ namespace FundTrack.BLL.Concrete
                     Id = d.Id,
                     Target = d.Target.TargetName,
                     UserFulName = $"{d.User.FirstName} {d.User.LastName}",
-                    UserLogin = String.IsNullOrEmpty(d.User.Login) ? "<Анонімний>" : d.User.Login,
+                    UserLogin = String.IsNullOrEmpty(d.User.Login) ? Constants.Anonymous : d.User.Login,
                     Date = d.DonationDate,
                     MoneyAmount = (decimal)d.Amount,
                     Description = d.Description

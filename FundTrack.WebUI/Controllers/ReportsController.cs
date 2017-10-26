@@ -6,6 +6,7 @@ using FundTrack.Infrastructure.ViewModel;
 using System.Threading.Tasks;
 using FundTrack.BLL.Concrete;
 using System.Diagnostics;
+using FundTrack.Infrastructure;
 
 namespace FundTrack.WebUI.Controllers
 {
@@ -55,7 +56,7 @@ namespace FundTrack.WebUI.Controllers
                     return new BadRequestObjectResult(ex.Message);
                 }
             }
-            return new BadRequestObjectResult($"Invalid data!");
+            return new BadRequestObjectResult(ErrorMessages.InvalidData);
         }
 
         [HttpGet("CountOfUsersDonationsReport")]
@@ -76,7 +77,7 @@ namespace FundTrack.WebUI.Controllers
                     return new BadRequestObjectResult(ex.Message);
                 }
             }
-            return new BadRequestObjectResult($"Invalid data!");
+            return new BadRequestObjectResult(ErrorMessages.InvalidData);
         }
 
         [HttpGet("CountOfCommonUsersDonationsReport")]
@@ -94,7 +95,7 @@ namespace FundTrack.WebUI.Controllers
                     return new BadRequestObjectResult(ex.Message);
                 }
             }
-            return new BadRequestObjectResult($"Invalid data!");
+            return new BadRequestObjectResult(ErrorMessages.InvalidData);
         }
 
         [HttpGet("CommonUsersDonationsPaginatedReport")]
@@ -112,7 +113,7 @@ namespace FundTrack.WebUI.Controllers
                     return new BadRequestObjectResult(ex.Message);
                 }
             }
-            return new BadRequestObjectResult($"Invalid data!");
+            return new BadRequestObjectResult(ErrorMessages.InvalidData);
         }
 
         private bool isDataNotNull(DateTime? dateFrom, DateTime? dateTo, params int?[] parametrs)
