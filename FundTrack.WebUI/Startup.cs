@@ -16,6 +16,7 @@ using FundTrack.Infrastructure.ViewModel.EventViewModel;
 using FundTrack.WebUI.Formatter;
 using FundTrack.WebUI.Middlewares;
 using FundTrack.WebUI.Middlewares.Logging;
+using Microsoft.AspNetCore.Authentication;
 
 namespace FundTrack.WebUI
 {
@@ -147,7 +148,6 @@ namespace FundTrack.WebUI
 
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
-
 
             app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions
             {

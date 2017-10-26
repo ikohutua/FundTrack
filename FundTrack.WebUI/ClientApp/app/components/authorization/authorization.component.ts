@@ -101,10 +101,11 @@ export class AuthorizationComponent {
                 this._authorizationService.getAccessToken(this.loginModel)
                     .subscribe(res => {
                         console.log(res);
+                        debugger;
                         data.access_token = res;
+                        this.subscribeForAuthorization(data);
                     });
                 //----------------------------------------------------------------------------
-                this.subscribeForAuthorization(data);
             });
     }
 
