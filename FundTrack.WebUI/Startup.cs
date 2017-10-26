@@ -16,18 +16,6 @@ using FundTrack.Infrastructure.ViewModel.EventViewModel;
 using FundTrack.WebUI.Formatter;
 using FundTrack.WebUI.Middlewares;
 using FundTrack.WebUI.Middlewares.Logging;
-using Microsoft.AspNetCore.Authentication.OAuth;
-using System.Threading.Tasks;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System;
-using Newtonsoft.Json.Converters;
-using System.Dynamic;
-using Newtonsoft.Json;
-using System.Security.Claims;
-using Microsoft.IdentityModel.Tokens;
-using FundTrack.WebUI.token;
-using Microsoft.AspNetCore.Http;
 
 namespace FundTrack.WebUI
 {
@@ -147,45 +135,7 @@ namespace FundTrack.WebUI
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             app.UseGlobalErrorHandling();
-
-
             app.UseStaticFiles();
-
-            //ATTEMPT 1
-            //app.UseOAuthAuthentication(new OAuthOptions()
-            //{
-            //    AuthorizationEndpoint = new PathString("/login"),
-            //    ClientId = "sss",
-            //    AuthenticationScheme = "Application",
-            //    TokenEndpoint = "http://localhost:51469/token",
-            //    Scope = { "identity", "roles" },
-            //    Events = new OAuthEvents
-            //    {
-            //        OnCreatingTicket = async context => { await CreateAuthTicket(context); },
-            //    }
-            //});
-
-
-
-            //ATTEMPT 2
-            //app.UseJwtBearerAuthentication(new JwtBearerOptions
-            //{
-            //    AutomaticAuthenticate = true,
-            //    AutomaticChallenge = true,
-            //    AuthenticationScheme = "Bearer",
-            //    Audience = "http://localhost:51469/token",
-            //    Authority = "http://localhost:51469/token",
-            //    RequireHttpsMetadata = false,
-            //    TokenValidationParameters = new TokenValidationParameters
-            //    {
-            //        ValidateIssuer = false,
-            //        ValidateAudience = false,
-            //        ValidateLifetime = false,
-            //        IssuerSigningKey = AuthOptions.GetSymmetricSecurityKey(),
-            //        ValidateIssuerSigningKey = true,
-            //    }
-            //});
-
 
             //Old authorization
             //app.UseCookieAuthentication(new CookieAuthenticationOptions
@@ -219,37 +169,6 @@ namespace FundTrack.WebUI
                     defaults: new { controller = "Home", action = "Index" });
             });
 
-            app.UseCors("AllowCors");
-        }
-
-
-        private static async Task CreateAuthTicket(OAuthCreatingTicketContext context)
-        {
-            // Get the User info using the bearer token
-            var request = new HttpRequestMessage()
-            {
-                RequestUri = new Uri(context.Options.UserInformationEndpoint),
-                Method = HttpMethod.Get
-            };
-
-            request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", context.AccessToken);
-            request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-            var response = await context.Backchannel.SendAsync(request, context.HttpContext.RequestAborted);
-            response.EnsureSuccessStatusCode();
-
-            var converter = new ExpandoObjectConverter();
-            dynamic user = JsonConvert.DeserializeObject<ExpandoObject>(await response.Content.ReadAsStringAsync(), converter);
-
-            // Our respone should contain claims we're interested in.
-            context.Identity.AddClaim(new Claim("UserID", user.Id.ToString()));
-            context.Identity.AddClaim(new Claim(ClaimTypes.Name, user.Login));
-            context.Identity.AddClaim(new Claim(ClaimTypes.Role, user.Role));
-
-            foreach (var role in user.roles)
-            {
-                context.Identity.AddClaim(new Claim(ClaimsIdentity.DefaultRoleClaimType, role));
-            }
         }
     }
 }
