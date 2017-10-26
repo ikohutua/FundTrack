@@ -29,14 +29,54 @@
             </select>
         </div>
         <div class="col-md-2 col-md-offset-10 input-group">
-                <button type="button" class="btn btn-primary" (click)="showChart()">
-                    <span class="glyphicon glyphicon-stats"></span> Показати на графік
+
+            <div class="btn-group">
+                <button type="button" class="btn btn-primary" [ngClass]="{'disabled': !isDataAvailable}" (click)="showChart()">
+                    <span *ngIf="isChartVisible">Сховати графік</span>
+                    <span *ngIf="!isChartVisible">Показати графік</span>
                 </button>
+                <button type="button" class="btn btn-primary dropdown-toggle" [ngClass]="{'disabled': !isDataAvailable}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="caret"></span>
+                    <span class="sr-only">Toggle Dropdown</span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a>Всі дані</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a class="disabled"><b>Призначення</b></a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a>Медикаменти</a></li>
+                    <li><a>Одяг</a></li>
+                    <li><a>Їжа</a></li>
+                </ul>
+            </div>
+
+            <!--<button type="button" class="btn btn-primary" (click)="showChart()">
+                <span class="glyphicon glyphicon-stats"></span>
+                <span *ngIf="isChartVisible">Сховати графік</span>
+                <span *ngIf="!isChartVisible">Показати графік</span>
+            </button>-->
         </div>
     </div>
-    <div *ngIf="isChartVisible"  class="row container">
-        <div class="col-md-6 col-md-offset-3 text-center">
-            <img class="img-responsive" src="https://cdn.dribbble.com/users/27766/screenshots/3488007/empty_state.png" />
+    <div *ngIf="isChartVisible" class="row container">
+        <div class="col-md-8 col-md-offset-1 chart-container text-center ">
+            <!--  <img class="img-responsive" src="https://cdn.dribbble.com/users/27766/screenshots/3488007/empty_state.png" />-->
+            <!--<ngx-charts-advanced-pie-chart [scheme]="colorScheme"
+                                           [results]="dataSet"
+                                           [gradient]="gradient">
+            </ngx-charts-advanced-pie-chart>-->
+            <ngx-charts-line-chart [view]="view"
+                                   [scheme]="colorScheme"
+                                   [results]="dataSet"
+                                   [gradient]="gradient"
+                                   [xAxis]="showXAxis"
+                                   [yAxis]="showYAxis"
+                                   [legend]="showLegend"
+                                   [showXAxisLabel]="showXAxisLabel"
+                                   [showYAxisLabel]="showYAxisLabel"
+                                   [xAxisLabel]="xAxisLabel"
+                                   [yAxisLabel]="yAxisLabel"
+                                   [autoScale]="autoScale">
+            </ngx-charts-line-chart>
         </div>
     </div>
     <div *ngIf="isDataAvailable">

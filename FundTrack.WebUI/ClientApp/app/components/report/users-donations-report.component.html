@@ -29,6 +29,12 @@
             </select>
         </div>
         <div class="col-md-4 col-md-offset-8 input-group">
+            
+            <div class="input-group-btn" *ngIf="isFilterTurnedOn">
+                <button type="button" class="btn btn-danger" (click)="clearFilter()">
+                    <span class="glyphicon glyphicon-remove"></span>
+                </button>
+            </div>
             <input type="text" class="form-control" [(ngModel)]="reportModel.filterValue" (keyup.enter)="filter()" placeholder="Введіть логін користувача">
             <div class="input-group-btn">
                 <button type="button" class="btn btn-primary" (click)="filter()">

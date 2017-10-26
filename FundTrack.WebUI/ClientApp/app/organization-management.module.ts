@@ -25,6 +25,7 @@ import { OrganizationDetailComponent } from "./components/organization-detail/or
 import { TargetManagementComponent } from './components/organization-edit/target-management.component';
 import { UsersDonationsReportComponent } from "./components/report/users-donations-report.component";
 import { CommonDonationsReportComponent } from "./components/report/common-donations-report.component";
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 @NgModule({
     declarations: [
@@ -47,14 +48,16 @@ import { CommonDonationsReportComponent } from "./components/report/common-donat
         OrganizationDetailComponent,
         TargetManagementComponent,
         UsersDonationsReportComponent,
-        CommonDonationsReportComponent
+        CommonDonationsReportComponent,
+
     ],
     imports: [
         FormsModule,
         CommonModule,
         OrganizationManagementRoutingModule,
         SharedModule, 
-        MapModule
+        MapModule,
+        NgxChartsModule
     ],
     exports: [
         SpinnerComponent

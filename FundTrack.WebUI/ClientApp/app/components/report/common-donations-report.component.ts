@@ -40,20 +40,75 @@ export class CommonDonationsReportComponent implements OnInit {
     showYAxis = true;
     gradient = false;
     showLegend = false;
-    showXAxisLabel = false;
-    xAxisLabel = 'Targets';
-    showYAxisLabel = false;
+    showXAxisLabel = true;
+    xAxisLabel = 'Поточний місяць';
+    showYAxisLabel = true;
     yAxisLabel = 'Money';
     barPadding = 20;
+    autoScale = true;
     colorScheme = {
         domain: [
-            '#2597FB', '#65EBFD', '#99FDD0',
-            '#FCEE4B', '#FDD6E3', '#FCB1A8',
-            '#EF6F7B', '#CB96E8', '#EFDEE0',
-            '#FEFCFA']
+            'red', 'green', 'blue'
+        ]
     };
-    public dataSet: any[] = [];
-      //---------Pie chart---------
+    // public dataSet: any[] = [];
+    public dataSet: any[] = [
+        {
+            "name": "Germany",
+            "series": [
+                {
+                    "name": "2010",
+                    "value": 62000
+                },
+                {
+                    "name": "2011",
+                    "value": 89400
+                },
+                {
+                    "name": "2012",
+                    "value": 34500
+                }
+            ]
+        },
+
+        {
+            "name": "USA",
+            "series": [
+                {
+                    "name": "2010",
+                    "value": 78506
+                },
+                {
+                    "name": "2011",
+                    "value": 85300
+                },
+                {
+                    "name": "2012",
+                    "value": 71100
+                }
+            ]
+        },
+
+        {
+            "name": "Ukraina",
+            "series": [
+                {
+                    "name": "2010",
+                    "value": 54200
+                },
+                {
+                    "name": "2011",
+                    "value": 32100
+                },
+                {
+                    "name": "2012",
+                    "value": 75990
+                }
+            ]
+        }
+    ];
+
+    //---------Pie chart---------
 
 
     constructor(private _service: ShowRequestedItemService,
@@ -83,17 +138,19 @@ export class CommonDonationsReportComponent implements OnInit {
 
     setBeginDate(value: Date) {
         this.reportModel.dateFrom = value;
+        this.isChartVisible = false;
         this.generateSimpleReport();
     }
 
     setEndDate(value: Date) {
         this.reportModel.dateTo = value;
+        this.isChartVisible = false;
         this.generateSimpleReport();
     }
 
     showChart() {
         this.isChartVisible = !this.isChartVisible;
-        //this.prepareUsersDonationsReportForCharts(this.pagedReportItems);
+        // this.prepareUsersDonationsReportForCharts(this.pagedReportItems);
     }
 
     sortTable(value: number) {

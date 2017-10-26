@@ -12,6 +12,18 @@ a {
     cursor: pointer;
 }
 
+    a.disabled {
+        color: gray;
+        pointer-events: none;
+    }
+
+/*-------------Chart-------------*/
+.chart-container {
+    height: 300px;
+    margin-bottom: 60px;
+}
+
+
 /*---------Search input----------*/
 .stylish-input-group {
     margin-bottom: 10px;

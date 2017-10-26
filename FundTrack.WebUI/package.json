@@ -15,7 +15,7 @@
     "@angular/platform-browser-dynamic": "^2.4.5",
     "@angular/platform-server": "^2.4.5",
     "@angular/router": "^3.4.5",
-    "@swimlane/ngx-charts": "^6.1.0",
+    "@swimlane/ngx-charts": "^4.4.0",
     "@types/node": "^6.0.78",
     "@types/sha1": "^1.0.0",
     "@types/signalr": "^2.2.34",

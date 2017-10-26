@@ -71,7 +71,13 @@ export class UsersDonationsReportComponent implements OnInit {
     }
 
     filter() {
+        this.isFilterTurnedOn = this.reportModel.filterValue.length > 0;
         this.generateSimpleReport();
+    }
+
+    clearFilter() {
+        this.reportModel.filterValue = "";
+        this.filter();
     }
 
     sortTable(value: number) {
@@ -109,6 +115,8 @@ export class UsersDonationsReportComponent implements OnInit {
             alert(commonMessages.invalidDate);
             return;
         }
+        this.isGettingDataStarted = true;
+
 
         this._service.getCountOfUsersDonationsReportItems(this.reportModel)
             .subscribe(res => {
