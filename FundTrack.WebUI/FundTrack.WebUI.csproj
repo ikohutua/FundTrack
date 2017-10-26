@@ -37,6 +37,7 @@
   </ItemGroup>
   <ItemGroup>
     <!-- Files not to show in IDE -->
+    <None Remove="ClientApp\app\view-models\concrete\invoice-declaration-data-view-model.ts" />
     <None Remove="node_modules.zip" />
     <None Remove="Properties\PublishProfiles\fundtrack261 - Web Deploy.pubxml" />
     <None Remove="yarn.lock" />
@@ -60,6 +61,7 @@
     <None Remove="ClientApp\Images\**" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="ClientApp\app\shared\components\date-presets\date-presets.component.html" />
     <None Include="Controllers\UserInfoController.cs" />
   </ItemGroup>
   <ItemGroup>

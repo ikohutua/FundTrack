@@ -21,22 +21,12 @@ namespace FundTrack.BLL.Concrete
         {
             try
             {
-                if (dateTo == null)
-                {
-                    dateTo = DateTime.Now;
-                }
-
-                if (dateFrom == null)
-                {
-                    dateFrom = DateTime.MinValue;
-                }
-
                 return _unitOfWork.FinOpRepository.Read()
                     .Where(finOps =>
                         (finOps.FinOpType == Constants.FinOpTypeIncome)
                         && (finOps.OrgAccountTo.OrgId == orgId)
-                        && (finOps.FinOpDate > dateFrom)
-                        && (finOps.FinOpDate < dateTo)).ToList()
+                        && (finOps.FinOpDate.Date >= dateFrom)
+                        && (finOps.FinOpDate.Date <= dateTo)).ToList()
                     .Select(finOps => new ReportIncomeViewModel
                     {
                         From = finOps.Donation?.User?.LastName,
@@ -48,7 +38,7 @@ namespace FundTrack.BLL.Concrete
             }
             catch (Exception ex)
             {
-                throw new BusinessLogicException(ex.Message, ex);
+                throw new BusinessLogicException("Error while getting income report from finops.", ex);
             }
         }
 
@@ -56,22 +46,12 @@ namespace FundTrack.BLL.Concrete
         {
             try
             {
-                if (dateTo == null)
-                {
-                    dateTo = DateTime.Now;
-                }
-
-                if (dateFrom == null)
-                {
-                    dateFrom = DateTime.MinValue;
-                }
-
                 return _unitOfWork.FinOpRepository.Read()
                     .Where(finOps =>
                         (finOps.FinOpType == Constants.FinOpTypeSpending)
                         && finOps.OrgAccountFrom.OrgId == orgId
-                        && finOps.FinOpDate > dateFrom
-                        && finOps.FinOpDate < dateTo).ToList()
+                        && finOps.FinOpDate.Date >= dateFrom.Value.Date
+                        && finOps.FinOpDate.Date <= dateTo.Value.Date).ToList()
                     .Select(finOps => new ReportOutcomeViewModel
                     {
                         Id = finOps.Id,
@@ -83,7 +63,7 @@ namespace FundTrack.BLL.Concrete
             }
             catch (Exception ex)
             {
-                throw new BusinessLogicException(ex.Message, ex);
+                throw new BusinessLogicException("Error while getting outcome report from finops.", ex);
             }
         }
 
@@ -99,6 +79,29 @@ namespace FundTrack.BLL.Concrete
             catch (Exception ex)
             {
                 throw new BusinessLogicException("Error while getting image path list from FinOPImages entities by finOpId.", ex);
+            }
+        }
+
+       public IEnumerable<InvoiceDeclarationReportViewModel> GetInvoiceDeclarationReport(int orgId, DateTime? dateFrom, DateTime? dateTo)
+        {
+            try
+            {
+                var orgAccounts = _unitOfWork.OrganizationAccountRepository.ReadAllOrgAccounts(orgId).Where(m => m.AccountType=="Банк");
+                var result = orgAccounts.Select(m => new InvoiceDeclarationReportViewModel
+                {
+                    BankAccount = m.BankAccount.CardNumber,
+                    BankAccountTooltip = m.OrgAccountName + " : "+m.Description,
+                    BeginIncomeMonthSum = m.Balances.Where(z =>  z.BalanceDate.Date == dateFrom.Value.Date && z.BalanceDate.Date <= dateTo.Value.Date).FirstOrDefault()?.Amount,
+                    TotalIncomeSum = m.FinOpsTo.Where(z => z.FinOpDate.Date >= dateFrom.Value.Date && z.FinOpDate.Date <= dateTo.Value.Date).Sum(s=>s.Amount),
+                    TransferIncome = m.FinOpsTo.Where(z => z.FinOpDate.Date >= dateFrom.Value.Date && z.FinOpDate.Date <= dateTo.Value.Date).Where(a=>a.AccFromId!=null && a.AccToId!=null).Sum(s => s.Amount),
+                    FlowOutcome = m.FinOpsFrom.Where(z => z.FinOpDate.Date >= dateFrom.Value.Date && z.FinOpDate.Date <= dateTo.Value.Date).Sum(s => s.Amount),
+                    TransferOutcome = m.FinOpsFrom.Where(z => z.AccFromId != null && z.AccToId != null && z.FinOpDate.Date >= dateFrom.Value.Date && z.FinOpDate.Date <= dateTo.Value.Date).Sum(s => s.Amount),
+                });
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw new BusinessLogicException("Error while genereting invoice declaration report by orgId.", ex);
             }
         }
     }

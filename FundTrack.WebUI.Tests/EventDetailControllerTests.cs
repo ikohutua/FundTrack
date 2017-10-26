@@ -43,4 +43,4 @@ namespace FundTrack.WebUI.Tests
             Assert.True("OrganizationName1" == result.OrganizationName);
         }
     }
-}
+    }

@@ -23,6 +23,7 @@ import { MapModule } from './map.module';
 import { AllOrganizationsComponent } from "./components/all-organizations/all-organizations.component";
 import { OrganizationDetailComponent } from "./components/organization-detail/organization-detail.component";
 import { TargetManagementComponent } from './components/organization-edit/target-management.component';
+import { InvoiceDeclarationReportComponent } from "./components/invoice-declaration-report/invoice-declaration-report.component";
 
 @NgModule({
     declarations: [
@@ -43,7 +44,8 @@ import { TargetManagementComponent } from './components/organization-edit/target
         OrganizationEditComponent,
         AllOrganizationsComponent,
         OrganizationDetailComponent,
-        TargetManagementComponent
+        TargetManagementComponent,
+        InvoiceDeclarationReportComponent
     ],
     imports: [
         FormsModule,

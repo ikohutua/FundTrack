@@ -12,7 +12,7 @@
                         <h4 class="muted">Організація</h4>
                         <p></p>
                         <div>
-                            <select #selectedOrganization name="selectbasic" class="input-sm form-control">
+                            <select #selectedOrganization name="selectbasic" class="input-sm form-control" (change)="generateReport(selectedOrganization.value)">
                                 <option value="{{item.id}}" *ngFor="let item of organizations" [selected]="item.id == routeOrgIndex">{{item.name}}</option>
                             </select>
                         </div>
@@ -21,19 +21,7 @@
             </div>
 
             <div class="col-md-6">
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <h4 class="muted">Період</h4>
-                        <p></p>
-                        <div class="input-daterange input-group" id="datepicker">
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                            <input type="date" class="input-sm form-control no-spin" #startDate onkeydown="return false" (input)="setBeginDate(startDate.value)" [value]="reportModel.dateFrom | date:'yyyy-MM-dd'" min="2000-01-01" max="{{inputMaxDate | date:'yyyy-MM-dd'}}" />
-                            <span class="input-group-addon"> - </span>   <!--onkeydown="return false"  -> paste it to input if will be needed block keyDown -->
-                            <input type="date" class="input-sm form-control no-spin" #endDate onkeydown="return false" (input)="setEndDate(endDate.value)" [value]="reportModel.dateTo | date:'yyyy-MM-dd'" min="2000-01-01" max="{{inputMaxDate | date:'yyyy-MM-dd'}}" />
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                        </div>
-                    </div>
-                </div>
+                <date-presets  (dateFrom) ="onDateFromChange($event,selectedOrganization.value )"  (dateTo) ="onDateToChange($event,selectedOrganization.value)"></date-presets>
             </div>
 
             <div class="col-md-2">
@@ -43,17 +31,14 @@
                         <p></p>
 
                         <div>
-                            <select class="input-sm form-control" [(ngModel)]="reportModel.reportType">
+                            <select class="input-sm form-control" [(ngModel)]="reportModel.reportType" (change)="generateReport(selectedOrganization.value)">
                                 <option value="0" selected>Витрати</option>
                                 <option value="1">Надходження</option>
                             </select>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="text-right col-md-12">
-                <button id="filteredbutton" type="submit" class="btn btn-secondary btn-md pull-right" (click)="generateReport(selectedOrganization.value)">Згенерувати звіт</button>
-            </div>
+            </div>    
         </div>
     </div>
 
@@ -120,31 +105,7 @@
         </div>
     </div>
 
-    <app-modal #dateCompareExceptionModal>
-        <div class="app-modal-header">
-            <h4> Помилка </h4>
-        </div>
-        <div class="app-modal-body" style="font-size:medium;text-align:center;">
-            Початкова дата більша або рівна теперішній даті.
-        </div>
-        <div class="app-modal-footer">
-            <button type="button" class="btn btn-secondary btn-md pull-right" (click)="closeModal(dateCompareExceptionModal)">Закрити</button>
-        </div>
-    </app-modal>
-
-
-    <app-modal #dateExceptionModal>
-        <div class="app-modal-header">
-            <h4> Помилка </h4>
-        </div>
-        <div class="app-modal-body" style="font-size:medium;text-align:center;">
-            Період не може бути пустий.
-        </div>
-        <div class="app-modal-footer">
-            <button type="button" class="btn btn-secondary btn-md pull-right" (click)="closeModal(dateExceptionModal)">Закрити</button>
-        </div>
-    </app-modal>
-
+ 
     <app-modal #exceptionModal>
         <div class="app-modal-header">
             <h4>Помилка </h4>

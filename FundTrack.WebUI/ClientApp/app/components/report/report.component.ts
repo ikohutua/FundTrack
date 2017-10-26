@@ -24,7 +24,7 @@ export class ReportComponent implements OnInit, OnDestroy {
     private organizations: IOrganizationForFiltering[] = new Array<IOrganizationForFiltering>();
     private incomeReportData: IncomeReportDataViewModel[] = new Array<IncomeReportDataViewModel>();
     private outcomeReportData: OutcomeReportDataViewModel[] = new Array<OutcomeReportDataViewModel>();
-    private reportModel: ReportFilterQueryViewModel = new ReportFilterQueryViewModel();
+    reportModel: ReportFilterQueryViewModel = new ReportFilterQueryViewModel();
     private reportHeaders: string[];
     private accessToFill: number;
     private reportOutTotalSum: number;
@@ -35,20 +35,24 @@ export class ReportComponent implements OnInit, OnDestroy {
     private routeOrgIndex: number = 1;
     private ifDataExists: boolean = false;
     private inputMaxDate: Date = new Date();
-    
-    @ViewChild("dateExceptionModal")
-    private dateExceptionModal: ModalComponent;
-
-    @ViewChild("dateCompareExceptionModal")
-    private dateCompareExceptionModal: ModalComponent;
-    
 
     @ViewChild("exceptionModal")
     private exceptionModal: ModalComponent;
 
     @ViewChild("emptyResultsModal")
     private emptyResultsModal: ModalComponent;
-     
+
+
+    onDateFromChange(dateFrom: Date,orgId) {
+        this.reportModel.dateFrom = dateFrom;
+        this.generateReport(orgId);
+    }
+
+    onDateToChange(dateTo: Date,orgId) {
+        this.reportModel.dateTo = dateTo;
+        this.generateReport(orgId);
+    }
+
     constructor(private storageService: StorageService,
                 private service: ShowRequestedItemService,
                 private datePipe: DatePipe,
@@ -82,12 +86,10 @@ export class ReportComponent implements OnInit, OnDestroy {
     }
 
     generateReport(orgId): void {
-        this.reportModel.id = orgId;
-        if (this.isDateValid()) { 
+        this.reportModel.id = orgId;       
             this.fillHeadersArray();
             this.getReportDataByType();
-            this.accessToFill = this.reportModel.reportType;           
-        }
+            this.accessToFill = this.reportModel.reportType;             
     }
 
     getReportDataByType(): void {
@@ -135,33 +137,12 @@ export class ReportComponent implements OnInit, OnDestroy {
         return sum;
     }
 
-    isDateValid(): boolean {
-        if (!this.reportModel.dateFrom || !this.reportModel.dateTo) {
-            this.openModal(this.dateExceptionModal);
-            return false;
-        }
-        if(this.datePipe.transform(this.reportModel.dateFrom, 'yyyy-MM-dd')
-            > this.datePipe.transform(this.reportModel.dateTo, 'yyyy-MM-dd')){
-            this.openModal(this.dateCompareExceptionModal);
-            return false;
-        }
-            return true;
-    }
-
     openModal(modal: ModalComponent): void {
         modal.show();
     }
 
     closeModal(modal: ModalComponent): void {
         modal.hide();
-    }
-  
-    public setBeginDate(beginDate: Date): void {
-        this.reportModel.dateFrom = beginDate;       
-    }
-
-    public setEndDate(endDate: Date): void {
-        this.reportModel.dateTo = endDate;
     }
  
     getOrganizations(): void {

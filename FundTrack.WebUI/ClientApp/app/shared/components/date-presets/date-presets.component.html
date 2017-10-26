@@ -1,0 +1,47 @@
+﻿<div class="panel panel-default">
+    <div class="panel-body">
+        
+        <div>  
+            
+                <h4 class="muted">Період</h4>
+           
+          
+            </div>
+        <div class="col-md-4">
+            <div class="input-daterange input-group" id="datepicker">
+                <span class="input-group-addon" id="basic-addon1">Від: </span>
+                <input type="date" class="input-sm form-control no-spin" #startDate onkeydown="return false" (input)="setBeginDate(startDate.value)" [value]="dateFromIn | date:'yyyy-MM-dd'" min="2000-01-01" max="{{inputMaxDate | date:'yyyy-MM-dd'}}" />
+                <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="input-daterange input-group" id="datepicker">
+                <span class="input-group-addon" id="basic-addon1">До: </span>
+                <input type="date" class="input-sm form-control no-spin" #endDate onkeydown="return false" (input)="setEndDate(endDate.value)" [value]="dateToIn | date:'yyyy-MM-dd'" min="2000-01-01" max="{{inputMaxDate | date:'yyyy-MM-dd'}}" />
+                <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+            </div>
+        </div>
+        <div class="col-md-4" >
+            <div class="input-daterange input-group" id="datepicker">
+                <span class="input-group-addon" id="basic-addon1"><i class="glyphicon glyphicon-calendar"></i></span>
+                <select name="selectbasic" class="input-sm form-control" (change)="onDropBoxChange($event.target.value)">
+                    <option value="{{item.id}}" *ngFor="let item of presets" [selected]="item.id == selectedPreset">{{item.name}}</option>
+                </select>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<app-modal #dateCompareExceptionModal>
+    <div class="app-modal-header">
+        <h4> Попередження </h4>
+    </div>
+    <div class="app-modal-body" style="font-size:medium;text-align:center;">
+        Початкова дата більша або рівна теперішній даті.
+    </div>
+    <div class="app-modal-footer">
+        <button type="button" class="btn btn-secondary btn-md pull-right" (click)="closeModal(dateCompareExceptionModal)">Закрити</button>
+    </div>
+</app-modal>
