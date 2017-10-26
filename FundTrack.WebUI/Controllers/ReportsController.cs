@@ -39,81 +39,84 @@ namespace FundTrack.WebUI.Controllers
         }
 
         [HttpGet("UsersDonationsPaginatedReport")]
-        public async Task<IActionResult> UsersDonationsPaginatedReport(int? orgId, DateTime? dateFrom, DateTime? dateTo, int? pageIndex, int? pageSize, string filterValue)
+        public IActionResult UsersDonationsPaginatedReport(int? orgId, DateTime? dateFrom, DateTime? dateTo, int? pageIndex, int? pageSize, string filterValue)
         {
-            if (isDataNotNull(dateFrom, dateTo, orgId, pageIndex, pageSize))
+            if (!isDataNotNull(dateFrom, dateTo, orgId, pageIndex, pageSize))
             {
-                try
-                {
-                    var list = String.IsNullOrEmpty(filterValue)
-                        ? await _service.GetUsersDonationsPaginatedReport(orgId.Value, dateFrom.Value, dateTo.Value, pageIndex.Value, pageSize.Value)
-                        : await _service.GetFilteredUsersDonationsPaginatedReport(orgId.Value, dateFrom.Value, dateTo.Value, pageIndex.Value, pageSize.Value, filterValue);
-
-                    return Ok(list);
-                }
-                catch (BusinessLogicException ex)
-                {
-                    return new BadRequestObjectResult(ex.Message);
-                }
+                return new BadRequestObjectResult(ErrorMessages.InvalidData);
             }
-            return new BadRequestObjectResult(ErrorMessages.InvalidData);
+
+            try
+            {
+                var list = String.IsNullOrEmpty(filterValue)
+                    ? _service.GetUsersDonationsPaginatedReport(orgId.Value, dateFrom.Value, dateTo.Value, pageIndex.Value, pageSize.Value)
+                    : _service.GetFilteredUsersDonationsPaginatedReport(orgId.Value, dateFrom.Value, dateTo.Value, pageIndex.Value, pageSize.Value, filterValue);
+
+                return Ok(list);
+            }
+            catch (BusinessLogicException ex)
+            {
+                return new BadRequestObjectResult(ex.Message);
+            }
         }
 
         [HttpGet("CountOfUsersDonationsReport")]
-        public async Task<IActionResult> CountOfUsersDonationsReport(int? orgId, DateTime? dateFrom, DateTime? dateTo, string filterValue)
+        public IActionResult CountOfUsersDonationsReport(int? orgId, DateTime? dateFrom, DateTime? dateTo, string filterValue)
         {
-            if (isDataNotNull(dateFrom, dateTo, orgId))
+            if (!isDataNotNull(dateFrom, dateTo, orgId))
             {
-                try
-                {
-                    int count = String.IsNullOrEmpty(filterValue)
-                       ? await _service.GetCountOfUsersDonationsReport(orgId.Value, dateFrom.Value, dateTo.Value)
-                       : await _service.GetFilteredCountOfUsersDonationsReport(orgId.Value, dateFrom.Value, dateTo.Value, filterValue);
-
-                    return Ok(count);
-                }
-                catch (BusinessLogicException ex)
-                {
-                    return new BadRequestObjectResult(ex.Message);
-                }
+                return new BadRequestObjectResult(ErrorMessages.InvalidData);
             }
-            return new BadRequestObjectResult(ErrorMessages.InvalidData);
+            try
+            {
+                int count = String.IsNullOrEmpty(filterValue)
+                   ? _service.GetCountOfUsersDonationsReport(orgId.Value, dateFrom.Value, dateTo.Value)
+                   : _service.GetFilteredCountOfUsersDonationsReport(orgId.Value, dateFrom.Value, dateTo.Value, filterValue);
+
+                return Ok(count);
+            }
+            catch (BusinessLogicException ex)
+            {
+                return new BadRequestObjectResult(ex.Message);
+            }
         }
 
         [HttpGet("CountOfCommonUsersDonationsReport")]
-        public async Task<IActionResult> CountOfCommonUsersDonationsReport(int? orgId, DateTime? dateFrom, DateTime? dateTo)
+        public IActionResult CountOfCommonUsersDonationsReport(int? orgId, DateTime? dateFrom, DateTime? dateTo)
         {
-            if (isDataNotNull(dateFrom, dateTo, orgId))
+            if (!isDataNotNull(dateFrom, dateTo, orgId))
             {
-                try
-                {
-                    int count = await _service.GetCountOfCommonUsersDonationsReport(orgId.Value, dateFrom.Value, dateTo.Value);
-                    return Ok(count);
-                }
-                catch (BusinessLogicException ex)
-                {
-                    return new BadRequestObjectResult(ex.Message);
-                }
+                return new BadRequestObjectResult(ErrorMessages.InvalidData);
             }
-            return new BadRequestObjectResult(ErrorMessages.InvalidData);
+
+            try
+            {
+                int count = _service.GetCountOfCommonUsersDonationsReport(orgId.Value, dateFrom.Value, dateTo.Value);
+                return Ok(count);
+            }
+            catch (BusinessLogicException ex)
+            {
+                return new NotFoundObjectResult(ex.Message);
+            }
         }
 
         [HttpGet("CommonUsersDonationsPaginatedReport")]
-        public async Task<IActionResult> CommonUsersDonationsPaginatedReport(int? orgId, DateTime? dateFrom, DateTime? dateTo, int? pageIndex, int? pageSize)
+        public IActionResult CommonUsersDonationsPaginatedReport(int? orgId, DateTime? dateFrom, DateTime? dateTo, int? pageIndex, int? pageSize)
         {
-            if (isDataNotNull(dateFrom, dateTo, orgId, pageIndex, pageSize))
+            if (!isDataNotNull(dateFrom, dateTo, orgId, pageIndex, pageSize))
             {
-                try
-                {
-                    var list = await _service.GetCommonUsersDonationsPaginatedReport(orgId.Value, dateFrom.Value, dateTo.Value, pageIndex.Value, pageSize.Value);
-                    return Ok(list);
-                }
-                catch (BusinessLogicException ex)
-                {
-                    return new BadRequestObjectResult(ex.Message);
-                }
+                return new BadRequestObjectResult(ErrorMessages.InvalidData);
             }
-            return new BadRequestObjectResult(ErrorMessages.InvalidData);
+
+            try
+            {
+                var list = _service.GetCommonUsersDonationsPaginatedReport(orgId.Value, dateFrom.Value, dateTo.Value, pageIndex.Value, pageSize.Value);
+                return Ok(list);
+            }
+            catch (BusinessLogicException ex)
+            {
+                return new NotFoundObjectResult(ex.Message);
+            }
         }
 
         private bool isDataNotNull(DateTime? dateFrom, DateTime? dateTo, params int?[] parametrs)

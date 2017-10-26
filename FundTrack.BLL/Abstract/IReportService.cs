@@ -11,12 +11,12 @@ namespace FundTrack.BLL.Abstract
         IEnumerable<ReportIncomeViewModel> GetIncomeReports(int orgId, DateTime? dateFrom, DateTime? dateTo);
         IEnumerable<ReportOutcomeViewModel> GetOutcomeReports(int orgId, DateTime? dateFrom, DateTime? dateTo);
         IEnumerable<String> GetImagesById(int finOpId);
-        Task<IEnumerable<UsersDonationsReportViewModel>> GetUsersDonationsPaginatedReport(int orgId, DateTime dateFrom, DateTime dateTo, int pageIndex, int pageSize);
-        Task<int> GetCountOfUsersDonationsReport(int orgId, DateTime dateFrom, DateTime dateTo);
-        Task<IEnumerable<UsersDonationsReportViewModel>> GetFilteredUsersDonationsPaginatedReport(int orgId, DateTime dateFrom, DateTime dateTo, int pageIndex, int pageSize, string filterValue);
-        Task<int> GetFilteredCountOfUsersDonationsReport(int orgId, DateTime dateFrom, DateTime dateTo, string filterValue);
-        Task<IEnumerable<UsersDonationsReportViewModel>> GetCommonUsersDonationsPaginatedReport(int orgId, DateTime dateFrom, DateTime dateTo, int pageIndex, int pageSize);
-        Task<int> GetCountOfCommonUsersDonationsReport(int orgId, DateTime dateFrom, DateTime dateTo);
+        IEnumerable<UsersDonationsReportViewModel> GetUsersDonationsPaginatedReport(int orgId, DateTime dateFrom, DateTime dateTo, int pageIndex, int pageSize);
+        int GetCountOfUsersDonationsReport(int orgId, DateTime dateFrom, DateTime dateTo);
+        IEnumerable<UsersDonationsReportViewModel> GetFilteredUsersDonationsPaginatedReport(int orgId, DateTime dateFrom, DateTime dateTo, int pageIndex, int pageSize, string filterValue);
+        int GetFilteredCountOfUsersDonationsReport(int orgId, DateTime dateFrom, DateTime dateTo, string filterValue);
+        IEnumerable<UsersDonationsReportViewModel> GetCommonUsersDonationsPaginatedReport(int orgId, DateTime dateFrom, DateTime dateTo, int pageIndex, int pageSize);
+        int GetCountOfCommonUsersDonationsReport(int orgId, DateTime dateFrom, DateTime dateTo);
 
     }
 }

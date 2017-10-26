@@ -16,10 +16,5 @@ namespace FundTrack.Infrastructure.ViewModel
     {
         public string UserLogin { get; set; }
         public string UserFulName { get; set; }
-
-        public int CompareTo(UsersDonationsReportViewModel other)
-        {
-            return Date > other.Date ? -1 : Date < other.Date ? 1 : 0;
-        }
     }
 }

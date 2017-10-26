@@ -103,42 +103,40 @@ namespace FundTrack.BLL.Concrete
             }
         }
 
-        public async Task<int> GetCountOfUsersDonationsReport(int orgId, DateTime dateFrom, DateTime dateTo)
+        public int GetCountOfUsersDonationsReport(int orgId, DateTime dateFrom, DateTime dateTo)
         {
-            var t = await GetUserDonations(orgId, dateFrom, dateTo);
-            return t.ToList().Count;
+            return GetRequestedDonation(orgId, dateFrom, dateTo).Count();
         }
 
-        public async Task<int> GetFilteredCountOfUsersDonationsReport(int orgId, DateTime dateFrom, DateTime dateTo, string filterValue)
+        public int GetFilteredCountOfUsersDonationsReport(int orgId, DateTime dateFrom, DateTime dateTo, string filterValue)
         {
-            var t = await GetUserDonations(orgId, dateFrom, dateTo);
-            return t.Where(d => d.UserLogin.Contains(filterValue)).ToList().Count;
+            var t = GetRequestedDonation(orgId, dateFrom, dateTo);
+            return t.Where(d => d.User!=null && d.User.Login.Contains(filterValue)).Count();
         }
 
-        public async Task<int> GetCountOfCommonUsersDonationsReport(int orgId, DateTime dateFrom, DateTime dateTo)
+        public int GetCountOfCommonUsersDonationsReport(int orgId, DateTime dateFrom, DateTime dateTo)
         {
-            var t = await GetUserDonations(orgId, dateFrom, dateTo);
-            var res = GroupDonationsByUserLogin(t.ToList());
-            return res.ToList().Count;
+            var t = GetRequestedDonation(orgId, dateFrom, dateTo);
+            return t.GroupBy(d => d.User.Login).Count();
         }
 
 
-        public async Task<IEnumerable<UsersDonationsReportViewModel>> GetUsersDonationsPaginatedReport(int orgId, DateTime dateFrom, DateTime dateTo, int pageIndex, int pageSize)
+        public IEnumerable<UsersDonationsReportViewModel> GetUsersDonationsPaginatedReport(int orgId, DateTime dateFrom, DateTime dateTo, int pageIndex, int pageSize)
         {
-            var t = await GetUserDonations(orgId, dateFrom, dateTo);
+            var t = GetUserDonations(orgId, dateFrom, dateTo);
             return PaginateReport(pageIndex, pageSize, t);
         }
 
-        public async Task<IEnumerable<UsersDonationsReportViewModel>> GetFilteredUsersDonationsPaginatedReport(int orgId, DateTime dateFrom, DateTime dateTo, int pageIndex, int pageSize, string filterValue)
+        public IEnumerable<UsersDonationsReportViewModel> GetFilteredUsersDonationsPaginatedReport(int orgId, DateTime dateFrom, DateTime dateTo, int pageIndex, int pageSize, string filterValue)
         {
-            var t = await GetUserDonations(orgId, dateFrom, dateTo);
+            var t = GetUserDonations(orgId, dateFrom, dateTo);
             var res = t.Where(d => d.UserLogin.Contains(filterValue));
             return PaginateReport(pageIndex, pageSize, res);
         }
 
-        public async Task<IEnumerable<UsersDonationsReportViewModel>> GetCommonUsersDonationsPaginatedReport(int orgId, DateTime dateFrom, DateTime dateTo, int pageIndex, int pageSize)
+        public IEnumerable<UsersDonationsReportViewModel> GetCommonUsersDonationsPaginatedReport(int orgId, DateTime dateFrom, DateTime dateTo, int pageIndex, int pageSize)
         {
-            var t = await GetUserDonations(orgId, dateFrom, dateTo);
+            var t = GetUserDonations(orgId, dateFrom, dateTo);
             var res = GroupDonationsByUserLogin(t.ToList());
             return PaginateReport(pageIndex, pageSize, res);
         }
@@ -147,51 +145,56 @@ namespace FundTrack.BLL.Concrete
         {
             return list.GroupBy(d => d.UserLogin)
                 .Select(d => new UsersDonationsReportViewModel()
-            {
-                UserLogin = d.Select(u => u.UserLogin).FirstOrDefault(),
-                UserFulName = d.Select(u => u.UserFulName).FirstOrDefault() ,
-                MoneyAmount = d.Sum(u => u.MoneyAmount),
-                Target = String.Join(", ", d.Select(u=>u.Target).Where(t=> !String.IsNullOrEmpty(t)).Distinct().ToArray())
-            }).AsQueryable();
+                {
+                    UserLogin = d.Select(u => u.UserLogin).FirstOrDefault(),
+                    UserFulName = d.Select(u => u.UserFulName).FirstOrDefault(),
+                    MoneyAmount = d.Sum(u => u.MoneyAmount),
+                    Target = String.Join(", ", d.Select(u => u.Target).Where(t => !String.IsNullOrEmpty(t)).Distinct().ToArray())
+                }).AsQueryable();
         }
 
         private List<UsersDonationsReportViewModel> PaginateReport(int pageIndex, int pageSize, IQueryable<UsersDonationsReportViewModel> t)
         {
             var list = t.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
-            list.Sort();
+            list.OrderByDescending(i => i.Date);
             return list;
         }
 
-        private Task<IQueryable<UsersDonationsReportViewModel>> GetUserDonations(int orgId, DateTime dateFrom, DateTime dateTo)
+
+
+        private IQueryable<UsersDonationsReportViewModel> GetUserDonations(int orgId, DateTime dateFrom, DateTime dateTo)
         {
-            return Task.Run(() =>
+            var donations = GetRequestedDonation(orgId, dateFrom, dateTo);
+
+            var query = donations.Select(d => new UsersDonationsReportViewModel()
             {
-                var orgAccountsIds = _unitOfWork.OrganizationAccountRepository.ReadAllOrgAccounts(orgId).Select(oa => oa.Id);
-
-                if (orgAccountsIds == null || orgAccountsIds.Count() == 0)
-                {
-                    throw new BusinessLogicException(ErrorMessages.OrganizationNotFound);
-                }
-
-                dateFrom = dateFrom.Date;
-                dateTo = dateTo.Date;
-                var donations = _unitOfWork.DonationRepository.Read()
-                    .Where(d => d.DonationDate.Date >= dateFrom &&
-                                d.DonationDate.Date <= dateTo &&
-                                orgAccountsIds.Contains(d.OrgAccountId));
-
-                var query = donations.Select(d => new UsersDonationsReportViewModel()
-                {
-                    Id = d.Id,
-                    Target = d.Target.TargetName,
-                    UserFulName = $"{d.User.FirstName} {d.User.LastName}",
-                    UserLogin = String.IsNullOrEmpty(d.User.Login) ? Constants.Anonymous : d.User.Login,
-                    Date = d.DonationDate,
-                    MoneyAmount = (decimal)d.Amount,
-                    Description = d.Description
-                });
-                return query;
+                Id = d.Id,
+                Target = d.Target == null ? null : d.Target.TargetName,
+                UserFulName = d.User == null ? null : $"{d.User.FirstName} {d.User.LastName}",
+                UserLogin = String.IsNullOrEmpty(d.User.Login) ? Constants.Anonymous : d.User.Login,
+                Date = d.DonationDate,
+                MoneyAmount = (decimal)d.Amount,
+                Description = d.Description
             });
+            return query;
+        }
+
+        private IQueryable<DAL.Entities.Donation> GetRequestedDonation(int orgId, DateTime dateFrom, DateTime dateTo)
+        {
+            var orgAccountsIds = _unitOfWork.OrganizationAccountRepository.ReadAllOrgAccounts(orgId).Select(oa => oa.Id);
+
+            if (orgAccountsIds == null || orgAccountsIds.Count() == 0)
+            {
+                throw new BusinessLogicException(ErrorMessages.OrganizationNotFound);
+            }
+
+            dateFrom = dateFrom.Date;
+            dateTo = dateTo.Date;
+            var donations = _unitOfWork.DonationRepository.Read()
+                .Where(d => d.DonationDate.Date >= dateFrom &&
+                            d.DonationDate.Date <= dateTo &&
+                            orgAccountsIds.Contains(d.OrgAccountId));
+            return donations;
         }
     }
 }
