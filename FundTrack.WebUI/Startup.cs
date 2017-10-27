@@ -138,6 +138,10 @@ namespace FundTrack.WebUI
             app.UseGlobalErrorHandling();
             app.UseStaticFiles();
 
+
+            app.UseMyAuthorization();
+
+
             //Old authorization
             //app.UseCookieAuthentication(new CookieAuthenticationOptions
             //{
