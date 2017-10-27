@@ -125,7 +125,7 @@ export class MakeDonationComponent implements OnInit, DoCheck, OnDestroy{
 
         //DONT FORGET PEPLACE LINK TO DEFAULT http://fundtrack4.azurewebsites.net/finance/donate
         // link for testing http://localhost:51116/finance/donate
-        this.fondyPayModel.response_url = "http://fundtrack4.azurewebsites.net/finance/donate";
+        this.fondyPayModel.response_url = "http://fundtrackss.azurewebsites.net/finance/donate";
         this.fondyPayModel.currency = this.currency.currencyShortName;
 
         this.donateForm.valueChanges.subscribe(() => {

@@ -12,5 +12,8 @@ namespace FundTrack.Infrastructure
         public const int FinOpTypeTransfer = 2;
         public const string  BankType = "Банк";
         public const string DefaultAccountType = "Загальний";
+        public const string CashFinOpDescription = "Готівкова пожертва";
+        public const string DefaultTargetName = "Призначення не вказано";
+        public const string BaseTargetName = "Базове призначення";
     }
 }

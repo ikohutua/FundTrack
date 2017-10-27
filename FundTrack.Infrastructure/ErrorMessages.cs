@@ -50,6 +50,7 @@
         public const string CantGetInfoForAccount = "Неможливо отримати інформацію для рахунку";
         public const string CantEditInfoForAccount = "Неможливо змінити інформацію для рахунку";
         public const string BindingDonationToFinOp = "Неможливо прив'язати пожертву до фінансової операції";
+        public const string CantGetFinOpsForReport = "Неможливо отримати фінансові операції для звіту";
         //report controller
         public const string IncomeReportErrorMessage = "Неможливо отримати звіт по надходженнях для організації №{0} за періодом з '{1}' до '{2}';";
         public const string OutcomeReportErrorMessage = "Неможливо отримати звіт по витратах для організації №{0} за періодом з '{1}' до '{2}';";

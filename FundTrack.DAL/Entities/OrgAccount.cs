@@ -101,6 +101,11 @@ namespace FundTrack.DAL.Entities
         public virtual ICollection<FinOp> FinOpsFrom { get; set; }
 
         /// <summary>
+        /// Gets or Sets Donation navigation property
+        /// </summary>
+        public virtual ICollection<Donation> Donations { get; set; }
+
+        /// <summary>
         /// Gets or Sets FinOpTo navigation property
         /// </summary>
         public virtual ICollection<FinOp> FinOpsTo { get; set; }
