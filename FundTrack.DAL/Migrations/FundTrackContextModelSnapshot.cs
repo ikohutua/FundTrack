@@ -878,6 +878,8 @@ namespace FundTrack.DAL.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<string>("AuthorizationToken");
+
                     b.Property<string>("Email")
                         .IsRequired();
 
