@@ -9,61 +9,16 @@ namespace FundTrack.PrivatImport
     [XmlType(AnonymousType = true)]
     public class Statements
     {
-        private Statement[] _statement;
-        private string _status;
-        private decimal _credit;
-        private decimal _debet;
-
         [XmlElement("statement")]
-        public Statement[] Statement
-        {
-            get
-            {
-                return _statement;
-            }
-            set
-            {
-                _statement = value;
-            }
-        }
+        public Statement[] Statement { get; set; }
 
         [XmlAttribute("status")]
-        public string Status
-        {
-            get
-            {
-                return _status;
-            }
-            set
-            {
-                _status = value;
-            }
-        }
+        public string Status { get; set; }
 
         [XmlAttribute("credit")]
-        public decimal Credit
-        {
-            get
-            {
-                return _credit;
-            }
-            set
-            {
-                _credit = value;
-            }
-        }
+        public decimal Credit { get; set; }
 
         [XmlAttribute("debet")]
-        public decimal Debet
-        {
-            get
-            {
-                return _debet;
-            }
-            set
-            {
-                _debet = value;
-            }
-        }
+        public decimal Debet { get; set; }
     }
 }

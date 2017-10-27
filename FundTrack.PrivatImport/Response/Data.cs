@@ -9,33 +9,10 @@ namespace FundTrack.PrivatImport
     [XmlType(AnonymousType = true)]
     public class Data
     {
-        private string _oper;
-        private Info _info;
-
         [XmlElement("oper")]
-        public string Oper
-        {
-            get
-            {
-                return _oper;
-            }
-            set
-            {
-                _oper = value;
-            }
-        }
+        public string Oper { get; set; }
 
         [XmlElement("info")]
-        public Info Info
-        {
-            get
-            {
-                return _info;
-            }
-            set
-            {
-                _info = value;
-            }
-        }
+        public Info Info { get; set; }
     }
 }

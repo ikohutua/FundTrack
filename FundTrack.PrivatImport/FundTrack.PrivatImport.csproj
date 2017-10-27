@@ -38,6 +38,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
@@ -49,31 +50,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BankAccounts.cs">
-      <DependentUpon>FundTrackEntityModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="BankImportDetails.cs">
-      <DependentUpon>FundTrackEntityModel.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Constants.cs" />
     <Compile Include="Extensions.cs" />
-    <Compile Include="FundTrackEntityModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>FundTrackEntityModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="FundTrackEntityModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>FundTrackEntityModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="FundTrackEntityModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>FundTrackEntityModel.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="OrgAccounts.cs">
-      <DependentUpon>FundTrackEntityModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="PrivatImporter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Response\Data.cs" />
@@ -82,34 +60,16 @@
     <Compile Include="Response\Response.cs" />
     <Compile Include="Response\Statement.cs" />
     <Compile Include="Response\Statements.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <EntityDeploy Include="FundTrackEntityModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>FundTrackEntityModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
+    <Compile Include="ViewModels\BankAccountsViewModel.cs" />
+    <Compile Include="ViewModels\BankImportDetailsViewModel.cs" />
+    <Compile Include="ViewModels\OrgAccountsViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
-    <None Include="FundTrackEntityModel.edmx.diagram">
-      <DependentUpon>FundTrackEntityModel.edmx</DependentUpon>
-    </None>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="FundTrackEntityModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>FundTrackEntityModel.Context.cs</LastGenOutput>
-      <DependentUpon>FundTrackEntityModel.edmx</DependentUpon>
-    </Content>
-    <Content Include="FundTrackEntityModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>FundTrackEntityModel.edmx</DependentUpon>
-      <LastGenOutput>FundTrackEntityModel.cs</LastGenOutput>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

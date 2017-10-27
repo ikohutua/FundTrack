@@ -9,19 +9,7 @@ namespace FundTrack.PrivatImport
     [XmlType(AnonymousType = true)]
     public class Info
     {
-        private Statements _statements;
-
         [XmlElement("statements")]
-        public Statements Statements
-        {
-            get
-            {
-                return _statements;
-            }
-            set
-            {
-                _statements = value;
-            }
-        }
+        public Statements Statements { get; set; }
     }
 }

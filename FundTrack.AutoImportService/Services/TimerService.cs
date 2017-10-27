@@ -31,10 +31,9 @@ namespace FundTrack.AutoImportService.Services
 
         private void UpdateDate(int currentOrgId)
         {
-            var newComand = Constants.UpdateQuerySet;
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
-                SqlCommand command = new SqlCommand(newComand, connection);
+                SqlCommand command = new SqlCommand(Constants.UpdateQuerySet, connection);
                 command.Parameters.Add("@dateParam", SqlDbType.DateTime2).Value = DateTime.Now;
                 command.Parameters.Add("@orgId", SqlDbType.Int).Value = currentOrgId;
                 connection.Open();

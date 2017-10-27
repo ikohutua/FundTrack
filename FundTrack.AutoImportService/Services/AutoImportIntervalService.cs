@@ -31,27 +31,29 @@ namespace FundTrack.AutoImportService.Services
             }
         }
 
-        
-
         public IEnumerable<AutoImportIntervalViewModel> GetIntervals()
         {
-            SqlConnection connection = new SqlConnection(_connectionString);
-            SqlCommand command = new SqlCommand(Constants.SelectAllIntervalsQuery, connection);
-            connection.Open();
-            SqlDataReader reader = command.ExecuteReader();
-            AutoImportIntervalViewModel model;
-            List<AutoImportIntervalViewModel> intervals = new List<AutoImportIntervalViewModel>();
-            while (reader.Read())
+            using (SqlConnection connection = new SqlConnection(_connectionString))
             {
-                model = new AutoImportIntervalViewModel();
-                model.Id = (int)reader[Constants.IdColumn];
-                model.Interval = ConvertToMiliseconds((int)reader[Constants.IntervalColumn]);
-                model.OrganizationId = (int)reader[Constants.OrgIdColumn];
-                //model.LastUpdateDate = (DateTime?)reader[Constants.LastUpdateColumn];
-                intervals.Add(model);
+                SqlCommand command = new SqlCommand(Constants.SelectAllIntervalsQuery, connection);
+
+                connection.Open();
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    AutoImportIntervalViewModel model;
+                    List<AutoImportIntervalViewModel> intervals = new List<AutoImportIntervalViewModel>();
+                    while (reader.Read())
+                    {
+                        model = new AutoImportIntervalViewModel();
+                        model.Id = (int) reader[Constants.IdColumn];
+                        model.Interval = ConvertToMiliseconds((int) reader[Constants.IntervalColumn]);
+                        model.OrganizationId = (int) reader[Constants.OrgIdColumn];
+                        //model.LastUpdateDate = (DateTime?)reader[Constants.LastUpdateColumn];
+                        intervals.Add(model);
+                    }
+                    return intervals;
+                }
             }
-            connection.Close();
-            return intervals;
         }
 
         private long ConvertToMiliseconds(int minutes)
@@ -66,7 +68,7 @@ namespace FundTrack.AutoImportService.Services
             {
                 var timer = timers.FirstOrDefault(x => x.IntervalViewModel.Id == interval.Id);
                 // If timer not found that it is new interval in db.
-                if(timer == null)
+                if (timer == null)
                 {
                     timerService.CreateTimer(interval);
                     return;

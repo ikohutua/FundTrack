@@ -6,15 +6,15 @@ using System.Xml.Serialization;
 namespace FundTrack.PrivatImport
 {
     public static class Extensions
-    { 
+    {
         /// <summary>
         /// Make Stream from string
         /// </summary>
-        private static Stream ToStream(this string @this)
+        private static Stream ToStream(this string text)
         {
             var stream = new MemoryStream();
             var writer = new StreamWriter(stream);
-            writer.Write(@this);
+            writer.Write(text);
             writer.Flush();
             stream.Position = 0;
             return stream;
@@ -23,14 +23,16 @@ namespace FundTrack.PrivatImport
         /// <summary>
         /// parse XML string into object of T class using serialization
         /// </summary>
-        public static T ParseXmlTo<T>(this string @this) where T : class
+        public static T ParseXmlTo<T>(this string text) where T : class
         {
-            var reader = XmlReader.Create(@this.Trim().ToStream(),
-                new XmlReaderSettings { ConformanceLevel = ConformanceLevel.Document });
-            var serializer = new XmlSerializer(typeof(T));
-            if (serializer.CanDeserialize(reader))
+            using (var reader = XmlReader.Create(text.Trim().ToStream(),
+                new XmlReaderSettings { ConformanceLevel = ConformanceLevel.Document }))
             {
-                return serializer.Deserialize(reader) as T;
+                var serializer = new XmlSerializer(typeof(T));
+                if (serializer.CanDeserialize(reader))
+                {
+                    return serializer.Deserialize(reader) as T;
+                }
             }
 
             return new object() as T;
