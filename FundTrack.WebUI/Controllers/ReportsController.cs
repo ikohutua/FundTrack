@@ -1,8 +1,7 @@
 using System;
-using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using FundTrack.BLL.Abstract;
-using FundTrack.Infrastructure.ViewModel;
+using FundTrack.Infrastructure;
 using Microsoft.AspNetCore.Authorization;
 
 namespace FundTrack.WebUI.Controllers
@@ -24,7 +23,7 @@ namespace FundTrack.WebUI.Controllers
             {
                 return Ok(_service.GetIncomeReports(orgId, dateFrom, dateTo));
             }           
-                return BadRequest("Invalid data: organization ID='"+orgId+ "'; BeginDate='"+dateFrom+ "'; EndDate='"+dateTo+"';");     
+                return BadRequest(string.Format(ErrorMessages.IncomeReportErrorMessage, orgId, dateFrom, dateTo));     
         }
 
         [HttpGet("OutcomeReport")]
@@ -34,7 +33,7 @@ namespace FundTrack.WebUI.Controllers
             {
                 return Ok(_service.GetOutcomeReports(orgId, dateFrom, dateTo));
             }
-            return BadRequest("Invalid data: organization ID='" + orgId + "'; BeginDate='" + dateFrom + "'; EndDate='" + dateTo + "';");
+            return BadRequest(string.Format(ErrorMessages.OutcomeReportErrorMessage, orgId, dateFrom, dateTo));
         }
 
         [HttpGet("FinOpImages")]
@@ -44,19 +43,19 @@ namespace FundTrack.WebUI.Controllers
             {
                 return Ok(_service.GetImagesById(finOpId));
             }
-            return BadRequest("Invalid finOpId: finOpId='" + finOpId + "'; Must be grater than 0;");
+            return BadRequest(string.Format(ErrorMessages.FinopImagesErrorMessage, finOpId));
             
         }
 
         [HttpGet("InvoiceDeclaration")]
-        //[Authorize(Roles = "admin, moderator")]
+        [Authorize(Roles = "admin, moderator")]
         public ActionResult GetInvoiceDeclarationReport(int orgId, DateTime? dateFrom, DateTime? dateTo)
         {
             if (isDateValid(dateFrom, dateTo) && isIdValid(orgId))
             {
                 return Ok(_service.GetInvoiceDeclarationReport(orgId,dateFrom,dateTo));
             }
-            return BadRequest("Invalid orgId: orgId='" + orgId + "'; Must be grater than 0;");
+            return BadRequest(string.Format(ErrorMessages.InvoiceDeclarationReportErrorMessage, orgId, dateFrom, dateTo));
         }
 
         private bool isDateValid(DateTime? dateFrom, DateTime? dateTo)
@@ -65,19 +64,11 @@ namespace FundTrack.WebUI.Controllers
             {        
                 return false;
             }
-            if (dateFrom == null)
-            {
-                return false;
-            }
-            return true;
+            return dateFrom != null;
         }
-        private bool isIdValid(int Id)
+        private bool isIdValid(int id)
         {
-            if (Id > 0)
-            {
-                return true;
-            }
-           return false;
+            return id > 0;
         }
     }
 }

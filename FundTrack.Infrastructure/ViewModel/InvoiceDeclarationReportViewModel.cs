@@ -13,6 +13,7 @@ namespace FundTrack.Infrastructure.ViewModel
             public decimal FlowOutcome { get; set; }
             public decimal TransferOutcome { get; set; }
             public string BankAccountTooltip { get; set; }
+            public decimal TotalSum { get; set; }
     }
 
 }

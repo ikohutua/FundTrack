@@ -6,7 +6,7 @@
         </div>
 
         <div class="panel-body">
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <h4 class="muted">Організація</h4>
@@ -20,25 +20,10 @@
                 </div>
             </div>
 
-            <div class="col-md-6">
+            <div class="col-md-9">
                 <date-presets  (dateFrom) ="onDateFromChange($event,selectedOrganization.value )"  (dateTo) ="onDateToChange($event,selectedOrganization.value)"></date-presets>
             </div>
-
-            <div class="col-md-2">
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <h4 class="muted">Тип звіту</h4>
-                        <p></p>
-
-                        <div>
-                            <select class="input-sm form-control" [(ngModel)]="reportModel.reportType" (change)="generateReport(selectedOrganization.value)">
-                                <option value="0" selected>Витрати</option>
-                                <option value="1">Надходження</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-            </div>    
+        
         </div>
     </div>
 
@@ -57,8 +42,61 @@
             </div>
         </div>
     </div>
+    
+<div class="panel-body">  
+    <ul *ngIf="ifDataExists" class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#home">Витрати</a></li>
+        <li><a data-toggle="tab" href="#menu1">Надходження</a></li>
+    </ul>
 
-    <div class="panel-body">
+    <div *ngIf="ifDataExists" class="tab-content">
+        <div id="home" class="tab-pane fade in active">
+            <table class="table table-hover table-condensed table-striped">
+                <thead>
+                <th>№ п/п</th>
+                <th>Призначення</th>
+                <th>Опис</th>
+                <th>Сума, ₴</th>
+                <th>Дата</th>
+                <th>Фото</th>
+                </thead>
+                <tbody>
+                <tr *ngFor="let item of outcomeReportData; let i = index">
+                    <td>{{i+1}}</td>
+                    <td>{{item.target}}</td>
+                    <td>{{item.description}}</td>
+                    <td>{{item.moneyAmount | number : '1.2-2'}}</td>
+                    <td>{{item.date | date:'dd-MMM-yyyy HH:mm'}}</td>
+                    <td><a id="thumbnailsList" (click)="getImagesById(item.id)" data-toggle="modal" data-target="#selectedImageModal"> Переглянути </a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div id="menu1" class="tab-pane fade">
+            <table  class="table table-hover table-condensed table-striped">
+                <thead>
+                <th>№ п/п</th>
+                <th>Призначення</th>
+                <th>Від кого</th>
+                <th>Опис</th>
+                <th>Сума, ₴</th>
+                <th>Дата</th>
+                </thead>
+            <tbody>
+            <tr *ngFor="let item of incomeReportData; let i = index">
+                <td>{{i+1}}</td>
+                <td>{{item.targetTo}}</td>
+                <td>{{item.from}}</td>
+                <td>{{item.description}}</td>
+                <td>{{item.moneyAmount | number : '1.2-2'}}</td>
+                <td>{{item.date | date:'dd-MMM-yyyy HH:mm'}}</td>
+            </tr>
+            </tbody>
+            </table>
+        </div>
+    </div >
+</div>
+    <!--<div class="panel-body">
         <table *ngIf="ifDataExists" class="table table-hover table-condensed table-striped">
             <thead>
             <th *ngFor="let header of reportHeaders">{{header}}</th>
@@ -84,7 +122,7 @@
                 </tr>
             </tbody>
         </table>
-    </div>
+    </div>-->
 
     <div class="modal fade" id="selectedImageModal">
         <div class="modal-dialog" role="document">

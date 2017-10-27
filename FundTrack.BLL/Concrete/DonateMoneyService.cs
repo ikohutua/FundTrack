@@ -42,7 +42,7 @@ namespace FundTrack.BLL.Concrete
                         MerchantPassword = orgAccount.BankAccount.MerchantPassword,
                         Name = orgAccount.OrgAccountName,
                         TargetId = orgAccount.TargetId,
-                        Target = orgAccount.TargetId == null ? "Загальний" : _unitOfWork.TargetRepository
+                        Target = orgAccount.TargetId == null ? Constants.DefaultAccountType : _unitOfWork.TargetRepository
                                 .GetTargetById(orgAccount.TargetId.GetValueOrDefault()).TargetName
 
                     });

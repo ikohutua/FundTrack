@@ -86,17 +86,18 @@ namespace FundTrack.BLL.Concrete
         {
             try
             {
-                var orgAccounts = _unitOfWork.OrganizationAccountRepository.ReadAllOrgAccounts(orgId).Where(m => m.AccountType=="Банк");
+                var orgAccounts = _unitOfWork.OrganizationAccountRepository.ReadAllOrgAccounts(orgId).Where(m => m.AccountType==Constants.BankType);
                 var result = orgAccounts.Select(m => new InvoiceDeclarationReportViewModel
                 {
                     BankAccount = m.BankAccount.CardNumber,
                     BankAccountTooltip = m.OrgAccountName + " : "+m.Description,
-                    BeginIncomeMonthSum = m.Balances.Where(z =>  z.BalanceDate.Date == dateFrom.Value.Date && z.BalanceDate.Date <= dateTo.Value.Date).FirstOrDefault()?.Amount,
+                    BeginIncomeMonthSum = m.Balances.Where(z =>  z.BalanceDate.Date == dateFrom.Value.Date && z.BalanceDate.Date <= dateTo.Value.Date).OrderBy(c=>c.BalanceDate).LastOrDefault()?.Amount,
                     TotalIncomeSum = m.FinOpsTo.Where(z => z.FinOpDate.Date >= dateFrom.Value.Date && z.FinOpDate.Date <= dateTo.Value.Date).Sum(s=>s.Amount),
                     TransferIncome = m.FinOpsTo.Where(z => z.FinOpDate.Date >= dateFrom.Value.Date && z.FinOpDate.Date <= dateTo.Value.Date).Where(a=>a.AccFromId!=null && a.AccToId!=null).Sum(s => s.Amount),
                     FlowOutcome = m.FinOpsFrom.Where(z => z.FinOpDate.Date >= dateFrom.Value.Date && z.FinOpDate.Date <= dateTo.Value.Date).Sum(s => s.Amount),
                     TransferOutcome = m.FinOpsFrom.Where(z => z.AccFromId != null && z.AccToId != null && z.FinOpDate.Date >= dateFrom.Value.Date && z.FinOpDate.Date <= dateTo.Value.Date).Sum(s => s.Amount),
-                });
+                }).ToList();
+                result.ForEach(sum => sum.TotalSum = sum.TotalIncomeSum + sum.TransferIncome - sum.FlowOutcome - sum.TransferOutcome + sum.BeginIncomeMonthSum ?? 0);
                 return result;
             }
             catch (Exception ex)

@@ -1,7 +1,6 @@
-﻿import { Component, ViewChild, OnInit, EventEmitter, Output, AfterContentChecked, Input } from "@angular/core";
-import { isBrowser } from 'angular2-universal';
-import { DatePipe } from "@angular/common";
+﻿import { Component, ViewChild, OnInit, EventEmitter, Output } from "@angular/core";
 import { ModalComponent } from "../modal/modal-component";
+import * as moment from "moment/moment";
 
 interface IPresets {
     name: string;
@@ -9,26 +8,26 @@ interface IPresets {
 }
 
 @Component({
-    selector: 'date-presets',
-    templateUrl: './date-presets.component.html',
-    styleUrls: ['./date-presets.component.css'],
-    providers: [DatePipe]
+    selector: "date-presets",
+    templateUrl: "./date-presets.component.html",
+    styleUrls: ["./date-presets.component.css"],
 })
 
 export class DatePresetsComponent implements OnInit{
 
-    private inputMaxDate: Date = new Date();
-    private dateFromIn: Date = new Date();
-    private dateToIn: Date = new Date();
+    private  readonly  DATE_FORMAT = "YYYY-MM-DD"; 
+    private inputMaxDate = moment().format(this.DATE_FORMAT);
+    private dateFromIn = moment().format(this.DATE_FORMAT);
+    private dateToIn = moment().format(this.DATE_FORMAT);
     private dropboxValue: number = 0;
-    @Output() dateFrom = new EventEmitter<Date>();
-    @Output() dateTo = new EventEmitter<Date>();
+    @Output() dateFrom = new EventEmitter<string>();
+    @Output() dateTo = new EventEmitter<string>();
     selectedPreset: number = 0;
-    private presets: IPresets[] = [{ name: 'Цей місяць', id: 0 },
-        { name: 'Минулий місяць', id: 1 },
-        { name: 'Цей тиждень', id: 2 },
-        { name: 'Минулий тиждень', id: 3 },
-        { name: 'Користувацький', id: 4 }];
+    private presets: IPresets[] = [{ name: "Цей місяць", id: 0 },
+        { name: "Минулий місяць", id: 1 },
+        { name: "Цей тиждень", id: 2 },
+        { name: "Минулий тиждень", id: 3 },
+        { name: "Користувацький", id: 4 }];
 
     @ViewChild("dateExceptionModal")
     private dateExceptionModal: ModalComponent;
@@ -38,18 +37,12 @@ export class DatePresetsComponent implements OnInit{
 
 
     ngOnInit(): void {
-        this.dateFromIn.setMonth(this.dateFromIn.getMonth() - 1);
+        this.dateFromIn = moment().subtract(1, "month").format(this.DATE_FORMAT);
     }
-
-    /**
-     * @constructor
-     * @param _service
-     */
-    constructor(private datePipe: DatePipe) { }
 
 
     public setBeginDate(beginDate: Date): void {
-        this.dateFromIn = new Date(this.datePipe.transform(beginDate, 'yyyy-MM-dd'));
+        this.dateFromIn = moment(beginDate).format(this.DATE_FORMAT); 
         if (this.isDateValid()) {
             this.dateFrom.emit(this.dateFromIn);
             this.selectedPreset = 4;
@@ -57,7 +50,7 @@ export class DatePresetsComponent implements OnInit{
     }
 
     public setEndDate(endDate: Date): void {
-        this.dateToIn = new Date(this.datePipe.transform(endDate, 'yyyy-MM-dd'));
+        this.dateToIn = moment(endDate).format(this.DATE_FORMAT);
         if (this.isDateValid()) {
             this.dateTo.emit(this.dateToIn);
             this.selectedPreset = 4;
@@ -66,30 +59,31 @@ export class DatePresetsComponent implements OnInit{
 
     onDropBoxChange(value) {
         this.selectedPreset = value;
-        this.dateFromIn = new Date();
-        this.dateToIn = new Date();
-        if (value == 0) {//this month    
-            this.dateFromIn.setMonth(new Date().getMonth());
-            this.dateFromIn.setDate(1);
+        this.dateFromIn = moment().format(this.DATE_FORMAT);
+        this.dateToIn = moment().format(this.DATE_FORMAT);
+        
+        switch (value) {
+        case "0":
+            this.dateFromIn = moment().startOf("month").format(this.DATE_FORMAT);
+            break;       
+        case "1":
+            this.dateFromIn = moment().subtract(1, "months").startOf("month").format(this.DATE_FORMAT);
+            this.dateToIn = moment().subtract(1, "months").endOf("month").format(this.DATE_FORMAT);
+            break;
+        case "2": 
+            this.dateFromIn = moment().startOf("isoWeek").format(this.DATE_FORMAT); 
+            break;
+        case "3":
+            this.dateFromIn = moment().subtract(1, "weeks").startOf("isoWeek").format(this.DATE_FORMAT);
+            this.dateToIn = moment().subtract(1, "weeks").endOf("isoWeek").format(this.DATE_FORMAT);
+            break;
+        default:
+            this.dateFromIn = moment().subtract(1, "month").format(this.DATE_FORMAT);
         }
-        if (value == 1) {//last month
-            this.dateFromIn.setMonth(this.dateFromIn.getMonth() - 1);
-            this.dateFromIn.setDate(1);
-            this.dateToIn.setDate(1);
-        }
-        if (value == 2) {//this week ???
-            this.dateFromIn.setDate((new Date().getDate()+1) - new Date().getDay());
-        }
-        if (value == 3) {//last week 
-            this.dateFromIn.setDate(new Date().getDate() - new Date().getDay() - 6);
-            this.dateToIn.setDate(new Date().getDate() - new Date().getDay());
-        }
-        if (value == 4) {//default 
-            this.dateFromIn.setMonth(this.dateFromIn.getMonth() - 1);
-        }
+
         if (this.isDateValid()) {
-            this.dateFrom.emit(this.dateFromIn);
-            this.dateTo.emit(this.dateToIn);
+                this.dateFrom.emit(this.dateFromIn);
+                this.dateTo.emit(this.dateToIn);       
         }
     }
    
@@ -98,8 +92,7 @@ export class DatePresetsComponent implements OnInit{
             this.openModal(this.dateExceptionModal);
             return false;
         }
-        if (this.datePipe.transform(this.dateFromIn, 'yyyy-MM-dd')
-            > this.datePipe.transform(this.dateToIn, 'yyyy-MM-dd')) {
+        if (this.dateFromIn > this.dateToIn) {
             this.openModal(this.dateCompareExceptionModal);
             return false;
         }

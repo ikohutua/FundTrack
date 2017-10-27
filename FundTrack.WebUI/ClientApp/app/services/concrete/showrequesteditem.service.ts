@@ -17,6 +17,8 @@ import { IncomeReportDataViewModel } from "../../view-models/concrete/income-rep
 import { OutcomeReportDataViewModel } from "../../view-models/concrete/outcome-report-data-view-model";
 import { InvoiceDeclarationResponseViewModel } from "../../view-models/concrete/invoice-declaration-response-view-model";
 import { ReportUrlsService } from "./report-urls.service";
+import Requestoptionsservice = require("./request-options.service");
+import RequestOptionsService = Requestoptionsservice.RequestOptionsService;
 
 @Injectable()
 export class ShowRequestedItemService extends BaseService<IShowRequestedItem>{
@@ -35,7 +37,7 @@ export class ShowRequestedItemService extends BaseService<IShowRequestedItem>{
      */
     public getRequestedItemInitData() {
         return this.http.get(ReportUrlsService._urlForPagination)
-            .map((response: Response) => response.json() as RequestedItemInitViewModel)
+            .map((response: Response) => response.json() as RequestedItemInitViewModel);
     }
 
     /**
@@ -99,7 +101,7 @@ export class ShowRequestedItemService extends BaseService<IShowRequestedItem>{
     }
 
     private getCollections<T>(_myUrl: string): Observable<T[]> {
-        return this.http.get(_myUrl)
+        return this.http.get(_myUrl, RequestOptionsService.getRequestOptions())
             .map((response: Response) => response.json() as T[])
             .do(data => console.log('ALL ' + JSON.stringify(data)))
             .catch(this.handleErrorHere);

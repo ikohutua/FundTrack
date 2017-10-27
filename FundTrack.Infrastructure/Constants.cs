@@ -10,5 +10,7 @@ namespace FundTrack.Infrastructure
         public const int FinOpTypeIncome = 1;
         public const int FinOpTypeSpending = 0;
         public const int FinOpTypeTransfer = 2;
+        public const string  BankType = "Банк";
+        public const string DefaultAccountType = "Загальний";
     }
 }
