@@ -83,7 +83,7 @@ namespace FundTrack.BLL.Concrete
         {
             if (item.Description == null)
             {
-                item.Description = "Готівкова пожертва";
+                item.Description = Constants.CashFinOpDescription;
             }
             var itemToAdd = new Donation
             {
