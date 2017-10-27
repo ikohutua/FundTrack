@@ -46,7 +46,8 @@ namespace FundTrack.WebUI
 
             services.AddCors(
      options => options.AddPolicy("AllowCors",
-         builder => {
+         builder =>
+         {
              builder
                  //.WithOrigins("http://localhost:4456") //AllowSpecificOrigins;  
                  //.WithOrigins("http://localhost:4456", "http://localhost:4457") //AllowMultipleOrigins;  
@@ -58,17 +59,13 @@ namespace FundTrack.WebUI
                                                               //.AllowAnyMethod() //AllowAllMethods;  
                                                               //.WithHeaders("Accept", "Content-type", "Origin", "X-Custom-Header"); //AllowSpecificHeaders;  
                  .AllowAnyHeader(); //AllowAllHeaders;  
-        })
- );
-
+         }));
 
             // Add framework services.
             services.AddMvc(options =>
             {
                 options.InputFormatters.Add(new JsonInputFormatter());
             });
-
-            // for iis deploy : https://stackoverflow.com/questions/12731320/web-config-cannot-read-configuration-file-due-to-insufficient-permissions
 
             //dependency injection DAL
             services.AddTransient<IUserResporitory, UserRepository>();
@@ -137,8 +134,7 @@ namespace FundTrack.WebUI
         {
             app.UseGlobalErrorHandling();
 
-            //app.LoggingHandling();
-
+            app.UseMyAuthorization();
             app.UseStaticFiles();
 
 
