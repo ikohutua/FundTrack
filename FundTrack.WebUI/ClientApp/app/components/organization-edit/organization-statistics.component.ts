@@ -93,7 +93,7 @@ export class OrganizationStatisticsComponent implements OnInit {
     private onClickBaseTarget(target: BaseTargetReportViewModel): void {
         target.isOpen = !target.isOpen;
         if (target.isOpen) {
-            if (target.id === -1) {
+            if (target.id == undefined) {
                 this.selectedCategory = this.baseTargetName;
                 this.prepareTargetsForCharts(this.allTargets);
                 this.organizationStatisticsService.getFinOpsByTargetId(this.reportType, target.id, this.transformDate(this.dateFrom), this.transformDate(this.dateTo))

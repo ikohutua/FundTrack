@@ -24,7 +24,7 @@ export class OrganizationStatisticsService {
 
     public getFinOpsByTargetId(finOpType: number, targetId: number, dateFrom: string, dateTo: string):
         Observable<FinOpListViewModel[]> {
-        return this._http.get(GlobalUrlService.getFinOpsByTargetId + finOpType.toString() + '/' +  targetId.toString() + '?dateFrom=' + dateFrom + '&dateTo=' + dateTo, RequestOptionsService.getRequestOptions())
+        return this._http.get(GlobalUrlService.getFinOpsByTargetId + finOpType.toString() + '/' +  targetId + '?dateFrom=' + dateFrom + '&dateTo=' + dateTo, RequestOptionsService.getRequestOptions())
             .map((res : Response) => <FinOpListViewModel[]>res.json());
     }
 }

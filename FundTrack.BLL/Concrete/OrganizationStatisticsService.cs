@@ -42,8 +42,8 @@ namespace FundTrack.BLL.Concrete
 
                 var result = finOps.GroupBy(f => f.TargetId).Select(t => new TargetReportViewModel
                 {
-                    Id = t.First().TargetId ?? -1,
-                    TargetName = t.First().Target?.TargetName ?? "Призначення не вказано",
+                    Id = t.First().TargetId,
+                    TargetName = t.First().Target?.TargetName ?? Constants.DefaultTargetName,
                     Sum = t.Sum(s => s.Amount)
                 }).OrderBy(t => t.Id);
 
@@ -70,8 +70,8 @@ namespace FundTrack.BLL.Concrete
 
                 var result = finOps.GroupBy(f => f.TargetId).Select(t => new TargetReportViewModel
                 {
-                    Id = t.First().TargetId ?? -1,
-                    TargetName = t.First().TargetId == baseTargetId ? "Базове призначення" : t.First().Target.TargetName,
+                    Id = t.First().TargetId,
+                    TargetName = t.First().TargetId == baseTargetId ? Constants.BaseTargetName : t.First().Target.TargetName,
                     Sum = t.Sum(s => s.Amount)
                 });
 
@@ -87,7 +87,7 @@ namespace FundTrack.BLL.Concrete
         {
             try
             {
-                if (targetId == -1)
+                if (targetId == 0)
                 {
                     targetId = null; // to get all finOps without target
                 }

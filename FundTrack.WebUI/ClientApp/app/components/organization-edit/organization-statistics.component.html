@@ -45,10 +45,10 @@
     </div>
     <div class="col-md-10 col-md-offset-1 targets-list">
         <div class="row" *ngFor="let target of allTargets">
-            <button type="button" class="baseTargetDiv" data-toggle="collapse" [attr.data-target]="'#' + target.id" (click)="onClickBaseTarget(target)">
+            <button type="button" class="baseTargetDiv" data-toggle="collapse" [attr.data-target]="'#base' + target.id" (click)="onClickBaseTarget(target)">
                 <strong>{{target.targetName}}  {{target.sum | number : '1.2-2'}} ₴</strong>
             </button>
-            <div [attr.id]="target.id" class="collapse">
+            <div [attr.id]="'base' + target.id" class="collapse">
                 <div *ngFor="let subTarget of target.subTargetsArray">
                     <button type="button" class="subTargetDiv" data-toggle="collapse" [attr.data-target]="'#sub' + subTarget.id" (click)="onClickSubTarget(subTarget)">
                         <strong>{{subTarget.targetName}}  {{subTarget.sum | number : '1.2-2'}} ₴</strong>
@@ -74,7 +74,7 @@
                         </table>
                     </div>
                 </div>
-                <div *ngIf="target.id==-1">
+                <div *ngIf="target.id==null">
                         <table class="table table-hover table-condensed table-striped center">
                             <thead>
                                 <tr>
