@@ -76,10 +76,6 @@ export class OrganizationStatisticsComponent implements OnInit {
         });
     }
 
-    onSelect(event) {
-        console.log(event);
-    }
-
     public setBeginDate(beginDate: Date): void {
         this.dateFrom = beginDate;
         this.getBaseTargets();
