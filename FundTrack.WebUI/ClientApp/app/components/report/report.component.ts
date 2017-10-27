@@ -1,7 +1,6 @@
 ﻿import { Component, OnInit, ViewChild, OnDestroy } from "@angular/core";
 import { StorageService } from "../../shared/item-storage-service";
-import { DatePipe } from '@angular/common';
-import { ModalComponent } from '../../shared/components/modal/modal-component';
+import { ModalComponent } from "../../shared/components/modal/modal-component";
 import { IOrganizationForFiltering } from "../../view-models/abstract/organization-for-filtering.interface";
 import { ShowRequestedItemService } from "../../services/concrete/showrequesteditem.service";
 import { OrganizationManagementRequestService } from "../../services/concrete/organization-management/organization-management-request.service";
@@ -10,57 +9,59 @@ import { IncomeReportDataViewModel } from "../../view-models/concrete/income-rep
 import { OutcomeReportDataViewModel } from "../../view-models/concrete/outcome-report-data-view-model";
 import { ITotalSum } from "../../view-models/abstract/total-sum-money-amount-interface";
 import { ActivatedRoute } from "@angular/router";
+import * as moment from "moment/moment";
 
 @Component({
-    templateUrl: './report.component.html',
-    styleUrls: ['./report.component.css'],
-    host: { '(window:keydown)': 'hotkeys($event)' },
-    providers: [DatePipe, ShowRequestedItemService, OrganizationManagementRequestService]
+    templateUrl: "./report.component.html",
+    styleUrls: ["./report.component.css"],
+    host: { '(window:keydown)': "hotkeys($event)" },
+    providers: [ShowRequestedItemService, OrganizationManagementRequestService]
 })
    
 export class ReportComponent implements OnInit, OnDestroy {
 
-    private errorMessage: string;
+    private readonly DATE_FORMAT = "YYYY-MM-DD"; 
+    private errorMessage: string= "";
     private organizations: IOrganizationForFiltering[] = new Array<IOrganizationForFiltering>();
     private incomeReportData: IncomeReportDataViewModel[] = new Array<IncomeReportDataViewModel>();
     private outcomeReportData: OutcomeReportDataViewModel[] = new Array<OutcomeReportDataViewModel>();
     private reportModel: ReportFilterQueryViewModel = new ReportFilterQueryViewModel();
-    private reportHeaders: string[];
     private accessToFill: number;
-    private reportOutTotalSum: number;
-    private reportInTotalSum: number;
+    private reportOutTotalSum: number = 0;
+    private reportInTotalSum: number = 0;
     private reportImages: string[];
     private selectedImage: any;   
     private index: number = 0;
     private routeOrgIndex: number = 1;
     private ifDataExists: boolean = false;
-    private inputMaxDate: Date = new Date();
-    
-    @ViewChild("dateExceptionModal")
-    private dateExceptionModal: ModalComponent;
-
-    @ViewChild("dateCompareExceptionModal")
-    private dateCompareExceptionModal: ModalComponent;
-    
+    private inputMaxDate = moment().format(this.DATE_FORMAT);
 
     @ViewChild("exceptionModal")
     private exceptionModal: ModalComponent;
 
     @ViewChild("emptyResultsModal")
     private emptyResultsModal: ModalComponent;
-     
+
+
+    onDateFromChange(dateFrom: string,orgId) {
+        this.reportModel.dateFrom = dateFrom;
+        this.generateReport(orgId);
+    }
+
+    onDateToChange(dateTo: string,orgId) {
+        this.reportModel.dateTo = dateTo;
+        this.generateReport(orgId);
+    }
+
     constructor(private storageService: StorageService,
                 private service: ShowRequestedItemService,
-                private datePipe: DatePipe,
                 private route: ActivatedRoute) { }
 
     ngOnInit(): void {
         this.storageService.showDropDown = false;
         this.reportModel.id = 0;
-        this.reportModel.dateFrom = new Date();
-        this.reportModel.dateFrom.setMonth(this.reportModel.dateFrom.getMonth() - 1);      
-        this.reportModel.dateTo = new Date();
-        this.reportModel.reportType = 0;
+        this.reportModel.dateFrom = moment().subtract(1, "month").format(this.DATE_FORMAT);
+        this.reportModel.dateTo = moment().format(this.DATE_FORMAT);
         this.getOrganizations();
         this.getIdFromUrl();   
     }
@@ -71,60 +72,57 @@ export class ReportComponent implements OnInit, OnDestroy {
 
     getIdFromUrl() {
         this.route.params.subscribe(params => {
-            this.routeOrgIndex = params['id'];
+            this.routeOrgIndex = params["id"];
             if (this.routeOrgIndex != null) {
                 this.generateReport(this.routeOrgIndex);
             }
         }, error => {
-            this.errorMessage = <any>error;
+            this.errorMessage = error;
             this.openModal(this.exceptionModal);
         });
     }
 
     generateReport(orgId): void {
-        this.reportModel.id = orgId;
-        if (this.isDateValid()) { 
-            this.fillHeadersArray();
-            this.getReportDataByType();
-            this.accessToFill = this.reportModel.reportType;           
-        }
+        this.reportModel.id = orgId;       
+            this.getReportData();            
     }
 
-    getReportDataByType(): void {
-        if (this.reportModel.reportType == 0) {         
-            this.service.getOutcomeReportData(this.reportModel.id, this.datePipe.transform(this.reportModel.dateFrom, 'yyyy-MM-dd'), this.datePipe.transform(this.reportModel.dateTo, 'yyyy-MM-dd')).subscribe((outcomeData: OutcomeReportDataViewModel[]) => {
-                if (outcomeData.length != 0) {
-                    this.ifDataExists = true;
-                    this.outcomeReportData = outcomeData;
-                    this.reportOutTotalSum = this.getReportMoneySumByType(this.outcomeReportData);
-               }
-                else {
-                    this.ifDataExists = false;
-                    this.openModal(this.emptyResultsModal);
-                }
-            },
-                error => {
-                    this.errorMessage = <any>error;
-                    this.openModal(this.exceptionModal);
-                })
-        }
-        if (this.reportModel.reportType == 1) {
-            this.service.getIncomeReportData(this.reportModel.id, this.datePipe.transform(this.reportModel.dateFrom, 'yyyy-MM-dd'), this.datePipe.transform(this.reportModel.dateTo, 'yyyy-MM-dd')).subscribe((incomeData: IncomeReportDataViewModel[]) => {
-                if (incomeData.length != 0) {
-                    this.ifDataExists = true;
-                    this.incomeReportData = incomeData;
-                    this.reportInTotalSum = this.getReportMoneySumByType(this.incomeReportData);
-                }
-                else {
-                    this.openModal(this.emptyResultsModal);
-                    this.ifDataExists = false;
-                }
-            },
-                error => {
-                    this.errorMessage = <any>error;
-                    this.openModal(this.exceptionModal);
-                })
-        }
+    getReportData(): void {
+        
+            this.service.getOutcomeReportData(this.reportModel.id, this.reportModel.dateFrom, this.reportModel.dateTo)
+                .subscribe((outcomeData: OutcomeReportDataViewModel[]) => {
+                        if (outcomeData.length != 0) {
+                            this.ifDataExists = true;
+                            this.outcomeReportData = outcomeData;
+                            this.reportOutTotalSum = this.getReportMoneySumByType(this.outcomeReportData);
+                        } else {
+                            this.ifDataExists = false;
+                            this.openModal(this.emptyResultsModal);
+                        }
+                    },
+                    error => {
+                        this.errorMessage = error;
+                        this.openModal(this.exceptionModal);
+                    });
+        
+       
+            this.service
+                .getIncomeReportData(this.reportModel.id, this.reportModel.dateFrom, this.reportModel.dateTo)
+                .subscribe((incomeData: IncomeReportDataViewModel[]) => {
+                        if (incomeData.length != 0) {
+                            this.ifDataExists = true;
+                            this.incomeReportData = incomeData;
+                            this.reportInTotalSum = this.getReportMoneySumByType(this.incomeReportData);
+                        } else {
+                            this.openModal(this.emptyResultsModal);
+                            this.ifDataExists = false;
+                        }
+                    },
+                    error => {
+                        this.errorMessage = error;
+                        this.openModal(this.exceptionModal);
+                    });
+        
     }
 
     getReportMoneySumByType(array: Array<ITotalSum>): number {
@@ -135,19 +133,6 @@ export class ReportComponent implements OnInit, OnDestroy {
         return sum;
     }
 
-    isDateValid(): boolean {
-        if (!this.reportModel.dateFrom || !this.reportModel.dateTo) {
-            this.openModal(this.dateExceptionModal);
-            return false;
-        }
-        if(this.datePipe.transform(this.reportModel.dateFrom, 'yyyy-MM-dd')
-            > this.datePipe.transform(this.reportModel.dateTo, 'yyyy-MM-dd')){
-            this.openModal(this.dateCompareExceptionModal);
-            return false;
-        }
-            return true;
-    }
-
     openModal(modal: ModalComponent): void {
         modal.show();
     }
@@ -155,33 +140,15 @@ export class ReportComponent implements OnInit, OnDestroy {
     closeModal(modal: ModalComponent): void {
         modal.hide();
     }
-  
-    public setBeginDate(beginDate: Date): void {
-        this.reportModel.dateFrom = beginDate;       
-    }
-
-    public setEndDate(endDate: Date): void {
-        this.reportModel.dateTo = endDate;
-    }
  
     getOrganizations(): void {
         this.service.getOrgaizations().subscribe((organizations: IOrganizationForFiltering[]) => {
-            this.organizations = organizations;    
-        },
+                this.organizations = organizations;
+            },
             error => {
-                this.errorMessage = <any>error;
+                this.errorMessage = error;
                 this.openModal(this.exceptionModal);
-            })
-    }
-
-    //fill table header for chosen report type
-    fillHeadersArray(): void {
-        if (this.reportModel.reportType == 0) {
-            this.reportHeaders = ['№ п/п', 'Призначення', 'Опис', 'Сума, ₴', 'Дата', 'Фото'];
-        }
-        if (this.reportModel.reportType == 1) {
-            this.reportHeaders = ['№ п/п', 'Призначення', 'Від кого', 'Опис', 'Сума, ₴', 'Дата'];
-        }
+            });
     }
 
     public navigate(forward) {
@@ -203,22 +170,23 @@ export class ReportComponent implements OnInit, OnDestroy {
 
     public getImagesById(finOpId) {
         this.service.getFinOpImages(finOpId).subscribe((images: string[]) => {
-            if (images.length !=0) {
-                this.reportImages = images;              
-            }
-            else {
-                //"image not found" hardcored default path 
-                //TODO change path from hardcored to azure "image not found" path
-                this.reportImages = ['https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQn_abQ0ko6CuA9LMsgv-JWMVJhGQboWlZDlUoZHeZ33cFwr2Ds'];
-            }
-            
-            this.selectedImage = this.reportImages[0];
-            this.index = this.reportImages.indexOf(this.selectedImage);
-        },
+                if (images.length != 0) {
+                    this.reportImages = images;
+                } else {
+                    //"image not found" hardcored default path 
+                    //TODO change path from hardcored to azure "image not found" path
+                    this.reportImages = [
+                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQn_abQ0ko6CuA9LMsgv-JWMVJhGQboWlZDlUoZHeZ33cFwr2Ds"
+                    ];
+                }
+
+                this.selectedImage = this.reportImages[0];
+                this.index = this.reportImages.indexOf(this.selectedImage);
+            },
             error => {
-                this.errorMessage = <any>error;
+                this.errorMessage = error;
                 this.openModal(this.exceptionModal);
-            })
+            });
     }
 
 

@@ -17,6 +17,7 @@ import { AllOrganizationsComponent } from '../components/all-organizations/all-o
 import { OrganizationDetailComponent } from "../components/organization-detail/organization-detail.component";
 import { TargetManagementComponent } from '../components/organization-edit/target-management.component';
 import { OrganizationStatisticsComponent } from "../components/organization-edit/organization-statistics.component";
+import { InvoiceDeclarationReportComponent } from '../components/invoice-declaration-report/invoice-declaration-report.component';
 
 @NgModule({
     providers: [AdminRouteGuard],
@@ -91,6 +92,10 @@ import { OrganizationStatisticsComponent } from "../components/organization-edit
         {
             path: 'organization/statistics/:id',
             component: OrganizationStatisticsComponent
+        },
+        {
+            path: 'organization/invoiceDeclaration/:id',
+            component: InvoiceDeclarationReportComponent
         }
     ])],
     exports: [RouterModule]

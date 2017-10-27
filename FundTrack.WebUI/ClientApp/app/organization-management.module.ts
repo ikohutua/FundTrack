@@ -27,6 +27,7 @@ import { OrganizationStatisticsComponent } from "./components/organization-edit/
 import { ChartsModule } from 'ng2-charts';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { InvoiceDeclarationReportComponent } from "./components/invoice-declaration-report/invoice-declaration-report.component";
 
 @NgModule({
     declarations: [
@@ -48,7 +49,8 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
         AllOrganizationsComponent,
         OrganizationDetailComponent,
         TargetManagementComponent,
-        OrganizationStatisticsComponent
+        OrganizationStatisticsComponent,
+        InvoiceDeclarationReportComponent
     ],
     imports: [
         FormsModule,

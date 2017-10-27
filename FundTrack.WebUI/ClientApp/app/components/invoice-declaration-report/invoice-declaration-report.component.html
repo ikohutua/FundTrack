@@ -1,0 +1,64 @@
+﻿<div class="container">
+    <div class="panel panel-default">
+
+        <div class="panel-heading text-truncate" style="font-size:medium;text-align:center;">
+            Тут ви можете переглянути оборотно-сальдову відомість.
+        </div>
+
+        <div class="panel-body">
+            <div class="col-md-12">
+                <date-presets (dateFrom)="onDateFromChange($event)" (dateTo)="onDateToChange($event)"></date-presets>
+            </div>
+
+            <div *ngIf="ifDataExists"  class="text-right col-md-12" style="padding : 20px">
+                Період з {{declarationRequestModel.dateFrom | date:'dd MMM yyyy'}} до {{declarationRequestModel.dateTo | date:'dd MMM yyyy'}}
+            </div>
+
+
+            <div class="panel-body">
+                <table *ngIf="ifDataExists" class="table table-hover table-condensed table-striped">
+                    <thead>
+                    <th>№ п.п.</th>
+                    <th>Рахунок</th>
+                    <th>Заг. залишок. на поч.</th>
+                    <th>Оборот прихід</th>
+                    <th>Переміщення прихід</th>
+                    <th>Оборот розхід</th>
+                    <th>Переміщення розхід</th>
+                    <th>Сума</th>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of declarationResponseModel; let i=index;">
+                            <th>{{i+1}}</th>
+                            <td title="{{item.bankAccountTooltip}}">{{item.bankAccount}}</td>
+                            <td>{{item.beginIncomeMonthSum  | number : '1.2-2'}}</td>
+                            <td>{{item.totalIncomeSum  | number : '1.2-2'}}</td>
+                            <td>{{item.transferIncome  | number : '1.2-2'}}</td>
+                            <td>{{item.flowOutcome  | number : '1.2-2'}}</td>
+                            <td>{{item.transferOutcome  | number : '1.2-2'}}</td>
+                            <td>{{item.totalSum| number : '1.2-2'}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+
+        </div>
+    </div>
+
+
+    <app-modal #exceptionModal>
+        <div class="app-modal-header">
+            <h4>Помилка </h4>
+        </div>
+        <div class="app-modal-body" style="font-size:medium;text-align:center;">
+            В ході роботи виникла помилка. Деталі: {{errorMessage}}
+        </div>
+        <div class="app-modal-footer">
+            <button type="button" class="btn btn-secondary btn-md pull-right" (click)="closeModal(exceptionModal)">Закрити</button>
+        </div>
+    </app-modal>
+
+
+
+</div>

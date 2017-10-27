@@ -1,11 +1,11 @@
 using System;
-using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using FundTrack.BLL.Abstract;
+using FundTrack.Infrastructure;
+using Microsoft.AspNetCore.Authorization;
 using FundTrack.Infrastructure.ViewModel;
 using FundTrack.Infrastructure.ViewModel.FinanceViewModels;
 using FundTrack.Infrastructure.ViewModel.FinanceViewModels.DonateViewModels;
-using Microsoft.AspNetCore.Authorization;
 
 namespace FundTrack.WebUI.Controllers
 {
@@ -22,21 +22,58 @@ namespace FundTrack.WebUI.Controllers
         }
 
         [HttpGet("IncomeReport")]
-        public IEnumerable<ReportIncomeViewModel> GetIncomeReports(int orgId, DateTime? dateFrom, DateTime? dateTo)
-        {
-            return _service.GetIncomeReports(orgId, dateFrom, dateTo);
+        public ActionResult GetIncomeReports(int orgId, DateTime? dateFrom, DateTime? dateTo)
+        { 
+            if (isDateValid(dateFrom, dateTo) && isIdValid(orgId))
+            {
+                return Ok(_service.GetIncomeReports(orgId, dateFrom, dateTo));
+            }           
+                return BadRequest(string.Format(ErrorMessages.IncomeReportErrorMessage, orgId, dateFrom, dateTo));     
         }
 
         [HttpGet("OutcomeReport")]
-        public IEnumerable<ReportOutcomeViewModel> GetOutcomeReports(int orgId, DateTime? dateFrom, DateTime? dateTo)
+        public ActionResult GetOutcomeReports(int orgId, DateTime? dateFrom, DateTime? dateTo)
         {
-            return _service.GetOutcomeReports(orgId, dateFrom, dateTo);
+            if (isDateValid(dateFrom, dateTo) && isIdValid(orgId))
+            {
+                return Ok(_service.GetOutcomeReports(orgId, dateFrom, dateTo));
+            }
+            return BadRequest(string.Format(ErrorMessages.OutcomeReportErrorMessage, orgId, dateFrom, dateTo));
         }
 
         [HttpGet("FinOpImages")]
-        public IEnumerable<String> GetFinOpImages(int finOpId)
+        public ActionResult GetFinOpImages(int finOpId)
         {
-            return _service.GetImagesById(finOpId);
+            if (isIdValid(finOpId))
+            {
+                return Ok(_service.GetImagesById(finOpId));
+            }
+            return BadRequest(string.Format(ErrorMessages.FinopImagesErrorMessage, finOpId));
+            
+        }
+
+        [HttpGet("InvoiceDeclaration")]
+        [Authorize(Roles = "admin, moderator")]
+        public ActionResult GetInvoiceDeclarationReport(int orgId, DateTime? dateFrom, DateTime? dateTo)
+        {
+            if (isDateValid(dateFrom, dateTo) && isIdValid(orgId))
+            {
+                return Ok(_service.GetInvoiceDeclarationReport(orgId,dateFrom,dateTo));
+            }
+            return BadRequest(string.Format(ErrorMessages.InvoiceDeclarationReportErrorMessage, orgId, dateFrom, dateTo));
+        }
+
+        private bool isDateValid(DateTime? dateFrom, DateTime? dateTo)
+        {
+            if (dateTo == null)
+            {        
+                return false;
+            }
+            return dateFrom != null;
+        }
+        private bool isIdValid(int id)
+        {
+            return id > 0;
         }
 
         [Authorize(Roles = "admin, moderator")]

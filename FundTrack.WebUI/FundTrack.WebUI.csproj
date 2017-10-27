@@ -31,12 +31,14 @@
     <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="5.1.4" />
     <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink" Version="1.1.2" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="1.1.1" />
+    <PackageReference Include="Moment.js" Version="2.19.1" />
     <PackageReference Include="Serilog.Extensions.Logging.File" Version="1.1.0" />
     <PackageReference Include="WindowsAzure.Storage" Version="8.4.0" />
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="1.0.1" />
   </ItemGroup>
   <ItemGroup>
     <!-- Files not to show in IDE -->
+    <None Remove="ClientApp\app\view-models\concrete\invoice-declaration-data-view-model.ts" />
     <None Remove="node_modules.zip" />
     <None Remove="Properties\PublishProfiles\fundtrack261 - Web Deploy.pubxml" />
     <None Remove="yarn.lock" />
@@ -60,6 +62,7 @@
     <None Remove="ClientApp\Images\**" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="ClientApp\app\shared\components\date-presets\date-presets.component.html" />
     <None Include="Controllers\UserInfoController.cs" />
   </ItemGroup>
   <ItemGroup>

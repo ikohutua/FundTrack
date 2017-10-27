@@ -1,6 +1,5 @@
 ﻿export class ReportFilterQueryViewModel {
      id: number;
-     dateFrom: Date;
-     dateTo: Date;
-     reportType: number;
+     dateFrom: string;
+     dateTo: string;
 }
