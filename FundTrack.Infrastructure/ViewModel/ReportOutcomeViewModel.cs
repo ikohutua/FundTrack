@@ -12,7 +12,7 @@ namespace FundTrack.Infrastructure.ViewModel
 
     }
 
-    public class UsersDonationsReportViewModel : ReportOutcomeViewModel, IComparable<UsersDonationsReportViewModel>
+    public class UsersDonationsReportViewModel : ReportOutcomeViewModel
     {
         public string UserLogin { get; set; }
         public string UserFulName { get; set; }

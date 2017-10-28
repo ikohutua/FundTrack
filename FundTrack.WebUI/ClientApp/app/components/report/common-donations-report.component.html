@@ -29,9 +29,8 @@
             </select>
         </div>
         <div class="col-md-2 col-md-offset-10 input-group">
-
             <div class="btn-group">
-                <button type="button" class="btn btn-primary" [ngClass]="{'disabled': !isDataAvailable}" (click)="showChart()">
+                <button type="button" class="btn btn-primary" [ngClass]="{'disabled': !isDataAvailable}" (click)="displayChart()">
                     <span *ngIf="isChartVisible">Сховати графік</span>
                     <span *ngIf="!isChartVisible">Показати графік</span>
                 </button>
@@ -40,21 +39,15 @@
                     <span class="sr-only">Toggle Dropdown</span>
                 </button>
                 <ul class="dropdown-menu">
-                    <li><a>Всі дані</a></li>
+                    <li><a (click)="showChartWithCommonData()">Всі дані</a></li>
                     <li role="separator" class="divider"></li>
                     <li><a class="disabled"><b>Призначення</b></a></li>
                     <li role="separator" class="divider"></li>
-                    <li><a>Медикаменти</a></li>
-                    <li><a>Одяг</a></li>
-                    <li><a>Їжа</a></li>
+                    <li *ngFor="let item of targetsOfOrganization">
+                        <a (click)="showChartByTarget(item.targetId)">{{item.name}}</a>
+                    </li>
                 </ul>
             </div>
-
-            <!--<button type="button" class="btn btn-primary" (click)="showChart()">
-                <span class="glyphicon glyphicon-stats"></span>
-                <span *ngIf="isChartVisible">Сховати графік</span>
-                <span *ngIf="!isChartVisible">Показати графік</span>
-            </button>-->
         </div>
     </div>
     <div *ngIf="isChartVisible" class="row container">

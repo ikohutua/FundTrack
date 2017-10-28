@@ -39,7 +39,7 @@ namespace FundTrack.WebUI.Controllers
         }
 
         [HttpGet("UsersDonationsPaginatedReport")]
-        public IActionResult UsersDonationsPaginatedReport(int? orgId, DateTime? dateFrom, DateTime? dateTo, int? pageIndex, int? pageSize, string filterValue)
+        public async Task<IActionResult> UsersDonationsPaginatedReport(int? orgId, DateTime? dateFrom, DateTime? dateTo, int? pageIndex, int? pageSize, string filterValue)
         {
             if (!isDataNotNull(dateFrom, dateTo, orgId, pageIndex, pageSize))
             {
@@ -49,8 +49,8 @@ namespace FundTrack.WebUI.Controllers
             try
             {
                 var list = String.IsNullOrEmpty(filterValue)
-                    ? _service.GetUsersDonationsPaginatedReport(orgId.Value, dateFrom.Value, dateTo.Value, pageIndex.Value, pageSize.Value)
-                    : _service.GetFilteredUsersDonationsPaginatedReport(orgId.Value, dateFrom.Value, dateTo.Value, pageIndex.Value, pageSize.Value, filterValue);
+                    ? await _service.GetUsersDonationsPaginatedReportAsync(orgId.Value, dateFrom.Value, dateTo.Value, pageIndex.Value, pageSize.Value)
+                    : await _service.GetUsersDonationsPaginatedReportByUserLoginAsync(orgId.Value, dateFrom.Value, dateTo.Value, pageIndex.Value, pageSize.Value, filterValue);
 
                 return Ok(list);
             }
@@ -61,7 +61,7 @@ namespace FundTrack.WebUI.Controllers
         }
 
         [HttpGet("CountOfUsersDonationsReport")]
-        public IActionResult CountOfUsersDonationsReport(int? orgId, DateTime? dateFrom, DateTime? dateTo, string filterValue)
+        public async Task<IActionResult> CountOfUsersDonationsReport(int? orgId, DateTime? dateFrom, DateTime? dateTo, string filterValue)
         {
             if (!isDataNotNull(dateFrom, dateTo, orgId))
             {
@@ -70,8 +70,8 @@ namespace FundTrack.WebUI.Controllers
             try
             {
                 int count = String.IsNullOrEmpty(filterValue)
-                   ? _service.GetCountOfUsersDonationsReport(orgId.Value, dateFrom.Value, dateTo.Value)
-                   : _service.GetFilteredCountOfUsersDonationsReport(orgId.Value, dateFrom.Value, dateTo.Value, filterValue);
+                   ? await _service.GetCountOfUsersDonationsReportAsync(orgId.Value, dateFrom.Value, dateTo.Value)
+                   : await _service.GetFilteredCountOfUsersDonationsReportAsync(orgId.Value, dateFrom.Value, dateTo.Value, filterValue);
 
                 return Ok(count);
             }
@@ -82,7 +82,7 @@ namespace FundTrack.WebUI.Controllers
         }
 
         [HttpGet("CountOfCommonUsersDonationsReport")]
-        public IActionResult CountOfCommonUsersDonationsReport(int? orgId, DateTime? dateFrom, DateTime? dateTo)
+        public async Task<IActionResult> CountOfCommonUsersDonationsReport(int? orgId, DateTime? dateFrom, DateTime? dateTo)
         {
             if (!isDataNotNull(dateFrom, dateTo, orgId))
             {
@@ -91,7 +91,7 @@ namespace FundTrack.WebUI.Controllers
 
             try
             {
-                int count = _service.GetCountOfCommonUsersDonationsReport(orgId.Value, dateFrom.Value, dateTo.Value);
+                int count = await _service.GetCountOfCommonUsersDonationsReportAsync(orgId.Value, dateFrom.Value, dateTo.Value);
                 return Ok(count);
             }
             catch (BusinessLogicException ex)
@@ -101,7 +101,7 @@ namespace FundTrack.WebUI.Controllers
         }
 
         [HttpGet("CommonUsersDonationsPaginatedReport")]
-        public IActionResult CommonUsersDonationsPaginatedReport(int? orgId, DateTime? dateFrom, DateTime? dateTo, int? pageIndex, int? pageSize)
+        public async Task<IActionResult> CommonUsersDonationsPaginatedReport(int? orgId, DateTime? dateFrom, DateTime? dateTo, int? pageIndex, int? pageSize)
         {
             if (!isDataNotNull(dateFrom, dateTo, orgId, pageIndex, pageSize))
             {
@@ -110,12 +110,33 @@ namespace FundTrack.WebUI.Controllers
 
             try
             {
-                var list = _service.GetCommonUsersDonationsPaginatedReport(orgId.Value, dateFrom.Value, dateTo.Value, pageIndex.Value, pageSize.Value);
+                var list = await _service.GetCommonUsersDonationsPaginatedReportAsync(orgId.Value, dateFrom.Value, dateTo.Value, pageIndex.Value, pageSize.Value);
                 return Ok(list);
             }
             catch (BusinessLogicException ex)
             {
                 return new NotFoundObjectResult(ex.Message);
+            }
+        }
+
+        [HttpGet("DonationsValueReportPerDay")]
+        public async Task<IActionResult> DonationsValueReportPerDay(int? orgId, DateTime? dateFrom, DateTime? dateTo, int filterValue)
+        {
+            if (!isDataNotNull(dateFrom, dateTo, orgId))
+            {
+                return new BadRequestObjectResult(ErrorMessages.InvalidData);
+            }
+            try
+            {
+                var dataSet = filterValue <= 0
+                    ? await _service.GetDonationsReportPerDayAsync(orgId.Value, dateFrom.Value, dateTo.Value)
+                    : await _service.GetDonationsReportPerDayByTargetAsync(orgId.Value, dateFrom.Value, dateTo.Value, filterValue);
+
+                return Ok(dataSet);
+            }
+            catch (BusinessLogicException ex)
+            {
+                return new BadRequestObjectResult(ex.Message);
             }
         }
 

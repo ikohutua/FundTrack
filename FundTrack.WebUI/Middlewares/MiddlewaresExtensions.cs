@@ -14,15 +14,5 @@ namespace FundTrack.WebUI.Middlewares
         {
             return builder.UseMiddleware<GlobalErrorHandlingMiddleware>();
         }
-
-        /// <summary>
-        /// Custom autorization middlewar
-        /// </summary>
-        /// <param name="builder"></param>
-        /// <returns></returns>
-        public static IApplicationBuilder UseMyAuthorization(this IApplicationBuilder builder)
-        {
-            return builder.UseMiddleware<MyAuthorize>();
-        }
     }
 }

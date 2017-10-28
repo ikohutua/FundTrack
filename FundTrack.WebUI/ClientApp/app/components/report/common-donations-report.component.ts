@@ -9,6 +9,8 @@ import { UsersDonationsReportDataViewModel } from "../../view-models/concrete/us
 import * as _ from 'underscore';
 import * as commonMessages from '../../shared/common-message.storage';
 import { Pager } from "../../services/concrete/pager.service";
+import { TargetViewModel } from "../../view-models/concrete/finance/donate/target.view-model";
+import { DataSetViewModel } from "../../view-models/concrete/data-set-view.model";
 
 @Component({
     templateUrl: './common-donations-report.component.html',
@@ -34,6 +36,8 @@ export class CommonDonationsReportComponent implements OnInit {
     currentSortedColIndex: number = -1;
 
     isChartVisible: boolean;
+    targetsOfOrganization: Array<TargetViewModel>;
+    selectedTargetId: number = -1;
 
     //---------Pie chart---------
     showXAxis = true;
@@ -48,68 +52,12 @@ export class CommonDonationsReportComponent implements OnInit {
     autoScale = true;
     colorScheme = {
         domain: [
-            'red', 'green', 'blue'
+            'green', 'blue'
         ]
     };
+
     // public dataSet: any[] = [];
-    public dataSet: any[] = [
-        {
-            "name": "Germany",
-            "series": [
-                {
-                    "name": "2010",
-                    "value": 62000
-                },
-                {
-                    "name": "2011",
-                    "value": 89400
-                },
-                {
-                    "name": "2012",
-                    "value": 34500
-                }
-            ]
-        },
-
-        {
-            "name": "USA",
-            "series": [
-                {
-                    "name": "2010",
-                    "value": 78506
-                },
-                {
-                    "name": "2011",
-                    "value": 85300
-                },
-                {
-                    "name": "2012",
-                    "value": 71100
-                }
-            ]
-        },
-
-        {
-            "name": "Ukraina",
-            "series": [
-                {
-                    "name": "2010",
-                    "value": 54200
-                },
-                {
-                    "name": "2011",
-                    "value": 32100
-                },
-                {
-                    "name": "2012",
-                    "value": 75990
-                }
-            ]
-        }
-    ];
-
-    //---------Pie chart---------
-
+    public dataSet: any[]=[];
 
     constructor(private _service: ShowRequestedItemService,
         private datePipe: DatePipe,
@@ -123,6 +71,7 @@ export class CommonDonationsReportComponent implements OnInit {
         this.reportModel.dateTo = new Date();
         this.reportModel.filterValue = "";
         this.generateSimpleReport();
+        this.getOrganizationTargets();
     }
 
     setReportModelIdFromUrl() {
@@ -148,9 +97,75 @@ export class CommonDonationsReportComponent implements OnInit {
         this.generateSimpleReport();
     }
 
-    showChart() {
+    displayChart() {
         this.isChartVisible = !this.isChartVisible;
-        // this.prepareUsersDonationsReportForCharts(this.pagedReportItems);
+        if (this.isChartVisible) {
+            this.UpdateDonationValueReportForChart();
+        }
+    }
+
+    showChart() {
+        this.isChartVisible = true;
+    }
+
+
+    getOrganizationTargets() {
+        this._service.getAllTargetsOfOrganization(this.reportModel.id)
+            .subscribe(res => {
+                this.targetsOfOrganization = res;
+                console.log(res);
+
+            }, error => {
+                this.showErrorMessage(error);
+            });
+    }
+    showChartWithCommonData() {
+        this.selectedTargetId = -1;
+        this.UpdateDonationValueReportForChart();
+        this.showChart();
+    }
+
+    showChartByTarget(targetId: number) {
+        this.selectedTargetId = targetId;
+        console.log(targetId);
+        this.UpdateDonationValueReportForChart();
+        this.showChart();
+    }
+
+    UpdateDonationValueReportForChart() {
+        this._service.DonationsValueReportPerDay(this.reportModel, this.selectedTargetId)
+            .subscribe(res => {
+                console.log(res);
+                this.setNewDataForLineChart(res);
+            }, error => {
+                this.showErrorMessage(error);
+            });
+    }
+
+
+    setNewDataForLineChart(list: DataSetViewModel[]) {
+        debugger;
+        this.dataSet = [];
+
+        let name = this.selectedTargetId == -1
+            ? "По всіх призначеннях"
+            : _.find(this.targetsOfOrganization, t => t.targetId == this.selectedTargetId).name;
+        console.log(name);
+
+        let series: DataSetViewModel[]=[];
+
+        list.forEach(item => {
+            series.push({
+                name: item.name,
+                value: item.value
+            })
+        });
+        console.log(series);
+
+        this.dataSet = [{
+            "name": name,
+            "series": series
+        }];
     }
 
     sortTable(value: number) {
@@ -237,16 +252,6 @@ export class CommonDonationsReportComponent implements OnInit {
     }
     prepareDate(date: Date): string {
         return this.datePipe.transform(date, 'yyyy-MM-dd')
-    }
-
-    public prepareUsersDonationsReportForCharts(list: Array<UsersDonationsReportDataViewModel>) {
-        this.dataSet = [];
-        list.forEach(d => {
-            this.dataSet.push({
-                name: d.userLogin,
-                value: d.moneyAmount
-            });
-        });
     }
 
     showErrorMessage(message: string) {

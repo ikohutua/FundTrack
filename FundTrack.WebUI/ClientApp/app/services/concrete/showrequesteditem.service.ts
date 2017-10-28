@@ -20,6 +20,8 @@ import { GlobalUrlService } from "./global-url.service";
 import { RequestOptionsService } from "./request-options.service";
 import { ReportFilterQueryViewModel } from "../../view-models/concrete/report-filter-query-view-model";
 import { DatePipe } from "@angular/common";
+import { TargetViewModel } from "../../view-models/concrete/finance/donate/target.view-model";
+import { DataSetViewModel } from "../../view-models/concrete/data-set-view.model";
 
 @Injectable()
 export class ShowRequestedItemService extends BaseService<IShowRequestedItem>{
@@ -79,7 +81,7 @@ export class ShowRequestedItemService extends BaseService<IShowRequestedItem>{
     }
 
     public getIncomeReportData(organizationId: number, startDate: string, endDate: string): Observable<IncomeReportDataViewModel[]> {
-        return this.getCollections<IncomeReportDataViewModel>(this._urlGetIncomeReportData + '?orgId='+organizationId+'&datefrom='+startDate+'&dateto='+endDate);
+        return this.getCollections<IncomeReportDataViewModel>(this._urlGetIncomeReportData + '?orgId=' + organizationId + '&datefrom=' + startDate + '&dateto=' + endDate);
     }
 
     public getOutcomeReportData(organizationId: number, startDate: string, endDate: string): Observable<OutcomeReportDataViewModel[]> {
@@ -107,12 +109,23 @@ export class ShowRequestedItemService extends BaseService<IShowRequestedItem>{
     }
 
     public getCountOfCommonUsersDonationsReportItems(reportModel: ReportFilterQueryViewModel): Observable<number> {
-        debugger;
         let _myUrl = GlobalUrlService.countOfCommonUsersDonationsReportItems + '?orgId=' + reportModel.id + '&dateFrom=' + this.prepareDate(reportModel.dateFrom) + '&dateTo=' + this.prepareDate(reportModel.dateTo);
         return this.http.get(_myUrl, RequestOptionsService.getRequestOptions())
             .map((response: Response) => response.json() as number);
     }
 
+    public getAllTargetsOfOrganization(orgId: number): Observable<TargetViewModel[]> {
+        let _myUrl = GlobalUrlService.getAllTargetsOfOrganization + orgId;
+        return this.http.get(_myUrl, RequestOptionsService.getRequestOptions())
+            .map((response: Response) => response.json() as TargetViewModel[]);
+    }
+
+    public DonationsValueReportPerDay(reportModel: ReportFilterQueryViewModel, targetId: number): Observable<DataSetViewModel[]> {
+        return this.getCollections<DataSetViewModel>(GlobalUrlService.donationsvalueReportPerDay + '?orgId=' + reportModel.id +
+            '&datefrom=' + this.prepareDate(reportModel.dateFrom) +
+            '&dateto=' + this.prepareDate(reportModel.dateTo) +
+            '&filterValue=' + targetId);
+    }
 
     public getFinOpImages(finOpId: number): Observable<string[]> {
         return this.getCollections<string>(this._urlGetFinOpImagesById + '?finopid=' + finOpId);

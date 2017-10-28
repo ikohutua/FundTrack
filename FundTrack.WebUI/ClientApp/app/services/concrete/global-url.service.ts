@@ -68,4 +68,5 @@ export class GlobalUrlService {
 
     public static readonly countOfCommonUsersDonationsReportItems = "api/reports/CountOfCommonUsersDonationsReport";
     public static readonly commonUsersDonationsPaginatedReport = 'api/reports/CommonUsersDonationsPaginatedReport';
+    public static readonly donationsvalueReportPerDay = 'api/reports/DonationsValueReportPerDay';
 }
