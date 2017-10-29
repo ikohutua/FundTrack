@@ -3,6 +3,8 @@ using FundTrack.DAL.Abstract;
 using FundTrack.DAL.Entities;
 using FundTrack.Infrastructure.ViewModel;
 using FundTrack.Infrastructure.ViewModel.FinanceViewModels;
+//using FundTrack.PrivatImport;
+using PrivatService;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -170,6 +172,26 @@ namespace FundTrack.BLL.Concrete
                 var message = "Немає виписок.";
                 throw new BusinessLogicException(message, ex);
             }
+        }
+
+        public void ImportFromPrivat(int orgAccountId)
+        {
+            try
+            {
+                Class1 a = new Class1();
+                var bancAccount = _unitOfWork.OrganizationAccountRepository.GetOrgAccountById(orgAccountId).BankAccount;
+                a.Import(1, 20);
+                //PrivatImporter.Import(bancAccount.CardNumber, bancAccount.ExtractMerchantId.ToString(), bancAccount.MerchantPassword, DateTime.Now.AddDays(-10));
+            }
+            catch (Exception ex)
+            {
+                throw new BusinessLogicException(ex.Message, ex);
+            }
+        }
+
+        public DateTime GetLastPrivatUpdate(int orgId)
+        {
+            return;
         }
     }
 }

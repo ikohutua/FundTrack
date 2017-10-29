@@ -1,5 +1,6 @@
 ﻿using FundTrack.Infrastructure.ViewModel;
 using FundTrack.Infrastructure.ViewModel.FinanceViewModels;
+using System;
 using System.Collections.Generic;
 
 namespace FundTrack.BLL.Abstract
@@ -32,5 +33,9 @@ namespace FundTrack.BLL.Abstract
         /// <param name="card">The card.</param>
         /// <returns></returns>
         int GetCountExtracts(string card);
+
+        void ImportFromPrivat(int orgAccountId);
+
+        DateTime GetLastPrivatUpdate(int orgId);
     }
 }

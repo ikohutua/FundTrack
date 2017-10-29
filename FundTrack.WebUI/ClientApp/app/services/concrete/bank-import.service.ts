@@ -135,6 +135,16 @@ export class BankImportService extends BaseSpinnerService<ImportDetailPrivatView
         }
     }
 
+    public getLastPrivatUpdate(orgId: number):Observable<Date>
+    {
+        if (this.checkAuthorization()) {
+            let url = 'api/BankImport/LastUpdate';
+            return this._http.get(url + '/' + orgId, this.getRequestOptions())
+                .map((response: Response) => <number>response.json())
+                .catch(this.handleError);
+        }
+    }
+
     /**
     * Create RequestOptions
     */

@@ -4,7 +4,7 @@ using FundTrack.Infrastructure.ViewModel.FinanceViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
-using FundTrack.PrivatImport;
+
 namespace FundTrack.WebUI.Controllers
 {
     /// <summary>
@@ -39,23 +39,6 @@ namespace FundTrack.WebUI.Controllers
         {
             return this._service.RegisterBankExtracts(bankModel);
         }
-
-
-        //[HttpPost("SendRequestFondy")]
-        //public string SendRequestFondy([FromBody]  DataRequestPrivatViewModel request)
-        //{
-        //    var client = new HttpClient()
-        //    {
-        //        BaseAddress = new Uri("https://api.privatbank.ua/p24api/rest_fiz")
-        //    };
-        //    string json = Newtonsoft.Json.JsonConvert.SerializeObject(request);
-        //    var response = client.PostAsync(client.BaseAddress,
-        //        new StringContent(json, Encoding.UTF8, "application/json")).Result;
-        //    var content = response.Content.ReadAsStringAsync().Result;
-        //    FondyCheckoutResponseViewModel checkout = new FondyCheckoutResponseViewModel();
-        //    checkout = Newtonsoft.Json.JsonConvert.DeserializeObject<FondyCheckoutResponseViewModel>(content);
-        //    return checkout.response.checkout_url;
-        //}
 
         /// <summary>
         /// Gets the  extracts which satisfy filters.
@@ -99,6 +82,14 @@ namespace FundTrack.WebUI.Controllers
         public IActionResult ImportPrivate(int orgAccountId)
         {
             _service.ImportFromPrivat(orgAccountId);
+            return Ok();
+        }
+
+        [HttpPost("ImportPrivate/{orgId}")]
+        [Authorize(Roles = "admin, moderator")]
+        public IActionResult LastUpdate (int orgId)
+        {
+            _service.GetLastPrivatUpdate(orgAccountId);
             return Ok();
         }
     }

@@ -73,7 +73,8 @@ export class BankImportComponent implements OnInit {
     private count: number;
     private orgaccountId: number;
     private isOrgAccountHaveTarget: boolean;
-
+    private showSpinner: boolean = false;
+    private lastPrivatUpdate: Date;
 
     //constructor
     public constructor(private _service: BankImportService,
@@ -97,6 +98,7 @@ export class BankImportComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.showSpinner = true;
         if (isBrowser) {
             if (sessionStorage.getItem(key.keyCardNumber)) {
                 this.card = sessionStorage.getItem(key.keyCardNumber);
@@ -107,13 +109,13 @@ export class BankImportComponent implements OnInit {
                             this.user = JSON.parse(localStorage.getItem(key.keyModel)) as AuthorizeUserModel;
                             this._orgAccountService.getAllBaseTargetsOfOrganization(this.user.orgId)
                                 .subscribe(response => this.targets = response);
-
+                            this._service.getLastPrivatUpdate(this.user.orgId)
+                                .subscribe(response => this.lastPrivatUpdate = response);
                             this._finOpService.getOrgAccountForFinOp(this.user.orgId, this.card)
                                 .subscribe(response => {
                                     this.currentOrgAccount = response;
                                     if (this.currentOrgAccount.targetId != null) {
                                         this.isOrgAccountHaveTarget = true;
-                                        debugger;
                                         this._orgAccountService.getTargetById(this.currentOrgAccount.targetId)
                                             .subscribe(response => {
                                                 this.targets = new Array<TargetViewModel>();
@@ -125,9 +127,11 @@ export class BankImportComponent implements OnInit {
                                                 this.password = res.merchantPassword;
                                             })
                                     }
+                                    this.showSpinner = false;
                                 });
                             this.getAllExtracts();
                         }
+                        
                     });
             }
         }
@@ -137,10 +141,9 @@ export class BankImportComponent implements OnInit {
         this._service.getAllExtracts(this.card, this.spinner)
             .subscribe(response => {
                 this._dataForFinOp = response;
-
                 if (this.currentOrgAccount.targetId != undefined) {
                     for (let bankDetail of this._dataForFinOp) {
-                        if (Number(bankDetail.amount) > 0) {
+                        if (Number(bankDetail.cardAmount) > 0) {
                             this.createFinOp(bankDetail);
                             this.saveFinOp();
                         }
@@ -216,6 +219,8 @@ export class BankImportComponent implements OnInit {
      * get bankImports from privat24
      */
     public getExtracts() {
+        this.dataForPrivat.idMerchant = this.idMerchant;
+        this.dataForPrivat.password = this.password;
         this.dataForPrivat.dataTo = this.dataPrivatTo.split('-').reverse().join('.');
         this.dataForPrivat.dataFrom = this.dataPrivatFrom.split('-').reverse().join('.');
         this._service.getUserExtracts(this.dataForPrivat)
@@ -275,6 +280,11 @@ export class BankImportComponent implements OnInit {
             });
     }
 
+    public getLastPrivatUpdate()
+    {
+
+    }
+
     /**
     * Closes bankImports modal window
     */
@@ -287,8 +297,7 @@ export class BankImportComponent implements OnInit {
      */
     public onActionClick(): void {
         this.dataForPrivat.card = this.card;
-        this.dataForPrivat.idMerchant = this.idMerchant;
-        this.dataForPrivat.password = this.password;
+        
         this.newBankImportModalWindow.show();
     }
 
