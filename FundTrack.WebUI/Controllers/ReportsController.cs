@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Authorization;
 using System.Threading.Tasks;
 using FundTrack.BLL.Concrete;
 using System.Diagnostics;
+using System.Linq;
 using FundTrack.Infrastructure;
 
 namespace FundTrack.WebUI.Controllers
@@ -68,14 +69,14 @@ namespace FundTrack.WebUI.Controllers
         [HttpGet("UsersDonationsPaginatedReport")]
         public async Task<IActionResult> UsersDonationsPaginatedReport(int? orgId, DateTime? dateFrom, DateTime? dateTo, int? pageIndex, int? pageSize, string filterValue)
         {
-            if (!isDataNotNull(dateFrom, dateTo, orgId, pageIndex, pageSize))
+            if (!IsDataNotNull(dateFrom, dateTo, orgId, pageIndex, pageSize))
             {
                 return new BadRequestObjectResult(ErrorMessages.InvalidData);
             }
 
             try
             {
-                var list = String.IsNullOrEmpty(filterValue)
+                var list = string.IsNullOrEmpty(filterValue)
                     ? await _service.GetUsersDonationsPaginatedReportAsync(orgId.Value, dateFrom.Value, dateTo.Value, pageIndex.Value, pageSize.Value)
                     : await _service.GetUsersDonationsPaginatedReportByUserLoginAsync(orgId.Value, dateFrom.Value, dateTo.Value, pageIndex.Value, pageSize.Value, filterValue);
 
@@ -90,13 +91,13 @@ namespace FundTrack.WebUI.Controllers
         [HttpGet("CountOfUsersDonationsReport")]
         public async Task<IActionResult> CountOfUsersDonationsReport(int? orgId, DateTime? dateFrom, DateTime? dateTo, string filterValue)
         {
-            if (!isDataNotNull(dateFrom, dateTo, orgId))
+            if (!IsDataNotNull(dateFrom, dateTo, orgId))
             {
                 return new BadRequestObjectResult(ErrorMessages.InvalidData);
             }
             try
             {
-                int count = String.IsNullOrEmpty(filterValue)
+                var count = string.IsNullOrEmpty(filterValue)
                    ? await _service.GetCountOfUsersDonationsReportAsync(orgId.Value, dateFrom.Value, dateTo.Value)
                    : await _service.GetFilteredCountOfUsersDonationsReportAsync(orgId.Value, dateFrom.Value, dateTo.Value, filterValue);
 
@@ -111,14 +112,14 @@ namespace FundTrack.WebUI.Controllers
         [HttpGet("CountOfCommonUsersDonationsReport")]
         public async Task<IActionResult> CountOfCommonUsersDonationsReport(int? orgId, DateTime? dateFrom, DateTime? dateTo)
         {
-            if (!isDataNotNull(dateFrom, dateTo, orgId))
+            if (!IsDataNotNull(dateFrom, dateTo, orgId))
             {
                 return new BadRequestObjectResult(ErrorMessages.InvalidData);
             }
 
             try
             {
-                int count = await _service.GetCountOfCommonUsersDonationsReportAsync(orgId.Value, dateFrom.Value, dateTo.Value);
+                var count = await _service.GetCountOfCommonUsersDonationsReportAsync(orgId.Value, dateFrom.Value, dateTo.Value);
                 return Ok(count);
             }
             catch (BusinessLogicException ex)
@@ -130,7 +131,7 @@ namespace FundTrack.WebUI.Controllers
         [HttpGet("CommonUsersDonationsPaginatedReport")]
         public async Task<IActionResult> CommonUsersDonationsPaginatedReport(int? orgId, DateTime? dateFrom, DateTime? dateTo, int? pageIndex, int? pageSize)
         {
-            if (!isDataNotNull(dateFrom, dateTo, orgId, pageIndex, pageSize))
+            if (!IsDataNotNull(dateFrom, dateTo, orgId, pageIndex, pageSize))
             {
                 return new BadRequestObjectResult(ErrorMessages.InvalidData);
             }
@@ -149,7 +150,7 @@ namespace FundTrack.WebUI.Controllers
         [HttpGet("DonationsValueReportPerDay")]
         public async Task<IActionResult> DonationsValueReportPerDay(int? orgId, DateTime? dateFrom, DateTime? dateTo, int filterValue)
         {
-            if (!isDataNotNull(dateFrom, dateTo, orgId))
+            if (!IsDataNotNull(dateFrom, dateTo, orgId))
             {
                 return new BadRequestObjectResult(ErrorMessages.InvalidData);
             }
@@ -167,17 +168,10 @@ namespace FundTrack.WebUI.Controllers
             }
         }
 
-        private bool isDataNotNull(DateTime? dateFrom, DateTime? dateTo, params int?[] parametrs)
+        private static bool IsDataNotNull(DateTime? dateFrom, DateTime? dateTo, params int?[] parametrs)
         {
-            var res = (dateTo.HasValue && dateTo <= DateTime.Now.Date) &&
-                (dateFrom.HasValue && dateFrom.Value <= dateTo);
-
-            foreach (var item in parametrs)
-            {
-                res = res & item.HasValue;
-            }
-
-            return res;
+            var res = dateTo.HasValue && dateTo <= DateTime.Now.Date && dateFrom.HasValue && dateFrom.Value <= dateTo;
+            return parametrs.Aggregate(res, (current, item) => current & item.HasValue);
         }
     }
 }

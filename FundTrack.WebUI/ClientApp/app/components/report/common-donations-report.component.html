@@ -30,11 +30,12 @@
         </div>
         <div class="col-md-2 col-md-offset-10 input-group">
             <div class="btn-group">
-                <button type="button" class="btn btn-primary" [ngClass]="{'disabled': !isDataAvailable}" (click)="displayChart()">
+                <button type="button" class="btn btn-primary" [ngClass]="{'disabled': !isDataAvailable || isChartUpdatingNow}" (click)="displayChart()">
+                    <i *ngIf="isChartUpdatingNow" class="fa fa-spinner fa-spin"></i>
                     <span *ngIf="isChartVisible">Сховати графік</span>
                     <span *ngIf="!isChartVisible">Показати графік</span>
                 </button>
-                <button type="button" class="btn btn-primary dropdown-toggle" [ngClass]="{'disabled': !isDataAvailable}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <button type="button" class="btn btn-primary dropdown-toggle" [ngClass]="{'disabled': !isDataAvailable || isChartUpdatingNow}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <span class="caret"></span>
                     <span class="sr-only">Toggle Dropdown</span>
                 </button>

@@ -36,6 +36,7 @@ export class CommonDonationsReportComponent implements OnInit {
     currentSortedColIndex: number = -1;
 
     isChartVisible: boolean;
+    isChartUpdatingNow: boolean;
     targetsOfOrganization: Array<TargetViewModel>;
     selectedTargetId: number = -1;
 
@@ -44,11 +45,10 @@ export class CommonDonationsReportComponent implements OnInit {
     showYAxis = true;
     gradient = false;
     showLegend = false;
-    showXAxisLabel = true;
-    xAxisLabel = 'Поточний місяць';
+    showXAxisLabel = false;
+    xAxisLabel = 'Період часу';
     showYAxisLabel = true;
-    yAxisLabel = 'Money';
-    barPadding = 20;
+    yAxisLabel = 'Сума пожертв';
     autoScale = true;
     colorScheme = {
         domain: [
@@ -133,12 +133,15 @@ export class CommonDonationsReportComponent implements OnInit {
     }
 
     UpdateDonationValueReportForChart() {
+        this.isChartUpdatingNow = true;
         this._service.DonationsValueReportPerDay(this.reportModel, this.selectedTargetId)
             .subscribe(res => {
                 console.log(res);
                 this.setNewDataForLineChart(res);
+                this.isChartUpdatingNow = false;
             }, error => {
                 this.showErrorMessage(error);
+                this.isChartUpdatingNow = false;
             });
     }
 

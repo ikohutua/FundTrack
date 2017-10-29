@@ -50,7 +50,7 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
         AllOrganizationsComponent,
         OrganizationDetailComponent,
         TargetManagementComponent,
-        OrganizationStatisticsComponent
+        OrganizationStatisticsComponent,
         UsersDonationsReportComponent,
         CommonDonationsReportComponent,
 

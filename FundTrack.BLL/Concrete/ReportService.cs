@@ -90,7 +90,7 @@ namespace FundTrack.BLL.Concrete
             }
         }
 
-        public IEnumerable<String> GetImagesById(int finOpId)
+        public IEnumerable<string> GetImagesById(int finOpId)
         {
             try
             {
@@ -157,22 +157,21 @@ namespace FundTrack.BLL.Concrete
                     UserLogin = group.Select(u => u.UserLogin).FirstOrDefault(),
                     UserFulName = group.Select(u => u.UserFulName).FirstOrDefault(),
                     MoneyAmount = group.Sum(u => u.MoneyAmount),
-                    Target = String.Join(", ", group.Select(u => u.Target).Where(t => !String.IsNullOrEmpty(t)).Distinct().ToArray())
+                    Target = string.Join(", ", group.Select(u => u.Target).Where(t => !String.IsNullOrEmpty(t)).Distinct().ToArray())
                 }).AsQueryable();
         }
 
-        private List<UsersDonationsReportViewModel> PaginateReport(int pageIndex, int pageSize, IQueryable<UsersDonationsReportViewModel> t)
+        private static IEnumerable<UsersDonationsReportViewModel> PaginateReport(int pageIndex, int pageSize, IQueryable<UsersDonationsReportViewModel> t)
         {
             var list = t.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
-            list.OrderByDescending(i => i.Date);
-            return list;
+            return list.OrderByDescending(i => i.Date);
         }
 
         private async Task<IQueryable<UsersDonationsReportViewModel>> GetUserDonations(int orgId, DateTime dateFrom, DateTime dateTo)
         {
             var donations = await GetRequestedDonation(orgId, dateFrom, dateTo);
 
-            return donations.Select(d => new UsersDonationsReportViewModel()
+            return donations.Select(d => new UsersDonationsReportViewModel
             {
                 Id = d.Id,
                 Target = d.Target == null ? null : d.Target.TargetName,
@@ -190,7 +189,7 @@ namespace FundTrack.BLL.Concrete
             {
                 var orgAccountsIds = _unitOfWork.OrganizationAccountRepository.ReadAllOrgAccounts(orgId).Select(oa => oa.Id);
 
-                if (orgAccountsIds == null || orgAccountsIds.Count() == 0)
+                if (orgAccountsIds.Count() == 0)
                 {
                     throw new BusinessLogicException(ErrorMessages.OrganizationNotFound);
                 }
@@ -209,26 +208,24 @@ namespace FundTrack.BLL.Concrete
         public async Task<IEnumerable<DataSetViewModel>> GetDonationsReportPerDayAsync(int orgId, DateTime dateFrom, DateTime dateTo)
         {
             var donations = await GetRequestedDonation(orgId, dateFrom, dateTo);
-            var grouped = GetGroupedDonationsByDateAsDataSet(donations.ToList());
-            return grouped.ToList();
+            return GetGroupedDonationsByDateAsDataSet(donations.ToList());
         }
 
         public async Task<IEnumerable<DataSetViewModel>> GetDonationsReportPerDayByTargetAsync(int orgId, DateTime dateFrom, DateTime dateTo, int targetId)
         {
             var donations = await GetRequestedDonation(orgId, dateFrom, dateTo);
             var filtered = donations.Where(d => d.TargetId == targetId);
-            var grouped = GetGroupedDonationsByDateAsDataSet(filtered.ToList());
-            return grouped.ToList();
+            return GetGroupedDonationsByDateAsDataSet(filtered.ToList());
         }
 
-        private static IQueryable<DataSetViewModel> GetGroupedDonationsByDateAsDataSet(IEnumerable<DAL.Entities.Donation> list)
+        private static IEnumerable<DataSetViewModel> GetGroupedDonationsByDateAsDataSet(IEnumerable<DAL.Entities.Donation> list)
         {
             return list.GroupBy(donat => donat.DonationDate.Date)
-                .Select(group => new DataSetViewModel()
+                .Select(group => new DataSetViewModel
                 {
                     Name = group.Select(u => u.DonationDate.Date.ToString("dd/MM/yyyy")).FirstOrDefault(),
                     Value = group.Sum(u => u.Amount)
-                }).AsQueryable();
+                });
         }
     }
 }
