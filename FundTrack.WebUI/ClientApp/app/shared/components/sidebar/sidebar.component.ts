@@ -133,6 +133,10 @@ export class SidebarComponent implements OnInit {
         this._router.navigate(['organization/targets/' + this.user.orgId.toString()]);
     }
 
+    public redirectToStatisticsPage(): void {
+        this._router.navigate(['organization/statistics/' + this.user.orgId.toString()]);
+    }
+
     public redirectToUsersDonationsReportsPage() {
         this._router.navigate(['organization/usersdonationsreports/' + this.user.orgId.toString()]);
     }

@@ -62,6 +62,11 @@ export class GlobalUrlService {
     // user service
     public static readonly getAllUsers = "api/User";
 
+    // organizationStatistics service
+    public static readonly getReportForFinopsByTargets = 'api/Reports/';
+    public static readonly getSubTargets = 'api/reports/GetSubTargets/';
+    public static readonly getFinOpsByTargetId = 'api/reports/GetFinOpsByTargetId/';
+
     //ShowRequestedItemService
     public static readonly countOfUsersDonationsReportItems = "api/reports/CountOfUsersDonationsReport";
     public static readonly usersDonationsPaginatedReport = 'api/reports/UsersDonationsPaginatedReport';

@@ -1,0 +1,39 @@
+﻿.chart-container{
+    height: 300px;
+    padding: 20px 0px;
+}
+
+.baseTargetDiv {
+    background-color: #a2a886;
+    padding: 5px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 5px 0;
+    border-radius: 7px;
+}
+
+.subTargetDiv {
+    background-color: #a2a886;
+    padding: 5px;
+    width: 90%;
+    display: flex;
+    align-items: center;
+    margin: 5px 0;
+    margin-left: 10%;
+    border-radius: 7px;
+}
+
+.targets-list {
+    margin-bottom: 5%;
+}
+
+.table {
+    margin: 0 auto;
+}
+
+.tableDiv {
+    width: 90%;
+    margin-left: 10%;
+}

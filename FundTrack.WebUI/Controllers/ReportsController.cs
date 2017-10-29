@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using FundTrack.BLL.Abstract;
 using FundTrack.Infrastructure.ViewModel;
+using FundTrack.Infrastructure.ViewModel.FinanceViewModels;
+using FundTrack.Infrastructure.ViewModel.FinanceViewModels.DonateViewModels;
+using Microsoft.AspNetCore.Authorization;
 using System.Threading.Tasks;
 using FundTrack.BLL.Concrete;
 using System.Diagnostics;
@@ -14,10 +17,12 @@ namespace FundTrack.WebUI.Controllers
     public class ReportsController : Controller
     {
         private readonly IReportService _service;
+        private readonly IOrganizationStatisticsService _organizationStatisticsService;
 
-        public ReportsController(IReportService service)
+        public ReportsController(IReportService service, IOrganizationStatisticsService organizationStatisticsService)
         {
             _service = service;
+            _organizationStatisticsService = organizationStatisticsService;
         }
 
         [HttpGet("IncomeReport")]
@@ -37,6 +42,28 @@ namespace FundTrack.WebUI.Controllers
         {
             return _service.GetImagesById(finOpId);
         }
+
+        [Authorize(Roles = "admin, moderator")]
+        [HttpGet("{orgId}/{finOpType}")]
+        public IEnumerable<TargetReportViewModel> GetTargetsReport(int orgId, int finOpType, DateTime dateFrom, DateTime dateTo)
+        {
+            return _organizationStatisticsService.GetReportForIncomeFinopsByTargets(orgId, finOpType, dateFrom, dateTo);
+        }
+
+        [Authorize(Roles = "admin, moderator")]
+        [HttpGet("GetSubTargets/{orgId}/{finOpType}/{baseTargetId}")]
+        public IEnumerable<TargetReportViewModel> GetSubTargets(int orgId, int finOpType, int baseTargetId, DateTime dateFrom, DateTime dateTo)
+        {
+            return _organizationStatisticsService.GetSubTargets(orgId, finOpType, baseTargetId, dateFrom, dateTo);
+        }
+
+        [Authorize(Roles = "admin, moderator")]
+        [HttpGet("GetFinOpsByTargetId/{finOpType}/{targetId}")]
+        public IEnumerable<FinOpViewModel> GetFinOpsByTargetId(int finOpType, int targetId, DateTime dateFrom, DateTime dateTo)
+        {
+            return _organizationStatisticsService.GetFinOpsByTargetId(finOpType, targetId, dateFrom, dateTo);
+        }
+
 
         [HttpGet("UsersDonationsPaginatedReport")]
         public async Task<IActionResult> UsersDonationsPaginatedReport(int? orgId, DateTime? dateFrom, DateTime? dateTo, int? pageIndex, int? pageSize, string filterValue)
