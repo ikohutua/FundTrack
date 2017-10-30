@@ -127,6 +127,7 @@ namespace FundTrack.WebUI
             services.AddScoped<IImageManagementService, AzureImageManagementService>();
             services.AddScoped<IFixingBalanceService, FixingBalanceService>();
             services.AddScoped<IBankService, BankService>();
+            services.AddScoped<IOrganizationStatisticsService, OrganizationStatisticsService>();
 
             //dependency injection WebUI
             services.AddScoped<IErrorLogger, ErrorLogger>();

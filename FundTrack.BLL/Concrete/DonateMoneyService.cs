@@ -37,7 +37,7 @@ namespace FundTrack.BLL.Concrete
                     result.Accounts.Add(new DonateAccountViewModel
                     {
                         Description = orgAccount.Description,
-                        BankAccountId = orgAccount.BankAccount.Id,
+                        BankAccountId = orgAccount.Id,
                         MerchantId = orgAccount.BankAccount.MerchantId,
                         MerchantPassword = orgAccount.BankAccount.MerchantPassword,
                         Name = orgAccount.OrgAccountName,
@@ -81,11 +81,15 @@ namespace FundTrack.BLL.Concrete
 
         public DonateViewModel AddDonation(DonateViewModel item)
         {
+            if (item.Description == null)
+            {
+                item.Description = Constants.CashFinOpDescription;
+            }
             var itemToAdd = new Donation
             {
                 OrderId = new Guid(item.OrderId),
                 Amount = item.Amount,
-                BankAccountId = item.BankAccountId,
+                OrgAccountId = item.BankAccountId,
                 CurrencyId = item.CurrencyId,
                 Description = item.Description,
                 UserId = item.UserId,
@@ -97,9 +101,10 @@ namespace FundTrack.BLL.Concrete
             _unitOfWork.SaveChanges();
             var result = new DonateViewModel
             {
+                Id = created.Id,
                 OrderId = created.OrderId.ToString(),
                 Amount = created.Amount,
-                BankAccountId = created.BankAccountId,
+                BankAccountId = created.OrgAccountId,
                 CurrencyId = created.CurrencyId,
                 Description = created.Description,
                 UserId = created.UserId,
@@ -130,7 +135,7 @@ namespace FundTrack.BLL.Concrete
                 UserId = donation.UserId,
                 CurrencyId = donation.CurrencyId,
                 TargetId = donation.TargetId,
-                BankAccountId = donation.BankAccountId,
+                BankAccountId = donation.OrgAccountId, 
                 Amount = donation.Amount,
                 Description = donation.Description,
                 DonatorEmail = donation.DonatorEmail,
@@ -146,10 +151,9 @@ namespace FundTrack.BLL.Concrete
                 _unitOfWork.DonationRepository
                     .Read()
                     .Where(d =>                                                 // suggested conditions are: 
-                        (d.UserId == null)&&                                    // if donation is not bind yet
                         (d.DonationDate >= finOp.FinOpDate) &&                  // min bound for date/time
                         (d.DonationDate <= finOpMaxPossibleDate) &&             // max bound for date/time
-                        (d.Amount == (double)finOp.Amount))                    // same amount
+                        (d.Amount == (double)finOp.Amount))                     // same amount
                         .ToList();
             return suggestedDonations.Select(ConvertEntityToModel);
         }
@@ -164,7 +168,7 @@ namespace FundTrack.BLL.Concrete
                     .Select(donation => new UserDonationsViewModel
                     {
                         Id = donation.Id,
-                        Organization = donation.BankAccount.Organization.Name,
+                        Organization = donation.OrgAccount.Organization.Name,
                         Target = donation.Target?.TargetName,
                         Date = donation.DonationDate,
                         Amount = donation.Amount,
