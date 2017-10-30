@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Primitives;
 using System;
+using System.Diagnostics;
 using System.Threading.Tasks;
 
 namespace FundTrack.WebUI.Middlewares
@@ -15,9 +17,14 @@ namespace FundTrack.WebUI.Middlewares
 
         public async Task Invoke(HttpContext httpContext)
         {
-            // authorize logic here
-            var authorizeTicket = new SecureTokenFormatter().Unprotect("token");
-
+            var auth = httpContext.Request?.Headers["Authorization"];
+            var token = auth?.ToString();
+            //Debug.WriteLine(auth);
+            //Debug.WriteLine(a);
+            if (!string.IsNullOrEmpty(token))
+            {
+                var authorizeTicket = new SecureTokenFormatter().Unprotect(token);
+            }
 
             await _next(httpContext);
         }

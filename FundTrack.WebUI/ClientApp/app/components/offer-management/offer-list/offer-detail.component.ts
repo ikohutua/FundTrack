@@ -118,7 +118,6 @@ export class OfferDetailComponent implements OnInit {
         this.showUserRegistrationSpinner = true;
         this.offerItem.images = [];
 
-        debugger;
         for (var i = 0; i < this.images.length; i++) {
             let offItImg = new OfferedItemImageViewModel();
             offItImg.id = this.images[i].id == undefined ? -1 : this.images[i].id;
