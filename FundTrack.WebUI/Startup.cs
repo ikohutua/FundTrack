@@ -16,7 +16,8 @@ using FundTrack.Infrastructure.ViewModel.EventViewModel;
 using FundTrack.WebUI.Formatter;
 using FundTrack.WebUI.Middlewares;
 using FundTrack.WebUI.Middlewares.Logging;
-using Microsoft.AspNetCore.Authentication;
+using Microsoft.IdentityModel.Tokens;
+using FundTrack.WebUI.token;
 
 namespace FundTrack.WebUI
 {
@@ -138,9 +139,20 @@ namespace FundTrack.WebUI
             app.UseGlobalErrorHandling();
             app.UseStaticFiles();
 
-
-            app.UseMyAuthorization();
-
+            app.UseJwtBearerAuthentication(new JwtBearerOptions
+            {
+                AutomaticAuthenticate = true,
+                AutomaticChallenge = true,
+                AuthenticationScheme = "Bearer",
+                TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = false,
+                    ValidateAudience = false,
+                    ValidateLifetime = false,
+                    IssuerSigningKey = AuthOptions.GetSymmetricSecurityKey(),
+                    ValidateIssuerSigningKey = true,
+                }
+            });
 
             //Old authorization
             //app.UseCookieAuthentication(new CookieAuthenticationOptions
@@ -173,6 +185,7 @@ namespace FundTrack.WebUI
                     defaults: new { controller = "Home", action = "Index" });
             });
 
+            app.UseCors("AllowCors");
         }
     }
 }

@@ -96,16 +96,7 @@ export class AuthorizationComponent {
         this.errorMessage = "";
         this._authorizationService.logIn(this.loginModel)
             .subscribe(data => {
-
-                //----------------------------------------------------------------------------
-                this._authorizationService.getAccessToken(this.loginModel)
-                    .subscribe(res => {
-                        console.log(res);
-                        debugger;
-                        data.access_token = res;
-                        this.subscribeForAuthorization(data);
-                    });
-                //----------------------------------------------------------------------------
+                this.subscribeForAuthorization(data);
             });
     }
 

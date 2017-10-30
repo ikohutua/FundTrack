@@ -94,7 +94,7 @@ export class UserResponseService extends BaseSpinnerService< UserResponseOnReque
     */
     private getRequestOptions() {
         let headers = new Headers({ 'Content-Type': 'application/json' });
-        headers.append("Authorization", localStorage.getItem(key.keyToken));
+        headers.append("Authorization", "Bearer " + localStorage.getItem(key.keyToken));
         let options = new RequestOptions({ headers: headers });
         return options;
     }
