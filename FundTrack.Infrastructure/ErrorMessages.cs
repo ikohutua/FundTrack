@@ -50,5 +50,8 @@
         public const string CantGetInfoForAccount = "Неможливо отримати інформацію для рахунку";
         public const string CantEditInfoForAccount = "Неможливо змінити інформацію для рахунку";
         public const string BindingDonationToFinOp = "Неможливо прив'язати пожертву до фінансової операції";
+        public const string OrganizationNotFound = "Організацію не знайдено";
+        public const string InvalidData = "Невірні дані!";
+        public const string CantGetFinOpsForReport = "Неможливо отримати фінансові операції для звіту";
     }
 }

@@ -40,7 +40,7 @@ namespace FundTrack.DAL.Concrete
         {
             return _context.Donations
                 .Include(d=>d.Target)
-                .Include(d=>d.BankAccount)
+                .Include(d=>d.OrgAccount)
                 .ThenInclude(ba=>ba.Organization);
         }
 

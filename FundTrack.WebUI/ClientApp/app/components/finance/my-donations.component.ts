@@ -23,7 +23,7 @@ export class MyDonationsComponent implements OnInit {
     private inputMaxDate: Date = new Date();
     private isDataExist: boolean;
     private isFilteredDataExist: boolean = true;
-    private showSpinner: boolean = false;
+    private showSpinner: boolean = true;
     constructor(private donateService: DonateService,
         private datePipe: DatePipe) {
     }

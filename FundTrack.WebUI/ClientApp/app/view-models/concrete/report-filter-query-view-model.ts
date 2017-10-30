@@ -3,4 +3,7 @@
      dateFrom: Date;
      dateTo: Date;
      reportType: number;
+     filterValue: string;
+     pageSize: number;
+     currentPage: number;
 }

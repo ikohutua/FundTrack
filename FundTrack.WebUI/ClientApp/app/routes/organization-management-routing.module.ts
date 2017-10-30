@@ -16,6 +16,9 @@ import { OrganizationEditComponent } from '../components/organization-edit/organ
 import { AllOrganizationsComponent } from '../components/all-organizations/all-organizations.component';
 import { OrganizationDetailComponent } from "../components/organization-detail/organization-detail.component";
 import { TargetManagementComponent } from '../components/organization-edit/target-management.component';
+import { OrganizationStatisticsComponent } from "../components/organization-edit/organization-statistics.component";
+import { UsersDonationsReportComponent } from "../components/report/users-donations-report.component";
+import { CommonDonationsReportComponent } from "../components/report/common-donations-report.component";
 
 @NgModule({
     providers: [AdminRouteGuard],
@@ -86,6 +89,18 @@ import { TargetManagementComponent } from '../components/organization-edit/targe
         {
             path: 'organization/targets/:id',
             component: TargetManagementComponent
+        },
+        {
+            path: 'organization/statistics/:id',
+            component: OrganizationStatisticsComponent
+        },
+        {
+            path: 'organization/usersdonationsreports/:id',
+            component: UsersDonationsReportComponent
+        },
+        {
+            path: 'organization/commondonationsreports/:id',
+            component: CommonDonationsReportComponent
         }
     ])],
     exports: [RouterModule]

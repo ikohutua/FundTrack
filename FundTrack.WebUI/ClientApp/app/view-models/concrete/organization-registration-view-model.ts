@@ -10,5 +10,6 @@ export class OrganizationRegistrationViewModel implements IOrganizationRegistrat
     administratorLogin: string;
     userError: string;
     nameError: string;
-    base64Code: string;
+    logoBase64Code: string;
+    logoImageExtension: string;
 }
