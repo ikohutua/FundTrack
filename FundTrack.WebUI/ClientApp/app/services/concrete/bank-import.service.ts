@@ -16,9 +16,10 @@ import * as key from '../../shared/key.storage';
 import { isBrowser } from "angular2-universal";
 import { BaseSpinnerService } from "../abstract/base-spinner-service";
 import { SpinnerComponent } from "../../shared/components/spinner/spinner.component";
+import { RequestOptionsService } from "./request-options.service";
 
 @Injectable()
-export class BankImportService extends BaseSpinnerService<ImportDetailPrivatViewModel >{
+export class BankImportService extends BaseSpinnerService<ImportDetailPrivatViewModel>{
 
     public constructor(private _http: Http) {
         super(_http);
@@ -28,19 +29,27 @@ export class BankImportService extends BaseSpinnerService<ImportDetailPrivatView
      * method for get bank import from privat24 using api
      * @param dataForRequest
      */
-    public getUserExtracts(orgAccountId: number) {
+    public getUserExtracts(orgAccountId: number, spinner?: SpinnerComponent) {
         if (this.checkAuthorization()) {
             let url = 'api/BankImport/ImportPrivat';
-            return this._http.post(url, orgAccountId, this.getRequestOptions())
-                .map((response:Response)=> response.json());
+            return this._http.post(url, orgAccountId, RequestOptionsService.getRequestOptions())
+                .map((response: Response) => response.json());
         }
     }
 
-    public getPrivatExtracts(data: DataRequestPrivatViewModel) {
+    public getPrivatExtracts(data: DataRequestPrivatViewModel, spinner?: SpinnerComponent) {
         if (this.checkAuthorization()) {
             let url = 'api/BankImport/Privat';
-            return this._http.post(url, data, this.getRequestOptions())
+            return this._http.post(url, data, RequestOptionsService.getRequestOptions())
                 .map((response: Response) => response.json());
+        }
+    }
+
+    public UpdateDate(orgId: number):Observable<Date> {
+        if (this.checkAuthorization()) {
+            let url = 'api/BankImport/UpdateDate';
+            return this._http.get(url + '/' + orgId , RequestOptionsService.getRequestOptions())
+                .map((response: Response) => response.json() as Date);
         }
     }
 
@@ -51,7 +60,7 @@ export class BankImportService extends BaseSpinnerService<ImportDetailPrivatView
     public registerBankExtracts(bankImport: ImportDetailPrivatViewModel[]): Observable<ImportDetailPrivatViewModel[]> {
         if (this.checkAuthorization()) {
             let url = 'api/BankImport/RegisterNewExtracts';
-            return this._http.post(url, bankImport, this.getRequestOptions())
+            return this._http.post(url, bankImport, RequestOptionsService.getRequestOptions())
                 .map((response: Response) => <ImportDetailPrivatViewModel[]>response.json())
                 .catch(this.handleError);
         }
@@ -64,7 +73,7 @@ export class BankImportService extends BaseSpinnerService<ImportDetailPrivatView
     public getRawExtracts(bankSearchModel: BankImportSearchViewModel): Observable<ImportDetailPrivatViewModel[]> {
         if (this.checkAuthorization()) {
             let url = "api/BankImport/SearchRawExtractsOnPeriod";
-            return this._http.post(url, bankSearchModel, this.getRequestOptions())
+            return this._http.post(url, bankSearchModel, RequestOptionsService.getRequestOptions())
                 .map((response: Response) => <ImportDetailPrivatViewModel[]>response.json())
                 .catch(this.handleError);
         }
@@ -77,27 +86,27 @@ export class BankImportService extends BaseSpinnerService<ImportDetailPrivatView
     public getAllExtracts(card: string, spinner?: SpinnerComponent): Observable<ImportDetailPrivatViewModel[]> {
         if (this.checkAuthorization()) {
             let url = 'api/BankImport/GetAllExtracts/' + card;
-            return super.getCollection(url, this.getRequestOptions(), spinner)
+            return super.getCollection(url, RequestOptionsService.getRequestOptions(), spinner)
         }
     }
 
-     /**
-     * method for get the count all bank imports fin one org accounts
-     * @param card
-     */
+    /**
+    * method for get the count all bank imports fin one org accounts
+    * @param card
+    */
     public getCountExtractsOnCard(card: string): Observable<number> {
         if (this.checkAuthorization()) {
             let url = 'api/BankImport/GetCountExtracts';
-            return this._http.get(url + '/' + card, this.getRequestOptions())
+            return this._http.get(url + '/' + card, RequestOptionsService.getRequestOptions())
                 .map((response: Response) => <number>response.json())
                 .catch(this.handleError);
         }
     }
 
-    public getLastPrivatUpdate(orgId: number):Observable<Date> {
+    public getLastPrivatUpdate(orgId: number): Observable<Date> {
         if (this.checkAuthorization()) {
             let url = 'api/BankImport/LastUpdate';
-            return this._http.get(url  +'/'+ orgId, this.getRequestOptions())
+            return this._http.get(url + '/' + orgId, RequestOptionsService.getRequestOptions())
                 .map((response: Response) => { return response.json() as Date })
                 .catch(this.handleError);
         }

@@ -179,7 +179,7 @@ namespace FundTrack.BLL.Concrete
             {
                 var bancAccount = _unitOfWork.OrganizationAccountRepository.GetOrgAccountById(orgAccountId).BankAccount;
                 var interval = _unitOfWork.ImportIntervalRepository.GetByOrgId(bancAccount.OrgId);
-                await PrivatImporter.Import(bancAccount.CardNumber, bancAccount.ExtractMerchantId.ToString(), bancAccount.ExtractMerchantPassword,interval.LastUpdateDate.Value );
+                await PrivatImporter.Import(bancAccount.CardNumber, bancAccount.ExtractMerchantId.ToString(), bancAccount.ExtractMerchantPassword, interval.LastUpdateDate.Value);
             }
             catch (Exception ex)
             {
@@ -195,7 +195,7 @@ namespace FundTrack.BLL.Concrete
             }
             catch (Exception ex)
             {
-                throw new BusinessLogicException(ex.Message,ex);
+                throw new BusinessLogicException(ex.Message, ex);
             }
         }
 
@@ -205,10 +205,24 @@ namespace FundTrack.BLL.Concrete
             {
                 await PrivatImporter.Import(model.Card, model.IdMerchant.ToString(), model.Password, Convert.ToDateTime(model.DataFrom), Convert.ToDateTime(model.DataTo));
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                Console.WriteLine(e);
-                throw;
+                throw new BusinessLogicException(ex.Message, ex);
+            }
+        }
+
+        public AutoImportIntervals UpdateDate(int orgId )
+        {
+            try
+            {
+                var date = DateTime.Now;
+                var interval = _unitOfWork.ImportIntervalRepository.Update(orgId, date);
+                _unitOfWork.SaveChanges();
+                return interval;
+            }
+            catch (Exception ex)
+            {
+                throw new BusinessLogicException(ex.Message, ex);
             }
         }
     }

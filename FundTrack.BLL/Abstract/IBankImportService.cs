@@ -1,5 +1,6 @@
 ﻿using FundTrack.Infrastructure.ViewModel;
 using FundTrack.Infrastructure.ViewModel.FinanceViewModels;
+using FundTrack.DAL.Entities;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -38,6 +39,8 @@ namespace FundTrack.BLL.Abstract
         Task ImportFromPrivat(int orgAccountId);
 
         DateTime GetLastPrivatUpdate(int orgId);
+
+        AutoImportIntervals UpdateDate(int orgId );
 
         Task ImportWithDates(PrivatImportViewModel model);
     }

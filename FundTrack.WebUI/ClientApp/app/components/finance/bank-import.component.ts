@@ -134,7 +134,7 @@ export class BankImportComponent implements OnInit {
                                 });
                             this.getAllExtracts();
                         }
-                        
+
                     });
             }
         }
@@ -219,7 +219,13 @@ export class BankImportComponent implements OnInit {
         this.dataForPrivat.dataTo = this.dataPrivatTo.split('-').reverse().join('.');
         this.dataForPrivat.dataFrom = this.dataPrivatFrom.split('-').reverse().join('.');
         this._service.getPrivatExtracts(this.dataForPrivat)
-            .subscribe();
+            .subscribe(() => {
+                this._service.UpdateDate(this.user.orgId)
+                    .subscribe(response => {
+                        this.lastPrivatUpdate = response;
+                    });
+
+            });
     }
 
     //filter bank Imports
@@ -263,7 +269,7 @@ export class BankImportComponent implements OnInit {
             });
     }
 
-    
+
 
     /**
     * Closes bankImports modal window
@@ -277,7 +283,7 @@ export class BankImportComponent implements OnInit {
      */
     public onActionClick(): void {
         this.dataForPrivat.card = this.card;
-        
+
         this.newBankImportModalWindow.show();
     }
 
@@ -300,10 +306,20 @@ export class BankImportComponent implements OnInit {
         this.finOpWarningWindow.show();
     }
 
+
+    public UpdateDate(): void {
+        this._service.UpdateDate
+    }
     public onPrivatClick(): void {
         this._service.getUserExtracts(this.currentOrgAccount.id).subscribe(() => {
+            this.showSpinner = false;
+            this._service.UpdateDate(this.user.orgId)
+                .subscribe(response => {
+                    this.lastPrivatUpdate = response;
+                });
             this.getAllExtracts();
         });
+        this.showSpinner = true;
         this.newBankImportModalWindow.hide();
     }
     /**

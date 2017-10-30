@@ -101,6 +101,17 @@ namespace FundTrack.WebUI.Controllers
             return Ok(_service.GetLastPrivatUpdate(orgId));
         }
 
+        [HttpGet("UpdateDate/{orgId}")]
+        [Authorize(Roles = "admin, moderator")]
+        public IActionResult UpdateDate(int orgId)
+        {
+            if (orgId <= 0)
+            {
+                return BadRequest();
+            }
+            return Ok(_service.UpdateDate(orgId).LastUpdateDate);
+        }
+
         [HttpPost("Privat")]
         [Authorize(Roles = "admin, moderator")]
         public IActionResult PrivatImport([FromBody] PrivatImportViewModel model)
