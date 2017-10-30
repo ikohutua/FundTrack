@@ -10,12 +10,12 @@ namespace FundTrack.DAL.Abstract
     {
         IQueryable<AutoImportIntervals> Read();
 
-        AutoImportIntervals GetByOrgId(int AutoImportIntervalsId);
+        AutoImportIntervals GetByOrgId(int autoImportIntervalsId);
 
         AutoImportIntervals Create(AutoImportIntervals item);
 
-        AutoImportIntervals Update(AutoImportIntervals AutoImportIntervals);
+        AutoImportIntervals Update(AutoImportIntervals autoImportIntervals);
 
-        void Delete(int AutoImportIntervalsId);
+        void Delete(int autoImportIntervalsId);
     }
 }

@@ -1,9 +1,11 @@
-﻿using FundTrack.BLL.Abstract;
+﻿using System;
+using FundTrack.BLL.Abstract;
 using FundTrack.Infrastructure.ViewModel;
 using FundTrack.Infrastructure.ViewModel.FinanceViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Mvc.TagHelpers;
 
 namespace FundTrack.WebUI.Controllers
 {
@@ -77,20 +79,40 @@ namespace FundTrack.WebUI.Controllers
             return this._service.GetCountExtracts(card);
         }
 
-        [HttpPost("ImportPrivate/{orgAccountId}")]
-        //[Authorize(Roles = "admin, moderator")]
-        public IActionResult ImportPrivate(int orgAccountId)
+        [HttpPost("ImportPrivat")]
+        [Authorize(Roles = "admin, moderator")]
+        public IActionResult ImportPrivat([FromBody]int orgAccountId)
         {
-            _service.ImportFromPrivat(orgAccountId);
-            return Ok();
+            if (orgAccountId<=0)
+            {
+                return BadRequest();
+            }
+            return Ok(_service.ImportFromPrivat(orgAccountId));
         }
 
-        [HttpPost("ImportPrivate/{orgId}")]
+        [HttpGet("LastUpdate/{orgId}")]
         [Authorize(Roles = "admin, moderator")]
         public IActionResult LastUpdate (int orgId)
         {
-            _service.GetLastPrivatUpdate(orgAccountId);
-            return Ok();
+            if (orgId <= 0)
+            {
+                return BadRequest();
+            }
+            return Ok(_service.GetLastPrivatUpdate(orgId));
+        }
+
+        [HttpPost("Privat")]
+        [Authorize(Roles = "admin, moderator")]
+        public IActionResult PrivatImport([FromBody] PrivatImportViewModel model)
+        {
+            try
+            {
+                return Ok(_service.ImportWithDates(model));
+            }
+            catch (Exception ex)
+            {
+                throw new  Exception(ex.Message, ex);
+            }
         }
     }
 }

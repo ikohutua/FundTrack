@@ -3,11 +3,11 @@ using FundTrack.DAL.Abstract;
 using FundTrack.DAL.Entities;
 using FundTrack.Infrastructure.ViewModel;
 using FundTrack.Infrastructure.ViewModel.FinanceViewModels;
-//using FundTrack.PrivatImport;
-using PrivatService;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using PrivatService;
 
 namespace FundTrack.BLL.Concrete
 {
@@ -18,7 +18,6 @@ namespace FundTrack.BLL.Concrete
     public class BankImportService : IBankImportService
     {
         private readonly IUnitOfWork _unitOfWork;
-
         /// <summary>
         /// Creates new instance of BankImportService
         /// </summary>
@@ -174,14 +173,13 @@ namespace FundTrack.BLL.Concrete
             }
         }
 
-        public void ImportFromPrivat(int orgAccountId)
+        public async Task ImportFromPrivat(int orgAccountId)
         {
             try
             {
-                Class1 a = new Class1();
                 var bancAccount = _unitOfWork.OrganizationAccountRepository.GetOrgAccountById(orgAccountId).BankAccount;
-                a.Import(1, 20);
-                //PrivatImporter.Import(bancAccount.CardNumber, bancAccount.ExtractMerchantId.ToString(), bancAccount.MerchantPassword, DateTime.Now.AddDays(-10));
+                var interval = _unitOfWork.ImportIntervalRepository.GetByOrgId(bancAccount.OrgId);
+                await PrivatImporter.Import(bancAccount.CardNumber, bancAccount.ExtractMerchantId.ToString(), bancAccount.ExtractMerchantPassword,interval.LastUpdateDate.Value );
             }
             catch (Exception ex)
             {
@@ -191,7 +189,27 @@ namespace FundTrack.BLL.Concrete
 
         public DateTime GetLastPrivatUpdate(int orgId)
         {
-            return;
+            try
+            {
+                return _unitOfWork.ImportIntervalRepository.GetByOrgId(orgId).LastUpdateDate.Value;
+            }
+            catch (Exception ex)
+            {
+                throw new BusinessLogicException(ex.Message,ex);
+            }
+        }
+
+        public async Task ImportWithDates(PrivatImportViewModel model)
+        {
+            try
+            {
+                await PrivatImporter.Import(model.Card, model.IdMerchant.ToString(), model.Password, Convert.ToDateTime(model.DataFrom), Convert.ToDateTime(model.DataTo));
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
         }
     }
 }

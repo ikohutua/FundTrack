@@ -145,7 +145,7 @@ namespace FundTrack.PrivatImport
                 command.Parameters.Add("@trandate", SqlDbType.DateTime).Value = model.Trandate;
                 command.Parameters.Add("@isLooked", SqlDbType.Bit).Value = model.IsLooked;
                 connection.Open();
-                //command.ExecuteNonQuery();
+                command.ExecuteNonQuery();
             }
         }
 
@@ -229,7 +229,7 @@ namespace FundTrack.PrivatImport
 
         private static void ResponseProcessing(string task, List<int> appcodes)
         {
-            var response = task?.ParseXmlTo<Response>();
+          var response = task?.ParseXmlTo<Response>();
             if (response?.Merchant == null)
             {
                 return;

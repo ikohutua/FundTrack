@@ -46,6 +46,9 @@ export class BankImportComponent implements OnInit {
     @ViewChild("finOp")
     public finOpModalWindow: ModalComponent;
     @ViewChild(SpinnerComponent) spinner: SpinnerComponent;
+    @ViewChild("warning")
+    public finOpWarningWindow: ModalComponent;
+
 
     //model which contain data to create new finOp
     private _newFinOp: FinOpFromBankViewModel = new FinOpFromBankViewModel();
@@ -125,7 +128,7 @@ export class BankImportComponent implements OnInit {
                                             .subscribe((res) => {
                                                 this.idMerchant = res.merchantId;
                                                 this.password = res.merchantPassword;
-                                            })
+                                            });
                                     }
                                     this.showSpinner = false;
                                 });
@@ -141,14 +144,6 @@ export class BankImportComponent implements OnInit {
         this._service.getAllExtracts(this.card, this.spinner)
             .subscribe(response => {
                 this._dataForFinOp = response;
-                if (this.currentOrgAccount.targetId != undefined) {
-                    for (let bankDetail of this._dataForFinOp) {
-                        if (Number(bankDetail.cardAmount) > 0) {
-                            this.createFinOp(bankDetail);
-                            this.saveFinOp();
-                        }
-                    }
-                }
             });
     }
 
@@ -223,20 +218,8 @@ export class BankImportComponent implements OnInit {
         this.dataForPrivat.password = this.password;
         this.dataForPrivat.dataTo = this.dataPrivatTo.split('-').reverse().join('.');
         this.dataForPrivat.dataFrom = this.dataPrivatFrom.split('-').reverse().join('.');
-        this._service.getUserExtracts(this.dataForPrivat)
-            .subscribe(response => {
-                this.importData = response;
-                if (!this.importData.error) {
-                    this._service.registerBankExtracts(this.importData.importsDetail)
-                        .subscribe(response => {
-                            this.showToast();
-                            setTimeout(() => {
-                                this.getAllExtracts();
-                                this.closeModal();
-                            }, 2500);
-                        });
-                }
-            });
+        this._service.getPrivatExtracts(this.dataForPrivat)
+            .subscribe();
     }
 
     //filter bank Imports
@@ -280,10 +263,7 @@ export class BankImportComponent implements OnInit {
             });
     }
 
-    public getLastPrivatUpdate()
-    {
-
-    }
+    
 
     /**
     * Closes bankImports modal window
@@ -301,6 +281,31 @@ export class BankImportComponent implements OnInit {
         this.newBankImportModalWindow.show();
     }
 
+    public onIncomeClick(): void {
+        if (this.currentOrgAccount.targetId != undefined) {
+            for (let bankDetail of this._dataForFinOp) {
+                if (bankDetail.isLooked == false) {
+                    if (Number(bankDetail.cardAmount.split(' ')[0]) > 0) {
+                        this.createFinOp(bankDetail);
+                        this.saveFinOp();
+                    }
+                }
+            }
+            this.getAllExtracts()
+        }
+        this.closeWarningModal();
+    }
+
+    public warningWindowShow(): void {
+        this.finOpWarningWindow.show();
+    }
+
+    public onPrivatClick(): void {
+        this._service.getUserExtracts(this.currentOrgAccount.id).subscribe(() => {
+            this.getAllExtracts();
+        });
+        this.newBankImportModalWindow.hide();
+    }
     /**
      * close finOp modal window
      */
@@ -309,6 +314,9 @@ export class BankImportComponent implements OnInit {
         this._newFinOp = new FinOpFromBankViewModel();
     }
 
+    public closeWarningModal(): void {
+        this.finOpWarningWindow.hide();
+    }
     /**
      * open finOp modal window
      */

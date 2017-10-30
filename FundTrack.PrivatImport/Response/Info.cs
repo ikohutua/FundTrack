@@ -13,3 +13,4 @@ namespace FundTrack.PrivatImport
         public Statements Statements { get; set; }
     }
 }
+

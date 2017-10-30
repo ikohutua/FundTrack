@@ -6,7 +6,6 @@ using System.Data.SqlClient;
 using System.Threading;
 using FundTrack.PrivatImport;
 
-
 namespace FundTrack.AutoImportService.Services
 {
     class TimerService

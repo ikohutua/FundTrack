@@ -20,15 +20,15 @@ namespace FundTrack.DAL.Concrete
             return _context.AutoImportInterval.Add(item).Entity;
         }
 
-        public void Delete(int AutoImportIntervalsId)
+        public void Delete(int autoImportIntervalsId)
         {
-            var import = _context.AutoImportInterval.FirstOrDefault(i => i.Id == AutoImportIntervalsId);
+            var import = _context.AutoImportInterval.FirstOrDefault(i => i.Id == autoImportIntervalsId);
             _context.AutoImportInterval.Remove(import);
         }
 
         public AutoImportIntervals GetByOrgId(int OrgId)
         {
-            _context.AutoImportInterval.FirstOrDefault(i => i.OrgId == OrgId);
+           return _context.AutoImportInterval.FirstOrDefault(i => i.OrgId == OrgId);
         }
 
         public IQueryable<AutoImportIntervals> Read()
@@ -36,9 +36,9 @@ namespace FundTrack.DAL.Concrete
             return _context.AutoImportInterval;
         }
 
-        public AutoImportIntervals Update(AutoImportIntervals AutoImportIntervals)
+        public AutoImportIntervals Update(AutoImportIntervals autoImportIntervals)
         {
-            return _context.Update(AutoImportIntervals).Entity;
+            return _context.Update(autoImportIntervals).Entity;
         }
     }
 }
