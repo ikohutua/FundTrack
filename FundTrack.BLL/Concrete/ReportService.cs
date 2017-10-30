@@ -208,24 +208,59 @@ namespace FundTrack.BLL.Concrete
         public async Task<IEnumerable<DataSetViewModel>> GetDonationsReportPerDayAsync(int orgId, DateTime dateFrom, DateTime dateTo)
         {
             var donations = await GetRequestedDonation(orgId, dateFrom, dateTo);
-            return GetGroupedDonationsByDateAsDataSet(donations.ToList());
+            var groupedDonations = GetGroupedDonationsAmountByDate(donations.ToList());
+            var groupedDonationsWithMissingDates = GetDonationWithMissingDate(groupedDonations, dateFrom, dateTo);
+
+            return ConvertToDataSet(groupedDonationsWithMissingDates);
         }
 
         public async Task<IEnumerable<DataSetViewModel>> GetDonationsReportPerDayByTargetAsync(int orgId, DateTime dateFrom, DateTime dateTo, int targetId)
         {
             var donations = await GetRequestedDonation(orgId, dateFrom, dateTo);
             var filtered = donations.Where(d => d.TargetId == targetId);
-            return GetGroupedDonationsByDateAsDataSet(filtered.ToList());
+            var groupedDonations = GetGroupedDonationsAmountByDate(filtered.ToList());
+            var groupedDonationsWithMissingDates = GetDonationWithMissingDate(groupedDonations, dateFrom, dateTo);
+
+            return ConvertToDataSet(groupedDonationsWithMissingDates);
         }
 
-        private static IEnumerable<DataSetViewModel> GetGroupedDonationsByDateAsDataSet(IEnumerable<DAL.Entities.Donation> list)
+        private static IEnumerable<DAL.Entities.Donation> GetGroupedDonationsAmountByDate(IEnumerable<DAL.Entities.Donation> list)
         {
             return list.GroupBy(donat => donat.DonationDate.Date)
-                .Select(group => new DataSetViewModel
+                .Select(group => new DAL.Entities.Donation
                 {
-                    Name = group.Select(u => u.DonationDate.Date.ToString("dd/MM/yyyy")).FirstOrDefault(),
-                    Value = group.Sum(u => u.Amount)
+                    Amount = group.Sum(u => u.Amount),
+                    DonationDate = group.Select(d => d.DonationDate.Date).FirstOrDefault()
                 });
+        }
+
+        private static IEnumerable<DataSetViewModel> ConvertToDataSet(IEnumerable<DAL.Entities.Donation> list)
+        {
+            return list.Select(item => new DataSetViewModel
+            {
+                Name = item.DonationDate.Date.ToString("dd/MM/yyyy"),
+                Value = item.Amount
+            });
+        }
+
+        private static IEnumerable<DAL.Entities.Donation> GetDonationWithMissingDate(IEnumerable<DAL.Entities.Donation> list, DateTime dateFrom, DateTime dateTo)
+        {
+            var listWithMissingDate = list.ToList();
+
+            for (int i = 0; i <= (dateTo - dateFrom).Days; i++)
+            {
+                DateTime dateTime = dateFrom.AddDays(i);
+                bool v = listWithMissingDate.Any(d => d.DonationDate.Date == dateTime.Date);
+                if (!v)
+                {
+                    listWithMissingDate.Add(new DAL.Entities.Donation()
+                    {
+                        DonationDate = dateTime
+                    });
+                }
+            }
+
+            return listWithMissingDate.OrderBy(d=>d.DonationDate);
         }
     }
 }
