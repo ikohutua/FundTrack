@@ -16,6 +16,7 @@ import * as key from '../../shared/key.storage';
 import { isBrowser } from "angular2-universal";
 import { BaseSpinnerService } from "../abstract/base-spinner-service";
 import { SpinnerComponent } from "../../shared/components/spinner/spinner.component";
+import { GlobalUrlService } from "./global-url.service";
 
 @Injectable()
 export class BankImportService extends BaseSpinnerService<ImportDetailPrivatViewModel >{
@@ -143,6 +144,15 @@ export class BankImportService extends BaseSpinnerService<ImportDetailPrivatView
         headers.append("Authorization", "Bearer " + localStorage.getItem(key.keyToken));
         let options = new RequestOptions({ headers: headers });
         return options;
+    }
+
+    public getAllSuggestedBankImports(amount: number, date: Date): Observable<ImportDetailPrivatViewModel[]> {
+        if (this.checkAuthorization()) {
+            //debugger;
+            return this._http.get(GlobalUrlService.getAllSuggestedBankImportUrl + '/' + amount + '/' + date, this.getRequestOptions())
+                .map((response: Response) => <ImportDetailPrivatViewModel[]>response.json())
+                .catch(this.handleError);
+        }
     }
 
     /**

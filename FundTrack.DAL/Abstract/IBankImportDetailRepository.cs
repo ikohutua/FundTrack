@@ -1,6 +1,7 @@
 ﻿using FundTrack.DAL.Entities;
 using FundTrack.Infrastructure.ViewModel.FinanceViewModels;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace FundTrack.DAL.Abstract
 {
@@ -24,7 +25,13 @@ namespace FundTrack.DAL.Abstract
         /// Gets the bank imports detail.
         /// </summary>
         /// <returns></returns>
-        IEnumerable<BankImportDetail> GetBankImportsDetail();
+        IQueryable<BankImportDetail> GetBankImportsDetail();
+
+        /// <summary>
+        /// Gets the not looked bank imports detail.
+        /// </summary>
+        /// <returns></returns>
+        IQueryable<BankImportDetail> GetNotLookedBankImportsDetail();
 
         /// <summary>
         /// Filters the bank import detail.

@@ -86,8 +86,8 @@ namespace FundTrack.DAL.Concrete
             var finOps =  this._context.FinOps
                 .Include(a => a.OrgAccountFrom)
                 .Include(a => a.OrgAccountTo)
-                .Where(a => a.AccFromId == orgAccountId || a.AccToId == orgAccountId)
                 .OrderByDescending(a => a.Id)
+                .Where(a => a.AccFromId == orgAccountId || a.AccToId == orgAccountId)
                 .Skip((currentPage - 1) * itemsPerPage)
                 .Take(itemsPerPage);
             return finOps;
@@ -99,9 +99,9 @@ namespace FundTrack.DAL.Concrete
             var finOps = this._context.FinOps
                 .Include(a => a.OrgAccountFrom)
                 .Include(a => a.OrgAccountTo)
+                .OrderByDescending(a => a.Id)
                 .Where(a => (a.AccFromId == orgAccountId || a.AccToId == orgAccountId)
                     && (a.FinOpType == finOpType))
-                .OrderByDescending(a => a.Id)
                 .Skip((currentPage - 1) * itemsPerPage)
                 .Take(itemsPerPage);
             return finOps;

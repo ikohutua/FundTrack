@@ -10,6 +10,7 @@ import { PartnerRouteGuard } from "../services/concrete/security/partner-route-g
 import { MyDonationsComponent } from "../components/finance/my-donations.component";
 import { IncomeOperationComponent } from "../components/finance/incomeoperation.component";
 import { SpendingOperationComponent } from "../components/finance/spendingoperation.component";
+import { TransferOperationComponent } from "../components/finance/transferoperation.component";
 
 @NgModule({
     imports: [RouterModule.forChild([
@@ -49,6 +50,11 @@ import { SpendingOperationComponent } from "../components/finance/spendingoperat
                 {
                     path: 'spending/:id',
                     component: SpendingOperationComponent,
+                    canActivate: [AdminRouteGuard]
+                },
+                {
+                    path: 'transfer/:id',
+                    component: TransferOperationComponent,
                     canActivate: [AdminRouteGuard]
                 },
                 {

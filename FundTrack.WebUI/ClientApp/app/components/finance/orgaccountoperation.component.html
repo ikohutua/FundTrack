@@ -70,91 +70,10 @@
 
     <a *ngIf="isCashType" class="btn" (click)="navigateToIncomeOperationPage()">Добавити прихід</a>
     <a *ngIf="isCashType" class="btn" (click)="navigateToSpendingOperationPage()">Добавити витрату</a>
-    <a *ngIf="isCashType" class="btn" (click)="openModal(newMoneyTransferWindow)">Переказ коштів</a>
+    <a *ngIf="isCashType" class="btn" (click)="navigateToTransferOperationPage()">Переказ коштів</a>
 
     <div name="snackbar" id="suggestedToast">{{toasterMessage}}</div>
 </div>
-
-<app-modal #newMoneyTransfer>
-    <div class="app-modal-header">
-        <button type="button" class="close" aria-hidden="true" (click)="closeModal(newMoneyTransferWindow, moneyTransferForm)">&times;</button>
-        <h4 class="modal-title">Переміщення між рахунками </h4>
-    </div>
-    <div class="app-modal-body">
-        <div class="collapse in" id="collapseExample">
-            <form class="form-horizontal" [formGroup]="moneyTransferForm" id="moneyTransfer" novalidate>
-                <div class="form-group">
-                    <label class="control-label">Назва рахунку</label>
-                    <input class="form-control"
-                           disabled
-                           type="text"
-                           placeholder={{currentAccount.orgAccountName}}
-                           name="cardFromId" />
-                </div>
-                <div class="form-group">
-                    <label class="control-label">Назва рахунку одержувача<sup class="sup-color-red">*</sup></label>
-                    <select [(ngModel)]="moneyOperationModel.cardToId" formControlName="cardToId" id="categoryType" class="form-control">
-                        <option></option>
-                        <option *ngFor="let account of accountsTo" value="{{account.id}}">
-                            {{account.orgAccountName}}
-                        </option>
-                    </select>
-                    <span *ngIf="formTransferErrors.cardToId" class="has-error help-block error-message">
-                        {{ formTransferErrors.cardToId }}
-                    </span>
-                </div>
-                <div class="form-group">
-                    <label class="control-label">Сума<sup class="sup-color-red">*</sup></label>
-                    <input class="form-control"
-                           type="text"
-                           placeholder="Сума"
-                           formControlName="amount"
-                           [(ngModel)]="moneyOperationModel.amount"
-                           required="" />
-                    <span *ngIf="formTransferErrors.amount" class="has-error help-block error-message">
-                        {{ formTransferErrors.amount }}
-                    </span>
-                </div>
-                <div class="form-group">
-                    <label class="control-label">Опис</label>
-                    <textarea class="form-control"
-                              placeholder="Опис"
-                              name="description"
-                              maxlength="500"
-                              formControlName="description"
-                              [(ngModel)]="moneyOperationModel.description"
-                              required=""></textarea>
-                    <span *ngIf="formTransferErrors.description" class="has-error help-block error-message">
-                        {{ formTransferErrors.description }}
-                    </span>
-                </div>
-                <div class="form-group">
-                    <label class="control-label">Дата<sup class="sup-color-red">*</sup></label>
-                    <input type="date"
-                           class="input-sm form-control no-spin"
-                           formControlName="date"
-                           #dateTransfer (input)="setDate(moneyOperationModel,dateTransfer.value)"
-                           [value]="moneyOperationModel.date | date:'yyyy-MM-dd'"
-                           min="{{minDate}}"
-                           max="{{currentDate}}" />
-                </div>
-            </form>
-        </div>
-    </div>
-    <div class="app-modal-footer">
-        <button (click)="makeTransfer()"
-                class="btn btn-fundtrack-style pull-left"
-                data-dismiss="modal"
-                [disabled]="moneyTransferForm.invalid">
-            ОК
-        </button>
-        <button (click)="closeModal(newMoneyTransferWindow, moneyTransferForm)"
-                class="btn btn-default pull-right"
-                data-dismiss="modal">
-            Скасувати
-        </button>
-    </div>
-</app-modal>
 
 <app-modal #newAccountManagment>
     <div class="app-modal-header">
@@ -165,7 +84,7 @@
         <div class="collapse in" id="collapseExample">
             <form class="form-horizontal" [formGroup]="accountManagmentForm" id="accountManagment" novalidate>
                 <div class="col-md-2 pull-right">
-                    <button (click)="openModal(newDeleteModalWindow)" title="Видалити рахунок" style="margin-top:20px" class="btn-delete"><span style="font-size:18px;" class="glyphicon glyphicon-remove-sign"></span></button>
+                    <button [disabled]="finOps.length>0" (click)="openModal(newDeleteModalWindow)" title="Видалити рахунок" style="margin-top:20px" class="btn-delete"><span style="font-size:18px;" class="glyphicon glyphicon-remove-sign"></span></button>
                 </div>
                 <label class="main-label">Інформація про рахунок</label>
                 <div class="form-group">

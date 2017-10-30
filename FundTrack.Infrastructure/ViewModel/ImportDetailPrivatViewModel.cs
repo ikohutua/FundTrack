@@ -10,7 +10,7 @@ namespace FundTrack.Infrastructure.ViewModel
         /// <value>
         /// The identifier.
         /// </value>
-        public int id { get; set; }
+        public int Id { get; set; }
 
         /// <summary>
         /// Gets or sets the card.
@@ -18,7 +18,7 @@ namespace FundTrack.Infrastructure.ViewModel
         /// <value>
         /// The card.
         /// </value>
-        public string card { get; set; }
+        public string Card { get; set; }
 
         /// <summary>
         /// Gets or sets the trandate.
@@ -26,7 +26,7 @@ namespace FundTrack.Infrastructure.ViewModel
         /// <value>
         /// The trandate.
         /// </value>
-        public DateTime trandate { get; set; }
+        public DateTime Trandate { get; set; }
 
         /// <summary>
         /// Gets or sets the amount.
@@ -34,7 +34,7 @@ namespace FundTrack.Infrastructure.ViewModel
         /// <value>
         /// The amount.
         /// </value>
-        public string amount { get; set; }
+        public string Amount { get; set; }
 
         /// <summary>
         /// Gets or sets the application code.
@@ -42,7 +42,7 @@ namespace FundTrack.Infrastructure.ViewModel
         /// <value>
         /// The application code.
         /// </value>
-        public string appCode { get; set; }
+        public string AppCode { get; set; }
 
         /// <summary>
         /// Gets or sets the card amount.
@@ -50,7 +50,7 @@ namespace FundTrack.Infrastructure.ViewModel
         /// <value>
         /// The card amount.
         /// </value>
-        public string cardAmount { get; set; }
+        public string CardAmount { get; set; }
 
         /// <summary>
         /// Gets or sets the rest.
@@ -58,7 +58,7 @@ namespace FundTrack.Infrastructure.ViewModel
         /// <value>
         /// The rest.
         /// </value>
-        public string rest { get; set; }
+        public string Rest { get; set; }
 
         /// <summary>
         /// Gets or sets the terminal.
@@ -66,7 +66,7 @@ namespace FundTrack.Infrastructure.ViewModel
         /// <value>
         /// The terminal.
         /// </value>
-        public string terminal { get; set; }
+        public string Terminal { get; set; }
 
         /// <summary>
         /// Gets or sets the description.
@@ -74,7 +74,7 @@ namespace FundTrack.Infrastructure.ViewModel
         /// <value>
         /// The description.
         /// </value>
-        public string description { get; set; }
+        public string Description { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether this instance is looked.
@@ -82,6 +82,6 @@ namespace FundTrack.Infrastructure.ViewModel
         /// <value>
         ///   <c>true</c> if this instance is looked; otherwise, <c>false</c>.
         /// </value>
-        public bool isLooked { get; set; }
+        public bool IsLooked { get; set; }
     }
 }

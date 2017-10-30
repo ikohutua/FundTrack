@@ -1,8 +1,8 @@
 ﻿import { ViewChild, Component, OnInit, Input, SimpleChange, OnChanges, Output, EventEmitter } from "@angular/core";
 import { Router } from "@angular/router";
 import { OrgAccountService } from "../../services/concrete/finance/orgaccount.service";
-import { FixingBalanceService } from "../../services/concrete/fixing-balance.service";
 import { OrgAccountViewModel } from "../../view-models/concrete/finance/orgaccount-viewmodel";
+import { FixingBalanceService } from "../../services/concrete/fixing-balance.service";
 import * as key from '../../shared/key.storage';
 import * as constant from '../../shared/default-configuration.storage';
 import * as message from '../../shared/common-message.storage';
@@ -12,36 +12,32 @@ import { isBrowser } from "angular2-universal";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { ValidatorsService } from "../../services/concrete/validators/validator.service";
 import Core = require("@angular/core");
-import Targetviewmodel = require("../../view-models/concrete/finance/donate/target.view-model");
 import { EditOrganizationService } from "../../services/concrete/organization-management/edit-organization.service";
+import { ModeratorViewModel } from '../../view-models/concrete/edit-organization/moderator-view.model';
 import { AuthorizeUserModel } from "../../view-models/concrete/authorized-user-info-view.model";
-import { TargetViewModel } from "../../view-models/concrete/finance/donate/target.view-model";
-import { UserInfo } from "../../view-models/concrete/user-info.model";
-import { UserService } from "../../services/concrete/user.service";
 import { Location } from '@angular/common';
 import { ActivatedRoute } from "@angular/router";
+import { UserService } from "../../services/concrete/user.service";
 
 @Component({
-    selector: 'incomeoperation',
-    templateUrl: './incomeoperation.component.html',
-    styleUrls: ['./incomeoperation.component.css'],
+    selector: 'transferoperation',
+    templateUrl: './transferoperation.component.html',
+    styleUrls: ['./transferoperation.component.css'],
     providers: [OrgAccountService, EditOrganizationService, UserService, FixingBalanceService]
 })
 
-export class IncomeOperationComponent {
+export class TransferOperationComponent {
 
-    private moneyIncomeForm: FormGroup;
+    private moneyTransferForm: FormGroup;
     private moneyOperationModel: FinOpListViewModel = new FinOpListViewModel();
-    private moneyIncome: FinOpListViewModel = new FinOpListViewModel();
+    private moneyTransfer: FinOpListViewModel = new FinOpListViewModel();
     private cashAccounts: OrgAccountViewModel[] = new Array<OrgAccountViewModel>();
+    private cashAccountsTo: OrgAccountViewModel[] = new Array<OrgAccountViewModel>();
     private currentAccount: OrgAccountViewModel = new OrgAccountViewModel();
     private currentDate = new Date().toJSON().slice(0, 10);
     private currentAccountId: number;
-    private currentTarget: TargetViewModel = new TargetViewModel();
     private user: AuthorizeUserModel = new AuthorizeUserModel();
     private minDate: string;
-    private isAccountChosen: boolean = false;
-    private isAccountKnown: boolean = false;
 
     public constructor(private router: Router,
         private location: Location,
@@ -53,7 +49,7 @@ export class IncomeOperationComponent {
         private userService: UserService,
         private editService: EditOrganizationService,
         private fixingService: FixingBalanceService) {
-        this.createIncomeForm();
+        this.createTransferForm();
     }
 
     ngOnInit(): void {
@@ -64,41 +60,19 @@ export class IncomeOperationComponent {
         this.accountService.getOrganizationAccountById(accountId)
             .subscribe(currAcc => {
                 this.currentAccount = currAcc;
-                this.getCurrentTarget();
                 this.getMinDate();
             });
     }
-    
+
     private initialize() {
         this.moneyOperationModel.date = new Date();
         this.getLoggedUser();
         this.route.params.subscribe(params => {
             this.currentAccountId = params['id'];
-            if (this.currentAccountId == undefined) {
-                this.getOrganizationCashAccounts();
-            }
-            else {
-                this.isAccountKnown = true;
-                this.isAccountChosen = true;
-                this.getCurrentOrgAccount(this.currentAccountId);
-            }
+            this.getCurrentOrgAccount(this.currentAccountId);
         });
-    }
+        this.getOrganizationCashAccounts();
 
-    private onAccountSelect(accountId: number) {
-        this.getCurrentOrgAccount(accountId);
-        this.isAccountChosen = true;
-    }
-
-    private getCurrentTarget() {
-        if (this.currentAccount.targetId == null) {
-            this.currentTarget.name = message.nullTarget;
-        }
-        else {
-            this.accountService.getTargetById(this.currentAccount.targetId).subscribe(target => {
-                this.currentTarget = target;
-            });
-        }
     }
 
     public getMinDate() {
@@ -119,7 +93,20 @@ export class IncomeOperationComponent {
                 this.cashAccounts = acc.filter(a =>
                     a.accountType == constant.cashUA
                 );
+                this.getAccountsForTransfer();
             });
+    }
+
+    private getAccountsForTransfer() {
+        if (this.currentAccount.targetId == null) {
+            this.cashAccountsTo = this.cashAccounts.filter(acc => acc.id != this.currentAccount.id);
+        }
+        else {
+            this.cashAccountsTo = this.cashAccounts.filter(acc =>
+                acc.targetId
+                == this.currentAccount.targetId &&
+                acc.id != this.currentAccount.id);
+        }
     }
 
     public getLoggedUser() {
@@ -130,10 +117,13 @@ export class IncomeOperationComponent {
         model.date = date;
     }
 
-    private createIncomeForm() {
-        this.moneyIncomeForm = this.fb.group({
+    private createTransferForm() {
+        this.moneyTransferForm = this.fb.group({
+            cardFromId: [
+                this.moneyOperationModel.cardFromId
+            ],
             cardToId: [
-                this.moneyOperationModel.cardToId
+                this.moneyOperationModel.cardToId, [Validators.required]
             ],
             amount: [
                 this.moneyOperationModel.amount, [Validators.required,
@@ -142,9 +132,6 @@ export class IncomeOperationComponent {
                 this.validatorsService.isNumber
                 ]
             ],
-            targetId: [
-                this.moneyOperationModel.targetId
-            ],
             description: [
                 this.moneyOperationModel.description, [Validators.maxLength(500)]
             ],
@@ -152,12 +139,12 @@ export class IncomeOperationComponent {
                 this.moneyOperationModel.date
             ]
         });
-        this.moneyIncomeForm.valueChanges
+        this.moneyTransferForm.valueChanges
             .subscribe(a => this.onValueChange(a));
         this.onValueChange();
     }
 
-    private formIncomeErrors = {
+    private formTransferErrors = {
         amount: "",
         description: ""
     };
@@ -177,26 +164,25 @@ export class IncomeOperationComponent {
     }
 
     private onValueChange(data?: any) {
-        if (!this.moneyIncomeForm) return;
-        let form = this.moneyIncomeForm;
+        if (!this.moneyTransferForm) return;
+        let form = this.moneyTransferForm;
 
-        for (let field in this.formIncomeErrors) {
-            this.formIncomeErrors[field] = "";
+        for (let field in this.formTransferErrors) {
+            this.formTransferErrors[field] = "";
             let control = form.get(field);
 
             if (control && control.dirty && !control.valid) {
                 let message = this.validationMessages[field];
                 for (let key in control.errors) {
-                    this.formIncomeErrors[field] = message[key.toLowerCase()];
+                    this.formTransferErrors[field] = message[key.toLowerCase()];
                 }
             }
         }
     }
 
-    private makeIncome() {
+    private makeTransfer() {
         this.completeModel();
-        console.log(this.moneyOperationModel);
-        this.finOpService.createIncome(this.moneyOperationModel).subscribe(a => {
+        this.finOpService.createTransfer(this.moneyOperationModel).subscribe(a => {
             if (a.error == "" || a.error == null) {
                 this.showToast();
                 setTimeout(() => {
@@ -211,9 +197,8 @@ export class IncomeOperationComponent {
     }
 
     private completeModel() {
-        this.moneyOperationModel.targetId = this.currentTarget.targetId;
-        this.moneyOperationModel.cardToId = this.currentAccount.id;
-        this.moneyOperationModel.finOpType = constant.incomeId;
+        this.moneyOperationModel.cardFromId = this.currentAccount.id;
+        this.moneyOperationModel.finOpType = constant.transferId;
         this.moneyOperationModel.orgId = this.user.orgId;
         this.moneyOperationModel.userId = this.user.id;
     }

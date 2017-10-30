@@ -3,6 +3,7 @@ using FundTrack.Infrastructure.ViewModel;
 using FundTrack.Infrastructure.ViewModel.FinanceViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 
 namespace FundTrack.WebUI.Controllers
@@ -90,6 +91,17 @@ namespace FundTrack.WebUI.Controllers
         public int GetCountExtracts(string card)
         {
             return this._service.GetCountExtracts(card);
+        }
+
+        [HttpGet("SuggestedImports/{amount}/{date}")]
+        [Authorize(Roles = "admin, moderator")]
+        public IActionResult GetAllSuggestedBankImports(decimal amount, DateTime date)
+        {
+            if (amount == 0)
+            {
+                return BadRequest();
+            }
+            return Ok(_service.getAllSuggestedBankImports(amount,date));
         }
     }
 }

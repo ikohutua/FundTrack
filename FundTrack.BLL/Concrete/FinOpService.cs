@@ -203,14 +203,14 @@ namespace FundTrack.BLL.Concrete
         {
             try
             {
-                var finOps = _unitOfWork.FinOpRepository.GetFinOpByOrgAccountIdForPage(orgAccountId, currentPage, itemsPerPage);
                 if (finOpType == Constants.AnyFinOpType)
                 {
+                    var finOps = _unitOfWork.FinOpRepository.GetFinOpByOrgAccountIdForPage(orgAccountId, currentPage, itemsPerPage);
                     return InitializeFinOps(finOps);
                 }
                 else
                 {
-                    finOps.Where(f => f.FinOpType == finOpType);
+                    var finOps = _unitOfWork.FinOpRepository.GetFinOpByOrgAccountIdForPageByCritery(orgAccountId, currentPage, itemsPerPage, finOpType);
                     return InitializeFinOps(finOps);
                 }
             }
@@ -236,12 +236,9 @@ namespace FundTrack.BLL.Concrete
                     Target = f.Target.TargetName,
                     FinOpType = f.FinOpType,
                     DonationId = f.DonationId
-                }).ToList();
-                foreach (var f in finOpList)
-                {
-                    f.IsEditable = IsEditable(f.Date, f.CardFromId, f.CardToId);
-                }
-                return finOpList;
+                }).OrderByDescending(i => i.Id).ToList();
+
+                return SetIsEditableField(finOpList);
             }
             catch (Exception ex)
             {
@@ -249,33 +246,30 @@ namespace FundTrack.BLL.Concrete
             }
         }
 
-        public bool IsEditable(DateTime finOpDate, int accountFromId, int accountToId)
+        public IEnumerable<FinOpViewModel> SetIsEditableField(IEnumerable<FinOpViewModel> finOps)
         {
-            if ((accountFromId > 0) && (accountToId > 0))
+            var balances = _unitOfWork.BalanceRepository.GetAllBalances().ToList();
+            foreach (var f in finOps)
             {
-                var balanceDateFrom = _unitOfWork.BalanceRepository.GetAllBalancesByAccountId(accountFromId).FirstOrDefault().BalanceDate;
-                if (finOpDate <= balanceDateFrom)
+                f.IsEditable = true;
+                if (f.CardFromId > 0)
                 {
-                    return false;
+                    var balanceDate = balances.Where(balance => balance.OrgAccountId == f.CardFromId).Last().BalanceDate;
+                    if (f.Date <= balanceDate)
+                    {
+                        f.IsEditable = false;
+                    }
+                }
+                else if (f.CardToId > 0)
+                {
+                    var balanceDate = balances.Where(balance => balance.OrgAccountId == f.CardToId).Last().BalanceDate;
+                    if (f.Date <= balanceDate)
+                    {
+                        f.IsEditable = false;
+                    }
                 }
             }
-            if (accountFromId > 0)
-            {
-                var balanceDate = _unitOfWork.BalanceRepository.GetAllBalancesByAccountId(accountFromId).FirstOrDefault().BalanceDate;
-                if (finOpDate <= balanceDate)
-                {
-                    return false;
-                }
-            }
-            if (accountToId > 0)
-            {
-                var balanceDate = _unitOfWork.BalanceRepository.GetAllBalancesByAccountId(accountToId).FirstOrDefault().BalanceDate;
-                if (finOpDate <= balanceDate)
-                {
-                    return false;
-                }
-            }
-            return true;
+            return finOps;
         }
 
         public IEnumerable<int> GetFinOpInitData(int accountId)

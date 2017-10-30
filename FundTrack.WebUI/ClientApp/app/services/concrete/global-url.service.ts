@@ -2,6 +2,9 @@
 
 @Injectable()
 export class GlobalUrlService {
+    // bank imports
+    public static getAllSuggestedBankImportUrl: string = "api/BankImport/SuggestedImports";
+
     // urls to server for all components
     public static getAllOrganizationsUrl: string = "api/OrganizationDetail/";
     public static getFixingBalanceUrl: string = "api/FixingBalance/";

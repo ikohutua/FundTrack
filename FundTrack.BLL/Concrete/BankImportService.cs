@@ -40,20 +40,20 @@ namespace FundTrack.BLL.Concrete
                     for (int i = 0; i < importsDetail.Length; ++i)
                     {
                         int appcode = 0;
-                        int.TryParse(importsDetail[i].appCode, out appcode);
+                        int.TryParse(importsDetail[i].AppCode, out appcode);
                         if (this._unitOfWork.BankImportDetailRepository.GetBankImportDetail(appcode) == null)
                         {
                             var bankImportDetail = new BankImportDetail
                             {
-                                Card = importsDetail[i].card,
-                                Trandate = importsDetail[i].trandate,
+                                Card = importsDetail[i].Card,
+                                Trandate = importsDetail[i].Trandate,
                                 AppCode = appcode,
-                                Amount = importsDetail[i].amount,
-                                CardAmount = importsDetail[i].cardAmount,
-                                Rest = importsDetail[i].rest,
-                                Terminal = importsDetail[i].terminal,
-                                Description = importsDetail[i].description,
-                                IsLooked = importsDetail[i].isLooked
+                                Amount = importsDetail[i].Amount,
+                                CardAmount = importsDetail[i].CardAmount,
+                                Rest = importsDetail[i].Rest,
+                                Terminal = importsDetail[i].Terminal,
+                                Description = importsDetail[i].Description,
+                                IsLooked = importsDetail[i].IsLooked
                             };
 
                             if (bankImportDetail != null)
@@ -75,6 +75,41 @@ namespace FundTrack.BLL.Concrete
             {
                 throw new BusinessLogicException(ex.Message, ex);
             }
+        }
+
+        public IEnumerable<ImportDetailPrivatViewModel> getAllSuggestedBankImports(decimal amount, DateTime date)
+        {
+            try
+            {
+                var bankImports = _unitOfWork.BankImportDetailRepository.GetNotLookedBankImportsDetail();
+                DateTime minOperationTime = date.AddMinutes(-15);
+                DateTime maxOperationTime = date.AddMinutes(15);
+                decimal amountWithComission;
+                if (amount < 0)
+                {
+                    amountWithComission = Convert.ToDecimal(0.9) * amount;
+                    bankImports = bankImports.Where(import => CutCurrencyFromPrivate24(import.CardAmount) <= -amount &&
+                                                              CutCurrencyFromPrivate24(import.CardAmount) >= -amountWithComission);
+                }
+                else
+                {
+                    amountWithComission = Convert.ToDecimal(10.0 / 9.0) * amount;
+                    bankImports = bankImports.Where(import => CutCurrencyFromPrivate24(import.CardAmount) <= -amount &&
+                                                              CutCurrencyFromPrivate24(import.CardAmount) >= -amountWithComission);
+                }
+                bankImports = bankImports.Where(import => import.Trandate >= minOperationTime &&
+                                            import.Trandate <= maxOperationTime);
+                return ConvertFromEntityToModel(bankImports.ToList());
+            }
+            catch(Exception ex)
+            {
+                throw new BusinessLogicException(ex.Message, ex);
+            }
+        }
+
+        public decimal CutCurrencyFromPrivate24(string cardAmount)
+        {
+            return Convert.ToDecimal(cardAmount.Split(' ').First().Replace('.', ','));
         }
 
         /// <summary>
@@ -153,16 +188,16 @@ namespace FundTrack.BLL.Concrete
             {
                 return bankImportDetails.Select(item => new ImportDetailPrivatViewModel
                 {
-                    id = item.Id,
-                    isLooked = item.IsLooked,
-                    trandate = item.Trandate,
-                    appCode = item.AppCode.ToString(),
-                    amount = item.Amount,
-                    rest = item.Rest,
-                    cardAmount = item.CardAmount,
-                    description = item.Description,
-                    terminal = item.Terminal,
-                    card = item.Card
+                    Id = item.Id,
+                    IsLooked = item.IsLooked,
+                    Trandate = item.Trandate,
+                    AppCode = item.AppCode.ToString(),
+                    Amount = item.Amount,
+                    Rest = item.Rest,
+                    CardAmount = item.CardAmount,
+                    Description = item.Description,
+                    Terminal = item.Terminal,
+                    Card = item.Card
                 });
             }
             catch (Exception ex)

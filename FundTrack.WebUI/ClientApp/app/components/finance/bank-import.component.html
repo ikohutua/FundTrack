@@ -215,38 +215,36 @@
                    (change)="isDeposite=!isDeposite" />
             <label class="control-label">Це депозит?</label>
         </div>
-        <div *ngIf="(!isWindthraw) && (!isDeposite)" class="form-group">
-            <input type="checkbox"
-                   name="isbanktransfer"
-                   [checked]="isBankTransfer"
-                   (change)="isBankTransfer=!isBankTransfer" />
-            <label class="control-label">Це переміщення між рахунками?</label>
-        </div>
     </div>
     <div class="app-modal-footer">
         <button *ngIf="(isWindthraw)" class="btn btn-fundtrack-style pull-right"
-                (click)="saveFinOp()"
+                (click)="createFinOp(_newFinOp)"
                 [disabled]="!_newFinOp.cardToId"
                 data-dismiss="modal">
             OK
         </button>
         <button *ngIf="isDeposite" class="btn btn-fundtrack-style pull-right"
-                (click)="saveFinOp()"
+                (click)="createFinOp(_newFinOp)"
                 [disabled]="!_newFinOp.cardFromId"
                 data-dismiss="modal">
             OK
         </button>
         <button *ngIf="(isBankTransfer)" class="btn btn-fundtrack-style pull-right"
-                (click)="saveFinOp()"
+                (click)="createFinOp(_newFinOp)"
                 [disabled]="!_newFinOp.cardToId"
                 data-dismiss="modal">
             OK
         </button>
         <button *ngIf="(!isWindthraw) && (!isDeposite) && (!isBankTransfer)" class="btn btn-fundtrack-style pull-right"
-                (click)="saveFinOp()"
+                (click)="createFinOp(_newFinOp)"
                 [disabled]="!_newFinOp.targetId"
                 data-dismiss="modal">
             OK
+        </button>
+        <button *ngIf="(!isWindthraw) && (!isDeposite)" class="btn btn-fundtrack-style pull-right"
+                (click)="openSuggestionsModal()"
+                data-dismiss="modal">
+            Переміщення між рахунками
         </button>
         <button (click)="closeFinOpModal()"
                 class="btn btn-default pull-right"
@@ -254,4 +252,56 @@
             Скасувати
         </button>
     </div>
+</app-modal>
+
+<app-modal #suggestedImports>
+    <div class="app-modal-header">
+        <button type="button" class="close" aria-hidden="true" (click)="closeSuggestionsModal()">&times;</button>
+        <h4 class="modal-title">Можливі виписки</h4>
+    </div>
+    <div class="app-modal-body">
+            <div *ngIf="suggestedBankImports.length==0">
+                <h4>Виписок не знайдено</h4>
+            </div>
+            <div *ngIf="suggestedBankImports.length>=1">
+                <h4 *ngIf="suggestedBankImports.length==1">Виписка знайдена, прив'язати?</h4>
+                <h4 *ngIf="suggestedBankImports.length>1">Виберіть виписку:</h4>
+                <table class="table table-hover table-responsive">
+                    <thead>
+                        <tr>
+                            <th class="th-center-align" *ngIf="suggestedBankImports.length>1"></th>
+                            <th class="th-center-align">Номер картки</th>
+                            <th class="th-center-align">Дата</th>
+                            <th class="th-center-align">Сума</th>
+                            <th class="th-center-align">Опис</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let import of suggestedBankImports">
+                            <td class="th-center-align" *ngIf="suggestedBankImports.length>1">
+                                <input type="radio" name="selectedRadioButton" [value]="import.id" (change)="radioButtonOnChange(import)" />
+                            </td>
+                            <td class="th-center-align">{{import.card}}</td>
+                            <td class="th-center-align">{{import.trandate | date: 'dd/MM/yyyy hh:mm'}}</td>
+                            <td class="th-center-align">{{import.amount}}</td>
+                            <td class="th-center-align">{{import.description}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="right-float">
+                <button (click)="transferOperation()"
+                        class="btn btn-default"
+                        data-dismiss="modal"
+                        [disabled]="suggestedBankImports.length==0">
+                    ОК
+                </button>
+                <button (click)="closeSuggestionsModal()"
+                        class="btn btn-default"
+                        data-dismiss="modal">
+                    Скасувати
+                </button>
+            </div>
+        </div>
+    <div class="app-modal-footer"></div>
 </app-modal>
