@@ -17,6 +17,7 @@ import { isBrowser } from "angular2-universal";
 import { BaseSpinnerService } from "../abstract/base-spinner-service";
 import { SpinnerComponent } from "../../shared/components/spinner/spinner.component";
 import { RequestOptionsService } from "./request-options.service";
+import { GlobalUrlService } from "./global-url.service";
 
 @Injectable()
 export class BankImportService extends BaseSpinnerService<ImportDetailPrivatViewModel>{
@@ -31,27 +32,33 @@ export class BankImportService extends BaseSpinnerService<ImportDetailPrivatView
      */
     public getUserExtracts(orgAccountId: number, spinner?: SpinnerComponent) {
         if (this.checkAuthorization()) {
-            let url = 'api/BankImport/ImportPrivat';
-            return this._http.post(url, orgAccountId, RequestOptionsService.getRequestOptions())
+            return this._http.post(GlobalUrlService.PrivatExtract, orgAccountId, RequestOptionsService.getRequestOptions())
                 .map((response: Response) => response.json());
         }
     }
 
     public getPrivatExtracts(data: DataRequestPrivatViewModel, spinner?: SpinnerComponent) {
         if (this.checkAuthorization()) {
-            let url = 'api/BankImport/Privat';
-            return this._http.post(url, data, RequestOptionsService.getRequestOptions())
+            return this._http.post(GlobalUrlService.PrivatExtractWithDate, data, RequestOptionsService.getRequestOptions())
                 .map((response: Response) => response.json());
         }
     }
 
     public UpdateDate(orgId: number):Observable<Date> {
         if (this.checkAuthorization()) {
-            let url = 'api/BankImport/UpdateDate';
-            return this._http.get(url + '/' + orgId , RequestOptionsService.getRequestOptions())
+            return this._http.get(GlobalUrlService.UpdateDate + '/' + orgId , RequestOptionsService.getRequestOptions())
                 .map((response: Response) => response.json() as Date);
         }
     }
+
+    public getLastPrivatUpdate(orgId: number): Observable<Date> {
+        if (this.checkAuthorization()) {
+            return this._http.get(GlobalUrlService.LastUpdate + '/' + orgId, RequestOptionsService.getRequestOptions())
+                .map((response: Response) => { return response.json() as Date })
+                .catch(this.handleError);
+        }
+    }
+
 
     /**
      * method for register bank importss in db
@@ -59,8 +66,7 @@ export class BankImportService extends BaseSpinnerService<ImportDetailPrivatView
      */
     public registerBankExtracts(bankImport: ImportDetailPrivatViewModel[]): Observable<ImportDetailPrivatViewModel[]> {
         if (this.checkAuthorization()) {
-            let url = 'api/BankImport/RegisterNewExtracts';
-            return this._http.post(url, bankImport, RequestOptionsService.getRequestOptions())
+            return this._http.post(GlobalUrlService.RegisterNewExtracts, bankImport, RequestOptionsService.getRequestOptions())
                 .map((response: Response) => <ImportDetailPrivatViewModel[]>response.json())
                 .catch(this.handleError);
         }
@@ -103,15 +109,7 @@ export class BankImportService extends BaseSpinnerService<ImportDetailPrivatView
         }
     }
 
-    public getLastPrivatUpdate(orgId: number): Observable<Date> {
-        if (this.checkAuthorization()) {
-            let url = 'api/BankImport/LastUpdate';
-            return this._http.get(url + '/' + orgId, RequestOptionsService.getRequestOptions())
-                .map((response: Response) => { return response.json() as Date })
-                .catch(this.handleError);
-        }
-    }
-
+    
     /**
     * Create RequestOptions
     */
