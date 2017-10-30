@@ -13,3 +13,5 @@ export const invalidAmountMessage = "Поле ‘Сума’ може місти
 export const maxLengthDescription = "Поле ‘Опис’ може містити не більше 500 символів";
 export const inAccessibleOperation = "На даний момент операція недоступна.";
 export const successfulOperation = "На даний момент операція недоступна.";
+export const invalidDate = "Невірна дата";
+export const anErrorOccurred = "Виникла помилка!";

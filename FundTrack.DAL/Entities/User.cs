@@ -50,6 +50,10 @@ namespace FundTrack.DAL.Entities
         public string PhotoUrl { get; set; }
 
         /// <summary>
+        /// Gets or Sets User Authorization Token
+        /// </summary>
+        public string AuthorizationToken { get; set; }
+        /// <summary>
         /// Gets or Sets Navigation property Banned user
         /// </summary>
         public virtual BannedUser BannedUser { get; set; }

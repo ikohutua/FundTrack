@@ -1,0 +1,105 @@
+﻿<div class="container">
+    <h2 class="sub-header">Звіт пожертв</h2>
+    <div>
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <h4 class="muted">Період</h4>
+                <div class="col-md-6">
+                    <div class="input-daterange input-group" id="datepicker">
+                        <span class="input-group-addon" id="basic-addon1">Від: </span>
+                        <input type="date" [ngModel]="reportModel.dateFrom | date:'yyyy-MM-dd'" (ngModelChange)="setBeginDate( $event)" #startDate class="input-sm form-control no-spin" required min="{{inputMinDate}}" max="{{inputMaxDate | date:'yyyy-MM-dd'}}" />
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="input-daterange input-group" id="datepicker">
+                        <span class="input-group-addon" id="basic-addon1">До: </span>
+                        <input type="date" [ngModel]="reportModel.dateTo | date:'yyyy-MM-dd'" (ngModelChange)="setEndDate( $event)" #endDate class="input-sm form-control no-spin" required min="{{inputMinDate}}" max="{{inputMaxDate | date:'yyyy-MM-dd'}}" />
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row container stylish-input-group">
+        <div class="col-md-6 stylish-input-group">
+            <label>Кількість записів на сторінці: </label>
+            <select [(ngModel)]="pageSize" (ngModelChange)="onChangePageSize($event)">
+                <option *ngFor="let item of listOfPagesSizes" [ngValue]="item">{{item}}</option>
+            </select>
+        </div>
+        <div class="col-md-4 col-md-offset-8 input-group">
+
+            <div class="input-group-btn" *ngIf="isFilterTurnedOn">
+                <button type="button" class="btn btn-danger" (click)="clearFilter()">
+                    <span class="glyphicon glyphicon-remove"></span>
+                </button>
+            </div>
+            <input type="text" class="form-control" [disabled]="!isDataAvailable" [(ngModel)]="reportModel.filterValue" (keyup.enter)="filter()" placeholder="Введіть логін користувача">
+            <div class="input-group-btn">
+                <button type="button" class="btn btn-primary" [ngClass]="{'disabled': !isDataAvailable}" (click)="filter()">
+                    <span class="glyphicon glyphicon-filter"></span> Фільтрувати
+                </button>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="isDataAvailable">
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered table-sortable">
+                <thead>
+                    <tr>
+                        <th (click)="sortTable(0)"># <span class="glyphicon" [ngClass]="{'glyphicon-sort grey': currentSortedColIndex != 0, 'glyphicon-sort-by-attributes': currentSortedColIndex == 0 && isDesc, 'glyphicon-sort-by-attributes-alt': currentSortedColIndex == 0 && !isDesc }"></span></th>
+                        <th (click)="sortTable(1)">Логін <span class="glyphicon" [ngClass]="{'glyphicon-sort grey': currentSortedColIndex != 1, 'glyphicon-sort-by-attributes': currentSortedColIndex == 1 && isDesc, 'glyphicon-sort-by-attributes-alt': currentSortedColIndex == 1 && !isDesc }"></span></th>
+                        <th (click)="sortTable(2)">Користувач<span class="glyphicon" [ngClass]="{'glyphicon-sort grey': currentSortedColIndex != 2, 'glyphicon-sort-by-attributes': currentSortedColIndex == 2 && isDesc, 'glyphicon-sort-by-attributes-alt': currentSortedColIndex == 2 && !isDesc }"></span></th>
+                        <th (click)="sortTable(3)">Сума <span class="glyphicon" [ngClass]="{'glyphicon-sort grey': currentSortedColIndex != 3, 'glyphicon-sort-by-attributes': currentSortedColIndex == 3 && isDesc, 'glyphicon-sort-by-attributes-alt': currentSortedColIndex == 3 && !isDesc }"></span></th>
+                        <th (click)="sortTable(4)">Призначення <span class="glyphicon" [ngClass]="{'glyphicon-sort grey': currentSortedColIndex != 4, 'glyphicon-sort-by-attributes': currentSortedColIndex == 4 && isDesc, 'glyphicon-sort-by-attributes-alt': currentSortedColIndex == 4 && !isDesc }"></span></th>
+                        <th (click)="sortTable(5)">Опис<span class="glyphicon" [ngClass]="{'glyphicon-sort grey': currentSortedColIndex != 5, 'glyphicon-sort-by-attributes': currentSortedColIndex == 5 && isDesc, 'glyphicon-sort-by-attributes-alt': currentSortedColIndex == 5 && !isDesc }"></span></th>
+                        <th (click)="sortTable(6)">Дата-Час <span class="glyphicon" [ngClass]="{'glyphicon-sort grey': currentSortedColIndex != 6, 'glyphicon-sort-by-attributes': currentSortedColIndex == 6 && isDesc, 'glyphicon-sort-by-attributes-alt': currentSortedColIndex == 6 && !isDesc }"></span></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of pagedReportItems">
+                        <td>{{ item.sequenceNumber}}</td>
+                        <td>{{item.userLogin}}</td>
+                        <td>{{item.userFulName}}</td>
+                        <td>{{item.moneyAmount}}</td>
+                        <td>{{item.target}}</td>
+                        <td>{{item.description}}</td>
+                        <td>{{item.date | date:'dd-MMM-yyyy HH:mm'}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="row container">
+            <div class="text-center">
+                <!-- pager -->
+                <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+                    <li [ngClass]="{disabled:pager.currentPage === 1}">
+                        <a (click)="setPage(1)">На початок</a>
+                    </li>
+                    <li [ngClass]="{disabled:pager.currentPage === 1}">
+                        <a (click)="setPage(pager.currentPage - 1)">Попередня</a>
+                    </li>
+                    <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+                        <a (click)="setPage(page)">{{page}}</a>
+                    </li>
+                    <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                        <a (click)="setPage(pager.currentPage + 1)">Наступна</a>
+                    </li>
+                    <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                        <a (click)="setPage(pager.totalPages)">В кінець</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3 text-center" *ngIf="!isDataAvailable && !isGettingDataStarted">
+            <img class="img-responsive" src="https://cdn.dribbble.com/users/27766/screenshots/3488007/empty_state.png" />
+        </div>
+        <div class="col-md-6 col-md-offset-3 text-center" *ngIf="isGettingDataStarted">
+            <img src="https://cdn.dribbble.com/users/421466/screenshots/2379575/replace-2r-400px.gif" />
+        </div>
+    </div>
+</div>
