@@ -53,7 +53,7 @@ namespace FundTrack.WebUI.Controllers
         /// </summary>
         /// <param name="id">id of the offer item</param>
         /// <returns>200 status code if delete succeded</returns>
-        [Authorize]
+
         [HttpDelete("[action]/{id}")]
         public StatusCodeResult Delete(int id)
         {
@@ -77,14 +77,14 @@ namespace FundTrack.WebUI.Controllers
         /// <param name="itemsLoadCount">amount of items to be loaded</param>
         /// <param name="itemsLoadRatio">amount of items to skip from the beginning</param>
         /// <returns>Offer Item View Models</returns>
-        [Authorize]
+ 
         [HttpGet("GetOfferedItemPortion/{userId}/{itemsLoadCount}/{itemsLoadRatio}")]
         public JsonResult GetOfferedItemPortion(int userId,int itemsLoadCount, int itemsLoadRatio)
         {
             var result = Json(_offerService.GetPagedUserOfferedItems(userId, itemsLoadCount, itemsLoadRatio));
             return result;
         }
-        [Authorize]
+
         [HttpPost("[action]")]
         public JsonResult ChangeOfferItemStatus([FromBody] OfferItemChangeStatusViewModel model)
         {

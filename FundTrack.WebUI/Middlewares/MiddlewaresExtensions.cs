@@ -3,7 +3,7 @@
 
 namespace FundTrack.WebUI.Middlewares
 {
-    public static class GlobalErrorHandlingMiddlewareExtensions
+    public static class MiddlewaresExtensions
     {
         /// <summary>
         /// Use global error handling as middleware
@@ -13,6 +13,16 @@ namespace FundTrack.WebUI.Middlewares
         public static IApplicationBuilder UseGlobalErrorHandling( this IApplicationBuilder builder)
         {
             return builder.UseMiddleware<GlobalErrorHandlingMiddleware>();
+        }
+
+        /// <summary>
+        /// Custom autorization middlewar
+        /// </summary>
+        /// <param name="builder"></param>
+        /// <returns></returns>
+        public static IApplicationBuilder UseMyAuthorization(this IApplicationBuilder builder)
+        {
+            return builder.UseMiddleware<MyAuthorize>();
         }
     }
 }

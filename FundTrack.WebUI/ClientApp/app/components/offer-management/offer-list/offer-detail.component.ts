@@ -37,6 +37,7 @@ export class OfferDetailComponent implements OnInit {
     maxImgSize: number = 4000000;
 
     onImageChange(imgArr: Image[]) {
+        debugger;
         this.images = imgArr;
     }
     private _errorMessage: string = "";
@@ -72,15 +73,18 @@ export class OfferDetailComponent implements OnInit {
             })
             .subscribe(data => {
                 this.offerItem = data;
-                this._images = this.offerItem.images;
                 if (this.offerItem.goodsTypeId!=null) {
                     this.setGoodsType(this.offerItem.goodsTypeId);
                 }
                 if (data.id == null) {
                     this.header = 'Створити пропозицію';
-                }
+
+                 }
                 else {
                     this.header = 'Редагувати пропозицію';
+                    //TODO: перевірити чи є фотки при редагуванні і як вони сейваються на беку
+                    this.images = this.ConvertOfferedItemImagesToImages(this.offerItem.images);
+
                 }
             });
         this.fillGoodtypes();
@@ -91,25 +95,36 @@ export class OfferDetailComponent implements OnInit {
                 this.offerItem.userId = user.id;
             }
         };
-        
-        
     }
+
+    private ConvertOfferedItemImagesToImages(offerImages: OfferedItemImageViewModel[]): Image[] {
+        let images: Image[] = [];
+        for (var i = 0; i < offerImages.length; i++) {
+            let img = new Image(offerImages[i].imageUrl, offerImages[i].imageUrl, null);
+            img.id = offerImages[i].id;
+            img.isMain = offerImages[i].isMain;
+            img.imageExtension = offerImages[i].imageExtension;
+            images.push(img);
+        }
+        return images;
+
+    }
+
     private setGoodsType(goodTypeId: number) {
         this._selectedType = this._goodsTypes.find(c => c.id == goodTypeId);
     }
 
-    private getFileExtension(fileName: string): string {
-        return fileName.substring(fileName.lastIndexOf('.') + 1, fileName.length) || fileName;
-    }
     private submit(offerItem: OfferViewModel): void {
         this.showUserRegistrationSpinner = true;
+        this.offerItem.images = [];
 
         for (var i = 0; i < this.images.length; i++) {
             let offItImg = new OfferedItemImageViewModel();
-
+            offItImg.id = this.images[i].id == undefined ? -1 : this.images[i].id;
             offItImg.base64Data = this.images[i].base64Data;
             offItImg.isMain = this.images[i].isMain;
             offItImg.imageUrl = this.images[i].imageSrc;
+            offItImg.imageExtension = this.images[i].imageExtension;
             this.offerItem.images.push(offItImg);
         };       
 

@@ -9,8 +9,6 @@ using FundTrack.BLL.Abstract;
 using FundTrack.DAL.Concrete;
 using FundTrack.BLL.Concrete;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
-using FundTrack.WebUI.token;
 using FundTrack.DAL.Entities;
 using FundTrack.BLL.DomainServices;
 using FundTrack.DAL.Repositories;
@@ -18,6 +16,8 @@ using FundTrack.Infrastructure.ViewModel.EventViewModel;
 using FundTrack.WebUI.Formatter;
 using FundTrack.WebUI.Middlewares;
 using FundTrack.WebUI.Middlewares.Logging;
+using Microsoft.IdentityModel.Tokens;
+using FundTrack.WebUI.token;
 
 namespace FundTrack.WebUI
 {
@@ -59,7 +59,9 @@ namespace FundTrack.WebUI
                                                               //.AllowAnyMethod() //AllowAllMethods;  
                                                               //.WithHeaders("Accept", "Content-type", "Origin", "X-Custom-Header"); //AllowSpecificHeaders;  
                  .AllowAnyHeader(); //AllowAllHeaders;  
-         }));
+         })
+ );
+
 
             // Add framework services.
             services.AddMvc(options =>
@@ -151,22 +153,22 @@ namespace FundTrack.WebUI
                 }
             });
 
+            //Old authorization
             //app.UseCookieAuthentication(new CookieAuthenticationOptions
             //{
             //    LoginPath = new PathString("/User/LogIn"),
             //    AuthenticationScheme = "Bearer",
             //    AutomaticChallenge = true
             //});
+
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
-            //if (env.IsDevelopment())
-            //{
             app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions
             {
                 HotModuleReplacement = true
             });
-            //}
+
 
             app.UseWebSockets();
 

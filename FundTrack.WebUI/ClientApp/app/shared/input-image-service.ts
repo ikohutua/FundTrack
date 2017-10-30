@@ -28,8 +28,11 @@ export class ImputImageService {
 
                 var commaInd = newLogoUrl.indexOf(',');
                 let base64Code = newLogoUrl.substring(commaInd + 1);
+                let imageExtension: string = currentImageFile.name.substring(currentImageFile.name.lastIndexOf('.') + 1, currentImageFile.name.length);
 
                 let image = new Image(currentImageFile.name, newLogoUrl, base64Code);
+                image.imageExtension = imageExtension;
+
                 resolve(image);
             }
             reader.readAsDataURL(currentImageFile);
