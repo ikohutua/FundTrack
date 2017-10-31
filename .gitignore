@@ -320,3 +320,4 @@ FundTrack.WebUI.Tests/obj/
 /PrivateService/lib/netcoreapp1.1
 /PrivateService/nuget.exe
 /PrivateService/PrivateService.nuspec
+/FundTrack.WebUI/Logs
