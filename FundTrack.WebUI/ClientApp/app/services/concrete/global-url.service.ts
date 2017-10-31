@@ -19,7 +19,7 @@ export class GlobalUrlService {
     public static organizationProfileAddresses: string = "api/organizationProfile/Addresses/";
     public static organizationProfileAddress: string = "api/organizationProfile/Address/";
     public static organizationEditDescription: string = "api/OrganizationProfile/EditDescription";
-    
+
     //register organization
     public static registerOrganization = "api/OrganizationRegistration/RegisterNewOrganization/";
 
@@ -44,6 +44,15 @@ export class GlobalUrlService {
     public static createFinOp: string = "api/FinOp/CreateFinOp/";
     public static readonly banksUrl: string = "api/Bank";
 
+
+    //BankImport URLs
+
+    public static readonly RegisterNewExtracts: string = 'api/BankImport/RegisterNewExtracts';
+    public static readonly PrivatExtract: string = 'api/BankImport/ImportPrivat';
+    public static readonly PrivatExtractWithDate: string = 'api/BankImport/Privat';
+    public static readonly UpdateDate: string = 'api/BankImport/UpdateDate';
+    public static readonly LastUpdate: string = 'api/BankImport/LastUpdate';
+
     // donate service
     public static readonly getSuggestedDonations = "api/Donate/suggested/";
 
@@ -61,4 +70,17 @@ export class GlobalUrlService {
 
     // user service
     public static readonly getAllUsers = "api/User";
+
+    // organizationStatistics service
+    public static readonly getReportForFinopsByTargets = 'api/Reports/';
+    public static readonly getSubTargets = 'api/reports/GetSubTargets/';
+    public static readonly getFinOpsByTargetId = 'api/reports/GetFinOpsByTargetId/';
+
+    //ShowRequestedItemService
+    public static readonly countOfUsersDonationsReportItems = "api/reports/CountOfUsersDonationsReport";
+    public static readonly usersDonationsPaginatedReport = 'api/reports/UsersDonationsPaginatedReport';
+
+    public static readonly countOfCommonUsersDonationsReportItems = "api/reports/CountOfCommonUsersDonationsReport";
+    public static readonly commonUsersDonationsPaginatedReport = 'api/reports/CommonUsersDonationsPaginatedReport';
+    public static readonly donationsvalueReportPerDay = 'api/reports/DonationsValueReportPerDay';
 }

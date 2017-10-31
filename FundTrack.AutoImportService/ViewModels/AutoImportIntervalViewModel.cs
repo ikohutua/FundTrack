@@ -31,5 +31,7 @@ namespace FundTrack.AutoImportService.ViewModels
         /// Organization id.
         /// </value>
         public int OrganizationId { get; set; }
+
+        public DateTime? LastUpdateDate{get;set;}
     }
 }

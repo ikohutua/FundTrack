@@ -73,7 +73,7 @@ export class OrgAccountOperationComponent implements OnChanges {
     @Input() accountId: number;
     @Output() getIsExtractEnable = new EventEmitter<boolean>();
     @Output() onDelete = new EventEmitter<number>();
-    //------------------------------------------------------------------------------
+    //-----------------------------------------------------------------------------
     //Initialize modal windows
     @ViewChild("newMoneyIncome")
     private newMoneyIncomeWindow: ModalComponent;
@@ -653,15 +653,13 @@ export class OrgAccountOperationComponent implements OnChanges {
         donation.donationDate = this.selectedFinOp.date;
         this.donateService.getOrderId().subscribe(result => {
             donation.orderId = result;
-            this.accountService.getBankAccId(this.selectedFinOp.cardToId).subscribe(result => {
-                donation.bankAccountId = result;
-                this.donateService.addDonation(donation).subscribe(result => {
-                    this.selectedFinOp.donationId = result.id;
-                    this.finOpService.bindDonationAndFinOp(this.selectedFinOp).subscribe(result => {
-                        this.toasterMessage = "Операція виконана успішно.";
-                        this.showToast();
-                        this.closeSuggestionsModal();
-                    });
+            donation.bankAccountId = this.selectedFinOp.cardToId;
+            this.donateService.addDonation(donation).subscribe(result => {
+                this.selectedFinOp.donationId = result.id;
+                this.finOpService.bindDonationAndFinOp(this.selectedFinOp).subscribe(result => {
+                    this.toasterMessage = "Операція виконана успішно.";
+                    this.showToast();
+                    this.closeSuggestionsModal();
                 });
             });
         });
