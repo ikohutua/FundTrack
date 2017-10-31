@@ -73,7 +73,7 @@ export class OrgAccountOperationComponent implements OnChanges {
     @Input() accountId: number;
     @Output() getIsExtractEnable = new EventEmitter<boolean>();
     @Output() onDelete = new EventEmitter<number>();
-    //------------------------------------------------------------------------------
+    //-----------------------------------------------------------------------------
     //Initialize modal windows
     @ViewChild("newMoneyIncome")
     private newMoneyIncomeWindow: ModalComponent;
