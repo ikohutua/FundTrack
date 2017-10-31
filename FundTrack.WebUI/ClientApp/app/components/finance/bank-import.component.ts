@@ -377,7 +377,9 @@ export class BankImportComponent implements OnInit {
         this.commisionFinOp.targetId = null;
         this.commisionFinOp.userId = this.user.id;
         this.commisionFinOp.orgId = this.user.orgId;
-        this._finOpService.createFinOp(this.commisionFinOp, this.spinner).subscribe();
+        this._finOpService.createFinOp(this.commisionFinOp, this.spinner).subscribe(responce => {
+            this.commisionFinOp = responce;
+        });
     }
 
     private getBankAccountOrganizationId() {
