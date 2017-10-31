@@ -317,3 +317,7 @@ FundTrack.Infrastructure/bin/
 FundTrack.Infrastructure/obj/
 FundTrack.WebUI.Tests/bin/
 FundTrack.WebUI.Tests/obj/
+/PrivateService/lib/netcoreapp1.1
+/PrivateService/nuget.exe
+/PrivateService/PrivateService.nuspec
+/FundTrack.WebUI/Logs
