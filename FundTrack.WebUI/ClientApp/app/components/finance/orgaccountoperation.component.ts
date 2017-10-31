@@ -589,7 +589,7 @@ export class OrgAccountOperationComponent implements OnChanges {
         donation.currencyId = this.currentAccount.currencyId; 
         donation.targetId = this.selectedFinOp.targetId;
         donation.description = this.selectedFinOp.description;
-        donation.donationDate = this.selectedFinOp.date;
+        donation.donationDate = this.selectedFinOp.date.toDateString();
         this.donateService.getOrderId().subscribe(result => {
             donation.orderId = result;
             donation.bankAccountId = this.selectedFinOp.cardToId;

@@ -16,5 +16,4 @@ export const inAccessibleOperation = "На даний момент операц�
 export const successfulOperation = "На даний момент операція недоступна.";
 export const invalidDate = "Невірна дата";
 export const anErrorOccurred = "Виникла помилка!";
-export const successfulOperation = "На даний момент операція недоступна.";
 export const commisionMessage = "Комісія банку";
