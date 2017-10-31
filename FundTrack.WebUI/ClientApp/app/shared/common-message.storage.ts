@@ -14,4 +14,7 @@ export const maxLengthDescription = "Поле ‘Опис’ може місти
 export const nullTarget = "Не вказано";
 export const inAccessibleOperation = "На даний момент операція недоступна.";
 export const successfulOperation = "На даний момент операція недоступна.";
+export const invalidDate = "Невірна дата";
+export const anErrorOccurred = "Виникла помилка!";
+export const successfulOperation = "На даний момент операція недоступна.";
 export const commisionMessage = "Комісія банку";

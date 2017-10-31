@@ -4,6 +4,11 @@ using Newtonsoft.Json.Serialization;
 using System;
 using System.Threading.Tasks;
 using FundTrack.WebUI.Middlewares.Logging;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.DataProtection;
+using System.Text;
+using System.Diagnostics;
+using System.Security.Cryptography;
 using Microsoft.Extensions.Logging;
 
 namespace FundTrack.WebUI.Middlewares
@@ -41,9 +46,8 @@ namespace FundTrack.WebUI.Middlewares
                     ContractResolver = new CamelCasePropertyNamesContractResolver()
                 });
 
-                _logging.WriteErrorLogInFile(ex);
-                _logger.LogError(ex.ToString());
-                
+                _logging.WriteLogInFile(ex);
+
 
                 await context.Response.WriteAsync(json);
             }

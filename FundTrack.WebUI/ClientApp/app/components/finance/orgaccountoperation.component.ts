@@ -575,10 +575,34 @@ export class OrgAccountOperationComponent implements OnChanges {
         this.selectedFinOp.userId = this.selectedUserId;
         this.selectedFinOp.donationId = this.selectedDonationId;
         this.finOpService.bindDonationAndFinOp(this.selectedFinOp).subscribe(result => {
-            this.toasterMessage = message.successfulOperation;
+            this.toasterMessage = "Операція виконана успішно.";
             this.showToast();
             this.closeSuggestionsModal();
         });
+    }
+
+    private createDonationFromFinOp(finOpId: number): DonateViewModel {
+        this.selectedFinOp.userId = this.selectedUserId;
+        var donation: DonateViewModel = new DonateViewModel();
+        donation.amount = this.selectedFinOp.amount;
+        donation.userId = this.selectedUserId;
+        donation.currencyId = this.currentAccount.currencyId; 
+        donation.targetId = this.selectedFinOp.targetId;
+        donation.description = this.selectedFinOp.description;
+        donation.donationDate = this.selectedFinOp.date;
+        this.donateService.getOrderId().subscribe(result => {
+            donation.orderId = result;
+            donation.bankAccountId = this.selectedFinOp.cardToId;
+            this.donateService.addDonation(donation).subscribe(result => {
+                this.selectedFinOp.donationId = result.id;
+                this.finOpService.bindDonationAndFinOp(this.selectedFinOp).subscribe(result => {
+                    this.toasterMessage = "Операція виконана успішно.";
+                    this.showToast();
+                    this.closeSuggestionsModal();
+                });
+            });
+        });
+        return donation;
     }
 
     public showToast() {

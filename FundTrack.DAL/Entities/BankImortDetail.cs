@@ -73,12 +73,24 @@ namespace FundTrack.DAL.Entities
         /// </summary>
         public int? AppCode { get; set; }
 
+        /// <summary>
+        /// Gets or Sets FinOpId 
+        /// </summary>
+        public int? FinOpId { get; set; }
+
         public bool IsLooked { get; set; }
+
+        public virtual FinOp FinOp { get; set; }
 
         public static void Configure(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<BankImportDetail>(entity =>
             {
+                entity.HasOne(e => e.FinOp)
+                                    .WithMany(c => c.BankImportDetails)
+                                    .HasForeignKey(e => e.FinOpId)
+                                    .HasConstraintName("FK_BankImportDetails_FinOp");
+
                 entity.HasKey(bid => bid.Id).HasName("PK_BankImportDetail");
 
                 entity.Property(bid => bid.Card).IsRequired().HasMaxLength(16);

@@ -23,6 +23,12 @@ import { MapModule } from './map.module';
 import { AllOrganizationsComponent } from "./components/all-organizations/all-organizations.component";
 import { OrganizationDetailComponent } from "./components/organization-detail/organization-detail.component";
 import { TargetManagementComponent } from './components/organization-edit/target-management.component';
+import { OrganizationStatisticsComponent } from "./components/organization-edit/organization-statistics.component";
+import { ChartsModule } from 'ng2-charts';
+import { BrowserModule } from '@angular/platform-browser';
+import { UsersDonationsReportComponent } from "./components/report/users-donations-report.component";
+import { CommonDonationsReportComponent } from "./components/report/common-donations-report.component";
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 @NgModule({
     declarations: [
@@ -43,14 +49,21 @@ import { TargetManagementComponent } from './components/organization-edit/target
         OrganizationEditComponent,
         AllOrganizationsComponent,
         OrganizationDetailComponent,
-        TargetManagementComponent
+        TargetManagementComponent,
+        OrganizationStatisticsComponent,
+        UsersDonationsReportComponent,
+        CommonDonationsReportComponent,
+
     ],
     imports: [
         FormsModule,
         CommonModule,
         OrganizationManagementRoutingModule,
         SharedModule, 
-        MapModule
+        MapModule,
+        ChartsModule,
+        BrowserModule,
+        NgxChartsModule 
     ],
     exports: [
         SpinnerComponent

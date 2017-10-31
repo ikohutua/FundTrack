@@ -9,8 +9,6 @@ using FundTrack.BLL.Abstract;
 using FundTrack.DAL.Concrete;
 using FundTrack.BLL.Concrete;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
-using FundTrack.WebUI.token;
 using FundTrack.DAL.Entities;
 using FundTrack.BLL.DomainServices;
 using FundTrack.DAL.Repositories;
@@ -18,6 +16,8 @@ using FundTrack.Infrastructure.ViewModel.EventViewModel;
 using FundTrack.WebUI.Formatter;
 using FundTrack.WebUI.Middlewares;
 using FundTrack.WebUI.Middlewares.Logging;
+using Microsoft.IdentityModel.Tokens;
+using FundTrack.WebUI.token;
 
 namespace FundTrack.WebUI
 {
@@ -46,7 +46,8 @@ namespace FundTrack.WebUI
 
             services.AddCors(
      options => options.AddPolicy("AllowCors",
-         builder => {
+         builder =>
+         {
              builder
                  //.WithOrigins("http://localhost:4456") //AllowSpecificOrigins;  
                  //.WithOrigins("http://localhost:4456", "http://localhost:4457") //AllowMultipleOrigins;  
@@ -58,7 +59,7 @@ namespace FundTrack.WebUI
                                                               //.AllowAnyMethod() //AllowAllMethods;  
                                                               //.WithHeaders("Accept", "Content-type", "Origin", "X-Custom-Header"); //AllowSpecificHeaders;  
                  .AllowAnyHeader(); //AllowAllHeaders;  
-        })
+         })
  );
 
 
@@ -67,8 +68,6 @@ namespace FundTrack.WebUI
             {
                 options.InputFormatters.Add(new JsonInputFormatter());
             });
-
-            // for iis deploy : https://stackoverflow.com/questions/12731320/web-config-cannot-read-configuration-file-due-to-insufficient-permissions
 
             //dependency injection DAL
             services.AddTransient<IUserResporitory, UserRepository>();
@@ -100,6 +99,7 @@ namespace FundTrack.WebUI
             services.AddScoped<IRepository<FinOpImage>, EFGenericRepository<FinOpImage>>();
             services.AddScoped<IBalanceRepository, BalanceRepository>();
             services.AddScoped<IBankRepository, BankRepositoty>();
+            services.AddScoped<IImportIntervalRepository, ImportIntervalRepository>();
 
             //dependency injection BLL
             services.AddScoped<IOrganizationsForFilteringService, OrganizationsForFilteringService>();
@@ -126,6 +126,7 @@ namespace FundTrack.WebUI
             services.AddScoped<IImageManagementService, AzureImageManagementService>();
             services.AddScoped<IFixingBalanceService, FixingBalanceService>();
             services.AddScoped<IBankService, BankService>();
+            services.AddScoped<IOrganizationStatisticsService, OrganizationStatisticsService>();
 
             //dependency injection WebUI
             services.AddScoped<IErrorLogger, ErrorLogger>();
@@ -136,11 +137,7 @@ namespace FundTrack.WebUI
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             app.UseGlobalErrorHandling();
-
-            //app.LoggingHandling();
-
             app.UseStaticFiles();
-
 
             app.UseJwtBearerAuthentication(new JwtBearerOptions
             {
@@ -157,24 +154,24 @@ namespace FundTrack.WebUI
                 }
             });
 
+            //Old authorization
             //app.UseCookieAuthentication(new CookieAuthenticationOptions
             //{
             //    LoginPath = new PathString("/User/LogIn"),
             //    AuthenticationScheme = "Bearer",
             //    AutomaticChallenge = true
             //});
+
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
             loggerFactory.AddFile("Logs/Errors/{Date}.txt", LogLevel.Error);
             loggerFactory.AddFile("Logs/Info/{Date}.txt", LogLevel.Information);
 
-            //if (env.IsDevelopment())
-            //{
             app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions
             {
                 HotModuleReplacement = true
             });
-            //}
+
 
             app.UseWebSockets();
 

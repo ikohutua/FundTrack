@@ -58,6 +58,7 @@
         /// <summary>
         /// base64 code of logo
         /// </summary>
-        public string Base64Code { get; set; }
+        public string LogoBase64Code { get; set; }
+        public string LogoImageExtension { get; set; }
     }
 }
