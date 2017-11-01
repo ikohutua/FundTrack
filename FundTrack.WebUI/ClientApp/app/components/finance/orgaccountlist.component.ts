@@ -5,6 +5,7 @@ import { OrgAccountViewModel } from "../../view-models/concrete/finance/orgaccou
 import { DecimalPipe } from '@angular/common';
 import { CurrencyPipe } from '@angular/common';
 import * as key from '../../shared/key.storage';
+import * as constant from '../../shared/default-configuration.storage';
 
 
 @Component({
@@ -25,8 +26,8 @@ export class OrgAccountListComponent implements OnInit {
     private selectedAccount: OrgAccountViewModel;
     //Property that keeps title for the page
     private pageTitle: string = 'Рахунки організації';
-    private readonly bankType: string = "Банк";
-    private readonly cashType: string = "Готівка";
+    private readonly bankType: string = constant.bankUA;
+    private readonly cashType: string = constant.cashUA;
     //Property that keeps an array of organization account
     private bankAccounts: OrgAccountViewModel[] = new Array<OrgAccountViewModel>();
     //Property that keeps an array of organization account

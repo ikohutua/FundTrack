@@ -45,10 +45,10 @@ export class OrganizationStatisticsComponent implements OnInit {
     unassingnedFinOps: FinOpListViewModel[] = Array<FinOpListViewModel>();
     user: AuthorizeUserModel = new AuthorizeUserModel();
     reportType: number = constant.incomeId; // set spending type as selected
-    selectedCategory: string = "Базові";
+    selectedCategory: string = constant.selectedCategoryName;
     isDataExists: boolean = false;
     private showSpinner: boolean = false;
-    private readonly baseTargetName: string = "Базові";
+    private readonly baseTargetName: string = constant.selectedCategoryName;
 
     constructor(private organizationStatisticsService: OrganizationStatisticsService,
         private datePipe: DatePipe) {

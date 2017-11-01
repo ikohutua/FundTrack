@@ -60,7 +60,7 @@ namespace FundTrack.WebUI.Controllers
 
         [Authorize(Roles = "admin, moderator")]
         [HttpGet("GetFinOpsByTargetId/{finOpType}/{targetId}")]
-        public IEnumerable<FinOpViewModel> GetFinOpsByTargetId(int finOpType, int targetId, DateTime dateFrom, DateTime dateTo)
+        public IEnumerable<FinOpViewModel> GetFinOpsByTargetId(int finOpType, int? targetId, DateTime dateFrom, DateTime dateTo)
         {
             return _organizationStatisticsService.GetFinOpsByTargetId(finOpType, targetId, dateFrom, dateTo);
         }
