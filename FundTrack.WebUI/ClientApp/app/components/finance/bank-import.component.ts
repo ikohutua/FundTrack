@@ -274,9 +274,8 @@ export class BankImportComponent implements OnInit {
         if (this._newFinOp.amount < 0) {
             this._newFinOp.cardFromId = Number(this.currentOrgAccount.id);
         }
-        this._newFinOp.finOpDate = bankImport.trandate;
-        this._newFinOp.targetId = this.targets[0].targetId;
         this._newFinOp.orgId = this.user.orgId;
+        this._newFinOp.targetId = this.targets[0].targetId;
         this.index = this._dataForFinOp.findIndex(element => element.id == bankImport.id);
         this.currentOrgAccountNumber = this.currentOrgAccount.orgAccountName + ': ' + this.currentOrgAccount.orgAccountNumber;
     }
@@ -451,7 +450,7 @@ export class BankImportComponent implements OnInit {
     }
 
     private openSuggestionsModal() {
-        this.isBankTransfer = true; 
+        this.isBankTransfer = true;
         this.selectedBankImport = this.suggestedBankImports[0];
         this.suggestedImportsWindow.show();
     }

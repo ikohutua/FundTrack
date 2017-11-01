@@ -36,8 +36,7 @@ namespace FundTrack.BLL.Abstract
         /// <returns></returns>
         int GetCountExtracts(string card);
 
-        IEnumerable<ImportDetailPrivatViewModel> getAllSuggestedBankImports(decimal amount, DateTime date);
-
+<<<<<<<<< Temporary merge branch 1
         Task ImportFromPrivat(int orgAccountId);
 
         DateTime GetLastPrivatUpdate(int orgId);
@@ -45,5 +44,7 @@ namespace FundTrack.BLL.Abstract
         AutoImportIntervals UpdateDate(int orgId );
 
         Task ImportWithDates(PrivatImportViewModel model);
+
+        IEnumerable<ImportDetailPrivatViewModel> getAllSuggestedBankImports(decimal amount, DateTime date);
     }
 }

@@ -1,0 +1,848 @@
+2017-10-26T12:35:57.3781970+03:00  [ERR] Hash: 81820c65a81400d1ebbd
+Version: webpack 2.7.0
+Time: 5829ms
+                                   Asset      Size  Chunks                    Chunk Names
+                          main-client.js   4.84 MB       0  [emitted]  [big]  main-client
+    0.f1bd90d848f761c62106.hot-update.js   9.98 kB       0  [emitted]         main-client
+    f1bd90d848f761c62106.hot-update.json  43 bytes          [emitted]         
+                      main-client.js.map   6.39 MB       0  [emitted]         main-client
+0.f1bd90d848f761c62106.hot-update.js.map   16.2 kB       0  [emitted]         main-client
+chunk    {0} main-client.js, 0.f1bd90d848f761c62106.hot-update.js, main-client.js.map, 0.f1bd90d848f761c62106.hot-update.js.map (main-client) 4.71 MB [entry] [rendered]
+    [0] delegated ./node_modules/@angular/core/index.js from dll-reference vendor_3d6b1ff2e706ed474586 42 bytes {0} [not cacheable] [built]
+    [5] external "vendor_3d6b1ff2e706ed474586" 42 bytes {0} [not cacheable]
+   [11] delegated ./node_modules/angular2-universal/browser/index.js from dll-reference vendor_3d6b1ff2e706ed474586 42 bytes {0} [not cacheable] [built]
+  [118] delegated ./node_modules/webpack/buildin/module.js from dll-reference vendor_3d6b1ff2e706ed474586 42 bytes {0} [not cacheable] [built]
+  [223] ./ClientApp/boot-client.ts 1.3 kB {0} [built]
+  [224] (webpack)-hot-middleware/client.js?path=%2F__webpack_hmr 7.04 kB {0}
+  [225] delegated ./node_modules/event-source-polyfill/eventsource.js from dll-reference vendor_3d6b1ff2e706ed474586 42 bytes {0} [not cacheable] [built]
+  [243] ./ClientApp/app/app.module.ts 3.09 kB {0} [built]
+  [542] ./~/querystring-es3/index.js 127 bytes {0}
+  [555] ./~/strip-ansi/index.js 161 bytes {0}
+  [609] (webpack)-hot-middleware/client-overlay.js 1.82 kB {0}
+  [610] (webpack)-hot-middleware/process-update.js 3.87 kB {0}
+  [632] delegated ./node_modules/angular2-universal-polyfills/browser.js from dll-reference vendor_3d6b1ff2e706ed474586 42 bytes {0} [not cacheable] [built]
+  [633] delegated ./node_modules/bootstrap/dist/js/npm.js from dll-reference vendor_3d6b1ff2e706ed474586 42 bytes {0} [not cacheable] [built]
+  [638] multi event-source-polyfill webpack-hot-middleware/client?path=%2F__webpack_hmr ./ClientApp/boot-client.ts 52 bytes {0}
+     + 624 hidden modules
+
+ERROR in [at-loader] ./ClientApp/app/components/finance/incomeoperation.component.ts:105:50 
+    TS1005: ')' expected.
+
+ERROR in [at-loader] ./ClientApp/app/components/finance/incomeoperation.component.ts:107:10 
+    TS1128: Declaration or statement expected. (41ce9caf)
+2017-10-26T12:53:07.3492255+03:00 0HL8SAP4TAA2E [ERR] An exception occurred in the database while saving changes.
+ (3b5ca34b)
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updating the entries. See the inner exception for details. ---> System.Data.SqlClient.SqlException: The INSERT statement conflicted with the FOREIGN KEY constraint "FK_FinOp_User". The conflict occurred in database "fundtrackss", table "dbo.Users", column 'Id'.
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, String executeMethod, IReadOnlyDictionary`2 parameterValues, Boolean closeConnection)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteReader(IRelationalConnection connection, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(Tuple`2 parameters)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](Func`2 operation, Func`2 verifySucceeded, TState state)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(IReadOnlyList`1 entriesToSave)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at FundTrack.DAL.Concrete.UnitOfWork.SaveChanges() in C:\FundTrack\FundTrack.DAL\Concrete\UnitOfWork.cs:line 461
+   at FundTrack.BLL.Concrete.FinOpService.CreateIncome(FinOpViewModel finOpModel) in C:\FundTrack\FundTrack.BLL\Concrete\FinOpService.cs:line 109
+2017-10-26T12:53:07.4117047+03:00 0HL8SAP4TAA2E [ERR] FundTrack.BLL.Concrete.BusinessLogicException: Неможливо виконати фінансову операцію "Прихід" ---> Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updating the entries. See the inner exception for details. ---> System.Data.SqlClient.SqlException: The INSERT statement conflicted with the FOREIGN KEY constraint "FK_FinOp_User". The conflict occurred in database "fundtrackss", table "dbo.Users", column 'Id'.
+The statement has been terminated.
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, String executeMethod, IReadOnlyDictionary`2 parameterValues, Boolean closeConnection)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteReader(IRelationalConnection connection, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.Execute(IRelationalConnection connection)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.Execute(Tuple`2 parameters)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](Func`2 operation, Func`2 verifySucceeded, TState state)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(IReadOnlyList`1 entriesToSave)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChanges(Boolean acceptAllChangesOnSuccess)
+   at FundTrack.DAL.Concrete.UnitOfWork.SaveChanges() in C:\FundTrack\FundTrack.DAL\Concrete\UnitOfWork.cs:line 461
+   at FundTrack.BLL.Concrete.FinOpService.CreateIncome(FinOpViewModel finOpModel) in C:\FundTrack\FundTrack.BLL\Concrete\FinOpService.cs:line 109
+   --- End of inner exception stack trace ---
+   at FundTrack.BLL.Concrete.FinOpService.CreateIncome(FinOpViewModel finOpModel) in C:\FundTrack\FundTrack.BLL\Concrete\FinOpService.cs:line 114
+   at FundTrack.WebUI.Controllers.FinOpController.Income(FinOpViewModel incomeModel) in C:\FundTrack\FundTrack.WebUI\Controllers\FinOpController.cs:line 114
+   at lambda_method(Closure , Object , Object[] )
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.<InvokeActionMethodAsync>d__27.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.<InvokeNextActionFilterAsync>d__25.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Rethrow(ActionExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.<InvokeNextResourceFilter>d__22.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.<InvokeAsync>d__20.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.<Invoke>d__4.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.SpaServices.Webpack.ConditionalProxyMiddleware.<Invoke>d__5.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.SpaServices.Webpack.ConditionalProxyMiddleware.<Invoke>d__5.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware`1.<Invoke>d__18.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware`1.<Invoke>d__18.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.GetResult()
+   at FundTrack.WebUI.Middlewares.GlobalErrorHandlingMiddleware.<Invoke>d__4.MoveNext() in C:\FundTrack\FundTrack.WebUI\Middlewares\GlobalErrorHandlingMiddleware.cs:line 28 (76b5dfa0)
+2017-10-26T12:58:49.8412843+03:00  [ERR] Hash: 0a352b0747fdf04019c2
+Version: webpack 2.7.0
+Time: 6164ms
+                                   Asset      Size  Chunks                    Chunk Names
+                          main-client.js   4.84 MB       0  [emitted]  [big]  main-client
+    0.67b476bd20b5c687c399.hot-update.js   10.4 kB       0  [emitted]         main-client
+    67b476bd20b5c687c399.hot-update.json  43 bytes          [emitted]         
+                      main-client.js.map   6.39 MB       0  [emitted]         main-client
+0.67b476bd20b5c687c399.hot-update.js.map     17 kB       0  [emitted]         main-client
+chunk    {0} main-client.js, 0.67b476bd20b5c687c399.hot-update.js, main-client.js.map, 0.67b476bd20b5c687c399.hot-update.js.map (main-client) 4.71 MB [entry] [rendered]
+    [0] delegated ./node_modules/@angular/core/index.js from dll-reference vendor_3d6b1ff2e706ed474586 42 bytes {0} [not cacheable] [built]
+    [5] external "vendor_3d6b1ff2e706ed474586" 42 bytes {0} [not cacheable]
+   [11] delegated ./node_modules/angular2-universal/browser/index.js from dll-reference vendor_3d6b1ff2e706ed474586 42 bytes {0} [not cacheable] [built]
+  [118] delegated ./node_modules/webpack/buildin/module.js from dll-reference vendor_3d6b1ff2e706ed474586 42 bytes {0} [not cacheable] [built]
+  [223] ./ClientApp/boot-client.ts 1.3 kB {0} [built]
+  [224] (webpack)-hot-middleware/client.js?path=%2F__webpack_hmr 7.04 kB {0}
+  [225] delegated ./node_modules/event-source-polyfill/eventsource.js from dll-reference vendor_3d6b1ff2e706ed474586 42 bytes {0} [not cacheable] [built]
+  [243] ./ClientApp/app/app.module.ts 3.09 kB {0} [built]
+  [542] ./~/querystring-es3/index.js 127 bytes {0}
+  [555] ./~/strip-ansi/index.js 161 bytes {0}
+  [609] (webpack)-hot-middleware/client-overlay.js 1.82 kB {0}
+  [610] (webpack)-hot-middleware/process-update.js 3.87 kB {0}
+  [632] delegated ./node_modules/angular2-universal-polyfills/browser.js from dll-reference vendor_3d6b1ff2e706ed474586 42 bytes {0} [not cacheable] [built]
+  [633] delegated ./node_modules/bootstrap/dist/js/npm.js from dll-reference vendor_3d6b1ff2e706ed474586 42 bytes {0} [not cacheable] [built]
+  [638] multi event-source-polyfill webpack-hot-middleware/client?path=%2F__webpack_hmr ./ClientApp/boot-client.ts 52 bytes {0}
+     + 624 hidden modules
+
+ERROR in [at-loader] ./ClientApp/app/components/finance/incomeoperation.component.ts:213:22 
+    TS2339: Property 'showToast' does not exist on type 'IncomeOperationComponent'.
+
+ERROR in [at-loader] ./ClientApp/app/components/finance/incomeoperation.component.ts:215:26 
+    TS2339: Property '_router' does not exist on type 'IncomeOperationComponent'.
+
+ERROR in [at-loader] ./ClientApp/app/components/finance/incomeoperation.component.ts:220:22 
+    TS2339: Property 'account' does not exist on type 'IncomeOperationComponent'. (4cf60be4)
+2017-10-26T13:07:15.9263244+03:00 0HL8SAVL756HJ [ERR] FundTrack.BLL.Concrete.BusinessLogicException: Неможливо отримати інформацію для рахунку ---> System.NullReferenceException: Object reference not set to an instance of an object.
+   at FundTrack.BLL.Concrete.OrganizationAccountService.GetDonateCredentials(Int32 orgAccountId) in C:\FundTrack\FundTrack.BLL\Concrete\OrganizationAccountService.cs:line 354
+   --- End of inner exception stack trace ---
+   at FundTrack.BLL.Concrete.OrganizationAccountService.GetDonateCredentials(Int32 orgAccountId) in C:\FundTrack\FundTrack.BLL\Concrete\OrganizationAccountService.cs:line 365
+   at FundTrack.WebUI.Controllers.OrgAccountController.GetDonateCredentials(Int32 orgAccountId) in C:\FundTrack\FundTrack.WebUI\Controllers\OrgAccountController.cs:line 82
+   at lambda_method(Closure , Object , Object[] )
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.<InvokeActionMethodAsync>d__27.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.<InvokeNextActionFilterAsync>d__25.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Rethrow(ActionExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.<InvokeNextResourceFilter>d__22.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.<InvokeAsync>d__20.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.<Invoke>d__4.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.SpaServices.Webpack.ConditionalProxyMiddleware.<Invoke>d__5.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.SpaServices.Webpack.ConditionalProxyMiddleware.<Invoke>d__5.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware`1.<Invoke>d__18.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware`1.<Invoke>d__18.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.GetResult()
+   at FundTrack.WebUI.Middlewares.GlobalErrorHandlingMiddleware.<Invoke>d__4.MoveNext() in C:\FundTrack\FundTrack.WebUI\Middlewares\GlobalErrorHandlingMiddleware.cs:line 28 (c3021829)
+2017-10-26T13:28:01.0765800+03:00  [ERR] Hash: 8e20dba82a8df7d84f8b
+Version: webpack 2.7.0
+Time: 4923ms
+                                   Asset      Size  Chunks                    Chunk Names
+                          main-client.js   4.84 MB       0  [emitted]  [big]  main-client
+    0.eef72c5e5f8b2e8b6bfc.hot-update.js   11.8 kB       0  [emitted]         main-client
+    eef72c5e5f8b2e8b6bfc.hot-update.json  43 bytes          [emitted]         
+                      main-client.js.map   6.39 MB       0  [emitted]         main-client
+0.eef72c5e5f8b2e8b6bfc.hot-update.js.map   19.6 kB       0  [emitted]         main-client
+chunk    {0} main-client.js, 0.eef72c5e5f8b2e8b6bfc.hot-update.js, main-client.js.map, 0.eef72c5e5f8b2e8b6bfc.hot-update.js.map (main-client) 4.71 MB [entry] [rendered]
+    [0] delegated ./node_modules/@angular/core/index.js from dll-reference vendor_3d6b1ff2e706ed474586 42 bytes {0} [not cacheable] [built]
+    [5] external "vendor_3d6b1ff2e706ed474586" 42 bytes {0} [not cacheable]
+   [11] delegated ./node_modules/angular2-universal/browser/index.js from dll-reference vendor_3d6b1ff2e706ed474586 42 bytes {0} [not cacheable] [built]
+  [118] delegated ./node_modules/webpack/buildin/module.js from dll-reference vendor_3d6b1ff2e706ed474586 42 bytes {0} [not cacheable] [built]
+  [223] ./ClientApp/boot-client.ts 1.3 kB {0} [built]
+  [224] (webpack)-hot-middleware/client.js?path=%2F__webpack_hmr 7.04 kB {0}
+  [225] delegated ./node_modules/event-source-polyfill/eventsource.js from dll-reference vendor_3d6b1ff2e706ed474586 42 bytes {0} [not cacheable] [built]
+  [243] ./ClientApp/app/app.module.ts 3.09 kB {0} [built]
+  [542] ./~/querystring-es3/index.js 127 bytes {0}
+  [555] ./~/strip-ansi/index.js 161 bytes {0}
+  [609] (webpack)-hot-middleware/client-overlay.js 1.82 kB {0}
+  [610] (webpack)-hot-middleware/process-update.js 3.87 kB {0}
+  [632] delegated ./node_modules/angular2-universal-polyfills/browser.js from dll-reference vendor_3d6b1ff2e706ed474586 42 bytes {0} [not cacheable] [built]
+  [633] delegated ./node_modules/bootstrap/dist/js/npm.js from dll-reference vendor_3d6b1ff2e706ed474586 42 bytes {0} [not cacheable] [built]
+  [638] multi event-source-polyfill webpack-hot-middleware/client?path=%2F__webpack_hmr ./ClientApp/boot-client.ts 52 bytes {0}
+     + 624 hidden modules
+
+ERROR in [at-loader] ./ClientApp/app/components/finance/spendingoperation.component.ts:109:58 
+    TS2339: Property 'orgId' does not exist on type 'SpendingOperationComponent'.
+
+ERROR in [at-loader] ./ClientApp/app/components/finance/spendingoperation.component.ts:131:14 
+    TS2339: Property 'isBaseTargetChosen' does not exist on type 'SpendingOperationComponent'. (7966ee8c)
+2017-10-26T13:28:38.1367618+03:00  [ERR] Hash: 3bf7285e8465d4620c26
+Version: webpack 2.7.0
+Time: 5282ms
+                                   Asset      Size  Chunks                    Chunk Names
+                          main-client.js   4.84 MB       0  [emitted]  [big]  main-client
+    0.8e20dba82a8df7d84f8b.hot-update.js   11.8 kB       0  [emitted]         main-client
+    8e20dba82a8df7d84f8b.hot-update.json  43 bytes          [emitted]         
+                      main-client.js.map   6.39 MB       0  [emitted]         main-client
+0.8e20dba82a8df7d84f8b.hot-update.js.map   19.5 kB       0  [emitted]         main-client
+chunk    {0} main-client.js, 0.8e20dba82a8df7d84f8b.hot-update.js, main-client.js.map, 0.8e20dba82a8df7d84f8b.hot-update.js.map (main-client) 4.71 MB [entry] [rendered]
+    [0] delegated ./node_modules/@angular/core/index.js from dll-reference vendor_3d6b1ff2e706ed474586 42 bytes {0} [not cacheable] [built]
+    [5] external "vendor_3d6b1ff2e706ed474586" 42 bytes {0} [not cacheable]
+   [11] delegated ./node_modules/angular2-universal/browser/index.js from dll-reference vendor_3d6b1ff2e706ed474586 42 bytes {0} [not cacheable] [built]
+  [118] delegated ./node_modules/webpack/buildin/module.js from dll-reference vendor_3d6b1ff2e706ed474586 42 bytes {0} [not cacheable] [built]
+  [223] ./ClientApp/boot-client.ts 1.3 kB {0} [built]
+  [224] (webpack)-hot-middleware/client.js?path=%2F__webpack_hmr 7.04 kB {0}
+  [225] delegated ./node_modules/event-source-polyfill/eventsource.js from dll-reference vendor_3d6b1ff2e706ed474586 42 bytes {0} [not cacheable] [built]
+  [243] ./ClientApp/app/app.module.ts 3.09 kB {0} [built]
+  [542] ./~/querystring-es3/index.js 127 bytes {0}
+  [555] ./~/strip-ansi/index.js 161 bytes {0}
+  [609] (webpack)-hot-middleware/client-overlay.js 1.82 kB {0}
+  [610] (webpack)-hot-middleware/process-update.js 3.87 kB {0}
+  [632] delegated ./node_modules/angular2-universal-polyfills/browser.js from dll-reference vendor_3d6b1ff2e706ed474586 42 bytes {0} [not cacheable] [built]
+  [633] delegated ./node_modules/bootstrap/dist/js/npm.js from dll-reference vendor_3d6b1ff2e706ed474586 42 bytes {0} [not cacheable] [built]
+  [638] multi event-source-polyfill webpack-hot-middleware/client?path=%2F__webpack_hmr ./ClientApp/boot-client.ts 52 bytes {0}
+     + 624 hidden modules
+
+ERROR in [at-loader] ./ClientApp/app/components/finance/spendingoperation.component.ts:109:58 
+    TS2339: Property 'orgId' does not exist on type 'SpendingOperationComponent'. (695a1257)
+2017-10-26T13:40:51.0607679+03:00  [ERR] Hash: e2c72b9b2634bbe8eae6
+Version: webpack 2.7.0
+Time: 5891ms
+                                   Asset      Size  Chunks                    Chunk Names
+                          main-client.js   4.84 MB       0  [emitted]  [big]  main-client
+    0.eb93c097c4326f3f1662.hot-update.js   11.9 kB       0  [emitted]         main-client
+    eb93c097c4326f3f1662.hot-update.json  43 bytes          [emitted]         
+                      main-client.js.map   6.39 MB       0  [emitted]         main-client
+0.eb93c097c4326f3f1662.hot-update.js.map   19.7 kB       0  [emitted]         main-client
+chunk    {0} main-client.js, 0.eb93c097c4326f3f1662.hot-update.js, main-client.js.map, 0.eb93c097c4326f3f1662.hot-update.js.map (main-client) 4.71 MB [entry] [rendered]
+    [0] delegated ./node_modules/@angular/core/index.js from dll-reference vendor_3d6b1ff2e706ed474586 42 bytes {0} [not cacheable] [built]
+    [5] external "vendor_3d6b1ff2e706ed474586" 42 bytes {0} [not cacheable]
+   [11] delegated ./node_modules/angular2-universal/browser/index.js from dll-reference vendor_3d6b1ff2e706ed474586 42 bytes {0} [not cacheable] [built]
+  [118] delegated ./node_modules/webpack/buildin/module.js from dll-reference vendor_3d6b1ff2e706ed474586 42 bytes {0} [not cacheable] [built]
+  [223] ./ClientApp/boot-client.ts 1.3 kB {0} [built]
+  [224] (webpack)-hot-middleware/client.js?path=%2F__webpack_hmr 7.04 kB {0}
+  [225] delegated ./node_modules/event-source-polyfill/eventsource.js from dll-reference vendor_3d6b1ff2e706ed474586 42 bytes {0} [not cacheable] [built]
+  [243] ./ClientApp/app/app.module.ts 3.09 kB {0} [built]
+  [542] ./~/querystring-es3/index.js 127 bytes {0}
+  [555] ./~/strip-ansi/index.js 161 bytes {0}
+  [609] (webpack)-hot-middleware/client-overlay.js 1.82 kB {0}
+  [610] (webpack)-hot-middleware/process-update.js 3.87 kB {0}
+  [632] delegated ./node_modules/angular2-universal-polyfills/browser.js from dll-reference vendor_3d6b1ff2e706ed474586 42 bytes {0} [not cacheable] [built]
+  [633] delegated ./node_modules/bootstrap/dist/js/npm.js from dll-reference vendor_3d6b1ff2e706ed474586 42 bytes {0} [not cacheable] [built]
+  [638] multi event-source-polyfill webpack-hot-middleware/client?path=%2F__webpack_hmr ./ClientApp/boot-client.ts 52 bytes {0}
+     + 624 hidden modules
+
+ERROR in [at-loader] ./ClientApp/app/components/finance/spendingoperation.component.ts:109:58 
+    TS2339: Property 'orgId' does not exist on type 'SpendingOperationComponent'. (8dc9a373)
+2017-10-26T13:43:14.7706193+03:00  [ERR] Hash: 4df74c70aa7ec3053ec8
+Version: webpack 2.7.0
+Time: 5625ms
+                                   Asset       Size  Chunks                    Chunk Names
+                          main-client.js    4.83 MB       0  [emitted]  [big]  main-client
+    0.e2bb0f6a57bba24b687a.hot-update.js  653 bytes       0  [emitted]         main-client
+    e2bb0f6a57bba24b687a.hot-update.json   43 bytes          [emitted]         
+                      main-client.js.map    6.37 MB       0  [emitted]         main-client
+0.e2bb0f6a57bba24b687a.hot-update.js.map  113 bytes       0  [emitted]         main-client
+chunk    {0} main-client.js, 0.e2bb0f6a57bba24b687a.hot-update.js, main-client.js.map, 0.e2bb0f6a57bba24b687a.hot-update.js.map (main-client) 4.7 MB [entry] [rendered]
+    [0] delegated ./node_modules/@angular/core/index.js from dll-reference vendor_3d6b1ff2e706ed474586 42 bytes {0} [not cacheable] [built]
+    [5] external "vendor_3d6b1ff2e706ed474586" 42 bytes {0} [not cacheable]
+   [11] delegated ./node_modules/angular2-universal/browser/index.js from dll-reference vendor_3d6b1ff2e706ed474586 42 bytes {0} [not cacheable] [built]
+  [118] delegated ./node_modules/webpack/buildin/module.js from dll-reference vendor_3d6b1ff2e706ed474586 42 bytes {0} [not cacheable] [built]
+  [223] ./ClientApp/boot-client.ts 1.3 kB {0} [built]
+  [224] (webpack)-hot-middleware/client.js?path=%2F__webpack_hmr 7.04 kB {0}
+  [225] delegated ./node_modules/event-source-polyfill/eventsource.js from dll-reference vendor_3d6b1ff2e706ed474586 42 bytes {0} [not cacheable] [built]
+  [243] ./ClientApp/app/app.module.ts 3.09 kB {0} [built]
+  [542] ./~/querystring-es3/index.js 127 bytes {0}
+  [555] ./~/strip-ansi/index.js 161 bytes {0}
+  [609] (webpack)-hot-middleware/client-overlay.js 1.82 kB {0}
+  [610] (webpack)-hot-middleware/process-update.js 3.87 kB {0}
+  [632] delegated ./node_modules/angular2-universal-polyfills/browser.js from dll-reference vendor_3d6b1ff2e706ed474586 42 bytes {0} [not cacheable] [built]
+  [633] delegated ./node_modules/bootstrap/dist/js/npm.js from dll-reference vendor_3d6b1ff2e706ed474586 42 bytes {0} [not cacheable] [built]
+  [638] multi event-source-polyfill webpack-hot-middleware/client?path=%2F__webpack_hmr ./ClientApp/boot-client.ts 52 bytes {0}
+     + 624 hidden modules
+
+ERROR in ./ClientApp/app/components/finance/spendingoperation.component.ts
+Module parse failed: C:\FundTrack\FundTrack.WebUI\node_modules\awesome-typescript-loader\dist\entry.js?silent=true!C:\FundTrack\FundTrack.WebUI\node_modules\angular2-template-loader\index.js!C:\FundTrack\FundTrack.WebUI\ClientApp\app\components\finance\spendingoperation.component.ts Unexpected token (219:22)
+You may need an appropriate loader to handle this file type.
+|     } (d630bbed)
+2017-10-26T13:43:14.7706193+03:00  [ERR] 
+| }; (bb374476)
+2017-10-26T13:43:14.7706193+03:00  [ERR] 
+| onValueChange(data ?  : any); (d8277880)
+2017-10-26T13:43:14.7706193+03:00  [ERR] 
+| { (838458a6)
+2017-10-26T13:43:14.7706193+03:00  [ERR] 
+|     if (!this.moneySpendingForm) (c6c236b6)
+2017-10-26T13:43:14.7862197+03:00  [ERR] 
+ @ ./ClientApp/app/finance.module.ts 26:36-95
+ @ ./ClientApp/app/app.module.ts
+ @ ./ClientApp/boot-client.ts
+ @ multi event-source-polyfill webpack-hot-middleware/client?path=%2F__webpack_hmr ./ClientApp/boot-client.ts
+
+ERROR in [at-loader] ./ClientApp/app/components/finance/spendingoperation.component.ts:140:14 
+    TS1128: Declaration or statement expected.
+
+ERROR in [at-loader] ./ClientApp/app/components/finance/spendingoperation.component.ts:144:5 
+    TS1128: Declaration or statement expected.
+
+ERROR in [at-loader] ./ClientApp/app/components/finance/spendingoperation.component.ts:144:25 
+    TS1005: ';' expected.
+
+ERROR in [at-loader] ./ClientApp/app/components/finance/spendingoperation.component.ts:156:5 
+    TS1128: Declaration or statement expected.
+
+ERROR in [at-loader] ./ClientApp/app/components/finance/spendingoperation.component.ts:156:43 
+    TS1005: ';' expected.
+
+ERROR in [at-loader] ./ClientApp/app/components/finance/spendingoperation.component.ts:165:5 
+    TS1128: Declaration or statement expected.
+
+ERROR in [at-loader] ./ClientApp/app/components/finance/spendingoperation.component.ts:165:28 
+    TS1005: ';' expected.
+
+ERROR in [at-loader] ./ClientApp/app/components/finance/spendingoperation.component.ts:169:5 
+    TS1128: Declaration or statement expected.
+
+ERROR in [at-loader] ./ClientApp/app/components/finance/spendingoperation.component.ts:169:25 
+    TS1005: ',' expected.
+
+ERROR in [at-loader] ./ClientApp/app/components/finance/spendingoperation.component.ts:169:51 
+    TS1005: ',' expected.
+
+ERROR in [at-loader] ./ClientApp/app/components/finance/spendingoperation.component.ts:169:59 
+    TS1005: ';' expected.
+
+ERROR in [at-loader] ./ClientApp/app/components/finance/spendingoperation.component.ts:173:5 
+    TS1128: Declaration or statement expected.
+
+ERROR in [at-loader] ./ClientApp/app/components/finance/spendingoperation.component.ts:173:34 
+    TS1005: ';' expected.
+
+ERROR in [at-loader] ./ClientApp/app/components/finance/spendingoperation.component.ts:200:5 
+    TS1128: Declaration or statement expected.
+
+ERROR in [at-loader] ./ClientApp/app/components/finance/spendingoperation.component.ts:205:5 
+    TS1128: Declaration or statement expected.
+
+ERROR in [at-loader] ./ClientApp/app/components/finance/spendingoperation.component.ts:206:5 
+    TS1128: Declaration or statement expected.
+
+ERROR in [at-loader] ./ClientApp/app/components/finance/spendingoperation.component.ts:208:5 
+    TS1128: Declaration or statement expected.
+
+ERROR in [at-loader] ./ClientApp/app/components/finance/spendingoperation.component.ts:219:5 
+    TS1128: Declaration or statement expected.
+
+ERROR in [at-loader] ./ClientApp/app/components/finance/spendingoperation.component.ts:219:32 
+    TS1109: Expression expected.
+
+ERROR in [at-loader] ./ClientApp/app/components/finance/spendingoperation.component.ts:219:39 
+    TS1005: ';' expected.
+
+ERROR in [at-loader] ./ClientApp/app/components/finance/spendingoperation.component.ts:236:5 
+    TS1128: Declaration or statement expected.
+
+ERROR in [at-loader] ./ClientApp/app/components/finance/spendingoperation.component.ts:236:28 
+    TS1005: ';' expected.
+
+ERROR in [at-loader] ./ClientApp/app/components/finance/spendingoperation.component.ts:253:5 
+    TS1128: Declaration or statement expected.
+
+ERROR in [at-loader] ./ClientApp/app/components/finance/spendingoperation.component.ts:253:29 
+    TS1005: ';' expected.
+
+ERROR in [at-loader] ./ClientApp/app/components/finance/spendingoperation.component.ts:260:5 
+    TS1128: Declaration or statement expected.
+
+ERROR in [at-loader] ./ClientApp/app/components/finance/spendingoperation.component.ts:260:24 
+    TS1005: ';' expected.
+
+ERROR in [at-loader] ./ClientApp/app/components/finance/spendingoperation.component.ts:267:5 
+    TS1128: Declaration or statement expected.
+
+ERROR in [at-loader] ./ClientApp/app/components/finance/spendingoperation.component.ts:267:27 
+    TS1005: ';' expected.
+
+ERROR in [at-loader] ./ClientApp/app/components/finance/spendingoperation.component.ts:268:13 
+    TS1005: ':' expected.
+
+ERROR in [at-loader] ./ClientApp/app/components/finance/spendingoperation.component.ts:268:29 
+    TS1005: ',' expected.
+
+ERROR in [at-loader] ./ClientApp/app/components/finance/spendingoperation.component.ts:270:1 
+    TS1128: Declaration or statement expected.
+
+ERROR in [at-loader] ./ClientApp/app/components/finance/spendingoperation.component.ts:71:14 
+    TS2339: Property 'createSpendingForm' does not exist on type 'SpendingOperationComponent'.
+
+ERROR in [at-loader] ./ClientApp/app/components/finance/spendingoperation.component.ts:83:22 
+    TS2339: Property 'getMinDate' does not exist on type 'SpendingOperationComponent'.
+
+ERROR in [at-loader] ./ClientApp/app/components/finance/spendingoperation.component.ts:89:14 
+    TS2339: Property 'getLoggedUser' does not exist on type 'SpendingOperationComponent'.
+
+ERROR in [at-loader] ./ClientApp/app/components/finance/spendingoperation.component.ts:93:22 
+    TS2339: Property 'getOrganizationCashAccounts' does not exist on type 'SpendingOperationComponent'.
+
+ERROR in [at-loader] ./ClientApp/app/components/finance/spendingoperation.component.ts:144:12 
+    TS2304: Cannot find name 'getMinDate'.
+
+ERROR in [at-loader] ./ClientApp/app/components/finance/spendingoperation.component.ts:156:13 
+    TS2304: Cannot find name 'getOrganizationCashAccounts'.
+
+ERROR in [at-loader] ./ClientApp/app/components/finance/spendingoperation.component.ts:165:12 
+    TS2304: Cannot find name 'getLoggedUser'.
+
+ERROR in [at-loader] ./ClientApp/app/components/finance/spendingoperation.component.ts:169:12 
+    TS2304: Cannot find name 'setDate'.
+
+ERROR in [at-loader] ./ClientApp/app/components/finance/spendingoperation.component.ts:169:20 
+    TS2304: Cannot find name 'model'.
+
+ERROR in [at-loader] ./ClientApp/app/components/finance/spendingoperation.component.ts:169:47 
+    TS2304: Cannot find name 'date'.
+
+ERROR in [at-loader] ./ClientApp/app/components/finance/spendingoperation.component.ts:170:9 
+    TS2304: Cannot find name 'model'.
+
+ERROR in [at-loader] ./ClientApp/app/components/finance/spendingoperation.component.ts:170:22 
+    TS2304: Cannot find name 'date'.
+
+ERROR in [at-loader] ./ClientApp/app/components/finance/spendingoperation.component.ts:173:13 
+    TS2304: Cannot find name 'createSpendingForm'.
+
+ERROR in [at-loader] ./ClientApp/app/components/finance/spendingoperation.component.ts:200:13 
+    TS2304: Cannot find name 'formSpendingErrors'.
+
+ERROR in [at-loader] ./ClientApp/app/components/finance/spendingoperation.component.ts:205:13 
+    TS2304: Cannot find name 'invalidAmountMessage'.
+
+ERROR in [at-loader] ./ClientApp/app/components/finance/spendingoperation.component.ts:206:13 
+    TS2304: Cannot find name 'maxLengthDescription'.
+
+ERROR in [at-loader] ./ClientApp/app/components/finance/spendingoperation.component.ts:208:13 
+    TS2304: Cannot find name 'validationMessages'.
+
+ERROR in [at-loader] ./ClientApp/app/components/finance/spendingoperation.component.ts:219:13 
+    TS2304: Cannot find name 'onValueChange'.
+
+ERROR in [at-loader] ./ClientApp/app/components/finance/spendingoperation.component.ts:219:27 
+    TS2304: Cannot find name 'data'.
+
+ERROR in [at-loader] ./ClientApp/app/components/finance/spendingoperation.component.ts:219:34 
+    TS2304: Cannot find name 'any'.
+
+ERROR in [at-loader] ./ClientApp/app/components/finance/spendingoperation.component.ts:236:13 
+    TS2304: Cannot find name 'makeSpending'.
+
+ERROR in [at-loader] ./ClientApp/app/components/finance/spendingoperation.component.ts:253:13 
+    TS2304: Cannot find name 'completeModel'.
+
+ERROR in [at-loader] ./ClientApp/app/components/finance/spendingoperation.component.ts:260:12 
+    TS2304: Cannot find name 'showToast'.
+
+ERROR in [at-loader] ./ClientApp/app/components/finance/spendingoperation.component.ts:267:13 
+    TS2304: Cannot find name 'navigateBack'. (3b8a671c)
+2017-10-26T13:43:57.7250394+03:00  [ERR] Hash: 563daf944272bf731b98
+Version: webpack 2.7.0
+Time: 5782ms
+                                   Asset      Size  Chunks                    Chunk Names
+                          main-client.js   4.84 MB       0  [emitted]  [big]  main-client
+    0.69b768283f646ea7a6d7.hot-update.js   11.9 kB       0  [emitted]         main-client
+    69b768283f646ea7a6d7.hot-update.json  43 bytes          [emitted]         
+                      main-client.js.map   6.39 MB       0  [emitted]         main-client
+0.69b768283f646ea7a6d7.hot-update.js.map   19.7 kB       0  [emitted]         main-client
+chunk    {0} main-client.js, 0.69b768283f646ea7a6d7.hot-update.js, main-client.js.map, 0.69b768283f646ea7a6d7.hot-update.js.map (main-client) 4.71 MB [entry] [rendered]
+    [0] delegated ./node_modules/@angular/core/index.js from dll-reference vendor_3d6b1ff2e706ed474586 42 bytes {0} [not cacheable] [built]
+    [5] external "vendor_3d6b1ff2e706ed474586" 42 bytes {0} [not cacheable]
+   [11] delegated ./node_modules/angular2-universal/browser/index.js from dll-reference vendor_3d6b1ff2e706ed474586 42 bytes {0} [not cacheable] [built]
+  [118] delegated ./node_modules/webpack/buildin/module.js from dll-reference vendor_3d6b1ff2e706ed474586 42 bytes {0} [not cacheable] [built]
+  [223] ./ClientApp/boot-client.ts 1.3 kB {0} [built]
+  [224] (webpack)-hot-middleware/client.js?path=%2F__webpack_hmr 7.04 kB {0}
+  [225] delegated ./node_modules/event-source-polyfill/eventsource.js from dll-reference vendor_3d6b1ff2e706ed474586 42 bytes {0} [not cacheable] [built]
+  [243] ./ClientApp/app/app.module.ts 3.09 kB {0} [built]
+  [542] ./~/querystring-es3/index.js 127 bytes {0}
+  [555] ./~/strip-ansi/index.js 161 bytes {0}
+  [609] (webpack)-hot-middleware/client-overlay.js 1.82 kB {0}
+  [610] (webpack)-hot-middleware/process-update.js 3.87 kB {0}
+  [632] delegated ./node_modules/angular2-universal-polyfills/browser.js from dll-reference vendor_3d6b1ff2e706ed474586 42 bytes {0} [not cacheable] [built]
+  [633] delegated ./node_modules/bootstrap/dist/js/npm.js from dll-reference vendor_3d6b1ff2e706ed474586 42 bytes {0} [not cacheable] [built]
+  [638] multi event-source-polyfill webpack-hot-middleware/client?path=%2F__webpack_hmr ./ClientApp/boot-client.ts 52 bytes {0}
+     + 624 hidden modules
+
+ERROR in [at-loader] ./ClientApp/app/components/finance/spendingoperation.component.ts:83:17 
+    TS2346: Supplied parameters do not match any signature of call target. (1327ce70)
+2017-10-26T13:53:06.8099395+03:00  [ERR] Hash: 25d2bf1b1bffd156dbe9
+Version: webpack 2.7.0
+Time: 20253ms
+             Asset     Size  Chunks                    Chunk Names
+    main-client.js  4.85 MB       0  [emitted]  [big]  main-client
+main-client.js.map  6.39 MB       0  [emitted]         main-client
+chunk    {0} main-client.js, main-client.js.map (main-client) 4.71 MB [entry] [rendered]
+    [0] delegated ./node_modules/@angular/core/index.js from dll-reference vendor_3d6b1ff2e706ed474586 42 bytes {0} [not cacheable] [built]
+    [5] external "vendor_3d6b1ff2e706ed474586" 42 bytes {0} [not cacheable]
+   [11] delegated ./node_modules/angular2-universal/browser/index.js from dll-reference vendor_3d6b1ff2e706ed474586 42 bytes {0} [not cacheable] [built]
+  [118] delegated ./node_modules/webpack/buildin/module.js from dll-reference vendor_3d6b1ff2e706ed474586 42 bytes {0} [not cacheable] [built]
+  [221] ./ClientApp/boot-client.ts 1.3 kB {0} [built]
+  [222] (webpack)-hot-middleware/client.js?path=%2F__webpack_hmr 7.04 kB {0} [built]
+  [223] delegated ./node_modules/event-source-polyfill/eventsource.js from dll-reference vendor_3d6b1ff2e706ed474586 42 bytes {0} [not cacheable] [built]
+  [241] ./ClientApp/app/app.module.ts 3.09 kB {0} [built]
+  [541] ./~/querystring-es3/index.js 127 bytes {0} [built]
+  [554] ./~/strip-ansi/index.js 161 bytes {0} [built]
+  [609] (webpack)-hot-middleware/client-overlay.js 1.82 kB {0} [built]
+  [610] (webpack)-hot-middleware/process-update.js 3.87 kB {0} [built]
+  [632] delegated ./node_modules/angular2-universal-polyfills/browser.js from dll-reference vendor_3d6b1ff2e706ed474586 42 bytes {0} [not cacheable] [built]
+  [633] delegated ./node_modules/bootstrap/dist/js/npm.js from dll-reference vendor_3d6b1ff2e706ed474586 42 bytes {0} [not cacheable] [built]
+  [638] multi event-source-polyfill webpack-hot-middleware/client?path=%2F__webpack_hmr ./ClientApp/boot-client.ts 52 bytes {0} [built]
+     + 624 hidden modules
+
+ERROR in ./ClientApp/app/components/finance/spendingoperation.component.ts
+Module not found: Error: Can't resolve './spendingoperation.component.html' in 'C:\FundTrack\FundTrack.WebUI\ClientApp\app\components\finance'
+ @ ./ClientApp/app/components/finance/spendingoperation.component.ts 245:18-63
+ @ ./ClientApp/app/finance.module.ts
+ @ ./ClientApp/app/app.module.ts
+ @ ./ClientApp/boot-client.ts
+ @ multi event-source-polyfill webpack-hot-middleware/client?path=%2F__webpack_hmr ./ClientApp/boot-client.ts
+
+ERROR in ./ClientApp/app/components/finance/spendingoperation.component.ts
+Module not found: Error: Can't resolve './spendingoperation.component.css' in 'C:\FundTrack\FundTrack.WebUI\ClientApp\app\components\finance'
+ @ ./ClientApp/app/components/finance/spendingoperation.component.ts 246:17-61
+ @ ./ClientApp/app/finance.module.ts
+ @ ./ClientApp/app/app.module.ts
+ @ ./ClientApp/boot-client.ts
+ @ multi event-source-polyfill webpack-hot-middleware/client?path=%2F__webpack_hmr ./ClientApp/boot-client.ts (df54daa4)
+2017-10-26T13:54:12.6699431+03:00  [ERR] Hash: 2dc293baa3d4c47c306f
+Version: webpack 2.7.0
+Time: 5269ms
+                                   Asset      Size  Chunks                    Chunk Names
+                          main-client.js   4.85 MB       0  [emitted]  [big]  main-client
+    0.25d2bf1b1bffd156dbe9.hot-update.js   19.4 kB       0  [emitted]         main-client
+    25d2bf1b1bffd156dbe9.hot-update.json  43 bytes          [emitted]         
+                      main-client.js.map    6.4 MB       0  [emitted]         main-client
+0.25d2bf1b1bffd156dbe9.hot-update.js.map   29.8 kB       0  [emitted]         main-client
+chunk    {0} main-client.js, 0.25d2bf1b1bffd156dbe9.hot-update.js, main-client.js.map, 0.25d2bf1b1bffd156dbe9.hot-update.js.map (main-client) 4.72 MB [entry] [rendered]
+    [0] delegated ./node_modules/@angular/core/index.js from dll-reference vendor_3d6b1ff2e706ed474586 42 bytes {0} [not cacheable] [built]
+    [5] external "vendor_3d6b1ff2e706ed474586" 42 bytes {0} [not cacheable]
+   [11] delegated ./node_modules/angular2-universal/browser/index.js from dll-reference vendor_3d6b1ff2e706ed474586 42 bytes {0} [not cacheable] [built]
+  [118] delegated ./node_modules/webpack/buildin/module.js from dll-reference vendor_3d6b1ff2e706ed474586 42 bytes {0} [not cacheable] [built]
+  [221] ./ClientApp/boot-client.ts 1.3 kB {0}
+  [222] (webpack)-hot-middleware/client.js?path=%2F__webpack_hmr 7.04 kB {0}
+  [223] delegated ./node_modules/event-source-polyfill/eventsource.js from dll-reference vendor_3d6b1ff2e706ed474586 42 bytes {0} [not cacheable] [built]
+  [241] ./ClientApp/app/app.module.ts 3.09 kB {0}
+  [541] ./~/querystring-es3/index.js 127 bytes {0}
+  [554] ./~/strip-ansi/index.js 161 bytes {0}
+  [609] (webpack)-hot-middleware/client-overlay.js 1.82 kB {0}
+  [610] (webpack)-hot-middleware/process-update.js 3.87 kB {0}
+  [632] delegated ./node_modules/angular2-universal-polyfills/browser.js from dll-reference vendor_3d6b1ff2e706ed474586 42 bytes {0} [not cacheable] [built]
+  [633] delegated ./node_modules/bootstrap/dist/js/npm.js from dll-reference vendor_3d6b1ff2e706ed474586 42 bytes {0} [not cacheable] [built]
+  [638] multi event-source-polyfill webpack-hot-middleware/client?path=%2F__webpack_hmr ./ClientApp/boot-client.ts 52 bytes {0}
+     + 626 hidden modules
+
+ERROR in ./ClientApp/app/components/finance/spendingoperation.component.ts
+Module not found: Error: Can't resolve './spendingoperation.component.html' in 'C:\FundTrack\FundTrack.WebUI\ClientApp\app\components\finance'
+ @ ./ClientApp/app/components/finance/spendingoperation.component.ts 245:18-63
+ @ ./ClientApp/app/finance.module.ts
+ @ ./ClientApp/app/app.module.ts
+ @ ./ClientApp/boot-client.ts
+ @ multi event-source-polyfill webpack-hot-middleware/client?path=%2F__webpack_hmr ./ClientApp/boot-client.ts (7bdafaa4)
+2017-10-26T14:23:05.8460138+03:00  [ERR] Hash: 5f7947e044eac53f3856
+Version: webpack 2.7.0
+Time: 6999ms
+                                   Asset      Size  Chunks                    Chunk Names
+                          main-client.js   4.86 MB       0  [emitted]  [big]  main-client
+    0.8c091d56ccaa7ea94319.hot-update.js   12.1 kB       0  [emitted]         main-client
+    8c091d56ccaa7ea94319.hot-update.json  43 bytes          [emitted]         
+                      main-client.js.map   6.41 MB       0  [emitted]         main-client
+0.8c091d56ccaa7ea94319.hot-update.js.map   19.9 kB       0  [emitted]         main-client
+chunk    {0} main-client.js, 0.8c091d56ccaa7ea94319.hot-update.js, main-client.js.map, 0.8c091d56ccaa7ea94319.hot-update.js.map (main-client) 4.72 MB [entry] [rendered]
+    [0] delegated ./node_modules/@angular/core/index.js from dll-reference vendor_3d6b1ff2e706ed474586 42 bytes {0} [not cacheable] [built]
+    [5] external "vendor_3d6b1ff2e706ed474586" 42 bytes {0} [not cacheable]
+   [11] delegated ./node_modules/angular2-universal/browser/index.js from dll-reference vendor_3d6b1ff2e706ed474586 42 bytes {0} [not cacheable] [built]
+  [118] delegated ./node_modules/webpack/buildin/module.js from dll-reference vendor_3d6b1ff2e706ed474586 42 bytes {0} [not cacheable] [built]
+  [221] ./ClientApp/boot-client.ts 1.3 kB {0} [built]
+  [222] (webpack)-hot-middleware/client.js?path=%2F__webpack_hmr 7.04 kB {0}
+  [223] delegated ./node_modules/event-source-polyfill/eventsource.js from dll-reference vendor_3d6b1ff2e706ed474586 42 bytes {0} [not cacheable] [built]
+  [241] ./ClientApp/app/app.module.ts 3.09 kB {0} [built]
+  [543] ./~/querystring-es3/index.js 127 bytes {0}
+  [556] ./~/strip-ansi/index.js 161 bytes {0}
+  [612] (webpack)-hot-middleware/client-overlay.js 1.82 kB {0}
+  [613] (webpack)-hot-middleware/process-update.js 3.87 kB {0}
+  [635] delegated ./node_modules/angular2-universal-polyfills/browser.js from dll-reference vendor_3d6b1ff2e706ed474586 42 bytes {0} [not cacheable] [built]
+  [636] delegated ./node_modules/bootstrap/dist/js/npm.js from dll-reference vendor_3d6b1ff2e706ed474586 42 bytes {0} [not cacheable] [built]
+  [641] multi event-source-polyfill webpack-hot-middleware/client?path=%2F__webpack_hmr ./ClientApp/boot-client.ts 52 bytes {0}
+     + 627 hidden modules
+
+ERROR in [at-loader] ./ClientApp/app/components/finance/spendingoperation.component.ts:84:17 
+    TS2346: Supplied parameters do not match any signature of call target. (c26fef6a)
+2017-10-26T14:54:50.7415674+03:00 0HL8SCBTGEMRH [ERR] FundTrack.BLL.Concrete.BusinessLogicException: Неможливо отримати інформацію для рахунку ---> System.NullReferenceException: Object reference not set to an instance of an object.
+   at FundTrack.BLL.Concrete.OrganizationAccountService.GetDonateCredentials(Int32 orgAccountId) in C:\FundTrack\FundTrack.BLL\Concrete\OrganizationAccountService.cs:line 354
+   --- End of inner exception stack trace ---
+   at FundTrack.BLL.Concrete.OrganizationAccountService.GetDonateCredentials(Int32 orgAccountId) in C:\FundTrack\FundTrack.BLL\Concrete\OrganizationAccountService.cs:line 365
+   at FundTrack.WebUI.Controllers.OrgAccountController.GetDonateCredentials(Int32 orgAccountId) in C:\FundTrack\FundTrack.WebUI\Controllers\OrgAccountController.cs:line 82
+   at lambda_method(Closure , Object , Object[] )
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.<InvokeActionMethodAsync>d__27.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.<InvokeNextActionFilterAsync>d__25.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Rethrow(ActionExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.<InvokeNextResourceFilter>d__22.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.<InvokeAsync>d__20.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.<Invoke>d__4.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.SpaServices.Webpack.ConditionalProxyMiddleware.<Invoke>d__5.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.SpaServices.Webpack.ConditionalProxyMiddleware.<Invoke>d__5.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware`1.<Invoke>d__18.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware`1.<Invoke>d__18.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.GetResult()
+   at FundTrack.WebUI.Middlewares.GlobalErrorHandlingMiddleware.<Invoke>d__4.MoveNext() in C:\FundTrack\FundTrack.WebUI\Middlewares\GlobalErrorHandlingMiddleware.cs:line 28 (c3021829)
+2017-10-26T15:18:37.8965147+03:00  [ERR] Hash: 7ad8647caa26375ec090
+Version: webpack 2.7.0
+Time: 8102ms
+                                   Asset      Size  Chunks                    Chunk Names
+                          main-client.js   4.86 MB       0  [emitted]  [big]  main-client
+    0.b4925b75ad9a949aa378.hot-update.js     28 kB       0  [emitted]         main-client
+    b4925b75ad9a949aa378.hot-update.json  43 bytes          [emitted]         
+                      main-client.js.map   6.41 MB       0  [emitted]         main-client
+0.b4925b75ad9a949aa378.hot-update.js.map   45.1 kB       0  [emitted]         main-client
+chunk    {0} main-client.js, 0.b4925b75ad9a949aa378.hot-update.js, main-client.js.map, 0.b4925b75ad9a949aa378.hot-update.js.map (main-client) 4.72 MB [entry] [rendered]
+    [0] delegated ./node_modules/@angular/core/index.js from dll-reference vendor_3d6b1ff2e706ed474586 42 bytes {0} [not cacheable] [built]
+    [5] external "vendor_3d6b1ff2e706ed474586" 42 bytes {0} [not cacheable]
+   [11] delegated ./node_modules/angular2-universal/browser/index.js from dll-reference vendor_3d6b1ff2e706ed474586 42 bytes {0} [not cacheable] [built]
+  [118] delegated ./node_modules/webpack/buildin/module.js from dll-reference vendor_3d6b1ff2e706ed474586 42 bytes {0} [not cacheable] [built]
+  [221] ./ClientApp/boot-client.ts 1.3 kB {0} [built]
+  [222] (webpack)-hot-middleware/client.js?path=%2F__webpack_hmr 7.04 kB {0}
+  [223] delegated ./node_modules/event-source-polyfill/eventsource.js from dll-reference vendor_3d6b1ff2e706ed474586 42 bytes {0} [not cacheable] [built]
+  [241] ./ClientApp/app/app.module.ts 3.09 kB {0} [built]
+  [543] ./~/querystring-es3/index.js 127 bytes {0}
+  [556] ./~/strip-ansi/index.js 161 bytes {0}
+  [612] (webpack)-hot-middleware/client-overlay.js 1.82 kB {0}
+  [613] (webpack)-hot-middleware/process-update.js 3.87 kB {0}
+  [635] delegated ./node_modules/angular2-universal-polyfills/browser.js from dll-reference vendor_3d6b1ff2e706ed474586 42 bytes {0} [not cacheable] [built]
+  [636] delegated ./node_modules/bootstrap/dist/js/npm.js from dll-reference vendor_3d6b1ff2e706ed474586 42 bytes {0} [not cacheable] [built]
+  [641] multi event-source-polyfill webpack-hot-middleware/client?path=%2F__webpack_hmr ./ClientApp/boot-client.ts 52 bytes {0}
+     + 627 hidden modules
+
+ERROR in [at-loader] ./ClientApp/app/components/finance/orgaccountoperation.component.ts:521:18 
+    TS2339: Property 'pushReverse' does not exist on type 'OrgAccountOperationComponent'. (1a8551e8)
+2017-10-26T16:03:47.1343647+03:00 0HL8SE7GMC6UK [ERR] An exception occurred in the database while iterating the results of a query.
+ (3b5ca34b)
+System.Data.SqlClient.SqlException: Timeout expired.  The timeout period elapsed prior to completion of the operation or the server is not responding.
+The request failed to run because the batch is aborted, this can be caused by abort signal sent from client, or another request is running in the same session, which makes the session busy. ---> System.ComponentModel.Win32Exception: The wait operation timed out
+   --- End of inner exception stack trace ---
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, String executeMethod, IReadOnlyDictionary`2 parameterValues, Boolean closeConnection)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteReader(IRelationalConnection connection, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable.Enumerator.BufferlessMoveNext(Boolean buffer)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](Func`2 operation, Func`2 verifySucceeded, TState state)
+   at Microsoft.EntityFrameworkCore.Query.QueryMethodProvider.<_ShapedQuery>d__3`1.MoveNext()
+   at System.Linq.Enumerable.SelectEnumerableIterator`2.MoveNext()
+   at System.Linq.Enumerable.Single[TSource](IEnumerable`1 source)
+   at lambda_method(Closure , TransparentIdentifier`2 )
+   at System.Linq.Enumerable.SelectEnumerableIterator`2.MoveNext()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ExceptionInterceptor`1.EnumeratorExceptionInterceptor.MoveNext()
+   at System.Linq.Enumerable.<SkipIterator>d__173`1.MoveNext()
+   at System.Linq.Enumerable.<TakeIterator>d__199`1.MoveNext()
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.SerializeList(JsonWriter writer, IEnumerable values, JsonArrayContract contract, JsonProperty member, JsonContainerContract collectionContract, JsonProperty containerProperty)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.Serialize(JsonWriter jsonWriter, Object value, Type objectType)
+ClientConnectionId:d9c53e0a-7217-4d28-84b6-3014863de317
+Error Number:-2,State:0,Class:11
+2017-10-26T16:03:47.7626271+03:00 0HL8SE7GMC6UK [ERR] Connection id ""0HL8SE7GKQG22"": An unhandled exception was thrown by the application. (8c14976b)
+System.InvalidOperationException: Headers are read-only, response has already started.
+   at Microsoft.AspNetCore.Server.Kestrel.Internal.Http.FrameHeaders.ThrowHeadersReadOnlyException()
+   at Microsoft.AspNetCore.Server.Kestrel.Internal.Http.FrameHeaders.Microsoft.AspNetCore.Http.IHeaderDictionary.set_Item(String key, StringValues value)
+   at Microsoft.AspNetCore.Http.Internal.DefaultHttpResponse.set_ContentType(String value)
+   at FundTrack.WebUI.Middlewares.GlobalErrorHandlingMiddleware.<Invoke>d__4.MoveNext() in C:\FundTrack\FundTrack.WebUI\Middlewares\GlobalErrorHandlingMiddleware.cs:line 32
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Server.IISIntegration.IISMiddleware.<Invoke>d__8.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Hosting.Internal.RequestServicesContainerMiddleware.<Invoke>d__3.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Server.Kestrel.Internal.Http.Frame`1.<RequestProcessingAsync>d__2.MoveNext()
+2017-10-26T16:31:06.2167212+03:00 0HL8SEMOP2SM9 [ERR] Connection id ""0HL8SEMONT3D2"": An unhandled exception was thrown by the application. (8c14976b)
+System.InvalidOperationException: Response Content-Length mismatch: too few bytes written (6421878 of 6421882).
+2017-10-26T16:48:31.4185921+03:00 0HL8SF0E71NPL [ERR] An exception occurred in the database while iterating the results of a query.
+ (3b5ca34b)
+System.Data.SqlClient.SqlException: A transport-level error has occurred when receiving results from the server. (provider: Session Provider, error: 19 - Physical connection is not usable)
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParserStateObject.ReadSniError(TdsParserStateObject stateObj, UInt32 error)
+   at System.Data.SqlClient.TdsParserStateObject.ReadSniSyncOverAsync()
+   at System.Data.SqlClient.TdsParserStateObject.TryReadNetworkPacket()
+   at System.Data.SqlClient.TdsParserStateObject.TryPrepareBuffer()
+   at System.Data.SqlClient.TdsParserStateObject.TryReadByte(Byte& value)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, String executeMethod, IReadOnlyDictionary`2 parameterValues, Boolean closeConnection)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteReader(IRelationalConnection connection, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable.Enumerator.BufferlessMoveNext(Boolean buffer)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](Func`2 operation, Func`2 verifySucceeded, TState state)
+   at Microsoft.EntityFrameworkCore.Query.QueryMethodProvider.<_ShapedQuery>d__3`1.MoveNext()
+   at Microsoft.EntityFrameworkCore.Query.QueryMethodProvider.<_Include>d__30`1.MoveNext()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.<_TrackEntities>d__15`2.MoveNext()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ExceptionInterceptor`1.EnumeratorExceptionInterceptor.MoveNext()
+   at System.Linq.Enumerable.WhereSelectEnumerableIterator`2.MoveNext()
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.SerializeList(JsonWriter writer, IEnumerable values, JsonArrayContract contract, JsonProperty member, JsonContainerContract collectionContract, JsonProperty containerProperty)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.Serialize(JsonWriter jsonWriter, Object value, Type objectType)
+ClientConnectionId:9237ccaa-e05b-423b-b783-4a92c52dfdc8
+Error Number:-1,State:0,Class:20
+2017-10-26T16:48:31.4371406+03:00 0HL8SF0E71NPL [ERR] Connection id ""0HL8SF0E5QNB2"": An unhandled exception was thrown by the application. (8c14976b)
+System.InvalidOperationException: Headers are read-only, response has already started.
+   at Microsoft.AspNetCore.Server.Kestrel.Internal.Http.FrameHeaders.ThrowHeadersReadOnlyException()
+   at Microsoft.AspNetCore.Server.Kestrel.Internal.Http.FrameHeaders.Microsoft.AspNetCore.Http.IHeaderDictionary.set_Item(String key, StringValues value)
+   at Microsoft.AspNetCore.Http.Internal.DefaultHttpResponse.set_ContentType(String value)
+   at FundTrack.WebUI.Middlewares.GlobalErrorHandlingMiddleware.<Invoke>d__4.MoveNext() in C:\FundTrack\FundTrack.WebUI\Middlewares\GlobalErrorHandlingMiddleware.cs:line 32
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Server.IISIntegration.IISMiddleware.<Invoke>d__8.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Hosting.Internal.RequestServicesContainerMiddleware.<Invoke>d__3.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Server.Kestrel.Internal.Http.Frame`1.<RequestProcessingAsync>d__2.MoveNext()
+2017-10-26T16:52:10.1786859+03:00 0HL8SF24Q0OKO [ERR] An exception occurred in the database while iterating the results of a query.
+ (3b5ca34b)
+System.Data.SqlClient.SqlException: A transport-level error has occurred when receiving results from the server. (provider: Session Provider, error: 19 - Physical connection is not usable)
+   at System.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at System.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at System.Data.SqlClient.TdsParserStateObject.ReadSniError(TdsParserStateObject stateObj, UInt32 error)
+   at System.Data.SqlClient.TdsParserStateObject.ReadSniSyncOverAsync()
+   at System.Data.SqlClient.TdsParserStateObject.TryReadNetworkPacket()
+   at System.Data.SqlClient.TdsParserStateObject.TryPrepareBuffer()
+   at System.Data.SqlClient.TdsParserStateObject.TryReadByte(Byte& value)
+   at System.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at System.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at System.Data.SqlClient.SqlDataReader.get_MetaData()
+   at System.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString)
+   at System.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean async, Int32 timeout, Task& task, Boolean asyncWrite, SqlDataReader ds)
+   at System.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.Execute(IRelationalConnection connection, String executeMethod, IReadOnlyDictionary`2 parameterValues, Boolean closeConnection)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.RelationalCommand.ExecuteReader(IRelationalConnection connection, IReadOnlyDictionary`2 parameterValues)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryingEnumerable.Enumerator.BufferlessMoveNext(Boolean buffer)
+   at Microsoft.EntityFrameworkCore.Storage.Internal.SqlServerExecutionStrategy.Execute[TState,TResult](Func`2 operation, Func`2 verifySucceeded, TState state)
+   at Microsoft.EntityFrameworkCore.Query.QueryMethodProvider.<_ShapedQuery>d__3`1.MoveNext()
+   at System.Linq.Enumerable.SelectEnumerableIterator`2.MoveNext()
+   at Microsoft.EntityFrameworkCore.Query.Internal.LinqOperatorProvider.ExceptionInterceptor`1.EnumeratorExceptionInterceptor.MoveNext()
+   at System.Linq.Enumerable.<SkipIterator>d__173`1.MoveNext()
+   at System.Linq.Enumerable.<TakeIterator>d__199`1.MoveNext()
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.SerializeList(JsonWriter writer, IEnumerable values, JsonArrayContract contract, JsonProperty member, JsonContainerContract collectionContract, JsonProperty containerProperty)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.Serialize(JsonWriter jsonWriter, Object value, Type objectType)
+ClientConnectionId:a0026b21-982f-4802-80bb-7c42608478b3
+Error Number:-1,State:0,Class:20
+2017-10-26T16:52:10.1987384+03:00 0HL8SF24Q0OKO [ERR] Connection id ""0HL8SF24O7CLV"": An unhandled exception was thrown by the application. (8c14976b)
+System.InvalidOperationException: Headers are read-only, response has already started.
+   at Microsoft.AspNetCore.Server.Kestrel.Internal.Http.FrameHeaders.ThrowHeadersReadOnlyException()
+   at Microsoft.AspNetCore.Server.Kestrel.Internal.Http.FrameHeaders.Microsoft.AspNetCore.Http.IHeaderDictionary.set_Item(String key, StringValues value)
+   at Microsoft.AspNetCore.Http.Internal.DefaultHttpResponse.set_ContentType(String value)
+   at FundTrack.WebUI.Middlewares.GlobalErrorHandlingMiddleware.<Invoke>d__4.MoveNext() in C:\FundTrack\FundTrack.WebUI\Middlewares\GlobalErrorHandlingMiddleware.cs:line 32
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Server.IISIntegration.IISMiddleware.<Invoke>d__8.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Hosting.Internal.RequestServicesContainerMiddleware.<Invoke>d__3.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Server.Kestrel.Internal.Http.Frame`1.<RequestProcessingAsync>d__2.MoveNext()
