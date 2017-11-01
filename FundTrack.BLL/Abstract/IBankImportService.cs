@@ -36,7 +36,6 @@ namespace FundTrack.BLL.Abstract
         /// <returns></returns>
         int GetCountExtracts(string card);
 
-<<<<<<<<< Temporary merge branch 1
         Task ImportFromPrivat(int orgAccountId);
 
         DateTime GetLastPrivatUpdate(int orgId);
