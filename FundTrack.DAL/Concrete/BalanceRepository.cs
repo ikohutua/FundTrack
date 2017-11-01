@@ -30,6 +30,11 @@ namespace FundTrack.DAL.Concrete
             return result.Entity;
         }
 
+        public IQueryable<Balance> GetAllBalances()
+        {
+            return _context.Balances;
+        }
+
         public IEnumerable<Balance> GetAllBalancesByAccountId(int accountId)
         {
             return _context.Balances.Where(x => x.OrgAccountId == accountId);

@@ -42,7 +42,6 @@ export class ReportComponent implements OnInit, OnDestroy {
     @ViewChild("dateCompareExceptionModal")
     private dateCompareExceptionModal: ModalComponent;
     
-
     @ViewChild("exceptionModal")
     private exceptionModal: ModalComponent;
 

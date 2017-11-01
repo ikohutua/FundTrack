@@ -78,7 +78,33 @@ namespace FundTrack.DAL.Concrete
             var finOps = this._context.FinOps
                 .Include(a => a.OrgAccountFrom)
                 .Include(a => a.OrgAccountTo)
-                .Where(a => a.AccFromId.HasValue ? a.AccFromId == orgAccountId : a.AccToId == orgAccountId);
+                .Where(a => a.AccFromId == orgAccountId || a.AccToId == orgAccountId);
+            return finOps;
+        }
+
+        public IQueryable<FinOp> GetFinOpByOrgAccountIdForPage(int orgAccountId, int currentPage, int itemsPerPage)
+        {
+            var finOps =  this._context.FinOps
+                .Include(a => a.OrgAccountFrom)
+                .Include(a => a.OrgAccountTo)
+                .OrderByDescending(a => a.Id)
+                .Where(a => a.AccFromId == orgAccountId || a.AccToId == orgAccountId)
+                .Skip((currentPage - 1) * itemsPerPage)
+                .Take(itemsPerPage);
+            return finOps;
+        }
+
+
+        public IQueryable<FinOp> GetFinOpByOrgAccountIdForPageByCritery(int orgAccountId, int currentPage, int itemsPerPage, int finOpType)
+        {
+            var finOps = this._context.FinOps
+                .Include(a => a.OrgAccountFrom)
+                .Include(a => a.OrgAccountTo)
+                .OrderByDescending(a => a.Id)
+                .Where(a => (a.AccFromId == orgAccountId || a.AccToId == orgAccountId)
+                    && (a.FinOpType == finOpType))
+                .Skip((currentPage - 1) * itemsPerPage)
+                .Take(itemsPerPage);
             return finOps;
         }
     }

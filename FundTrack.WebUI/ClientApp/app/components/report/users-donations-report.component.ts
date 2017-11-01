@@ -112,12 +112,10 @@ export class UsersDonationsReportComponent implements OnInit {
 
     generateSimpleReport() {
         if (!this.isRequestDataValid()) {
-            alert(commonMessages.invalidDate);
+            this.showErrorMessage(commonMessages.invalidDate);
             return;
         }
         this.isGettingDataStarted = true;
-
-
         this._service.getCountOfUsersDonationsReportItems(this.reportModel)
             .subscribe(res => {
                 this.totalReportItemsCount = res;
@@ -160,11 +158,12 @@ export class UsersDonationsReportComponent implements OnInit {
     }
 
     isRequestDataValid(): boolean {
-
         this.reportModel.dateFrom = new Date(this.datePipe.transform(this.reportModel.dateFrom));
         this.reportModel.dateTo = new Date(this.datePipe.transform(this.reportModel.dateTo));
-
-        return this.reportModel.id > 0 && (this.reportModel.dateTo <= this.inputMaxDate && this.reportModel.dateTo >= this.reportModel.dateFrom) && this.reportModel.dateFrom <= this.reportModel.dateTo;
+        return this.reportModel.id > 0
+            && (this.reportModel.dateTo <= this.inputMaxDate
+                && this.reportModel.dateTo >= this.reportModel.dateFrom)
+            && this.reportModel.dateFrom <= this.reportModel.dateTo;
     }
     prepareDate(date: Date): string {
         return this.datePipe.transform(date, 'yyyy-MM-dd')

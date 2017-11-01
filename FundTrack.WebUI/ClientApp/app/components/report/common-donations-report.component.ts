@@ -113,8 +113,6 @@ export class CommonDonationsReportComponent implements OnInit {
         this._service.getAllTargetsOfOrganization(this.reportModel.id)
             .subscribe(res => {
                 this.targetsOfOrganization = res;
-                console.log(res);
-
             }, error => {
                 this.showErrorMessage(error);
             });
@@ -127,7 +125,6 @@ export class CommonDonationsReportComponent implements OnInit {
 
     showChartByTarget(targetId: number) {
         this.selectedTargetId = targetId;
-        console.log(targetId);
         this.UpdateDonationValueReportForChart();
         this.showChart();
     }
@@ -136,7 +133,6 @@ export class CommonDonationsReportComponent implements OnInit {
         this.isChartUpdatingNow = true;
         this._service.DonationsValueReportPerDay(this.reportModel, this.selectedTargetId)
             .subscribe(res => {
-                console.log(res);
                 this.setNewDataForLineChart(res);
                 this.isChartUpdatingNow = false;
             }, error => {
@@ -147,13 +143,11 @@ export class CommonDonationsReportComponent implements OnInit {
 
 
     setNewDataForLineChart(list: DataSetViewModel[]) {
-        debugger;
         this.dataSet = [];
 
         let name = this.selectedTargetId == -1
             ? "По всіх призначеннях"
             : _.find(this.targetsOfOrganization, t => t.targetId == this.selectedTargetId).name;
-        console.log(name);
 
         let series: DataSetViewModel[]=[];
 
@@ -163,7 +157,6 @@ export class CommonDonationsReportComponent implements OnInit {
                 value: item.value
             })
         });
-        console.log(series);
 
         this.dataSet = [{
             "name": name,

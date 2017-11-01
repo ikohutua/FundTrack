@@ -47,9 +47,14 @@ namespace FundTrack.DAL.Concrete
         /// Gets the bank imports detail.
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<BankImportDetail> GetBankImportsDetail()
+        public IQueryable<BankImportDetail> GetBankImportsDetail()
         {
             return this._context.BankImportDetails;
+        }
+
+        public IQueryable<BankImportDetail> GetNotLookedBankImportsDetail()
+        {
+            return this._context.BankImportDetails.Where(import => import.IsLooked == false);
         }
 
         /// <summary>

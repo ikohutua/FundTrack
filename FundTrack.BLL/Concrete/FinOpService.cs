@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using Org.BouncyCastle.Bcpg;
 using FundTrack.Infrastructure;
+using FundTrack.Infrastructure.ViewModel.SuperAdminViewModels;
 
 namespace FundTrack.BLL.Concrete
 {
@@ -35,32 +36,20 @@ namespace FundTrack.BLL.Concrete
             try
             {
                 var bankImportDetail = _unitOfWork.BankImportDetailRepository.GetById(finOpModel.BankImportId);
-                var finOp = new FinOp
+                var finOp = ConvertFinOpFromBankViewModelToFinOpViewModel(finOpModel);
+
+                switch(finOp.FinOpType)
                 {
-                    TargetId = finOpModel.TargetId,
-                    Amount = finOpModel.AbsoluteAmount,
-                    Description = finOpModel.Description,
-                    FinOpDate = bankImportDetail.Trandate
-                };
-                OrgAccount orgAccFrom = new OrgAccount();
-                OrgAccount orgAccTo = new OrgAccount();
-                if (finOpModel.CardFromId != null)
-                {
-                    orgAccFrom = _unitOfWork.OrganizationAccountRepository.GetOrgAccountById((int)finOpModel.CardFromId);
-                    finOp.AccFromId = orgAccFrom.Id;
-                    finOp.FinOpType = Constants.FinOpTypeSpending;
-                    orgAccFrom.CurrentBalance += finOpModel.Amount;
-                    _unitOfWork.OrganizationAccountRepository.Edit(orgAccFrom);
+                    case Constants.FinOpTypeSpending:
+                        CreateSpending(finOp);
+                        break;
+                    case Constants.FinOpTypeIncome:
+                        CreateIncome(finOp);
+                        break;
+                    case Constants.FinOpTypeTransfer:
+                        CreateTransfer(finOp);
+                        break;
                 }
-                if (finOpModel.CardToId != null)
-                {
-                    orgAccTo = _unitOfWork.OrganizationAccountRepository.GetOrgAccountById((int)finOpModel.CardToId);
-                    finOp.AccToId = orgAccTo.Id;
-                    orgAccTo.CurrentBalance += finOpModel.Amount;
-                    finOp.FinOpType = Constants.FinOpTypeIncome;
-                    _unitOfWork.OrganizationAccountRepository.Edit(orgAccTo);
-                }
-                _unitOfWork.FinOpRepository.Create(finOp);
                 bankImportDetail.IsLooked = true;
                 _unitOfWork.BankImportDetailRepository.ChangeBankImportState(bankImportDetail);
                 _unitOfWork.SaveChanges();
@@ -70,6 +59,23 @@ namespace FundTrack.BLL.Concrete
             {
                 throw new BusinessLogicException(ex.Message, ex);
             }
+        }
+
+        private FinOpViewModel ConvertFinOpFromBankViewModelToFinOpViewModel(FinOpFromBankViewModel finOpModel)
+        {
+            var finOp = new FinOpViewModel
+            {
+                Amount = finOpModel.Amount,
+                CardFromId = finOpModel.CardFromId.GetValueOrDefault(0),
+                CardToId = finOpModel.CardToId.GetValueOrDefault(0),
+                Description = finOpModel.Description,
+                Date = finOpModel.FinOpDate,
+                FinOpType = finOpModel.FinOpType,
+                UserId = finOpModel.UserId,
+                OrgId = finOpModel.OrgId,
+                TargetId = finOpModel.TargetId
+            };
+            return finOp;
         }
 
         private void FinOpInputDataValidation(FinOpViewModel finOpModel)
@@ -184,29 +190,108 @@ namespace FundTrack.BLL.Concrete
         {
             try
             {
-                var finOps = _unitOfWork.FinOpRepository.GetFinOpByOrgAccount(orgAccountId)
-                    .OrderByDescending(f => f.Id)
-                    .Select(f => new FinOpViewModel
-                    {
-                        Id = f.Id,
-                        CardFromId = f.AccFromId.GetValueOrDefault(0),
-                        CardToId = f.AccToId.GetValueOrDefault(0),
-                        Date = f.FinOpDate,
-                        Description = f.Description,
-                        Amount = f.Amount,
-                        TargetId = f.TargetId,
-                        Target = f.Target.TargetName,
-                        FinOpType = f.FinOpType,
-                        IsEditable = true,
-                        DonationId = f.DonationId
-                    });
-                return finOps;
+                var finOps = _unitOfWork.FinOpRepository.GetFinOpByOrgAccount(orgAccountId);
+                return InitializeFinOps(finOps);
             }
             catch (Exception ex)
             {
                 throw new BusinessLogicException(ErrorMessages.EmptyFinOpList, ex);
             }
         }
+
+        public IEnumerable<FinOpViewModel> GetFinOpByOrgAccountIdForPage(int orgAccountId, int currentPage, int itemsPerPage, int finOpType)
+        {
+            try
+            {
+                if (finOpType == Constants.AnyFinOpType)
+                {
+                    var finOps = _unitOfWork.FinOpRepository.GetFinOpByOrgAccountIdForPage(orgAccountId, currentPage, itemsPerPage);
+                    return InitializeFinOps(finOps);
+                }
+                else
+                {
+                    var finOps = _unitOfWork.FinOpRepository.GetFinOpByOrgAccountIdForPageByCritery(orgAccountId, currentPage, itemsPerPage, finOpType);
+                    return InitializeFinOps(finOps);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new BusinessLogicException(ErrorMessages.EmptyFinOpList, ex);
+            }
+        }
+
+        private IEnumerable<FinOpViewModel> InitializeFinOps(IQueryable<FinOp> finOps)
+        {
+            try
+            {
+                var finOpList = finOps.Select(f => new FinOpViewModel
+                {
+                    Id = f.Id,
+                    CardFromId = f.AccFromId.GetValueOrDefault(0),
+                    CardToId = f.AccToId.GetValueOrDefault(0),
+                    Date = f.FinOpDate,
+                    Description = f.Description,
+                    Amount = f.Amount,
+                    TargetId = f.TargetId,
+                    Target = f.Target.TargetName,
+                    FinOpType = f.FinOpType,
+                    DonationId = f.DonationId
+                }).OrderByDescending(i => i.Id).ToList();
+
+                return SetIsEditableField(finOpList);
+            }
+            catch (Exception ex)
+            {
+                throw new BusinessLogicException(ErrorMessages.EmptyFinOpList, ex);
+            }
+        }
+
+        public IEnumerable<FinOpViewModel> SetIsEditableField(IEnumerable<FinOpViewModel> finOps)
+        {
+            var balances = _unitOfWork.BalanceRepository.GetAllBalances().ToList();
+            foreach (var f in finOps)
+            {
+                f.IsEditable = true;
+                if (f.CardFromId > 0)
+                {
+                    var balanceDate = balances.Where(balance => balance.OrgAccountId == f.CardFromId).Last().BalanceDate;
+                    if (f.Date <= balanceDate)
+                    {
+                        f.IsEditable = false;
+                    }
+                }
+                else if (f.CardToId > 0)
+                {
+                    var balanceDate = balances.Where(balance => balance.OrgAccountId == f.CardToId).Last().BalanceDate;
+                    if (f.Date <= balanceDate)
+                    {
+                        f.IsEditable = false;
+                    }
+                }
+            }
+            return finOps;
+        }
+
+        public IEnumerable<int> GetFinOpInitData(int accountId)
+        {
+            try
+            {
+                var finOp = _unitOfWork.FinOpRepository.GetFinOpByOrgAccount(accountId);
+                List<int> TotalItemsForFinOpType = new List<int>
+                {
+                    finOp.Count(),
+                    finOp.Where(f => f.FinOpType == Constants.FinOpTypeSpending).Count(),
+                    finOp.Where(f => f.FinOpType == Constants.FinOpTypeIncome).Count(),
+                    finOp.Where(f => f.FinOpType == Constants.FinOpTypeTransfer).Count()
+                };
+                return TotalItemsForFinOpType;
+            }
+            catch (Exception ex)
+            {
+                throw new BusinessLogicException(ErrorMessages.GetOrganizationAccount, ex);
+            }
+        }
+
         /// <Summary>
         /// Gets the fin ops by id.
         /// </Summary>
@@ -272,13 +357,25 @@ namespace FundTrack.BLL.Concrete
 
                     }
                 }
+                if (finOpModel.FinOpType == Constants.FinOpTypeTransfer)
+                {
+                    if (finOp.FinOpType == Constants.FinOpTypeSpending )
+                    {
+                        Windtrhaw(finOpModel, finOp);
+                    }
 
-                finOp.Amount = finOpModel.Amount;
+                    if (finOp.FinOpType == Constants.FinOpTypeIncome)
+                    {
+                        Deposite(finOpModel, finOp);
+                    }
+                }
+
                 finOp.Description = finOpModel.Description;
                 finOp.TargetId = finOpModel.TargetId;
                 finOp.FinOpDate = finOpModel.Date;
                 finOp.UserId = finOpModel.UserId;
                 finOp.DonationId = finOpModel.DonationId;
+                finOp.Amount = finOpModel.Amount;
                 _unitOfWork.FinOpRepository.Update(finOp);
                 _unitOfWork.SaveChanges();
                 return finOpModel;
@@ -302,7 +399,25 @@ namespace FundTrack.BLL.Concrete
             orgAccTo.CurrentBalance += finOpModel.Amount - originalAmount;
             _unitOfWork.OrganizationAccountRepository.Edit(orgAccTo);
         }
-        
+
+        public void Windtrhaw(FinOpViewModel finOpModel, FinOp finOp)
+        {
+            var orgAccTo = _unitOfWork.OrganizationAccountRepository.GetOrgAccountById(finOpModel.CardToId);
+            orgAccTo.CurrentBalance += finOpModel.Amount;
+            finOp.FinOpType = finOpModel.FinOpType;
+            finOp.AccToId = finOpModel.CardToId;
+            _unitOfWork.OrganizationAccountRepository.Edit(orgAccTo);
+        }
+
+        public void Deposite(FinOpViewModel finOpModel, FinOp finOp)
+        {
+            var orgAccFrom = _unitOfWork.OrganizationAccountRepository.GetOrgAccountById(finOpModel.CardFromId);
+            orgAccFrom.CurrentBalance -= finOpModel.Amount;
+            finOp.FinOpType = finOpModel.FinOpType;
+            finOp.AccToId = finOpModel.CardToId;
+            _unitOfWork.OrganizationAccountRepository.Edit(orgAccFrom);
+        }
+
         public IEnumerable<FinOpViewModel> GetAllFinOpsByOrgId(int orgId)
         {
             try

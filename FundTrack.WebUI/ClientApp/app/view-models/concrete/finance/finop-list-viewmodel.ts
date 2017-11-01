@@ -5,7 +5,7 @@
     finOpName: string;
     cardFromId: number;
     cardToId: number;
-    date: string;
+    date: Date;
     description: string;
     amount: number;
     target: string;

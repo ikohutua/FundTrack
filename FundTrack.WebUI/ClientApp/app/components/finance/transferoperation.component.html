@@ -1,0 +1,75 @@
+﻿<div class="well container-fluid">
+    <form class="form-horizontal" [formGroup]="moneyTransferForm" novalidate>
+        <fieldset>
+            <legend>Додати переміщення</legend>
+
+            <button class="btn btn-success" (click)="navigateBack()"><span class="glyphicon glyphicon-arrow-left"></span> Назад</button>
+            <div class="form-group">
+                <label class="col-md-4 control-label">Назва рахунку</label>
+                <div class="col-md-4">
+                    <input class="form-control"
+                           type="text"
+                           readonly
+                           placeholder={{currentAccount.orgAccountName}}
+                           name="cardFromId" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label">Назва рахунку одержувача<sup class="sup-color-red">*</sup></label>
+                <div class="col-md-4">
+                    <select [(ngModel)]="moneyOperationModel.cardToId" formControlName="cardToId" id="categoryType" class="form-control">
+                        <option *ngFor="let account of cashAccountsTo" value="{{account.id}}">
+                            {{account.orgAccountName}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label">Сума<sup class="sup-color-red">*</sup></label>
+                <div class="col-md-4">
+                    <input class="form-control"
+                           type="text"
+                           placeholder="Сума"
+                           name="amount"
+                           formControlName="amount"
+                           [(ngModel)]="moneyOperationModel.amount"
+                           required="" />
+                    <span *ngIf="formTransferErrors.amount" class="has-error help-block error-message">
+                        {{ formTransferErrors.amount }}
+                    </span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label">Опис</label>
+                <div class="col-md-4">
+                    <textarea class="form-control"
+                              placeholder="Опис"
+                              name="description"
+                              maxlength="500"
+                              formControlName="description"
+                              [(ngModel)]="moneyOperationModel.description"></textarea>
+                    <span *ngIf="formTransferErrors.description" class="has-error help-block error-message">
+                        {{ formTransferErrors.description }}
+                    </span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label">Дата<sup class="sup-color-red">*</sup></label>
+                <div class="col-md-4">
+                    <input type="date"
+                           class="input-sm form-control no-spin"
+                           formControlName="date"
+                           #dateTransfer (input)="setDate(moneyOperationModel,dateTransfer.value)"
+                           [value]="moneyOperationModel.date | date:'yyyy-MM-dd'"
+                           min="{{minDate}}"
+                           max="{{currentDate}}" />
+
+                </div>
+            </div>
+            <div class="col-md-1 col-md-offset-7">
+                <button class="btn btn-default pull-right" (click)="makeTransfer()" [disabled]="moneyTransferForm.invalid">Здійснити операцію</button>
+            </div>
+            <div id="snackbar">Операцію здійснено</div>
+        </fieldset>
+    </form>
+</div>

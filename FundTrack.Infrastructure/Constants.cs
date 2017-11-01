@@ -15,5 +15,6 @@ namespace FundTrack.Infrastructure
         public const string BaseTargetName = "Базове призначення";
 
         public const string Anonymous = "<Анонімний>";
+        public const int AnyFinOpType = -1;
     }
 }

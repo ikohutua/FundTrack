@@ -14,6 +14,9 @@ import { BankImportComponent } from "./components/finance/bank-import.component"
 import { MakeDonationComponent } from "./components/finance/donate-money.component";
 import { FinOpService } from "./services/concrete/finance/finOp.service";
 import { OrgAccountExtractsComponent } from "./components/finance/org-account-extracts.component";
+import { IncomeOperationComponent } from "./components/finance/incomeoperation.component";
+import { SpendingOperationComponent } from "./components/finance/spendingoperation.component";
+import { TransferOperationComponent } from "./components/finance/transferoperation.component";
 import { FixingBalanceComponent } from "./components/finance/fixing-balance.component";
 import { MyDonationsComponent } from "./components/finance/my-donations.component";
 import { DonateService } from "./services/concrete/finance/donate-money.service";
@@ -30,7 +33,10 @@ import { DonateService } from "./services/concrete/finance/donate-money.service"
         BankImportComponent,    
         MakeDonationComponent,
         FixingBalanceComponent,
-        MyDonationsComponent
+        MyDonationsComponent,
+        IncomeOperationComponent,
+        SpendingOperationComponent,
+        TransferOperationComponent
     ],
     imports: [
         CommonModule,

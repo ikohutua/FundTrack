@@ -40,6 +40,21 @@ namespace FundTrack.DAL.Abstract
         /// </summary>
         /// <param name="orgAccountId">The org account identifier.</param>
         /// <returns></returns>
-        IQueryable<FinOp> GetFinOpByOrgAccount(int orgAccountId); 
+        IQueryable<FinOp> GetFinOpByOrgAccount(int orgAccountId);
+
+        /// <summary>
+        /// Gets the amount of fin operation for the page by the organization ID
+        /// </summary>
+        /// <param name="organizationId">The organization identifier.</param>
+        /// <returns> IEnumerable<Event> </returns>
+        IQueryable<FinOp> GetFinOpByOrgAccountIdForPage(int orgAccountId, int currentPage, int itemsPerPage);
+
+        /// <summary>
+        /// Gets the amount of fin operations for the page by the organization ID and finOpType
+        /// Join with event images
+        /// </summary>
+        /// <param name="organizationId">The organization identifier.</param>
+        /// <returns> IEnumerable<Event> </returns>
+        IQueryable<FinOp> GetFinOpByOrgAccountIdForPageByCritery(int orgAccountId, int currentPage, int itemsPerPage, int finOpType);
     }
 }

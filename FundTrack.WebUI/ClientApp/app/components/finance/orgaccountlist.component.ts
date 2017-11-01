@@ -11,7 +11,7 @@ import * as constant from '../../shared/default-configuration.storage';
 @Component({
     selector: 'orgaccountlist',
     templateUrl: './orgaccountlist.component.html',
-    styleUrls: ['./orgaccountlist.component.css']
+    styleUrls: ['./orgaccountlist.component.css'],
 })
 export class OrgAccountListComponent implements OnInit {
     //Property that keeps an array of organization account

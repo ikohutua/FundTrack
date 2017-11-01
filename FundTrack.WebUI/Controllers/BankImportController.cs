@@ -4,6 +4,7 @@ using FundTrack.Infrastructure.ViewModel;
 using FundTrack.Infrastructure.ViewModel.FinanceViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc.TagHelpers;
 
@@ -124,6 +125,17 @@ namespace FundTrack.WebUI.Controllers
             {
                 throw new  Exception(ex.Message, ex);
             }
+        }
+
+        [HttpGet("SuggestedImports/{amount}/{date}")]
+        [Authorize(Roles = "admin, moderator")]
+        public IActionResult GetAllSuggestedBankImports(decimal amount, DateTime date)
+        {
+            if (amount == 0)
+            {
+                return BadRequest();
+            }
+            return Ok(_service.getAllSuggestedBankImports(amount,date));
         }
     }
 }

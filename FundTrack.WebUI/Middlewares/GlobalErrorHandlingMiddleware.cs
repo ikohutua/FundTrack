@@ -4,6 +4,7 @@ using Newtonsoft.Json.Serialization;
 using System;
 using System.Threading.Tasks;
 using FundTrack.WebUI.Middlewares.Logging;
+using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.DataProtection;
 using System.Text;
@@ -16,11 +17,13 @@ namespace FundTrack.WebUI.Middlewares
     {
         private readonly RequestDelegate _next;
         private readonly IErrorLogger _logging;
+        private readonly ILogger<GlobalErrorHandlingMiddleware> _logger;
 
-        public GlobalErrorHandlingMiddleware(RequestDelegate next, IErrorLogger logging)
+        public GlobalErrorHandlingMiddleware(RequestDelegate next, IErrorLogger logging, ILogger<GlobalErrorHandlingMiddleware> logger)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
         {
             _next = next;
             _logging = logging;
+            _logger = logger;
         }
 
         public async Task Invoke(HttpContext context)
