@@ -11,9 +11,11 @@
     margin-top: 10px;
     padding-right: 10px;
 }
+
 .marginLeft {
     margin-left: 10px
 }
+
 .maindiv {
     background-image: url("https://privat24.privatbank.ua/p24/img/concrete_wall_3.png");
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -135,6 +137,19 @@ td {
     position: relative;
     padding: 0;
 }
+
+    .grid-divider > [class*='col-'] {
+        position: static;
+    }
+
+        .grid-divider > [class*='col-']:nth-child(n+2):before {
+            content: "";
+            border-left: 1px solid #DDD;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+        }
+
 .col-padding {
     padding: 0 15px;
 }
@@ -175,12 +190,6 @@ td {
     color: #5b9b21;
 }
 
-#for-select-item {
-    font-size: large;
-    color: black;
-    text-align: center;
-}
-
 #suggestedToast {
     visibility: hidden; /* Hidden by default. Visible on click */
     min-width: 250px; /* Set a default minimum width */
@@ -196,7 +205,7 @@ td {
     top: 250px; /* 30px from the bottom */
 }
 
-/* Show the snackbar when clicking on a button (class added with JavaScript) */
+    /* Show the snackbar when clicking on a button (class added with JavaScript) */
     #suggestedToast.show {
         visibility: visible; /* Show the snackbar */
         /* Add animation: Take 0.5 seconds to fade in and out the snackbar. 
@@ -285,4 +294,8 @@ However, delay the fade out process for 2.5 seconds */
     padding: 15px 10px 15px 20px;
     width: 100%;
     align-items: center;
+}
+
+.emptyDiv {
+    padding: 20px;
 }

@@ -155,7 +155,6 @@ export class OrgAccountOperationComponent implements OnChanges {
         this.getCurrentOrgAccount();
         this.getFinOpInitData();
         this.getOrgTargetsAndBaseTargets();
-        this.getMinDate();
     }
 
     ngOnInit(): void {
@@ -216,46 +215,6 @@ export class OrgAccountOperationComponent implements OnChanges {
             this.getFinOpsPerPageByOrganizationId(this.currentPage, this.itemPerPage);
         });
     }
-//-------------------------------------------------------------------------------------------------------------------
-
-    private itemsPerPageChange(amount: number): void {
-        debugger;
-        this.finOpService.getFinOpByOrgAccountIdForPage(this.accountId, 1, amount, this.currentFinOpType).subscribe(
-            finOps => {
-                this.offset = 0;
-                this.finOps = finOps;
-                this.setFinOperations();
-                this.itemPerPage = amount;
-            });
-    }
-
-    private onFinOpTypeChange(finOpType: number): void {
-        this.finOpService.getFinOpByOrgAccountIdForPage(this.accountId, 1, this.itemPerPage, finOpType).subscribe(
-            finOps => {
-                this.offset = 0;
-                this.currentFinOpType = finOpType;
-                this.totalItemsForFinOpType = this.totalItems[+finOpType + 1];
-                this.finOps = finOps;
-                this.setFinOperations();
-            });
-    }
-
-    private getFinOpsPerPageByOrganizationId(currentPage: number, pageSize: number): void {
-        this.finOpService.getFinOpByOrgAccountIdForPage(this.accountId, currentPage, pageSize)
-            .subscribe(finOps => {
-                this.finOps = finOps;
-                this.setFinOperations();
-            });
-    }
-
-    private getFinOpInitData(): void {
-        this.finOpService.getFinOpInitData(this.accountId).subscribe(response => {
-            this.totalItems = response;
-            this.totalItemsForFinOpType = this.totalItems[this.currentFinOpType + 1];
-            this.getFinOpsPerPageByOrganizationId(this.currentPage, this.itemPerPage);
-        });
-    }
-//-------------------------------------------------------------------------------------------------------------------
 //--------------------------------------------------Table----------------------------------------------------------------
     private getFinOpById(id: number) {
         this.finOpService.getFinOpById(id).subscribe(f => {
@@ -291,6 +250,7 @@ export class OrgAccountOperationComponent implements OnChanges {
                 this.getAccountType();
                 this.getAccontsForTransfer();
                 this.getCurrentTarget();
+                this.getMinDate();
             });
     }
 
@@ -578,14 +538,18 @@ export class OrgAccountOperationComponent implements OnChanges {
             this.suggestedDonationsModal.show();
             if (this.suggestedDonations.length == 1) {
                 this.selectedDonationId = this.suggestedDonations[0].id;
+                this.selectedUserId = this.suggestedDonations[0].userId;
             }
         });
         this.userService.getAllUsers().subscribe(result => this.users = result);
     }
 
     private IsOkButtonEnable(): boolean {
+        if (this.selectedUserId == undefined) {
+            return false;
+        }
         if (this.suggestedDonations.length > 1) {
-            if (this.selectedDonationId == undefined || this.selectedUserId == undefined) {
+            if (this.selectedDonationId == undefined) {
                 return false;
             }
         }
@@ -594,19 +558,19 @@ export class OrgAccountOperationComponent implements OnChanges {
 
     private radioButtonOnChange(donation: DonateViewModel) {
         this.selectedDonationId = donation.id;
+        this.selectedUserId = donation.userId;
     }
 
     private closeSuggestionsModal() {
         this.selectedDonationId = undefined;
         this.selectedUserId = undefined;
+        this.suggestedDonations.length = 0;
         this.suggestedDonationsModal.hide();
     }
 
     private onClickSuggestionModalButton() {
         if (this.suggestedDonations.length == 0) {
-            this.toasterMessage = message.inAccessibleOperation;
-            this.showToast();
-            this.closeSuggestionsModal();
+            this.createDonationFromFinOp(this.selectedFinOp.id);
             return;
         }
         this.selectedFinOp.userId = this.selectedUserId;
@@ -626,7 +590,7 @@ export class OrgAccountOperationComponent implements OnChanges {
         donation.currencyId = this.currentAccount.currencyId;
         donation.targetId = this.selectedFinOp.targetId;
         donation.description = this.selectedFinOp.description;
-        donation.donationDate = this.selectedFinOp.date;
+        donation.donationDate = this.selectedFinOp.date.toString();
         this.donateService.getOrderId().subscribe(result => {
             donation.orderId = result;
             donation.bankAccountId = this.selectedFinOp.cardToId;
