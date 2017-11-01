@@ -99,6 +99,7 @@ export class BankImportComponent implements OnInit {
     private isDeposite: boolean = false;
     private isBankTransfer: boolean = false;
     private showSpinner: boolean = false;
+    private work: boolean = false;
     private lastPrivatUpdate: Date;
 
     //constructor
@@ -163,7 +164,7 @@ export class BankImportComponent implements OnInit {
     }
 
     private getAllExtracts() {
-        this._service.getAllExtracts(this.card, this.spinner)
+        this._service.getAllExtracts(this.card)
             .subscribe(response => {
                 this._dataForFinOp = response;
             });
@@ -240,14 +241,17 @@ export class BankImportComponent implements OnInit {
         this.dataForPrivat.password = this.password;
         this.dataForPrivat.dataTo = this.dataPrivatTo.split('-').reverse().join('.');
         this.dataForPrivat.dataFrom = this.dataPrivatFrom.split('-').reverse().join('.');
+        this.showSpinner = true;
         this._service.getPrivatExtracts(this.dataForPrivat)
             .subscribe(() => {
                 this._service.UpdateDate(this.user.orgId)
                     .subscribe(response => {
                         this.lastPrivatUpdate = response;
                     });
-
+                this.getAllExtracts();
+                this.showSpinner = false;
             });
+        this.newBankImportModalWindow.hide();
     }
 
     //filter bank Imports
@@ -264,15 +268,18 @@ export class BankImportComponent implements OnInit {
 
     //initialize data for new finOp
     public initializeFinOp(bankImport: ImportDetailPrivatViewModel) {
+        this._newFinOp = new FinOpFromBankViewModel();
         this._newFinOp.description = bankImport.description;
         this._newFinOp.bankImportId = bankImport.id;
         this._newFinOp.amount = +bankImport.cardAmount.split(' ')[0];
         this._newFinOp.absoluteAmount = Math.abs(this._newFinOp.amount);
         if (this._newFinOp.amount > 0) {
             this._newFinOp.cardToId = Number(this.currentOrgAccount.id);
+            this._newFinOp.finOpType = constant.incomeId;
         }
         if (this._newFinOp.amount < 0) {
             this._newFinOp.cardFromId = Number(this.currentOrgAccount.id);
+            this._newFinOp.finOpType = constant.spendingId;
         }
         this._newFinOp.finOpDate = bankImport.trandate;
         this._newFinOp.targetId = this.targets[0].targetId;
@@ -376,63 +383,52 @@ export class BankImportComponent implements OnInit {
             });
     }
 
-
-
     /**
     * Closes bankImports modal window
     */
-    public closeModal(): void {
+    private closeModal(): void {
         this.newBankImportModalWindow.hide();
     }
 
     /**
      * Open bankImports modal window
      */
-    public onActionClick(): void {
+    private onActionClick(): void {
         this.dataForPrivat.card = this.card;
-
         this.newBankImportModalWindow.show();
     }
 
-    public onIncomeClick(): void {
+    private onIncomeClick(): void {
         if (this.currentOrgAccount.targetId != undefined) {
-            for (let bankDetail of this._dataForFinOp) {
-                if (bankDetail.isLooked == false) {
-                    if (Number(bankDetail.cardAmount.split(' ')[0]) > 0) {
-                        this.initializeFinOp(bankDetail);
-                        this.saveFinOp(this._newFinOp);
-                    }
-                }
-            }
-            this.getAllExtracts()
+            this.showSpinner = true;
+            this._finOpService.processMultipleFinOps(this.currentOrgAccount.id).subscribe(() => {
+                debugger;
+                this.getAllExtracts();
+                this.showSpinner = false;
+            });
+            this.closeWarningModal();
         }
-        this.closeWarningModal();
     }
 
-    public warningWindowShow(): void {
+    private warningWindowShow(): void {
         this.finOpWarningWindow.show();
     }
 
-
-    public UpdateDate(): void {
-        this._service.UpdateDate
-    }
-    public onPrivatClick(): void {
+    private onPrivatClick(): void {
+        this.work = true;
         this._service.getUserExtracts(this.currentOrgAccount.id).subscribe(() => {
-            this.showSpinner = false;
             this._service.UpdateDate(this.user.orgId)
                 .subscribe(response => {
                     this.lastPrivatUpdate = response;
                 });
             this.getAllExtracts();
+            this.work = false;
         });
-        this.showSpinner = true;
-        this.newBankImportModalWindow.hide();
     }
     /**
  * open finOp modal window
  */
-    public openFinOpModal(bankImport: ImportDetailPrivatViewModel): void {
+    private openFinOpModal(bankImport: ImportDetailPrivatViewModel): void {
         this.initializeFinOp(bankImport);
         this.getSuggestedBankImports();
         this.finOpModalWindow.show();
@@ -451,12 +447,12 @@ export class BankImportComponent implements OnInit {
     }
 
     private openSuggestionsModal() {
-        this.isBankTransfer = true; 
+        this.isBankTransfer = true;
         this.selectedBankImport = this.suggestedBankImports[0];
         this.suggestedImportsWindow.show();
     }
 
-    public closeWarningModal(): void {
+    private closeWarningModal(): void {
         this.finOpWarningWindow.hide();
     }
     /**

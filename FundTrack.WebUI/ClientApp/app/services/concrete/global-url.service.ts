@@ -44,6 +44,7 @@ export class GlobalUrlService {
     public static userDonationsByDate: string = "api/Donate/UserByDate/";
 
     //FinOp URLs
+    public static processMultipleFinOps: string = "api/FinOp/ProcessMultiple/";
     public static createFinOp: string = "api/FinOp/CreateFinOp/";
     public static readonly banksUrl: string = "api/Bank";
 

@@ -51,6 +51,17 @@ namespace FundTrack.WebUI.Controllers
             return Ok(_service.CreateFinOp(finOpModel));
         }
 
+        [HttpPost("ProcessMultiple")]
+        [Authorize(Roles = "admin, moderator")]
+        public IActionResult ProcessMultipleFinOp([FromBody] int orgAccId)
+        {
+            if (orgAccId <= 0)
+            {
+                return BadRequest();
+            }
+            return Ok(_service.ProcessMultipleFinOp(orgAccId));
+        }
+
         /// <summary>
         /// Gets the fin ops by org acc identifier.
         /// </summary>

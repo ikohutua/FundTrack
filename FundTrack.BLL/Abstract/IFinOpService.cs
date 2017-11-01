@@ -12,6 +12,14 @@ namespace FundTrack.BLL.Abstract
         /// <param name="finOpModel">The fin op model.</param>
         /// <returns></returns>
         FinOpFromBankViewModel CreateFinOp(FinOpFromBankViewModel finOpModel);
+
+        /// <summary>
+        /// Creates the fin ops from bank account.
+        /// </summary>
+        /// <param name="finOpModel">The fin op model.</param>
+        /// <returns></returns>
+        IEnumerable<FinOpFromBankViewModel> ProcessMultipleFinOp(int orgAccId);
+
         /// <summary>
         /// Creates the income fin op from cash account
         /// </summary>

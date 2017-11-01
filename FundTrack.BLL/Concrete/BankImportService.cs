@@ -151,7 +151,8 @@ namespace FundTrack.BLL.Concrete
         {
             try
             {
-                return this.ConvertFromEntityToModel(this._unitOfWork.BankImportDetailRepository.GetBankImportDetailsOneCard(card));
+                return this.ConvertFromEntityToModel(this._unitOfWork.BankImportDetailRepository.GetBankImportDetailsOneCard(card))
+                        .OrderByDescending(bi=>bi.Trandate);
             }
             catch (Exception ex)
             {
