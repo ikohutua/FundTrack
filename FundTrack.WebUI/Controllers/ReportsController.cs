@@ -22,7 +22,7 @@ namespace FundTrack.WebUI.Controllers
             _organizationStatisticsService = organizationStatisticsService;
         }
 
-        [HttpGet("IncomeReport")]
+        [HttpGet("IncomeReport/{orgId}")]
         public ActionResult GetIncomeReports(int orgId, DateTime? dateFrom, DateTime? dateTo)
         { 
             if (isDateValid(dateFrom, dateTo) && isIdValid(orgId))
@@ -32,7 +32,7 @@ namespace FundTrack.WebUI.Controllers
                 return BadRequest(string.Format(ErrorMessages.IncomeReportErrorMessage, orgId, dateFrom, dateTo));     
         }
 
-        [HttpGet("OutcomeReport")]
+        [HttpGet("OutcomeReport/{orgId}")]
         public ActionResult GetOutcomeReports(int orgId, DateTime? dateFrom, DateTime? dateTo)
         {
             if (isDateValid(dateFrom, dateTo) && isIdValid(orgId))
@@ -53,7 +53,7 @@ namespace FundTrack.WebUI.Controllers
             
         }
 
-        [HttpGet("InvoiceDeclaration")]
+        [HttpGet("InvoiceDeclaration/{orgId}")]
         [Authorize(Roles = "admin, moderator")]
         public ActionResult GetInvoiceDeclarationReport(int orgId, DateTime? dateFrom, DateTime? dateTo)
         {

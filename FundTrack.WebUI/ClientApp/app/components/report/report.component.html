@@ -67,7 +67,7 @@
                     <td>{{item.description}}</td>
                     <td>{{item.moneyAmount | number : '1.2-2'}}</td>
                     <td>{{item.date | date:'dd-MMM-yyyy HH:mm'}}</td>
-                    <td><a id="thumbnailsList" (click)="getImagesById(item.id)" data-toggle="modal" data-target="#selectedImageModal"> Переглянути </a></td>
+                    <td><a id="thumbnailsList" (click)="getImagesById(item.id)" style="cursor:pointer" data-toggle="modal" data-target="#selectedImageModal"> Переглянути </a></td>
                 </tr>
                 </tbody>
             </table>

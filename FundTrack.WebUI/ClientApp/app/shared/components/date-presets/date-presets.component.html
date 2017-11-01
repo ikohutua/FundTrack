@@ -8,6 +8,7 @@
           
             </div>
         <div class="col-md-4">
+            <!--<dp-day-picker [(ngModel)]="selectedDate" [config]="datePickerConfig"></dp-day-picker>-->
             <div class="input-daterange input-group" id="datepicker">
                 <span class="input-group-addon" id="basic-addon1">Від: </span>
                 <input type="date" class="input-sm form-control no-spin" #startDate onkeydown="return false" (input)="setBeginDate(startDate.value)" [value]="dateFromIn | date:'yyyy-MM-dd'" min="2000-01-01" max="{{inputMaxDate | date:'yyyy-MM-dd'}}" />

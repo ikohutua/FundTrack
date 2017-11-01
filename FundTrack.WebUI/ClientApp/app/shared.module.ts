@@ -20,7 +20,6 @@ import { ImageItemComponent } from "./shared/components/upload-image/image-item.
 import { ImageListComponent } from "./shared/components/upload-image/image-list.component/image-list.component";
 import { DatePresetsComponent } from "./shared/components/date-presets/date-presets.component";
 
-
 @NgModule({
     declarations: [
         DropdownOrganizationsComponent,
@@ -38,12 +37,13 @@ import { DatePresetsComponent } from "./shared/components/date-presets/date-pres
         ImageItemComponent,
         ImageListComponent,
         DatePresetsComponent
+        
     ],
     imports: [
         CommonModule,
         FormsModule,
         RouterModule,
-        ReactiveFormsModule
+        ReactiveFormsModule        
     ],
     exports: [
         RouterModule,
@@ -64,6 +64,7 @@ import { DatePresetsComponent } from "./shared/components/date-presets/date-pres
         ImageItemComponent,
         ImageListComponent,
         DatePresetsComponent
+        
     ]
 })
 export class SharedModule { }

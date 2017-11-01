@@ -69,15 +69,15 @@ export class ShowRequestedItemService extends BaseService<IShowRequestedItem>{
     }
 
     public getIncomeReportData(organizationId: number, startDate: string, endDate: string): Observable<IncomeReportDataViewModel[]> {
-        return this.getCollections<IncomeReportDataViewModel>(ReportUrlsService._urlGetIncomeReportData + '?orgId='+organizationId+'&datefrom='+startDate+'&dateto='+endDate);
+        return this.getCollections<IncomeReportDataViewModel>(ReportUrlsService._urlGetIncomeReportData + '/'+organizationId+'?datefrom='+startDate+'&dateto='+endDate);
     }
 
     public getOutcomeReportData(organizationId: number, startDate: string, endDate: string): Observable<OutcomeReportDataViewModel[]> {
-        return this.getCollections<OutcomeReportDataViewModel>(ReportUrlsService._urlGetOutcomeReportData + '?orgId=' + organizationId + '&datefrom=' + startDate + '&dateto=' + endDate);
+        return this.getCollections<OutcomeReportDataViewModel>(ReportUrlsService._urlGetOutcomeReportData + '/' + organizationId + '?datefrom=' + startDate + '&dateto=' + endDate);
     }
 
     public getInvoiceDeclarationData(organizationId: number, startDate: string, endDate: string): Observable<InvoiceDeclarationResponseViewModel[]> {
-        return this.getCollections<InvoiceDeclarationResponseViewModel>(ReportUrlsService._urlGetInvoiceDeclaration + '?orgId=' + organizationId + '&datefrom=' + startDate + '&dateto=' + endDate);
+        return this.getCollections<InvoiceDeclarationResponseViewModel>(ReportUrlsService._urlGetInvoiceDeclaration + '/' + organizationId + '?datefrom=' + startDate + '&dateto=' + endDate);
     }
 
     public getFinOpImages(finOpId: number): Observable<string[]> {
