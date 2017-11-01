@@ -1,4 +1,6 @@
-﻿namespace FundTrack.Infrastructure.ViewModel.FinanceViewModels
+﻿using System;
+
+namespace FundTrack.Infrastructure.ViewModel.FinanceViewModels
 {
     public class FinOpFromBankViewModel
     {
@@ -73,5 +75,29 @@
         /// The org identifier.
         /// </value>
         public int OrgId { get; set; }
+
+        /// <summary>
+        /// Gets or sets the fin op type.
+        /// </summary>
+        /// <value>
+        /// The fin op type identifier.
+        /// </value>
+        public int FinOpType { get; set; }
+
+        /// <summary>
+        /// Gets or sets the user identifier.
+        /// </summary>
+        /// <value>
+        /// The user identifier.
+        /// </value>
+        public int UserId { get; set; }
+
+        /// <summary>
+        /// Gets or sets the fin op date.
+        /// </summary>
+        /// <value>
+        /// The fin op date.
+        /// </value>
+        public DateTime FinOpDate { get; set; }
     }
 }

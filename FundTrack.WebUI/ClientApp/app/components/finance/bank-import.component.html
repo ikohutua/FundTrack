@@ -182,6 +182,30 @@
                    required=""
                    [(ngModel)]="currentOrgAccountNumber" />
         </div>
+        <div *ngIf="(isDeposite)" class="form-group">
+            <label class="control-label">Назва готівкового рахунку</label>
+            <select [(ngModel)]="_newFinOp.cardFromId" id="categoryType" class="form-control" required>
+                <option *ngFor="let account of cashAccountsTo" value="{{account.id}}">
+                    {{account.orgAccountName}}
+                </option>
+            </select>
+        </div>
+        <div *ngIf="(isWindthraw)" class="form-group">
+            <label class="control-label">Назва готівкового рахунку</label>
+            <select [(ngModel)]="_newFinOp.cardToId" id="categoryType" class="form-control" required>
+                <option *ngFor="let account of cashAccountsTo" value="{{account.id}}">
+                    {{account.orgAccountName}}
+                </option>
+            </select>
+        </div>
+        <div *ngIf="(isBankTransfer)" class="form-group">
+            <label class="control-label">Назва банківського рахунку</label>
+            <select [(ngModel)]="_newFinOp.cardToId" id="categoryType" class="form-control" required>
+                <option *ngFor="let account of bankAccountsTo" value="{{account.id}}">
+                    {{account.orgAccountName}}
+                </option>
+            </select>
+        </div>
         <div class="form-group">
             <label class="control-label">Сума:</label>
             <input class="form-control"
@@ -195,8 +219,8 @@
         <div class="form-group">
             <label class="control-label" for="accountName">Рух коштів:</label>
             <div>
-                <input type="radio" name="gender" value="true" [checked]="_newFinOp.amount>0" disabled> Прихід<br>
-                <input type="radio" name="gender" value="false" [checked]="_newFinOp.amount<0" disabled> Розхід<br>
+                <input type="radio" name="gender" value="1" [checked]="_newFinOp.amount>0" disabled>Прихід<br>
+                <input type="radio" name="gender" value="0" [checked]="_newFinOp.amount<0" disabled>Розхід<br>
             </div>
         </div>
         <br>
@@ -207,22 +231,59 @@
                       placeholder="Опис"
                       required=""
                       [(ngModel)]="_newFinOp.description">
-</textarea>
+            </textarea>
         </div>
-        <div>
+        <div *ngIf="(!isWindthraw) && (!isDeposite) && (!isBankTransfer)" class="form-group">
             <label class="control-label">Виберіть призначення платежу:</label>
             <select class="form-control" [(ngModel)]="_newFinOp.targetId" required="" id="target" (ngModelChange)="onChangeSelection($event)">
                 <option [ngValue]="undefined" selected>Призначення платежу</option>
                 <option *ngFor="let item of targets" value={{(item.targetId)*1}}>{{item.name}}</option>
             </select>
         </div>
+        <div *ngIf="(_newFinOp.amount<0) && (!isBankTransfer)" class="form-group">
+            <input type="checkbox"
+                   name="iswindthraw"
+                   [checked]="isWindthraw"
+                   (change)="isWindthraw=!isWindthraw" />
+            <label class="control-label">Це зняття коштів?</label>
+        </div>
+        <div *ngIf="(_newFinOp.amount>0) && (!isBankTransfer)" class="form-group">
+            <input type="checkbox"
+                   name="ideposite"
+                   [checked]="isDeposite"
+                   (change)="isDeposite=!isDeposite" />
+            <label class="control-label">Це депозит?</label>
+        </div>
     </div>
     <div class="app-modal-footer">
-        <button class="btn btn-fundtrack-style pull-right"
-                (click)="saveFinOp()"
+        <button *ngIf="(isWindthraw)" class="btn btn-fundtrack-style pull-right"
+                (click)="createFinOp(_newFinOp)"
+                [disabled]="!_newFinOp.cardToId"
+                data-dismiss="modal">
+            OK
+        </button>
+        <button *ngIf="isDeposite" class="btn btn-fundtrack-style pull-right"
+                (click)="createFinOp(_newFinOp)"
+                [disabled]="!_newFinOp.cardFromId"
+                data-dismiss="modal">
+            OK
+        </button>
+        <button *ngIf="(isBankTransfer)" class="btn btn-fundtrack-style pull-right"
+                (click)="createFinOp(_newFinOp)"
+                [disabled]="!_newFinOp.cardToId"
+                data-dismiss="modal">
+            OK
+        </button>
+        <button *ngIf="(!isWindthraw) && (!isDeposite) && (!isBankTransfer)" class="btn btn-fundtrack-style pull-right"
+                (click)="createFinOp(_newFinOp)"
                 [disabled]="!_newFinOp.targetId"
                 data-dismiss="modal">
             OK
+        </button>
+        <button *ngIf="(!isWindthraw) && (!isDeposite)" class="btn btn-fundtrack-style pull-right"
+                (click)="openSuggestionsModal()"
+                data-dismiss="modal">
+            Переміщення між рахунками
         </button>
         <button (click)="closeFinOpModal()"
                 class="btn btn-default pull-right"
@@ -230,4 +291,56 @@
             Скасувати
         </button>
     </div>
+</app-modal>
+
+<app-modal #suggestedImports>
+    <div class="app-modal-header">
+        <button type="button" class="close" aria-hidden="true" (click)="closeSuggestionsModal()">&times;</button>
+        <h4 class="modal-title">Можливі виписки</h4>
+    </div>
+    <div class="app-modal-body">
+            <div *ngIf="suggestedBankImports.length==0">
+                <h4>Виписок не знайдено</h4>
+            </div>
+            <div *ngIf="suggestedBankImports.length>=1">
+                <h4 *ngIf="suggestedBankImports.length==1">Виписка знайдена, прив'язати?</h4>
+                <h4 *ngIf="suggestedBankImports.length>1">Виберіть виписку:</h4>
+                <table class="table table-hover table-responsive">
+                    <thead>
+                        <tr>
+                            <th class="th-center-align" *ngIf="suggestedBankImports.length>1"></th>
+                            <th class="th-center-align">Номер картки</th>
+                            <th class="th-center-align">Дата</th>
+                            <th class="th-center-align">Сума</th>
+                            <th class="th-center-align">Опис</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let import of suggestedBankImports">
+                            <td class="th-center-align" *ngIf="suggestedBankImports.length>1">
+                                <input type="radio" name="selectedRadioButton" [value]="import.id" (change)="radioButtonOnChange(import)" />
+                            </td>
+                            <td class="th-center-align">{{import.card}}</td>
+                            <td class="th-center-align">{{import.trandate | date: 'dd/MM/yyyy hh:mm'}}</td>
+                            <td class="th-center-align">{{import.amount}}</td>
+                            <td class="th-center-align">{{import.description}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="right-float">
+                <button (click)="transferOperation()"
+                        class="btn btn-default"
+                        data-dismiss="modal"
+                        [disabled]="suggestedBankImports.length==0">
+                    ОК
+                </button>
+                <button (click)="closeSuggestionsModal()"
+                        class="btn btn-default"
+                        data-dismiss="modal">
+                    Скасувати
+                </button>
+            </div>
+        </div>
+    <div class="app-modal-footer"></div>
 </app-modal>

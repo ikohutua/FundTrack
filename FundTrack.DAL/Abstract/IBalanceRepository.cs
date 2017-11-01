@@ -1,6 +1,7 @@
 ﻿using FundTrack.DAL.Entities;
 using FundTrack.Infrastructure.ViewModel.FinanceViewModels;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace FundTrack.DAL.Abstract
 {
@@ -19,5 +20,7 @@ namespace FundTrack.DAL.Abstract
         /// <param name="accountId">The id of account</param>
         /// <returns></returns>
        IEnumerable <Balance> GetAllBalancesByAccountId(int accountId);
-    }
+
+       IQueryable<Balance> GetAllBalances();
+    } 
 }

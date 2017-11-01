@@ -29,7 +29,7 @@ export class ValidatorsService {
     }
 
     check_if_min_value(value) {
-        if (value >= 5) {
+        if (value >= 0.01) {
             return true;
         } else {
             return false;
@@ -37,7 +37,7 @@ export class ValidatorsService {
     }
 
     check_if_max_value(value) {
-        if (value <= 15000) {
+        if (value <= 100000000) {
             return true;
         } else {
             return false;

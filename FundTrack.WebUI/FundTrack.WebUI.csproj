@@ -40,6 +40,9 @@
   </ItemGroup>
   <ItemGroup>
     <!-- Files not to show in IDE -->
+    <None Remove="ClientApp\app\components\finance\incomeoperation.component.ts" />
+    <None Remove="ClientApp\app\components\finance\spendingoperation.component.ts" />
+    <None Remove="ClientApp\app\components\finance\transferoperation.component.ts" />
     <None Remove="ClientApp\app\view-models\concrete\data-set-view.model.ts" />
     <None Remove="node_modules.zip" />
     <None Remove="Properties\PublishProfiles\fundtrack261 - Web Deploy.pubxml" />
@@ -73,6 +76,11 @@
   <ItemGroup>
     <Folder Include="ClientApp\app\shared\components\upload-image\" />
     <Folder Include="wwwroot\images\" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\app\components\finance\incomeoperation.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\finance\spendingoperation.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\finance\transferoperation.component.ts" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\app\view-models\concrete\data-set-view.model.ts" />

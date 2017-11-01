@@ -2,6 +2,9 @@
 
 @Injectable()
 export class GlobalUrlService {
+    // bank imports
+    public static getAllSuggestedBankImportUrl: string = "api/BankImport/SuggestedImports";
+
     // urls to server for all components
     public static getAllOrganizationsUrl: string = "api/OrganizationDetail/";
     public static getFixingBalanceUrl: string = "api/FixingBalance/";
@@ -67,6 +70,8 @@ export class GlobalUrlService {
     public static readonly getOrgAccForFinOpsUrl: string = 'api/OrgAccount/GetOrgAccountForFinOp';
     public static readonly createUrl: string = 'api/FinOp/CreateFinOp';
     public static readonly getFinOpUrl: string = 'api/finop/getFinOpsById';
+    public static readonly getFinOpUrlForPage: string = 'api/finop/getFinOpsByIdForPage';
+    public static readonly getFinOpInitData: string = 'api/finop/getFinOpInitData';
 
     // user service
     public static readonly getAllUsers = "api/User";

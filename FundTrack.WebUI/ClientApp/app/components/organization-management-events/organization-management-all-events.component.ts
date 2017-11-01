@@ -63,8 +63,8 @@ export class OrganizationManagementAllEventsComponent implements OnInit {
      */
     private getEventsInitData(idOrganization: number): void {
         this._service.getEventsInitData(idOrganization).subscribe(response => {
-            this._totalItems = response.totalItemsCount;
-            this._itemPerPage = response.itemsPerPage;
+            this._totalItems = response.totalEventsCount;
+            this._itemPerPage = response.eventsPerPage;
             this.getEventsPerPageByOrganizationId(this._idForCurrentOrganization, this._currentPage, this._itemPerPage);
         });
     }

@@ -321,3 +321,12 @@ FundTrack.WebUI.Tests/obj/
 /PrivateService/nuget.exe
 /PrivateService/PrivateService.nuspec
 /FundTrack.WebUI/Logs
+/FundTrack.WebUI/Middlewares/Logging/19.10.2017_Exception_Logs.txt
+/FundTrack.WebUI/Middlewares/Logging/18.10.2017_Exception_Logs.txt
+/FundTrack.WebUI/Middlewares/Logging/17.10.2017_Exception_Logs.txt
+/FundTrack.WebUI/Middlewares/Logging/16.10.2017_Exception_Logs.txt
+/FundTrack.WebUI/Middlewares/Logging/15.10.2017_Exception_Logs.txt
+/FundTrack.WebUI/Middlewares/Logging/13.10.2017_Exception_Logs.txt
+/FundTrack.WebUI/Middlewares/Logging/12.10.2017_Exception_Logs.txt
+/FundTrack.WebUI/Middlewares/Logging/10.10.2017_Exception_Logs.txt
+/FundTrack.WebUI/Logs

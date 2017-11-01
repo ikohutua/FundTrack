@@ -135,19 +135,6 @@ td {
     position: relative;
     padding: 0;
 }
-
-    .grid-divider > [class*='col-'] {
-        position: static;
-    }
-
-        .grid-divider > [class*='col-']:nth-child(n+2):before {
-            content: "";
-            border-left: 1px solid #DDD;
-            position: absolute;
-            top: 0;
-            bottom: 0;
-        }
-
 .col-padding {
     padding: 0 15px;
 }
@@ -186,6 +173,12 @@ td {
 
 .deactivated-state {
     color: #5b9b21;
+}
+
+#for-select-item {
+    font-size: large;
+    color: black;
+    text-align: center;
 }
 
 #suggestedToast {
@@ -292,8 +285,4 @@ However, delay the fade out process for 2.5 seconds */
     padding: 15px 10px 15px 20px;
     width: 100%;
     align-items: center;
-}
-
-.emptyDiv {
-    padding: 20px;
 }

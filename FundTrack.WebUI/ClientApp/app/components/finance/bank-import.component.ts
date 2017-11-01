@@ -95,6 +95,9 @@ export class BankImportComponent implements OnInit {
     private count: number;
     private bankAccId: number;
     private isOrgAccountHaveTarget: boolean;
+    private isWindthraw: boolean = false;
+    private isDeposite: boolean = false;
+    private isBankTransfer: boolean = false;
     private showSpinner: boolean = false;
     private lastPrivatUpdate: Date;
     private isWindthraw: boolean = false;
@@ -168,6 +171,31 @@ export class BankImportComponent implements OnInit {
             .subscribe(response => {
                 this._dataForFinOp = response;
             });
+    }
+
+    private getAllAccounts() {
+        this._orgAccountService.getAllAccountsOfOrganization()
+            .subscribe(acc => {
+                this.cashAccounts = acc.filter(a =>
+                    a.accountType === constant.cashUA
+                );
+                this.bankAccounts = acc.filter(a =>
+                    a.accountType === constant.bankUA
+                );
+                this.cashAccountsTo = this.getAccontsForTransfer(this.cashAccounts);
+                this.bankAccountsTo = this.getAccontsForTransfer(this.bankAccounts);
+            });
+    }
+
+    private getAccontsForTransfer(accounts: OrgAccountViewModel[]): OrgAccountViewModel[] {
+        if (this.currentOrgAccount.targetId == null) {
+            return accounts.filter(acc => acc.id != this.currentOrgAccount.id);
+        }
+        else {
+            return accounts.filter(acc =>
+                acc.targetId == this.currentOrgAccount.targetId &&
+                acc.id != this.currentOrgAccount.id);
+        }
     }
 
     private getAllAccounts() {
@@ -297,10 +325,93 @@ export class BankImportComponent implements OnInit {
         this._newFinOp.amount = +bankImport.cardAmount.split(' ')[0];
         this._newFinOp.finOpDate = bankImport.trandate;
         this._newFinOp.absoluteAmount = Math.abs(this._newFinOp.amount);
-        if (this._newFinOp.amount > 0) {
-            this._newFinOp.cardToId = Number(this.currentOrgAccount.id);
+        this._newFinOp.orgId = this.user.orgId;
+        this.index = this._dataForFinOp.findIndex(element => element.id == bankImport.id);
+        this.currentOrgAccountNumber = this.currentOrgAccount.orgAccountName + ': ' + this.currentOrgAccount.orgAccountNumber;
+    }
+
+    public createFinOp(finOp: FinOpFromBankViewModel) {
+        this.defineOperation(finOp);
+        finOp.orgId = this.user.orgId;
+        finOp.userId = this.user.id;
+        finOp.amount = Math.abs(finOp.amount);
+        console.log(finOp);
+        this.saveFinOp(finOp);
+    }
+
+    private defineOperation(finOp: FinOpFromBankViewModel) {
+        if (this.isWindthraw || this.isBankTransfer) {
+            finOp.cardFromId = this.currentOrgAccount.id;
+            finOp.finOpType = constant.transferId;
+            return
         }
+
+        if (this.isDeposite) {
+            finOp.cardToId = this.currentOrgAccount.id;
+            finOp.finOpType = constant.transferId;
+            return;
+        }
+
+        if (this._newFinOp.amount > 0) {
+            finOp.cardToId = this.currentOrgAccount.id;
+            finOp.finOpType = constant.incomeId;
+            return;
+        }
+
         if (this._newFinOp.amount < 0) {
+            finOp.cardFromId = this.currentOrgAccount.id;
+            finOp.finOpType = constant.spendingId;
+            return;
+        }
+
+    }
+
+    private getSuggestedBankImports() {
+        this._service.getAllSuggestedBankImports(this._newFinOp.amount, this._newFinOp.finOpDate).subscribe(bankImports => {
+            this.suggestedBankImports = bankImports;
+        });
+    }
+
+    private transferOperation() {
+        this.saveCommision();
+        this.getBankAccountOrganizationId();
+        this.closeSuggestionsModal();
+        if (this._newFinOp.amount < 0) {
+            this._newFinOp.cardToId = this.bankAccId;
+            this._newFinOp.bankImportId = this.selectedBankImport.id;
+            this.createFinOp(this._newFinOp);
+        }
+        else {
+            this._newFinOp.amount = +this.selectedBankImport.amount.split(' ')[0];
+            this._newFinOp.cardToId = this.bankAccId;
+            this._newFinOp.description = this.selectedBankImport.description;
+            this._newFinOp.finOpDate = this.selectedBankImport.trandate;
+            this._newFinOp.bankImportId = this.selectedBankImport.id;
+            this.createFinOp(this._newFinOp);
+        }
+    }
+
+    private saveCommision() {
+        this.commisionFinOp.bankImportId = this._newFinOp.bankImportId;
+        this.commisionFinOp.cardFromId = this.currentOrgAccount.id;
+        this.commisionFinOp.amount = Math.abs(this._newFinOp.absoluteAmount - +this.selectedBankImport.amount.split(' ')[0]);
+        this.commisionFinOp.description = message.commisionMessage;
+        this.commisionFinOp.finOpType = constant.spendingId;
+        this.commisionFinOp.targetId = null;
+        this.commisionFinOp.userId = this.user.id;
+        this.commisionFinOp.orgId = this.user.orgId;
+        this._finOpService.createFinOp(this.commisionFinOp, this.spinner).subscribe(responce => {
+            this.commisionFinOp = responce;
+        });
+    }
+
+    private getBankAccountOrganizationId() {
+        this.bankAccId = this.bankAccounts.find(b => b.cardNumber == this.selectedBankImport.card).bankAccId;
+        this.bankAccId = this.bankAccounts.find(b => b.bankAccId == this.bankAccId).id;
+    }
+
+    private radioButtonOnChange(bankImport: ImportDetailPrivatViewModel) {
+        this.selectedBankImport = bankImport;
             this._newFinOp.cardFromId = Number(this.currentOrgAccount.id);
         }
         this._newFinOp.orgId = this.user.orgId;
@@ -468,6 +579,15 @@ export class BankImportComponent implements OnInit {
     }
 
     /**
+ * open finOp modal window
+ */
+    public openFinOpModal(bankImport: ImportDetailPrivatViewModel): void {
+        this.initializeFinOp(bankImport);
+        this.getSuggestedBankImports();
+        this.finOpModalWindow.show();
+    }
+
+    /**
      * close finOp modal window
      */
     public closeFinOpModal(): void {
@@ -485,6 +605,9 @@ export class BankImportComponent implements OnInit {
         this.suggestedImportsWindow.show();
     }
 
+    private closeSuggestionsModal() {
+        this.isBankTransfer = false;
+        this.suggestedImportsWindow.hide();
     public closeWarningModal(): void {
         this.finOpWarningWindow.hide();
     }

@@ -86,6 +86,7 @@ export class OrgAccountOperationComponent implements OnChanges {
     @Output() accounts: OrgAccountViewModel[] = new Array<OrgAccountViewModel>();
     //------------------------------------------------------------------------------
     //Initialize modal windows
+
     @ViewChild("newMoneyTransfer")
     private newMoneyTransferWindow: ModalComponent;
 
@@ -177,6 +178,45 @@ export class OrgAccountOperationComponent implements OnChanges {
             }
         );
     }
+
+    private itemsPerPageChange(amount: number): void {
+        debugger;
+        this.finOpService.getFinOpByOrgAccountIdForPage(this.accountId, 1, amount, this.currentFinOpType).subscribe(
+            finOps => {
+                this.offset = 0;
+                this.finOps = finOps;
+                this.setFinOperations();
+                this.itemPerPage = amount;
+            });
+    }
+
+    private onFinOpTypeChange(finOpType: number): void {
+        this.finOpService.getFinOpByOrgAccountIdForPage(this.accountId, 1, this.itemPerPage, finOpType).subscribe(
+            finOps => {
+                this.offset = 0;
+                this.currentFinOpType = finOpType;
+                this.totalItemsForFinOpType = this.totalItems[+finOpType + 1];
+                this.finOps = finOps;
+                this.setFinOperations();
+            });
+    }
+
+    private getFinOpsPerPageByOrganizationId(currentPage: number, pageSize: number): void {
+        this.finOpService.getFinOpByOrgAccountIdForPage(this.accountId, currentPage, pageSize)
+            .subscribe(finOps => {
+                this.finOps = finOps;
+                this.setFinOperations();
+            });
+    }
+
+    private getFinOpInitData(): void {
+        this.finOpService.getFinOpInitData(this.accountId).subscribe(response => {
+            this.totalItems = response;
+            this.totalItemsForFinOpType = this.totalItems[this.currentFinOpType + 1];
+            this.getFinOpsPerPageByOrganizationId(this.currentPage, this.itemPerPage);
+        });
+    }
+//-------------------------------------------------------------------------------------------------------------------
 
     private itemsPerPageChange(amount: number): void {
         debugger;
@@ -538,18 +578,14 @@ export class OrgAccountOperationComponent implements OnChanges {
             this.suggestedDonationsModal.show();
             if (this.suggestedDonations.length == 1) {
                 this.selectedDonationId = this.suggestedDonations[0].id;
-                this.selectedUserId = this.suggestedDonations[0].userId;
             }
         });
         this.userService.getAllUsers().subscribe(result => this.users = result);
     }
 
     private IsOkButtonEnable(): boolean {
-        if (this.selectedUserId == undefined) {
-            return false;
-        }
         if (this.suggestedDonations.length > 1) {
-            if (this.selectedDonationId == undefined) {
+            if (this.selectedDonationId == undefined || this.selectedUserId == undefined) {
                 return false;
             }
         }
@@ -558,19 +594,19 @@ export class OrgAccountOperationComponent implements OnChanges {
 
     private radioButtonOnChange(donation: DonateViewModel) {
         this.selectedDonationId = donation.id;
-        this.selectedUserId = donation.userId;
     }
 
     private closeSuggestionsModal() {
         this.selectedDonationId = undefined;
         this.selectedUserId = undefined;
-        this.suggestedDonations.length = 0;
         this.suggestedDonationsModal.hide();
     }
 
     private onClickSuggestionModalButton() {
         if (this.suggestedDonations.length == 0) {
-            this.createDonationFromFinOp(this.selectedFinOp.id);
+            this.toasterMessage = message.inAccessibleOperation;
+            this.showToast();
+            this.closeSuggestionsModal();
             return;
         }
         this.selectedFinOp.userId = this.selectedUserId;

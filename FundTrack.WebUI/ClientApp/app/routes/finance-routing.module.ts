@@ -8,6 +8,9 @@ import { MakeDonationComponent } from "../components/finance/donate-money.compon
 import { AdminRouteGuard } from "../services/concrete/security/admin-route-guard";
 import { PartnerRouteGuard } from "../services/concrete/security/partner-route-guard";
 import { MyDonationsComponent } from "../components/finance/my-donations.component";
+import { IncomeOperationComponent } from "../components/finance/incomeoperation.component";
+import { SpendingOperationComponent } from "../components/finance/spendingoperation.component";
+import { TransferOperationComponent } from "../components/finance/transferoperation.component";
 
 @NgModule({
     imports: [RouterModule.forChild([
@@ -29,6 +32,31 @@ import { MyDonationsComponent } from "../components/finance/my-donations.compone
                     component: BankImportComponent,
                     canActivate: [AdminRouteGuard]
                 }, 
+                {
+                    path: 'income',
+                    component: IncomeOperationComponent,
+                    canActivate: [AdminRouteGuard]
+                },
+                {
+                    path: 'income/:id',
+                    component: IncomeOperationComponent,
+                    canActivate: [AdminRouteGuard]
+                },
+                {
+                    path: 'spending',
+                    component: SpendingOperationComponent,
+                    canActivate: [AdminRouteGuard]
+                },
+                {
+                    path: 'spending/:id',
+                    component: SpendingOperationComponent,
+                    canActivate: [AdminRouteGuard]
+                },
+                {
+                    path: 'transfer/:id',
+                    component: TransferOperationComponent,
+                    canActivate: [AdminRouteGuard]
+                },
                 {
                     path: 'donate',
                     component: MakeDonationComponent
