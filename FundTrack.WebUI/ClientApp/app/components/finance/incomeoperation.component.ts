@@ -39,6 +39,7 @@ export class IncomeOperationComponent {
     private currentAccountId: number;
     private currentTarget: TargetViewModel = new TargetViewModel();
     private user: AuthorizeUserModel = new AuthorizeUserModel();
+    private nullTarget: TargetViewModel = { isDeletable: false, name: constant.nullTargetUA, organizationId: this.user.orgId, parentTargetId: null, targetId: null };
     private minDate: string;
     private isAccountChosen: boolean = false;
     private isAccountKnown: boolean = false;
@@ -91,13 +92,14 @@ export class IncomeOperationComponent {
     }
 
     private getCurrentTarget() {
-        if (this.currentAccount.targetId == null) {
-            this.currentTarget.name = message.nullTarget;
-        }
-        else {
+        if (this.currentAccount.targetId != null) {
             this.accountService.getTargetById(this.currentAccount.targetId).subscribe(target => {
                 this.currentTarget = target;
             });
+
+        }
+        else {
+            this.currentTarget = this.nullTarget;
         }
     }
 

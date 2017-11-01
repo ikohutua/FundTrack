@@ -53,6 +53,7 @@ export class SpendingOperationComponent {
     private currentAccountId: number;
     private currentTarget: TargetViewModel = new TargetViewModel();
     private user: AuthorizeUserModel = new AuthorizeUserModel();
+    private nullTarget: TargetViewModel = { isDeletable: false, name: constant.nullTargetUA, organizationId: this.user.orgId, parentTargetId: null, targetId: null };
     private minDate: string;
     private isAccountChosen: boolean = false;
     private isAccountKnown: boolean = false;
@@ -133,14 +134,15 @@ export class SpendingOperationComponent {
     }
 
     private getCurrentTarget() {
-        this.isTargetNull = false;
-        if (this.currentAccount.targetId == null) {
-            this.currentTarget.name = message.nullTarget;
-            this.getSubTargetsByTargetId(null);
-        }
-        else {
+        if (this.currentAccount.targetId != null) {
             this.currentTarget = this.baseTargets.find(target => target.targetId == this.currentAccount.targetId);
             this.getSubTargetsByTargetId(this.currentTarget.targetId);
+            this.isTargetNull = false;
+        }
+        else {
+            this.currentTarget = this.nullTarget;
+            this.getSubTargetsByTargetId(this.currentTarget.targetId);
+            this.isTargetNull = true;
         }
     }
 

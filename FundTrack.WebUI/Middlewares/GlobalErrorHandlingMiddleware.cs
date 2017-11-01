@@ -4,12 +4,12 @@ using Newtonsoft.Json.Serialization;
 using System;
 using System.Threading.Tasks;
 using FundTrack.WebUI.Middlewares.Logging;
-using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.DataProtection;
 using System.Text;
 using System.Diagnostics;
 using System.Security.Cryptography;
+using Microsoft.Extensions.Logging;
 
 namespace FundTrack.WebUI.Middlewares
 {

@@ -11,7 +11,6 @@ export const wrongLength = "Недопустима кількість симво
 export const invalidCardNumberMessage = "Номер картки повинен складатися з 16 цифр";
 export const invalidAmountMessage = "Поле ‘Сума’ може містити лише цілі числа в межах від 0 до 100000000 грн";
 export const maxLengthDescription = "Поле ‘Опис’ може містити не більше 500 символів";
-export const nullTarget = "Не вказано";
 export const inAccessibleOperation = "На даний момент операція недоступна.";
 export const successfulOperation = "На даний момент операція недоступна.";
 export const invalidDate = "Невірна дата";

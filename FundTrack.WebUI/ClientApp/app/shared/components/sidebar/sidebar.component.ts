@@ -144,4 +144,8 @@ export class SidebarComponent implements OnInit {
     public redirectToCommonDonationsReportsPage() {
         this._router.navigate(['organization/commondonationsreports/' + this.user.orgId.toString()]);
     }
+
+    public redirectToInvoiceDeclarationPage(): void {
+        this._router.navigate(['organization/invoiceDeclaration/' + this.user.orgId.toString()]);
+    }
 }

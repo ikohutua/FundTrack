@@ -281,9 +281,8 @@ export class BankImportComponent implements OnInit {
             this._newFinOp.cardFromId = Number(this.currentOrgAccount.id);
             this._newFinOp.finOpType = constant.spendingId;
         }
-        this._newFinOp.finOpDate = bankImport.trandate;
-        this._newFinOp.targetId = this.targets[0].targetId;
         this._newFinOp.orgId = this.user.orgId;
+        this._newFinOp.targetId = this.targets[0].targetId;
         this.index = this._dataForFinOp.findIndex(element => element.id == bankImport.id);
         this.currentOrgAccountNumber = this.currentOrgAccount.orgAccountName + ': ' + this.currentOrgAccount.orgAccountNumber;
     }

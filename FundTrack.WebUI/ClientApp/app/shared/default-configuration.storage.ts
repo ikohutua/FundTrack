@@ -7,6 +7,7 @@ export const spendingUA: string = "Розхід";
 export const transferUA: string = "Переміщення";
 export const incomeTransferUA: string = "Переміщення(+)";
 export const spendingTransferUA: string = "Переміщення(-)";
+export const nullTargetUA: string = "Не вказано";
 export const cashUA: string = "Готівка";
 export const bankUA: string = "Банк";
 export const incomeId: number = 1;
