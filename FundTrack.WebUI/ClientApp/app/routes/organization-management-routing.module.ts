@@ -19,6 +19,7 @@ import { TargetManagementComponent } from '../components/organization-edit/targe
 import { OrganizationStatisticsComponent } from "../components/organization-edit/organization-statistics.component";
 import { UsersDonationsReportComponent } from "../components/report/users-donations-report.component";
 import { CommonDonationsReportComponent } from "../components/report/common-donations-report.component";
+import { InvoiceDeclarationReportComponent } from '../components/invoice-declaration-report/invoice-declaration-report.component';
 
 @NgModule({
     providers: [AdminRouteGuard],
@@ -101,6 +102,10 @@ import { CommonDonationsReportComponent } from "../components/report/common-dona
         {
             path: 'organization/commondonationsreports/:id',
             component: CommonDonationsReportComponent
+        },
+        {
+            path: 'organization/invoiceDeclaration/:id',
+            component: InvoiceDeclarationReportComponent
         }
     ])],
     exports: [RouterModule]
