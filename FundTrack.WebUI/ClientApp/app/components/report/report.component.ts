@@ -26,7 +26,6 @@ export class ReportComponent implements OnInit, OnDestroy {
     private incomeReportData: IncomeReportDataViewModel[] = new Array<IncomeReportDataViewModel>();
     private outcomeReportData: OutcomeReportDataViewModel[] = new Array<OutcomeReportDataViewModel>();
     private reportModel: ReportFilterQueryViewModel = new ReportFilterQueryViewModel();
-    private accessToFill: number;
     private reportOutTotalSum: number = 0;
     private reportInTotalSum: number = 0;
     private reportImages: string[];

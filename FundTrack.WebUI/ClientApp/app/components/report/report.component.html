@@ -29,12 +29,11 @@
 
     <div class="panel-body">
         <div *ngIf="ifDataExists" class="text-left col-md-6">
-            <div *ngIf="accessToFill == 0">
+            <div>
                 Всього витрачено: {{reportOutTotalSum | number : '1.2-2'}} ₴
-            </div>
-            <div *ngIf="accessToFill == 1">
+                <br />
                 Всього надійшло: {{reportInTotalSum | number : '1.2-2'}} ₴
-            </div>
+            </div>       
         </div>
         <div class="text-right col-md-6">
             <div *ngIf="ifDataExists">

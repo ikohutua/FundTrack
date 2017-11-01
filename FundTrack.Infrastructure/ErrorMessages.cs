@@ -52,9 +52,9 @@
         public const string BindingDonationToFinOp = "Неможливо прив'язати пожертву до фінансової операції";
         public const string CantGetFinOpsForReport = "Неможливо отримати фінансові операції для звіту";
         //report controller
-        public const string IncomeReportErrorMessage = "Неможливо отримати звіт по надходженнях для організації №{0} за періодом з '{1}' до '{2}';";
-        public const string OutcomeReportErrorMessage = "Неможливо отримати звіт по витратах для організації №{0} за періодом з '{1}' до '{2}';";
-        public const string FinopImagesErrorMessage = "Неможливо отримати зображення для операції №{0};";
-        public const string InvoiceDeclarationReportErrorMessage = "Неможливо отримати оборотно-сальдову відомість для організації №{0} за періодом з '{1}' до '{2}';";
+        public const string DateFromErrorMessage = "Невірна або пуста початкова дата.";
+        public const string DateToErrorMessage = "Невірна або пуста кінцева дата.";
+        public const string FinopImagesIdErrorMessage = "Невірнийб менший за 0 або пустий ідентифікатор операції.";
+        public const string CheckIdErrorMessage = "Невірний, менший за 0 або пустий ідентифікатор.";
     }
 }

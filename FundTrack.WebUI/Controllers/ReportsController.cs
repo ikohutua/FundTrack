@@ -29,7 +29,7 @@ namespace FundTrack.WebUI.Controllers
             {
                 return Ok(_service.GetIncomeReports(orgId, dateFrom, dateTo));
             }           
-                return BadRequest(string.Format(ErrorMessages.IncomeReportErrorMessage, orgId, dateFrom, dateTo));     
+                return BadRequest(ControllerContext.ModelState);     
         }
 
         [HttpGet("OutcomeReport/{orgId}")]
@@ -38,8 +38,8 @@ namespace FundTrack.WebUI.Controllers
             if (isDateValid(dateFrom, dateTo) && isIdValid(orgId))
             {
                 return Ok(_service.GetOutcomeReports(orgId, dateFrom, dateTo));
-            }
-            return BadRequest(string.Format(ErrorMessages.OutcomeReportErrorMessage, orgId, dateFrom, dateTo));
+            } 
+            return BadRequest(ControllerContext.ModelState);
         }
 
         [HttpGet("FinOpImages")]
@@ -49,7 +49,8 @@ namespace FundTrack.WebUI.Controllers
             {
                 return Ok(_service.GetImagesById(finOpId));
             }
-            return BadRequest(string.Format(ErrorMessages.FinopImagesErrorMessage, finOpId));
+            ModelState.AddModelError("finOpId Error", ErrorMessages.FinopImagesIdErrorMessage);
+            return BadRequest(ControllerContext.ModelState);
             
         }
 
@@ -61,41 +62,65 @@ namespace FundTrack.WebUI.Controllers
             {
                 return Ok(_service.GetInvoiceDeclarationReport(orgId,dateFrom,dateTo));
             }
-            return BadRequest(string.Format(ErrorMessages.InvoiceDeclarationReportErrorMessage, orgId, dateFrom, dateTo));
+            return BadRequest(ControllerContext.ModelState);
         }
 
         private bool isDateValid(DateTime? dateFrom, DateTime? dateTo)
         {
-            if (dateTo == null)
-            {        
+            if (dateFrom == null)
+            {
+                ModelState.AddModelError("dateFrom Error", ErrorMessages.DateFromErrorMessage);
                 return false;
             }
-            return dateFrom != null;
+            if (dateTo == null)
+            {
+                ModelState.AddModelError("dateTo Error", ErrorMessages.DateToErrorMessage);
+                return false;
+            }
+
+            return true;
         }
         private bool isIdValid(int id)
         {
-            return id > 0;
+            if (id > 0)
+            {
+                return true;
+            }
+            ModelState.AddModelError("Parameter Error", ErrorMessages.CheckIdErrorMessage);
+            return false;
         }
 
         [Authorize(Roles = "admin, moderator")]
         [HttpGet("{orgId}/{finOpType}")]
-        public IEnumerable<TargetReportViewModel> GetTargetsReport(int orgId, int finOpType, DateTime dateFrom, DateTime dateTo)
+        public ActionResult GetTargetsReport(int orgId, int finOpType, DateTime dateFrom, DateTime dateTo)
         {
-            return _organizationStatisticsService.GetReportForIncomeFinopsByTargets(orgId, finOpType, dateFrom, dateTo);
+            if (isDateValid(dateFrom, dateTo) && isIdValid(orgId) && isIdValid(finOpType))
+            {
+                return Ok(_organizationStatisticsService.GetReportForIncomeFinopsByTargets(orgId, finOpType, dateFrom, dateTo));
+            }
+            return BadRequest(ControllerContext.ModelState);
         }
 
         [Authorize(Roles = "admin, moderator")]
         [HttpGet("GetSubTargets/{orgId}/{finOpType}/{baseTargetId}")]
-        public IEnumerable<TargetReportViewModel> GetSubTargets(int orgId, int finOpType, int baseTargetId, DateTime dateFrom, DateTime dateTo)
+        public ActionResult GetSubTargets(int orgId, int finOpType, int baseTargetId, DateTime dateFrom, DateTime dateTo)
         {
-            return _organizationStatisticsService.GetSubTargets(orgId, finOpType, baseTargetId, dateFrom, dateTo);
+            if (isDateValid(dateFrom, dateTo) && isIdValid(orgId) && isIdValid(finOpType) && isIdValid(baseTargetId))
+            {
+                return Ok(_organizationStatisticsService.GetSubTargets(orgId, finOpType, baseTargetId, dateFrom, dateTo));
+            }
+            return BadRequest(ControllerContext.ModelState);
         }
 
         [Authorize(Roles = "admin, moderator")]
         [HttpGet("GetFinOpsByTargetId/{finOpType}/{targetId}")]
-        public IEnumerable<FinOpViewModel> GetFinOpsByTargetId(int finOpType, int targetId, DateTime dateFrom, DateTime dateTo)
+        public ActionResult GetFinOpsByTargetId(int finOpType, int targetId, DateTime dateFrom, DateTime dateTo)
         {
-            return _organizationStatisticsService.GetFinOpsByTargetId(finOpType, targetId, dateFrom, dateTo);
+            if (isDateValid(dateFrom, dateTo) && isIdValid(finOpType))
+            {
+                return Ok(_organizationStatisticsService.GetFinOpsByTargetId(finOpType, targetId, dateFrom, dateTo));
+            }
+            return BadRequest(ControllerContext.ModelState);
         }
 
     }
