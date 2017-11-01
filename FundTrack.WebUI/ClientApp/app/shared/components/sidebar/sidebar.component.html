@@ -63,6 +63,9 @@
                     <li><a (click)="redirectToCommonDonationsReportsPage()">Пожертви користувачів</a></li>
               </ul>
             </li>
+            <li *ngIf="this.user && (this.user.role=='admin' || this.user.role=='moderator')">
+                <a (click)="redirectToInvoiceDeclarationPage()">Оборотно-сальдова відомість</a>
+            </li>
 
             <li *ngIf="this.user && (this.user.role=='admin' || this.user.role=='moderator')" class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown">Налаштування<span class="caret"></span></a>

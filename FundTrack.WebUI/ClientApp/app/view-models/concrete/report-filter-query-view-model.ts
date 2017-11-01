@@ -1,7 +1,7 @@
 ﻿export class ReportFilterQueryViewModel {
      id: number;
-     dateFrom: Date;
-     dateTo: Date;
+     dateFrom: string;
+     dateTo: string;
      reportType: number;
      filterValue: string;
      pageSize: number;
