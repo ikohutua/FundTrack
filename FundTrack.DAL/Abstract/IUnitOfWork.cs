@@ -162,7 +162,5 @@ namespace FundTrack.DAL.Abstract
         /// Gets the bank repository
         /// </summary>
         IBankRepository BankRepository { get; }
-
-        IImportIntervalRepository ImportIntervalRepository { get; }
     }
 }

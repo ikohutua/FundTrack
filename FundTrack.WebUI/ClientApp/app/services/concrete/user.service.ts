@@ -63,34 +63,10 @@ export class UserService {
         let urlLog = "LogIn";
         return this._http.post(this._authorizationUrl + urlLog, JSON.stringify(user), this.getRequestOptions())
             .map((response: Response) => {
-                return response.json() as AuthorizedUserInfoViewModel;
-            }
-            )
+                     return response.json() as AuthorizedUserInfoViewModel;
+                }
+    )
             .catch(this.handleError);
-    }
-
-    /**
- * Send request to controller to authorize user and return his token
- * @param user
- */
-    public getAccessToken(user: LoginViewModel): Observable<string> {
-        var body = 'grant_type=password'
-        body += '& password=' + user.password;
-        body += '& username=' + user.login;
-        
-        return this._http.post('http://localhost:51469/token', body, this.getOwinRequestOptions())
-            .map((response: Response) => {
-                return response.json()["access_token"];
-            })
-            .catch(this.handleError);
-    }
-
-    private getOwinRequestOptions() {
-        var headers = new Headers();
-        headers.append('Content-Type', 'application/x-www-form-urlencoded');
-        headers.append('Accept', 'application/json');
-        let options = new RequestOptions({ headers: headers });
-        return options;
     }
 
     /**
@@ -152,7 +128,7 @@ export class UserService {
      * @param passwordModel
      */
     public resetPassword(passwordModel: ResetPasswordViewModel) {
-        return this.sendRequestToServer(this._resetUserPasswordUrl, passwordModel);
+        return this.sendRequestToServer(this._resetUserPasswordUrl, passwordModel);       
     }
 
     public checkEmailStatus(email: UserEmailViewModel) {
@@ -163,7 +139,7 @@ export class UserService {
      * Sends request to controller to change user's password
     * @param changePasswordViewModel: Model, containing user login and passwords
     * */
-    public changePassword(changePasswordViewModel: ChangePasswordViewModel): Observable<ChangePasswordViewModel> {
+    public changePassword(changePasswordViewModel: ChangePasswordViewModel): Observable < ChangePasswordViewModel > {
         let body = changePasswordViewModel;
         return this._http.post("api/user/changepassword", body, this.getRequestOptions())
             .map((response: Response) => response.json() as ChangePasswordViewModel);

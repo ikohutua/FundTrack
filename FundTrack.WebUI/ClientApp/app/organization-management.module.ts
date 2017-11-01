@@ -26,9 +26,8 @@ import { TargetManagementComponent } from './components/organization-edit/target
 import { OrganizationStatisticsComponent } from "./components/organization-edit/organization-statistics.component";
 import { ChartsModule } from 'ng2-charts';
 import { BrowserModule } from '@angular/platform-browser';
-import { UsersDonationsReportComponent } from "./components/report/users-donations-report.component";
-import { CommonDonationsReportComponent } from "./components/report/common-donations-report.component";
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { InvoiceDeclarationReportComponent } from "./components/invoice-declaration-report/invoice-declaration-report.component";
 
 @NgModule({
     declarations: [
@@ -51,9 +50,7 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
         OrganizationDetailComponent,
         TargetManagementComponent,
         OrganizationStatisticsComponent,
-        UsersDonationsReportComponent,
-        CommonDonationsReportComponent,
-
+        InvoiceDeclarationReportComponent
     ],
     imports: [
         FormsModule,

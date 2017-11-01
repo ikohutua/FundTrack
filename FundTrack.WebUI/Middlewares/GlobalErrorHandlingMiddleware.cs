@@ -4,11 +4,6 @@ using Newtonsoft.Json.Serialization;
 using System;
 using System.Threading.Tasks;
 using FundTrack.WebUI.Middlewares.Logging;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.DataProtection;
-using System.Text;
-using System.Diagnostics;
-using System.Security.Cryptography;
 
 namespace FundTrack.WebUI.Middlewares
 {
@@ -44,7 +39,7 @@ namespace FundTrack.WebUI.Middlewares
                 });
 
                 _logging.WriteLogInFile(ex);
-
+                
 
                 await context.Response.WriteAsync(json);
             }

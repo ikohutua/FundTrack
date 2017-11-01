@@ -16,11 +16,9 @@ import * as key from '../../shared/key.storage';
 import { isBrowser } from "angular2-universal";
 import { BaseSpinnerService } from "../abstract/base-spinner-service";
 import { SpinnerComponent } from "../../shared/components/spinner/spinner.component";
-import { RequestOptionsService } from "./request-options.service";
-import { GlobalUrlService } from "./global-url.service";
 
 @Injectable()
-export class BankImportService extends BaseSpinnerService<ImportDetailPrivatViewModel>{
+export class BankImportService extends BaseSpinnerService<ImportDetailPrivatViewModel >{
 
     public constructor(private _http: Http) {
         super(_http);
@@ -30,35 +28,62 @@ export class BankImportService extends BaseSpinnerService<ImportDetailPrivatView
      * method for get bank import from privat24 using api
      * @param dataForRequest
      */
-    public getUserExtracts(orgAccountId: number, spinner?: SpinnerComponent) {
+    public getUserExtracts(dataForRequest: DataRequestPrivatViewModel): Observable<ImportPrivatViewModel> {
+
         if (this.checkAuthorization()) {
-            return this._http.post(GlobalUrlService.PrivatExtract, orgAccountId, RequestOptionsService.getRequestOptions())
-                .map((response: Response) => response.json());
+            let data = `<oper>cmt</oper>
+                        <wait>0</wait>
+                        <test>1</test>
+                        <payment id="">
+                          <prop name="sd" value="${dataForRequest.dataFrom}" />
+                          <prop name="ed" value="${dataForRequest.dataTo}" />
+                          <prop name="card" value="${dataForRequest.card}" />
+                        </payment>`;
+
+            let sign = <string>sha1(<string>Md5.hashStr(data + dataForRequest.password));
+
+            let body = `<?xml version="1.0" encoding="UTF-8"?>
+                    <request version="1.0">
+                      <merchant>
+                        <id>${dataForRequest.idMerchant}</id>
+                        <signature>${sign}</signature>
+                      </merchant>
+                      <data>
+                        ${data}
+                      </data>
+                    </request>`;
+
+            return this._http.post("https://api.privatbank.ua/p24api/rest_fiz", body)
+                .map((response: Response) => {
+                    let imports = new ImportPrivatViewModel();
+                    xml2js.parseString(response.text(), function (err, result) {
+                        if (result.response.data[0].hasOwnProperty('error') == false) {
+                            for (let i = 0; i < result.response.data[0].info[0].statements[0].statement.length; ++i) {
+                                let temp: ImportDetailPrivatViewModel = new ImportDetailPrivatViewModel();
+                                let dates = result.response.data[0].info[0].statements[0].statement[i].$.trandate.split('-');
+                                let times = result.response.data[0].info[0].statements[0].statement[i].$.trantime.split(':');
+                                temp.card = result.response.data[0].info[0].statements[0].statement[i].$.card as string;
+                                temp.amount = result.response.data[0].info[0].statements[0].statement[i].$.amount as string;
+                                temp.cardAmount = result.response.data[0].info[0].statements[0].statement[i].$.cardamount as string;
+                                temp.rest = result.response.data[0].info[0].statements[0].statement[i].$.rest as string;
+                                temp.terminal = result.response.data[0].info[0].statements[0].statement[i].$.terminal as string;
+                                temp.description = result.response.data[0].info[0].statements[0].statement[i].$.description as string;
+                                temp.appCode = result.response.data[0].info[0].statements[0].statement[i].$.appcode as string;
+                                temp.trandate = new Date(+dates[0], (+dates[1]) - 1, +dates[2], (+times[0]) + 3, +times[1], +times[2]);
+                                temp.isLooked = false;
+                                temp.id = 0;
+                                imports.importsDetail.push(temp);
+                            }
+                        }
+                        else {
+                            imports.error = result.response.data[0].error[0].$.message as string
+                        }
+                    });
+                    return imports;
+                })
+                .catch(this.handleError)
         }
     }
-
-    public getPrivatExtracts(data: DataRequestPrivatViewModel, spinner?: SpinnerComponent) {
-        if (this.checkAuthorization()) {
-            return this._http.post(GlobalUrlService.PrivatExtractWithDate, data, RequestOptionsService.getRequestOptions())
-                .map((response: Response) => response.json());
-        }
-    }
-
-    public UpdateDate(orgId: number):Observable<Date> {
-        if (this.checkAuthorization()) {
-            return this._http.get(GlobalUrlService.UpdateDate + '/' + orgId , RequestOptionsService.getRequestOptions())
-                .map((response: Response) => response.json() as Date);
-        }
-    }
-
-    public getLastPrivatUpdate(orgId: number): Observable<Date> {
-        if (this.checkAuthorization()) {
-            return this._http.get(GlobalUrlService.LastUpdate + '/' + orgId, RequestOptionsService.getRequestOptions())
-                .map((response: Response) => { return response.json() as Date })
-                .catch(this.handleError);
-        }
-    }
-
 
     /**
      * method for register bank importss in db
@@ -66,7 +91,8 @@ export class BankImportService extends BaseSpinnerService<ImportDetailPrivatView
      */
     public registerBankExtracts(bankImport: ImportDetailPrivatViewModel[]): Observable<ImportDetailPrivatViewModel[]> {
         if (this.checkAuthorization()) {
-            return this._http.post(GlobalUrlService.RegisterNewExtracts, bankImport, RequestOptionsService.getRequestOptions())
+            let url = 'api/BankImport/RegisterNewExtracts';
+            return this._http.post(url, bankImport, this.getRequestOptions())
                 .map((response: Response) => <ImportDetailPrivatViewModel[]>response.json())
                 .catch(this.handleError);
         }
@@ -79,7 +105,7 @@ export class BankImportService extends BaseSpinnerService<ImportDetailPrivatView
     public getRawExtracts(bankSearchModel: BankImportSearchViewModel): Observable<ImportDetailPrivatViewModel[]> {
         if (this.checkAuthorization()) {
             let url = "api/BankImport/SearchRawExtractsOnPeriod";
-            return this._http.post(url, bankSearchModel, RequestOptionsService.getRequestOptions())
+            return this._http.post(url, bankSearchModel, this.getRequestOptions())
                 .map((response: Response) => <ImportDetailPrivatViewModel[]>response.json())
                 .catch(this.handleError);
         }
@@ -92,24 +118,23 @@ export class BankImportService extends BaseSpinnerService<ImportDetailPrivatView
     public getAllExtracts(card: string, spinner?: SpinnerComponent): Observable<ImportDetailPrivatViewModel[]> {
         if (this.checkAuthorization()) {
             let url = 'api/BankImport/GetAllExtracts/' + card;
-            return super.getCollection(url, RequestOptionsService.getRequestOptions(), spinner)
+            return super.getCollection(url, this.getRequestOptions(), spinner)
         }
     }
 
-    /**
-    * method for get the count all bank imports fin one org accounts
-    * @param card
-    */
+     /**
+     * method for get the count all bank imports fin one org accounts
+     * @param card
+     */
     public getCountExtractsOnCard(card: string): Observable<number> {
         if (this.checkAuthorization()) {
             let url = 'api/BankImport/GetCountExtracts';
-            return this._http.get(url + '/' + card, RequestOptionsService.getRequestOptions())
+            return this._http.get(url + '/' + card, this.getRequestOptions())
                 .map((response: Response) => <number>response.json())
                 .catch(this.handleError);
         }
     }
 
-    
     /**
     * Create RequestOptions
     */

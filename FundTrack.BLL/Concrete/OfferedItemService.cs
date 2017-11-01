@@ -37,12 +37,8 @@ namespace FundTrack.BLL.Concrete
                     item.User = _unitOfWork.UsersRepository.GetUserById(model.UserId);
                     item.GoodsCategory = _unitOfWork.GoodsCategoryRepository.GetGoodsCategoryById(model.GoodsCategoryId);
                     item.Status = _unitOfWork.StatusRepository.GetStatusByName(initialStatus);
-                    item.OfferedItemImages = UploadImagesToStorage(model.Images, model.Id);
                     var createdItem = _unitOfWork.OfferedItemRepository.Create(item);
-
                     _unitOfWork.SaveChanges();
-
-                    model.Images = ConvertOfferedItemImagesToViewModel(item.OfferedItemImages).ToArray();
                 }
                 return model;
             }
@@ -51,60 +47,6 @@ namespace FundTrack.BLL.Concrete
                 throw new BusinessLogicException("Creating offered item error. " + ex.Message);
             }
         }
-
-        /// <summary>
-        /// Convert OfferedItemImage To OfferedItemImageViewModel
-        /// </summary>
-        /// <param name="offeredItemImages"></param>
-        /// <returns></returns>
-        private OfferedItemImageViewModel ConvertOfferedItemImageToViewModel(OfferedItemImage offeredItemImages)
-        {
-            return new OfferedItemImageViewModel()
-            {
-                Id = offeredItemImages.Id,
-                IsMain = offeredItemImages.IsMain,
-                OfferedItemId = offeredItemImages.OfferedItemId,
-                ImageUrl = AzureStorageConfiguration.GetImageUrl(offeredItemImages.ImageUrl)
-            };
-        }
-        /// <summary>
-        /// Convert collection of OfferedItemImage To collection of OfferedItemImageViewModel
-        /// </summary>
-        /// <param name="offeredItemImages">Collection of OfferedItemImage</param>
-        /// <returns>Collection of OfferedItemImageViewModel</returns>
-        private IEnumerable<OfferedItemImageViewModel> ConvertOfferedItemImagesToViewModel(IEnumerable<OfferedItemImage> offeredItemImages)
-        {
-            return offeredItemImages.Select(ConvertOfferedItemImageToViewModel).ToList();
-        }
-
-        /// <summary>
-        /// Convert OfferedItemImageViewModele To OfferedItemImage
-        /// </summary>
-        /// <param name="offeredItemImages"></param>
-        /// <returns></returns>
-        private OfferedItemImage ConvertFromOfferedItemImageViewModelToModel(OfferedItemImageViewModel offeredItemImages)
-        {
-            return new OfferedItemImage()
-            {
-                Id = offeredItemImages.Id,
-                IsMain = offeredItemImages.IsMain,
-                OfferedItemId = offeredItemImages.OfferedItemId,
-                ImageUrl = AzureStorageConfiguration.GetImageNameFromUrl(offeredItemImages.ImageUrl)
-            };
-        }
-
-        /// <summary>
-        /// Convert collection of OfferedItemImageViewModel To collection of OfferedItemImage
-        /// </summary>
-        /// <param name="offeredItemImages">Collection of OfferedItemImageViewModel</param>
-        /// <returns>Collection of OfferedItemImage</returns>
-        private IEnumerable<OfferedItemImage> ConvertOfferedItemImagesVmToModels(IEnumerable<OfferedItemImageViewModel> offeredItemImages)
-        {
-            return offeredItemImages.Select(ConvertFromOfferedItemImageViewModelToModel).ToList();
-        }
-
-
-
         /// <summary>
         /// Edits offer item, that matches received offered item view model
         /// </summary>
@@ -121,7 +63,7 @@ namespace FundTrack.BLL.Concrete
                     item.Name = model.Name;
                     item.GoodsCategory = this._unitOfWork.GoodsCategoryRepository.GetGoodsCategoryById(model.GoodsCategoryId);
                     item.GoodsCategoryId = item.GoodsCategory.Id;
-                    SetOfferedItemPictures(model.Images, item);
+                    this.SetOfferedItemPictures(model.Images, item);
                     this._unitOfWork.SaveChanges();
                 }
 
@@ -145,11 +87,6 @@ namespace FundTrack.BLL.Concrete
                 var images = item.OfferedItemImages?.Select(i => i.ImageUrl);
 
                 this._unitOfWork.OfferedItemRepository.Delete(id);
-
-                foreach (var imageName in images)
-                {
-                    _imgService.DeleteImageAsync(imageName);
-                }
                 this._unitOfWork.SaveChanges();
             }
             catch (Exception ex)
@@ -248,9 +185,14 @@ namespace FundTrack.BLL.Concrete
                 UserId = item.UserId,
                 GoodsTypeName = item.GoodsCategory.GoodsType.Name
             };
-            model.Images = this._unitOfWork.OfferImagesRepository.Read()
-                .Where(a => a.OfferedItemId == model.Id)
-                .Select(ConvertOfferedItemImageToViewModel)
+            model.Images = this._unitOfWork.OfferImagesRepository.Read().Where(a => a.OfferedItemId == model.Id)
+                .Select(a => new OfferedItemImageViewModel
+                {
+                    ImageUrl = a.ImageUrl,
+                    IsMain = a.IsMain,
+                    OfferedItemId = model.Id,
+                    Id = a.Id
+                })
                 .ToArray();
             return model;
         }
@@ -261,7 +203,7 @@ namespace FundTrack.BLL.Concrete
         /// <param name="images">Base64 code of images</param>
         /// <param name="offeredItemId">Offered item Id</param>
         /// <returns>Collection of offered item images</returns>
-        public ICollection<OfferedItemImage> UploadImagesToStorage(IEnumerable<OfferedItemImageViewModel> images, int offeredItemId)
+        public ICollection<OfferedItemImage> SetNewPictures(OfferedItemImageViewModel[] images,int offeredItemId)
         {
             Dictionary<OfferedItemImage, Task<string>> imageTastDictionary = new Dictionary<OfferedItemImage, Task<string>>();
 
@@ -273,7 +215,7 @@ namespace FundTrack.BLL.Concrete
                     OfferedItemId = offeredItemId
                 };
 
-                var t = _imgService.UploadImageAsync(Convert.FromBase64String(item.Base64Data), item.imageExtension);
+                var t = _imgService.UploadImage(Convert.FromBase64String(item.Base64Data));
                 imageTastDictionary.Add(newImage, t);
             }
             Task.WhenAll(imageTastDictionary.Values);
@@ -282,7 +224,10 @@ namespace FundTrack.BLL.Concrete
             {
                 element.Key.ImageUrl = element.Value.Result;
             }
-
+            if (imageTastDictionary.Keys.First() != null)
+            {
+                imageTastDictionary.Keys.First().IsMain = true;
+            }
             return imageTastDictionary.Keys;
         }
 
@@ -299,50 +244,48 @@ namespace FundTrack.BLL.Concrete
         /// <summary>
         /// Set pictures, received as param for specified offered item id
         /// </summary>
-        /// <param name="incomingImages">IEnumerable of offered item image view models</param>
-        /// <param name="offerItem">offered item entity</param>
+        /// <param name="images">IEnumerable of offered item image view models</param>
+        /// <param name="item">offered item entity</param>
         /// <returns>Offered Item Image View models</returns>
-        public void SetOfferedItemPictures(IEnumerable<OfferedItemImageViewModel> incomingImages, OfferedItem offerItem)
+        public IEnumerable<OfferedItemImageViewModel> SetOfferedItemPictures(IEnumerable<OfferedItemImageViewModel> images, OfferedItem item)
         {
-            //images in Db
-            List<OfferedItemImage> storedImages = offerItem.OfferedItemImages.ToList();
-
-            //new images user set
-            List<OfferedItemImageViewModel> incomeNewImages = incomingImages.Select(i => i).Where(i => !String.IsNullOrEmpty(i.Base64Data)).ToList();
-            if (incomeNewImages.Any(i=>i.IsMain))
+            var mainImage = images.Where(a => a.IsMain == true).Take(1).ToArray();
+            if (mainImage.Count() != 0)
             {
-                storedImages.ForEach(i => i.IsMain = false);
+                this.ClearMainImageStatus(item);
+                if (mainImage[0].Id != 0 && mainImage[0].IsMain == true)
+                {
+                    this._unitOfWork.OfferImagesRepository.Get(mainImage[0].Id).IsMain = true;
+                }
             }
-
-            //in case when only main image was changed
-            storedImages.ForEach(si => si.IsMain = incomingImages.
-                                                    Select(i => i).
-                                                    Where(i => i.Id == si.Id).
-                                                    FirstOrDefault()
-                                                    ?.IsMain ?? si.IsMain);
-
-            //old images stored in Db
-            var incomeOldImages = incomingImages.Select(i => i).Where(i => String.IsNullOrEmpty(i.Base64Data));
-            var incomeOldImagesModel = ConvertOfferedItemImagesVmToModels(incomeOldImages);
-
-            //old images which we have removed from offerItem.Images
-            var uslesImages = storedImages.Where(l2 => !incomeOldImagesModel.Any(l1 => l1.ImageUrl == l2.ImageUrl)).ToList();
-            foreach (var stuff in uslesImages)
+            IEnumerable<OfferedItemImage> newImages = images.Where(a => a.Id == 0).Select(
+                image => new OfferedItemImage
+                {
+                    ImageUrl = image.ImageUrl,
+                    IsMain = image.IsMain,
+                    OfferedItemId = image.OfferedItemId,
+                    OfferedItem = item
+                }
+                );
+            IEnumerable<OfferedItemImage> incomingImages = images.Select(
+                image => new OfferedItemImage
+                {
+                    Id = image.Id,
+                    ImageUrl = image.ImageUrl,
+                    IsMain = image.IsMain,
+                    OfferedItemId = item.Id
+                }
+                ).ToList();
+            IEnumerable<OfferedItemImage> missingImages = this._unitOfWork.OfferImagesRepository.GetOfferedItemImageByOfferItemId(item.Id).Except(incomingImages, new DAL.Comparers.OfferedItemImageComparator());
+            foreach (var stuff in missingImages)
             {
-                _unitOfWork.OfferImagesRepository.Delete(stuff.Id);
-                storedImages.Remove(stuff);
-                _imgService.DeleteImageAsync(AzureStorageConfiguration.GetImageNameFromUrl( stuff.ImageUrl));
+                this._unitOfWork.OfferImagesRepository.Delete(stuff.Id);
             }
-
-            //save new images
-            var newImages = UploadImagesToStorage(incomeNewImages, offerItem.Id);
             foreach (var picture in newImages)
             {
-                var newImg = _unitOfWork.OfferImagesRepository.Create(picture);
-                storedImages.Add(newImg);
+                this._unitOfWork.OfferImagesRepository.Create(picture);
             }
-
-            offerItem.OfferedItemImages = storedImages;
+            return images;
         }
 
         /// <summary>
@@ -358,7 +301,7 @@ namespace FundTrack.BLL.Concrete
                         Id = image.Id,
                         IsMain = image.IsMain,
                         OfferedItemId = image.OfferedItemId,
-                        ImageUrl = AzureStorageConfiguration.GetImageUrl(image.ImageUrl)
+                        ImageUrl = image.ImageUrl
                     });
             return images;
         }

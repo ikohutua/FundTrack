@@ -89,8 +89,7 @@ namespace FundTrack.DAL.Entities
         /// </summary>
         public virtual Donation Donation { get; set; }
 
-        public virtual ICollection<BankImportDetail> BankImportDetails { get; set; }
-
+       
         /// <summary>
         /// Gets or Sets table for binding
         /// </summary>

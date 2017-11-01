@@ -2,5 +2,4 @@
     organizationId: number;
     base64Code: string;
     logoUrl: string;
-    imageExtension: string;
 }

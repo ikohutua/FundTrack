@@ -6,8 +6,6 @@ using FundTrack.Infrastructure.ViewModel.FinanceViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using PrivatService;
 
 namespace FundTrack.BLL.Concrete
 {
@@ -18,6 +16,7 @@ namespace FundTrack.BLL.Concrete
     public class BankImportService : IBankImportService
     {
         private readonly IUnitOfWork _unitOfWork;
+
         /// <summary>
         /// Creates new instance of BankImportService
         /// </summary>
@@ -170,59 +169,6 @@ namespace FundTrack.BLL.Concrete
             {
                 var message = "Немає виписок.";
                 throw new BusinessLogicException(message, ex);
-            }
-        }
-
-        public async Task ImportFromPrivat(int orgAccountId)
-        {
-            try
-            {
-                var bancAccount = _unitOfWork.OrganizationAccountRepository.GetOrgAccountById(orgAccountId).BankAccount;
-                var interval = _unitOfWork.ImportIntervalRepository.GetByOrgId(bancAccount.OrgId);
-                await PrivatImporter.Import(bancAccount.CardNumber, bancAccount.ExtractMerchantId.ToString(), bancAccount.ExtractMerchantPassword, interval.LastUpdateDate.Value);
-            }
-            catch (Exception ex)
-            {
-                throw new BusinessLogicException(ex.Message, ex);
-            }
-        }
-
-        public DateTime GetLastPrivatUpdate(int orgId)
-        {
-            try
-            {
-                return _unitOfWork.ImportIntervalRepository.GetByOrgId(orgId).LastUpdateDate.Value;
-            }
-            catch (Exception ex)
-            {
-                throw new BusinessLogicException(ex.Message, ex);
-            }
-        }
-
-        public async Task ImportWithDates(PrivatImportViewModel model)
-        {
-            try
-            {
-                await PrivatImporter.Import(model.Card, model.IdMerchant.ToString(), model.Password, Convert.ToDateTime(model.DataFrom), Convert.ToDateTime(model.DataTo));
-            }
-            catch (Exception ex)
-            {
-                throw new BusinessLogicException(ex.Message, ex);
-            }
-        }
-
-        public AutoImportIntervals UpdateDate(int orgId )
-        {
-            try
-            {
-                var date = DateTime.Now;
-                var interval = _unitOfWork.ImportIntervalRepository.Update(orgId, date);
-                _unitOfWork.SaveChanges();
-                return interval;
-            }
-            catch (Exception ex)
-            {
-                throw new BusinessLogicException(ex.Message, ex);
             }
         }
     }

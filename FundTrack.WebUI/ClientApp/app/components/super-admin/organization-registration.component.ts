@@ -56,8 +56,7 @@ export class OrganizationRegistrationComponent implements OnInit {
     registerOrganization() {
         this.organization.country = "Україна";
         if (this.isNewLogoAvailable) {
-            this.organization.logoBase64Code = this.newLogo.base64Data;
-            this.organization.logoImageExtension = this.newLogo.imageExtension;
+            this.organization.base64Code = this.newLogo.base64Data;
         }
         this._registerService.registerOrganization(this.organization)
             .subscribe(org => {

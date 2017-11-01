@@ -46,9 +46,6 @@ export class BankImportComponent implements OnInit {
     @ViewChild("finOp")
     public finOpModalWindow: ModalComponent;
     @ViewChild(SpinnerComponent) spinner: SpinnerComponent;
-    @ViewChild("warning")
-    public finOpWarningWindow: ModalComponent;
-
 
     //model which contain data to create new finOp
     private _newFinOp: FinOpFromBankViewModel = new FinOpFromBankViewModel();
@@ -76,8 +73,7 @@ export class BankImportComponent implements OnInit {
     private count: number;
     private orgaccountId: number;
     private isOrgAccountHaveTarget: boolean;
-    private showSpinner: boolean = false;
-    private lastPrivatUpdate: Date;
+
 
     //constructor
     public constructor(private _service: BankImportService,
@@ -101,7 +97,6 @@ export class BankImportComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.showSpinner = true;
         if (isBrowser) {
             if (sessionStorage.getItem(key.keyCardNumber)) {
                 this.card = sessionStorage.getItem(key.keyCardNumber);
@@ -112,13 +107,13 @@ export class BankImportComponent implements OnInit {
                             this.user = JSON.parse(localStorage.getItem(key.keyModel)) as AuthorizeUserModel;
                             this._orgAccountService.getAllBaseTargetsOfOrganization(this.user.orgId)
                                 .subscribe(response => this.targets = response);
-                            this._service.getLastPrivatUpdate(this.user.orgId)
-                                .subscribe(response => this.lastPrivatUpdate = response);
+
                             this._finOpService.getOrgAccountForFinOp(this.user.orgId, this.card)
                                 .subscribe(response => {
                                     this.currentOrgAccount = response;
                                     if (this.currentOrgAccount.targetId != null) {
                                         this.isOrgAccountHaveTarget = true;
+                                        debugger;
                                         this._orgAccountService.getTargetById(this.currentOrgAccount.targetId)
                                             .subscribe(response => {
                                                 this.targets = new Array<TargetViewModel>();
@@ -128,13 +123,11 @@ export class BankImportComponent implements OnInit {
                                             .subscribe((res) => {
                                                 this.idMerchant = res.merchantId;
                                                 this.password = res.merchantPassword;
-                                            });
+                                            })
                                     }
-                                    this.showSpinner = false;
                                 });
                             this.getAllExtracts();
                         }
-
                     });
             }
         }
@@ -144,6 +137,15 @@ export class BankImportComponent implements OnInit {
         this._service.getAllExtracts(this.card, this.spinner)
             .subscribe(response => {
                 this._dataForFinOp = response;
+
+                if (this.currentOrgAccount.targetId != undefined) {
+                    for (let bankDetail of this._dataForFinOp) {
+                        if (Number(bankDetail.amount) > 0) {
+                            this.createFinOp(bankDetail);
+                            this.saveFinOp();
+                        }
+                    }
+                }
             });
     }
 
@@ -214,17 +216,21 @@ export class BankImportComponent implements OnInit {
      * get bankImports from privat24
      */
     public getExtracts() {
-        this.dataForPrivat.idMerchant = this.idMerchant;
-        this.dataForPrivat.password = this.password;
         this.dataForPrivat.dataTo = this.dataPrivatTo.split('-').reverse().join('.');
         this.dataForPrivat.dataFrom = this.dataPrivatFrom.split('-').reverse().join('.');
-        this._service.getPrivatExtracts(this.dataForPrivat)
-            .subscribe(() => {
-                this._service.UpdateDate(this.user.orgId)
-                    .subscribe(response => {
-                        this.lastPrivatUpdate = response;
-                    });
-
+        this._service.getUserExtracts(this.dataForPrivat)
+            .subscribe(response => {
+                this.importData = response;
+                if (!this.importData.error) {
+                    this._service.registerBankExtracts(this.importData.importsDetail)
+                        .subscribe(response => {
+                            this.showToast();
+                            setTimeout(() => {
+                                this.getAllExtracts();
+                                this.closeModal();
+                            }, 2500);
+                        });
+                }
             });
     }
 
@@ -253,7 +259,6 @@ export class BankImportComponent implements OnInit {
             this._newFinOp.cardFromId = Number(this.currentOrgAccount.id);
         }
         this._newFinOp.orgId = this.user.orgId;
-        this._newFinOp.targetId = this.targets[0].targetId;
         this.index = this._dataForFinOp.findIndex(element => element.id == bankImport.id);
         this.currentOrgAccountNumber = this.currentOrgAccount.orgAccountName + ': ' + this.currentOrgAccount.orgAccountNumber;
     }
@@ -270,8 +275,6 @@ export class BankImportComponent implements OnInit {
             });
     }
 
-
-
     /**
     * Closes bankImports modal window
     */
@@ -284,45 +287,11 @@ export class BankImportComponent implements OnInit {
      */
     public onActionClick(): void {
         this.dataForPrivat.card = this.card;
-
+        this.dataForPrivat.idMerchant = this.idMerchant;
+        this.dataForPrivat.password = this.password;
         this.newBankImportModalWindow.show();
     }
 
-    public onIncomeClick(): void {
-        if (this.currentOrgAccount.targetId != undefined) {
-            for (let bankDetail of this._dataForFinOp) {
-                if (bankDetail.isLooked == false) {
-                    if (Number(bankDetail.cardAmount.split(' ')[0]) > 0) {
-                        this.createFinOp(bankDetail);
-                        this.saveFinOp();
-                    }
-                }
-            }
-            this.getAllExtracts()
-        }
-        this.closeWarningModal();
-    }
-
-    public warningWindowShow(): void {
-        this.finOpWarningWindow.show();
-    }
-
-
-    public UpdateDate(): void {
-        this._service.UpdateDate
-    }
-    public onPrivatClick(): void {
-        this._service.getUserExtracts(this.currentOrgAccount.id).subscribe(() => {
-            this.showSpinner = false;
-            this._service.UpdateDate(this.user.orgId)
-                .subscribe(response => {
-                    this.lastPrivatUpdate = response;
-                });
-            this.getAllExtracts();
-        });
-        this.showSpinner = true;
-        this.newBankImportModalWindow.hide();
-    }
     /**
      * close finOp modal window
      */
@@ -331,9 +300,6 @@ export class BankImportComponent implements OnInit {
         this._newFinOp = new FinOpFromBankViewModel();
     }
 
-    public closeWarningModal(): void {
-        this.finOpWarningWindow.hide();
-    }
     /**
      * open finOp modal window
      */

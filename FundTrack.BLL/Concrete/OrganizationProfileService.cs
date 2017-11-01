@@ -9,7 +9,6 @@ using System;
 using FundTrack.DAL.Concrete;
 using FundTrack.Infrastructure;
 using System.Threading.Tasks;
-using System.IO;
 
 namespace FundTrack.BLL.Concrete
 {
@@ -44,14 +43,9 @@ namespace FundTrack.BLL.Concrete
                 Id = organization.Id,
                 Name = organization.Name,
                 Description = organization.Description,
-                IsBanned = false
+                IsBanned = false,
+                LogoUrl = organization.LogoUrl
             };
-
-            if (!String.IsNullOrEmpty(organization.LogoUrl))
-            {
-                result.LogoUrl = AzureStorageConfiguration.GetImageUrl(organization.LogoUrl);
-            }
-
             return result;
         }
 
@@ -170,7 +164,7 @@ namespace FundTrack.BLL.Concrete
             return new OrganizationViewModel
             {
                 Description = organization.Description,
-                LogoUrl = AzureStorageConfiguration.GetImageUrl(organization.LogoUrl),
+                LogoUrl = organization.LogoUrl,
                 Name = organization.Name,
                 Id = organization.Id
             };
@@ -267,9 +261,9 @@ namespace FundTrack.BLL.Concrete
         public EditLogoViewModel EditLogo(EditLogoViewModel item)
         {
             var organization = _unitOfWork.OrganizationRepository.Get(item.OrganizationId);
-            if (organization != null)
+            if (organization!=null)
             {
-                var task = _imgManageService.UploadImageAsync(Convert.FromBase64String(item.Base64Code), item.ImageExtension);
+                var task =  _imgManageService.UploadImage(Convert.FromBase64String(item.Base64Code));
                 Task.WhenAll(task);
                 organization.LogoUrl = task.Result;
                 _unitOfWork.SaveChanges();

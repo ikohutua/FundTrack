@@ -4,7 +4,6 @@
     offeredItemId: number;
     isMain: boolean;
     base64Data: string;
-    imageExtension: string;
 }
 
 

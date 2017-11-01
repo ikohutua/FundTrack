@@ -3,8 +3,6 @@ using FundTrack.DAL.Abstract;
 using FundTrack.Infrastructure.ViewModel;
 using System.Linq;
 using FundTrack.DAL.Entities;
-using System;
-using System.Threading.Tasks;
 
 namespace FundTrack.BLL.Concrete
 {
@@ -29,7 +27,7 @@ namespace FundTrack.BLL.Concrete
         /// </summary>
         /// <param name="item"> Item to register </param>
         /// <returns>Registered item</returns>
-        public  OrganizationRegistrationViewModel RegisterOrganization (OrganizationRegistrationViewModel item)
+        public OrganizationRegistrationViewModel RegisterOrganization (OrganizationRegistrationViewModel item)
         {
             var checkOrganization = _unitOfWork.OrganizationRepository.Read().Where(o => o.Name == item.Name).FirstOrDefault();
             if (checkOrganization == null)
@@ -41,9 +39,7 @@ namespace FundTrack.BLL.Concrete
                     var checkMembership = _unitOfWork.MembershipRepository.Read().Where(m => (m.UserId == user.Id) && (m.RoleId == role.Id)).FirstOrDefault();
                     if (checkMembership == null)
                     {
-                        var t = _imgManageService.UploadImageAsync(Convert.FromBase64String(item.LogoBase64Code), item.LogoImageExtension);
-                        Task.WhenAll(t);
-                        var organization = new Organization { Name = item.Name, Description = item.Description, LogoUrl = t.Result  };
+                        var organization = new Organization { Name = item.Name, Description = item.Description };
 
                         _unitOfWork.OrganizationRepository.Create(organization);
                         _unitOfWork.SaveChanges();

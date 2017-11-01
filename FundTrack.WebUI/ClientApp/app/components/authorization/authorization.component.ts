@@ -61,7 +61,7 @@ export class AuthorizationComponent {
         this.loginModel.login = "";
         this.loginModel.password = "";
         let userNamesFacebook;
-        let userForAuthorization: LoginFacebookViewModel = new LoginFacebookViewModel();
+        let userForAuthorization: LoginFacebookViewModel=new LoginFacebookViewModel();
         localStorage.clear();
         this._auth.login(provider)
             .subscribe(data => {

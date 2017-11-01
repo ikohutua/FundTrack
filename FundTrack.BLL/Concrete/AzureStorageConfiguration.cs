@@ -2,17 +2,11 @@
 {
    public static class AzureStorageConfiguration
     {
-        private static string _baseUrl = "https://fundrackss.blob.core.windows.net/fundtrackssimages/";
+        private static string _baseUrl = "";
 
         public static string GetImageUrl(string imageName)
         {
             return _baseUrl + imageName;
         }
-        public static string GetImageNameFromUrl(string url)
-        {
-            int ind = url.LastIndexOf('/');
-            return url.Substring(ind + 1, url.Length - ind - 1);
-        }
-
     }
 }

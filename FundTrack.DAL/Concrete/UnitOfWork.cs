@@ -38,8 +38,6 @@ namespace FundTrack.DAL.Concrete
         private readonly IUserResporitory _userRepository;
         private readonly IBalanceRepository _balanceRepository;
         private readonly IBankRepository _bankRepository;
-        private readonly IImportIntervalRepository _importIntervalRepository;
-
 
         private FundTrackContext _context;
 
@@ -69,17 +67,16 @@ namespace FundTrack.DAL.Concrete
               IOfferImagesRepository offeredItemImageRepository,
               IBankImportDetailRepository bankImportDetailRepository,
               IOrganizationAccountRepository organizationAccountRepository,
-              IRepository<Currency> currencyRepository,
-              ITargetRepository targetRepository,
+              IRepository<Currency> currencyRepository, 
+              ITargetRepository targetRepository, 
               IDonationRepository donationRepository,
               IFinOpRepository finOpRepository,
               IPhoneRepository phoneRepository,
               IRepository<FinOpImage> finOpImagesRepository,
               IUserResporitory userRepository,
               IBalanceRepository balanceRepository,
-              IBankRepository bankRepository,
-              IImportIntervalRepository importIntervalRepository
-
+              IBankRepository bankRepository
+              
               )
         {
             this._context = contextParam;
@@ -112,7 +109,6 @@ namespace FundTrack.DAL.Concrete
             _userRepository = userRepository;
             _balanceRepository = balanceRepository;
             _bankRepository = bankRepository;
-            _importIntervalRepository = importIntervalRepository;
         }
 
         /// <summary>
@@ -454,11 +450,6 @@ namespace FundTrack.DAL.Concrete
             {
                 return _bankRepository;
             }
-        }
-
-        public IImportIntervalRepository ImportIntervalRepository
-        {
-            get { return _importIntervalRepository; }
         }
 
 

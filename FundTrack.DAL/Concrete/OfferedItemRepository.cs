@@ -40,12 +40,7 @@ namespace FundTrack.DAL.Concrete
         /// <returns>OfferedItem</returns>
         public OfferedItem Get(int id)
         {
-            return _context.OfferedItems.
-                Include(a => a.OfferedItemImages).
-                Include(b => b.GoodsCategory).
-                Include(c => c.Status).
-                Include(d => d.GoodsCategory.GoodsType).
-                FirstOrDefault(x => x.Id == id);
+            return _context.OfferedItems.FirstOrDefault(x => x.Id == id);
         }
         /// <summary>
         /// Reads all OfferedItems

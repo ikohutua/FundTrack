@@ -18,7 +18,7 @@ import { TruncatePipe } from "./shared/pipes/truncate.pipe";
 //import { ChatBoxComponent } from './shared/components/chat-box/chat-box.component';
 import { ImageItemComponent } from "./shared/components/upload-image/image-item.component/image-item.component";
 import { ImageListComponent } from "./shared/components/upload-image/image-list.component/image-list.component";
-
+import { DatePresetsComponent } from "./shared/components/date-presets/date-presets.component";
 
 @NgModule({
     declarations: [
@@ -35,13 +35,15 @@ import { ImageListComponent } from "./shared/components/upload-image/image-list.
         SidebarComponent,
         GalleryComponent,
         ImageItemComponent,
-        ImageListComponent
+        ImageListComponent,
+        DatePresetsComponent
+        
     ],
     imports: [
         CommonModule,
         FormsModule,
         RouterModule,
-        ReactiveFormsModule
+        ReactiveFormsModule        
     ],
     exports: [
         RouterModule,
@@ -60,7 +62,9 @@ import { ImageListComponent } from "./shared/components/upload-image/image-list.
         GalleryComponent,
         TruncatePipe,
         ImageItemComponent,
-        ImageListComponent
+        ImageListComponent,
+        DatePresetsComponent
+        
     ]
 })
 export class SharedModule { }

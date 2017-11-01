@@ -1,0 +1,311 @@
+2017-11-01T12:25:56.8880364+02:00 0HL912BO683P8 [INF] Request starting HTTP/1.1 GET http://localhost:51116/   (e5be5b71)
+2017-11-01T12:25:57.7556518+02:00 0HL912BO683P8 [INF] Executing action method "FundTrack_WebUI.Controllers.HomeController.Index (FundTrack.WebUI)" with arguments (null) - ModelState is Valid (ba7f4ac2)
+2017-11-01T12:26:02.4159520+02:00 0HL912BO683P8 [INF] Executing ViewResult, running view at path "/Views/Home/Index.cshtml". (9707eebe)
+2017-11-01T12:26:02.5270316+02:00 0HL912BO683P8 [INF] User profile is available. Using '"C:\Users\Dmytro\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest. (7ac5e29c)
+2017-11-01T12:26:06.3787580+02:00 0HL912BO683P9 [INF] Request starting HTTP/1.1 GET http://localhost:51116/__webpack_hmr   (e5be5b71)
+2017-11-01T12:26:06.4608174+02:00 0HL912BO683PA [INF] Request starting HTTP/1.1 GET http://localhost:51116/__webpack_hmr   (e5be5b71)
+2017-11-01T12:26:07.1372952+02:00 0HL912BO683P8 [INF] Executed action "FundTrack_WebUI.Controllers.HomeController.Index (FundTrack.WebUI)" in 9461.8429ms (afa2e885)
+2017-11-01T12:26:07.1963376+02:00 0HL912BO683P8 [INF] Request finished in 10352.9317ms 200 text/html; charset=utf-8 (15c52c40)
+2017-11-01T12:26:07.2083449+02:00 0HL912BO683PB [INF] Request starting HTTP/1.1 GET http://localhost:51116/dist/main-client.js?v=iK8Pl12Q6hB6T80ZhdPVc6ENINF2eVhzrhlsQw8Kp1w   (e5be5b71)
+2017-11-01T12:26:07.2293608+02:00 0HL912BO683PB [INF] The file "/dist/main-client.js" was not modified (f1f8d725)
+2017-11-01T12:26:07.2373656+02:00 0HL912BO683PB [INF] Request finished in 28.5662ms 304 application/javascript (15c52c40)
+2017-11-01T12:26:09.0556546+02:00 0HL912BO683PC [INF] Request starting HTTP/1.1 GET http://localhost:51116/__webpack_hmr   (e5be5b71)
+2017-11-01T12:26:13.7359677+02:00 0HL912BO683PD [INF] Request starting HTTP/1.1 GET http://localhost:51116/api/UserResponse/GetUserResonseWithNewStatus/1 application/json  (e5be5b71)
+2017-11-01T12:26:13.7399705+02:00 0HL912BO683PE [INF] Request starting HTTP/1.1 GET http://localhost:51116/api/OrganizationsList   (e5be5b71)
+2017-11-01T12:26:13.8370387+02:00 0HL912BO683PD [INF] Successfully validated the token. (60169667)
+2017-11-01T12:26:13.8470486+02:00 0HL912BO683PD [INF] HttpContext.User merged via AutomaticAuthentication from authenticationScheme: "Bearer". (bdba1d38)
+2017-11-01T12:26:15.2590458+02:00 0HL912BO683PE [INF] Executing action method "FundTrack.WebUI.Controllers.OrganizationsListController.AllOrganizations (FundTrack.WebUI)" with arguments (null) - ModelState is Valid (ba7f4ac2)
+2017-11-01T12:26:15.4011464+02:00 0HL912BO683PD [INF] Executing action method "FundTrack.WebUI.Controllers.UserResponseController.GetCountNewStatus (FundTrack.WebUI)" with arguments (["1"]) - ModelState is Valid (ba7f4ac2)
+2017-11-01T12:26:15.4641904+02:00 0HL912BO683PE [INF] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext". (4e968210)
+2017-11-01T12:26:15.7794143+02:00 0HL912BO683PF [INF] Request starting HTTP/1.1 GET http://localhost:51116/api/Event/GetEventsPaginationData   (e5be5b71)
+2017-11-01T12:26:15.7824166+02:00 0HL912BO683PF [INF] Executing action method "FundTrack.WebUI.Controllers.EventController.GetEventsPaginationData (FundTrack.WebUI)" with arguments (null) - ModelState is Valid (ba7f4ac2)
+2017-11-01T12:26:17.4807811+02:00 0HL912BO683PD [INF] Executed DbCommand (316ms) [Parameters=[@__organizationId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [UserResponses] AS [u]
+LEFT JOIN [Statuses] AS [u.Status] ON [u].[StatusId] = [u.Status].[Id]
+INNER JOIN [RequestedItems] AS [u.RequestedItem] ON [u].[RequestedItemId] = [u.RequestedItem].[Id]
+WHERE ([u.RequestedItem].[OrganizationId] = @__organizationId_0) AND ([u.Status].[StatusName] = N'Новий') (6438bdd5)
+2017-11-01T12:26:17.6579046+02:00 0HL912BO683PD [INF] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext". (4e968210)
+2017-11-01T12:26:17.6659107+02:00 0HL912BO683PD [INF] Executed action "FundTrack.WebUI.Controllers.UserResponseController.GetCountNewStatus (FundTrack.WebUI)" in 3817.1735ms (afa2e885)
+2017-11-01T12:26:17.6689134+02:00 0HL912BO683PD [INF] Request finished in 3933.254ms 200 application/json; charset=utf-8 (15c52c40)
+2017-11-01T12:26:17.8140156+02:00 0HL912BO683PF [INF] Executed DbCommand (177ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [e].[Id], [e].[CreateDate], [e].[Description], [e].[OrganizationId]
+FROM [Events] AS [e] (6438bdd5)
+2017-11-01T12:26:17.8870671+02:00 0HL912BO683PG [INF] Request starting HTTP/1.1 GET http://localhost:51116/api/Event/AllEventsByScroll/6/1   (e5be5b71)
+2017-11-01T12:26:17.8900694+02:00 0HL912BO683PG [INF] Executing action method "FundTrack.WebUI.Controllers.EventController.AllEventsbyScroll (FundTrack.WebUI)" with arguments (["6", "1"]) - ModelState is Valid (ba7f4ac2)
+2017-11-01T12:26:17.9160879+02:00 0HL912BO683PG [INF] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext". (4e968210)
+2017-11-01T12:26:17.9300982+02:00 0HL912BO683PE [INF] Executed DbCommand (164ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [o].[Id], [o].[Description], [o].[LogoUrl], [o].[Name], [b].[Id], [b].[Description], [b].[OrganizationId]
+FROM [Organizations] AS [o]
+LEFT JOIN [BannedOrganizations] AS [b] ON [b].[OrganizationId] = [o].[Id] (6438bdd5)
+2017-11-01T12:26:18.1572584+02:00 0HL912BO683PE [INF] Executed action "FundTrack.WebUI.Controllers.OrganizationsListController.AllOrganizations (FundTrack.WebUI)" in 4397.5257ms (afa2e885)
+2017-11-01T12:26:18.1582593+02:00 0HL912BO683PE [INF] Request finished in 4418.1861ms 200 application/json; charset=utf-8 (15c52c40)
+2017-11-01T12:26:18.2323118+02:00 0HL912BO683PG [WRN] The LINQ expression 'Single()' could not be translated and will be evaluated locally. To configure this warning use the DbContextOptionsBuilder.ConfigureWarnings API (event id 'RelationalEventId.QueryClientEvaluationWarning'). ConfigureWarnings can be used when overriding the DbContext.OnConfiguring method or using AddDbContext on the application service provider. (3b5ca34b)
+2017-11-01T12:26:18.2413204+02:00 0HL912BO683PG [WRN] The LINQ expression 'Single()' could not be translated and will be evaluated locally. To configure this warning use the DbContextOptionsBuilder.ConfigureWarnings API (event id 'RelationalEventId.QueryClientEvaluationWarning'). ConfigureWarnings can be used when overriding the DbContext.OnConfiguring method or using AddDbContext on the application service provider. (3b5ca34b)
+2017-11-01T12:26:18.2493240+02:00 0HL912BO683PG [WRN] The Include operation for navigation: 'e.EventImages' was ignored because the target navigation is not reachable in the final query results. To configure this warning use the DbContextOptionsBuilder.ConfigureWarnings API (event id 'CoreEventId.IncludeIgnoredWarning'). ConfigureWarnings can be used when overriding the DbContext.OnConfiguring method or using AddDbContext on the application service provider. (3b5ca34b)
+2017-11-01T12:26:18.2493240+02:00 0HL912BO683PG [WRN] The Include operation for navigation: 'e.Organization.BannedOrganization' was ignored because the target navigation is not reachable in the final query results. To configure this warning use the DbContextOptionsBuilder.ConfigureWarnings API (event id 'CoreEventId.IncludeIgnoredWarning'). ConfigureWarnings can be used when overriding the DbContext.OnConfiguring method or using AddDbContext on the application service provider. (3b5ca34b)
+2017-11-01T12:26:18.2493240+02:00 0HL912BO683PG [WRN] The Include operation for navigation: 'e.Organization' was ignored because the target navigation is not reachable in the final query results. To configure this warning use the DbContextOptionsBuilder.ConfigureWarnings API (event id 'CoreEventId.IncludeIgnoredWarning'). ConfigureWarnings can be used when overriding the DbContext.OnConfiguring method or using AddDbContext on the application service provider. (3b5ca34b)
+2017-11-01T12:26:18.3493945+02:00 0HL912BO683PF [INF] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext". (4e968210)
+2017-11-01T12:26:18.3523989+02:00 0HL912BO683PF [INF] Executed action "FundTrack.WebUI.Controllers.EventController.GetEventsPaginationData (FundTrack.WebUI)" in 2572.2275ms (afa2e885)
+2017-11-01T12:26:18.3523989+02:00 0HL912BO683PF [INF] Request finished in 2573.2921ms 200 application/json; charset=utf-8 (15c52c40)
+2017-11-01T12:26:18.4594724+02:00 0HL912BO683PG [INF] Executed DbCommand (166ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [e].[Id], [e].[CreateDate], [e].[Description], [e].[OrganizationId], [e.Organization.BannedOrganization].[Id], [e.Organization.BannedOrganization].[Description], [e.Organization.BannedOrganization].[OrganizationId], [e.Organization].[Name]
+FROM [Events] AS [e]
+INNER JOIN [Organizations] AS [e.Organization] ON [e].[OrganizationId] = [e.Organization].[Id]
+LEFT JOIN [BannedOrganizations] AS [e.Organization.BannedOrganization] ON [e.Organization].[Id] = [e.Organization.BannedOrganization].[OrganizationId]
+WHERE [e.Organization.BannedOrganization].[Id] IS NULL
+ORDER BY [e].[CreateDate] DESC, [e.Organization].[Id] (6438bdd5)
+2017-11-01T12:26:18.8647596+02:00 0HL912BO683PG [INF] Executed DbCommand (169ms) [Parameters=[@_outer_Id='?'], CommandType='Text', CommandTimeout='30']
+SELECT TOP(2) [r0].[ImageUrl]
+FROM [EventImages] AS [r0]
+WHERE ([r0].[IsMain] = 1) AND (@_outer_Id = [r0].[EventId]) (6438bdd5)
+2017-11-01T12:26:19.1009273+02:00 0HL912BO683PG [INF] Executed DbCommand (220ms) [Parameters=[@_outer_Id='?'], CommandType='Text', CommandTimeout='30']
+SELECT TOP(2) [r0].[ImageUrl]
+FROM [EventImages] AS [r0]
+WHERE ([r0].[IsMain] = 1) AND (@_outer_Id = [r0].[EventId]) (6438bdd5)
+2017-11-01T12:26:19.2660440+02:00 0HL912BO683PG [INF] Executed DbCommand (164ms) [Parameters=[@_outer_Id='?'], CommandType='Text', CommandTimeout='30']
+SELECT TOP(2) [r0].[ImageUrl]
+FROM [EventImages] AS [r0]
+WHERE ([r0].[IsMain] = 1) AND (@_outer_Id = [r0].[EventId]) (6438bdd5)
+2017-11-01T12:26:19.4681867+02:00 0HL912BO683PG [INF] Executed DbCommand (200ms) [Parameters=[@_outer_Id='?'], CommandType='Text', CommandTimeout='30']
+SELECT TOP(2) [r0].[ImageUrl]
+FROM [EventImages] AS [r0]
+WHERE ([r0].[IsMain] = 1) AND (@_outer_Id = [r0].[EventId]) (6438bdd5)
+2017-11-01T12:26:19.6323033+02:00 0HL912BO683PG [INF] Executed DbCommand (163ms) [Parameters=[@_outer_Id='?'], CommandType='Text', CommandTimeout='30']
+SELECT TOP(2) [r0].[ImageUrl]
+FROM [EventImages] AS [r0]
+WHERE ([r0].[IsMain] = 1) AND (@_outer_Id = [r0].[EventId]) (6438bdd5)
+2017-11-01T12:26:19.7954190+02:00 0HL912BO683PG [INF] Executed DbCommand (162ms) [Parameters=[@_outer_Id='?'], CommandType='Text', CommandTimeout='30']
+SELECT TOP(2) [r0].[ImageUrl]
+FROM [EventImages] AS [r0]
+WHERE ([r0].[IsMain] = 1) AND (@_outer_Id = [r0].[EventId]) (6438bdd5)
+2017-11-01T12:26:19.9635373+02:00 0HL912BO683PG [INF] Executed action "FundTrack.WebUI.Controllers.EventController.AllEventsbyScroll (FundTrack.WebUI)" in 2075.2504ms (afa2e885)
+2017-11-01T12:26:19.9635373+02:00 0HL912BO683PG [INF] Request finished in 2076.7891ms 200 application/json; charset=utf-8 (15c52c40)
+2017-11-01T12:26:28.2924356+02:00 0HL912BO683PH [INF] Request starting HTTP/1.1 GET http://localhost:51116/home/allevents   (e5be5b71)
+2017-11-01T12:26:28.2994490+02:00 0HL912BO683PH [INF] Executing action method "FundTrack_WebUI.Controllers.HomeController.Index (FundTrack.WebUI)" with arguments (null) - ModelState is Valid (ba7f4ac2)
+2017-11-01T12:26:28.3024431+02:00 0HL912BO683PH [INF] Executing ViewResult, running view at path "/Views/Home/Index.cshtml". (9707eebe)
+2017-11-01T12:26:28.3034436+02:00 0HL912BO683PH [INF] Executed action "FundTrack_WebUI.Controllers.HomeController.Index (FundTrack.WebUI)" in 4.2586ms (afa2e885)
+2017-11-01T12:26:28.3034436+02:00 0HL912BO683PH [INF] Request finished in 10.4278ms 200 text/html; charset=utf-8 (15c52c40)
+2017-11-01T12:26:28.3474748+02:00 0HL912BO683PI [INF] Request starting HTTP/1.1 GET http://localhost:51116/dist/vendor.css?v=RqkmnM-9Alrau0fjw4g08-3A0YvC-0qsGAr8YGUrMgQ   (e5be5b71)
+2017-11-01T12:26:28.3554813+02:00 0HL912BO683PI [INF] Sending file. Request path: '"/dist/vendor.css"'. Physical path: '"C:\Users\Dmytro\Documents\github\FundTrack.WebUI\wwwroot\dist\vendor.css"' (27b0a520)
+2017-11-01T12:26:28.3604834+02:00 0HL912BO683PJ [INF] Request starting HTTP/1.1 GET http://localhost:51116/dist/vendor.js?v=HYlAJBmv5-69i7zlhZLlweU96_MvZ4MO9v0lu53akvc   (e5be5b71)
+2017-11-01T12:26:28.3614851+02:00 0HL912BO683PJ [INF] Sending file. Request path: '"/dist/vendor.js"'. Physical path: '"C:\Users\Dmytro\Documents\github\FundTrack.WebUI\wwwroot\dist\vendor.js"' (27b0a520)
+2017-11-01T12:26:28.3744941+02:00 0HL912BO683PK [INF] Request starting HTTP/1.1 GET http://localhost:51116/dist/main-client.js?v=iK8Pl12Q6hB6T80ZhdPVc6ENINF2eVhzrhlsQw8Kp1w   (e5be5b71)
+2017-11-01T12:26:28.3754950+02:00 0HL912BO683PK [INF] Sending file. Request path: '"/dist/main-client.js"'. Physical path: '"C:\Users\Dmytro\Documents\github\FundTrack.WebUI\wwwroot\dist\main-client.js"' (27b0a520)
+2017-11-01T12:26:28.3945079+02:00 0HL912BO683PI [INF] Request finished in 47.1525ms 200 text/css (15c52c40)
+2017-11-01T12:26:28.6626974+02:00 0HL912BO683PJ [INF] Request finished in 301.3083ms 200 application/javascript (15c52c40)
+2017-11-01T12:26:29.6283814+02:00 0HL912BO683PK [INF] Request finished in 1254.455ms 200 application/javascript (15c52c40)
+2017-11-01T12:26:34.1635928+02:00 0HL912BO683PL [INF] Request starting HTTP/1.1 GET http://localhost:51116/api/UserResponse/GetUserResonseWithNewStatus/1 application/json  (e5be5b71)
+2017-11-01T12:26:34.1645941+02:00 0HL912BO683PL [INF] Successfully validated the token. (60169667)
+2017-11-01T12:26:34.1645941+02:00 0HL912BO683PL [INF] HttpContext.User merged via AutomaticAuthentication from authenticationScheme: "Bearer". (bdba1d38)
+2017-11-01T12:26:34.1665951+02:00 0HL912BO683PL [INF] Executing action method "FundTrack.WebUI.Controllers.UserResponseController.GetCountNewStatus (FundTrack.WebUI)" with arguments (["1"]) - ModelState is Valid (ba7f4ac2)
+2017-11-01T12:26:34.1746012+02:00 0HL912BO683PM [INF] Request starting HTTP/1.1 GET http://localhost:51116/api/OrganizationsList   (e5be5b71)
+2017-11-01T12:26:34.1746012+02:00 0HL912BO683PM [INF] Executing action method "FundTrack.WebUI.Controllers.OrganizationsListController.AllOrganizations (FundTrack.WebUI)" with arguments (null) - ModelState is Valid (ba7f4ac2)
+2017-11-01T12:26:34.1746012+02:00 0HL912BO683PM [INF] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext". (4e968210)
+2017-11-01T12:26:34.3056946+02:00 0HL912BO683PN [INF] Request starting HTTP/1.1 GET http://localhost:51116/api/Event/AllEventsByScroll/6/1   (e5be5b71)
+2017-11-01T12:26:34.3106975+02:00 0HL912BO683PN [INF] Executing action method "FundTrack.WebUI.Controllers.EventController.AllEventsbyScroll (FundTrack.WebUI)" with arguments (["6", "1"]) - ModelState is Valid (ba7f4ac2)
+2017-11-01T12:26:34.3116980+02:00 0HL912BO683PN [INF] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext". (4e968210)
+2017-11-01T12:26:34.3177019+02:00 0HL912BO683PO [INF] Request starting HTTP/1.1 GET http://localhost:51116/api/Event/GetEventsPaginationData   (e5be5b71)
+2017-11-01T12:26:34.3187032+02:00 0HL912BO683PO [INF] Executing action method "FundTrack.WebUI.Controllers.EventController.GetEventsPaginationData (FundTrack.WebUI)" with arguments (null) - ModelState is Valid (ba7f4ac2)
+2017-11-01T12:26:34.3447208+02:00 0HL912BO683PL [INF] Executed DbCommand (168ms) [Parameters=[@__organizationId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [UserResponses] AS [u]
+LEFT JOIN [Statuses] AS [u.Status] ON [u].[StatusId] = [u.Status].[Id]
+INNER JOIN [RequestedItems] AS [u.RequestedItem] ON [u].[RequestedItemId] = [u.RequestedItem].[Id]
+WHERE ([u.RequestedItem].[OrganizationId] = @__organizationId_0) AND ([u.Status].[StatusName] = N'Новий') (6438bdd5)
+2017-11-01T12:26:34.3447208+02:00 0HL912BO683PL [INF] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext". (4e968210)
+2017-11-01T12:26:34.3447208+02:00 0HL912BO683PL [INF] Executed action "FundTrack.WebUI.Controllers.UserResponseController.GetCountNewStatus (FundTrack.WebUI)" in 178.9566ms (afa2e885)
+2017-11-01T12:26:34.3447208+02:00 0HL912BO683PL [INF] Request finished in 181.142ms 200 application/json; charset=utf-8 (15c52c40)
+2017-11-01T12:26:34.3457217+02:00 0HL912BO683PM [INF] Executed DbCommand (169ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [o].[Id], [o].[Description], [o].[LogoUrl], [o].[Name], [b].[Id], [b].[Description], [b].[OrganizationId]
+FROM [Organizations] AS [o]
+LEFT JOIN [BannedOrganizations] AS [b] ON [b].[OrganizationId] = [o].[Id] (6438bdd5)
+2017-11-01T12:26:34.3457217+02:00 0HL912BO683PM [INF] Executed action "FundTrack.WebUI.Controllers.OrganizationsListController.AllOrganizations (FundTrack.WebUI)" in 171.6932ms (afa2e885)
+2017-11-01T12:26:34.3457217+02:00 0HL912BO683PM [INF] Request finished in 172.114ms 200 application/json; charset=utf-8 (15c52c40)
+2017-11-01T12:26:34.4908243+02:00 0HL912BO683PP [INF] Request starting HTTP/1.1 GET http://localhost:51116/__webpack_hmr   (e5be5b71)
+2017-11-01T12:26:34.5148409+02:00 0HL912BO683PO [INF] Executed DbCommand (167ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [e].[Id], [e].[CreateDate], [e].[Description], [e].[OrganizationId]
+FROM [Events] AS [e] (6438bdd5)
+2017-11-01T12:26:34.8610865+02:00 0HL912BO683PO [INF] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext". (4e968210)
+2017-11-01T12:26:34.8620870+02:00 0HL912BO683PO [INF] Executed action "FundTrack.WebUI.Controllers.EventController.GetEventsPaginationData (FundTrack.WebUI)" in 543.7483ms (afa2e885)
+2017-11-01T12:26:34.8620870+02:00 0HL912BO683PO [INF] Request finished in 544.4885ms 200 application/json; charset=utf-8 (15c52c40)
+2017-11-01T12:26:34.9151251+02:00 0HL912BO683PQ [INF] Request starting HTTP/1.1 GET http://localhost:51116/favicon.ico   (e5be5b71)
+2017-11-01T12:26:34.9151251+02:00 0HL912BO683PQ [INF] Sending file. Request path: '"/favicon.ico"'. Physical path: '"C:\Users\Dmytro\Documents\github\FundTrack.WebUI\wwwroot\favicon.ico"' (27b0a520)
+2017-11-01T12:26:34.9161256+02:00 0HL912BO683PQ [INF] Request finished in 1.6479ms 200 image/x-icon (15c52c40)
+2017-11-01T12:26:35.3574379+02:00 0HL912BO683PN [INF] Executed DbCommand (169ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [e].[Id], [e].[CreateDate], [e].[Description], [e].[OrganizationId], [e.Organization.BannedOrganization].[Id], [e.Organization.BannedOrganization].[Description], [e.Organization.BannedOrganization].[OrganizationId], [e.Organization].[Name]
+FROM [Events] AS [e]
+INNER JOIN [Organizations] AS [e.Organization] ON [e].[OrganizationId] = [e.Organization].[Id]
+LEFT JOIN [BannedOrganizations] AS [e.Organization.BannedOrganization] ON [e.Organization].[Id] = [e.Organization.BannedOrganization].[OrganizationId]
+WHERE [e.Organization.BannedOrganization].[Id] IS NULL
+ORDER BY [e].[CreateDate] DESC, [e.Organization].[Id] (6438bdd5)
+2017-11-01T12:26:35.6906745+02:00 0HL912BO683PN [INF] Executed DbCommand (169ms) [Parameters=[@_outer_Id='?'], CommandType='Text', CommandTimeout='30']
+SELECT TOP(2) [r0].[ImageUrl]
+FROM [EventImages] AS [r0]
+WHERE ([r0].[IsMain] = 1) AND (@_outer_Id = [r0].[EventId]) (6438bdd5)
+2017-11-01T12:26:35.8567909+02:00 0HL912BO683PN [INF] Executed DbCommand (165ms) [Parameters=[@_outer_Id='?'], CommandType='Text', CommandTimeout='30']
+SELECT TOP(2) [r0].[ImageUrl]
+FROM [EventImages] AS [r0]
+WHERE ([r0].[IsMain] = 1) AND (@_outer_Id = [r0].[EventId]) (6438bdd5)
+2017-11-01T12:26:36.0209071+02:00 0HL912BO683PN [INF] Executed DbCommand (164ms) [Parameters=[@_outer_Id='?'], CommandType='Text', CommandTimeout='30']
+SELECT TOP(2) [r0].[ImageUrl]
+FROM [EventImages] AS [r0]
+WHERE ([r0].[IsMain] = 1) AND (@_outer_Id = [r0].[EventId]) (6438bdd5)
+2017-11-01T12:26:36.1850233+02:00 0HL912BO683PN [INF] Executed DbCommand (163ms) [Parameters=[@_outer_Id='?'], CommandType='Text', CommandTimeout='30']
+SELECT TOP(2) [r0].[ImageUrl]
+FROM [EventImages] AS [r0]
+WHERE ([r0].[IsMain] = 1) AND (@_outer_Id = [r0].[EventId]) (6438bdd5)
+2017-11-01T12:26:36.3501404+02:00 0HL912BO683PN [INF] Executed DbCommand (164ms) [Parameters=[@_outer_Id='?'], CommandType='Text', CommandTimeout='30']
+SELECT TOP(2) [r0].[ImageUrl]
+FROM [EventImages] AS [r0]
+WHERE ([r0].[IsMain] = 1) AND (@_outer_Id = [r0].[EventId]) (6438bdd5)
+2017-11-01T12:26:36.5172582+02:00 0HL912BO683PN [INF] Executed DbCommand (167ms) [Parameters=[@_outer_Id='?'], CommandType='Text', CommandTimeout='30']
+SELECT TOP(2) [r0].[ImageUrl]
+FROM [EventImages] AS [r0]
+WHERE ([r0].[IsMain] = 1) AND (@_outer_Id = [r0].[EventId]) (6438bdd5)
+2017-11-01T12:26:36.6853780+02:00 0HL912BO683PN [INF] Executed action "FundTrack.WebUI.Controllers.EventController.AllEventsbyScroll (FundTrack.WebUI)" in 2378.1479ms (afa2e885)
+2017-11-01T12:26:36.6853780+02:00 0HL912BO683PN [INF] Request finished in 2380.0915ms 200 application/json; charset=utf-8 (15c52c40)
+2017-11-01T12:26:48.1719926+02:00  [INF] webpack built 9d1e2f0114746cfdc0dc in 52002ms (7ff65dcf)
+2017-11-01T12:26:48.3020847+02:00 0HL912BO683PR [INF] Request starting HTTP/1.1 GET http://localhost:51116/dist/904695062d97dc6248ab.hot-update.json   (e5be5b71)
+2017-11-01T12:26:48.4261734+02:00  [INF] Connection id ""0HL912BO4DP78"" communication error. (7fa6c29c)
+Microsoft.AspNetCore.Server.Kestrel.Internal.Networking.UvException: Error -4081 ECANCELED operation canceled
+2017-11-01T12:26:48.4261734+02:00  [INF] Connection id ""0HL912BO4DP78"" communication error. (7fa6c29c)
+Microsoft.AspNetCore.Server.Kestrel.Internal.Networking.UvException: Error -4081 ECANCELED operation canceled
+2017-11-01T12:26:48.4611971+02:00 0HL912BO683PS [INF] Request starting HTTP/1.1 GET http://localhost:51116/dist/bdea936e59c32d24628c.hot-update.json   (e5be5b71)
+2017-11-01T12:26:49.4255099+02:00 0HL912BO683PR [INF] Request finished in 1124.4811ms 404  (15c52c40)
+2017-11-01T12:26:49.4265117+02:00 0HL912BO683PS [INF] Request finished in 965.1638ms 404  (15c52c40)
+2017-11-01T12:26:49.4355178+02:00 0HL912BO683PT [INF] Request starting HTTP/1.1 GET http://localhost:51116/dist/904695062d97dc6248ab.hot-update.json   (e5be5b71)
+2017-11-01T12:26:49.5045665+02:00 0HL912BO683PT [INF] Request finished in 68.3885ms 404  (15c52c40)
+2017-11-01T12:26:56.3080044+02:00 0HL912BO683PU [INF] Request starting HTTP/1.1 GET http://localhost:51116/home/allevents   (e5be5b71)
+2017-11-01T12:26:56.3090028+02:00 0HL912BO683PU [INF] Executing action method "FundTrack_WebUI.Controllers.HomeController.Index (FundTrack.WebUI)" with arguments (null) - ModelState is Valid (ba7f4ac2)
+2017-11-01T12:26:56.3090028+02:00 0HL912BO683PU [INF] Executing ViewResult, running view at path "/Views/Home/Index.cshtml". (9707eebe)
+2017-11-01T12:26:56.3970647+02:00 0HL912BO683PU [INF] Executed action "FundTrack_WebUI.Controllers.HomeController.Index (FundTrack.WebUI)" in 88.6933ms (afa2e885)
+2017-11-01T12:26:56.3980653+02:00 0HL912BO683PU [INF] Request finished in 89.2804ms 200 text/html; charset=utf-8 (15c52c40)
+2017-11-01T12:26:56.4190807+02:00 0HL912BO683PV [INF] Request starting HTTP/1.1 GET http://localhost:51116/dist/vendor.js?v=HYlAJBmv5-69i7zlhZLlweU96_MvZ4MO9v0lu53akvc   (e5be5b71)
+2017-11-01T12:26:56.4190807+02:00 0HL912BO683PV [INF] Sending file. Request path: '"/dist/vendor.js"'. Physical path: '"C:\Users\Dmytro\Documents\github\FundTrack.WebUI\wwwroot\dist\vendor.js"' (27b0a520)
+2017-11-01T12:26:56.4210822+02:00 0HL912BO683Q0 [INF] Request starting HTTP/1.1 GET http://localhost:51116/dist/main-client.js?v=ABgPuoy2MFlqTSLMuQSNhv4hh3AGbyvRBkTSm3Lc36E   (e5be5b71)
+2017-11-01T12:26:56.4210822+02:00 0HL912BO683Q0 [INF] Sending file. Request path: '"/dist/main-client.js"'. Physical path: '"C:\Users\Dmytro\Documents\github\FundTrack.WebUI\wwwroot\dist\main-client.js"' (27b0a520)
+2017-11-01T12:26:56.4220831+02:00 0HL912BO683Q1 [INF] Request starting HTTP/1.1 GET http://localhost:51116/dist/vendor.css?v=RqkmnM-9Alrau0fjw4g08-3A0YvC-0qsGAr8YGUrMgQ   (e5be5b71)
+2017-11-01T12:26:56.4230840+02:00 0HL912BO683Q1 [INF] Sending file. Request path: '"/dist/vendor.css"'. Physical path: '"C:\Users\Dmytro\Documents\github\FundTrack.WebUI\wwwroot\dist\vendor.css"' (27b0a520)
+2017-11-01T12:26:56.4621106+02:00 0HL912BO683Q1 [INF] Request finished in 40.1416ms 200 text/css (15c52c40)
+2017-11-01T12:26:56.5571831+02:00 0HL912BO683PV [INF] Request finished in 138.5358ms 200 application/javascript (15c52c40)
+2017-11-01T12:26:57.0175053+02:00 0HL912BO683Q0 [INF] Request finished in 596.6304ms 200 application/javascript (15c52c40)
+2017-11-01T12:27:00.2567985+02:00 0HL912BO683Q2 [INF] Request starting HTTP/1.1 GET http://localhost:51116/api/UserResponse/GetUserResonseWithNewStatus/1 application/json  (e5be5b71)
+2017-11-01T12:27:00.2567985+02:00 0HL912BO683Q2 [INF] Successfully validated the token. (60169667)
+2017-11-01T12:27:00.2567985+02:00 0HL912BO683Q2 [INF] HttpContext.User merged via AutomaticAuthentication from authenticationScheme: "Bearer". (bdba1d38)
+2017-11-01T12:27:00.2577990+02:00 0HL912BO683Q2 [INF] Executing action method "FundTrack.WebUI.Controllers.UserResponseController.GetCountNewStatus (FundTrack.WebUI)" with arguments (["1"]) - ModelState is Valid (ba7f4ac2)
+2017-11-01T12:27:00.2598004+02:00 0HL912BO683Q3 [INF] Request starting HTTP/1.1 GET http://localhost:51116/api/OrganizationsList   (e5be5b71)
+2017-11-01T12:27:00.2598004+02:00 0HL912BO683Q3 [INF] Executing action method "FundTrack.WebUI.Controllers.OrganizationsListController.AllOrganizations (FundTrack.WebUI)" with arguments (null) - ModelState is Valid (ba7f4ac2)
+2017-11-01T12:27:00.2608013+02:00 0HL912BO683Q3 [INF] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext". (4e968210)
+2017-11-01T12:27:00.3058338+02:00 0HL912BO683Q4 [INF] Request starting HTTP/1.1 GET http://localhost:51116/api/Event/GetEventsPaginationData   (e5be5b71)
+2017-11-01T12:27:00.3058338+02:00 0HL912BO683Q4 [INF] Executing action method "FundTrack.WebUI.Controllers.EventController.GetEventsPaginationData (FundTrack.WebUI)" with arguments (null) - ModelState is Valid (ba7f4ac2)
+2017-11-01T12:27:00.3058338+02:00 0HL912BO683Q5 [INF] Request starting HTTP/1.1 GET http://localhost:51116/api/Event/AllEventsByScroll/6/1   (e5be5b71)
+2017-11-01T12:27:00.3068343+02:00 0HL912BO683Q5 [INF] Executing action method "FundTrack.WebUI.Controllers.EventController.AllEventsbyScroll (FundTrack.WebUI)" with arguments (["6", "1"]) - ModelState is Valid (ba7f4ac2)
+2017-11-01T12:27:00.3078344+02:00 0HL912BO683Q5 [INF] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext". (4e968210)
+2017-11-01T12:27:00.4279194+02:00 0HL912BO683Q2 [INF] Executed DbCommand (168ms) [Parameters=[@__organizationId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [UserResponses] AS [u]
+LEFT JOIN [Statuses] AS [u.Status] ON [u].[StatusId] = [u.Status].[Id]
+INNER JOIN [RequestedItems] AS [u.RequestedItem] ON [u].[RequestedItemId] = [u.RequestedItem].[Id]
+WHERE ([u.RequestedItem].[OrganizationId] = @__organizationId_0) AND ([u.Status].[StatusName] = N'Новий') (6438bdd5)
+2017-11-01T12:27:00.4279194+02:00 0HL912BO683Q2 [INF] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext". (4e968210)
+2017-11-01T12:27:00.4279194+02:00 0HL912BO683Q2 [INF] Executed action "FundTrack.WebUI.Controllers.UserResponseController.GetCountNewStatus (FundTrack.WebUI)" in 170.7457ms (afa2e885)
+2017-11-01T12:27:00.4279194+02:00 0HL912BO683Q2 [INF] Request finished in 171.5035ms 200 application/json; charset=utf-8 (15c52c40)
+2017-11-01T12:27:00.4339241+02:00 0HL912BO683Q3 [INF] Executed DbCommand (173ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [o].[Id], [o].[Description], [o].[LogoUrl], [o].[Name], [b].[Id], [b].[Description], [b].[OrganizationId]
+FROM [Organizations] AS [o]
+LEFT JOIN [BannedOrganizations] AS [b] ON [b].[OrganizationId] = [o].[Id] (6438bdd5)
+2017-11-01T12:27:00.4359259+02:00 0HL912BO683Q3 [INF] Executed action "FundTrack.WebUI.Controllers.OrganizationsListController.AllOrganizations (FundTrack.WebUI)" in 176.1858ms (afa2e885)
+2017-11-01T12:27:00.4359259+02:00 0HL912BO683Q3 [INF] Request finished in 176.8924ms 200 application/json; charset=utf-8 (15c52c40)
+2017-11-01T12:27:00.4479336+02:00 0HL912BO683Q6 [INF] Request starting HTTP/1.1 GET http://localhost:51116/__webpack_hmr   (e5be5b71)
+2017-11-01T12:27:00.4769543+02:00 0HL912BO683Q4 [INF] Executed DbCommand (170ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [e].[Id], [e].[CreateDate], [e].[Description], [e].[OrganizationId]
+FROM [Events] AS [e] (6438bdd5)
+2017-11-01T12:27:00.8203314+02:00 0HL912BO683Q4 [INF] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext". (4e968210)
+2017-11-01T12:27:00.8213328+02:00 0HL912BO683Q4 [INF] Executed action "FundTrack.WebUI.Controllers.EventController.GetEventsPaginationData (FundTrack.WebUI)" in 515.2477ms (afa2e885)
+2017-11-01T12:27:00.8213328+02:00 0HL912BO683Q4 [INF] Request finished in 515.8803ms 200 application/json; charset=utf-8 (15c52c40)
+2017-11-01T12:27:00.8213328+02:00  [INF] Connection id ""0HL912BO4DP7D"" communication error. (7fa6c29c)
+Microsoft.AspNetCore.Server.Kestrel.Internal.Networking.UvException: Error -4081 ECANCELED operation canceled
+2017-11-01T12:27:00.8213328+02:00  [INF] Connection id ""0HL912BO4DP7D"" communication error. (7fa6c29c)
+Microsoft.AspNetCore.Server.Kestrel.Internal.Networking.UvException: Error -4081 ECANCELED operation canceled
+2017-11-01T12:27:00.8223337+02:00 0HL912BO683Q7 [INF] Request starting HTTP/1.1 GET http://localhost:51116/dist/904695062d97dc6248ab.hot-update.json   (e5be5b71)
+2017-11-01T12:27:00.8383454+02:00 0HL912BO683Q7 [INF] Request finished in 15.4148ms 404  (15c52c40)
+2017-11-01T12:27:00.8653644+02:00 0HL912BO683Q8 [INF] Request starting HTTP/1.1 GET http://localhost:51116/dist/bdea936e59c32d24628c.hot-update.json   (e5be5b71)
+2017-11-01T12:27:00.8893805+02:00 0HL912BO683Q8 [INF] Request finished in 23.9525ms 404  (15c52c40)
+2017-11-01T12:27:00.9033913+02:00 0HL912BO683Q9 [INF] Request starting HTTP/1.1 GET http://localhost:51116/favicon.ico   (e5be5b71)
+2017-11-01T12:27:00.9043918+02:00 0HL912BO683Q9 [INF] Sending file. Request path: '"/favicon.ico"'. Physical path: '"C:\Users\Dmytro\Documents\github\FundTrack.WebUI\wwwroot\favicon.ico"' (27b0a520)
+2017-11-01T12:27:00.9063928+02:00 0HL912BO683Q9 [INF] Request finished in 2.4953ms 200 image/x-icon (15c52c40)
+2017-11-01T12:27:01.3771257+02:00 0HL912BO683Q5 [INF] Executed DbCommand (166ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [e].[Id], [e].[CreateDate], [e].[Description], [e].[OrganizationId], [e.Organization.BannedOrganization].[Id], [e.Organization.BannedOrganization].[Description], [e.Organization.BannedOrganization].[OrganizationId], [e.Organization].[Name]
+FROM [Events] AS [e]
+INNER JOIN [Organizations] AS [e.Organization] ON [e].[OrganizationId] = [e.Organization].[Id]
+LEFT JOIN [BannedOrganizations] AS [e.Organization.BannedOrganization] ON [e.Organization].[Id] = [e.Organization.BannedOrganization].[OrganizationId]
+WHERE [e.Organization.BannedOrganization].[Id] IS NULL
+ORDER BY [e].[CreateDate] DESC, [e.Organization].[Id] (6438bdd5)
+2017-11-01T12:27:01.7117898+02:00 0HL912BO683Q5 [INF] Executed DbCommand (168ms) [Parameters=[@_outer_Id='?'], CommandType='Text', CommandTimeout='30']
+SELECT TOP(2) [r0].[ImageUrl]
+FROM [EventImages] AS [r0]
+WHERE ([r0].[IsMain] = 1) AND (@_outer_Id = [r0].[EventId]) (6438bdd5)
+2017-11-01T12:27:01.8799137+02:00 0HL912BO683Q5 [INF] Executed DbCommand (166ms) [Parameters=[@_outer_Id='?'], CommandType='Text', CommandTimeout='30']
+SELECT TOP(2) [r0].[ImageUrl]
+FROM [EventImages] AS [r0]
+WHERE ([r0].[IsMain] = 1) AND (@_outer_Id = [r0].[EventId]) (6438bdd5)
+2017-11-01T12:27:02.0548105+02:00 0HL912BO683Q5 [INF] Executed DbCommand (174ms) [Parameters=[@_outer_Id='?'], CommandType='Text', CommandTimeout='30']
+SELECT TOP(2) [r0].[ImageUrl]
+FROM [EventImages] AS [r0]
+WHERE ([r0].[IsMain] = 1) AND (@_outer_Id = [r0].[EventId]) (6438bdd5)
+2017-11-01T12:27:02.2293152+02:00 0HL912BO683Q5 [INF] Executed DbCommand (174ms) [Parameters=[@_outer_Id='?'], CommandType='Text', CommandTimeout='30']
+SELECT TOP(2) [r0].[ImageUrl]
+FROM [EventImages] AS [r0]
+WHERE ([r0].[IsMain] = 1) AND (@_outer_Id = [r0].[EventId]) (6438bdd5)
+2017-11-01T12:27:02.3968480+02:00 0HL912BO683Q5 [INF] Executed DbCommand (165ms) [Parameters=[@_outer_Id='?'], CommandType='Text', CommandTimeout='30']
+SELECT TOP(2) [r0].[ImageUrl]
+FROM [EventImages] AS [r0]
+WHERE ([r0].[IsMain] = 1) AND (@_outer_Id = [r0].[EventId]) (6438bdd5)
+2017-11-01T12:27:02.5630970+02:00 0HL912BO683Q5 [INF] Executed DbCommand (165ms) [Parameters=[@_outer_Id='?'], CommandType='Text', CommandTimeout='30']
+SELECT TOP(2) [r0].[ImageUrl]
+FROM [EventImages] AS [r0]
+WHERE ([r0].[IsMain] = 1) AND (@_outer_Id = [r0].[EventId]) (6438bdd5)
+2017-11-01T12:27:02.7295365+02:00 0HL912BO683Q5 [INF] Executed action "FundTrack.WebUI.Controllers.EventController.AllEventsbyScroll (FundTrack.WebUI)" in 2422.7522ms (afa2e885)
+2017-11-01T12:27:02.7295365+02:00 0HL912BO683Q5 [INF] Request finished in 2423.2317ms 200 application/json; charset=utf-8 (15c52c40)
+2017-11-01T12:27:15.2966967+02:00 0HL912BO683QA [INF] Request starting HTTP/1.1 GET http://localhost:51116/api/RequestedItem/GetOrganizations   (e5be5b71)
+2017-11-01T12:27:15.2997207+02:00 0HL912BO683QA [INF] Executing action method "FundTrack.WebUI.Controllers.RequestedItemController.GetOrganizations (FundTrack.WebUI)" with arguments (null) - ModelState is Valid (ba7f4ac2)
+2017-11-01T12:27:15.3017025+02:00 0HL912BO683QA [INF] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext". (4e968210)
+2017-11-01T12:27:15.4731621+02:00 0HL912BO683QA [INF] Executed DbCommand (165ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [o].[Id], [o].[Description], [o].[LogoUrl], [o].[Name]
+FROM [Organizations] AS [o] (6438bdd5)
+2017-11-01T12:27:15.4771641+02:00 0HL912BO683QA [INF] Executed action "FundTrack.WebUI.Controllers.RequestedItemController.GetOrganizations (FundTrack.WebUI)" in 179.5852ms (afa2e885)
+2017-11-01T12:27:15.4771641+02:00 0HL912BO683QA [INF] Request finished in 181.0808ms 200 application/json; charset=utf-8 (15c52c40)
+2017-11-01T12:27:21.6855320+02:00 0HL912BO683QB [INF] Request starting HTTP/1.1 GET http://localhost:51116/api/Reports/1/1?dateFrom=2017-10-01&dateTo=2017-11-01 application/json  (e5be5b71)
+2017-11-01T12:27:21.6865329+02:00 0HL912BO683QB [INF] Successfully validated the token. (60169667)
+2017-11-01T12:27:21.6865329+02:00 0HL912BO683QB [INF] HttpContext.User merged via AutomaticAuthentication from authenticationScheme: "Bearer". (bdba1d38)
+2017-11-01T12:27:21.7015433+02:00 0HL912BO683QC [INF] Request starting HTTP/1.1 GET http://localhost:51116/api/OrganizationsList   (e5be5b71)
+2017-11-01T12:27:21.7025446+02:00 0HL912BO683QC [INF] Executing action method "FundTrack.WebUI.Controllers.OrganizationsListController.AllOrganizations (FundTrack.WebUI)" with arguments (null) - ModelState is Valid (ba7f4ac2)
+2017-11-01T12:27:21.7025446+02:00 0HL912BO683QC [INF] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext". (4e968210)
+2017-11-01T12:27:21.7105491+02:00 0HL912BO683QB [INF] Authorization was successful for user: "ostap". (d7eb274a)
+2017-11-01T12:27:21.7205586+02:00 0HL912BO683QB [INF] Executing action method "FundTrack.WebUI.Controllers.ReportsController.GetTargetsReport (FundTrack.WebUI)" with arguments (["1", "1", "01.10.2017 0:00:00", "01.11.2017 0:00:00"]) - ModelState is Valid (ba7f4ac2)
+2017-11-01T12:27:21.7515779+02:00 0HL912BO683QB [WRN] The LINQ expression '(value(FundTrack.BLL.Concrete.OrganizationStatisticsService).IfDateInRange(__dateFrom_0, __dateTo_1, [f].FinOpDate) AndAlso ([f].FinOpType == __finOpType_2))' could not be translated and will be evaluated locally. To configure this warning use the DbContextOptionsBuilder.ConfigureWarnings API (event id 'RelationalEventId.QueryClientEvaluationWarning'). ConfigureWarnings can be used when overriding the DbContext.OnConfiguring method or using AddDbContext on the application service provider. (3b5ca34b)
+2017-11-01T12:27:21.8725107+02:00 0HL912BO683QC [INF] Executed DbCommand (169ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [o].[Id], [o].[Description], [o].[LogoUrl], [o].[Name], [b].[Id], [b].[Description], [b].[OrganizationId]
+FROM [Organizations] AS [o]
+LEFT JOIN [BannedOrganizations] AS [b] ON [b].[OrganizationId] = [o].[Id] (6438bdd5)
+2017-11-01T12:27:21.8755180+02:00 0HL912BO683QC [INF] Executed action "FundTrack.WebUI.Controllers.OrganizationsListController.AllOrganizations (FundTrack.WebUI)" in 173.0254ms (afa2e885)
+2017-11-01T12:27:21.8755180+02:00 0HL912BO683QC [INF] Request finished in 173.7681ms 200 application/json; charset=utf-8 (15c52c40)
+2017-11-01T12:27:21.9814018+02:00 0HL912BO683QB [INF] Executed DbCommand (198ms) [Parameters=[@__orgId_3='?', @__orgId_4='?'], CommandType='Text', CommandTimeout='30']
+SELECT [f].[Id], [f].[AccFromId], [f].[AccToId], [f].[Amount], [f].[Description], [f].[DonationId], [f].[FinOpDate], [f].[FinOpType], [f].[TargetId], [f].[UserId], [f.OrgAccountFrom].[Id], [f.OrgAccountFrom].[AccountType], [f.OrgAccountFrom].[BankAccId], [f.OrgAccountFrom].[CreationDate], [f.OrgAccountFrom].[CurrencyId], [f.OrgAccountFrom].[CurrentBalance], [f.OrgAccountFrom].[Description], [f.OrgAccountFrom].[OrgAccountName], [f.OrgAccountFrom].[OrgId], [f.OrgAccountFrom].[TargetId], [f.OrgAccountFrom].[UserId], [f.OrgAccountTo].[Id], [f.OrgAccountTo].[AccountType], [f.OrgAccountTo].[BankAccId], [f.OrgAccountTo].[CreationDate], [f.OrgAccountTo].[CurrencyId], [f.OrgAccountTo].[CurrentBalance], [f.OrgAccountTo].[Description], [f.OrgAccountTo].[OrgAccountName], [f.OrgAccountTo].[OrgId], [f.OrgAccountTo].[TargetId], [f.OrgAccountTo].[UserId], [o].[Id], [o].[AccountType], [o].[BankAccId], [o].[CreationDate], [o].[CurrencyId], [o].[CurrentBalance], [o].[Description], [o].[OrgAccountName], [o].[OrgId], [o].[TargetId], [o].[UserId], [o0].[Id], [o0].[Description], [o0].[LogoUrl], [o0].[Name], [o1].[Id], [o1].[AccountType], [o1].[BankAccId], [o1].[CreationDate], [o1].[CurrencyId], [o1].[CurrentBalance], [o1].[Description], [o1].[OrgAccountName], [o1].[OrgId], [o1].[TargetId], [o1].[UserId], [o2].[Id], [o2].[Description], [o2].[LogoUrl], [o2].[Name], [t].[Id], [t].[OrganizationId], [t].[ParentTargetId], [t].[TargetName], [t0].[Id], [t0].[OrganizationId], [t0].[ParentTargetId], [t0].[TargetName], [d].[Id], [d].[Amount], [d].[CurrencyId], [d].[Description], [d].[DonationDate], [d].[DonatorEmail], [d].[OrderId], [d].[OrgAccountId], [d].[TargetId], [d].[UserId]
+FROM [FinOps] AS [f]
+LEFT JOIN [OrgAccounts] AS [f.OrgAccountFrom] ON [f].[AccFromId] = [f.OrgAccountFrom].[Id]
+LEFT JOIN [OrgAccounts] AS [f.OrgAccountTo] ON [f].[AccToId] = [f.OrgAccountTo].[Id]
+LEFT JOIN [OrgAccounts] AS [o] ON [f].[AccToId] = [o].[Id]
+LEFT JOIN [Organizations] AS [o0] ON [o].[OrgId] = [o0].[Id]
+LEFT JOIN [OrgAccounts] AS [o1] ON [f].[AccFromId] = [o1].[Id]
+LEFT JOIN [Organizations] AS [o2] ON [o1].[OrgId] = [o2].[Id]
+LEFT JOIN [Targets] AS [t] ON [f].[TargetId] = [t].[Id]
+LEFT JOIN [Targets] AS [t0] ON [t].[ParentTargetId] = [t0].[Id]
+LEFT JOIN [Donations] AS [d] ON [f].[DonationId] = [d].[Id]
+WHERE ([f.OrgAccountTo].[OrgId] = @__orgId_3) OR ([f.OrgAccountFrom].[OrgId] = @__orgId_4)
+ORDER BY [f].[AccFromId], [f].[AccToId] (6438bdd5)
+2017-11-01T12:27:22.5429313+02:00 0HL912BO683QB [INF] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext". (4e968210)
+2017-11-01T12:27:22.5759763+02:00 0HL912BO683QB [INF] Executed action "FundTrack.WebUI.Controllers.ReportsController.GetTargetsReport (FundTrack.WebUI)" in 887.2916ms (afa2e885)
+2017-11-01T12:27:22.5759763+02:00 0HL912BO683QB [INF] Request finished in 890.4881ms 200 application/json; charset=utf-8 (15c52c40)
+2017-11-01T12:28:26.0978835+02:00  [INF] webpack building... (478286db)

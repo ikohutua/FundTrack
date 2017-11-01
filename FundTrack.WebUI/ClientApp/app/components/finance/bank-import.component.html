@@ -1,23 +1,11 @@
-﻿<spinner [showSpinner]="showSpinner"></spinner>
-<div *ngIf="!showSpinner" class="col-md-12">
-    <div class="col-md-3  container back table-responsive">
+﻿<spinner></spinner>
+<div class="col-md-12">
+    <div class="col-md-2 col-md-offset-0 container back table-responsive">
         <button class="btn btn-md btn-block btn-success custom-button" (click)="navigateBack()"><span class="glyphicon glyphicon-arrow-left"></span> <strong>Назад</strong></button>
-        <button type="button" class="btn btn-default btn-lg btn-block" (mouseover)="mouseOvered=true" (mouseout)="mouseOvered=false"
-                title="Операція оновлення виписок поточного рахунку від останньої дати оновлення" (click)="onPrivatClick()"
-                style="margin-top:10%; border-color:#314720;color:#314720">
-            <i class="fa fa-refresh fa-1.5x fa-fw" [class.fa-spin]="mouseOvered"></i>
-            <strong>Sync</strong>
+        <button type="button" class="btn btn-default btn-lg btn-block" style="margin-top:10%; border-color:#314720;color:#314720" (click)="onActionClick()">
+            <strong>Нові виписки</strong>
         </button>
-        <button type="button" class="btn btn-default btn-lg btn-block"
-                title="Імпорт виписок по поточному рахунку з вказаної дати" (click)="onActionClick()"
-                style="margin-bottom:10%; border-color:#314720;color:#314720">
-            <strong>Ручний імпорт</strong>
-        </button>
-        <button type="button" class="btn btn-default btn-lg btn-block"
-                title="Обробка ВСІХ прибутків по поточному рахунку" (click)="warningWindowShow()"
-                style="margin-bottom:10%; border-color:#314720;color:#314720">
-            <strong>Обробка прибутків</strong>
-        </button>
+        <br>
         <button type="button" class="btn btn-default btn-lg btn-block" style="margin-bottom:10%; border-color:#314720;color:#314720" data-toggle="collapse" data-target="#demo">
             <strong>Фільтри</strong>
         </button>
@@ -49,8 +37,6 @@
             </div>
         </div>
     </div>
-    <div>Дата останнього оновлення: {{lastPrivatUpdate|date: 'dd/MM/yyyy hh:mm'}} </div>
-    <br>
     <div class="col-md-8" *ngIf="_dataForFinOp">
         <div class="row grid-divider">
             <table class="table table-list-search back" style="margin-left:4%">
@@ -83,31 +69,6 @@
     </div>
 </div>
 <div id="snackbar">Виконано</div>
-
-<app-modal #warning>
-    <div class="app-modal-header">
-        <button type="button" class="close" aria-hidden="true" (click)="closeModal()">&times;</button>
-        <h4 class="modal-title"><strong>УВАГА</strong> </h4>
-    </div>
-    <div class="app-modal-body">
-        <p> <strong>При використанні цієї функції всі виписки прибутку по поточній карточці будуть оброблені в фінансові операції</strong><p>
-        <br/>
-        <p> Рекомендовано для використання лише при малій кількості рахунків між якими не здійснюються переміщення<p>
-    </div>
-    <div class="app-modal-footer">
-        <button (click)="onIncomeClick()"
-                class="btn btn-fundtrack-style pull-right"
-                data-dismiss="modal">
-            Продовжити
-        </button>
-        <button (click)="closeWarningModal()"
-                class="btn btn-default pull-right"
-                data-dismiss="modal">
-            Скасувати
-        </button>
-    </div>
-</app-modal>
-
 <app-modal #newBankImport>
     <div class="app-modal-header">
         <button type="button" class="close" aria-hidden="true" (click)="closeModal()">&times;</button>

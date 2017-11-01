@@ -1,11 +1,9 @@
-﻿using System;
-using FundTrack.BLL.Abstract;
+﻿using FundTrack.BLL.Abstract;
 using FundTrack.Infrastructure.ViewModel;
 using FundTrack.Infrastructure.ViewModel.FinanceViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
-using Microsoft.AspNetCore.Mvc.TagHelpers;
 
 namespace FundTrack.WebUI.Controllers
 {
@@ -42,6 +40,22 @@ namespace FundTrack.WebUI.Controllers
             return this._service.RegisterBankExtracts(bankModel);
         }
 
+        //[HttpPost("SendRequestFondy")]
+        //public string SendRequestFondy([FromBody]  DataRequestPrivatViewModel request)
+        //{
+        //    var client = new HttpClient()
+        //    {
+        //        BaseAddress = new Uri("https://api.privatbank.ua/p24api/rest_fiz")
+        //    };
+        //    string json = Newtonsoft.Json.JsonConvert.SerializeObject(request);
+        //    var response = client.PostAsync(client.BaseAddress,
+        //        new StringContent(json, Encoding.UTF8, "application/json")).Result;
+        //    var content = response.Content.ReadAsStringAsync().Result;
+        //    FondyCheckoutResponseViewModel checkout = new FondyCheckoutResponseViewModel();
+        //    checkout = Newtonsoft.Json.JsonConvert.DeserializeObject<FondyCheckoutResponseViewModel>(content);
+        //    return checkout.response.checkout_url;
+        //}
+
         /// <summary>
         /// Gets the  extracts which satisfy filters.
         /// </summary>
@@ -53,7 +67,6 @@ namespace FundTrack.WebUI.Controllers
         {
             return this._service.GetRawExtracts(bankSearchModel);
         }
-
 
         /// <summary>
         /// Gets all extracts in one orgaccount.
@@ -77,53 +90,6 @@ namespace FundTrack.WebUI.Controllers
         public int GetCountExtracts(string card)
         {
             return this._service.GetCountExtracts(card);
-        }
-
-        [HttpPost("ImportPrivat")]
-        [Authorize(Roles = "admin, moderator")]
-        public IActionResult ImportPrivat([FromBody]int orgAccountId)
-        {
-            if (orgAccountId<=0)
-            {
-                return BadRequest();
-            }
-            return Ok(_service.ImportFromPrivat(orgAccountId));
-        }
-
-        [HttpGet("LastUpdate/{orgId}")]
-        [Authorize(Roles = "admin, moderator")]
-        public IActionResult LastUpdate (int orgId)
-        {
-            if (orgId <= 0)
-            {
-                return BadRequest();
-            }
-            return Ok(_service.GetLastPrivatUpdate(orgId));
-        }
-
-        [HttpGet("UpdateDate/{orgId}")]
-        [Authorize(Roles = "admin, moderator")]
-        public IActionResult UpdateDate(int orgId)
-        {
-            if (orgId <= 0)
-            {
-                return BadRequest();
-            }
-            return Ok(_service.UpdateDate(orgId).LastUpdateDate);
-        }
-
-        [HttpPost("Privat")]
-        [Authorize(Roles = "admin, moderator")]
-        public IActionResult PrivatImport([FromBody] PrivatImportViewModel model)
-        {
-            try
-            {
-                return Ok(_service.ImportWithDates(model));
-            }
-            catch (Exception ex)
-            {
-                throw new  Exception(ex.Message, ex);
-            }
         }
     }
 }

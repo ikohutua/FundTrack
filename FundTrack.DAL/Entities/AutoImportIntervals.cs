@@ -23,11 +23,6 @@ namespace FundTrack.DAL.Entities
         public int OrgId { get; set; }
 
         /// <summary>
-        /// Gets or Sets date of last bank update
-        /// </summary>
-        public DateTime? LastUpdateDate { get; set; }
-
-        /// <summary>
         /// Gets or Sets Organization navigation property
         /// </summary>
         public virtual Organization Organization { get; set; }
