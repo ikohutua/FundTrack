@@ -103,6 +103,15 @@ export class FinOpService extends BaseSpinnerService<FinOpFromBankViewModel> {
         }
     }
 
+    public processMultipleFinOps(orgId: number): Observable<FinOpFromBankViewModel[]> {
+        if (this.checkAuthorization()) {
+            debugger;
+            return this._http.post(GlobalUrlService.processMultipleFinOps, orgId, RequestOptionsService.getRequestOptions())
+                .map((response: Response) => response.json() as FinOpFromBankViewModel[])
+                .catch(this.handleError);
+        }
+    }
+
     /**
     * Catch error
     * @param error
@@ -128,7 +137,7 @@ export class FinOpService extends BaseSpinnerService<FinOpFromBankViewModel> {
     public getFinOpByOrgAccountIdForPage(accountId: number, currentPage: number, pageSize: number, finOpType: number = -1): Observable<FinOpListViewModel[]> {
         if (this.checkAuthorization()) {
             return this._http.get(GlobalUrlService.getFinOpUrlForPage + '/' + accountId + '/' + finOpType + '?currentPage=' + currentPage + '&pageSize=' + pageSize,
-                 RequestOptionsService.getRequestOptions())
+                RequestOptionsService.getRequestOptions())
                 .map((response: Response) => <FinOpListViewModel[]>response.json())
                 .catch(this.handleError);
         }

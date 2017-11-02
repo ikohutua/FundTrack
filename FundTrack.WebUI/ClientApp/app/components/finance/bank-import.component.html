@@ -1,11 +1,11 @@
-﻿<spinner [showSpinner]="showSpinner"></spinner>
-<div *ngIf="!showSpinner" class="col-md-12">
+﻿
+<div class="col-md-12">
     <div class="col-md-3  container back table-responsive">
         <button class="btn btn-md btn-block btn-success custom-button" (click)="navigateBack()"><span class="glyphicon glyphicon-arrow-left"></span> <strong>Назад</strong></button>
-        <button type="button" class="btn btn-default btn-lg btn-block" (mouseover)="mouseOvered=true" (mouseout)="mouseOvered=false"
+        <button type="button" class="btn btn-default btn-lg btn-block"
                 title="Операція оновлення виписок поточного рахунку від останньої дати оновлення" (click)="onPrivatClick()"
                 style="margin-top:10%; border-color:#314720;color:#314720">
-            <i class="fa fa-refresh fa-1.5x fa-fw" [class.fa-spin]="mouseOvered"></i>
+            <i class="fa fa-refresh fa-1.5x fa-fw" [class.fa-spin]="work"></i>
             <strong>Sync</strong>
         </button>
         <button type="button" class="btn btn-default btn-lg btn-block"
@@ -52,6 +52,7 @@
     <div>Дата останнього оновлення: {{lastPrivatUpdate|date: 'dd/MM/yyyy hh:mm'}} </div>
     <br>
     <div class="col-md-8" *ngIf="_dataForFinOp">
+
         <div class="row grid-divider">
             <table class="table table-list-search back" style="margin-left:4%">
                 <thead>
@@ -65,7 +66,8 @@
                         <th>Обробити</th>
                     </tr>
                 </thead>
-                <tbody>
+                <spinner [showSpinner]="showSpinner"></spinner>
+                <tbody *ngIf="!showSpinner">
                     <tr *ngFor="let dataFinOp of _dataForFinOp"
                         [ngClass]="{'activated':dataFinOp.isLooked==true,'deactivated':dataFinOp.isLooked==false}">
                         <td> {{dataFinOp.trandate | date: 'dd/MM/yyyy hh:mm'}}</td>
@@ -299,48 +301,48 @@
         <h4 class="modal-title">Можливі виписки</h4>
     </div>
     <div class="app-modal-body">
-            <div *ngIf="suggestedBankImports.length==0">
-                <h4>Виписок не знайдено</h4>
-            </div>
-            <div *ngIf="suggestedBankImports.length>=1">
-                <h4 *ngIf="suggestedBankImports.length==1">Виписка знайдена, прив'язати?</h4>
-                <h4 *ngIf="suggestedBankImports.length>1">Виберіть виписку:</h4>
-                <table class="table table-hover table-responsive">
-                    <thead>
-                        <tr>
-                            <th class="th-center-align" *ngIf="suggestedBankImports.length>1"></th>
-                            <th class="th-center-align">Номер картки</th>
-                            <th class="th-center-align">Дата</th>
-                            <th class="th-center-align">Сума</th>
-                            <th class="th-center-align">Опис</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let import of suggestedBankImports">
-                            <td class="th-center-align" *ngIf="suggestedBankImports.length>1">
-                                <input type="radio" name="selectedRadioButton" [value]="import.id" (change)="radioButtonOnChange(import)" />
-                            </td>
-                            <td class="th-center-align">{{import.card}}</td>
-                            <td class="th-center-align">{{import.trandate | date: 'dd/MM/yyyy hh:mm'}}</td>
-                            <td class="th-center-align">{{import.amount}}</td>
-                            <td class="th-center-align">{{import.description}}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="right-float">
-                <button (click)="transferOperation()"
-                        class="btn btn-default"
-                        data-dismiss="modal"
-                        [disabled]="suggestedBankImports.length==0">
-                    ОК
-                </button>
-                <button (click)="closeSuggestionsModal()"
-                        class="btn btn-default"
-                        data-dismiss="modal">
-                    Скасувати
-                </button>
-            </div>
+        <div *ngIf="suggestedBankImports.length==0">
+            <h4>Виписок не знайдено</h4>
         </div>
+        <div *ngIf="suggestedBankImports.length>=1">
+            <h4 *ngIf="suggestedBankImports.length==1">Виписка знайдена, прив'язати?</h4>
+            <h4 *ngIf="suggestedBankImports.length>1">Виберіть виписку:</h4>
+            <table class="table table-hover table-responsive">
+                <thead>
+                    <tr>
+                        <th class="th-center-align" *ngIf="suggestedBankImports.length>1"></th>
+                        <th class="th-center-align">Номер картки</th>
+                        <th class="th-center-align">Дата</th>
+                        <th class="th-center-align">Сума</th>
+                        <th class="th-center-align">Опис</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let import of suggestedBankImports">
+                        <td class="th-center-align" *ngIf="suggestedBankImports.length>1">
+                            <input type="radio" name="selectedRadioButton" [value]="import.id" (change)="radioButtonOnChange(import)" />
+                        </td>
+                        <td class="th-center-align">{{import.card}}</td>
+                        <td class="th-center-align">{{import.trandate | date: 'dd/MM/yyyy hh:mm'}}</td>
+                        <td class="th-center-align">{{import.amount}}</td>
+                        <td class="th-center-align">{{import.description}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="right-float">
+            <button (click)="transferOperation()"
+                    class="btn btn-default"
+                    data-dismiss="modal"
+                    [disabled]="suggestedBankImports.length==0">
+                ОК
+            </button>
+            <button (click)="closeSuggestionsModal()"
+                    class="btn btn-default"
+                    data-dismiss="modal">
+                Скасувати
+            </button>
+        </div>
+    </div>
     <div class="app-modal-footer"></div>
 </app-modal>

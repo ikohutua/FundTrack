@@ -11,6 +11,7 @@ namespace FundTrack.BLL.Abstract
         IEnumerable<ReportIncomeViewModel> GetIncomeReports(int orgId, DateTime? dateFrom, DateTime? dateTo);
         IEnumerable<ReportOutcomeViewModel> GetOutcomeReports(int orgId, DateTime? dateFrom, DateTime? dateTo);
         IEnumerable<String> GetImagesById(int finOpId);
+        IEnumerable<InvoiceDeclarationReportViewModel> GetInvoiceDeclarationReport(int orgId, DateTime? dateFrom, DateTime? dateTo);
         Task<IEnumerable<UsersDonationsReportViewModel>> GetUsersDonationsPaginatedReportAsync(int orgId, DateTime dateFrom, DateTime dateTo, int pageIndex, int pageSize);
         Task<int> GetCountOfUsersDonationsReportAsync(int orgId, DateTime dateFrom, DateTime dateTo);
         Task<IEnumerable<UsersDonationsReportViewModel>> GetUsersDonationsPaginatedReportByUserLoginAsync(int orgId, DateTime dateFrom, DateTime dateTo, int pageIndex, int pageSize, string filterValue);

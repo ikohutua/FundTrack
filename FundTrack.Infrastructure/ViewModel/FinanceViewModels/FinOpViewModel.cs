@@ -29,7 +29,7 @@ namespace FundTrack.Infrastructure.ViewModel.FinanceViewModels
 
         public int? TargetId { get; set; }
 
-        public int UserId { get; set; }
+        public int? UserId { get; set; }
 
         public IEnumerable<string> Images { get; set; }
 

@@ -38,7 +38,7 @@ namespace FundTrack.BLL.Concrete
                 var bankImportDetail = _unitOfWork.BankImportDetailRepository.GetById(finOpModel.BankImportId);
                 var finOp = ConvertFinOpFromBankViewModelToFinOpViewModel(finOpModel);
 
-                switch(finOp.FinOpType)
+                switch (finOp.FinOpType)
                 {
                     case Constants.FinOpTypeSpending:
                         CreateSpending(finOp);
@@ -60,6 +60,41 @@ namespace FundTrack.BLL.Concrete
                 throw new BusinessLogicException(ex.Message, ex);
             }
         }
+
+        public IEnumerable<FinOpFromBankViewModel> ProcessMultipleFinOp(int orgAccId)
+        {
+            try
+            {
+                var account = _unitOfWork.OrganizationAccountRepository.GetOrgAccountById(orgAccId);
+                var bank = account.BankAccount;
+                var details = _unitOfWork.BankImportDetailRepository.GetBankImportDetailsOneCard(bank.CardNumber);
+                var finOps = details.Where(d => d.IsLooked == false
+                && Convert.ToDecimal(d.CardAmount.Split(' ').First().Replace('.', ',')) > 0)
+                .Select(bi => new FinOpFromBankViewModel
+                {
+                    FinOpType = Constants.FinOpTypeIncome,
+                    Description = bi.Description,
+                    TargetId = account.TargetId,
+                    CardToId = account.Id,
+                    FinOpDate = bi.Trandate,
+                    BankImportId = bi.Id,
+                    OrgId =account.OrgId,
+                    Amount = Convert.ToDecimal(bi.CardAmount.Split(' ').First().Replace('.', ','))
+                }).ToList();
+                List<FinOpFromBankViewModel> list = new List<FinOpFromBankViewModel>();
+                foreach (var oper in finOps)
+                {
+                    var fin = CreateFinOp(oper);
+                    list.Add(fin);
+                }
+                return list;
+            }
+            catch (Exception ex)
+            {
+                throw new BusinessLogicException(ErrorMessages.OperationIncomeError, ex);
+            }
+        }
+
 
         private FinOpViewModel ConvertFinOpFromBankViewModelToFinOpViewModel(FinOpFromBankViewModel finOpModel)
         {
@@ -103,7 +138,6 @@ namespace FundTrack.BLL.Concrete
                     UserId = finOpModel.UserId
                 };
                 _unitOfWork.FinOpRepository.Create(finOp);
-
                 orgAccTo.CurrentBalance += finOpModel.Amount;
                 _unitOfWork.OrganizationAccountRepository.Edit(orgAccTo);
                 _unitOfWork.SaveChanges();
@@ -301,7 +335,7 @@ namespace FundTrack.BLL.Concrete
         {
             try
             {
-                if ((id <= 0))
+                if (id <= 0)
                 {
                     throw new BusinessLogicException(ErrorMessages.InvalidIdentificator);
                 }
@@ -359,7 +393,7 @@ namespace FundTrack.BLL.Concrete
                 }
                 if (finOpModel.FinOpType == Constants.FinOpTypeTransfer)
                 {
-                    if (finOp.FinOpType == Constants.FinOpTypeSpending )
+                    if (finOp.FinOpType == Constants.FinOpTypeSpending)
                     {
                         Windtrhaw(finOpModel, finOp);
                     }
@@ -443,9 +477,9 @@ namespace FundTrack.BLL.Concrete
             {
                 throw new BusinessLogicException(ErrorMessages.GetFinOpWithoutAccount, e);
             }
-            
+
         }
-        
+
         public FinOpViewModel BindDonationAndFinOp(FinOpViewModel finOp)
         {
             try

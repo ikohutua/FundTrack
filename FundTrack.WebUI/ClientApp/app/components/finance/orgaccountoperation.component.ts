@@ -47,7 +47,6 @@ export class OrgAccountOperationComponent implements OnChanges {
     private currentAccount: OrgAccountViewModel = new OrgAccountViewModel();
     private accountForUpdate: OrgAccountViewModel = new OrgAccountViewModel();
     private finOps: FinOpListViewModel[] = new Array<FinOpListViewModel>();
-    private reservedFinOpsArray: FinOpListViewModel[] = new Array<FinOpListViewModel>();
     private currentFinOp: FinOpListViewModel = new FinOpListViewModel();
     private moderators: ModeratorViewModel[] = new Array<ModeratorViewModel>();
     private accountOwner: ModeratorViewModel = new ModeratorViewModel();
@@ -119,6 +118,8 @@ export class OrgAccountOperationComponent implements OnChanges {
     private moneyTransfer: FinOpListViewModel = new FinOpListViewModel();
     private manageAccount: OrgAccountViewModel = new OrgAccountViewModel();
     private updateFinOperation: FinOpListViewModel = new FinOpListViewModel();
+
+    private nullTarget: TargetViewModel = { isDeletable: false, name: constant.nullTargetUA, organizationId: this.orgId, parentTargetId: null, targetId: null };
     //-------------------------------------------------------------------------------
     public constructor(private _router: Router,
         private finOpService: FinOpService,
@@ -312,7 +313,12 @@ export class OrgAccountOperationComponent implements OnChanges {
     }
 
     private getCurrentTarget() {
-        this.currentTarget = this.baseTargets.find(target => target.targetId == this.currentAccount.targetId);
+        if (this.currentAccount.targetId != null) {
+            this.currentTarget = this.baseTargets.find(target => target.targetId == this.currentAccount.targetId);
+        }
+        else {
+            this.currentTarget = this.nullTarget;
+        }
     }
 //-------------------------------------------------------Users------------------------------------------------------------
     private getModerators() {

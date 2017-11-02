@@ -173,6 +173,21 @@ namespace FundTrack.DAL.Entities
                     .WithMany(c => c.OrgAccounts)
                     .HasForeignKey(oa => oa.CurrencyId)
                     .HasConstraintName("FK_OrgAccount_Currency");
+
+                entity.HasMany(oa => oa.Balances)
+                   .WithOne(c => c.OrgAccount)
+                   .HasForeignKey(oa => oa.OrgAccountId)
+                   .HasConstraintName("FK_Balance_OrgAccount");
+
+                entity.HasMany(oa => oa.FinOpsFrom)
+                   .WithOne(c => c.OrgAccountFrom)
+                   .HasForeignKey(oa => oa.AccFromId)
+                   .HasConstraintName("FK_FinOp_OrgAccountFrom");
+
+                entity.HasMany(oa => oa.FinOpsTo)
+                  .WithOne(c => c.OrgAccountTo)
+                  .HasForeignKey(oa => oa.AccToId)
+                  .HasConstraintName("FK_FinOp_OrgAccountTo");
             });
         }
     }
