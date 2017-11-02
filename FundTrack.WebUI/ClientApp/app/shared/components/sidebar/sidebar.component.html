@@ -7,7 +7,7 @@
             <li *ngIf="this.user && this.user.role=='admin'" class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown">Події <span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">
-                    <li class="dropdown-header">Події</li>
+                    <li class="dropdown-header"></li>
                     <li><a (click)="redirectToAllEvents()">Всі Події</a></li>
                     <li><a (click)="redirectToAddEventPage()">Створити</a></li>
                 </ul>
@@ -16,7 +16,7 @@
             <li *ngIf="this.user && this.user.role=='admin'" class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown">Потреби <span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">
-                    <li class="dropdown-header">Потреби</li>
+                    <li class="dropdown-header"></li>
                     <li><a (click)="redirectToAllRequests(1)">Всі Потреби</a></li>
                     <li><a (click)="redirectToManageRequestPage(1)">Створити</a></li>
                     <li>
@@ -35,7 +35,7 @@
             <li *ngIf="this.user && this.user.role!=null" class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown">Запропонувати речі <span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">
-                    <li class="dropdown-header">Мої речі</li>
+                    <li class="dropdown-header"></li>
                     <li [routerLinkActive]="['link-active']"><a [routerLink]="['offer-management/mylist']">Мої пропозиції</a></li>
                     <li [routerLinkActive]="['link-active']"><a [routerLink]="['offer-management/add']">Запропонувати річ</a></li>
                 </ul>
@@ -57,7 +57,8 @@
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown">Звіти<span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">
-                    <li><a (click)="redirectToReportsPage()">Витрати/Надходження</a></li>
+                    <li class="dropdown-header"></li>
+                    <li><a (click)="redirectToReportsPage()">Прихід/Витрати</a></li>
                     <li *ngIf="this.user && (this.user.role=='admin' || this.user.role=='moderator')"><a (click)="redirectToUsersDonationsReportsPage()">Всі Пожертви</a></li>
                     <li *ngIf="this.user && (this.user.role=='admin' || this.user.role=='moderator')"><a (click)="redirectToCommonDonationsReportsPage()">Пожертви користувачів</a></li>
                     <li *ngIf="this.user && (this.user.role=='admin' || this.user.role=='moderator')"><a (click)="redirectToInvoiceDeclarationPage()">Оборотно-сальдова відомість</a></li>

@@ -22,7 +22,7 @@ namespace FundTrack.BLL.Concrete
             _targetService = targetService;
         }
 
-        public IEnumerable<TargetReportViewModel> GetReportForIncomeFinopsByTargets(int orgId, int finOpType, DateTime dateFrom, DateTime dateTo)
+        public IEnumerable<TargetReportViewModel> GetReportForFinopsByTargets(int orgId, int finOpType, DateTime dateFrom, DateTime dateTo)
         {
             try
             {
