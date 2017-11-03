@@ -10,6 +10,7 @@ using System.Text;
 using Org.BouncyCastle.Bcpg;
 using FundTrack.Infrastructure;
 using FundTrack.Infrastructure.ViewModel.SuperAdminViewModels;
+using System.Globalization;
 
 namespace FundTrack.BLL.Concrete
 {
@@ -69,7 +70,7 @@ namespace FundTrack.BLL.Concrete
                 var bank = account.BankAccount;
                 var details = _unitOfWork.BankImportDetailRepository.GetBankImportDetailsOneCard(bank.CardNumber);
                 var finOps = details.Where(d => d.IsLooked == false
-                && Convert.ToDecimal(d.CardAmount.Split(' ').First().Replace('.', ',')) > 0)
+                && Convert.ToDecimal(d.CardAmount.Split(' ').First() ,new CultureInfo("en-US") ) > 0)
                 .Select(bi => new FinOpFromBankViewModel
                 {
                     FinOpType = Constants.FinOpTypeIncome,
@@ -79,7 +80,7 @@ namespace FundTrack.BLL.Concrete
                     FinOpDate = bi.Trandate,
                     BankImportId = bi.Id,
                     OrgId =account.OrgId,
-                    Amount = Convert.ToDecimal(bi.CardAmount.Split(' ').First().Replace('.', ','))
+                    Amount = Convert.ToDecimal(bi.CardAmount.Split(' ').First(), new CultureInfo("en-US"))
                 }).ToList();
                 List<FinOpFromBankViewModel> list = new List<FinOpFromBankViewModel>();
                 foreach (var oper in finOps)
