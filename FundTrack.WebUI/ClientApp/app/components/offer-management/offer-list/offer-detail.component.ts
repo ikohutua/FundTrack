@@ -7,7 +7,6 @@ import { Router, ActivatedRoute, Params } from "@angular/router";
 import { GoodsService } from "../../../services/concrete/goods/goods.service";
 import { GoodsCategoryViewModel } from "../../../view-models/concrete/goods-category-view.model";
 import { GoodsTypeShortViewModel } from "../../../view-models/concrete/goods-type-view.model";
-import { AmazonUploadComponent } from '../../../shared/components/amazonUploader/amazon-upload.component';
 import * as key from '../../../shared/key.storage';
 import { AuthorizeUserModel } from "../../../view-models/concrete/authorized-user-info-view.model";
 import { isBrowser } from "angular2-universal";
@@ -23,7 +22,6 @@ import { Image } from "../../../view-models/concrete/image.model";
     providers: [UserOfferService, GoodsService ]
 })
 export class OfferDetailComponent implements OnInit {
-    public uploader: AmazonUploadComponent = new AmazonUploadComponent();
     @Output() hidePanel = new EventEmitter<boolean>();
     private maxDescriptionLength: number = 2000;
     private header: string;

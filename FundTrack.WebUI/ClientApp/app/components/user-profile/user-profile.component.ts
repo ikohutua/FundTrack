@@ -13,7 +13,6 @@ import { ChangePasswordViewModel } from "../../view-models/concrete/change-passw
 import { UserService } from '../../services/concrete/user.service';
 import { Router } from "@angular/router";
 import { matchingPasswords } from '../registration/match-password.validator';
-import { AmazonUploadComponent } from '../../shared/components/amazonUploader/amazon-upload.component';
 import { UserProfileConstantsClass } from "./user-profile.constants";
 
 
@@ -29,8 +28,6 @@ export class UserProfileComponent implements OnInit {
 
     //Modal component that contains password changes controls
     public modal: ModalComponent;
-    //Amazon storage uploader component
-    public uploader: AmazonUploadComponent = new AmazonUploadComponent();
 
     private user: AuthorizeUserModel = new AuthorizeUserModel();
     private errorMessage: string;
@@ -281,33 +278,8 @@ export class UserProfileComponent implements OnInit {
      * Gets extension of specified file
      * @param fileName: name of the file extension of which is needed to be retrieved
      */
-    private getFileExtension(fileName: string):string {
+    private getFileExtension(fileName: string): string {
         return fileName.substring(fileName.lastIndexOf('.') + 1, fileName.length) || fileName;
     }
-    /**
-     * Saves passed file in Amazon Web Storage
-     * @param fileInput: file to be saved in AWS
-     */
-    private saveFileInAws(fileInput: any): void {
-        var that = this;
-        var oldPhotoUrl = this.user.photoUrl;
-        this.user.photoUrl = '';
-        var maxFileSize = 4000000;
-        let file = fileInput.target.files[0];
-        let uploadedFileName = this.user.login + '.' + this.getFileExtension(file.name);
-        if (file.size != null && file.size < maxFileSize) {
-            this.uploader.UploadImageToAmazon(file, uploadedFileName).then(function (data) {
-                if (!data.Location) {
-                    that.saveFileInAws(fileInput);
-                }
-                that.user.photoUrl = data.Location;
-            })
-        }
-        else {
-            this.user.photoUrl = oldPhotoUrl;
-            alert('Розмір файлу не може перевищувати ' + Math.ceil(maxFileSize / 1000000) + 'МБ');
-        }
-    }
-    }
+}
 
- 

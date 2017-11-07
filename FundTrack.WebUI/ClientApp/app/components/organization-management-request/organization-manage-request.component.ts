@@ -5,7 +5,6 @@ import { RequestManagementViewModel } from '../../view-models/abstract/organizat
 import { OrganizationManagementRequestService } from "../../services/concrete/organization-management/organization-management-request.service";
 import { GoodsTypeViewModel } from "../../view-models/concrete/goodsType-view.model";
 import { GoodsCategoryViewModel } from "../../view-models/concrete/goodsCategory-view.model";
-import { AmazonUploadComponent } from "../../shared/components/amazonUploader/amazon-upload.component";
 import { RequestedImageViewModel } from "../../view-models/abstract/organization-management-view-models/requested-item-view.model";
 import { SpinnerComponent } from "../../shared/components/spinner/spinner.component";
 
@@ -18,7 +17,6 @@ import { SpinnerComponent } from "../../shared/components/spinner/spinner.compon
 
 export class OrganizationManageRequestComponent implements OnInit {
 
-    public uploader: AmazonUploadComponent = new AmazonUploadComponent();
     private _requestedItem: RequestManagementViewModel = new RequestManagementViewModel();
     private _errorMessage: string;
     private _goodsTypes: GoodsTypeViewModel[];
@@ -191,34 +189,5 @@ export class OrganizationManageRequestComponent implements OnInit {
      */
     private getFileExtension(fileName: string): string {
         return fileName.substring(fileName.lastIndexOf('.') + 1, fileName.length) || fileName;
-    }
-
-    /**
-     * Saves passed file in Amazon Web Storage
-     * @param fileInput: file to be saved in AWS
-     */
-    private saveFileInAws(fileInput: any): void {
-        var that = this;
-        var maxFileSize = 4000000;
-        let file = fileInput.target.files[0];
-        if (file) {
-            var currentDate = new Date();
-            let uploadedFileName = this._requestedItem.name + currentDate.getHours() + currentDate.getMinutes() + currentDate.getSeconds() + '.' + this.getFileExtension(file.name);
-            if (file.size != null && file.size < maxFileSize) {
-                this.uploader.UploadImageToAmazon(file, uploadedFileName).then(function (data) {
-                    let requestedItemImage = new RequestedImageViewModel();
-                    requestedItemImage.requestedItemId = 0;
-                    requestedItemImage.imageUrl = data.Location;
-         
-                    if (that._requestedItem.images == null) {
-                        that._requestedItem.images = [];
-                    }
-                    that._requestedItem.images.push(requestedItemImage);
-                })
-            }
-            else {
-                alert('Розмір файлу не може перевищувати ' + Math.ceil(maxFileSize / 1000000) + 'МБ');
-            }
-        }
     }
 }

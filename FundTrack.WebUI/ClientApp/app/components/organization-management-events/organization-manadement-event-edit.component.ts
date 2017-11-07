@@ -3,7 +3,6 @@ import { IEventManagementViewModel } from "../../view-models/abstract/organizati
 import { OrganizationManagementEventsService } from "../../services/concrete/organization-management/organization-management-events.service";
 import { Subscription } from "rxjs/Subscription";
 import { ActivatedRoute, Router } from "@angular/router";
-import { AmazonUploadComponent } from "../../shared/components/amazonUploader/amazon-upload.component";
 import { ImageModel } from "../../view-models/concrete/image-url-view-model";
 import { IImageModel } from "../../view-models/abstract/organization-management-view-models/image-url-view-model.interface";
 
@@ -16,7 +15,6 @@ export class OrganizationManadementEventEditComponent implements OnInit {
     private _idForCurrentEvent: number;
     private _event: IEventManagementViewModel;
     private _subscription: Subscription;
-    private _uploader: AmazonUploadComponent = new AmazonUploadComponent();
     private _errorMessage: string;
 
     /**
@@ -56,31 +54,6 @@ export class OrganizationManadementEventEditComponent implements OnInit {
     */
     private getFileExtension(fileName: string): string {
         return fileName.substring(fileName.lastIndexOf('.') + 1, fileName.length) || fileName;
-    }
-
-    /**
-     * Saves passed file in Amazon Web Storage
-     * @param fileInput: file to be saved in AWS
-     */
-    private saveFileInAws(fileInput: any): void {
-        var that = this;
-        var maxFileSize = 4000000;
-        let file = fileInput.target.files[0];
-        let uploadedFileName = Math.random().toString(36).slice(2) + '.' + this.getFileExtension(file.name);
-        if (file.size != null && file.size < maxFileSize) {
-            this._uploader.UploadImageToAmazon(file, uploadedFileName).then(function (data) {
-                let image = new ImageModel();
-                image.id = 0;
-                image.imageUrl = data.Location;
-                if (that._event.images == null) {
-                    that._event.images = [];
-                }
-                that._event.images.push(image);
-            })
-        }
-        else {
-            alert('Розмр файлу не може перевищувати ' + Math.ceil(maxFileSize / 1000000) + 'МБ');
-        }
     }
 
     /**
