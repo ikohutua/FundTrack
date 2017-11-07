@@ -39,7 +39,7 @@
         public const string InvalidIdentificator = "Невірне значення ідентифікатора";
         public const string SpendingIsExceeded = "Витрати не можуть перебільшувати баланс рахунку";
         public const string InvalidFinanceOperation = "Непраильна фінансова операція";
-        public const string AddNewBalanceMessageReject = "Неможливо зафіксувати баланс! За вказаний день проведено фінансову операцію.";
+        public const string AddNewBalanceMessageReject = "Неможливо зафіксувати баланс через наявність фінансових операцій на вказану дату або після неї!";
         public const string BalanceFixedSuccessfullyMessage = "Баланс зафіксовано!";
         public const string BalanceAlreadyFixedMessage = "Баланс вже зафіксовано!";
         public const string GetFinOpWithoutAccount = "Неможливо присвоїти Id організації, оскільки фінансова операція не прив'язана до акаунта";

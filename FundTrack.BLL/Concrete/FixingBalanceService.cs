@@ -90,7 +90,7 @@ namespace FundTrack.BLL.Concrete
         private bool IsFinOpsInBalanceDay(BalanceViewModel balance)
         {
             var finops = _unitOfWork.FinOpRepository.GetFinOpByOrgAccount(balance.OrgAccountId);
-            return finops.Where(x => x.FinOpDate.Date == balance.BalanceDate.Date).Any();
+            return finops.Where(x => x.FinOpDate.Date >= balance.BalanceDate.Date).Any();
         }
 
         public IEnumerable<BalanceViewModel> AddNewRangeOfBalances(IEnumerable<BalanceViewModel> balances)
