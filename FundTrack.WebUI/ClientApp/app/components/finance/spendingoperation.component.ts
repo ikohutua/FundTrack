@@ -41,6 +41,9 @@ import { UserService } from "../../services/concrete/user.service";
 
 export class SpendingOperationComponent {
 
+    @ViewChild("targetModal")
+    public targetModal: ModalComponent;
+
     private moneySpendingForm: FormGroup;
     private moneyOperationModel: FinOpListViewModel = new FinOpListViewModel();
     private moneySpending: FinOpListViewModel = new FinOpListViewModel();
@@ -49,6 +52,7 @@ export class SpendingOperationComponent {
     private orgTargets: TargetViewModel[] = new Array<TargetViewModel>();
     private baseTargets: TargetViewModel[] = new Array<TargetViewModel>();
     private subTargets: TargetViewModel[] = new Array<TargetViewModel>();
+    private newSubTarget: TargetViewModel = new TargetViewModel();
     private currentDate = new Date().toJSON().slice(0, 10);
     private currentAccountId: number;
     private currentTarget: TargetViewModel = new TargetViewModel();
@@ -58,6 +62,7 @@ export class SpendingOperationComponent {
     private isAccountChosen: boolean = false;
     private isAccountKnown: boolean = false;
     private isTargetNull: boolean = true;
+    private isNewSubTargetCreated = false;
 
     public constructor(private router: Router,
         private location: Location,
@@ -131,6 +136,20 @@ export class SpendingOperationComponent {
                 this.subTargets.push(this.orgTargets[i]);
             }
         }
+    }
+
+    private addSubTarget(targetName: string) {
+        this.newSubTarget = {
+            targetId: 0,
+            name: targetName,
+            organizationId: this.user.orgId,
+            parentTargetId: this.currentTarget.targetId,
+            isDeletable: false
+        }
+        this.subTargets.push(this.newSubTarget);
+        this.isNewSubTargetCreated = true;
+        this.moneyOperationModel.targetId = this.newSubTarget.targetId;
+        this.closeModal();
     }
 
     private getCurrentTarget() {
@@ -238,9 +257,29 @@ export class SpendingOperationComponent {
         }
     }
 
-    private makeSpending() {
+    private openModal() {
+        this.targetModal.show();
+    }
+
+    private closeModal() {
+        this.targetModal.hide();
+    }
+
+    private prepareSpending() {
+        if (this.isNewSubTargetCreated) {
+            this.editService.addTarget(this.newSubTarget).subscribe(result => {
+                this.newSubTarget = result;
+                this.moneyOperationModel.targetId = this.newSubTarget.targetId;
+                this.makeSpending();
+            });
+        }
+        else {
+            this.makeSpending();
+        }  
+    }
+
+    private makeSpending(): void {
         this.completeModel();
-        console.log(this.moneyOperationModel);
         this.finOpService.createSpending(this.moneyOperationModel).subscribe(a => {
             if (a.error == "" || a.error == null) {
                 this.showToast();
