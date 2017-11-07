@@ -13,3 +13,6 @@ export const bankUA: string = "Банк";
 export const incomeId: number = 1;
 export const spendingId: number = 0;
 export const transferId: number = 2;
+export const defaultTargetName: string = "Базове призначення";
+export const selectedCategoryName: string = "Базові";
+export const successMessageUA: string = "Операція виконана успішно";

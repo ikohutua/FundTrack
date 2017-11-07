@@ -582,7 +582,7 @@ export class OrgAccountOperationComponent implements OnChanges {
         this.selectedFinOp.userId = this.selectedUserId;
         this.selectedFinOp.donationId = this.selectedDonationId;
         this.finOpService.bindDonationAndFinOp(this.selectedFinOp).subscribe(result => {
-            this.toasterMessage = "Операція виконана успішно.";
+            this.toasterMessage = constant.successMessageUA;
             this.showToast();
             this.closeSuggestionsModal();
         });
@@ -603,7 +603,7 @@ export class OrgAccountOperationComponent implements OnChanges {
             this.donateService.addDonation(donation).subscribe(result => {
                 this.selectedFinOp.donationId = result.id;
                 this.finOpService.bindDonationAndFinOp(this.selectedFinOp).subscribe(result => {
-                    this.toasterMessage = "Операція виконана успішно.";
+                    this.toasterMessage = constant.successMessageUA;
                     this.showToast();
                     this.closeSuggestionsModal();
                 });

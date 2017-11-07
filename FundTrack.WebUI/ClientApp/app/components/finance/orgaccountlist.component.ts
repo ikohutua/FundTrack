@@ -10,6 +10,7 @@ import { BalanceViewModel } from "../../view-models/concrete/finance/balance-vie
 import { ModalComponent } from "../../shared/components/modal/modal-component";
 import { DataSetViewModel } from "../../view-models/concrete/data-set-view.model";
 import { Dictionary } from "@types/underscore";
+import * as constant from '../../shared/default-configuration.storage';
 
 
 @Component({
@@ -31,8 +32,8 @@ export class OrgAccountListComponent implements OnInit {
     private selectedAccount: OrgAccountViewModel;
     //Property that keeps title for the page
     private pageTitle: string = 'Рахунки організації';
-    private readonly bankType: string = "Банк";
-    private readonly cashType: string = "Готівка";
+    private readonly bankType: string = constant.bankUA;
+    private readonly cashType: string = constant.cashUA;
     //Property that keeps an array of organization account
     private bankAccounts: OrgAccountViewModel[] = new Array<OrgAccountViewModel>();
     //Property that keeps an array of organization account

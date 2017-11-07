@@ -22,7 +22,7 @@ namespace FundTrack.BLL.Concrete
             _targetService = targetService;
         }
 
-        public IEnumerable<TargetReportViewModel> GetReportForIncomeFinopsByTargets(int orgId, int finOpType, DateTime dateFrom, DateTime dateTo)
+        public IEnumerable<TargetReportViewModel> GetReportForFinopsByTargets(int orgId, int finOpType, DateTime dateFrom, DateTime dateTo)
         {
             try
             {
@@ -87,10 +87,6 @@ namespace FundTrack.BLL.Concrete
         {
             try
             {
-                if (targetId == 0)
-                {
-                    targetId = null; // to get all finOps without target
-                }
                 var finOps = _unitOfWork.FinOpRepository.Read()
                     .Where(f => f.FinOpType == finOpType && f.TargetId == targetId && IfDateInRange(dateFrom, dateTo, f.FinOpDate)).ToList();
                 return finOps.Select(ConvertFinOpToViewModel);

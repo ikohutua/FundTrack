@@ -98,9 +98,9 @@ namespace FundTrack.WebUI.Controllers
         [HttpGet("{orgId}/{finOpType}")]
         public ActionResult GetTargetsReport(int orgId, int finOpType, DateTime dateFrom, DateTime dateTo)
         {
-            if (isDateValid(dateFrom, dateTo) && isIdValid(orgId) && isIdValid(finOpType))
+            if (isDateValid(dateFrom, dateTo) && isIdValid(orgId))
             {
-                return Ok(_organizationStatisticsService.GetReportForIncomeFinopsByTargets(orgId, finOpType, dateFrom, dateTo));
+                return Ok(_organizationStatisticsService.GetReportForFinopsByTargets(orgId, finOpType, dateFrom, dateTo));
             }
             return BadRequest(ControllerContext.ModelState);
         }
