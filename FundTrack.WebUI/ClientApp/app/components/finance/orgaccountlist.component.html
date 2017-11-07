@@ -2,8 +2,9 @@
     <div class="row">
         <ul>
             <li><a title="Додати новий рахунок організації" (click)="navigateToCreatePage()" class="active">Додати рахунок</a></li>
-            <li><a *ngIf="isExtractsMerchantEnable" title="Імпорт даних для вибраного рахунку" (click)="navigateToBankImportPage()" class="active">Імпортувати дані з банку</a></li>
-            <li><a *ngIf="!isExtractsMerchantEnable" title="Для імпортування даних з вибраного рахунку вкажіть MercantId та MerchantPassword для Приват 24" class="disabled">Імпортувати дані з банку</a></li>
+            <li *ngIf="isExtractsMerchantEnable"><a title="Імпорт даних для вибраного рахунку" (click)="navigateToBankImportPage()" class="active">Імпортувати дані з банку</a></li>
+            <li *ngIf="!isExtractsMerchantEnable"><a title="Для імпортування даних з вибраного рахунку вкажіть MercantId та MerchantPassword для Приват 24" class="disabled">Імпортувати дані з банку</a></li>
+            <li><a title="Зафіксувати всі рахунки" (click)="openModal(fixingBalanceModal)" class="active">Зафіксувати всі залишки</a></li>
         </ul>
     </div>
     <div class="row">
@@ -48,15 +49,81 @@
             </div>
         </div>
         <div class="col-md-8 mb20">
-            <div class="row" *ngIf="ifBankSelectedType" >
+            <div class="row" *ngIf="ifBankSelectedType">
                 <div *ngIf="isDownloaded" class="col-md-12 mb20">
                     <orgaccountdetail [accountId]="selectAccountId" (onDelete)="onDelete($event)"></orgaccountdetail>
                 </div>
             </div>
-            <div *ngIf="isDownloaded" >
+            <div *ngIf="isDownloaded">
                 <orgaccountoperation [accountId]="selectAccountId" [orgId]="orgId" (getIsExtractEnable)="onExtractEnableChange($event)" (onDelete)="onDelete($event)"></orgaccountoperation>
             </div>
             <br>
         </div>
     </div>
 </div>
+
+<app-modal #fixingBalanceModal>
+    <div class="app-modal-header">
+        <button type="button" class="close" aria-hidden="true" (click)="hideModal(fixingBalanceModal)">&times;</button>
+        <h4 class="modal-title">Зафіксувати залишки по всіх рахунках</h4>
+    </div>
+    <div class="app-modal-body">
+        <div class="container" style="width: 90%">
+            <div class="text-justify">
+                <br />
+                При фіксації поточного балансу неповинно бути фінансових операцій за сьогодні.
+                Якщо хочете зафіксувати баланс заднім числом з вибраного числа до сьогодні не повинно бути фінансових операцій.
+            </div>
+            <br />
+            <div class="form-group">
+                <label for="dateOfFixing">Виберіть дату:</label>
+                <input #currentDate class="form-control" type="date" id="dateOfFixing"
+                       value="{{dateForFixingBalances | date:'yyyy-MM-dd'}}"
+                       [max]="dateForFixingBalances | date:'yyyy-MM-dd'"
+                       (input)="setCurrentDate(currentDate.value)"
+                       [disabled]="isFixingBalanceInProcess" />
+            </div>
+        </div>
+    </div>
+    <div class="app-modal-footer">
+        <button class="btn btn-primary right"
+                (click)="fixBalances()" [ngClass]="{'disabled': isFixingBalanceInProcess}">
+            <i *ngIf="isFixingBalanceInProcess" class="fa fa-spinner fa-spin"></i>
+            Зафіксувати
+        </button>
+    </div>
+</app-modal>
+
+<app-modal #fixingBalanceMessageModal>
+    <div class="app-modal-header">
+        <button type="button" class="close" aria-hidden="true" (click)="hideModal(fixingBalanceMessageModal)">&times;</button>
+        <h4 class="modal-title">Зафіксувати залишки по всіх рахунках</h4>
+    </div>
+    <div class="app-modal-body">
+        <div class="container" style="width: 90%">
+            <div>
+                <br />
+                <!--<p *ngFor="let item of fixingBalanceMessage">
+                    {{item}}
+                </p>-->
+
+                <table class="table table-condensed">
+                    <thead *ngIf="isFixingBalanceInSuccessfulyComplited">
+                        <tr>
+                            <th>Рахунок</th>
+                            <th>Повідомлення</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of fixingBalanceMessageKeys">
+                            <td>{{item}}</td>
+                            <td>{{fixingBalanceMessage.get(item)}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="app-modal-footer">
+    </div>
+</app-modal>

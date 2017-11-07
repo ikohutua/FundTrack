@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Authorization;
 using FundTrack.BLL.Abstract;
 using FundTrack.Infrastructure.ViewModel.FinanceViewModels;
 using FundTrack.BLL.Concrete;
+using System;
+using System.Collections.Generic;
 
 namespace FundTrack.WebUI.Controllers
 {
@@ -25,7 +27,7 @@ namespace FundTrack.WebUI.Controllers
         [HttpGet("{accountId}")]
         public IActionResult GetFilterByAccId(int? accountId)
         {
-            if(accountId == null || accountId <= 0)
+            if (accountId == null || accountId <= 0)
             {
                 return BadRequest();
             }
@@ -33,16 +35,38 @@ namespace FundTrack.WebUI.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddNewBalance ([FromBody]BalanceViewModel balance)
+        public IActionResult AddNewBalance([FromBody]BalanceViewModel balance)
         {
             try
             {
                 return Ok(_fixingBalanceService.AddNewBalance(balance));
             }
             catch (BusinessLogicException ex)
+            {   
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPost("AllBalances")]
+        public IActionResult AddNewRangeOfBalances([FromBody]MyClass balances)
+        {
+            if (balances == null)
+            {
+                return BadRequest("balances==null");
+            }
+            try
+            {
+                return Ok(_fixingBalanceService.AddNewRangeOfBalances(balances?.Balances));
+            }
+            catch (BusinessLogicException ex)
             {
                 return BadRequest(ex.Message);
             }
         }
+    }
+
+   public class MyClass
+    {
+        public BalanceViewModel[] Balances { get; set; }
     }
 }

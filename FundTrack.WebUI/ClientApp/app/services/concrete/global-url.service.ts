@@ -8,6 +8,7 @@ export class GlobalUrlService {
     // urls to server for all components
     public static getAllOrganizationsUrl: string = "api/OrganizationDetail/";
     public static getFixingBalanceUrl: string = "api/FixingBalance/";
+    public static fixingAllBalancesUrl: string = "api/FixingBalance/AllBalances/";
 
     //organization account Extracts
     public static getExtractStatus: string = "api/OrgAccount/ExtractStatus/";

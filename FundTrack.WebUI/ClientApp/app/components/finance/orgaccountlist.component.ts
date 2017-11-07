@@ -1,16 +1,22 @@
-﻿import { Component, OnInit } from "@angular/core";
+﻿import { Component, OnInit, ViewChild } from "@angular/core";
 import { Router } from "@angular/router";
 import { OrgAccountService } from "../../services/concrete/finance/orgaccount.service";
 import { OrgAccountViewModel } from "../../view-models/concrete/finance/orgaccount-viewmodel";
 import { DecimalPipe } from '@angular/common';
 import { CurrencyPipe } from '@angular/common';
 import * as key from '../../shared/key.storage';
+import { FixingBalanceService } from "../../services/concrete/fixing-balance.service";
+import { BalanceViewModel } from "../../view-models/concrete/finance/balance-view.model";
+import { ModalComponent } from "../../shared/components/modal/modal-component";
+import { DataSetViewModel } from "../../view-models/concrete/data-set-view.model";
+import { Dictionary } from "@types/underscore";
 
 
 @Component({
     selector: 'orgaccountlist',
     templateUrl: './orgaccountlist.component.html',
     styleUrls: ['./orgaccountlist.component.css'],
+    providers: [FixingBalanceService]
 })
 export class OrgAccountListComponent implements OnInit {
     //Property that keeps an array of organization account
@@ -39,8 +45,20 @@ export class OrgAccountListComponent implements OnInit {
     ifBankSelectedType: boolean;
     isExtractsMerchantEnable: boolean;
 
+    @ViewChild("fixingBalanceModal")
+    private fixingBalanceModal: ModalComponent;
+    dateForFixingBalances: Date = new Date();
+    isFixingBalanceInProcess: boolean;
+    isFixingBalanceInSuccessfulyComplited: boolean;
+
+    @ViewChild("fixingBalanceMessageModal")
+    private fixingBalanceMessageModal: ModalComponent;
+    fixingBalanceMessage: Map<string, string> = new Map<string, string>();
+    fixingBalanceMessageKeys: string[] = [];
+
     constructor(private _accountService: OrgAccountService,
-        private router: Router) {
+        private router: Router,
+        private fixingBalanceService: FixingBalanceService) {
     }
 
     /*
@@ -138,5 +156,53 @@ export class OrgAccountListComponent implements OnInit {
 
     onExtractEnableChange(event: boolean) {
         this.isExtractsMerchantEnable = event;
+    }
+
+    setCurrentDate(date: Date) {
+        this.dateForFixingBalances = new Date(date);
+    }
+
+    fixBalances() {
+        debugger;
+        this.isFixingBalanceInProcess = true;
+        this.fixingBalanceMessage = new Map<string, string>();
+        let balances: BalanceViewModel[] = [];
+        this.accounts.forEach(a => {
+            let b = new BalanceViewModel();
+            b.orgAccountId = a.id;
+            b.balanceDate = this.dateForFixingBalances.toDateString();
+            balances.push(b);
+        });
+        console.log(balances);
+
+        this.fixingBalanceService.fixAllBalances(balances)
+            .subscribe(data => {
+                debugger;
+                this.isFixingBalanceInProcess = false;
+                this.isFixingBalanceInSuccessfulyComplited = true;
+
+                data.forEach(i => this.fixingBalanceMessage.set(this.accounts.find(a => a.id == i.orgAccountId).orgAccountName, i.message));
+                this.fixingBalanceMessageKeys = Array.from( this.fixingBalanceMessage.keys());
+
+                this.hideModal(this.fixingBalanceModal);
+                this.openModal(this.fixingBalanceMessageModal);
+            },
+            error => {
+                this.isFixingBalanceInProcess = false;
+                this.isFixingBalanceInSuccessfulyComplited = false;
+                console.log(error);
+                this.fixingBalanceMessage.set("Error", error);
+                this.fixingBalanceMessageKeys = Array.from(this.fixingBalanceMessage.keys());
+
+                this.hideModal(this.fixingBalanceModal);
+                this.openModal(this.fixingBalanceMessageModal);
+            });
+    }
+
+    private openModal(modal: ModalComponent) {
+        modal.show();
+    }
+    private hideModal(modal: ModalComponent) {
+        modal.hide();
     }
 }

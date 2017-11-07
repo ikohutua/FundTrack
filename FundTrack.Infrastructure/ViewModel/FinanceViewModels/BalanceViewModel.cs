@@ -7,5 +7,6 @@ namespace FundTrack.Infrastructure.ViewModel.FinanceViewModels
         public decimal Amount { get; set; }
         public DateTime BalanceDate { get; set; }
         public int OrgAccountId { get; set; }
+        public string Message { get; set; }
     }
 }

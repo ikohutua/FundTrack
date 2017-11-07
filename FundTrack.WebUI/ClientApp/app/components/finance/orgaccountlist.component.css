@@ -84,9 +84,7 @@ ul {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    max-width: 330px;
-    border: 1px solid #e7e7e7;
-    background-color: #333;
+    margin-bottom: 10px;
 }
 
 li {

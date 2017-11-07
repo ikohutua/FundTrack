@@ -6,6 +6,10 @@ import { GlobalUrlService } from "./global-url.service";
 import { Observable } from "rxjs/Observable";
 import { BalanceViewModel } from "../../view-models/concrete/finance/balance-view.model";
 
+export class MyClass {
+    public balances: BalanceViewModel[] = [];
+}
+
 @Injectable()
 export class FixingBalanceService {
 
@@ -19,7 +23,14 @@ export class FixingBalanceService {
 
     public fixBalance(balance: BalanceViewModel): Observable<BalanceViewModel> {
         return this._http.post(GlobalUrlService.getFixingBalanceUrl, balance, RequestOptionsService.getRequestOptions())
-            .map((response: Response) => response.json() as BalanceViewModel); 
+            .map((response: Response) => response.json() as BalanceViewModel);
     }
-     
+
+    public fixAllBalances(balances: Array<BalanceViewModel>): Observable<BalanceViewModel[]> {
+        let my = new MyClass();
+        my.balances = balances;
+        debugger;
+        return this._http.post(GlobalUrlService.fixingAllBalancesUrl, my, RequestOptionsService.getRequestOptions())
+            .map((response: Response) => response.json() as BalanceViewModel[]);
+    }
 }

@@ -1,5 +1,7 @@
-﻿using FundTrack.Infrastructure.ViewModel;
+﻿using System;
+using FundTrack.Infrastructure.ViewModel;
 using FundTrack.Infrastructure.ViewModel.FinanceViewModels;
+using System.Collections.Generic;
 
 namespace FundTrack.BLL.Abstract
 {
@@ -18,5 +20,6 @@ namespace FundTrack.BLL.Abstract
         /// <param name="balance">Instance with info ablout fixing.</param>
         /// <returns>Added data</returns>
         BalanceViewModel AddNewBalance(BalanceViewModel balance);
+        IEnumerable<BalanceViewModel> AddNewRangeOfBalances(IEnumerable< BalanceViewModel> balances);
     }
 }
