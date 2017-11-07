@@ -10,6 +10,7 @@ import { RequestedItemInitViewModel } from "../../../view-models/abstract/reques
 import * as key from '../../../shared/key.storage';
 import { BaseSpinnerService } from "../../abstract/base-spinner-service";
 import { SpinnerComponent } from "../../../shared/components/spinner/spinner.component";
+import { RequestOptionsService } from "../request-options.service";
 
 @Injectable()
 export class UserResponseService extends BaseSpinnerService< UserResponseOnRequestsViewModel > {
@@ -24,7 +25,7 @@ export class UserResponseService extends BaseSpinnerService< UserResponseOnReque
      */
     public getUserResponsesByOrganization(organizationId: number, spinner?: SpinnerComponent): Observable<UserResponseOnRequestsViewModel[]> {
         let userResponseUrl = 'api/UserResponse/GetUserResponse';
-        return super.getCollection(userResponseUrl + '/' + organizationId, this.getRequestOptions(), spinner);
+        return super.getCollection(userResponseUrl + '/' + organizationId, RequestOptionsService.getRequestOptions(), spinner);
     }
 
     /**
@@ -38,7 +39,7 @@ export class UserResponseService extends BaseSpinnerService< UserResponseOnReque
             "id": responseId,
             "newStatusId": statusId
         };
-        return this._http.post(userChangeStatusUrl, JSON.stringify(body), this.getRequestOptions())
+        return this._http.post(userChangeStatusUrl, JSON.stringify(body), RequestOptionsService.getRequestOptions())
             .map((response: Response) => <UserResponseOnRequestsViewModel>response.json())
             .catch(this.handleError)
     }
@@ -49,7 +50,7 @@ export class UserResponseService extends BaseSpinnerService< UserResponseOnReque
      */
     public getUserResponseWithNewStatus(organizationId: number): Observable<number> {
         let userResponseCountNewStatus = 'api/UserResponse/GetUserResonseWithNewStatus';
-        return this._http.get(userResponseCountNewStatus + '/' + organizationId, this.getRequestOptions())
+        return this._http.get(userResponseCountNewStatus + '/' + organizationId, RequestOptionsService.getRequestOptions())
             .map((response: Response) => <number>response.json())
             .catch(this.handleError)
     }
@@ -61,7 +62,7 @@ export class UserResponseService extends BaseSpinnerService< UserResponseOnReque
      */
     public getUserResponseOnPage(organizationId: number, itemsPerPage: number, currentPage: number, spinner?: SpinnerComponent): Observable<UserResponseOnRequestsViewModel[]> {
         let _urlGetUserResponseToShowPerPage = "api/UserResponse/GetUserResponseToShowPerPage" + '/' + organizationId + '/' + currentPage + '/' + itemsPerPage;
-        return super.getCollection(_urlGetUserResponseToShowPerPage, this.getRequestOptions(), spinner);
+        return super.getCollection(_urlGetUserResponseToShowPerPage, RequestOptionsService.getRequestOptions(), spinner);
     }
 
     /**
@@ -69,14 +70,14 @@ export class UserResponseService extends BaseSpinnerService< UserResponseOnReque
      */
     public getRequestedItemInitData(organizationId: number): Observable<number> {
         let _urlForPagination = "api/UserResponse/GetUserResponsePaginationData"
-        return this._http.get(_urlForPagination + '/' + organizationId, this.getRequestOptions())
+        return this._http.get(_urlForPagination + '/' + organizationId, RequestOptionsService.getRequestOptions())
             .map((response: Response) => response.json() as number)
             .catch(this.handleError);
     }
 
     public deleteUserResponse(responseId: number) {
         let _urlForDeleteResponse = "api/UserResponse/DeleteUserResponse";
-        return this._http.delete(_urlForDeleteResponse + '/' + responseId, this.getRequestOptions())
+        return this._http.delete(_urlForDeleteResponse + '/' + responseId, RequestOptionsService.getRequestOptions())
             .map((response: Response) => response.json() as UserResponseOnRequestsViewModel )
             .catch(this.handleError);
     }
@@ -87,15 +88,5 @@ export class UserResponseService extends BaseSpinnerService< UserResponseOnReque
     */
     private handleError(error: Response): any {
         return Observable.throw(error.json().error);
-    }
-
-    /**
-    * Create RequestOptions
-    */
-    private getRequestOptions() {
-        let headers = new Headers({ 'Content-Type': 'application/json' });
-        headers.append("Authorization", "Bearer " + localStorage.getItem(key.keyToken));
-        let options = new RequestOptions({ headers: headers });
-        return options;
     }
 }

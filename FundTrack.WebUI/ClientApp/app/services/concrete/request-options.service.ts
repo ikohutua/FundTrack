@@ -6,7 +6,7 @@ import { Http, Response, Headers, RequestOptionsArgs, RequestOptions } from "@an
 export class RequestOptionsService {
     public static getRequestOptions() {
         let headers = new Headers({ 'Content-Type': 'application/json' });
-        headers.append("Authorization", "Bearer " + localStorage.getItem(key.keyToken));
+        headers.append("Authorization", localStorage.getItem(key.keyToken));
         let options = new RequestOptions({ headers: headers });
         return options;
     }

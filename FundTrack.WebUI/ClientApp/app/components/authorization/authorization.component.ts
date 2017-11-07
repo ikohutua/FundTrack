@@ -7,6 +7,7 @@ import { isBrowser } from 'angular2-universal';
 import { AuthorizedUserInfoViewModel } from '../../view-models/concrete/authorized-user-info-view.model';
 import { AuthService } from "angular2-social-login";
 import * as keys from '../../shared/key.storage';
+import * as commonMessages from '../../shared/common-message.storage';
 import { LoginFacebookViewModel } from '../../view-models/concrete/login-facebook-view.model';
 import { StorageService } from "../../shared/item-storage-service";
 import { UserResponseService } from "../../services/concrete/organization-management/user-responses.service";
@@ -96,7 +97,13 @@ export class AuthorizationComponent {
         this.errorMessage = "";
         this._authorizationService.logIn(this.loginModel)
             .subscribe(data => {
-                this.subscribeForAuthorization(data);
+                this._authorizationService.getAccessToken(this.loginModel)
+                    .subscribe(res => {
+                        data.access_token = res;
+                        this.subscribeForAuthorization(data);
+                    }, error => {
+                        this.errorMessage = commonMessages.invalidLoginOrPassword;
+                    });
             });
     }
 
@@ -119,7 +126,6 @@ export class AuthorizationComponent {
      * @param user
      */
     private subscribeForAuthorization(user: AuthorizedUserInfoViewModel) {
-        console.log(user);
         this.userAuthorizedInfo = user;
         this.errorMessage = user.errorMessage;
         localStorage.clear();

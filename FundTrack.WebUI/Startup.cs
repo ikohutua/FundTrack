@@ -16,8 +16,7 @@ using FundTrack.Infrastructure.ViewModel.EventViewModel;
 using FundTrack.WebUI.Formatter;
 using FundTrack.WebUI.Middlewares;
 using FundTrack.WebUI.Middlewares.Logging;
-using Microsoft.IdentityModel.Tokens;
-using FundTrack.WebUI.token;
+using FundTrack.WebUI.secutiry;
 
 namespace FundTrack.WebUI
 {
@@ -139,28 +138,10 @@ namespace FundTrack.WebUI
             app.UseGlobalErrorHandling();
             app.UseStaticFiles();
 
-            app.UseJwtBearerAuthentication(new JwtBearerOptions
+            app.UseClaimsTransformation(new ClaimsTransformationOptions
             {
-                AutomaticAuthenticate = true,
-                AutomaticChallenge = true,
-                AuthenticationScheme = "Bearer",
-                TokenValidationParameters = new TokenValidationParameters
-                {
-                    ValidateIssuer = false,
-                    ValidateAudience = false,
-                    ValidateLifetime = false,
-                    IssuerSigningKey = AuthOptions.GetSymmetricSecurityKey(),
-                    ValidateIssuerSigningKey = true,
-                }
+                Transformer = new ClaimsTransformer()
             });
-
-            //Old authorization
-            //app.UseCookieAuthentication(new CookieAuthenticationOptions
-            //{
-            //    LoginPath = new PathString("/User/LogIn"),
-            //    AuthenticationScheme = "Bearer",
-            //    AutomaticChallenge = true
-            //});
 
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
@@ -174,7 +155,6 @@ namespace FundTrack.WebUI
 
 
             app.UseWebSockets();
-
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

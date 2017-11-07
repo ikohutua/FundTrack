@@ -38,28 +38,28 @@ export class OrgAccountService {
     public getAllAccountsOfOrganization(): Observable<OrgAccountViewModel[]> {
         if (this.checkAuthorization()) {
             let body = this.user;
-            return this._http.get(this._readAllUrl + '/' + this.user.orgId, this.getRequestOptions())
+            return this._http.get(this._readAllUrl + '/' + this.user.orgId, RequestOptionsService.getRequestOptions())
                 .map((response: Response) => <OrgAccountViewModel[]>response.json())
                 .catch(this.handleError);
         }
     }
     public createOrgAccount(model: OrgAccountViewModel): Observable<OrgAccountViewModel> {
         if (this.checkAuthorization()) {
-            return this._http.post(this._createUrl, model, this.getRequestOptions())
+            return this._http.post(this._createUrl, model, RequestOptionsService.getRequestOptions())
                 .map((response: Response) => <OrgAccountViewModel>response.json())
                 .catch(this.handleError);
         }
     }
     public getOrganizationAccountById(accountId: number): Observable<OrgAccountViewModel> {
         if (this.checkAuthorization()) {
-            return this._http.get(this._getAccountUrl + '/' + accountId.toString(), this.getRequestOptions())
+            return this._http.get(this._getAccountUrl + '/' + accountId.toString(), RequestOptionsService.getRequestOptions())
                 .map((r: Response) => <OrgAccountViewModel>r.json())
                 .catch(this.handleError);
         }
     }
     public deleteOrganizationAccountById(model: DeleteOrgAccountViewModel): Observable<DeleteOrgAccountViewModel> {
         if (this.checkAuthorization()) {
-            return this._http.post(this._deleteAccountUrl, model, this.getRequestOptions())
+            return this._http.post(this._deleteAccountUrl, model, RequestOptionsService.getRequestOptions())
                 .map((r: Response) => <DeleteOrgAccountViewModel>r.json())
                 .catch(this.handleError);
         }
@@ -86,7 +86,7 @@ export class OrgAccountService {
     }
 
     public toggleDonate(orgAccountId: number): Observable<boolean> {
-        return this._http.put('api/OrgAccount/ToggleDonateFunction', orgAccountId, this.getRequestOptions())
+        return this._http.put('api/OrgAccount/ToggleDonateFunction', orgAccountId, RequestOptionsService.getRequestOptions())
             .map((response: Response) => <boolean>response.json())
             .catch((error: Response) => this.handleError(error));
     }
@@ -98,23 +98,17 @@ export class OrgAccountService {
     }
 
     public connectDonation(info: BankCredentialsViewModel): Observable<BankCredentialsViewModel> {
-        return this._http.post('api/OrgAccount/ConnectDonation', info, this.getRequestOptions())
+        return this._http.post('api/OrgAccount/ConnectDonation', info, RequestOptionsService.getRequestOptions())
             .map((res: Response) => <BankCredentialsViewModel>res.json())
             .catch((error: Response) => this.handleError(error));
     }
 
     public disableDonation(bankAccountId: number): Observable<BankCredentialsViewModel> {
-        return this._http.put('api/OrgAccount/DisableDonateFunction', bankAccountId, this.getRequestOptions())
+        return this._http.put('api/OrgAccount/DisableDonateFunction', bankAccountId, RequestOptionsService.getRequestOptions())
             .map((res: Response) => <BankCredentialsViewModel>res.json())
             .catch((error: Response) => this.handleError(error));
     }
   
-    private getRequestOptions() {
-        let headers = new Headers({ 'Content-Type': 'application/json' });
-        headers.append("Authorization", "Bearer " + localStorage.getItem(key.keyToken));
-        let options = new RequestOptions({ headers: headers });
-        return options;
-    }
     ///Error handler to report into console
     private handleError(error: Response) {
         console.error(error);
@@ -137,7 +131,7 @@ export class OrgAccountService {
     }
 
     public updateOrganizationAccount(account: OrgAccountViewModel): Observable<OrgAccountViewModel> {
-        return this._http.put('api/OrgAccount/UpdateOrganizationAccount', account, this.getRequestOptions())
+        return this._http.put('api/OrgAccount/UpdateOrganizationAccount', account, RequestOptionsService.getRequestOptions())
             .map((res: Response) => <OrgAccountViewModel>res.json())
             .catch((error: Response) => this.handleError(error));
     }
@@ -171,13 +165,13 @@ export class OrgAccountService {
 
 
     public toggleExtracts(orgAccountId: number): Observable<boolean> {
-        return this._http.put(GlobalUrlService.toggleExtracts, orgAccountId, this.getRequestOptions())
+        return this._http.put(GlobalUrlService.toggleExtracts, orgAccountId, RequestOptionsService.getRequestOptions())
             .map((response: Response) => <boolean>response.json())
             .catch((error: Response) => this.handleError(error));
     }
 
     public disableExtracts(bankAccountId: number): Observable<BankCredentialsViewModel> {
-        return this._http.put(GlobalUrlService.disableExtracts, bankAccountId, this.getRequestOptions())
+        return this._http.put(GlobalUrlService.disableExtracts, bankAccountId, RequestOptionsService.getRequestOptions())
             .map((res: Response) => <BankCredentialsViewModel>res.json())
             .catch((error: Response) => this.handleError(error));
     }

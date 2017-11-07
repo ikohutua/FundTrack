@@ -109,21 +109,10 @@ export class BankImportService extends BaseSpinnerService<ImportDetailPrivatView
         }
     }
 
-    
-    /**
-    * Create RequestOptions
-    */
-    private getRequestOptions() {
-        let headers = new Headers({ 'Content-Type': 'application/json' });
-        headers.append("Authorization", "Bearer " + localStorage.getItem(key.keyToken));
-        let options = new RequestOptions({ headers: headers });
-        return options;
-    }
-
     public getAllSuggestedBankImports(amount: number, date: Date): Observable<ImportDetailPrivatViewModel[]> {
         if (this.checkAuthorization()) {
             //debugger;
-            return this._http.get(GlobalUrlService.getAllSuggestedBankImportUrl + '/' + amount + '/' + date, this.getRequestOptions())
+            return this._http.get(GlobalUrlService.getAllSuggestedBankImportUrl + '/' + amount + '/' + date, RequestOptionsService.getRequestOptions())
                 .map((response: Response) => <ImportDetailPrivatViewModel[]>response.json())
                 .catch(this.handleError);
         }

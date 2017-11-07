@@ -10,6 +10,8 @@ using System.Text;
 using System.Diagnostics;
 using System.Security.Cryptography;
 using Microsoft.Extensions.Logging;
+using System.Net.Http;
+using System.Security.Claims;
 
 namespace FundTrack.WebUI.Middlewares
 {

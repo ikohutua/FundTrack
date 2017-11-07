@@ -38,7 +38,7 @@ export class UserService {
 
     // send Request to server
     private sendRequestToServer(url: string, model: any) {
-        return this._http.post(url, model, this.getRequestOptions()).map((response: Response) => {
+        return this._http.post(url, model, RequestOptionsService.getRequestOptions()).map((response: Response) => {
             return response.json() as string;
         });
     }
@@ -50,7 +50,7 @@ export class UserService {
     public logInWithFacebook(user: LoginFacebookViewModel): Observable<AuthorizedUserInfoViewModel> {
         let body = user;
         let urlLogFacebook = "LogInFacebook";
-        return this._http.post(this._authorizationUrl + urlLogFacebook, JSON.stringify(user), this.getRequestOptions())
+        return this._http.post(this._authorizationUrl + urlLogFacebook, JSON.stringify(user), RequestOptionsService.getRequestOptions())
             .map((response: Response) => response.json() as AuthorizedUserInfoViewModel, )
             .catch(this.handleError);
     }
@@ -61,7 +61,7 @@ export class UserService {
      */
     public logIn(user: LoginViewModel): Observable<AuthorizedUserInfoViewModel> {
         let urlLog = "LogIn";
-        return this._http.post(this._authorizationUrl + urlLog, JSON.stringify(user), this.getRequestOptions())
+        return this._http.post(this._authorizationUrl + urlLog, JSON.stringify(user), RequestOptionsService.getRequestOptions())
             .map((response: Response) => {
                 return response.json() as AuthorizedUserInfoViewModel;
             }
@@ -107,7 +107,7 @@ export class UserService {
      */
     public create(newItem: RegistrationViewModel): Observable<AuthorizedUserInfoViewModel> {
         let body = newItem;
-        return this._http.post("api/user/register", body, this.getRequestOptions())
+        return this._http.post("api/user/register", body, RequestOptionsService.getRequestOptions())
             .map((response: Response) => response.json() as AuthorizedUserInfoViewModel);
     }
 
@@ -117,7 +117,7 @@ export class UserService {
      */
     public editUserProfile(userModel: AuthorizeUserModel): Observable<AuthorizeUserModel> {
         let body = JSON.stringify(userModel);
-        return this._http.put("api/user/editprofile", body, this.getRequestOptions())
+        return this._http.put("api/user/editprofile", body, RequestOptionsService.getRequestOptions())
             .map((response: Response) => {
                 if (response.status == 200) {
                     return (response.json() as AuthorizeUserModel);
@@ -165,18 +165,8 @@ export class UserService {
     * */
     public changePassword(changePasswordViewModel: ChangePasswordViewModel): Observable<ChangePasswordViewModel> {
         let body = changePasswordViewModel;
-        return this._http.post("api/user/changepassword", body, this.getRequestOptions())
+        return this._http.post("api/user/changepassword", body, RequestOptionsService.getRequestOptions())
             .map((response: Response) => response.json() as ChangePasswordViewModel);
-    }
-
-    /**
-    * Create RequestOptions
-    */
-    private getRequestOptions() {
-        let headers = new Headers({ 'Content-Type': 'application/json' });
-        headers.append("Authorization", "Bearer " + localStorage.getItem(key.keyToken));
-        let options = new RequestOptions({ headers: headers });
-        return options;
     }
 
     /**

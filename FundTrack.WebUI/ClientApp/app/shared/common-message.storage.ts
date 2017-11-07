@@ -16,3 +16,4 @@ export const successfulOperation = "На даний момент операці�
 export const invalidDate = "Невірна дата";
 export const anErrorOccurred = "Виникла помилка!";
 export const commisionMessage = "Комісія банку";
+export const invalidLoginOrPassword = "Невірний логін або пароль";
