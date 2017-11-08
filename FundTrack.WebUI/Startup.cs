@@ -167,11 +167,12 @@ namespace FundTrack.WebUI
             loggerFactory.AddFile("Logs/Errors/{Date}.txt", LogLevel.Error);
             loggerFactory.AddFile("Logs/Info/{Date}.txt", LogLevel.Information);
 
+           if(env.IsDevelopment()){
             app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions
             {
                 HotModuleReplacement = true
             });
-
+           }
 
             app.UseWebSockets();
 
