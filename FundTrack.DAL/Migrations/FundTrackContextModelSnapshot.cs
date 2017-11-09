@@ -910,6 +910,8 @@ namespace FundTrack.DAL.Migrations
                         .ValueGeneratedOnAdd()
                         .HasDefaultValue("https://s3.eu-central-1.amazonaws.com/fundtrack/default-user-image.png");
 
+                    b.Property<string>("Salt");
+
                     b.HasKey("Id")
                         .HasName("PK_User");
 
@@ -1049,8 +1051,9 @@ namespace FundTrack.DAL.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("FundTrack.DAL.Entities.OrgAccount", "OrgAccount")
-                        .WithMany()
+                        .WithMany("Donations")
                         .HasForeignKey("OrgAccountId")
+                        .HasConstraintName("FK_Donations_OrgAccounts_OrgAccountId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("FundTrack.DAL.Entities.Target", "Target")

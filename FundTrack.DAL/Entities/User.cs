@@ -25,6 +25,11 @@ namespace FundTrack.DAL.Entities
         public string Email { get; set; }
 
         /// <summary>
+        /// Gets or Sets User Salt
+        /// </summary>
+        public string Salt { get; set; }
+
+        /// <summary>
         /// Gets or Sets User Password
         /// </summary>
         public string Password { get; set; }
