@@ -179,7 +179,7 @@ namespace FundTrack.PrivatImport
         /// <param name="merchantId">Merchant Id from Privat24</param>
         /// <param name="merchantPassword">Merchant password from Privat24</param>
         /// <param name="dateFrom"></param>
-        public static async void Import(string cardNumber, string merchantId, string merchantPassword, DateTime dateFrom)
+        public static async Task Import(string cardNumber, string merchantId, string merchantPassword, DateTime dateFrom)
         {
             var appcodes = GetAllAppCodes();
             var response = await PrivatRequestAsync(cardNumber, merchantId, merchantPassword, dateFrom, DateTime.Now.Date);
@@ -194,11 +194,12 @@ namespace FundTrack.PrivatImport
         /// <param name="dateFrom"></param>
         /// <param name="dateTo"></param>
 
-        public static async void Import(string cardNumber, string merchantId, string merchantPassword, DateTime dateFrom, DateTime dateTo)
+        public static async Task<string> Import(string cardNumber, string merchantId, string merchantPassword, DateTime dateFrom, DateTime dateTo)
         {
             var appcodes = GetAllAppCodes();
             var response = await PrivatRequestAsync(cardNumber, merchantId, merchantPassword, dateFrom, dateTo);
             ResponseProcessing(response, appcodes);
+            return response;
         }
 
         /// <summary>
@@ -229,7 +230,7 @@ namespace FundTrack.PrivatImport
 
         private static void ResponseProcessing(string task, List<int> appcodes)
         {
-          var response = task?.ParseXmlTo<Response>();
+            var response = task?.ParseXmlTo<Response>();
             if (response?.Merchant == null)
             {
                 return;

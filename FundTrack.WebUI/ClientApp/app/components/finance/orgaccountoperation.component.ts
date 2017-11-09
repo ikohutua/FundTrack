@@ -169,7 +169,6 @@ export class OrgAccountOperationComponent implements OnChanges {
     }
 //--------------------------------------Pagination---------------------------------------------------------------------------
     private onPageChange(page: number): void {
-        debugger;
         this.finOpService.getFinOpByOrgAccountIdForPage(this.accountId, page, this.itemPerPage, this.currentFinOpType).subscribe(
             finOps => {
                 this.finOps = finOps;
@@ -180,7 +179,6 @@ export class OrgAccountOperationComponent implements OnChanges {
     }
 
     private itemsPerPageChange(amount: number): void {
-        debugger;
         this.finOpService.getFinOpByOrgAccountIdForPage(this.accountId, 1, amount, this.currentFinOpType).subscribe(
             finOps => {
                 this.offset = 0;

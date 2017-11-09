@@ -29,7 +29,6 @@ export class FixingBalanceService {
     public fixAllBalances(balances: Array<BalanceViewModel>): Observable<BalanceViewModel[]> {
         let my = new MyClass();
         my.balances = balances;
-        debugger;
         return this._http.post(GlobalUrlService.fixingAllBalancesUrl, my, RequestOptionsService.getRequestOptions())
             .map((response: Response) => response.json() as BalanceViewModel[]);
     }
