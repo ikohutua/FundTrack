@@ -142,8 +142,10 @@ export class OrgAccountListComponent implements OnInit {
     */
     private onDelete(accountNumber: number) {
         this.accounts.splice(this.accounts.findIndex(o => o.id == accountNumber), 1);
-        this.setActiveAccount(this.accounts[0]);
-        this.filterAccounts();
+        if (this.accounts.length != 0) {
+            this.setActiveAccount(this.accounts[0]);
+            this.filterAccounts();
+        }
     }
 
     private checkIfAccountHasCard(account: OrgAccountViewModel): boolean {
@@ -164,7 +166,6 @@ export class OrgAccountListComponent implements OnInit {
     }
 
     fixBalances() {
-        debugger;
         this.isFixingBalanceInProcess = true;
         this.fixingBalanceMessage = new Map<string, string>();
         let balances: BalanceViewModel[] = [];
@@ -174,7 +175,6 @@ export class OrgAccountListComponent implements OnInit {
             b.balanceDate = this.dateForFixingBalances.toDateString();
             balances.push(b);
         });
-        console.log(balances);
 
         this.fixingBalanceService.fixAllBalances(balances)
             .subscribe(data => {

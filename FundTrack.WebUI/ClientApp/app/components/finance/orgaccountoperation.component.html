@@ -116,6 +116,14 @@
                         </option>
                     </select>
                 </div>
+                <div class="form-group" *ngIf="baseTargets.lenght != 0">
+                    <label class="control-label">Призначення</label>
+                    <select class="form-control" name="targetSelect" [ngModelOptions]="{standalone: true}" (ngModelChange)="onChangeAccountTarget($event)" ngModel>
+                        <option *ngFor="let target of baseTargets" value="{{target.targetId}}" [selected]="target.targetId==currentAccount.targetId">
+                            {{target.name}}
+                        </option>
+                    </select>
+                </div>
                 <div class="form-group">
                     <label class="control-label">Баланс</label>
                     <label class="control-label">{{currentAccount.currentBalance}}</label>
