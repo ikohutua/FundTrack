@@ -402,7 +402,6 @@ export class BankImportComponent implements OnInit {
         if (this.currentOrgAccount.targetId != undefined) {
             this.showSpinner = true;
             this._finOpService.processMultipleFinOps(this.currentOrgAccount.id).subscribe(() => {
-                debugger;
                 this.getAllExtracts();
                 this.showSpinner = false;
             });

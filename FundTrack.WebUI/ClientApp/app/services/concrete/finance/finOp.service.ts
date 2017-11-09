@@ -104,8 +104,8 @@ export class FinOpService extends BaseSpinnerService<FinOpFromBankViewModel> {
     }
 
     public processMultipleFinOps(orgId: number): Observable<FinOpFromBankViewModel[]> {
-        if (this.checkAuthorization()) {
-            debugger;
+        if (this.checkAuthorization())
+        {
             return this._http.post(GlobalUrlService.processMultipleFinOps, orgId, RequestOptionsService.getRequestOptions())
                 .map((response: Response) => response.json() as FinOpFromBankViewModel[])
                 .catch(this.handleError);

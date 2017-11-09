@@ -114,10 +114,9 @@ export class OrganizationEditComponent implements OnInit, OnDestroy, AfterViewIn
     */
     private getInformationOfOrganization(id: number): void {
         this._getInfoService.getById(id, 'api/OrganizationProfile/GetInformationById')
-            .subscribe(model => {
+            .subscribe(model =>
+            {
                 this.organization = model;
-
-                debugger;
                 if (!model.logoUrl.length) {
                     this.organization.logoUrl = defaultConfig.defaultOrganizationLogoUrl;
                 }

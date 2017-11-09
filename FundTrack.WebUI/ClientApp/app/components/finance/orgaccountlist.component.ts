@@ -164,7 +164,6 @@ export class OrgAccountListComponent implements OnInit {
     }
 
     fixBalances() {
-        debugger;
         this.isFixingBalanceInProcess = true;
         this.fixingBalanceMessage = new Map<string, string>();
         let balances: BalanceViewModel[] = [];
@@ -178,7 +177,6 @@ export class OrgAccountListComponent implements OnInit {
 
         this.fixingBalanceService.fixAllBalances(balances)
             .subscribe(data => {
-                debugger;
                 this.isFixingBalanceInProcess = false;
                 this.isFixingBalanceInSuccessfulyComplited = true;
 
