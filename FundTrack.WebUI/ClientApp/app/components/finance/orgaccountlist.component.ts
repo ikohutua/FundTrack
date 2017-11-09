@@ -178,7 +178,6 @@ export class OrgAccountListComponent implements OnInit {
 
         this.fixingBalanceService.fixAllBalances(balances)
             .subscribe(data => {
-                debugger;
                 this.isFixingBalanceInProcess = false;
                 this.isFixingBalanceInSuccessfulyComplited = true;
 

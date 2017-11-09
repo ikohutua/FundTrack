@@ -122,7 +122,6 @@ export class BankImportService extends BaseSpinnerService<ImportDetailPrivatView
 
     public getAllSuggestedBankImports(amount: number, date: Date): Observable<ImportDetailPrivatViewModel[]> {
         if (this.checkAuthorization()) {
-            //debugger;
             return this._http.get(GlobalUrlService.getAllSuggestedBankImportUrl + '/' + amount + '/' + date, this.getRequestOptions())
                 .map((response: Response) => <ImportDetailPrivatViewModel[]>response.json())
                 .catch(this.handleError);
