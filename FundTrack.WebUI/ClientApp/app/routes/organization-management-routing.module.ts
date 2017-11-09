@@ -104,7 +104,7 @@ import { InvoiceDeclarationReportComponent } from '../components/invoice-declara
             component: CommonDonationsReportComponent
         },
         {
-            path: 'organization/invoiceDeclaration/:id',
+            path: 'organization/invoiceDeclaration',
             component: InvoiceDeclarationReportComponent
         }
     ])],
