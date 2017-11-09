@@ -50,7 +50,6 @@ namespace FundTrack.BLL.Concrete
             {
                 await blockBlob.UploadFromStreamAsync(ms);
             }
-
             return imageName;
         }
 

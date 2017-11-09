@@ -17,6 +17,8 @@ using FundTrack.WebUI.Formatter;
 using FundTrack.WebUI.Middlewares;
 using FundTrack.WebUI.Middlewares.Logging;
 using FundTrack.WebUI.secutiry;
+using System.Collections.Generic;
+using Microsoft.AspNetCore.Authentication;
 
 namespace FundTrack.WebUI
 {
@@ -37,6 +39,8 @@ namespace FundTrack.WebUI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.Configure<Dictionary<string,string>>(Configuration.GetSection("DependentURLs"));
+
             // Db Connection
             // For local connection, go to appsettings.json and write your local connection string
             // Available connection types : 'local','azure-main','azure-test', 'ss'
@@ -44,23 +48,13 @@ namespace FundTrack.WebUI
             services.AddDbContext<FundTrackContext>(options => options.UseSqlServer(Configuration.GetConnectionString(connectionType)));
 
             services.AddCors(
-     options => options.AddPolicy("AllowCors",
-         builder =>
-         {
-             builder
-                 //.WithOrigins("http://localhost:4456") //AllowSpecificOrigins;  
-                 //.WithOrigins("http://localhost:4456", "http://localhost:4457") //AllowMultipleOrigins;  
-                 .AllowAnyOrigin() //AllowAllOrigins;  
-                                   //.WithMethods("GET") //AllowSpecificMethods;  
-                                   //.WithMethods("GET", "PUT") //AllowSpecificMethods;  
-                                   //.WithMethods("GET", "PUT", "POST") //AllowSpecificMethods;  
-                 .WithMethods("GET", "PUT", "POST", "DELETE") //AllowSpecificMethods;  
-                                                              //.AllowAnyMethod() //AllowAllMethods;  
-                                                              //.WithHeaders("Accept", "Content-type", "Origin", "X-Custom-Header"); //AllowSpecificHeaders;  
-                 .AllowAnyHeader(); //AllowAllHeaders;  
-         })
- );
-
+                options => options.AddPolicy("AllowCors",
+                    builder =>
+                    {
+                        builder.AllowAnyOrigin()
+                           .WithMethods("GET", "PUT", "POST", "DELETE")
+                           .AllowAnyHeader();
+                    }));
 
             // Add framework services.
             services.AddMvc(options =>
@@ -129,6 +123,7 @@ namespace FundTrack.WebUI
 
             //dependency injection WebUI
             services.AddScoped<IErrorLogger, ErrorLogger>();
+            services.AddScoped<IClaimsTransformer, secutiry.ClaimsTransformer>();
 
         }
 
@@ -140,7 +135,7 @@ namespace FundTrack.WebUI
 
             app.UseClaimsTransformation(new ClaimsTransformationOptions
             {
-                Transformer = new ClaimsTransformer()
+                Transformer = app.ApplicationServices.GetService<IClaimsTransformer>()
             });
 
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));

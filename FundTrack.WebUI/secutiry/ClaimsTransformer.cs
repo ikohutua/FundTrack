@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,13 @@ namespace FundTrack.WebUI.secutiry
 {
     public class ClaimsTransformer : IClaimsTransformer
     {
-        public Task<ClaimsPrincipal> TransformAsync(ClaimsTransformationContext context)
+        readonly Dictionary<string, string> _options;
+        public ClaimsTransformer(IOptions<Dictionary<string, string>> options)
+        {
+            _options = options.Value;
+            
+        }
+        public async Task<ClaimsPrincipal> TransformAsync(ClaimsTransformationContext context)
         {
             var principal = context.Principal;
             var identity = (ClaimsIdentity)principal.Identity;
@@ -25,15 +32,15 @@ namespace FundTrack.WebUI.secutiry
             {
                 using (HttpClient client = new HttpClient())
                 {
-                    client.BaseAddress = new Uri("http://localhost:51469");
+                    client.BaseAddress = new Uri(_options["owinAuthorization"]);
                     MediaTypeWithQualityHeaderValue contentType = new MediaTypeWithQualityHeaderValue("application/json");
                     AuthenticationHeaderValue authenticationHeader = new AuthenticationHeaderValue("Bearer", token);
 
                     client.DefaultRequestHeaders.Accept.Add(contentType);
                     client.DefaultRequestHeaders.Authorization = authenticationHeader;
 
-                    HttpResponseMessage response = client.GetAsync("/claims").Result;
-                    var stream = response.Content.ReadAsStreamAsync().Result;
+                    HttpResponseMessage response = await client.GetAsync(_options["claimsEndpoint"]);
+                    var stream = await response.Content.ReadAsStreamAsync();
                     var reader = new StreamReader(stream, Encoding.UTF8);
 
                     Dictionary<string, string> values = new JsonSerializer().Deserialize<Dictionary<string, string>>(new JsonTextReader(reader));
@@ -57,7 +64,7 @@ namespace FundTrack.WebUI.secutiry
                 }
             }
 
-            return Task.FromResult(principal);
+            return await Task.FromResult(principal);
         }
     }
 }
