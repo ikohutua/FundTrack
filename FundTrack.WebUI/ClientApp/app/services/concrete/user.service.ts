@@ -21,6 +21,7 @@ import { UserInfo } from "../../view-models/concrete/user-info.model";
 import Requestoptionsservice = require("./request-options.service");
 import RequestOptionsService = Requestoptionsservice.RequestOptionsService;
 import { GlobalUrlService } from "./global-url.service";
+import { Subject } from 'rxjs/Subject';
 
 @Injectable()
 export class UserService {
@@ -30,6 +31,8 @@ export class UserService {
     private _checkGuidStatusUrl: string = 'api/User/CheckGuidStatus';
     private _resetUserPasswordUrl: string = 'api/User/ResetUserPassword';
     private _checkEmailStatusUrl: string = 'api/User/CheckEmailStatus';
+
+    public subject = new Subject<any>();
 
     public constructor(private _http: Http,
         private _router: Router,
@@ -199,6 +202,18 @@ export class UserService {
     public getAllUsers(): Observable<UserInfo[]> {
         return this._http.get(GlobalUrlService.getAllUsers, RequestOptionsService.getRequestOptions())
             .map((response: Response) => response.json() as UserInfo[]);
+    }
+
+    sendMessage(message: string) {
+        this.subject.next({ text: message });
+    }
+
+    clearMessage() {
+        this.subject.next();
+    }
+
+    getMessage(): Observable<any> {
+        return this.subject.asObservable();
     }
 }
 

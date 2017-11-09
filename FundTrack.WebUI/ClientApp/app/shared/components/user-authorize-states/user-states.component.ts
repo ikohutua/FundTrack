@@ -24,6 +24,8 @@ export class UserStatesComponent implements AfterContentChecked {
      * close the session current user
      */
     public exit(): void {
+        this._authorizationService.sendMessage("From user-states");
+        console.log("this._authorizationService.sendMessage(\"From user- states\") was called.");
         this.name = null;
         this.isAdmin = false;
         this._authorizationService.logOff();

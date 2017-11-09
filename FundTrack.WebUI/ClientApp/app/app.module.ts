@@ -11,11 +11,12 @@ import { Angular2FontawesomeModule } from 'angular2-fontawesome/angular2-fontawe
 import { OrganizationManagementModule } from "./organization-management.module";
 import { StorageService } from './shared/item-storage-service';
 import { OfferManagementModule } from './offer-management.module';
-//import { SignalRModule, SignalRConfiguration } from 'ng2-signalr';
 import { SpinnerComponent } from "./shared/components/spinner/spinner.component";
 import { ReactiveFormsModule } from '@angular/forms';
 import { FinanceModule } from "./finance.module";
 import { ValidatorsService } from "./services/concrete/validators/validator.service";
+import { UserService } from "./services/concrete/user.service";
+//import { PubSubModule } from "angular2-pubsub";
 
 
 //function createConfig(): SignalRConfiguration {
@@ -43,11 +44,10 @@ import { ValidatorsService } from "./services/concrete/validators/validator.serv
         OrganizationManagementModule,
         OfferManagementModule,
         FinanceModule,
-        ReactiveFormsModule
-        
-        //,
-        //SignalRModule.forRoot(createConfig)
+        ReactiveFormsModule,
+        //PubSubModule
+
     ],
-    providers: [StorageService, ValidatorsService]
+    providers: [StorageService, ValidatorsService, UserService]
 })
 export class AppModule { }
