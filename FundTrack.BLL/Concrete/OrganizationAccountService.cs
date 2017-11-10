@@ -42,7 +42,8 @@ namespace FundTrack.BLL.Concrete
             {
                 var userRole = this._unitOfWork.MembershipRepository.GetRole(model.UserId);
                 User user = this._unitOfWork.UsersRepository.Get(model.UserId);
-                if (user.Password == PasswordHashManager.GetPasswordHash(model.AdministratorPassword))
+               
+                if (user.Password == PasswordHashManager.GetPasswordHash(user.Salt, model.AdministratorPassword))
                 {
                     if (this._unitOfWork.MembershipRepository.GetOrganizationId(model.UserId) == model.OrganizationId && userRole == "admin")
                     {
