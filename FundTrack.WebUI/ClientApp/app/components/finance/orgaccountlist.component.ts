@@ -173,7 +173,6 @@ export class OrgAccountListComponent implements OnInit {
             b.balanceDate = this.dateForFixingBalances.toDateString();
             balances.push(b);
         });
-        console.log(balances);
 
         this.fixingBalanceService.fixAllBalances(balances)
             .subscribe(data => {
@@ -189,7 +188,6 @@ export class OrgAccountListComponent implements OnInit {
             error => {
                 this.isFixingBalanceInProcess = false;
                 this.isFixingBalanceInSuccessfulyComplited = false;
-                console.log(error);
                 this.fixingBalanceMessage.set("Error", error);
                 this.fixingBalanceMessageKeys = Array.from(this.fixingBalanceMessage.keys());
 

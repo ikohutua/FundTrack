@@ -5,10 +5,7 @@ import { RequestOptionsService } from "./request-options.service";
 import { GlobalUrlService } from "./global-url.service";
 import { Observable } from "rxjs/Observable";
 import { BalanceViewModel } from "../../view-models/concrete/finance/balance-view.model";
-
-export class MyClass {
-    public balances: BalanceViewModel[] = [];
-}
+import { AllOrgAccounts } from "../../view-models/concrete/finance/all-balances";
 
 @Injectable()
 export class FixingBalanceService {
@@ -27,9 +24,9 @@ export class FixingBalanceService {
     }
 
     public fixAllBalances(balances: Array<BalanceViewModel>): Observable<BalanceViewModel[]> {
-        let my = new MyClass();
-        my.balances = balances;
-        return this._http.post(GlobalUrlService.fixingAllBalancesUrl, my, RequestOptionsService.getRequestOptions())
+        let allOrgAccounts = new AllOrgAccounts();
+        allOrgAccounts.balances = balances;
+        return this._http.post(GlobalUrlService.fixingAllBalancesUrl,  allOrgAccounts, RequestOptionsService.getRequestOptions())
             .map((response: Response) => response.json() as BalanceViewModel[]);
     }
 }
