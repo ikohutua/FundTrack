@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authentication;
+﻿using FundTrack.Infrastructure.ViewModel;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using System;
@@ -15,10 +16,11 @@ namespace FundTrack.WebUI.secutiry
     public class ClaimsTransformer : IClaimsTransformer
     {
         readonly Dictionary<string, string> _options;
+        private UserInfoViewModel userInfo;
         public ClaimsTransformer(IOptions<Dictionary<string, string>> options)
         {
             _options = options.Value;
-            
+
         }
         public async Task<ClaimsPrincipal> TransformAsync(ClaimsTransformationContext context)
         {
@@ -40,30 +42,21 @@ namespace FundTrack.WebUI.secutiry
                     client.DefaultRequestHeaders.Authorization = authenticationHeader;
 
                     HttpResponseMessage response = await client.GetAsync(_options["claimsEndpoint"]);
+
                     var stream = await response.Content.ReadAsStreamAsync();
                     var reader = new StreamReader(stream, Encoding.UTF8);
 
-                    Dictionary<string, string> values = new JsonSerializer().Deserialize<Dictionary<string, string>>(new JsonTextReader(reader));
+                    userInfo = new JsonSerializer().Deserialize<UserInfoViewModel>(new JsonTextReader(reader));
+                }
 
-                    if (values.ContainsKey("id"))
-                    {
-                        identity.AddClaim(new Claim("UserId", values["id"]));
-                    }
-                    if (values.ContainsKey("role"))
-                    {
-                        identity.AddClaim(new Claim(ClaimTypes.Role, values["role"]));
-                    }
-                    if (values.ContainsKey("login"))
-                    {
-                        identity.AddClaim(new Claim(ClaimTypes.Name, values["login"]));
-                    }
-                    if (values.ContainsKey("email"))
-                    {
-                        identity.AddClaim(new Claim(ClaimTypes.Email, values["email"]));
-                    }
+                if (userInfo != null)
+                {
+                    identity.AddClaim(new Claim("UserId", userInfo.Id.ToString()));
+                    identity.AddClaim(new Claim(ClaimTypes.Role, userInfo.Role));
+                    identity.AddClaim(new Claim(ClaimTypes.Name, userInfo.Login));
+                    identity.AddClaim(new Claim(ClaimTypes.Email, userInfo.Email));
                 }
             }
-
             return await Task.FromResult(principal);
         }
     }
