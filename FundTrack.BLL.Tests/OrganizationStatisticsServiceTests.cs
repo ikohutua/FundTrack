@@ -238,7 +238,7 @@ namespace FundTrack.BLL.Tests
             var service = new OrganizationStatisticsService(unitOfWork.Object, targetService.Object);
 
             //Act
-            var result = service.GetReportForIncomeFinopsByTargets(1, Constants.FinOpTypeIncome,
+            var result = service.GetReportForFinopsByTargets(1, Constants.FinOpTypeIncome,
                 new DateTime(2017, 09, 26), new DateTime(2017, 10, 26));
 
 

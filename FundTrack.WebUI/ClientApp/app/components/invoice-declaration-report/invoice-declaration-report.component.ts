@@ -8,6 +8,8 @@ import { ActivatedRoute } from "@angular/router";
 import { InvoiceDeclarationResponseViewModel } from "../../view-models/concrete/invoice-declaration-response-view-model";
 import * as moment from "moment/moment";
 import { DatePeriod } from "../../shared/components/date-presets/date-period-class";
+import { AuthorizeUserModel } from "../../view-models/concrete/authorized-user-info-view.model";
+import * as key from '../../shared/key.storage'
 
 @Component({
     templateUrl: './invoice-declaration-report.component.html',
@@ -23,8 +25,8 @@ export class InvoiceDeclarationReportComponent implements OnInit, OnDestroy {
     private declarationRequestModel: InvoiceDeclarationRequestViewModel = new InvoiceDeclarationRequestViewModel();
     private declarationResponseModel: InvoiceDeclarationResponseViewModel[] = new Array<InvoiceDeclarationResponseViewModel>();
     private inputMaxDate: Date = new Date();
-    private routeOrgIndex: number = 1;
     private ifDataExists: boolean = false;
+    private user: AuthorizeUserModel = new AuthorizeUserModel();
 
     @ViewChild("exceptionModal")
     private exceptionModal: ModalComponent;
@@ -46,25 +48,22 @@ export class InvoiceDeclarationReportComponent implements OnInit, OnDestroy {
         this.declarationRequestModel.orgid = 0;
         this.declarationRequestModel.dateFrom = moment().subtract(1, "month").format(this.DATE_FORMAT);
         this.declarationRequestModel.dateTo = moment().format(this.DATE_FORMAT);
-        this.getIdFromUrl();
+        this.getUserFromStorage();
     }
 
     ngOnDestroy(): void {
         this.storageService.showDropDown = true;
     }
 
-    getIdFromUrl() {
-        this.route.params.subscribe(params => {
-            this.routeOrgIndex = params["id"];
-        }, error => {
-            this.errorMessage = error;
-            this.openModal(this.exceptionModal);
-        });
+    getUserFromStorage() {
+        if (localStorage.getItem(key.keyToken)) {
+            this.user = JSON.parse(localStorage.getItem(key.keyModel)) as AuthorizeUserModel;
+        }
     }
 
 
     generateReport(): void {
-        this.declarationRequestModel.orgid = this.routeOrgIndex;
+        this.declarationRequestModel.orgid = this.user.orgId;
         this.getInvoiceDeclarationReport();
     }
 
