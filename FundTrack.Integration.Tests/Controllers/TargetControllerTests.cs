@@ -42,16 +42,19 @@ namespace FundTrack.Integration.Tests.Controllers
         public async Task Get_Target_Bu_Id_Ok_Response()
         {
             //Arrange
-            var options = new DbContextOptionsBuilder<FundTrackContext>()
-            .UseInMemoryDatabase(databaseName: "Get_Target_Bu_Id_Ok_Response")
-            .Options;
+           //var options = new DbContextOptionsBuilder<FundTrackContext>()
+           //.UseInMemoryDatabase(databaseName: "Get_Target_Bu_Id_Ok_Response")
+           //.Options;
 
             var testTarget = GetTestTargetById(1);
-            using (var context = new FundTrackContext(options))
-            {
-                context.Targets.Add(testTarget);
-                context.SaveChanges();
-            }
+            //using (var context = new FundTrackContext(options))
+            //{
+            //    context.Targets.Add(testTarget);
+            //    context.SaveChanges();
+            //}
+
+            _testContext.DbContext.Targets.Add(testTarget);
+            _testContext.DbContext.SaveChanges();
 
             //Act
             var response = await _testContext.Client.GetAsync($"/api/Target/GetTarget/{testTarget.Id}");
