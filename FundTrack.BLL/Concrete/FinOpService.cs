@@ -11,20 +11,23 @@ using Org.BouncyCastle.Bcpg;
 using FundTrack.Infrastructure;
 using FundTrack.Infrastructure.ViewModel.SuperAdminViewModels;
 using System.Globalization;
+using System.Threading.Tasks;
 
 namespace FundTrack.BLL.Concrete
 {
     public class FinOpService : IFinOpService
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IImageManagementService _imgService;
 
         /// <Summary>
         /// Creates new instance of FinOpService
         /// </Amountmary>
         /// <param name="_unitOfWork">Unit of work</param>
-        public FinOpService(IUnitOfWork _unitOfWork)
+        public FinOpService(IUnitOfWork _unitOfWork, IImageManagementService _imgService)
         {
             this._unitOfWork = _unitOfWork;
+            this._imgService = _imgService;
         }
 
         /// <summary>
@@ -170,6 +173,7 @@ namespace FundTrack.BLL.Concrete
                     FinOpType = finOpModel.FinOpType,
                     UserId = finOpModel.UserId
                 };
+                finOp.FinOpImage = UploadImagesToStorage(finOpModel.Images);
                 _unitOfWork.FinOpRepository.Create(finOp);
                 orgAccFrom.CurrentBalance -= finOpModel.Amount;
                 _unitOfWork.OrganizationAccountRepository.Edit(orgAccFrom);
@@ -180,6 +184,30 @@ namespace FundTrack.BLL.Concrete
             {
                 throw new BusinessLogicException(ErrorMessages.OperationSpendingError, ex);
             }
+        }
+
+        public ICollection<FinOpImage> UploadImagesToStorage(IEnumerable<FinOpImageViewModel> images)
+        {
+            Dictionary<FinOpImage, Task<string>> imageTastDictionary = new Dictionary<FinOpImage, Task<string>>();
+
+            foreach (var item in images)
+            {
+                var newImage = new FinOpImage()
+                {
+                    
+                };
+
+                var t = _imgService.UploadImageAsync(Convert.FromBase64String(item.Base64Data), item.imageExtension);
+                imageTastDictionary.Add(newImage, t);
+            }
+            Task.WhenAll(imageTastDictionary.Values);
+
+            foreach (var element in imageTastDictionary)
+            {
+                element.Key.ImageUrl = element.Value.Result;
+            }
+
+            return imageTastDictionary.Keys;
         }
 
         public FinOpViewModel CreateTransfer(FinOpViewModel finOpModel)
@@ -216,6 +244,27 @@ namespace FundTrack.BLL.Concrete
                 throw new BusinessLogicException(ErrorMessages.OperationTransferError, ex);
             }
         }
+
+        public IEnumerable<string> GetImagesById(int finOpId)
+        {
+            try
+            {
+                var images =  _unitOfWork.FinOpImages.Read()
+                    .Where(finOpImg =>
+                        finOpImg.FinOpId == finOpId)
+                    .Select(finOpImages => finOpImages.ImageUrl).ToList();
+                for (int i = 0; i < images.Count; i++)
+                {
+                    images[i] = Constants.BaseImageURL + images[i];
+                }
+                return images;
+            }
+            catch (Exception ex)
+            {
+                throw new BusinessLogicException(ErrorMessages.CantGetImages, ex);
+            }
+        }
+
         /// <Summary>
         /// Gets the fin ops by org account.
         /// </Summary>

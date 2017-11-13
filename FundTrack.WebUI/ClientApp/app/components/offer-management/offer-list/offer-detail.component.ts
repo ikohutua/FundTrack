@@ -35,7 +35,6 @@ export class OfferDetailComponent implements OnInit {
     maxImgSize: number = 4000000;
 
     onImageChange(imgArr: Image[]) {
-        debugger;
         this.images = imgArr;
     }
     private _errorMessage: string = "";

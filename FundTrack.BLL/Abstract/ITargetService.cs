@@ -12,7 +12,7 @@ namespace FundTrack.BLL.Abstract
 
         TargetViewModel CreateTarget(TargetViewModel addresses);
 
-        void DeleteTarget(int id);
+        bool DeleteTarget(int id);
 
         IEnumerable<TargetViewModel> GetTargets(int orgId, int parentId = 0);
 

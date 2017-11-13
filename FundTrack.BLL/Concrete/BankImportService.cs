@@ -209,13 +209,14 @@ namespace FundTrack.BLL.Concrete
             }
         }
 
-        public async Task ImportFromPrivat(int orgAccountId)
+        public async Task<string> ImportFromPrivat(int orgAccountId)
         {
             try
             {
                 var bancAccount = _unitOfWork.OrganizationAccountRepository.GetOrgAccountById(orgAccountId).BankAccount;
                 var interval = _unitOfWork.ImportIntervalRepository.GetByOrgId(bancAccount.OrgId);
-                await PrivatImporter.Import(bancAccount.CardNumber, bancAccount.ExtractMerchantId.ToString(), bancAccount.ExtractMerchantPassword, interval.LastUpdateDate.Value);
+                var result = PrivatImporter.Import(bancAccount.CardNumber, bancAccount.ExtractMerchantId.ToString(), bancAccount.ExtractMerchantPassword, interval.LastUpdateDate.Value);
+                return await result;
             }
             catch (Exception ex)
             {
@@ -235,11 +236,11 @@ namespace FundTrack.BLL.Concrete
             }
         }
 
-        public async Task ImportWithDates(PrivatImportViewModel model)
+        public async Task<string> ImportWithDates(PrivatImportViewModel model)
         {
             try
             {
-                await PrivatImporter.Import(model.Card, model.IdMerchant.ToString(), model.Password, Convert.ToDateTime(model.DataFrom), Convert.ToDateTime(model.DataTo));
+               return await PrivatImporter.Import(model.Card, model.IdMerchant.ToString(), model.Password, Convert.ToDateTime(model.DataFrom), Convert.ToDateTime(model.DataTo));
             }
             catch (Exception ex)
             {

@@ -3,8 +3,6 @@ import { Router } from "@angular/router";
 import { OrgAccountService } from "../../services/concrete/finance/orgaccount.service";
 import { OrgAccountViewModel } from "../../view-models/concrete/finance/orgaccount-viewmodel";
 import { FixingBalanceService } from "../../services/concrete/fixing-balance.service";
-import { DecimalPipe } from '@angular/common';
-import { CurrencyPipe } from '@angular/common';
 import * as key from '../../shared/key.storage';
 import * as constant from '../../shared/default-configuration.storage';
 import * as message from '../../shared/common-message.storage';
@@ -12,7 +10,6 @@ import { FinOpService } from "../../services/concrete/finance/finOp.service";
 import { FinOpListViewModel } from "../../view-models/concrete/finance/finop-list-viewmodel";
 import { isBrowser } from "angular2-universal";
 import { ModalComponent } from "../../shared/components/modal/modal-component";
-import { MoneyOperationViewModel } from "../../view-models/concrete/finance/money-operation-view-model";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { ValidatorsService } from "../../services/concrete/validators/validator.service";
 import Core = require("@angular/core");
@@ -21,12 +18,7 @@ import { Image } from "../../view-models/concrete/image.model";
 import { EditOrganizationService } from "../../services/concrete/organization-management/edit-organization.service";
 import { ModeratorViewModel } from '../../view-models/concrete/edit-organization/moderator-view.model';
 import { AuthorizeUserModel } from "../../view-models/concrete/authorized-user-info-view.model";
-import { DonateService } from "../../services/concrete/finance/donate-money.service";
-import { CurrencyViewModel } from "../../view-models/concrete/finance/donate/currency.view-model";
 import { TargetViewModel } from "../../view-models/concrete/finance/donate/target.view-model";
-import { DeleteOrgAccountViewModel } from "../../view-models/concrete/finance/deleteorgaccount-view.model";
-import { OrgAccountDetailComponent } from "../../components/finance/orgaccountdetail.component";
-import { DonateViewModel } from "../../view-models/concrete/finance/donate/donate.view-model";
 import { UserInfo } from "../../view-models/concrete/user-info.model";
 import { Location } from '@angular/common';
 import { ActivatedRoute } from "@angular/router";
@@ -36,10 +28,13 @@ import { UserService } from "../../services/concrete/user.service";
     selector: 'spendingoperation',
     templateUrl: './spendingoperation.component.html',
     styleUrls: ['./spendingoperation.component.css'],
-    providers: [DonateService, OrgAccountService, EditOrganizationService, UserService, FixingBalanceService]
+    providers: [OrgAccountService, EditOrganizationService, UserService, FixingBalanceService]
 })
 
 export class SpendingOperationComponent {
+
+    @ViewChild("targetModal")
+    public targetModal: ModalComponent;
 
     private moneySpendingForm: FormGroup;
     private moneyOperationModel: FinOpListViewModel = new FinOpListViewModel();
@@ -49,6 +44,7 @@ export class SpendingOperationComponent {
     private orgTargets: TargetViewModel[] = new Array<TargetViewModel>();
     private baseTargets: TargetViewModel[] = new Array<TargetViewModel>();
     private subTargets: TargetViewModel[] = new Array<TargetViewModel>();
+    private newSubTarget: TargetViewModel = new TargetViewModel();
     private currentDate = new Date().toJSON().slice(0, 10);
     private currentAccountId: number;
     private currentTarget: TargetViewModel = new TargetViewModel();
@@ -58,6 +54,8 @@ export class SpendingOperationComponent {
     private isAccountChosen: boolean = false;
     private isAccountKnown: boolean = false;
     private isTargetNull: boolean = true;
+    private isNewSubTargetCreated = false;
+    private images: Image[] = [];
 
     public constructor(private router: Router,
         private location: Location,
@@ -66,7 +64,6 @@ export class SpendingOperationComponent {
         private fb: FormBuilder,
         private validatorsService: ValidatorsService,
         private accountService: OrgAccountService,
-        private donateService: DonateService,
         private userService: UserService,
         private editService: EditOrganizationService,
         private fixingService: FixingBalanceService) {
@@ -78,6 +75,8 @@ export class SpendingOperationComponent {
     }
 
     private initializeCurrentOrgAccount(accountId: number) {
+        this.moneyOperationModel = new FinOpListViewModel();
+        this.moneyOperationModel.date = new Date();
         this.accountService.getOrganizationAccountById(accountId)
             .subscribe(currAcc => {
                 this.currentAccount = currAcc;
@@ -87,7 +86,6 @@ export class SpendingOperationComponent {
     }
 
     private initialize() {
-        this.moneyOperationModel.date = new Date();
         this.getLoggedUser();
         this.initializeTargets();
         this.route.params.subscribe(params => {
@@ -131,6 +129,24 @@ export class SpendingOperationComponent {
                 this.subTargets.push(this.orgTargets[i]);
             }
         }
+
+        if (this.subTargets.length == 0) {
+            this.moneyOperationModel.targetId = parentTargetId;
+        }
+    }
+
+    private addSubTarget(targetName: string) {
+        this.newSubTarget = {
+            targetId: 0,
+            name: targetName,
+            organizationId: this.user.orgId,
+            parentTargetId: this.currentTarget.targetId,
+            isDeletable: false
+        }
+        this.subTargets.push(this.newSubTarget);
+        this.isNewSubTargetCreated = true;
+        this.moneyOperationModel.targetId = this.newSubTarget.targetId;
+        this.closeModal();
     }
 
     private getCurrentTarget() {
@@ -143,6 +159,7 @@ export class SpendingOperationComponent {
             this.currentTarget = this.nullTarget;
             this.getSubTargetsByTargetId(this.currentTarget.targetId);
             this.isTargetNull = true;
+            this.moneyOperationModel.targetId = this.nullTarget.targetId;
         }
     }
 
@@ -175,6 +192,10 @@ export class SpendingOperationComponent {
         model.date = date;
     }
 
+    private onImageChange(imgArr: Image[]) {
+        this.images = imgArr;
+    }
+
     private createSpendingForm() {
         this.moneySpendingForm = this.fb.group({
             cardFromId: [
@@ -188,7 +209,7 @@ export class SpendingOperationComponent {
                 ]
             ],
             targetId: [
-                this.moneyOperationModel.targetId, [Validators.required]
+                this.moneyOperationModel.targetId
             ],
             description: [
                 this.moneyOperationModel.description, [Validators.maxLength(500)]
@@ -238,9 +259,29 @@ export class SpendingOperationComponent {
         }
     }
 
-    private makeSpending() {
+    private openModal() {
+        this.targetModal.show();
+    }
+
+    private closeModal() {
+        this.targetModal.hide();
+    }
+
+    private prepareSpending() {
+        if (this.isNewSubTargetCreated) {
+            this.editService.addTarget(this.newSubTarget).subscribe(result => {
+                this.newSubTarget = result;
+                this.moneyOperationModel.targetId = this.newSubTarget.targetId;
+                this.makeSpending();
+            });
+        }
+        else {
+            this.makeSpending();
+        }  
+    }
+
+    private makeSpending(): void {
         this.completeModel();
-        console.log(this.moneyOperationModel);
         this.finOpService.createSpending(this.moneyOperationModel).subscribe(a => {
             if (a.error == "" || a.error == null) {
                 this.showToast();
@@ -260,6 +301,7 @@ export class SpendingOperationComponent {
         this.moneyOperationModel.finOpType = constant.spendingId;
         this.moneyOperationModel.orgId = this.user.orgId;
         this.moneyOperationModel.userId = this.user.id;
+        this.moneyOperationModel.images = this.images;
     }
 
     public showToast() {

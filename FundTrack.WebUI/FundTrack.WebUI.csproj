@@ -44,6 +44,7 @@
     <None Remove="ClientApp\app\components\finance\incomeoperation.component.ts" />
     <None Remove="ClientApp\app\components\finance\spendingoperation.component.ts" />
     <None Remove="ClientApp\app\components\finance\transferoperation.component.ts" />
+    <None Remove="ClientApp\app\view-models\concrete\finance\all-balances.ts" />
     <None Remove="node_modules.zip" />
     <None Remove="Properties\PublishProfiles\fundtrack261 - Web Deploy.pubxml" />
     <None Remove="yarn.lock" />
@@ -84,6 +85,7 @@
     <TypeScriptCompile Include="ClientApp\app\components\finance\incomeoperation.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\finance\spendingoperation.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\finance\transferoperation.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\view-models\concrete\finance\all-balances.ts" />
   </ItemGroup>
   <Target Name="RunWebpack" AfterTargets="ComputeFilesToPublish">
     <!-- As part of publishing, ensure the JS resources are freshly built in production mode -->

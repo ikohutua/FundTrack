@@ -1,4 +1,6 @@
-﻿export class FinOpListViewModel {
+﻿import { Image } from "../../../view-models/concrete/image.model";
+
+export class FinOpListViewModel {
     id: number;
     orgId: number;
     finOpType: number;
@@ -10,7 +12,7 @@
     amount: number;
     target: string;
     targetId: number;
-    images: string[];
+    images: Image[];
     userId: number;
     currencyShortName: string;
     currencyFullName: string;

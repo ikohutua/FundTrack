@@ -176,8 +176,6 @@ export class OfferListComponent implements OnInit {
     Sets main image of an offer item
     */
     private setMainImage(offers: OfferViewModel[]): void {
-        debugger;
-
         for (var i = 0; i < offers.length; i++) {
             for (var j = 0; j < offers[i].images.length; j++) {
                 let currentImage = offers[i].images[j];

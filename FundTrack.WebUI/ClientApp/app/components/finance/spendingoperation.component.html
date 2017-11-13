@@ -69,10 +69,13 @@
                 <label class="col-md-4 control-label">Деталізація<sup class="sup-color-red">*</sup></label>
                 <div class="col-md-4">
                     <select [(ngModel)]="moneyOperationModel.targetId" formControlName="targetId" id="categoryType" class="form-control">
-                        <option *ngFor="let target of subTargets" value="{{target.targetId}}">
+                        <option *ngFor="let target of subTargets" value="{{target.targetId}}" [selected]="target.id==undefined">
                             {{target.name}}
                         </option>
                     </select>
+                    <button [disabled]="isNewSubTargetCreated" class="btn pull-right" title="Додати підпризначення" (click)="openModal()">
+                        <span class="glyphicon glyphicon-plus"></span>
+                    </button>
                 </div>
             </div>
             <div class="form-group">
@@ -89,10 +92,31 @@
 
                 </div>
             </div>
+            <div class="form-group">
+                <div class="col-md-4 right-float">
+                    <image-list [images]="images" [maxCount]="maxImgCount" [maxSize]="maxImgSize" (getImageChange)="onImageChange($event)"></image-list>
+                </div>
+            </div>
             <div class="col-md-1 col-md-offset-7">
-                <button class="btn btn-default pull-right" (click)="makeSpending()" [disabled]="moneySpendingForm.invalid">Здійснити операцію</button>
+                <button class="btn pull-right" (click)="prepareSpending()" [disabled]="moneySpendingForm.invalid">Здійснити операцію</button>
             </div>
             <div id="snackbar">Операцію здійснено</div>
         </fieldset>
     </form>
 </div>
+
+<app-modal #targetModal>
+    <div class="app-modal-header">
+        <h4> Додати призначення </h4>
+    </div>
+    <div class="app-modal-body">
+        <h3>Введіть новий тип призначення:</h3>
+        <input class="form-control" type="text" [(ngModel)]="newSubTarget.name" required #targetState="ngModel" />
+    </div>
+    <div class="app-modal-footer">
+        <span>
+            <button class="btn btn-primary" (click)="addSubTarget(targetState.value)" [disabled]="targetState.invalid">Додати підпризначення</button>
+        </span>
+        <button type="button" class="btn btn-primary" (click)="closeModal()">Закрити</button>
+    </div>
+</app-modal>

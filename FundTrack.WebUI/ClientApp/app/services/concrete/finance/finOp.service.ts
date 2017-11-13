@@ -80,6 +80,14 @@ export class FinOpService extends BaseSpinnerService<FinOpFromBankViewModel> {
         }
     }
 
+    public getImagesByFinOpId(finOpId: number): Observable<string[]> {
+        if (this.checkAuthorization()) {
+            return this._http.get(GlobalUrlService.getImagesUrl + '/' + finOpId, RequestOptionsService.getRequestOptions())
+                .map((response: Response) => <string[]>response.json())
+                .catch(this.handleError);
+        }
+    }
+
     /**
      * get orgaccounts by card number this accounts
      * @param orgId
@@ -105,7 +113,6 @@ export class FinOpService extends BaseSpinnerService<FinOpFromBankViewModel> {
 
     public processMultipleFinOps(orgId: number): Observable<FinOpFromBankViewModel[]> {
         if (this.checkAuthorization()) {
-            debugger;
             return this._http.post(GlobalUrlService.processMultipleFinOps, orgId, RequestOptionsService.getRequestOptions())
                 .map((response: Response) => response.json() as FinOpFromBankViewModel[])
                 .catch(this.handleError);
