@@ -81,7 +81,7 @@ namespace FundTrack.BLL.Concrete
             }
             catch (Exception ex)
             {
-                throw new BusinessLogicException("Error while getting image path list from FinOPImages entities by finOpId.", ex);
+                throw new BusinessLogicException(ErrorMessages.CantGetImages, ex);
             }
         }
 

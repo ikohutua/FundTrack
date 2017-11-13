@@ -73,7 +73,7 @@
                             {{target.name}}
                         </option>
                     </select>
-                    <button [disabled]="isNewSubTargetCreated" class="btn btn-primary right" title="Додати підпризначення" (click)="openModal()">
+                    <button [disabled]="isNewSubTargetCreated" class="btn pull-right" title="Додати підпризначення" (click)="openModal()">
                         <span class="glyphicon glyphicon-plus"></span>
                     </button>
                 </div>
@@ -90,6 +90,11 @@
                            min="{{minDate}}"
                            max="{{currentDate}}" />
 
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-4 right-float">
+                    <image-list [images]="images" [maxCount]="maxImgCount" [maxSize]="maxImgSize" (getImageChange)="onImageChange($event)"></image-list>
                 </div>
             </div>
             <div class="col-md-1 col-md-offset-7">

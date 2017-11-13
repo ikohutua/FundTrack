@@ -1,5 +1,8 @@
+using System;
 using System.Collections.Generic;
 using FundTrack.BLL.Abstract;
+using FundTrack.BLL.Concrete;
+using FundTrack.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using FundTrack.Infrastructure.ViewModel.FinanceViewModels.DonateViewModels;
 
@@ -28,21 +31,38 @@ namespace FundTrack.WebUI.Controllers
         }
 
         [HttpGet("withDeletable/{id}")]
-        public IEnumerable<TargetViewModel> GetTargetsByOrganizationIdWithEditableField(int id)
+        public IActionResult GetTargetsByOrganizationIdWithEditableField(int id)
         {
-            return _targetService.GetTargetsByOrganizationIdWithEditableField(id);
+            try
+            {
+                var res = Ok(_targetService.GetTargetsByOrganizationIdWithEditableField(id));
+                return res;
+            }
+            catch (BusinessLogicException e)
+            {
+                return BadRequest(e.Message);
+            }
         }
 
         [HttpPost("CreateTarget")]
-        public TargetViewModel AddTarget([FromBody] TargetViewModel target)
+        public IActionResult AddTarget([FromBody] TargetViewModel target)
         {
-            return _targetService.CreateTarget(target);
+            return Ok(_targetService.CreateTarget(target));
         }
 
         [HttpDelete("DeleteTarget/{id}")]
-        public void DeleteTarget(int id)
+        public IActionResult DeleteTarget(int id)
         {
-            _targetService.DeleteTarget(id);
+            var res = _targetService.DeleteTarget(id);
+            if (res)
+            {
+                return Ok(res);
+            }
+            else
+            {
+                return BadRequest(ErrorMessages.DeleteDataError);
+            }
+            
         }
 
         [HttpPut("EditTarget")]

@@ -243,7 +243,8 @@ export class BankImportComponent implements OnInit {
         this.dataForPrivat.dataFrom = this.dataPrivatFrom.split('-').reverse().join('.');
         this.showSpinner = true;
         this._service.getPrivatExtracts(this.dataForPrivat)
-            .subscribe(() => {
+            .subscribe((response) => {
+                console.log(response);
                 this._service.UpdateDate(this.user.orgId)
                     .subscribe(response => {
                         this.lastPrivatUpdate = response;
@@ -415,7 +416,8 @@ export class BankImportComponent implements OnInit {
 
     private onPrivatClick(): void {
         this.work = true;
-        this._service.getUserExtracts(this.currentOrgAccount.id).subscribe(() => {
+        this._service.getUserExtracts(this.currentOrgAccount.id).subscribe((response) => {
+            console.log(response);
             this._service.UpdateDate(this.user.orgId)
                 .subscribe(response => {
                     this.lastPrivatUpdate = response;

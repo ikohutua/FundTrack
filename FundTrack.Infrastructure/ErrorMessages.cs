@@ -55,6 +55,7 @@
         public const string OrganizationNotFound = "Організацію не знайдено";
         public const string InvalidData = "Невірні дані!";
         public const string CantGetFinOpsForReport = "Неможливо отримати фінансові операції для звіту";
+        public const string CantGetImages = "Error while getting image path list from FinOPImages entities by finOpId";
         //report controller
         public const string DateFromErrorMessage = "Невірна або пуста початкова дата.";
         public const string DateToErrorMessage = "Невірна або пуста кінцева дата.";

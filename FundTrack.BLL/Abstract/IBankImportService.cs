@@ -36,13 +36,13 @@ namespace FundTrack.BLL.Abstract
         /// <returns></returns>
         int GetCountExtracts(string card);
 
-        Task ImportFromPrivat(int orgAccountId);
+        Task<string> ImportFromPrivat(int orgAccountId);
 
         DateTime GetLastPrivatUpdate(int orgId);
 
         AutoImportIntervals UpdateDate(int orgId );
 
-        Task ImportWithDates(PrivatImportViewModel model);
+        Task<string> ImportWithDates(PrivatImportViewModel model);
 
         IEnumerable<ImportDetailPrivatViewModel> getAllSuggestedBankImports(decimal amount, DateTime date);
     }
