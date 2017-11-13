@@ -1,4 +1,4 @@
-﻿import { Component, OnInit, Input, ViewChild} from '@angular/core';
+﻿import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { Subscription } from "rxjs/Subscription";
 import { ActivatedRoute, Router } from "@angular/router";
 import { RequestManagementViewModel } from '../../view-models/abstract/organization-management-view-models/request-management-view-model';
@@ -7,6 +7,7 @@ import { GoodsTypeViewModel } from "../../view-models/concrete/goodsType-view.mo
 import { GoodsCategoryViewModel } from "../../view-models/concrete/goodsCategory-view.model";
 import { RequestedImageViewModel } from "../../view-models/abstract/organization-management-view-models/requested-item-view.model";
 import { SpinnerComponent } from "../../shared/components/spinner/spinner.component";
+import { Image } from "../../view-models/concrete/image.model";
 
 @Component({
     selector: 'manage-request',
@@ -26,8 +27,17 @@ export class OrganizationManageRequestComponent implements OnInit {
     private _requestedItemId: number;
     private _currentOrgId: number;
     private _currentImageUrl: string[] = [];
-    private _requiredFieldMessage: string = "Обовязкове поле для заповнення";   
+    private _requiredFieldMessage: string = "Обовязкове поле для заповнення";
     private addingImage: string = "http://www.freeiconspng.com/uploads/add-icon--line-iconset--iconsmind-29.png";
+
+    //---------------------------------------------------------
+    images: Image[] = [];
+
+    onImageChange(imgArr: Image[]) {
+        this.images = imgArr;
+    }
+    //---------------------------------------------------------
+
 
     ngOnInit(): void {
         this._route.params.subscribe(params => {
@@ -36,10 +46,11 @@ export class OrganizationManageRequestComponent implements OnInit {
         });
         this._requestedItem.images = [];
         this.fillGoodtypes();
-        
+
         if (this._requestedItemId) {
-            this.getByIdRequestedItem(this._requestedItemId);          
-        }       
+            //for editing
+            this.getByIdRequestedItem(this._requestedItemId);
+        }
     }
 
     /**
@@ -47,8 +58,8 @@ export class OrganizationManageRequestComponent implements OnInit {
      * @param _service
      */
     constructor(private _service: OrganizationManagementRequestService,
-                private _route: ActivatedRoute,
-                private _router: Router) { }
+        private _route: ActivatedRoute,
+        private _router: Router) { }
 
     /**
      * Fills goods type dropdown
@@ -89,17 +100,38 @@ export class OrganizationManageRequestComponent implements OnInit {
      */
     private addRequestedItem() {
         this._requestedItem.goodsTypeId = this._selecteType.id;
-        this._requestedItem.organizationId = 1;
+        this._requestedItem.organizationId = this._currentOrgId;
+        //-------------------------------------------------------------------------------------------------------------------------
+
+        this.setImagesForRequestedItem(this.images);
+
+        //-------------------------------------------------------------------------------------------------------------------------
+
         this._service.addRequestedItem(this._requestedItem)
             .subscribe((c) => {
                 if (c.errorMessage != "") {
-                    this._router.navigate(["/organization/requests/1"])
+                    this._router.navigate(["/organization/requests/" + this._currentOrgId])
                 }
                 else {
                     this._errorMessage = c.errorMessage;
-                }               
+                }
             },
-                error => this._errorMessage = <any>error);
+            error => this._errorMessage = <any>error);
+    }
+
+
+    private setImagesForRequestedItem(images: Image[]) {
+        this._requestedItem.images = [];
+
+        for (var i = 0; i < images.length; i++) {
+            let reqItemImg = new RequestedImageViewModel();
+            reqItemImg.id = images[i].id == undefined ? -1 : images[i].id;
+            reqItemImg.base64Data = images[i].base64Data;
+            reqItemImg.isMain = images[i].isMain;
+            reqItemImg.imageUrl = images[i].imageSrc;
+            reqItemImg.imageExtension = images[i].imageExtension;
+            this._requestedItem.images.push(reqItemImg);
+        };
     }
 
     /**
@@ -111,6 +143,7 @@ export class OrganizationManageRequestComponent implements OnInit {
             .subscribe(c => {
                 if (c.errorMessage != "") {
                     this._requestedItem = c;
+                    this.images =  this.ConvertRequestItemImagesToImages(c.images);
                     this.setGoodsType(this._requestedItem.goodsTypeId);
                 }
                 else {
@@ -120,27 +153,16 @@ export class OrganizationManageRequestComponent implements OnInit {
             error => this._errorMessage = <any>error);
     }
 
-    /**
-     * delete current image from database or from list
-     * @param currentImage
-     */
-    private deleteCurrentImage(currentImage: RequestedImageViewModel) {
-        if (currentImage.id > 0) {
-            this._service.deleteCurrentImage(currentImage.id)
-                .subscribe(data => this.deleteImageFromList(currentImage.imageUrl),
-                error => this._errorMessage = <any>error);
+    private ConvertRequestItemImagesToImages(offerImages: RequestedImageViewModel[]): Image[] {
+        let images: Image[] = [];
+        for (var i = 0; i < offerImages.length; i++) {
+            let img = new Image(offerImages[i].imageUrl, offerImages[i].imageUrl, null);
+            img.id = offerImages[i].id;
+            img.isMain = offerImages[i].isMain;
+            img.imageExtension = offerImages[i].imageExtension;
+            images.push(img);
         }
-        else {
-            this.deleteImageFromList(currentImage.imageUrl);
-        }
-    }
-
-    /**
-     * Delete image from list
-     * @param imageUrl
-     */
-    private deleteImageFromList(imageUrl: string) {
-        this._requestedItem.images.splice(this._requestedItem.images.findIndex(i => i.imageUrl == imageUrl), 1)         
+        return images;
     }
 
     /**
@@ -150,8 +172,8 @@ export class OrganizationManageRequestComponent implements OnInit {
     private editRequestetItem(item: RequestManagementViewModel) {
         this._service.editRequestedItem(item)
             .subscribe(r => {
-                    this._requestedItem = r,
-                    this._router.navigate(['/organization/requests/1']),
+                this._requestedItem = r,
+                    this._router.navigate(["/organization/requests/" + this._currentOrgId]),
                     error => this._errorMessage = <any>error
             });
     }
@@ -161,6 +183,11 @@ export class OrganizationManageRequestComponent implements OnInit {
      */
     private manageRequestedItems() {
         if (this._requestedItemId > 0) {
+            //-------------------------------------------------------------------------------------------------------------------------
+
+            this.setImagesForRequestedItem(this.images);
+
+            //-------------------------------------------------------------------------------------------------------------------------
             this.editRequestetItem(this._requestedItem);
         }
         else {
@@ -172,7 +199,7 @@ export class OrganizationManageRequestComponent implements OnInit {
      * Navigate to all requested items page
      */
     private backToAllItems(): void {
-        this._router.navigate(["/organization/requests/1"]);
+        this._router.navigate(["/organization/requests/" + this._currentOrgId]);
     }
 
     /**
@@ -181,13 +208,5 @@ export class OrganizationManageRequestComponent implements OnInit {
      */
     private setGoodsType(goodTypeId: number) {
         this._selecteType = this._goodsTypes.find(c => c.id == goodTypeId);
-    }
-
-    /**
-     * Gets extension of specified file
-     * @param fileName: name of the file extension of which is needed to be retrieved
-     */
-    private getFileExtension(fileName: string): string {
-        return fileName.substring(fileName.lastIndexOf('.') + 1, fileName.length) || fileName;
     }
 }

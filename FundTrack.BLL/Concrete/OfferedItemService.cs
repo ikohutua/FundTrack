@@ -273,7 +273,7 @@ namespace FundTrack.BLL.Concrete
                     OfferedItemId = offeredItemId
                 };
 
-                var t = _imgService.UploadImageAsync(Convert.FromBase64String(item.Base64Data), item.imageExtension);
+                var t = _imgService.UploadImageAsync(Convert.FromBase64String(item.Base64Data), item.ImageExtension);
                 imageTastDictionary.Add(newImage, t);
             }
             Task.WhenAll(imageTastDictionary.Values);
