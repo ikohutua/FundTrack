@@ -1,4 +1,5 @@
 ﻿using FundTrack.DAL.Concrete;
+using FundTrack.Infrastructure.ViewModel.FinanceViewModels.DonateViewModels;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using System.Collections.Generic;
@@ -60,15 +61,16 @@ namespace FundTrack.Integration.Tests.Controllers
             var response = await _testContext.Client.GetAsync($"/api/Target/GetTarget/{testTarget.Id}");
             var stream = await response.Content.ReadAsStreamAsync();
             var reader = new StreamReader(stream, Encoding.UTF8);
-            var resultTarget = new JsonSerializer().Deserialize<Target>(new JsonTextReader(reader));
+            var resultTarget = new JsonSerializer().Deserialize<TargetViewModel>(new JsonTextReader(reader));
 
             //Assert
             response.EnsureSuccessStatusCode();
 
-            Assert.Equal(testTarget.Id, resultTarget.Id);
-            Assert.Equal(testTarget.TargetName, resultTarget.TargetName);
-            Assert.Equal(testTarget.OrganizationId, resultTarget.OrganizationId);
             Assert.True(HttpStatusCode.OK == response.StatusCode);
+            Assert.Equal(testTarget.Id, resultTarget.TargetId);
+            Assert.Equal(testTarget.TargetName, resultTarget.Name);
+            Assert.Equal(testTarget.OrganizationId, resultTarget.OrganizationId);
+            Assert.True(resultTarget.IsDeletable);
         }
     }
 }
