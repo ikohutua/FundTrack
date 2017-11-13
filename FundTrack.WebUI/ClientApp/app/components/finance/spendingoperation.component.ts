@@ -75,6 +75,8 @@ export class SpendingOperationComponent {
     }
 
     private initializeCurrentOrgAccount(accountId: number) {
+        this.moneyOperationModel = new FinOpListViewModel();
+        this.moneyOperationModel.date = new Date();
         this.accountService.getOrganizationAccountById(accountId)
             .subscribe(currAcc => {
                 this.currentAccount = currAcc;
@@ -84,7 +86,6 @@ export class SpendingOperationComponent {
     }
 
     private initialize() {
-        this.moneyOperationModel.date = new Date();
         this.getLoggedUser();
         this.initializeTargets();
         this.route.params.subscribe(params => {
@@ -128,6 +129,10 @@ export class SpendingOperationComponent {
                 this.subTargets.push(this.orgTargets[i]);
             }
         }
+
+        if (this.subTargets.length == 0) {
+            this.moneyOperationModel.targetId = parentTargetId;
+        }
     }
 
     private addSubTarget(targetName: string) {
@@ -154,6 +159,7 @@ export class SpendingOperationComponent {
             this.currentTarget = this.nullTarget;
             this.getSubTargetsByTargetId(this.currentTarget.targetId);
             this.isTargetNull = true;
+            this.moneyOperationModel.targetId = this.nullTarget.targetId;
         }
     }
 
@@ -186,7 +192,7 @@ export class SpendingOperationComponent {
         model.date = date;
     }
 
-    onImageChange(imgArr: Image[]) {
+    private onImageChange(imgArr: Image[]) {
         this.images = imgArr;
     }
 
@@ -203,7 +209,7 @@ export class SpendingOperationComponent {
                 ]
             ],
             targetId: [
-                this.moneyOperationModel.targetId, [Validators.required]
+                this.moneyOperationModel.targetId
             ],
             description: [
                 this.moneyOperationModel.description, [Validators.maxLength(500)]
