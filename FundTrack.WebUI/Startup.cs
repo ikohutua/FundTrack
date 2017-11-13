@@ -52,7 +52,7 @@ namespace FundTrack.WebUI
             else
             {
                 services.AddDbContext<FundTrackContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString(Configuration.GetConnectionString(connectionType))));
+                    options.UseSqlServer(Configuration.GetConnectionString(connectionType)));
             }
 
             //  services.AddDbContext<FundTrackContext>(options => options.UseSqlServer(Configuration.GetConnectionString(connectionType)));
