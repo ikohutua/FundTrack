@@ -68,7 +68,6 @@
             </pagination-pages>
         </div>
     </div>
-    <a class="btn" (click)="viewAllFinOps()">Переглянути всі операції по рахунку</a>
 
     <a *ngIf="isCashType" class="btn" (click)="navigateToIncomeOperationPage()">Добавити прихід</a>
     <a *ngIf="isCashType" class="btn" (click)="navigateToSpendingOperationPage()">Добавити витрату</a>
@@ -241,7 +240,7 @@
                                placeholder={{currentTarget.name}}
                                name="targetId" />
                 </div>
-                <div class="form-group">
+                <div *ngIf="(updateFinOperation.finOpType==0)" class="form-group">
                     <label class="control-label">Деталізація</label>
                     <select [(ngModel)]="updateFinOperation.targetId" formControlName="targetId" id="categoryType" class="form-control">
                         <option [disabled]="isTransferOperation" *ngFor="let target of subTargets" value="{{target.targetId}}">
