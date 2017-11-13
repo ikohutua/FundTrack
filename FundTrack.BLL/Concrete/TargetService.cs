@@ -49,7 +49,10 @@ namespace FundTrack.BLL.Concrete
             try
             {
                 var targets = GetTargetsByOrganizationId(id).ToList();
-                CheckIsDeletableField(targets);
+                if (targets.Count != 0)
+                {
+                    CheckIsDeletableField(targets);
+                }
                 return targets;
             }
             catch (System.Exception ex)
@@ -212,12 +215,13 @@ namespace FundTrack.BLL.Concrete
             }
         }
 
-        public void DeleteTarget(int id)
+        public bool DeleteTarget(int id)
         {
             try
             {
                 _unitOfWork.TargetRepository.Delete(id);
                 _unitOfWork.SaveChanges();
+                return true;
             }
             catch (System.Exception ex)
             {

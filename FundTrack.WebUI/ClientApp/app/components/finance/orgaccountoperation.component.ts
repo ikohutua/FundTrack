@@ -296,6 +296,8 @@ export class OrgAccountOperationComponent implements OnChanges {
     }
 
     private getBaseTargets() {
+        this.baseTargets = [];
+        this.baseTargets.push(this.nullTarget);
         for (let i = 0; i < this.orgTargets.length; i++) {
             if (this.orgTargets[i].parentTargetId == null) {
                 this.baseTargets.push(this.orgTargets[i]);
@@ -529,7 +531,7 @@ export class OrgAccountOperationComponent implements OnChanges {
     private updateOrgAccount() {
         this.accountService.updateOrganizationAccount(this.accountForUpdate).subscribe(a => {
             this.manageAccount = a;
-        })
+        });
     }
 
     private updateFinOp() {
@@ -662,5 +664,10 @@ export class OrgAccountOperationComponent implements OnChanges {
             return false;
         }
         return true;
+    }
+
+    private onChangeAccountTarget($event): void {
+        this.accountForUpdate.targetId = $event;
+        this.accountService.updateOrganizationAccount(this.accountForUpdate).subscribe();
     }
 }
