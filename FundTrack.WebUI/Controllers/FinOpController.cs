@@ -162,6 +162,18 @@ namespace FundTrack.WebUI.Controllers
             return Ok(_service.CreateTransfer(transferModel));
         }
 
+        [Authorize(Roles = "admin, moderator")]
+        [HttpGet("Images/{finOpId}")]
+        public ActionResult GetFinOpImages(int finOpId)
+        {
+            if (finOpId <= 0)
+            {
+                return BadRequest();
+            }
+            return Ok(_service.GetImagesById(finOpId));
+
+        }
+
         /// <summary>
         /// Edit the fin op.
         /// </summary>

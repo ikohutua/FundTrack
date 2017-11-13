@@ -24,6 +24,7 @@
                 <th class="th-center-align col-sm-3">Опис операції</th>
                 <th class="th-center-align col-sm-1">Призначення</th>
                 <th class="th-center-align col-sm-1">Сума</th>
+                <th class="th-center-align col-sm-1">Фото</th>
                 <th class="th-center-align col-sm-1">Редагувати</th>
                 <th class="th-center-align col-sm-1"> </th>
             </tr>
@@ -36,6 +37,7 @@
                 <td class="col-sm-3">{{finOp.description}}</td>
                 <td class="col-sm-1">{{finOp.target}}</td>
                 <td class="col-sm-1 money">{{finOp.amount}}</td>
+                <td><a id="thumbnailsList" *ngIf="finOp.finOpType==0" (click)="getImagesById(finOp.id)" style="cursor:pointer" data-toggle="modal" data-target="#selectedImageModal"> Переглянути </a></td>
                 <td class="col-sm-1">
                     <button [disabled]="!finOp.isEditable" class="btn right" title="Редагувати" (click)="openUpdateFinOpModal(finOp)">
                         <span class="glyphicon glyphicon-pencil">
@@ -66,11 +68,29 @@
             </pagination-pages>
         </div>
     </div>
-    <a class="btn" (click)="viewAllFinOps()">Переглянути всі операції по рахунку</a>
 
-    <a *ngIf="isCashType" class="btn" (click)="navigateToIncomeOperationPage()">Добавити прихід</a>
-    <a *ngIf="isCashType" class="btn" (click)="navigateToSpendingOperationPage()">Добавити витрату</a>
+    <a *ngIf="isCashType" class="btn" (click)="navigateToIncomeOperationPage()">Додати прихід</a>
+    <a *ngIf="isCashType" class="btn" (click)="navigateToSpendingOperationPage()">Додати розхід</a>
     <a *ngIf="isCashType" class="btn" (click)="navigateToTransferOperationPage()">Переказ коштів</a>
+
+    <div class="modal fade" id="selectedImageModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <button type="button" class="close" id="openModalButton" [hidden]="false" data-toggle="modal" data-target="#selectedImageModal">&times;</button>
+                    <div class="selected" *ngIf="selectedImage">
+                        <img src="{{selectedImage}}" class="imageSelected">
+                        <div class="arrow-back" *ngIf="!isFirstImage" (click)=navigate(false)>
+                            &lt;
+                        </div>
+                        <div class="arrow-forward" *ngIf="!isLastImage" (click)=navigate(true)>
+                            &gt;
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div name="snackbar" id="suggestedToast">{{toasterMessage}}</div>
 </div>
@@ -113,6 +133,14 @@
                         <option value=null></option>
                         <option *ngFor="let moderator of moderators" value="{{moderator.id}}">
                             {{moderator.firstName}} {{moderator.lastName}}
+                        </option>
+                    </select>
+                </div>
+                <div class="form-group" *ngIf="baseTargets.lenght != 0">
+                    <label class="control-label">Призначення</label>
+                    <select class="form-control" name="targetSelect" [ngModelOptions]="{standalone: true}" (ngModelChange)="onChangeAccountTarget($event)" ngModel>
+                        <option *ngFor="let target of baseTargets" value="{{target.targetId}}" [selected]="target.targetId==currentAccount.targetId">
+                            {{target.name}}
                         </option>
                     </select>
                 </div>
@@ -220,7 +248,7 @@
                                placeholder={{currentTarget.name}}
                                name="targetId" />
                 </div>
-                <div class="form-group">
+                <div *ngIf="(updateFinOperation.finOpType==0) && (updateFinOperation.targetId!=null)" class="form-group">
                     <label class="control-label">Деталізація</label>
                     <select [(ngModel)]="updateFinOperation.targetId" formControlName="targetId" id="categoryType" class="form-control">
                         <option [disabled]="isTransferOperation" *ngFor="let target of subTargets" value="{{target.targetId}}">

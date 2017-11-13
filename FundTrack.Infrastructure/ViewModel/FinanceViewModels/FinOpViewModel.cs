@@ -31,7 +31,7 @@ namespace FundTrack.Infrastructure.ViewModel.FinanceViewModels
 
         public int? UserId { get; set; }
 
-        public IEnumerable<string> Images { get; set; }
+        public IEnumerable<FinOpImageViewModel> Images { get; set; }
 
         public int FinOpType { get; set; }
 
