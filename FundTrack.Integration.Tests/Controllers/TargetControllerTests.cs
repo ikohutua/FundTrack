@@ -27,33 +27,22 @@ namespace FundTrack.Integration.Tests.Controllers
             return new List<Target>()
             {
                 new Target(){ Id = 1, OrganizationId = 1, TargetName = "Продукти" },
-                new Target(){ Id = 2, OrganizationId = 2, TargetName = "Ліки" },
-                new Target(){ Id = 3, OrganizationId = 3, TargetName = "Одяг" },
-                new Target(){ Id = 4, OrganizationId = 4, TargetName = "Електроніка" },
-                new Target(){ Id = 5, OrganizationId = 5, TargetName = "Боєприпаси" }
+                new Target(){ Id = 2, OrganizationId = 1, TargetName = "Ліки" },
+                new Target(){ Id = 3, OrganizationId = 1, TargetName = "Одяг" },
+                new Target(){ Id = 4, OrganizationId = 2, TargetName = "Електроніка" },
+                new Target(){ Id = 5, OrganizationId = 2, TargetName = "Боєприпаси" }
             }.AsQueryable();
         }
 
-        private Target GetTestTargetById(int id)
+        private Target GetTestTargetByField(System.Func<Target,bool> predicate)
         {
-            return GetTestTargets().Where(t => t.Id == id).Single();
+            return GetTestTargets().Where(predicate).FirstOrDefault();
         }
 
         [Fact]
-        public async Task Get_Target_Bu_Id_Ok_Response()
+        public async Task Get_Target_Bu_Id_Ok_Response_Valid_Data()
         {
-            //Arrange
-           //var options = new DbContextOptionsBuilder<FundTrackContext>()
-           //.UseInMemoryDatabase(databaseName: "Get_Target_Bu_Id_Ok_Response")
-           //.Options;
-
-            var testTarget = GetTestTargetById(1);
-            //using (var context = new FundTrackContext(options))
-            //{
-            //    context.Targets.Add(testTarget);
-            //    context.SaveChanges();
-            //}
-
+            var testTarget = GetTestTargetByField(t => t.Id == 1);
             _testContext.DbContext.Targets.Add(testTarget);
             _testContext.DbContext.SaveChanges();
 
@@ -71,6 +60,27 @@ namespace FundTrack.Integration.Tests.Controllers
             Assert.Equal(testTarget.TargetName, resultTarget.Name);
             Assert.Equal(testTarget.OrganizationId, resultTarget.OrganizationId);
             Assert.True(resultTarget.IsDeletable);
+        }
+
+        [Fact]
+        public async Task Get_Targets_By_Organization_Id_Ok_Response_Valid_Data()
+        {
+            //Arrange
+            int testOrgId = 1;
+            _testContext.DbContext.Targets.AddRange(GetTestTargets());
+            _testContext.DbContext.SaveChanges();
+
+            //Act
+            var response = await _testContext.Client.GetAsync($"/api/Target/GetAllTargetsOfOrganization/{testOrgId}");
+            var stream = await response.Content.ReadAsStreamAsync();
+            var reader = new StreamReader(stream, Encoding.UTF8);
+            var resultTargets = new JsonSerializer().Deserialize<IEnumerable<TargetViewModel>>(new JsonTextReader(reader));
+
+            //Assert
+            response.EnsureSuccessStatusCode();
+
+            Assert.True(HttpStatusCode.OK == response.StatusCode);
+            Assert.True(resultTargets.All( t => t.OrganizationId == testOrgId));
         }
     }
 }

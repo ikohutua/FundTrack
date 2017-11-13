@@ -23,6 +23,7 @@ namespace FundTrack.WebUI
 {
     public class Startup
     {
+        public IConfigurationRoot Configuration { get; }
         public IHostingEnvironment CurrentEnvironment { get; }
         public Startup(IHostingEnvironment env)
         {
@@ -36,8 +37,6 @@ namespace FundTrack.WebUI
             CurrentEnvironment = env;
         }
 
-        public IConfigurationRoot Configuration { get; }
-
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
@@ -48,7 +47,7 @@ namespace FundTrack.WebUI
             if (CurrentEnvironment.IsEnvironment("Testing"))
             {
                 services.AddDbContext<FundTrackContext>(options =>
-                    options.UseInMemoryDatabase("TestingDB"));
+                    options.UseInMemoryDatabase("TestDB"));
             }
             else
             {
