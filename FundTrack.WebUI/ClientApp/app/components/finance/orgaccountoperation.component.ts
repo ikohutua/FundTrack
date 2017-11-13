@@ -511,7 +511,7 @@ export class OrgAccountOperationComponent implements OnChanges {
             this.isTransferOperation = true;
         }
         this.finOpTarget = this.orgTargets.find(target => target.targetId == finOp.targetId);
-        if (this.finOpTarget.parentTargetId != null) {
+        if (this.finOpTarget != null) {
             this.getSubTargetsByTargetId(this.finOpTarget.parentTargetId);
         }
         else {
