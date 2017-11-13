@@ -4,10 +4,10 @@ import { OrgAccountViewModel } from "../../view-models/concrete/finance/orgaccou
 import { DeleteOrgAccountViewModel } from "../../view-models/concrete/finance/deleteorgaccount-view.model";
 import { ModalComponent } from "../../shared/components/modal/modal-component";
 import * as key from "../../shared/key.storage";
+import * as constant from '../../shared/default-configuration.storage';
 import { isBrowser } from "angular2-universal";
 import { AuthorizeUserModel } from "../../view-models/concrete/authorized-user-info-view.model";
-import Targetviewmodel = require("../../view-models/concrete/finance/donate/target.view-model");
-import TargetViewModel = Targetviewmodel.TargetViewModel;
+import { TargetViewModel} from "../../view-models/concrete/finance/donate/target.view-model";
 
 @Component({
     selector: "orgaccountdetail",
@@ -51,16 +51,14 @@ export class OrgAccountDetailComponent implements OnInit, OnChanges {
             }
         };
         this._service.getAllBaseTargetsOfOrganization(this.user.orgId).subscribe((result) => {
-            this.targets.push({
+            this.targets = result;
+            this.targets.unshift({
                 targetId: undefined,
-                name: "Не вказано",
+                name: constant.nullTargetUA,
                 organizationId: undefined,
                 parentTargetId: undefined,
                 isDeletable:true
             });
-            for (var target of result) {
-                this.targets.push(target);
-            }
         });
         
     }

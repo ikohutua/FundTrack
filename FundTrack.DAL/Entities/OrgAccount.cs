@@ -122,7 +122,8 @@ namespace FundTrack.DAL.Entities
                 AccountType = model.AccountType,
                 Description = model.Description,
                 CurrentBalance = model.CurrentBalance,
-                TargetId = model.TargetId
+                TargetId = model.TargetId,
+                CreationDate = model.CreationDate
             };
         }
         public static implicit operator OrgAccountViewModel(OrgAccount item)
@@ -137,7 +138,8 @@ namespace FundTrack.DAL.Entities
                 AccountType = item.AccountType,
                 Description = item.Description,
                 CurrentBalance = item.CurrentBalance,
-                TargetId = item.TargetId
+                TargetId = item.TargetId,
+                CreationDate = item.CreationDate
             };
         }
         #endregion

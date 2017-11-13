@@ -13,20 +13,25 @@ namespace FundTrack.BLL.Concrete
     public class OrganizationAccountService : IOrganizationAccountService
     {
         private readonly IUnitOfWork _unitOfWork;
-        public OrganizationAccountService(IUnitOfWork unitOfWork)
+        private readonly IFixingBalanceService _fixingBalanceService;
+
+        public OrganizationAccountService(IUnitOfWork unitOfWork, IFixingBalanceService fixingBalanceService)
         {
             _unitOfWork = unitOfWork;
+            _fixingBalanceService = fixingBalanceService;
         }
         public OrgAccountViewModel CreateOrganizationAccount(OrgAccountViewModel model)
         {
             if (model.AccountType == "cash")
             {
                 var item = this.CreateCashAccount(model);
+                FixBalanceForCreatedAccount(item);
                 return item;
             }
             else if (model.AccountType == "bank")
             {
                 var item = this.CreateBankAccount(model);
+                FixBalanceForCreatedAccount(item);
                 return item;
             }
             else
@@ -558,6 +563,16 @@ namespace FundTrack.BLL.Concrete
             {
                 return false;
             }
+        }
+
+        private void FixBalanceForCreatedAccount(OrgAccountViewModel account)
+        {
+            _fixingBalanceService.AddNewBalance(new BalanceViewModel
+            {
+                Amount = account.CurrentBalance,
+                BalanceDate = account.CreationDate,
+                OrgAccountId = account.Id
+            });
         }
     }
 }
