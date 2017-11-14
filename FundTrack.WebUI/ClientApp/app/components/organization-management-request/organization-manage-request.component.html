@@ -48,26 +48,11 @@
                          </div>    
                         <div class="form-group">                      
                             <div>
-                                <!--<div *ngFor="let _currentImage of _requestedItem.images" style="display:inline-block">
-                                    <div class="img-container">
-                                        <img src="{{_currentImage.imageUrl}}" class="img-responsive img-thumbnail item-image">
-                                        <a (click)="deleteCurrentImage(_currentImage)"><span class="glyphicon glyphicon-remove"></span></a>
-                                    </div>
-                                </div>-->
-
                                 <div class="col-md-12">
                                     <div>
                                         <image-list [images]="images" (getImageChange)="onImageChange($event)"></image-list>
                                     </div>
                                 </div>
-
-                                <!--<div class="img-container">
-                                    <img src={{addingImage}}
-                                         (click)="imageInput.click()" class="img-responsive img-thumbnail add-image item-image" title="Додати зображення">
-                                    <input type="file" (change)="saveFileInAws($event)" #imageInput accept=".png,.jpg" class="well well-sm hidden">
-                                </div>-->
-
-                                
                             </div>
                         </div>
                         <div class='text-right'>

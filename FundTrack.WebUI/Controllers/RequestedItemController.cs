@@ -217,25 +217,6 @@ namespace FundTrack.WebUI.Controllers
         }
 
         /// <summary>
-        /// Delete currentImage from database
-        /// </summary>
-        /// <param name="currentImageId">Current image id</param>
-        [HttpDelete("DeleteCurrentImage/{currentImageId}")]
-        public JsonResult DeleteCurrentImage(int currentImageId)
-        {
-            try
-            {
-                this._requestedItemService.DeleteCurrentImage(currentImageId);
-
-                return new JsonResult(string.Empty);
-            }
-            catch (Exception ex)
-            {
-                return new JsonResult(ex.Message);
-            }
-        }
-
-        /// <summary>
         /// All the requested items of all organizations with additional information.
         /// </summary>
         /// <param name="id">The identifier.</param>

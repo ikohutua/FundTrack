@@ -8,6 +8,7 @@ import { GoodsCategoryViewModel } from "../../view-models/concrete/goodsCategory
 import { RequestedImageViewModel } from "../../view-models/abstract/organization-management-view-models/requested-item-view.model";
 import { SpinnerComponent } from "../../shared/components/spinner/spinner.component";
 import { Image } from "../../view-models/concrete/image.model";
+import * as default_messages from "../../shared/common-message.storage";
 
 @Component({
     selector: 'manage-request',
@@ -27,17 +28,8 @@ export class OrganizationManageRequestComponent implements OnInit {
     private _requestedItemId: number;
     private _currentOrgId: number;
     private _currentImageUrl: string[] = [];
-    private _requiredFieldMessage: string = "Обовязкове поле для заповнення";
-    private addingImage: string = "http://www.freeiconspng.com/uploads/add-icon--line-iconset--iconsmind-29.png";
-
-    //---------------------------------------------------------
+    private _requiredFieldMessage: string = default_messages.requiredFieldMessage;
     images: Image[] = [];
-
-    onImageChange(imgArr: Image[]) {
-        this.images = imgArr;
-    }
-    //---------------------------------------------------------
-
 
     ngOnInit(): void {
         this._route.params.subscribe(params => {
@@ -48,9 +40,12 @@ export class OrganizationManageRequestComponent implements OnInit {
         this.fillGoodtypes();
 
         if (this._requestedItemId) {
-            //for editing
             this.getByIdRequestedItem(this._requestedItemId);
         }
+    }
+
+    onImageChange(imgArr: Image[]) {
+        this.images = imgArr;
     }
 
     /**
@@ -101,11 +96,8 @@ export class OrganizationManageRequestComponent implements OnInit {
     private addRequestedItem() {
         this._requestedItem.goodsTypeId = this._selecteType.id;
         this._requestedItem.organizationId = this._currentOrgId;
-        //-------------------------------------------------------------------------------------------------------------------------
 
         this.setImagesForRequestedItem(this.images);
-
-        //-------------------------------------------------------------------------------------------------------------------------
 
         this._service.addRequestedItem(this._requestedItem)
             .subscribe((c) => {
@@ -183,11 +175,7 @@ export class OrganizationManageRequestComponent implements OnInit {
      */
     private manageRequestedItems() {
         if (this._requestedItemId > 0) {
-            //-------------------------------------------------------------------------------------------------------------------------
-
             this.setImagesForRequestedItem(this.images);
-
-            //-------------------------------------------------------------------------------------------------------------------------
             this.editRequestetItem(this._requestedItem);
         }
         else {

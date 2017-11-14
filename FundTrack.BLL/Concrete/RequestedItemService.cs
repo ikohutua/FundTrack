@@ -51,7 +51,7 @@ namespace FundTrack.BLL.Concrete
 
                 if (status == null)
                 {
-                    throw new BusinessLogicException($"Статус {InitialStatusName} не знайдено");
+                    throw new BusinessLogicException($"{ErrorMessages.StatusWasnotFound} {InitialStatusName}");
                 }
 
                 RequestedItem requestedItem = this.convertRequestedItem(requestedItemViewModel);
@@ -65,7 +65,7 @@ namespace FundTrack.BLL.Concrete
             }
             catch (Exception ex)
             {
-                string message = string.Format("Потреба не була створена. Помилка: {0}", ex.Message);
+                string message = $"{ErrorMessages.RequstWasnotCreated} {ErrorMessages.Error} { ex.Message}";
                 throw new BusinessLogicException(message, ex);
             }
         }
@@ -78,7 +78,7 @@ namespace FundTrack.BLL.Concrete
         {
             try
             {
-                var imagesNames = _unitOfWork.RequestedItemImageRepository.GetImagesByRequestedItemId(itemId).Select(i=>i.ImageUrl).ToList();
+                var imagesNames = _unitOfWork.RequestedItemImageRepository.GetImagesByRequestedItemId(itemId).Select(i => i.ImageUrl).ToList();
                 imagesNames.ForEach(name => _imgService.DeleteImageAsync(name));
 
                 _unitOfWork.RequestedItemImageRepository.DeleteImagesByRequestedItemId(itemId);
@@ -104,7 +104,7 @@ namespace FundTrack.BLL.Concrete
 
                 if (requestedItem == null)
                 {
-                    throw new BusinessLogicException($"Потреба з ідентифікатором {id} не знайдена");
+                    throw new BusinessLogicException($"{ErrorMessages.RequstWasnotFoundWithId} {id} ");
                 }
 
                 IEnumerable<RequestedImageViewModel> imagesList = this.convertRequestItemImageModelList(requestedItem.RequestedItemImages,
@@ -400,25 +400,6 @@ namespace FundTrack.BLL.Concrete
         }
 
         /// <summary>
-        /// Delete current image from database
-        /// </summary>
-        /// <param name="currentImageId">Current image id</param>
-        public void DeleteCurrentImage(int currentImageId)
-        {
-            try
-            {
-                this._unitOfWork.RequestedItemImageRepository.Delete(currentImageId);
-                this._unitOfWork.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                string message = string.Format("Зображення не було видалене. Помилка: {0}", ex.Message);
-
-                throw new BusinessLogicException(message, ex);
-            }
-        }
-
-        /// <summary>
         /// Gets requested item per page
         /// </summary>
         /// <param name="id">Id of organization</param>
@@ -437,7 +418,7 @@ namespace FundTrack.BLL.Concrete
             }
             catch (Exception ex)
             {
-                string message = string.Format("Список потреб не був отриманий. Помилка: {0}", ex.Message);
+                string message = $"{ErrorMessages.RequstListHaventBeenReceived} {ErrorMessages.Error} {ex.Message}";
 
                 throw new BusinessLogicException(message, ex);
             }
@@ -462,7 +443,7 @@ namespace FundTrack.BLL.Concrete
             }
             catch (Exception ex)
             {
-                string message = string.Format("Список потреб не був отриманий. Помилка: {0}", ex.Message);
+                string message = $"{ErrorMessages.RequstListHaventBeenReceived} {ErrorMessages.Error} {ex.Message}";
 
                 throw new BusinessLogicException(message, ex);
             }

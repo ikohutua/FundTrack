@@ -5,6 +5,7 @@
     /// </summary>
     public static class ErrorMessages
     {
+        public const string Error = "Помилка:";
         public const string RequiredFieldMessage = "Обовязкове поле для заповнення";
         public const string MinLengthMessage = "Мінімальна кількість символів повинна бути більша 7";
         public const string MaxLengthMessage = "Значення не повинно бути більше 20 символів";
@@ -62,5 +63,13 @@
         public const string FinopImagesIdErrorMessage = "Невірнийб менший за 0 або пустий ідентифікатор операції.";
         public const string CheckIdErrorMessage = "Невірний, менший за 0 або пустий ідентифікатор.";
 
+        //Requested Items
+
+        public const string RequstWasnotCreated = "Потреба не була створена.";
+        public const string RequstListHaventBeenReceived = "Список потреб не був отриманий.";
+        public const string RequstWasnotFoundWithId = "Не знайдена потреба з ідентифікатором";
+        public const string StatusWasnotFound = "Не знайдено статус";
+
+       
     }
 }

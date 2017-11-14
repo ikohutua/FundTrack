@@ -81,12 +81,6 @@ namespace FundTrack.BLL.Abstract
         UserResponseViewModel CreateUserResponse(UserResponseViewModel userResponse);
 
         /// <summary>
-        /// Delete current image from database
-        /// </summary>
-        /// <param name="currentId"></param>
-        void DeleteCurrentImage(int currentId);
-
-        /// <summary>
         /// Gets requested item per page
         /// </summary>
         IEnumerable<RequestedItemViewModel> GetRequestedItemPerPageByorganizationId(int id, int currentPage, int pageSize);
