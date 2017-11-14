@@ -44,11 +44,13 @@ export class InvoiceDeclarationReportComponent implements OnInit, OnDestroy {
         private route: ActivatedRoute) { }
 
     ngOnInit(): void {
+        this.getUserFromStorage();
         this.storageService.showDropDown = false;
         this.declarationRequestModel.orgid = 0;
         this.declarationRequestModel.dateFrom = moment().subtract(1, "month").format(this.DATE_FORMAT);
         this.declarationRequestModel.dateTo = moment().format(this.DATE_FORMAT);
-        this.getUserFromStorage();
+        this.declarationRequestModel.orgid = this.user.orgId;
+        this.getInvoiceDeclarationReport();
     }
 
     ngOnDestroy(): void {

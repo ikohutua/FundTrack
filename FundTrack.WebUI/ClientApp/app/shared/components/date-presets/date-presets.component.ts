@@ -25,7 +25,7 @@ export class DatePresetsComponent implements OnInit {
     private dropboxValue: number = 0;
     @Output() datePeriod = new EventEmitter<DatePeriod>();
 
-    selectedPreset: number = 0;
+    selectedPreset: number = 4;
     private presets: IPresets[] = [{ name: "Цей місяць", id: 0 },
     { name: "Минулий місяць", id: 1 },
     { name: "Цей тиждень", id: 2 },

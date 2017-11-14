@@ -9,20 +9,11 @@
                         Має бути опис події
                     </p>
                 </div>
-                <div class="form-group">
-                    <div>
-                        <div *ngFor="let _currentImage of _event.images" style="display:inline-block">
-                            <div class="img-container">
-                                <img src="{{_currentImage.imageUrl}}" class="img-responsive img-thumbnail item-image">
-                                <a (click)="deleteImageFromList(_currentImage.imageUrl)"><span class="glyphicon glyphicon-remove"></span></a>
-                            </div>
-                        </div>
-                        <div class="img-container">
-                            <img src="http://www.freeiconspng.com/uploads/add-icon--line-iconset--iconsmind-29.png" (click)="imageInput.click()" class="img-responsive img-thumbnail add-image item-image"
-                                title="Додати зображення">
-                            <input type="file" (change)="saveFileInAws($event)" #imageInput accept=".png,.jpg" class="well well-sm hidden">
-                        </div>
-                    </div>
+                <div class="form-group">  
+                    
+                        <div>
+                            <image-list [images]="images" (getImageChange)="onImageChange($event)"></image-list>
+                        </div>                      
                 </div>
                 <div class='text-right'>
                     <button class="btn btn-success pull-right" (click)="addNewEvent()" [disabled]="form.invalid">Зберегти</button>

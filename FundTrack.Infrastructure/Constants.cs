@@ -15,6 +15,7 @@ namespace FundTrack.Infrastructure
         public const string CashFinOpDescription = "Готівкова пожертва";
         public const string DefaultTargetName = "Призначення не вказано";
         public const string BaseTargetName = "Базове призначення";
+        public const string DefaultImageName = "default_image.png";
         public const string BaseImageURL = "https://fundrackss.blob.core.windows.net/fundtrackssimages/";
 
         public const string Anonymous = "<Анонімний>";

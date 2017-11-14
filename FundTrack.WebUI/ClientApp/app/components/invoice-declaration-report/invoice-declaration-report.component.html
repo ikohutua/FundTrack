@@ -18,14 +18,14 @@
             <div class="panel-body">
                 <table *ngIf="ifDataExists" class="table table-hover table-condensed table-striped">
                     <thead>
-                    <th>№ п.п.</th>
+                    <th>№</th>
                     <th>Рахунок</th>
-                    <th>Заг. залишок. на поч.</th>
-                    <th>Оборот прихід</th>
-                    <th>Переміщення прихід</th>
-                    <th>Оборот розхід</th>
-                    <th>Переміщення розхід</th>
-                    <th>Сума</th>
+                    <th>Залишок на початок ₴</th>
+                    <th>Оборот (прихід) ₴</th>
+                    <th>Переміщення (прихід) ₴</th>
+                    <th>Оборот (розхід) ₴</th>
+                    <th>Переміщення (розхід) ₴</th>
+                    <th>Залишок на кінець ₴</th>
                     </thead>
                     <tbody>
                         <tr *ngFor="let item of declarationResponseModel; let i=index;">

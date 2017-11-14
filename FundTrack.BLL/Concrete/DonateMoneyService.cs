@@ -22,7 +22,7 @@ namespace FundTrack.BLL.Concrete
         public OrganizationDonateAccountsViewModel GetAccountForDonation(int organizationId)
         {
             var orgAccounts = _unitOfWork.OrganizationAccountRepository.ReadOrgAccountsForDonations(organizationId)
-                              .Distinct((c1, c2) => c1.Target == c2.Target);
+                              .Distinct((c1, c2) => c1.TargetId == c2.TargetId);
 
             var result = new OrganizationDonateAccountsViewModel()
             {
@@ -42,7 +42,7 @@ namespace FundTrack.BLL.Concrete
                         MerchantPassword = orgAccount.BankAccount.MerchantPassword,
                         Name = orgAccount.OrgAccountName,
                         TargetId = orgAccount.TargetId,
-                        Target = orgAccount.TargetId == null ? "Загальний" : _unitOfWork.TargetRepository
+                        Target = orgAccount.TargetId == null ? "<Без призначення>" : _unitOfWork.TargetRepository
                                 .GetTargetById(orgAccount.TargetId.GetValueOrDefault()).TargetName
 
                     });
