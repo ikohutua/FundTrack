@@ -43,20 +43,8 @@ namespace FundTrack.WebUI
             // Available connection types : 'local','azure-main','azure-test', 'ss'
             string connectionType = "azure-main";
 
-
-            if (CurrentEnvironment.IsEnvironment("Testing"))
-            {
-                services.AddDbContext<FundTrackContext>(options =>
-                    options.UseInMemoryDatabase("TestDB"));
-            }
-            else
-            {
-                services.AddDbContext<FundTrackContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString(connectionType)));
-            }
-
-            //  services.AddDbContext<FundTrackContext>(options => options.UseSqlServer(Configuration.GetConnectionString(connectionType)));
-
+            services.AddDbContext<FundTrackContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString(connectionType)));
 
             services.AddCors(
      options => options.AddPolicy("AllowCors",

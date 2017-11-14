@@ -42,9 +42,12 @@ namespace FundTrack.Integration.Tests.Controllers
         [Fact]
         public async Task Get_Target_Bu_Id_Ok_Response_Valid_Data()
         {
+            //Arrange
+            var dbContext = _testContext.GetNewDbContext();
+
             var testTarget = GetTestTargetByField(t => t.Id == 1);
-            _testContext.DbContext.Targets.Add(testTarget);
-            _testContext.DbContext.SaveChanges();
+            dbContext.Targets.Add(testTarget);
+            dbContext.SaveChanges();
 
             //Act
             var response = await _testContext.Client.GetAsync($"/api/Target/GetTarget/{testTarget.Id}");
@@ -60,15 +63,19 @@ namespace FundTrack.Integration.Tests.Controllers
             Assert.Equal(testTarget.TargetName, resultTarget.Name);
             Assert.Equal(testTarget.OrganizationId, resultTarget.OrganizationId);
             Assert.True(resultTarget.IsDeletable);
+
+            dbContext.Dispose();
         }
 
         [Fact]
         public async Task Get_Targets_By_Organization_Id_Ok_Response_Valid_Data()
         {
             //Arrange
+            var dbContext = _testContext.GetNewDbContext();
+
             int testOrgId = 1;
-            _testContext.DbContext.Targets.AddRange(GetTestTargets());
-            _testContext.DbContext.SaveChanges();
+            dbContext.Targets.AddRange(GetTestTargets());
+            dbContext.SaveChanges();
 
             //Act
             var response = await _testContext.Client.GetAsync($"/api/Target/GetAllTargetsOfOrganization/{testOrgId}");
@@ -81,6 +88,8 @@ namespace FundTrack.Integration.Tests.Controllers
 
             Assert.True(HttpStatusCode.OK == response.StatusCode);
             Assert.True(resultTargets.All( t => t.OrganizationId == testOrgId));
+
+            dbContext.Dispose();
         }
     }
 }

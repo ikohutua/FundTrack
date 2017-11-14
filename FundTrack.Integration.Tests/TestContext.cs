@@ -13,24 +13,27 @@ namespace FundTrack.Integration.Tests
     {
         private TestServer _server;
         public HttpClient Client { get; private set; }
-        public FundTrackContext DbContext { get; private set; }
 
         public TestContext()
         {
             var builder = new WebHostBuilder()
           .UseEnvironment("Testing")
-          .UseStartup<Startup>();
+          .UseStartup<TestStartup>();
 
             _server = new TestServer(builder);
-            DbContext = _server.Host.Services.GetService(typeof(FundTrackContext)) as FundTrackContext;
             Client = _server.CreateClient();
+        }
+
+        public FundTrackContext GetNewDbContext()
+        {
+           return _server.Host.Services.GetService(typeof(FundTrackContext)) as FundTrackContext;
         }
 
         public void Dispose()
         {
             _server?.Dispose();
             Client?.Dispose();
-            DbContext?.Dispose();
+
         }
     }
 }
