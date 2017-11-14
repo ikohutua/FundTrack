@@ -109,6 +109,35 @@ namespace FundTrack.Integration.Tests.Controllers
             Assert.True(resultTargets.Count() == 3);
         }
 
-       
+        [Fact]
+        public async Task AddTarget_Ok_Response_Valid_Data()
+        {
+            //Arrange
+            var dbContext = _testContext.GetClearDbContext();
+            var testTarget = ConvertToTargetViewModel(GetTestTargetByField(t => t.Id == 1));
+
+            //Act
+            var options = JsonConvert.SerializeObject(testTarget);
+            var pairs = new List<KeyValuePair<string, string>>
+            {
+                new KeyValuePair<string, string>("target", options)
+            };
+            var content = new FormUrlEncodedContent(pairs);
+
+            var response = await _testContext.Client.PostAsync($"/api/Target/CreateTarget", content);
+            var stream = await response.Content.ReadAsStreamAsync();
+            var reader = new StreamReader(stream, Encoding.UTF8);
+            var resultTarget = new JsonSerializer().Deserialize<TargetViewModel>(new JsonTextReader(reader));
+
+            //Assert
+            response.EnsureSuccessStatusCode();
+
+            //Assert.True(HttpStatusCode.OK == response.StatusCode);
+            //Assert.Equal(testTarget.Id, resultTarget.TargetId);
+            //Assert.Equal(testTarget.TargetName, resultTarget.Name);
+            //Assert.Equal(testTarget.OrganizationId, resultTarget.OrganizationId);
+            //Assert.True(resultTarget.IsDeletable);
+        }
+
     }
 }
