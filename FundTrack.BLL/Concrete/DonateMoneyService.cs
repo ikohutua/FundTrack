@@ -189,8 +189,8 @@ namespace FundTrack.BLL.Concrete
                 dateTo = dateTo.AddDays(1);
                 var result = GetUserDonations(userId)
                     .Where(donat =>
-                    (donat.Date <= dateTo)
-                    && (donat.Date >= dateFrom))
+                    (donat.Date.Date <= dateTo.Date)
+                    && (donat.Date.Date >= dateFrom.Date))
                     .OrderByDescending(donation => donation.Date).ToList();
                 return result;
             }
