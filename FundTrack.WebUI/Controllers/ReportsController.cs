@@ -109,7 +109,7 @@ namespace FundTrack.WebUI.Controllers
         [HttpGet("GetSubTargets/{orgId}/{finOpType}/{baseTargetId}")]
         public ActionResult GetSubTargets(int orgId, int finOpType, int baseTargetId, DateTime dateFrom, DateTime dateTo)
         {
-            if (isDateValid(dateFrom, dateTo) && isIdValid(orgId) && isIdValid(finOpType) && isIdValid(baseTargetId))
+            if (isDateValid(dateFrom, dateTo) && isIdValid(orgId))
             {
                 return Ok(_organizationStatisticsService.GetSubTargets(orgId, finOpType, baseTargetId, dateFrom, dateTo));
             }
@@ -119,9 +119,9 @@ namespace FundTrack.WebUI.Controllers
 
         [Authorize(Roles = "admin, moderator")]
         [HttpGet("GetFinOpsByTargetId/{finOpType}/{targetId}")]
-        public ActionResult GetFinOpsByTargetId(int finOpType, int targetId, DateTime dateFrom, DateTime dateTo)
+        public ActionResult GetFinOpsByTargetId(int finOpType, int? targetId, DateTime dateFrom, DateTime dateTo)
         {
-            if (isDateValid(dateFrom, dateTo) && isIdValid(finOpType))
+            if (isDateValid(dateFrom, dateTo))
             {
                 return Ok(_organizationStatisticsService.GetFinOpsByTargetId(finOpType, targetId, dateFrom, dateTo));
             }

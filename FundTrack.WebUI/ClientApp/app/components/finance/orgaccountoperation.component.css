@@ -299,3 +299,39 @@ However, delay the fade out process for 2.5 seconds */
 .emptyDiv {
     padding: 20px;
 }
+
+.img-big {
+    height: 200px !important;
+    width: auto;
+}
+
+.imageSelected {
+    width: 540px;
+    position: relative;
+}
+
+.arrow-back, .arrow-forward {
+    position: absolute;
+    opacity: 0.8;
+    background-color: white;
+    padding: 10px;
+    top: 190px;
+    color: black;
+    cursor: pointer;
+}
+
+.arrow-forward {
+    left: 612px;
+}
+
+.arrow-back {
+    right: 612px;
+}
+
+.thumbnail {
+    margin-bottom: 20px;
+    padding: 0px;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+}

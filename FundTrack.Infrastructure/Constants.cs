@@ -16,6 +16,8 @@ namespace FundTrack.Infrastructure
         public const string DefaultTargetName = "Призначення не вказано";
         public const string BaseTargetName = "Базове призначення";
         public const int DefaultImportInterval = 720;
+        public const string BaseImageURL = "https://fundrackss.blob.core.windows.net/fundtrackssimages/";
+
         public const string Anonymous = "<Анонімний>";
         public const int AnyFinOpType = -1;
     }

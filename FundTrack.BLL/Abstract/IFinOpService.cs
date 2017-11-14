@@ -61,6 +61,8 @@ namespace FundTrack.BLL.Abstract
 
         IEnumerable<int> GetFinOpInitData(int accountId);
 
+        IEnumerable<string> GetImagesById(int finOpId);
+
         /// <summary>
         /// Gets all finOps by organizationId
         /// </summary>

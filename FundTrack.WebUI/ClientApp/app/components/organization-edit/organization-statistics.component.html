@@ -3,25 +3,9 @@
 <div class="container">
     <h1 class="page-header">Звіт по призначеннях</h1>
     
-    <div>
-        <div class="panel panel-default col-md-9">
-            <div class="panel-body">
-                <h4 class="muted">Період</h4>
-                <div class="col-md-5">
-                    <div class="input-daterange input-group" id="datepicker">
-                        <span class="input-group-addon" id="basic-addon1">Від: </span>
-                        <input type="date" class="input-sm form-control no-spin" #startDate onkeydown="return false" (input)="setBeginDate(startDate.value)" [value]="dateFrom | date:'yyyy-MM-dd'" min="2000-01-01" max="{{inputMaxDate | date:'yyyy-MM-dd'}}" />
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                    </div>
-                </div>
-                <div class="col-md-5">
-                    <div class="input-daterange input-group" id="datepicker">
-                        <span class="input-group-addon" id="basic-addon1">До: </span>
-                        <input type="date" class="input-sm form-control no-spin" #endDate onkeydown="return false" (input)="setEndDate(endDate.value)" [value]="dateTo | date:'yyyy-MM-dd'" min="2000-01-01" max="{{inputMaxDate | date:'yyyy-MM-dd'}}" />
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                    </div>
-                </div>
-            </div>
+    <div>        
+        <div class="col-md-9">
+            <date-presets (datePeriod)="onDatePeriodChange($event)"></date-presets>
         </div>
         <div class="panel panel-default col-md-2 col-md-offset-1">
             <div class="panel-body">
