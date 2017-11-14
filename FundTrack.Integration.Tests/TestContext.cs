@@ -12,6 +12,7 @@ namespace FundTrack.Integration.Tests
     public class TestContext : IDisposable
     {
         private TestServer _server;
+        private FundTrackContext _dbContect;
         public HttpClient Client { get; private set; }
 
         public TestContext()
@@ -22,18 +23,21 @@ namespace FundTrack.Integration.Tests
 
             _server = new TestServer(builder);
             Client = _server.CreateClient();
+            _dbContect = _server.Host.Services.GetService(typeof(FundTrackContext)) as FundTrackContext;
+
         }
 
-        public FundTrackContext GetNewDbContext()
+        public FundTrackContext GetClearDbContext()
         {
-           return _server.Host.Services.GetService(typeof(FundTrackContext)) as FundTrackContext;
+            _dbContect.Database.EnsureDeleted();
+            return _dbContect;
         }
 
         public void Dispose()
         {
             _server?.Dispose();
             Client?.Dispose();
-
+            _dbContect.Dispose();
         }
     }
 }
