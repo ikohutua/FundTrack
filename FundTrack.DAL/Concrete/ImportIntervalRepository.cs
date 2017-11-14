@@ -40,12 +40,5 @@ namespace FundTrack.DAL.Concrete
         {
             return _context.Update(autoImportIntervals).Entity;
         }
-
-        public AutoImportIntervals Update(int orgId, DateTime date)
-        {
-            var interval = _context.AutoImportInterval.FirstOrDefault(i => i.OrgId == orgId);
-            interval.LastUpdateDate = date;
-            return _context.Update(interval).Entity;
-        }
     }
 }

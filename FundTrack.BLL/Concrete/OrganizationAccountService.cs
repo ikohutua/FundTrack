@@ -87,6 +87,21 @@ namespace FundTrack.BLL.Concrete
             }
         }
 
+
+        public bool IsBankAccountsWithImportAvailable(int organizationId)
+        {
+            try
+            {
+                return _unitOfWork.BankAccountRepository.Read()
+                    .Any(ba => ba.OrgId==organizationId
+                    && ba.ExtractMerchantId!=null
+                    && ba.ExtractMerchantPassword!=null);
+            }
+            catch (Exception ex)
+            {
+                throw new BusinessLogicException(ErrorMessages.CantFindItem, ex);
+            }
+        }
         public IEnumerable<OrgAccountViewModel> GetAccountsByOrganizationId(int organizationId)
         {
             try
@@ -264,7 +279,7 @@ namespace FundTrack.BLL.Concrete
         }
         public string ValidateOrgAccount(OrgAccountViewModel model)
         {
-            ///Checks if account with such name already exists within organization
+            //Checks if account with such name already exists within organization
             foreach (var item in this._unitOfWork.OrganizationAccountRepository.ReadAllOrgAccounts(model.OrgId))
             {
                 if (item.OrgAccountName == model.OrgAccountName)
@@ -274,7 +289,7 @@ namespace FundTrack.BLL.Concrete
             }
             if (model.AccountType == "bank")
             {
-                ///Checks if account with such bank number already exists within all organizations
+                //Checks if account with such bank number already exists within all organizations
                 foreach (var item in this._unitOfWork.OrganizationAccountRepository.GetAllOrgAccounts().Where(a => a.AccountType == "Банк"))
                 {
                     if (item.BankAccount.AccNumber != null && item.BankAccount.AccNumber == model.AccNumber)

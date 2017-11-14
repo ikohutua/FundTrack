@@ -54,7 +54,9 @@ export class DropdownOrganizationsComponent implements OnInit{
     * @param IOrganizationForFiltering
     */
     public onSelect(org?: IOrganizationForFiltering): void {
-        this._selectedOrganizationName = org.name;
-        sessionStorage.setItem("id", org.id.toString());
+        if (org != undefined) {
+            this._selectedOrganizationName = org.name;
+            sessionStorage.setItem("id", org.id.toString());
+        }
     }
 }

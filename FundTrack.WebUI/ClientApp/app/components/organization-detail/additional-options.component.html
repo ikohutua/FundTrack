@@ -1,0 +1,25 @@
+﻿<div>
+    <div *ngIf="!showSpinner" class="background">
+        <div class="panel panel-default">
+            <div class="panel-heading text-truncate" style="font-size:medium;text-align:center;">
+                Додаткові налаштування та довідка для адміністраторів та модераторів організації.
+            </div>
+        </div>
+        <div>
+            <div>
+                <span>Налаштування інтервалу для автоматичного імпорту інформації про виписки з Privat24</span>
+                <span *ngIf="!isBankAccountsAvailable">
+                    У вашої організації немає банківських рахунків для цієї можливості. Створіть <a [routerLink]="['/finance/orgaccounts']" class="linkBack">новий</a>
+                    банківський рахунок та підключіть мерчант Privat24 або зробіть це з вже існуючим рахунком
+                </span>
+            </div>
+            <div>
+                <br><label class="control-label col-md-6 ">Виберіть інтервал для оновлення:</label>
+                <select class="form-control col-md-2" [(ngModel)]="intervals.minutes" required="" id="interval" (ngModelChange)="onChangeSelection($event)">
+                    <option [ngValue]="undefined" selected>Інтервал</option>
+                    <option *ngFor="let item of intervals" value={{(item.minutes)*1}}>{{item.name}}</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</div>
