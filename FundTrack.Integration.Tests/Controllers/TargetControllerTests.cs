@@ -55,6 +55,8 @@ namespace FundTrack.Integration.Tests.Controllers
             var reader = new StreamReader(stream, Encoding.UTF8);
             var resultTarget = new JsonSerializer().Deserialize<TargetViewModel>(new JsonTextReader(reader));
 
+            dbContext.Dispose();
+
             //Assert
             response.EnsureSuccessStatusCode();
 
@@ -63,8 +65,6 @@ namespace FundTrack.Integration.Tests.Controllers
             Assert.Equal(testTarget.TargetName, resultTarget.Name);
             Assert.Equal(testTarget.OrganizationId, resultTarget.OrganizationId);
             Assert.True(resultTarget.IsDeletable);
-
-            dbContext.Dispose();
         }
 
         [Fact]
@@ -82,14 +82,14 @@ namespace FundTrack.Integration.Tests.Controllers
             var stream = await response.Content.ReadAsStreamAsync();
             var reader = new StreamReader(stream, Encoding.UTF8);
             var resultTargets = new JsonSerializer().Deserialize<IEnumerable<TargetViewModel>>(new JsonTextReader(reader));
+            dbContext.Dispose();
 
             //Assert
             response.EnsureSuccessStatusCode();
 
             Assert.True(HttpStatusCode.OK == response.StatusCode);
             Assert.True(resultTargets.All( t => t.OrganizationId == testOrgId));
-
-            dbContext.Dispose();
+            Assert.True(resultTargets.Count() == 3);
         }
     }
 }
