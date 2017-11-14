@@ -15,8 +15,8 @@
             </div>
 
 
-            <div class="panel-body">
-                <table *ngIf="ifDataExists" class="table table-hover table-condensed table-striped">
+            <div *ngIf="ifDataExists" class="panel-body">
+                <table  class="table table-hover table-condensed table-striped">
                     <thead>
                     <th>№</th>
                     <th>Рахунок</th>
@@ -40,6 +40,11 @@
                         </tr>
                     </tbody>
                 </table>
+            </div>
+            <div *ngIf="!ifDataExists" class="tab-content">
+                <div class="panel-heading text-truncate" style="font-size:medium;text-align:center;">
+                    Дані відсутні.
+                </div>
             </div>
 
 

@@ -74,11 +74,17 @@ export class InvoiceDeclarationReportComponent implements OnInit, OnDestroy {
             this.declarationRequestModel.dateFrom,
             this.declarationRequestModel.dateTo)
             .subscribe((outcomeData: InvoiceDeclarationResponseViewModel[]) => {
-                this.declarationResponseModel = outcomeData;
-                this.checkIncomeSum();
-                this.ifDataExists = true;
+                if (outcomeData.length != 0) {
+                    this.declarationResponseModel = outcomeData;
+                    this.checkIncomeSum();
+                    this.ifDataExists = true;
+                }
+                else {
+                    this.ifDataExists = false;
+                }
             },
             error => {
+              
                 this.errorMessage = error;
                 this.openModal(this.exceptionModal);
             });
