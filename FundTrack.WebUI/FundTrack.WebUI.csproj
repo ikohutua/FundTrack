@@ -10,6 +10,7 @@
     <TargetFramework>netcoreapp1.1</TargetFramework>
     <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
     <PackageTargetFallback>$(PackageTargetFallback);portable-net45+win8+wp8+wpa81;</PackageTargetFallback>
+    <UserSecretsId>48b5710d-9b0b-4a77-8381-a323bf021ea3</UserSecretsId>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Facebook.SDK" Version="1.0.0" />
@@ -40,10 +41,13 @@
   </ItemGroup>
   <ItemGroup>
     <!-- Files not to show in IDE -->
+    <None Remove="ClientApp\app\components\organization-detail\additional-options.component.ts" />
+    <None Remove="ClientApp\app\view-models\concrete\autoimport-interval-view-model.ts" />
     <None Remove="ClientApp\app\view-models\concrete\data-set-view.model.ts" />
     <None Remove="ClientApp\app\components\finance\incomeoperation.component.ts" />
     <None Remove="ClientApp\app\components\finance\spendingoperation.component.ts" />
     <None Remove="ClientApp\app\components\finance\transferoperation.component.ts" />
+    <None Remove="ClientApp\app\view-models\concrete\import-interval-view-model.ts" />
     <None Remove="node_modules.zip" />
     <None Remove="Properties\PublishProfiles\fundtrack261 - Web Deploy.pubxml" />
     <None Remove="yarn.lock" />
@@ -78,12 +82,15 @@
     <Folder Include="wwwroot\images\" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\app\components\organization-detail\additional-options.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\view-models\concrete\autoimport-interval-view-model.ts" />
     <TypeScriptCompile Include="ClientApp\app\view-models\concrete\data-set-view.model.ts" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\app\components\finance\incomeoperation.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\finance\spendingoperation.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\finance\transferoperation.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\view-models\concrete\import-interval-view-model.ts" />
   </ItemGroup>
   <Target Name="RunWebpack" AfterTargets="ComputeFilesToPublish">
     <!-- As part of publishing, ensure the JS resources are freshly built in production mode -->
@@ -100,5 +107,5 @@
       </ResolvedFileToPublish>
     </ItemGroup>
   </Target>
-  <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JSONSchema="" /></VisualStudio></ProjectExtensions>
+  <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JSONSchema="http://json.schemastore.org/commands" /></VisualStudio></ProjectExtensions>
 </Project>

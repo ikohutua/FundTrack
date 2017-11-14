@@ -37,19 +37,18 @@ export class MyDonationsComponent implements OnInit {
             if (localStorage.getItem(key.keyToken)) {
                 this.user = JSON.parse(localStorage.getItem(key.keyModel)) as AuthorizeUserModel;
             }
+            this.donateService.getUserDonations(this.user.id).subscribe(donation => {
+                if (donation.length != 0) {
+                    this.isDataExist = true;
+                    this.myDonations = donation;
+                    this.filteringModel.dateFrom = this.myDonations[this.myDonations.length - 1].date;
+                }
+                else {
+                    this.isDataExist = false;
+                }
+                this.showSpinner = false;
+            });
         };
-
-        this.donateService.getUserDonations(this.user.id).subscribe(donation => {
-            if (donation.length != 0) {
-                this.isDataExist = true;
-                this.myDonations = donation;
-                this.filteringModel.dateFrom = this.myDonations[this.myDonations.length-1].date;
-            }
-            else {
-                this.isDataExist = false;
-            }
-            this.showSpinner = false;
-        });
     }
     private donationWhenDateChanged() {
         this.donateService.getUserDonationsByDate(this.user.id, this.datePipe.transform(this.filteringModel.dateFrom, 'yyyy-MM-dd'), this.datePipe.transform(this.filteringModel.dateTo, 'yyyy-MM-dd'))

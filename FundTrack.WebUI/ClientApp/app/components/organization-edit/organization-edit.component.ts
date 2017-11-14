@@ -74,8 +74,9 @@ export class OrganizationEditComponent implements OnInit, OnDestroy, AfterViewIn
     newModerator: AddModeratorViewModel = new AddModeratorViewModel();
     addressToEdit: AddressViewModel = new AddressViewModel();
     isModalShown: boolean = false;
-    constructor(private _actRouter: ActivatedRoute, private _getInfoService: OrganizationGetGeneralInfoService, private _editService: EditOrganizationService) {
-
+    constructor(private _actRouter: ActivatedRoute,
+        private _getInfoService: OrganizationGetGeneralInfoService,
+        private _editService: EditOrganizationService) {
     }
 
     ngOnInit() {
