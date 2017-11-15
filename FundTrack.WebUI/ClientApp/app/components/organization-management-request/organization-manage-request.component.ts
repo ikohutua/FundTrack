@@ -120,7 +120,7 @@ export class OrganizationManageRequestComponent implements OnInit {
             reqItemImg.id = images[i].id == undefined ? -1 : images[i].id;
             reqItemImg.base64Data = images[i].base64Data;
             reqItemImg.isMain = images[i].isMain;
-            reqItemImg.imageUrl = images[i].imageSrc;
+            reqItemImg.imageUrl = images[i].imageUrl;
             reqItemImg.imageExtension = images[i].imageExtension;
             this._requestedItem.images.push(reqItemImg);
         };
