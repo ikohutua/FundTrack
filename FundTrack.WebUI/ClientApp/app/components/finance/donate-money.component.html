@@ -43,12 +43,12 @@
                     </div>
                 </div>
 
-                <div  class="indent">
-                    <label> Призначення</label>
-                    <select class="form-control" formControlName="accountForDonation" [(ngModel)]="accountForDonation" (ngModelChange)="onSelectChange($event)">
-                        <option class="form-control"  *ngFor="let accountForDonation of donateAccounts" [ngValue]="accountForDonation"> {{accountForDonation.target}} </option>
+                <div [hidden]="!this.hasAccountForDonate" class="indent">
+                    <label> Призначення </label>
+                    <select   class="form-control" formControlName="accountForDonation" [(ngModel)]="accountForDonation" (ngModelChange)="onSelectChange($event)">
+                        <option   class="form-control"  *ngFor="let accountForDonation of donateAccounts" [ngValue]="accountForDonation"> {{accountForDonation.target}} </option>
                     </select>
-                    <p *ngIf="accountForDonation.description" class="message">
+                    <p [hidden]="!this.hasAccountForDonate" *ngIf="accountForDonation.description" class="message">
                         <strong> Опис рахунку: </strong> {{accountForDonation.description}}
                     </p>
                     <div *ngIf="formErrors.accountForDonation">
@@ -61,9 +61,7 @@
             
                     </textarea><br />
                 </div>
-                <div class="indent">
-                    <button type="reset" class="btn btn-primary  pull-left" style="margin-bottom: 20px;" (click)="sendDonateRequest()" > Скасувати </button>
-                </div>
+                
                 <div class="indent">
                     <button type="submit" class="btn btn-primary right" style="margin-bottom: 20px;" (click)="sendDonateRequest()" [disabled]="!hasAccountForDonate"> Пожертвувати </button>
                 </div>

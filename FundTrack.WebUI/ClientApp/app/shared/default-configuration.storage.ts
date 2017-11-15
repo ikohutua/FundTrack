@@ -1,4 +1,6 @@
-﻿export const defaultOrganizationLogoUrl: string = "https://www.justpro.co/img/no-image.png";
+﻿import { ImportIntervalViewModel } from "../view-models/concrete/import-interval-view-model";
+
+export const defaultOrganizationLogoUrl: string = "https://www.justpro.co/img/no-image.png";
 export const imageRegExPattern: RegExp = /image*/;
 export const maxImageSize: number = 4000000;
 export const maxImagesCountInList: number = 8;
@@ -16,3 +18,7 @@ export const transferId: number = 2;
 export const defaultTargetName: string = "Базове призначення";
 export const selectedCategoryName: string = "Базові";
 export const successMessageUA: string = "Операція виконана успішно";
+
+ export const intervals: ImportIntervalViewModel[] = new Array<ImportIntervalViewModel>
+    (new ImportIntervalViewModel("1 День", 1440), new ImportIntervalViewModel("2 Денs", 2880),
+    new ImportIntervalViewModel("12 Годин", 720), new ImportIntervalViewModel("6 Годин", 360));

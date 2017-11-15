@@ -142,8 +142,10 @@ export class OrgAccountListComponent implements OnInit {
     */
     private onDelete(accountNumber: number) {
         this.accounts.splice(this.accounts.findIndex(o => o.id == accountNumber), 1);
-        this.setActiveAccount(this.accounts[0]);
-        this.filterAccounts();
+        if (this.accounts.length != 0) {
+            this.setActiveAccount(this.accounts[0]);
+            this.filterAccounts();
+        }
     }
 
     private checkIfAccountHasCard(account: OrgAccountViewModel): boolean {

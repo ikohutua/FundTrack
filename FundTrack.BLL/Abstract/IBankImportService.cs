@@ -42,6 +42,8 @@ namespace FundTrack.BLL.Abstract
 
         AutoImportIntervals UpdateDate(int orgId );
 
+        AutoImportIntervals UpdateInterval(AutoImportIntervalViewModel interval);
+
         Task<string> ImportWithDates(PrivatImportViewModel model);
 
         IEnumerable<ImportDetailPrivatViewModel> getAllSuggestedBankImports(decimal amount, DateTime date);

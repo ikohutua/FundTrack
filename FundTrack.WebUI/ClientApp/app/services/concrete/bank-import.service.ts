@@ -3,9 +3,6 @@ import { Http, RequestOptions, Headers } from "@angular/http";
 import { Observable } from "rxjs/Observable";
 import { PrivatSessionViewModel } from "../../view-models/concrete/privat-session-view.model";
 import { Response } from '@angular/http';
-import { Md5 } from 'ts-md5/dist/md5';
-import * as xml2js from 'xml2js';
-import sha1 = require('sha1');
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/catch';
@@ -18,6 +15,7 @@ import { BaseSpinnerService } from "../abstract/base-spinner-service";
 import { SpinnerComponent } from "../../shared/components/spinner/spinner.component";
 import { RequestOptionsService } from "./request-options.service";
 import { GlobalUrlService } from "./global-url.service";
+import { AutoImportIntervalViewModel } from "../../view-models/concrete/autoimport-interval-view-model";
 
 @Injectable()
 export class BankImportService extends BaseSpinnerService<ImportDetailPrivatViewModel>{
@@ -32,28 +30,28 @@ export class BankImportService extends BaseSpinnerService<ImportDetailPrivatView
      */
     public getUserExtracts(orgAccountId: number, spinner?: SpinnerComponent) {
         if (this.checkAuthorization()) {
-            return this._http.post(GlobalUrlService.PrivatExtract, orgAccountId, RequestOptionsService.getRequestOptions())
+            return this._http.post(GlobalUrlService.privatExtract, orgAccountId, RequestOptionsService.getRequestOptions())
                 .map((response: Response) => response.json());
         }
     }
 
     public getPrivatExtracts(data: DataRequestPrivatViewModel, spinner?: SpinnerComponent) {
         if (this.checkAuthorization()) {
-            return this._http.post(GlobalUrlService.PrivatExtractWithDate, data, RequestOptionsService.getRequestOptions())
+            return this._http.post(GlobalUrlService.privatExtractWithDate, data, RequestOptionsService.getRequestOptions())
                 .map((response: Response) => response.json());
         }
     }
 
     public UpdateDate(orgId: number):Observable<Date> {
         if (this.checkAuthorization()) {
-            return this._http.get(GlobalUrlService.UpdateDate + '/' + orgId , RequestOptionsService.getRequestOptions())
+            return this._http.get(GlobalUrlService.updateDate + '/' + orgId , RequestOptionsService.getRequestOptions())
                 .map((response: Response) => response.json() as Date);
         }
     }
 
     public getLastPrivatUpdate(orgId: number): Observable<Date> {
         if (this.checkAuthorization()) {
-            return this._http.get(GlobalUrlService.LastUpdate + '/' + orgId, RequestOptionsService.getRequestOptions())
+            return this._http.get(GlobalUrlService.lastUpdate + '/' + orgId, RequestOptionsService.getRequestOptions())
                 .map((response: Response) => { return response.json() as Date })
                 .catch(this.handleError);
         }
@@ -66,7 +64,7 @@ export class BankImportService extends BaseSpinnerService<ImportDetailPrivatView
      */
     public registerBankExtracts(bankImport: ImportDetailPrivatViewModel[]): Observable<ImportDetailPrivatViewModel[]> {
         if (this.checkAuthorization()) {
-            return this._http.post(GlobalUrlService.RegisterNewExtracts, bankImport, RequestOptionsService.getRequestOptions())
+            return this._http.post(GlobalUrlService.registerNewExtracts, bankImport, RequestOptionsService.getRequestOptions())
                 .map((response: Response) => <ImportDetailPrivatViewModel[]>response.json())
                 .catch(this.handleError);
         }
@@ -109,21 +107,19 @@ export class BankImportService extends BaseSpinnerService<ImportDetailPrivatView
         }
     }
 
-    
-    /**
-    * Create RequestOptions
-    */
-    private getRequestOptions() {
-        let headers = new Headers({ 'Content-Type': 'application/json' });
-        headers.append("Authorization", "Bearer " + localStorage.getItem(key.keyToken));
-        let options = new RequestOptions({ headers: headers });
-        return options;
-    }
-
     public getAllSuggestedBankImports(amount: number, date: Date): Observable<ImportDetailPrivatViewModel[]> {
         if (this.checkAuthorization()) {
-            return this._http.get(GlobalUrlService.getAllSuggestedBankImportUrl + '/' + amount + '/' + date, this.getRequestOptions())
+            return this._http.get(GlobalUrlService.getAllSuggestedBankImportUrl + '/' + amount + '/' + date, RequestOptionsService.getRequestOptions())
                 .map((response: Response) => <ImportDetailPrivatViewModel[]>response.json())
+                .catch(this.handleError);
+        }
+    }
+
+    public updateInterval(model: AutoImportIntervalViewModel ): Observable<AutoImportIntervalViewModel> {
+        if (this.checkAuthorization()) {
+            debugger;
+            return this._http.put(GlobalUrlService.updateInterval, model, RequestOptionsService.getRequestOptions())
+                .map((response: Response) => response.json() as AutoImportIntervalViewModel)
                 .catch(this.handleError);
         }
     }

@@ -3,12 +3,13 @@
         <div class="well">
             <h2>{{_event.createDate|date:'d.M.y - H:m'}}</h2>
             <div class="row">
-                <div *ngIf="_images" class="col-md-2 col-md-offset-0">
-                    <gallery [datasource]="_images"></gallery>
+                <div *ngIf="_event.images" class="col-md-2 col-md-offset-0">
+                    <gallery [datasource]="_event.images.imageUrl"></gallery>
                 </div>
                 <div>
-                    <img class="img img-thumbnail" [src]="_images[0] ? _images[0] : '/images/NotAvailableImage7x3.jpg'" />
+                    <img class="img img-thumbnail" [src]="_event.images[0].imageUrl ? _event.images[0].imageUrl : '/images/NotAvailableImage7x3.jpg'" />
                 </div>
+                
             </div>
             <div class="row">
                 <div class="text">

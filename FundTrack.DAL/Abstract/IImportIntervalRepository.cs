@@ -16,8 +16,6 @@ namespace FundTrack.DAL.Abstract
 
         AutoImportIntervals Update(AutoImportIntervals autoImportIntervals);
 
-        AutoImportIntervals Update(int orgId, DateTime date);
-
         void Delete(int autoImportIntervalsId);
     }
 }
