@@ -8,6 +8,8 @@ import { isBrowser } from "angular2-universal";
 import * as key from "../../shared/key.storage";
 import { Subject } from "rxjs/Subject";
 import 'rxjs/add/operator/catch';
+import * as moment from "moment/moment";
+import { DatePeriod } from "../../shared/components/date-presets/date-period-class";
 
 @Component({
     selector: 'my-donations',
@@ -16,6 +18,7 @@ import 'rxjs/add/operator/catch';
 })
 export class MyDonationsComponent implements OnInit {
 
+    private readonly DATE_FORMAT = "YYYY-MM-DD";
     private user: AuthorizeUserModel = new AuthorizeUserModel();
     private myDonations: UserDonationViewModel[] = new Array<UserDonationViewModel>();
     private filteringModel: UserDonationFilteringViewModel = new UserDonationFilteringViewModel();
@@ -30,29 +33,28 @@ export class MyDonationsComponent implements OnInit {
     ngOnInit(): void {
         this.showSpinner = true;
         this.filteringModel.id = 0;
-        this.filteringModel.dateFrom = new Date();
-        this.filteringModel.dateTo = new Date();
+        this.filteringModel.dateFrom = moment().subtract(1, "month").format(this.DATE_FORMAT);
+        this.filteringModel.dateTo = moment().format(this.DATE_FORMAT);
 
         if (isBrowser) {
             if (localStorage.getItem(key.keyToken)) {
                 this.user = JSON.parse(localStorage.getItem(key.keyModel)) as AuthorizeUserModel;
             }
+            this.donateService.getUserDonationsByDate(this.user.id, this.filteringModel.dateFrom, this.filteringModel.dateTo)
+                .subscribe(donation => {
+                if (donation.length != 0) {
+                    this.isDataExist = true;
+                    this.myDonations = donation;
+                }
+                else {
+                    this.isDataExist = false;
+                }
+                this.showSpinner = false;
+            });
         };
-
-        this.donateService.getUserDonations(this.user.id).subscribe(donation => {
-            if (donation.length != 0) {
-                this.isDataExist = true;
-                this.myDonations = donation;
-                this.filteringModel.dateFrom = this.myDonations[this.myDonations.length-1].date;
-            }
-            else {
-                this.isDataExist = false;
-            }
-            this.showSpinner = false;
-        });
     }
     private donationWhenDateChanged() {
-        this.donateService.getUserDonationsByDate(this.user.id, this.datePipe.transform(this.filteringModel.dateFrom, 'yyyy-MM-dd'), this.datePipe.transform(this.filteringModel.dateTo, 'yyyy-MM-dd'))
+        this.donateService.getUserDonationsByDate(this.user.id, this.filteringModel.dateFrom,this.filteringModel.dateTo)
             .subscribe((outcomeData: UserDonationViewModel[]) => {
                 if (outcomeData.length != 0) {
                     this.isFilteredDataExist = true;
@@ -61,15 +63,13 @@ export class MyDonationsComponent implements OnInit {
                 else {
                     this.isFilteredDataExist = false;
                 }
+                this.showSpinner = false;
             })
     }
-    public setBeginDate(beginDate: Date): void {
-        this.filteringModel.dateFrom = beginDate;
-        this.donationWhenDateChanged();
 
-    }
-    public setEndDate(endDate: Date): void {
-        this.filteringModel.dateTo = endDate;
+    onDatePeriodChange(value: DatePeriod) {
+        this.filteringModel.dateFrom = value.dateFrom;
+        this.filteringModel.dateTo = value.dateTo;
         this.donationWhenDateChanged();
     }
 }

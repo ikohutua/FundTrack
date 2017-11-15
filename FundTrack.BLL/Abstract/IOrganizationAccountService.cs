@@ -1,4 +1,5 @@
-﻿using FundTrack.Infrastructure.ViewModel;
+﻿using FundTrack.DAL.Entities;
+using FundTrack.Infrastructure.ViewModel;
 using FundTrack.Infrastructure.ViewModel.FinanceViewModels;
 using System.Collections.Generic;
 
@@ -11,7 +12,7 @@ namespace FundTrack.BLL.Abstract
         OrgAccountViewModel UpdateOrganizationAccount(OrgAccountViewModel model);
         DeleteOrgAccountViewModel DeleteOrganizationAccount(DeleteOrgAccountViewModel model);
         OrgAccountViewModel CreateOrganizationAccount(OrgAccountViewModel model);
-
+        bool IsBankAccountsWithImportAvailable(int organizationId);
         /// <summary>
         /// Gets the account for select.
         /// </summary>

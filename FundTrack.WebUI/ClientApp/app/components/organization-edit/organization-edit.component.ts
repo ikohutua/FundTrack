@@ -74,8 +74,9 @@ export class OrganizationEditComponent implements OnInit, OnDestroy, AfterViewIn
     newModerator: AddModeratorViewModel = new AddModeratorViewModel();
     addressToEdit: AddressViewModel = new AddressViewModel();
     isModalShown: boolean = false;
-    constructor(private _actRouter: ActivatedRoute, private _getInfoService: OrganizationGetGeneralInfoService, private _editService: EditOrganizationService) {
-
+    constructor(private _actRouter: ActivatedRoute,
+        private _getInfoService: OrganizationGetGeneralInfoService,
+        private _editService: EditOrganizationService) {
     }
 
     ngOnInit() {
@@ -114,7 +115,8 @@ export class OrganizationEditComponent implements OnInit, OnDestroy, AfterViewIn
     */
     private getInformationOfOrganization(id: number): void {
         this._getInfoService.getById(id, 'api/OrganizationProfile/GetInformationById')
-            .subscribe(model => {
+            .subscribe(model =>
+            {
                 this.organization = model;
                 if (!model.logoUrl.length) {
                     this.organization.logoUrl = defaultConfig.defaultOrganizationLogoUrl;

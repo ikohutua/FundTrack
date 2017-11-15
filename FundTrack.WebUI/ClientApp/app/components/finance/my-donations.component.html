@@ -1,6 +1,6 @@
-﻿<div class="container col-sm-12" >
+﻿<div class="container">
     <spinner [showSpinner]="showSpinner"></spinner>
-    <div *ngIf ="!showSpinner" class="panel panel-default">
+    <div *ngIf="!showSpinner" class="panel panel-default">
         <div class="panel-heading text-truncate" style="font-size:medium;text-align:center;">
             Тут ви можете переглянути інформацію про ваші особисті пожертви різним організаціям.
         </div>
@@ -12,27 +12,11 @@
             </div>
         </div>
         <div *ngIf="isDataExist">
-            <div  class="col-md-6 center-block">
-                <div class="period-panel">
-                    <div class="panel-body ">
-                        <h4 class="muted">Період</h4>
-                        <p></p>
-                        <div class="input-daterange input-group" id="datepicker">
-
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-
-
-                            <input type="date" class="input-sm form-control no-spin " #startDate onkeydown="return false" (input)="setBeginDate(startDate.value)" [value]="filteringModel.dateFrom | date:'yyyy-MM-dd'" min="2000-01-01" max="{{inputMaxDate | date:'yyyy-MM-dd'}}" />
-
-                            <span class="input-group-addon"> - </span>   <!--onkeydown="return false"  -> paste it to input if will be needed block keyDown -->
-                            <input type="date" class="input-sm form-control no-spin" #endDate onkeydown="return false" (input)="setEndDate(endDate.value)" [value]="filteringModel.dateTo | date:'yyyy-MM-dd'" min="2000-01-01" max="{{inputMaxDate | date:'yyyy-MM-dd'}}" />
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                        </div>
-                    </div>
-                </div>
+            <div class="col-md-12 center-block">
+                <date-presets (datePeriod)="onDatePeriodChange($event)"></date-presets>
             </div>
-            <div  class="panel-body">
-                <table *ngIf ="isFilteredDataExist" class="table table-hover table-condensed table-striped">
+            <div class="panel-body">
+                <table *ngIf="isFilteredDataExist" class="table table-hover table-condensed table-striped">
                     <thead>
                     <th *ngFor="let header of UserDonationsTableHeaders">{{header}}</th>
                     </thead>

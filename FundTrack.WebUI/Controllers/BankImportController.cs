@@ -1,4 +1,5 @@
 ﻿using System;
+using FundTrack.DAL.Entities;
 using FundTrack.BLL.Abstract;
 using FundTrack.Infrastructure.ViewModel;
 using FundTrack.Infrastructure.ViewModel.FinanceViewModels;
@@ -136,6 +137,16 @@ namespace FundTrack.WebUI.Controllers
                 return BadRequest();
             }
             return Ok(_service.getAllSuggestedBankImports(amount,date));
+        }
+        [HttpPut("UpdateInterval")]
+        [Authorize(Roles = "admin, moderator")]
+        public IActionResult UpdateInterval([FromBody]AutoImportIntervalViewModel interval)
+        {
+            if (interval ==null)
+            {
+                return BadRequest();
+            }
+            return Ok(_service.UpdateInterval(interval));
         }
     }
 }

@@ -53,8 +53,8 @@ export class AllEventsComponent implements OnInit, OnDestroy, AfterContentChecke
     ngOnInit(): void {
         this.showUsersSpinner = true;
         this._service.getInitData(this._urlGetEventsPaginationData).subscribe((data: EventInitViewModel) => {
-            this._countOfEvents = data.totalEventsCount;
-            this._itemsPerPage = data.eventsPerPage;
+            this._countOfEvents = data.totalItemsCount;
+            this._itemsPerPage = data.itemsPerPage;
         });
 
         this._subscription = this._router.params.subscribe(params => {
