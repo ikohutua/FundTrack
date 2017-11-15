@@ -2,9 +2,9 @@
     <div class="row">
         <ul>
             <li><a title="Додати новий рахунок організації" (click)="navigateToCreatePage()" class="active">Додати рахунок</a></li>
-            <li *ngIf="isExtractsMerchantEnable"><a title="Імпорт даних для вибраного рахунку" (click)="navigateToBankImportPage()" class="active">Імпортувати дані з банку</a></li>
-            <li *ngIf="!isExtractsMerchantEnable"><a title="Для імпортування даних з вибраного рахунку вкажіть MercantId та MerchantPassword для Приват 24" class="disabled">Імпортувати дані з банку</a></li>
-            <li><a title="Зафіксувати всі рахунки" (click)="openModal(fixingBalanceModal)" class="active">Зафіксувати всі залишки</a></li>
+            <li *ngIf="isExtractsMerchantEnable && accounts.length != 0"><a title="Імпорт даних для вибраного рахунку" (click)="navigateToBankImportPage()" class="active">Імпортувати дані з банку</a></li>
+            <li *ngIf="!isExtractsMerchantEnable && accounts.length != 0"><a title="Для імпортування даних з вибраного рахунку вкажіть MercantId та MerchantPassword для Приват 24" class="disabled">Імпортувати дані з банку</a></li>
+            <li *ngIf="accounts.length != 0"><a title="Зафіксувати всі рахунки" (click)="openModal(fixingBalanceModal)" class="active">Зафіксувати всі залишки</a></li>
         </ul>
     </div>
     <div class="row" *ngIf="accounts.length != 0">
@@ -81,8 +81,9 @@
             <div class="form-group">
                 <label for="dateOfFixing">Виберіть дату:</label>
                 <input #currentDate class="form-control" type="date" id="dateOfFixing"
-                       value="{{dateForFixingBalances | date:'yyyy-MM-dd'}}"
-                       [max]="dateForFixingBalances | date:'yyyy-MM-dd'"
+                       onkeydown="return false"
+                       [value]="maxDate | date:'yyyy-MM-dd'"
+                       [max]="maxDate | date:'yyyy-MM-dd'"
                        (input)="setCurrentDate(currentDate.value)"
                        [disabled]="isFixingBalanceInProcess" />
             </div>

@@ -48,6 +48,7 @@ export class OrgAccountListComponent implements OnInit {
 
     @ViewChild("fixingBalanceModal")
     private fixingBalanceModal: ModalComponent;
+    maxDate: Date = new Date();
     dateForFixingBalances: Date = new Date();
     isFixingBalanceInProcess: boolean;
     isFixingBalanceInSuccessfulyComplited: boolean;
