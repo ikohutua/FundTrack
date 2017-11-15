@@ -105,8 +105,8 @@ namespace FundTrack.BLL.Concrete
             var finOp = new FinOpViewModel
             {
                 Amount = finOpModel.Amount,
-                CardFromId = finOpModel.CardFromId.GetValueOrDefault(0),
-                CardToId = finOpModel.CardToId.GetValueOrDefault(0),
+                AccFromId = finOpModel.CardFromId.GetValueOrDefault(0),
+                AccToId = finOpModel.CardToId.GetValueOrDefault(0),
                 Description = finOpModel.Description,
                 Date = finOpModel.FinOpDate,
                 FinOpType = finOpModel.FinOpType,
@@ -130,7 +130,7 @@ namespace FundTrack.BLL.Concrete
             FinOpInputDataValidation(finOpModel);
             try
             {
-                var orgAccTo = _unitOfWork.OrganizationAccountRepository.GetOrgAccountById(finOpModel.CardToId);
+                var orgAccTo = _unitOfWork.OrganizationAccountRepository.GetOrgAccountById(finOpModel.AccToId);
                 var finOp = new FinOp
                 {
                     Amount = finOpModel.Amount,
@@ -158,7 +158,7 @@ namespace FundTrack.BLL.Concrete
             FinOpInputDataValidation(finOpModel);
             try
             {
-                var orgAccFrom = _unitOfWork.OrganizationAccountRepository.GetOrgAccountById(finOpModel.CardFromId);
+                var orgAccFrom = _unitOfWork.OrganizationAccountRepository.GetOrgAccountById(finOpModel.AccFromId);
                 if (finOpModel.Amount > orgAccFrom.CurrentBalance)
                 {
                     throw new ArgumentException(ErrorMessages.SpendingIsExceeded);
@@ -212,8 +212,8 @@ namespace FundTrack.BLL.Concrete
             FinOpInputDataValidation(finOpModel);
             try
             {
-                var orgAccFrom = _unitOfWork.OrganizationAccountRepository.GetOrgAccountById(finOpModel.CardFromId);
-                var orgAccTo = _unitOfWork.OrganizationAccountRepository.GetOrgAccountById(finOpModel.CardToId);
+                var orgAccFrom = _unitOfWork.OrganizationAccountRepository.GetOrgAccountById(finOpModel.AccFromId);
+                var orgAccTo = _unitOfWork.OrganizationAccountRepository.GetOrgAccountById(finOpModel.AccToId);
                 if (finOpModel.Amount > orgAccFrom.CurrentBalance)
                 {
                     throw new ArgumentException(ErrorMessages.SpendingIsExceeded);
@@ -308,8 +308,8 @@ namespace FundTrack.BLL.Concrete
                 var finOpList = finOps.Select(f => new FinOpViewModel
                 {
                     Id = f.Id,
-                    CardFromId = f.AccFromId.GetValueOrDefault(0),
-                    CardToId = f.AccToId.GetValueOrDefault(0),
+                    AccFromId = f.AccFromId.GetValueOrDefault(0),
+                    AccToId = f.AccToId.GetValueOrDefault(0),
                     Date = f.FinOpDate,
                     Description = f.Description,
                     Amount = f.Amount,
@@ -333,17 +333,17 @@ namespace FundTrack.BLL.Concrete
             foreach (var f in finOps)
             {
                 f.IsEditable = true;
-                if (f.CardFromId > 0)
+                if (f.AccFromId > 0)
                 {
-                    var balanceDate = balances.Where(balance => balance.OrgAccountId == f.CardFromId).Last().BalanceDate;
+                    var balanceDate = balances.Where(balance => balance.OrgAccountId == f.AccFromId).Last().BalanceDate;
                     if (f.Date <= balanceDate)
                     {
                         f.IsEditable = false;
                     }
                 }
-                else if (f.CardToId > 0)
+                else if (f.AccToId > 0)
                 {
-                    var balanceDate = balances.Where(balance => balance.OrgAccountId == f.CardToId).Last().BalanceDate;
+                    var balanceDate = balances.Where(balance => balance.OrgAccountId == f.AccToId).Last().BalanceDate;
                     if (f.Date <= balanceDate)
                     {
                         f.IsEditable = false;
@@ -390,8 +390,8 @@ namespace FundTrack.BLL.Concrete
                 var finOp = new FinOpViewModel
                 {
                     Id = finOpFromDataBase.Id,
-                    CardFromId = finOpFromDataBase.AccFromId.GetValueOrDefault(0),
-                    CardToId = finOpFromDataBase.AccToId.GetValueOrDefault(0),
+                    AccFromId = finOpFromDataBase.AccFromId.GetValueOrDefault(0),
+                    AccToId = finOpFromDataBase.AccToId.GetValueOrDefault(0),
                     Date = finOpFromDataBase.FinOpDate,
                     Description = finOpFromDataBase.Description,
                     Amount = finOpFromDataBase.Amount,
@@ -469,33 +469,33 @@ namespace FundTrack.BLL.Concrete
 
         public void OrgAccFromChangeBalance(FinOpViewModel finOpModel, decimal originalAmount)
         {
-            var orgAccFrom = _unitOfWork.OrganizationAccountRepository.GetOrgAccountById(finOpModel.CardFromId);
+            var orgAccFrom = _unitOfWork.OrganizationAccountRepository.GetOrgAccountById(finOpModel.AccFromId);
             orgAccFrom.CurrentBalance -= finOpModel.Amount - originalAmount;
             _unitOfWork.OrganizationAccountRepository.Edit(orgAccFrom);
         }
 
         public void OrgAccToChangeBalance(FinOpViewModel finOpModel, decimal originalAmount)
         {
-            var orgAccTo = _unitOfWork.OrganizationAccountRepository.GetOrgAccountById(finOpModel.CardToId);
+            var orgAccTo = _unitOfWork.OrganizationAccountRepository.GetOrgAccountById(finOpModel.AccToId);
             orgAccTo.CurrentBalance += finOpModel.Amount - originalAmount;
             _unitOfWork.OrganizationAccountRepository.Edit(orgAccTo);
         }
 
         public void Windtrhaw(FinOpViewModel finOpModel, FinOp finOp)
         {
-            var orgAccTo = _unitOfWork.OrganizationAccountRepository.GetOrgAccountById(finOpModel.CardToId);
+            var orgAccTo = _unitOfWork.OrganizationAccountRepository.GetOrgAccountById(finOpModel.AccToId);
             orgAccTo.CurrentBalance += finOpModel.Amount;
             finOp.FinOpType = finOpModel.FinOpType;
-            finOp.AccToId = finOpModel.CardToId;
+            finOp.AccToId = finOpModel.AccToId;
             _unitOfWork.OrganizationAccountRepository.Edit(orgAccTo);
         }
 
         public void Deposite(FinOpViewModel finOpModel, FinOp finOp)
         {
-            var orgAccFrom = _unitOfWork.OrganizationAccountRepository.GetOrgAccountById(finOpModel.CardFromId);
+            var orgAccFrom = _unitOfWork.OrganizationAccountRepository.GetOrgAccountById(finOpModel.AccFromId);
             orgAccFrom.CurrentBalance -= finOpModel.Amount;
             finOp.FinOpType = finOpModel.FinOpType;
-            finOp.AccToId = finOpModel.CardToId;
+            finOp.AccToId = finOpModel.AccToId;
             _unitOfWork.OrganizationAccountRepository.Edit(orgAccFrom);
         }
 
@@ -507,8 +507,8 @@ namespace FundTrack.BLL.Concrete
                 return finOps.Select(f => new FinOpViewModel
                 {
                     Id = f.Id,
-                    CardFromId = f.AccFromId.GetValueOrDefault(0),
-                    CardToId = f.AccToId.GetValueOrDefault(0),
+                    AccFromId = f.AccFromId.GetValueOrDefault(0),
+                    AccToId = f.AccToId.GetValueOrDefault(0),
                     Date = f.FinOpDate,
                     Description = f.Description,
                     Amount = f.Amount,

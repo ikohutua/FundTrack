@@ -120,7 +120,7 @@ namespace FundTrack.WebUI.Controllers
         /// <param name="incomeModel">The income finance operation model.</param>
         /// <returns></returns>
         [HttpPost("Income")]
-        [Authorize(Roles = "admin, moderator")]
+        //[Authorize(Roles = "admin, moderator")]
         public IActionResult Income([FromBody] FinOpViewModel incomeModel)
         {
             if(incomeModel == null)

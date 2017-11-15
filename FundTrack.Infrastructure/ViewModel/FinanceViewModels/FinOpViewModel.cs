@@ -17,9 +17,9 @@ namespace FundTrack.Infrastructure.ViewModel.FinanceViewModels
         [Range(0.01, 100.00, ErrorMessage = ErrorMessages.MoneyFinOpLimit)]
         public decimal Amount { get; set; }
 
-        public int CardFromId { get; set; }
+        public int AccFromId { get; set; }
 
-        public int CardToId { get; set; }
+        public int AccToId { get; set; }
 
         [Required(ErrorMessage = ErrorMessages.RequiredFieldMessage)]
         [MinValue(1)]

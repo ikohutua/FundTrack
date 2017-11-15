@@ -64,16 +64,6 @@ namespace FundTrack.Integration.Tests.Controllers
         {
             //Arrange
             var dbContext = _testContext.GetClearDbContext();
-            var options = new DbContextOptionsBuilder<FundTrackContext>()
-            .UseInMemoryDatabase(databaseName: "Get_Target_Bu_Id_Ok_Response")
-            .Options;
-
-            var testTarget = GetTestTargetById(1);
-            using (var context = new FundTrackContext(options))
-            {
-                context.Targets.Add(testTarget);
-                context.SaveChanges();
-            }
 
             var testTarget = GetTestTargetByField(t => t.Id == 1);
             dbContext.Targets.Add(testTarget);
@@ -119,6 +109,6 @@ namespace FundTrack.Integration.Tests.Controllers
             Assert.True(resultTargets.Count() == 3);
         }
 
-       
+
     }
 }
