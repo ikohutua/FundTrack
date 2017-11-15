@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using FundTrack.Infrastructure.ViewModel.SuperAdminViewModels;
+using System.Threading.Tasks;
 
 namespace FundTrack.BLL.Concrete
 {
@@ -17,14 +18,16 @@ namespace FundTrack.BLL.Concrete
     public sealed class EventManagementService : BaseService, IEventManagementService
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IImageManagementService _imgService;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="EventManagementService"/> class.
         /// </summary>
         /// <param name="unitOfWorkParam">The unit of work parameter.</param>
-        public EventManagementService(IUnitOfWork unitOfWorkParam) : base()
+        public EventManagementService(IUnitOfWork unitOfWorkParam, IImageManagementService imgService) : base()
         {
             this._unitOfWork = unitOfWorkParam;
+            this._imgService = imgService;
         }
 
         /// <summary>Adds the new event.</summary>
@@ -52,7 +55,8 @@ namespace FundTrack.BLL.Concrete
                     throw new BusinessLogicException("Не вдалось створити нову подію");
                 }
 
-                this.InsertImagesInDataBase(newEvent.Images, createdEvent.Id);
+                var images = this.UploadImagesToStorage(newEvent.Images);
+                this.InsertImagesInDataBase(images, createdEvent.Id);
                 this._unitOfWork.SaveChanges();
                 return this.GetOneEventById(createdEvent.Id);
             }
@@ -61,6 +65,30 @@ namespace FundTrack.BLL.Concrete
                 throw new BusinessLogicException(ex.Message);
             }
         }
+
+        public ICollection<ImageViewModel> UploadImagesToStorage(IEnumerable<ImageViewModel> images)
+        {
+            Dictionary<ImageViewModel, Task<string>> imageTastDictionary = new Dictionary<ImageViewModel, Task<string>>();
+
+            foreach (var item in images)
+            {
+                var newImage = new ImageViewModel()
+                {
+                    IsMain = item.IsMain
+                };
+                var t = _imgService.UploadImageAsync(Convert.FromBase64String(item.Base64Data), item.imageExtension);
+                imageTastDictionary.Add(newImage, t);
+            }
+            Task.WhenAll(imageTastDictionary.Values);
+
+            foreach (var element in imageTastDictionary)
+            {
+                element.Key.ImageUrl = element.Value.Result;
+            }
+
+            return imageTastDictionary.Keys;
+        }
+
 
         /// <summary>Deletes the event.</summary>
         /// <param name="eventId">The event identifier.</param>
@@ -97,9 +125,10 @@ namespace FundTrack.BLL.Concrete
                     throw new BusinessLogicException($"В базі даних немає події з ідентифікатором {eventId}");
                 }
 
-                for (int i = 0; i < images.Count(); i++)
+                foreach (var item in images)
                 {
-                    this._unitOfWork.EventImageRepository.Delete(images.ElementAt(i).Id);
+                    this._unitOfWork.EventImageRepository.Delete(item.Id);
+                    _imgService.DeleteImageAsync(item.ImageUrl);
                 }
                 this._unitOfWork.SaveChanges();
             }
@@ -154,14 +183,15 @@ namespace FundTrack.BLL.Concrete
                     throw new BusinessLogicException($"Подія з ідентифікатором {eventId} не знайдена");
                 }
 
-                return new EventManagementViewModel()
+                var result = new EventManagementViewModel()
                 {
                     Id = ev.Id,
                     CreateDate = ev.CreateDate,
                     Description = ev.Description,
                     OrganizationId = ev.OrganizationId,
-                    Images = this.ConvertToImageViewModel(ev.EventImages.Where(i => i.EventId == eventId))
+                    Images = this.ConvertToImageViewModel(ev.EventImages.Where(i => i.EventId == eventId)).ToList()
                 };
+                return result;
             }
             catch (Exception ex)
             {
@@ -187,7 +217,8 @@ namespace FundTrack.BLL.Concrete
                     var createdImage = this._unitOfWork.EventImageRepository.Create(new EventImage()
                     {
                         EventId = eventId,
-                        ImageUrl = images[i].ImageUrl
+                        ImageUrl = images[i].ImageUrl,
+                        IsMain = images[i].IsMain
                     });
                     if (createdImage == null)
                     {
@@ -280,6 +311,8 @@ namespace FundTrack.BLL.Concrete
             }
         }
 
+
+
         /// <summary>Updates the event.</summary>
         /// <param name="updatedEvent">The updated event.</param>
         /// <returns>EventManagementViewModel</returns>
@@ -300,6 +333,8 @@ namespace FundTrack.BLL.Concrete
                     OrganizationId = updatedEvent.OrganizationId
                 });
 
+                SetEventImage(updatedEvent.Images, updatedEventFromDB);
+
                 this._unitOfWork.SaveChanges();
 
                 if (updatedEventFromDB == null)
@@ -313,13 +348,68 @@ namespace FundTrack.BLL.Concrete
                     CreateDate = updatedEventFromDB.CreateDate,
                     Description = updatedEventFromDB.Description,
                     OrganizationId = updatedEventFromDB.OrganizationId,
-                    Images = this.UpdateImages(updatedEvent.Images, updatedEvent.Id)
+                    Images = ConvertToImageViewModel(updatedEventFromDB.EventImages)
                 };
             }
             catch (Exception ex)
             {
                 throw new BusinessLogicException(ex.Message);
             }
+        }
+
+        private void SetEventImage(IEnumerable<ImageViewModel> incomingImages, Event eventItem)
+        {
+            //images in Db
+            List<EventImage> storedImages = _unitOfWork.EventImageRepository.Read().Where(i => i.EventId == eventItem.Id).ToList();
+
+            //new images user set
+            List<ImageViewModel> incomeNewImages = incomingImages.Select(i => i).Where(i => !String.IsNullOrEmpty(i.Base64Data)).ToList();
+            if (incomeNewImages.Any(i => i.IsMain))
+            {
+                storedImages.ForEach(i => i.IsMain = false);
+            }
+
+            //in case when only main image was changed
+            storedImages.ForEach(si => si.IsMain = incomingImages.
+                                                    Select(i => i).
+                                                    Where(i => i.Id == si.Id).
+                                                    FirstOrDefault()
+                                                    ?.IsMain ?? si.IsMain);
+
+            //old images stored in Db
+            var incomeOldImages = incomingImages.Select(i => i).Where(i => String.IsNullOrEmpty(i.Base64Data));
+            var incomeOldImagesModel = incomeOldImages.Select(i => new EventImage()
+            {
+                Id = i.Id,
+                IsMain = i.IsMain,
+                ImageUrl = i.ImageUrl
+            });
+
+            //old images which we have removed from offerItem.Images
+            var uslesImages = storedImages.Where(l2 => incomeOldImagesModel.Select(i2 => AzureStorageConfiguration.GetImageNameFromUrl( i2.ImageUrl)).Contains(l2.ImageUrl)==false).ToList();
+            foreach (var stuff in uslesImages)
+            {
+                _unitOfWork.EventImageRepository.Delete(stuff.Id);
+                storedImages.Remove(stuff);
+                _imgService.DeleteImageAsync(AzureStorageConfiguration.GetImageNameFromUrl(stuff.ImageUrl));
+            }
+
+            //save new images
+            var newImages = UploadImagesToStorage(incomeNewImages);
+            //InsertImagesInDataBase(newImages, eventItem.Id);
+            foreach (var picture in newImages)
+            {
+                var newImg = _unitOfWork.EventImageRepository.Create(new EventImage()
+                {
+                    Id = picture.Id,
+                    IsMain = picture.IsMain,
+                    ImageUrl = picture.ImageUrl,
+                    EventId = eventItem.Id
+                });
+                storedImages.Add(newImg);
+            }
+
+            eventItem.EventImages = storedImages;
         }
 
         /// <summary>Gets the events initialize data.</summary>
@@ -330,11 +420,12 @@ namespace FundTrack.BLL.Concrete
         {
             try
             {
-                return new PaginationInitViewModel()
+                var result = new PaginationInitViewModel()
                 {
                     ItemsPerPage = 4,
                     TotalItemsCount = this._unitOfWork.EventRepository.Read().Where(ev => ev.OrganizationId == organizationId).Count()
                 };
+                return result;
             }
             catch (Exception ex)
             {
@@ -353,7 +444,8 @@ namespace FundTrack.BLL.Concrete
                 return imageList.Select(image => new ImageViewModel()
                 {
                     Id = image.Id,
-                    ImageUrl = image.ImageUrl
+                    ImageUrl = AzureStorageConfiguration.GetImageUrl(image.ImageUrl),
+                    IsMain = image.IsMain
                 });
             }
             catch (Exception ex)

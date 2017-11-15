@@ -1,5 +1,5 @@
 ﻿import { IEventManagementViewModel } from "../abstract/organization-management-view-models/event-management-view-model.interface";
-import { IImageModel } from "../abstract/organization-management-view-models/image-url-view-model.interface";
+import { Image } from "./image.model";
 
 export class EventManagementViewModel implements IEventManagementViewModel {
     errorMessage: string;
@@ -7,5 +7,7 @@ export class EventManagementViewModel implements IEventManagementViewModel {
     organizationId: number;
     description: string;
     createDate: Date;
-    images: IImageModel[];
+    images: Image[];
+    mainImage: Image;
+
 }

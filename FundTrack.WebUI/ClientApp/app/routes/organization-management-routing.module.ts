@@ -20,6 +20,7 @@ import { OrganizationStatisticsComponent } from "../components/organization-edit
 import { UsersDonationsReportComponent } from "../components/report/users-donations-report.component";
 import { CommonDonationsReportComponent } from "../components/report/common-donations-report.component";
 import { InvoiceDeclarationReportComponent } from '../components/invoice-declaration-report/invoice-declaration-report.component';
+import { AdditionalOptionsComponent } from "../components/organization-detail/additional-options.component";
 
 @NgModule({
     providers: [AdminRouteGuard],
@@ -106,6 +107,10 @@ import { InvoiceDeclarationReportComponent } from '../components/invoice-declara
         {
             path: 'organization/invoiceDeclaration',
             component: InvoiceDeclarationReportComponent
+        },
+        {
+            path: 'organization/options',
+            component: AdditionalOptionsComponent
         }
     ])],
     exports: [RouterModule]

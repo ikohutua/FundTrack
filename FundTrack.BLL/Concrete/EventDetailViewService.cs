@@ -79,9 +79,7 @@ namespace FundTrack.BLL.Concrete
             try
             {
             EventDetailViewModel eventDetailViewModel = new EventDetailViewModel();
-            var eventDetail = ((DbSet<Event>)_unitOfWork.EventRepository.Read())
-                .Include(e => e.Organization)
-                .Include(im => im.EventImages)
+            var eventDetail = _unitOfWork.EventRepository.Read()               
                 .Select(c => new
                 {
                     Id = c.Id,
@@ -89,10 +87,11 @@ namespace FundTrack.BLL.Concrete
                     OrganizationName = c.Organization.Name,
                     Description = c.Description,
                     CreateDate = c.CreateDate,
-                    ImageUrl = c.EventImages.Select(i => i.ImageUrl).ToList<string>()
+                    ImageUrl = c.EventImages.Select(i => AzureStorageConfiguration.GetImageUrl(i.ImageUrl)).ToList<string>()
                 }).FirstOrDefault(i => i.Id == id);
 
-            eventDetailViewModel.Id = eventDetail.Id;
+               
+                eventDetailViewModel.Id = eventDetail.Id;
             eventDetailViewModel.OrganizationId = eventDetail.OrganizationId;
             eventDetailViewModel.OrganizationName = eventDetail.OrganizationName;
             eventDetailViewModel.Description = eventDetail.Description;

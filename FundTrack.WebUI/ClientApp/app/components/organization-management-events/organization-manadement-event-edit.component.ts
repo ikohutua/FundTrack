@@ -5,6 +5,8 @@ import { Subscription } from "rxjs/Subscription";
 import { ActivatedRoute, Router } from "@angular/router";
 import { ImageModel } from "../../view-models/concrete/image-url-view-model";
 import { IImageModel } from "../../view-models/abstract/organization-management-view-models/image-url-view-model.interface";
+import { OfferedItemImageViewModel } from "../../view-models/concrete/offered-item-image-view.model";
+import { Image } from "../../view-models/concrete/image.model";
 
 @Component({
     selector: 'org-management-event',
@@ -16,7 +18,7 @@ export class OrganizationManadementEventEditComponent implements OnInit {
     private _event: IEventManagementViewModel;
     private _subscription: Subscription;
     private _errorMessage: string;
-
+    images: Image[] = [];
     /**
      * @constructor
      * @param _route: ActivatedRoute
@@ -32,51 +34,29 @@ export class OrganizationManadementEventEditComponent implements OnInit {
         });
     }
 
+
+    onImageChange(imgArr: Image[]) {
+        this._event.images = imgArr;
+    }
+
     /**
      * Gets one event by identifier
      * @param id
      */
     public getInformationOfEvent(id: number): void {
-        this._service.getOneEventById(id).subscribe(event => this._event = event);
+        this._service.getOneEventById(id)
+            .subscribe(event => {
+                this._event = event;
+            });
     }
 
     /**
      * Updates event
      */
     private updateEvent(): void {
+        //this._event.images = this.images;
         this._service.updateEvent(this._event)
             .subscribe(() => this._router.navigate(['organization/events/' + this._event.organizationId]));
-    }
-
-   /**
-    * Gets extension of specified file
-    * @param fileName: name of the file extension of which is needed to be retrieved
-    */
-    private getFileExtension(fileName: string): string {
-        return fileName.substring(fileName.lastIndexOf('.') + 1, fileName.length) || fileName;
-    }
-
-    /**
-     * Deletes image from local list
-     * @param imageUrl
-     */
-    private deleteImageFromList(imageUrl: string): void {
-        this._event.images.splice(this._event.images.findIndex(i => i.imageUrl == imageUrl), 1)
-    }
-
-    /**
-     * Deletes concrete image
-     * @param currentImage
-     */
-    private deleteCurrentImage(currentImage: IImageModel): void {
-        if (currentImage.id > 0) {
-            this._service.deleteCurrentImage(currentImage.id)
-                .subscribe(data => this.deleteImageFromList(currentImage.imageUrl),
-                error => this._errorMessage = <any>error);
-        }
-        else {
-            this.deleteImageFromList(currentImage.imageUrl);
-        }
     }
 
     /**

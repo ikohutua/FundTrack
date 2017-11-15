@@ -9,6 +9,7 @@ using FundTrack.BLL.Concrete;
 using FundTrack.Infrastructure;
 using FundTrack.Infrastructure.ViewModel.ResetPassword;
 
+
 namespace FundTrack.BLL.DomainServices
 {
     /// <summary>
@@ -43,14 +44,17 @@ namespace FundTrack.BLL.DomainServices
         {
             if (login.Length != 0 && rawPassword.Length != 0)
             {
-                var hashedPassword = PasswordHashManager.GetPasswordHash(rawPassword);
+                var userSalt = this._unitOfWork.UsersRepository.Read().Where(u => u.Login == login).Select(u=>u.Salt).FirstOrDefault();     
+                      var hashedPassword = PasswordHashManager.GetPasswordHash(userSalt, rawPassword);
                 return this.InitializeUserInfoViewModel(this._unitOfWork.UsersRepository.GetUser(login, hashedPassword));
+                
             }
             else
             {
                 throw new BusinessLogicException(ErrorMessages.MissedEnterData);
             }
         }
+
 
         /// <summary>
         /// Gets user info view model
@@ -70,10 +74,12 @@ namespace FundTrack.BLL.DomainServices
         public UserInfoViewModel LoginFacebook(LoginFacebookViewModel loginFacebookViewModel)
         {
             User user = this._unitOfWork.UsersRepository.GetFacebookUser(loginFacebookViewModel.Email);
+            var salt = GenerateSalt();
             if (user == null)
             {
                 user = loginFacebookViewModel;
-                user.Password = PasswordHashManager.GetPasswordHash(loginFacebookViewModel.Password);
+                user.Salt = salt;
+                user.Password = PasswordHashManager.GetPasswordHash(salt,loginFacebookViewModel.Password);
                 User addedUser = this._unitOfWork.UsersRepository.Create(user);
                 this._unitOfWork.SaveChanges();
                 return this.InitializeUserInfoViewModel(addedUser);
@@ -106,8 +112,11 @@ namespace FundTrack.BLL.DomainServices
             }
             try
             {
+                string salt =  GenerateSalt();
                 User userToAdd = registrationViewModel;
-                userToAdd.Password = PasswordHashManager.GetPasswordHash(registrationViewModel.Password);
+                userToAdd.Salt = salt;
+                //userToAdd.Password = PasswordHashManager.GetPasswordHash(registrationViewModel.Password);
+                userToAdd.Password = PasswordHashManager.GetPasswordHash(salt, registrationViewModel.Password);
                 User addedUser = this._unitOfWork.UsersRepository.Create(userToAdd);
                 Phone newUserPhoneNumber = new Phone { Number = registrationViewModel.Phone, UserId = addedUser.Id };
                 Phone addedUserPhoneNumber = _unitOfWork.PhoneRepository.Add(newUserPhoneNumber);
@@ -121,6 +130,12 @@ namespace FundTrack.BLL.DomainServices
                 throw new BusinessLogicException(ErrorMessages.AddUserMessage, ex);
             }
         }
+
+        private string GenerateSalt()
+        {
+            return Guid.NewGuid().ToString(); 
+        }
+
 
         /// <summary>
         /// Creates the user role.
@@ -226,28 +241,31 @@ namespace FundTrack.BLL.DomainServices
                 if (changePasswordViewModel.login != null && changePasswordViewModel.newPassword != null & changePasswordViewModel.oldPassword != null)
                 {
                     User user = this._unitOfWork.UsersRepository.GetUser(changePasswordViewModel.login);
-                    if (user.Password == PasswordHashManager.GetPasswordHash(changePasswordViewModel.oldPassword))
+                    var userSalt = this._unitOfWork.UsersRepository.Read().Where(u => u.Login == changePasswordViewModel.login).Select(u => u.Salt).FirstOrDefault();
+
+                    if (user.Password == PasswordHashManager.GetPasswordHash(userSalt,changePasswordViewModel.oldPassword))
                     {
-                        user.Password = PasswordHashManager.GetPasswordHash(changePasswordViewModel.newPassword);
+                        user.Password = PasswordHashManager.GetPasswordHash(userSalt, changePasswordViewModel.newPassword);
                         _unitOfWork.UsersRepository.Update(user);
                         _unitOfWork.SaveChanges();
                         return this.InitializeUserInfoViewModel(user);
                     }
                     else
                     {
-                        throw new Exception("Старий пароль невірний");
+                        throw new Exception(ErrorMessages.OldPasswordIncorrectErrorMessage);
                     }
                 }
                 else
                 {
-                    throw new Exception("Заповнені не всі поля");
+                    throw new Exception(ErrorMessages.NotAllRowsFilledInErrorMessage);
                 }
             }
             else
             {
-                throw new Exception("Не намагайтеся нас обманути!");
+                throw new Exception(ErrorMessages.IncorectDataErrorMessage);
             }
         }
+
         /// <summary>
         /// Updates user, based on received view model
         /// </summary>
@@ -347,11 +365,12 @@ namespace FundTrack.BLL.DomainServices
         public void ResetPassword(PasswordResetViewModel passwordReset)
         {
             var user = _unitOfWork.UsersRepository.GetUserByGuid(passwordReset.Guid);
+            var userSalt = this._unitOfWork.UsersRepository.Read().Where(u => u.Login == user.Login).Select(u => u.Salt).FirstOrDefault();
 
             if (user != null)
             {
-                user.Password = PasswordHashManager.GetPasswordHash(passwordReset.NewPassword);
-                _unitOfWork.UsersRepository.Update(user);
+                user.Password = PasswordHashManager.GetPasswordHash(userSalt, passwordReset.NewPassword);
+                   _unitOfWork.UsersRepository.Update(user);
                 _unitOfWork.UsersRepository.RemoveUserRecoveryLink(user.Id);
 
                 _unitOfWork.SaveChanges();

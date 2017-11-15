@@ -74,10 +74,11 @@ namespace FundTrack.BLL.Concrete
         {
             try
             {
-                return _unitOfWork.FinOpImages.Read().ToList()
+                 return _unitOfWork.FinOpImages.Read().ToList()
                     .Where(finOpImg =>
                         finOpImg.FinOpId == finOpId)
-                    .Select(finOpImages => finOpImages.ImageUrl).ToList();
+                    .Select(finOpImages =>  AzureStorageConfiguration.GetImageUrl(finOpImages.ImageUrl)).ToList();
+
             }
             catch (Exception ex)
             {

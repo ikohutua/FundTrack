@@ -17,7 +17,9 @@ export class AppComponent {
     constructor(private _service: StorageService) { }
 
     callChild() {
-        this.childComponent.onSelect();
+        if (this.childComponent != undefined) {
+            this.childComponent.onSelect();
+        }
     }
 
     /*-------------------------------*/

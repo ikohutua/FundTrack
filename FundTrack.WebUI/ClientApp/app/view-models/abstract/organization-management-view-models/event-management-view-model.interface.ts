@@ -1,4 +1,4 @@
-﻿import { ImageModel } from "../../concrete/image-url-view-model";
+﻿import { Image } from "../../concrete/image.model";
 //model for event management
 export interface IEventManagementViewModel {
     id: number;
@@ -6,5 +6,6 @@ export interface IEventManagementViewModel {
     organizationId: number;
     description: string;
     createDate: Date;
-    images: ImageModel[];
+    images: Image[];
+    mainImage: Image;
 }

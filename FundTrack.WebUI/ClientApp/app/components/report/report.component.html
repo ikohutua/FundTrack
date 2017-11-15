@@ -25,90 +25,90 @@
             </div>
 
         </div>
-    </div>
 
-    <div class="panel-body">
-        <div *ngIf="ifDataExists" class="text-left col-md-6">
-            <div>
-                Всього витрачено: {{reportOutTotalSum | number : '1.2-2'}} ₴
-                <br />
-                Всього надійшло: {{reportInTotalSum | number : '1.2-2'}} ₴
+
+        <div class="panel-body">
+            <div *ngIf="ifDataExists" class="text-left col-md-6">
+                <div>
+                    Всього витрачено: {{reportOutTotalSum | number : '1.2-2'}} ₴
+                    <br />
+                    Всього надійшло: {{reportInTotalSum | number : '1.2-2'}} ₴
+                </div>
+            </div>
+            <div class="text-right col-md-6">
+                <div *ngIf="ifDataExists">
+                    Період з {{reportModel.dateFrom | date:'dd MMM yyyy'}} до {{reportModel.dateTo | date:'dd MMM yyyy'}}
+                </div>
             </div>
         </div>
-        <div class="text-right col-md-6">
-            <div *ngIf="ifDataExists">
-                Період з {{reportModel.dateFrom | date:'dd MMM yyyy'}} до {{reportModel.dateTo | date:'dd MMM yyyy'}}
+
+        <div class="panel-body">
+            <ul *ngIf="ifDataExists" class="nav nav-tabs">
+                <li class="active"><a data-toggle="tab" href="#home">Витрати</a></li>
+                <li><a data-toggle="tab" href="#menu1">Надходження</a></li>
+            </ul>
+
+            <div *ngIf="ifDataExists" class="tab-content">
+                <div id="home" class="tab-pane fade in active">
+                    <table *ngIf="isOutCollectionEmpty" class="table table-hover table-condensed table-striped">
+                        <thead>
+                        <th>№ п/п</th>
+                        <th>Призначення</th>
+                        <th>Опис</th>
+                        <th>Сума, ₴</th>
+                        <th>Дата</th>
+                        <th>Фото</th>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of outcomeReportData; let i = index">
+                                <td>{{i+1}}</td>
+                                <td>{{item.target}}</td>
+                                <td>{{item.description}}</td>
+                                <td>{{item.moneyAmount | number : '1.2-2'}}</td>
+                                <td>{{item.date | date:'dd-MMM-yyyy HH:mm'}}</td>
+                                <td><a id="thumbnailsList" (click)="getImagesById(item.id)" style="cursor:pointer" data-toggle="modal" data-target="#selectedImageModal"> Переглянути </a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div *ngIf="!isOutCollectionEmpty" class="panel-heading text-truncate" style="font-size:medium;text-align:center;">
+                        Дані відсутні.
+                    </div>
+                </div>
+                <div id="menu1" class="tab-pane fade">
+                    <table *ngIf="isInCollectionEmpty" class="table table-hover table-condensed table-striped">
+                        <thead>
+                        <th>№ п/п</th>
+                        <th>Призначення</th>
+                        <th>Від кого</th>
+                        <th>Опис</th>
+                        <th>Сума, ₴</th>
+                        <th>Дата</th>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of incomeReportData; let i = index">
+                                <td>{{i+1}}</td>
+                                <td>{{item.targetTo}}</td>
+                                <td>{{item.from}}</td>
+                                <td>{{item.description}}</td>
+                                <td>{{item.moneyAmount | number : '1.2-2'}}</td>
+                                <td>{{item.date | date:'dd-MMM-yyyy HH:mm'}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div *ngIf="!isInCollectionEmpty" class="panel-heading text-truncate" style="font-size:medium;text-align:center;">
+                        Дані відсутні.
+                    </div>
+
+                </div>
             </div>
-        </div>
-    </div>
-
-    <div class="panel-body">
-        <ul *ngIf="ifDataExists" class="nav nav-tabs">
-            <li class="active"><a data-toggle="tab" href="#home">Витрати</a></li>
-            <li><a data-toggle="tab" href="#menu1">Надходження</a></li>
-        </ul>
-
-        <div *ngIf="ifDataExists" class="tab-content">
-            <div id="home" class="tab-pane fade in active">
-                <table *ngIf="isOutCollectionEmpty" class="table table-hover table-condensed table-striped">
-                    <thead>
-                    <th>№ п/п</th>
-                    <th>Призначення</th>
-                    <th>Опис</th>
-                    <th>Сума, ₴</th>
-                    <th>Дата</th>
-                    <th>Фото</th>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let item of outcomeReportData; let i = index">
-                            <td>{{i+1}}</td>
-                            <td>{{item.target}}</td>
-                            <td>{{item.description}}</td>
-                            <td>{{item.moneyAmount | number : '1.2-2'}}</td>
-                            <td>{{item.date | date:'dd-MMM-yyyy HH:mm'}}</td>
-                            <td><a id="thumbnailsList" (click)="getImagesById(item.id)" style="cursor:pointer" data-toggle="modal" data-target="#selectedImageModal"> Переглянути </a></td>
-                        </tr>
-                    </tbody>
-                </table>
-                <div *ngIf="!isOutCollectionEmpty" class="panel-heading text-truncate" style="font-size:medium;text-align:center;">
+            <div *ngIf="!ifDataExists" class="tab-content">
+                <div class="panel-heading text-truncate" style="font-size:medium;text-align:center;">
                     Дані відсутні.
                 </div>
             </div>
-            <div id="menu1" class="tab-pane fade">
-                <table *ngIf="isInCollectionEmpty" class="table table-hover table-condensed table-striped">
-                    <thead>
-                    <th>№ п/п</th>
-                    <th>Призначення</th>
-                    <th>Від кого</th>
-                    <th>Опис</th>
-                    <th>Сума, ₴</th>
-                    <th>Дата</th>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let item of incomeReportData; let i = index">
-                            <td>{{i+1}}</td>
-                            <td>{{item.targetTo}}</td>
-                            <td>{{item.from}}</td>
-                            <td>{{item.description}}</td>
-                            <td>{{item.moneyAmount | number : '1.2-2'}}</td>
-                            <td>{{item.date | date:'dd-MMM-yyyy HH:mm'}}</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <div *ngIf="!isInCollectionEmpty" class="panel-heading text-truncate" style="font-size:medium;text-align:center;">
-                    Дані відсутні.
-                </div>
 
-            </div>
         </div>
-        <div *ngIf="!ifDataExists" class="tab-content">
-            <div  class="panel-heading text-truncate" style="font-size:medium;text-align:center;">
-                Дані відсутні.
-            </div>
-            </div>
-
     </div>
-   
     <div class="modal fade" id="selectedImageModal">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -141,6 +141,6 @@
         </div>
     </app-modal>
 
-  
+
 
 </div>

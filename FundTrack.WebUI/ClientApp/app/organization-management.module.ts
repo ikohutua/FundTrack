@@ -30,6 +30,7 @@ import { UsersDonationsReportComponent } from "./components/report/users-donatio
 import { CommonDonationsReportComponent } from "./components/report/common-donations-report.component";
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { InvoiceDeclarationReportComponent } from "./components/invoice-declaration-report/invoice-declaration-report.component";
+import { AdditionalOptionsComponent } from "./components/organization-detail/additional-options.component";
 
 
 @NgModule({
@@ -55,8 +56,8 @@ import { InvoiceDeclarationReportComponent } from "./components/invoice-declarat
         OrganizationStatisticsComponent,
         UsersDonationsReportComponent,
         CommonDonationsReportComponent,
-        InvoiceDeclarationReportComponent
-
+        InvoiceDeclarationReportComponent,
+        AdditionalOptionsComponent
     ],
     imports: [
         FormsModule,

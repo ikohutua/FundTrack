@@ -100,7 +100,10 @@ namespace FundTrack.DAL.Concrete
         {
             try
             {
-                var result = _context.Events;
+                var result = _context.Events.Include(e => e.Organization)
+                 .Include(e => e.Organization.BannedOrganization)
+                 .Where(e => e.Organization.BannedOrganization == null)
+                 .Include(i => i.EventImages);
                 if (result == null)
                 {
                     throw new DataAccessException("В базі даних немає жодної події");
