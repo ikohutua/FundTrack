@@ -53,7 +53,7 @@ namespace FundTrack.WebUI
             else
             {
                 services.AddDbContext<FundTrackContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString(Configuration.GetConnectionString(connectionType))));
+                    options.UseSqlServer(Configuration.GetConnectionString(connectionType)));
             }
 
             //  services.AddDbContext<FundTrackContext>(options => options.UseSqlServer(Configuration.GetConnectionString(connectionType)));
@@ -166,13 +166,13 @@ namespace FundTrack.WebUI
             loggerFactory.AddFile("Logs/Errors/{Date}.txt", LogLevel.Error);
             loggerFactory.AddFile("Logs/Info/{Date}.txt", LogLevel.Information);
 
-            if (env.IsDevelopment())
-            {
+            //if (env.IsDevelopment())
+            //{
                 app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions
                 {
                     HotModuleReplacement = true
                 });
-            }
+            //}
 
             app.UseWebSockets();
 

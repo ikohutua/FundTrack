@@ -68,7 +68,7 @@ namespace FundTrack.WebUI.Controllers
         /// <param name="orgAccountId">The org account identifier.</param>
         /// <returns></returns>
         [HttpGet("GetFinOpsByOrgAccId/{orgAccountId}")]
-        [Authorize(Roles = "admin, moderator")]
+        //[Authorize(Roles = "admin, moderator")]
         public IActionResult GetFinOpsByOrgAccId(int orgAccountId)
         {
             if (orgAccountId <= 0)
@@ -84,7 +84,7 @@ namespace FundTrack.WebUI.Controllers
         /// <param name="orgAccountId">The fin op identifier.</param>
         /// <returns></returns>
         [HttpGet("GetFinOpsById/{id}")]
-        [Authorize(Roles = "admin, moderator")]
+        //[Authorize(Roles = "admin, moderator")]
         public IActionResult GetFinOpsById(int id)
         {
             if (id <= 0)

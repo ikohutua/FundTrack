@@ -133,6 +133,7 @@ export class SpendingOperationComponent {
         if (this.subTargets.length == 0) {
             this.moneyOperationModel.targetId = parentTargetId;
         }
+
     }
 
     private addSubTarget(targetName: string) {

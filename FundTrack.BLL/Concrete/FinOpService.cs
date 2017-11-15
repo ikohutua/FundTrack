@@ -192,10 +192,7 @@ namespace FundTrack.BLL.Concrete
 
             foreach (var item in images)
             {
-                var newImage = new FinOpImage()
-                {
-                    
-                };
+                var newImage = new FinOpImage();
 
                 var t = _imgService.UploadImageAsync(Convert.FromBase64String(item.Base64Data), item.imageExtension);
                 imageTastDictionary.Add(newImage, t);
