@@ -148,4 +148,8 @@ export class SidebarComponent implements OnInit {
     public redirectToInvoiceDeclarationPage(): void {
         this._router.navigate(['organization/invoiceDeclaration']);
     }
+
+    public redirectToAditionalOptions(): void {
+        this._router.navigate(['organization/options']);
+    }
 }

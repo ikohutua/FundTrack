@@ -5,6 +5,8 @@ import { Subscription } from "rxjs/Subscription";
 import { ActivatedRoute, Router } from "@angular/router";
 import { ImageModel } from "../../view-models/concrete/image-url-view-model";
 import { IImageModel } from "../../view-models/abstract/organization-management-view-models/image-url-view-model.interface";
+import { OfferedItemImageViewModel } from "../../view-models/concrete/offered-item-image-view.model";
+import { Image } from "../../view-models/concrete/image.model";
 
 @Component({
     selector: 'org-management-event',
@@ -16,7 +18,8 @@ export class OrganizationManadementEventEditComponent implements OnInit {
     private _event: IEventManagementViewModel;
     private _subscription: Subscription;
     private _errorMessage: string;
-
+    private _images = new Array<OfferedItemImageViewModel>();
+    images: Image[] = [];
     /**
      * @constructor
      * @param _route: ActivatedRoute
@@ -32,6 +35,11 @@ export class OrganizationManadementEventEditComponent implements OnInit {
         });
     }
 
+
+    onImageChange(imgArr: Image[]) {
+        this._event.images = imgArr;
+    }
+
     /**
      * Gets one event by identifier
      * @param id
@@ -44,24 +52,18 @@ export class OrganizationManadementEventEditComponent implements OnInit {
      * Updates event
      */
     private updateEvent(): void {
+        this._event.images = this.images;
         this._service.updateEvent(this._event)
             .subscribe(() => this._router.navigate(['organization/events/' + this._event.organizationId]));
     }
 
-   /**
-    * Gets extension of specified file
-    * @param fileName: name of the file extension of which is needed to be retrieved
-    */
-    private getFileExtension(fileName: string): string {
-        return fileName.substring(fileName.lastIndexOf('.') + 1, fileName.length) || fileName;
-    }
-
+  
     /**
      * Deletes image from local list
      * @param imageUrl
      */
     private deleteImageFromList(imageUrl: string): void {
-        this._event.images.splice(this._event.images.findIndex(i => i.imageUrl == imageUrl), 1)
+        this._event.images.splice(this._event.images.findIndex(i => i.imageSrc == imageUrl), 1)
     }
 
     /**

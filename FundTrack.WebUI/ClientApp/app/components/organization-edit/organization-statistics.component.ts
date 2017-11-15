@@ -9,6 +9,8 @@ import { isBrowser } from "angular2-universal";
 import * as key from '../../shared/key.storage';
 import * as constant from '../../shared/default-configuration.storage';
 import { AuthorizeUserModel } from "../../view-models/concrete/authorized-user-info-view.model";
+import { DatePeriod } from "../../shared/components/date-presets/date-period-class";
+import * as moment from "moment/moment";
 
 @Component({
     selector: 'statistics',
@@ -39,8 +41,9 @@ export class OrganizationStatisticsComponent implements OnInit {
     };
     public dataSet: any[] = [];
 
-    dateFrom: Date = new Date();
-    dateTo: Date = new Date();
+    private readonly DATE_FORMAT = "YYYY-MM-DD";
+    dateFrom: string = moment().subtract(1, "month").format(this.DATE_FORMAT);
+    dateTo: string = moment().format(this.DATE_FORMAT);
     inputMaxDate: Date = new Date();
     unassingnedFinOps: FinOpListViewModel[] = Array<FinOpListViewModel>();
     user: AuthorizeUserModel = new AuthorizeUserModel();
@@ -61,7 +64,6 @@ export class OrganizationStatisticsComponent implements OnInit {
                 this.user = JSON.parse(localStorage.getItem(key.keyModel)) as AuthorizeUserModel;
             }
         };
-        this.dateFrom.setMonth(this.dateFrom.getMonth() - 1); 
         this.prepareTargetsForCharts(this.allTargets);
         this.getBaseTargets();
     }
@@ -76,7 +78,7 @@ export class OrganizationStatisticsComponent implements OnInit {
         });
     }
 
-    public setBeginDate(beginDate: Date): void {
+    /*public setBeginDate(beginDate: Date): void {
         this.dateFrom = beginDate;
         this.getBaseTargets();
     }
@@ -84,7 +86,7 @@ export class OrganizationStatisticsComponent implements OnInit {
     public setEndDate(endDate: Date): void {
         this.dateTo = endDate;
         this.getBaseTargets();
-    }
+    }*/
 
     private onClickBaseTarget(target: BaseTargetReportViewModel): void {
         target.isOpen = !target.isOpen;
@@ -92,11 +94,11 @@ export class OrganizationStatisticsComponent implements OnInit {
             if (target.id == undefined) {
                 this.selectedCategory = this.baseTargetName;
                 this.prepareTargetsForCharts(this.allTargets);
-                this.organizationStatisticsService.getFinOpsByTargetId(this.reportType, target.id, this.transformDate(this.dateFrom), this.transformDate(this.dateTo))
+                this.organizationStatisticsService.getFinOpsByTargetId(this.reportType, target.id, this.dateFrom, this.dateTo)
                     .subscribe(response => this.unassingnedFinOps = response);
             } else {
                 this.selectedCategory = target.targetName;
-                this.organizationStatisticsService.getSubTargets(this.user.orgId, this.reportType, target.id, this.transformDate(this.dateFrom), this.transformDate(this.dateTo))
+                this.organizationStatisticsService.getSubTargets(this.user.orgId, this.reportType, target.id, this.dateFrom, this.dateTo)
                     .subscribe(response => {
                         target.subTargetsArray = response; 
                         this.prepareTargetsForCharts(response);
@@ -112,7 +114,7 @@ export class OrganizationStatisticsComponent implements OnInit {
     private onClickSubTarget(subTarget: SubTargetReportViewModel): void {
         subTarget.isOpen = !subTarget.isOpen;
         if (subTarget.isOpen) {
-            this.organizationStatisticsService.getFinOpsByTargetId(this.reportType, subTarget.id, this.transformDate(this.dateFrom), this.transformDate(this.dateTo))
+            this.organizationStatisticsService.getFinOpsByTargetId(this.reportType, subTarget.id, this.dateFrom, this.dateTo)
                 .subscribe(response => subTarget.finOpsArray = response);
         }
     }
@@ -128,7 +130,7 @@ export class OrganizationStatisticsComponent implements OnInit {
 
     private getBaseTargets(): void {
         this.showSpinner = true;
-        this.organizationStatisticsService.getReportForFinopsByTargets(this.user.orgId, this.reportType, this.transformDate(this.dateFrom), this.transformDate(this.dateTo))
+        this.organizationStatisticsService.getReportForFinopsByTargets(this.user.orgId, this.reportType, this.dateFrom, this.dateTo)
             .subscribe(response => {
                 this.allTargets = response;
                 this.prepareTargetsForCharts(response);
@@ -148,5 +150,11 @@ export class OrganizationStatisticsComponent implements OnInit {
             return;
         }
         this.isDataExists = true;
+    }
+
+    onDatePeriodChange(value: DatePeriod) {
+        this.dateFrom = value.dateFrom;
+        this.dateTo = value.dateTo;
+        this.getBaseTargets();
     }
 }

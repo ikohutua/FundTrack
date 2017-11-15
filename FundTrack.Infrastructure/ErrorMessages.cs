@@ -62,5 +62,10 @@
         public const string FinopImagesIdErrorMessage = "Невірнийб менший за 0 або пустий ідентифікатор операції.";
         public const string CheckIdErrorMessage = "Невірний, менший за 0 або пустий ідентифікатор.";
 
+        public const string OldPasswordIncorrectErrorMessage = "Старий пароль невірний";
+        public const string NotAllRowsFilledInErrorMessage = "Заповнені не всі поля";
+        public const string IncorectDataErrorMessage = "Некоректні вхідні дані";
+
+
     }
 }

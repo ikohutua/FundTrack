@@ -197,4 +197,10 @@ export class OrgAccountService {
             .map((response: Response) => <boolean>response.json())
             .catch(this.handleError);
     }
+
+    public getBankAccountsAvailable(orgId: number): Observable<boolean> {
+        return this._http.get(GlobalUrlService.bankAccountsAvailable + orgId.toString(), RequestOptionsService.getRequestOptions())
+            .map((response: Response) => response.json() as boolean)
+            .catch(this.handleError);
+    }
 }

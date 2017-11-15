@@ -390,7 +390,6 @@ export class OrgAccountOperationComponent implements OnChanges {
     }
 
     private setDefaultBoolValues() {
-        this.isCashType = false;
         this.isTransferOperation = false;
         this.isBaseTargetChosen = false;
         this.isWindthraw = false;

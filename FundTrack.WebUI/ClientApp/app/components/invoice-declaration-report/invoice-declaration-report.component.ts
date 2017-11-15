@@ -44,11 +44,13 @@ export class InvoiceDeclarationReportComponent implements OnInit, OnDestroy {
         private route: ActivatedRoute) { }
 
     ngOnInit(): void {
+        this.getUserFromStorage();
         this.storageService.showDropDown = false;
         this.declarationRequestModel.orgid = 0;
         this.declarationRequestModel.dateFrom = moment().subtract(1, "month").format(this.DATE_FORMAT);
         this.declarationRequestModel.dateTo = moment().format(this.DATE_FORMAT);
-        this.getUserFromStorage();
+        this.declarationRequestModel.orgid = this.user.orgId;
+        this.getInvoiceDeclarationReport();
     }
 
     ngOnDestroy(): void {
@@ -72,11 +74,17 @@ export class InvoiceDeclarationReportComponent implements OnInit, OnDestroy {
             this.declarationRequestModel.dateFrom,
             this.declarationRequestModel.dateTo)
             .subscribe((outcomeData: InvoiceDeclarationResponseViewModel[]) => {
-                this.declarationResponseModel = outcomeData;
-                this.checkIncomeSum();
-                this.ifDataExists = true;
+                if (outcomeData.length != 0) {
+                    this.declarationResponseModel = outcomeData;
+                    this.checkIncomeSum();
+                    this.ifDataExists = true;
+                }
+                else {
+                    this.ifDataExists = false;
+                }
             },
             error => {
+              
                 this.errorMessage = error;
                 this.openModal(this.exceptionModal);
             });
