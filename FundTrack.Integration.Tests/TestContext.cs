@@ -12,25 +12,32 @@ namespace FundTrack.Integration.Tests
     public class TestContext : IDisposable
     {
         private TestServer _server;
+        private FundTrackContext _dbContect;
         public HttpClient Client { get; private set; }
-        public FundTrackContext DbContext { get; private set; }
 
         public TestContext()
         {
             var builder = new WebHostBuilder()
           .UseEnvironment("Testing")
-          .UseStartup<Startup>();
+          .UseStartup<TestStartup>();
 
             _server = new TestServer(builder);
-            DbContext = _server.Host.Services.GetService(typeof(FundTrackContext)) as FundTrackContext;
             Client = _server.CreateClient();
+            _dbContect = _server.Host.Services.GetService(typeof(FundTrackContext)) as FundTrackContext;
+
+        }
+
+        public FundTrackContext GetClearDbContext()
+        {
+            _dbContect.Database.EnsureDeleted();
+            return _dbContect;
         }
 
         public void Dispose()
         {
             _server?.Dispose();
             Client?.Dispose();
-            DbContext?.Dispose();
+            _dbContect.Dispose();
         }
     }
 }

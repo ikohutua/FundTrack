@@ -23,6 +23,7 @@ namespace FundTrack.WebUI
 {
     public class Startup
     {
+        public IConfigurationRoot Configuration { get; }
         public IHostingEnvironment CurrentEnvironment { get; }
         public Startup(IHostingEnvironment env)
         {
@@ -36,14 +37,14 @@ namespace FundTrack.WebUI
             CurrentEnvironment = env;
         }
 
-        public IConfigurationRoot Configuration { get; }
-
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             // Available connection types : 'local','azure-main','azure-test', 'ss'
             string connectionType = "azure-main";
 
+            services.AddDbContext<FundTrackContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString(connectionType)));
 
             if (CurrentEnvironment.IsEnvironment("Testing"))
             {
