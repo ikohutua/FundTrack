@@ -120,7 +120,7 @@ export class OfferDetailComponent implements OnInit {
             offItImg.id = this.images[i].id == undefined ? -1 : this.images[i].id;
             offItImg.base64Data = this.images[i].base64Data;
             offItImg.isMain = this.images[i].isMain;
-            offItImg.imageUrl = this.images[i].imageSrc;
+            offItImg.imageUrl = this.images[i].imageUrl;
             offItImg.imageExtension = this.images[i].imageExtension;
             this.offerItem.images.push(offItImg);
         };       

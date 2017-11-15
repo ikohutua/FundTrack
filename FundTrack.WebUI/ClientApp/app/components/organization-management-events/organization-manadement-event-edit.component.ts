@@ -18,7 +18,6 @@ export class OrganizationManadementEventEditComponent implements OnInit {
     private _event: IEventManagementViewModel;
     private _subscription: Subscription;
     private _errorMessage: string;
-    private _images = new Array<OfferedItemImageViewModel>();
     images: Image[] = [];
     /**
      * @constructor
@@ -45,40 +44,19 @@ export class OrganizationManadementEventEditComponent implements OnInit {
      * @param id
      */
     public getInformationOfEvent(id: number): void {
-        this._service.getOneEventById(id).subscribe(event => this._event = event);
+        this._service.getOneEventById(id)
+            .subscribe(event => {
+                this._event = event;
+            });
     }
 
     /**
      * Updates event
      */
     private updateEvent(): void {
-        this._event.images = this.images;
+        //this._event.images = this.images;
         this._service.updateEvent(this._event)
             .subscribe(() => this._router.navigate(['organization/events/' + this._event.organizationId]));
-    }
-
-  
-    /**
-     * Deletes image from local list
-     * @param imageUrl
-     */
-    private deleteImageFromList(imageUrl: string): void {
-        this._event.images.splice(this._event.images.findIndex(i => i.imageSrc == imageUrl), 1)
-    }
-
-    /**
-     * Deletes concrete image
-     * @param currentImage
-     */
-    private deleteCurrentImage(currentImage: IImageModel): void {
-        if (currentImage.id > 0) {
-            this._service.deleteCurrentImage(currentImage.id)
-                .subscribe(data => this.deleteImageFromList(currentImage.imageUrl),
-                error => this._errorMessage = <any>error);
-        }
-        else {
-            this.deleteImageFromList(currentImage.imageUrl);
-        }
     }
 
     /**

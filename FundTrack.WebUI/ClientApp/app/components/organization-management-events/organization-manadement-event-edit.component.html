@@ -18,7 +18,7 @@
             <div class="form-group">
                 <div>
                     <div>
-                        <image-list [images]="images" (getImageChange)="onImageChange($event)"></image-list>
+                        <image-list [images]="_event.images" (getImageChange)="onImageChange($event)"></image-list>
                     </div>             
                 </div>
             </div>

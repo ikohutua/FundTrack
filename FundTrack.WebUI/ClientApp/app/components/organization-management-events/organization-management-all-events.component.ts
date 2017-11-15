@@ -51,11 +51,25 @@ export class OrganizationManagementAllEventsComponent implements OnInit {
         this._service.getEventsByOrganizationIdForPage(this._idForCurrentOrganization, page, this._itemPerPage).subscribe(
             events => {
                 this._allEvents = events;
+                this.setMainImage(this._allEvents);
                 this._offset = (page - 1) * this._itemPerPage;
                 this._showUsersSpinner = false;
             }
         );
 
+    }
+
+
+    private setMainImage(allEvents: IEventManagementViewModel[]): void {
+        for (var i = 0; i < allEvents.length; i++) {
+            for (var j = 0; j < allEvents[i].images.length; j++) {
+                let currentImage = allEvents[i].images[j];
+                if (currentImage.isMain) {
+                    allEvents[i].mainImage = currentImage;
+                    break;
+                }
+            }
+        }
     }
 
     /**
@@ -80,6 +94,7 @@ export class OrganizationManagementAllEventsComponent implements OnInit {
         this._service.getEventsByOrganizationIdForPage(idOrganization, currentPage, pageSize)
             .subscribe(events => {
                 this._allEvents = events;
+                this.setMainImage(this._allEvents);
                 this._showUsersSpinner = false;
             });
     }
@@ -97,7 +112,10 @@ export class OrganizationManagementAllEventsComponent implements OnInit {
      */
     private deleteEvent(): void {
         this._service.deleteEvent(this._currentEventItem.id)
-            .subscribe(data => this._allEvents.splice(this._allEvents.findIndex(e => e.id == this._currentEventItem.id), 1));
+            .subscribe(data => {
+                this._allEvents.splice(this._allEvents.findIndex(e => e.id == this._currentEventItem.id), 1)
+                this.getEventsInitData(this._idForCurrentOrganization);
+            });
     }
 
     /**
@@ -118,6 +136,7 @@ export class OrganizationManagementAllEventsComponent implements OnInit {
             events => {
                 this._offset = 0;
                 this._allEvents = events;
+                this.setMainImage(this._allEvents);
                 this._itemPerPage = amount;
                 this._showUsersSpinner = false;
             });
@@ -130,7 +149,7 @@ export class OrganizationManagementAllEventsComponent implements OnInit {
     private redirectToDeteilPage(id: number) {
         this._router.navigate(['organization/event/detail/' + id]);
     }
-    
+
     ngDestroy(): void {
         this._subscription.unsubscribe();
     }
