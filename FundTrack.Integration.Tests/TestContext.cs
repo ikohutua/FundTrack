@@ -16,6 +16,7 @@ namespace FundTrack.Integration.Tests
         private FundTrackContext _dbContect;
         public HttpClient Client { get; private set; }
         public TestTargetRepository TestTargetRepository { get; private set; }
+        public TestIncomeReportRepository TestIncomeReportRepository { get; private set; }
 
         public TestContext()
         {
@@ -28,6 +29,7 @@ namespace FundTrack.Integration.Tests
             _dbContect = _server.Host.Services.GetService(typeof(FundTrackContext)) as FundTrackContext;
 
             TestTargetRepository = new TestTargetRepository(_dbContect);
+            TestIncomeReportRepository = new TestIncomeReportRepository(_dbContect);
         }
 
         public FundTrackContext GetClearDbContext()
