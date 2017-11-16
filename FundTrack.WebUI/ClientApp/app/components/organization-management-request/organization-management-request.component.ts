@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { RequestManagementViewModel } from '../../view-models/abstract/organization-management-view-models/request-management-view-model';
 import { OrganizationManagementRequestService } from "../../services/concrete/organization-management/organization-management-request.service";
 import { SpinnerComponent } from "../../shared/components/spinner/spinner.component";
+import { RequestedImageViewModel } from "../../view-models/abstract/organization-management-view-models/requested-item-view.model";
 
 @Component({
     selector: 'org-management-request',
@@ -30,7 +31,7 @@ export class OrganizationManagementRequestComponent implements OnInit {
     ngOnInit(): void {
         this._subscription = this._route.params.subscribe(params => {
             this._organizationId = +params["id"];
-            this.getRequestedItemsInitData(1);
+            this.getRequestedItemsInitData(this._organizationId );
         });      
     }
 
@@ -50,13 +51,26 @@ export class OrganizationManagementRequestComponent implements OnInit {
     private getAllRequestedItems(id: number) {
         this._service.getAllRequestedItemsByOrganization(id, this.spinner)
             .subscribe(r => {
-                this._allRequestedItems = r;            
+                debugger;
+                this._allRequestedItems = r;   
+                this.setMainImage(this._allRequestedItems);
             },
             error => {
                 this._errorMessage = <any>error;
             })
     }
 
+    private setMainImage(offers: RequestManagementViewModel[]): void {
+        for (var i = 0; i < offers.length; i++) {
+            for (var j = 0; j < offers[i].images.length; j++) {
+                let currentImage = offers[i].images[j];
+                if (currentImage.isMain) {
+                    offers[i].mainImage = currentImage;
+                    break;
+                }
+            }
+        }
+    }
     /**
      * Sets current requested item
      * @param requestedItem
@@ -122,6 +136,7 @@ export class OrganizationManagementRequestComponent implements OnInit {
         this._service.getRequestedItemsPerPage(organizationId, currentPage, pageSize, this.spinner)
             .subscribe(requests => {
                 this._allRequestedItems = requests;
+                this.setMainImage(this._allRequestedItems);
             });
     }
 

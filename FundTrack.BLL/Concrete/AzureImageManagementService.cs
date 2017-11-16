@@ -54,10 +54,10 @@ namespace FundTrack.BLL.Concrete
             return imageName;
         }
 
-        public void DeleteImageAsync(string name)
+        public async Task DeleteImageAsync(string name)
         {
             CloudBlockBlob blockBlob = _container.GetBlockBlobReference(name);
-            blockBlob.DeleteIfExistsAsync();
+            await  blockBlob.DeleteIfExistsAsync();
         }
     }
 }

@@ -22,7 +22,7 @@
                     <li>
                         <a (click)="redirectToAllResponsesPage()">
                             Відгуки
-                            <span class="alert">
+                            <span *ngIf="newUserResponse>0" class="alert">
                                 <strong>+{{newUserResponse}}</strong>
                             </span>
                         </a>

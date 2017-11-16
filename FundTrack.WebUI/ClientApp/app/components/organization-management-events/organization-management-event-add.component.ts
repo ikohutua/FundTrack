@@ -65,7 +65,7 @@ export class OrganizationManagementEventAddComponent {
     // * @param imageUrl
     // */
     private deleteImageFromList(imageUrl: string): void {
-        this._event.images.splice(this._event.images.findIndex(i => i.imageSrc == imageUrl), 1)
+        this._event.images.splice(this._event.images.findIndex(i => i.imageUrl == imageUrl), 1)
     }
 
     /**

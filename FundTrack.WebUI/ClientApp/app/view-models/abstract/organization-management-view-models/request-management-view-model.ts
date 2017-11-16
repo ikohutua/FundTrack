@@ -10,5 +10,6 @@ export class RequestManagementViewModel {
     status: string;
     errorMessage: string;
     goodsTypeId: number;
+    mainImage = new RequestedImageViewModel();
     images: RequestedImageViewModel[] = [];
 }

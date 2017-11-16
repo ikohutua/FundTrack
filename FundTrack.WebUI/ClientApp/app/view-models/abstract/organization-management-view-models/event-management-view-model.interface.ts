@@ -7,4 +7,5 @@ export interface IEventManagementViewModel {
     description: string;
     createDate: Date;
     images: Image[];
+    mainImage: Image;
 }
