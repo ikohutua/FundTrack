@@ -38,7 +38,8 @@ namespace FundTrack.WebUI.Controllers
                 if (ModelState.IsValid)
                 {
                     var a = HttpContext.Items;
-                    return this._requestedItemService.CreateRequestedItem(requestedItemViewModel);                 
+                    return this._requestedItemService.CreateRequestedItem(requestedItemViewModel);
+                    //return requestedItemViewModel;
                 }
                 else
                 {
@@ -127,7 +128,7 @@ namespace FundTrack.WebUI.Controllers
                 List<RequestedItemViewModel> allItems = this._requestedItemService.GetOrganizationRequestedId(organizationId);
                 return allItems;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw ex;
             }
@@ -147,7 +148,7 @@ namespace FundTrack.WebUI.Controllers
 
                 return requestedItemViewModel;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return new RequestedItemViewModel()
                 {
@@ -162,15 +163,15 @@ namespace FundTrack.WebUI.Controllers
         /// <returns>List of goods type</returns>
         [HttpGet("[action]")]
         public IEnumerable<GoodsTypeViewModel> GetGoodsType()
-        {           
-                var goodsType = this._requestedItemService.GetAllGoodTypes();
-                return goodsType;                         
+        {
+            var goodsType = this._requestedItemService.GetAllGoodTypes();
+            return goodsType;
         }
 
         [HttpGet("[action]")]
         public IEnumerable<OrganizationForFilteringViewModel> GetOrganizations()
         {
-            return _requestedItemService.GetOrganizations(); 
+            return _requestedItemService.GetOrganizations();
         }
 
         [HttpGet("[action]")]
@@ -190,7 +191,7 @@ namespace FundTrack.WebUI.Controllers
         {
             return _requestedItemService.GetStatuses();
         }
-        
+
 
         /// <summary>
         /// Gets the request item detail.
@@ -203,7 +204,7 @@ namespace FundTrack.WebUI.Controllers
             return this._requestedItemService.GetRequestedItemDetail(id);
 
         }
-        
+
         /// <summary>
         /// Sets the user response.
         /// </summary>
@@ -213,25 +214,6 @@ namespace FundTrack.WebUI.Controllers
         public UserResponseViewModel SetUserResponse([FromBody] UserResponseViewModel userResponse)
         {
             return this._requestedItemService.CreateUserResponse(userResponse);
-        }
-
-        /// <summary>
-        /// Delete currentImage from database
-        /// </summary>
-        /// <param name="currentImageId">Current image id</param>
-        [HttpDelete("DeleteCurrentImage/{currentImageId}")]
-        public JsonResult DeleteCurrentImage(int currentImageId)
-        {
-            try
-            {
-                this._requestedItemService.DeleteCurrentImage(currentImageId);
-
-                return new JsonResult(string.Empty);
-            }
-            catch(Exception ex)
-            {
-                return new JsonResult(ex.Message);
-            }
         }
 
         /// <summary>
@@ -276,7 +258,7 @@ namespace FundTrack.WebUI.Controllers
         [HttpGet("GetRequestedItemPerPage/{organizationId}/{currentPage}/{pageSize}")]
         public IEnumerable<RequestedItemViewModel> GetRequestedItemPerPage(int organizationId, int currentPage, int pageSize)
         {
-          
+
             return this._requestedItemService.GetRequestedItemPerPageByorganizationId(organizationId, currentPage, pageSize);
         }
 
@@ -305,4 +287,4 @@ namespace FundTrack.WebUI.Controllers
 }
 
 
-    
+

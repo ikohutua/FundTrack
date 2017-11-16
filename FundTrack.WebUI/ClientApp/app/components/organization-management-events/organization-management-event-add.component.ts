@@ -41,7 +41,6 @@ export class OrganizationManagementEventAddComponent {
      */
     private addNewEvent(): void {
         this._event.images = this.images;
-        console.log(this._event.images);
         this._event.organizationId = this._idForCurrentOrganization;
         this._event.createDate = new Date(Date.now());
         this._service.addNewEvent(this._event).subscribe(
@@ -65,7 +64,7 @@ export class OrganizationManagementEventAddComponent {
     // * @param imageUrl
     // */
     private deleteImageFromList(imageUrl: string): void {
-        this._event.images.splice(this._event.images.findIndex(i => i.imageSrc == imageUrl), 1)
+        this._event.images.splice(this._event.images.findIndex(i => i.imageUrl == imageUrl), 1)
     }
 
     /**

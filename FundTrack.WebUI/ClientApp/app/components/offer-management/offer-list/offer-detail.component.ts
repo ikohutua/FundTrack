@@ -19,7 +19,7 @@ import { Image } from "../../../view-models/concrete/image.model";
     selector: 'offer-detail',
     templateUrl: './offer-detail.component.html',
     styleUrls: ['./offer-detail.component.css'],
-    providers: [UserOfferService, GoodsService ]
+    providers: [UserOfferService, GoodsService]
 })
 export class OfferDetailComponent implements OnInit {
     @Output() hidePanel = new EventEmitter<boolean>();
@@ -29,7 +29,6 @@ export class OfferDetailComponent implements OnInit {
     private showUserRegistrationSpinner: boolean = false;
     private _goodsTypes = new Array<GoodsTypeShortViewModel>();
     private _selectedType = new GoodsTypeShortViewModel();
-    private _images = new Array<OfferedItemImageViewModel>();
     images: Image[] = [];
     maxImgCount: number = 5;
     maxImgSize: number = 4000000;
@@ -54,7 +53,7 @@ export class OfferDetailComponent implements OnInit {
             })
     }
     ngOnInit() {
-        
+
         this._route.params
             .switchMap((params: Params) => {
                 let id = params['id'];
@@ -70,13 +69,13 @@ export class OfferDetailComponent implements OnInit {
             })
             .subscribe(data => {
                 this.offerItem = data;
-                if (this.offerItem.goodsTypeId!=null) {
+                if (this.offerItem.goodsTypeId != null) {
                     this.setGoodsType(this.offerItem.goodsTypeId);
                 }
                 if (data.id == null) {
                     this.header = 'Створити пропозицію';
 
-                 }
+                }
                 else {
                     this.header = 'Редагувати пропозицію';
                     //TODO: перевірити чи є фотки при редагуванні і як вони сейваються на беку
@@ -85,7 +84,7 @@ export class OfferDetailComponent implements OnInit {
                 }
             });
         this.fillGoodtypes();
-       
+
         if (isBrowser) {
             if (localStorage.getItem(key.keyToken)) {
                 var user = JSON.parse(localStorage.getItem(key.keyModel)) as AuthorizeUserModel;
@@ -104,7 +103,6 @@ export class OfferDetailComponent implements OnInit {
             images.push(img);
         }
         return images;
-
     }
 
     private setGoodsType(goodTypeId: number) {
@@ -120,10 +118,10 @@ export class OfferDetailComponent implements OnInit {
             offItImg.id = this.images[i].id == undefined ? -1 : this.images[i].id;
             offItImg.base64Data = this.images[i].base64Data;
             offItImg.isMain = this.images[i].isMain;
-            offItImg.imageUrl = this.images[i].imageSrc;
+            offItImg.imageUrl = this.images[i].imageUrl;
             offItImg.imageExtension = this.images[i].imageExtension;
             this.offerItem.images.push(offItImg);
-        };       
+        };
 
 
         if (this.offerItem.id == null) {

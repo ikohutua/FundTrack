@@ -5,6 +5,7 @@
     /// </summary>
     public static class ErrorMessages
     {
+        public const string Error = "Помилка:";
         public const string RequiredFieldMessage = "Обовязкове поле для заповнення";
         public const string MinLengthMessage = "Мінімальна кількість символів повинна бути більша 7";
         public const string MaxLengthMessage = "Значення не повинно бути більше 20 символів";
@@ -42,6 +43,7 @@
         public const string AddNewBalanceMessageReject = "Неможливо зафіксувати баланс через наявність фінансових операцій на вказану дату або після неї!";
         public const string BalanceFixedSuccessfullyMessage = "Баланс зафіксовано!";
         public const string BalanceAlreadyFixedMessage = "Баланс вже зафіксовано!";
+        public const string DeleteFixingError = "Неможливо видалити фіксацію";
         public const string GetFinOpWithoutAccount = "Неможливо присвоїти Id організації, оскільки фінансова операція не прив'язана до акаунта";
         public const string CantCreateAccountWithundefinedType = "Неможливо створити рахунок невизначеного типу";
         public const string CantCreateAccountOfOrganization = "Неможливо створити рахунок організацї";
@@ -67,5 +69,13 @@
         public const string IncorectDataErrorMessage = "Некоректні вхідні дані";
 
 
+        //Requested Items
+
+        public const string RequstWasnotCreated = "Потреба не була створена.";
+        public const string RequstListHaventBeenReceived = "Список потреб не був отриманий.";
+        public const string RequstWasnotFoundWithId = "Не знайдена потреба з ідентифікатором";
+        public const string StatusWasnotFound = "Не знайдено статус";
+
+       
     }
 }

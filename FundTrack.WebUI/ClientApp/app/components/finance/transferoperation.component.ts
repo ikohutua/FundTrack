@@ -120,10 +120,10 @@ export class TransferOperationComponent {
     private createTransferForm() {
         this.moneyTransferForm = this.fb.group({
             cardFromId: [
-                this.moneyOperationModel.cardFromId
+                this.moneyOperationModel.accFromId
             ],
             cardToId: [
-                this.moneyOperationModel.cardToId, [Validators.required]
+                this.moneyOperationModel.accToId, [Validators.required]
             ],
             amount: [
                 this.moneyOperationModel.amount, [Validators.required,
@@ -197,7 +197,7 @@ export class TransferOperationComponent {
     }
 
     private completeModel() {
-        this.moneyOperationModel.cardFromId = this.currentAccount.id;
+        this.moneyOperationModel.accFromId = this.currentAccount.id;
         this.moneyOperationModel.finOpType = constant.transferId;
         this.moneyOperationModel.orgId = this.user.orgId;
         this.moneyOperationModel.userId = this.user.id;

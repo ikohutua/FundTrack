@@ -7,6 +7,7 @@ export class GlobalUrlService {
     public static getAllOrganizationsUrl: string = "api/OrganizationDetail/";
     public static getFixingBalanceUrl: string = "api/FixingBalance/";
     public static fixingAllBalancesUrl: string = "api/FixingBalance/AllBalances/";
+    public static deleteLastFixingUrl: string = "api/FixingBalance/DeleteLastFixing/";
     public static readonly bankAccountsAvailable: string = "api/OrgAccount/BankAccontsAvailable/";
 
     //organization account Extracts

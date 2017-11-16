@@ -33,7 +33,6 @@ export class UserOfferService{
     public getUserOffers(userId: number): Observable<OfferViewModel[]> {
         return this._http.get(this._getOfferUrl + '/' + userId, this.getRequestOptions())
             .map((response: Response) => <OfferViewModel[]>response.json())
-            .do(data => console.log('Item: ' + JSON.stringify(data)))
             .catch(this.handleError);
     }
     /**
@@ -48,7 +47,6 @@ export class UserOfferService{
 
         return this._http.post(this._createOfferUrl, body, options)
             .map((response: Response) => <OfferViewModel>response.json())
-            .do(data => console.log('ALL ' + JSON.stringify(data)))
             .catch(this.handleError);
     }
     /**
@@ -106,7 +104,6 @@ export class UserOfferService{
     public getPagedUserOffers(userId: number, itemsPerPage: number = 4, currentPage: number = 1): Observable<OfferViewModel[]> {
         return this._http.get(this._getPagedItemsUrl + '/' + userId + '/' + itemsPerPage + '/' + currentPage, this.getRequestOptions())
             .map((response: Response) => <OfferViewModel[]>response.json())
-            .do(data => console.log('ALL ' + JSON.stringify(data)))
             .catch(this.handleError);
     }
     public getInitialData(userId: number): Observable<OfferViewModel[]> {

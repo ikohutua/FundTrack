@@ -8,4 +8,6 @@ export class EventManagementViewModel implements IEventManagementViewModel {
     description: string;
     createDate: Date;
     images: Image[];
+    mainImage: Image;
+
 }

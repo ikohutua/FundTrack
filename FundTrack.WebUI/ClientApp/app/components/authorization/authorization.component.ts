@@ -119,7 +119,6 @@ export class AuthorizationComponent {
      * @param user
      */
     private subscribeForAuthorization(user: AuthorizedUserInfoViewModel) {
-        console.log(user);
         this.userAuthorizedInfo = user;
         this.errorMessage = user.errorMessage;
         localStorage.clear();

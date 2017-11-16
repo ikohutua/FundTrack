@@ -80,6 +80,7 @@ export class OrgAccountOperationComponent implements OnChanges {
     private itemPerPage: number = 10;
     private currentPage: number = 1;
     private currentFinOpType: number = -1;
+    private deleteLastFixinMessage: string = "";
 
     @Input() orgId: number;
     @Input() accountId: number;
@@ -107,6 +108,9 @@ export class OrgAccountOperationComponent implements OnChanges {
     @ViewChild("fixingBalanceModal")
     private fixingBalanceModal: ModalComponent;
 
+    @ViewChild("deleteLastFixingModal")
+    private deleteLastFixingModal: ModalComponent;
+    
     @ViewChild("suggestedDonationsModal")
     private suggestedDonationsModal: ModalComponent;
     //-------------------------------------------------------------------------------
@@ -235,7 +239,7 @@ export class OrgAccountOperationComponent implements OnChanges {
                 this.finOps[i].finOpName = constant.spendingUA;
             }
 
-            else if (this.finOps[i].finOpType == constant.transferId && this.finOps[i].cardFromId == this.currentAccount.id) {
+            else if (this.finOps[i].finOpType == constant.transferId && this.finOps[i].accFromId == this.currentAccount.id) {
                 this.finOps[i].finOpName = constant.incomeTransferUA;
             }
             else {
@@ -405,10 +409,10 @@ export class OrgAccountOperationComponent implements OnChanges {
                 ]
             ],
             cardFromId: [
-                this.updateFinOperation.cardFromId
+                this.updateFinOperation.accFromId
             ],
             cardToId: [
-                this.updateFinOperation.cardToId
+                this.updateFinOperation.accToId
             ],
             targetId: [
                 this.updateFinOperation.targetId
@@ -445,7 +449,7 @@ export class OrgAccountOperationComponent implements OnChanges {
 
     private invalidAmountMessage = message.invalidAmountMessage;
     private maxLengthDescription = message.maxLengthDescription;
-
+    
     private validationMessages = {
         amount: {
             notnumber: this.invalidAmountMessage,
@@ -626,7 +630,7 @@ export class OrgAccountOperationComponent implements OnChanges {
         donation.donationDate = this.selectedFinOp.date.toString();
         this.donateService.getOrderId().subscribe(result => {
             donation.orderId = result;
-            donation.bankAccountId = this.selectedFinOp.cardToId;
+            donation.bankAccountId = this.selectedFinOp.accToId;
             this.donateService.addDonation(donation).subscribe(result => {
                 this.selectedFinOp.donationId = result.id;
                 this.finOpService.bindDonationAndFinOp(this.selectedFinOp).subscribe(result => {
@@ -668,5 +672,17 @@ export class OrgAccountOperationComponent implements OnChanges {
     private onChangeAccountTarget($event): void {
         this.accountForUpdate.targetId = $event;
         this.accountService.updateOrganizationAccount(this.accountForUpdate).subscribe();
+    }
+
+    private deleteLastFixing() {
+        this.fixingService.deleteLastFixing(this.accountId).subscribe(
+            response => {
+                this.deleteLastFixinMessage = response ? "Успішно видалено останню фіксацію" : "Не вдалось видалити останню фіксацію";
+                this.deleteLastFixingModal.show();
+            },
+            error => {
+                this.deleteLastFixinMessage = error;
+                this.deleteLastFixingModal.show();
+            });
     }
 }

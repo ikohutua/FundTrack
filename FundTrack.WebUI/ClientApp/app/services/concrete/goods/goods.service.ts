@@ -20,13 +20,11 @@ export class GoodsService {
     public getCategories(): Observable<GoodsCategoryViewModel[]> {
         return this._http.get(this._getCategoriesUrl)
             .map((response: Response) => <GoodsCategoryViewModel[]>response.json())
-            .do(data => console.log('Item: ' + JSON.stringify(data)))
             .catch(this.handleError);
     }
     public getTypes(): Observable<GoodsTypeShortViewModel[]> {
         return this._http.get(this._getTypesUrl)
             .map((response: Response) => <GoodsTypeShortViewModel[]>response.json())
-            .do(data => console.log('Item: ' + JSON.stringify(data)))
             .catch(this.handleError);
     }
     ///Error handler to report into console

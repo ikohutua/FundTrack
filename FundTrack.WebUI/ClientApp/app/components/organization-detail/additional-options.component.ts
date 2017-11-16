@@ -30,7 +30,6 @@ export class AdditionalOptionsComponent implements OnInit {
         this.showSpinner = true;
         if (isBrowser) {
             if (localStorage.getItem(key.keyToken)) {
-                debugger;
                 this.user = JSON.parse(localStorage.getItem(key.keyModel)) as AuthorizeUserModel;
             }
             this._service.getBankAccountsAvailable(this.user.orgId)
@@ -41,7 +40,6 @@ export class AdditionalOptionsComponent implements OnInit {
         };
     }
     private onChangeSelection($event): void {
-        debugger;
         this.model = new AutoImportIntervalViewModel();
         this.model.orgId = this.user.orgId;
         this.model.interval = +$event;

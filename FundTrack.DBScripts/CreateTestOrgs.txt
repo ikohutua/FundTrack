@@ -1,0 +1,31 @@
+/*Створюємо 3х користувачів*/
+INSERT [dbo].[Users] ([Id], [Email], [FB_Link], [FirstName], [LastName], [Login], [Password], [PhotoUrl], [AuthorizationToken], [Salt]) VALUES (1, N'superadmin@gmail.com', NULL, N'Super', N'Admin', N'SuperAdmin', N'tqT5FFFIHc29hmFPHeijRLxgonba4i2sMZY8UUif0CA0l8/u387xkbeRaWIsm0dYw5uEsP7ylLgreVo4oU6P7v0JSurDrHpEJZGWtwsKQCvAaT3I6VsR2Jq82Y/5ZwR7rxUn8EvDpJ4mscIF5Fa9+vs03CZBbpAstOqf1V4qJG8=', NULL, NULL, N'41e1913c-8dc9-4096-8514-653fc2b0330c')
+INSERT [dbo].[Users] ([Id], [Email], [FB_Link], [FirstName], [LastName], [Login], [Password], [PhotoUrl], [AuthorizationToken], [Salt]) VALUES (2, N'superadmin@gmail.com', NULL, N'Super', N'Admin', N'SuperAdmin', N'tqT5FFFIHc29hmFPHeijRLxgonba4i2sMZY8UUif0CA0l8/u387xkbeRaWIsm0dYw5uEsP7ylLgreVo4oU6P7v0JSurDrHpEJZGWtwsKQCvAaT3I6VsR2Jq82Y/5ZwR7rxUn8EvDpJ4mscIF5Fa9+vs03CZBbpAstOqf1V4qJG8=', NULL, NULL, N'41e1913c-8dc9-4096-8514-653fc2b0330c')
+INSERT [dbo].[Users] ([Id], [Email], [FB_Link], [FirstName], [LastName], [Login], [Password], [PhotoUrl], [AuthorizationToken], [Salt]) VALUES (3, N'superadmin@gmail.com', NULL, N'Super', N'Admin', N'SuperAdmin', N'tqT5FFFIHc29hmFPHeijRLxgonba4i2sMZY8UUif0CA0l8/u387xkbeRaWIsm0dYw5uEsP7ylLgreVo4oU6P7v0JSurDrHpEJZGWtwsKQCvAaT3I6VsR2Jq82Y/5ZwR7rxUn8EvDpJ4mscIF5Fa9+vs03CZBbpAstOqf1V4qJG8=', NULL, NULL, N'41e1913c-8dc9-4096-8514-653fc2b0330c')
+/*Створюємо 3 організації для корристувачів */
+INSERT [dbo].[Organizations] ([Id], [Description], [Name], [LogoUrl]) VALUES (1, N'... і нехай ні холод, ні вітри не зупинять нас, а вічне золоте сонце супроводжує нас...', N'Sunshine', NULL)
+INSERT [dbo].[Organizations] ([Id], [Description], [Name], [LogoUrl]) VALUES (2, N'... і нехай ні холод, ні вітри не зупинять нас, а вічне золоте сонце супроводжує нас...', N'FreeSoul', NULL)
+INSERT [dbo].[Organizations] ([Id], [Description], [Name], [LogoUrl]) VALUES (3, N'... і нехай ні холод, ні вітри не зупинять нас, а вічне золоте сонце супроводжує нас...', N'MyHero', NULL)
+/*Створюємо Ролі*/
+INSERT [dbo].[Roles] ([Id], [Name]) VALUES (1, N'partner')
+INSERT [dbo].[Roles] ([Id], [Name]) VALUES (2, N'admin')
+INSERT [dbo].[Roles] ([Id], [Name]) VALUES (3, N'superadmin')
+INSERT [dbo].[Roles] ([Id], [Name]) VALUES (4, N'moderator')
+/*Нааємо ролі користувачам*/
+INSERT [dbo].[Membershipes] ([Id], [OrgId], [RoleId], [UserId]) VALUES (1, 1, 2, 1)
+INSERT [dbo].[Membershipes] ([Id], [OrgId], [RoleId], [UserId]) VALUES (2, 2, 2, 2)
+INSERT [dbo].[Membershipes] ([Id], [OrgId], [RoleId], [UserId]) VALUES (3, 3, 2, 3)
+/*Створюємо по 3 призначення для кожної організації*/
+INSERT [dbo].[Targets] ([Id], [TargetName], [OrganizationId], [ParentTargetId]) VALUES (1, N'Військові', 1, NULL)
+INSERT [dbo].[Targets] ([Id], [TargetName], [OrganizationId], [ParentTargetId]) VALUES (2, N'Цивільні', 1, NULL)
+INSERT [dbo].[Targets] ([Id], [TargetName], [OrganizationId], [ParentTargetId]) VALUES (3, N'Медикаменти', 1, NULL)
+/* */
+INSERT [dbo].[Targets] ([Id], [TargetName], [OrganizationId], [ParentTargetId]) VALUES (4, N'Військові', 2, NULL)
+INSERT [dbo].[Targets] ([Id], [TargetName], [OrganizationId], [ParentTargetId]) VALUES (5, N'Цивільні', 2, NULL)
+INSERT [dbo].[Targets] ([Id], [TargetName], [OrganizationId], [ParentTargetId]) VALUES (6, N'Інші', 2, NULL)
+/* */
+INSERT [dbo].[Targets] ([Id], [TargetName], [OrganizationId], [ParentTargetId]) VALUES (7, N'Військові', 3, NULL)
+INSERT [dbo].[Targets] ([Id], [TargetName], [OrganizationId], [ParentTargetId]) VALUES (8, N'Загальні', 3, NULL)
+INSERT [dbo].[Targets] ([Id], [TargetName], [OrganizationId], [ParentTargetId]) VALUES (9, N'Медикаменти', 3, NULL)
+/*Створюємо Валюту*/
+INSERT [dbo].[Currencies] ([Id], [FullName], [ShortName]) VALUES (1, N'Гривня', N'UAH')

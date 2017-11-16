@@ -9,7 +9,7 @@ namespace FundTrack.Infrastructure.ViewModel
         public string ImageUrl { get; set; }
         public string Base64Data { get; set; }
         public bool IsMain { get; set; }
-        public string imageExtension { get; set; }
+        public string ImageExtension { get; set; }
 
         public bool Equals(OfferedItemImageViewModel other)
         {

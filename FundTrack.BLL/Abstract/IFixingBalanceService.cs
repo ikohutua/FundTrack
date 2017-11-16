@@ -21,5 +21,7 @@ namespace FundTrack.BLL.Abstract
         /// <returns>Added data</returns>
         BalanceViewModel AddNewBalance(BalanceViewModel balance);
         IEnumerable<BalanceViewModel> AddNewRangeOfBalances(IEnumerable< BalanceViewModel> balances);
+
+        Boolean DeleteLastFixing(int accountId);
     }
 }

@@ -20,7 +20,6 @@ export class EventDetailService extends BaseService<IEventDetailModel>{
     public getById(id: number, additionString: string): Observable<IEventDetailModel> {
         return this.http.get(additionString + '/' + id.toString())
             .map((response: Response) => <IEventDetailModel>response.json())
-            //.do(data => console.log('ALL ' + JSON.stringify(data)))
             .catch(this.handleErrorHere);
     }
 

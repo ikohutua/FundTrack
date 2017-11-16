@@ -125,7 +125,7 @@ namespace FundTrack.BLL.Concrete
                     continue;
                 }
 
-                if (lastFixedBalances.Keys.Contains(balance.OrgAccountId) 
+                if (lastFixedBalances.Keys.Contains(balance.OrgAccountId)
                     && balance.BalanceDate.Date <= lastFixedBalances[balance.OrgAccountId].Date)
                 {
                     balance.Message = ErrorMessages.BalanceAlreadyFixedMessage;
@@ -142,6 +142,33 @@ namespace FundTrack.BLL.Concrete
             }
             _unitOfWork.SaveChanges();
             return allBalances;
+        }
+
+        public bool DeleteLastFixing(int accountId)
+        {
+            try
+            {
+                var balanceList = _unitOfWork.BalanceRepository.GetAllBalancesByAccountId(accountId).ToList();
+                if (balanceList.Count() <= 1) // if account has less then one fixing
+                {
+                    return false;
+                }
+                var balance = balanceList.Last();
+                var finOps = _unitOfWork.FinOpRepository.GetFinOpByOrgAccount(accountId)
+                    .Where(f => f.FinOpDate.Date >= balance.BalanceDate.Date).ToList();
+                if (finOps.Count > 0) // if account has finOps after fixing
+                {
+                    return false;
+                }
+                var ok = _unitOfWork.BalanceRepository.Delete(balance.Id);
+                _unitOfWork.SaveChanges();
+                return ok;
+            }
+            catch (Exception e)
+            {
+                throw new BusinessLogicException(ErrorMessages.DeleteFixingError, e);
+            }
+
         }
     }
 }

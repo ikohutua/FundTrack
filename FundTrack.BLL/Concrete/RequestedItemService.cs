@@ -8,6 +8,7 @@ using System.Linq;
 using FundTrack.DAL.Entities;
 using Microsoft.EntityFrameworkCore;
 using FundTrack.Infrastructure;
+using System.Threading.Tasks;
 
 namespace FundTrack.BLL.Concrete
 {
@@ -18,14 +19,17 @@ namespace FundTrack.BLL.Concrete
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly int _requestedItemPerPage = 3;
+        private readonly IImageManagementService _imgService;
+
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RequestedItemService"/> class.
         /// </summary>
         /// <param name="unitOfWork">Unit of work</param>
-        public RequestedItemService(IUnitOfWork unitOfWork)
+        public RequestedItemService(IUnitOfWork unitOfWork, IImageManagementService imgService)
         {
             this._unitOfWork = unitOfWork;
+            _imgService = imgService;
         }
 
         /// <summary>
@@ -47,12 +51,12 @@ namespace FundTrack.BLL.Concrete
 
                 if (status == null)
                 {
-                    throw new BusinessLogicException($"Статус {InitialStatusName} не знайдено");
+                    throw new BusinessLogicException($"{ErrorMessages.StatusWasnotFound} {InitialStatusName}");
                 }
 
                 RequestedItem requestedItem = this.convertRequestedItem(requestedItemViewModel);
                 requestedItem = this._unitOfWork.RequestedItemRepository.Create(requestedItem);
-                var requestedImagesList = this.convertViewModelImageList(requestedItemViewModel.Images,
+                var requestedImagesList = this.UploadImagesToStorage(requestedItemViewModel.Images,
                     requestedItem.Id);
                 this._unitOfWork.RequestedItemImageRepository.SaveListOfImages(requestedImagesList);
                 this._unitOfWork.SaveChanges();
@@ -61,7 +65,7 @@ namespace FundTrack.BLL.Concrete
             }
             catch (Exception ex)
             {
-                string message = string.Format("Потреба не була створена. Помилка: {0}", ex.Message);
+                string message = $"{ErrorMessages.RequstWasnotCreated} {ErrorMessages.Error} { ex.Message}";
                 throw new BusinessLogicException(message, ex);
             }
         }
@@ -74,9 +78,12 @@ namespace FundTrack.BLL.Concrete
         {
             try
             {
-                this._unitOfWork.RequestedItemImageRepository.DeleteImagesByRequestedItemId(itemId);
-                this._unitOfWork.RequestedItemRepository.Delete(itemId);
-                this._unitOfWork.SaveChanges();
+                var imagesNames = _unitOfWork.RequestedItemImageRepository.GetImagesByRequestedItemId(itemId).Select(i => i.ImageUrl).ToList();
+                imagesNames.ForEach(name => _imgService.DeleteImageAsync(name));
+
+                _unitOfWork.RequestedItemImageRepository.DeleteImagesByRequestedItemId(itemId);
+                _unitOfWork.RequestedItemRepository.Delete(itemId);
+                _unitOfWork.SaveChanges();
             }
             catch (Exception ex)
             {
@@ -97,7 +104,7 @@ namespace FundTrack.BLL.Concrete
 
                 if (requestedItem == null)
                 {
-                    throw new BusinessLogicException($"Потреба з ідентифікатором {id} не знайдена");
+                    throw new BusinessLogicException($"{ErrorMessages.RequstWasnotFoundWithId} {id} ");
                 }
 
                 IEnumerable<RequestedImageViewModel> imagesList = this.convertRequestItemImageModelList(requestedItem.RequestedItemImages,
@@ -106,7 +113,7 @@ namespace FundTrack.BLL.Concrete
                 RequestedItemViewModel itemViewModel = this.convertToRequestedItemViewModel(requestedItem, imagesList);
 
                 return itemViewModel;
-                
+
             }
             catch (Exception ex)
             {
@@ -144,17 +151,12 @@ namespace FundTrack.BLL.Concrete
         /// <returns>Requested item view model</returns>
         public RequestedItemViewModel UpdateRequestedItem(RequestedItemViewModel requestedItemViewModel)
         {
-            var imagesToUpdate = requestedItemViewModel.Images.Where(e => e.RequestedItemId == 0);
-            IEnumerable<RequestedItemImage> imagesList = this.convertViewModelImageList(imagesToUpdate,
-                                                         requestedItemViewModel.Id);
-
             try
             {
                 RequestedItem requestedItem = this.convertRequestedItem(requestedItemViewModel);
+                SetRequestedItemImage(requestedItemViewModel.Images, requestedItem);
 
                 this._unitOfWork.RequestedItemRepository.Update(requestedItem);
-                this._unitOfWork.RequestedItemImageRepository.SaveListOfImages(imagesList);
-
                 this._unitOfWork.SaveChanges();
 
                 return requestedItemViewModel;
@@ -165,6 +167,65 @@ namespace FundTrack.BLL.Concrete
             }
         }
 
+
+        private void SetRequestedItemImage(IEnumerable<RequestedImageViewModel> incomingImages, RequestedItem offerItem)
+        {
+            //images in Db
+            List<RequestedItemImage> storedImages = _unitOfWork.RequestedItemImageRepository.GetImagesByRequestedItemId(offerItem.Id).ToList();
+
+            //new images user set
+            List<RequestedImageViewModel> incomeNewImages = incomingImages.Select(i => i).Where(i => !String.IsNullOrEmpty(i.Base64Data)).ToList();
+            if (incomeNewImages.Any(i => i.IsMain))
+            {
+                storedImages.ForEach(i => i.IsMain = false);
+            }
+
+            //in case when only main image was changed
+            storedImages.ForEach(si => si.IsMain = incomingImages.
+                                                    Select(i => i).
+                                                    Where(i => i.Id == si.Id).
+                                                    FirstOrDefault()
+                                                    ?.IsMain ?? si.IsMain);
+
+            //old images stored in Db
+            var incomeOldImages = incomingImages.Select(i => i).Where(i => String.IsNullOrEmpty(i.Base64Data));
+            var incomeOldImagesModel = ConvertToRequestedItemImages(incomeOldImages);
+
+            //old images which we have removed from offerItem.Images
+            var uslesImages = storedImages.Where(l2 => !incomeOldImagesModel.Any(l1 => l1.ImageUrl == l2.ImageUrl)).ToList();
+            foreach (var stuff in uslesImages)
+            {
+                _unitOfWork.RequestedItemImageRepository.Delete(stuff.Id);
+                storedImages.Remove(stuff);
+                _imgService.DeleteImageAsync(AzureStorageConfiguration.GetImageNameFromUrl(stuff.ImageUrl));
+            }
+
+            //save new images
+            var newImages = UploadImagesToStorage(incomeNewImages, offerItem.Id);
+            foreach (var picture in newImages)
+            {
+                var newImg = _unitOfWork.RequestedItemImageRepository.Create(picture);
+                storedImages.Add(newImg);
+            }
+
+            offerItem.RequestedItemImages = storedImages;
+        }
+
+        private IEnumerable<RequestedItemImage> ConvertToRequestedItemImages(IEnumerable<RequestedImageViewModel> requestedItemImages)
+        {
+            return requestedItemImages.Select(ConvertToRequestedItemImage).ToList();
+        }
+
+        private RequestedItemImage ConvertToRequestedItemImage(RequestedImageViewModel requestedImageVM)
+        {
+            return new RequestedItemImage()
+            {
+                Id = requestedImageVM.Id,
+                IsMain = requestedImageVM.IsMain,
+                RequestedItemId = requestedImageVM.RequestedItemId,
+                ImageUrl = AzureStorageConfiguration.GetImageNameFromUrl(requestedImageVM.ImageUrl)
+            };
+        }
         /// <summary>
         /// Gets the requested item detail.
         /// </summary>
@@ -339,25 +400,6 @@ namespace FundTrack.BLL.Concrete
         }
 
         /// <summary>
-        /// Delete current image from database
-        /// </summary>
-        /// <param name="currentImageId">Current image id</param>
-        public void DeleteCurrentImage(int currentImageId)
-        {
-            try
-            {
-                this._unitOfWork.RequestedItemImageRepository.Delete(currentImageId);
-                this._unitOfWork.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                string message = string.Format("Зображення не було видалене. Помилка: {0}", ex.Message);
-
-                throw new BusinessLogicException(message, ex);
-            }
-        }
-
-        /// <summary>
         /// Gets requested item per page
         /// </summary>
         /// <param name="id">Id of organization</param>
@@ -374,9 +416,9 @@ namespace FundTrack.BLL.Concrete
 
                 return resulList;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                string message = string.Format("Список потреб не був отриманий. Помилка: {0}", ex.Message);
+                string message = $"{ErrorMessages.RequstListHaventBeenReceived} {ErrorMessages.Error} {ex.Message}";
 
                 throw new BusinessLogicException(message, ex);
             }
@@ -399,8 +441,9 @@ namespace FundTrack.BLL.Concrete
                     .Count()
                 };
             }
-            catch(Exception ex) {
-                string message = string.Format("Список потреб не був отриманий. Помилка: {0}", ex.Message);
+            catch (Exception ex)
+            {
+                string message = $"{ErrorMessages.RequstListHaventBeenReceived} {ErrorMessages.Error} {ex.Message}";
 
                 throw new BusinessLogicException(message, ex);
             }
@@ -543,18 +586,31 @@ namespace FundTrack.BLL.Concrete
         /// </summary>
         /// <param name="imagesList">List of images</param>
         /// <param name="requestedItemId">Id of requested item</param>
-        private IEnumerable<RequestedItemImage> convertViewModelImageList(IEnumerable<RequestedImageViewModel> imagesList,
+        private IEnumerable<RequestedItemImage> UploadImagesToStorage(IEnumerable<RequestedImageViewModel> imagesList,
                                                  int requestedItemId)
         {
-            IEnumerable<RequestedItemImage> images = imagesList
-                    .Select(image => new RequestedItemImage
-                    {
-                        ImageUrl = image.ImageUrl,
-                        IsMain = image.IsMain,
-                        RequestedItemId = requestedItemId,
-                    });
 
-            return images;
+            Dictionary<RequestedItemImage, Task<string>> imageTastDictionary = new Dictionary<RequestedItemImage, Task<string>>();
+
+            foreach (var item in imagesList)
+            {
+                var newImage = new RequestedItemImage()
+                {
+                    IsMain = item.IsMain,
+                    RequestedItemId = requestedItemId
+                };
+
+                var t = _imgService.UploadImageAsync(Convert.FromBase64String(item.Base64Data), item.ImageExtension);
+                imageTastDictionary.Add(newImage, t);
+            }
+            Task.WhenAll(imageTastDictionary.Values);
+
+            foreach (var element in imageTastDictionary)
+            {
+                element.Key.ImageUrl = element.Value.Result;
+            }
+
+            return imageTastDictionary.Keys;
         }
 
         /// <summary>
@@ -572,7 +628,7 @@ namespace FundTrack.BLL.Concrete
                         Id = image.Id,
                         IsMain = image.IsMain,
                         RequestedItemId = image.RequestedItemId,
-                        ImageUrl = image.ImageUrl
+                        ImageUrl = AzureStorageConfiguration.GetImageUrl(image.ImageUrl)
                     });
 
             return images;

@@ -99,22 +99,19 @@ namespace FundTrack.BLL.Concrete
         {
             try
             {
-                IEnumerable<EventViewModel> events = ((DbSet<Event>)_unitOfWork.EventRepository.Read())
-                 .Include(e => e.Organization)
-                 .Include(e => e.Organization.BannedOrganization)
-                 .Where(e => e.Organization.BannedOrganization == null && e.OrganizationId == id)
-                 .Include(i => i.EventImages)
-                 .Select(c => new EventViewModel()
-                 {
-                     Id = c.Id,
-                     OrganizationId = c.OrganizationId,
-                     OrganizationName = c.Organization.Name,
-                     Description = c.Description,
-                     CreateDate = c.CreateDate,
-                     ImageUrl = AzureStorageConfiguration.GetImageUrl(c.EventImages.Single(r => r.IsMain == true).ImageUrl)
-                 }).OrderByDescending(e => e.CreateDate);
+                IEnumerable<EventViewModel> events = _unitOfWork.EventRepository.Read()
+                    .Where(e => e.OrganizationId == id)
+                    .Select(c => new EventViewModel()
+                    {
+                        Id = c.Id,
+                        OrganizationId = c.OrganizationId,
+                        OrganizationName = c.Organization.Name,
+                        Description = c.Description,
+                        CreateDate = c.CreateDate,
+                        ImageUrl = AzureStorageConfiguration.GetImageUrl(c.EventImages.Single(r => r.IsMain == true).ImageUrl)
+                    }).OrderByDescending(e => e.CreateDate);
 
-                return events as IEnumerable<EventViewModel>;
+                return events;
             }
             catch (Exception ex)
             {
@@ -131,8 +128,8 @@ namespace FundTrack.BLL.Concrete
         {
             return new EventPaginationInitViewModel
             {
-                TotalEventsCount = _unitOfWork.EventRepository.Read().Count(),
-                EventsPerPage = _pageSize
+                TotalItemsCount = _unitOfWork.EventRepository.Read().Count(),
+                ItemsPerPage = _pageSize
             };
         }
     }

@@ -22,5 +22,7 @@ namespace FundTrack.DAL.Abstract
        IEnumerable <Balance> GetAllBalancesByAccountId(int accountId);
 
        IQueryable<Balance> GetAllBalances();
+
+       bool Delete(int balanceId);
     } 
 }
