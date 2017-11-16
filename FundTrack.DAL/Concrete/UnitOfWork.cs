@@ -7,7 +7,7 @@ namespace FundTrack.DAL.Concrete
     /// <summary>
     /// This class encapsulates an instance of the DbContext and exposes each repository as a property
     /// </summary>
-    public sealed class UnitOfWork : IUnitOfWork, IDisposable
+    public sealed class UnitOfWork : IUnitOfWork
     {
         private readonly IOrganizationsForFilteringRepository _organizationsListRepository;
         //private readonly IUserResporitory _usersListRepository;
@@ -468,17 +468,6 @@ namespace FundTrack.DAL.Concrete
         public void SaveChanges()
         {
             this._context.SaveChanges();
-        }
-
-        /// <summary>
-        /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
-        /// </summary>
-        public void Dispose()
-        {
-            if (_context != null)
-            {
-                _context.Dispose();
-            }
         }
     }
 }

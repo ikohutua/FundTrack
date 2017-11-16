@@ -136,7 +136,7 @@ namespace FundTrack.WebUI.Controllers
         /// <param name="spendingModel">The spending finance operation model.</param>
         /// <returns></returns>
         [HttpPost("Spending")]
-        [Authorize(Roles = "admin, moderator")]
+        //[Authorize(Roles = "admin, moderator")]
         public IActionResult Spending([FromBody] FinOpViewModel spendingModel)
         {
             if (spendingModel == null)
@@ -152,7 +152,7 @@ namespace FundTrack.WebUI.Controllers
         /// <param name="transferModel">The transfer finance operation model.</param>
         /// <returns></returns>
         [HttpPost("Transfer")]
-        [Authorize(Roles = "admin, moderator")]
+        //[Authorize(Roles = "admin, moderator")]
         public IActionResult Transfer([FromBody] FinOpViewModel transferModel)
         {
             if (transferModel == null)
@@ -170,7 +170,7 @@ namespace FundTrack.WebUI.Controllers
             {
                 return BadRequest();
             }
-            return Ok(_service.GetImagesById(finOpId));
+            return Ok(_service.GetImagesByFinOpId(finOpId));
 
         }
 

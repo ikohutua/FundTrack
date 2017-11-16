@@ -200,7 +200,7 @@ export class SpendingOperationComponent {
     private createSpendingForm() {
         this.moneySpendingForm = this.fb.group({
             cardFromId: [
-                this.moneyOperationModel.cardFromId
+                this.moneyOperationModel.accFromId
             ],
             amount: [
                 this.moneyOperationModel.amount, [Validators.required,
@@ -298,7 +298,7 @@ export class SpendingOperationComponent {
     }
 
     private completeModel() {
-        this.moneyOperationModel.cardFromId = this.currentAccount.id;
+        this.moneyOperationModel.accFromId = this.currentAccount.id;
         this.moneyOperationModel.finOpType = constant.spendingId;
         this.moneyOperationModel.orgId = this.user.orgId;
         this.moneyOperationModel.userId = this.user.id;

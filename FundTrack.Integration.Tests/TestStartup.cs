@@ -41,7 +41,7 @@ namespace FundTrack.Integration.Tests
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<FundTrackContext>(options =>
-                                options.UseInMemoryDatabase("TestDB"), ServiceLifetime.Scoped);
+                                options.UseInMemoryDatabase("TestDB"), ServiceLifetime.Singleton);
 
             services.AddCors(
                 options => options.AddPolicy("AllowCors",

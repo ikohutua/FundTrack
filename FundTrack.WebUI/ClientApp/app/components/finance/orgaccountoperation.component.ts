@@ -235,7 +235,7 @@ export class OrgAccountOperationComponent implements OnChanges {
                 this.finOps[i].finOpName = constant.spendingUA;
             }
 
-            else if (this.finOps[i].finOpType == constant.transferId && this.finOps[i].cardFromId == this.currentAccount.id) {
+            else if (this.finOps[i].finOpType == constant.transferId && this.finOps[i].accFromId == this.currentAccount.id) {
                 this.finOps[i].finOpName = constant.incomeTransferUA;
             }
             else {
@@ -405,10 +405,10 @@ export class OrgAccountOperationComponent implements OnChanges {
                 ]
             ],
             cardFromId: [
-                this.updateFinOperation.cardFromId
+                this.updateFinOperation.accFromId
             ],
             cardToId: [
-                this.updateFinOperation.cardToId
+                this.updateFinOperation.accToId
             ],
             targetId: [
                 this.updateFinOperation.targetId
@@ -626,7 +626,7 @@ export class OrgAccountOperationComponent implements OnChanges {
         donation.donationDate = this.selectedFinOp.date.toString();
         this.donateService.getOrderId().subscribe(result => {
             donation.orderId = result;
-            donation.bankAccountId = this.selectedFinOp.cardToId;
+            donation.bankAccountId = this.selectedFinOp.accToId;
             this.donateService.addDonation(donation).subscribe(result => {
                 this.selectedFinOp.donationId = result.id;
                 this.finOpService.bindDonationAndFinOp(this.selectedFinOp).subscribe(result => {

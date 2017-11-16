@@ -242,7 +242,7 @@ namespace FundTrack.BLL.Concrete
             }
         }
 
-        public IEnumerable<string> GetImagesById(int finOpId)
+        public IEnumerable<string> GetImagesByFinOpId(int finOpId)
         {
             try
             {
@@ -404,7 +404,7 @@ namespace FundTrack.BLL.Concrete
                 return finOp;
             }
             catch (Exception ex)
-            {
+            { 
                 throw new BusinessLogicException(ErrorMessages.EmptyFinOpList, ex);
             }
         }

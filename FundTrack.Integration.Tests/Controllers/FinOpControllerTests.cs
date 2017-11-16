@@ -13,20 +13,22 @@ using Xunit;
 using FinOp = FundTrack.DAL.Entities.FinOp;
 using OrgAccount = FundTrack.DAL.Entities.OrgAccount;
 using Balance = FundTrack.DAL.Entities.Balance;
+using FinOpImage = FundTrack.DAL.Entities.FinOpImage;
+using FundTrack.DAL.Abstract;
 using FundTrack.Infrastructure.ViewModel.FinanceViewModels;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Mvc;
 using FundTrack.WebUI.Controllers;
 using Microsoft.AspNetCore.Http;
 using FundTrack.BLL.Abstract;
+using FundTrack.Infrastructure.ViewModel;
 
 namespace FundTrack.Integration.Tests.Controllers
 {
     public class FinOpControllerTests
     {
         private readonly TestContext _testContext;
-        //private readonly IFinOpService finOpService;
-        //private readonly IOrganizationStatisticsService organizationStatisticsService;
+
 
         public FinOpControllerTests()
         {
@@ -74,9 +76,26 @@ namespace FundTrack.Integration.Tests.Controllers
             }.AsQueryable();
         }
 
+        private IQueryable<FinOpImage> GetTestFinOpImages()
+        {
+            return new List<FinOpImage>()
+            {
+                new FinOpImage() {Id = 1, FinOpId = 1, ImageUrl = "bf0dc5b8-6c7a-404f-8812-cf10bf7a34e3.jpeg"},
+                new FinOpImage() {Id = 2, FinOpId = 1, ImageUrl = "21c733ba-5684-4d3f-8c68-6a673bbfe2e4.jpeg"},
+                new FinOpImage() {Id = 3, FinOpId = 1, ImageUrl = "dc094539-18bc-4ad5-9ea1-d4e7772947a9.jpeg"},
+                new FinOpImage() {Id = 4, FinOpId = 8, ImageUrl = "dc094539-18bc-4ad5-9ea1-d4e7772947a9.jpeg"},
+
+            }.AsQueryable();
+        }
+
         public FinOp GetTestFinOpsById(int id)
         {
             return GetTestFinOps().Where(f => f.Id == id).Single();
+        }
+
+        public OrgAccount GetTestOrgAccountById(int id)
+        {
+            return GetTestOrgAccounts().Where(a => a.Id == id).Single();
         }
 
         [Fact]
@@ -99,6 +118,7 @@ namespace FundTrack.Integration.Tests.Controllers
             response.EnsureSuccessStatusCode();
 
             Assert.True(HttpStatusCode.OK == response.StatusCode);
+            Assert.NotNull(resultFinOp);
             Assert.Equal(testFinOp.Id, resultFinOp.Id);
             Assert.Equal(testFinOp.AccFromId.GetValueOrDefault(0), resultFinOp.AccFromId);
             Assert.Equal(testFinOp.AccToId.GetValueOrDefault(0), resultFinOp.AccToId);
@@ -107,6 +127,26 @@ namespace FundTrack.Integration.Tests.Controllers
             Assert.Equal(testFinOp.FinOpDate, resultFinOp.Date);
             Assert.Equal(testFinOp.FinOpType, resultFinOp.FinOpType);
             Assert.Equal(testFinOp.DonationId, resultFinOp.DonationId);
+        }
+
+        [Fact]
+        public async Task Get_FinOps_By_Id_Wrong_Id()
+        {
+            //Arrange
+            var dbContext = _testContext.GetClearDbContext();
+
+            int wrongId = 100;
+            dbContext.FinOps.AddRange(GetTestFinOps());
+            dbContext.SaveChanges();
+
+            //Act
+            var response = await _testContext.Client.GetAsync($"/api/FinOp/GetFinOpsById/{wrongId}");
+            var stream = await response.Content.ReadAsStreamAsync();
+            var reader = new StreamReader(stream, Encoding.UTF8);
+            var resultFinOp = new JsonSerializer().Deserialize<FinOpViewModel>(new JsonTextReader(reader));
+
+            //Assert
+            Assert.True(HttpStatusCode.InternalServerError == response.StatusCode);
         }
 
         [Fact]
@@ -131,9 +171,34 @@ namespace FundTrack.Integration.Tests.Controllers
             response.EnsureSuccessStatusCode();
 
             Assert.True(HttpStatusCode.OK == response.StatusCode);
+            Assert.NotNull(resultFinOps);
             Assert.True(resultFinOps.Count() == 6);
             Assert.False(resultFinOps.Count() == 8);
             Assert.True(resultFinOps.Where(f => f.IsEditable == true).Count() == 3);
+        }
+
+        [Fact]
+        public async Task Get_FinOps_By_OrgAccountId_Wrong_Id()
+        {
+            //Arrange
+            var dbContext = _testContext.GetClearDbContext();
+
+            int testOrgAccountId = 100;
+            dbContext.FinOps.AddRange(GetTestFinOps());
+            dbContext.OrgAccounts.AddRange(GetTestOrgAccounts());
+            dbContext.Balances.AddRange(GetTestBalances());
+            dbContext.SaveChanges();
+
+            //Act
+            var response = await _testContext.Client.GetAsync($"/api/FinOp/GetFinOpsByOrgAccId/{testOrgAccountId}");
+            var stream = await response.Content.ReadAsStreamAsync();
+            var reader = new StreamReader(stream, Encoding.UTF8);
+            var resultFinOps = new JsonSerializer().Deserialize<IEnumerable<FinOpViewModel>>(new JsonTextReader(reader));
+
+            //Assert
+
+            Assert.True(HttpStatusCode.OK == response.StatusCode);
+            Assert.Empty(resultFinOps);
         }
 
         [Fact]
@@ -161,9 +226,37 @@ namespace FundTrack.Integration.Tests.Controllers
             response.EnsureSuccessStatusCode();
 
             Assert.True(HttpStatusCode.OK == response.StatusCode);
+            Assert.NotNull(resultFinOps);
             Assert.True(resultFinOps.Count() == 3);
             Assert.False(resultFinOps.Count() == 8);
             Assert.True(resultFinOps.Where(f => f.IsEditable == true).Count() == 2);
+        }
+
+        [Fact]
+        public async Task Get_FinOps_By_OrgAccountId_For_Page_Wrong_Id()
+        {
+            //Arrange
+            var dbContext = _testContext.GetClearDbContext();
+
+            int testOrgAccountId = 100;
+            int testFinOpType = 1;
+            int testCurrentPage = 1;
+            int testPageSize = 5;
+            dbContext.FinOps.AddRange(GetTestFinOps());
+            dbContext.OrgAccounts.AddRange(GetTestOrgAccounts());
+            dbContext.Balances.AddRange(GetTestBalances());
+            dbContext.SaveChanges();
+
+            //Act
+            var response = await _testContext.Client.GetAsync($"/api/FinOp/GetFinOpsByIdForPage/{testOrgAccountId}/{testFinOpType}" + "?currentPage=" + testCurrentPage + "&pageSize=" + testPageSize);
+            var stream = await response.Content.ReadAsStreamAsync();
+            var reader = new StreamReader(stream, Encoding.UTF8);
+            var resultFinOps = new JsonSerializer().Deserialize<IEnumerable<FinOpViewModel>>(new JsonTextReader(reader));
+
+            //Assert
+
+            Assert.True(HttpStatusCode.OK == response.StatusCode);
+            Assert.Empty(resultFinOps);
         }
 
         [Fact]
@@ -188,11 +281,38 @@ namespace FundTrack.Integration.Tests.Controllers
             response.EnsureSuccessStatusCode();
 
             Assert.True(HttpStatusCode.OK == response.StatusCode);
+            Assert.NotNull(resultData);
             Assert.True(resultData.Count() == 4);
             Assert.True(resultData[0] == resultData[1] + resultData[2] + resultData[3]);
             Assert.True(resultData[1] == 1);
             Assert.True(resultData[2] == 3);
             Assert.True(resultData[3] == 2);
+        }
+
+        [Fact]
+        public async Task Get_FinOps_Init_Data_Wrong_Id()
+        {
+            //Arrange
+            var dbContext = _testContext.GetClearDbContext();
+
+            int testOrgAccountId = 100;
+            dbContext.FinOps.AddRange(GetTestFinOps());
+            dbContext.OrgAccounts.AddRange(GetTestOrgAccounts());
+            dbContext.Balances.AddRange(GetTestBalances());
+            dbContext.SaveChanges();
+
+            //Act
+            var response = await _testContext.Client.GetAsync($"/api/FinOp/GetFinOpInitData/{testOrgAccountId}");
+            var stream = await response.Content.ReadAsStreamAsync();
+            var reader = new StreamReader(stream, Encoding.UTF8);
+            var resultData = new JsonSerializer().Deserialize<IEnumerable<int>>(new JsonTextReader(reader)).ToList();
+
+            //Assert
+
+            Assert.True(HttpStatusCode.OK == response.StatusCode);
+            Assert.True(resultData[1] == 0);
+            Assert.True(resultData[2] == 0);
+            Assert.True(resultData[3] == 0);
         }
 
         [Fact]
@@ -202,7 +322,7 @@ namespace FundTrack.Integration.Tests.Controllers
             var dbContext = _testContext.GetClearDbContext();
 
             FinOpViewModel incomeModel = new FinOpViewModel() {Amount = 100, AccToId = 1, Description = "TestAddDescription", TargetId = 1, Date = new DateTime(2017, 11, 5), FinOpType = 1, UserId = 1 };
-            dbContext.FinOps.AddRange(GetTestFinOps());
+            var notModifiedOrgAccount = GetTestOrgAccountById(1);
             dbContext.OrgAccounts.AddRange(GetTestOrgAccounts());
             dbContext.SaveChanges();
 
@@ -211,15 +331,96 @@ namespace FundTrack.Integration.Tests.Controllers
             var response = await _testContext.Client.PostAsync($"/api/FinOp/Income", content);
             var stream = await response.Content.ReadAsStreamAsync();
             var reader = new StreamReader(stream, Encoding.UTF8);
-            var resultFinOps = new JsonSerializer().Deserialize<IEnumerable<FinOpViewModel>>(new JsonTextReader(reader));
+            var resultFinOps = new JsonSerializer().Deserialize<FinOpViewModel>(new JsonTextReader(reader));
+
+            //Assert
+            response.EnsureSuccessStatusCode(); 
+
+            var modifiedOrgAccount = dbContext.OrgAccounts.Where(acc => acc.Id == 1).FirstOrDefault();
+
+            Assert.True(HttpStatusCode.OK == response.StatusCode);
+            Assert.NotNull(resultFinOps);
+            Assert.True(dbContext.FinOps.Count() == 1);
+            Assert.False(dbContext.FinOps.Count() == 8);
+            Assert.True(modifiedOrgAccount.CurrentBalance == 1100);
+            Assert.NotEqual(notModifiedOrgAccount, modifiedOrgAccount);
+            Assert.True(modifiedOrgAccount.CurrentBalance == notModifiedOrgAccount.CurrentBalance + resultFinOps.Amount);
+        }
+
+        //    [Fact]
+        //    public async Task Create_Spending_Operation_Ok_Response()
+        //    {
+        //        //Arrange
+        //        var dbContext = _testContext.GetClearDbContext();
+
+        //        var testImagesForInsert = new List<FinOpImageViewModel>
+        //        {
+        //            new FinOpImageViewModel() {Base64Data = "Cobra", imageExtension = "jpeg"},
+        //            new FinOpImageViewModel() {Base64Data = "Python", imageExtension = "jpeg"},
+        //        };
+        //        FinOpViewModel spendingModel = new FinOpViewModel() { Amount = 100, AccFromId = 1, Description = "TestSpendingDescription", TargetId = 1, Date = new DateTime(2017, 11, 3), FinOpType = 0, Images = testImagesForInsert, UserId = 1 };
+        //        var notModifiedOrgAccount = GetTestOrgAccountById(1);
+        //        dbContext.OrgAccounts.AddRange(GetTestOrgAccounts());
+        //        dbContext.SaveChanges();
+
+        //        //Act
+        //        var content = new StringContent(JsonConvert.SerializeObject(spendingModel), Encoding.UTF8, "application/json");
+        //        var response = await _testContext.Client.PostAsync($"/api/FinOp/Spending", content);
+        //        var stream = await response.Content.ReadAsStreamAsync();
+        //        var reader = new StreamReader(stream, Encoding.UTF8);
+        //        var resultFinOps = new JsonSerializer().Deserialize<FinOpViewModel>(new JsonTextReader(reader));
+
+        //        //Assert
+        //        response.EnsureSuccessStatusCode();
+
+        //        var modifiedOrgAccount = dbContext.OrgAccounts.Where(acc => acc.Id == 1).FirstOrDefault();
+
+        //        Assert.True(HttpStatusCode.OK == response.StatusCode);
+        //        Assert.NotNull(resultFinOps);
+        //        Assert.True(dbContext.FinOps.Count() == 1);
+        //        Assert.False(dbContext.FinOps.Count() == 8);
+        //        Assert.True(modifiedOrgAccount.CurrentBalance == 900);
+        //        Assert.NotEqual(notModifiedOrgAccount, modifiedOrgAccount);
+        //        Assert.True(modifiedOrgAccount.CurrentBalance == notModifiedOrgAccount.CurrentBalance - resultFinOps.Amount);
+        //    }
+
+        [Fact]
+        public async Task Create_Transfer_Operation_Ok_Response()
+        {
+            //Arrange
+            var dbContext = _testContext.GetClearDbContext();
+
+            FinOpViewModel transferModel = new FinOpViewModel() { Amount = 100, AccFromId = 1, AccToId = 2, Description = "TestTransferDescription", TargetId = null, Date = new DateTime(2017, 11, 3), FinOpType = 2, UserId = 1 };
+            var notModifiedOrgAccountFirst = GetTestOrgAccountById(1);
+            var notModifiedOrgAccountSecond = GetTestOrgAccountById(2);
+            dbContext.OrgAccounts.AddRange(GetTestOrgAccounts());
+            dbContext.SaveChanges();
+
+            //Act
+            var content = new StringContent(JsonConvert.SerializeObject(transferModel), Encoding.UTF8, "application/json");
+            var response = await _testContext.Client.PostAsync($"/api/FinOp/Transfer", content);
+            var stream = await response.Content.ReadAsStreamAsync();
+            var reader = new StreamReader(stream, Encoding.UTF8);
+            var resultFinOps = new JsonSerializer().Deserialize<FinOpViewModel>(new JsonTextReader(reader));
 
             //Assert
             response.EnsureSuccessStatusCode();
 
+            var modifiedOrgAccountFirst = dbContext.OrgAccounts.Where(acc => acc.Id == 1).FirstOrDefault();
+            var modifiedOrgAccountSecond = dbContext.OrgAccounts.Where(acc => acc.Id == 2).FirstOrDefault();
+
+
             Assert.True(HttpStatusCode.OK == response.StatusCode);
-            Assert.True(resultFinOps.Count() == 7);
-            Assert.False(resultFinOps.Count() == 8);
-            Assert.True(resultFinOps.Where(f => f.IsEditable == true).Count() == 4);
+            Assert.NotNull(resultFinOps);
+            Assert.True(dbContext.FinOps.Count() == 1);
+            Assert.False(dbContext.FinOps.Count() == 8);
+            Assert.True(modifiedOrgAccountFirst.CurrentBalance == 900);
+            Assert.True(modifiedOrgAccountSecond.CurrentBalance == 1100);
+            Assert.NotEqual(notModifiedOrgAccountFirst, modifiedOrgAccountFirst);
+            Assert.NotEqual(notModifiedOrgAccountSecond, modifiedOrgAccountSecond);
+            Assert.True(modifiedOrgAccountFirst.CurrentBalance == notModifiedOrgAccountFirst.CurrentBalance - resultFinOps.Amount);
+            Assert.True(modifiedOrgAccountSecond.CurrentBalance == notModifiedOrgAccountSecond.CurrentBalance + resultFinOps.Amount);
         }
+
     }
 }
