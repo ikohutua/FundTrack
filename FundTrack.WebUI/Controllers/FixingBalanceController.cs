@@ -63,6 +63,12 @@ namespace FundTrack.WebUI.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpDelete("DeleteTarget/{balanceId}")]
+        public IActionResult DeleteLastFixing(int balanceId)
+        {
+            return Ok(_fixingBalanceService.DeleteLastFixing(balanceId));
+        }
     }
 
    public class MyClass

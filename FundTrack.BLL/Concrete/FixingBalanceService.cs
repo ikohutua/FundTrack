@@ -143,5 +143,30 @@ namespace FundTrack.BLL.Concrete
             _unitOfWork.SaveChanges();
             return allBalances;
         }
+
+        public bool DeleteLastFixing(int accountId)
+        {
+            try
+            {
+                var balanceList = _unitOfWork.BalanceRepository.GetAllBalancesByAccountId(accountId).ToList();
+                if (balanceList.Count() <= 1) // if account has less then one fixing
+                {
+                    return false;
+                }
+                var balance = balanceList.Last();
+                var finOps = _unitOfWork.FinOpRepository.GetFinOpByOrgAccount(accountId)
+                    .Where(f => f.FinOpDate.Date >= balance.BalanceDate.Date).ToList();
+                if (finOps.Count > 0) // if account has finOps after fixing
+                {
+                    return false;
+                }
+                return _unitOfWork.BalanceRepository.Delete(balance.Id);
+            }
+            catch (Exception e)
+            {
+                throw new BusinessLogicException(ErrorMessages.DeleteFixingError, e);
+            }
+            
+        }
     }
 }
