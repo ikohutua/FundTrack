@@ -5,8 +5,8 @@ export class FinOpListViewModel {
     orgId: number;
     finOpType: number;
     finOpName: string;
-    cardFromId: number;
-    cardToId: number;
+    accFromId: number;
+    accToId: number;
     date: Date;
     description: string;
     amount: number;

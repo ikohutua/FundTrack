@@ -46,6 +46,20 @@ namespace FundTrack.WebUI
             services.AddDbContext<FundTrackContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString(connectionType)));
 
+            if (CurrentEnvironment.IsEnvironment("Testing"))
+            {
+                services.AddDbContext<FundTrackContext>(options =>
+                    options.UseInMemoryDatabase("TestingDB"));
+            }
+            else
+            {
+                services.AddDbContext<FundTrackContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString(connectionType)));
+            }
+
+            //  services.AddDbContext<FundTrackContext>(options => options.UseSqlServer(Configuration.GetConnectionString(connectionType)));
+
+
             services.AddCors(
      options => options.AddPolicy("AllowCors",
          builder =>
@@ -153,13 +167,13 @@ namespace FundTrack.WebUI
             //loggerFactory.AddFile("Logs/Errors/{Date}.txt", LogLevel.Error);
             //loggerFactory.AddFile("Logs/Info/{Date}.txt", LogLevel.Information);
 
-            if (env.IsDevelopment())
-            {
+            //if (env.IsDevelopment())
+            //{
                 app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions
                 {
                     HotModuleReplacement = true
                 });
-            }
+            //}
 
             app.UseWebSockets();
 

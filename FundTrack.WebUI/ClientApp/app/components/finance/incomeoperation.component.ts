@@ -135,7 +135,7 @@ export class IncomeOperationComponent {
     private createIncomeForm() {
         this.moneyIncomeForm = this.fb.group({
             cardToId: [
-                this.moneyOperationModel.cardToId
+                this.moneyOperationModel.accToId
             ],
             amount: [
                 this.moneyOperationModel.amount, [Validators.required,
@@ -214,7 +214,7 @@ export class IncomeOperationComponent {
 
     private completeModel() {
         this.moneyOperationModel.targetId = this.currentTarget.targetId;
-        this.moneyOperationModel.cardToId = this.currentAccount.id;
+        this.moneyOperationModel.accToId = this.currentAccount.id;
         this.moneyOperationModel.finOpType = constant.incomeId;
         this.moneyOperationModel.orgId = this.user.orgId;
         this.moneyOperationModel.userId = this.user.id;

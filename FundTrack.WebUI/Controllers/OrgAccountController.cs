@@ -16,7 +16,7 @@ namespace FundTrack.WebUI.Controllers
             _orgAccountService = orgAccountService;
         }
 
-        [Authorize(Roles = "admin, moderator")]
+        //[Authorize(Roles = "admin, moderator")]
         [HttpGet("[action]/{id}")]
         public IActionResult Get(int id)
         {
