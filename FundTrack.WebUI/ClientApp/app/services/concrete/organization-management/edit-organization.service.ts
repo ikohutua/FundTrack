@@ -96,7 +96,7 @@ export class EditOrganizationService {
     }
 
     deleteTarget(targetId: number) {
-        return this._http.delete(GlobalUrlService.deleteTarget + targetId);
+        return this._http.delete(GlobalUrlService.deleteTarget + targetId).map((response: Response) => response.json());
     }
 
     editLogo(item: EditLogoViewModel): Observable<EditLogoViewModel> {

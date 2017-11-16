@@ -252,15 +252,24 @@ namespace FundTrack.BLL.Concrete
         {
             try
             {
-                var date = DateTime.Now;
-                var interval = _unitOfWork.ImportIntervalRepository.Update(orgId, date);
+                var interval = _unitOfWork.ImportIntervalRepository.GetByOrgId(orgId);
+                interval.LastUpdateDate = DateTime.Now;
+                var updatedInterval = _unitOfWork.ImportIntervalRepository.Update(interval);
                 _unitOfWork.SaveChanges();
-                return interval;
+                return updatedInterval;
             }
             catch (Exception ex)
             {
                 throw new BusinessLogicException(ex.Message, ex);
             }
+        }
+        public AutoImportIntervals UpdateInterval(AutoImportIntervalViewModel interval)
+        {
+            var change = _unitOfWork.ImportIntervalRepository.GetByOrgId(interval.OrgId);
+            change.Interval = interval.Interval;
+            var input =  _unitOfWork.ImportIntervalRepository.Update(change);
+            _unitOfWork.SaveChanges();
+            return input;
         }
     }
 }

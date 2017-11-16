@@ -222,6 +222,8 @@ export class MakeDonationComponent implements OnInit, DoCheck, OnDestroy{
               
     }
 
+
+
     checkPayment(): void {
         this._donateService.checkPaymentRequest(this.checkPaymentModel).
             subscribe((response) => {              
@@ -264,6 +266,10 @@ export class MakeDonationComponent implements OnInit, DoCheck, OnDestroy{
                     this.hasAccountForDonate = true;
                     this.donateAccounts = result.accounts;
                     this.accountForDonation = result.accounts[0];
+                }
+                else {     
+                    this.hasAccountForDonate = false;
+                    this.donateAccounts = [];
                 }
             });
     }

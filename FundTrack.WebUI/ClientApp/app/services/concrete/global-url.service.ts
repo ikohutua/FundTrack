@@ -2,13 +2,12 @@
 
 @Injectable()
 export class GlobalUrlService {
-    // bank imports
-    public static getAllSuggestedBankImportUrl: string = "api/BankImport/SuggestedImports";
-
+    
     // urls to server for all components
     public static getAllOrganizationsUrl: string = "api/OrganizationDetail/";
     public static getFixingBalanceUrl: string = "api/FixingBalance/";
     public static fixingAllBalancesUrl: string = "api/FixingBalance/AllBalances/";
+    public static readonly bankAccountsAvailable: string = "api/OrgAccount/BankAccontsAvailable/";
 
     //organization account Extracts
     public static getExtractStatus: string = "api/OrgAccount/ExtractStatus/";
@@ -52,11 +51,13 @@ export class GlobalUrlService {
 
     //BankImport URLs
 
-    public static readonly RegisterNewExtracts: string = 'api/BankImport/RegisterNewExtracts';
-    public static readonly PrivatExtract: string = 'api/BankImport/ImportPrivat';
-    public static readonly PrivatExtractWithDate: string = 'api/BankImport/Privat';
-    public static readonly UpdateDate: string = 'api/BankImport/UpdateDate';
-    public static readonly LastUpdate: string = 'api/BankImport/LastUpdate';
+    public static readonly registerNewExtracts: string = 'api/BankImport/RegisterNewExtracts';
+    public static readonly privatExtract: string = 'api/BankImport/ImportPrivat';
+    public static readonly privatExtractWithDate: string = 'api/BankImport/Privat';
+    public static readonly updateDate: string = 'api/BankImport/UpdateDate';
+    public static readonly lastUpdate: string = 'api/BankImport/LastUpdate';
+    public static getAllSuggestedBankImportUrl: string = "api/BankImport/SuggestedImports";
+    public static updateInterval: string = "api/BankImport/UpdateInterval";
 
     // donate service
     public static readonly getSuggestedDonations = "api/Donate/suggested/";
@@ -74,6 +75,7 @@ export class GlobalUrlService {
     public static readonly getFinOpUrl: string = 'api/finop/getFinOpsById';
     public static readonly getFinOpUrlForPage: string = 'api/finop/getFinOpsByIdForPage';
     public static readonly getFinOpInitData: string = 'api/finop/getFinOpInitData';
+    public static readonly getImagesUrl: string = 'api/finop/images';
 
     // user service
     public static readonly getAllUsers = "api/User";

@@ -40,8 +40,8 @@
     <div class="app-modal-footer">
         <span style="color: red; font-weight: bold; text-align: left;">{{deleteModel.error}}</span>
         <br />
-        <button class="btn btn-default" (click)="cancelAccountDeleting()">Скасувати</button>
         <button class="btn btn-danger" [disabled]="password.invalid" (click)="deleteAccount()">Видалити</button>
+        <button class="btn btn-default" (click)="cancelAccountDeleting()">Скасувати</button>
         <div id="snackbar">Рахунок видалено</div>
     </div>
 </app-modal>

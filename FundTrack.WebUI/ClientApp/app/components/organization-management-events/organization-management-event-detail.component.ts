@@ -40,7 +40,7 @@ export class OrganizationManagementEventDetailComponent {
                 this._event = event;
                 this._images = [];
                 this._event.images.forEach((image) => {
-                    this._images.push(image.imageUrl);
+                    this._images.push(image.imageSrc);
                 });
             });
     }

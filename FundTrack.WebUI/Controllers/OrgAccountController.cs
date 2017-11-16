@@ -182,6 +182,16 @@ namespace FundTrack.WebUI.Controllers
             return Ok(_orgAccountService.IsExtractsEnabled(orgAccountId));
         }
 
+        [HttpGet("BankAccontsAvailable/{orgId}")]
+        public IActionResult GetBankAccontsWithImportCount(int orgId)
+        {
+            if (orgId<0)
+            {
+                return BadRequest();
+            }
+            return Ok(_orgAccountService.IsBankAccountsWithImportAvailable(orgId));
+        }
+
         private bool HasNonNegativeValue(int? value)
         {
             return !value.HasValue || value < 0;

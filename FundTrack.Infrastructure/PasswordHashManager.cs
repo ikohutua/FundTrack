@@ -1,7 +1,4 @@
-﻿using System.Security.Cryptography;
-using System.Text;
-
-namespace FundTrack.Infrastructure
+﻿namespace FundTrack.Infrastructure
 {
     /// <summary>
     /// Class for hashing password
@@ -13,25 +10,13 @@ namespace FundTrack.Infrastructure
         /// </summary>
         /// <param name="password">Password</param>
         /// <returns>Hash string</returns>
-        public static string GetPasswordHash(string password)
+        public static string GetPasswordHash(string salt, string password)
         {
-            // use some key for hashing
-            const string hashKey = "HashKey";
-            // create hash class. 
-            HMACSHA512 sha1 = new HMACSHA512();
-            // set key 
-            sha1.Key = Encoding.ASCII.GetBytes(hashKey);
-
-            // get bytes from password
-            byte[] passwordBytes = Encoding.ASCII.GetBytes(password);
-            // compute hash value
-            byte[] sha1data = sha1.ComputeHash(passwordBytes);
-
-            // get string from bytes
-            ASCIIEncoding ascii = new ASCIIEncoding();
-            var hashedPassword = ascii.GetString(sha1data);
-
-            return hashedPassword;
+            var saltBytes = System.Text.Encoding.ASCII.GetBytes(salt);
+            using (var rfc2898DeriveBytes = new System.Security.Cryptography.Rfc2898DeriveBytes(password, saltBytes, 1000))
+            {
+                return System.Convert.ToBase64String(rfc2898DeriveBytes.GetBytes(128));
+            }
         }
     }
 }
