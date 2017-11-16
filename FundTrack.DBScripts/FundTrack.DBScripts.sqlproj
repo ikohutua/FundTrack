@@ -7,7 +7,7 @@
     <Name>FundTrack.DBScripts</Name>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>4.1</ProjectVersion>
-    <ProjectGuid>{1c3828bb-bce4-421c-bd55-8e440febfa9d}</ProjectGuid>
+    <ProjectGuid>{2155f6df-386f-42b3-9509-d3fd7b159554}</ProjectGuid>
     <DSP>Microsoft.Data.Tools.Schema.Sql.Sql130DatabaseSchemaProvider</DSP>
     <OutputType>Database</OutputType>
     <RootPath>
@@ -57,14 +57,12 @@
   <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
   <ItemGroup>
     <Folder Include="Properties" />
-    <Folder Include="LocalDbScripts" />
-    <Folder Include="AzureDbScripts" />
+    <Folder Include="DB_Azure_Scripts" />
+    <Folder Include="DB_Local_Scripts" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="LocalDbScripts\DB_Local_Shema.sql" />
-    <Build Include="AzureDbScripts\DB_Azure_Shema.sql" />
-  </ItemGroup>
-  <ItemGroup>
+    <None Include="DB_Azure_Scripts\DB_Azure_Shema.txt" />
+    <None Include="DB_Local_Scripts\DB_Local_Shema.txt" />
     <None Include="CreateSuperAdminScript.txt" />
     <None Include="CreateTestOrgs.txt" />
   </ItemGroup>
