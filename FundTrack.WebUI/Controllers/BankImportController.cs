@@ -1,13 +1,10 @@
 ﻿using System;
-using FundTrack.DAL.Entities;
 using FundTrack.BLL.Abstract;
 using FundTrack.Infrastructure.ViewModel;
 using FundTrack.Infrastructure.ViewModel.FinanceViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
-using Microsoft.AspNetCore.Mvc.TagHelpers;
 
 namespace FundTrack.WebUI.Controllers
 {

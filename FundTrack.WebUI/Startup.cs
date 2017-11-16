@@ -23,6 +23,8 @@ namespace FundTrack.WebUI
 {
     public class Startup
     {
+        public IConfigurationRoot Configuration { get; }
+        public IHostingEnvironment CurrentEnvironment { get; }
         public Startup(IHostingEnvironment env)
         {
             var builder = new ConfigurationBuilder()
@@ -31,36 +33,28 @@ namespace FundTrack.WebUI
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
                 .AddEnvironmentVariables();
             Configuration = builder.Build();
-        }
 
-        public IConfigurationRoot Configuration { get; }
+            CurrentEnvironment = env;
+        }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // Db Connection
-            // For local connection, go to appsettings.json and write your local connection string
             // Available connection types : 'local','azure-main','azure-test', 'ss'
             string connectionType = "azure-main";
-            services.AddDbContext<FundTrackContext>(options => options.UseSqlServer(Configuration.GetConnectionString(connectionType)));
+
+            services.AddDbContext<FundTrackContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString(connectionType)));
 
             services.AddCors(
      options => options.AddPolicy("AllowCors",
          builder =>
          {
              builder
-                 //.WithOrigins("http://localhost:4456") //AllowSpecificOrigins;  
-                 //.WithOrigins("http://localhost:4456", "http://localhost:4457") //AllowMultipleOrigins;  
-                 .AllowAnyOrigin() //AllowAllOrigins;  
-                                   //.WithMethods("GET") //AllowSpecificMethods;  
-                                   //.WithMethods("GET", "PUT") //AllowSpecificMethods;  
-                                   //.WithMethods("GET", "PUT", "POST") //AllowSpecificMethods;  
-                 .WithMethods("GET", "PUT", "POST", "DELETE") //AllowSpecificMethods;  
-                                                              //.AllowAnyMethod() //AllowAllMethods;  
-                                                              //.WithHeaders("Accept", "Content-type", "Origin", "X-Custom-Header"); //AllowSpecificHeaders;  
-                 .AllowAnyHeader(); //AllowAllHeaders;  
-         })
- );
+                .AllowAnyOrigin()
+                .WithMethods("GET", "PUT", "POST", "DELETE")
+                .AllowAnyHeader();
+         }));
 
 
             // Add framework services.
@@ -136,7 +130,7 @@ namespace FundTrack.WebUI
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
-            app.UseGlobalErrorHandling();
+            //app.UseGlobalErrorHandling();
             app.UseStaticFiles();
 
             app.UseJwtBearerAuthentication(new JwtBearerOptions
@@ -154,27 +148,19 @@ namespace FundTrack.WebUI
                 }
             });
 
-            //Old authorization
-            //app.UseCookieAuthentication(new CookieAuthenticationOptions
-            //{
-            //    LoginPath = new PathString("/User/LogIn"),
-            //    AuthenticationScheme = "Bearer",
-            //    AutomaticChallenge = true
-            //});
+            //loggerFactory.AddConsole(Configuration.GetSection("Logging"));
+            //loggerFactory.AddDebug();
+            //loggerFactory.AddFile("Logs/Errors/{Date}.txt", LogLevel.Error);
+            //loggerFactory.AddFile("Logs/Info/{Date}.txt", LogLevel.Information);
 
-            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
-            loggerFactory.AddDebug();
-            loggerFactory.AddFile("Logs/Errors/{Date}.txt", LogLevel.Error);
-            loggerFactory.AddFile("Logs/Info/{Date}.txt", LogLevel.Information);
-
-            //if (env.IsDevelopment())
-            //{
+            if (env.IsDevelopment())
+            {
                 app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions
                 {
                     HotModuleReplacement = true
                 });
+            }
 
-            //}
             app.UseWebSockets();
 
             app.UseMvc(routes =>
