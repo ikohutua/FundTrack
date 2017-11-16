@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.15
+VisualStudioVersion = 15.0.26730.16
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FundTrack.WebUI", "FundTrack.WebUI\FundTrack.WebUI.csproj", "{465AB00F-51CD-4C6E-979D-B7EFA4387DC7}"
 EndProject
@@ -26,6 +26,12 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FundTrack.Integration.Tests", "FundTrack.Integration.Tests\FundTrack.Integration.Tests.csproj", "{BDA4DBB7-8A99-4D06-ACA7-83B1C9185311}"
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "FundTrack.DBScripts", "FundTrack.DBScripts\FundTrack.DBScripts.sqlproj", "{2155F6DF-386F-42B3-9509-D3FD7B159554}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{0D8FED0F-3779-480A-A601-F107FBDCEEBE}"
+	ProjectSection(SolutionItems) = preProject
+		C:\Users\yavor\Downloads\AzureDocumentation (1).docx = C:\Users\yavor\Downloads\AzureDocumentation (1).docx
+		C:\Users\yavor\AppData\Local\Packages\Microsoft.SkypeApp_kzf8qxf38zg5c\LocalState\Downloads\Інструкція.docx = C:\Users\yavor\AppData\Local\Packages\Microsoft.SkypeApp_kzf8qxf38zg5c\LocalState\Downloads\Інструкція.docx
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -46,19 +46,9 @@ namespace FundTrack.WebUI
             services.AddDbContext<FundTrackContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString(connectionType)));
 
-            if (CurrentEnvironment.IsEnvironment("Testing"))
-            {
-                services.AddDbContext<FundTrackContext>(options =>
-                    options.UseInMemoryDatabase("TestingDB"));
-            }
-            else
-            {
-                services.AddDbContext<FundTrackContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString(connectionType)));
-            }
 
-            //  services.AddDbContext<FundTrackContext>(options => options.UseSqlServer(Configuration.GetConnectionString(connectionType)));
-
+            services.AddDbContext<FundTrackContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString(connectionType)));
 
             services.AddCors(
      options => options.AddPolicy("AllowCors",
@@ -144,7 +134,7 @@ namespace FundTrack.WebUI
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
-            //app.UseGlobalErrorHandling();
+            app.UseGlobalErrorHandling();
             app.UseStaticFiles();
 
             app.UseJwtBearerAuthentication(new JwtBearerOptions
@@ -162,17 +152,17 @@ namespace FundTrack.WebUI
                 }
             });
 
-            //loggerFactory.AddConsole(Configuration.GetSection("Logging"));
-            //loggerFactory.AddDebug();
-            //loggerFactory.AddFile("Logs/Errors/{Date}.txt", LogLevel.Error);
-            //loggerFactory.AddFile("Logs/Info/{Date}.txt", LogLevel.Information);
+            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
+            loggerFactory.AddDebug();
+            loggerFactory.AddFile("Logs/Errors/{Date}.txt", LogLevel.Error);
+            loggerFactory.AddFile("Logs/Info/{Date}.txt", LogLevel.Information);
 
             //if (env.IsDevelopment())
             //{
-                app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions
-                {
-                    HotModuleReplacement = true
-                });
+            app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions
+            {
+                HotModuleReplacement = true
+            });
             //}
 
             app.UseWebSockets();
