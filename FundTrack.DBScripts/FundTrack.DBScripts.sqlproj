@@ -12,8 +12,8 @@
     <OutputType>Database</OutputType>
     <RootPath>
     </RootPath>
-    <RootNamespace>Database1</RootNamespace>
-    <AssemblyName>Database1</AssemblyName>
+    <RootNamespace>FundTrack.DBScripts</RootNamespace>
+    <AssemblyName>FundTrack.DBScripts</AssemblyName>
     <ModelCollation>1033, CI</ModelCollation>
     <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
     <DeployToDatabase>True</DeployToDatabase>
@@ -63,7 +63,9 @@
   <ItemGroup>
     <Build Include="LocalDbScripts\DB_Local_Shema.sql" />
     <Build Include="AzureDbScripts\DB_Azure_Shema.sql" />
-    <Build Include="CreateSuperAdminScript.sql" />
-    <Build Include="CreateTestOrgs.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="CreateSuperAdminScript.txt" />
+    <None Include="CreateTestOrgs.txt" />
   </ItemGroup>
 </Project>
