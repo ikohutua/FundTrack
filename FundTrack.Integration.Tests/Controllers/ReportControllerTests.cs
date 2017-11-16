@@ -39,10 +39,18 @@ namespace FundTrack.Integration.Tests.Controllers
         {
             return new List<Target>()
             {
-                new Target(){Id=5, TargetName="Військові",OrganizationId=   1 ,ParentTargetId=  null},
-                new Target(){Id=6, TargetName="Цивільні",OrganizationId=      1,ParentTargetId=    null},
-                new Target(){Id=7, TargetName="Медикаменти",OrganizationId=   1,ParentTargetId=    null},
-                new Target(){Id=93,TargetName="Загальні",OrganizationId=      1,ParentTargetId=    null},
+                new Target(){Id=5, TargetName="Військові",OrganizationId=   1 },
+                new Target(){Id=6, TargetName="Цивільні",OrganizationId=      1},
+                new Target(){Id=7, TargetName="Медикаменти",OrganizationId=   1},
+                new Target(){Id=93,TargetName="Загальні",OrganizationId=      1},
+            }.AsQueryable();
+        }
+        private IQueryable<OrgAccount> GetTestOrgAccounts()
+        {
+            return new List<OrgAccount>()
+            {
+                new OrgAccount(){Id=76, AccountType="Банк", BankAccId=14, CurrencyId=3, CurrentBalance=1922, Description="приват", OrgAccountName="Приват Мерчант", OrgId=1, TargetId=93, CreationDate=DateTime.Parse("2017-07-29 12:00:00.0000000"), UserId=7 }
+              
             }.AsQueryable();
         }
         private IQueryable<FinOp> GetTestFinOpsForIncomeReports()
@@ -73,7 +81,7 @@ namespace FundTrack.Integration.Tests.Controllers
                 new FinOp(){ Id=129 , AccFromId=null    , AccToId=76    , Amount=220.00M    , Description="Test1", DonationId= null , FinOpDate=DateTime.Parse("2017-10-20 20:00:00.000"),TargetId= 7, UserId=  7, FinOpType=   1 },
                 new FinOp(){ Id=130 , AccFromId= null   , AccToId=76    , Amount=220.00M    , Description="Test1", DonationId= null , FinOpDate=DateTime.Parse("2017-10-20 20:40:00.000"),TargetId= 7, UserId=  7, FinOpType=   1 },
                 new FinOp(){ Id=131 , AccFromId=null    , AccToId=76    , Amount=230.00M    , Description="Test1", DonationId= null , FinOpDate=DateTime.Parse("2017-10-20 20:22:00.000"),TargetId= 5, UserId=  7, FinOpType=   1 },
-                new FinOp(){ Id=132 , AccFromId=null    , AccToId=76    , Amount=10.00M , Description="LiqPay.Перевод с карты на карту от 02-08-2017 ID платежа 470594171", DonationId= null    , FinOpDate=DateTime.Parse("2017-08-02 10:10:00.00"),TargetId=0 ,UserId=  null, FinOpType=   1 },
+                new FinOp(){ Id=132 , AccFromId=null    , AccToId=76    , Amount=10 , Description="LiqPay.Перевод с карты на карту от 02-08-2017 ID платежа 470594171", DonationId= null    , FinOpDate=DateTime.Parse("2017-08-02 10:10:00.00"),TargetId=5 ,UserId=  null, FinOpType=   1 },
                 new FinOp(){ Id=133 , AccFromId=null    , AccToId=76    , Amount=9.99M, Description="Зачисление суммы вклада с «Копилки»", DonationId=    49  , FinOpDate=DateTime.Parse("2017-08-03 13:46:00.000"),TargetId= null, UserId=   6, FinOpType=   1 },
                 new FinOp(){ Id=134 , AccFromId=null    , AccToId=76    , Amount=220.00M    , Description="Test1", DonationId= null , FinOpDate=DateTime.Parse("2017-10-20 20:20:00.000"),TargetId= 6, UserId=  7, FinOpType=   1 },
                 new FinOp(){ Id=135 , AccFromId=null    , AccToId=76    , Amount=220.00M    , Description="Test1", DonationId=  53  , FinOpDate=DateTime.Parse("2017-10-20 20:00:00.000"),TargetId= 6, UserId=  6, FinOpType=   1 },
@@ -83,42 +91,31 @@ namespace FundTrack.Integration.Tests.Controllers
              }.AsQueryable();
         }
 
-        private FinOp GetTestReportByOrgId(System.Func<FinOp, bool> predicate)
-        {
-            return GetTestFinOpsForIncomeReports().Where(predicate).FirstOrDefault();
-        }
-
-        private Target GetTargets(System.Func<Target, bool> predicate)
-        {
-            return GetTestTargets().Where(predicate).FirstOrDefault();
-        }
+     
 
         [Fact]
         public async Task Get_Income_Report_Test()
         {
             //Arrange
-            var dbContext = _testContext.GetClearDbContext();
-
-            var testTargets = GetTargets(t => t.OrganizationId == 1);
-            var testFinOps = GetTestReportByOrgId(t => t.AccToId == 76);
-            dbContext.Targets.Add(testTargets);
-            dbContext.FinOps.Add(testFinOps);
+            var dbContext = _testContext.GetClearDbContext();            
+            dbContext.Targets.AddRange(GetTestTargets());
+            dbContext.FinOps.AddRange(GetTestFinOpsForIncomeReports());
+            dbContext.OrgAccounts.AddRange(GetTestOrgAccounts());
             dbContext.SaveChanges();
 
             //Act
-            var response = await _testContext.Client.GetAsync($"/api/IncomeReport/1");
+            var response = await _testContext.Client.GetAsync($"/api/reports/IncomeReport/1?datefrom=2017-09-08&dateto=2017-09-30");
             var stream = await response.Content.ReadAsStreamAsync();
             var reader = new StreamReader(stream, Encoding.UTF8);
-            var resultTarget = new JsonSerializer().Deserialize<ReportIncomeViewModel>(new JsonTextReader(reader));
+            var resultReport = new JsonSerializer().Deserialize<IEnumerable<ReportIncomeViewModel>>(new JsonTextReader(reader));
 
             //Assert
             response.EnsureSuccessStatusCode();
 
             Assert.True(HttpStatusCode.OK == response.StatusCode);
-            Assert.NotNull(resultTarget);
-            //Assert.Equal(testOrg.TargetName, resultTarget.Name);
-            //Assert.Equal(testOrg.OrganizationId, resultTarget.OrganizationId);
-            //Assert.True(resultTarget.IsDeletable);
+            Assert.NotNull(resultReport);
+            Assert.True(resultReport.Count() == 13);
+          
         }
     }
 }
