@@ -3,8 +3,6 @@ using Microsoft.AspNetCore.Authorization;
 using FundTrack.BLL.Abstract;
 using FundTrack.Infrastructure.ViewModel.FinanceViewModels;
 using FundTrack.BLL.Concrete;
-using System;
-using System.Collections.Generic;
 
 namespace FundTrack.WebUI.Controllers
 {
@@ -48,7 +46,7 @@ namespace FundTrack.WebUI.Controllers
         }
 
         [HttpPost("AllBalances")]
-        public IActionResult AddNewRangeOfBalances([FromBody]MyClass balances)
+        public IActionResult AddNewRangeOfBalances([FromBody]AllBalances balances)
         {
             if (balances == null)
             {
@@ -64,15 +62,11 @@ namespace FundTrack.WebUI.Controllers
             }
         }
 
-        [HttpDelete("DeleteTarget/{balanceId}")]
+        [HttpDelete("DeleteLastFixing/{balanceId}")]
         public IActionResult DeleteLastFixing(int balanceId)
         {
             return Ok(_fixingBalanceService.DeleteLastFixing(balanceId));
         }
     }
 
-   public class MyClass
-    {
-        public BalanceViewModel[] Balances { get; set; }
-    }
 }

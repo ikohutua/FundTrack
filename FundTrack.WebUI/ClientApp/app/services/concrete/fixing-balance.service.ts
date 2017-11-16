@@ -29,4 +29,9 @@ export class FixingBalanceService {
         return this._http.post(GlobalUrlService.fixingAllBalancesUrl,  allOrgAccounts, RequestOptionsService.getRequestOptions())
             .map((response: Response) => response.json() as BalanceViewModel[]);
     }
+
+    public deleteLastFixing(balanceId: number): Observable<boolean> {
+        return this._http.delete(GlobalUrlService.deleteLastFixingUrl + balanceId, RequestOptionsService.getRequestOptions())
+            .map((response: Response) => response.json() as boolean);
+    }
 }

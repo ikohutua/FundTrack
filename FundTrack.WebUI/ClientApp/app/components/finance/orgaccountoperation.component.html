@@ -3,6 +3,7 @@
         <h2>Фінансові операції по рахунку</h2>
     </div>
     <div class="row marginTopRight">
+        <a class="btn pull-right marginLeft" (click)="deleteLastFixing()">Зняти останню фіксацію</a>
         <a class="btn pull-right marginLeft" (click)="openModal(fixingBalanceModal)">Зафіксувати баланс</a>
         <a *ngIf="isCashType" id="right-float" class="btn pull-right" (click)="openModal(newAccountManagmentWindow)">Керування рахунком</a>
         <a *ngIf="!isCashType" id="right-float" class="btn pull-right" (click)="openModal(newBankAccountManagmentWindow)">Керування рахунком</a>
@@ -389,6 +390,15 @@
     <div class="app-modal-footer"></div>
 </app-modal>
 
-<!--<div>
-    <incomeoperation [orgId]="orgId" [currentAccount]="currentAccount"></incomeoperation>
-</div>-->
+
+<app-modal #deleteLastFixingModal>
+    <div class="app-modal-header">
+        <button type="button" class="close" aria-hidden="true" (click)="deleteLastFixingModal.hide()">&times;</button>
+        <h4 class="modal-title">Видалення останнього фіксування балансу</h4>
+    </div>
+    <div class="app-modal-body">
+       <h3>{{deleteLastFixinMessage}}</h3>
+    </div>
+    <div class="app-modal-footer">
+    </div>
+</app-modal>

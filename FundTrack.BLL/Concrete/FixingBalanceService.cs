@@ -125,7 +125,7 @@ namespace FundTrack.BLL.Concrete
                     continue;
                 }
 
-                if (lastFixedBalances.Keys.Contains(balance.OrgAccountId) 
+                if (lastFixedBalances.Keys.Contains(balance.OrgAccountId)
                     && balance.BalanceDate.Date <= lastFixedBalances[balance.OrgAccountId].Date)
                 {
                     balance.Message = ErrorMessages.BalanceAlreadyFixedMessage;
@@ -160,13 +160,15 @@ namespace FundTrack.BLL.Concrete
                 {
                     return false;
                 }
-                return _unitOfWork.BalanceRepository.Delete(balance.Id);
+                var ok = _unitOfWork.BalanceRepository.Delete(balance.Id);
+                _unitOfWork.SaveChanges();
+                return ok;
             }
             catch (Exception e)
             {
                 throw new BusinessLogicException(ErrorMessages.DeleteFixingError, e);
             }
-            
+
         }
     }
 }
