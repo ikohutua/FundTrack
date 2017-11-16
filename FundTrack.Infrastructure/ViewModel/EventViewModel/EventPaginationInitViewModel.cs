@@ -8,11 +8,11 @@
         /// <summary>
         /// Total amount of users
         /// </summary>
-        public int TotalEventsCount { get; set; }
+        public int TotalItemsCount { get; set; }
 
         /// <summary>
         /// Number of Events on one page
         /// </summary>
-        public int EventsPerPage { get; set; }
+        public int ItemsPerPage { get; set; }
     }
 }

@@ -131,8 +131,8 @@ namespace FundTrack.BLL.Concrete
         {
             return new EventPaginationInitViewModel
             {
-                TotalEventsCount = _unitOfWork.EventRepository.Read().Count(),
-                EventsPerPage = _pageSize
+                TotalItemsCount = _unitOfWork.EventRepository.Read().Count(),
+                ItemsPerPage = _pageSize
             };
         }
     }
