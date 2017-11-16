@@ -23,7 +23,6 @@ export abstract class BaseService<T> {
     public getCollection(): Observable<T[]> {
         return this._http.get(this._url)
             .map((response: Response) => <T[]>response.json())
-            //.do(data => console.log('ALL ' + JSON.stringify(data)))
             .catch(this.handleError);
     }
 

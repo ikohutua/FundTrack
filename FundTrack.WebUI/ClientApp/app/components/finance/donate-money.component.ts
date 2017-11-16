@@ -26,7 +26,7 @@ import { ActivatedRoute } from "@angular/router";
     styleUrls: ['./donate-money.component.css'],
     providers: [DatePipe, DonateService, OrganizationGetGeneralInfoService]
 })
-export class MakeDonationComponent implements OnInit, DoCheck, OnDestroy{
+export class MakeDonationComponent implements OnInit, DoCheck, OnDestroy {
 
     fondyPayModel: RequestFondyViewModel = new RequestFondyViewModel();
     checkPaymentModel: CheckPaymentStautsViewModel = new CheckPaymentStautsViewModel();
@@ -37,7 +37,7 @@ export class MakeDonationComponent implements OnInit, DoCheck, OnDestroy{
     currencies: Array<CurrencyViewModel> = new Array<CurrencyViewModel>();
     accountForDonation: DonateAccountViewModel = new DonateAccountViewModel();
     merchantPassword: string = "test";
-    donateAmount: string ;
+    donateAmount: string;
     donateOrganization: string;
     isApproved: boolean = false;
     user: any;
@@ -55,25 +55,25 @@ export class MakeDonationComponent implements OnInit, DoCheck, OnDestroy{
     public modal: ModalComponent;
 
     public donateForm: FormGroup;
-    public submitted: boolean; 
+    public submitted: boolean;
 
     private errorMessage: string;
 
     public formErrors = {
         'amount': '',
-        'currency': '',        
+        'currency': '',
         'accountForDonation': ''
     }
 
     public errorMessages = {
         'amount': {
-            'required': "Поле є обов'язковим для заповнення", 
+            'required': "Поле є обов'язковим для заповнення",
             'pattern': "Поле може містити цифри та лише два знаки після коми"
-        }, 
+        },
         'currency': {
             'required': 'Будь ласка, оберіть значення з випадаючого списку'
-        },  
-        'accountForDonation':{
+        },
+        'accountForDonation': {
             'required': 'Будь ласка, оберіть значення з випадаючого списку'
         }
 
@@ -87,7 +87,7 @@ export class MakeDonationComponent implements OnInit, DoCheck, OnDestroy{
 
     }
 
-   
+
     ngOnInit() {
         this._subscriber = this._route.params.subscribe(params => {
             if (!isNaN(+params["id"]) && +params["id"] > 0) {
@@ -112,15 +112,15 @@ export class MakeDonationComponent implements OnInit, DoCheck, OnDestroy{
         };
 
         this.donateForm = this._fb.group({
-            amount: ['', [Validators.required,  Validators.pattern("[0-9]+(\.[0-9]{1,2})?$")]],
+            amount: ['', [Validators.required, Validators.pattern("[0-9]+(\.[0-9]{1,2})?$")]],
             currency: ['', [Validators.required]],
             description: ['Коментар відсутній'],
-            accountForDonation: ['', [Validators.required]], 
+            accountForDonation: ['', [Validators.required]],
             email: ['']
         });
 
         this._donateService.getOrderId().subscribe((result) => this.fondyPayModel.order_id = result);
-        this._donateService.getCurrencies().subscribe((result) => { this.currencies = result, console.log(this.currencies) });
+        this._donateService.getCurrencies().subscribe((result) => { this.currencies = result });
         this.fondyPayModel.server_callback_url = "http://localhost:51116/finance/donate";
 
         //DONT FORGET PEPLACE LINK TO DEFAULT http://fundtrack4.azurewebsites.net/finance/donate
@@ -130,11 +130,11 @@ export class MakeDonationComponent implements OnInit, DoCheck, OnDestroy{
 
         this.donateForm.valueChanges.subscribe(() => {
             this.showErrorMessages();
-               this.fondyPayModel.amount = this.getAppropriateAmount(this.donateForm.controls.amount.value);
-                this.fondyPayModel.order_desc = this.donateForm.controls.description.value;
-                this.fondyPayModel.signature = this.createSignature(this.fondyPayModel);
-            }
-        )        
+            this.fondyPayModel.amount = this.getAppropriateAmount(this.donateForm.controls.amount.value);
+            this.fondyPayModel.order_desc = this.donateForm.controls.description.value;
+            this.fondyPayModel.signature = this.createSignature(this.fondyPayModel);
+        }
+        )
     }
 
     ngDoCheck() {
@@ -152,12 +152,12 @@ export class MakeDonationComponent implements OnInit, DoCheck, OnDestroy{
     }
 
     createSignature(parameters: RequestFondyViewModel): string {
-        let result: string;        
+        let result: string;
         result = this.merchantPassword + '|' + parameters.amount + '|' + parameters.currency + '|' + parameters.merchant_id
             + '|' + parameters.order_desc + '|' + parameters.order_id + '|'
             + parameters.response_url + '|' + parameters.server_callback_url;
-        
-        result = <string>sha1(result);      
+
+        result = <string>sha1(result);
         return result;
     }
 
@@ -170,7 +170,7 @@ export class MakeDonationComponent implements OnInit, DoCheck, OnDestroy{
     }
 
     sendDonateRequest(): void {
-        
+
         if (this.fondyPayModel.merchant_id == undefined) {
 
         }
@@ -182,19 +182,19 @@ export class MakeDonationComponent implements OnInit, DoCheck, OnDestroy{
             this.showErrorsForSelect();
             return;
         }
-        
+
         this.merchantData.currencyId = this.currency.currencyId.toString();
-        this.fondyPayModel.currency = this.currency.currencyShortName;       
+        this.fondyPayModel.currency = this.currency.currencyShortName;
         this.fondyPayModel.signature = this.createSignature(this.fondyPayModel);
-      
-        this.merchantData.targetId = this.accountForDonation.targetId==null ? "Null":this.accountForDonation.targetId.toString();  
-        
+
+        this.merchantData.targetId = this.accountForDonation.targetId == null ? "Null" : this.accountForDonation.targetId.toString();
+
         if (this.user) {
             this.merchantData.userId = this.user.id;
         };
-       
+
         if (this.donateForm.valid) {
-           
+
             if (this.fondyPayModel.order_desc = " ") {
                 this.fondyPayModel.order_desc = this.donateForm.controls.description.value;;
                 this.fondyPayModel.signature = this.createSignature(this.fondyPayModel);
@@ -206,7 +206,7 @@ export class MakeDonationComponent implements OnInit, DoCheck, OnDestroy{
             }
 
             this.merchantData.donateOrganization = this.donateOrganization;
-            
+
             this.merchantData.orderDesc = this.fondyPayModel.order_desc;
             localStorage.setItem("order_id", this.fondyPayModel.order_id);
             localStorage.setItem("merchantData", JSON.stringify(this.merchantData));
@@ -217,16 +217,16 @@ export class MakeDonationComponent implements OnInit, DoCheck, OnDestroy{
         }
 
         else {
-            this.showErrorMessages();           
+            this.showErrorMessages();
         }
-              
+
     }
 
 
 
     checkPayment(): void {
         this._donateService.checkPaymentRequest(this.checkPaymentModel).
-            subscribe((response) => {              
+            subscribe((response) => {
                 if (response.response.order_status == "approved") {
                     this.donateAmount = parseFloat(response.response.actual_amount) / 100 + " " + response.response.currency;
                     this.paymentInfo = JSON.parse(localStorage.getItem("merchantData"));
@@ -238,10 +238,10 @@ export class MakeDonationComponent implements OnInit, DoCheck, OnDestroy{
                     this.donate.bankAccountId = parseInt(this.paymentInfo.bankAccountId);
                     this.donate.currencyId = parseInt(this.paymentInfo.currencyId);
                     this.donate.description = this.paymentInfo.orderDesc;
-                    if (this.user) {                    
+                    if (this.user) {
                         this.donate.donatorEmail = this.user.email;
                     };
-                    this.donate.donationDate = this.datePipe.transform(new Date(), 'yyyy-MM-dd HH:mm:ss') 
+                    this.donate.donationDate = this.datePipe.transform(new Date(), 'yyyy-MM-dd HH:mm:ss')
                     this.donate.orderId = response.response.order_id;
                     this.donate.targetId = parseInt(this.paymentInfo.targetId);
                     this.donate.userId = parseInt(this.paymentInfo.userId);
@@ -250,12 +250,12 @@ export class MakeDonationComponent implements OnInit, DoCheck, OnDestroy{
 
                 else if (response.response.order_status == 'declined') {
                     this.message = this.messages.declinedPayment;
-                    this.modal.show();             
+                    this.modal.show();
                 }
                 localStorage.removeItem("merchantData");
                 localStorage.removeItem("order_id");
             });
-        
+
     }
 
     getAccountsForDonate(): void {
@@ -267,7 +267,7 @@ export class MakeDonationComponent implements OnInit, DoCheck, OnDestroy{
                     this.donateAccounts = result.accounts;
                     this.accountForDonation = result.accounts[0];
                 }
-                else {     
+                else {
                     this.hasAccountForDonate = false;
                     this.donateAccounts = [];
                 }

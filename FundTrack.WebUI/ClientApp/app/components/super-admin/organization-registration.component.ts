@@ -87,7 +87,6 @@ export class OrganizationRegistrationComponent implements OnInit {
 
         imgInpServ.UploadImageFromFile(startFile)
             .then((res) => {
-                console.log(res);
                 this.newLogo = res;
                 this.isNewLogoAvailable = true;
             })

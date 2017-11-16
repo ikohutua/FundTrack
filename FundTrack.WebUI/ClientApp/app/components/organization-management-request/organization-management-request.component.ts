@@ -77,7 +77,6 @@ export class OrganizationManagementRequestComponent implements OnInit {
      */
     private setCurrentRequestedItem(requestedItem: RequestManagementViewModel) {
         this.currentRequestedItem = requestedItem;
-        console.log(this.currentRequestedItem);
     }
 
     /**

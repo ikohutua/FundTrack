@@ -41,7 +41,6 @@ export class OrganizationManagementEventAddComponent {
      */
     private addNewEvent(): void {
         this._event.images = this.images;
-        console.log(this._event.images);
         this._event.organizationId = this._idForCurrentOrganization;
         this._event.createDate = new Date(Date.now());
         this._service.addNewEvent(this._event).subscribe(

@@ -81,7 +81,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ClientApp\app\shared\components\upload-image\" />
-    <Folder Include="wwwroot\images\" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\app\components\organization-detail\additional-options.component.ts" />

@@ -56,7 +56,7 @@ export class ShowRequestedItemService extends BaseService<IShowRequestedItem>{
             "currentPage": currentPage,
             "itemsPerPage": itemsPerPage
         };
-        return this.http.post(ReportUrlsService._urlGetRequestedItemToShowPerPage, JSON.stringify(body), this.getRequestOptions())
+        return this.http.post(ReportUrlsService._urlGetRequestedItemToShowPerPage, JSON.stringify(body), RequestOptionsService.getRequestOptions())
             .map((response: Response) => response.json() as ShowRequestedItem[])
             .catch(this.handleErrorHere);
     }
@@ -66,7 +66,7 @@ export class ShowRequestedItemService extends BaseService<IShowRequestedItem>{
      * @param filters
      */
     public getFilterRequestedItemInitData(filters: FilterRequstedViewModel): Observable<RequestedItemInitViewModel> {
-        return this.http.post(ReportUrlsService._urlFilterRequestedItem, JSON.stringify(filters), this.getRequestOptions())
+        return this.http.post(ReportUrlsService._urlFilterRequestedItem, JSON.stringify(filters), RequestOptionsService.getRequestOptions())
             .map((response: Response) => response.json() as ShowRequestedItem[])
             .catch(this.handleErrorHere);
     }
@@ -141,21 +141,10 @@ export class ShowRequestedItemService extends BaseService<IShowRequestedItem>{
     private getCollections<T>(_myUrl: string): Observable<T[]> {
         return this.http.get(_myUrl, RequestOptionsService.getRequestOptions())
             .map((response: Response) => response.json() as T[])
-            .do(data => console.log('ALL ' + JSON.stringify(data)))
             .catch(this.handleErrorHere);
     }
 
     private handleErrorHere(error: Response) {
         return Observable.throw(error.json().error || 'Server error');
     }
-
-    /**
-    * Create RequestOptions
-    */
-    private getRequestOptions() {
-        let headers = new Headers({ 'Content-Type': 'application/json' });
-        let options = new RequestOptions({ headers: headers });
-        return options;
-    }
-
 }

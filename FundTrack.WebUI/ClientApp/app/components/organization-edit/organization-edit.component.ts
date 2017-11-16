@@ -313,7 +313,6 @@ export class OrganizationEditComponent implements OnInit, OnDestroy, AfterViewIn
 
         imgInpServ.UploadImageFromFile(startFile)
             .then((res) => {
-                console.log(res);
                 this.editLogo.base64Code = res.base64Data;
                 this.editLogo.logoUrl = res.imageUrl;
                 this.editLogo.imageExtension = res.imageExtension;

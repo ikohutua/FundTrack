@@ -2,7 +2,7 @@
 import { ResetPasswordViewModel } from '../../view-models/concrete/reset-password-view-model';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
-import { UserService } from '../../services/concrete/user.service'; 
+import { UserService } from '../../services/concrete/user.service';
 import { GuidViewModel } from '../../view-models/concrete/guid-view-model';
 import { FormControl, FormGroup, AbstractControl, Validators, FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { matchingPasswords } from '../registration/match-password.validator';
@@ -14,7 +14,7 @@ import 'rxjs/add/operator/switchMap';
     providers: [UserService]
 })
 
-export class NewPasswordComponent implements OnInit { 
+export class NewPasswordComponent implements OnInit {
 
     /**
     * ResetPassword View Model
@@ -47,18 +47,17 @@ export class NewPasswordComponent implements OnInit {
      * @param _userService
      */
     constructor(private _route: ActivatedRoute,
-                private _userService: UserService,
-                private _navRouter: Router,
-                private _formBuilder: FormBuilder) {
+        private _userService: UserService,
+        private _navRouter: Router,
+        private _formBuilder: FormBuilder) {
         this.buildForm();
     }
 
     /**
      * Trigers when the Component is created
      */
-    ngOnInit() : void {    
-        this._route.params.subscribe(params =>
-        {
+    ngOnInit(): void {
+        this._route.params.subscribe(params => {
             this.guid = params['id'];
 
             let model = new GuidViewModel();
@@ -75,22 +74,19 @@ export class NewPasswordComponent implements OnInit {
     /**
      * Calls server to change password
      */
-    public changePassword() : void {
+    public changePassword(): void {
         this.resetPasswordModel.guid = this.guid;
-
-        console.log(this.guid);
-
         this._userService.resetPassword(this.resetPasswordModel).subscribe((responce: string) => {
             if (responce.length == 0) {
                 this.passwordChanged = true;
-            }    
+            }
         });
     }
 
     /**
      * Shows passwords
      */
-    public showPassword() : string {
+    public showPassword(): string {
         if (this.type == "password") {
             this.type = "text";
             return this.glyphyconEye = "glyphicon glyphicon-eye-close";
@@ -102,14 +98,14 @@ export class NewPasswordComponent implements OnInit {
     }
 
     //Object with errors wich will be displayed on interface
-    public formErrors = {        
+    public formErrors = {
         "password": "",
         "confirmPassword": "",
         "mismatchingPasswords": ""
     };
-    
+
     //Object with error messages  
-    private validationMessages = {       
+    private validationMessages = {
         password: {
             required: "Обовязкове поле для заповнення",
             minlength: "Мінімальна кількість символів повинна бути більша 7"
@@ -124,7 +120,7 @@ export class NewPasswordComponent implements OnInit {
     /**
      * Initialize form
      */
-    public buildForm() : void {
+    public buildForm(): void {
         this.passwordForm = this._formBuilder.group({
             "password": [this.resetPasswordModel.newPassword, [
                 Validators.required,

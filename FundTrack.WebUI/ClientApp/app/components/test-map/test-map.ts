@@ -50,7 +50,6 @@ export class TestMap {
     private clone: any = [];
 
     ngOnChange() {
-        console.log(this.allAddresses);
     }
 
     public showAddress(addresses: IAddressViewModel[]): void {
