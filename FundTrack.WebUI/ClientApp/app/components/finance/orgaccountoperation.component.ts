@@ -80,6 +80,7 @@ export class OrgAccountOperationComponent implements OnChanges {
     private itemPerPage: number = 10;
     private currentPage: number = 1;
     private currentFinOpType: number = -1;
+    private deleteLastFixinMessage: string = "";
 
     @Input() orgId: number;
     @Input() accountId: number;
@@ -107,6 +108,9 @@ export class OrgAccountOperationComponent implements OnChanges {
     @ViewChild("fixingBalanceModal")
     private fixingBalanceModal: ModalComponent;
 
+    @ViewChild("deleteLastFixingModal")
+    private deleteLastFixingModal: ModalComponent;
+    
     @ViewChild("suggestedDonationsModal")
     private suggestedDonationsModal: ModalComponent;
     //-------------------------------------------------------------------------------
@@ -445,7 +449,7 @@ export class OrgAccountOperationComponent implements OnChanges {
 
     private invalidAmountMessage = message.invalidAmountMessage;
     private maxLengthDescription = message.maxLengthDescription;
-
+    
     private validationMessages = {
         amount: {
             notnumber: this.invalidAmountMessage,
@@ -668,5 +672,17 @@ export class OrgAccountOperationComponent implements OnChanges {
     private onChangeAccountTarget($event): void {
         this.accountForUpdate.targetId = $event;
         this.accountService.updateOrganizationAccount(this.accountForUpdate).subscribe();
+    }
+
+    private deleteLastFixing() {
+        this.fixingService.deleteLastFixing(this.accountId).subscribe(
+            response => {
+                this.deleteLastFixinMessage = response ? "Успішно видалено останню фіксацію" : "Не вдалось видалити останню фіксацію";
+                this.deleteLastFixingModal.show();
+            },
+            error => {
+                this.deleteLastFixinMessage = error;
+                this.deleteLastFixingModal.show();
+            });
     }
 }

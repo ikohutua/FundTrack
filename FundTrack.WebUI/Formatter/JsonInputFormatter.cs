@@ -35,11 +35,6 @@ namespace FundTrack.WebUI.Formatter
             {
                 var type = context.ModelType;
 
-                if (type == typeof(ImportDetailPrivatViewModel))
-
-                {
-                    var i = 10;
-                }
                 try
                 {
                     var serializer = new JsonSerializer();

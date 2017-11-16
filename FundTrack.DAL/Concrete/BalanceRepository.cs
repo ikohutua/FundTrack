@@ -39,5 +39,12 @@ namespace FundTrack.DAL.Concrete
         {
             return _context.Balances.Where(x => x.OrgAccountId == accountId);
         }
+
+        public bool Delete(int balanceId)
+        {
+            var balance = _context.Balances.FirstOrDefault(c => c.Id == balanceId);
+            _context.Balances.Remove(balance);
+            return true;
+        }
     }
 }
