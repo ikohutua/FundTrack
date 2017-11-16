@@ -68,7 +68,7 @@ namespace FundTrack.WebUI.Controllers
         /// <param name="orgAccountId">The org account identifier.</param>
         /// <returns></returns>
         [HttpGet("GetFinOpsByOrgAccId/{orgAccountId}")]
-        [Authorize(Roles = "admin, moderator")]
+        //[Authorize(Roles = "admin, moderator")]
         public IActionResult GetFinOpsByOrgAccId(int orgAccountId)
         {
             if (orgAccountId <= 0)
@@ -84,7 +84,7 @@ namespace FundTrack.WebUI.Controllers
         /// <param name="orgAccountId">The fin op identifier.</param>
         /// <returns></returns>
         [HttpGet("GetFinOpsById/{id}")]
-        [Authorize(Roles = "admin, moderator")]
+        //[Authorize(Roles = "admin, moderator")]
         public IActionResult GetFinOpsById(int id)
         {
             if (id <= 0)
@@ -120,7 +120,7 @@ namespace FundTrack.WebUI.Controllers
         /// <param name="incomeModel">The income finance operation model.</param>
         /// <returns></returns>
         [HttpPost("Income")]
-        [Authorize(Roles = "admin, moderator")]
+        //[Authorize(Roles = "admin, moderator")]
         public IActionResult Income([FromBody] FinOpViewModel incomeModel)
         {
             if(incomeModel == null)
@@ -136,7 +136,7 @@ namespace FundTrack.WebUI.Controllers
         /// <param name="spendingModel">The spending finance operation model.</param>
         /// <returns></returns>
         [HttpPost("Spending")]
-        [Authorize(Roles = "admin, moderator")]
+        //[Authorize(Roles = "admin, moderator")]
         public IActionResult Spending([FromBody] FinOpViewModel spendingModel)
         {
             if (spendingModel == null)
@@ -152,7 +152,7 @@ namespace FundTrack.WebUI.Controllers
         /// <param name="transferModel">The transfer finance operation model.</param>
         /// <returns></returns>
         [HttpPost("Transfer")]
-        [Authorize(Roles = "admin, moderator")]
+        //[Authorize(Roles = "admin, moderator")]
         public IActionResult Transfer([FromBody] FinOpViewModel transferModel)
         {
             if (transferModel == null)
@@ -170,7 +170,7 @@ namespace FundTrack.WebUI.Controllers
             {
                 return BadRequest();
             }
-            return Ok(_service.GetImagesById(finOpId));
+            return Ok(_service.GetImagesByFinOpId(finOpId));
 
         }
 
