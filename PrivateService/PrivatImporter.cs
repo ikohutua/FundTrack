@@ -14,7 +14,7 @@ namespace PrivatService
 {
     public static class PrivatImporter
     {
-        private static readonly string _connectionString = "Server=fundtrackss.database.windows.net;Initial Catalog=fundtrackss;Persist Security Info=False;User ID=adminss;Password=fund_track0ITA;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;MultipleActiveResultSets=True;";
+        private static readonly string _connectionString ;
 
         #region xml creating
         private static string ImportXmlData(string cardnumber, string merchantId, string password, DateTime dateFrom, DateTime dateTo)
