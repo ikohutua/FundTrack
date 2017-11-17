@@ -20,80 +20,36 @@ namespace FundTrack.PrivatImport
         #region xml creating
         private static string ImportXmlData(string cardnumber, string merchantId, string password, DateTime dateFrom, DateTime dateTo)
         {
-            const string xmlVersion = "\"1.0\"";
-            const string encodingVersion = "\"UTF-8\"";
-            const string startDate = "\"sd\"";
-            const string endDate = "\"ed\"";
-            const string card = "\"card\"";
-            const string empty = "\"\"";
-            var data =
+            const string xmlVersion = "1.0";
+            const string encodingVersion = "UTF-8";
+            const string startDate = "sd";
+            const string endDate = "ed";
+            const string card = "card";
+            var data = string.Format(
     @"<oper>cmt</oper>
         <wait>0</wait>
         <test>0</test>  
-        <payment id=" + empty + @">
-            <prop name= " + startDate + @" value=" + "\"" + dateFrom.ToShortDateString() + @"""/>
-            <prop name= " + endDate + @" value=" + "\"" + dateTo.ToShortDateString() + @"""/>
-            <prop name= " + card + @" value=" + "\"" + cardnumber + @"""/>
-        </payment>";
+        <payment id=\""\"">
+            <prop name=\""{0}\"" value=\""{1}\""/>
+            <prop name=\""{2}\"" value=\""{3}\""/>
+            <prop name=\""{4}\"" value=\""{5}\""/>
+        </payment>", startDate, dateFrom.ToShortDateString(), endDate, dateTo.ToShortDateString(), card, cardnumber);
 
             var sign = HashFunctions.CalculateSha1Hash(HashFunctions.CalculateMd5Hash(data + password));
-            var body = @"<?xml version=" + xmlVersion + @" encoding=" + encodingVersion + @"?>
-<request version=" + xmlVersion + @">
+            var body = string.Format(@"<?xml version={0} encoding={1}?>
+<request version={0}>
     <merchant>
-        <id>" + merchantId + @"</id>
-        <signature>" + sign + @"</signature>
+        <id>\"" {2}\""</id>
+        <signature>\""{3}\""</signature>
     </merchant>
     <data>
-        " + data + @"
+        {4}
     </data>
-</request>";
+</request>", xmlVersion, encodingVersion, merchantId, sign, data);
 
             return body;
         }
         #endregion
-
-        /*  #region Serialized version(needs work)
-          private static string MakeRequest(string cardnumber, uint merchantId, string password, DateTime satartDate, DateTime endDate)
-          {
-              var re = new request
-              {
-                  version = 1.0m
-              };
-              var data = new data
-              {
-                  oper = "cmt",
-                  test = 0,
-                  wait = 0
-              };
-              var payment = new payment
-              {
-                  id = ""
-              };
-              var prop = new prop[3];
-              for (var i = 0; i < prop.Length; i++)
-              {
-                  prop[i] = new prop();
-              }
-              prop[0].name = "sd";
-              prop[0].value = satartDate.ToShortDateString();
-              prop[1].name = "ed";
-              prop[1].value = endDate.ToShortDateString();
-              prop[2].name = "card";
-              prop[2].value = cardnumber;
-              payment.prop = prop;
-              data.payment = payment;
-              var merchant = new merchant
-              {
-                  id = merchantId
-              };
-              var serializedData = data.Serialize();
-              merchant.signature = CalculateSha1Hash(CalculateMd5Hash(serializedData + password));
-              re.merchant = merchant;
-              re.data = data;
-              return re.Serialize();
-          }
-
-          #endregion*/
 
         private static async Task<string> PrivatRequestAsync(string cardNumber, string merchantId, string merchantPassword, DateTime dateFrom, DateTime dateTo)
         {

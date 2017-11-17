@@ -16,6 +16,7 @@ import { DatePeriod } from "../../shared/components/date-presets/date-period-cla
     templateUrl: './my-donations.component.html',
     styleUrls: ['./my-donations.component.css'],
 })
+
 export class MyDonationsComponent implements OnInit {
 
     private readonly DATE_FORMAT = "YYYY-MM-DD";

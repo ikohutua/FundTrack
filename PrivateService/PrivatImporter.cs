@@ -51,49 +51,6 @@ namespace PrivatService
         }
         #endregion
 
-        /*  #region Serialized version(needs work)
-          private static string MakeRequest(string cardnumber, uint merchantId, string password, DateTime satartDate, DateTime endDate)
-          {
-              var re = new request
-              {
-                  version = 1.0m
-              };
-              var data = new data
-              {
-                  oper = "cmt",
-                  test = 0,
-                  wait = 0
-              };
-              var payment = new payment
-              {
-                  id = ""
-              };
-              var prop = new prop[3];
-              for (var i = 0; i < prop.Length; i++)
-              {
-                  prop[i] = new prop();
-              }
-              prop[0].name = "sd";
-              prop[0].value = satartDate.ToShortDateString();
-              prop[1].name = "ed";
-              prop[1].value = endDate.ToShortDateString();
-              prop[2].name = "card";
-              prop[2].value = cardnumber;
-              payment.prop = prop;
-              data.payment = payment;
-              var merchant = new merchant
-              {
-                  id = merchantId
-              };
-              var serializedData = data.Serialize();
-              merchant.signature = CalculateSha1Hash(CalculateMd5Hash(serializedData + password));
-              re.merchant = merchant;
-              re.data = data;
-              return re.Serialize();
-          }
-
-          #endregion*/
-
         private static async Task<string> PrivatRequestAsync(string cardNumber, string merchantId, string merchantPassword, DateTime dateFrom, DateTime dateTo)
         {
             var dataToBeSent = ImportXmlData(cardNumber, merchantId, merchantPassword, dateFrom, dateTo);

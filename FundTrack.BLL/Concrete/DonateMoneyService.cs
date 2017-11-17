@@ -186,7 +186,6 @@ namespace FundTrack.BLL.Concrete
         {
             try
             {
-                dateTo = dateTo.AddDays(1);
                 var result = GetUserDonations(userId)
                     .Where(donat =>
                     (donat.Date.Date <= dateTo.Date)
