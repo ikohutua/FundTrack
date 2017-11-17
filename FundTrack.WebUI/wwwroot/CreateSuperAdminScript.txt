@@ -1,0 +1,2 @@
+/*додаємо суперадміна для сайту. Спочатку Створюємо БД !!!*/
+INSERT [dbo].[Users] ([Id], [Email], [FB_Link], [FirstName], [LastName], [Login], [Password], [PhotoUrl], [AuthorizationToken], [Salt]) VALUES (5, N'superadmin@gmail.com', NULL, N'Super', N'Admin', N'SuperAdmin', N'tqT5FFFIHc29hmFPHeijRLxgonba4i2sMZY8UUif0CA0l8/u387xkbeRaWIsm0dYw5uEsP7ylLgreVo4oU6P7v0JSurDrHpEJZGWtwsKQCvAaT3I6VsR2Jq82Y/5ZwR7rxUn8EvDpJ4mscIF5Fa9+vs03CZBbpAstOqf1V4qJG8=', N'https://s3.eu-central-1.amazonaws.com/fundtrack/default-user-image.png', NULL, N'41e1913c-8dc9-4096-8514-653fc2b0330c')

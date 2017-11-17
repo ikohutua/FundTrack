@@ -163,7 +163,7 @@ namespace FundTrack.WebUI
                 {
                     HotModuleReplacement = true
                 });
-            }
+           }
             app.UseWebSockets();
 
             app.UseMvc(routes =>
